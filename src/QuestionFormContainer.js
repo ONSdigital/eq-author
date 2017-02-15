@@ -5,13 +5,19 @@ import Select from './Select.js'
 import Input from './Input.js'
 import Label from './Label.js'
 
-export default class QuestionForm extends Component {
+export default class QuestionFormContainer extends Component {
+  handleChange = e => {
+    const {name, value} = e.target
+    this.setState({
+      [name]: value
+    })
+  }
   render() {
     return (
-      <form action="">
+      <form onChange={this.handleChange}>
         <Field>
           <Label htmlFor="question_type">Question Type</Label>
-          <Select id="question_type" options={['Text', 'Numeric', 'Multiple - Radio', 'Multiple - Checkbox']} />
+          <Select id="question_type" name="question_type" options={['Text', 'Numeric', 'Multiple - Radio', 'Multiple - Checkbox']} />
         </Field>
         <Field>
           <Label htmlFor="question_id">Question ID</Label>
