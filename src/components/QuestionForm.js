@@ -4,6 +4,7 @@ import Field from './Field.js'
 import Select from './Select.js'
 import Input from './Input.js'
 import Label from './Label.js'
+import TextArea from './TextArea.js'
 
 export default class QuestionForm extends Component {
   handleChange = e => {
@@ -28,6 +29,10 @@ export default class QuestionForm extends Component {
         <Field>
           <Label htmlFor="number">Question Number</Label>
           <Input value={number} id="number" name="number" />
+        </Field>
+        <Field>
+          <Label htmlFor="number">Question Guidance</Label>
+          <TextArea value="" id="question-guidance" name="question-guidance" rows="8" cols="40" />
         </Field>
       </form>
     )
