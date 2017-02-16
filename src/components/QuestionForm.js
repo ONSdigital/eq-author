@@ -4,6 +4,7 @@ import Field from './Field.js'
 import Select from './Select.js'
 import Input from './Input.js'
 import Label from './Label.js'
+import TextArea from './TextArea.js'
 
 export default class QuestionForm extends Component {
   handleChange = e => {
@@ -14,7 +15,7 @@ export default class QuestionForm extends Component {
   }
 
   render() {
-    const { id, number, title } = this.props.question
+    const { id, number, title, guidanceTitle, guidanceText } = this.props.question
     return (
       <form onChange={this.handleChange}>
         <Field>
@@ -34,8 +35,12 @@ export default class QuestionForm extends Component {
           <Input value={title} id="question-title" name="title" />
         </Field>
         <Field>
-          <Label htmlFor="guidance-title">Question Guidance Title</Label>
-          <Input value="" id="question-guidance-title" name="guidance-title" />
+          <Label htmlFor="guidance-title">Guidance Title</Label>
+          <Input value={guidanceTitle} id="guidance-title" name="guidance-title" />
+        </Field>
+        <Field>
+          <Label htmlFor="guidance-text">Guidance Title</Label>
+          <TextArea value={guidanceText} id="guidance-text" name="guidance-text" />
         </Field>
       </form>
     )
