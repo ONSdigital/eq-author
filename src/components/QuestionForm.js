@@ -39,8 +39,8 @@ export default class QuestionForm extends Component {
           <Input value={guidanceTitle} id="guidance-title" name="guidance-title" />
         </Field>
         <Field>
-          <Label htmlFor="guidance-text">Guidance Title</Label>
-          <TextArea value={guidanceText} id="guidance-text" name="guidance-text" />
+          <Label htmlFor="guidance-text">Guidance Text</Label>
+          <TextArea value={guidanceText} id="guidance-text" name="guidance-text" rows="10" />
         </Field>
       </form>
     )
