@@ -8,11 +8,13 @@ import Label from './Label.js'
 export default class QuestionForm extends Component {
   handleChange = e => {
     const {name, value} = e.target
-    this.setState({
+    this.props.onChange({
       [name]: value
     })
   }
+
   render() {
+    const { id, number } = this.props.question
     return (
       <form onChange={this.handleChange}>
         <Field>
@@ -21,11 +23,11 @@ export default class QuestionForm extends Component {
         </Field>
         <Field>
           <Label htmlFor="id">Question ID</Label>
-          <Input id="id" name="id" />
+          <Input value={id} id="id" name="id" />
         </Field>
         <Field>
           <Label htmlFor="number">Question Number</Label>
-          <Input id="number" name="number" />
+          <Input value={number} id="number" name="number" />
         </Field>
       </form>
     )
