@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
-import QuestionFormContainer from './QuestionFormContainer.js'
-import JsonWindowContainer from './JsonWindowContainer.js'
+import QuestionFormContainer from '../containers/QuestionForm.js'
+import JsonWindowContainer from '../containers/JsonWindow.js'
 
 class App extends Component {
   render() {
