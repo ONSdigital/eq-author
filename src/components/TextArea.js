@@ -2,9 +2,11 @@ import React, {Component} from 'react'
 
 export default class TextArea extends Component {
   render() {
-    const {name, id} = this.props
+    const {name, id, rows, cols} = this.props
     return (
-      <textarea rows="10" cols="50" id={id} name={name} defaultValue={this.props.value} />
+      <textarea id={id} name={name} rows={rows} cols={cols}>
+        {this.props.value}
+      </textarea>
     )
   }
 }
