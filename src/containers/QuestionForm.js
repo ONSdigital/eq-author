@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const QuestionFormContainer = connect(mapStateToProps, mapDispatchToProps)(QuestionForm)
+const QuestionFormContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionForm)
 
 export default QuestionFormContainer

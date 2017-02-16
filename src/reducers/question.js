@@ -12,7 +12,10 @@ const initialState = {
 const question = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE:
-      return action.value
+      return {
+        ...state,
+        ...action.value
+      }
     default:
       return state
   }
