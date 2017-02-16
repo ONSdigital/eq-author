@@ -31,15 +31,15 @@ export default class QuestionForm extends Component {
           <Input value={number} id="number" name="number" />
         </Field>
         <Field>
-          <Label htmlFor="title">Question title</Label>
-          <Input value={title} id="title" name="title" />
+          <Label htmlFor="title">Question Title</Label>
+          <Input value={title} id="question-title" name="title" />
         </Field>
         <Field>
-          <Label htmlFor="guidance-title">Guidance title</Label>
+          <Label htmlFor="guidance-title">Guidance Title</Label>
           <Input value={guidanceTitle} id="guidance-title" name="guidance-title" />
         </Field>
         <Field>
-          <Label htmlFor="guidance-text">Guidance title</Label>
+          <Label htmlFor="guidance-text">Guidance Title</Label>
           <TextArea value={guidanceText} id="guidance-text" name="guidance-text" />
         </Field>
       </form>
