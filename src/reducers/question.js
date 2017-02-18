@@ -8,7 +8,6 @@ const initialState = {
   "type": "General",
   "guidanceTitle": "Guidance",
   "guidanceText": "This is the guidance for this question",
-  "jsonText": "sdsddd",
   "answers": [],
 }
 
