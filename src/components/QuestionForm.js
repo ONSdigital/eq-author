@@ -15,7 +15,7 @@ export default class QuestionForm extends Component {
   }
 
   render() {
-    const { id, number, title, guidanceTitle, guidanceText } = this.props.question
+    const { id, number, title, guidancetitle, guidancetext } = this.props.question
     return (
       <form onChange={this.handleChange}>
         <Field>
@@ -35,12 +35,12 @@ export default class QuestionForm extends Component {
           <Input value={title} id="question-title" name="title" />
         </Field>
         <Field>
-          <Label htmlFor="guidance-title">Guidance Title</Label>
-          <Input value={guidanceTitle} id="guidance-title" name="guidance-title" />
+          <Label htmlFor="guidancetitle">Guidance Title</Label>
+          <Input value={guidancetitle} id="guidancetitle" name="guidancetitle" />
         </Field>
         <Field>
-          <Label htmlFor="guidance-text">Guidance Text</Label>
-          <TextArea value={guidanceText} id="guidance-text" name="guidance-text" rows="10" />
+          <Label htmlFor="guidancetext">Guidance Text</Label>
+          <TextArea value={guidancetext} id="guidancetext" name="guidancetext" rows="10" />
         </Field>
       </form>
     )
