@@ -3,4 +3,5 @@
   padding: 1rem;
   color: white;
   font-family: monospace;
+  overflow-x: scroll;
 }

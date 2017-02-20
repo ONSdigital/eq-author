@@ -6,8 +6,8 @@ const initialState = {
   "number": "1",
   "title": "Which side of the force are you on?",
   "type": "General",
-  "guidanceTitle": "Guidance",
-  "guidanceText": "This is the guidance for this question",
+  "guidancetitle": "Guidance",
+  "guidancetext": "This is the guidance for this question",
   "answers": [],
 }
 
