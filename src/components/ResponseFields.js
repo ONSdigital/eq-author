@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import Field from './Field.js'
 import Input from './Input.js'
 import Label from './Label.js'
-import TextArea from './TextArea.js'
 import Checkbox from './Checkbox.js'
 import RichTextArea from './RichTextArea.js'
+import OptionsInputList from './OptionsInputList.js'
 
 export default class ResponseFields extends Component {
 
@@ -46,7 +46,8 @@ export default class ResponseFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="options">Response Options</Label>
-              <TextArea value={JSON.stringify(options, null, 2)} name="options" rows="10"/>
+              {/* <TextArea value={JSON.stringify(options, null, 2)} name="options" rows="10"/> */}
+              <OptionsInputList options={options} />
           </Field>
           <Field>
               <Label htmlFor="description">Response Description</Label>
