@@ -1,4 +1,4 @@
-import {set, keys, values, merge} from 'lodash'
+import {merge} from 'lodash'
 
 import { CHANGE } from '../actions'
 
@@ -18,9 +18,7 @@ const initialState = {
 const question = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE:
-      return {
-        ...merge(state, action.value)
-      }
+      return {...merge(state, action.value)}
     default:
       return state
   }

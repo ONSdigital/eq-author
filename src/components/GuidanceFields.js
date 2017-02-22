@@ -1,16 +1,13 @@
 import React, {Component} from 'react'
 
-
 import Field from './Field'
-import Select from './Select'
 import Input from './Input'
 import TextArea from './TextArea'
 import Label from './Label'
 
 export default class GuidanceFields extends Component {
   render() {
-    const {guidance} = this.props
-    const {title, text} = guidance
+    const { guidance: {title, text} } = this.props
     return (
       <div>
         <Field>
