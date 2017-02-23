@@ -1,3 +1,5 @@
+import {merge} from 'lodash'
+
 import { CHANGE } from '../actions'
 
 const initialState = {
@@ -6,18 +8,17 @@ const initialState = {
   "number": "1",
   "title": "Which side of the force are you on?",
   "type": "General",
-  "guidancetitle": "Guidance",
-  "guidancetext": "This is the guidance for this question",
+  "guidance": {
+    "title": "Include",
+    "text": "Maecenas faucibus mollis interdum."
+    },
   "answers": [],
 }
 
 const question = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE:
-      return {
-        ...state,
-        ...action.value
-      }
+      return {...merge(state, action.value)}
     default:
       return state
   }

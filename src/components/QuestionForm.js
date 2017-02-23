@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 
-import Field from './Field.js'
-import Select from './Select.js'
-import Input from './Input.js'
-import Label from './Label.js'
-import TextArea from './TextArea.js'
-import Checkbox from './Checkbox.js'
-import RichTextArea from './RichTextArea.js'
+import Field from './Field'
+import Select from './Select'
+import Input from './Input'
+import Label from './Label'
+import TextArea from './TextArea'
+import Checkbox from './Checkbox'
+import RichTextArea from './RichTextArea'
+import GuidanceFields from './GuidanceFields'
 
 export default class QuestionForm extends Component {
   handleChange = e => {
@@ -17,7 +18,7 @@ export default class QuestionForm extends Component {
   }
 
   render() {
-    const { id, number, title, guidancetitle, guidancetext } = this.props.question
+    const { id, number, title, guidance } = this.props.question
     return (
       <form onChange={this.handleChange}>
         <h3>Question Settings</h3>
@@ -37,14 +38,9 @@ export default class QuestionForm extends Component {
           <Label htmlFor="title">Question Title</Label>
           <Input value={title} id="question-title" name="title" />
         </Field>
-        <Field>
-          <Label htmlFor="guidancetitle">Guidance Title</Label>
-          <Input value={guidancetitle} id="guidancetitle" name="guidancetitle" />
-        </Field>
-        <Field>
-          <Label htmlFor="guidancetext">Guidance Text</Label>
-          <TextArea value={guidancetext} id="guidancetext" name="guidancetext" rows="10" />
-        </Field>
+
+        <GuidanceFields guidance={guidance} />
+
         <hr />
         <h3>Response Settings</h3>
         <Field>
