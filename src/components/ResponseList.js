@@ -12,6 +12,7 @@ export default class ResponseList extends Component {
               key={this.props.responses.indexOf(response)}
               responseIndex={this.props.responses.indexOf(response)}
               onChangeResponse={this.props.onChangeResponse}
+              onChangeQuestion={this.props.onChangeQuestion}
               onRemoveOption={this.props.onRemoveOption}
               onAddOption={this.props.onAddOption} />)
         })}

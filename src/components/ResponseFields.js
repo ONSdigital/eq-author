@@ -9,6 +9,12 @@ import OptionsInputList from './OptionsInputList.js'
 
 export default class ResponseFields extends Component {
 
+  handleOriginalChange = e => {
+    const { name, value } = e.target
+    this.props.onChangeQuestion({[name]: value})
+    e.stopPropagation()
+  }
+
   handleChange = e => {
     const { name, value } = e.target
     this.props.onChangeResponse(this.props.responseIndex, {[name]: value})
@@ -72,7 +78,7 @@ export default class ResponseFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="validation-message">Validation Message</Label>
-              <Input value={validationMessage} name="validation.messages.MANDATORY"/>
+              <Input onChange={this.handleOriginalChange} value={validationMessage} name="answers.0.validation.messages.MANDATORY"/>
           </Field>
       </div>
     )

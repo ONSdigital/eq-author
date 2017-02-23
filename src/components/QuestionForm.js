@@ -38,6 +38,7 @@ export default class QuestionForm extends Component {
         <GuidanceFields guidance={question.guidance} />
         <hr />
         <ResponseList responses={responses}
+          onChangeQuestion={this.props.onChangeQuestion}
           onChangeResponse={this.props.onChangeResponse}
           onRemoveOption={this.props.onRemoveOption}
           onAddOption={this.props.onAddOption} />
