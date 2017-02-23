@@ -31,6 +31,15 @@ export default class ResponseFields extends Component {
     e.stopPropagation()
   }
 
+  handleAddOption = e => {
+    const {label, value, description} = e
+    this.props.onAddOption(this.props.responseIndex, {
+      label: label,
+      value: value,
+      description: description
+    })
+  }
+
   render () {
     const {id, mandatory, guidance, options, description, ...otherProps} = this.props.response
     const validationMessage = otherProps.validation.messages.MANDATORY

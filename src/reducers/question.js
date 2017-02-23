@@ -1,5 +1,5 @@
 import {merge} from 'lodash'
-import { CHANGE_QUESTION, CHANGE_RESPONSE, REMOVE_OPTION } from '../actions'
+import { CHANGE_QUESTION, CHANGE_RESPONSE, REMOVE_OPTION, ADD_OPTION } from '../actions'
 
 const initialState = {
   "description": "Lorem ipsum",
@@ -47,8 +47,12 @@ const question = (state = initialState, action) => {
         ]
       })
     case REMOVE_OPTION:
-      const newState = {...state}
+      let newState = {...state}
       newState.answers[action.answerIndex].options.splice(action.optionIndex, 1)
+      return newState
+    case ADD_OPTION:
+      newState = {...state}
+      newState.answers[action.answerIndex].options.push(action.option)
       return newState
     default:
       return state

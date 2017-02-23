@@ -6,6 +6,37 @@ import Input from './Input.js'
 import Link from './Link.js'
 
 export default class OptionsInputList extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+        label: "",
+        value: "",
+        description: ""
+    }
+
+    this.onChange = this.onChange.bind(this)
+    this.onAddOption = this.onAddOption.bind(this)
+  }
+
+  onChange = e => {
+    const {name, value} = e.target
+    this.setState({
+      [name]: value
+    })
+    e.stopPropagation()
+  }
+
+  onAddOption = e => {
+    const {label, value, description} = this.state
+    this.props.onAddOption({
+      label: label,
+      value: value,
+      description: description
+    })
+    e.stopPropagation()
+  }
+
     render() {
       return (
         <div className="options">
@@ -27,22 +58,24 @@ export default class OptionsInputList extends Component {
           }
           </div>
 
-          <fieldset>
+          <fieldset onChange={this.onChange} >
             <legend>Add new option</legend>
             <Field>
               <Label htmlFor="label">Label</Label>
-              <Input value="" name="label" />
+              <Input name="label" />
             </Field>
             <Field>
               <Label htmlFor="value">Value</Label>
-              <Input value="" name="value" />
+              <Input name="value" />
             </Field>
             <Field>
               <Label htmlFor="description">Description</Label>
-              <Input value="" name="description" />
+              <Input name="description" />
             </Field>
 
-            <button type="button" className="button">Add option</button>
+            <button type="button"
+              className="button"
+              onClick={this.onAddOption}>Add option</button>
           </fieldset>
         </div>
       )

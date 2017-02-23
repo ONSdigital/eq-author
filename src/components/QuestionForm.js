@@ -39,7 +39,8 @@ export default class QuestionForm extends Component {
         <hr />
         <ResponseList responses={responses}
           onChangeResponse={this.props.onChangeResponse}
-          onRemoveOption={this.props.onRemoveOption} />
+          onRemoveOption={this.props.onRemoveOption}
+          onAddOption={this.props.onAddOption} />
 
       </form>
     )
