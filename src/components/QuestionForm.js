@@ -3,7 +3,6 @@ import Field from './Field'
 import Select from './Select'
 import Input from './Input'
 import Label from './Label'
-import TextArea from './TextArea'
 import GuidanceFields from './GuidanceFields'
 import ResponseList from './ResponseList.js'
 
@@ -38,7 +37,9 @@ export default class QuestionForm extends Component {
         </Field>
         <GuidanceFields guidance={question.guidance} />
         <hr />
-        <ResponseList responses={responses} onChangeResponse={this.props.onChangeResponse} />
+        <ResponseList responses={responses}
+          onChangeResponse={this.props.onChangeResponse}
+          onRemoveOption={this.props.onRemoveOption} />
 
       </form>
     )

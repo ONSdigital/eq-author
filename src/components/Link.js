@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 
 export default class Link extends Component {
   render() {
-    const {text} = this.props
+    const {text, data} = this.props
     return (
-      <a>{text}</a>
+      <a name={data} onClick={this.props.onClick}>{text}</a>
     )
   }
 }

@@ -25,6 +25,12 @@ export default class ResponseFields extends Component {
     }
   }
 
+  handleRemoveOption = e => {
+    const optionIndex = e.target.name
+    this.props.onRemoveOption(this.props.responseIndex, optionIndex)
+    e.stopPropagation()
+  }
+
   render () {
     const {id, mandatory, guidance, options, description, ...otherProps} = this.props.response
     const validationMessage = otherProps.validation.messages.MANDATORY
@@ -46,8 +52,10 @@ export default class ResponseFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="options">Response Options</Label>
-              {/* <TextArea value={JSON.stringify(options, null, 2)} name="options" rows="10"/> */}
-              <OptionsInputList options={options} />
+              <OptionsInputList options={options}
+                onAddOption={this.handleAddOption}
+                onRemoveOption={this.handleRemoveOption}
+                emptyText="There are currently no options, add one below!" />
           </Field>
           <Field>
               <Label htmlFor="description">Response Description</Label>

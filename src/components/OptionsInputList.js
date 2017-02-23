@@ -7,21 +7,24 @@ import Link from './Link.js'
 
 export default class OptionsInputList extends Component {
     render() {
-
-      console.log(this.props.options)
       return (
         <div className="options">
 
           <div className="options__existing">
+            { this.props.options.length > 0 &&
             <ul className="options__list">
-            { this.props.options.map( option => {
+            { this.props.options.map( (option, index) => {
               return (
-                <li className="options__list-item">
-                  {option.label} - <Link text="Remove" />
+                <li className="options__list-item" key={option.value}>
+                  {option.label} - <Link text="Remove" onClick={this.props.onRemoveOption} data={index} />
                 </li>
               )
             })}
             </ul>
+          }
+          { this.props.options.length === 0 &&
+            <p>{this.props.emptyText}</p>
+          }
           </div>
 
           <fieldset>
