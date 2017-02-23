@@ -34,6 +34,11 @@ export default class OptionsInputList extends Component {
       value: value,
       description: description
     })
+    this.setState({
+        label: "",
+        value: "",
+        description: ""
+    })
     e.stopPropagation()
   }
 
@@ -58,19 +63,19 @@ export default class OptionsInputList extends Component {
           }
           </div>
 
-          <fieldset onChange={this.onChange} >
+          <fieldset>
             <legend>Add new option</legend>
             <Field>
               <Label htmlFor="label">Label</Label>
-              <Input name="label" />
+              <Input onChange={this.onChange} value={this.state.label} name="label" />
             </Field>
             <Field>
               <Label htmlFor="value">Value</Label>
-              <Input name="value" />
+              <Input onChange={this.onChange} value={this.state.value} name="value" />
             </Field>
             <Field>
               <Label htmlFor="description">Description</Label>
-              <Input name="description" />
+              <Input onChange={this.onChange} value={this.state.description} name="description" />
             </Field>
 
             <button type="button"
