@@ -46,8 +46,8 @@ export default class OptionsInputList extends Component {
       return (
         <div className="options">
 
+          { this.props.options.length > 0 &&
           <div className="options__existing">
-            { this.props.options.length > 0 &&
             <ul className="options__list">
             { this.props.options.map( (option, index) => {
               return (
@@ -57,11 +57,12 @@ export default class OptionsInputList extends Component {
               )
             })}
             </ul>
+
+          </div>
           }
           { this.props.options.length === 0 &&
-            <p>{this.props.emptyText}</p>
+            <div className="callout warning panel">{this.props.emptyText}</div>
           }
-          </div>
 
           <fieldset>
             <legend>Add new option</legend>
