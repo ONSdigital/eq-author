@@ -37,14 +37,6 @@ export default class QuestionForm extends Component {
           <Input value={question.title} id="question-title" name="title" />
         </Field>
         <GuidanceFields guidance={question.guidance} />
-        <Field>
-          <Label htmlFor="guidancetitle">Guidance Title</Label>
-          <Input value={question.guidancetitle} id="guidancetitle" name="guidancetitle" />
-        </Field>
-        <Field>
-          <Label htmlFor="guidancetext">Guidance Text</Label>
-          <TextArea value={question.guidancetext} id="guidancetext" name="guidancetext" rows="10" />
-        </Field>
         <hr />
         <ResponseList responses={responses} onChangeResponse={this.props.onChangeResponse} />
 
