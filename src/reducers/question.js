@@ -12,7 +12,19 @@ const initialState = {
     "title": "Include",
     "text": "Maecenas faucibus mollis interdum."
     },
-  "answers": [],
+  "answers": [{
+    "id": "permanent-or-family-home-answer",
+        "mandatory": true,
+        "guidance": "<p>For most people, their permanent home will be the address where they spend the most time.</p>",
+        "options": [{
+            "label": "Yes",
+            "value": "Yes"
+        }, {
+            "label": "No",
+            "value": "No",
+        }],
+        "type": "Radio",
+  }],
 }
 
 const question = (state = initialState, action) => {

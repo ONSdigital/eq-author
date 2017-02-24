@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import QuestionFormContainer from '../containers/QuestionForm.js'
+import QuestionContainer from '../containers/Question.js'
 import JsonWindowContainer from '../containers/JsonWindow.js'
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
       <div className="app">
         <div className="row">
           <div className="small-4 columns">
-            <QuestionFormContainer />
+            <QuestionContainer />
           </div>
           <div className="small-8 columns">
             <JsonWindowContainer />
