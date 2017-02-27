@@ -14,9 +14,6 @@ export default class OptionsInputList extends Component {
         value: "",
         description: ""
     }
-
-    this.onChange = this.onChange.bind(this)
-    this.onAddOption = this.onAddOption.bind(this)
   }
 
   onChange = e => {
