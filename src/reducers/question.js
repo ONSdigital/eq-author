@@ -38,16 +38,11 @@ const question = (state = initialState, action) => {
     case CHANGE_QUESTION:
       return {...merge(state, action.value)}
     case CHANGE_RESPONSE:
-      const index = action.index
-      return Object.assign({}, state, {
-        answers: [
-          ...state.answers.slice(0, index),
-          Object.assign({}, state.answers[index], action.value),
-          ...state.answers.slice(index + 1)
-        ]
-      })
-    case REMOVE_OPTION:
       let newState = {...state}
+      merge(newState.answers[action.index], action.value)
+      return newState
+    case REMOVE_OPTION:
+      newState = {...state}
       newState.answers[action.answerIndex].options.splice(action.optionIndex, 1)
       return newState
     case ADD_OPTION:
