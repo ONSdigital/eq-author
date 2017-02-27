@@ -1,11 +1,10 @@
 .json-window {
-  width: inherit;
   height: 90vh;
 }
 
 .json-window-code {
   position: fixed;
-  width: inherit;
+  width: 33.3vw;
   height: inherit;
   background: #333;
   padding: 1rem;

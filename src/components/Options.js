@@ -7,15 +7,14 @@ import TextArea from './TextArea'
 export default class Options extends Component {
   handleChange = e => {
     e.stopPropagation()
-    const value = e.target.value.split('\n')
-      .filter(value => value.length)
+    const options = e.target.value.split('\n')
       .map(value => ({
         label: value,
         value: value.toLowerCase().replace(' ', '-')
       }))
     this.props.onChange({
       key: 'answers[0].options',
-      value: value
+      value: options
     })
   }
 

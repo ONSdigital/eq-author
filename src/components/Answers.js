@@ -1,15 +1,11 @@
 import React, {Component} from 'react'
 
 import Field from './Field'
-import Select from './Select'
 import Input from './Input'
 import Label from './Label'
-import TextArea from './TextArea'
 import Checkbox from './Checkbox'
 import RichTextArea from './RichTextArea'
-import GuidanceFields from './GuidanceFields'
 import Options from './Options'
-
 
 export default class Answers extends Component {
   render() {
