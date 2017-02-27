@@ -9,23 +9,21 @@ import OptionsInputList from './OptionsInputList.js'
 
 export default class ResponseFields extends Component {
 
-  handleOriginalChange = e => {
+  handleChangeQuestion = e => {
     const { name, value } = e.target
     this.props.onChangeQuestion({[name]: value})
     e.stopPropagation()
   }
 
   handleChange = e => {
-    const { name, value } = e.target
-    this.props.onChangeResponse(this.props.responseIndex, {[name]: value})
-    if (e.stopPropagation) {
-      e.stopPropagation()
+    const { name, value, type, checked} = e.target
+    switch (type) {
+      case 'checkbox':
+        this.props.onChangeResponse(this.props.responseIndex, {[name]: checked})
+        break
+      default:
+        this.props.onChangeResponse(this.props.responseIndex, {[name]: value})
     }
-  }
-
-  handleChecked = e => {
-    const { name, checked } = e.target
-    this.props.onChangeResponse(this.props.responseIndex, {[name]: checked})
     if (e.stopPropagation) {
       e.stopPropagation()
     }
@@ -59,7 +57,7 @@ export default class ResponseFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="mandatory">Mandatory</Label>
-              <Checkbox defaultChecked={mandatory} name="mandatory" onChange={this.handleChecked} />
+              <Checkbox defaultChecked={mandatory} value={mandatory} name="mandatory" onChange={this.handleChange} />
           </Field>
           <Field>
               <Label htmlFor="guidance">Response Guidance</Label>
@@ -78,7 +76,7 @@ export default class ResponseFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="validation-message">Validation Message</Label>
-              <Input onChange={this.handleOriginalChange} value={validationMessage} name="answers.0.validation.messages.MANDATORY"/>
+              <Input onChange={this.handleChangeQuestion} value={validationMessage} name="answers.0.validation.messages.MANDATORY"/>
           </Field>
       </div>
     )
