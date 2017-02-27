@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import QuestionForm from '../components/QuestionForm'
+import Question from '../components/Question'
 import { change } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const QuestionFormContainer = connect(
+const QuestionContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(QuestionForm)
+)(Question)
 
-export default QuestionFormContainer
+export default QuestionContainer

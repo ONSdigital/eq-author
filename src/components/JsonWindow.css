@@ -1,7 +1,15 @@
 .json-window {
+  height: 90vh;
+}
+
+.json-window-code {
+  position: fixed;
+  width: 33.3vw;
+  height: inherit;
   background: #333;
   padding: 1rem;
   color: white;
   font-family: monospace;
   overflow-x: scroll;
+  font-size: 1em;
 }
