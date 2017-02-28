@@ -57,7 +57,7 @@ export default class ResponseFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="mandatory">Mandatory</Label>
-              <Checkbox defaultChecked={mandatory} checked={mandatory}
+              <Checkbox checked={mandatory}
                 name="mandatory" onChange={this.handleChange} />
           </Field>
           <Field>
