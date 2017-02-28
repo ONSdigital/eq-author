@@ -9,7 +9,7 @@ class App extends Component {
       <div className="app">
         <div className="row">
           <div className="small-4 columns">
-            <QuestionFormContainer />
+            <QuestionFormContainer schema={this.props.schema} />
           </div>
           <div className="small-8 columns">
             <JsonWindowContainer />
