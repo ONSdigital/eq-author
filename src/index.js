@@ -21,11 +21,11 @@ let store = createStore(storageReducer, composeWithDevTools(
 ))
 
 const load = createLoader(storageEngine);
-load(store);
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>  ,
-  document.getElementById('root')
-)
+load(store).then((newState) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>  ,
+    document.getElementById('root')
+  )
+})

@@ -4,8 +4,7 @@ import { changeQuestion, changeResponse, removeOption, addOption } from '../acti
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    question: state.question,
-    responses: state.question.answers
+    question: state.question
    }
 }
 
