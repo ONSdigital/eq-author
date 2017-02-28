@@ -4,7 +4,7 @@ export default class Input extends Component {
   render() {
     const {name, id} = this.props
     return (
-      <input type="text" id={id} name={name} defaultValue={this.props.value} />
+      <input type="text" id={id} name={name} {...this.props} />
     )
   }
 }

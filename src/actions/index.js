@@ -1,7 +1,22 @@
 import {set, keys, values} from 'lodash'
 
-export const CHANGE = 'CHANGE'
+export const CHANGE_QUESTION = 'CHANGE_QUESTION'
+export const CHANGE_RESPONSE = 'CHANGE_RESPONSE'
+export const REMOVE_OPTION = 'REMOVE_OPTION'
+export const ADD_OPTION = 'ADD_OPTION'
 
-export function change(value) {
-  return { type: CHANGE, value: {...set({}, keys(value)[0], values(value)[0])} }
+export function changeQuestion(value) {
+  return { type: CHANGE_QUESTION, value: {...set({}, keys(value)[0], values(value)[0])} }
+}
+
+export function changeResponse(index, value) {
+  return { type: CHANGE_RESPONSE, index: index, value: value }
+}
+
+export function removeOption(answerIndex, optionIndex) {
+  return { type: REMOVE_OPTION, answerIndex: answerIndex, optionIndex: optionIndex }
+}
+
+export function addOption(answerIndex, option) {
+  return { type: ADD_OPTION, answerIndex: answerIndex, option: option }
 }

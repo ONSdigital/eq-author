@@ -7,16 +7,16 @@ export default class RichTextArea extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: RichTextEditor.createEmptyValue()
+            value: RichTextEditor.createValueFromString(this.props.value, 'html')
         }
     }
 
     onChange = (value) => {
         this.setState({value})
+        this.props.onChange({target: {name: this.props.name, value: value.toString('html')}})
     }
 
     render() {
-
         const toolbarConfig = {
             display: [
                 'INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS'
