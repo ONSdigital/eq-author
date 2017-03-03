@@ -1,5 +1,5 @@
 import {merge} from 'lodash'
-import { CHANGE_QUESTION, CHANGE_RESPONSE, REMOVE_OPTION, ADD_OPTION } from '../actions'
+import { CHANGE_QUESTION, CHANGE_ANSWER, REMOVE_OPTION, ADD_OPTION } from '../actions'
 
 const initialState = {
   "description": "",
@@ -30,7 +30,7 @@ const question = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_QUESTION:
       return {...merge(state, action.value)}
-    case CHANGE_RESPONSE:
+    case CHANGE_ANSWER:
       let newState = {...state}
       merge(newState.answers[action.index], action.value)
       return newState

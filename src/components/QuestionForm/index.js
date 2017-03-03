@@ -4,7 +4,7 @@ import Select from 'components/forms/Select'
 import Input from 'components/forms/Input'
 import Label from 'components/forms/Label'
 import GuidanceFields from 'components/GuidanceFields'
-import ResponseList from 'components/ResponseList'
+import AnswerList from 'components/AnswerList'
 
 export default class QuestionForm extends Component {
   handleChange = e => {
@@ -37,9 +37,9 @@ export default class QuestionForm extends Component {
         </Field>
         <GuidanceFields guidance={question.guidance} />
         <hr />
-        <ResponseList responses={question.answers}
+        <AnswerList answers={question.answers}
           onChangeQuestion={this.props.onChangeQuestion}
-          onChangeResponse={this.props.onChangeResponse}
+          onChangeAnswer={this.props.onChangeAnswer}
           onRemoveOption={this.props.onRemoveOption}
           onAddOption={this.props.onAddOption} />
 
