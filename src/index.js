@@ -16,15 +16,18 @@ const storageReducer = reducer(authorApp)
 const storageEngine = createEngine('eq-authoring-prototype-storage-key')
 const middleware = createMiddleware(storageEngine)
 
+import * as schema from './data/schema-v1.js'
+
 let store = createStore(storageReducer, composeWithDevTools(
   applyMiddleware(middleware)
 ))
 
-const load = createLoader(storageEngine);
+
+const load = createLoader(storageEngine)
 load(store).then((newState) => {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <App schema={schema.default} />
     </Provider>  ,
     document.getElementById('root')
   )
