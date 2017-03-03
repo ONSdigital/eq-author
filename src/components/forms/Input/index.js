@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 
 export default class Input extends Component {
   render() {
-    const {name, id} = this.props
+    const {value, ...otherProps} = this.props
     return (
-      <input type="text" id={id} name={name} {...this.props} />
+      <input type="text" defaultValue={value} {...otherProps} />
     )
   }
 }

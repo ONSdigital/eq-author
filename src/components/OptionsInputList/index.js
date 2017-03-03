@@ -46,9 +46,9 @@ export default class OptionsInputList extends Component {
           { this.props.options.length > 0 &&
           <div className="options__existing">
             <ul className="options__list">
-            { this.props.options.map( (option, index) => {
+            { this.props.options.map((option, index) => {
               return (
-                <li className="options__list-item" key={option.value}>
+                <li className="options__list-item" key={index}>
                   {option.label} - <Link text="Remove" onClick={this.props.onRemoveOption} data={index} />
                 </li>
               )
