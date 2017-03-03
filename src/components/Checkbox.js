@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 
 export default class Checkbox extends Component {
   render() {
+    const { checked, ...otherProps } = this.props
+
     return (
-      <input type="checkbox" value={this.props.checked} onChange={this.props.onChange} {...this.props} />
+      <input type="checkbox" checked={checked} {...otherProps} />
     )
   }
 }

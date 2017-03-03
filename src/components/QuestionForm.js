@@ -15,7 +15,7 @@ export default class QuestionForm extends Component {
   }
 
   render() {
-    const { question, responses } = this.props
+    const { question } = this.props
     return (
       <form onChange={this.handleChange}>
         <h3>Question Settings</h3>
@@ -37,7 +37,7 @@ export default class QuestionForm extends Component {
         </Field>
         <GuidanceFields guidance={question.guidance} />
         <hr />
-        <ResponseList responses={responses}
+        <ResponseList responses={question.answers}
           onChangeQuestion={this.props.onChangeQuestion}
           onChangeResponse={this.props.onChangeResponse}
           onRemoveOption={this.props.onRemoveOption}
