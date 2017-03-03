@@ -48,6 +48,8 @@ export default class AnswerFields extends Component {
     const {id, mandatory, guidance, options, description, ...otherProps} = this.props.answer
     const validationMessage = otherProps.validation.messages.MANDATORY
 
+    const validationName = `answers.${this.props.answerIndex}.validation.messages.MANDATORY`
+
     return (
       <div onChange={this.handleChange}>
           <h3>Answer {this.props.answerIndex + 1}</h3>
@@ -77,7 +79,8 @@ export default class AnswerFields extends Component {
           </Field>
           <Field>
               <Label htmlFor="validation-message">Validation Message</Label>
-              <Input onChange={this.handleChangeQuestion} value={validationMessage} name="answers.0.validation.messages.MANDATORY"/>
+              <Input onChange={this.handleChangeQuestion} value={validationMessage}
+                name={validationName} />
           </Field>
       </div>
     )
