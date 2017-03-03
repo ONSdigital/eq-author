@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './JsonWindow.css'
+import './style.css'
 
 export default class JsonWindow extends Component {
   render() {

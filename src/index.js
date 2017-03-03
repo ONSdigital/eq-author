@@ -9,7 +9,7 @@ import { createMiddleware, reducer, createLoader } from 'redux-storage'
 import createEngine from 'redux-storage-engine-localstorage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import App from './components/App'
+import App from 'components/App'
 import './index.css'
 
 const storageReducer = reducer(authorApp)

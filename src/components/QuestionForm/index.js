@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import Field from './Field'
-import Select from './Select'
-import Input from './Input'
-import Label from './Label'
-import GuidanceFields from './GuidanceFields'
-import ResponseList from './ResponseList.js'
+import Field from 'components/forms/Field'
+import Select from 'components/forms/Select'
+import Input from 'components/forms/Input'
+import Label from 'components/forms/Label'
+import GuidanceFields from 'components/GuidanceFields'
+import ResponseList from 'components/ResponseList'
 
 export default class QuestionForm extends Component {
   handleChange = e => {

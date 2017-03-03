@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import './OptionsInputList.css'
-import Label from './Label.js'
-import Field from './Field.js'
-import Input from './Input.js'
-import Link from './Link.js'
+import Label from 'components/forms/Label'
+import Field from 'components/forms/Field'
+import Input from 'components/forms/Input'
+import Link from 'components/Link'
+import './style.css'
 
 export default class OptionsInputList extends Component {
 
