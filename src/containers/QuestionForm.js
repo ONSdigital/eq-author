@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import QuestionForm from 'components/QuestionForm'
-import { changeQuestion, changeResponse, removeOption, addOption } from '../actions'
+import { changeQuestion, changeAnswer, removeOption, addOption } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChangeQuestion: (value) => dispatch(changeQuestion(value)),
-    onChangeResponse: (index, value) => dispatch(changeResponse(index, value)),
+    onChangeAnswer: (index, value) => dispatch(changeAnswer(index, value)),
     onRemoveOption: (answerIndex, optionIndex) => dispatch(removeOption(answerIndex, optionIndex)),
     onAddOption: (answerIndex, option) => dispatch(addOption(answerIndex, option))
   }
