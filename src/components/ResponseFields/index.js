@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import Field from './Field.js'
-import Input from './Input.js'
-import Label from './Label.js'
-import Checkbox from './Checkbox.js'
-import RichTextArea from './RichTextArea.js'
-import OptionsInputList from './OptionsInputList.js'
+import Field from 'components/forms/Field'
+import Input from 'components/forms/Input'
+import Label from 'components/forms/Label'
+import Checkbox from 'components/forms/Checkbox'
+import RichTextArea from 'components/forms/RichTextArea'
+import OptionsInputList from 'components/OptionsInputList'
 
 export default class ResponseFields extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ResponseFields from './ResponseFields.js'
+import ResponseFields from 'components/ResponseFields'
 
 export default class ResponseList extends Component {
   render () {

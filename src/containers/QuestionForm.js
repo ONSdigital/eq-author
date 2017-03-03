@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import QuestionForm from '../components/QuestionForm'
+import QuestionForm from 'components/QuestionForm'
 import { changeQuestion, changeResponse, removeOption, addOption } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {

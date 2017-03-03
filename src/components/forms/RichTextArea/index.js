@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import RichTextEditor from 'react-rte'
-import './RichTextArea.css'
+import './style.css'
 
 export default class RichTextArea extends Component {
 

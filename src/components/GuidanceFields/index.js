@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
-import Field from './Field'
-import Input from './Input'
-import TextArea from './TextArea'
-import Label from './Label'
+import Field from 'components/forms/Field'
+import Input from 'components/forms/Input'
+import TextArea from 'components/forms/TextArea'
+import Label from 'components/forms/Label'
 
 export default class GuidanceFields extends Component {
   render() {
