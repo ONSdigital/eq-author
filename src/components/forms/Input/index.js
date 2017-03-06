@@ -1,10 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class Input extends Component {
-  render() {
-    const {value, ...otherProps} = this.props
-    return (
-      <input type="text" defaultValue={value} {...otherProps} />
-    )
-  }
-}
+const Input = ({value, ...other}) => (
+  <input type="text" defaultValue={value} {...other} />
+)
+
+export default Input

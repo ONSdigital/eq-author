@@ -1,21 +1,14 @@
-import React, { Component } from 'react'
-
+import React from 'react'
 import AnswerFields from 'components/AnswerFields'
 
-export default class AnswerList extends Component {
-  render () {
-    return (
-      <div className="answer-list">
-        { this.props.answers.map(answer => (<AnswerFields
-              answer={answer}
-              key={this.props.answers.indexOf(answer)}
-              answerIndex={this.props.answers.indexOf(answer)}
-              onChangeAnswer={this.props.onChangeAnswer}
-              onChangeQuestion={this.props.onChangeQuestion}
-              onRemoveOption={this.props.onRemoveOption}
-              onAddOption={this.props.onAddOption} />
-        ))}
-      </div>
-    )
-  }
-}
+const AnswerList = ({answers, ...other}) => (
+  <div className="answer-list">
+    { answers.map((answer, index) => (<AnswerFields
+          answer={answer}
+          key={index}
+          answerIndex={index}
+          {...other} />
+    ))}
+  </div>
+)
+export default AnswerList

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Label extends Component {
-  render() {
-    return (<label {...this.props}>{this.props.children}</label>)
-  }
-}
+const Label = ({children, ...other}) => (
+  <label {...other}>{children}</label>
+)
+
+export default Label

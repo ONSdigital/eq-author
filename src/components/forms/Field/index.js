@@ -1,12 +1,5 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class Field extends Component {
-  render() {
-    const {children} = this.props
-    return (
-      <div className="field">
-        {children}
-      </div>
-    )
-  }
-}
+const Field = ({children}) => <div className="field">{children}</div>
+
+export default Field
