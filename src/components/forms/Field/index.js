@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { Children, cloneElement } from 'react'
 
-const Field = ({children}) => <div className="field">{children}</div>
+const Field = ({children, ...otherProps}) => (
+  <div className="field">
+    {Children.map(children, child => cloneElement(child, otherProps))}
+  </div>
+);
 
 export default Field
