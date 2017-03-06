@@ -1,11 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class Checkbox extends Component {
-  render() {
-    const { checked, ...otherProps } = this.props
+const Checkbox = (props) => (
+  <input type="checkbox" checked={props.checked} {...props} />
+)
 
-    return (
-      <input type="checkbox" checked={checked} {...otherProps} />
-    )
-  }
-}
+export default Checkbox

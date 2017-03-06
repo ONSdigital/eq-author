@@ -1,15 +1,10 @@
-import React, {Component} from 'react'
+import React from 'react'
 import './style.css'
 
-export default class JsonWindow extends Component {
-  render() {
-    const jsonstring = JSON.stringify(this.props.question, null, 2)
-    return (
-      <div className="json-window">
-        <pre>
-          {jsonstring}
-        </pre>
-      </div>
-    )
-  }
-}
+const JsonWindow = ({question}) => (
+  <div className="json-window">
+    <pre>{JSON.stringify(question, null, 2)}</pre>
+  </div>
+)
+
+export default JsonWindow
