@@ -52,7 +52,6 @@ export default class AnswerFields extends Component {
 
     return (
       <div onChange={this.handleChange}>
-          <h3>Answer {this.props.answerIndex + 1}</h3>
           <Field>
               <Label htmlFor="answer-id">Answer Id</Label>
               <Input value={id} name="id"/>
