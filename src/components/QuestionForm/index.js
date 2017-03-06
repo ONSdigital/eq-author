@@ -25,21 +25,21 @@ export default class QuestionForm extends Component {
             <TabTitle>Answers</TabTitle>
           </TabList>
           <TabPanel>
-            <Field>
-              <Label htmlFor="type">Question Type</Label>
-              <Select id="type" name="type" options={['Text', 'Numeric', 'Multiple - Radio', 'Multiple - Checkbox']} />
+            <Field id="question-type">
+              <Label>Question Type</Label>
+              <Select name="type" options={['Text', 'Numeric', 'Multiple - Radio', 'Multiple - Checkbox']} />
             </Field>
-            <Field>
-              <Label htmlFor="id">Question ID</Label>
-              <Input value={question.id} id="id" name="id" />
+            <Field id="id">
+              <Label>Question ID</Label>
+              <Input value={question.id} name="id" />
             </Field>
-            <Field>
-              <Label htmlFor="number">Question Number</Label>
-              <Input value={question.number} id="number" name="number" />
+            <Field id="number">
+              <Label>Question Number</Label>
+              <Input value={question.number} name="number" />
             </Field>
-            <Field>
-              <Label htmlFor="title">Question Title</Label>
-              <Input value={question.title} id="question-title" name="title" />
+            <Field id="title">
+              <Label>Question Title</Label>
+              <Input value={question.title} name="title" />
             </Field>
             <GuidanceFields guidance={question.guidance} />
           </TabPanel>

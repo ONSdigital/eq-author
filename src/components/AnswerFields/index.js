@@ -52,32 +52,33 @@ export default class AnswerFields extends Component {
 
     return (
       <div onChange={this.handleChange}>
-          <Field>
-              <Label htmlFor="answer-id">Answer Id</Label>
-              <Input value={id} name="id"/>
+          <Field id="answer-id">
+              <Label>Answer Id</Label>
+              <Input value={id} name="id" />
           </Field>
-          <Field>
-              <Label htmlFor="mandatory">Mandatory</Label>
+
+          <Field id="mandatory">
+              <Label>Mandatory</Label>
               <Checkbox checked={mandatory}
                 name="mandatory" onChange={this.handleChange} />
           </Field>
-          <Field>
-              <Label htmlFor="guidance">Answer Guidance</Label>
+          <Field id="guidance">
+              <Label>Answer Guidance</Label>
               <RichTextArea value={guidance} name="guidance" onChange={this.handleChange} />
           </Field>
-          <Field>
-              <Label htmlFor="options">Answer Options</Label>
+          <Field id="options">
+              <Label>Answer Options</Label>
               <OptionsInputList options={options}
                 onAddOption={this.handleAddOption}
                 onRemoveOption={this.handleRemoveOption}
                 emptyText="There are currently no options, add one below!" />
           </Field>
-          <Field>
-              <Label htmlFor="description">Answer Description</Label>
+          <Field id="description">
+              <Label>Answer Description</Label>
               <Input value={description} name="description"/>
           </Field>
-          <Field>
-              <Label htmlFor="validation-message">Validation Message</Label>
+          <Field id="validation-message">
+              <Label>Validation Message</Label>
               <Input onChange={this.handleChangeQuestion} value={validationMessage}
                 name={validationName} />
           </Field>

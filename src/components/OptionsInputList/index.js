@@ -63,16 +63,16 @@ export default class OptionsInputList extends Component {
 
           <fieldset>
             <legend>Add new option</legend>
-            <Field>
-              <Label htmlFor="label">Label</Label>
+            <Field id="label">
+              <Label>Label</Label>
               <Input onChange={this.onChange} value={this.state.label} name="label" />
             </Field>
-            <Field>
-              <Label htmlFor="value">Value</Label>
+            <Field id="value">
+              <Label>Value</Label>
               <Input onChange={this.onChange} value={this.state.value} name="value" />
             </Field>
-            <Field>
-              <Label htmlFor="description">Description</Label>
+            <Field id="description">
+              <Label>Description</Label>
               <Input onChange={this.onChange} value={this.state.description} name="description" />
             </Field>
 
