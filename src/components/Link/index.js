@@ -1,10 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class Link extends Component {
-  render() {
-    const {text, data} = this.props
-    return (
-      <a name={data} onClick={this.props.onClick}>{text}</a>
-    )
-  }
-}
+const Link = ({text, data, onClick}) => (
+  <a name={data} onClick={onClick}>{text}</a>
+)
+
+export default Link

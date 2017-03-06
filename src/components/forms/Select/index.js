@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 
 export default class Select extends Component {
-  handleChange = (e) => {
-    // this.setState({value: e.target.value})
-  }
   renderOptions() {
     return this.props.options.map(opt => <option value={opt} key={opt}>{opt}</option>)
   }

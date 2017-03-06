@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Label extends Component {
-  render() {
-    const {id, ...otherProps} = this.props;
-    return (<label htmlFor={id} {...otherProps}>{this.props.children}</label>)
-  }
-}
+const Label = ({children, id, ...other}) => (
+  <label htmlFor={id} {...other}>{children}</label>
+);
+
+export default Label
