@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   overflow-x: scroll;
 `;
 
-const JsonWindow = ({question}) => (
+const JsonWindow = ({schema}) => (
   <Wrapper>
-    <pre>{JSON.stringify(question, null, 2)}</pre>
+    <pre>{JSON.stringify(schema, null, 2)}</pre>
   </Wrapper>
 )
 

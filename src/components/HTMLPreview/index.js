@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HTMLPreview = ({question}) => (
+const HTMLPreview = ({question, answers}) => (
   <div id={question.id}>
     <h3>
       {
@@ -19,14 +19,14 @@ const HTMLPreview = ({question}) => (
           </div>
         </div>
     }
-    {question.answers.map((answer, index) => (
-      <div id={answer.id}>
+    {answers.map((answer, index) => (
+      <div id={answer.id} key={index}>
         <p>{answer.description}</p>
         <div>{answer.mandatory && <p><small><strong>This answer is mandatory</strong></small></p>}</div>
         <div dangerouslySetInnerHTML={{__html: answer.guidance}}></div>
         <div>
           {answer.options.map((option, index) => (
-            <div>
+            <div key={index}>
               <label>
                 <input type="checkbox" value={option.value} />
                 {option.label}

@@ -5,15 +5,9 @@ import Input from 'components/forms/Input'
 import Label from 'components/forms/Label'
 import Checkbox from 'components/forms/Checkbox'
 import RichTextArea from 'components/forms/RichTextArea'
-import OptionsInputList from 'components/OptionsInputList'
+import Options from 'components/Options'
 
 export default class AnswerFields extends Component {
-
-  handleChangeQuestion = e => {
-    const { name, value } = e.target
-    this.props.onChangeQuestion({[name]: value})
-    e.stopPropagation()
-  }
 
   handleChange = e => {
     const { name, value, type, checked} = e.target
@@ -51,7 +45,7 @@ export default class AnswerFields extends Component {
     const validationName = `answers.${this.props.answerIndex}.validation.messages.MANDATORY`
 
     return (
-      <div onChange={this.handleChange}>
+      <fieldset onChange={this.handleChange}>
           <Field id="answer-id">
               <Label>Answer Id</Label>
               <Input value={id} name="id" />
@@ -68,7 +62,7 @@ export default class AnswerFields extends Component {
           </Field>
           <Field id="options">
               <Label>Answer Options</Label>
-              <OptionsInputList options={options}
+              <Options options={options}
                 onAddOption={this.handleAddOption}
                 onRemoveOption={this.handleRemoveOption}
                 emptyText="There are currently no options, add one below!" />
@@ -79,10 +73,10 @@ export default class AnswerFields extends Component {
           </Field>
           <Field id="validation-message">
               <Label>Validation Message</Label>
-              <Input onChange={this.handleChangeQuestion} value={validationMessage}
+              <Input value={validationMessage}
                 name={validationName} />
           </Field>
-      </div>
+      </fieldset>
     )
   }
 }
