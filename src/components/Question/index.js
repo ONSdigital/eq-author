@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import Field from 'components/forms/Field'
-import Select from 'components/forms/Select'
 import Input from 'components/forms/Input'
 import Label from 'components/forms/Label'
-import TextArea from 'components/forms/TextArea'
+import RichTextArea from 'components/forms/RichTextArea'
 
 export default class Question extends Component {
   handleChange = e => {
@@ -36,7 +35,7 @@ export default class Question extends Component {
         </Field>
         <Field>
           <Label htmlFor="guidancetext">Guidance Text</Label>
-          <TextArea value={question.guidance.text} id="guidancetext" name="guidance.text" rows="10" />
+          <RichTextArea onChange={this.handleChange} value={question.guidance.text} id="guidancetext" name="guidance.text" rows="10" />
         </Field>
       </fieldset>
     )

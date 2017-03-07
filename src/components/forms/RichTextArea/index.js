@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const RTE = styled(RichTextEditor)`
-  width:100%;
+  width: 100%;
 `;
 
 export default class RichTextArea extends Component {
@@ -24,7 +24,10 @@ export default class RichTextArea extends Component {
 
   onChange = (value) => {
     this.setState({value})
-    this.props.onChange({target: {name: this.props.name, value: value.toString('html')}})
+    this.props.onChange({target: {
+      name: this.props.name,
+      value: value.getEditorState().getCurrentContent().hasText() ?
+        value.toString('html') : ''}})
   }
 
   render() {

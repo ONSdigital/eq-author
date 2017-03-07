@@ -1,5 +1,7 @@
 import React from 'react'
 
+import * as AnswerTypes from 'components/AnswerTypes'
+
 const HTMLPreview = ({question, answers}) => (
   <div id={question.id}>
     <h3>
@@ -13,29 +15,24 @@ const HTMLPreview = ({question, answers}) => (
       (question.guidance.title || question.guidance.text) &&
         <div className="callout secondary">
           <h4>{question.guidance.title}</h4>
-          <div>
-            {question.guidance.text.split('\n').map((item, key) =>
-              <p key={key}>{item}</p>)}
-          </div>
+          <div dangerouslySetInnerHTML={{__html: question.guidance.text}} />
         </div>
     }
-    {answers.map((answer, index) => (
-      <div id={answer.id} key={index}>
-        <p>{answer.description}</p>
-        <div>{answer.mandatory && <p><small><strong>This answer is mandatory</strong></small></p>}</div>
-        <div dangerouslySetInnerHTML={{__html: answer.guidance}}></div>
-        <div>
-          {answer.options.map((option, index) => (
-            <div key={index}>
-              <label>
-                <input type="checkbox" value={option.value} />
-                {option.label}
-              </label>
-            </div>
-          ))}
+    {answers.map((answer, index) => {
+      if (answer.type === "") {
+        return false
+      }
+      const AnswerType = AnswerTypes[answer.type]
+      return (
+        <div id={answer.id} key={index}>
+          <p>{answer.description}</p>
+          <div>{answer.mandatory && <p><small><strong>This answer is mandatory</strong></small></p>}</div>
+          {(answer.guidance.length > 0) &&
+            <div className="callout" dangerouslySetInnerHTML={{__html: answer.guidance}} />}
+          <AnswerType {...answer} />
         </div>
-      </div>
-    ))}
+      )
+    })}
   </div>
 )
 

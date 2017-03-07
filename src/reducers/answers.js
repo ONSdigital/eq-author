@@ -7,6 +7,7 @@ const initialState = [{
     "mandatory": true,
     "guidance": "",
     "options": [],
+    "label": "",
     "type": "",
     "validation": {
         "messages": {

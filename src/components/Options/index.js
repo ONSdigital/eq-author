@@ -51,7 +51,7 @@ export default class Options extends Component {
   }
 
   onAddOption = e => {
-    const {label, value, description} = this.state
+    const {label, value} = this.state
     this.props.onAddOption({
       label: label,
       value: value

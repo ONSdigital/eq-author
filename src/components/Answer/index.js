@@ -5,7 +5,19 @@ import Input from 'components/forms/Input'
 import Label from 'components/forms/Label'
 import Checkbox from 'components/forms/Checkbox'
 import RichTextArea from 'components/forms/RichTextArea'
+import Select from 'components/forms/Select'
 import Options from 'components/Options'
+
+export const ANSWER_TYPES = [
+  "Checkbox",
+  "Currency",
+  "Date",
+  "Integer",
+  "Percentage",
+  "Radio",
+  "TextArea",
+  "TextField",
+]
 
 export default class AnswerFields extends Component {
 
@@ -38,16 +50,33 @@ export default class AnswerFields extends Component {
     })
   }
 
+  renderAnswerOpts = () => {
+    const { options, type } = this.props.answer;
+    if (type === 'Checkbox' || type === 'Radio') {
+      return (
+        <Field id="options">
+            <Label>Answer Options</Label>
+            <Options options={options}
+              onAddOption={this.handleAddOption}
+              onRemoveOption={this.handleRemoveOption}
+              emptyText="There are currently no options, add one below!" />
+        </Field>
+      )
+    }
+  }
+
   render () {
-    const {id, mandatory, guidance, options, description, ...otherProps} = this.props.answer
-    const validationMessage = otherProps.validation.messages.MANDATORY
-
-    const validationName = `answers.${this.props.answerIndex}.validation.messages.MANDATORY`
-
+    const {id, mandatory, guidance, description, type, label} = this.props.answer
     return (
       <fieldset onChange={this.handleChange}>
+
+          <Field id="answer-type">
+              <Label>Answer Type</Label>
+              <Select value={type} options={ANSWER_TYPES} name="type" />
+          </Field>
+
           <Field id="answer-id">
-              <Label>Answer Id</Label>
+              <Label>Answer ID</Label>
               <Input value={id} name="id" />
           </Field>
 
@@ -56,26 +85,24 @@ export default class AnswerFields extends Component {
                 name="mandatory" onChange={this.handleChange} />
               <Label>Mandatory</Label>
           </Field>
-          <Field id="guidance">
-              <Label>Answer Guidance</Label>
-              <RichTextArea value={guidance} name="guidance" onChange={this.handleChange} />
-          </Field>
-          <Field id="options">
-              <Label>Answer Options</Label>
-              <Options options={options}
-                onAddOption={this.handleAddOption}
-                onRemoveOption={this.handleRemoveOption}
-                emptyText="There are currently no options, add one below!" />
-          </Field>
+
           <Field id="description">
               <Label>Answer Description</Label>
               <Input value={description} name="description"/>
           </Field>
-          <Field id="validation-message">
-              <Label>Validation Message</Label>
-              <Input value={validationMessage}
-                name={validationName} />
+
+          <Field id="guidance">
+              <Label>Answer Guidance</Label>
+              <RichTextArea value={guidance} name="guidance" onChange={this.handleChange} />
           </Field>
+
+          <Field id="label">
+              <Label>Answer Label</Label>
+              <Input value={label} name="label" />
+          </Field>
+
+          {this.renderAnswerOpts()}
+
       </fieldset>
     )
   }
