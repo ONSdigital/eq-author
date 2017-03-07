@@ -58,9 +58,9 @@ export default class AnswerFields extends Component {
           </Field>
 
           <Field id="mandatory">
-              <Label>Mandatory</Label>
               <Checkbox checked={mandatory}
                 name="mandatory" onChange={this.handleChange} />
+              <Label>Mandatory</Label>
           </Field>
           <Field id="guidance">
               <Label>Answer Guidance</Label>

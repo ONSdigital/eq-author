@@ -11,8 +11,7 @@ export default class OptionsInputList extends Component {
     super(props)
     this.state = {
         label: "",
-        value: "",
-        description: ""
+        value: ""
     }
   }
 
@@ -28,13 +27,11 @@ export default class OptionsInputList extends Component {
     const {label, value, description} = this.state
     this.props.onAddOption({
       label: label,
-      value: value,
-      description: description
+      value: value
     })
     this.setState({
         label: "",
-        value: "",
-        description: ""
+        value: ""
     })
     e.stopPropagation()
   }
@@ -71,11 +68,6 @@ export default class OptionsInputList extends Component {
               <Label>Value</Label>
               <Input onChange={this.onChange} value={this.state.value} name="value" />
             </Field>
-            <Field id="description">
-              <Label>Description</Label>
-              <Input onChange={this.onChange} value={this.state.description} name="description" />
-            </Field>
-
             <button type="button"
               className="button"
               onClick={this.onAddOption}>Add option</button>
