@@ -7,6 +7,9 @@ const StyledRTE = styled.div`
   min-height: 250px;
   font-family: sans-serif;
   margin-bottom: 16px;
+  .rte {
+    width: 100%;
+  }
 `;
 
 export default class RichTextArea extends Component {
@@ -49,6 +52,6 @@ export default class RichTextArea extends Component {
             ]
         }
 
-        return (<StyledRTE className="rte"><RichTextEditor value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/></StyledRTE>)
+        return (<StyledRTE><RichTextEditor className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/></StyledRTE>)
     }
 }
