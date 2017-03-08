@@ -32,7 +32,7 @@ const Button = styled.button`
   margin-right: 8px;
 `;
 
-export default class OptionsInputList extends Component {
+export default class Options extends Component {
 
   constructor(props) {
     super(props)
