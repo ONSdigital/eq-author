@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "homepage": "https://ONSdigital.github.io/eq-author-prototypes",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "devDependencies": {
     "gh-pages": "^0.12.0",
     "react-scripts": "0.9.0"
