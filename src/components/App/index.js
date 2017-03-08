@@ -1,12 +1,16 @@
-import React from 'react';
-import './style.css';
-import QuestionFormContainer from 'containers/QuestionForm';
-import JsonWindowContainer from 'containers/JsonWindow';
+import React from 'react'
+import QuestionFormContainer from 'containers/QuestionForm'
+import JsonWindowContainer from 'containers/JsonWindow'
 import HTMLPreviewContainer from 'containers/HTMLPreview';
 import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs';
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  padding: 1rem;
+`;
 
 const App = () => (
-  <div className="app">
+  <Wrapper className="app">
     <div className="row">
       <div className="small-4 columns">
         <QuestionFormContainer />
@@ -28,7 +32,7 @@ const App = () => (
         </Tabs>
       </div>
     </div>
-  </div>
+  </Wrapper>
 )
 
 export default App

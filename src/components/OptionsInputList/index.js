@@ -3,7 +3,34 @@ import Label from 'components/forms/Label'
 import Field from 'components/forms/Field'
 import Input from 'components/forms/Input'
 import Link from 'components/Link'
-import './style.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  margin-bottom: 16px;
+`;
+
+const AddedOptions = styled.div`
+  border: 1px solid lightgrey;
+  padding: 20px;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const Fieldset = styled.fieldset`
+  border: 1px solid lightgrey;
+  padding: 20px;
+`;
+const Legend = styled.legend`
+  padding: 0 3px;
+`;
+
+const Button = styled.button`
+  margin-right: 8px;
+`;
 
 export default class OptionsInputList extends Component {
 
@@ -36,43 +63,43 @@ export default class OptionsInputList extends Component {
     e.stopPropagation()
   }
 
-    render() {
-      return (
-        <div className="options">
+  render() {
+    return (
+      <Wrapper>
 
-          { this.props.options.length > 0 &&
-          <div className="options__existing">
-            <ul className="options__list">
-            { this.props.options.map((option, index) => {
-              return (
-                <li className="options__list-item" key={index}>
-                  {option.label} - <Link text="Remove" onClick={this.props.onRemoveOption} data={index} />
-                </li>
-              )
-            })}
-            </ul>
+        { this.props.options.length > 0 &&
+        <AddedOptions>
+          <List>
+          { this.props.options.map((option, index) => {
+            return (
+              <li key={index}>
+                {option.label} - <Link text="Remove" onClick={this.props.onRemoveOption} data={index} />
+              </li>
+            )
+          })}
+          </List>
 
-          </div>
-          }
-          { this.props.options.length === 0 &&
-            <div className="callout warning panel">{this.props.emptyText}</div>
-          }
-
-          <fieldset>
-            <legend>Add new option</legend>
-            <Field id="label">
-              <Label>Label</Label>
-              <Input onChange={this.onChange} value={this.state.label} name="label" />
-            </Field>
-            <Field id="value">
-              <Label>Value</Label>
-              <Input onChange={this.onChange} value={this.state.value} name="value" />
-            </Field>
-            <button type="button"
-              className="button"
-              onClick={this.onAddOption}>Add option</button>
-          </fieldset>
-        </div>
+        </AddedOptions>
+        }
+        { this.props.options.length === 0 &&
+          <div className="callout warning panel">{this.props.emptyText}</div>
+        }
+        <Fieldset>
+          <Legend>Add new option</Legend>
+          <Field id="label">
+            <Label>Label</Label>
+            <Input onChange={this.onChange} value={this.state.label} name="label" />
+          </Field>
+          <Field id="value">
+            <Label>Value</Label>
+            <Input onChange={this.onChange} value={this.state.value} name="value" />
+          </Field>
+          <Button type="button"
+            className="button"
+            onClick={this.onAddOption}>Add option
+          </Button>
+        </Fieldset>
+      </Wrapper>
       )
     }
 }

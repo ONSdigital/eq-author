@@ -1,10 +1,18 @@
 import React from 'react'
-import './style.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  background: #333;
+  padding: 1rem;
+  color: white;
+  font-family: monospace;
+  overflow-x: scroll;
+`;
 
 const JsonWindow = ({question}) => (
-  <div className="json-window">
+  <Wrapper>
     <pre>{JSON.stringify(question, null, 2)}</pre>
-  </div>
+  </Wrapper>
 )
 
 export default JsonWindow
