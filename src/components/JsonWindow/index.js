@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledJsonWindow = styled.div`
+const Wrapper = styled.div`
   background: #333;
   padding: 1rem;
   color: white;
@@ -10,9 +10,9 @@ const StyledJsonWindow = styled.div`
 `;
 
 const JsonWindow = ({question}) => (
-  <StyledJsonWindow className="json-window">
+  <Wrapper>
     <pre>{JSON.stringify(question, null, 2)}</pre>
-  </StyledJsonWindow>
+  </Wrapper>
 )
 
 export default JsonWindow

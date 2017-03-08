@@ -5,11 +5,11 @@ import Input from 'components/forms/Input'
 import Link from 'components/Link'
 import styled from 'styled-components'
 
-const StyledOptions = styled.div`
+const Wrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-const StyledOptionsExisting = styled.div`
+const AddedOptions = styled.div`
   border: 1px solid lightgrey;
   padding: 20px;
 `;
@@ -63,44 +63,43 @@ export default class OptionsInputList extends Component {
     e.stopPropagation()
   }
 
-    render() {
-      return (
-        <StyledOptions className="options">
+  render() {
+    return (
+      <Wrapper>
 
-          { this.props.options.length > 0 &&
-          <StyledOptionsExisting className="options__existing">
-            <List className="options__list">
-            { this.props.options.map((option, index) => {
-              return (
-                <li className="options__list-item" key={index}>
-                  {option.label} - <Link text="Remove" onClick={this.props.onRemoveOption} data={index} />
-                </li>
-              )
-            })}
-            </List>
+        { this.props.options.length > 0 &&
+        <AddedOptions>
+          <List>
+          { this.props.options.map((option, index) => {
+            return (
+              <li key={index}>
+                {option.label} - <Link text="Remove" onClick={this.props.onRemoveOption} data={index} />
+              </li>
+            )
+          })}
+          </List>
 
-          </StyledOptionsExisting>
-          }
-          { this.props.options.length === 0 &&
-            <div className="callout warning panel">{this.props.emptyText}</div>
-          }
-
-          <Fieldset>
-            <Legend>Add new option</Legend>
-            <Field id="label">
-              <Label>Label</Label>
-              <Input onChange={this.onChange} value={this.state.label} name="label" />
-            </Field>
-            <Field id="value">
-              <Label>Value</Label>
-              <Input onChange={this.onChange} value={this.state.value} name="value" />
-            </Field>
-            <Button type="button"
-              className="button"
-              onClick={this.onAddOption}>Add option
-            </Button>
-          </Fieldset>
-        </StyledOptions>
+        </AddedOptions>
+        }
+        { this.props.options.length === 0 &&
+          <div className="callout warning panel">{this.props.emptyText}</div>
+        }
+        <Fieldset>
+          <Legend>Add new option</Legend>
+          <Field id="label">
+            <Label>Label</Label>
+            <Input onChange={this.onChange} value={this.state.label} name="label" />
+          </Field>
+          <Field id="value">
+            <Label>Value</Label>
+            <Input onChange={this.onChange} value={this.state.value} name="value" />
+          </Field>
+          <Button type="button"
+            className="button"
+            onClick={this.onAddOption}>Add option
+          </Button>
+        </Fieldset>
+      </Wrapper>
       )
     }
 }

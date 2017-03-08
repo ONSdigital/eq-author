@@ -5,12 +5,12 @@ import HTMLPreviewContainer from 'containers/HTMLPreview';
 import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs';
 import styled from 'styled-components'
 
-const StyledApp = styled.div`
+const Wrapper = styled.div`
   padding: 1rem;
 `;
 
 const App = () => (
-  <StyledApp className="app">
+  <Wrapper className="app">
     <div className="row">
       <div className="small-4 columns">
         <QuestionFormContainer />
@@ -32,7 +32,7 @@ const App = () => (
         </Tabs>
       </div>
     </div>
-  </StyledApp>
+  </Wrapper>
 )
 
 export default App
