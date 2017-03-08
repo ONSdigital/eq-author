@@ -1,6 +1,13 @@
 import React, {Component} from 'react'
 import RichTextEditor from 'react-rte'
-import './style.css'
+import styled from 'styled-components'
+
+const StyledRTE = styled.div`
+  display: flex;
+  min-height: 250px;
+  font-family: sans-serif;
+  margin-bottom: 16px;
+`;
 
 export default class RichTextArea extends Component {
 
@@ -42,6 +49,6 @@ export default class RichTextArea extends Component {
             ]
         }
 
-        return (<RichTextEditor className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/>)
+        return (<StyledRTE className="rte"><RichTextEditor value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/></StyledRTE>)
     }
 }

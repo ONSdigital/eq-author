@@ -3,7 +3,34 @@ import Label from 'components/forms/Label'
 import Field from 'components/forms/Field'
 import Input from 'components/forms/Input'
 import Link from 'components/Link'
-import './style.css'
+import styled from 'styled-components'
+
+const StyledOptions = styled.div`
+  margin-bottom: 16px;
+`;
+
+const StyledOptionsExisting = styled.div`
+  border: 1px solid lightgrey;
+  padding: 20px;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const Fieldset = styled.fieldset`
+  border: 1px solid lightgrey;
+  padding: 20px;
+`;
+const Legend = styled.legend`
+  padding: 0 3px;
+`;
+
+const Button = styled.button`
+  margin-right: 8px;
+`;
 
 export default class OptionsInputList extends Component {
 
@@ -38,11 +65,11 @@ export default class OptionsInputList extends Component {
 
     render() {
       return (
-        <div className="options">
+        <StyledOptions className="options">
 
           { this.props.options.length > 0 &&
-          <div className="options__existing">
-            <ul className="options__list">
+          <StyledOptionsExisting className="options__existing">
+            <List className="options__list">
             { this.props.options.map((option, index) => {
               return (
                 <li className="options__list-item" key={index}>
@@ -50,16 +77,16 @@ export default class OptionsInputList extends Component {
                 </li>
               )
             })}
-            </ul>
+            </List>
 
-          </div>
+          </StyledOptionsExisting>
           }
           { this.props.options.length === 0 &&
             <div className="callout warning panel">{this.props.emptyText}</div>
           }
 
-          <fieldset>
-            <legend>Add new option</legend>
+          <Fieldset>
+            <Legend>Add new option</Legend>
             <Field id="label">
               <Label>Label</Label>
               <Input onChange={this.onChange} value={this.state.label} name="label" />
@@ -68,11 +95,12 @@ export default class OptionsInputList extends Component {
               <Label>Value</Label>
               <Input onChange={this.onChange} value={this.state.value} name="value" />
             </Field>
-            <button type="button"
+            <Button type="button"
               className="button"
-              onClick={this.onAddOption}>Add option</button>
-          </fieldset>
-        </div>
+              onClick={this.onAddOption}>Add option
+            </Button>
+          </Fieldset>
+        </StyledOptions>
       )
     }
 }

@@ -10,7 +10,16 @@ import createEngine from 'redux-storage-engine-localstorage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import App from 'components/App'
-import './index.css'
+
+import { injectGlobal } from 'styled-components'
+
+injectGlobal`
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+`;
 
 const storageReducer = reducer(authorApp)
 const storageEngine = createEngine('eq-authoring-prototype-storage-key')
