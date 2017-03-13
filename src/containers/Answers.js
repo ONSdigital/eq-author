@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChangeAnswer: bindActionCreators(changeAnswer, dispatch),
     onRemoveOption: bindActionCreators(removeOption, dispatch),
-    onAddOption: bindActionCreators(addOption, dispatch)
+    onAddOption: bindActionCreators(addOption, dispatch),
   }
 }
 
