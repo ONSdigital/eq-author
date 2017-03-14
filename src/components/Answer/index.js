@@ -35,32 +35,11 @@ export default class AnswerFields extends Component {
     }
   }
 
-  handleRemoveOption = e => {
-    const optionIndex = e.target.name
-    this.props.onRemoveOption(this.props.answerIndex, optionIndex)
-    e.stopPropagation()
-  }
-
-  handleAddOption = e => {
-    const {label, value, description} = e
-    this.props.onAddOption(this.props.answerIndex, {
-      label: label,
-      value: value,
-      description: description
-    })
-  }
-
   renderAnswerOpts = () => {
     const { options, type } = this.props.answer;
     if (type === 'Checkbox' || type === 'Radio') {
       return (
-        <Field id="options">
-            <Label>Answer Options</Label>
-            <Options options={options}
-              onAddOption={this.handleAddOption}
-              onRemoveOption={this.handleRemoveOption}
-              emptyText="There are currently no options, add one below!" />
-        </Field>
+        <Options index={this.props.answerIndex} options={options} onChange={this.props.onChangeAnswerOptions} />
       )
     }
   }
