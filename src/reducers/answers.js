@@ -1,5 +1,5 @@
 import {merge} from 'lodash'
-import { CHANGE_ANSWER, REMOVE_OPTION, ADD_OPTION } from 'actions/answers'
+import { CHANGE_ANSWER, CHANGE_ANSWER_OPTIONS } from 'actions/answers'
 
 const initialState = [{
     "id": "",
@@ -8,7 +8,7 @@ const initialState = [{
     "guidance": "",
     "options": [],
     "label": "",
-    "type": "",
+    "type": "TextField",
     "validation": {
         "messages": {
             "MANDATORY": ""
@@ -22,13 +22,9 @@ const answers = (state = initialState, action) => {
       let newState = state.map(e => e)
       merge(newState[action.index], action.value)
       return newState
-    case REMOVE_OPTION:
+    case CHANGE_ANSWER_OPTIONS:
       newState = state.map(e => e)
-      newState[action.answerIndex].options.splice(action.optionIndex, 1)
-      return newState
-    case ADD_OPTION:
-      newState = state.map(e => e)
-      newState[action.answerIndex].options.push(action.option)
+      newState[action.index].options = action.options
       return newState
     default:
       return state
