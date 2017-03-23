@@ -58,7 +58,7 @@ export default class RichTextArea extends Component {
 
     return (
       <Wrapper>
-        <RTE className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/>
+        <RTE className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange} />
       </Wrapper>
     )
   }
