@@ -6,8 +6,19 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build&&gh-pages -d build",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
     "gh-pages": "^0.12.0",
+    "node-glob": "^1.2.0",
     "react-scripts": "0.9.0"
   },
   "dependencies": {
@@ -21,12 +32,5 @@
     "redux-storage": "^4.1.2",
     "redux-storage-engine-localstorage": "^1.1.4",
     "styled-components": "^1.4.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build&&gh-pages -d build"
   }
 }
