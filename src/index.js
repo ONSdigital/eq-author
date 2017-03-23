@@ -20,11 +20,21 @@ let store = createStore(storageReducer, composeWithDevTools(
 ))
 
 const load = createLoader(storageEngine);
-load(store).then((newState) => {
+
+const render = (RootComponent) => {
   ReactDOM.render(
     <Provider store={store}>
-      <App />
-    </Provider>  ,
+      <RootComponent />
+    </Provider>,
     document.getElementById('root')
   )
-})
+}
+
+load(store).then(newState => render(App))
+
+if (module.hot) {
+  module.hot.accept('components/App', () => {
+    const NextApp = require('components/App').default;
+    render(NextApp);
+  });
+}
