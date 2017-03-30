@@ -4,7 +4,7 @@ import Breadcrumb from 'components/Breadcrumb'
 
 // This will be replaced by React-Router links
 const Link = (props) => (
-  <a>{props.text}</a>
+  <a href="#">{props.text}</a>
 )
 
 const links = [<Link text="Hello" />, <Link text="World" />]
@@ -12,7 +12,4 @@ const links = [<Link text="Hello" />, <Link text="World" />]
 storiesOf('Breadcrumb', module)
   .add('Default', () => (
     <Breadcrumb links={links} />
-  ))
-  .add('Empty', () => (
-    <Breadcrumb links={[]} />
   ))

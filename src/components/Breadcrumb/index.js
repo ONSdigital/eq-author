@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import {breadcrumbBackground} from 'constants/theme'
+import {colorGrey} from 'constants/theme'
 import tinycolor from 'tinycolor2'
 import Chevron from './chevron'
 
@@ -9,7 +9,7 @@ const ChevronIcon = styled(Chevron)`
 `
 
 const Breadcrumb = styled.div`
-  background-color: ${breadcrumbBackground};
+  background-color: ${colorGrey};
   font-size: 0.8em;
   display: flex;
   flex: 1 1 auto;

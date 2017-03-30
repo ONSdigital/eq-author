@@ -5,5 +5,5 @@ module.exports = {
   colorText: '#4A4A4A',
   colorBorders: '#EAEAEA',
   radiusGlobal: '2px',
-  breadcrumbBackground: '#EAEAEA'
+  colorGrey: '#EAEAEA'
 }
