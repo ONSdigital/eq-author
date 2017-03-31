@@ -5,5 +5,8 @@ module.exports = {
   colorText: '#4A4A4A',
   colorBorders: '#EAEAEA',
   radiusGlobal: '2px',
-  colorGrey: '#EAEAEA'
+  colorGrey: '#EAEAEA',
+  topBarBlue: '#35414D',
+  brightText: '#fff',
+  betaTag: '#F5A623'
 }

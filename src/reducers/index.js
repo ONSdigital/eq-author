@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import question from './question'
 import answers from './answers'
+import { routerReducer } from 'react-router-redux'
 
-const authorApp = combineReducers({
+const reducers = combineReducers({
   question,
-  answers
+  answers,
+  routing: routerReducer
 })
 
-export default authorApp
+export default reducers

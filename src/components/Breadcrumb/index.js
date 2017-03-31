@@ -30,7 +30,10 @@ const BreadcrumbLink = (props) => (
 )
 
 BreadcrumbLink.propTypes = {
-  link: React.PropTypes.object,
+  link: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object
+  ]),
   isLast: React.PropTypes.bool
 }
 
