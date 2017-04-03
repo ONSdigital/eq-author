@@ -1,7 +1,6 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {colorGrey} from 'constants/theme'
-import tinycolor from 'tinycolor2'
 import Chevron from './chevron'
 
 const ChevronIcon = styled(Chevron)`

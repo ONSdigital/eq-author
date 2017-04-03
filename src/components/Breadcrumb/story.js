@@ -1,13 +1,18 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
+import styled from 'styled-components'
 import Breadcrumb from 'components/Breadcrumb'
 
-// This will be replaced by React-Router links
-const Link = (props) => (
-  <a href="#">{props.text}</a>
-)
+const Link = styled.a`
+  color: #4A4A4A;
+  text-decoration: none;
 
-const links = [<Link text="Hello" />, <Link text="World" />]
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const links = [<Link href="#">Hello</Link>, <Link href="#">World</Link>]
 
 storiesOf('Breadcrumb', module)
   .add('Default', () => (
