@@ -4,5 +4,6 @@ module.exports = {
   colorLightBlue: '#61BDE0',
   colorText: '#4A4A4A',
   colorBorders: '#EAEAEA',
-  radiusGlobal: '2px'
+  radiusGlobal: '2px',
+  colorGrey: '#EAEAEA'
 }
