@@ -47,19 +47,11 @@ const Label = styled.div`
 export default class AddButton extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      mode: BUTTON_MODE,
-      value: this.props.value
-    }
-  }
-  onChange = e => {
-    this.setState({
-      value: e.target.value
-    })
+    this.state = { mode: BUTTON_MODE }
   }
   onClick = e => {
     if (!this.state.editMode) {
-      this.setState({mode: EDIT_MODE})
+      this.setState({ mode: EDIT_MODE })
     }
   }
   inputRef = (input) => {
@@ -69,7 +61,7 @@ export default class AddButton extends Component {
     input.addEventListener('keydown', this.onInputKeyDown)
   }
   onInputBlur = e => {
-    this.setState({mode: BUTTON_MODE})
+    this.setState({ mode: BUTTON_MODE })
   }
   onInputKeyDown = e => {
     const input = e.target
@@ -78,29 +70,28 @@ export default class AddButton extends Component {
 
     switch (e.keyCode) {
       case ENTER_KEY:
-        input.removeEventListener('blur', this.onInputBlur)
-        input.removeEventListener('keydown', this.onInputKeyDown)
-        this.setState({
-          mode: LABEL_MODE,
-          label: input.value
-        })
+        if (input.value.length > 0) {
+          input.removeEventListener('blur', this.onInputBlur)
+          input.removeEventListener('keydown', this.onInputKeyDown)
+          this.props.onApplyLabel(input.value)
+        }
       break
 
       case ESC_KEY:
         input.removeEventListener('blur', this.onInputBlur)
         input.removeEventListener('keydown', this.onInputKeyDown)
-        this.setState({
-          mode: BUTTON_MODE
-        })
+        this.setState({ mode: BUTTON_MODE })
       break
 
+      default:
+        // do nothing
     }
   }
   render() {
-    const {children, editLabel} = this.props
+    const {children, editLabel, className} = this.props
     const {mode, label} = this.state
     return (
-      <div>
+      <div className={className}>
         {{
           [BUTTON_MODE]: (
             <ClearButton clear small onClick={this.onClick}><AddIcon />{children}</ClearButton>
@@ -108,7 +99,7 @@ export default class AddButton extends Component {
           [EDIT_MODE]: (
             <div>
               <FormLabel>{editLabel}</FormLabel>
-              <Input placeholder={editLabel} innerRef={this.inputRef} onChange={this.onChange} initialValue={this.state.value} />
+              <Input placeholder={editLabel} innerRef={this.inputRef} />
             </div>
           ),
           [LABEL_MODE]: (

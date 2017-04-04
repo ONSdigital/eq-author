@@ -3818,7 +3818,7 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
-loader-utils@0.2.x, loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@^0.2.3, loader-utils@^0.2.7, loader-utils@~0.2.2, loader-utils@~0.2.5:
+loader-utils@0.2.16, loader-utils@0.2.x, loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@^0.2.3, loader-utils@^0.2.7, loader-utils@~0.2.2, loader-utils@~0.2.5:
   version "0.2.16"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.16.tgz#f08632066ed8282835dff88dfb52704765adee6d"
   dependencies:
@@ -5788,8 +5788,8 @@ style-loader@0.13.1:
     loader-utils "^0.2.7"
 
 styled-components@next:
-  version "2.0.0-10"
-  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-2.0.0-10.tgz#94b983d6af57ce9b4fb0cb73b289eb4696a930e3"
+  version "2.0.0-14"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-2.0.0-14.tgz#f478d5046438a8b33bdae4ea6d1ca099bcb58cfe"
   dependencies:
     buffer "^5.0.3"
     css-to-react-native "2.0.1"
@@ -5798,12 +5798,16 @@ styled-components@next:
     inline-style-prefixer "^2.0.5"
     is-function "^1.0.1"
     is-plain-object "^2.0.1"
-    stylis "^1.2.0"
+    stylis "^2.0.0"
     supports-color "^3.2.3"
 
-stylis@^1.2.0, stylis@^1.2.6:
+stylis@^1.2.6:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-1.2.8.tgz#feba55055a8a1bf8a76a659084a91d729920fa92"
+
+stylis@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/stylis/-/stylis-2.0.1.tgz#be7439c0f9b6e746d2732aa78c0c2f556963a6a8"
 
 supports-color@^2.0.0:
   version "2.0.0"
@@ -5814,6 +5818,13 @@ supports-color@^3.1.0, supports-color@^3.1.1, supports-color@^3.1.2, supports-co
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-3.2.3.tgz#65ac0504b3954171d8a64946b2ae3cbb8a5f54f6"
   dependencies:
     has-flag "^1.0.0"
+
+svg-url-loader@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/svg-url-loader/-/svg-url-loader-2.0.2.tgz#079b4764b4bc12eed9d01b6d76d98e234246194f"
+  dependencies:
+    file-loader "0.10.0"
+    loader-utils "0.2.16"
 
 svgo@^0.7.0:
   version "0.7.2"
