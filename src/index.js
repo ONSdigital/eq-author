@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { Provider, connect } from 'react-redux'
+import { createStore, applyMiddleware, bindActionCreators } from 'redux'
 import reducers from './reducers'
 
 import { createMiddleware, reducer, createLoader } from 'redux-storage'
@@ -11,10 +11,11 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import createHistory from 'history/createHashHistory'
 import { Route } from 'react-router'
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
 import routes from './routes'
 
 import App from 'components/App'
+import * as actionCreators from 'actions/actionCreators'
 
 const storageReducer = reducer(reducers)
 const storageEngine = createEngine('eq-authoring-prototype-storage-key')
@@ -29,17 +30,40 @@ let store = createStore(storageReducer, composeWithDevTools(
 const load = createLoader(storageEngine)
 
 const RouteWithLayout = (route) => {
+
+  const Page = (props) => {
+    return (
+      <route.component {...props} />
+    )
+  }
+
+  const mapStateToProps = (state) => ({
+    file: state.file
+  })
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      push: bindActionCreators(push, dispatch),
+      actions: bindActionCreators(actionCreators, dispatch)
+    }
+  }
+
+  const ConnectedPage = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Page)
+
   if (route.layout) {
     return (
       <Route exact path={route.path} render={(props) => (
         <route.layout {...route}>
-          <route.component />
+          <ConnectedPage />
         </route.layout>
       )}/>
     )
   }
   else {
-    return <route.component />
+    return <ConnectedPage />
   }
 }
 

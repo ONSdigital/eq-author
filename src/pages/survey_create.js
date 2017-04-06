@@ -2,7 +2,6 @@ import React from 'react'
 import Field from '../components/forms/Field'
 import Input from '../components/forms/Input'
 import Label from '../components/forms/Label'
-import Select from '../components/forms/Select'
 import RichTextArea from '../components/forms/RichTextArea'
 import Button from '../components/Button'
 import {Link} from 'react-router-dom'
@@ -10,7 +9,7 @@ import styled from 'styled-components'
 import {Table, TableHead, TableBody, TableRow, TableCol} from '../components/Table'
 import {Tabs, TabPanel, TabList, TabTitle} from '../components/Tabs'
 
-const SurveyCreatePage = () => {
+const SurveyCreatePage = (props) => {
 
   const fullWidth = {
     width: '100%'
@@ -34,6 +33,11 @@ const SurveyCreatePage = () => {
   const ActionButton = styled(Button)`
     margin-right: 1em;
   `
+
+  const {title, description, theme, legal_basis, messages} = props.file
+
+  console.log('messages', messages)
+
   return (
     <div style={fullWidth}>
       <div>
@@ -45,24 +49,25 @@ const SurveyCreatePage = () => {
           <TabPanel>
             <Field id="title">
               <Label>Title</Label>
-              <Input name="id" />
+              <Input name="id" value={title} />
             </Field>
             <Field id="number">
               <Label>Description</Label>
-              <Input name="number" />
+              <Input name="number" value={description} />
             </Field>
             <TwoCols>
               <Field50Percent id="number">
                 <Label>Theme</Label>
-                <Select name="number" options={[]} />
+                <Input name="theme" value={theme} />
               </Field50Percent>
               <Field50Percent id="number">
                 <Label>Legal Basis</Label>
-                <Select name="number" options={[]} />
+                <Input name="legalBasis" value={legal_basis} />
               </Field50Percent>
             </TwoCols>
             <Field id="number">
               <Label>Error messages</Label>
+              {messages ? (
               <Table>
                 <TableHead>
                   <TableRow>
@@ -71,20 +76,16 @@ const SurveyCreatePage = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow>
-                    <TableCol>MANDATORY</TableCol>
-                    <TableCol>Please provide a value, even if your value is zero.</TableCol>
-                  </TableRow>
-                  <TableRow>
-                    <TableCol>NOT_INTEGER</TableCol>
-                    <TableCol>Please only enter whole numbers into the field.</TableCol>
-                  </TableRow>
-                  <TableRow>
-                    <TableCol>NEGATIVE_INTEGER</TableCol>
-                    <TableCol>The value cannot be negative. Please correct.</TableCol>
-                  </TableRow>
+                  {Object.keys(messages).map(key => (
+                    <TableRow key={key}>
+                        <TableCol>{key}</TableCol>
+                        <TableCol>{messages[key]}</TableCol>
+                    </TableRow>
+                  ))}
                 </TableBody>
-              </Table>
+              </Table>) : (
+                <p>No validation messages in schema.</p>
+              )}
             </Field>
           </TabPanel>
           <TabPanel>
