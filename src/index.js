@@ -9,18 +9,20 @@ import { createMiddleware, reducer, createLoader } from 'redux-storage'
 import createEngine from 'redux-storage-engine-localstorage'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createHashHistory'
 import { Route } from 'react-router'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import routes from './routes'
 
 import App from 'components/App'
 
-const history = createHistory()
-
 const storageReducer = reducer(reducers)
 const storageEngine = createEngine('eq-authoring-prototype-storage-key')
 const storageMiddleware = createMiddleware(storageEngine)
+
+const history = createHistory({
+  basename: '/eq-author-prototypes'
+})
 
 let store = createStore(storageReducer, composeWithDevTools(
   applyMiddleware(routerMiddleware(history), storageMiddleware)
