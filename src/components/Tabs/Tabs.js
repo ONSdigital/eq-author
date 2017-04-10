@@ -28,12 +28,12 @@ export default class Tabs extends Component {
   render() {
     const { children } = this.props
     return (
-      <div>
+      <div style={this.props.style}>
         {children
           .filter(child => child.type === TabList)
           .map(this.getComponentWithProps)
         }
-        <div className="tabs-content">
+        <div className="tabs-content" style={this.props.contentStyle}>
           {children
             .filter(child => child.type === TabPanel)
             .map(this.getComponentWithProps)

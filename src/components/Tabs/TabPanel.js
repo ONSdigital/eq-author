@@ -6,7 +6,7 @@ export default class TabPanel extends Component {
   }
   render() {
     return (
-      <div className="tabs-panel" aria-hidden={!this.props.visible}>
+      <div className="tabs-panel" style={this.props.style} aria-hidden={!this.props.visible}>
         {this.props.children}
       </div>
     );
