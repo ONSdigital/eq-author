@@ -20,9 +20,7 @@ const storageReducer = reducer(reducers)
 const storageEngine = createEngine('eq-authoring-prototype-storage-key')
 const storageMiddleware = createMiddleware(storageEngine)
 
-const history = createHistory({
-  basename: '/eq-author-prototypes'
-})
+const history = createHistory()
 
 let store = createStore(storageReducer, composeWithDevTools(
   applyMiddleware(routerMiddleware(history), storageMiddleware)
