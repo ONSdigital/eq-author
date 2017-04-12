@@ -30,7 +30,7 @@ export default class extends Component {
   }
 
   render() {
-    const {children, open} = this.props
+    const {children} = this.props
     return (
       <TreeNodeChildren open={this.state.open}>
         {children}

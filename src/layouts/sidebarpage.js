@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-
+import {bindActionCreators} from 'redux'
+import * as actionCreators from 'actions/actionCreators'
+import {push} from 'react-router-redux'
+import {connect} from 'react-redux'
 
 import BaseLayout from './base'
 import Breadcrumb from '../components/Breadcrumb'
@@ -25,13 +28,36 @@ const SidebarPageLayout = (props) => {
     <Link to="/create">Create Survey</Link>,
     'Design'
   ]
+
+  const Sidebar = (props) => {
+    return (
+      <props.sidebar {...props} />
+    )
+  }
+
+  const mapStateToProps = (state) => ({
+    file: state.file
+  })
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      push: bindActionCreators(push, dispatch),
+      actions: bindActionCreators(actionCreators, dispatch)
+    }
+  }
+
+  const ConnectedSidebar = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Sidebar)
+
   return (
     <BaseLayout>
       <Breadcrumb links={Links}/>
       <TwoColumnLayout>
         <SidebarColumn>
           <FillHeight>
-          <props.sidebar />
+          <ConnectedSidebar {...props} />
           </FillHeight>
         </SidebarColumn>
         <ContentColumn>

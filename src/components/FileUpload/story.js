@@ -37,4 +37,4 @@ storiesOf('FileUpload', module)
         <button>Open a file</button>
       </FileUpload>
     )
-  })
+})
