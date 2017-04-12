@@ -17,6 +17,7 @@
                         {
                             "description": "",
                             "id": "number-of-employees-section",
+                            "title": "Quarterly Business Survey",
                             "questions": [
                                 {
                                     "answers": [
@@ -87,8 +88,7 @@
                                     "title": "On {{exercise.start_date|format_date}}  what was the number of employees for {{respondent.ru_name}}?",
                                     "type": "General"
                                 }
-                            ],
-                            "title": "Quarterly Business Survey"
+                            ]
                         }
                     ],
                     "type": "Questionnaire"
