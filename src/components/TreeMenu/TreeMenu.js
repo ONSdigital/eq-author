@@ -28,7 +28,7 @@ const Sections = ({sections, addSection, ...otherProps}) =>
     {
       sections && sections.length > 0
       ? sections.map((section, index) =>
-        <TreeNode key={index} label={section.name} sectionNode>
+        <TreeNode key={index} label={section.title} sectionNode>
           <Questions questions={section.questions} sectionID={section.id} {...otherProps}/>
         </TreeNode>
       )

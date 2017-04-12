@@ -9,18 +9,14 @@ import _ from 'lodash'
 const DefaultSidebar = (props) => {
   const findAll = (file, key) => {
     if (!file) return []
-
-    if (key in file) {
-      console.log('sections in this obj', file)
-      return [file][key]
-    }
+    if (key in file) return [file[key]]
 
     return _.flatten(_.map(file, function(v) {
         return typeof v === "object" ? findAll(v, key) : [];
     }), true);
   }
 
-  const sections = findAll(props.file, 'sections')
+  const sections = _.flatten(findAll(props.file, 'sections'))
   console.log('sections', sections)
 
   return (
