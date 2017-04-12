@@ -2,7 +2,7 @@
   "name": "eq-author-prototypes",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://ONSdigital.github.io/eq-author-prototypes",
+  "homepage": "./",
   "eslintConfig": {
     "extends": "react-app"
   },
