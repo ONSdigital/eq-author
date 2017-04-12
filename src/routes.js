@@ -1,15 +1,36 @@
 import React from 'react'
 
 import {Sidebar, SidebarSection} from './components/Sidebar'
+import {TreeMenuContainer} from './components/TreeMenu'
 import {FullPageLayout, TabbedPageLayout, SidebarPageLayout} from './layouts/'
 import {SurveyPage, SurveyCreatePage, SurveyDesignPage} from './pages'
+import _ from 'lodash'
 
-const DefaultSidebar = () => (
-  <Sidebar>
-    <SidebarSection title={'Groups'}></SidebarSection>
-    <SidebarSection title={'Sections'}></SidebarSection>
-  </Sidebar>
-)
+const DefaultSidebar = (props) => {
+  const findAll = (file, key) => {
+    if (!file) return []
+
+    if (key in file) {
+      console.log('sections in this obj', file)
+      return [file][key]
+    }
+
+    return _.flatten(_.map(file, function(v) {
+        return typeof v === "object" ? findAll(v, key) : [];
+    }), true);
+  }
+
+  const sections = findAll(props.file, 'sections')
+  console.log('sections', sections)
+
+  return (
+    <Sidebar>
+      <SidebarSection title={'Sections'}>
+        <TreeMenuContainer sections={sections} />
+      </SidebarSection>
+    </Sidebar>
+  )
+}
 
 const routes = [
   {
