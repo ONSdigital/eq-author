@@ -3,6 +3,7 @@ import Field from '../components/forms/Field'
 import Input from '../components/forms/Input'
 import Label from '../components/forms/Label'
 import Select from '../components/forms/Select'
+import {Grid, Column} from '../components/Grid'
 import RichTextArea from '../components/forms/RichTextArea'
 import Button from '../components/Button'
 import {Link} from 'react-router-dom'
@@ -23,14 +24,6 @@ const SurveyCreatePage = () => {
     border: '0',
     textAlign: 'left'
   }
-  const TwoCols = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  `
-  const Field50Percent = styled(Field)`
-    width: 350px;
-  `
   const ActionButton = styled(Button)`
     margin-right: 1em;
   `
@@ -51,16 +44,16 @@ const SurveyCreatePage = () => {
               <Label>Description</Label>
               <Input name="number" />
             </Field>
-            <TwoCols>
-              <Field50Percent id="number">
+            <Grid>
+              <Column id="number">
                 <Label>Theme</Label>
                 <Select name="number" options={[]} />
-              </Field50Percent>
-              <Field50Percent id="number">
+              </Column>
+              <Column id="number">
                 <Label>Legal Basis</Label>
                 <Select name="number" options={[]} />
-              </Field50Percent>
-            </TwoCols>
+              </Column>
+            </Grid>
             <Field id="number">
               <Label>Error messages</Label>
               <Table>
