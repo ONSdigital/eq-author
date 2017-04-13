@@ -5,20 +5,23 @@ import Input from 'components/forms/Input'
 import Label from 'components/forms/Label'
 import Select from 'components/forms/Select'
 import RichTextArea from 'components/forms/RichTextArea'
-import Button from 'components/Button'
-
-import {Link} from 'react-router-dom'
+import LinkButton from 'components/LinkButton'
+import ButtonGroup from 'components/ButtonGroup'
 import styled from 'styled-components'
 import {Table, TableHead, TableBody, TableRow, TableCol} from 'components/Table'
 import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs'
 import Title from 'components/Title'
+
+const ActionButtonGroup = styled(ButtonGroup)`
+  padding: 1em;
+`
 
 const SurveyCreatePage = () => {
   return (
     <div>
       <div>
         <Tabs>
-          <TabList >
+          <TabList>
             <TabTitle>Survey Settings</TabTitle>
             <TabTitle>Guidance</TabTitle>
           </TabList>
@@ -87,14 +90,10 @@ const SurveyCreatePage = () => {
           </TabPanel>
         </Tabs>
       </div>
-      <div>
-        <Link to="/design">
-          <ActionButton primary>Create survey</ActionButton>
-        </Link>
-        <Link to="/">
-          <ActionButton secondary>Cancel</ActionButton>
-        </Link>
-      </div>
+      <ActionButtonGroup horizontal>
+        <LinkButton to="/design" primary>Create survey</LinkButton>
+        <LinkButton to="/" secondary>Cancel</LinkButton>
+      </ActionButtonGroup>
   </div>
   )
 }

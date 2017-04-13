@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Button from 'components/Button'
+import ButtonGroup from 'components/ButtonGroup'
 import LinkButton from 'components/LinkButton'
 
 import Title from 'components/Title'
@@ -32,14 +33,6 @@ const Panel = styled.div`
 `
 const PanelTitle = styled(Title)`
   margin-bottom: 1em;
-`
-
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  *:not(:last-child) {
-    margin-bottom: 1.5em;
-  }
 `
 
 const SurveyPage = () =>
