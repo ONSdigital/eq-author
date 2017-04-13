@@ -51,16 +51,6 @@ const SurveyCreatePage = () => {
               </Column>
             </Grid>
 
-
-            <Field id="theme">
-              <Label>Theme</Label>
-              <Select name="number" options={[]} />
-            </Field>
-            <Field id="legal-basis">
-              <Label>Legal Basis</Label>
-              <Select name="number" options={[]} />
-            </Field>
-
             <Field id="error-messages">
 
               <Label>Error messages</Label>
