@@ -1,9 +1,13 @@
 import React, { Children, cloneElement } from 'react'
 
-const Field = ({children, ...otherProps}) => (
-  <div className="field">
-    {Children.map(children, child => cloneElement(child, otherProps))}
-  </div>
-);
+import styled from 'styled-components'
 
-export default Field
+const Field = styled.div`
+  display: block;
+  width: 100%;
+`
+
+export default ({children, ...otherProps}) =>
+  <Field>
+    {Children.map(children, child => cloneElement(child, otherProps))}
+  </Field>

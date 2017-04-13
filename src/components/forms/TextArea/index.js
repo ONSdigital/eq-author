@@ -1,7 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const TextArea = ({value, ...other}) => (
-  <textarea defaultValue={value} {...other}></textarea>
-)
+const TextArea = styled.textarea`
 
-export default TextArea
+`
+
+export default ({value, ...otherProps}) =>
+  <TextArea defaultValue={value} {...otherProps} />

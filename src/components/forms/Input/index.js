@@ -1,7 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const Input = ({value, type, ...other}) => (
-  <input type={type || "text"} defaultValue={value} {...other} />
-)
+const Input = styled.input`
+  padding: 0.5em 1em;
+  display: block;
+  &:focus {
+    outline: none;
+  }
+`
 
-export default Input
+export default ({type = 'text', value, ...otherProps}) =>
+  <Input type={type} defaultValue={value} {...otherProps} />

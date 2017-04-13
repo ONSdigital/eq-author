@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
+import styled from 'styled-components'
 
-const Select = ({options, value, ...rest}) => (
-  <select defaultValue={value} {...rest}>
-    {options.map(opt => (
-      <option key={opt}>{opt}</option>
-    ))}
-  </select>
-)
+const Select = styled.select`
+  padding: 1em;
+`
 
-export default Select
+export default ({options, value, ...otherProps}) =>
+  <Select defaultValue={value} {...otherProps}>
+    {options.map(opt => (<option key={opt}>{opt}</option>))}
+  </Select>

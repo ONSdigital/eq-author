@@ -4,16 +4,39 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   display: flex;
-  min-height: 250px;
-  font-family: sans-serif;
-  margin-bottom: 16px;
-`;
+  margin-bottom: 1em;
+`
 
-const RTE = styled(RichTextEditor)`
+const RichTextArea = styled(RichTextEditor)`
   width: 100%;
-`;
+`
 
-export default class RichTextArea extends Component {
+const toolbarConfig = {
+  display: [
+      'INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS'
+  ],
+  INLINE_STYLE_BUTTONS: [
+    {
+      label: 'Bold',
+      style: 'BOLD',
+      className: 'custom-css-class'
+    }, {
+      label: 'Italic',
+      style: 'ITALIC'
+    }
+  ],
+  BLOCK_TYPE_BUTTONS: [
+    {
+      label: 'UL',
+      style: 'unordered-list-item'
+    }, {
+      label: 'OL',
+      style: 'ordered-list-item'
+    }
+  ]
+}
+
+export default class extends Component {
 
   constructor(props) {
     super(props);
@@ -31,34 +54,9 @@ export default class RichTextArea extends Component {
   }
 
   render() {
-    const toolbarConfig = {
-      display: [
-          'INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS'
-      ],
-      INLINE_STYLE_BUTTONS: [
-        {
-          label: 'Bold',
-          style: 'BOLD',
-          className: 'custom-css-class'
-        }, {
-          label: 'Italic',
-          style: 'ITALIC'
-        }
-      ],
-      BLOCK_TYPE_BUTTONS: [
-        {
-          label: 'UL',
-          style: 'unordered-list-item'
-        }, {
-          label: 'OL',
-          style: 'ordered-list-item'
-        }
-      ]
-    }
-
     return (
       <Wrapper>
-        <RTE className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/>
+        <RichTextArea className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/>
       </Wrapper>
     )
   }

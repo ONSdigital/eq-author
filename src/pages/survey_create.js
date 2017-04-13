@@ -31,7 +31,6 @@ const SurveyCreatePage = () => {
               <Label>Title</Label>
               <Input name="id" />
             </Field>
-
             <Field id="description">
               <Label>Description</Label>
               <Input name="number" />
@@ -52,7 +51,18 @@ const SurveyCreatePage = () => {
               </Column>
             </Grid>
 
-            <Field>
+
+            <Field id="theme">
+              <Label>Theme</Label>
+              <Select name="number" options={[]} />
+            </Field>
+            <Field id="legal-basis">
+              <Label>Legal Basis</Label>
+              <Select name="number" options={[]} />
+            </Field>
+
+            <Field id="error-messages">
+
               <Label>Error messages</Label>
               <Table>
                 <TableHead>
@@ -81,11 +91,11 @@ const SurveyCreatePage = () => {
           <TabPanel>
             <Field id="info-to-provide">
               <Label>Information to provide</Label>
-              <RichTextArea />
+              <RichTextArea name="info-to-provide" />
             </Field>
             <Field id="basis-for-completion">
               <Label>Basis for completion</Label>
-              <RichTextArea />
+              <RichTextArea name="basis-for-completion" />
             </Field>
           </TabPanel>
         </Tabs>
