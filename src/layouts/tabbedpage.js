@@ -17,7 +17,7 @@ const PageBody = styled.div`
   flex: 1 1 auto;
 `
 const FixedWidthWrapper = styled.div`
-  width: 50em;
+  width: 40em;
   margin: 0 auto;
 `
 

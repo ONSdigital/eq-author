@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import Field from 'components/forms/Field'
-import Input from 'components/forms/Input'
-import Label from 'components/forms/Label'
-import RichTextArea from 'components/forms/RichTextArea'
+import {Field, Input, Label} from 'components/Forms'
+import RichTextArea from 'components/RichTextArea'
 
 export default class Question extends Component {
   handleChange = e => {

@@ -1,7 +1,13 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const TableHead = (props) => (
-  <thead>{props.children}</thead>
-)
+const TableHead = styled.thead`
+  font-weight: 700;
+  font-size: 0.8em;
+  padding: 1em;
+`
 
-export default TableHead
+export default ({children, ...otherProps}) =>
+  <TableHead {...otherProps}>
+    {children}
+  </TableHead>

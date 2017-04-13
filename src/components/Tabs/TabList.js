@@ -7,16 +7,15 @@ const TabList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: row;
-  justify-content: center;
 `
 
 export default (props) =>
   <TabList> {
-      props.children.map((child, index) =>
-        React.cloneElement(child, {
-          selected: props.selectedTab === index,
-          onClick: props.handleTabSelected.bind(this, index),
-          key: index
-        }))
+    props.children.map((child, index) =>
+      React.cloneElement(child, {
+        selected: props.selectedTab === index,
+        onClick: props.handleTabSelected.bind(this, index),
+        key: index
+      }))
     }
   </TabList>

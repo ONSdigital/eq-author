@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 
 import BaseLayout from './base'
-import Breadcrumb from '../components/Breadcrumb'
+import Breadcrumb from 'components/Breadcrumb'
 
 const SidebarPageLayout = (props) => {
   const TwoColumnLayout = styled.div`

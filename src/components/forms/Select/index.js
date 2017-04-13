@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import Icon from './icon.svg'
 
 const Select = styled.select`
-  padding: 1em;
+  background: white url('${Icon}') no-repeat right 1em center;
 `
 
 export default ({options, value, ...otherProps}) =>

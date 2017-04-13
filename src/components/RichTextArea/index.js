@@ -56,7 +56,7 @@ export default class extends Component {
   render() {
     return (
       <Wrapper>
-        <RichTextArea className="rte" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/>
+        <RichTextArea className="rte" rows="10" value={this.state.value} toolbarConfig={toolbarConfig} onChange={this.onChange}/>
       </Wrapper>
     )
   }

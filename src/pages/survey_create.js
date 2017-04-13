@@ -1,16 +1,14 @@
 import React from 'react'
-import {Grid, Column} from '../components/Grid'
-import Field from 'components/forms/Field'
-import Input from 'components/forms/Input'
-import Label from 'components/forms/Label'
-import Select from 'components/forms/Select'
-import RichTextArea from 'components/forms/RichTextArea'
+import styled from 'styled-components'
+
+import {Grid, Column} from 'components/Grid'
+import {Field, Input, Label, Select} from 'components/Forms'
+import RichTextArea from 'components/RichTextArea'
 import LinkButton from 'components/LinkButton'
 import ButtonGroup from 'components/ButtonGroup'
-import styled from 'styled-components'
+
 import {Table, TableHead, TableBody, TableRow, TableCol} from 'components/Table'
 import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs'
-import Title from 'components/Title'
 
 const ActionButtonGroup = styled(ButtonGroup)`
   padding: 1em;
@@ -40,13 +38,13 @@ const SurveyCreatePage = () => {
               <Column>
                 <Field id="theme">
                   <Label>Theme</Label>
-                  <Select name="number" options={[]} />
+                  <Select name="number" options={["Default", "census", "starwars"]} />
                 </Field>
               </Column>
               <Column>
                 <Field>
                   <Label>Legal Basis</Label>
-                  <Select name="number" options={[]} />
+                  <Select name="number" options={[""]} />
                 </Field>
               </Column>
             </Grid>
