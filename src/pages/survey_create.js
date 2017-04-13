@@ -11,51 +11,45 @@ import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import {Table, TableHead, TableBody, TableRow, TableCol} from 'components/Table'
 import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs'
+import Title from 'components/Title'
 
 const SurveyCreatePage = () => {
-
-  const fullWidth = {
-    width: '100%'
-  }
-  const tabListStyle = {
-    border: '1px solid #ccc',
-    borderBottom: '0'
-  }
-  const tabContentStyle = {
-    border: '0',
-    textAlign: 'left'
-  }
-  const ActionButton = styled(Button)`
-    margin-right: 1em;
-  `
   return (
-    <div style={fullWidth}>
+    <div>
       <div>
-        <Tabs style={fullWidth} contentStyle={tabContentStyle}>
-          <TabList style={tabListStyle}>
+        <Tabs>
+          <TabList >
             <TabTitle>Survey Settings</TabTitle>
             <TabTitle>Guidance</TabTitle>
           </TabList>
           <TabPanel>
+
             <Field id="title">
               <Label>Title</Label>
               <Input name="id" />
             </Field>
-            <Field id="number">
+
+            <Field id="description">
               <Label>Description</Label>
               <Input name="number" />
             </Field>
+
             <Grid>
-              <Column id="number">
-                <Label>Theme</Label>
-                <Select name="number" options={[]} />
+              <Column>
+                <Field id="theme">
+                  <Label>Theme</Label>
+                  <Select name="number" options={[]} />
+                </Field>
               </Column>
-              <Column id="number">
-                <Label>Legal Basis</Label>
-                <Select name="number" options={[]} />
+              <Column>
+                <Field>
+                  <Label>Legal Basis</Label>
+                  <Select name="number" options={[]} />
+                </Field>
               </Column>
             </Grid>
-            <Field id="number">
+
+            <Field>
               <Label>Error messages</Label>
               <Table>
                 <TableHead>
@@ -82,18 +76,18 @@ const SurveyCreatePage = () => {
             </Field>
           </TabPanel>
           <TabPanel>
-            <Field id="number">
+            <Field id="info-to-provide">
               <Label>Information to provide</Label>
-              <RichTextArea name="number" />
+              <RichTextArea />
             </Field>
-            <Field id="number">
+            <Field id="basis-for-completion">
               <Label>Basis for completion</Label>
-              <RichTextArea name="number" />
+              <RichTextArea />
             </Field>
           </TabPanel>
         </Tabs>
       </div>
-      <div style={tabContentStyle}>
+      <div>
         <Link to="/design">
           <ActionButton primary>Create survey</ActionButton>
         </Link>

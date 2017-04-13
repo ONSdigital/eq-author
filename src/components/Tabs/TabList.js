@@ -1,16 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react'
+import styled from 'styled-components'
 
-export default class TabList extends Component {
-  render() {
-    return (
-      <ul className="tabs" style={this.props.style}>{
-        this.props.children.map((child, index) =>
-          React.cloneElement(child, {
-            selected: this.props.selectedTab === index,
-            onClick: this.props.handleTabSelected.bind(this, index),
-            key: index
-          }))
-      }</ul>
-    );
-  }
-}
+const TabList = styled.ul`
+  list-style: none;
+  margin: 0 0 -1px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`
+
+export default (props) =>
+  <TabList> {
+      props.children.map((child, index) =>
+        React.cloneElement(child, {
+          selected: props.selectedTab === index,
+          onClick: props.handleTabSelected.bind(this, index),
+          key: index
+        }))
+    }
+  </TabList>
