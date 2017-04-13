@@ -63,5 +63,9 @@ const Button = styled.button`
   ${props => props.small && SmallButton}
 `
 
-export default (props) =>
-  <Button {...props}>{props.children}</Button>
+export default (props) => {
+  console.log(props.to);
+  return (
+    <Button {...props} className={props.className} type="button">{props.children}</Button>
+  )
+}

@@ -1,15 +1,16 @@
 import React from 'react'
-import Field from '../components/forms/Field'
-import Input from '../components/forms/Input'
-import Label from '../components/forms/Label'
-import Select from '../components/forms/Select'
 import {Grid, Column} from '../components/Grid'
-import RichTextArea from '../components/forms/RichTextArea'
-import Button from '../components/Button'
+import Field from 'components/forms/Field'
+import Input from 'components/forms/Input'
+import Label from 'components/forms/Label'
+import Select from 'components/forms/Select'
+import RichTextArea from 'components/forms/RichTextArea'
+import Button from 'components/Button'
+
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import {Table, TableHead, TableBody, TableRow, TableCol} from '../components/Table'
-import {Tabs, TabPanel, TabList, TabTitle} from '../components/Tabs'
+import {Table, TableHead, TableBody, TableRow, TableCol} from 'components/Table'
+import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs'
 
 const SurveyCreatePage = () => {
 
