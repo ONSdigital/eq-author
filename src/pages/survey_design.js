@@ -28,7 +28,7 @@ const BodyContent = styled.div`
   height: 80vh;
 `
 const ActionButton = styled(Button)`
-    margin: 1em;
+  margin: 0.5em;
 `
 const SurveyDesignPage = (props) => {
   return (
