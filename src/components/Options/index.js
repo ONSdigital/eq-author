@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import Label from 'components/forms/Label'
-import Field from 'components/forms/Field'
-import TextArea from 'components/forms/TextArea'
+import {Field, TextArea, Label} from 'components/Forms'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`

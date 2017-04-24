@@ -1,8 +1,20 @@
 import React, {Component} from 'react'
+import styled from 'styled-components'
+
 import TabPanel from './TabPanel'
 import TabList from './TabList'
 
-export default class Tabs extends Component {
+
+const Tabs = styled.div`
+
+`
+
+const TabsContent = styled.div`
+  border: 1px solid ${props => props.theme.colorBorders};
+  overflow: hidden;
+`
+
+export default class extends Component {
   state = {
     selected: this.props.selected || 0
   }
@@ -28,18 +40,18 @@ export default class Tabs extends Component {
   render() {
     const { children } = this.props
     return (
-      <div style={this.props.style}>
+      <Tabs>
         {children
           .filter(child => child.type === TabList)
           .map(this.getComponentWithProps)
         }
-        <div className="tabs-content" style={this.props.contentStyle}>
+        <TabsContent>
           {children
             .filter(child => child.type === TabPanel)
             .map(this.getComponentWithProps)
           }
-        </div>
-      </div>
+        </TabsContent>
+      </Tabs>
     );
   }
 }

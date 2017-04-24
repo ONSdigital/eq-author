@@ -1,60 +1,56 @@
 import React from 'react'
-import Field from '../components/forms/Field'
-import Input from '../components/forms/Input'
-import Label from '../components/forms/Label'
-import Select from '../components/forms/Select'
-import {Grid, Column} from '../components/Grid'
-import RichTextArea from '../components/forms/RichTextArea'
-import Button from '../components/Button'
-import {Link} from 'react-router-dom'
 import styled from 'styled-components'
-import {Table, TableHead, TableBody, TableRow, TableCol} from '../components/Table'
-import {Tabs, TabPanel, TabList, TabTitle} from '../components/Tabs'
+
+import {Grid, Column} from 'components/Grid'
+import {Field, Input, Label, Select} from 'components/Forms'
+import RichTextArea from 'components/RichTextArea'
+import LinkButton from 'components/LinkButton'
+import ButtonGroup from 'components/ButtonGroup'
+
+import {Table, TableHead, TableBody, TableRow, TableCol} from 'components/Table'
+import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs'
+
+const ActionButtonGroup = styled(ButtonGroup)`
+  padding: 1em;
+`
 
 const SurveyCreatePage = () => {
-
-  const fullWidth = {
-    width: '100%'
-  }
-  const tabListStyle = {
-    border: '1px solid #ccc',
-    borderBottom: '0'
-  }
-  const tabContentStyle = {
-    border: '0',
-    textAlign: 'left'
-  }
-  const ActionButton = styled(Button)`
-    margin-right: 1em;
-  `
   return (
-    <div style={fullWidth}>
+    <div>
       <div>
-        <Tabs style={fullWidth} contentStyle={tabContentStyle}>
-          <TabList style={tabListStyle}>
+        <Tabs>
+          <TabList>
             <TabTitle>Survey Settings</TabTitle>
             <TabTitle>Guidance</TabTitle>
           </TabList>
           <TabPanel>
+
             <Field id="title">
               <Label>Title</Label>
               <Input name="id" />
             </Field>
-            <Field id="number">
+            <Field id="description">
               <Label>Description</Label>
               <Input name="number" />
             </Field>
+
             <Grid>
-              <Column id="number">
-                <Label>Theme</Label>
-                <Select name="number" options={[]} />
+              <Column>
+                <Field id="theme">
+                  <Label>Theme</Label>
+                  <Select name="number" options={["Default", "census", "starwars"]} />
+                </Field>
               </Column>
-              <Column id="number">
-                <Label>Legal Basis</Label>
-                <Select name="number" options={[]} />
+              <Column>
+                <Field>
+                  <Label>Legal Basis</Label>
+                  <Select name="number" options={[""]} />
+                </Field>
               </Column>
             </Grid>
-            <Field id="number">
+
+            <Field id="error-messages">
+
               <Label>Error messages</Label>
               <Table>
                 <TableHead>
@@ -81,25 +77,21 @@ const SurveyCreatePage = () => {
             </Field>
           </TabPanel>
           <TabPanel>
-            <Field id="number">
+            <Field id="info-to-provide">
               <Label>Information to provide</Label>
-              <RichTextArea name="number" />
+              <RichTextArea name="info-to-provide" />
             </Field>
-            <Field id="number">
+            <Field id="basis-for-completion">
               <Label>Basis for completion</Label>
-              <RichTextArea name="number" />
+              <RichTextArea name="basis-for-completion" />
             </Field>
           </TabPanel>
         </Tabs>
       </div>
-      <div style={tabContentStyle}>
-        <Link to="/design">
-          <ActionButton primary>Create survey</ActionButton>
-        </Link>
-        <Link to="/">
-          <ActionButton secondary>Cancel</ActionButton>
-        </Link>
-      </div>
+      <ActionButtonGroup horizontal>
+        <LinkButton to="/design" primary>Create survey</LinkButton>
+        <LinkButton to="/" secondary>Cancel</LinkButton>
+      </ActionButtonGroup>
   </div>
   )
 }

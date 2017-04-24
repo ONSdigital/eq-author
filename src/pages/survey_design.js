@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import ActionBar from '../components/ActionBar'
-import Button from '../components/Button'
+import ActionBar from 'components/ActionBar'
+import Button from 'components/Button'
 
 const AddSVG = () => (
   <svg width="14px" height="14px" viewBox="0 1 14 14" version="1.1">
@@ -28,7 +28,7 @@ const BodyContent = styled.div`
   height: 80vh;
 `
 const ActionButton = styled(Button)`
-    margin: 1em;
+  margin: 0.5em;
 `
 const SurveyDesignPage = (props) => {
   return (

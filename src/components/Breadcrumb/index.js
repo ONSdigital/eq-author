@@ -9,11 +9,14 @@ const ChevronIcon = styled(Chevron)`
 
 const Breadcrumb = styled.div`
   background-color: ${colorGrey};
-  font-size: 0.8em;
+  font-size: 0.7em;
   display: flex;
-  flex: 1 1 auto;
   align-items: center;
-  padding: 0.5em 1em;
+  padding: 1em 1em;
+  a {
+    text-decoration: none;
+    color: ${props => props.theme.colorText}
+  }
 `
 
 Breadcrumb.propTypes = {

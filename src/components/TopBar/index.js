@@ -3,31 +3,43 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {Link} from 'react-router-dom'
-import {topBarBlue, brightText, betaTag} from '../../constants/theme'
+import {topBarBlue, brightText, betaTag} from 'constants/theme'
 
-const TopBar = () => {
-  const StyledTopBar = styled.div`
+const StyledTopBar = styled.div`
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
-  height: 6vh;
   background-color: ${topBarBlue};
   color: ${brightText};
-  `
-  const BetaLabel = styled.span`
-    color: ${betaTag};
-    text-transform: uppercase;
-    font-size: .7em;
-    margin-left: 1em;
-  `
-  return (
-    <Link to="/">
-      <StyledTopBar>
-        eQ Author <BetaLabel>Beta</BetaLabel>
-      </StyledTopBar>
-    </Link>
-  )
-}
+  font-weight: 500;
+  padding: 0.5em 0;
+`
+
+const BetaLabel = styled.div`
+  color: ${betaTag};
+  text-transform: uppercase;
+  font-size: .5em;
+  position: absolute;
+  bottom: 1.4em;
+  right: -3em;
+`
+
+const Logo = styled(Link)`
+  color: white;
+  position: relative;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: white;
+    text-decoration: none;
+  }
+`
+
+const TopBar = () =>
+  <StyledTopBar>
+    <Logo to="/">
+      eQ Author<BetaLabel>Beta</BetaLabel>
+    </Logo>
+  </StyledTopBar>
 
 export default TopBar

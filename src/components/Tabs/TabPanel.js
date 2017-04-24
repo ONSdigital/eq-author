@@ -1,14 +1,16 @@
-import React, {Component} from 'react'
+import React from 'react'
+import styled from 'styled-components'
 
-export default class TabPanel extends Component {
-  defaultProps = {
-    visible: true
+const TabPanel = styled.div`
+  background: white;
+  width: 100%;
+  padding: 2em;
+  &[aria-hidden=true] {
+    display: none;
   }
-  render() {
-    return (
-      <div className="tabs-panel" style={this.props.style} aria-hidden={!this.props.visible}>
-        {this.props.children}
-      </div>
-    );
-  }
-}
+`
+
+export default ({children, visible = true}) =>
+  <TabPanel aria-hidden={!visible}>
+    {children}
+  </TabPanel>

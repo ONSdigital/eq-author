@@ -1,17 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { colorBorders } from 'constants/theme'
 
-export default class TabTitle extends Component {
-  defaultProps = {
-    selected: false
+const SelectedTabTitle = css`
+  background: white;
+  border: 1px solid ${colorBorders};
+  border-bottom: none;
+`
+
+const TabTitle = styled.li`
+  padding: 1em 3em;
+  cursor: pointer;
+  &[aria-selected=true] {
+    ${SelectedTabTitle};
   }
-  onClickLink = (e) => {
-    e.preventDefault()
-  }
-  render() {
-    return (
-      <li className='tabs-title' style={this.props.style} onClick={this.props.onClick}>
-        <a onClick={this.onClickLink} aria-selected={this.props.selected}>{this.props.children}</a>
-      </li>
-    );
-  }
-}
+`
+
+const TabLabel = styled.div`
+  font-size: 0.6em;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  user-select: none;
+`
+
+export default ({children, onClick, selected = true}) =>
+  <TabTitle onClick={onClick} aria-selected={selected}>
+    <TabLabel>{children}</TabLabel>
+  </TabTitle>

@@ -1,43 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Title from 'components/Title'
 import BaseLayout from './base'
 
+const PageHeading = styled.div`
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4em 0 2em;
+`
+const PageBody = styled.div`
+  width: 100vw;
+  display: flex;
+  flex: 1 1 auto;
+`
+const FixedWidthWrapper = styled.div`
+  width: 40em;
+  margin: 0 auto;
+`
+
 const TabbedPageLayout = (props) => {
-  const PageHeading = styled.div`
-    background-color: #FAFAFA;
-    height: 230px;
-    border-bottom: 1px solid #CCC;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `
-  const PageBody = styled.div`
-    background-color: #fff;
-    position: relative;
-    top: -53px;
-    display: flex;
-    flex: 1 1 100%;
-    min-height: 50vh
-  `
-  const FixedWidthWrapper = styled.div`
-    text-align: center;
-    width: 750px;
-    margin: 0 auto;
-  `
   return (
     <BaseLayout>
       <PageHeading>
-        <FixedWidthWrapper>
-          <h3>{props.title}</h3>
-        </FixedWidthWrapper>
+        <Title>{props.title}</Title>
       </PageHeading>
-      <FixedWidthWrapper>
-        <PageBody>
+      <PageBody>
+        <FixedWidthWrapper>
           {props.children}
-        </PageBody>
-      </FixedWidthWrapper>
+        </FixedWidthWrapper>
+      </PageBody>
     </BaseLayout>
   )
 }

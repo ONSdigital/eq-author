@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import HTMLPreview from '../components/HTMLPreview'
+import HTMLPreview from 'components/HTMLPreview'
 
 const mapStateToProps = (state, ownProps) => {
   return {
