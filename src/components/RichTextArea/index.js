@@ -47,10 +47,13 @@ export default class extends Component {
 
   onChange = (value) => {
     this.setState({value})
-    this.props.onChange({target: {
-      name: this.props.name,
-      value: value.getEditorState().getCurrentContent().hasText() ?
-        value.toString('html') : ''}})
+    if (this.props.onChange) {
+      this.props.onChange({target: {
+        name: this.props.name,
+        value: value.getEditorState().getCurrentContent().hasText() ?
+          value.toString('html') : ''}})
+    }
+
   }
 
   render() {

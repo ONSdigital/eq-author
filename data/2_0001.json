@@ -25,6 +25,7 @@
                                             "description": "",
                                             "id": "number-of-employees-male-more-30-hours",
                                             "label": "Number of male employees working more than 30 hours per week",
+                                            "displayName": "Number of male employees working more than 30 hours per week",
                                             "mandatory": false,
                                             "q_code": "51",
                                             "type": "PositiveInteger"
@@ -33,6 +34,7 @@
                                             "description": "",
                                             "id": "number-of-employees-male-less-30-hours",
                                             "label": "Number of male employees working 30 hours or less per week",
+                                            "displayName": "Number of male employees working 30 hours or less per week",
                                             "mandatory": false,
                                             "q_code": "52",
                                             "type": "PositiveInteger"
@@ -41,6 +43,7 @@
                                             "description": "",
                                             "id": "number-of-employees-female-more-30-hours",
                                             "label": "Number of female employees working more than 30 hours per week",
+                                            "displayName": "Number of female employees working more than 30 hours per week",
                                             "mandatory": false,
                                             "q_code": "53",
                                             "type": "PositiveInteger"
@@ -49,6 +52,7 @@
                                             "description": "",
                                             "id": "number-of-employees-female-less-30-hours",
                                             "label": "Number of female employees working 30 hours or less per week",
+                                            "displayName": "Number of female employees working 30 hours or less per week",
                                             "mandatory": false,
                                             "q_code": "54",
                                             "type": "PositiveInteger"
@@ -57,6 +61,7 @@
                                             "description": "",
                                             "id": "number-of-employees-total",
                                             "label": "Total number of employees",
+                                            "displayName": "Total number of employees",
                                             "mandatory": false,
                                             "q_code": "50",
                                             "type": "PositiveInteger"
@@ -85,7 +90,8 @@
                                         }
                                     ],
                                     "id": "number-of-employees-question",
-                                    "title": "On {{exercise.start_date|format_date}}  what was the number of employees for {{respondent.ru_name}}?",
+                                    "title": "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.ru_name}}?",
+                                    "label": "No. of employees  ",
                                     "type": "General"
                                 }
                             ]

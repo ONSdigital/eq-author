@@ -1,40 +1,36 @@
-import React, { Component } from 'react'
-import sections from './reducer'
-import { TreeMenu } from 'components/TreeMenu'
+import React, {Component} from 'react';
+import sections from './reducer';
+import {TreeMenu} from 'components/TreeMenu';
 
 export default class TreeMenuContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      sections: props.sections
-    }
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log(nextState);
+      sections: props.sections,
+    };
   }
 
   dispatch = action => {
-    this.setState(prevState => sections(prevState, action))
-  }
+    this.setState(prevState => sections(prevState, action));
+  };
 
   actions = {
-    addSection: (name) => {
+    addSection: name => {
       this.dispatch({
         type: 'ADD_SECTION',
         payload: {
-          name: name
-        }
-      })
+          name: name,
+        },
+      });
     },
     addQuestion: (name, sectionID) => {
       this.dispatch({
         type: 'ADD_QUESTION',
         payload: {
           name: name,
-          sectionID: sectionID
-        }
-      })
+          sectionID: sectionID,
+        },
+      });
     },
     addAnswer: (name, questionID, sectionID) => {
       this.dispatch({
@@ -42,15 +38,13 @@ export default class TreeMenuContainer extends Component {
         payload: {
           name: name,
           questionID: questionID,
-          sectionID: sectionID
-        }
-      })
-    }
-  }
+          sectionID: sectionID,
+        },
+      });
+    },
+  };
 
   render() {
-    return (
-      <TreeMenu sections={this.state.sections} {...this.actions} />
-    )
+    return <TreeMenu sections={this.state.sections} {...this.actions} />;
   }
 }

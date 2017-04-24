@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Button from 'components/Button'
 import ButtonGroup from 'components/ButtonGroup'
 import LinkButton from 'components/LinkButton'
+import FileUpload from 'components/FileUpload'
 
 import Title from 'components/Title'
 
@@ -31,18 +32,21 @@ const Panel = styled.div`
   justify-content: center;
   border: 1px solid ${props => props.theme.colorBorders};
 `
+
 const PanelTitle = styled(Title)`
   margin-bottom: 1em;
 `
 
-const SurveyPage = () =>
+const SurveyPage = ({onFileSelected}) =>
   <Centered>
     <PanelWithTitle>
       <PanelTitle>Select to begin</PanelTitle>
       <Panel>
         <ButtonGroup vertical>
           <LinkButton to="/create" primary>Create survey</LinkButton>
-          <Button secondary>Load survey</Button>
+          <FileUpload onFileSelected={onFileSelected} accept=".json">
+            <Button secondary>Load survey</Button>
+         </FileUpload>
         </ButtonGroup>
       </Panel>
     </PanelWithTitle>

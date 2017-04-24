@@ -14,7 +14,10 @@ const ActionButtonGroup = styled(ButtonGroup)`
   padding: 1em;
 `
 
-const SurveyCreatePage = () => {
+const SurveyCreatePage = ({survey}) => {
+  const {title, description, theme, legal_basis, messages, groups} = survey
+  const { information_to_provide } = groups.length ? groups[0].blocks[0] : ''
+  const { basis_for_completion } = groups.length ? groups[0].blocks[0] : ''
   return (
     <div>
       <div>
@@ -23,28 +26,27 @@ const SurveyCreatePage = () => {
             <TabTitle>Survey Settings</TabTitle>
             <TabTitle>Guidance</TabTitle>
           </TabList>
-          <TabPanel>
 
+          <TabPanel>
             <Field id="title">
               <Label>Title</Label>
-              <Input name="id" />
+              <Input name="id" value={title} />
             </Field>
             <Field id="description">
               <Label>Description</Label>
-              <Input name="number" />
+              <Input name="number" value={description} />
             </Field>
-
             <Grid>
               <Column>
                 <Field id="theme">
                   <Label>Theme</Label>
-                  <Select name="number" options={["Default", "census", "starwars"]} />
+                  <Select name="number" options={["Default", "census", "starwars"]} value={theme} />
                 </Field>
               </Column>
               <Column>
                 <Field>
                   <Label>Legal Basis</Label>
-                  <Select name="number" options={[""]} />
+                  <Select name="number" options={["StatisticsOfTradeAct"]} value={legal_basis} />
                 </Field>
               </Column>
             </Grid>
@@ -52,6 +54,7 @@ const SurveyCreatePage = () => {
             <Field id="error-messages">
 
               <Label>Error messages</Label>
+              {messages ? (
               <Table>
                 <TableHead>
                   <TableRow>
@@ -60,30 +63,26 @@ const SurveyCreatePage = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow>
-                    <TableCol>MANDATORY</TableCol>
-                    <TableCol>Please provide a value, even if your value is zero.</TableCol>
-                  </TableRow>
-                  <TableRow>
-                    <TableCol>NOT_INTEGER</TableCol>
-                    <TableCol>Please only enter whole numbers into the field.</TableCol>
-                  </TableRow>
-                  <TableRow>
-                    <TableCol>NEGATIVE_INTEGER</TableCol>
-                    <TableCol>The value cannot be negative. Please correct.</TableCol>
-                  </TableRow>
+                  {Object.keys(messages).map(key => (
+                    <TableRow key={key}>
+                      <TableCol>{key}</TableCol>
+                      <TableCol>{messages[key]}</TableCol>
+                    </TableRow>
+                  ))}
                 </TableBody>
-              </Table>
+              </Table>) : (
+                <p>No validation messages in schema.</p>
+              )}
             </Field>
           </TabPanel>
           <TabPanel>
             <Field id="info-to-provide">
               <Label>Information to provide</Label>
-              <RichTextArea name="info-to-provide" />
+              <RichTextArea name="info-to-provide" value={information_to_provide} />
             </Field>
             <Field id="basis-for-completion">
               <Label>Basis for completion</Label>
-              <RichTextArea name="basis-for-completion" />
+              <RichTextArea name="basis-for-completion" value={basis_for_completion}/>
             </Field>
           </TabPanel>
         </Tabs>

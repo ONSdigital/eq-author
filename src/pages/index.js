@@ -1,3 +1,3 @@
-export {default as SurveyPage} from './survey'
-export {default as SurveyCreatePage} from './survey_create'
-export {default as SurveyDesignPage} from './survey_design'
+export {default as SurveyPage} from './Survey'
+export {default as SurveyCreatePage} from './CreateSurvey'
+export {default as SurveyDesignPage} from './DesignSurvey'
