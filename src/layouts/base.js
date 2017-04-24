@@ -1,21 +1,21 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
-import App from 'components/App'
-import TopBar from 'components/TopBar'
+import App from 'components/App';
+import TopBar from 'components/TopBar';
 
 const Wrapper = styled.div`
   background-color: #F5F5F5;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-`
+`;
 
 const Main = styled.main`
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-`
+`;
 
 const BaseLayout = ({children}) => (
   <App>
@@ -26,6 +26,6 @@ const BaseLayout = ({children}) => (
       </Main>
     </Wrapper>
   </App>
-)
+);
 
-export default BaseLayout
+export default BaseLayout;

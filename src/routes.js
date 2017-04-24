@@ -1,25 +1,23 @@
-import {FullPageLayout, TabbedPageLayout, SidebarPageLayout} from './layouts/'
-import {SurveyDesignPage} from './pages'
-import SurveyPage from 'containers/Survey'
-import CreateSurvey from 'containers/CreateSurvey'
+import SurveyPage from 'containers/Survey';
+import CreateSurvey from 'containers/CreateSurvey';
+import DesignSurvey from 'containers/DesignSurvey';
 
 const routes = [
   {
     path: '/',
+    exact: true,
     component: SurveyPage,
-    layout: FullPageLayout
   },
   {
     path: '/create',
     component: CreateSurvey,
-    layout: TabbedPageLayout,
-    title: 'Create a survey'
+    title: 'Create a survey',
   },
   {
-    path: '/design',
-    component: SurveyDesignPage,
-    layout: SidebarPageLayout,
-  }
-]
+    path: '/design/:id?',
+    component: DesignSurvey,
+    exact: false,
+  },
+];
 
-export default routes
+export default routes;
