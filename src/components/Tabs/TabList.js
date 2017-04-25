@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const TabList = styled.ul`
+const TabListStyle = styled.ul`
   list-style: none;
   margin: 0 0 -1px;
   padding: 0;
@@ -9,8 +9,8 @@ const TabList = styled.ul`
   flex-direction: row;
 `
 
-export default (props) =>
-  <TabList> {
+const TabList = (props) =>
+  <TabListStyle> {
     props.children.map((child, index) =>
       React.cloneElement(child, {
         selected: props.selectedTab === index,
@@ -18,4 +18,10 @@ export default (props) =>
         key: index
       }))
     }
-  </TabList>
+  </TabListStyle>
+
+TabList.defaultProps = {
+  displayName: 'TabList'
+}
+
+export default TabList
