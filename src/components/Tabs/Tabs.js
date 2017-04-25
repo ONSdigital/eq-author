@@ -42,12 +42,12 @@ export default class extends Component {
     return (
       <Tabs>
         {children
-          .filter(child => child.type === TabList)
+          .filter(child => child.type.displayName === 'TabList')
           .map(this.getComponentWithProps)
         }
         <TabsContent>
           {children
-            .filter(child => child.type === TabPanel)
+            .filter(child => child.type.displayName === 'TabPanel')
             .map(this.getComponentWithProps)
           }
         </TabsContent>

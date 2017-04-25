@@ -64,7 +64,6 @@ const Button = styled.button`
 `
 
 export default (props) => {
-  console.log(props.to);
   return (
     <Button {...props} className={props.className} type="button">{props.children}</Button>
   )

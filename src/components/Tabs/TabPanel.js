@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const TabPanel = styled.div`
+const TabPanelStyle = styled.div`
   background: white;
   width: 100%;
   padding: 2em;
@@ -10,7 +10,13 @@ const TabPanel = styled.div`
   }
 `
 
-export default ({children, visible = true}) =>
-  <TabPanel aria-hidden={!visible}>
+const TabPanel = ({children, visible = true}) =>
+  <TabPanelStyle aria-hidden={!visible}>
     {children}
-  </TabPanel>
+  </TabPanelStyle>
+
+TabPanel.defaultProps = {
+  displayName: 'TabPanel'
+}
+
+export default TabPanel
