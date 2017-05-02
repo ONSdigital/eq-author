@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, {Component} from 'react';
+import styled from 'styled-components';
 
 const TreeNodeChildren = styled.div`
   color: white;
@@ -9,31 +9,31 @@ const TreeNodeChildren = styled.div`
   overflow: hidden;
   position: relative;
   overflow: hidden;
-  height: ${props => props.open ? 'auto' : '0' };
-`
+  height: ${props => (props.open ? 'auto' : '0')};
+`;
 
 export default class extends Component {
   static defaultProps = {
-    open: true
-  }
+    open: true,
+  };
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      open: props.open
-    }
+      open: props.open,
+    };
   }
 
   toggleOpen = e => {
-    console.log(e);
-    this.setState({ open: !this.state.open })
-  }
+    this.setState({open: !this.state.open});
+  };
 
   render() {
-    const {children, open} = this.props
+    const {children} = this.props;
     return (
       <TreeNodeChildren open={this.state.open}>
         {children}
       </TreeNodeChildren>
-    )}
+    );
+  }
 }

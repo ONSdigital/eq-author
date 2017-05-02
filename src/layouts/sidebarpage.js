@@ -1,45 +1,32 @@
-import React from 'react'
-import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
+import BaseLayout from './base';
+import Breadcrumb from 'components/Breadcrumb';
+import SurveySidebar from 'containers/SurveySidebar';
 
-import BaseLayout from './base'
-import Breadcrumb from 'components/Breadcrumb'
+import {Grid, Column} from 'components/Grid';
 
-const SidebarPageLayout = (props) => {
-  const TwoColumnLayout = styled.div`
-    display: flex;
-    flex-direction: row;
-  `
-  const SidebarColumn = styled.div`
-    flex: 0 0 300px;
-  `
-  const ContentColumn = styled.div`
-    flex: 1 1 100%;
-  `
-  const FillHeight = styled.div`
-    height: 90.7vh;
-  `
-  const Links = [
-    <Link to="/">Survey Home</Link>,
-    <Link to="/create">Create Survey</Link>,
-    'Design'
-  ]
+const Links = [
+  <Link to="/">Survey Home</Link>,
+  <Link to="/create">Create Survey</Link>,
+  'Design',
+];
+
+const SidebarPageLayout = props => {
   return (
     <BaseLayout>
-      <Breadcrumb links={Links}/>
-      <TwoColumnLayout>
-        <SidebarColumn>
-          <FillHeight>
-          <props.sidebar />
-          </FillHeight>
-        </SidebarColumn>
-        <ContentColumn>
+      <Breadcrumb links={Links} />
+      <Grid>
+        <Column cols="3" gutters={false}>
+          <SurveySidebar />
+        </Column>
+        <Column gutters={false}>
           {props.children}
-        </ContentColumn>
-      </TwoColumnLayout>
+        </Column>
+      </Grid>
     </BaseLayout>
-  )
-}
+  );
+};
 
-export default SidebarPageLayout
+export default SidebarPageLayout;

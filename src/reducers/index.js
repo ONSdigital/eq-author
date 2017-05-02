@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 
+import survey from 'reducers/survey'
 
-const reducers = combineReducers({
-
+const rootReducer = combineReducers({
+  survey: survey,
+  router: routerReducer
 })
 
-export default reducers
+export default rootReducer

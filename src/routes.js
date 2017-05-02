@@ -1,15 +1,7 @@
-import React from 'react'
-
-import {Sidebar, SidebarSection} from './components/Sidebar'
 import {FullPageLayout, TabbedPageLayout, SidebarPageLayout} from './layouts/'
-import {SurveyPage, SurveyCreatePage, SurveyDesignPage} from './pages'
-
-const DefaultSidebar = () => (
-  <Sidebar>
-    <SidebarSection title={'Groups'}></SidebarSection>
-    <SidebarSection title={'Sections'}></SidebarSection>
-  </Sidebar>
-)
+import {SurveyDesignPage} from './pages'
+import SurveyPage from 'containers/Survey'
+import CreateSurvey from 'containers/CreateSurvey'
 
 const routes = [
   {
@@ -19,7 +11,7 @@ const routes = [
   },
   {
     path: '/create',
-    component: SurveyCreatePage,
+    component: CreateSurvey,
     layout: TabbedPageLayout,
     title: 'Create a survey'
   },
@@ -27,7 +19,6 @@ const routes = [
     path: '/design',
     component: SurveyDesignPage,
     layout: SidebarPageLayout,
-    sidebar: DefaultSidebar
   }
 ]
 
