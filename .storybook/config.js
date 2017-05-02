@@ -1,17 +1,15 @@
 import React from 'react';
-import { configure, addDecorator } from '@kadira/storybook';
-import AuthorApp from 'components/AuthorApp';
+import {configure, addDecorator} from '@kadira/storybook';
+import App from 'components/App';
 
-addDecorator((story) => (
-  <AuthorApp>{story()}</AuthorApp>
-));
+addDecorator(story => <App>{story()}</App>);
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);
 }
 
 function loadStories() {
-  requireAll(require.context("../src/components", true, /\/story\.js$/));
+  requireAll(require.context('../src/components', true, /\/story\.js$/));
 }
 
 configure(loadStories, module);
