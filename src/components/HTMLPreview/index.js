@@ -1,39 +1,39 @@
 import React from 'react'
+import styled from 'styled-components'
+import Section from './Section'
+import Question from './Question'
+import Answer from './Answer'
 
-import * as AnswerTypes from 'components/AnswerTypes'
+const HTMLPreview = styled.div`
+  background: white;
+  color: #222;
+  padding: 2rem 7rem;
+  position: relative;
+  z-index: 0;
+`;
 
-const HTMLPreview = ({question, answers}) => (
-  <div id={question.id}>
-    <h3>
-      {
-        question.number.length > 0 &&
-          <span>{question.number}. </span>
-      }
-      {question.title}
-    </h3>
-    {
-      (question.guidance.title || question.guidance.text) &&
-        <div className="callout secondary">
-          <h4>{question.guidance.title}</h4>
-          <div dangerouslySetInnerHTML={{__html: question.guidance.text}} />
-        </div>
-    }
-    {answers.map((answer, index) => {
-      if (answer.type === "") {
-        return false
-      }
-      const AnswerType = AnswerTypes[answer.type]
+export default ({survey}) => (
+  <HTMLPreview>
+    {Object.keys(survey.sections).map(sectionId => {
+      const section = survey.sections[sectionId]
       return (
-        <div id={answer.id} key={index}>
-          <p>{answer.description}</p>
-          <div>{answer.mandatory && <p><small><strong>This answer is mandatory</strong></small></p>}</div>
-          {(answer.guidance.length > 0) &&
-            <div className="callout" dangerouslySetInnerHTML={{__html: answer.guidance}} />}
-          <AnswerType {...answer} />
-        </div>
+        <Section key={section.id} section={section}>
+          {survey.sections[sectionId].questions.map(questionId => {
+            const question = survey.questions[questionId];
+            return (
+              <Question key={question.id} question={question}>
+                {question.answers.map(answerId => {
+                  const answer = survey.answers[answerId];
+                  return (
+                    <Answer key={answer.id} answer={answer}>
+                    </Answer>
+                  )
+                })}
+              </Question>
+            )
+          })}
+        </Section>
       )
     })}
-  </div>
+  </HTMLPreview>
 )
-
-export default HTMLPreview;
