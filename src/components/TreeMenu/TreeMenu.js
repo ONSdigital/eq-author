@@ -18,12 +18,17 @@ const TreeMenuNodes = styled.div`
 
 const Sections = ({sections, addSection, ...otherProps}) => (
   <TreeMenuNodes>
-    {sections && sections.length > 0
-      ? sections.map((section, index) => (
-          <TreeNode key={index} label={section.title} sectionNode>
+    {sections
+      ? Object.keys(sections).map(id => (
+          <TreeNode
+            to={`/design/${id}`}
+            key={id}
+            label={sections[id].title}
+            type="section"
+          >
             <Questions
-              questions={section.questions}
-              sectionID={section.id}
+              questions={sections[id].questions}
+              sectionID={id}
               {...otherProps}
             />
           </TreeNode>
@@ -39,12 +44,17 @@ const Sections = ({sections, addSection, ...otherProps}) => (
 
 const Questions = ({questions, addQuestion, sectionID, ...otherProps}) => (
   <TreeMenuNodes>
-    {questions && questions.length > 0
-      ? questions.map((question, index) => (
-          <TreeNode key={index} label={question.label} questionNode>
+    {questions
+      ? Object.keys(questions).map(id => (
+          <TreeNode
+            to={`/design/${id}`}
+            key={id}
+            label={questions[id].label}
+            type="question"
+          >
             <Answers
-              answers={question.answers}
-              questionID={question.id}
+              answers={questions[id].answers}
+              questionID={id}
               sectionID={sectionID}
               {...otherProps}
             />
@@ -61,9 +71,15 @@ const Questions = ({questions, addQuestion, sectionID, ...otherProps}) => (
 
 const Answers = ({answers, addAnswer, questionID, sectionID}) => (
   <TreeMenuNodes>
-    {answers && answers.length > 0
-      ? answers.map((answer, index) => (
-          <TreeNode key={index} label={answer.label} answerNode />
+    {answers
+      ? Object.keys(answers).map(id => (
+          <TreeNode
+            to={`/design/${id}`}
+            id={id}
+            key={id}
+            label={answers[id].label}
+            type="answer"
+          />
         ))
       : <Button
           editLabel="Answer name"
@@ -74,10 +90,8 @@ const Answers = ({answers, addAnswer, questionID, sectionID}) => (
   </TreeMenuNodes>
 );
 
-export default ({sections, actions, ...otherProps}) => {
-  return (
-    <TreeMenu>
-      <Sections sections={sections} {...otherProps} />
-    </TreeMenu>
-  );
-};
+export default props => (
+  <TreeMenu>
+    <Sections {...props} />
+  </TreeMenu>
+);

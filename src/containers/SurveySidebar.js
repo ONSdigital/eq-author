@@ -3,8 +3,12 @@ import SurveySidebar from 'components/SurveySidebar';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    sections: state.survey.groups[0].blocks[1].sections,
+    sections: state.survey.sections,
+    questions: state.survey.questions,
+    answers: state.survey.answers,
   };
 };
 
-export default connect(mapStateToProps)(SurveySidebar);
+export default connect(mapStateToProps, null, null, {pure: false})(
+  SurveySidebar
+);

@@ -4,10 +4,15 @@ import {TreeMenu} from 'components/TreeMenu';
 
 const actions = {};
 
-const SurveySidebar = ({sections}) => (
+const SurveySidebar = ({sections, questions, answers}) => (
   <Sidebar>
     <SidebarSection title={'Sections'} />
-    <TreeMenu sections={sections} {...actions} />
+    <TreeMenu
+      sections={sections}
+      questions={questions}
+      answers={answers}
+      {...actions}
+    />
   </Sidebar>
 );
 
