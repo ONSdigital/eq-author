@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const Input = styled.input`
   padding: 1em;
@@ -11,7 +11,8 @@ const Input = styled.input`
     outline: none;
     border: 1px solid ${props => props.theme.colorLightBlue};
   }
-`
+`;
 
-export default ({type = 'text', value, ...otherProps}) =>
-  <Input type={type} defaultValue={value} {...otherProps} />
+export default ({type = 'text', value, id, ...otherProps}) => (
+  <Input type={type} value={value} id={id} name={id} {...otherProps} />
+);

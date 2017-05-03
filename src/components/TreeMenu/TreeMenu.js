@@ -21,7 +21,7 @@ const Sections = ({sections, addSection, ...otherProps}) => (
     {sections
       ? Object.keys(sections).map(id => (
           <TreeNode
-            to={`/design/${id}`}
+            to={`/design/sections/${id}`}
             key={id}
             label={sections[id].title}
             type="section"
@@ -47,9 +47,9 @@ const Questions = ({questions, addQuestion, sectionID, ...otherProps}) => (
     {questions
       ? Object.keys(questions).map(id => (
           <TreeNode
-            to={`/design/${id}`}
+            to={`/design/questions/${id}`}
             key={id}
-            label={questions[id].label}
+            label={questions[id].displayName}
             type="question"
           >
             <Answers
@@ -74,10 +74,10 @@ const Answers = ({answers, addAnswer, questionID, sectionID}) => (
     {answers
       ? Object.keys(answers).map(id => (
           <TreeNode
-            to={`/design/${id}`}
+            to={`/design/answers/${id}`}
             id={id}
             key={id}
-            label={answers[id].label}
+            label={answers[id].displayName}
             type="answer"
           />
         ))

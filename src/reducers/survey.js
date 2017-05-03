@@ -1,4 +1,5 @@
-import {LOAD_SURVEY} from 'actions/survey';
+import {LOAD_SURVEY, CHANGE} from 'actions/survey';
+import {merge} from 'lodash';
 
 const defaultState = {
   data_version: '0.0.1',
@@ -29,6 +30,19 @@ export default function survey(state = defaultState, action) {
       return {
         ...state,
         ...action.payload,
+      };
+
+    case CHANGE:
+      const {type, id, value, field} = action.payload;
+      return {
+        state,
+        ...merge(state, {
+          [type]: {
+            [id]: {
+              [field]: value,
+            },
+          },
+        }),
       };
     default:
       return state;
