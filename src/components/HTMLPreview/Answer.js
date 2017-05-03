@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const AnswerLabel = styled.div`
   position: relative;
@@ -35,14 +35,14 @@ const AnswerInput = styled.input`
   max-width: 20rem;
 `;
 
-export default ({answer}) => {
+export default ({ answer }) => {
   return (
     <div>
       <AnswerLabel>
         {answer.label}
         <AnswerDescription>{answer.description}</AnswerDescription>
       </AnswerLabel>
-      <AnswerInput></AnswerInput>
+      <AnswerInput />
     </div>
-  )
-}
+  );
+};

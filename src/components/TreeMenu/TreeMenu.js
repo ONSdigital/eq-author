@@ -1,11 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import {TreeNode} from 'components/TreeMenu';
-import AddButton from 'components/AddButton';
-
-const Button = styled(AddButton)`
-  padding: 0.5em;
-`;
+import React from "react";
+import styled from "styled-components";
+import { pick, map, isEmpty } from "lodash";
+import { TreeNode } from "components/TreeMenu";
 
 const TreeMenu = styled.div`
   position: relative;
@@ -16,79 +12,72 @@ const TreeMenuNodes = styled.div`
   padding: 0;
 `;
 
-const Sections = ({sections, addSection, ...otherProps}) => (
-  <TreeMenuNodes>
-    {sections
-      ? Object.keys(sections).map(id => (
-          <TreeNode
-            to={`/design/sections/${id}`}
-            key={id}
-            label={sections[id].title}
-            type="section"
-          >
-            <Questions
-              questions={sections[id].questions}
-              sectionID={id}
-              {...otherProps}
-            />
-          </TreeNode>
-        ))
-      : <Button
-          editLabel="Section name"
-          onApplyLabel={name => addSection(name)}
+const Sections = ({ sections, questions, answers, ...otherProps }) => {
+  return (
+    !isEmpty(sections) &&
+    <TreeMenuNodes>
+      {map(sections, (section, id) => (
+        <TreeNode
+          to={`/design/${id}`}
+          key={id}
+          id={id}
+          label={section.title}
+          type="sections"
+          {...otherProps}
         >
-          Add a section
-        </Button>}
-  </TreeMenuNodes>
-);
+          <Questions
+            questions={pick(questions, section.questions)}
+            answers={answers}
+            sectionId={id}
+            {...otherProps}
+          />
+        </TreeNode>
+      ))}
+    </TreeMenuNodes>
+  );
+};
 
-const Questions = ({questions, addQuestion, sectionID, ...otherProps}) => (
-  <TreeMenuNodes>
-    {questions
-      ? Object.keys(questions).map(id => (
+const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
+  return !isEmpty(questions)
+    ? <TreeMenuNodes>
+        {map(questions, (question, id) => (
           <TreeNode
-            to={`/design/questions/${id}`}
+            to={`/design/${sectionId}/${id}`}
             key={id}
-            label={questions[id].displayName}
-            type="question"
+            id={id}
+            label={question.displayName}
+            type="questions"
+            {...otherProps}
           >
             <Answers
-              answers={questions[id].answers}
-              questionID={id}
-              sectionID={sectionID}
+              answers={pick(answers, question.answers)}
+              sectionId={sectionId}
+              questionId={id}
               {...otherProps}
             />
           </TreeNode>
-        ))
-      : <Button
-          editLabel="Question name"
-          onApplyLabel={name => addQuestion(name, sectionID)}
-        >
-          Add a question
-        </Button>}
-  </TreeMenuNodes>
-);
+        ))}
+      </TreeMenuNodes>
+    : <div />;
+};
 
-const Answers = ({answers, addAnswer, questionID, sectionID}) => (
-  <TreeMenuNodes>
-    {answers
-      ? Object.keys(answers).map(id => (
-          <TreeNode
-            to={`/design/answers/${id}`}
-            id={id}
-            key={id}
-            label={answers[id].displayName}
-            type="answer"
-          />
-        ))
-      : <Button
-          editLabel="Answer name"
-          onApplyLabel={name => addAnswer(name, questionID, sectionID)}
-        >
-          Add a answer
-        </Button>}
-  </TreeMenuNodes>
-);
+const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
+  return (
+    !isEmpty(answers) &&
+    <TreeMenuNodes>
+      {map(answers, (answer, id) => (
+        <TreeNode
+          to={`/design/${sectionId}/${questionId}/${id}`}
+          id={id}
+          key={id}
+          label={answer.displayName}
+          type="answers"
+          {...otherProps}
+        />
+      ))}
+    </TreeMenuNodes>
+  );
+};
 
 export default props => (
   <TreeMenu>

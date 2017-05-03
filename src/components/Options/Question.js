@@ -1,9 +1,9 @@
-import React from 'react';
-import {Grid, Column} from 'components/Grid';
-import {Field, Label, Input, Select, TextArea} from 'components/Forms';
-import RichTextArea from 'components/RichTextArea';
+import React from "react";
+import { Grid, Column } from "components/Grid";
+import { Field, Label, Input, Select, TextArea } from "components/Forms";
+import RichTextArea from "components/RichTextArea";
 
-export const QuestionSettings = ({options, ...otherProps}) => (
+export const QuestionSettings = ({ options, ...otherProps }) => (
   <Grid>
     <Column>
       <Field id={`questions.${options.id}.displayName`}>
@@ -12,13 +12,13 @@ export const QuestionSettings = ({options, ...otherProps}) => (
       </Field>
       <Field id={`questions.${options.id}.type`} last>
         <Label>Type</Label>
-        <Select options={['General', 'PositiveInteger']} value={options.type} />
+        <Select options={["General", "PositiveInteger"]} value={options.type} />
       </Field>
     </Column>
     <Column>
-      <Field id={`questions.${options.id}.label`}>
+      <Field id={`questions.${options.id}.title`}>
         <Label>Label</Label>
-        <TextArea value={options.label} rows={9} />
+        <TextArea value={options.title} rows={9} />
       </Field>
     </Column>
     <Column>
@@ -30,7 +30,7 @@ export const QuestionSettings = ({options, ...otherProps}) => (
   </Grid>
 );
 
-export const QuestionGuidance = ({options, ...otherProps}) => (
+export const QuestionGuidance = ({ options, ...otherProps }) => (
   <Grid>
     <Column>
       <Field id={`questions.${options.id}.title`} last>
@@ -43,11 +43,11 @@ export const QuestionGuidance = ({options, ...otherProps}) => (
 
 export const QuestionOptions = [
   {
-    label: 'Question Settings',
-    component: QuestionSettings,
+    label: "Question Settings",
+    component: QuestionSettings
   },
   {
-    label: 'Question Guidance',
-    component: QuestionGuidance,
-  },
+    label: "Question Guidance",
+    component: QuestionGuidance
+  }
 ];
