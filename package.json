@@ -7,7 +7,7 @@
     "extends": "react-app"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "yarn && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "deploy": "npm run build&&gh-pages -d build",
