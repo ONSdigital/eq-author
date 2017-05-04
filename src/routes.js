@@ -1,6 +1,7 @@
 import SurveyPage from 'containers/Survey';
 import CreateSurvey from 'containers/CreateSurvey';
 import DesignSurvey from 'containers/DesignSurvey';
+import NotFound from 'pages/NotFound';
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     component: DesignSurvey,
     exact: false,
   },
+  {
+    path: '*',
+    component: NotFound,
+    exact: true,
+  }
 ];
 
 export default routes;
