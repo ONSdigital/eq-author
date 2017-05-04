@@ -24,7 +24,51 @@ const defaultState = {
   answers: {},
 };
 
-export default function survey(state = defaultState, action) {
+const mergeField = (state, {id, field, value}) => {
+  return merge(state, {
+    [id]: {
+      [field]: value,
+    },
+  });
+};
+
+const sections = (state = {}, action) => {
+  switch (action.type) {
+    case CHANGE:
+      return mergeField(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
+const questions = (state = {}, action) => {
+  switch (action.type) {
+    case CHANGE:
+      return mergeField(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
+const answers = (state = {}, action) => {
+  switch (action.type) {
+    case CHANGE:
+      return mergeField(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
+const reducers = {
+  sections: sections,
+  questions: questions,
+  answers: answers,
+};
+
+const survey = (state = defaultState, action) => {
   switch (action.type) {
     case LOAD_SURVEY:
       return {
@@ -33,18 +77,17 @@ export default function survey(state = defaultState, action) {
       };
 
     case CHANGE:
-      const {type, id, value, field} = action.payload;
+      const {type} = action.payload;
+      const newState = reducers[type](state[type], action);
+
       return {
-        state,
-        ...merge(state, {
-          [type]: {
-            [id]: {
-              [field]: value,
-            },
-          },
-        }),
+        ...state,
+        [type]: newState,
       };
+
     default:
       return state;
   }
-}
+};
+
+export default survey;

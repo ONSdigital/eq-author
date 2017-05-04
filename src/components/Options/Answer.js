@@ -11,7 +11,7 @@ export const AnswerSettings = ({options, ...otherProps}) => (
       </Field>
       <Field id={`answers.${options.id}.type`} last>
         <Label>Type</Label>
-        <Select options={['General', 'PositiveInteger']} />
+        <Select options={['General', 'PositiveInteger']} value={options.type} />
       </Field>
     </Column>
     <Column>

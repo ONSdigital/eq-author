@@ -6,5 +6,11 @@ const TextArea = styled.textarea`
 `;
 
 export default ({value, id, rows = 10, ...otherProps}) => (
-  <TextArea value={value} rows={rows} id={id} name={id} {...otherProps} />
+  <TextArea
+    defaultValue={value}
+    rows={rows}
+    id={id}
+    name={id}
+    {...otherProps}
+  />
 );

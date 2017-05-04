@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Column} from 'components/Grid';
-import {Field, Label, Input, Select, TextArea} from 'components/Forms';
+import {Field, Label, Input, TextArea} from 'components/Forms';
 
 export const SectionSettings = ({options, ...otherProps}) => (
   <Grid>

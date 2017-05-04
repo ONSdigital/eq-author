@@ -12,7 +12,7 @@ export const QuestionSettings = ({options, ...otherProps}) => (
       </Field>
       <Field id={`questions.${options.id}.type`} last>
         <Label>Type</Label>
-        <Select options={['General', 'PositiveInteger']} />
+        <Select options={['General', 'PositiveInteger']} value={options.type} />
       </Field>
     </Column>
     <Column>

@@ -14,5 +14,5 @@ const Input = styled.input`
 `;
 
 export default ({type = 'text', value, id, ...otherProps}) => (
-  <Input type={type} value={value} id={id} name={id} {...otherProps} />
+  <Input type={type} defaultValue={value} id={id} name={id} {...otherProps} />
 );
