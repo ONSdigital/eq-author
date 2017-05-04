@@ -12,18 +12,18 @@ const TreeNode = styled.div`
 `;
 
 const SectionLabel = css`
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 const QuestionLabel = css`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.9em;
-  padding-left: 2em;
+  padding-left: 1.5em;
 `;
 
 const AnswerLabel = css`
   font-size: 0.8em;
-  padding-left: 2em;
+  padding-left: 1.5em;
 `;
 
 const TreeNodeLabel = styled(NavLink)`

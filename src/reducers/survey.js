@@ -1,4 +1,5 @@
-import {LOAD_SURVEY} from 'actions/survey';
+import {LOAD_SURVEY, CHANGE} from 'actions/survey';
+import {merge} from 'lodash';
 
 const defaultState = {
   data_version: '0.0.1',
@@ -23,14 +24,70 @@ const defaultState = {
   answers: {},
 };
 
-export default function survey(state = defaultState, action) {
+const mergeField = (state, {id, field, value}) => {
+  return merge(state, {
+    [id]: {
+      [field]: value,
+    },
+  });
+};
+
+const sections = (state = {}, action) => {
+  switch (action.type) {
+    case CHANGE:
+      return mergeField(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
+const questions = (state = {}, action) => {
+  switch (action.type) {
+    case CHANGE:
+      return mergeField(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
+const answers = (state = {}, action) => {
+  switch (action.type) {
+    case CHANGE:
+      return mergeField(state, action.payload);
+
+    default:
+      return state;
+  }
+};
+
+const reducers = {
+  sections: sections,
+  questions: questions,
+  answers: answers,
+};
+
+const survey = (state = defaultState, action) => {
   switch (action.type) {
     case LOAD_SURVEY:
       return {
         ...state,
         ...action.payload,
       };
+
+    case CHANGE:
+      const {type} = action.payload;
+      const newState = reducers[type](state[type], action);
+
+      return {
+        ...state,
+        [type]: newState,
+      };
+
     default:
       return state;
   }
-}
+};
+
+export default survey;

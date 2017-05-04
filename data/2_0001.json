@@ -91,7 +91,7 @@
                                     ],
                                     "id": "number-of-employees-question",
                                     "title": "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.ru_name}}?",
-                                    "label": "No. of employees  ",
+                                    "displayName": "No. of employees",
                                     "type": "General"
                                 }
                             ]

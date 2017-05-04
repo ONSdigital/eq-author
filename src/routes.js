@@ -15,7 +15,7 @@ const routes = [
     title: 'Create a survey',
   },
   {
-    path: '/design/:id?',
+    path: '/design/:type?/:id?',
     component: DesignSurvey,
     exact: false,
   },

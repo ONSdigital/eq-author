@@ -1,5 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled, {css} from 'styled-components';
+
+const CompactTabList = css`
+  background: #f9f9f9;
+  border-bottom: 1px solid ${props => props.theme.colorBorders};
+  margin: 0;
+`;
 
 const TabListStyle = styled.ul`
   list-style: none;
@@ -7,21 +13,23 @@ const TabListStyle = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: row;
-`
+  ${props => props.compact && CompactTabList}
+`;
 
-const TabList = (props) =>
-  <TabListStyle> {
-    props.children.map((child, index) =>
+const TabList = ({children, selectedTab, handleTabSelected, ...otherProps}) => (
+  <TabListStyle {...otherProps}>
+    {children.map((child, index) =>
       React.cloneElement(child, {
-        selected: props.selectedTab === index,
-        onClick: props.handleTabSelected.bind(this, index),
-        key: index
-      }))
-    }
+        selected: selectedTab === index,
+        onClick: handleTabSelected.bind(this, index),
+        key: index,
+      })
+    )}
   </TabListStyle>
+);
 
 TabList.defaultProps = {
-  displayName: 'TabList'
-}
+  displayName: 'TabList',
+};
 
-export default TabList
+export default TabList;

@@ -30,11 +30,11 @@ const Preview = styled.div`
   justify-content: center;
 `;
 
-const Options = styled.div`
+const Options = styled.form`
 
 `;
 
-const DesignSurveyPage = ({selected}) => {
+const DesignSurveyPage = ({selected, onChange, type, survey}) => {
   return (
     <SidebarPageLayout>
 
@@ -44,19 +44,17 @@ const DesignSurveyPage = ({selected}) => {
           <ActionButton primary small>Save</ActionButton>
         </ActionBar>
 
-        <EditSurface>
-
-          {selected && [
+        {selected &&
+          <EditSurface>
             <Preview>
-              {selected.title || selected.displayName}
-            </Preview>,
+              {selected.displayName}
+            </Preview>
 
-            <Options>
-              <OptionsPanel title={selected.title || selected.displayName} />
-            </Options>,
-          ]}
+            <Options onChange={onChange}>
+              <OptionsPanel selected={selected} type={type} />
+            </Options>
 
-        </EditSurface>
+          </EditSurface>}
 
       </EditLayout>
 
