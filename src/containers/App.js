@@ -4,11 +4,6 @@ import {ConnectedRouter} from 'react-router-redux';
 import routes from 'routes';
 import {Switch} from 'react-router-dom';
 
-import SurveyPage from 'containers/Survey';
-import CreateSurvey from 'containers/CreateSurvey';
-import DesignSurvey from 'containers/DesignSurvey';
-import NotFound from 'pages/NotFound';
-
 const RouteWithSubRoutes = route => (
   <Route
     exact={true}
