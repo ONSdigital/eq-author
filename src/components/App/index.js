@@ -33,12 +33,16 @@ injectGlobal`
     border-radius: 2px;
     border: 1px solid ${theme.colorBorders};
     background: white;
-    appearance: none;
     line-height: 1;
     &:focus {
       outline: none;
       border: 1px solid ${theme.colorLightBlue};
     }
+  }
+  select,
+  textarea,
+  input[type="text"] {
+    appearance: none;
   }
 `
 

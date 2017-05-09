@@ -29,9 +29,30 @@ export const AnswerSettings = ({options, ...otherProps}) => (
   </Grid>
 );
 
+export const MandatorySettings = ({options, ...otherProps}) => (
+  <Grid>
+    <Column cols="4">
+      <Field id={`answers.${options.id}.mandatory`} >
+        <Label>Mandatory</Label>
+        <Input type="checkbox" value={options.mandatory}/>
+      </Field>
+    </Column>
+    <Column cols="4">
+      <Field id={`answers.${options.id}.q_code`} last>
+        <Label>Q_Code</Label>
+        <Input value={options.qcode} rows={4}/>
+      </Field>
+    </Column>
+  </Grid>
+);
+
 export const AnswerOptions = [
   {
     label: 'Answer Settings',
     component: AnswerSettings,
+  },
+  {
+    label: 'Mandatory Guidance',
+    component: MandatorySettings,
   },
 ];
