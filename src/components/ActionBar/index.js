@@ -4,6 +4,7 @@ const ActionBar = styled.div`
   text-align: right;
   background: #FAFAFA;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.07);
+  z-index: 1;
 `
 
 export default ActionBar

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ActionBar from 'components/ActionBar';
 import Button from 'components/Button';
 import OptionsPanel from 'components/OptionsPanel';
+import HTMLPreview from 'components/HTMLPreview';
 import {SidebarPageLayout} from 'layouts';
 
 const EditLayout = styled.div`
@@ -28,6 +29,7 @@ const Preview = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 `;
 
 const Options = styled.form`
@@ -47,7 +49,7 @@ const DesignSurveyPage = ({selected, onChange, type, survey}) => {
         {selected &&
           <EditSurface>
             <Preview>
-              {selected.displayName}
+              <HTMLPreview selected={selected} survey={survey} />
             </Preview>
 
             <Options onChange={onChange}>

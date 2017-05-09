@@ -15,13 +15,13 @@ injectGlobal`
   body {
     height: 100%;
     width: 100%;
+    font-size: 1em;
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
   }
   body {
     font-family: 'Lato', sans-serif;
-    font-size: 1em;
     color: ${theme.colorText};
   }
   input,
