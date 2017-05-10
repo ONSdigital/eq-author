@@ -7,7 +7,7 @@ import createEngine from "redux-storage-engine-localstorage";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 
-import createHistory from "history/createHashHistory";
+import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { routerMiddleware } from "react-router-redux";
 
