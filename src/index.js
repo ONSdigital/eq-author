@@ -16,7 +16,14 @@ import rootReducer from "reducers"; // Or wherever you keep your reducers
 import App from "containers/App";
 
 // Create a history of your choosing (we're using a browser history in this case)
-const history = createHistory();
+let basename = ''
+if (process.env.NODE_ENV === 'production') {
+  basename = '/eq-author-prototypes'
+}
+
+const history = createHistory({
+  basename: basename
+})
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history);
