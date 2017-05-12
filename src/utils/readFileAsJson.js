@@ -1,5 +1,5 @@
 function readFileAsJson(file) {
-  if(!file instanceof Blob) {
+  if(!(file instanceof Blob)) {
     throw new TypeError("Must be instance of File or Blob");
   }
   
