@@ -68,10 +68,12 @@
   },
   "dependencies": {
     "connected-react-router": "^4.0.0",
+    "enzyme": "^2.8.2",
     "lodash": "^4.17.4",
     "normalize.css": "^6.0.0",
     "normalizr": "^3.2.2",
     "react": "^15.4.2",
+    "react-addons-test-utils": "15.4.2",
     "react-dom": "^15.4.2",
     "react-hot-loader": "next",
     "react-redux": "^5.0.2",
