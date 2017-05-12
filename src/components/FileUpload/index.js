@@ -3,13 +3,9 @@ import React from "react";
 const FileUpload = (props) => {
   let fileUpload = null;
 
-  const onRef = (input) => {
-    fileUpload = input;
-  };
-
-  const onClick = (e) => {
-    fileUpload.click();
-  };
+  const onRef = (input) => (fileUpload = input);
+  const onClick = (e) => fileUpload.click();
+  const addClickHandler = el => React.cloneElement(el, { onClick });
 
   const FileInput = (props) => (
     <input type="file" ref={props.onRef}
@@ -32,15 +28,14 @@ const FileUpload = (props) => {
 
   return (
     <FileUploadWrapper {...props}>
-      {React.Children.map(props.children, button => {
-        return React.cloneElement(button, { onClick: onClick });
-      })}
+      {React.Children.map(props.children, addClickHandler)}
     </FileUploadWrapper>
   );
 };
 
 FileUpload.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired,
+  onFileSelected: React.PropTypes.func.isRequired
 };
 
 export default FileUpload;
