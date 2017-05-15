@@ -16,7 +16,18 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, {history}) => {
   return {
     onChange: e => {
-      dispatch(change(e.target.name, e.target.value));
+      var value = e.target.value;
+      if(e.target.type === "checkbox"){
+        // console.log("value = "+e.target.value);
+        // console.log("checked = "+e.target.checked);
+        if(e.target.checked === true){
+          value = Boolean(true);
+        }
+        else{
+          value = Boolean(false);
+        }
+      }
+      dispatch(change(e.target.name, value));
     },
   };
 };
