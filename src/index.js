@@ -18,7 +18,7 @@ import App from "containers/App";
 // Create a history of your choosing (we're using a browser history in this case)
 let basename = ''
 if (process.env.NODE_ENV === 'production') {
-  basename = '/eq-author-prototypes'
+  basename = '/eq-author'
 }
 
 const history = createHistory({
