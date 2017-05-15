@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Input = styled.input`
   padding: 1em;
-  width: auto;
+  width: 100%;
   display: block;
   border-radius: 2px;
   border: 1px solid ${props => props.theme.colorBorders};
@@ -13,6 +13,7 @@ const Input = styled.input`
   }
   &[type = "checkbox"]{
     display: inline-block;
+    width: auto;
   }
 `;
 
