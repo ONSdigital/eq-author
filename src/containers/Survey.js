@@ -5,9 +5,7 @@ import {loadSurvey} from 'actions/survey';
 import SurveyPage from 'pages/Survey';
 import readFileAsJSON from "utils/readFileAsJson";
 
-const mapStateToProps = (state, ownProps) => {
-  return {};
-};
+const mapStateToProps = (state, ownProps) => ({});
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
