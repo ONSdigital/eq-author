@@ -1,6 +1,7 @@
 import readFileAsJSON from "utils/readFileAsJson";
 import { normalize } from 'normalizr';
 import { surveySchema } from 'schema';
+import { push } from "react-router-redux";
 
 export const SURVEY_LOAD = 'SURVEY_LOAD';
 export const SURVEY_LOAD_SUCCESS = "SURVEY_LOAD_SUCCESS";
@@ -39,7 +40,7 @@ export function loadSurveyFailure(error) {
   };
 }
 
-export function loadSurvey(file, history) {
+export function loadSurvey(file) {
   return dispatch => {
     if (!file) {
       dispatch(loadSurveyFailure(new Error("No file supplied")));
@@ -48,7 +49,7 @@ export function loadSurvey(file, history) {
 
     return readFileAsJSON(file)
       .then(data => dispatch(loadSurveySuccess(data)))
-      .then(() => history.push('/create'))
+      .then(() => dispatch(push('/create')))
       .catch(error => dispatch(loadSurveyFailure(error)));
   };
 }

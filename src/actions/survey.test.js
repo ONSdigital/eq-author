@@ -1,3 +1,4 @@
+import { CALL_HISTORY_METHOD } from "react-router-redux";
 import {
   SURVEY_LOAD_FAILURE,
   SURVEY_LOAD_SUCCESS,
@@ -21,17 +22,14 @@ function createJsonFile(obj = {}, name) {
 describe("actions", () => {
 
   describe("loadSurvey", () => {
-    let history, dispatch;
+    let dispatch;
 
     beforeEach(() => {
       dispatch = jest.fn();
-      history = {
-        push : jest.fn()
-      };
     });
 
     it("dispatches error if no file supplied", () => {
-      loadSurvey(null, history)(dispatch);
+      loadSurvey(null)(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_FAILURE));
     });
@@ -41,7 +39,7 @@ describe("actions", () => {
 
       const file = createTextFile("LOL");
 
-      return loadSurvey(file, history)(dispatch).then(() => {
+      return loadSurvey(file)(dispatch).then(() => {
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_FAILURE));
       });
     });
@@ -51,7 +49,7 @@ describe("actions", () => {
 
       const file = createJsonFile();
 
-      return loadSurvey(file, history)(dispatch).then(() => {
+      return loadSurvey(file)(dispatch).then(() => {
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_SUCCESS));
       });
     });
@@ -61,8 +59,8 @@ describe("actions", () => {
 
       const file = createJsonFile();
 
-      return loadSurvey(file, history)(dispatch).then(() => {
-        expect(history.push).toHaveBeenCalledWith("/create");
+      return loadSurvey(file)(dispatch).then(() => {
+        expect(dispatch).toHaveBeenCalledWith(actionMatching(CALL_HISTORY_METHOD));
       });
     });
   });
@@ -74,7 +72,7 @@ describe("actions", () => {
     expect(result).toEqual(actionMatching(SURVEY_LOAD_FAILURE, error));
   });
 
-  describe("loadSurveySuccess", () => {
+  test("loadSurveySuccess", () => {
     const result = loadSurveySuccess({});
 
     expect(result).toEqual(actionMatching(SURVEY_LOAD_SUCCESS));
