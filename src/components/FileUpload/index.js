@@ -3,34 +3,22 @@ import React from "react";
 const FileUpload = (props) => {
   let fileUpload = null;
 
-  const onRef = (input) => (fileUpload = input);
-  const onClick = (e) => fileUpload.click();
+  const onRef = input => (fileUpload = input);
+  const onClick = e => fileUpload.click();
   const addClickHandler = el => React.cloneElement(el, { onClick });
   const handleFileSelected = e => props.onFileSelected(e.target.files[0]);
 
-  const FileInput = (props) => (
-    <input type="file" ref={props.onRef}
-      hidden={props.hidden}
-      accept={props.accept}
-      onChange={handleFileSelected}
-    />
-  );
-
-  const FileUploadWrapper = (props) => (
-    <div>
-      <FileInput hidden
-        onRef={onRef}
-        accept={props.accept}
-        onChange={props.onFileSelected}
-      />
-      {props.children}
-    </div>
-  );
-
   return (
-    <FileUploadWrapper {...props}>
+    <div>
+      <input
+        hidden
+        type="file"
+        ref={onRef}
+        accept={props.accept}
+        onChange={handleFileSelected}
+      />
       {React.Children.map(props.children, addClickHandler)}
-    </FileUploadWrapper>
+    </div>
   );
 };
 
