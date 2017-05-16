@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import ActionBar from 'components/ActionBar';
-import Button from 'components/Button';
-import OptionsPanel from 'components/OptionsPanel';
-import HTMLPreview from 'components/HTMLPreview';
-import {SidebarPageLayout} from 'layouts';
+import React from "react";
+import styled from "styled-components";
+import ActionBar from "components/ActionBar";
+import Button from "components/Button";
+import OptionsPanel from "components/OptionsPanel";
+import HTMLPreview from "components/HTMLPreview";
+import { SidebarPageLayout } from "layouts";
 
 const EditLayout = styled.div`
   display: flex;
@@ -33,27 +33,48 @@ const Preview = styled.div`
 `;
 
 const Options = styled.form`
-
+  position: relative;
 `;
 
-const DesignSurveyPage = ({selected, onChange, type, survey}) => {
+const DesignSurveyPage = ({
+  selected,
+  selectedId,
+  selectedSection,
+  onChange,
+  deleteSurvey,
+  deleteItem,
+  type,
+  survey
+}) => {
   return (
     <SidebarPageLayout>
 
       <EditLayout>
 
         <ActionBar>
-          <ActionButton primary small>Save</ActionButton>
+          <ActionButton tertiary small onClick={deleteSurvey}>
+            Delete All
+          </ActionButton>
         </ActionBar>
 
         {selected &&
           <EditSurface>
             <Preview>
-              <HTMLPreview selected={selected} survey={survey} />
+              <HTMLPreview
+                selected={selected}
+                selectedId={selectedId}
+                survey={survey}
+                selectedSection={selectedSection}
+              />
             </Preview>
 
             <Options onChange={onChange}>
-              <OptionsPanel selected={selected} type={type} />
+              <OptionsPanel
+                selected={selected}
+                type={type}
+                deleteItem={deleteItem}
+                id={selectedId}
+              />
             </Options>
 
           </EditSurface>}

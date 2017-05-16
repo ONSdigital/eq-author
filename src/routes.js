@@ -1,28 +1,28 @@
-import SurveyPage from 'containers/Survey';
-import CreateSurvey from 'containers/CreateSurvey';
-import DesignSurvey from 'containers/DesignSurvey';
-import NotFound from 'pages/NotFound';
+import SurveyPage from "containers/Survey";
+import CreateSurvey from "containers/CreateSurvey";
+import DesignSurvey from "containers/DesignSurvey";
+import NotFound from "pages/NotFound";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     exact: true,
-    component: SurveyPage,
+    component: SurveyPage
   },
   {
-    path: '/create',
+    path: "/create",
     component: CreateSurvey,
-    title: 'Create a survey',
+    title: "Create a survey"
   },
   {
-    path: '/design/:type?/:id?',
+    path: "/design/:sectionsId?/:questionsId?/:answersId?",
     component: DesignSurvey,
-    exact: false,
+    exact: false
   },
   {
-    path: '*',
+    path: "*",
     component: NotFound,
-    exact: true,
+    exact: true
   }
 ];
 

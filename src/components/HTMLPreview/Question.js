@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const QuestionTitleNumber = styled.div`
   position: absolute;
@@ -60,28 +60,35 @@ const QuestionGuidanceListItem = styled.li`
   margin: 0 0 0.3rem;
 `;
 
-export default ({question, children}) => {
+export default ({ question, children }) => {
   return (
     <div>
-      <QuestionTitle><QuestionTitleNumber>1.1. </QuestionTitleNumber>{question.label}</QuestionTitle>
+      <QuestionTitle>
+        <QuestionTitleNumber>1.1. </QuestionTitleNumber>{question.title}
+      </QuestionTitle>
       <QuestionDescription>{question.description}</QuestionDescription>
-      <QuestionGuidance>
-        {question.guidance.map(guidanceItem => {
-          return (
-            <div key={guidanceItem.title}>
-              <QuestionGuidanceTitle>{guidanceItem.title}</QuestionGuidanceTitle>
-              <QuestionGuidanceUnorderedList>
-                {guidanceItem.list.map(listItem => {
-                  return (
-                    <QuestionGuidanceListItem key={listItem}>{listItem}</QuestionGuidanceListItem>
-                  )
-                })}
-              </QuestionGuidanceUnorderedList>
-            </div>
-          )
-        })}
-      </QuestionGuidance>
+      {question.guidance &&
+        question.guidance.length > 0 &&
+        <QuestionGuidance>
+          {question.guidance.map(guidanceItem => {
+            return (
+              <div key={guidanceItem.title}>
+                <QuestionGuidanceTitle>
+                  {guidanceItem.title}
+                </QuestionGuidanceTitle>
+                <QuestionGuidanceUnorderedList>
+                  {guidanceItem.list &&
+                    guidanceItem.list.map(listItem => (
+                      <QuestionGuidanceListItem key={listItem}>
+                        {listItem}
+                      </QuestionGuidanceListItem>
+                    ))}
+                </QuestionGuidanceUnorderedList>
+              </div>
+            );
+          })}
+        </QuestionGuidance>}
       {children}
     </div>
-  )
-}
+  );
+};

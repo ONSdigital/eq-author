@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import Section from './Section'
-import Question from './Question'
-import Answer from './Answer'
+import React from "react";
+import styled from "styled-components";
+import Section from "./Section";
+import Question from "./Question";
+import Answer from "./Answer";
 
 const HTMLPreview = styled.div`
   background: white;
@@ -12,28 +12,34 @@ const HTMLPreview = styled.div`
   z-index: 0;
 `;
 
-export default ({survey}) => (
-  <HTMLPreview>
-    {Object.keys(survey.sections).map(sectionId => {
-      const section = survey.sections[sectionId]
-      return (
-        <Section key={section.id} section={section}>
-          {survey.sections[sectionId].questions.map(questionId => {
+export default ({ survey, selectedId, selectedSection }) => {
+  if (!selectedSection) {
+    return null;
+  }
+
+  return (
+    <HTMLPreview>
+      <Section key={selectedSection.id} section={selectedSection}>
+        {selectedSection.questions &&
+          selectedSection.questions.map(questionId => {
             const question = survey.questions[questionId];
             return (
-              <Question key={question.id} question={question}>
-                {question.answers.map(answerId => {
-                  const answer = survey.answers[answerId];
-                  return (
-                    <Answer key={answer.id} answer={answer}>
-                    </Answer>
-                  )
-                })}
+              question &&
+              question.title &&
+              <Question key={questionId} question={question}>
+                {question.answers &&
+                  question.answers.map(answerId => {
+                    const answer = survey.answers[answerId];
+                    return (
+                      answer &&
+                      answer.title &&
+                      <Answer key={answerId} answer={answer} />
+                    );
+                  })}
               </Question>
-            )
+            );
           })}
-        </Section>
-      )
-    })}
-  </HTMLPreview>
-)
+      </Section>
+    </HTMLPreview>
+  );
+};

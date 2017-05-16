@@ -1,11 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import {colorBorders} from 'constants/theme';
+import React from "react";
+import styled from "styled-components";
+import { colorBorders } from "constants/theme";
 
-import {Tabs, TabList, TabTitle, TabPanel} from 'components/Tabs';
-import {AnswerOptions} from 'components/Options/Answer';
-import {QuestionOptions} from 'components/Options/Question';
-import {SectionOptions} from 'components/Options/Section';
+import { Tabs, TabList, TabTitle, TabPanel } from "components/Tabs";
+import { AnswerOptions } from "components/Options/Answer";
+import { QuestionOptions } from "components/Options/Question";
+import { SectionOptions } from "components/Options/Section";
+
+import Button from "components/Button";
 
 const OptionsPanel = styled.div`
   background: white;
@@ -15,30 +17,52 @@ const OptionsPanel = styled.div`
 
 const Header = styled.div`
   border-bottom: 1px solid ${colorBorders};
-  padding: 0.75em 1rem;
+  padding: 0.5em 0.5rem;
+  position: relative;
+  display: flex;
 `;
 
 const Title = styled.h2`
   font-weight: 700;
-  font-size: 0.8em;
+  font-size: 0.9em;
   line-height: 1;
   margin: 0;
+  align-self: center;
+  padding-left: 0.5em;
 `;
 
 const Body = styled.div`
 
 `;
 
-export default ({selected, type, ...otherProps}) => {
-  const Options = {
+const DeleteButton = styled(Button)`
+  margin-left: auto;
+`;
+
+const getOptions = type => {
+  return {
     answers: AnswerOptions,
     questions: QuestionOptions,
-    sections: SectionOptions,
+    sections: SectionOptions
   }[type];
+};
+
+export default ({ selected, type, deleteItem, ...otherProps }) => {
+  const Options = getOptions(type);
+  if (Options === undefined) {
+    return null;
+  }
   return (
     <OptionsPanel {...otherProps}>
       <Header>
         <Title>{selected.displayName || selected.title}</Title>
+        <DeleteButton
+          onClick={e => deleteItem(type, selected.id)}
+          small
+          tertiary
+        >
+          Delete
+        </DeleteButton>
       </Header>
       <Body>
         <Tabs compact>

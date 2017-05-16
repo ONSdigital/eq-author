@@ -1,20 +1,25 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import {radiusGlobal, colorBlue, colorText, colorBorders} from 'constants/theme'
-import tinycolor from 'tinycolor2'
+import React from "react";
+import styled, { css } from "styled-components";
+import {
+  radiusGlobal,
+  colorBlue,
+  colorText,
+  colorBorders,
+  colorRed
+} from "constants/theme";
+import tinycolor from "tinycolor2";
 
-const darken = color =>
-  tinycolor(color).darken(10).toString()
+const darken = color => tinycolor(color).darken(10).toString();
 
 const ClearButton = css`
   background: transparent;
   border: none;
-`
+`;
 
 const SmallButton = css`
-  font-size: 0.85em;
+  font-size: 0.8em;
   padding: 0.5em 1.5em;
-`
+`;
 
 const PrimaryButton = css`
   background-color: ${colorBlue};
@@ -26,7 +31,7 @@ const PrimaryButton = css`
   &:hover {
     background-color: ${darken(colorBlue)}
   }
-`
+`;
 
 const SecondaryButton = css`
   background-color: white;
@@ -36,7 +41,19 @@ const SecondaryButton = css`
   &:hover {
     background-color: ${colorBorders};
   }
-`
+`;
+
+const TertiaryButton = css`
+background-color: ${colorRed};
+color: white;
+position: relative;
+border: none;
+
+&:focus,
+&:hover {
+  background-color: ${darken(colorRed)}
+}
+`;
 
 const Button = styled.button`
   padding: 0.8em 5em;
@@ -59,9 +76,13 @@ const Button = styled.button`
 
   ${props => props.primary && PrimaryButton}
   ${props => props.secondary && SecondaryButton}
+  ${props => props.tertiary && TertiaryButton}
   ${props => props.clear && ClearButton}
   ${props => props.small && SmallButton}
-`
+`;
 
-export default (props) =>
-  <Button {...props} className={props.className} type="button">{props.children}</Button>
+export default props => (
+  <Button {...props} className={props.className} type="button">
+    {props.children}
+  </Button>
+);
