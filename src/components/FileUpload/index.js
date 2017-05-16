@@ -6,12 +6,13 @@ const FileUpload = (props) => {
   const onRef = (input) => (fileUpload = input);
   const onClick = (e) => fileUpload.click();
   const addClickHandler = el => React.cloneElement(el, { onClick });
+  const handleFileSelected = e => props.onFileSelected(e.target.files[0]);
 
   const FileInput = (props) => (
     <input type="file" ref={props.onRef}
       hidden={props.hidden}
       accept={props.accept}
-      onChange={props.onChange}
+      onChange={handleFileSelected}
     />
   );
 

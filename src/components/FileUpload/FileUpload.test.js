@@ -19,11 +19,12 @@ it("renders an input", () => {
 });
 
 it("passes file object onChange", () => {
-  const event = { target: { files: [] } };
+  const file  = { name: "foo.json" };
+  const event = { target: { files: [file] } };
 
   fileUpload.find("input").simulate("change", event);
 
-  expect(handleChange).toHaveBeenCalledWith(expect.objectContaining(event));
+  expect(handleChange).toHaveBeenCalledWith(file);
 });
 
 it("allows clicks on child components to trigger file input", () => {

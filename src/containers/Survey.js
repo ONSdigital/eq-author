@@ -7,7 +7,7 @@ import SurveyPage from 'pages/Survey';
 const mapStateToProps = (state, ownProps) => ({});
 
 const mapDispatchToProps = (dispatch, { history }) => ({
-  onFileSelected: e => dispatch(loadSurvey(e.target.files[0], history))
+  onFileSelected: file => dispatch(loadSurvey(file, history))
 });
 
 export default withRouter(
