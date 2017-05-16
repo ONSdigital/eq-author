@@ -1,15 +1,11 @@
 import { connect } from "react-redux";
-
 import CreateSurveyPage from "pages/CreateSurvey";
 
-const mapStateToProps = (state, ownProps) => ({
-  survey: state.survey,
+const mapStateToProps = ({ survey }) => ({
+  survey,
   guidance: {
-    informationToProvide: state.survey.blocks.introduction
-      .information_to_provide,
-  },
+    informationToProvide: survey.blocks.introduction.information_to_provide,
+  }
 });
 
-const mapDispatchToProps = (dispatch, {history}) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateSurveyPage);
+export default connect(mapStateToProps)(CreateSurveyPage);
