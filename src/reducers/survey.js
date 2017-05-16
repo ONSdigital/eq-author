@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import { LOAD_SURVEY, CLEAR_SURVEY } from "actions/survey";
+import { SURVEY_LOAD_SUCCESS, SURVEY_CLEAR } from "actions/survey";
+
 import {
   CHANGE,
   ADD_ITEM,
@@ -59,13 +60,13 @@ const getItemByType = (type, name) => {
 const survey = (state = defaultState, action) => {
   const { payload } = action;
   switch (action.type) {
-    case LOAD_SURVEY:
+    case SURVEY_LOAD_SUCCESS:
       return {
         ...state,
         ...payload
       };
 
-    case CLEAR_SURVEY:
+    case SURVEY_CLEAR:
       return defaultState;
 
     case CHANGE:

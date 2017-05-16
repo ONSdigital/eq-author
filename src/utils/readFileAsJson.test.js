@@ -1,11 +1,15 @@
 import readFileAsJson from "./readFileAsJson";
 
-function createJsonFile(text = "true", name = "foo.json") {
-  return new File(text.split(""), name);
+function createTextFile(contents = "", name = "foo.json") {
+  return new File(contents.split(""), name);
+}
+
+function createJsonFile(obj = {}, name) {
+  return createTextFile(JSON.stringify(obj), name);
 }
 
 it("returns a promise", () => {
-  expect(readFileAsJson(createJsonFile("true"))).toBeInstanceOf(Promise);
+  expect(readFileAsJson(createJsonFile())).toBeInstanceOf(Promise);
 });
 
 it("requires File or Blob as argument", () => {
@@ -17,9 +21,8 @@ it("resovles valid JSON", () => {
   expect.assertions(1);
 
   const obj  = { "foo" : "bar" };
-  const json = JSON.stringify(obj);
 
-  return readFileAsJson(createJsonFile(json)).then(data => {
+  return readFileAsJson(createJsonFile(obj)).then(data => {
     expect(data).toEqual(obj);
   });
 });
@@ -27,7 +30,7 @@ it("resovles valid JSON", () => {
 it("rejects invalid JSON", () => {
   expect.assertions(1);
 
-  return readFileAsJson(createJsonFile("LOL")).catch(e => {
+  return readFileAsJson(createTextFile("LOL")).catch(e => {
     expect(e).toBeInstanceOf(Error);
   })
 });
