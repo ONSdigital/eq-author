@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import _ from 'lodash'
 import Icon from "./icon.svg";
 
 const Select = styled.select`
@@ -8,6 +9,6 @@ const Select = styled.select`
 
 export default ({ options, value, id, ...otherProps }) => (
   <Select id={id} name={id} value={value} onChange={e => {}} {...otherProps}>
-    {options.map(opt => <option key={opt}>{opt}</option>)}
+    {options.map(opt => <option key={opt} value={_.lowerCase(opt)}>{opt}</option>)}
   </Select>
 );
