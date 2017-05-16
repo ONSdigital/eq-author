@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Input = styled.input`
   padding: 1em;
@@ -17,6 +17,17 @@ const Input = styled.input`
   }
 `;
 
-export default ({type = 'text', value, id, ...otherProps}) => (
-  <Input type={type} defaultValue={value} id={id} name={id} {...otherProps} />
+Input.defaultProps = {
+  type: "text"
+};
+
+export default ({ type, value, id, ...otherProps }) => (
+  <Input
+    type={type}
+    value={value}
+    id={id}
+    name={id}
+    onChange={() => {}}
+    {...otherProps}
+  />
 );

@@ -7,7 +7,8 @@ import createEngine from "redux-storage-engine-localstorage";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 
-import createHistory from "history/createBrowserHistory";
+import createHistory from "history/createHashHistory";
+
 import { composeWithDevTools } from "redux-devtools-extension";
 import { routerMiddleware } from "react-router-redux";
 
@@ -15,15 +16,16 @@ import rootReducer from "reducers"; // Or wherever you keep your reducers
 
 import App from "containers/App";
 
-// Create a history of your choosing (we're using a browser history in this case)
-let basename = ''
-if (process.env.NODE_ENV === 'production') {
-  basename = '/eq-author'
+let useStorage = false;
+
+let basename = "";
+if (process.env.NODE_ENV === "production") {
+  basename = "/eq-author";
 }
 
 const history = createHistory({
   basename: basename
-})
+});
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history);
@@ -31,11 +33,16 @@ const middleware = routerMiddleware(history);
 const storageReducer = reducer(rootReducer);
 const storageEngine = createEngine("eq-authoring-prototype-storage-key");
 const storageMiddleware = createMiddleware(storageEngine);
+const load = createLoader(storageEngine);
 // Add the reducer to your store on the `router` key
 // Also apply our middleware for navigating
 const store = createStore(
-  storageReducer,
-  composeWithDevTools(applyMiddleware(middleware, storageMiddleware))
+  useStorage ? storageReducer : rootReducer,
+  composeWithDevTools(
+    useStorage
+      ? applyMiddleware(middleware, storageMiddleware)
+      : applyMiddleware(middleware)
+  )
 );
 
 // Now you can dispatch navigation actions from anywhere!
@@ -52,11 +59,11 @@ const render = RootComponent => {
   );
 };
 
-const load = createLoader(storageEngine);
-
-load(store).then(newState => {
-  render(App);
-});
+useStorage
+  ? load(store).then(newState => {
+      render(App);
+    })
+  : render(App);
 
 if (module.hot) {
   module.hot.accept("containers/App", () => {
@@ -66,7 +73,6 @@ if (module.hot) {
 
   module.hot.accept("reducers", () => {
     const nextReducer = require("reducers/index").default;
-    console.log(nextReducer);
     store.replaceReducer(nextReducer);
   });
 }

@@ -1,36 +1,28 @@
-export const LOAD_SURVEY = 'LOAD_SURVEY';
-export const SAVE_SURVEY = 'SAVE_SURVEY';
-export const CHANGE = 'CHANGE';
+export const LOAD_SURVEY = "LOAD_SURVEY";
+export const SAVE_SURVEY = "SAVE_SURVEY";
+export const CLEAR_SURVEY = "CLEAR_SURVEY";
 
-import {normalize} from 'normalizr';
-import {surveySchema} from 'schema';
+import { normalize } from "normalizr";
+import { surveySchema } from "schema";
 
 export function loadSurvey(surveyData) {
   const schema = normalize(surveyData, surveySchema);
-  const {groups, blocks, sections, questions, answers} = schema.entities;
+  const { groups, blocks, sections, questions, answers } = schema.entities;
   return {
     type: LOAD_SURVEY,
     payload: {
       ...schema.entities.survey[surveyData.id],
-      groups: groups,
-      blocks: blocks,
-      sections: sections,
-      questions: questions,
-      answers: answers,
-    },
+      groups,
+      blocks,
+      sections,
+      questions,
+      answers
+    }
   };
 }
 
-export function change(key, value) {
-  const [type, id, field] = key.split('.');
+export function clearSurvey() {
   return {
-    type: CHANGE,
-    payload: {
-      key: key,
-      value: value,
-      type: type,
-      id: id,
-      field: field,
-    },
+    type: CLEAR_SURVEY
   };
 }
