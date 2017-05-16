@@ -65,16 +65,20 @@ describe("actions", () => {
     });
   });
 
-  test("loadSurveyFailure", () => {
-    const error  = new Error("foo");
-    const result = loadSurveyFailure(error);
+  describe("loadSurveyFailure", () => {
+    it("propagates the error as payload", () => {
+      const error  = new Error("foo");
+      const result = loadSurveyFailure(error);
 
-    expect(result).toEqual(actionMatching(SURVEY_LOAD_FAILURE, error));
+      expect(result).toEqual(actionMatching(SURVEY_LOAD_FAILURE, error));
+    });
   });
 
-  test("loadSurveySuccess", () => {
-    const result = loadSurveySuccess({});
+  describe("loadSurveySuccess", () => {
+    it("dispatches the correct action", () => {
+      const result = loadSurveySuccess({});
 
-    expect(result).toEqual(actionMatching(SURVEY_LOAD_SUCCESS));
+      expect(result).toEqual(actionMatching(SURVEY_LOAD_SUCCESS));
+    });
   });
 });
