@@ -31,30 +31,28 @@ const defaultState = {
   answers: {}
 };
 
-const surveyItemTypes = {
-  sections: {
-    description: "",
-    questions: [],
-    title: name
-  },
-  questions: {
-    description: "",
-    answers: [],
-    guidance: [],
-    type: "General",
-    title: name
-  },
-  answers: {
-    description: "",
-    label: name,
-    mandatory: false,
-    q_code: "",
-    type: ""
-  }
-};
-
 const getItemByType = (type, name) => {
-  return surveyItemTypes[type];
+  return {
+    sections: {
+      description: "",
+      questions: [],
+      title: name
+    },
+    questions: {
+      description: "",
+      answers: [],
+      guidance: [],
+      type: "General",
+      title: name
+    },
+    answers: {
+      description: "",
+      label: name,
+      mandatory: false,
+      q_code: "",
+      type: ""
+    }
+  }[type];
 };
 
 const survey = (state = defaultState, action) => {
