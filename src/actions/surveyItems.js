@@ -1,6 +1,6 @@
 import { replace } from "lodash";
 
-export const CHANGE = "CHANGE";
+export const UPDATE_ITEM = "UPDATE_ITEM";
 export const ADD_ITEM = "ADD_ITEM";
 export const ADD_ITEM_COMPLETE = "ADD_ITEM_COMPLETE";
 export const REMOVE_ITEM = "REMOVE_ITEM";
@@ -27,10 +27,10 @@ export const getParentItemType = type => {
   }
 };
 
-export function change(key, value) {
+export function updateItem(key, value) {
   const [type, id, field] = key.split(".");
   return {
-    type: CHANGE,
+    type: UPDATE_ITEM,
     payload: {
       key,
       value,
