@@ -30,40 +30,55 @@ export default class extends Component {
     this.state = { newItem: false };
   }
 
-  addItem = e => {
+  handleAddItem = e => {
     e.preventDefault();
     this.props.addItem(this.props.type, this.props.id);
   };
 
-  applyAddItem = value => {
+  handleApplyAddItem = value => {
     this.props.addItemComplete(this.props.type, this.props.id, value);
     this.props.removeItem(this.props.type, this.props.id);
   };
 
-  cancelAddItem = () => {
+  handleCancelAddItem = () => {
     this.props.removeItem(this.props.type, this.props.id);
   };
 
+  renderLabel() {
+    const { label, children, to, type } = this.props;
+
+    return (
+      <div>
+        <TreeNodeLabel to={to} type={type} exact>
+          {label}
+          {type !== "answers" && <AddIconBtn onClick={this.handleAddItem} />}
+        </TreeNodeLabel>
+        {children && <TreeNodeChildren>{children}</TreeNodeChildren>}
+      </div>
+    );
+  }
+
+  renderButton() {
+    return (
+      <AddButton
+        editLabel="Name"
+        mode={EDIT_MODE}
+        onApplyLabel={this.handleApplyAddItem}
+        onCancel={this.handleCancelAddItem}
+      >
+        Add
+      </AddButton>
+    );
+  }
+
   render() {
-    const { label, children, to, type, ...otherProps } = this.props;
+    const { label, ...otherProps } = this.props;
+
     return (
       <TreeNode {...otherProps}>
         {label === undefined
-          ? <AddButton
-              editLabel="Name"
-              mode={EDIT_MODE}
-              onApplyLabel={this.applyAddItem}
-              onCancel={this.cancelAddItem}
-            >
-              Add
-            </AddButton>
-          : <div>
-              <TreeNodeLabel to={to} type={type} exact={true}>
-                {label}
-                {type !== "answers" && <AddIconBtn onClick={this.addItem} />}
-              </TreeNodeLabel>
-              {children && <TreeNodeChildren>{children}</TreeNodeChildren>}
-            </div>}
+          ? this.renderButton()
+          : this.renderLabel()}
       </TreeNode>
     );
   }

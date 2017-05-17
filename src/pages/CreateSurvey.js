@@ -1,22 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
-import {TabbedPageLayout} from 'layouts';
-import {Grid, Column} from 'components/Grid';
-import {Field, Input, Label, Select} from 'components/Forms';
-import RichTextArea from 'components/RichTextArea';
-import LinkButton from 'components/LinkButton';
-import ButtonGroup from 'components/ButtonGroup';
+/* eslint-disable camelcase */
+import React from "react";
+import styled from "styled-components";
+import { TabbedPageLayout } from "layouts";
+import { Grid, Column } from "components/Grid";
+import { Field, Input, Label, Select } from "components/Forms";
+import RichTextArea from "components/RichTextArea";
+import LinkButton from "components/LinkButton";
+import ButtonGroup from "components/ButtonGroup";
 
-import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs';
+import { Tabs, TabPanel, TabList, TabTitle } from "components/Tabs";
 
 const ActionButtonGroup = styled(ButtonGroup)`
   padding: 1em;
 `;
 
-const SurveyCreatePage = ({survey}) => {
-  const {title, description, theme, legal_basis, informationToProvide} = survey;
+const SurveyCreatePage = ({ survey }) => {
+  const { title, description, theme, legal_basis, informationToProvide } = survey;
   return (
-    <TabbedPageLayout title={'Create a survey'}>
+    <TabbedPageLayout title={"Create a survey"}>
       <div>
         <Tabs>
           <TabList>
@@ -39,7 +40,7 @@ const SurveyCreatePage = ({survey}) => {
                   <Label>Theme</Label>
                   <Select
                     name="number"
-                    options={['Default', 'census', 'starwars']}
+                    options={["Default", "census", "starwars"]}
                     value={theme}
                   />
                 </Field>
@@ -49,7 +50,7 @@ const SurveyCreatePage = ({survey}) => {
                   <Label>Legal Basis</Label>
                   <Select
                     name="number"
-                    options={['StatisticsOfTradeAct']}
+                    options={["StatisticsOfTradeAct"]}
                     value={legal_basis}
                   />
                 </Field>

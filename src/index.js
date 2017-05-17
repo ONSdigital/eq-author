@@ -61,8 +61,8 @@ const render = RootComponent => {
 
 useStorage
   ? load(store).then(newState => {
-      render(App);
-    })
+    render(App);
+  })
   : render(App);
 
 if (module.hot) {

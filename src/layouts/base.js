@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import App from 'components/App';
-import TopBar from 'components/TopBar';
+import App from "components/App";
+import TopBar from "components/TopBar";
 
 const Wrapper = styled.div`
   background-color: #F5F5F5;
@@ -17,7 +17,7 @@ const Main = styled.main`
   flex-direction: column;
 `;
 
-const BaseLayout = ({children}) => (
+const BaseLayout = ({ children }) => (
   <App>
     <Wrapper>
       <TopBar />

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const AddSVG = () => (
   <svg width="14px" height="14px" viewBox="0 1 14 14" version="1.1">
@@ -25,7 +25,7 @@ const HintButton = styled.button`
   align-items: center;
 `;
 
-export default ({children, ...otherProps}) => (
+export default ({ children, ...otherProps }) => (
   <HintButton {...otherProps}>
     <Icon><AddSVG /></Icon> {children}
   </HintButton>

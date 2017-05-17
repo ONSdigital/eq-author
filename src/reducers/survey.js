@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { LOAD_SURVEY, CLEAR_SURVEY } from "actions/survey";
 import {
   CHANGE,
@@ -76,7 +77,7 @@ const survey = (state = defaultState, action) => {
         }
       });
 
-    case ADD_ITEM:
+    case ADD_ITEM: {
       const emptyItem = {
         [payload.type]: {
           [payload.id]: {}
@@ -102,8 +103,9 @@ const survey = (state = defaultState, action) => {
       } else {
         return merge({}, state, emptyItem);
       }
+    }
 
-    case ADD_ITEM_COMPLETE:
+    case ADD_ITEM_COMPLETE: {
       const newItem = {
         [payload.newId]: {
           ...getItemByType(payload.type, payload.name),
@@ -124,6 +126,7 @@ const survey = (state = defaultState, action) => {
           ...newItem
         }
       });
+    }
 
     case REMOVE_ITEM:
       return {

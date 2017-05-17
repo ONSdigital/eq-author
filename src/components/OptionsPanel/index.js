@@ -49,15 +49,18 @@ const getOptions = type => {
 
 export default ({ selected, type, deleteItem, ...otherProps }) => {
   const Options = getOptions(type);
+  const handleDelete = () => deleteItem(type, selected.id);
+
   if (Options === undefined) {
     return null;
   }
+
   return (
     <OptionsPanel {...otherProps}>
       <Header>
         <Title>{selected.displayName || selected.title}</Title>
         <DeleteButton
-          onClick={e => deleteItem(type, selected.id)}
+          onClick={handleDelete}
           small
           tertiary
         >

@@ -1,13 +1,14 @@
-import React from 'react'
+import React from "react";
+import Button from "components/Button";
+import { withRouter } from "react-router-dom";
 
-import { withRouter } from 'react-router-dom'
-
-import Button from 'components/Button'
-
-const LinkButton = withRouter(({history, to, children, ...otherProps}) =>
-  <Button {...otherProps} onClick={() => history.push(to) }>
+const LinkButton = withRouter(({ history, to, children, ...otherProps }) =>
+  <Button
+    {...otherProps}
+    onClick={() => history.push(to)} // eslint-disable-line
+  >
     {children}
   </Button>
-)
+);
 
-export default LinkButton
+export default LinkButton;

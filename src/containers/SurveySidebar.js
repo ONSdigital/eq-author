@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import * as actions from "actions/surveyItems";
 import { push } from "react-router-redux";
 import SurveySidebar from "components/SurveySidebar";
@@ -12,8 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) =>
-  bindActionCreators({ ...actions, push }, dispatch);
+const mapDispatchToProps = { ...actions, push };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   pure: false

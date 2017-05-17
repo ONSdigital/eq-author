@@ -38,32 +38,40 @@ const Sections = ({ sections, questions, answers, ...otherProps }) => {
 };
 
 const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
-  return !isEmpty(questions)
-    ? <TreeMenuNodes>
-        {map(questions, (question, id) => (
-          <TreeNode
-            to={`/design/${sectionId}/${id}`}
-            key={id}
-            id={id}
-            label={question.displayName}
-            type="questions"
+  if(isEmpty(questions)) {
+    return <div />;
+  }
+
+  return (
+    <TreeMenuNodes>
+      {map(questions, (question, id) => (
+        <TreeNode
+          to={`/design/${sectionId}/${id}`}
+          key={id}
+          id={id}
+          label={question.displayName}
+          type="questions"
+          {...otherProps}
+        >
+          <Answers
+            answers={pick(answers, question.answers)}
+            sectionId={sectionId}
+            questionId={id}
             {...otherProps}
-          >
-            <Answers
-              answers={pick(answers, question.answers)}
-              sectionId={sectionId}
-              questionId={id}
-              {...otherProps}
-            />
-          </TreeNode>
-        ))}
-      </TreeMenuNodes>
-    : <div />;
+          />
+        </TreeNode>
+      ))}
+    </TreeMenuNodes>
+  );
+
 };
 
 const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
+  if(isEmpty(answers)) {
+    return null;
+  }
+
   return (
-    !isEmpty(answers) &&
     <TreeMenuNodes>
       {map(answers, (answer, id) => (
         <TreeNode

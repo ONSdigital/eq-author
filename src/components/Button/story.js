@@ -1,17 +1,17 @@
-import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import Button from 'components/Button'
+import React from "react";
+import { storiesOf } from "@kadira/storybook";
+import Button from "components/Button";
 
-storiesOf('Button', module)
-  .add('Primary', () => (
+storiesOf("Button", module)
+  .add("Primary", () => (
     <Button primary>Create survey</Button>
   ))
-  .add('Primary Small', () => (
+  .add("Primary Small", () => (
     <Button primary small>Save</Button>
   ))
-  .add('Secondary', () => (
+  .add("Secondary", () => (
     <Button secondary>Cancel</Button>
   ))
-  .add('Secondary Small', () => (
+  .add("Secondary Small", () => (
     <Button secondary small>Export</Button>
-  ))
+  ));

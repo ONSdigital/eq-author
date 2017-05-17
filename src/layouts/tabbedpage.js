@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import Title from 'components/Title';
-import BaseLayout from './base';
+import React from "react";
+import styled from "styled-components";
+import Title from "components/Title";
+import BaseLayout from "./base";
 
 const PageHeading = styled.div`
   text-align: center;

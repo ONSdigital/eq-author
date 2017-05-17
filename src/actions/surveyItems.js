@@ -1,9 +1,9 @@
+import { replace } from "lodash";
+
 export const CHANGE = "CHANGE";
 export const ADD_ITEM = "ADD_ITEM";
 export const ADD_ITEM_COMPLETE = "ADD_ITEM_COMPLETE";
 export const REMOVE_ITEM = "REMOVE_ITEM";
-
-import { replace } from "lodash";
 
 export const getChildItemType = parentType => {
   switch (parentType) {

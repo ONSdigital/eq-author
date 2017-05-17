@@ -1,6 +1,6 @@
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
-import CreateSurveyPage from 'pages/CreateSurvey';
+import CreateSurveyPage from "pages/CreateSurvey";
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, {history}) => {
+const mapDispatchToProps = (dispatch, { history }) => {
   return {};
 };
 

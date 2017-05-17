@@ -60,25 +60,28 @@ export default class AddButton extends Component {
     };
   }
 
-  onClick = e => {
+  handleClick = e => {
     if (!this.state.editMode) {
       this.setState({ mode: EDIT_MODE });
     }
   };
+
   inputRef = input => {
-    if (!input) return false;
+    if (!input) {return false;}
     input.focus();
-    input.addEventListener("blur", this.onInputBlur);
-    input.addEventListener("keydown", this.onInputKeyDown);
+    input.addEventListener("blur", this.handleInputBlur);
+    input.addEventListener("keydown", this.handleInputKeyDown);
   };
-  onInputBlur = e => {
+
+  handleInputBlur = e => {
     if (this.state.value.length > 0) {
       this.props.onApplyLabel(this.state.value);
     } else {
       this.setState({ mode: this.props.mode });
     }
   };
-  onInputKeyDown = e => {
+
+  handleInputKeyDown = e => {
     const input = e.target;
     const ENTER_KEY = 13;
     const ESC_KEY = 27;
@@ -86,15 +89,15 @@ export default class AddButton extends Component {
     switch (e.keyCode) {
       case ENTER_KEY:
         if (input.value.length > 0) {
-          input.removeEventListener("blur", this.onInputBlur);
-          input.removeEventListener("keydown", this.onInputKeyDown);
+          input.removeEventListener("blur", this.handleInputBlur);
+          input.removeEventListener("keydown", this.handleInputKeyDown);
           this.props.onApplyLabel(input.value);
         }
         break;
 
       case ESC_KEY:
-        input.removeEventListener("blur", this.onInputBlur);
-        input.removeEventListener("keydown", this.onInputKeyDown);
+        input.removeEventListener("blur", this.handleInputBlur);
+        input.removeEventListener("keydown", this.handleInputKeyDown);
         this.setState({ mode: this.props.mode });
         this.props.onCancel();
         break;
@@ -111,7 +114,7 @@ export default class AddButton extends Component {
         {
           {
             [BUTTON_MODE]: (
-              <ClearButton clear small onClick={this.onClick}>
+              <ClearButton clear small onClick={this.handleClick}>
                 <AddIcon />{children}
               </ClearButton>
             ),

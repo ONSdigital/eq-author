@@ -1,9 +1,9 @@
+import { normalize } from "normalizr";
+import { surveySchema } from "schema";
+
 export const LOAD_SURVEY = "LOAD_SURVEY";
 export const SAVE_SURVEY = "SAVE_SURVEY";
 export const CLEAR_SURVEY = "CLEAR_SURVEY";
-
-import { normalize } from "normalizr";
-import { surveySchema } from "schema";
 
 export function loadSurvey(surveyData) {
   const schema = normalize(surveyData, surveySchema);

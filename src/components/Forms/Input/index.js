@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+const noop = () => {};
+
 const Input = styled.input`
   padding: 1em;
   width: 100%;
@@ -27,7 +29,7 @@ export default ({ type, value, id, ...otherProps }) => (
     value={value}
     id={id}
     name={id}
-    onChange={() => {}}
+    onChange={noop}
     {...otherProps}
   />
 );

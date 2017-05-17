@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Icon = styled.div`
   transition: transform 200ms ease-out;
@@ -17,11 +17,24 @@ const Icon = styled.div`
     left: 0;
     margin: auto;
   }
-`
+`;
 
-export default ({open, width, height, fill}) =>
+export default ({ open, width, height, fill }) => (
   <Icon open={open}>
-    <svg width="5px" height="9px" viewBox="0 0 20 34" version="1.1">
-      <polyline stroke="#E7E3E3" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none" points="3 3 17 17.7276633 3 31"></polyline>
+    <svg
+      width="5px"
+      height="9px"
+      viewBox="0 0 20 34"
+      version="1.1"
+    >
+      <polyline
+        stroke="#E7E3E3"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        points="3 3 17 17.7276633 3 31"
+      />
     </svg>
   </Icon>
+);
