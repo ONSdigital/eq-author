@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import AddIcon from "components/TreeMenu/AddIcon";
-const AddBtn = styled(AddIcon)`
+
+const AddBtn = styled.div`
   position: absolute;
   width: 2em;
   right: 0;
@@ -10,6 +11,9 @@ const AddBtn = styled(AddIcon)`
   bottom: 0;
   height: 3em;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `;
 
 const Header = styled.header`
@@ -38,7 +42,9 @@ export default ({ title, children, onAddClick }) => (
   <SidebarSection>
     <Header>
       <Title>{title}</Title>
-      <AddBtn onClick={onAddClick} />
+      <AddBtn onClick={onAddClick}>
+        <AddIcon />
+      </AddBtn>
     </Header>
     <Section>
       {children}
