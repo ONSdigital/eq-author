@@ -3,16 +3,11 @@ import styled from "styled-components";
 import { colorGrey } from "constants/theme";
 import Chevron from "./chevron";
 
-const BreadcrumbLinkPropType = React.PropTypes.oneOfType([
-  React.PropTypes.string,
-  React.PropTypes.object
-]);
-
 const ChevronIcon = styled(Chevron)`
   margin: 0 0.5em 0 0.5em;
 `;
 
-const Breadcrumb = styled.div`
+const StyledBreadcrumb = styled.div`
   background-color: ${colorGrey};
   font-size: 0.7em;
   display: flex;
@@ -24,32 +19,27 @@ const Breadcrumb = styled.div`
   }
 `;
 
-Breadcrumb.propTypes = {
-  links: React.PropTypes.arrayOf(BreadcrumbLinkPropType).isRequired
-};
-
-const BreadcrumbLink = (props) => (
+const BreadcrumbLink = props => (
   <span>
     {props.link}
-    {!props.isLast &&
-      <ChevronIcon />
-    }
+    {!props.isLast && <ChevronIcon />}
   </span>
 );
-
-BreadcrumbLink.propTypes = {
-  link: BreadcrumbLinkPropType,
-  isLast: React.PropTypes.bool
-};
 
 BreadcrumbLink.defaultProps = {
   isLast: false
 };
 
-export default (props) => (
-  <Breadcrumb {...props}>
+const Breadcrumb = props => (
+  <StyledBreadcrumb {...props}>
     {props.links.map((link, index) => (
-      <BreadcrumbLink key={index} link={link} isLast={index === props.links.length - 1} />
+      <BreadcrumbLink
+        key={index}
+        link={link}
+        isLast={index === props.links.length - 1}
+      />
     ))}
-  </Breadcrumb>
+  </StyledBreadcrumb>
 );
+
+export default Breadcrumb;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import AddIcon from "components/TreeMenu/AddIcon";
@@ -34,12 +35,12 @@ const Section = styled.div`
   display: block;
 `;
 
-const SidebarSection = styled.div`
+const StyledSidebarSection = styled.div`
   display: block;
 `;
 
-export default ({ title, children, onAddClick }) => (
-  <SidebarSection>
+const SidebarSection = ({ title, children, onAddClick }) => (
+  <StyledSidebarSection>
     <Header>
       <Title>{title}</Title>
       <AddBtn onClick={onAddClick}>
@@ -49,5 +50,13 @@ export default ({ title, children, onAddClick }) => (
     <Section>
       {children}
     </Section>
-  </SidebarSection>
+  </StyledSidebarSection>
 );
+
+SidebarSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.object,
+  onAddClick: PropTypes.func
+}
+
+export default SidebarSection

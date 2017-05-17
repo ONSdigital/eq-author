@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const FileUpload = (props) => {
   let fileUpload = null;
@@ -23,8 +24,12 @@ const FileUpload = (props) => {
 };
 
 FileUpload.propTypes = {
-  children: React.PropTypes.element.isRequired,
-  onFileSelected: React.PropTypes.func.isRequired
-};
+  children: PropTypes.object.isRequired,
+  accept: PropTypes.string,
+  onChange: PropTypes.func,
+  hidden: PropTypes.bool,
+  onFileSelected: PropTypes.func,
+  onRef: PropTypes.func
+}
 
 export default FileUpload;

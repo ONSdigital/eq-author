@@ -1,10 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import BaseLayout from "./base";
 
-const FullPageLayout = (props) =>
+const FullPageLayout = props => (
   <BaseLayout>
     {props.children}
-  </BaseLayout>;
+  </BaseLayout>
+);
+
+FullPageLayout.propTypes = {
+  children: PropTypes.object.isRequired
+};
 
 export default FullPageLayout;

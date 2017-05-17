@@ -1,13 +1,21 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const TableHead = styled.thead`
+const StyledTableHead = styled.thead`
   font-weight: 700;
   font-size: 0.8em;
   padding: 1em;
 `;
 
-export default ({ children, ...otherProps }) =>
-  <TableHead {...otherProps}>
+const TableHead = ({children, ...otherProps}) => (
+  <StyledTableHead {...otherProps}>
     {children}
-  </TableHead>;
+  </StyledTableHead>
+)
+
+TableHead.propTypes = {
+  children: PropTypes.object.isRequired
+}
+
+export default TableHead

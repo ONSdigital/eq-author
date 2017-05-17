@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "./Section";
 import Question from "./Question";
 import Answer from "./Answer";
 
-const HTMLPreview = styled.div`
+const StyledHTMLPreview = styled.div`
   background: white;
   color: #222;
   padding: 2rem 7rem;
@@ -12,12 +13,12 @@ const HTMLPreview = styled.div`
   z-index: 0;
 `;
 
-export default ({ surveyItems, selectedSection }) => {
+const HTMLPreview = ({ surveyItems, selectedSection }) => {
   if (!selectedSection) {
     return null;
   }
   return (
-    <HTMLPreview>
+    <StyledHTMLPreview>
       <Section key={selectedSection.id} section={selectedSection}>
         {selectedSection.questions &&
           selectedSection.questions.map(questionId => {
@@ -39,6 +40,13 @@ export default ({ surveyItems, selectedSection }) => {
             );
           })}
       </Section>
-    </HTMLPreview>
+    </StyledHTMLPreview>
   );
 };
+
+HTMLPreview.propTypes = {
+  surveyItems: PropTypes.object.isRequired,
+  selectedSection: PropTypes.object
+}
+
+export default HTMLPreview

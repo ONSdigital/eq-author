@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Title from "components/Title";
-import BaseLayout from "./base";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Title from 'components/Title';
+import BaseLayout from './base';
 
 const PageHeading = styled.div`
   text-align: center;
@@ -36,7 +37,8 @@ const TabbedPageLayout = props => {
 };
 
 TabbedPageLayout.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.array.isRequired,
 };
 
 export default TabbedPageLayout;

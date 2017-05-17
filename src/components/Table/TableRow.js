@@ -1,14 +1,22 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const TableRow = styled.tr`
+const StyledTableRow = styled.tr`
   font-size: 0.8em;
   padding: 1em;
   display: table-row;
   border-bottom: 1px solid ${props => props.theme.colorBorders};
 `;
 
-export default ({ children, ...otherProps }) =>
-  <TableRow {...otherProps}>
+const TableRow = ({children, ...otherProps}) => (
+  <StyledTableRow {...otherProps}>
     {children}
-  </TableRow>;
+  </StyledTableRow>
+)
+
+TableRow.propTypes = {
+  children: PropTypes.object.isRequired
+}
+
+export default TableRow

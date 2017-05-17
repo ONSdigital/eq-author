@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import RichTextEditor from "react-rte";
 import styled from "styled-components";
 
@@ -7,7 +8,7 @@ const Wrapper = styled.div`
   margin-bottom: 1em;
 `;
 
-const RichTextArea = styled(RichTextEditor)`
+const StyledRichTextArea = styled(RichTextEditor)`
   width: 100%;
   min-height: 10em;
 `;
@@ -18,37 +19,36 @@ const toolbarConfig = {
     {
       label: "Bold",
       style: "BOLD",
-      className: "custom-css-class",
+      className: "custom-css-class"
     },
     {
       label: "Italic",
-      style: "ITALIC",
-    },
+      style: "ITALIC"
+    }
   ],
   BLOCK_TYPE_BUTTONS: [
     {
       label: "UL",
-      style: "unordered-list-item",
+      style: "unordered-list-item"
     },
     {
       label: "OL",
-      style: "ordered-list-item",
-    },
+      style: "ordered-list-item"
+    }
   ]
 };
 
 const noop = () => {};
 
-export default class extends Component {
+export default class RichTextArea extends Component {
   static defaultProps = {
-    onChange : noop,
-    value : ""
+    onChange: noop,
+    value: ""
   };
-
   constructor(props) {
     super(props);
     this.state = {
-      value: RichTextEditor.createValueFromString(this.props.value, "html"),
+      value: RichTextEditor.createValueFromString(this.props.value, "html")
     };
   }
 
@@ -70,7 +70,7 @@ export default class extends Component {
   render() {
     return (
       <Wrapper>
-        <RichTextArea
+        <StyledRichTextArea
           className="rte"
           rows="10"
           value={this.state.value}
@@ -81,3 +81,10 @@ export default class extends Component {
     );
   }
 }
+
+RichTextArea.propTypes = {
+  onChange: PropTypes.func,
+  name: PropTypes.string,
+  props: PropTypes.object,
+  value: PropTypes.string
+};

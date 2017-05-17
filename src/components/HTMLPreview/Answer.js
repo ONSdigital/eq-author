@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const AnswerLabel = styled.div`
@@ -35,7 +36,7 @@ const AnswerInput = styled.input`
   max-width: 20rem;
 `;
 
-export default ({ answer }) => (
+const Answer = ({ answer }) => (
   <div>
     <AnswerLabel>
       {answer.label}
@@ -44,3 +45,9 @@ export default ({ answer }) => (
     <AnswerInput />
   </div>
 );
+
+Answer.propTypes = {
+  answer: PropTypes.object.isRequired
+}
+
+export default Answer

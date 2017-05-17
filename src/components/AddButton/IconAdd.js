@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const IconAdd = (props) => (
   <span {...props}>
@@ -18,7 +19,7 @@ IconAdd.defaultProps = {
 };
 
 IconAdd.propTypes = {
-  fill : React.PropTypes.string
-};
+  fill: PropTypes.string
+}
 
-export default IconAdd;
+export default IconAdd

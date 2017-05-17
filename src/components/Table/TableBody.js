@@ -1,12 +1,19 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-const TableBody = styled.tbody`
+const StyledTableBody = styled.tbody`
   font-size: 0.8em;
   padding: 1em;
 `;
 
-export default ({ children, ...otherProps }) =>
-  <TableBody {...otherProps}>
+const TableBody = ({children, ...otherProps}) =>
+  <StyledTableBody {...otherProps}>
     {children}
-  </TableBody>;
+  </StyledTableBody>
+
+TableBody.propTypes = {
+  children: PropTypes.object.isRequired
+}
+
+export default TableBody

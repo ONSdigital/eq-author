@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, Select, TextArea } from "components/Forms";
 import RichTextArea from "components/RichTextArea";
@@ -30,6 +31,10 @@ export const QuestionSettings = ({ options, ...otherProps }) => (
   </Grid>
 );
 
+QuestionSettings.propTypes = {
+  options: PropTypes.object.isRequired
+}
+
 export const QuestionGuidance = ({ options, ...otherProps }) => (
   <Grid>
     <Column>
@@ -40,6 +45,10 @@ export const QuestionGuidance = ({ options, ...otherProps }) => (
     </Column>
   </Grid>
 );
+
+QuestionGuidance.propTypes = {
+  options: PropTypes.object.isRequired
+}
 
 export const QuestionOptions = [
   {

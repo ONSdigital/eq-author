@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import styled from "styled-components";
 import { colorBorders } from "constants/theme";
 
@@ -9,7 +10,7 @@ import { SectionOptions } from "components/Options/Section";
 
 import Button from "components/Button";
 
-const OptionsPanel = styled.div`
+const StyledOptionsPanel = styled.div`
   background: white;
   border: 1px solid ${colorBorders};
   width: 100%;
@@ -47,7 +48,7 @@ const getOptions = type => {
   }[type];
 };
 
-export default ({ selected, deleteItem, ...otherProps }) => {
+const OptionsPanel = ({ selected, deleteItem, ...otherProps }) => {
   const { type, id, item } = selected;
   const Options = getOptions(type);
   const handleDelete = () => deleteItem(type, id);
@@ -56,7 +57,7 @@ export default ({ selected, deleteItem, ...otherProps }) => {
   }
 
   return (
-    <OptionsPanel {...otherProps}>
+    <StyledOptionsPanel {...otherProps}>
       <Header>
         <Title>{item.displayName || item.title}</Title>
         <DeleteButton onClick={handleDelete} small tertiary>
@@ -85,6 +86,14 @@ export default ({ selected, deleteItem, ...otherProps }) => {
           ))}
         </Tabs>
       </Body>
-    </OptionsPanel>
+    </StyledOptionsPanel>
   );
 };
+
+OptionsPanel.propTypes = {
+  selected: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
+  deleteItem: PropTypes.func.isRequired
+}
+
+export default OptionsPanel

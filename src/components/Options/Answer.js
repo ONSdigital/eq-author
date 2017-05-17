@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, Select, TextArea } from "components/Forms";
 
@@ -34,6 +35,10 @@ export const AnswerSettings = ({ options, ...otherProps }) => {
   );
 };
 
+AnswerSettings.propTypes = {
+  options: PropTypes.object.isRequired
+}
+
 export const MandatorySettings = ({ options, ...otherProps }) => (
   <Grid>
     <Column cols="4">
@@ -50,6 +55,10 @@ export const MandatorySettings = ({ options, ...otherProps }) => (
     </Column>
   </Grid>
 );
+
+MandatorySettings.propTypes = {
+  options: PropTypes.object.isRequired
+}
 
 export const AnswerOptions = [
   {

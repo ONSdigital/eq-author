@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import styled, { css } from "styled-components";
 import {
   radiusGlobal,
@@ -55,7 +56,7 @@ border: none;
 }
 `;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   padding: 0.8em 5em;
   border-radius: ${radiusGlobal};
   font-size: 0.9em;
@@ -81,8 +82,22 @@ const Button = styled.button`
   ${props => props.small && SmallButton}
 `;
 
-export default props => (
-  <Button {...props} className={props.className} type="button">
+const Button = props => (
+  <StyledButton {...props} type="button">
     {props.children}
-  </Button>
+  </StyledButton>
 );
+
+Button.propTypes = {
+  primary: PropTypes.bool,
+  secondary: PropTypes.bool,
+  tertiary: PropTypes.bool,
+  clear: PropTypes.bool,
+  small: PropTypes.bool,
+  children: PropTypes.oneOfType([
+   PropTypes.string,
+   PropTypes.array
+ ]),
+}
+
+export default Button

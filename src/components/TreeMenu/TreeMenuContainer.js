@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import sections from "./reducer";
-import { TreeMenu } from "components/TreeMenu";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import sections from './reducer';
+import {TreeMenu} from 'components/TreeMenu';
 
 export default class TreeMenuContainer extends Component {
   constructor(props) {
@@ -47,4 +48,11 @@ export default class TreeMenuContainer extends Component {
   render() {
     return <TreeMenu sections={this.state.sections} {...this.actions} />;
   }
+}
+
+TreeMenuContainer.propTypes = {
+  sections: PropTypes.oneOfType([
+   PropTypes.object,
+   PropTypes.array
+ ]),
 }

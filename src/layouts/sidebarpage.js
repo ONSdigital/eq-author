@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import BaseLayout from "./base";
 import Breadcrumb from "components/Breadcrumb";
 import SurveySidebar from "containers/SurveySidebar";
@@ -28,5 +28,9 @@ const SidebarPageLayout = props => {
     </BaseLayout>
   );
 };
+
+SidebarPageLayout.propTypes = {
+  children: PropTypes.object.isRequired
+}
 
 export default SidebarPageLayout;

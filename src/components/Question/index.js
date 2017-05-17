@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { Field, Input, Label } from "components/Forms";
-import RichTextArea from "components/RichTextArea";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Field, Input, Label} from 'components/Forms';
+import RichTextArea from 'components/RichTextArea';
 
 export default class Question extends Component {
   handleChange = e => {
@@ -46,4 +47,9 @@ export default class Question extends Component {
       </fieldset>
     );
   }
+}
+
+Question.propTypes = {
+  question: PropTypes.string.isRequired,
+  changeQuestion: PropTypes.string.isRequired
 }

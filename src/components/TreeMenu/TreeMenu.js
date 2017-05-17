@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { pick, map, isEmpty } from "lodash";
 import { TreeNode } from "components/TreeMenu";
@@ -37,6 +38,15 @@ const Sections = ({ sections, questions, answers, ...otherProps }) => {
   );
 };
 
+Sections.propTypes = {
+  sections: PropTypes.oneOfType([
+   PropTypes.object,
+   PropTypes.array
+ ]),
+  questions: PropTypes.object,
+  answers: PropTypes.object
+}
+
 const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
   if (isEmpty(questions)) {
     return <div />;
@@ -65,6 +75,15 @@ const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
   );
 };
 
+Questions.propTypes = {
+  questions: PropTypes.object.isRequired,
+  answers: PropTypes.object,
+  sectionId: PropTypes.oneOfType([
+   PropTypes.number,
+   PropTypes.string
+ ]),
+}
+
 const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
   if (isEmpty(answers)) {
     return null;
@@ -85,6 +104,12 @@ const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
     </TreeMenuNodes>
   );
 };
+
+Answers.propTypes = {
+  answers: PropTypes.object.isRequired,
+  sectionId: PropTypes.string.isRequired,
+  questionId: PropTypes.string.isRequired
+}
 
 export default props => (
   <TreeMenu>

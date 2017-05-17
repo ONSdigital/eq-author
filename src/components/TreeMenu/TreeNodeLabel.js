@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import styled, { css } from "styled-components";
 
@@ -17,7 +18,7 @@ const AnswerLabel = css`
   padding-left: 1.6rem;
 `;
 
-const TreeNodeLabel = styled(NavLink)`
+const StyledTreeNodeLabel = styled(NavLink)`
   display: block;
   color: white;
   text-decoration: none;
@@ -47,12 +48,18 @@ const TreeNodeLabel = styled(NavLink)`
   ${props => props.type === "answers" && AnswerLabel}
 `;
 
+const TreeNodeLabel = ({ children, ...otherProps }) => (
+  <StyledTreeNodeLabel {...otherProps}>
+    {children}
+  </StyledTreeNodeLabel>
+);
+
 TreeNodeLabel.defaultProps = {
   activeClassName: "active"
 };
 
-export default ({ children, ...otherProps }) => (
-  <TreeNodeLabel {...otherProps}>
-    {children}
-  </TreeNodeLabel>
-);
+TreeNodeLabel.propTypes = {
+  children: PropTypes.array.isRequired
+};
+
+export default TreeNodeLabel;

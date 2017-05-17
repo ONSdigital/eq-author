@@ -1,7 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-
+import styled from "styled-components";
 import CustomPropTypes from "proptypes";
 import ActionBar from "components/ActionBar";
 import Button from "components/Button";

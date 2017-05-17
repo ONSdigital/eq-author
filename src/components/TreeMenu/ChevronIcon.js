@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const Icon = styled.div`
+const StyledIcon = styled.div`
   transition: transform 200ms ease-out;
   transform: rotate(${props => props.open * 90}deg);
   transform-origin: 50%;
@@ -19,8 +20,8 @@ const Icon = styled.div`
   }
 `;
 
-export default ({ open, width, height, fill }) => (
-  <Icon open={open}>
+const Icon = ({open, width, height, fill}) => (
+  <StyledIcon open={open}>
     <svg
       width="5px"
       height="9px"
@@ -36,5 +37,14 @@ export default ({ open, width, height, fill }) => (
         points="3 3 17 17.7276633 3 31"
       />
     </svg>
-  </Icon>
+  </StyledIcon>
 );
+
+Icon.propTypes = {
+  open: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+  fill: PropTypes.string.isRequired
+}
+
+export default Icon
