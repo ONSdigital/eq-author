@@ -1,53 +1,53 @@
-import React, {Component} from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import {flattenDeep} from 'lodash';
+import { flattenDeep } from "lodash";
 
-import TabPanel from './TabPanel';
-import TabList from './TabList';
+import TabPanel from "./TabPanel";
+import TabList from "./TabList";
 
 const Tabs = styled.div`
-
+  display: block;
 `;
 
 const TabsContent = styled.div`
-  border: ${({compact, theme}) => (compact ? `none` : `1px solid ${theme.colorBorders}`)};
+  border: ${({ compact, theme }) => (compact ? `none` : `1px solid ${theme.colorBorders}`)};
   overflow: hidden;
 `;
 
 export default class extends Component {
   state = {
-    selected: this.props.selected || 0,
+    selected: this.props.selected || 0
   };
   getComponentWithProps = (child, index) => {
     const props = {
       [TabList]: {
         selectedTab: this.state.selected,
         handleTabSelected: index => {
-          this.setState({selected: index});
-        },
+          this.setState({ selected: index });
+        }
       },
       [TabPanel]: {
-        visible: this.state.selected === index,
-      },
+        visible: this.state.selected === index
+      }
     };
     return React.cloneElement(child, {
       ...props[child.type],
-      key: index,
+      key: index
     });
   };
   render() {
-    const {children, compact} = this.props;
+    const { children, compact } = this.props;
     // flatten in case arrays of children
     const flattenedChildren = flattenDeep(children);
     return (
       <Tabs compact={compact}>
         {flattenedChildren
-          .filter(child => child.type.displayName === 'TabList')
+          .filter(child => child.type.displayName === TabList.displayName)
           .map(this.getComponentWithProps)}
         <TabsContent compact={compact}>
           {flattenedChildren
-            .filter(child => child.type.displayName === 'TabPanel')
+            .filter(child => child.type.displayName === TabPanel.displayName)
             .map(this.getComponentWithProps)}
         </TabsContent>
       </Tabs>
