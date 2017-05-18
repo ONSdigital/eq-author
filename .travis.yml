@@ -3,8 +3,7 @@ node_js:
   - "7"
 
 install:
-  - npm install java
-  - npm install -g chimp
+  - npm install chimp
 
 script:
   - yarn lint
