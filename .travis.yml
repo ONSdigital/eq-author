@@ -8,7 +8,7 @@ install:
   - npm install chimp
 
 install:
-  - brew cask install java
+  - npm install java
   - npm install -g chimp
 
 script:
