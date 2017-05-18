@@ -7,6 +7,9 @@ install:
   - npm install -g chimp
   - npm install chimp
 
+install:
+  - npm install -g chimp
+
 script:
   - yarn lint
   - yarn test -- --coverage
