@@ -19,7 +19,7 @@ it("renders an input", () => {
 });
 
 it("passes file object onChange", () => {
-  const file  = { name: "foo.json" };
+  const file = { name: "foo.json" };
   const event = { target: { files: [file] } };
 
   fileUpload.find("input").simulate("change", event);

@@ -70,7 +70,7 @@ describe("actions/survey", () => {
 
   describe("loadSurveyFailure", () => {
     it("propagates the error as payload", () => {
-      const error  = new Error("foo");
+      const error = new Error("foo");
       const result = loadSurveyFailure(error);
 
       expect(result).toEqual(actionMatching(SURVEY_LOAD_FAILURE, error));
