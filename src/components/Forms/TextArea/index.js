@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+const noop = () => {};
+
 const TextArea = styled.textarea`
   resize: none;
 `;
@@ -11,7 +13,7 @@ export default ({ value, id, rows = 10, ...otherProps }) => (
     rows={rows}
     id={id}
     name={id}
-    onChange={e => {}}
+    onChange={noop}
     {...otherProps}
   />
 );

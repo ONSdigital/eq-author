@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   background: #333;
@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   overflow-x: scroll;
 `;
 
-const JsonWindow = ({schema}) =>
+const JsonWindow = ({ schema }) =>
   <Wrapper>
     <pre>{JSON.stringify(schema, null, 2)}</pre>
-  </Wrapper>
+  </Wrapper>;
 
-export default JsonWindow
+export default JsonWindow;

@@ -26,13 +26,11 @@ const TabList = ({
     {children.map((child, index) =>
       React.cloneElement(child, {
         selected: selectedTab === index,
-        onClick: handleTabSelected.bind(this, index),
+        onClick: handleTabSelected.bind(null, index),
         key: index
       })
     )}
   </TabListStyle>
 );
-
-TabList.displayName = "TabList";
 
 export default TabList;

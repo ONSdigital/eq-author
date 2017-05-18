@@ -1,8 +1,8 @@
-import React from 'react'
-import {storiesOf} from '@kadira/storybook'
-import {Sidebar, SidebarSection} from 'components/Sidebar'
-import {TreeMenuContainer} from 'components/TreeMenu'
-import {Grid, Column} from 'components/Grid'
+import React from "react";
+import { storiesOf } from "@kadira/storybook";
+import { Sidebar, SidebarSection } from "components/Sidebar";
+import { TreeMenuContainer } from "components/TreeMenu";
+import { Grid, Column } from "components/Grid";
 
 const GridCol = (story) => (
   <Grid>
@@ -10,20 +10,20 @@ const GridCol = (story) => (
       {story()}
     </Column>
   </Grid>
-)
+);
 
-storiesOf('Sidebar', module)
+storiesOf("Sidebar", module)
   .addDecorator(GridCol)
-  .add('Empty', () => (
+  .add("Empty", () => (
     <Sidebar>
-      <SidebarSection title={'Sections'}>
+      <SidebarSection title={"Sections"}>
         <TreeMenuContainer sections={[]} />
       </SidebarSection>
     </Sidebar>
   ))
-  .add('Not Empty', () => (
+  .add("Not Empty", () => (
     <Sidebar>
-      <SidebarSection title={'Sections'}>
+      <SidebarSection title={"Sections"}>
         <TreeMenuContainer sections={[{
           "id": "number-of-employees-section",
           "name": "Number of employees",
@@ -47,8 +47,9 @@ storiesOf('Sidebar', module)
               "name": "Total number of employees",
             }]
           }
-        ]
-      }]} />
+          ]
+        }]}
+        />
       </SidebarSection>
     </Sidebar>
-  ))
+  ));

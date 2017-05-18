@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
     onChange: e => {
       var value = e.target.value;
       if(e.target.type === "checkbox"){
-        value = e.target.checked
+        value = e.target.checked;
       }
       dispatch(change(e.target.name, value));
     },

@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import {FullPageLayout} from 'layouts';
+import React from "react";
+import styled from "styled-components";
+import { FullPageLayout } from "layouts";
 
 const Centered = styled.div`
   flex: 1 1 auto;

@@ -11,7 +11,7 @@ const Tabs = styled.div`
 `;
 
 const TabsContent = styled.div`
-  border: ${({ compact, theme }) => (compact ? `none` : `1px solid ${theme.colorBorders}`)};
+  border: ${({ compact, theme }) => (compact ? "none" : `1px solid ${theme.colorBorders}`)};
   overflow: hidden;
 `;
 

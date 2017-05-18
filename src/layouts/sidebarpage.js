@@ -1,16 +1,16 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import BaseLayout from './base';
-import Breadcrumb from 'components/Breadcrumb';
-import SurveySidebar from 'containers/SurveySidebar';
+import BaseLayout from "./base";
+import Breadcrumb from "components/Breadcrumb";
+import SurveySidebar from "containers/SurveySidebar";
 
-import {Grid, Column} from 'components/Grid';
+import { Grid, Column } from "components/Grid";
 
 const Links = [
   <Link to="/">Survey Home</Link>,
   <Link to="/create">Create Survey</Link>,
-  'Design',
+  "Design",
 ];
 
 const SidebarPageLayout = props => {

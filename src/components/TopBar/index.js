@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import {Link} from 'react-router-dom'
-import {topBarBlue, brightText, betaTag} from 'constants/theme'
+import { Link } from "react-router-dom";
+import { topBarBlue, brightText, betaTag } from "constants/theme";
 
 const StyledTopBar = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const StyledTopBar = styled.div`
   color: ${brightText};
   font-weight: 500;
   padding: 0.5em 0;
-`
+`;
 
 const BetaLabel = styled.div`
   color: ${betaTag};
@@ -22,7 +22,7 @@ const BetaLabel = styled.div`
   position: absolute;
   bottom: 1.4em;
   right: -3em;
-`
+`;
 
 const Logo = styled(Link)`
   color: white;
@@ -33,13 +33,13 @@ const Logo = styled(Link)`
     color: white;
     text-decoration: none;
   }
-`
+`;
 
 const TopBar = () =>
   <StyledTopBar>
     <Logo to="/">
       eQ Author<BetaLabel>Beta</BetaLabel>
     </Logo>
-  </StyledTopBar>
+  </StyledTopBar>;
 
-export default TopBar
+export default TopBar;

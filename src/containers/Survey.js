@@ -1,14 +1,14 @@
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-import {loadSurvey} from 'actions/survey';
-import SurveyPage from 'pages/Survey';
+import { loadSurvey } from "actions/survey";
+import SurveyPage from "pages/Survey";
 
 const mapStateToProps = (state, ownProps) => {
   return {};
 };
 
-const mapDispatchToProps = (dispatch, {history}) => {
+const mapDispatchToProps = (dispatch, { history }) => {
   return {
     onFileSelected: e => {
       const file = e.target.files[0];
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, {history}) => {
         fileReader.onload = f => {
           const data = JSON.parse(f.target.result);
           dispatch(loadSurvey(data));
-          history.push('/create');
+          history.push("/create");
         };
         fileReader.readAsText(file);
       }

@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import {FullPageLayout} from 'layouts';
-import Button from 'components/Button';
-import ButtonGroup from 'components/ButtonGroup';
-import LinkButton from 'components/LinkButton';
-import FileUpload from 'components/FileUpload';
+import React from "react";
+import styled from "styled-components";
+import { FullPageLayout } from "layouts";
+import Button from "components/Button";
+import ButtonGroup from "components/ButtonGroup";
+import LinkButton from "components/LinkButton";
+import FileUpload from "components/FileUpload";
 
-import Title from 'components/Title';
+import Title from "components/Title";
 
 const Centered = styled.div`
   flex: 1 1 auto;
@@ -37,7 +37,7 @@ const PanelTitle = styled(Title)`
   margin-bottom: 1em;
 `;
 
-const SurveyPage = ({onFileSelected}) => (
+const SurveyPage = ({ onFileSelected }) => (
   <FullPageLayout>
     <Centered>
       <PanelWithTitle>

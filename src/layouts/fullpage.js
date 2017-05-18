@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
-import BaseLayout from './base'
+import BaseLayout from "./base";
 
 const FullPageLayout = (props) =>
   <BaseLayout>
     {props.children}
-  </BaseLayout>
+  </BaseLayout>;
 
-export default FullPageLayout
+export default FullPageLayout;
