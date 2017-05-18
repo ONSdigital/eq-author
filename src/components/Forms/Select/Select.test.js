@@ -4,47 +4,48 @@ import Select from "./";
 
 const options = ["One", "Two", "Three", "Four", "Five"];
 
-it("renders without crashing", () => {
-  shallow(<Select options={options} />);
-});
+describe("Select", () => {
 
-it("renders a select element", () => {
-  const app = mount(
-    <Select options={options} />
-  );
+  let select, handleChange;
 
-  expect(app.find("select").length).toEqual(1);
-});
-
-it("renders options as children of select", () => {
-  const app = mount(
-    <Select options={options} />
-  );
-
-  expect(app.find("select").children().length).toEqual(5);
-  app.find("select").children().forEach(e => {
-    expect(e.type()).toEqual("option");
+  beforeEach(() => {
+    handleChange = jest.fn();
+    select = <Select options={options} onChange={handleChange} name="foo" id="bar" />;
   });
-});
 
-it("calls onChange when value changed", () => {
-  const handleChange = jest.fn();
-  const app = mount(
-    <Select options={options} onChange={handleChange} />
-  );
-  app.find("select").simulate("change");
+  it("renders without crashing", () => {
+    shallow(select);
+  });
 
-  expect(handleChange).toHaveBeenCalled();
-});
+  it("renders a select element", () => {
+    const app = mount(select);
 
-it("changes value when option selected", () => {
-  const handleChange = jest.fn();
-  const event = { target: { value: "three" } };
-  const app = mount(
-    <Select options={options} onChange={handleChange} />
-  );
+    expect(app.find("select").length).toEqual(1);
+  });
 
-  app.find("select").simulate("change", event);
+  it("renders options as children of select", () => {
+    const app = mount(select);
 
-  expect(handleChange).toHaveBeenCalledWith(expect.objectContaining(event));
+    expect(app.find("select").children().length).toEqual(options.length);
+    app.find("select").children().forEach(e => {
+      expect(e.type()).toEqual("option");
+    });
+  });
+
+  it("calls onChange when value changed", () => {
+    const app = mount(select);
+    app.find("select").simulate("change");
+
+    expect(handleChange).toHaveBeenCalled();
+  });
+
+  it("changes value when option selected", () => {
+    const app = mount(select);
+    const event = { target: { value: "three" } };
+
+    app.find("select").simulate("change", event);
+
+    expect(handleChange).toHaveBeenCalledWith(expect.objectContaining(event));
+  });
+
 });

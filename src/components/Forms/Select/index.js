@@ -11,9 +11,10 @@ const Select = styled.select`
 `;
 
 Select.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  options: PropTypes.arrayOf()
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string),
+  onChange : PropTypes.func
 };
 
 Select.defaultProps = {
