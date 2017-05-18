@@ -4,7 +4,7 @@ node_js:
 
 install:
   - npm install java
-  - npm install -g chimp
+  - npm install -g ch3imp
   - npm install chimp
 
 script:
