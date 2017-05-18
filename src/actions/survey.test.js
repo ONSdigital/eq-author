@@ -2,13 +2,23 @@ import { CALL_HISTORY_METHOD } from "react-router-redux";
 import {
   SURVEY_LOAD_FAILURE,
   SURVEY_LOAD_SUCCESS,
+  SURVEY_LOADING,
+  SURVEY_CLEAR,
   loadSurvey,
+  loadingSurvey,
   loadSurveyFailure,
-  loadSurveySuccess
+  loadSurveySuccess,
+  clearSurvey
 } from "actions/survey";
 
-function actionMatching(type, payload = expect.anything()) {
-  return expect.objectContaining({ type, payload });
+function actionMatching(type, payload) {
+  var action = { type };
+
+  if(arguments.length === 2) {
+    action.payload = payload;
+  }
+
+  return expect.objectContaining(action);
 }
 
 function createTextFile(contents = "", name = "foo.json") {
@@ -19,7 +29,7 @@ function createJsonFile(obj = {}, name) {
   return createTextFile(JSON.stringify(obj), name);
 }
 
-describe("actions", () => {
+describe("actions/survey", () => {
 
   describe("loadSurvey", () => {
     let dispatch;
@@ -29,39 +39,48 @@ describe("actions", () => {
     });
 
     it("dispatches error if no file supplied", () => {
-      loadSurvey(null)(dispatch);
+      loadSurvey()(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_FAILURE));
+      expect(dispatch).not.toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
     });
 
     it("dispatches error if not valid JSON file", () => {
-      expect.assertions(1);
+      expect.assertions(2);
 
-      const file = createTextFile("LOL");
-
-      return loadSurvey(file)(dispatch).then(() => {
+      return loadSurvey(createTextFile("LOL"))(dispatch).then(() => {
+        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_FAILURE));
       });
     });
 
     it("dispatches success actions if JSON is valid", () => {
-      expect.assertions(1);
+      expect.assertions(2);
 
       const file = createJsonFile();
 
       return loadSurvey(file)(dispatch).then(() => {
+        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_SUCCESS));
       });
     });
 
     it("redirects to  success actions if JSON is valid", () => {
-      expect.assertions(1);
+      expect.assertions(3);
 
       const file = createJsonFile();
 
       return loadSurvey(file)(dispatch).then(() => {
+        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
+        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_SUCCESS));
         expect(dispatch).toHaveBeenCalledWith(actionMatching(CALL_HISTORY_METHOD));
       });
+    });
+  });
+
+  describe("loadingSurvey", () => {
+    it("dispatches the correct action", () => {
+      expect(loadingSurvey()).toEqual(actionMatching(SURVEY_LOADING));
     });
   });
 
@@ -79,6 +98,12 @@ describe("actions", () => {
       const result = loadSurveySuccess({});
 
       expect(result).toEqual(actionMatching(SURVEY_LOAD_SUCCESS));
+    });
+  });
+
+  describe("clearSurvey", () => {
+    it("dispatches the correct action", () => {
+      expect(clearSurvey()).toEqual(actionMatching(SURVEY_CLEAR));
     });
   });
 });
