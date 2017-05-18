@@ -20,13 +20,8 @@ import App from "containers/App";
 
 let useStorage = false;
 
-let basename = "";
-if (process.env.NODE_ENV === "production") {
-  basename = "/eq-author";
-}
-
 const history = createHistory({
-  basename: basename
+  basename: process.env.BASE_NAME
 });
 
 // Build the middleware for intercepting and dispatching navigation actions
