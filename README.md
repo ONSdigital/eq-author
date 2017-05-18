@@ -81,6 +81,8 @@ Lints the `src` directory using the rules defined in `.eslintrc`. Run `yarn lint
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
 
+If you would like to collect code coverage run `yarn test -- --coverage`.
+
 ### `yarn build`
 
 Builds the app for production to the `build` folder.<br>
