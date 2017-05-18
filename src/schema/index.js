@@ -24,4 +24,4 @@ export const surveySchema = new schema.Entity("survey", {
   answers: [answer],
   blocks: [block],
   groups: [group]
-});
+}, { idAttribute: "survey_id" });
