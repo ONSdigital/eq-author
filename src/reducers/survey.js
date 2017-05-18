@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
-import { SURVEY_LOAD_SUCCESS, SURVEY_CLEAR } from "actions/survey";
-
+import { SURVEY_LOAD_SUCCESS, SURVEY_CLEAR, META_UPDATE } from "actions/survey";
 import {
-  CHANGE,
+  UPDATE_ITEM,
   ADD_ITEM,
   ADD_ITEM_COMPLETE,
   REMOVE_ITEM
@@ -10,17 +9,18 @@ import {
 
 import { merge, omit, includes, find } from "lodash";
 
-const defaultState = {
-  data_version: "0.0.1",
-  description: "",
-  groups: {},
-  legal_basis: "StatisticsOfTradeAct",
-  mime_type: "application/json/ons/eq",
-  questionnaire_id: "0001",
-  schema_version: "0.0.1",
-  id: "000",
-  theme: "default",
-  title: "",
+export const defaultState = {
+  meta: {
+    data_version: "0.0.1",
+    description: "",
+    legal_basis: "StatisticsOfTradeAct",
+    mime_type: "application/json/ons/eq",
+    questionnaire_id: "0001",
+    schema_version: "0.0.1",
+    id: "000",
+    theme: "default",
+    title: ""
+  },
   blocks: {
     introduction: {
       type: "Introduction",
@@ -30,7 +30,8 @@ const defaultState = {
   },
   sections: {},
   questions: {},
-  answers: {}
+  answers: {},
+  groups: {}
 };
 
 const getItemByType = (type, name) => {
@@ -69,7 +70,7 @@ const survey = (state = defaultState, action) => {
     case SURVEY_CLEAR:
       return defaultState;
 
-    case CHANGE:
+    case UPDATE_ITEM:
       return merge({}, state, {
         [payload.type]: {
           [payload.id]: {
@@ -136,6 +137,13 @@ const survey = (state = defaultState, action) => {
           ...omit(state[payload.type], payload.id)
         }
       };
+
+    case META_UPDATE:
+      return merge({}, state, {
+        meta: {
+          [payload.key]: payload.value
+        }
+      });
 
     default:
       return state;

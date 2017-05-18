@@ -6,15 +6,16 @@ import {
   SURVEY_LOAD_SUCCESS,
   SURVEY_LOADING,
   SURVEY_CLEAR,
+  META_UPDATE,
   loadSurvey,
   loadingSurvey,
   loadSurveyFailure,
   loadSurveySuccess,
-  clearSurvey
+  clearSurvey,
+  updateMeta
 } from "actions/survey";
 
 describe("actions/survey", () => {
-
   describe("loadSurvey", () => {
     let dispatch;
 
@@ -25,7 +26,9 @@ describe("actions/survey", () => {
     it("dispatches error if no file supplied", () => {
       loadSurvey()(dispatch);
 
-      expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_FAILURE));
+      expect(dispatch).toHaveBeenCalledWith(
+        actionMatching(SURVEY_LOAD_FAILURE)
+      );
       expect(dispatch).not.toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
     });
 
@@ -34,7 +37,9 @@ describe("actions/survey", () => {
 
       return loadSurvey(createTextFile("LOL"))(dispatch).then(() => {
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
-        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_FAILURE));
+        expect(dispatch).toHaveBeenCalledWith(
+          actionMatching(SURVEY_LOAD_FAILURE)
+        );
       });
     });
 
@@ -45,7 +50,9 @@ describe("actions/survey", () => {
 
       return loadSurvey(file)(dispatch).then(() => {
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
-        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_SUCCESS));
+        expect(dispatch).toHaveBeenCalledWith(
+          actionMatching(SURVEY_LOAD_SUCCESS)
+        );
       });
     });
 
@@ -56,8 +63,12 @@ describe("actions/survey", () => {
 
       return loadSurvey(file)(dispatch).then(() => {
         expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOADING));
-        expect(dispatch).toHaveBeenCalledWith(actionMatching(SURVEY_LOAD_SUCCESS));
-        expect(dispatch).toHaveBeenCalledWith(actionMatching(CALL_HISTORY_METHOD));
+        expect(dispatch).toHaveBeenCalledWith(
+          actionMatching(SURVEY_LOAD_SUCCESS)
+        );
+        expect(dispatch).toHaveBeenCalledWith(
+          actionMatching(CALL_HISTORY_METHOD)
+        );
       });
     });
   });
@@ -88,6 +99,14 @@ describe("actions/survey", () => {
   describe("clearSurvey", () => {
     it("dispatches the correct action", () => {
       expect(clearSurvey()).toEqual(actionMatching(SURVEY_CLEAR));
+    });
+  });
+
+  describe("updateMeta", () => {
+    it("should pass 'key' and 'value' payload", () => {
+      const payload = { key: "foo", value: "bar" };
+      const result = updateMeta(payload.key, payload.value);
+      expect(result).toEqual(actionMatching(META_UPDATE, payload));
     });
   });
 });
