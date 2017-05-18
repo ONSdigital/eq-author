@@ -3,6 +3,7 @@ node_js:
   - "7"
 
 install:
+  - brew cask install java
   - npm install -g chimp
 
 script:
