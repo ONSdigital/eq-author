@@ -1,11 +1,15 @@
 language: node_js
 node_js:
-  - "7"
+  - "6"
+
+install:
+  - npm install chimp
 
 script:
   - yarn lint
   - yarn test -- --coverage
   - yarn build
+  - ./node_modules/.bin/chimp
 
 env:
   - secure: "x5tYroOoRdHt8xDpfIoH7Xy0YYg+gApnG2Cii6+mIUjeVJQJyl9gKepKxr+K22IMi+b9WxGJxHvjay9sYxaDFgLyVu/6XCpx74dmU0rnE6nKlYxza6cI5KDYWYS2PzMziKuRzCOb8Hp50gtLzq0LKxtLNB3ajn54r6vx4/jgSQ1GzuMoc419pOnbc56EPWWsk8JguLNRCEx/wIaed33X9Nig5j/ADCnXrIJ65wv1ErCgLSQGZqG+W4SlCbDfW9uzF9whzYMMB3HN/hzlSomwRMVVW2PmjP6n+BGN/RjVAdz0MI3lTsraYLn7C8h5p9xOGja98fTXq7nSFQY9nPjseQi6Q1e+MKpJmVaUkEVtosP8Lpkk/Fduqc5noXvITmxhPodrYZjBPQPFXXKN3OqLHebmZVs71DVfSQcYjcYi/pIUnZlW2h2VSYrlSEHri53evfKvwzTuH6+9xWJkJZYET62agDy2oZb4q7hAZoEXHWV7DxmvD8bHET0Be1cs3Og5RNmwVLjP7vR7KmOtN9Uc6ZA6LbKuJDsscmrA9kmyQ/tWui2qGfXoyrvGF2H0qO2sg9e0vf1fHc6ynKZ/30pRl43Kfm0sXGQmuiNIuQeB92nvUjf7+XYJ036jW2eVz3VvsBbMTTAzectX2tvMruMj74eBQEVuO6I2Kl9mAYA5cd0="
