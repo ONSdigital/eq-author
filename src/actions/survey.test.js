@@ -1,3 +1,5 @@
+import actionMatching from "tests/actionMatching";
+import { createJsonFile, createTextFile } from "tests/createFile";
 import { CALL_HISTORY_METHOD } from "react-router-redux";
 import {
   SURVEY_LOAD_FAILURE,
@@ -10,24 +12,6 @@ import {
   loadSurveySuccess,
   clearSurvey
 } from "actions/survey";
-
-function actionMatching(type, payload) {
-  var action = { type };
-
-  if(arguments.length === 2) {
-    action.payload = payload;
-  }
-
-  return expect.objectContaining(action);
-}
-
-function createTextFile(contents = "", name = "foo.json") {
-  return new File(contents.split(""), name);
-}
-
-function createJsonFile(obj = {}, name) {
-  return createTextFile(JSON.stringify(obj), name);
-}
 
 describe("actions/survey", () => {
 

@@ -1,12 +1,5 @@
 import readFileAsJson from "./readFileAsJson";
-
-function createTextFile(contents = "", name = "foo.json") {
-  return new File(contents.split(""), name);
-}
-
-function createJsonFile(obj = {}, name) {
-  return createTextFile(JSON.stringify(obj), name);
-}
+import { createTextFile, createJsonFile } from "tests/createFile";
 
 it("returns a promise", () => {
   expect(readFileAsJson(createJsonFile())).toBeInstanceOf(Promise);
