@@ -1,4 +1,5 @@
 import readFileAsJSON from "utils/readFileAsJson";
+
 import { normalize } from "normalizr";
 import { surveySchema } from "schema";
 import { push } from "react-router-redux";
@@ -18,12 +19,14 @@ export function loadSurveySuccess(surveyData) {
   return {
     type: SURVEY_LOAD_SUCCESS,
     payload: {
-      meta : entities.survey[result],
-      groups,
-      blocks,
-      sections,
-      questions,
-      answers
+      meta: entities.survey[result],
+      items: {
+        groups,
+        blocks,
+        sections,
+        questions,
+        answers
+      }
     }
   };
 }

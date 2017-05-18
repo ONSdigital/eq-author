@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     meta: state.survey.meta,
     guidance: {
-      informationToProvide: state.survey.blocks.introduction
+      informationToProvide: state.survey.items.blocks.introduction
         .information_to_provide
     }
   };

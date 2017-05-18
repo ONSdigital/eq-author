@@ -38,13 +38,12 @@ const Options = styled.form`
 
 const DesignSurveyPage = ({
   selected,
-  selectedId,
   selectedSection,
   onChange,
   deleteSurvey,
   deleteItem,
   type,
-  survey
+  surveyItems
 }) => {
   return (
     <SidebarPageLayout>
@@ -62,8 +61,7 @@ const DesignSurveyPage = ({
             <Preview>
               <HTMLPreview
                 selected={selected}
-                selectedId={selectedId}
-                survey={survey}
+                survey={surveyItems}
                 selectedSection={selectedSection}
               />
             </Preview>
@@ -73,7 +71,6 @@ const DesignSurveyPage = ({
                 selected={selected}
                 type={type}
                 deleteItem={deleteItem}
-                id={selectedId}
               />
             </Options>
 
