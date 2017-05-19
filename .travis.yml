@@ -9,6 +9,7 @@ install:
 
 install:
   - npm install chimp
+  - yarn install
 
 script:
   - yarn lint
