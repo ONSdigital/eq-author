@@ -3,8 +3,8 @@ node_js:
   - "6"
 
 install:
+  - yarn add chimp
   - yarn install
-  - yarn install chimp
 
 script:
   - yarn lint
