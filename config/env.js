@@ -3,14 +3,14 @@
 
 var REACT_APP = /^REACT_APP_/i;
 
-function getClientEnvironment(publicUrl) {
+function getClientEnvironment(publicUrl, config) {
   var raw = Object
     .keys(process.env)
     .filter(key => REACT_APP.test(key))
     .reduce((env, key) => {
       env[key] = process.env[key];
       return env;
-    }, {
+    }, Object.assign({
       // Useful for determining whether we’re running in production mode.
       // Most importantly, it switches React into the correct mode.
       'NODE_ENV': process.env.NODE_ENV || 'development',
@@ -19,7 +19,7 @@ function getClientEnvironment(publicUrl) {
       // This should only be used as an escape hatch. Normally you would put
       // images into the `src` and `import` them in code to get their paths.
       'PUBLIC_URL': publicUrl
-    });
+    }, config));
   // Stringify all values so we can feed into Webpack DefinePlugin
   var stringified = {
     'process.env': Object
