@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { clearSurvey } from "actions/survey";
-import { change, removeItem } from "actions/surveyItems";
+import { updateItem, removeItem } from "actions/surveyItems";
 import { push } from "react-router-redux";
 import DesignSurveyPage from "pages/DesignSurvey";
 
@@ -34,10 +34,10 @@ const mapDispatchToProps = (dispatch, { history }) => {
   return {
     onChange: e => {
       var value = e.target.value;
-      if(e.target.type === "checkbox"){
-        value = e.target.checked
+      if (e.target.type === "checkbox") {
+        value = e.target.checked;
       }
-      dispatch(change(e.target.name, value));
+      dispatch(updateItem(e.target.name, value));
     },
     deleteItem: (type, id) => {
       dispatch(removeItem(type, id));

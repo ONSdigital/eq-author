@@ -1,45 +1,50 @@
-import React from 'react';
-import styled from 'styled-components';
-import {TabbedPageLayout} from 'layouts';
-import {Grid, Column} from 'components/Grid';
-import {Field, Input, Label, Select} from 'components/Forms';
-import RichTextArea from 'components/RichTextArea';
-import LinkButton from 'components/LinkButton';
-import ButtonGroup from 'components/ButtonGroup';
+/* eslint-disable camelcase */
+import React from "react";
+import styled from "styled-components";
+import { TabbedPageLayout } from "layouts";
+import { Grid, Column } from "components/Grid";
+import { Field, Input, Label, Select } from "components/Forms";
+import RichTextArea from "components/RichTextArea";
+import LinkButton from "components/LinkButton";
+import ButtonGroup from "components/ButtonGroup";
 
-import {Tabs, TabPanel, TabList, TabTitle} from 'components/Tabs';
+import { Tabs, TabPanel, TabList, TabTitle } from "components/Tabs";
 
 const ActionButtonGroup = styled(ButtonGroup)`
   padding: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
-const SurveyCreatePage = ({survey}) => {
-  const {title, description, theme, legal_basis, informationToProvide} = survey;
+const SurveyCreatePage = ({ meta, onChange }) => {
+  const { title, description, theme, legal_basis, informationToProvide } = meta;
   return (
-    <TabbedPageLayout title={'Create a survey'}>
-      <div>
+    <TabbedPageLayout title={"Create a survey"}>
+      <form onChange={onChange}>
         <Tabs>
           <TabList>
-            <TabTitle>Survey Settings</TabTitle>
-            <TabTitle>Guidance</TabTitle>
+            <TabTitle>Survey Meta</TabTitle>
+            <TabTitle>Landing Page</TabTitle>
           </TabList>
 
           <TabPanel>
             <Field id="title">
               <Label>Title</Label>
-              <Input name="id" value={title} />
+              <Input name="title" value={title} />
             </Field>
             <Field id="description">
               <Label>Description</Label>
-              <Input name="number" value={description} />
+              <Input name="description" value={description} />
             </Field>
             <Grid>
               <Column>
                 <Field id="theme">
                   <Label>Theme</Label>
                   <Select
-                    name="number"
-                    options={['Default', 'census', 'starwars']}
+                    name="theme"
+                    options={["default", "census", "starwars"]}
                     value={theme}
                   />
                 </Field>
@@ -48,8 +53,8 @@ const SurveyCreatePage = ({survey}) => {
                 <Field>
                   <Label>Legal Basis</Label>
                   <Select
-                    name="number"
-                    options={['StatisticsOfTradeAct']}
+                    name="legal_basis"
+                    options={["StatisticsOfTradeAct"]}
                     value={legal_basis}
                   />
                 </Field>
@@ -66,7 +71,7 @@ const SurveyCreatePage = ({survey}) => {
             </Field>
           </TabPanel>
         </Tabs>
-      </div>
+      </form>
       <ActionButtonGroup horizontal>
         <LinkButton to="/design" primary>Create survey</LinkButton>
         <LinkButton to="/" secondary>Cancel</LinkButton>

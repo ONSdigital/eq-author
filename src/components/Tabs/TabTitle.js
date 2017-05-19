@@ -1,6 +1,6 @@
-import React from 'react';
-import styled, {css} from 'styled-components';
-import {colorBorders} from 'constants/theme';
+import React from "react";
+import styled, { css } from "styled-components";
+import { colorBorders } from "constants/theme";
 
 const SelectedTabTitle = css`
   background: white;
@@ -44,7 +44,7 @@ const TabLabel = styled.div`
   user-select: none;
 `;
 
-export default ({children, onClick, selected = true, ...otherProps}) => (
+export default ({ children, onClick, selected = true, ...otherProps }) => (
   <TabTitle onClick={onClick} aria-selected={selected} {...otherProps}>
     <TabLabel>{children}</TabLabel>
   </TabTitle>

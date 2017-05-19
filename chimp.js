@@ -1,0 +1,2 @@
+[chimp]
+paths = features/StepDefinitions

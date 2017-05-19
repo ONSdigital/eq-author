@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const SectionTitle = styled.div`
   font-size: 1.55556em;
@@ -47,12 +47,12 @@ const SectionDescription = styled.div`
   margin: 0 0 1rem;
 `;
 
-export default ({section, children}) => {
+export default ({ section, children }) => {
   return (
     <div>
       <SectionTitle><SectionNumber>1</SectionNumber>{section.title}</SectionTitle>
       <SectionDescription>{section.description}</SectionDescription>
       {children}
     </div>
-  )
-}
+  );
+};

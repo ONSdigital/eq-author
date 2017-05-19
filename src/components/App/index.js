@@ -1,7 +1,7 @@
-import React from 'react'
-import {injectGlobal, ThemeProvider} from 'styled-components'
-import theme from 'constants/theme'
-import 'normalize.css'
+import React from "react";
+import { injectGlobal, ThemeProvider } from "styled-components";
+import theme from "constants/theme";
+import "normalize.css";
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
@@ -44,10 +44,10 @@ injectGlobal`
   input[type="text"] {
     appearance: none;
   }
-`
+`;
 
-export default ({children}) => (
+export default ({ children }) => (
   <ThemeProvider theme={theme}>
     {children}
   </ThemeProvider>
-)
+);

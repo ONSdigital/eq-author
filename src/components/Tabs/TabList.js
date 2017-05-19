@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, {css} from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 
 const CompactTabList = css`
   background: #f9f9f9;
@@ -16,20 +16,21 @@ const TabListStyle = styled.ul`
   ${props => props.compact && CompactTabList}
 `;
 
-const TabList = ({children, selectedTab, handleTabSelected, ...otherProps}) => (
+const TabList = ({
+  children,
+  selectedTab,
+  handleTabSelected,
+  ...otherProps
+}) => (
   <TabListStyle {...otherProps}>
     {children.map((child, index) =>
       React.cloneElement(child, {
         selected: selectedTab === index,
-        onClick: handleTabSelected.bind(this, index),
-        key: index,
+        onClick: handleTabSelected.bind(null, index),
+        key: index
       })
     )}
   </TabListStyle>
 );
-
-TabList.defaultProps = {
-  displayName: 'TabList',
-};
 
 export default TabList;

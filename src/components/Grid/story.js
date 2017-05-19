@@ -1,16 +1,16 @@
-import React from 'react'
-import { storiesOf } from '@kadira/storybook'
-import {Grid, Column} from './index'
-import styled from 'styled-components'
+import React from "react";
+import { storiesOf } from "@kadira/storybook";
+import { Grid, Column } from "./index";
+import styled from "styled-components";
 
 const GridHelper = styled.div`
   background: ${props => props.theme.colorDarkBlue};
   color: white;
   padding: 1em;
-`
+`;
 
-storiesOf('Grid', module)
-  .add('Equal Columns', () => (
+storiesOf("Grid", module)
+  .add("Equal Columns", () => (
     <Grid>
       <Column>
         <GridHelper>
@@ -24,7 +24,7 @@ storiesOf('Grid', module)
       </Column>
     </Grid>
   ))
-  .add('Unequal Columns', () => (
+  .add("Unequal Columns", () => (
     <Grid>
       <Column cols={4}>
         <GridHelper>
@@ -37,4 +37,4 @@ storiesOf('Grid', module)
         </GridHelper>
       </Column>
     </Grid>
-  ))
+  ));

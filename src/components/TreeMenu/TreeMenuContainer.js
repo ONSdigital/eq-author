@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import sections from './reducer';
-import {TreeMenu} from 'components/TreeMenu';
+import React, { Component } from "react";
+import sections from "./reducer";
+import { TreeMenu } from "components/TreeMenu";
 
 export default class TreeMenuContainer extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class TreeMenuContainer extends Component {
   actions = {
     addSection: name => {
       this.dispatch({
-        type: 'ADD_SECTION',
+        type: "ADD_SECTION",
         payload: {
           name: name,
         },
@@ -25,7 +25,7 @@ export default class TreeMenuContainer extends Component {
     },
     addQuestion: (name, sectionID) => {
       this.dispatch({
-        type: 'ADD_QUESTION',
+        type: "ADD_QUESTION",
         payload: {
           name: name,
           sectionID: sectionID,
@@ -34,7 +34,7 @@ export default class TreeMenuContainer extends Component {
     },
     addAnswer: (name, questionID, sectionID) => {
       this.dispatch({
-        type: 'ADD_ANSWER',
+        type: "ADD_ANSWER",
         payload: {
           name: name,
           questionID: questionID,

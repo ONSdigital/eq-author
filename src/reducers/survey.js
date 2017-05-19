@@ -1,6 +1,7 @@
-import { LOAD_SURVEY, CLEAR_SURVEY } from "actions/survey";
+/* eslint-disable camelcase */
+import { SURVEY_LOAD_SUCCESS, SURVEY_CLEAR, META_UPDATE } from "actions/survey";
 import {
-  CHANGE,
+  UPDATE_ITEM,
   ADD_ITEM,
   ADD_ITEM_COMPLETE,
   REMOVE_ITEM
@@ -8,17 +9,18 @@ import {
 
 import { merge, omit, includes, find } from "lodash";
 
-const defaultState = {
-  data_version: "0.0.1",
-  description: "",
-  groups: {},
-  legal_basis: "StatisticsOfTradeAct",
-  mime_type: "application/json/ons/eq",
-  questionnaire_id: "0001",
-  schema_version: "0.0.1",
-  id: "000",
-  theme: "default",
-  title: "",
+export const defaultState = {
+  meta: {
+    data_version: "0.0.1",
+    description: "",
+    legal_basis: "StatisticsOfTradeAct",
+    mime_type: "application/json/ons/eq",
+    questionnaire_id: "0001",
+    schema_version: "0.0.1",
+    id: "000",
+    theme: "default",
+    title: ""
+  },
   blocks: {
     introduction: {
       type: "Introduction",
@@ -28,48 +30,47 @@ const defaultState = {
   },
   sections: {},
   questions: {},
-  answers: {}
-};
-
-const surveyItemTypes = {
-  sections: {
-    description: "",
-    questions: [],
-    title: name
-  },
-  questions: {
-    description: "",
-    answers: [],
-    guidance: [],
-    type: "General",
-    title: name
-  },
-  answers: {
-    description: "",
-    label: name,
-    mandatory: false,
-    q_code: "",
-    type: ""
-  }
+  answers: {},
+  groups: {}
 };
 
 const getItemByType = (type, name) => {
-  return surveyItemTypes[type];
+  return {
+    sections: {
+      description: "",
+      questions: [],
+      title: name
+    },
+    questions: {
+      description: "",
+      answers: [],
+      guidance: [],
+      type: "General",
+      title: name
+    },
+    answers: {
+      description: "",
+      label: name,
+      mandatory: false,
+      q_code: "",
+      type: ""
+    }
+  }[type];
 };
 
 const survey = (state = defaultState, action) => {
   const { payload } = action;
   switch (action.type) {
-    case LOAD_SURVEY:
+    case SURVEY_LOAD_SUCCESS:
       return {
         ...state,
         ...payload
       };
 
-    case CLEAR_SURVEY:
+    case SURVEY_CLEAR:
       return defaultState;
 
-    case CHANGE:
+    case UPDATE_ITEM:
       return merge({}, state, {
         [payload.type]: {
           [payload.id]: {
@@ -78,7 +79,7 @@ const survey = (state = defaultState, action) => {
         }
       });
 
-    case ADD_ITEM:
+    case ADD_ITEM: {
       const emptyItem = {
         [payload.type]: {
           [payload.id]: {}
@@ -104,8 +105,9 @@ const survey = (state = defaultState, action) => {
       } else {
         return merge({}, state, emptyItem);
       }
+    }
 
-    case ADD_ITEM_COMPLETE:
+    case ADD_ITEM_COMPLETE: {
       const newItem = {
         [payload.newId]: {
           ...getItemByType(payload.type, payload.name),
@@ -126,6 +128,7 @@ const survey = (state = defaultState, action) => {
           ...newItem
         }
       });
+    }
 
     case REMOVE_ITEM:
       return {
@@ -134,6 +137,13 @@ const survey = (state = defaultState, action) => {
           ...omit(state[payload.type], payload.id)
         }
       };
+
+    case META_UPDATE:
+      return merge({}, state, {
+        meta: {
+          [payload.key]: payload.value
+        }
+      });
 
     default:
       return state;
