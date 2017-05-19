@@ -4,4 +4,4 @@ Feature: Title check
 
 Scenario: Get the title of webpage
   Given I go to the website "https://onsdigital.github.io/eq-author/#/"
-  Then I gfgnffhn the title of the page "eQ Author Prototype"
+  Then I expect the title of the page "eQ Author Prototype"
