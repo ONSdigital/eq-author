@@ -1,2 +1,2 @@
-[chimp]
-paths = features/StepDefinitions
+// cucumber
+paths = './features/StepDefinitions'
