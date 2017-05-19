@@ -8,7 +8,7 @@ install:
   - npm install chimp
 
 install:
-  - npm install chimp
+  - yarn add chimp
   - yarn install
 
 script:
