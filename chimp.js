@@ -1,0 +1,2 @@
+// cucumber
+paths = './features/StepDefinitions'
