@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { META_UPDATE, LOAD_SURVEY } from "actions/survey";
+import { META_UPDATE, SURVEY_LOAD } from "actions/survey";
 
 export const defaultState = {
   data_version: "0.0.1",
@@ -23,7 +23,7 @@ const meta = (state = defaultState, action) => {
         [payload.key]: payload.value
       };
 
-    case LOAD_SURVEY:
+    case SURVEY_LOAD:
       return {
         ...state,
         ...payload.meta

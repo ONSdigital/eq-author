@@ -2,13 +2,13 @@
 
 import { merge, omit, includes, find } from "lodash";
 
-import { LOAD_SURVEY } from "actions/survey";
+import { SURVEY_LOAD } from "actions/survey";
 
 import {
-  UPDATE_ITEM,
-  ADD_ITEM,
-  ADD_ITEM_COMPLETE,
-  REMOVE_ITEM
+  ITEM_UPDATE,
+  ITEM_ADD,
+  ITEM_ADD_COMPLETE,
+  ITEM_REMOVE
 } from "actions/surveyItems";
 
 export const defaultState = {
@@ -53,7 +53,7 @@ const items = (state = defaultState, action) => {
   const { payload } = action;
 
   switch (action.type) {
-    case UPDATE_ITEM:
+    case ITEM_UPDATE:
       return merge({}, state, {
         [payload.type]: {
           [payload.id]: {
@@ -62,7 +62,7 @@ const items = (state = defaultState, action) => {
         }
       });
 
-    case ADD_ITEM: {
+    case ITEM_ADD: {
       const emptyItem = {
         [payload.type]: {
           [payload.id]: {}
@@ -90,7 +90,7 @@ const items = (state = defaultState, action) => {
       }
     }
 
-    case ADD_ITEM_COMPLETE: {
+    case ITEM_ADD_COMPLETE: {
       const newItem = {
         [payload.newId]: {
           ...getItemByType(payload.type, payload.name),
@@ -113,7 +113,7 @@ const items = (state = defaultState, action) => {
       });
     }
 
-    case REMOVE_ITEM:
+    case ITEM_REMOVE:
       return {
         ...state,
         [payload.type]: {
@@ -121,7 +121,7 @@ const items = (state = defaultState, action) => {
         }
       };
 
-    case LOAD_SURVEY:
+    case SURVEY_LOAD:
       return {
         ...state,
         ...payload.items

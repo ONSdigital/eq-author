@@ -1,5 +1,5 @@
 import reducer, { defaultState } from "reducers/survey/meta";
-import { LOAD_SURVEY, updateMeta } from "actions/survey";
+import { SURVEY_LOAD, updateMeta } from "actions/survey";
 
 describe("reducers/survey/meta", () => {
   it("should return the initial state", () => {
@@ -30,7 +30,7 @@ describe("reducers/survey/meta", () => {
       reducer(
         {},
         {
-          type: LOAD_SURVEY,
+          type: SURVEY_LOAD,
           payload: {
             meta
           }
