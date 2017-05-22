@@ -1,0 +1,6 @@
+exports[`Should match snapshot Should not have changed inadvertently 1`] = `
+<div
+  className="Title__Title-lbDhID cvrjaf">
+  eQ Author
+</div>
+`;
