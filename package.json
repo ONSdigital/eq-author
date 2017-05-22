@@ -9,7 +9,7 @@
     "test": "node scripts/test.js --env=jsdom",
     "smoketest": "chimp --browser=phantomjs",
     "lint": "eslint src",
-    "serve": "npm install -g serve",
+    "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build&&gh-pages -d build",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
