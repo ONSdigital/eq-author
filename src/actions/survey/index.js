@@ -10,7 +10,6 @@ export const SURVEY_LOAD_SUCCESS = "SURVEY_LOAD_SUCCESS";
 export const SURVEY_LOAD_FAILURE = "SURVEY_LOAD_FAILURE";
 export const SURVEY_SAVE = "SURVEY_SAVE";
 export const SURVEY_CLEAR = "SURVEY_CLEAR";
-export const META_UPDATE = "META_UPDATE";
 
 export function loadSurveySuccess(surveyData) {
   const { entities, result } = normalize(surveyData, surveySchema);
@@ -63,15 +62,5 @@ export function loadSurvey(file) {
       .then(data => dispatch(loadSurveySuccess(data)))
       .then(() => dispatch(push("/create")))
       .catch(error => dispatch(loadSurveyFailure(error)));
-  };
-}
-
-export function updateMeta(key, value) {
-  return {
-    type: META_UPDATE,
-    payload: {
-      key,
-      value
-    }
   };
 }

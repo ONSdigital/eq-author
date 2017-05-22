@@ -9,7 +9,7 @@ import {
   ITEM_ADD,
   ITEM_ADD_COMPLETE,
   ITEM_REMOVE
-} from "actions/surveyItems";
+} from "actions/survey/items";
 
 export const defaultState = {
   blocks: {

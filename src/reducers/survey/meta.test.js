@@ -1,5 +1,6 @@
 import reducer, { defaultState } from "reducers/survey/meta";
-import { SURVEY_LOAD, updateMeta } from "actions/survey";
+import { SURVEY_LOAD } from "actions/survey";
+import { updateMeta } from "actions/survey/meta";
 
 describe("reducers/survey/meta", () => {
   it("should return the initial state", () => {

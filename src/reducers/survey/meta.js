@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 
-import { META_UPDATE, SURVEY_LOAD } from "actions/survey";
+import { SURVEY_LOAD } from "actions/survey";
+import { META_UPDATE } from "actions/survey/meta";
 
 export const defaultState = {
   data_version: "0.0.1",

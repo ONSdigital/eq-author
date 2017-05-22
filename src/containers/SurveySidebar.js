@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import * as actions from "actions/surveyItems";
+import * as actions from "actions/survey/items";
 import { push } from "react-router-redux";
 import SurveySidebar from "components/SurveySidebar";
 

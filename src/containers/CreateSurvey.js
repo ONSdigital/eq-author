@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { updateMeta } from "actions/survey";
+import { updateMeta } from "actions/survey/meta";
 
 import CreateSurveyPage from "pages/CreateSurvey";
 

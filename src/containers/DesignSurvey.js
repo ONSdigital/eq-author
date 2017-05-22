@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { clearSurvey } from "actions/survey";
-import { updateItem, removeItem } from "actions/surveyItems";
+import { updateItem, removeItem } from "actions/survey/items";
 import { push } from "react-router-redux";
 import DesignSurveyPage from "pages/DesignSurvey";
 
