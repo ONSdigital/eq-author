@@ -10,6 +10,7 @@ script:
   - yarn lint
   - yarn test -- --coverage
   - yarn build
+  - npm start
   - yarn smoketest
 
 env:
