@@ -1,8 +1,10 @@
 import React from "react";
 import { Route } from "react-router";
+import { AppContainer } from "react-hot-loader";
+import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
-import routes from "routes";
 import { Switch } from "react-router-dom";
+import routes from "routes";
 
 const RouteWithSubRoutes = route => (
   <Route
@@ -12,10 +14,14 @@ const RouteWithSubRoutes = route => (
   />
 );
 
-export default ({ history }) => (
-  <ConnectedRouter history={history}>
-    <Switch>
-      {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
-    </Switch>
-  </ConnectedRouter>
+export default ({ store, history }) => (
+  <AppContainer>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Switch>
+          {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+        </Switch>
+      </ConnectedRouter>
+    </Provider>
+  </AppContainer>
 );

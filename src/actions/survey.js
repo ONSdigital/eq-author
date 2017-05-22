@@ -19,7 +19,7 @@ export function loadSurveySuccess(surveyData) {
   return {
     type: SURVEY_LOAD_SUCCESS,
     payload: {
-      ...entities.survey[result],
+      meta : entities.survey[result],
       groups,
       blocks,
       sections,
