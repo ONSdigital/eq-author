@@ -1,20 +1,22 @@
 import React from "react";
 import Title from "components/Title";
-import renderer from "react-test-renderer";
-import { stubConsoleError } from "tests/utils/stubConsoleError";
-import { assert } from "sinon";
+import toJson from "enzyme-to-json";
+import { shallow } from "enzyme";
 
-describe("Prop types work as expected", () => {
-  stubConsoleError();
-  it("Should error when children is empty", () => {
-    renderer.create(<Title />);
-    assert.called(console.error); // eslint-disable-line no-console
+describe("prop types", () => {
+  describe("children", () => {
+    it("should error when children empty", () => {
+      const stubConsoleError = jest.fn();
+      console.error = stubConsoleError; // eslint-disable-line no-console
+      shallow(<Title />);
+      expect(stubConsoleError).toBeCalled();
+    });
   });
 });
 
-describe("Should match snapshot", () => {
-  it("Should not have changed inadvertently", () => {
-    const tree = renderer.create(<Title>eQ Author</Title>).toJSON();
-    expect(tree).toMatchSnapshot();
+describe("snapshot", () => {
+  it("should not have changed inadvertently", () => {
+    const tree = shallow(<Title>eQ Author</Title>);
+    expect(toJson(tree)).toMatchSnapshot();
   });
 });

@@ -1,6 +1,5 @@
-exports[`Should match snapshot Should not have changed inadvertently 1`] = `
-<div
-  className="Title__Title-lbDhID cvrjaf">
+exports[`snapshot should not have changed inadvertently 1`] = `
+<Title__Title>
   eQ Author
-</div>
+</Title__Title>
 `;
