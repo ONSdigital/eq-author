@@ -10,7 +10,7 @@ script:
   - yarn lint
   - yarn test -- --coverage
   - yarn build
-  - yarn start
+  - yarn serve
   - yarn smoketest
 
 env:
