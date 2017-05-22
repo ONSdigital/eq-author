@@ -32,31 +32,23 @@ const SurveyCreatePage = ({ meta, onChange }) => {
           <TabPanel>
             <Field id="title">
               <Label>Title</Label>
-              <Input name="title" value={title} />
+              <Input value={title} />
             </Field>
             <Field id="description">
               <Label>Description</Label>
-              <Input name="description" value={description} />
+              <Input value={description} />
             </Field>
             <Grid>
               <Column>
                 <Field id="theme">
                   <Label>Theme</Label>
-                  <Select
-                    name="theme"
-                    options={["default", "census", "starwars"]}
-                    value={theme}
-                  />
+                  <Select options={["default", "census", "starwars"]} value={theme} />
                 </Field>
               </Column>
               <Column>
-                <Field>
+                <Field id="legal_basis">
                   <Label>Legal Basis</Label>
-                  <Select
-                    name="legal_basis"
-                    options={["StatisticsOfTradeAct"]}
-                    value={legal_basis}
-                  />
+                  <Select options={["StatisticsOfTradeAct"]} value={legal_basis} />
                 </Field>
               </Column>
             </Grid>
@@ -64,10 +56,7 @@ const SurveyCreatePage = ({ meta, onChange }) => {
           <TabPanel>
             <Field id="info-to-provide">
               <Label>Information to provide</Label>
-              <RichTextArea
-                name="info-to-provide"
-                value={informationToProvide}
-              />
+              <RichTextArea value={informationToProvide} />
             </Field>
           </TabPanel>
         </Tabs>

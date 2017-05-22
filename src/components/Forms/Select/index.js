@@ -12,7 +12,7 @@ const Select = styled.select`
 
 Select.propTypes = {
   id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string),
   onChange : PropTypes.func
 };
