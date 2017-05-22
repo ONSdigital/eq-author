@@ -1,0 +1,5 @@
+exports[`snapshot should not have changed inadvertently 1`] = `
+<Title__Title>
+  eQ Author
+</Title__Title>
+`;
