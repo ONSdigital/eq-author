@@ -3,5 +3,5 @@ Feature: Title check
   and check its title
 
 Scenario: Get the title of webpage
-  Given I go to the website "https://onsdigital.github.io/eq-author/#/"
+  Given I go to the website "http://localhost:3000/"
   Then I expect the title of the page "eQ Author Prototype"
