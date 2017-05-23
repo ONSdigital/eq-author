@@ -25,7 +25,6 @@ if (process.env.NODE_ENV === "production") {
   basename = "/eq-author";
 }
 
-
 const history = createHistory({
   basename: basename
 });
@@ -81,5 +80,5 @@ if (module.hot) {
   });
 }
 
-// throw new Error("oops");
-console.error("MWHAHAHA"); // eslint-disable-line no-console
+throw new Error("oops");
+// console.error("MWHAHAHA"); // eslint-disable-line no-console
