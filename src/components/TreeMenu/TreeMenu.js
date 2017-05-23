@@ -38,7 +38,7 @@ const Sections = ({ sections, questions, answers, ...otherProps }) => {
 };
 
 const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
-  if(isEmpty(questions)) {
+  if (isEmpty(questions)) {
     return <div />;
   }
 
@@ -63,11 +63,10 @@ const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
       ))}
     </TreeMenuNodes>
   );
-
 };
 
 const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
-  if(isEmpty(answers)) {
+  if (isEmpty(answers)) {
     return null;
   }
 

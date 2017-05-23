@@ -47,10 +47,10 @@ const getOptions = type => {
   }[type];
 };
 
-export default ({ selected, type, deleteItem, ...otherProps }) => {
+export default ({ selected, deleteItem, ...otherProps }) => {
+  const { type, id, item } = selected;
   const Options = getOptions(type);
-  const handleDelete = () => deleteItem(type, selected.id);
-
+  const handleDelete = () => deleteItem(type, id);
   if (Options === undefined) {
     return null;
   }
@@ -58,12 +58,8 @@ export default ({ selected, type, deleteItem, ...otherProps }) => {
   return (
     <OptionsPanel {...otherProps}>
       <Header>
-        <Title>{selected.displayName || selected.title}</Title>
-        <DeleteButton
-          onClick={handleDelete}
-          small
-          tertiary
-        >
+        <Title>{item.displayName || item.title}</Title>
+        <DeleteButton onClick={handleDelete} small tertiary>
           Delete
         </DeleteButton>
       </Header>
@@ -78,7 +74,13 @@ export default ({ selected, type, deleteItem, ...otherProps }) => {
           </TabList>
           {Options.map(option => (
             <TabPanel compact key={option.label}>
-              <option.component options={selected} />
+              <option.component
+                options={{
+                  ...item,
+                  id,
+                  type
+                }}
+              />
             </TabPanel>
           ))}
         </Tabs>

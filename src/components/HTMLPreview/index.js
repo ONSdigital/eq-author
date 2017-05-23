@@ -12,27 +12,26 @@ const HTMLPreview = styled.div`
   z-index: 0;
 `;
 
-export default ({ survey, selectedSection }) => {
+export default ({ surveyItems, selectedSection }) => {
   if (!selectedSection) {
     return null;
   }
-
   return (
     <HTMLPreview>
       <Section key={selectedSection.id} section={selectedSection}>
         {selectedSection.questions &&
           selectedSection.questions.map(questionId => {
-            const question = survey.questions[questionId];
+            const question = surveyItems.questions[questionId];
             return (
               question &&
               question.title &&
               <Question key={questionId} question={question}>
                 {question.answers &&
                   question.answers.map(answerId => {
-                    const answer = survey.answers[answerId];
+                    const answer = surveyItems.answers[answerId];
                     return (
                       answer &&
-                      answer.title &&
+                      answer.label &&
                       <Answer key={answerId} answer={answer} />
                     );
                   })}

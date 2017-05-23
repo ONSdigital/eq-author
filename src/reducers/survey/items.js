@@ -2,7 +2,7 @@
 
 import { merge, omit, includes, find } from "lodash";
 
-import { SURVEY_LOAD } from "actions/survey";
+import { SURVEY_LOAD_SUCCESS } from "actions/survey";
 
 import {
   ITEM_UPDATE,
@@ -121,7 +121,7 @@ export const items = (state = defaultState, action) => {
         }
       };
 
-    case SURVEY_LOAD:
+    case SURVEY_LOAD_SUCCESS:
       return {
         ...state,
         ...payload.items

@@ -7,7 +7,10 @@ import { mountWithRouter } from "tests/utils/mountWithRouter";
 
 describe("CreateSurveyPage", () => {
   it("should render", () => {
-    const Page = mountWithRouter(<CreateSurveyPage meta={defaultState} />);
+    const Page = mountWithRouter(
+      <CreateSurveyPage meta={defaultState} onChange={jest.fn()} />
+    );
+
     expect(Page.length).not.toBe(0);
   });
 

@@ -5,36 +5,27 @@ import { ConnectedRouter } from "react-router-redux";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router";
 
-import SurveyPage from "containers/Survey";
-import CreateSurvey from "containers/CreateSurvey";
-import DesignSurvey from "containers/DesignSurvey";
-import NotFound from "pages/NotFound";
+import routes from "routes";
 
-const componentForRoute = Component => props => <Component {...props} />;
+const renderRoute = route => props => (
+  <route.layout title={route.title}>
+    <route.component {...props} routes={route.routes} />
+  </route.layout>
+);
 
 export default ({ store, history }) => (
   <AppContainer>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Switch>
-          <Route
-            path="/"
-            render={componentForRoute(SurveyPage)}
-            exact
-          />
-          <Route
-            path="/create"
-            render={componentForRoute(CreateSurvey)}
-          />
-          <Route
-            path="/design/:sectionsId?/:questionsId?/:answersId?"
-            render={componentForRoute(DesignSurvey)}
-          />
-          <Route
-            path="*"
-            render={componentForRoute(NotFound)}
-            exact
-          />
+          {routes.map((route, i) => (
+            <Route
+              exact
+              key={route}
+              path={route.path}
+              render={renderRoute(route)}
+            />
+          ))}
         </Switch>
       </ConnectedRouter>
     </Provider>

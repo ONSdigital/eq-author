@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
+import CustomPropTypes from "proptypes";
 import ActionBar from "components/ActionBar";
 import Button from "components/Button";
 import OptionsPanel from "components/OptionsPanel";
 import HTMLPreview from "components/HTMLPreview";
-import { SidebarPageLayout } from "layouts";
 
 const EditLayout = styled.div`
   display: flex;
@@ -40,46 +42,50 @@ const DesignSurveyPage = ({
   selected,
   selectedSection,
   onChange,
-  deleteSurvey,
+  clearSurvey,
   deleteItem,
-  type,
   surveyItems
 }) => {
   return (
-    <SidebarPageLayout>
+    <EditLayout>
 
-      <EditLayout>
+      <ActionBar>
+        <ActionButton tertiary small onClick={clearSurvey}>
+          Delete All
+        </ActionButton>
+      </ActionBar>
 
-        <ActionBar>
-          <ActionButton tertiary small onClick={deleteSurvey}>
-            Delete All
-          </ActionButton>
-        </ActionBar>
+      {selected &&
+        <EditSurface>
+          <Preview>
+            <HTMLPreview
+              surveyItems={surveyItems}
+              selectedSection={selectedSection}
+            />
+          </Preview>
 
-        {selected &&
-          <EditSurface>
-            <Preview>
-              <HTMLPreview
-                selected={selected}
-                survey={surveyItems}
-                selectedSection={selectedSection}
-              />
-            </Preview>
+          <Options onChange={onChange}>
+            <OptionsPanel selected={selected} deleteItem={deleteItem} />
+          </Options>
+        </EditSurface>}
 
-            <Options onChange={onChange}>
-              <OptionsPanel
-                selected={selected}
-                type={type}
-                deleteItem={deleteItem}
-              />
-            </Options>
-
-          </EditSurface>}
-
-      </EditLayout>
-
-    </SidebarPageLayout>
+    </EditLayout>
   );
+};
+
+const { section, question, answer } = CustomPropTypes;
+
+DesignSurveyPage.propTypes = {
+  selected: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    item: PropTypes.oneOfType([section, question, answer])
+  }),
+  selectedSection: PropTypes.shape(CustomPropTypes.section),
+  onChange: PropTypes.func.isRequired,
+  clearSurvey: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  surveyItems: PropTypes.shape(CustomPropTypes.survey.items)
 };
 
 export default DesignSurveyPage;

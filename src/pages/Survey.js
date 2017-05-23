@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FullPageLayout } from "layouts";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
@@ -38,21 +37,19 @@ const PanelTitle = styled(Title)`
 `;
 
 const SurveyPage = ({ onFileSelected }) => (
-  <FullPageLayout>
-    <Centered>
-      <PanelWithTitle>
-        <PanelTitle>Select to begin</PanelTitle>
-        <Panel>
-          <ButtonGroup vertical>
-            <LinkButton to="/create" primary>Create survey</LinkButton>
-            <FileUpload onFileSelected={onFileSelected} accept=".json">
-              <Button secondary>Load survey</Button>
-            </FileUpload>
-          </ButtonGroup>
-        </Panel>
-      </PanelWithTitle>
-    </Centered>
-  </FullPageLayout>
+  <Centered>
+    <PanelWithTitle>
+      <PanelTitle>Select to begin</PanelTitle>
+      <Panel>
+        <ButtonGroup vertical>
+          <LinkButton to="/create" primary>Create survey</LinkButton>
+          <FileUpload onFileSelected={onFileSelected} accept=".json">
+            <Button secondary>Load survey</Button>
+          </FileUpload>
+        </ButtonGroup>
+      </Panel>
+    </PanelWithTitle>
+  </Centered>
 );
 
 export default SurveyPage;
