@@ -25,6 +25,8 @@ if (process.env.NODE_ENV === "production") {
   basename = "/eq-author";
 }
 
+console.log("MWHAHAHA"); // eslint-disable-line no-console
+
 const history = createHistory({
   basename: basename
 });
