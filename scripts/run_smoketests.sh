@@ -8,7 +8,7 @@ pid=$!
 sleep 3
 
 # Run the tests
-curl localhost:3000
+./node_modules/.bin/chimp
 
 # Shutdown the server
 kill -s SIGKILL $pid
