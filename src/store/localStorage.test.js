@@ -1,22 +1,5 @@
 import { saveState, loadState } from "./localStorage";
 
-beforeEach(() => {
-  const localStorageMock = (function() {
-    var store = {};
-
-    return {
-      getItem(key) {
-        return store[key] || null;
-      },
-      setItem(key, value) {
-        store[key] = value;
-      }
-    };
-  })();
-
-  window.localStorage = localStorageMock;
-});
-
 const KEY = "foo";
 const STATE = { bar : true };
 

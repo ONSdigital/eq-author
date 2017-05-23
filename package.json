@@ -96,6 +96,7 @@
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
+    "setupTestFrameworkScriptFile" : "tests/setup/mockLocalStorage.js",
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
