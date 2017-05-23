@@ -1,22 +1,14 @@
 {
-  "extends": ["eslint:recommended", "react-app", "plugin:react/recommended"],
+  "extends": ["eslint:recommended", "react-app", "plugin:react/recommended", "prettier"],
   "plugins": [
     "react",
     "babel"
   ],
   "rules": {
-    "semi": [2, "always"],
     "eqeqeq": 2,
-    "quotes": [2, "double"],
     "camelcase": 2,
     "curly": 2,
-    "object-curly-spacing": [2, "always"],
-    "comma-spacing": 2,
     "guard-for-in": 2,
-    "eol-last": 2,
-    "indent": [2, 2, {
-      "SwitchCase": 1
-    }],
     "key-spacing": 0,
     "new-cap": 0,
     "consistent-return": 0,
@@ -28,9 +20,7 @@
     "no-shadow-restricted-names": 0,
     "no-underscore-dangle": 0,
     "no-unused-expressions": 2,
-    "no-multi-spaces": 2,
     "no-use-before-define": 2,
-    "no-trailing-spaces": 2,
     "no-extra-bind": 2,
     "no-lone-blocks": 2,
     "no-loop-func": 2,
@@ -43,10 +33,7 @@
     "no-useless-escape": 2,
     "no-unneeded-ternary": 2,
     "no-with": 2,
-    "semi-spacing": 2,
-    "space-infix-ops": 2,
     "strict": [0, "function"],
-    "no-multiple-empty-lines": [2, { "max": 1 }],
     "one-var": [2, { "initialized": "never" }],
     "no-eval": 2,
     "no-floating-decimal": 2,
@@ -70,19 +57,10 @@
     "react/no-did-update-set-state": 2,
     "react/self-closing-comp": 2,
 
-    "jsx-quotes": [2, "prefer-double"],
-    "react/jsx-wrap-multilines": 2,
     "react/jsx-boolean-value": 2,
-    "react/jsx-closing-bracket-location": 2,
-    "react/jsx-curly-spacing": 2,
-    "react/jsx-indent-props": [2, 2],
-    "react/jsx-indent": [2, 2],
-    "react/jsx-max-props-per-line": [2, { "maximum": 4 }],
-    "react/jsx-equals-spacing": 2,
     "react/jsx-handler-names": 2,
     "react/jsx-no-bind": 1,
     "react/jsx-pascal-case": 2,
-    "react/jsx-space-before-closing": 2,
 
     "babel/no-invalid-this": 2
   }

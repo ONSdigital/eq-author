@@ -41,6 +41,7 @@
     "dotenv": "2.0.0",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
+    "eslint-config-prettier": "^2.1.1",
     "eslint-config-react-app": "^0.5.1",
     "eslint-loader": "1.6.0",
     "eslint-plugin-babel": "^4.1.1",
