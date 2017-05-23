@@ -1,4 +1,4 @@
-import actionMatching from "tests/actionMatching";
+import actionMatching from "tests/utils/actionMatching";
 import { META_UPDATE, updateMeta } from "actions/survey/meta";
 
 describe("actions/survey/meta", () => {

@@ -1,5 +1,5 @@
 import readFileAsJson from "./readFileAsJson";
-import { createTextFile, createJsonFile } from "tests/createFile";
+import { createTextFile, createJsonFile } from "tests/utils/createFile";
 
 it("returns a promise", () => {
   expect(readFileAsJson(createJsonFile())).toBeInstanceOf(Promise);

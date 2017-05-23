@@ -105,7 +105,8 @@
       "src/**/*.{js,jsx}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "tests/setup/throwOnConsole.js"
     ],
     "setupTestFrameworkScriptFile" : "tests/setup/mockLocalStorage.js",
     "testPathIgnorePatterns": [

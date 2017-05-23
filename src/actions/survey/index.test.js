@@ -1,5 +1,5 @@
-import actionMatching from "tests/actionMatching";
-import { createJsonFile, createTextFile } from "tests/createFile";
+import actionMatching from "tests/utils/actionMatching";
+import { createJsonFile, createTextFile } from "tests/utils/createFile";
 import { CALL_HISTORY_METHOD } from "react-router-redux";
 import {
   SURVEY_LOAD_FAILURE,
