@@ -15,7 +15,7 @@ export const defaultState = {
   title: ""
 };
 
-const meta = (state = defaultState, action) => {
+export const meta = (state = defaultState, action) => {
   const { payload } = action;
   switch (action.type) {
     case META_UPDATE:

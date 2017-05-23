@@ -49,7 +49,7 @@ const getItemByType = (type, name) => {
   }[type];
 };
 
-const items = (state = defaultState, action) => {
+export const items = (state = defaultState, action) => {
   const { payload } = action;
 
   switch (action.type) {
