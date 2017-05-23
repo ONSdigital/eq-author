@@ -8,7 +8,7 @@ pid=$!
 sleep 3
 
 # Run the tests
-./node_modules/.bin/chimp
+yarn smoketest
 
 # Shutdown the server
 kill -s SIGKILL $pid
