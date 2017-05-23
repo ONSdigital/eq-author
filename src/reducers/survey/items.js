@@ -1,26 +1,17 @@
 /* eslint-disable camelcase */
-import { SURVEY_LOAD_SUCCESS, SURVEY_CLEAR, META_UPDATE } from "actions/survey";
-import {
-  UPDATE_ITEM,
-  ADD_ITEM,
-  ADD_ITEM_COMPLETE,
-  REMOVE_ITEM
-} from "actions/surveyItems";
 
 import { merge, omit, includes, find } from "lodash";
 
+import { SURVEY_LOAD } from "actions/survey";
+
+import {
+  ITEM_UPDATE,
+  ITEM_ADD,
+  ITEM_ADD_COMPLETE,
+  ITEM_REMOVE
+} from "actions/survey/items";
+
 export const defaultState = {
-  meta: {
-    data_version: "0.0.1",
-    description: "",
-    legal_basis: "StatisticsOfTradeAct",
-    mime_type: "application/json/ons/eq",
-    questionnaire_id: "0001",
-    schema_version: "0.0.1",
-    id: "000",
-    theme: "default",
-    title: ""
-  },
   blocks: {
     introduction: {
       type: "Introduction",
@@ -58,19 +49,11 @@ const getItemByType = (type, name) => {
   }[type];
 };
 
-const survey = (state = defaultState, action) => {
+export const items = (state = defaultState, action) => {
   const { payload } = action;
+
   switch (action.type) {
-    case SURVEY_LOAD_SUCCESS:
-      return {
-        ...state,
-        ...payload
-      };
-
-    case SURVEY_CLEAR:
-      return defaultState;
-
-    case UPDATE_ITEM:
+    case ITEM_UPDATE:
       return merge({}, state, {
         [payload.type]: {
           [payload.id]: {
@@ -79,7 +62,7 @@ const survey = (state = defaultState, action) => {
         }
       });
 
-    case ADD_ITEM: {
+    case ITEM_ADD: {
       const emptyItem = {
         [payload.type]: {
           [payload.id]: {}
@@ -107,7 +90,7 @@ const survey = (state = defaultState, action) => {
       }
     }
 
-    case ADD_ITEM_COMPLETE: {
+    case ITEM_ADD_COMPLETE: {
       const newItem = {
         [payload.newId]: {
           ...getItemByType(payload.type, payload.name),
@@ -130,7 +113,7 @@ const survey = (state = defaultState, action) => {
       });
     }
 
-    case REMOVE_ITEM:
+    case ITEM_REMOVE:
       return {
         ...state,
         [payload.type]: {
@@ -138,16 +121,15 @@ const survey = (state = defaultState, action) => {
         }
       };
 
-    case META_UPDATE:
-      return merge({}, state, {
-        meta: {
-          [payload.key]: payload.value
-        }
-      });
+    case SURVEY_LOAD:
+      return {
+        ...state,
+        ...payload.items
+      };
 
     default:
       return state;
   }
 };
 
-export default survey;
+export default items;

@@ -1,9 +1,9 @@
 import { replace } from "lodash";
 
-export const UPDATE_ITEM = "UPDATE_ITEM";
-export const ADD_ITEM = "ADD_ITEM";
-export const ADD_ITEM_COMPLETE = "ADD_ITEM_COMPLETE";
-export const REMOVE_ITEM = "REMOVE_ITEM";
+export const ITEM_UPDATE = "ITEM_UPDATE";
+export const ITEM_ADD = "ITEM_ADD";
+export const ITEM_ADD_COMPLETE = "ITEM_ADD_COMPLETE";
+export const ITEM_REMOVE = "ITEM_REMOVE";
 
 export const getChildItemType = parentType => {
   switch (parentType) {
@@ -30,7 +30,7 @@ export const getParentItemType = type => {
 export function updateItem(key, value) {
   const [type, id, field] = key.split(".");
   return {
-    type: UPDATE_ITEM,
+    type: ITEM_UPDATE,
     payload: {
       key,
       value,
@@ -43,7 +43,7 @@ export function updateItem(key, value) {
 
 export function addItem(parentType, parentId) {
   return {
-    type: ADD_ITEM,
+    type: ITEM_ADD,
     payload: {
       id: Date.now().toString(),
       type: getChildItemType(parentType),
@@ -55,7 +55,7 @@ export function addItem(parentType, parentId) {
 
 export function addItemComplete(type, id, name) {
   return {
-    type: ADD_ITEM_COMPLETE,
+    type: ITEM_ADD_COMPLETE,
     payload: {
       parentType: getParentItemType(type),
       newId: replace(name, / /g, "-").toLowerCase(),
@@ -68,7 +68,7 @@ export function addItemComplete(type, id, name) {
 
 export function removeItem(type, id) {
   return {
-    type: REMOVE_ITEM,
+    type: ITEM_REMOVE,
     payload: {
       type,
       id

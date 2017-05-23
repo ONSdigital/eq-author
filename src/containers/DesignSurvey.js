@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { clearSurvey } from "actions/survey";
-import { updateItem, removeItem } from "actions/surveyItems";
+import { updateItem, removeItem } from "actions/survey/items";
 import { push } from "react-router-redux";
 import DesignSurveyPage from "pages/DesignSurvey";
 
@@ -23,10 +23,11 @@ const getType = (params, survey) => {
 
 const mapStateToProps = (state, ownProps) => {
   const { params } = ownProps.match;
+  const { items } = state.survey;
   return {
-    survey: state.survey,
-    selectedSection: state.survey.sections[params.sectionsId],
-    ...getType(params, state.survey)
+    surveyItems: items,
+    selectedSection: items.sections[params.sectionsId],
+    ...getType(params, items)
   };
 };
 

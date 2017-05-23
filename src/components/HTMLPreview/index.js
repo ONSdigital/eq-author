@@ -12,7 +12,7 @@ const HTMLPreview = styled.div`
   z-index: 0;
 `;
 
-export default ({ survey, selectedId, selectedSection }) => {
+export default ({ survey, selectedSection }) => {
   if (!selectedSection) {
     return null;
   }

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { updateMeta } from "actions/survey";
+import { updateMeta } from "actions/survey/meta";
 
 import CreateSurveyPage from "pages/CreateSurvey";
 
@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     meta: state.survey.meta,
     guidance: {
-      informationToProvide: state.survey.blocks.introduction
+      informationToProvide: state.survey.items.blocks.introduction
         .information_to_provide
     }
   };

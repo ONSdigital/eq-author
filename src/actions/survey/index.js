@@ -1,4 +1,5 @@
 import readFileAsJSON from "utils/readFileAsJson";
+
 import { normalize } from "normalizr";
 import { surveySchema } from "schema";
 import { push } from "react-router-redux";
@@ -9,7 +10,6 @@ export const SURVEY_LOAD_SUCCESS = "SURVEY_LOAD_SUCCESS";
 export const SURVEY_LOAD_FAILURE = "SURVEY_LOAD_FAILURE";
 export const SURVEY_SAVE = "SURVEY_SAVE";
 export const SURVEY_CLEAR = "SURVEY_CLEAR";
-export const META_UPDATE = "META_UPDATE";
 
 export function loadSurveySuccess(surveyData) {
   const { entities, result } = normalize(surveyData, surveySchema);
@@ -18,12 +18,14 @@ export function loadSurveySuccess(surveyData) {
   return {
     type: SURVEY_LOAD_SUCCESS,
     payload: {
-      meta : entities.survey[result],
-      groups,
-      blocks,
-      sections,
-      questions,
-      answers
+      meta: entities.survey[result],
+      items: {
+        groups,
+        blocks,
+        sections,
+        questions,
+        answers
+      }
     }
   };
 }
@@ -60,15 +62,5 @@ export function loadSurvey(file) {
       .then(data => dispatch(loadSurveySuccess(data)))
       .then(() => dispatch(push("/create")))
       .catch(error => dispatch(loadSurveyFailure(error)));
-  };
-}
-
-export function updateMeta(key, value) {
-  return {
-    type: META_UPDATE,
-    payload: {
-      key,
-      value
-    }
   };
 }
