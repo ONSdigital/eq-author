@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run the server
-serve --port 3000 &
+./node_modules/.bin/serve --port 3000 &
 pid=$!
 
 # Wait for server to start listening
