@@ -1,55 +1,47 @@
 import { connect } from "react-redux";
 import { clearSurvey } from "actions/survey";
-import { updateItem, removeItem } from "actions/survey/items";
-import { push } from "react-router-redux";
+import { updateItem, deleteItem } from "actions/survey/items";
+
 import DesignSurveyPage from "pages/DesignSurvey";
 
-const getType = (params, survey) => {
+export const getType = (params, surveyItems) => {
   return ["answers", "questions", "sections"]
     .map(type => {
       const id = params[`${type}Id`];
-      if (typeof id !== undefined) {
+      if (id !== undefined) {
         return {
           type: type,
           id: id,
-          selected: survey[type][id]
+          item: surveyItems[type][id]
         };
       } else {
         return null;
       }
     })
-    .filter(type => type.id)[0];
+    .filter(type => type)[0];
 };
 
 const mapStateToProps = (state, ownProps) => {
   const { params } = ownProps.match;
-  const { items } = state.survey;
+  const { survey } = state;
   return {
-    surveyItems: items,
-    selectedSection: items.sections[params.sectionsId],
-    ...getType(params, items)
+    surveyItems: survey.items,
+    selected: getType(params, survey.items),
+    selectedSection: params.sectionsId &&
+      survey.items.sections[params.sectionsId]
   };
 };
 
-const mapDispatchToProps = (dispatch, { history }) => {
-  return {
-    onChange: e => {
-      var value = e.target.value;
-      if (e.target.type === "checkbox") {
-        value = e.target.checked;
-      }
-      dispatch(updateItem(e.target.name, value));
-    },
-    deleteItem: (type, id) => {
-      dispatch(removeItem(type, id));
-      dispatch(push("/design"));
-    },
-    deleteSurvey: () => {
-      dispatch(clearSurvey());
+export const mapDispatchToProps = {
+  clearSurvey,
+  deleteItem,
+  onChange: ({ target }) => {
+    let { type, value, checked, name } = target;
+    if (type === "checkbox") {
+      value = checked;
     }
-  };
+    return updateItem(name, value);
+  }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {
-  pure: true
-})(DesignSurveyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DesignSurveyPage);

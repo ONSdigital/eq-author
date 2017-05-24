@@ -1,5 +1,7 @@
 import { replace } from "lodash";
 
+import { push } from "react-router-redux";
+
 export const ITEM_UPDATE = "ITEM_UPDATE";
 export const ITEM_ADD = "ITEM_ADD";
 export const ITEM_ADD_COMPLETE = "ITEM_ADD_COMPLETE";
@@ -63,6 +65,13 @@ export function addItemComplete(type, id, name) {
       id,
       name
     }
+  };
+}
+
+export function deleteItem(type, id) {
+  return dispatch => {
+    dispatch(removeItem(type, id));
+    dispatch(push("/design"));
   };
 }
 

@@ -35,14 +35,12 @@ const AnswerInput = styled.input`
   max-width: 20rem;
 `;
 
-export default ({ answer }) => {
-  return (
-    <div>
-      <AnswerLabel>
-        {answer.label}
-        <AnswerDescription>{answer.description}</AnswerDescription>
-      </AnswerLabel>
-      <AnswerInput />
-    </div>
-  );
-};
+export default ({ answer }) => (
+  <div>
+    <AnswerLabel>
+      {answer.label}
+      <AnswerDescription>{answer.description}</AnswerDescription>
+    </AnswerLabel>
+    <AnswerInput />
+  </div>
+);

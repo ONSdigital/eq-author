@@ -16,6 +16,7 @@
     "no-bitwise": "error",
     "no-caller": "error",
     "no-shadow": "off",
+    "no-console": "warn",
     "no-extend-native": "error",
     "no-shadow-restricted-names": "off",
     "no-underscore-dangle": "off",

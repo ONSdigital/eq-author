@@ -4,7 +4,7 @@ import { push } from "react-router-redux";
 import SurveySidebar from "components/SurveySidebar";
 
 const mapStateToProps = (state, ownProps) => {
-  const { items: { sections, questions, answers } } = state.survey;
+  const { sections, questions, answers } = state.survey.items;
   return {
     sections,
     questions,

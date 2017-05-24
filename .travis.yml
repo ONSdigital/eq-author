@@ -3,7 +3,7 @@ node_js:
   - "7"
 
 script:
-  - yarn lint
+  - yarn lint -- --max-warnings=0
   - yarn test -- --coverage
   - yarn build
 

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FullPageLayout } from "layouts";
 
 const Centered = styled.div`
   flex: 1 1 auto;
@@ -11,11 +10,9 @@ const Centered = styled.div`
 
 const NotFound = props => {
   return (
-    <FullPageLayout>
-      <Centered>
-        <h1>404 Error - Page not found</h1>
-      </Centered>
-    </FullPageLayout>
+    <Centered>
+      <h1>404 Error - Page not found</h1>
+    </Centered>
   );
 };
 

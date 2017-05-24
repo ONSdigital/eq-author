@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React from "react";
 import styled from "styled-components";
-import { TabbedPageLayout } from "layouts";
 import { Grid, Column } from "components/Grid";
 import { Field, Input, Label, Select } from "components/Forms";
 import RichTextArea from "components/RichTextArea";
@@ -21,7 +20,7 @@ const ActionButtonGroup = styled(ButtonGroup)`
 const SurveyCreatePage = ({ meta, onChange }) => {
   const { title, description, theme, legal_basis, informationToProvide } = meta;
   return (
-    <TabbedPageLayout title={"Create a survey"}>
+    <div>
       <form onChange={onChange}>
         <Tabs>
           <TabList>
@@ -42,13 +41,19 @@ const SurveyCreatePage = ({ meta, onChange }) => {
               <Column>
                 <Field id="theme">
                   <Label>Theme</Label>
-                  <Select options={["default", "census", "starwars"]} value={theme} />
+                  <Select
+                    options={["default", "census", "starwars"]}
+                    value={theme}
+                  />
                 </Field>
               </Column>
               <Column>
                 <Field id="legal_basis">
                   <Label>Legal Basis</Label>
-                  <Select options={["StatisticsOfTradeAct"]} value={legal_basis} />
+                  <Select
+                    options={["StatisticsOfTradeAct"]}
+                    value={legal_basis}
+                  />
                 </Field>
               </Column>
             </Grid>
@@ -65,7 +70,7 @@ const SurveyCreatePage = ({ meta, onChange }) => {
         <LinkButton to="/design" primary>Create survey</LinkButton>
         <LinkButton to="/" secondary>Cancel</LinkButton>
       </ActionButtonGroup>
-    </TabbedPageLayout>
+    </div>
   );
 };
 
