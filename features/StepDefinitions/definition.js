@@ -8,7 +8,6 @@ module.exports = function () {
   this.Then(/no errors are logged/, () => {
     const logs = browser.log("browser")
     const errors = logs.value.filter(log => log.level === "SEVERE");
-
     expect(errors.length).to.be.eql(0);
   });
 }
