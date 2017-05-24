@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Run the server
 ./node_modules/.bin/serve --port 3000 &
