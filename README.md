@@ -8,6 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
 - [Environment Variables](#environment-variables)
+- [Troubleshooting](#troubleshooting)
 
 ## Installation
 
@@ -135,3 +136,28 @@ Tests are colocated next to the code they are testing. For example, a test for `
 When you run `yarn test`, Jest will launch in the watch mode. Every time you save a file, it will re-run the tests, just like `yarn start` recompiles the code.
 
 The watcher includes an interactive command-line interface with the ability to run all tests, or focus on a search pattern. It is designed this way so that you can keep it open and enjoy fast re-runs.
+
+# Troubleshooting
+
+## Jest crashing
+
+### Problem
+
+Running `yarn test` causes Jest to crash with the following error:
+```
+(FSEvents.framework) FSEventStreamStart: register_with_server: ERROR: f2d_register_rpc() => (null) (-22)
+(FSEvents.framework) FSEventStreamStart: register_with_server: ERROR: f2d_register_rpc() => (null) (-22)
+(FSEvents.framework) FSEventStreamStart: register_with_server: ERROR: f2d_register_rpc() => (null) (-22)
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: Error watching file for changes: EMFILE
+    at exports._errnoException (util.js:1036:11)
+    at FSEvent.FSWatcher._handle.onchange (fs.js:1406:11)
+```
+
+### Solution
+
+According to [this thread](https://github.com/facebook/jest/issues/1767), install watchman: `brew install watchman`
+
