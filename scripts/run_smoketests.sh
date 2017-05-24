@@ -12,11 +12,15 @@ then
    exit;
 fi
 
+# Shutdown server whenever script exists
+function finish {
+  echo "Killing server"
+  kill -s SIGKILL $pid
+}
+trap finish EXIT
+
 # Wait for server to start listening
 sleep 3
 
 # Run the tests
 yarn smoketest
-
-# Shutdown the server
-kill -s SIGKILL $pid
