@@ -1,15 +1,10 @@
 #!/bin/bash
 
-# Run the server
-./node_modules/.bin/serve --port 3000 &
-pid=$!
+set -euf -o pipefail
 
-# Check server has started
-if ! ps -p $pid > /dev/null
-then
-   echo "Couldn't start server";
-   exit;
-fi
+# Run the server
+serve --port 3000 build/ &
+pid=$!
 
 # Shutdown server whenever script exists
 function finish {

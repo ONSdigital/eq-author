@@ -11,9 +11,12 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 install:
-  - yarn add chimp
-  - yarn add serve
   - yarn install
+
+before_script:
+  # A few tools to run smoke tests.
+  - yarn global add chimp
+  - yarn global add serve
 
 script:
   - yarn lint
