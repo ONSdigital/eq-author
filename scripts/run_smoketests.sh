@@ -21,5 +21,9 @@ trap finish EXIT
 # Wait for server to start listening
 sleep 3
 
+echo "About to run tests..."
+
 # Run the tests
 yarn smoketest
+
+echo "Done"
