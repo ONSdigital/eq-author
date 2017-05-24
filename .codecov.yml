@@ -6,4 +6,7 @@ coverage:
         threshold: null
         base: auto
 
-comment: false
+comment: off
+
+ignore:
+  - "features"
