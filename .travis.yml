@@ -4,6 +4,7 @@ node_js:
 
 install:
   - yarn add chimp
+  - yarn add serve
   - yarn install
 
 script:

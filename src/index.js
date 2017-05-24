@@ -79,3 +79,6 @@ if (module.hot) {
     store.replaceReducer(nextReducer);
   });
 }
+
+throw new Error("oops");
+// console.error("MWHAHAHA"); // eslint-disable-line no-console
