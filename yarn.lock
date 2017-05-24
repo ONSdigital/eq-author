@@ -529,6 +529,10 @@ babel-helper-hoist-variables@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.22.0"
 
+babel-helper-is-react-class@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-helper-is-react-class/-/babel-helper-is-react-class-1.0.0.tgz#ef6f3678b05c76dbdeedadead7af98c2724d8431"
+
 babel-helper-optimise-call-expression@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-helper-optimise-call-expression/-/babel-helper-optimise-call-expression-6.23.0.tgz#f3ee7eed355b4282138b33d02b78369e470622f5"
@@ -925,7 +929,7 @@ babel-plugin-transform-object-rest-spread@6.22.0, babel-plugin-transform-object-
     babel-plugin-syntax-object-rest-spread "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-react-constant-elements@6.22.0:
+babel-plugin-transform-react-constant-elements@6.22.0, babel-plugin-transform-react-constant-elements@^6.5.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-constant-elements/-/babel-plugin-transform-react-constant-elements-6.22.0.tgz#4af456f80d283e8be00f00f12852354defa08ee1"
   dependencies:
@@ -940,6 +944,12 @@ babel-plugin-transform-react-constant-elements@6.9.1:
 babel-plugin-transform-react-display-name@^6.22.0, babel-plugin-transform-react-display-name@^6.23.0, babel-plugin-transform-react-display-name@^6.3.13:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-display-name/-/babel-plugin-transform-react-display-name-6.23.0.tgz#4398910c358441dc4cef18787264d0412ed36b37"
+  dependencies:
+    babel-runtime "^6.22.0"
+
+babel-plugin-transform-react-inline-elements@^6.6.5:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-inline-elements/-/babel-plugin-transform-react-inline-elements-6.22.0.tgz#6687211a32b49a52f22c573a2b5504a25ef17c53"
   dependencies:
     babel-runtime "^6.22.0"
 
@@ -986,6 +996,16 @@ babel-plugin-transform-react-jsx@^6.22.0, babel-plugin-transform-react-jsx@^6.23
     babel-helper-builder-react-jsx "^6.23.0"
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
+
+babel-plugin-transform-react-pure-class-to-function@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-pure-class-to-function/-/babel-plugin-transform-react-pure-class-to-function-1.0.1.tgz#32a649c97d653250b419cfd1489331b0290d9ee4"
+  dependencies:
+    babel-helper-is-react-class "^1.0.0"
+
+babel-plugin-transform-react-remove-prop-types@^0.2.5:
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.2.12.tgz#3406696df0b8b456089f9d726d27e7e123d2f929"
 
 babel-plugin-transform-regenerator@6.16.1:
   version "6.16.1"
@@ -1191,6 +1211,15 @@ babel-preset-react-app@^2.1.0:
     babel-preset-latest "6.22.0"
     babel-preset-react "6.22.0"
     babel-runtime "6.22.0"
+
+babel-preset-react-optimize@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-react-optimize/-/babel-preset-react-optimize-1.0.1.tgz#c23509fba7cbc76d7de7050e7d26bcd22bc304e8"
+  dependencies:
+    babel-plugin-transform-react-constant-elements "^6.5.0"
+    babel-plugin-transform-react-inline-elements "^6.6.5"
+    babel-plugin-transform-react-pure-class-to-function "^1.0.1"
+    babel-plugin-transform-react-remove-prop-types "^0.2.5"
 
 babel-preset-react@6.16.0:
   version "6.16.0"
@@ -4234,17 +4263,9 @@ lodash.isarray@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-3.0.4.tgz#79e4eb88c36a8122af86f844aa9bcd851b5fbb55"
 
-lodash.isfunction@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.8.tgz#4db709fc81bc4a8fd7127a458a5346c5cdce2c6b"
-
 lodash.isnil@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/lodash.isnil/-/lodash.isnil-4.0.0.tgz#49e28cd559013458c814c5479d3c663a21bfaa6c"
-
-lodash.isobject@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
 
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
@@ -4266,7 +4287,7 @@ lodash.memoize@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
 
-lodash.merge@^4.3.1, lodash.merge@^4.4.0:
+lodash.merge@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
 
@@ -5731,40 +5752,9 @@ reduce-function-call@^1.0.1:
   dependencies:
     balanced-match "^0.4.2"
 
-reduce-reducers@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.1.2.tgz#fa1b4718bc5292a71ddd1e5d839c9bea9770f14b"
-
-redux-actions@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-0.10.1.tgz#bb442ee37dd9643a94933e4071e089f435587135"
-  dependencies:
-    reduce-reducers "^0.1.0"
-
 redux-devtools-extension@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.0.tgz#c8300d72630c00999302526204d47c360cc0637f"
-
-redux-storage-engine-localstorage@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/redux-storage-engine-localstorage/-/redux-storage-engine-localstorage-1.1.4.tgz#2849278d78970f0c3f5f3d4727caa3c30783ed49"
-
-redux-storage-merger-simple@^1.0.2:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/redux-storage-merger-simple/-/redux-storage-merger-simple-1.0.5.tgz#29a2886b0e770d9b70811aca800aa8efae89fb73"
-  dependencies:
-    lodash.isobject "^3.0.2"
-    lodash.merge "^4.3.1"
-
-redux-storage@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/redux-storage/-/redux-storage-4.1.2.tgz#e06f4bdeee262aead9132fc9f7eadc67e9f9bea2"
-  dependencies:
-    lodash.isfunction "^3.0.8"
-    lodash.isobject "^3.0.2"
-    loose-envify "^1.2.0"
-    redux-actions "^0.10.1"
-    redux-storage-merger-simple "^1.0.2"
 
 redux-thunk@^2.2.0:
   version "2.2.0"
