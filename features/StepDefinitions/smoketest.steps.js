@@ -8,8 +8,4 @@ module.exports = function () {
   this.Then(/^the page title should be "(.+)"$/, (title) => {
       expect(browser.getTitle()).to.be.eql(title);
   });
-
-  this.Then(/^the page should contain "(.+)"$/, function (text) {
-     expect(browser.getText("html")).to.contain(text)
-   });
 };
