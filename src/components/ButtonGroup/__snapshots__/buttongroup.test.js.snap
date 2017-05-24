@@ -1,0 +1,8 @@
+exports[`button group component snapshot Should not have changed inadvertently 1`] = `
+<_default>
+  <ButtonGroup__ButtonGroup>
+    <div
+      className="ButtonGroup__ButtonGroup-glavEU jRseUc" />
+  </ButtonGroup__ButtonGroup>
+</_default>
+`;
