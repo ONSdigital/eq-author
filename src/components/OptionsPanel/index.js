@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colorBorders } from "constants/theme";
 
@@ -92,8 +92,7 @@ const OptionsPanel = ({ selected, deleteItem, ...otherProps }) => {
 
 OptionsPanel.propTypes = {
   selected: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
   deleteItem: PropTypes.func.isRequired
-}
+};
 
-export default OptionsPanel
+export default OptionsPanel;
