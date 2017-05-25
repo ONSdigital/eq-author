@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
 import styled from "styled-components";
 
 const AnswerLabel = styled.div`
@@ -46,8 +47,10 @@ const Answer = ({ answer }) => (
   </div>
 );
 
-Answer.propTypes = {
-  answer: PropTypes.object.isRequired
-}
+const { answer } = CustomPropTypes;
 
-export default Answer
+Answer.propTypes = {
+  answer: PropTypes.oneOfType([answer])
+};
+
+export default Answer;

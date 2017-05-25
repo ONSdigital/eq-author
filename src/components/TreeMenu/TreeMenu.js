@@ -39,13 +39,10 @@ const Sections = ({ sections, questions, answers, ...otherProps }) => {
 };
 
 Sections.propTypes = {
-  sections: PropTypes.oneOfType([
-   PropTypes.object,
-   PropTypes.array
- ]),
-  questions: PropTypes.object,
-  answers: PropTypes.object
-}
+  sections: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  questions: PropTypes.objectOf(PropTypes.object),
+  answers: PropTypes.objectOf(PropTypes.object)
+};
 
 const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
   if (isEmpty(questions)) {
@@ -76,13 +73,10 @@ const Questions = ({ questions, answers, sectionId, ...otherProps }) => {
 };
 
 Questions.propTypes = {
-  questions: PropTypes.object.isRequired,
-  answers: PropTypes.object,
-  sectionId: PropTypes.oneOfType([
-   PropTypes.number,
-   PropTypes.string
- ]),
-}
+  questions: PropTypes.objectOf(PropTypes.object),
+  answers: PropTypes.objectOf(PropTypes.object),
+  sectionId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+};
 
 const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
   if (isEmpty(answers)) {
@@ -106,10 +100,10 @@ const Answers = ({ answers, sectionId, questionId, ...otherProps }) => {
 };
 
 Answers.propTypes = {
-  answers: PropTypes.object.isRequired,
+  answers: PropTypes.objectOf(PropTypes.object),
   sectionId: PropTypes.string.isRequired,
   questionId: PropTypes.string.isRequired
-}
+};
 
 export default props => (
   <TreeMenu>

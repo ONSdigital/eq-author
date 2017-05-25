@@ -55,8 +55,8 @@ const SidebarSection = ({ title, children, onAddClick }) => (
 
 SidebarSection.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.object,
+  children: PropTypes.objectOf(PropTypes.object),
   onAddClick: PropTypes.func
-}
+};
 
-export default SidebarSection
+export default SidebarSection;

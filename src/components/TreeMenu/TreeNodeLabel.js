@@ -59,7 +59,9 @@ TreeNodeLabel.defaultProps = {
 };
 
 TreeNodeLabel.propTypes = {
-  children: PropTypes.array.isRequired
+  children: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.object])
+  )
 };
 
 export default TreeNodeLabel;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colorGrey } from "constants/theme";
 import Chevron from "./chevron";
@@ -30,6 +31,11 @@ BreadcrumbLink.defaultProps = {
   isLast: false
 };
 
+BreadcrumbLink.propTypes = {
+  link: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  isLast: PropTypes.bool
+};
+
 const Breadcrumb = props => (
   <StyledBreadcrumb {...props}>
     {props.links.map((link, index) => (
@@ -41,5 +47,11 @@ const Breadcrumb = props => (
     ))}
   </StyledBreadcrumb>
 );
+
+Breadcrumb.propTypes = {
+  links: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  )
+};
 
 export default Breadcrumb;

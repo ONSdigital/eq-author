@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
+import styled from "styled-components";
 
 const SectionTitle = styled.div`
   font-size: 1.55556em;
@@ -48,19 +49,23 @@ const SectionDescription = styled.div`
   margin: 0 0 1rem;
 `;
 
-const Section = ({section, children}) => {
+const Section = ({ section, children }) => {
   return (
     <div>
-      <SectionTitle><SectionNumber>1</SectionNumber>{section.title}</SectionTitle>
+      <SectionTitle>
+        <SectionNumber>1</SectionNumber>{section.title}
+      </SectionTitle>
       <SectionDescription>{section.description}</SectionDescription>
       {children}
     </div>
   );
 };
 
-Section.propTypes = {
-  section: PropTypes.object.isRequired,
-  children: PropTypes.array.isRequired
-}
+const { section } = CustomPropTypes;
 
-export default Section
+Section.propTypes = {
+  section: PropTypes.oneOfType([section]),
+  children: PropTypes.arrayOf(PropTypes.object)
+};
+
+export default Section;

@@ -51,7 +51,7 @@
     "no-unmodified-loop-condition": "error",
 
     "react/display-name": "off",
-    "react/prop-types": "off",
+    "react/prop-types": "warn",
     "react/forbid-prop-types": "warn",
     "react/no-danger": "error",
     "react/no-did-mount-set-state": "error",

@@ -56,7 +56,6 @@ export class TreeNode extends Component {
         </TreeNodeLabel>
         {children && <TreeNodeChildren>{children}</TreeNodeChildren>}
       </div>
-
     );
   }
 
@@ -78,9 +77,7 @@ export class TreeNode extends Component {
 
     return (
       <StyledTreeNode {...otherProps}>
-        {label === undefined
-          ? this.renderButton()
-          : this.renderLabel()}
+        {label === undefined ? this.renderButton() : this.renderLabel()}
       </StyledTreeNode>
     );
   }
@@ -94,7 +91,8 @@ TreeNode.propTypes = {
   removeItem: PropTypes.func,
   label: PropTypes.string,
   to: PropTypes.string.isRequired,
-  children: PropTypes.element
+  children: PropTypes.element,
+  addItem: PropTypes.func
 };
 
 export default TreeNode;

@@ -22,9 +22,9 @@ const SurveySidebar = ({ sections, questions, answers, ...actions }) => (
 );
 
 SurveySidebar.propTypes = {
-  sections: PropTypes.object.isRequired,
-  questions: PropTypes.object.isRequired,
-  answers: PropTypes.object.isRequired
-}
+  sections: PropTypes.objectOf(PropTypes.object),
+  questions: PropTypes.objectOf(PropTypes.object),
+  answers: PropTypes.objectOf(PropTypes.object)
+};
 
 export default SurveySidebar;

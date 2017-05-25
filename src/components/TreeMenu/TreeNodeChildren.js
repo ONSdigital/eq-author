@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledTreeNodeChildren = styled.div`
   color: white;
@@ -15,13 +15,13 @@ const StyledTreeNodeChildren = styled.div`
 
 export default class TreeNodeChildren extends Component {
   static defaultProps = {
-    open: true,
+    open: true
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      open: props.open,
+      open: props.open
     };
   }
 
@@ -40,6 +40,6 @@ export default class TreeNodeChildren extends Component {
 }
 
 TreeNodeChildren.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.element,
   open: PropTypes.bool.isRequired
-}
+};
