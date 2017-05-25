@@ -5,4 +5,4 @@ Feature: Author application is alive
 
 Scenario: Homepage is responding
   Given I navigate to "http://localhost:3000"
-  Then the page title should be "This should fail"
+  Then the page title should be "eQ Author Prototype"
