@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
 import styled from "styled-components";
 
 const QuestionTitleNumber = styled.div`
@@ -95,8 +96,8 @@ const Question = ({ question, children }) => {
 };
 
 Question.propTypes = {
-  question: PropTypes.object.isRequired,
-  children: PropTypes.array.isRequired
-}
+  question: CustomPropTypes.question,
+  children: PropTypes.arrayOf(PropTypes.object)
+};
 
-export default Question
+export default Question;

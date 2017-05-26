@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
@@ -33,7 +33,8 @@ const App = ({ store, history }) => (
 );
 
 App.propTypes = {
-  history: PropTypes.object.isRequired
-}
+  store: PropTypes.objectOf(PropTypes.any),
+  history: PropTypes.objectOf(PropTypes.any)
+};
 
-export default App
+export default App;

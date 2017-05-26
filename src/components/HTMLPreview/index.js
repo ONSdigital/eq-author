@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
 import styled from "styled-components";
 import Section from "./Section";
 import Question from "./Question";
@@ -45,8 +46,8 @@ const HTMLPreview = ({ surveyItems, selectedSection }) => {
 };
 
 HTMLPreview.propTypes = {
-  surveyItems: PropTypes.object.isRequired,
-  selectedSection: PropTypes.object
-}
+  surveyItems: PropTypes.objectOf(PropTypes.object),
+  selectedSection: CustomPropTypes.section
+};
 
-export default HTMLPreview
+export default HTMLPreview;

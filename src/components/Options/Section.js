@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, TextArea } from "components/Forms";
 
@@ -23,8 +23,8 @@ export const SectionSettings = ({ options, ...otherProps }) => {
 };
 
 SectionSettings.propTypes = {
-  options: PropTypes.object.isRequired
-}
+  options: CustomPropTypes.section
+};
 
 export const SectionOptions = [
   {

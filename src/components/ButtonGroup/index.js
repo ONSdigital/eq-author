@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 const VerticalGroup = css`
   flex-direction: column;
@@ -23,12 +23,12 @@ const StyledButtonGroup = styled.div`
   ${props => props.horizontal && HorizontalGroup}
 `;
 
-const ButtonGroup = ({children, ...otherProps}) => (
+const ButtonGroup = ({ children, ...otherProps }) => (
   <StyledButtonGroup {...otherProps}>{children}</StyledButtonGroup>
-)
+);
 
 ButtonGroup.propTypes = {
-  children: PropTypes.array.isRequired
-}
+  children: PropTypes.arrayOf(PropTypes.object)
+};
 
-export default ButtonGroup
+export default ButtonGroup;

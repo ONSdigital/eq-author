@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
 import { Field, Input, Label, Select } from "components/Forms";
@@ -71,6 +72,23 @@ const SurveyCreatePage = ({ meta, onChange }) => {
       </ActionButtonGroup>
     </div>
   );
+};
+
+SurveyCreatePage.propTypes = {
+  meta: PropTypes.shape({
+    data_version: PropTypes.string,
+    description: PropTypes.string,
+    groups: PropTypes.array,
+    id: PropTypes.string,
+    legal_basis: PropTypes.string,
+    mime_type: PropTypes.string,
+    questionnaire_id: PropTypes.string,
+    schema_version: PropTypes.string,
+    survey_id: PropTypes.string,
+    theme: PropTypes.string,
+    title: PropTypes.string
+  }),
+  onChange: PropTypes.func
 };
 
 export default SurveyCreatePage;

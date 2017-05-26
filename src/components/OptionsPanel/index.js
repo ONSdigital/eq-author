@@ -55,7 +55,6 @@ const OptionsPanel = ({ selected, deleteItem, ...otherProps }) => {
   if (Options === undefined) {
     return null;
   }
-
   return (
     <StyledOptionsPanel {...otherProps}>
       <Header>
@@ -91,7 +90,11 @@ const OptionsPanel = ({ selected, deleteItem, ...otherProps }) => {
 };
 
 OptionsPanel.propTypes = {
-  selected: PropTypes.object.isRequired,
+  selected: PropTypes.shape({
+    type: PropTypes.string,
+    id: PropTypes.string,
+    items: PropTypes.object
+  }),
   deleteItem: PropTypes.func.isRequired
 };
 

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 const CompactTabList = css`
   background: #f9f9f9;
@@ -35,13 +35,13 @@ const TabList = ({
 );
 
 TabList.defaultProps = {
-  displayName: 'TabList'
+  displayName: "TabList"
 };
 
 TabList.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.arrayOf(PropTypes.object),
   selectedTab: PropTypes.number,
-  handleTabSelected: PropTypes.func,
+  handleTabSelected: PropTypes.func
 };
 
 export default TabList;

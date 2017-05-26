@@ -10,7 +10,7 @@ const FullPageLayout = props => (
 );
 
 FullPageLayout.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default FullPageLayout;

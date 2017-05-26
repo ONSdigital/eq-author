@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 import { flattenDeep } from "lodash";
 import TabPanel from "./TabPanel";
 import TabList from "./TabList";
@@ -56,6 +56,8 @@ export default class Tabs extends Component {
 
 Tabs.propTypes = {
   selected: PropTypes.string,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.array])
+  ),
   compact: PropTypes.bool
-}
+};

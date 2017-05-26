@@ -61,10 +61,8 @@ const Section = ({ section, children }) => {
   );
 };
 
-const { section } = CustomPropTypes;
-
 Section.propTypes = {
-  section: PropTypes.oneOfType([section]),
+  section: CustomPropTypes.section,
   children: PropTypes.arrayOf(PropTypes.object)
 };
 

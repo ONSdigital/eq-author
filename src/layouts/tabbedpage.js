@@ -38,7 +38,7 @@ const TabbedPageLayout = props => {
 
 TabbedPageLayout.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default TabbedPageLayout;

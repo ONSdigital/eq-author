@@ -23,7 +23,7 @@ Select.defaultProps = {
 };
 
 Select.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string),
   value: PropTypes.string,
   id: PropTypes.string,
   noop: PropTypes.func

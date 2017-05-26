@@ -85,6 +85,5 @@ export default class RichTextArea extends Component {
 RichTextArea.propTypes = {
   onChange: PropTypes.func,
   name: PropTypes.string,
-  props: PropTypes.object,
   value: PropTypes.string
 };
