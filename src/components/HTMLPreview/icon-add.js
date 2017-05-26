@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-const AddIcon = (props) =>
+const AddIcon = props => (
   <span {...props}>
     <svg width="16px" height="16px" viewBox="0 0 58 58" version="1.1">
       <path
@@ -21,6 +21,6 @@ AddIcon.defaultProps = {
 
 AddIcon.propTypes = {
   fill: PropTypes.string.isRequired
-}
+};
 
-export default AddIcon
+export default AddIcon;
