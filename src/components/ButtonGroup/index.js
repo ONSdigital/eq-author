@@ -28,7 +28,7 @@ const ButtonGroup = ({ children, ...otherProps }) => (
 );
 
 ButtonGroup.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object)
+  children: PropTypes.node
 };
 
 export default ButtonGroup;

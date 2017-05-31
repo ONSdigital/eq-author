@@ -33,8 +33,12 @@ const App = ({ store, history }) => (
 );
 
 App.propTypes = {
-  store: PropTypes.objectOf(PropTypes.any),
-  history: PropTypes.objectOf(PropTypes.any)
+  store: PropTypes.shape({
+    getState: PropTypes.func.isRequired
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default App;

@@ -24,12 +24,9 @@ const FileUpload = props => {
 };
 
 FileUpload.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   accept: PropTypes.string,
-  onChange: PropTypes.func,
-  hidden: PropTypes.bool,
-  onFileSelected: PropTypes.func,
-  onRef: PropTypes.func
+  onFileSelected: PropTypes.func.isRequired
 };
 
 export default FileUpload;

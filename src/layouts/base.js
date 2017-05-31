@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 import App from "components/App";
 import TopBar from "components/TopBar";
 
@@ -29,10 +29,7 @@ const BaseLayout = ({ children }) => (
 );
 
 BaseLayout.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]),
-}
+  children: PropTypes.node.isRequired
+};
 
 export default BaseLayout;

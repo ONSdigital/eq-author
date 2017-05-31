@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledGrid = styled.div`
   display: flex;
@@ -8,15 +8,10 @@ const StyledGrid = styled.div`
   flex: 1 1 auto;
 `;
 
-const Grid = ({children}) => (
-  <StyledGrid>{children}</StyledGrid>
-)
+const Grid = ({ children }) => <StyledGrid>{children}</StyledGrid>;
 
 Grid.propTypes = {
-  children: PropTypes.oneOfType([
-   PropTypes.object,
-   PropTypes.array
- ]),
-}
+  children: PropTypes.node.isRequired
+};
 
-export default Grid
+export default Grid;

@@ -56,8 +56,6 @@ export default class Tabs extends Component {
 
 Tabs.propTypes = {
   selected: PropTypes.string,
-  children: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.object, PropTypes.array])
-  ),
+  children: PropTypes.node,
   compact: PropTypes.bool
 };

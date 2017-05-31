@@ -15,7 +15,7 @@ const Field = ({ children, last, ...otherProps }) => (
 );
 
 Field.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object),
+  children: PropTypes.node.isRequired,
   last: PropTypes.bool
 };
 

@@ -39,7 +39,7 @@ TabList.defaultProps = {
 };
 
 TabList.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object),
+  children: PropTypes.node,
   selectedTab: PropTypes.number,
   handleTabSelected: PropTypes.func
 };

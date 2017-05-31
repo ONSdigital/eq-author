@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types'
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const TabPanelStyle = styled.div`
   background: white;
@@ -20,10 +20,7 @@ const TabPanel = ({ children, visible = true, ...otherProps }) => (
 TabPanel.displayName = "TabPanel";
 
 TabPanel.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array
-  ]),
+  children: PropTypes.node,
   visible: PropTypes.bool
 };
 

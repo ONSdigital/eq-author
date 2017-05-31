@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import {
   radiusGlobal,
@@ -94,10 +94,7 @@ Button.propTypes = {
   tertiary: PropTypes.bool,
   clear: PropTypes.bool,
   small: PropTypes.bool,
-  children: PropTypes.oneOfType([
-   PropTypes.string,
-   PropTypes.array
- ]),
-}
+  children: PropTypes.node
+};
 
-export default Button
+export default Button;

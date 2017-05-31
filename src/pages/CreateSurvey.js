@@ -17,7 +17,7 @@ const ActionButtonGroup = styled(ButtonGroup)`
   justify-content: center;
 `;
 
-const SurveyCreatePage = ({ meta, onChange }) => {
+const CreateSurveyPage = ({ meta, onChange }) => {
   const { title, description, theme, legal_basis, informationToProvide } = meta;
   return (
     <div>
@@ -74,7 +74,7 @@ const SurveyCreatePage = ({ meta, onChange }) => {
   );
 };
 
-SurveyCreatePage.propTypes = {
+CreateSurveyPage.propTypes = {
   meta: PropTypes.shape({
     data_version: PropTypes.string,
     description: PropTypes.string,
@@ -91,4 +91,4 @@ SurveyCreatePage.propTypes = {
   onChange: PropTypes.func
 };
 
-export default SurveyCreatePage;
+export default CreateSurveyPage;

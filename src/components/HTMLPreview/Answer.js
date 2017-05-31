@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import CustomPropTypes from "proptypes";
 import styled from "styled-components";
 
@@ -50,7 +49,7 @@ const Answer = ({ answer }) => (
 const { answer } = CustomPropTypes;
 
 Answer.propTypes = {
-  answer: PropTypes.oneOfType([answer])
+  answer
 };
 
 export default Answer;

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {colorDarkBlue} from 'constants/theme';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import { colorDarkBlue } from "constants/theme";
+import styled from "styled-components";
 
 const StyledSidebar = styled.div`
   background: ${colorDarkBlue};
@@ -10,17 +10,14 @@ const StyledSidebar = styled.div`
   color: white;
 `;
 
-const Sidebar = ({children}) => (
+const Sidebar = ({ children }) => (
   <StyledSidebar>
     {children}
   </StyledSidebar>
-)
+);
 
 Sidebar.propTypes = {
-  children: PropTypes.oneOfType([
-   PropTypes.object,
-   PropTypes.array
- ]),
-}
+  children: PropTypes.node
+};
 
-export default Sidebar
+export default Sidebar;
