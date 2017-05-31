@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledTableRow = styled.tr`
   font-size: 0.8em;
@@ -9,14 +9,14 @@ const StyledTableRow = styled.tr`
   border-bottom: 1px solid ${props => props.theme.colorBorders};
 `;
 
-const TableRow = ({children, ...otherProps}) => (
+const TableRow = ({ children, ...otherProps }) => (
   <StyledTableRow {...otherProps}>
     {children}
   </StyledTableRow>
-)
+);
 
 TableRow.propTypes = {
-  children: PropTypes.object.isRequired
-}
+  children: PropTypes.node.isRequired
+};
 
-export default TableRow
+export default TableRow;

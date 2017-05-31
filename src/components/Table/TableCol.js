@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledTableCol = styled.td`
   padding: 1em;
@@ -9,14 +9,14 @@ const StyledTableCol = styled.td`
   }
 `;
 
-const TableCol = ({children, ...otherProps}) => (
+const TableCol = ({ children, ...otherProps }) => (
   <StyledTableCol {...otherProps}>
     {children}
   </StyledTableCol>
-)
+);
 
 TableCol.propTypes = {
-  children: PropTypes.object.isRequired
-}
+  children: PropTypes.node.isRequired
+};
 
-export default TableCol
+export default TableCol;
