@@ -1,5 +1,5 @@
 exports[`snapshot should not have changed inadvertently 1`] = `
-<Title__Title>
+<Title__StyledTitle>
   eQ Author
-</Title__Title>
+</Title__StyledTitle>
 `;
