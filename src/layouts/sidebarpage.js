@@ -8,8 +8,8 @@ import SurveySidebar from "containers/SurveySidebar";
 import { Grid, Column } from "components/Grid";
 
 const Links = [
-  <Link to="/">Survey Home</Link>,
-  <Link to="/create">Create Survey</Link>,
+  <Link to="/" key="home">Survey Home</Link>,
+  <Link to="/create" key="create">Create Survey</Link>,
   "Design"
 ];
 

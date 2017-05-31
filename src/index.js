@@ -1,4 +1,5 @@
 import render from "utils/render";
+import registerServiceWorker from "utils/registerServiceWorker";
 import createHistory from "history/createHashHistory";
 import { configureStore, configurePersistedStore } from "store/configureStore";
 import App from "containers/App";
@@ -6,7 +7,7 @@ import App from "containers/App";
 let useStorage = true;
 
 const history = createHistory({
-  basename: process.env.BASE_NAME
+  basename: process.env.REACT_APP_BASE_NAME
 });
 
 const store = useStorage
@@ -16,6 +17,8 @@ const store = useStorage
 const renderApp = render(document.getElementById("root"), { store, history });
 
 renderApp(App);
+
+registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept("containers/App", () => {
