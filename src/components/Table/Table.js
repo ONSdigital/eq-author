@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const TableWrapper = styled.div`
+const StyledTableWrapper = styled.div`
   border: solid 1px ${props => props.theme.colorBorders};
   border-radius: 2px;
   margin-bottom: 1em;
@@ -15,7 +16,14 @@ const Table = styled.table`
   margin-bottom: -1px;
 `;
 
-export default ({ children, ...otherProps }) =>
-  <TableWrapper {...otherProps}>
+const TableWrapper = ({ children, ...otherProps }) => (
+  <StyledTableWrapper {...otherProps}>
     <Table>{children}</Table>
-  </TableWrapper>;
+  </StyledTableWrapper>
+);
+
+TableWrapper.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+export default TableWrapper;

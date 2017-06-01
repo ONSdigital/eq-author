@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const IconAdd = (props) => (
+const AddIcon = props => (
   <span {...props}>
     <svg width="16px" height="16px" viewBox="0 0 58 58" version="1.1">
       <path
@@ -14,12 +15,12 @@ const IconAdd = (props) => (
   </span>
 );
 
-IconAdd.propTypes = {
-  fill: React.PropTypes.string
-};
-
-IconAdd.defaultProps = {
+AddIcon.defaultProps = {
   fill: "#7dc2e2"
 };
 
-export default IconAdd;
+AddIcon.propTypes = {
+  fill: PropTypes.string.isRequired
+};
+
+export default AddIcon;

@@ -1,14 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const TableCol = styled.td`
+const StyledTableCol = styled.td`
   padding: 1em;
   &:not(:last-of-type) {
     border-right: 1px solid ${props => props.theme.colorBorders};
   }
 `;
 
-export default ({ children, ...otherProps }) =>
-  <TableCol {...otherProps}>
+const TableCol = ({ children, ...otherProps }) => (
+  <StyledTableCol {...otherProps}>
     {children}
-  </TableCol>;
+  </StyledTableCol>
+);
+
+TableCol.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+export default TableCol;

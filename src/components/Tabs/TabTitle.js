@@ -1,6 +1,7 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import { colorBorders } from "constants/theme";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, {css} from 'styled-components';
+import {colorBorders} from 'constants/theme';
 
 const SelectedTabTitle = css`
   background: white;
@@ -22,7 +23,7 @@ const CompactTabTitle = css`
   }
 `;
 
-const TabTitle = styled.li`
+const StyledTabTitle = styled.li`
   padding: 1em 3em;
   cursor: pointer;
 
@@ -44,8 +45,16 @@ const TabLabel = styled.div`
   user-select: none;
 `;
 
-export default ({ children, onClick, selected = true, ...otherProps }) => (
-  <TabTitle onClick={onClick} aria-selected={selected} {...otherProps}>
+const TabTitle = ({children, onClick, selected = true, ...otherProps}) => (
+  <StyledTabTitle onClick={onClick} aria-selected={selected} {...otherProps}>
     <TabLabel>{children}</TabLabel>
-  </TabTitle>
+  </StyledTabTitle>
 );
+
+TabTitle.propTypes = {
+  children: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  selected: PropTypes.bool
+}
+
+export default TabTitle

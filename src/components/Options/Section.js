@@ -1,4 +1,5 @@
 import React from "react";
+import CustomPropTypes from "proptypes";
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, TextArea } from "components/Forms";
 
@@ -19,6 +20,10 @@ export const SectionSettings = ({ options, ...otherProps }) => {
       </Column>
     </Grid>
   );
+};
+
+SectionSettings.propTypes = {
+  options: CustomPropTypes.section
 };
 
 export const SectionOptions = [

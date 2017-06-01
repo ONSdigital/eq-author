@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "react-router-redux";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router";
-
 import routes from "routes";
 
 const renderRoute = route => props => (
@@ -13,7 +13,7 @@ const renderRoute = route => props => (
   </route.layout>
 );
 
-export default ({ store, history }) => (
+const App = ({ store, history }) => (
   <AppContainer>
     <Provider store={store}>
       <ConnectedRouter history={history}>
@@ -31,3 +31,14 @@ export default ({ store, history }) => (
     </Provider>
   </AppContainer>
 );
+
+App.propTypes = {
+  store: PropTypes.shape({
+    getState: PropTypes.func.isRequired
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
+
+export default App;

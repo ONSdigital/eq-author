@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "components/Button";
-import Icon from "./icon-add";
+import Icon from "./IconAdd";
 
 export const EDIT_MODE = "editMode";
 export const BUTTON_MODE = "buttonMode";
@@ -130,4 +131,13 @@ export default class AddButton extends Component {
       </div>
     );
   }
+}
+
+AddButton.propTypes = {
+  children: PropTypes.string.isRequired,
+  editLabel: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  mode: PropTypes.string.isRequired,
+  onApplyLabel: PropTypes.func,
+  onCancel: PropTypes.func
 }

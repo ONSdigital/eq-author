@@ -1,11 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Canvas = styled.div`
+const StyledCanvas = styled.div`
   display: flex;
 `;
 
-export default (props) =>
-  <Canvas>
+const Canvas = props => (
+  <StyledCanvas>
     {props.children}
-  </Canvas>;
+  </StyledCanvas>
+);
+
+Canvas.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+export default Canvas;

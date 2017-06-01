@@ -1,5 +1,6 @@
 import React from "react";
 import { flow } from "lodash";
+import PropTypes from "prop-types";
 import { Sidebar, SidebarSection } from "components/Sidebar";
 import { TreeMenu } from "components/TreeMenu";
 
@@ -19,5 +20,11 @@ const SurveySidebar = ({ sections, questions, answers, ...actions }) => (
     />
   </Sidebar>
 );
+
+SurveySidebar.propTypes = {
+  sections: PropTypes.objectOf(PropTypes.object),
+  questions: PropTypes.objectOf(PropTypes.object),
+  answers: PropTypes.objectOf(PropTypes.object)
+};
 
 export default SurveySidebar;

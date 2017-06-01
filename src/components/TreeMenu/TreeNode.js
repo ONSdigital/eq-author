@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { TreeNodeChildren, TreeNodeLabel } from "components/TreeMenu";
@@ -6,7 +7,7 @@ import AddButton, { EDIT_MODE } from "components/AddButton";
 
 import AddIcon from "./AddIcon";
 
-const TreeNode = styled.div`
+const StyledTreeNode = styled.div`
   color: white;
   position: relative;
   &:nth-child(odd) {
@@ -24,7 +25,7 @@ const AddIconBtn = styled(AddIcon)`
   margin: auto;
 `;
 
-export default class extends Component {
+export class TreeNode extends Component {
   constructor(props) {
     super(props);
     this.state = { newItem: false };
@@ -75,11 +76,23 @@ export default class extends Component {
     const { label, ...otherProps } = this.props;
 
     return (
-      <TreeNode {...otherProps}>
-        {label === undefined
-          ? this.renderButton()
-          : this.renderLabel()}
-      </TreeNode>
+      <StyledTreeNode {...otherProps}>
+        {label === undefined ? this.renderButton() : this.renderLabel()}
+      </StyledTreeNode>
     );
   }
 }
+
+TreeNode.propTypes = {
+  handleAddItem: PropTypes.func,
+  type: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  addItemComplete: PropTypes.func,
+  removeItem: PropTypes.func,
+  label: PropTypes.string,
+  to: PropTypes.string.isRequired,
+  children: PropTypes.element,
+  addItem: PropTypes.func
+};
+
+export default TreeNode;

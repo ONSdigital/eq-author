@@ -1,7 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-
+import styled from "styled-components";
 import CustomPropTypes from "proptypes";
 import ActionBar from "components/ActionBar";
 import Button from "components/Button";
@@ -81,11 +80,11 @@ DesignSurveyPage.propTypes = {
     type: PropTypes.string.isRequired,
     item: PropTypes.oneOfType([section, question, answer])
   }),
-  selectedSection: PropTypes.shape(CustomPropTypes.section),
+  selectedSection: CustomPropTypes.section,
   onChange: PropTypes.func.isRequired,
   clearSurvey: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
-  surveyItems: PropTypes.shape(CustomPropTypes.survey.items)
+  surveyItems: CustomPropTypes.survey.items
 };
 
 export default DesignSurveyPage;

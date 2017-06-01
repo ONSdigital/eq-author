@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const TreeNodeChildren = styled.div`
+const StyledTreeNodeChildren = styled.div`
   color: white;
   font-size: 1em;
   margin: 0;
@@ -12,15 +13,15 @@ const TreeNodeChildren = styled.div`
   height: ${props => (props.open ? "auto" : "0")};
 `;
 
-export default class extends Component {
+export default class TreeNodeChildren extends Component {
   static defaultProps = {
-    open: true,
+    open: true
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      open: props.open,
+      open: props.open
     };
   }
 
@@ -31,9 +32,14 @@ export default class extends Component {
   render() {
     const { children } = this.props;
     return (
-      <TreeNodeChildren open={this.state.open}>
+      <StyledTreeNodeChildren open={this.state.open}>
         {children}
-      </TreeNodeChildren>
+      </StyledTreeNodeChildren>
     );
   }
 }
+
+TreeNodeChildren.propTypes = {
+  children: PropTypes.element,
+  open: PropTypes.bool.isRequired
+};

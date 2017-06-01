@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { injectGlobal, ThemeProvider } from "styled-components";
 import theme from "constants/theme";
 import "normalize.css";
@@ -46,8 +47,14 @@ injectGlobal`
   }
 `;
 
-export default ({ children }) => (
+const App = ({ children }) => (
   <ThemeProvider theme={theme}>
     {children}
   </ThemeProvider>
 );
+
+App.propTypes = {
+  children: PropTypes.element.isRequired
+};
+
+export default App;

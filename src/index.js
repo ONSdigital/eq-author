@@ -4,7 +4,7 @@ import createHistory from "history/createHashHistory";
 import { configureStore, configurePersistedStore } from "store/configureStore";
 import App from "containers/App";
 
-let useStorage = false;
+let useStorage = true;
 
 const history = createHistory({
   basename: process.env.BASE_NAME

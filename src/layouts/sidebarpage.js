@@ -1,6 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
 import BaseLayout from "./base";
 import Breadcrumb from "components/Breadcrumb";
 import SurveySidebar from "containers/SurveySidebar";
@@ -10,7 +10,7 @@ import { Grid, Column } from "components/Grid";
 const Links = [
   <Link to="/">Survey Home</Link>,
   <Link to="/create">Create Survey</Link>,
-  "Design",
+  "Design"
 ];
 
 const SidebarPageLayout = props => {
@@ -27,6 +27,10 @@ const SidebarPageLayout = props => {
       </Grid>
     </BaseLayout>
   );
+};
+
+SidebarPageLayout.propTypes = {
+  children: PropTypes.element.isRequired
 };
 
 export default SidebarPageLayout;

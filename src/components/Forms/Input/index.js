@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const noop = () => {};
 
-const Input = styled.input`
+const StyledInput = styled.input`
   padding: 1em;
   width: 100%;
   display: block;
@@ -19,12 +20,8 @@ const Input = styled.input`
   }
 `;
 
-Input.defaultProps = {
-  type: "text"
-};
-
-export default ({ type, value, id, ...otherProps }) => (
-  <Input
+const Input = ({ type, value, id, ...otherProps }) => (
+  <StyledInput
     type={type}
     value={value}
     id={id}
@@ -33,3 +30,19 @@ export default ({ type, value, id, ...otherProps }) => (
     {...otherProps}
   />
 );
+
+Input.defaultProps = {
+  type: "text"
+}
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.number
+  ]),
+  id: PropTypes.string
+}
+
+export default Input

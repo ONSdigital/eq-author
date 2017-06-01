@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Title from "components/Title";
 import BaseLayout from "./base";
@@ -36,7 +37,8 @@ const TabbedPageLayout = props => {
 };
 
 TabbedPageLayout.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired
 };
 
 export default TabbedPageLayout;

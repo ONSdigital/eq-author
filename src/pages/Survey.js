@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
@@ -52,4 +53,8 @@ const SurveyPage = ({ onFileSelected }) => (
   </Centered>
 );
 
-export default SurveyPage;
+SurveyPage.propTypes = {
+  onFileSelected: PropTypes.func.isRequired
+}
+
+export default SurveyPage

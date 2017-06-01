@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const AddSVG = () => (
   <svg width="14px" height="14px" viewBox="0 1 14 14" version="1.1">
@@ -12,10 +13,11 @@ const AddSVG = () => (
     />
   </svg>
 );
+
 const Icon = styled.span`
   margin-right: 1em;
 `;
-const HintButton = styled.button`
+const StyledHintButton = styled.button`
   padding: 60px;
   background-color: #fafafa;
   border: 2px dashed #e8e8e9;
@@ -25,8 +27,14 @@ const HintButton = styled.button`
   align-items: center;
 `;
 
-export default ({ children, ...otherProps }) => (
-  <HintButton {...otherProps}>
+const HintButton = ({children, ...otherProps}) => (
+  <StyledHintButton {...otherProps}>
     <Icon><AddSVG /></Icon> {children}
-  </HintButton>
+  </StyledHintButton>
 );
+
+HintButton.propTypes = {
+  children: PropTypes.string.isRequired
+}
+
+export default HintButton

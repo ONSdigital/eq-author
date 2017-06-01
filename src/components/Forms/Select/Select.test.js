@@ -5,12 +5,19 @@ import Select from "./";
 const options = ["One", "Two", "Three", "Four", "Five"];
 
 describe("Select", () => {
-
   let select, handleChange;
 
   beforeEach(() => {
     handleChange = jest.fn();
-    select = <Select options={options} onChange={handleChange} name="foo" id="bar" />;
+    select = (
+      <Select
+        options={options}
+        onChange={handleChange}
+        value={options[0]}
+        name="foo"
+        id="bar"
+      />
+    );
   });
 
   it("renders without crashing", () => {
@@ -47,5 +54,4 @@ describe("Select", () => {
 
     expect(handleChange).toHaveBeenCalledWith(expect.objectContaining(event));
   });
-
 });

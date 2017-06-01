@@ -1,12 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const SurveyPreview = styled.div`
-
+const StyledSurveyPreview = styled.div`
 `;
 
-export default ({ children, ...otherProps }) => (
-  <SurveyPreview {...otherProps}>
+const SurveyPreview = ({ children, ...otherProps }) => (
+  <StyledSurveyPreview {...otherProps}>
     {children}
-  </SurveyPreview>
+  </StyledSurveyPreview>
 );
+
+SurveyPreview.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+export default SurveyPreview;

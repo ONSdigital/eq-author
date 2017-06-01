@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const TabPanelStyle = styled.div`
@@ -17,5 +18,10 @@ const TabPanel = ({ children, visible = true, ...otherProps }) => (
 );
 
 TabPanel.displayName = "TabPanel";
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  visible: PropTypes.bool
+};
 
 export default TabPanel;

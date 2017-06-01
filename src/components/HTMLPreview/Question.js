@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
 import styled from "styled-components";
 
 const QuestionTitleNumber = styled.div`
@@ -60,7 +62,7 @@ const QuestionGuidanceListItem = styled.li`
   margin: 0 0 0.3rem;
 `;
 
-export default ({ question, children }) => {
+const Question = ({ question, children }) => {
   return (
     <div>
       <QuestionTitle>
@@ -92,3 +94,10 @@ export default ({ question, children }) => {
     </div>
   );
 };
+
+Question.propTypes = {
+  question: CustomPropTypes.question,
+  children: PropTypes.arrayOf(PropTypes.object)
+};
+
+export default Question;

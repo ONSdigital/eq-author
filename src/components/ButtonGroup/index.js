@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const VerticalGroup = css`
@@ -15,12 +16,19 @@ const HorizontalGroup = css`
   }
 `;
 
-const ButtonGroup = styled.div`
+const StyledButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
   ${props => props.vertical && VerticalGroup}
   ${props => props.horizontal && HorizontalGroup}
 `;
 
-export default ({ children, ...otherProps }) =>
-  <ButtonGroup {...otherProps}>{children}</ButtonGroup>;
+const ButtonGroup = ({ children, ...otherProps }) => (
+  <StyledButtonGroup {...otherProps}>{children}</StyledButtonGroup>
+);
+
+ButtonGroup.propTypes = {
+  children: PropTypes.node
+};
+
+export default ButtonGroup;

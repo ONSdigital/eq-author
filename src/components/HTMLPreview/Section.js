@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import CustomPropTypes from "proptypes";
 import styled from "styled-components";
 
 const SectionTitle = styled.div`
@@ -47,12 +49,21 @@ const SectionDescription = styled.div`
   margin: 0 0 1rem;
 `;
 
-export default ({ section, children }) => {
+const Section = ({ section, children }) => {
   return (
     <div>
-      <SectionTitle><SectionNumber>1</SectionNumber>{section.title}</SectionTitle>
+      <SectionTitle>
+        <SectionNumber>1</SectionNumber>{section.title}
+      </SectionTitle>
       <SectionDescription>{section.description}</SectionDescription>
       {children}
     </div>
   );
 };
+
+Section.propTypes = {
+  section: CustomPropTypes.section,
+  children: PropTypes.arrayOf(PropTypes.object)
+};
+
+export default Section;

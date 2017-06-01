@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-
 import { flattenDeep } from "lodash";
-
 import TabPanel from "./TabPanel";
 import TabList from "./TabList";
 
-const Tabs = styled.div`
+const StyledTabs = styled.div`
   display: block;
 `;
 
@@ -15,7 +14,7 @@ const TabsContent = styled.div`
   overflow: hidden;
 `;
 
-export default class extends Component {
+export default class Tabs extends Component {
   state = {
     selected: this.props.selected || 0
   };
@@ -41,7 +40,7 @@ export default class extends Component {
     // flatten in case arrays of children
     const flattenedChildren = flattenDeep(children);
     return (
-      <Tabs compact={compact}>
+      <StyledTabs compact={compact}>
         {flattenedChildren
           .filter(child => child.type.displayName === TabList.displayName)
           .map(this.getComponentWithProps)}
@@ -50,7 +49,13 @@ export default class extends Component {
             .filter(child => child.type.displayName === TabPanel.displayName)
             .map(this.getComponentWithProps)}
         </TabsContent>
-      </Tabs>
+      </StyledTabs>
     );
   }
 }
+
+Tabs.propTypes = {
+  selected: PropTypes.string,
+  children: PropTypes.node,
+  compact: PropTypes.bool
+};

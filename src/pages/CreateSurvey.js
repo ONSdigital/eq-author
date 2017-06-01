@@ -1,12 +1,12 @@
 /* eslint-disable camelcase */
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
 import { Field, Input, Label, Select } from "components/Forms";
 import RichTextArea from "components/RichTextArea";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
-
 import { Tabs, TabPanel, TabList, TabTitle } from "components/Tabs";
 
 const ActionButtonGroup = styled(ButtonGroup)`
@@ -17,7 +17,7 @@ const ActionButtonGroup = styled(ButtonGroup)`
   justify-content: center;
 `;
 
-const SurveyCreatePage = ({ meta, onChange }) => {
+const CreateSurveyPage = ({ meta, onChange }) => {
   const { title, description, theme, legal_basis, informationToProvide } = meta;
   return (
     <div>
@@ -74,4 +74,21 @@ const SurveyCreatePage = ({ meta, onChange }) => {
   );
 };
 
-export default SurveyCreatePage;
+CreateSurveyPage.propTypes = {
+  meta: PropTypes.shape({
+    data_version: PropTypes.string,
+    description: PropTypes.string,
+    groups: PropTypes.array,
+    id: PropTypes.string,
+    legal_basis: PropTypes.string,
+    mime_type: PropTypes.string,
+    questionnaire_id: PropTypes.string,
+    schema_version: PropTypes.string,
+    survey_id: PropTypes.string,
+    theme: PropTypes.string,
+    title: PropTypes.string
+  }),
+  onChange: PropTypes.func
+};
+
+export default CreateSurveyPage;

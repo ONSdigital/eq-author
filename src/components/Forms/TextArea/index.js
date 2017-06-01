@@ -1,14 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const noop = () => {};
 
-const TextArea = styled.textarea`
+const StyledTextArea = styled.textarea`
   resize: none;
 `;
 
-export default ({ value, id, rows = 10, ...otherProps }) => (
-  <TextArea
+const TextArea = ({ value, id, rows = 10, ...otherProps }) => (
+  <StyledTextArea
     value={value}
     rows={rows}
     id={id}
@@ -17,3 +18,11 @@ export default ({ value, id, rows = 10, ...otherProps }) => (
     {...otherProps}
   />
 );
+
+TextArea.propTypes = {
+  value: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  rows: PropTypes.number
+}
+
+export default TextArea
