@@ -1,4 +1,4 @@
-  {
+{
   "name": "eq-author",
   "version": "0.0.1",
   "private": true,
@@ -7,7 +7,7 @@
     "start": "yarn && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "smoketest": "chimp --browser=phantomjs",
+    "smoketest": "chimp --browser=phantomjs --jasmine",
     "lint": "eslint src",
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build&&gh-pages -d build",
@@ -50,6 +50,7 @@
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-flowtype": "2.21.0",
     "eslint-plugin-import": "2.0.1",
+    "eslint-plugin-jasmine": "^2.2.0",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.4.1",
     "extract-text-webpack-plugin": "1.0.1",
@@ -113,7 +114,7 @@
       "<rootDir>/config/polyfills.js",
       "tests/setup/throwOnConsole.js"
     ],
-    "setupTestFrameworkScriptFile" : "tests/setup/mockLocalStorage.js",
+    "setupTestFrameworkScriptFile": "tests/setup/mockLocalStorage.js",
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
