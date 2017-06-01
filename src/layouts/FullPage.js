@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import BaseLayout from "./base";
+import BaseLayout from "layouts/Base";
 
 const FullPageLayout = props => (
   <BaseLayout>

@@ -1,10 +1,11 @@
 import React from "react";
 import { storiesOf } from "@kadira/storybook";
-import { Grid, Column } from "./index";
 import styled from "styled-components";
+import { Grid, Column } from "./index";
+import { colors } from "constants/theme";
 
 const GridHelper = styled.div`
-  background: ${props => props.theme.colorDarkBlue};
+  background: ${colors.darkBlue};
   color: white;
   padding: 1em;
 `;

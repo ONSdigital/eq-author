@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "constants/theme";
 
 const noop = () => {};
 
@@ -9,10 +10,10 @@ const StyledInput = styled.input`
   width: 100%;
   display: block;
   border-radius: 2px;
-  border: 1px solid ${props => props.theme.colorBorders};
+  border: 1px solid ${colors.borders};
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.colorLightBlue};
+    border: 1px solid ${colors.lightBlue};
   }
   &[type = "checkbox"]{
     display: inline-block;
@@ -33,7 +34,7 @@ const Input = ({ type, value, id, ...otherProps }) => (
 
 Input.defaultProps = {
   type: "text"
-}
+};
 
 Input.propTypes = {
   type: PropTypes.string.isRequired,
@@ -43,6 +44,6 @@ Input.propTypes = {
     PropTypes.number
   ]),
   id: PropTypes.string
-}
+};
 
-export default Input
+export default Input;

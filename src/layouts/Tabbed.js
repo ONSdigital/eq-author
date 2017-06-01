@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Title from "components/Title";
-import BaseLayout from "./base";
+import BaseLayout from "layouts/Base";
 import Nav from "components/Nav";
 
 const PageHeading = styled.div`

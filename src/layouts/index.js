@@ -1,3 +1,3 @@
-export { default as FullPageLayout } from "./fullpage";
-export { default as TabbedPageLayout } from "./tabbedpage";
-export { default as SidebarPageLayout } from "./sidebarpage";
+export { default as FullPageLayout } from "layouts/FullPage";
+export { default as TabbedPageLayout } from "layouts/Tabbed";
+export { default as SidebarPageLayout } from "layouts/WithSideBar";

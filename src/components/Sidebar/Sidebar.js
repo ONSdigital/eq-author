@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { colorDarkBlue } from "constants/theme";
+import { colors } from "constants/theme";
 import styled from "styled-components";
 
 const StyledSidebar = styled.div`
-  background: ${colorDarkBlue};
+  background: ${colors.darkBlue};
   width: 100%;
   height: 100%;
   color: white;

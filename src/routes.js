@@ -3,9 +3,7 @@ import CreateSurvey from "containers/CreateSurvey";
 import DesignSurvey from "containers/DesignSurvey";
 import NotFound from "pages/NotFound";
 
-import { SidebarPageLayout } from "layouts";
-import { TabbedPageLayout } from "layouts";
-import { FullPageLayout } from "layouts";
+import { SidebarPageLayout, TabbedPageLayout, FullPageLayout } from "layouts";
 
 const routes = [
   {
