@@ -11,7 +11,6 @@ module.exports = {
       maxInstances: 1,
       bail: 1
     },
-    logLevel: "silent",
-    baseUrl: "http://localhost:4000"
+    logLevel: "silent"
   }
 };
