@@ -9,7 +9,7 @@ describe("eQ Author", () => {
     });
 
     it("displays option buttons", () => {
-      expect(browser.source().value).toContain("Select to begin");
+      expect(browser.getHTML("#root")).toContain("Select to begin");
     });
   });
 });
