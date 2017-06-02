@@ -4,7 +4,7 @@ import {
   getPageHTML,
   getPageTitle,
   findPageElements
-} from "./page-utils";
+} from "../helper";
 
 describe("eQ Author", () => {
   describe("navigate to the Homepage", () => {

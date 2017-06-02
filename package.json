@@ -7,7 +7,7 @@
     "start": "yarn && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "smoketest": "chimp --browser=chrome --jasmine",
+    "smoketest": "chimp .config/chimp.js",
     "lint": "eslint src",
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build&&gh-pages -d build",
