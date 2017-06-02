@@ -1,15 +1,30 @@
+import {
+  goToUrl,
+  getElementText,
+  getPageHTML,
+  getPageTitle,
+  findPageElements
+} from "./page-utils";
+
 describe("eQ Author", () => {
   describe("navigate to the Homepage", () => {
     beforeEach(() => {
-      browser.url("http://localhost:3000/");
+      goToUrl("http://localhost:3000/");
     });
 
     it("displays page title", () => {
-      expect(browser.getTitle()).toEqual("eQ Author Prototype");
+      expect(getPageTitle()).toEqual("eQ Author Prototype");
     });
 
-    it("displays option buttons", () => {
-      expect(browser.getHTML("#root")).toContain("Select to begin");
+    it("displays select to begin", () => {
+      expect(getPageHTML("#root")).toContain("Select to begin");
+    });
+
+    it("presents user with buttons to create or load survey", () => {
+      const buttons = findPageElements("button");
+      expect(buttons.length).toEqual(2);
+      expect(getElementText(buttons[0])).toEqual("Create survey");
+      expect(getElementText(buttons[1])).toEqual("Load survey");
     });
   });
 });
