@@ -12,3 +12,4 @@ ignore:
   - "**/story.js"
   - "**/registerServiceWorker.js"
   - "features"
+  - "scripts/*.js"
