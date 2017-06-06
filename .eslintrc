@@ -2,8 +2,13 @@
   "extends": ["eslint:recommended", "react-app", "plugin:react/recommended", "prettier"],
   "plugins": [
     "react",
-    "babel"
+    "babel",
+    "jasmine"
   ],
+  "env": {
+    "jasmine": true,
+    "browser": true
+  },
   "rules": {
     "eqeqeq": "error",
     "camelcase": "error",
