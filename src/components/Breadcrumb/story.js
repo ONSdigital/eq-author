@@ -4,9 +4,6 @@ import styled from "styled-components";
 import Breadcrumb from "components/Breadcrumb";
 
 const Link = styled.a`
-  color: #4A4A4A;
-  text-decoration: none;
-
   &:hover {
     text-decoration: underline;
   }
