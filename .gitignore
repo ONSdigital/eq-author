@@ -17,3 +17,5 @@ yarn-error.log*
 
 /storybook-static
 .vscode/
+
+/**/*/__snapshots__

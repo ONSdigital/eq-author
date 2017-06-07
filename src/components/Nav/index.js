@@ -11,7 +11,7 @@ const StyledGrid = styled.div`
   border-bottom: 1px solid ${props => props.theme.colorBorders};
 `;
 
-const StyledNav = styled.nav`
+export const StyledNav = styled.nav`
   margin: 0;
   display: block;
 `;

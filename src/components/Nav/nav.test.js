@@ -1,10 +1,15 @@
 import React from "react";
-import { render } from "enzyme";
-import Nav from "components/Nav";
+import { mount, shallow } from "enzyme";
+import Nav, { StyledNav } from "components/Nav";
 
-describe("navigation", () => {
-  it("renders three `.Nav__StyledNavLink-cvnbpY`s", () => {
-    const wrapper = render(<Nav />);
-    expect(wrapper.find(".Nav__StyledNavLink-cvnbpY").length).to.equal(3);
+describe("components/Nav", function() {
+  it("should render Nav", function() {
+    const wrapper = shallow(<Nav />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should contain links", function() {
+    const wrapper = mount(<StyledNav />);
+    expect(wrapper.find("a")).toBeTruthy();
   });
 });
