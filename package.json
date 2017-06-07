@@ -139,5 +139,7 @@
       "react-app"
     ]
   },
-  "moduleRoots": [ "./src" ]
+  "moduleRoots": [
+    "./src"
+  ]
 }

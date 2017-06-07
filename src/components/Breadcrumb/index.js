@@ -25,7 +25,7 @@ const StyledBreadcrumb = styled.div`
 const BreadcrumbLink = props => (
   <span>
     {props.link}
-    {!props.isLast && <Chevron chevronColor={props.theme.textColor} />}
+    {!props.isLast && <Chevron />}
   </span>
 );
 
