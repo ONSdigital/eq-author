@@ -4,6 +4,11 @@ import styled from "styled-components";
 import { colorGrey } from "constants/theme";
 import Chevron from "./chevron";
 
+const BreadcrumbLinkPropType = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.object
+]);
+
 const ChevronIcon = styled(Chevron)`
   margin: 0 0.5em 0 0.5em;
 `;
@@ -27,6 +32,11 @@ const BreadcrumbLink = props => (
   </span>
 );
 
+BreadcrumbLink.propTypes = {
+  link: BreadcrumbLinkPropType,
+  isLast: PropTypes.bool
+};
+
 BreadcrumbLink.defaultProps = {
   isLast: false
 };
@@ -49,9 +59,7 @@ const Breadcrumb = props => (
 );
 
 Breadcrumb.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-  )
+  links: PropTypes.arrayOf(BreadcrumbLinkPropType).isRequired
 };
 
 export default Breadcrumb;

@@ -12,9 +12,11 @@ const Link = styled.a`
   }
 `;
 
-const links = [<Link href="#">Hello</Link>, <Link href="#">World</Link>];
+const links = [
+  <Link href="#" key="hello">Hello</Link>,
+  <Link href="#" key="world">World</Link>
+];
 
-storiesOf("Breadcrumb", module)
-  .add("Default", () => (
-    <Breadcrumb links={links} />
-  ));
+storiesOf("Breadcrumb", module).add("Default", () => (
+  <Breadcrumb links={links} />
+));

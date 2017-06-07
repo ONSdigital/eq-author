@@ -1,8 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`button group component snapshot Should not have changed inadvertently 1`] = `
 <ButtonGroup>
   <ButtonGroup__StyledButtonGroup>
     <div
-      className="ButtonGroup__StyledButtonGroup-bdkEkm iKFOjv" />
+      className="ButtonGroup__StyledButtonGroup-bdkEkm iKFOjv"
+    />
   </ButtonGroup__StyledButtonGroup>
 </ButtonGroup>
 `;
