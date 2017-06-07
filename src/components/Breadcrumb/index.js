@@ -24,13 +24,13 @@ const StyledBreadcrumb = styled.div`
 
 const BreadcrumbLink = props => (
   <span>
-    {props.link}
+    {props.children}
     {!props.isLast && <Chevron />}
   </span>
 );
 
 BreadcrumbLink.propTypes = {
-  link: BreadcrumbLinkPropType,
+  children: BreadcrumbLinkPropType.isRequired,
   isLast: PropTypes.bool
 };
 
@@ -38,25 +38,25 @@ BreadcrumbLink.defaultProps = {
   isLast: false
 };
 
-BreadcrumbLink.propTypes = {
-  link: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  isLast: PropTypes.bool
-};
+const StyledBreadcrumb = styled.div`
+  padding: 1em 1em;
+  a {
+    text-decoration: none;
+  }
+`;
 
 const Breadcrumb = props => (
-  <StyledBreadcrumb {...props}>
-    {props.links.map((link, index) => (
-      <BreadcrumbLink
-        key={index}
-        link={link}
-        isLast={index === props.links.length - 1}
-      />
+  <StyledBreadcrumb>
+    {props.children.map((child, index) => (
+      <BreadcrumbLink key={index} isLast={index === props.children.length - 1}>
+        {child}
+      </BreadcrumbLink>
     ))}
   </StyledBreadcrumb>
 );
 
 Breadcrumb.propTypes = {
-  links: PropTypes.arrayOf(BreadcrumbLinkPropType).isRequired
+  children: PropTypes.arrayOf(BreadcrumbLinkPropType).isRequired
 };
 
 export default Breadcrumb;

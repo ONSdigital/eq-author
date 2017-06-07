@@ -6,7 +6,7 @@ const ChevronIcon = styled.span`
   display: inline-block;
   width: 1em;
   height: 1em;
-  padding: 0 1em;
+  margin: 0 0.5em;
   background: url('${ChevronSvg}') center center no-repeat;
 `;
 

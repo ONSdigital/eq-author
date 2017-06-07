@@ -10,7 +10,7 @@ const Link = styled.a`
   }
 `;
 
-const StyledDiv = styled.div`
+const Background = styled.div`
   background: #35415D;
 `;
 
@@ -20,7 +20,9 @@ const links = [
 ];
 
 storiesOf("Breadcrumb", module).add("Default", () => (
-  <StyledDiv>
-    <Breadcrumb links={links} />
-  </StyledDiv>
+  <Background>
+    <Breadcrumb>
+      {links}
+    </Breadcrumb>
+  </Background>
 ));

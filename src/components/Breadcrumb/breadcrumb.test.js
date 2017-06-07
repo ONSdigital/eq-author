@@ -9,26 +9,43 @@ describe("Breadcrumb", () => {
   describe("links", () => {
     const stubOnClick = jest.fn();
     const twoLinks = [
-      <Link text="Home" data="home" onClick={stubOnClick} />,
-      <Link text="Survey title" data="surveyTitle" onClick={stubOnClick} />
+      <Link key="1" text="Home" data="home" onClick={stubOnClick} />,
+      <Link
+        key="2"
+        text="Survey title"
+        data="surveyTitle"
+        onClick={stubOnClick}
+      />
     ];
 
     const threeLinks = concat(twoLinks, [
-      <Link text="Third link" data="thirdLink" onClick={stubOnClick} />
+      <Link key="3" text="Third link" data="thirdLink" onClick={stubOnClick} />
     ]);
 
-    it("should should display links", () => {
-      const wrapper = mount(<Breadcrumb links={twoLinks} />);
+    const BreadcrumbWithTwoLinks = props => (
+      <Breadcrumb>
+        {twoLinks}
+      </Breadcrumb>
+    );
+
+    const BreadcrumbWithThreeLinks = props => (
+      <Breadcrumb>
+        {threeLinks}
+      </Breadcrumb>
+    );
+
+    it("should display links", () => {
+      const wrapper = mount(<BreadcrumbWithTwoLinks />);
       expect(wrapper.find("a")).toHaveLength(2);
     });
 
     it("should have 1 chevron when two links", () => {
-      const breadcrumbWithTwoLinks = mount(<Breadcrumb links={twoLinks} />);
+      const breadcrumbWithTwoLinks = mount(<BreadcrumbWithTwoLinks />);
       expect(breadcrumbWithTwoLinks.find(Chevron)).toHaveLength(1);
     });
 
     it("should have 2 chevrons when three links", () => {
-      const breadcrumbWithThreeLinks = mount(<Breadcrumb links={threeLinks} />);
+      const breadcrumbWithThreeLinks = mount(<BreadcrumbWithThreeLinks />);
       expect(breadcrumbWithThreeLinks.find(Chevron)).toHaveLength(2);
     });
   });
