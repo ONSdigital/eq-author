@@ -2,6 +2,8 @@ export const findPageElements = selector => {
   return browser.elements(selector).value;
 };
 
+export const exists = selector => browser.isExisting(selector);
+
 export const getPageTitle = () => browser.getTitle();
 export const getPageHTML = element => browser.getHTML(element);
 

@@ -1,10 +1,4 @@
-import {
-  goToUrl,
-  getElementText,
-  getPageHTML,
-  getPageTitle,
-  findPageElements
-} from "../helper";
+import { goToUrl, getPageHTML, getPageTitle, exists } from "../helper";
 
 describe("eQ Author", () => {
   describe("navigate to the Homepage", () => {
@@ -21,10 +15,8 @@ describe("eQ Author", () => {
     });
 
     it("presents user with buttons to create or load survey", () => {
-      const buttons = findPageElements("button");
-      expect(buttons.length).toEqual(2);
-      expect(getElementText(buttons[0])).toEqual("Create survey");
-      expect(getElementText(buttons[1])).toEqual("Load survey");
+      expect(exists("#btn-create-survey")).toBe(true);
+      expect(exists("#btn-load-survey")).toBe(true);
     });
   });
 });

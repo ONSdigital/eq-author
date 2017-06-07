@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Title from "components/Title";
 import BaseLayout from "layouts/Base";
-import Nav from "components/Nav";
 
 const PageHeading = styled.div`
   text-align: center;
@@ -25,7 +24,6 @@ const FixedWidthWrapper = styled.div`
 const TabbedPageLayout = props => {
   return (
     <BaseLayout>
-      <Nav />
       <PageHeading>
         <Title>{props.title}</Title>
       </PageHeading>

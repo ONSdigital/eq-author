@@ -1,48 +1,52 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
-import Chevron from "./chevron";
+import iconChevron from "./chevron.svg";
 
-const BreadcrumbLinkPropType = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.object
-]);
+const BreadcrumbList = styled.ol`
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+`;
 
-const BreadcrumbLink = props =>
-  <span>
-    {props.children}
-    {!props.isLast && <Chevron />}
-  </span>;
-
-BreadcrumbLink.propTypes = {
-  children: BreadcrumbLinkPropType.isRequired,
-  isLast: PropTypes.bool
-};
-
-BreadcrumbLink.defaultProps = {
-  isLast: false
-};
-
-const StyledBreadcrumb = styled.div`
-  padding: 1em 1em;
-  a {
-    text-decoration: none;
-    color: ${colors.text};
+const BreadcrumbItem = styled.li`
+  margin: 0;
+  &:last-child:not(:only-child) {
+    &:before {
+      margin: 0 0.5em;
+      content: url('${iconChevron}');
+    }
   }
 `;
 
-const Breadcrumb = props =>
+const StyledBreadcrumb = styled.nav`
+  a {
+    text-decoration: none;
+    color: ${colors.white};
+    padding: 0;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const Breadcrumb = ({ breadcrumbs }) =>
   <StyledBreadcrumb>
-    {props.children.map((child, index) =>
-      <BreadcrumbLink key={index} isLast={index === props.children.length - 1}>
-        {child}
-      </BreadcrumbLink>
-    )}
+    <BreadcrumbList>
+      {breadcrumbs &&
+        breadcrumbs.map(({ title, path }, index) =>
+          <BreadcrumbItem key={path}>
+            <Link to={path}>{title}</Link>
+          </BreadcrumbItem>
+        )}
+    </BreadcrumbList>
   </StyledBreadcrumb>;
 
 Breadcrumb.propTypes = {
-  children: PropTypes.arrayOf(BreadcrumbLinkPropType).isRequired
+  breadcrumbs: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default Breadcrumb;

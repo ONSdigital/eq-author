@@ -1,15 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
 import { colors } from "constants/theme";
-
-const Grid = styled.div`
-  display: flex;
-  width: 100%;
-  flex: 0 0 auto;
-  border-bottom: 1px solid ${colors.borders};
-`;
 
 export const StyledNav = styled.nav`
   margin: 0;
@@ -17,7 +9,7 @@ export const StyledNav = styled.nav`
 `;
 
 const StyledNavLink = styled(NavLink)`
-  padding: 1em 2em;
+  padding: 1em 1.5em;
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
@@ -39,21 +31,13 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const Nav = () =>
-  <Grid>
-    <Column cols="3" />
-    <Column>
-      <StyledNav>
-        <StyledNavLink to="/create" activeClassName="selected">
-          Questionnaire meta
-        </StyledNavLink>
-        <StyledNavLink to="/design" activeClassName="selected">
-          Builder
-        </StyledNavLink>
-        <StyledNavLink to="/routing" activeClassName="selected">
-          Routing
-        </StyledNavLink>
-      </StyledNav>
-    </Column>
-  </Grid>;
+  <StyledNav>
+    <StyledNavLink to="/create" activeClassName="selected">
+      Questionnaire meta
+    </StyledNavLink>
+    <StyledNavLink to="/design" activeClassName="selected">
+      Builder
+    </StyledNavLink>
+  </StyledNav>;
 
 export default Nav;

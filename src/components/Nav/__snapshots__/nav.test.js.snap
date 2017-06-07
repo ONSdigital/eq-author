@@ -8,61 +8,35 @@ ShallowWrapper {
     "findWhereUnwrapped": [Function],
   },
   "length": 1,
-  "node": <Nav__Grid>
-    <Column__Column
-        cols="3"
-    />
-    <Column__Column>
-        <Nav__StyledNav>
-            <Nav__StyledNavLink
-                activeClassName="selected"
-                to="/create"
-            >
-                Questionnaire meta
-            </Nav__StyledNavLink>
-            <Nav__StyledNavLink
-                activeClassName="selected"
-                to="/design"
-            >
-                Builder
-            </Nav__StyledNavLink>
-            <Nav__StyledNavLink
-                activeClassName="selected"
-                to="/routing"
-            >
-                Routing
-            </Nav__StyledNavLink>
-        </Nav__StyledNav>
-    </Column__Column>
-</Nav__Grid>,
+  "node": <Nav__StyledNav>
+    <Nav__StyledNavLink
+        activeClassName="selected"
+        to="/create"
+    >
+        Questionnaire meta
+    </Nav__StyledNavLink>
+    <Nav__StyledNavLink
+        activeClassName="selected"
+        to="/design"
+    >
+        Builder
+    </Nav__StyledNavLink>
+</Nav__StyledNav>,
   "nodes": Array [
-    <Nav__Grid>
-      <Column__Column
-            cols="3"
-      />
-      <Column__Column>
-            <Nav__StyledNav>
-                  <Nav__StyledNavLink
-                        activeClassName="selected"
-                        to="/create"
-                  >
-                        Questionnaire meta
-                  </Nav__StyledNavLink>
-                  <Nav__StyledNavLink
-                        activeClassName="selected"
-                        to="/design"
-                  >
-                        Builder
-                  </Nav__StyledNavLink>
-                  <Nav__StyledNavLink
-                        activeClassName="selected"
-                        to="/routing"
-                  >
-                        Routing
-                  </Nav__StyledNavLink>
-            </Nav__StyledNav>
-      </Column__Column>
-</Nav__Grid>,
+    <Nav__StyledNav>
+      <Nav__StyledNavLink
+            activeClassName="selected"
+            to="/create"
+      >
+            Questionnaire meta
+      </Nav__StyledNavLink>
+      <Nav__StyledNavLink
+            activeClassName="selected"
+            to="/design"
+      >
+            Builder
+      </Nav__StyledNavLink>
+</Nav__StyledNav>,
   ],
   "options": Object {},
   "renderer": ReactShallowRenderer {
@@ -98,61 +72,35 @@ ShallowWrapper {
       "_pendingReplaceState": false,
       "_pendingStateQueue": null,
       "_renderedComponent": NoopInternalComponent {
-        "_currentElement": <Nav__Grid>
-          <Column__Column
-                    cols="3"
-          />
-          <Column__Column>
-                    <Nav__StyledNav>
-                              <Nav__StyledNavLink
-                                        activeClassName="selected"
-                                        to="/create"
-                              >
-                                        Questionnaire meta
-                              </Nav__StyledNavLink>
-                              <Nav__StyledNavLink
-                                        activeClassName="selected"
-                                        to="/design"
-                              >
-                                        Builder
-                              </Nav__StyledNavLink>
-                              <Nav__StyledNavLink
-                                        activeClassName="selected"
-                                        to="/routing"
-                              >
-                                        Routing
-                              </Nav__StyledNavLink>
-                    </Nav__StyledNav>
-          </Column__Column>
-</Nav__Grid>,
+        "_currentElement": <Nav__StyledNav>
+          <Nav__StyledNavLink
+                    activeClassName="selected"
+                    to="/create"
+          >
+                    Questionnaire meta
+          </Nav__StyledNavLink>
+          <Nav__StyledNavLink
+                    activeClassName="selected"
+                    to="/design"
+          >
+                    Builder
+          </Nav__StyledNavLink>
+</Nav__StyledNav>,
         "_debugID": 2,
-        "_renderedOutput": <Nav__Grid>
-          <Column__Column
-                    cols="3"
-          />
-          <Column__Column>
-                    <Nav__StyledNav>
-                              <Nav__StyledNavLink
-                                        activeClassName="selected"
-                                        to="/create"
-                              >
-                                        Questionnaire meta
-                              </Nav__StyledNavLink>
-                              <Nav__StyledNavLink
-                                        activeClassName="selected"
-                                        to="/design"
-                              >
-                                        Builder
-                              </Nav__StyledNavLink>
-                              <Nav__StyledNavLink
-                                        activeClassName="selected"
-                                        to="/routing"
-                              >
-                                        Routing
-                              </Nav__StyledNavLink>
-                    </Nav__StyledNav>
-          </Column__Column>
-</Nav__Grid>,
+        "_renderedOutput": <Nav__StyledNav>
+          <Nav__StyledNavLink
+                    activeClassName="selected"
+                    to="/create"
+          >
+                    Questionnaire meta
+          </Nav__StyledNavLink>
+          <Nav__StyledNavLink
+                    activeClassName="selected"
+                    to="/design"
+          >
+                    Builder
+          </Nav__StyledNavLink>
+</Nav__StyledNav>,
       },
       "_renderedNodeType": 1,
       "_rootNodeID": 0,

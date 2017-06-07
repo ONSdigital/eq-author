@@ -7,30 +7,28 @@ import { Switch } from "react-router-dom";
 import { Route } from "react-router";
 import routes from "routes";
 
-const renderRoute = route => props => (
-  <route.layout title={route.title}>
+const renderRoute = route => props =>
+  <route.layout title={route.title} nav={route.nav}>
     <route.component {...props} routes={route.routes} />
-  </route.layout>
-);
+  </route.layout>;
 
-const App = ({ store, history }) => (
+const App = ({ store, history }) =>
   <AppContainer>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Switch>
-          {routes.map((route, i) => (
+          {routes.map((route, i) =>
             <Route
               exact
               key={route}
               path={route.path}
               render={renderRoute(route)}
             />
-          ))}
+          )}
         </Switch>
       </ConnectedRouter>
     </Provider>
-  </AppContainer>
-);
+  </AppContainer>;
 
 App.propTypes = {
   store: PropTypes.shape({

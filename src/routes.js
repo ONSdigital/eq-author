@@ -1,3 +1,5 @@
+import { find } from "lodash";
+
 import SurveyPage from "containers/Survey";
 import CreateSurvey from "containers/CreateSurvey";
 import DesignSurvey from "containers/DesignSurvey";
@@ -5,11 +7,12 @@ import NotFound from "pages/NotFound";
 
 import { SidebarPageLayout, TabbedPageLayout, FullPageLayout } from "layouts";
 
-const routes = [
+export const routes = [
   {
     path: "/",
     component: SurveyPage,
     layout: FullPageLayout,
+    title: "Home",
     exact: true
   },
   {
@@ -31,5 +34,8 @@ const routes = [
     exact: true
   }
 ];
+
+export const getRouteByPath = (path, routesToSearch = routes) =>
+  find(routesToSearch, { path });
 
 export default routes;
