@@ -4,7 +4,7 @@ import { Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
 import { colorBlue, colorText } from "constants/theme";
 
-const StyledGrid = styled.div`
+const Grid = styled.div`
   display: flex;
   width: 100%;
   flex: 0 0 auto;
@@ -39,7 +39,7 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 const Nav = () => (
-  <StyledGrid>
+  <Grid>
     <Column cols="3" />
     <Column>
       <StyledNav>
@@ -54,7 +54,7 @@ const Nav = () => (
         </StyledNavLink>
       </StyledNav>
     </Column>
-  </StyledGrid>
+  </Grid>
 );
 
 export default Nav;
