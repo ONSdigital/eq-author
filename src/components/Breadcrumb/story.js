@@ -15,14 +15,14 @@ const Background = styled.div`
 `;
 
 const links = [
-  <Link href="#">Home</Link>,
-  <Link href="#">Quarterly Business Survey</Link>
+  <Link key="1" href="#">Home</Link>,
+  <Link key="2" href="#">Quarterly Business Survey</Link>
 ];
 
-storiesOf("Breadcrumb", module).add("Default", () => (
+storiesOf("Breadcrumb", module).add("Default", () =>
   <Background>
     <Breadcrumb>
       {links}
     </Breadcrumb>
   </Background>
-));
+);
