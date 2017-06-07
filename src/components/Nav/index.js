@@ -7,7 +7,7 @@ import { colorBlue, colorText } from "constants/theme";
 const StyledGrid = styled.div`
   display: flex;
   width: 100%;
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   border-bottom: 1px solid ${props => props.theme.colorBorders};
 `;
 

@@ -30,7 +30,11 @@ const StyledTabTitle = styled.li`
   padding: 1em 2em;
   cursor: pointer;
   transition: border-color 200ms ease-in-out;
-
+  &:hover {
+    div{
+      color: ${colorBlue};
+    }
+  }
   &[aria-selected=true] {
     ${SelectedTabTitle};
   }
