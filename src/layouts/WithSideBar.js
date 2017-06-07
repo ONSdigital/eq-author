@@ -17,7 +17,10 @@ const SidebarPageLayout = props => {
   return (
     <BaseLayout>
       <Nav />
-      <Breadcrumb links={Links} />
+      <Breadcrumb>
+        {Links}
+      </Breadcrumb>
+
       <Grid>
         <Column cols="3" gutters={false}>
           <SurveySidebar />

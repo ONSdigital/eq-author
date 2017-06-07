@@ -42,18 +42,18 @@ const StyledBreadcrumb = styled.div`
   padding: 1em 1em;
   a {
     text-decoration: none;
+    color: white;
   }
 `;
 
-const Breadcrumb = props => (
+const Breadcrumb = props =>
   <StyledBreadcrumb>
-    {props.children.map((child, index) => (
+    {props.children.map((child, index) =>
       <BreadcrumbLink key={index} isLast={index === props.children.length - 1}>
         {child}
       </BreadcrumbLink>
-    ))}
-  </StyledBreadcrumb>
-);
+    )}
+  </StyledBreadcrumb>;
 
 Breadcrumb.propTypes = {
   children: PropTypes.arrayOf(BreadcrumbLinkPropType).isRequired
