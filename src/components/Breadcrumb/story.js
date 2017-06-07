@@ -10,11 +10,6 @@ const Link = styled.a`
   }
 `;
 
-const links = [
-  <Link href="#" key="hello">Hello</Link>,
-  <Link href="#" key="world">World</Link>
-];
-
 const StyledDiv = styled.div`
   background: #35415D;
 `;
