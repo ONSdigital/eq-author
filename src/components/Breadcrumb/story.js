@@ -4,19 +4,25 @@ import styled from "styled-components";
 import Breadcrumb from "components/Breadcrumb";
 
 const Link = styled.a`
-  color: #4A4A4A;
-  text-decoration: none;
-
+  color: white;
   &:hover {
     text-decoration: underline;
   }
 `;
 
+const Background = styled.div`
+  background: #35415D;
+`;
+
 const links = [
-  <Link href="#" key="hello">Hello</Link>,
-  <Link href="#" key="world">World</Link>
+  <Link key="1" href="#">Home</Link>,
+  <Link key="2" href="#">Quarterly Business Survey</Link>
 ];
 
-storiesOf("Breadcrumb", module).add("Default", () => (
-  <Breadcrumb links={links} />
-));
+storiesOf("Breadcrumb", module).add("Default", () =>
+  <Background>
+    <Breadcrumb>
+      {links}
+    </Breadcrumb>
+  </Background>
+);
