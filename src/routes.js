@@ -1,8 +1,10 @@
+
 import { find } from "lodash";
 
-import SurveyPage from "containers/Survey";
-import CreateSurvey from "containers/CreateSurvey";
-import DesignSurvey from "containers/DesignSurvey";
+import QuestionnairePage from "containers/Survey";
+import CreateQuestionnaire from "containers/CreateSurvey";
+import DesignQuestionnaire from "containers/DesignSurvey";
+
 import NotFound from "pages/NotFound";
 
 import { SidebarPageLayout, TabbedPageLayout, FullPageLayout } from "layouts";
@@ -10,20 +12,20 @@ import { SidebarPageLayout, TabbedPageLayout, FullPageLayout } from "layouts";
 export const routes = [
   {
     path: "/",
-    component: SurveyPage,
+    component: QuestionnairePage,
     layout: FullPageLayout,
     title: "Home",
     exact: true
   },
   {
     path: "/create",
-    title: "Create a survey",
-    component: CreateSurvey,
+    title: "Create a questionnaire",
+    component: CreateQuestionnaire,
     layout: TabbedPageLayout
   },
   {
     path: "/design/:sectionsId?/:questionsId?/:answersId?",
-    component: DesignSurvey,
+    component: DesignQuestionnaire,
     layout: SidebarPageLayout,
     exact: false
   },

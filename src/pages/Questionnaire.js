@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
+import PropTypes from 'prop-types'
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
@@ -39,7 +39,7 @@ const PanelTitle = styled(Title)`
   margin-bottom: 1em;
 `;
 
-const SurveyPage = ({ onFileSelected }) =>
+const QuestionnairePage = ({ onFileSelected }) =>
   <Centered>
     <PanelWithTitle>
       <PanelTitle>Select to begin</PanelTitle>
@@ -49,15 +49,15 @@ const SurveyPage = ({ onFileSelected }) =>
             Create survey
           </LinkButton>
           <FileUpload onFileSelected={onFileSelected} accept=".json">
-            <Button id="btn-load-survey" secondary>Load survey</Button>
+            <Button id="btn-load-survey" secondary>Load questionnaire</Button>
           </FileUpload>
         </ButtonGroup>
       </Panel>
     </PanelWithTitle>
   </Centered>;
 
-SurveyPage.propTypes = {
+QuestionnairePage.propTypes = {
   onFileSelected: PropTypes.func.isRequired
 };
 
-export default SurveyPage;
+export default QuestionnairePage;

@@ -1,13 +1,13 @@
-import reducer, { defaultState } from "reducers/survey/meta";
-import { SURVEY_LOAD_SUCCESS } from "actions/survey";
-import { updateMeta } from "actions/survey/meta";
+import reducer, { defaultState } from "reducers/questionnaire/meta";
+import { QUESTIONNAIRE_LOAD_SUCCESS } from "actions/questionnaire";
+import { updateMeta } from "actions/questionnaire/meta";
 
-describe("reducers/survey/meta", () => {
+describe("reducers/questionnaire/meta", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual(defaultState);
   });
 
-  it("should handle META_UPDATE with key/value merged into survey meta", () => {
+  it("should handle META_UPDATE with key/value merged into questionnaire meta", () => {
     expect(reducer({}, updateMeta("title", "My title"))).toEqual({
       title: "My title"
     });
@@ -31,7 +31,7 @@ describe("reducers/survey/meta", () => {
       reducer(
         {},
         {
-          type: SURVEY_LOAD_SUCCESS,
+          type: QUESTIONNAIRE_LOAD_SUCCESS,
           payload: {
             meta
           }

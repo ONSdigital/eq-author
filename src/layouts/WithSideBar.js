@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import BaseLayout from "layouts/Base";
-
 import SurveySidebar from "containers/SurveySidebar";
 import { Grid, Column } from "components/Grid";
 

@@ -1,15 +1,11 @@
 /* eslint-disable camelcase */
 export default {
-  survey: {
+  questionnaire: {
     data_version: "0.0.1",
     description: "Quarterly Business Survey",
     groups: {
       "number-of-employees": {
-        blocks: [
-          "introduction",
-          "number-of-employees-block",
-          "summary"
-        ],
+        blocks: ["introduction", "number-of-employees-block", "summary"],
         id: "number-of-employees",
         title: "Quarterly Business Survey"
       }
@@ -25,15 +21,11 @@ export default {
       introduction: {
         type: "Introduction",
         id: "introduction",
-        information_to_provide: [
-          "Employee numbers"
-        ]
+        information_to_provide: ["Employee numbers"]
       },
       "number-of-employees-block": {
         id: "number-of-employees-block",
-        sections: [
-          "number-of-employees-section"
-        ],
+        sections: ["number-of-employees-section"],
         type: "Questionnaire"
       },
       summary: {
@@ -46,9 +38,7 @@ export default {
         description: "Section description",
         id: "number-of-employees-section",
         title: "Quarterly Business Survey",
-        questions: [
-          "number-of-employees-question"
-        ]
+        questions: ["number-of-employees-question"]
       }
     },
     questions: {
@@ -83,7 +73,8 @@ export default {
           }
         ],
         id: "number-of-employees-question",
-        title: "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.ru_name}}?",
+        title:
+          "On {{exercise.start_date|format_date}} what was the number of employees for {{respondent.ru_name}}?",
         displayName: "No. of employees",
         type: "General",
         label: "This is the question label"
@@ -94,7 +85,8 @@ export default {
         description: "This is the label description",
         id: "number-of-employees-male-more-30-hours",
         label: "Number of male employees working more than 30 hours per week",
-        displayName: "Number of male employees working more than 50 hours per week",
+        displayName:
+          "Number of male employees working more than 50 hours per week",
         mandatory: false,
         q_code: "51",
         type: "PositiveInteger"
@@ -103,7 +95,8 @@ export default {
         description: "",
         id: "number-of-employees-male-less-30-hours",
         label: "Number of male employees working 30 hours or less per week",
-        displayName: "Number of male employees working 30 hours or less per week",
+        displayName:
+          "Number of male employees working 30 hours or less per week",
         mandatory: false,
         q_code: "52",
         type: "PositiveInteger"
@@ -112,7 +105,8 @@ export default {
         description: "",
         id: "number-of-employees-female-more-30-hours",
         label: "Number of female employees working more than 30 hours per week",
-        displayName: "Number of female employees working more than 30 hours per week",
+        displayName:
+          "Number of female employees working more than 30 hours per week",
         mandatory: false,
         q_code: "53",
         type: "PositiveInteger"
@@ -121,7 +115,8 @@ export default {
         description: "",
         id: "number-of-employees-female-less-30-hours",
         label: "Number of female employees working 30 hours or less per week",
-        displayName: "Number of female employees working 30 hours or less per week",
+        displayName:
+          "Number of female employees working 30 hours or less per week",
         mandatory: false,
         q_code: "54",
         type: "PositiveInteger"

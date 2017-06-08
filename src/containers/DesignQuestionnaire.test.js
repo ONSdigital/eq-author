@@ -1,5 +1,5 @@
-import { updateItem } from "actions/survey/items";
-import { getType, mapDispatchToProps } from "containers/DesignSurvey";
+import { updateItem } from "actions/questionnaire/items";
+import { getType, mapDispatchToProps } from "./DesignQuestionnaire";
 
 const routeParams = {
   answersId: "my-answer",
@@ -7,7 +7,7 @@ const routeParams = {
   sectionsId: "my-section"
 };
 
-const surveyState = {
+const questionnaireState = {
   sections: {
     "my-section": {}
   },
@@ -19,14 +19,14 @@ const surveyState = {
   }
 };
 
-describe("containers/DesignSurvey", function() {
+describe("containers/DesignQuestionnaire", function() {
   it("should return a section when the route param sectionsId matches a section id in state", function() {
     expect(
       getType(
         {
           sectionsId: routeParams.sectionsId
         },
-        surveyState
+        questionnaireState
       )
     ).toEqual({ id: "my-section", item: {}, type: "sections" });
   });
@@ -38,7 +38,7 @@ describe("containers/DesignSurvey", function() {
           questionsId: routeParams.questionsId,
           sectionsId: routeParams.sectionsId
         },
-        surveyState
+        questionnaireState
       )
     ).toEqual({ id: "my-question", item: {}, type: "questions" });
   });
@@ -51,7 +51,7 @@ describe("containers/DesignSurvey", function() {
           questionsId: routeParams.questionsId,
           sectionsId: routeParams.sectionsId
         },
-        surveyState
+        questionnaireState
       )
     ).toEqual({ id: "my-answer", item: {}, type: "answers" });
   });

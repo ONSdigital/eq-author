@@ -1,14 +1,14 @@
 import React from "react";
 
-import { defaultState } from "reducers/survey/meta";
-import CreateSurveyPage from "./CreateSurvey";
+import { defaultState } from "reducers/questionnaire/meta";
+import CreateQuestionnairePage from "./CreateQuestionnaire";
 
 import { mountWithRouter } from "tests/utils/mountWithRouter";
 
-describe("CreateSurveyPage", () => {
+describe("CreateQuestionnairePage", () => {
   it("should render", () => {
     const Page = mountWithRouter(
-      <CreateSurveyPage meta={defaultState} onChange={jest.fn()} />
+      <CreateQuestionnairePage meta={defaultState} onChange={jest.fn()} />
     );
 
     expect(Page.length).not.toBe(0);
@@ -17,7 +17,7 @@ describe("CreateSurveyPage", () => {
   it("should call onChange handler when a field is changed", () => {
     const changeHandler = jest.fn();
     const Page = mountWithRouter(
-      <CreateSurveyPage meta={defaultState} onChange={changeHandler} />
+      <CreateQuestionnairePage meta={defaultState} onChange={changeHandler} />
     );
 
     const titleField = Page.find("#title");

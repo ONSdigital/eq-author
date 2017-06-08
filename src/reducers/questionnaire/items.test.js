@@ -1,7 +1,7 @@
-import reducer, { defaultState } from "reducers/survey/items";
-import { SURVEY_LOAD_SUCCESS } from "actions/survey";
+import reducer, { defaultState } from "reducers/questionnaire/items";
+import { QUESTIONNAIRE_LOAD_SUCCESS } from "actions/questionnaire";
 
-describe("reducers/survey/items", () => {
+describe("reducers/questionnaire/items", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual(defaultState);
   });
@@ -17,7 +17,7 @@ describe("reducers/survey/items", () => {
       reducer(
         {},
         {
-          type: SURVEY_LOAD_SUCCESS,
+          type: QUESTIONNAIRE_LOAD_SUCCESS,
           payload: {
             items
           }

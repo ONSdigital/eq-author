@@ -17,14 +17,14 @@ const ActionButtonGroup = styled(ButtonGroup)`
   justify-content: center;
 `;
 
-const CreateSurveyPage = ({ meta, onChange }) => {
+const CreateQuestionnairePage = ({ meta, onChange }) => {
   const { title, description, theme, legal_basis, informationToProvide } = meta;
   return (
     <div>
       <form onChange={onChange}>
         <Tabs>
           <TabList>
-            <TabTitle>Survey Meta</TabTitle>
+            <TabTitle>Questionnaire Meta</TabTitle>
             <TabTitle>Landing Page</TabTitle>
           </TabList>
 
@@ -67,14 +67,14 @@ const CreateSurveyPage = ({ meta, onChange }) => {
         </Tabs>
       </form>
       <ActionButtonGroup horizontal>
-        <LinkButton to="/design" primary>Create survey</LinkButton>
+        <LinkButton to="/design" primary>Create questionnaire</LinkButton>
         <LinkButton to="/" secondary>Cancel</LinkButton>
       </ActionButtonGroup>
     </div>
   );
 };
 
-CreateSurveyPage.propTypes = {
+CreateQuestionnairePage.propTypes = {
   meta: PropTypes.shape({
     data_version: PropTypes.string,
     description: PropTypes.string,
@@ -84,11 +84,10 @@ CreateSurveyPage.propTypes = {
     mime_type: PropTypes.string,
     questionnaire_id: PropTypes.string,
     schema_version: PropTypes.string,
-    survey_id: PropTypes.string,
     theme: PropTypes.string,
     title: PropTypes.string
   }),
   onChange: PropTypes.func
 };
 
-export default CreateSurveyPage;
+export default CreateQuestionnairePage;

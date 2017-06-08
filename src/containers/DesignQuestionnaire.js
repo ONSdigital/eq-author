@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import { clearSurvey } from "actions/survey";
-import { updateItem, deleteItem } from "actions/survey/items";
+import { clearQuestionnaire } from "actions/questionnaire";
+import { updateItem, deleteItem } from "actions/questionnaire/items";
 
-import DesignSurveyPage from "pages/DesignSurvey";
+import DesignQuestionnairePage from "pages/DesignQuestionnaire";
 
-export const getType = (params, surveyItems) => {
+export const getType = (params, questionnaireItems) => {
   return ["answers", "questions", "sections"]
     .map(type => {
       const id = params[`${type}Id`];
@@ -12,7 +12,7 @@ export const getType = (params, surveyItems) => {
         return {
           type: type,
           id: id,
-          item: surveyItems[type][id]
+          item: questionnaireItems[type][id]
         };
       } else {
         return null;
@@ -23,17 +23,17 @@ export const getType = (params, surveyItems) => {
 
 const mapStateToProps = (state, ownProps) => {
   const { params } = ownProps.match;
-  const { survey } = state;
+  const { questionnaire } = state;
   return {
-    surveyItems: survey.items,
-    selected: getType(params, survey.items),
-    selectedSection: params.sectionsId &&
-      survey.items.sections[params.sectionsId]
+    questionnaireItems: questionnaire.items,
+    selected: getType(params, questionnaire.items),
+    selectedSection:
+      params.sectionsId && questionnaire.items.sections[params.sectionsId]
   };
 };
 
 export const mapDispatchToProps = {
-  clearSurvey,
+  clearQuestionnaire,
   deleteItem,
   onChange: ({ target }) => {
     let { type, value, checked, name } = target;
@@ -44,4 +44,6 @@ export const mapDispatchToProps = {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DesignSurveyPage);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  DesignQuestionnairePage
+);

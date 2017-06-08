@@ -14,7 +14,7 @@ const StyledHTMLPreview = styled.div`
   z-index: 0;
 `;
 
-const HTMLPreview = ({ surveyItems, selectedSection }) => {
+const HTMLPreview = ({ questionnaireItems, selectedSection }) => {
   if (!selectedSection) {
     return null;
   }
@@ -23,14 +23,14 @@ const HTMLPreview = ({ surveyItems, selectedSection }) => {
       <Section key={selectedSection.id} section={selectedSection}>
         {selectedSection.questions &&
           selectedSection.questions.map(questionId => {
-            const question = surveyItems.questions[questionId];
+            const question = questionnaireItems.questions[questionId];
             return (
               question &&
               question.title &&
               <Question key={questionId} question={question}>
                 {question.answers &&
                   question.answers.map(answerId => {
-                    const answer = surveyItems.answers[answerId];
+                    const answer = questionnaireItems.answers[answerId];
                     return (
                       answer &&
                       answer.label &&
@@ -46,7 +46,7 @@ const HTMLPreview = ({ surveyItems, selectedSection }) => {
 };
 
 HTMLPreview.propTypes = {
-  surveyItems: PropTypes.objectOf(PropTypes.object),
+  questionnaireItems: PropTypes.objectOf(PropTypes.object),
   selectedSection: CustomPropTypes.section
 };
 
