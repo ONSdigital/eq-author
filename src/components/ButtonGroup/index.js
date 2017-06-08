@@ -23,9 +23,8 @@ const StyledButtonGroup = styled.div`
   ${props => props.horizontal && HorizontalGroup}
 `;
 
-const ButtonGroup = ({ children, ...otherProps }) => (
-  <StyledButtonGroup {...otherProps}>{children}</StyledButtonGroup>
-);
+const ButtonGroup = ({ children, ...otherProps }) =>
+  <StyledButtonGroup {...otherProps}>{children}</StyledButtonGroup>;
 
 ButtonGroup.propTypes = {
   children: PropTypes.node

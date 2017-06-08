@@ -8,7 +8,7 @@ const StyledTextArea = styled.textarea`
   resize: none;
 `;
 
-const TextArea = ({ value, id, rows = 10, ...otherProps }) => (
+export const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
   <StyledTextArea
     value={value}
     rows={rows}
@@ -16,13 +16,14 @@ const TextArea = ({ value, id, rows = 10, ...otherProps }) => (
     name={id}
     onChange={noop}
     {...otherProps}
-  />
-);
+  />;
 
 TextArea.propTypes = {
   value: PropTypes.string.isRequired,
   id: PropTypes.string,
   rows: PropTypes.number
-}
+};
 
-export default TextArea
+TextArea.displayName = "Textarea";
+
+export default TextArea;

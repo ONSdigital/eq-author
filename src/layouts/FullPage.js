@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import BaseLayout from "layouts/Base";
 
 const FullPageLayout = props =>
-  <BaseLayout hasNav={false} hasBreadcrumbs={false} hasUtilityBtns={false}>
+  <BaseLayout hasNav hasBreadcrumbs hasUtilityBtns>
     {props.children}
   </BaseLayout>;
 

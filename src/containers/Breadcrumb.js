@@ -7,7 +7,6 @@ export const mapStateToProps = (state, _) => {
   const { pathname } = state.router.location;
   const route = getRouteByPath(pathname);
   const rootPathname = "/";
-
   return {
     breadcrumbs: [
       {

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Forms/TextArea should render correctly 1`] = `
+<TextArea__StyledTextArea
+  onChange={[Function]}
+  rows={10}
+  value=""
+/>
+`;

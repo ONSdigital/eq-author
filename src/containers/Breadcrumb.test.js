@@ -19,7 +19,7 @@ describe("containers/Breadcrumb", () => {
       },
       {
         path: "/create",
-        title: "Create a questionnaire"
+        title: "New questionnaire"
       }
     ];
     const { breadcrumbs } = mapStateToProps({

@@ -11,11 +11,6 @@ const ClearButton = css`
   border: none;
 `;
 
-const SmallButton = css`
-  font-size: 0.8em;
-  padding: 0.5em 1.5em;
-`;
-
 const PrimaryButton = css`
   background-color: ${colors.blue};
   color: white;
@@ -39,21 +34,21 @@ const SecondaryButton = css`
 `;
 
 const TertiaryButton = css`
-background-color: ${colors.red};
-color: white;
-position: relative;
-border: none;
+  background-color: ${colors.red};
+  color: white;
+  position: relative;
+  border: none;
 
-&:focus,
-&:hover {
-  background-color: ${darken(colors.red)}
-}
+  &:focus,
+  &:hover {
+    background-color: ${darken(colors.red)}
+  }
 `;
 
 const StyledButton = styled.button`
-  padding: 0.8em 5em;
+  padding: 0.8em 3em;
   border-radius: ${radius};
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: 500;
   cursor: pointer;
   line-height: 1;
@@ -73,21 +68,18 @@ const StyledButton = styled.button`
   ${props => props.secondary && SecondaryButton}
   ${props => props.tertiary && TertiaryButton}
   ${props => props.clear && ClearButton}
-  ${props => props.small && SmallButton}
 `;
 
-const Button = props => (
+const Button = props =>
   <StyledButton {...props} type="button">
     {props.children}
-  </StyledButton>
-);
+  </StyledButton>;
 
 Button.propTypes = {
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
   clear: PropTypes.bool,
-  small: PropTypes.bool,
   children: PropTypes.node
 };
 

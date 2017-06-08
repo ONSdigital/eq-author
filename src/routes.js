@@ -6,21 +6,21 @@ import DesignQuestionnaire from "containers/DesignQuestionnaire";
 
 import NotFound from "pages/NotFound";
 
-import { SidebarPageLayout, TabbedPageLayout, FullPageLayout } from "layouts";
+import { BaseLayout, SidebarPageLayout, FullPageLayout } from "layouts";
 
 export const routes = [
   {
     path: "/",
-    component: QuestionnairePage,
-    layout: FullPageLayout,
     title: "Home",
+    component: QuestionnairePage,
+    layout: BaseLayout,
     exact: true
   },
   {
     path: "/create",
-    title: "Create a questionnaire",
+    title: "New questionnaire",
     component: CreateQuestionnaire,
-    layout: TabbedPageLayout
+    layout: FullPageLayout
   },
   {
     path: "/design/:sectionsId?/:questionsId?/:answersId?",

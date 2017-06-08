@@ -1,5 +1,5 @@
 import React from "react";
-import toJson from "enzyme-to-json";
+
 import { shallow } from "enzyme";
 
 import { Header, UtilityBtns, Logo } from "components/Header";
@@ -13,7 +13,7 @@ describe("components/Header", function() {
   });
 
   it("renders correctly ", function() {
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("should render a logo", function() {

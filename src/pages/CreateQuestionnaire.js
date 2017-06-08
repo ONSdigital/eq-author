@@ -4,73 +4,76 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
 import { Field, Input, Label, Select } from "components/Forms";
-import RichTextArea from "components/RichTextArea";
+import Panel from "components/Panel";
+
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
-import { Tabs, TabPanel, TabList, TabTitle } from "components/Tabs";
+
+const Center = styled.div`
+  width: 100%;
+  max-width: 40em;
+  display: flex;
+  flex-direction: column;
+  margin: 2em auto;
+`;
 
 const ActionButtonGroup = styled(ButtonGroup)`
-  padding: 1em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-self: flex-start;
 `;
 
 const CreateQuestionnairePage = ({ meta, onChange }) => {
-  const { title, description, theme, legal_basis, informationToProvide } = meta;
+  const { title, description, theme, legal_basis } = meta;
   return (
-    <div>
+    <Center>
       <form onChange={onChange}>
-        <Tabs>
-          <TabList>
-            <TabTitle>Questionnaire Meta</TabTitle>
-            <TabTitle>Landing Page</TabTitle>
-          </TabList>
-
-          <TabPanel>
-            <Field id="title">
-              <Label>Title</Label>
-              <Input value={title} />
-            </Field>
-            <Field id="description">
-              <Label>Description</Label>
-              <Input value={description} />
-            </Field>
-            <Grid>
-              <Column>
-                <Field id="theme">
-                  <Label>Theme</Label>
-                  <Select
-                    options={["default", "census", "starwars"]}
-                    value={theme}
-                  />
-                </Field>
-              </Column>
-              <Column>
-                <Field id="legal_basis">
-                  <Label>Legal Basis</Label>
-                  <Select
-                    options={["StatisticsOfTradeAct"]}
-                    value={legal_basis}
-                  />
-                </Field>
-              </Column>
-            </Grid>
-          </TabPanel>
-          <TabPanel>
-            <Field id="info-to-provide">
-              <Label>Information to provide</Label>
-              <RichTextArea value={informationToProvide} />
-            </Field>
-          </TabPanel>
-        </Tabs>
+        <Panel>
+          <Field id="title">
+            <Label>Questionnaire Title</Label>
+            <Input value={title} />
+          </Field>
+          <Field id="description">
+            <Label>Description</Label>
+            <Input value={description} />
+          </Field>
+          <Grid>
+            <Column cols={6}>
+              <Field id="id">
+                <Label>Questionnaire ID</Label>
+                <Input value={description} />
+              </Field>
+            </Column>
+          </Grid>
+          <Grid>
+            <Column cols={6}>
+              <Field id="theme">
+                <Label>Theme</Label>
+                <Select
+                  options={["default", "census", "starwars"]}
+                  value={theme}
+                />
+              </Field>
+            </Column>
+            <Column cols={6}>
+              <Field id="legal_basis">
+                <Label>Legal Basis</Label>
+                <Select
+                  options={["StatisticsOfTradeAct"]}
+                  value={legal_basis}
+                />
+              </Field>
+            </Column>
+          </Grid>
+          <Field id="navigation">
+            <Input type="checkbox" />
+            <Label inline>Navigation</Label>
+          </Field>
+          <ActionButtonGroup horizontal>
+            <LinkButton to="/design" primary>Next</LinkButton>
+            <LinkButton to="/" secondary>Cancel</LinkButton>
+          </ActionButtonGroup>
+        </Panel>
       </form>
-      <ActionButtonGroup horizontal>
-        <LinkButton to="/design" primary>Create questionnaire</LinkButton>
-        <LinkButton to="/" secondary>Cancel</LinkButton>
-      </ActionButtonGroup>
-    </div>
+    </Center>
   );
 };
 

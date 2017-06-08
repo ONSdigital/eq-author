@@ -14,7 +14,7 @@ const Column = styled.div`
   &:first-child {
     padding-left: 0;
   }
-  &:last-child {
+  &:last-child:not(:only-child) {
     padding-right: 0;
   }
 `;
