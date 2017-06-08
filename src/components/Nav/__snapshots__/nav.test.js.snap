@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`components/Nav should render Nav 1`] = `
 ShallowWrapper {
   "complexSelector": ComplexSelector {
@@ -8,22 +10,26 @@ ShallowWrapper {
   "length": 1,
   "node": <Nav__Grid>
     <Column__Column
-        cols="3" />
+        cols="3"
+    />
     <Column__Column>
         <Nav__StyledNav>
             <Nav__StyledNavLink
                 activeClassName="selected"
-                to="/create">
+                to="/create"
+            >
                 Questionnaire meta
             </Nav__StyledNavLink>
             <Nav__StyledNavLink
                 activeClassName="selected"
-                to="/design">
+                to="/design"
+            >
                 Builder
             </Nav__StyledNavLink>
             <Nav__StyledNavLink
                 activeClassName="selected"
-                to="/routing">
+                to="/routing"
+            >
                 Routing
             </Nav__StyledNavLink>
         </Nav__StyledNav>
@@ -32,22 +38,26 @@ ShallowWrapper {
   "nodes": Array [
     <Nav__Grid>
       <Column__Column
-            cols="3" />
+            cols="3"
+      />
       <Column__Column>
             <Nav__StyledNav>
                   <Nav__StyledNavLink
                         activeClassName="selected"
-                        to="/create">
+                        to="/create"
+                  >
                         Questionnaire meta
                   </Nav__StyledNavLink>
                   <Nav__StyledNavLink
                         activeClassName="selected"
-                        to="/design">
+                        to="/design"
+                  >
                         Builder
                   </Nav__StyledNavLink>
                   <Nav__StyledNavLink
                         activeClassName="selected"
-                        to="/routing">
+                        to="/routing"
+                  >
                         Routing
                   </Nav__StyledNavLink>
             </Nav__StyledNav>
@@ -90,22 +100,26 @@ ShallowWrapper {
       "_renderedComponent": NoopInternalComponent {
         "_currentElement": <Nav__Grid>
           <Column__Column
-                    cols="3" />
+                    cols="3"
+          />
           <Column__Column>
                     <Nav__StyledNav>
                               <Nav__StyledNavLink
                                         activeClassName="selected"
-                                        to="/create">
+                                        to="/create"
+                              >
                                         Questionnaire meta
                               </Nav__StyledNavLink>
                               <Nav__StyledNavLink
                                         activeClassName="selected"
-                                        to="/design">
+                                        to="/design"
+                              >
                                         Builder
                               </Nav__StyledNavLink>
                               <Nav__StyledNavLink
                                         activeClassName="selected"
-                                        to="/routing">
+                                        to="/routing"
+                              >
                                         Routing
                               </Nav__StyledNavLink>
                     </Nav__StyledNav>
@@ -114,22 +128,26 @@ ShallowWrapper {
         "_debugID": 2,
         "_renderedOutput": <Nav__Grid>
           <Column__Column
-                    cols="3" />
+                    cols="3"
+          />
           <Column__Column>
                     <Nav__StyledNav>
                               <Nav__StyledNavLink
                                         activeClassName="selected"
-                                        to="/create">
+                                        to="/create"
+                              >
                                         Questionnaire meta
                               </Nav__StyledNavLink>
                               <Nav__StyledNavLink
                                         activeClassName="selected"
-                                        to="/design">
+                                        to="/design"
+                              >
                                         Builder
                               </Nav__StyledNavLink>
                               <Nav__StyledNavLink
                                         activeClassName="selected"
-                                        to="/routing">
+                                        to="/routing"
+                              >
                                         Routing
                               </Nav__StyledNavLink>
                     </Nav__StyledNav>
