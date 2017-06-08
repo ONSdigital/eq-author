@@ -1,18 +1,14 @@
 import render from "utils/render";
 import registerServiceWorker from "utils/registerServiceWorker";
 import createHistory from "history/createHashHistory";
-import { configureStore, configurePersistedStore } from "store/configureStore";
+import configureStore from "store/configureStore";
 import App from "containers/App";
-
-let useStorage = true;
 
 const history = createHistory({
   basename: process.env.REACT_APP_BASE_NAME
 });
 
-const store = useStorage
-  ? configurePersistedStore(history, "eq-authoring-prototype-storage-key")
-  : configureStore(history);
+const store = configureStore(history);
 
 const renderApp = render(document.getElementById("root"), { store, history });
 
