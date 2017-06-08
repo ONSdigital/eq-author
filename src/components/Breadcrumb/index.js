@@ -9,10 +9,6 @@ const BreadcrumbLinkPropType = PropTypes.oneOfType([
   PropTypes.object
 ]);
 
-const ChevronIcon = styled(Chevron)`
-  margin: 0 0.5em 0 0.5em;
-`;
-
 const BreadcrumbLink = props =>
   <span>
     {props.children}
