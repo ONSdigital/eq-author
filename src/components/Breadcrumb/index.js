@@ -13,21 +13,11 @@ const ChevronIcon = styled(Chevron)`
   margin: 0 0.5em 0 0.5em;
 `;
 
-const StyledBreadcrumb = styled.div`
-  font-size: 16px;
-  padding: 16px;
-  a {
-    text-decoration: none;
-    color: ${colors.text}
-  }
-`;
-
-const BreadcrumbLink = props => (
+const BreadcrumbLink = props =>
   <span>
     {props.children}
     {!props.isLast && <Chevron />}
-  </span>
-);
+  </span>;
 
 BreadcrumbLink.propTypes = {
   children: BreadcrumbLinkPropType.isRequired,
@@ -42,7 +32,7 @@ const StyledBreadcrumb = styled.div`
   padding: 1em 1em;
   a {
     text-decoration: none;
-    color: white;
+    color: ${colors.text};
   }
 `;
 
