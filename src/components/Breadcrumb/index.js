@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { colorGrey } from "constants/theme";
+import { colors } from "constants/theme";
 import Chevron from "./chevron";
 
 const BreadcrumbLinkPropType = PropTypes.oneOfType([
@@ -14,14 +14,14 @@ const ChevronIcon = styled(Chevron)`
 `;
 
 const StyledBreadcrumb = styled.div`
-  background-color: ${colorGrey};
+  background-color: ${colors.grey};
   font-size: 0.7em;
   display: flex;
   align-items: center;
   padding: 1em 1em;
   a {
     text-decoration: none;
-    color: ${props => props.theme.colorText}
+    color: ${colors.text}
   }
 `;
 

@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import {
-  radiusGlobal,
-  colorBlue,
-  colorText,
-  colorBorders,
-  colorRed
-} from "constants/theme";
+import { radius, colors } from "constants/theme";
 import tinycolor from "tinycolor2";
 
 const darken = color => tinycolor(color).darken(10).toString();
@@ -23,42 +17,42 @@ const SmallButton = css`
 `;
 
 const PrimaryButton = css`
-  background-color: ${colorBlue};
+  background-color: ${colors.blue};
   color: white;
   position: relative;
   border: none;
 
   &:focus,
   &:hover {
-    background-color: ${darken(colorBlue)}
+    background-color: ${darken(colors.blue)}
   }
 `;
 
 const SecondaryButton = css`
   background-color: white;
-  color: ${colorText};
-  border: 1px ${colorBorders} solid;
+  color: ${colors.text};
+  border: 1px ${colors.borders} solid;
   &:focus,
   &:hover {
-    background-color: ${colorBorders};
+    background-color: ${colors.borders};
   }
 `;
 
 const TertiaryButton = css`
-background-color: ${colorRed};
+background-color: ${colors.red};
 color: white;
 position: relative;
 border: none;
 
 &:focus,
 &:hover {
-  background-color: ${darken(colorRed)}
+  background-color: ${darken(colors.red)}
 }
 `;
 
 const StyledButton = styled.button`
   padding: 0.8em 5em;
-  border-radius: ${radiusGlobal};
+  border-radius: ${radius};
   font-size: 0.9em;
   font-weight: 500;
   cursor: pointer;

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { colorBorders } from "constants/theme";
+import { colors } from "constants/theme";
 
 import { Tabs, TabList, TabTitle, TabPanel } from "components/Tabs";
 import { AnswerOptions } from "components/Options/Answer";
@@ -12,12 +12,12 @@ import Button from "components/Button";
 
 const StyledOptionsPanel = styled.div`
   background: white;
-  border: 1px solid ${colorBorders};
+  border: 1px solid ${colors.borders};
   width: 100%;
 `;
 
 const Header = styled.div`
-  border-bottom: 1px solid ${colorBorders};
+  border-bottom: 1px solid ${colors.borders};
   padding: 0.5em 0.5rem;
   position: relative;
   display: flex;

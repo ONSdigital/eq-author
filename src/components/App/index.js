@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { injectGlobal, ThemeProvider } from "styled-components";
-import theme from "constants/theme";
+import theme, { colors } from "constants/theme";
 import "normalize.css";
 
 /* eslint no-unused-expressions: 0 */
@@ -23,7 +23,7 @@ injectGlobal`
   }
   body {
     font-family: 'Lato', sans-serif;
-    color: ${theme.colorText};
+    color: ${colors.text};
   }
   input,
   select,
@@ -32,12 +32,12 @@ injectGlobal`
     width: 100%;
     display: block;
     border-radius: 2px;
-    border: 1px solid ${theme.colorBorders};
+    border: 1px solid ${colors.borders};
     background: white;
     line-height: 1;
     &:focus {
       outline: none;
-      border: 1px solid ${theme.colorLightBlue};
+      border: 1px solid ${colors.lightBlue};
     }
   }
   select,

@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "constants/theme";
 
 const StyledTableWrapper = styled.div`
-  border: solid 1px ${props => props.theme.colorBorders};
+  border: solid 1px ${colors.darkGrey};
   border-radius: 2px;
   margin-bottom: 1em;
   overflow: hidden;

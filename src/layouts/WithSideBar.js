@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import BaseLayout from "./base";
+import BaseLayout from "layouts/Base";
 import Breadcrumb from "components/Breadcrumb";
 import Nav from "components/Nav";
 import SurveySidebar from "containers/SurveySidebar";

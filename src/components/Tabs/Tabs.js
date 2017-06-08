@@ -4,13 +4,13 @@ import styled from "styled-components";
 import { flattenDeep } from "lodash";
 import TabPanel from "./TabPanel";
 import TabList from "./TabList";
-
+import { colors } from "constants/theme";
 const StyledTabs = styled.div`
   display: block;
 `;
 
 const TabsContent = styled.div`
-  border: ${({ compact, theme }) => (compact ? "none" : `1px solid ${theme.colorBorders}`)};
+  border: ${({ compact }) => (compact ? "none" : `1px solid ${colors.borders}`)};
   overflow: hidden;
 `;
 

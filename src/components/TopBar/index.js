@@ -3,20 +3,20 @@ import React from "react";
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
-import { topBarBlue, brightText, betaTag } from "constants/theme";
+import { colors } from "constants/theme";
 
 const StyledTopBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${topBarBlue};
-  color: ${brightText};
+  background-color: ${colors.darkBlue};
+  color: ${colors.white};
   font-weight: 500;
   padding: 0.5em 0;
 `;
 
 const BetaLabel = styled.div`
-  color: ${betaTag};
+  color: ${colors.orange};
   text-transform: uppercase;
   font-size: .5em;
   position: absolute;
@@ -35,11 +35,12 @@ const Logo = styled(Link)`
   }
 `;
 
-const TopBar = () =>
+const TopBar = () => (
   <StyledTopBar>
     <Logo to="/">
       eQ Author<BetaLabel>Beta</BetaLabel>
     </Logo>
-  </StyledTopBar>;
+  </StyledTopBar>
+);
 
 export default TopBar;

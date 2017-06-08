@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
-import { colorBlue, colorText } from "constants/theme";
+import { colors } from "constants/theme";
 
 const Grid = styled.div`
   display: flex;
   width: 100%;
   flex: 0 0 auto;
-  border-bottom: 1px solid ${props => props.theme.colorBorders};
+  border-bottom: 1px solid ${colors.borders};
 `;
 
 export const StyledNav = styled.nav`
@@ -23,22 +23,22 @@ const StyledNavLink = styled(NavLink)`
   font-size: 0.875em;
   font-weight: 600;
   user-select: none;
-  color: ${colorText};
+  color: ${colors.text};
   transition: color 200ms ease-in-out;
   text-decoration: none;
   border-color: rgba(5, 108, 153, 0);
   border-style: solid;
   border-width: 0 0 2px 0;
   &:hover {
-    color: ${colorBlue};
+    color: ${colors.blue};
   }
   &.selected {
-    color: ${colorBlue};
+    color: ${colors.blue};
     border-color: rgba(5, 108, 153, 1);
   }
 `;
 
-const Nav = () => (
+const Nav = () =>
   <Grid>
     <Column cols="3" />
     <Column>
@@ -54,7 +54,6 @@ const Nav = () => (
         </StyledNavLink>
       </StyledNav>
     </Column>
-  </Grid>
-);
+  </Grid>;
 
 export default Nav;

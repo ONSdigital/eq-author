@@ -1,13 +1,18 @@
-module.exports = {
-  colorBlue: "#056C99",
-  colorDarkBlue: "#4E565F",
-  colorLightBlue: "#61BDE0",
-  colorRed: "#BB1717",
-  colorText: "#4A4A4A",
-  colorBorders: "#E0E0E0",
-  radiusGlobal: "2px",
-  colorGrey: "#E0E0E0",
-  topBarBlue: "#35414D",
-  brightText: "#fff",
-  betaTag: "#F5A623"
+export const colors = {
+  blue: "#056C99",
+  lightBlue: "#61BDE0",
+  darkBlue: "#4E565F",
+  darkGrey: "#35414D",
+  red: "#BB1717",
+  text: "#4A4A4A",
+  orange: "#F5A623",
+  borders: "#EAEAEA",
+  white: "#FFFFFF"
+};
+
+export const radius = "2px";
+
+export default {
+  colors,
+  radius
 };

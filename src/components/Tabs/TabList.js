@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { colors } from "constants/theme";
 
 const CompactTabList = css`
-  border-bottom: 1px solid ${props => props.theme.colorBorders};
+  background: #f9f9f9;
+  border-bottom: 1px solid ${colors.borders};
   margin: 0;
 `;
 
@@ -16,12 +18,7 @@ const TabListStyle = styled.ul`
   ${props => props.compact && CompactTabList}
 `;
 
-const TabList = ({
-  children,
-  selectedTab,
-  handleTabSelected,
-  ...otherProps
-}) => (
+const TabList = ({ children, selectedTab, handleTabSelected, ...otherProps }) =>
   <TabListStyle {...otherProps}>
     {children.map((child, index) =>
       React.cloneElement(child, {
@@ -30,8 +27,7 @@ const TabList = ({
         key: index
       })
     )}
-  </TabListStyle>
-);
+  </TabListStyle>;
 
 TabList.displayName = "TabList";
 

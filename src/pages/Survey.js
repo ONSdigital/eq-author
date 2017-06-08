@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
@@ -7,6 +7,8 @@ import LinkButton from "components/LinkButton";
 import FileUpload from "components/FileUpload";
 
 import Title from "components/Title";
+
+import { colors, radius } from "constants/theme";
 
 const Centered = styled.div`
   flex: 1 1 auto;
@@ -22,7 +24,7 @@ const PanelWithTitle = styled.div`
 `;
 
 const Panel = styled.div`
-  border-radius: ${props => props.theme.radiusGlobal};
+  border-radius: ${radius};
   padding: 3em 3em;
   background-color: #FFF;
   display: flex;
@@ -30,7 +32,7 @@ const Panel = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${props => props.theme.colorBorders};
+  border: 1px solid ${colors.borders};
 `;
 
 const PanelTitle = styled(Title)`
@@ -55,6 +57,6 @@ const SurveyPage = ({ onFileSelected }) => (
 
 SurveyPage.propTypes = {
   onFileSelected: PropTypes.func.isRequired
-}
+};
 
-export default SurveyPage
+export default SurveyPage;

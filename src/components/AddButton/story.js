@@ -2,10 +2,10 @@ import React from "react";
 import { storiesOf } from "@kadira/storybook";
 import AddButton from "components/AddButton";
 import styled from "styled-components";
-import { colorDarkBlue } from "constants/theme";
+import { darkBlue } from "constants/theme/colours";
 
 const Sidebar = styled.div`
-  background: ${colorDarkBlue};
+  background: ${darkBlue};
   padding: 0.5em;
   max-width: 15em;
 `;
