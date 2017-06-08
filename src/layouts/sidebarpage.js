@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import BaseLayout from "./base";
 import Breadcrumb from "components/Breadcrumb";
+import Nav from "components/Nav";
 import SurveySidebar from "containers/SurveySidebar";
-
 import { Grid, Column } from "components/Grid";
 
 const Links = [
@@ -16,6 +16,7 @@ const Links = [
 const SidebarPageLayout = props => {
   return (
     <BaseLayout>
+      <Nav />
       <Breadcrumb links={Links} />
       <Grid>
         <Column cols="3" gutters={false}>

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const CompactTabList = css`
-  background: #f9f9f9;
   border-bottom: 1px solid ${props => props.theme.colorBorders};
   margin: 0;
 `;
@@ -34,9 +33,7 @@ const TabList = ({
   </TabListStyle>
 );
 
-TabList.defaultProps = {
-  displayName: "TabList"
-};
+TabList.displayName = "TabList";
 
 TabList.propTypes = {
   children: PropTypes.node,

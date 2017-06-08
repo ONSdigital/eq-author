@@ -4,9 +4,9 @@ module.exports = {
   colorLightBlue: "#61BDE0",
   colorRed: "#BB1717",
   colorText: "#4A4A4A",
-  colorBorders: "#EAEAEA",
+  colorBorders: "#E0E0E0",
   radiusGlobal: "2px",
-  colorGrey: "#EAEAEA",
+  colorGrey: "#E0E0E0",
   topBarBlue: "#35414D",
   brightText: "#fff",
   betaTag: "#F5A623"
