@@ -18,12 +18,12 @@ describe("link component", () => {
     expect(link.find("a").prop("name")).toEqual(DATA_PROP);
   });
 
-  it("should test if the onClick handler is called", () => {
+  it("should invoke onClick prop when clicked", () => {
     link.find("a").simulate("click");
     expect(handleClick).toHaveBeenCalled();
   });
 
-  it("test text prop is rendered as a child", () => {
+  it("should set the inner text to value of text prop", () => {
     expect(link.find("a").text()).toEqual(TEXT_PROP);
   });
 });
