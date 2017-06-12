@@ -1,6 +1,5 @@
 import React from "react";
 import Title from "components/Title";
-import toJson from "enzyme-to-json";
 import { shallow } from "enzyme";
 
 describe("prop types", () => {
@@ -16,7 +15,7 @@ describe("prop types", () => {
 
 describe("snapshot", () => {
   it("should not have changed inadvertently", () => {
-    const tree = shallow(<Title>eQ Author</Title>);
-    expect(toJson(tree)).toMatchSnapshot();
+    const wrapper = shallow(<Title>eQ Author</Title>);
+    expect(wrapper).toMatchSnapshot();
   });
 });
