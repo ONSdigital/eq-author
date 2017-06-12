@@ -117,6 +117,9 @@
       "tests/setup/throwOnConsole.js"
     ],
     "setupTestFrameworkScriptFile": "tests/setup/mockLocalStorage.js",
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
