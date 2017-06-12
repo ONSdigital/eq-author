@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { values } from "lodash";
+import { keys } from "lodash";
 
 import exportIcon from "./icon-export.svg";
 import previewIcon from "./icon-preview.svg";
 
-export const icons = { exportIcon, previewIcon };
+export const icons = { export: exportIcon, preview: previewIcon };
 
 export const Button = styled.button`
   display: flex;
@@ -28,11 +28,11 @@ export const Button = styled.button`
 
 const IconButton = ({ icon, title, disabled, handleClick }) =>
   <Button title={title} onClick={handleClick} disabled={disabled}>
-    <img src={icon} alt={title} />
+    <img src={icons[icon]} alt={title} />
   </Button>;
 
 IconButton.propTypes = {
-  icon: PropTypes.oneOf(values(icons)),
+  icon: PropTypes.oneOf(keys(icons)),
   title: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   handleClick: PropTypes.func

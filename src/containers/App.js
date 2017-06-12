@@ -8,7 +8,7 @@ import { Route } from "react-router";
 import routes from "routes";
 
 const renderRoute = route => props =>
-  <route.layout title={route.title} nav={route.nav}>
+  <route.layout title={route.title}>
     <route.component {...props} routes={route.routes} />
   </route.layout>;
 
@@ -19,7 +19,7 @@ const App = ({ store, history }) =>
         <Switch>
           {routes.map((route, i) =>
             <Route
-              exact
+              exact={route.exact}
               key={route}
               path={route.path}
               render={renderRoute(route)}

@@ -4,15 +4,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 
-import IconButton, { icons } from "components/IconButton";
+import IconButton from "components/IconButton";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "containers/Breadcrumb";
 
 import { Grid, Column } from "components/Grid";
 
 import logo from "./logo.svg";
-
-const { previewIcon, exportIcon } = icons;
 
 const StyledHeader = styled.header`
   height: 4em;
@@ -54,8 +52,8 @@ export const Header = ({ hasBreadcrumbs, hasUtilityBtns }) =>
       <Column>
         {hasUtilityBtns &&
           <UtilityBtns horizontal>
-            <IconButton icon={previewIcon} title="Preview" disabled />
-            <IconButton icon={exportIcon} title="Export" disabled />
+            <IconButton icon="preview" title="Preview" disabled />
+            <IconButton icon="export" title="Export" disabled />
           </UtilityBtns>}
       </Column>
 

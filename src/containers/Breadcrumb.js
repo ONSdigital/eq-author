@@ -6,17 +6,17 @@ export const mapStateToProps = (state, ownProps) => {
   const { title } = state.survey.meta;
   const { pathname } = state.router.location;
   const route = getRouteByPath(pathname);
-  const rootPath = "/";
+  const rootPathname = "/";
 
   return {
     breadcrumbs: [
       {
-        title: getRouteByPath(rootPath).title,
-        path: rootPath
+        title: getRouteByPath(rootPathname).title,
+        pathname: rootPathname
       },
       {
         title: route ? route.title : title,
-        path: state.router.location.pathname
+        pathname
       }
     ]
   };

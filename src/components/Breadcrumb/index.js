@@ -22,31 +22,41 @@ const BreadcrumbItem = styled.li`
   }
 `;
 
-const StyledBreadcrumb = styled.nav`
-  a {
-    text-decoration: none;
-    color: ${colors.white};
-    padding: 0;
-    &:hover {
-      text-decoration: underline;
-    }
+const BreadcrumbNav = styled.nav`
+  display: block;
+`;
+
+export const BreadcrumbLink = styled(Link)`
+  text-decoration: none;
+  color: ${colors.white};
+  padding: 0;
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
 const Breadcrumb = ({ breadcrumbs }) =>
-  <StyledBreadcrumb>
+  <BreadcrumbNav aria-label="breadcrumb">
     <BreadcrumbList>
-      {breadcrumbs &&
-        breadcrumbs.map(({ title, path }, index) =>
-          <BreadcrumbItem key={path}>
-            <Link to={path}>{title}</Link>
-          </BreadcrumbItem>
-        )}
+      {breadcrumbs.map(({ title, pathname }, index) =>
+        <BreadcrumbItem key={pathname}>
+          <BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>
+        </BreadcrumbItem>
+      )}
     </BreadcrumbList>
-  </StyledBreadcrumb>;
+  </BreadcrumbNav>;
 
 Breadcrumb.propTypes = {
-  breadcrumbs: PropTypes.arrayOf(PropTypes.object).isRequired
+  breadcrumbs: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      pathname: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
+
+Breadcrumb.defaultProps = {
+  breadcrumbs: []
 };
 
 export default Breadcrumb;

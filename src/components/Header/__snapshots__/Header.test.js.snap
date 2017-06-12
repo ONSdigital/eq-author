@@ -27,12 +27,12 @@ exports[`components/Header renders correctly  1`] = `
       >
         <IconButton
           disabled={true}
-          icon="icon-preview.svg"
+          icon="preview"
           title="Preview"
         />
         <IconButton
           disabled={true}
-          icon="icon-export.svg"
+          icon="export"
           title="Export"
         />
       </Header__UtilityBtns>

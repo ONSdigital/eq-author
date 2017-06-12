@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Breadcrumb from "components/Breadcrumb";
+import Breadcrumb, { BreadcrumbLink } from "components/Breadcrumb";
 import { shallow } from "enzyme";
 import toJson from "enzyme-to-json";
 
@@ -8,11 +7,11 @@ describe("components/Breadcrumb", () => {
   const breadcrumbs = [
     {
       title: "Home",
-      path: "/"
+      pathname: "/"
     },
     {
       title: "Create Survey",
-      path: "/create"
+      pathname: "/create"
     }
   ];
   const wrapper = shallow(<Breadcrumb breadcrumbs={breadcrumbs} />);
@@ -22,9 +21,11 @@ describe("components/Breadcrumb", () => {
   });
 
   it("should render breadcrumbs from props", () => {
-    expect(wrapper.find(Link).length).toBe(breadcrumbs.length);
-    breadcrumbs.forEach(({ title, path }) =>
-      expect(wrapper.contains(<Link to={path}>{title}</Link>)).toBe(true)
+    expect(wrapper.find(BreadcrumbLink).length).toBe(breadcrumbs.length);
+    breadcrumbs.forEach(({ title, pathname }) =>
+      expect(
+        wrapper.contains(<BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>)
+      ).toBe(true)
     );
   });
 });
