@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import Breadcrumb from "components/Breadcrumb";
 import { getRouteByPath } from "routes";
 
-export const mapStateToProps = (state, ownProps) => {
-  const { title } = state.survey.meta;
+export const mapStateToProps = (state, _) => {
+  const { title } = state.questionnaire.meta;
   const { pathname } = state.router.location;
   const route = getRouteByPath(pathname);
   const rootPathname = "/";

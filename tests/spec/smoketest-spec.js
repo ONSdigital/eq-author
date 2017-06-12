@@ -14,9 +14,9 @@ describe("eQ Author", () => {
       expect(getPageHTML("#root")).toContain("Select to begin");
     });
 
-    it("presents user with buttons to create or load survey", () => {
-      expect(exists("#btn-create-survey")).toBe(true);
-      expect(exists("#btn-load-survey")).toBe(true);
+    it("presents user with buttons to create or load questionnaire", () => {
+      expect(exists("#btn-create-questionnaire")).toBe(true);
+      expect(exists("#btn-load-questionnaire")).toBe(true);
     });
   });
 });

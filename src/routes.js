@@ -1,9 +1,8 @@
-
 import { find } from "lodash";
 
-import QuestionnairePage from "containers/Survey";
-import CreateQuestionnaire from "containers/CreateSurvey";
-import DesignQuestionnaire from "containers/DesignSurvey";
+import QuestionnairePage from "containers/Questionnaire";
+import CreateQuestionnaire from "containers/CreateQuestionnaire";
+import DesignQuestionnaire from "containers/DesignQuestionnaire";
 
 import NotFound from "pages/NotFound";
 

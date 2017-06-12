@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
@@ -45,11 +45,13 @@ const QuestionnairePage = ({ onFileSelected }) =>
       <PanelTitle>Select to begin</PanelTitle>
       <Panel>
         <ButtonGroup vertical>
-          <LinkButton to="/create" id="btn-create-survey" primary>
-            Create survey
+          <LinkButton to="/create" id="btn-create-questionnaire" primary>
+            Create questionnaire
           </LinkButton>
           <FileUpload onFileSelected={onFileSelected} accept=".json">
-            <Button id="btn-load-survey" secondary>Load questionnaire</Button>
+            <Button id="btn-load-questionnaire" secondary>
+              Load questionnaire
+            </Button>
           </FileUpload>
         </ButtonGroup>
       </Panel>
