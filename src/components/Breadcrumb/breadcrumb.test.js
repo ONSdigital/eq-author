@@ -1,52 +1,31 @@
 import React from "react";
-import { concat } from "lodash";
-import Link from "components/Link";
-import Breadcrumb from "components/Breadcrumb";
-import Chevron from "./chevron";
-import { mount } from "enzyme";
+import Breadcrumb, { BreadcrumbLink } from "components/Breadcrumb";
+import { shallow } from "enzyme";
+import toJson from "enzyme-to-json";
 
-describe("Breadcrumb", () => {
-  describe("links", () => {
-    const stubOnClick = jest.fn();
-    const twoLinks = [
-      <Link key="1" text="Home" data="home" onClick={stubOnClick} />,
-      <Link
-        key="2"
-        text="Survey title"
-        data="surveyTitle"
-        onClick={stubOnClick}
-      />
-    ];
+describe("components/Breadcrumb", () => {
+  const breadcrumbs = [
+    {
+      title: "Home",
+      pathname: "/"
+    },
+    {
+      title: "Create Survey",
+      pathname: "/create"
+    }
+  ];
+  const wrapper = shallow(<Breadcrumb breadcrumbs={breadcrumbs} />);
 
-    const threeLinks = concat(twoLinks, [
-      <Link key="3" text="Third link" data="thirdLink" onClick={stubOnClick} />
-    ]);
+  it("renders correctly ", function() {
+    expect(toJson(wrapper)).toMatchSnapshot();
+  });
 
-    const BreadcrumbWithTwoLinks = props => (
-      <Breadcrumb>
-        {twoLinks}
-      </Breadcrumb>
+  it("should render breadcrumbs from props", () => {
+    expect(wrapper.find(BreadcrumbLink).length).toBe(breadcrumbs.length);
+    breadcrumbs.forEach(({ title, pathname }) =>
+      expect(
+        wrapper.contains(<BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>)
+      ).toBe(true)
     );
-
-    const BreadcrumbWithThreeLinks = props => (
-      <Breadcrumb>
-        {threeLinks}
-      </Breadcrumb>
-    );
-
-    it("should display links", () => {
-      const wrapper = mount(<BreadcrumbWithTwoLinks />);
-      expect(wrapper.find("a")).toHaveLength(2);
-    });
-
-    it("should have 1 chevron when two links", () => {
-      const breadcrumbWithTwoLinks = mount(<BreadcrumbWithTwoLinks />);
-      expect(breadcrumbWithTwoLinks.find(Chevron)).toHaveLength(1);
-    });
-
-    it("should have 2 chevrons when three links", () => {
-      const breadcrumbWithThreeLinks = mount(<BreadcrumbWithThreeLinks />);
-      expect(breadcrumbWithThreeLinks.find(Chevron)).toHaveLength(2);
-    });
   });
 });

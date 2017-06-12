@@ -1,17 +1,29 @@
-import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledGrid = styled.div`
+const Grid = styled.div`
   display: flex;
   width: 100%;
-  flex: 1 1 auto;
+  flex: ${({ fillHeight }) => (fillHeight ? 1 : 0)} 1 auto;
+  flex-direction: row;
+  align-items: ${({ align }) => alignOptions[align]}
 `;
 
-const Grid = ({ children }) => <StyledGrid>{children}</StyledGrid>;
+const alignOptions = {
+  center: "center",
+  top: "stretch",
+  bottom: "flex-end"
+};
 
 Grid.propTypes = {
-  children: PropTypes.node.isRequired
+  align: PropTypes.oneOf(Object.keys(alignOptions)),
+  children: PropTypes.node.isRequired,
+  fillHeight: PropTypes.bool
+};
+
+Grid.defaultProps = {
+  align: "top",
+  fillHeight: true
 };
 
 export default Grid;

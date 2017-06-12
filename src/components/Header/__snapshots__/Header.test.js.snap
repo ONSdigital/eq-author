@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Header renders correctly  1`] = `
+<Header__StyledHeader>
+  <Grid__Grid
+    align="center"
+    fillHeight={true}
+  >
+    <Column__Column
+      cols={3}
+    >
+      <Header__Logo
+        to="/"
+      >
+        <img
+          alt="Dahl"
+          src="logo.svg"
+        />
+      </Header__Logo>
+    </Column__Column>
+    <Column__Column>
+      <Connect(Breadcrumb) />
+    </Column__Column>
+    <Column__Column>
+      <Header__UtilityBtns
+        horizontal={true}
+      >
+        <IconButton
+          disabled={true}
+          icon="preview"
+          title="Preview"
+        />
+        <IconButton
+          disabled={true}
+          icon="export"
+          title="Export"
+        />
+      </Header__UtilityBtns>
+    </Column__Column>
+  </Grid__Grid>
+</Header__StyledHeader>
+`;

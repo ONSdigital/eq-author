@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 
 import BaseLayout from "layouts/Base";
 
-const FullPageLayout = props => (
-  <BaseLayout>
+const FullPageLayout = props =>
+  <BaseLayout hasNav={false} hasBreadcrumbs={false} hasUtilityBtns={false}>
     {props.children}
-  </BaseLayout>
-);
+  </BaseLayout>;
 
 FullPageLayout.propTypes = {
   children: PropTypes.element.isRequired

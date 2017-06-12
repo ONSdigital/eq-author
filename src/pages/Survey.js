@@ -39,21 +39,22 @@ const PanelTitle = styled(Title)`
   margin-bottom: 1em;
 `;
 
-const SurveyPage = ({ onFileSelected }) => (
+const SurveyPage = ({ onFileSelected }) =>
   <Centered>
     <PanelWithTitle>
       <PanelTitle>Select to begin</PanelTitle>
       <Panel>
         <ButtonGroup vertical>
-          <LinkButton to="/create" primary>Create survey</LinkButton>
+          <LinkButton to="/create" id="btn-create-survey" primary>
+            Create survey
+          </LinkButton>
           <FileUpload onFileSelected={onFileSelected} accept=".json">
-            <Button secondary>Load survey</Button>
+            <Button id="btn-load-survey" secondary>Load survey</Button>
           </FileUpload>
         </ButtonGroup>
       </Panel>
     </PanelWithTitle>
-  </Centered>
-);
+  </Centered>;
 
 SurveyPage.propTypes = {
   onFileSelected: PropTypes.func.isRequired

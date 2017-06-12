@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Breadcrumb renders correctly  1`] = `
+<Breadcrumb__BreadcrumbNav
+  aria-label="breadcrumb"
+>
+  <Breadcrumb__BreadcrumbList>
+    <Breadcrumb__BreadcrumbItem>
+      <Breadcrumb__BreadcrumbLink
+        to="/"
+      >
+        Home
+      </Breadcrumb__BreadcrumbLink>
+    </Breadcrumb__BreadcrumbItem>
+    <Breadcrumb__BreadcrumbItem>
+      <Breadcrumb__BreadcrumbLink
+        to="/create"
+      >
+        Create Survey
+      </Breadcrumb__BreadcrumbLink>
+    </Breadcrumb__BreadcrumbItem>
+  </Breadcrumb__BreadcrumbList>
+</Breadcrumb__BreadcrumbNav>
+`;
