@@ -1,4 +1,5 @@
 import React from "react";
+import toJson from "enzyme-to-json";
 import { shallow } from "enzyme";
 
 import { Header, UtilityBtns, Logo } from "components/Header";
@@ -7,7 +8,7 @@ import Breadcrumb from "containers/Breadcrumb";
 describe("components/Header", function() {
   it("renders correctly ", function() {
     const wrapper = shallow(<Header />);
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it("should render a logo", function() {

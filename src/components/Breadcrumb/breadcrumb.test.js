@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Breadcrumb from "components/Breadcrumb";
 import { shallow } from "enzyme";
+import toJson from "enzyme-to-json";
 
 describe("components/Breadcrumb", () => {
   const breadcrumbs = [
@@ -17,7 +18,7 @@ describe("components/Breadcrumb", () => {
   const wrapper = shallow(<Breadcrumb breadcrumbs={breadcrumbs} />);
 
   it("renders correctly ", function() {
-    expect(wrapper).toMatchSnapshot();
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 
   it("should render breadcrumbs from props", () => {
