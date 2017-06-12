@@ -1,7 +1,7 @@
 import actionMatching from "tests/utils/actionMatching";
-import { META_UPDATE, updateMeta } from "actions/survey/meta";
+import { META_UPDATE, updateMeta } from "actions/questionnaire/meta";
 
-describe("actions/survey/meta", () => {
+describe("actions/questionnaire/meta", () => {
   describe("updateMeta", () => {
     it("should pass 'key' and 'value' payload", () => {
       const payload = { key: "foo", value: "bar" };

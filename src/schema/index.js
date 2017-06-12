@@ -18,10 +18,14 @@ export const group = new schema.Entity("groups", {
   blocks: [block]
 });
 
-export const surveySchema = new schema.Entity("survey", {
-  sections: [section],
-  questions: [question],
-  answers: [answer],
-  blocks: [block],
-  groups: [group]
-}, { idAttribute: "survey_id" });
+export const questionnaireSchema = new schema.Entity(
+  "questionnaire",
+  {
+    sections: [section],
+    questions: [question],
+    answers: [answer],
+    blocks: [block],
+    groups: [group]
+  },
+  { idAttribute: "survey_id" }
+);

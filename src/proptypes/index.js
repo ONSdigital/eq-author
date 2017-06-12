@@ -1,13 +1,13 @@
 import section from "proptypes/section";
 import question from "proptypes/question";
 import answer from "proptypes/answer";
-import survey from "proptypes/survey";
+import questionnaire from "proptypes/questionnaire";
 
 export const CustomPropTypes = {
   section,
   question,
   answer,
-  survey
+  questionnaire
 };
 
 export default CustomPropTypes;

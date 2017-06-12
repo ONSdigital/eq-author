@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
-import survey from "reducers/survey/";
+import questionnaire from "reducers/questionnaire/";
 
 const rootReducer = combineReducers({
-  survey,
+  questionnaire,
   router: routerReducer
 });
 

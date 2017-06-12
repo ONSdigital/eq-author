@@ -16,7 +16,7 @@ exports[`components/Breadcrumb renders correctly  1`] = `
       <Breadcrumb__BreadcrumbLink
         to="/create"
       >
-        Create Survey
+        Create questionnaire
       </Breadcrumb__BreadcrumbLink>
     </Breadcrumb__BreadcrumbItem>
   </Breadcrumb__BreadcrumbList>

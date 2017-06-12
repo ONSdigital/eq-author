@@ -10,7 +10,7 @@ describe("components/Breadcrumb", () => {
       pathname: "/"
     },
     {
-      title: "Create Survey",
+      title: "Create questionnaire",
       pathname: "/create"
     }
   ];

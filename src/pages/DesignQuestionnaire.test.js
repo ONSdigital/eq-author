@@ -1,17 +1,17 @@
 import React from "react";
 
-import { defaultState } from "reducers/survey/meta";
-import DesignSurveyPage from "pages/DesignSurvey";
+import { defaultState } from "reducers/questionnaire/meta";
+import DesignQuestionnairePage from "./DesignQuestionnaire";
 
 import { mountWithRouter } from "tests/utils/mountWithRouter";
 
-describe("DesignSurveyPage", () => {
+describe("DesignQuestionnairePage", () => {
   it("should render", () => {
     const Page = mountWithRouter(
-      <DesignSurveyPage
+      <DesignQuestionnairePage
         meta={defaultState.meta}
         onChange={jest.fn()}
-        clearSurvey={jest.fn()}
+        clearQuestionnaire={jest.fn()}
         deleteItem={jest.fn()}
       />
     );

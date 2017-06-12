@@ -37,19 +37,19 @@ const Options = styled.form`
   position: relative;
 `;
 
-const DesignSurveyPage = ({
+const DesignQuestionnairePage = ({
   selected,
   selectedSection,
   onChange,
-  clearSurvey,
+  clearQuestionnaire,
   deleteItem,
-  surveyItems
+  questionnaireItems
 }) => {
   return (
     <EditLayout>
 
       <ActionBar>
-        <ActionButton tertiary small onClick={clearSurvey}>
+        <ActionButton tertiary small onClick={clearQuestionnaire}>
           Delete All
         </ActionButton>
       </ActionBar>
@@ -58,7 +58,7 @@ const DesignSurveyPage = ({
         <EditSurface>
           <Preview>
             <HTMLPreview
-              surveyItems={surveyItems}
+              questionnaireItems={questionnaireItems}
               selectedSection={selectedSection}
             />
           </Preview>
@@ -74,7 +74,7 @@ const DesignSurveyPage = ({
 
 const { section, question, answer } = CustomPropTypes;
 
-DesignSurveyPage.propTypes = {
+DesignQuestionnairePage.propTypes = {
   selected: PropTypes.shape({
     id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
@@ -82,9 +82,9 @@ DesignSurveyPage.propTypes = {
   }),
   selectedSection: CustomPropTypes.section,
   onChange: PropTypes.func.isRequired,
-  clearSurvey: PropTypes.func.isRequired,
+  clearQuestionnaire: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
-  surveyItems: CustomPropTypes.survey.items
+  questionnaireItems: CustomPropTypes.questionnaire.items
 };
 
-export default DesignSurveyPage;
+export default DesignQuestionnairePage;

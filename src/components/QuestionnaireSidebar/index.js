@@ -6,7 +6,7 @@ import { TreeMenu } from "components/TreeMenu";
 
 const preventDefault = e => e.preventDefault();
 
-const SurveySidebar = ({ sections, questions, answers, ...actions }) => (
+const QuestionnaireSidebar = ({ sections, questions, answers, ...actions }) =>
   <Sidebar>
     <SidebarSection
       title={"Sections"}
@@ -18,13 +18,12 @@ const SurveySidebar = ({ sections, questions, answers, ...actions }) => (
       answers={answers}
       {...actions}
     />
-  </Sidebar>
-);
+  </Sidebar>;
 
-SurveySidebar.propTypes = {
+QuestionnaireSidebar.propTypes = {
   sections: PropTypes.objectOf(PropTypes.object),
   questions: PropTypes.objectOf(PropTypes.object),
   answers: PropTypes.objectOf(PropTypes.object)
 };
 
-export default SurveySidebar;
+export default QuestionnaireSidebar;

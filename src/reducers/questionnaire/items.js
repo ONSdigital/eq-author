@@ -2,14 +2,14 @@
 
 import { merge, omit, includes, find } from "lodash";
 
-import { SURVEY_LOAD_SUCCESS } from "actions/survey";
+import { QUESTIONNAIRE_LOAD_SUCCESS } from "actions/questionnaire";
 
 import {
   ITEM_UPDATE,
   ITEM_ADD,
   ITEM_ADD_COMPLETE,
   ITEM_REMOVE
-} from "actions/survey/items";
+} from "actions/questionnaire/items";
 
 export const defaultState = {
   blocks: {
@@ -121,7 +121,7 @@ export const items = (state = defaultState, action) => {
         }
       };
 
-    case SURVEY_LOAD_SUCCESS:
+    case QUESTIONNAIRE_LOAD_SUCCESS:
       return {
         ...state,
         ...payload.items

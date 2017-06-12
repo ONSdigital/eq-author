@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const survey = {
+export const questionnaire = {
   items: PropTypes.shape({
     sections: PropTypes.object,
     questions: PropTypes.object,
@@ -9,4 +9,4 @@ export const survey = {
   meta: PropTypes.object
 };
 
-export default survey;
+export default questionnaire;

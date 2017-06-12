@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import BaseLayout from "layouts/Base";
-
-import SurveySidebar from "containers/SurveySidebar";
+import QuestionnaireSidebar from "containers/QuestionnaireSidebar";
 import { Grid, Column } from "components/Grid";
 
 const SidebarPageLayout = props =>
   <BaseLayout>
     <Grid align="top">
       <Column cols={3} gutters={false}>
-        <SurveySidebar />
+        <QuestionnaireSidebar />
       </Column>
       <Column gutters={false}>
         {props.children}

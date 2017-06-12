@@ -4,9 +4,9 @@ import { getRouteByPath } from "routes";
 
 describe("containers/Breadcrumb", () => {
   const state = {
-    survey: {
+    questionnaire: {
       meta: {
-        title: "My survey"
+        title: "My questionnaire"
       }
     }
   };
@@ -19,7 +19,7 @@ describe("containers/Breadcrumb", () => {
       },
       {
         path: "/create",
-        title: "Create a survey"
+        title: "Create a questionnaire"
       }
     ];
     const { breadcrumbs } = mapStateToProps({
@@ -35,16 +35,16 @@ describe("containers/Breadcrumb", () => {
     expect(breadcrumbs[1].title).toEqual(routes[1].title);
   });
 
-  it("should render a Home link and the current survey title", function() {
+  it("should render a Home link and the current questionnaire title", function() {
     const { breadcrumbs } = mapStateToProps({
       ...state,
       router: {
         location: {
-          pathname: "/my-survey"
+          pathname: "/my-questionnaire"
         }
       }
     });
     expect(breadcrumbs[0].title).toEqual(getRouteByPath("/").title);
-    expect(breadcrumbs[1].title).toEqual(state.survey.meta.title);
+    expect(breadcrumbs[1].title).toEqual(state.questionnaire.meta.title);
   });
 });
