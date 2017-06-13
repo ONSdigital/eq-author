@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import { colors, radius } from "constants/theme";
+import { radius } from "constants/theme";
 
 const Panel = styled.div`
   border-radius: ${radius};
