@@ -92,6 +92,7 @@
     "normalizr": "^3.2.3",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
+    "react-apollo": "^1.4.2",
     "react-dom": "^15.5.4",
     "react-error-overlay": "^1.0.7",
     "react-hot-loader": "next",
