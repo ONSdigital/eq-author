@@ -3,11 +3,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
-import { Field, Input, Label, Select, TextArea } from "components/Forms";
-import Panel from "components/Panel";
-
+import { Field, Input, Label, Select } from "components/Forms";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
+import { TabPanel } from "components/Tabs";
 
 const Center = styled.div`
   width: 100%;
@@ -21,7 +20,20 @@ const ActionButtonGroup = styled(ButtonGroup)`
   align-self: flex-start;
 `;
 
-const CreateQuestionnairePage = ({ loading, questionnaire }) => {
+const handleChange = (e, onUpdate, questionnaire) => {
+  e.stopPropagation();
+
+  const updated = {
+    ...questionnaire,
+    ...{
+      [e.target.id]: e.target.value
+    }
+  };
+
+  onUpdate({ ...updated });
+};
+
+const CreateQuestionnairePage = ({ loading, questionnaire, onUpdate }) => {
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -30,7 +42,11 @@ const CreateQuestionnairePage = ({ loading, questionnaire }) => {
 
   return (
     <div>
-      <form>
+      <form
+        onChange={function(e) {
+          handleChange(e, onUpdate, questionnaire);
+        }}
+      >
 
         <TabPanel>
           <Field id="title">
@@ -67,6 +83,7 @@ const CreateQuestionnairePage = ({ loading, questionnaire }) => {
 
 CreateQuestionnairePage.propTypes = {
   loading: PropTypes.bool.isRequired,
+  onUpdate: PropTypes.func.isRequired,
   questionnaire: PropTypes.shape({
     description: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,

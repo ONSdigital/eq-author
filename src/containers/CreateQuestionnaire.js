@@ -1,8 +1,7 @@
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import { graphql, gql, compose } from "react-apollo";
 import CreateQuestionnairePage from "pages/CreateQuestionnaire";
 
-const questionnaire = gql`
+const query = gql`
   query GetQuestionnaire {
     questionnaire(id: 1) {
       id,
@@ -15,11 +14,49 @@ const questionnaire = gql`
   }
 `;
 
-const CreateQuestionnaire = graphql(questionnaire, {
-  props: ({ data: { loading, questionnaire } }) => ({
-    questionnaire,
-    loading
+const mutation = gql`
+  mutation UpdateQuestionnaire(
+    $id:ID!,
+    $title: String!,
+    $description: String!,
+    $theme: String!,
+    $legalBasis: String!,
+    $navigation: Boolean
+    ) {
+    updateQuestionnaire(
+      id: $id,
+      title: $title,
+      description: $description,
+      theme: $theme,
+      legalBasis: $legalBasis,
+      navigation: $navigation
+    ) {
+      id,
+      title,
+      description,
+      theme,
+      legalBasis,
+      navigation
+    }
+  }
+`;
+
+const mapResultsToProps = ({ data: { loading, questionnaire }, mutate }) => ({
+  questionnaire,
+  loading
+});
+
+export const createUpdater = mutate => variables => mutate({ variables });
+
+const CreateQuestionnaire = compose(
+  graphql(query, {
+    props: mapResultsToProps
+  }),
+  graphql(mutation, {
+    props: ({ mutate }) => ({
+      onUpdate: createUpdater(mutate)
+    })
   })
-})(CreateQuestionnairePage);
+)(CreateQuestionnairePage);
 
 export default CreateQuestionnaire;
