@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { sharedStyles } from "components/Forms/css";
 
 const noop = () => {};
 
 const StyledTextArea = styled.textarea`
+  ${sharedStyles};
   resize: none;
 `;
 

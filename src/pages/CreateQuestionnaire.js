@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
-import { Field, Input, Label, Select } from "components/Forms";
+import { Field, Input, Label, Select, TextArea } from "components/Forms";
 import Panel from "components/Panel";
 
 import LinkButton from "components/LinkButton";
@@ -33,7 +33,7 @@ const CreateQuestionnairePage = ({ meta, onChange }) => {
           </Field>
           <Field id="description">
             <Label>Description</Label>
-            <Input value={description} />
+            <TextArea value={description} rows={4} />
           </Field>
           <Grid>
             <Column cols={6}>
