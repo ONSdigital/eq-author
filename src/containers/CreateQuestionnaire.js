@@ -1,26 +1,25 @@
-import { connect } from "react-redux";
-import { updateMeta } from "actions/questionnaire/meta";
-
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
 import CreateQuestionnairePage from "pages/CreateQuestionnaire";
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    meta: state.questionnaire.meta,
-    guidance: {
-      informationToProvide:
-        state.questionnaire.items.blocks.introduction.information_to_provide
+const questionnaire = gql`
+  query GetQuestionnaire {
+    questionnaire(id: 1) {
+      id,
+      title,
+      description,
+      navigation,
+      legalBasis,
+      theme
     }
-  };
-};
+  }
+`;
 
-const mapDispatchToProps = (dispatch, { history }) => {
-  return {
-    onChange: e => {
-      dispatch(updateMeta(e.target.name, e.target.value));
-    }
-  };
-};
+const CreateQuestionnaire = graphql(questionnaire, {
+  props: ({ data: { loading, questionnaire } }) => ({
+    questionnaire,
+    loading
+  })
+})(CreateQuestionnairePage);
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  CreateQuestionnairePage
-);
+export default CreateQuestionnaire;

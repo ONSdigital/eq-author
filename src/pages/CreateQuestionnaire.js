@@ -21,30 +21,28 @@ const ActionButtonGroup = styled(ButtonGroup)`
   align-self: flex-start;
 `;
 
-const CreateQuestionnairePage = ({ meta, onChange }) => {
-  const { title, description, theme, legal_basis } = meta;
+const CreateQuestionnairePage = ({ loading, questionnaire }) => {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const { title, description, theme, legalBasis } = questionnaire;
+
   return (
-    <Center>
-      <form onChange={onChange}>
-        <Panel>
+    <div>
+      <form>
+
+        <TabPanel>
           <Field id="title">
-            <Label>Questionnaire Title</Label>
+            <Label>Title</Label>
             <Input value={title} />
           </Field>
           <Field id="description">
             <Label>Description</Label>
-            <TextArea value={description} rows={4} />
+            <Input value={description} />
           </Field>
           <Grid>
-            <Column cols={6}>
-              <Field id="id">
-                <Label>Questionnaire ID</Label>
-                <Input value={description} />
-              </Field>
-            </Column>
-          </Grid>
-          <Grid>
-            <Column cols={6}>
+            <Column>
               <Field id="theme">
                 <Label>Theme</Label>
                 <Select
@@ -53,44 +51,29 @@ const CreateQuestionnairePage = ({ meta, onChange }) => {
                 />
               </Field>
             </Column>
-            <Column cols={6}>
+            <Column>
               <Field id="legal_basis">
                 <Label>Legal Basis</Label>
-                <Select
-                  options={["StatisticsOfTradeAct"]}
-                  value={legal_basis}
-                />
+                <Select options={["StatisticsOfTradeAct"]} value={legalBasis} />
               </Field>
             </Column>
           </Grid>
-          <Field id="navigation">
-            <Input type="checkbox" />
-            <Label inline>Navigation</Label>
-          </Field>
-          <ActionButtonGroup horizontal>
-            <LinkButton to="/design" primary>Next</LinkButton>
-            <LinkButton to="/" secondary>Cancel</LinkButton>
-          </ActionButtonGroup>
-        </Panel>
+        </TabPanel>
+
       </form>
-    </Center>
+    </div>
   );
 };
 
 CreateQuestionnairePage.propTypes = {
-  meta: PropTypes.shape({
-    data_version: PropTypes.string,
-    description: PropTypes.string,
-    groups: PropTypes.array,
-    id: PropTypes.string,
-    legal_basis: PropTypes.string,
-    mime_type: PropTypes.string,
-    questionnaire_id: PropTypes.string,
-    schema_version: PropTypes.string,
-    theme: PropTypes.string,
-    title: PropTypes.string
-  }),
-  onChange: PropTypes.func
+  loading: PropTypes.bool.isRequired,
+  questionnaire: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    legalBasis: PropTypes.string.isRequired,
+    theme: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
+  })
 };
 
 export default CreateQuestionnairePage;
