@@ -9,30 +9,30 @@ import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
 import { TabPanel } from "components/Tabs";
 
-const Center = styled.div`
-  width: 100%;
-  max-width: 40em;
-  display: flex;
-  flex-direction: column;
-  margin: 2em auto;
-`;
+import { debounce } from "lodash";
 
 const ActionButtonGroup = styled(ButtonGroup)`
   align-self: flex-start;
 `;
 
 class CreateQuestionnairePage extends Component {
+  constructor(props) {
+    super(props);
+    this.debouncedChangeHandler = debounce(this.onChange.bind(this), 200);
+  }
+
   componentWillReceiveProps({ questionnaire }) {
     this.setState(questionnaire);
   }
 
   onChange = value => {
-    this.setState(value);
+    this.setState(value, () => {
+      this.props.onUpdate(this.state);
+    });
   };
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.onUpdate(this.state);
     this.props.history.push("/design");
   };
 
@@ -54,13 +54,15 @@ class CreateQuestionnairePage extends Component {
               <Label>Title</Label>
               <Input
                 defaultValue={title}
-                handleChange={this.onChange}
-                required
+                handleChange={this.debouncedChangeHandler}
               />
             </Field>
             <Field id="description">
               <Label>Description</Label>
-              <Input defaultValue={description} handleChange={this.onChange} />
+              <Input
+                defaultValue={description}
+                handleChange={this.debouncedChangeHandler}
+              />
             </Field>
             <Grid>
               <Column>
@@ -73,7 +75,7 @@ class CreateQuestionnairePage extends Component {
                 </Field>
               </Column>
               <Column>
-                <Field id="legal_basis">
+                <Field id="legalBasis">
                   <Label>Legal Basis</Label>
                   <Select
                     options={["StatisticsOfTradeAct"]}
@@ -96,6 +98,7 @@ class CreateQuestionnairePage extends Component {
 }
 
 CreateQuestionnairePage.propTypes = {
+  history: PropTypes.object.isRequired, // eslint-disable-line
   loading: PropTypes.bool.isRequired,
   onUpdate: PropTypes.func.isRequired,
   questionnaire: PropTypes.shape({
