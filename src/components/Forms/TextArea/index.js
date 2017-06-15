@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { sharedStyles } from "components/Forms/css";
 
 const noop = () => {};
 
 const StyledTextArea = styled.textarea`
+  ${sharedStyles};
   resize: none;
 `;
 
-const TextArea = ({ value, id, rows = 10, ...otherProps }) => (
+export const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
   <StyledTextArea
     value={value}
     rows={rows}
@@ -16,13 +18,14 @@ const TextArea = ({ value, id, rows = 10, ...otherProps }) => (
     name={id}
     onChange={noop}
     {...otherProps}
-  />
-);
+  />;
 
 TextArea.propTypes = {
   value: PropTypes.string.isRequired,
   id: PropTypes.string,
   rows: PropTypes.number
-}
+};
 
-export default TextArea
+TextArea.displayName = "Textarea";
+
+export default TextArea;

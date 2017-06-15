@@ -27,10 +27,10 @@ const NavWrapper = styled.div`
   border-bottom: 1px solid ${colors.borders};
 `;
 
-const BaseLayout = ({ children, hasNav, ...otherProps }) =>
+const BaseLayout = ({ children, hasNav, hasBreadcrumbs, hasUtilityBtns }) =>
   <App>
     <Wrapper>
-      <Header {...otherProps} />
+      <Header hasBreadcrumbs={hasBreadcrumbs} hasUtilityBtns={hasUtilityBtns} />
       {hasNav &&
         <NavWrapper>
           <Grid fillHeight={false}>
@@ -47,11 +47,15 @@ const BaseLayout = ({ children, hasNav, ...otherProps }) =>
 
 BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
-  hasNav: PropTypes.bool
+  hasNav: PropTypes.bool,
+  hasBreadcrumbs: PropTypes.bool,
+  hasUtilityBtns: PropTypes.bool
 };
 
 BaseLayout.defaultProps = {
-  hasNav: true
+  hasNav: false,
+  hasBreadcrumbs: false,
+  hasUtilityBtns: false
 };
 
 export default BaseLayout;

@@ -1,7 +1,6 @@
 import React from "react";
 import Breadcrumb, { BreadcrumbLink } from "components/Breadcrumb";
 import { shallow } from "enzyme";
-import toJson from "enzyme-to-json";
 
 describe("components/Breadcrumb", () => {
   const breadcrumbs = [
@@ -17,7 +16,7 @@ describe("components/Breadcrumb", () => {
   const wrapper = shallow(<Breadcrumb breadcrumbs={breadcrumbs} />);
 
   it("renders correctly ", function() {
-    expect(toJson(wrapper)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("should render breadcrumbs from props", () => {

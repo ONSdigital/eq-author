@@ -5,7 +5,7 @@ import QuestionnaireSidebar from "containers/QuestionnaireSidebar";
 import { Grid, Column } from "components/Grid";
 
 const SidebarPageLayout = props =>
-  <BaseLayout>
+  <BaseLayout hasNav hasBreadcrumbs hasUtilityBtns>
     <Grid align="top">
       <Column cols={3} gutters={false}>
         <QuestionnaireSidebar />
