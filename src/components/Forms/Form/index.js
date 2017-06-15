@@ -1,8 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-const Form = ({ action, children, handleSubmit }) =>
-  <form action={action} method="POST" onSubmit={handleSubmit}>{children}</form>;
+const StyledForm = styled.form`
+  width: 100%;
+`;
+
+export const Form = ({ action, children, handleSubmit, ...otherProps }) =>
+  <StyledForm
+    action={action}
+    method="POST"
+    onSubmit={handleSubmit}
+    {...otherProps}
+  >
+    {children}
+  </StyledForm>;
 
 Form.propTypes = {
   action: PropTypes.string,

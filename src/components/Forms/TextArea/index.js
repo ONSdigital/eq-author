@@ -10,20 +10,34 @@ const StyledTextArea = styled.textarea`
   resize: none;
 `;
 
-export const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
+export const TextArea = ({
+  defaultValue,
+  id,
+  rows,
+  handleChange,
+  ...otherProps
+}) =>
   <StyledTextArea
-    value={value}
+    defaultValue={defaultValue}
     rows={rows}
     id={id}
     name={id}
-    onChange={noop}
+    onChange={function(e) {
+      handleChange({ [id]: e.target.value });
+    }}
     {...otherProps}
   />;
 
 TextArea.propTypes = {
-  value: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string.isRequired,
   id: PropTypes.string,
+  handleChange: PropTypes.func,
   rows: PropTypes.number
+};
+
+TextArea.defaultProps = {
+  rows: 10,
+  handleChange: noop
 };
 
 TextArea.displayName = "Textarea";

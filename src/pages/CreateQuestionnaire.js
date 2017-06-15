@@ -3,19 +3,27 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
-import { Form, Field, Input, Label, Select } from "components/Forms";
+import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
 import Button from "components/Button";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
-import { TabPanel } from "components/Tabs";
+import Panel from "components/Panel";
 
 import { debounce } from "lodash";
+
+const Center = styled.div`
+  width: 100%;
+  max-width: 40em;
+  display: flex;
+  flex-direction: column;
+  margin: 2em auto;
+`;
 
 const ActionButtonGroup = styled(ButtonGroup)`
   align-self: flex-start;
 `;
 
-class CreateQuestionnairePage extends Component {
+export class CreateQuestionnairePage extends Component {
   constructor(props) {
     super(props);
     this.debouncedChangeHandler = debounce(this.onChange.bind(this), 200);
@@ -39,60 +47,76 @@ class CreateQuestionnairePage extends Component {
   render() {
     const { loading, questionnaire } = this.props;
 
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-
-    const { title, description, theme, legalBasis } = questionnaire;
-
     return (
-      <div>
-        <Form handleSubmit={this.onSubmit}>
-
-          <TabPanel>
-            <Field id="title">
-              <Label>Title</Label>
-              <Input
-                defaultValue={title}
-                handleChange={this.debouncedChangeHandler}
-              />
-            </Field>
-            <Field id="description">
-              <Label>Description</Label>
-              <Input
-                defaultValue={description}
-                handleChange={this.debouncedChangeHandler}
-              />
-            </Field>
-            <Grid>
-              <Column>
-                <Field id="theme">
-                  <Label>Theme</Label>
-                  <Select
-                    options={["default", "census", "starwars"]}
-                    defaultValue={theme}
+      <Center>
+        <Panel>
+          {loading
+            ? <div>Loading...</div>
+            : <Form handleSubmit={this.onSubmit}>
+                <Field id="title">
+                  <Label>Questionnaire Title</Label>
+                  <Input
+                    defaultValue={questionnaire.title}
+                    handleChange={this.debouncedChangeHandler}
                   />
                 </Field>
-              </Column>
-              <Column>
-                <Field id="legalBasis">
-                  <Label>Legal Basis</Label>
-                  <Select
-                    options={["StatisticsOfTradeAct"]}
-                    defaultValue={legalBasis}
+                <Field id="description">
+                  <Label>Description</Label>
+                  <TextArea
+                    defaultValue={questionnaire.description}
+                    rows={4}
+                    handleChange={this.debouncedChangeHandler}
                   />
                 </Field>
-              </Column>
-            </Grid>
-          </TabPanel>
+                <Grid>
+                  <Column cols={6}>
+                    <Field id="id">
+                      <Label>Questionnaire ID</Label>
+                      <Input
+                        value={questionnaire.id}
+                        handleChange={this.debouncedChangeHandler}
+                      />
+                    </Field>
+                  </Column>
+                </Grid>
+                <Grid>
+                  <Column cols={6}>
+                    <Field id="theme">
+                      <Label>Theme</Label>
+                      <Select
+                        options={["default", "census", "starwars"]}
+                        defaultValue={questionnaire.theme}
+                        handleChange={this.debouncedChangeHandler}
+                      />
+                    </Field>
+                  </Column>
+                  <Column cols={6}>
+                    <Field id="legal_basis">
+                      <Label>Legal Basis</Label>
+                      <Select
+                        options={["StatisticsOfTradeAct"]}
+                        defaultValue={questionnaire.legalBasis}
+                        handleChange={this.debouncedChangeHandler}
+                      />
+                    </Field>
+                  </Column>
+                </Grid>
+                <Field id="navigation">
+                  <Input
+                    type="checkbox"
+                    defaultChecked={questionnaire.navigation}
+                    handleChange={this.debouncedChangeHandler}
+                  />
+                  <Label inline>Navigation</Label>
+                </Field>
+                <ActionButtonGroup horizontal>
+                  <Button type="submit" primary>Next</Button>
+                  <LinkButton to="/" secondary>Cancel</LinkButton>
+                </ActionButtonGroup>
 
-          <ActionButtonGroup horizontal>
-            <Button type="submit" primary>Create questionnaire</Button>
-            <LinkButton to="/" secondary>Cancel</LinkButton>
-          </ActionButtonGroup>
-
-        </Form>
-      </div>
+              </Form>}
+        </Panel>
+      </Center>
     );
   }
 }

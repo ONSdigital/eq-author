@@ -22,7 +22,7 @@ const updateQuestionnaire = gql`
     $theme: String!,
     $legalBasis: String!,
     $navigation: Boolean
-    ) {
+  ) {
     updateQuestionnaire(
       id: $id,
       title: $title,
@@ -46,17 +46,17 @@ const mapResultsToProps = ({ data: { loading, questionnaire }, mutate }) => ({
   loading
 });
 
-export const createUpdater = mutate => variables => mutate({ variables });
-
-const CreateQuestionnaire = compose(
+export default compose(
   graphql(getQuestionnaire, {
     props: mapResultsToProps
   }),
   graphql(updateQuestionnaire, {
-    props: ({ mutate }) => ({
-      onUpdate: createUpdater(mutate)
+    props: ({ ownProps, mutate }) => ({
+      onUpdate(variables) {
+        return mutate({
+          variables
+        });
+      }
     })
   })
 )(CreateQuestionnairePage);
-
-export default CreateQuestionnaire;

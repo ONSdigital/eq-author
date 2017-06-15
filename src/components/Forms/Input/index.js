@@ -26,14 +26,26 @@ const StyledInput = styled.input`
   ${props => props.type === "checkbox" && checkBox}
 `;
 
-export const Input = ({ type, value, id, handleChange, ...otherProps }) =>
+export const Input = ({
+  type,
+  defaultValue,
+  id,
+  handleChange,
+  ...otherProps
+}) =>
   <StyledInput
     type={type}
-    value={value}
+    defaultValue={defaultValue}
     id={id}
     name={id}
     onChange={function(e) {
-      handleChange({ [id]: e.target.value });
+      const { target } = e;
+      handleChange({
+        [id]: {
+          text: target.value,
+          checkbox: target.checked
+        }[type]
+      });
     }}
     {...otherProps}
   />;
@@ -47,7 +59,7 @@ Input.propTypes = {
   handleChange: PropTypes.func,
   id: PropTypes.string,
   type: PropTypes.oneOf(["text", "checkbox", "radio"]).isRequired,
-  value: PropTypes.oneOfType([
+  defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
     PropTypes.number

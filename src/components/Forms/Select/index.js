@@ -18,21 +18,37 @@ const StyledSelect = styled.select`
   }
 `;
 
-export const Select = ({ options, value, id, ...otherProps }) =>
-  <StyledSelect id={id} name={id} value={value} onChange={noop} {...otherProps}>
+export const Select = ({
+  options,
+  defaultValue,
+  id,
+  handleChange,
+  ...otherProps
+}) =>
+  <StyledSelect
+    id={id}
+    name={id}
+    defaultValue={defaultValue}
+    onChange={function(e) {
+      handleChange({ [id]: e.target.value });
+    }}
+    {...otherProps}
+  >
     {options.map(opt =>
       <option key={opt} value={lowerCase(opt)}>{opt}</option>
     )}
   </StyledSelect>;
 
 Select.defaultProps = {
-  options: []
+  options: [],
+  handleChange: noop
 };
 
 Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultValue: PropTypes.string.isRequired,
-  id: PropTypes.string
+  id: PropTypes.string,
+  handleChange: PropTypes.func
 };
 
 Select.displayName = "Select";
