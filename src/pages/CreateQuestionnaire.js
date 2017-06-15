@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
-import { Field, Input, Label, Select } from "components/Forms";
+import { Form, Field, Input, Label, Select } from "components/Forms";
+import Button from "components/Button";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
 import { TabPanel } from "components/Tabs";
@@ -20,66 +21,79 @@ const ActionButtonGroup = styled(ButtonGroup)`
   align-self: flex-start;
 `;
 
-const handleChange = (e, onUpdate, questionnaire) => {
-  e.stopPropagation();
-
-  const updated = {
-    ...questionnaire,
-    ...{
-      [e.target.id]: e.target.value
-    }
-  };
-
-  onUpdate({ ...updated });
-};
-
-const CreateQuestionnairePage = ({ loading, questionnaire, onUpdate }) => {
-  if (loading) {
-    return <div>Loading...</div>;
+class CreateQuestionnairePage extends Component {
+  componentWillReceiveProps({ questionnaire }) {
+    this.setState(questionnaire);
   }
 
-  const { title, description, theme, legalBasis } = questionnaire;
+  onChange = value => {
+    this.setState(value);
+  };
 
-  return (
-    <div>
-      <form
-        onChange={function(e) {
-          handleChange(e, onUpdate, questionnaire);
-        }}
-      >
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.onUpdate(this.state);
+    this.props.history.push("/design");
+  };
 
-        <TabPanel>
-          <Field id="title">
-            <Label>Title</Label>
-            <Input value={title} />
-          </Field>
-          <Field id="description">
-            <Label>Description</Label>
-            <Input value={description} />
-          </Field>
-          <Grid>
-            <Column>
-              <Field id="theme">
-                <Label>Theme</Label>
-                <Select
-                  options={["default", "census", "starwars"]}
-                  value={theme}
-                />
-              </Field>
-            </Column>
-            <Column>
-              <Field id="legal_basis">
-                <Label>Legal Basis</Label>
-                <Select options={["StatisticsOfTradeAct"]} value={legalBasis} />
-              </Field>
-            </Column>
-          </Grid>
-        </TabPanel>
+  render() {
+    const { loading, questionnaire } = this.props;
 
-      </form>
-    </div>
-  );
-};
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
+    const { title, description, theme, legalBasis } = questionnaire;
+
+    return (
+      <div>
+        <Form handleSubmit={this.onSubmit}>
+
+          <TabPanel>
+            <Field id="title">
+              <Label>Title</Label>
+              <Input
+                defaultValue={title}
+                handleChange={this.onChange}
+                required
+              />
+            </Field>
+            <Field id="description">
+              <Label>Description</Label>
+              <Input defaultValue={description} handleChange={this.onChange} />
+            </Field>
+            <Grid>
+              <Column>
+                <Field id="theme">
+                  <Label>Theme</Label>
+                  <Select
+                    options={["default", "census", "starwars"]}
+                    defaultValue={theme}
+                  />
+                </Field>
+              </Column>
+              <Column>
+                <Field id="legal_basis">
+                  <Label>Legal Basis</Label>
+                  <Select
+                    options={["StatisticsOfTradeAct"]}
+                    defaultValue={legalBasis}
+                  />
+                </Field>
+              </Column>
+            </Grid>
+          </TabPanel>
+
+          <ActionButtonGroup horizontal>
+            <Button type="submit" primary>Create questionnaire</Button>
+            <LinkButton to="/" secondary>Cancel</LinkButton>
+          </ActionButtonGroup>
+
+        </Form>
+      </div>
+    );
+  }
+}
 
 CreateQuestionnairePage.propTypes = {
   loading: PropTypes.bool.isRequired,
