@@ -26,7 +26,9 @@ const ActionButtonGroup = styled(ButtonGroup)`
 export class CreateQuestionnairePage extends Component {
   constructor(props) {
     super(props);
-    this.debouncedChangeHandler = debounce(this.onChange.bind(this), 200);
+    this.debouncedChangeHandler = debounce(this.onChange.bind(this), 200, {
+      leading: true
+    });
   }
 
   componentWillReceiveProps({ questionnaire }) {

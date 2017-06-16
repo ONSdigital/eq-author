@@ -35,16 +35,19 @@ export const BreadcrumbLink = styled(Link)`
   }
 `;
 
-const Breadcrumb = ({ breadcrumbs }) =>
-  <BreadcrumbNav aria-label="breadcrumb">
-    <BreadcrumbList>
-      {breadcrumbs.map(({ title, pathname }, index) =>
-        <BreadcrumbItem key={pathname}>
-          <BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>
-        </BreadcrumbItem>
-      )}
-    </BreadcrumbList>
-  </BreadcrumbNav>;
+const Breadcrumb = props => {
+  return (
+    <BreadcrumbNav aria-label="breadcrumb">
+      <BreadcrumbList>
+        {props.breadcrumbs.map(({ title, pathname }, index) =>
+          <BreadcrumbItem key={pathname}>
+            <BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>
+          </BreadcrumbItem>
+        )}
+      </BreadcrumbList>
+    </BreadcrumbNav>
+  );
+};
 
 Breadcrumb.propTypes = {
   breadcrumbs: PropTypes.arrayOf(
