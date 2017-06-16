@@ -1,17 +1,32 @@
 import React from "react";
 
-import { defaultState } from "reducers/questionnaire/meta";
 import CreateQuestionnairePage from "./CreateQuestionnaire";
-
 import { mountWithRouter } from "tests/utils/mountWithRouter";
 
 let wrapper;
-const changeHandler = jest.fn();
+
+const historyPushFn = jest.fn();
+const history = {
+  push: historyPushFn
+};
+
+const handleChange = jest.fn;
+const questionnaire = {
+  description: "",
+  legalBasis: "",
+  theme: "",
+  title: ""
+};
 
 describe("CreateQuestionnairePage", () => {
   beforeEach(() => {
     wrapper = mountWithRouter(
-      <CreateQuestionnairePage meta={defaultState} onChange={changeHandler} />
+      <CreateQuestionnairePage
+        loading={false}
+        history={history}
+        questionnaire={questionnaire}
+        onUpdate={handleChange}
+      />
     );
   });
 
@@ -19,10 +34,8 @@ describe("CreateQuestionnairePage", () => {
     expect(wrapper.length).not.toBe(0);
   });
 
-  it("should call onChange handler when a field is changed", () => {
-    const titleField = wrapper.find("#title");
-    titleField.simulate("change", { target: { value: "Hello" } });
-
-    expect(changeHandler).toHaveBeenCalled();
+  it("should forward to `/design` when form is submitted", () => {
+    wrapper.find("form").simulate("submit");
+    expect(historyPushFn).toHaveBeenCalledWith("/design");
   });
 });

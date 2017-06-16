@@ -4,7 +4,7 @@ import { TextArea } from "components/Forms/TextArea";
 
 describe("components/Forms/TextArea", () => {
   it("should render correctly", function() {
-    const wrapper = shallow(<TextArea value="" />);
+    const wrapper = shallow(<TextArea defaultValue="hello" />);
     expect(wrapper).toMatchSnapshot();
   });
 });

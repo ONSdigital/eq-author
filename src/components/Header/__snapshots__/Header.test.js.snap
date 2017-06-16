@@ -19,7 +19,7 @@ exports[`components/Header renders correctly  1`] = `
       </Header__Logo>
     </Column__Column>
     <Column__Column>
-      <Connect(Breadcrumb) />
+      <Connect(Apollo(Breadcrumb)) />
     </Column__Column>
     <Column__Column>
       <Header__UtilityBtns

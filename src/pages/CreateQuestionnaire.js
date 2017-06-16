@@ -118,7 +118,6 @@ CreateQuestionnairePage.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   questionnaire: PropTypes.shape({
     description: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
     legalBasis: PropTypes.string.isRequired,
     theme: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired

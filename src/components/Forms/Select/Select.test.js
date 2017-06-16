@@ -13,7 +13,7 @@ describe("Select", () => {
       <Select
         options={options}
         onChange={handleChange}
-        value={options[0]}
+        defaultValue={options[0]}
         name="foo"
         id="bar"
       />

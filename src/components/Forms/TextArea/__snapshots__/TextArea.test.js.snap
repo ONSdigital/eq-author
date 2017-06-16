@@ -2,8 +2,8 @@
 
 exports[`components/Forms/TextArea should render correctly 1`] = `
 <TextArea__StyledTextArea
+  defaultValue="hello"
   onChange={[Function]}
   rows={10}
-  value=""
 />
 `;
