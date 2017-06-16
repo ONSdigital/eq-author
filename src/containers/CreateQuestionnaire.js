@@ -52,11 +52,7 @@ export default compose(
   }),
   graphql(updateQuestionnaire, {
     props: ({ ownProps, mutate }) => ({
-      onUpdate(variables) {
-        return mutate({
-          variables
-        });
-      }
+      onUpdate: mutate => variables => mutate({ variables })
     })
   })
 )(CreateQuestionnairePage);
