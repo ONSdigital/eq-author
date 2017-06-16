@@ -72,17 +72,6 @@ export class CreateQuestionnairePage extends Component {
                 </Field>
                 <Grid>
                   <Column cols={6}>
-                    <Field id="id">
-                      <Label>Questionnaire ID</Label>
-                      <Input
-                        value={questionnaire.id}
-                        handleChange={this.debouncedChangeHandler}
-                      />
-                    </Field>
-                  </Column>
-                </Grid>
-                <Grid>
-                  <Column cols={6}>
                     <Field id="theme">
                       <Label>Theme</Label>
                       <Select
