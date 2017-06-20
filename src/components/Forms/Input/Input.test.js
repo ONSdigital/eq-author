@@ -2,35 +2,55 @@ import React from "react";
 import { mount } from "enzyme";
 import { Input } from "components/Forms/Input";
 
-let wrapper;
-
 const defaultValue = "I am some text";
 
+const changeHandler = jest.fn();
+
 describe("components/Forms/Input", () => {
-  beforeEach(() => {
-    wrapper = mount(<Input defaultValue={defaultValue} />);
-  });
+  describe("Text", () => {
+    let wrapper;
 
-  it("should render correctly", () => {
-    expect(wrapper).toMatchSnapshot();
-  });
+    beforeEach(() => {
+      wrapper = mount(
+        <Input
+          id="text"
+          handleChange={changeHandler}
+          defaultValue={defaultValue}
+        />
+      );
+    });
 
-  it("should render a text input by default", () => {
-    expect(wrapper.props()).toMatchObject({ type: "text" });
-  });
+    it("should render correctly", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
 
-  it("should pass `defaultValue` prop to component when type=text", () => {
-    expect(wrapper.props().defaultValue).toEqual(defaultValue);
-  });
+    it("should render a text input by default", () => {
+      expect(wrapper.props()).toMatchObject({ type: "text" });
+    });
 
-  it("should call handleChange with appropriate args", () => {
-    const handleChange = jest.fn();
-    wrapper = mount(<Input id="text" handleChange={handleChange} />);
-    wrapper.simulate("change", { target: { value: "hello" } });
-    expect(handleChange).toHaveBeenCalledWith({ text: "hello" });
+    it("should pass `defaultValue` prop to component when type=text", () => {
+      expect(wrapper.props().defaultValue).toEqual(defaultValue);
+    });
+
+    it("should call handleChange with appropriate args", () => {
+      wrapper.simulate("change", { target: { value: "hello" } });
+      expect(changeHandler).toHaveBeenCalledWith({ text: "hello" });
+    });
   });
 
   describe("Checkbox", () => {
+    let wrapper;
+
+    beforeEach(() => {
+      wrapper = mount(
+        <Input
+          id="text"
+          handleChange={changeHandler}
+          defaultValue={defaultValue}
+        />
+      );
+    });
+
     it("should render a checbox", () => {
       wrapper = mount(<Input type="checkbox" />);
       expect(wrapper.props()).toMatchObject({ type: "checkbox" });
@@ -44,18 +64,16 @@ describe("components/Forms/Input", () => {
     });
 
     it("should call handleChange with appropriate args", () => {
-      const handleChange = jest.fn();
-
       wrapper = mount(
         <Input
           type="checkbox"
           id="checkbox"
-          handleChange={handleChange}
+          handleChange={changeHandler}
           defaultChecked
         />
       );
       wrapper.simulate("change", { target: { checked: true } });
-      expect(handleChange).toHaveBeenCalledWith({ checkbox: true });
+      expect(changeHandler).toHaveBeenCalledWith({ checkbox: true });
     });
   });
 });
