@@ -2,10 +2,7 @@ import React from "react";
 import { MockedProvider } from "react-apollo/lib/test-utils";
 import { mount } from "enzyme";
 import { addTypenameToDocument } from "apollo-client";
-import CreateQuestionnaireContainer, {
-  getQuestionnaire,
-  withData
-} from "containers/createQuestionnaire";
+import CreateQuestionnaireContainer, { getQuestionnaire } from "containers/createQuestionnaire";
 
 const getQuery = addTypenameToDocument(getQuestionnaire);
 
