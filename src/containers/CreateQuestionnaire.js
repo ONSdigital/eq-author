@@ -9,8 +9,7 @@ export const getQuestionnaire = gql`
       description,
       navigation,
       legalBasis,
-      theme,
-      __typename
+      theme
     }
   }
 `;
