@@ -1,22 +1,23 @@
 import { graphql, gql, compose } from "react-apollo";
 import CreateQuestionnairePage from "pages/CreateQuestionnaire";
 
-const getQuestionnaire = gql`
-  query GetQuestionnaire {
-    questionnaire(id: 1) {
+export const getQuestionnaire = gql`
+  query GetQuestionnaire($id: ID!) {
+    questionnaire(id: $id) {
       id,
       title,
       description,
       navigation,
       legalBasis,
-      theme
+      theme,
+      __typename
     }
   }
 `;
 
-const updateQuestionnaire = gql`
+export const updateQuestionnaire = gql`
   mutation UpdateQuestionnaire(
-    $id:ID!,
+    $id: ID!,
     $title: String!,
     $description: String!,
     $theme: String!,
@@ -29,7 +30,7 @@ const updateQuestionnaire = gql`
       description: $description,
       theme: $theme,
       legalBasis: $legalBasis,
-      navigation: $navigation
+      navigation: $navigation,
     ) {
       id,
       title,
@@ -41,18 +42,27 @@ const updateQuestionnaire = gql`
   }
 `;
 
-const mapResultsToProps = ({ data: { loading, questionnaire }, mutate }) => ({
-  questionnaire,
-  loading
+const mapResultsToProps = results => {
+  const { data: { loading, questionnaire } } = results;
+  // console.log(results.data.error);
+
+  return {
+    questionnaire,
+    loading
+  };
+};
+
+export const withData = graphql(getQuestionnaire, {
+  props: mapResultsToProps,
+  options: { variables: { id: 1 } }
 });
 
-export default compose(
-  graphql(getQuestionnaire, {
-    props: mapResultsToProps
-  }),
-  graphql(updateQuestionnaire, {
-    props: ({ ownProps, mutate }) => ({
-      onUpdate: mutate => variables => mutate({ variables })
-    })
+export const withMutation = graphql(updateQuestionnaire, {
+  props: ({ ownProps, mutate }) => ({
+    onUpdate(variables) {
+      return mutate({ variables });
+    }
   })
-)(CreateQuestionnairePage);
+});
+
+export default compose(withData, withMutation)(CreateQuestionnairePage);

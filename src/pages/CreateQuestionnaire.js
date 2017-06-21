@@ -26,7 +26,7 @@ const ActionButtonGroup = styled(ButtonGroup)`
 export class CreateQuestionnairePage extends Component {
   constructor(props) {
     super(props);
-    this.debouncedChangeHandler = debounce(this.onChange.bind(this), 200, {
+    this.debouncedChangeHandler = debounce(this.onChange.bind(this), 300, {
       leading: true
     });
   }
@@ -113,7 +113,7 @@ export class CreateQuestionnairePage extends Component {
 }
 
 CreateQuestionnairePage.propTypes = {
-  history: PropTypes.object.isRequired, // eslint-disable-line
+  history: PropTypes.object, // eslint-disable-line
   loading: PropTypes.bool.isRequired,
   onUpdate: PropTypes.func.isRequired,
   questionnaire: PropTypes.shape({
