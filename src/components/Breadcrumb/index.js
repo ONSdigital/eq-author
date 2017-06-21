@@ -35,11 +35,11 @@ export const BreadcrumbLink = styled(Link)`
   }
 `;
 
-const Breadcrumb = props => {
+const Breadcrumb = ({ breadcrumbs }) => {
   return (
     <BreadcrumbNav aria-label="breadcrumb">
       <BreadcrumbList>
-        {props.breadcrumbs.map(({ title, pathname }, index) =>
+        {breadcrumbs.map(({ title, pathname }, index) =>
           <BreadcrumbItem key={pathname}>
             <BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>
           </BreadcrumbItem>
