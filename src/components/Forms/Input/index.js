@@ -35,7 +35,7 @@ export const Input = ({
 }) =>
   <StyledInput
     type={type}
-    defaultValue={defaultValue}
+    value={defaultValue}
     id={id}
     name={id}
     onChange={function(e) {

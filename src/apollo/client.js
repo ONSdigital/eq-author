@@ -1,5 +1,7 @@
 import { ApolloClient, createNetworkInterface } from "react-apollo";
 
+console.log(process.env);
+
 const client = new ApolloClient({
   ddTypename: true,
   dataIdFromObject: result => {
@@ -11,7 +13,7 @@ const client = new ApolloClient({
     return null;
   },
   networkInterface: createNetworkInterface({
-    uri: "http://localhost:4000/graphiql"
+    uri: process.env.REACT_APP_API_URL
   })
 });
 

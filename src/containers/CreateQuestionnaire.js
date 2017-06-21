@@ -43,8 +43,7 @@ export const updateQuestionnaire = gql`
 `;
 
 const mapResultsToProps = results => {
-  const { data: { loading, questionnaire } } = results;
-  // console.log(results.data.error);
+  const { loading, questionnaire } = results.data;
 
   return {
     questionnaire,

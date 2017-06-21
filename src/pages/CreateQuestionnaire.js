@@ -46,66 +46,74 @@ export class CreateQuestionnairePage extends Component {
     this.props.history.push("/design");
   };
 
+  renderLoading() {
+    return <div>Loading...</div>;
+  }
+
+  renderForm(questionnaire) {
+    return (
+      <Form handleSubmit={this.onSubmit}>
+        <Field id="title">
+          <Label>Questionnaire Title</Label>
+          <Input
+            defaultValue={questionnaire.title}
+            handleChange={this.debouncedChangeHandler}
+          />
+        </Field>
+        <Field id="description">
+          <Label>Description</Label>
+          <TextArea
+            defaultValue={questionnaire.description}
+            rows={4}
+            handleChange={this.debouncedChangeHandler}
+          />
+        </Field>
+        <Grid>
+          <Column cols={6}>
+            <Field id="theme">
+              <Label>Theme</Label>
+              <Select
+                options={["default", "census", "starwars"]}
+                defaultValue={questionnaire.theme}
+                handleChange={this.debouncedChangeHandler}
+              />
+            </Field>
+          </Column>
+          <Column cols={6}>
+            <Field id="legal_basis">
+              <Label>Legal Basis</Label>
+              <Select
+                options={["StatisticsOfTradeAct"]}
+                defaultValue={questionnaire.legalBasis}
+                handleChange={this.debouncedChangeHandler}
+              />
+            </Field>
+          </Column>
+        </Grid>
+        <Field id="navigation">
+          <Input
+            type="checkbox"
+            defaultChecked={questionnaire.navigation}
+            handleChange={this.debouncedChangeHandler}
+          />
+          <Label inline>Navigation</Label>
+        </Field>
+        <ActionButtonGroup horizontal>
+          <Button type="submit" primary>Next</Button>
+          <LinkButton to="/" secondary>Cancel</LinkButton>
+        </ActionButtonGroup>
+
+      </Form>
+    );
+  }
+
   render() {
     const { loading, questionnaire } = this.props;
 
     return (
       <Center>
         <Panel>
-          {loading
-            ? <div>Loading...</div>
-            : <Form handleSubmit={this.onSubmit}>
-                <Field id="title">
-                  <Label>Questionnaire Title</Label>
-                  <Input
-                    defaultValue={questionnaire.title}
-                    handleChange={this.debouncedChangeHandler}
-                  />
-                </Field>
-                <Field id="description">
-                  <Label>Description</Label>
-                  <TextArea
-                    defaultValue={questionnaire.description}
-                    rows={4}
-                    handleChange={this.debouncedChangeHandler}
-                  />
-                </Field>
-                <Grid>
-                  <Column cols={6}>
-                    <Field id="theme">
-                      <Label>Theme</Label>
-                      <Select
-                        options={["default", "census", "starwars"]}
-                        defaultValue={questionnaire.theme}
-                        handleChange={this.debouncedChangeHandler}
-                      />
-                    </Field>
-                  </Column>
-                  <Column cols={6}>
-                    <Field id="legal_basis">
-                      <Label>Legal Basis</Label>
-                      <Select
-                        options={["StatisticsOfTradeAct"]}
-                        defaultValue={questionnaire.legalBasis}
-                        handleChange={this.debouncedChangeHandler}
-                      />
-                    </Field>
-                  </Column>
-                </Grid>
-                <Field id="navigation">
-                  <Input
-                    type="checkbox"
-                    defaultChecked={questionnaire.navigation}
-                    handleChange={this.debouncedChangeHandler}
-                  />
-                  <Label inline>Navigation</Label>
-                </Field>
-                <ActionButtonGroup horizontal>
-                  <Button type="submit" primary>Next</Button>
-                  <LinkButton to="/" secondary>Cancel</LinkButton>
-                </ActionButtonGroup>
-
-              </Form>}
+          {loading ? this.renderLoading() : this.renderForm(questionnaire)}
         </Panel>
       </Center>
     );
