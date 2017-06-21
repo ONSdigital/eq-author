@@ -12,16 +12,12 @@ export const QUESTIONNAIRE_SAVE = "QUESTIONNAIRE_SAVE";
 export const QUESTIONNAIRE_CLEAR = "QUESTIONNAIRE_CLEAR";
 
 export function loadQuestionnaireSuccess(questionnaireData) {
-  const { entities, result } = normalize(
-    questionnaireData,
-    questionnaireSchema
-  );
+  const { entities } = normalize(questionnaireData, questionnaireSchema);
   const { groups, blocks, sections, questions, answers } = entities;
 
   return {
     type: QUESTIONNAIRE_LOAD_SUCCESS,
     payload: {
-      meta: entities.questionnaire[result],
       items: {
         groups,
         blocks,

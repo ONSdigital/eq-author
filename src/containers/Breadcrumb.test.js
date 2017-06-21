@@ -1,51 +1,43 @@
-import { mapStateToProps } from "containers/Breadcrumb";
-
-import { getRouteByPath } from "routes";
+import { mapStateToProps, mapResultsToProps } from "containers/Breadcrumb";
 
 describe("containers/Breadcrumb", () => {
-  const state = {
-    questionnaire: {
-      meta: {
-        title: "My questionnaire"
-      }
-    }
-  };
-
-  it("should render a Home link and page title, should one exist", function() {
-    const routes = [
-      {
-        path: "/",
-        title: "Home"
-      },
-      {
-        path: "/create",
-        title: "New questionnaire"
-      }
-    ];
-
-    const { pathname, route } = mapStateToProps({
-      ...state,
+  it("should map router location state to pathname", function() {
+    const { pathname } = mapStateToProps({
       router: {
         location: {
-          pathname: routes[1].path
+          pathname: "/create"
         }
       }
     });
 
-    expect(pathname).toEqual(routes[1].path);
-    expect(route).toEqual(routes[1]);
+    expect(pathname).toEqual("/create");
   });
 
-  it("should render a Home link and the current questionnaire title", function() {
-    const { breadcrumbs } = mapStateToProps({
-      ...state,
-      router: {
-        location: {
-          pathname: "/my-questionnaire"
-        }
-      }
+  it("should use title of route when on /create", () => {
+    expect(
+      mapResultsToProps({
+        data: {},
+        ownProps: { pathname: "/create" }
+      })
+    ).toEqual({
+      breadcrumbs: [
+        { title: "Home", pathname: "/" },
+        { title: "New questionnaire", pathname: "/create" }
+      ]
     });
-    expect(breadcrumbs[0].title).toEqual(getRouteByPath("/").title);
-    expect(breadcrumbs[1].title).toEqual(state.questionnaire.meta.title);
+  });
+
+  it("should use title of questionnaire when on /design", () => {
+    expect(
+      mapResultsToProps({
+        data: { questionnaire: { title: "My Questionnaire" } },
+        ownProps: { pathname: "/design" }
+      })
+    ).toEqual({
+      breadcrumbs: [
+        { title: "Home", pathname: "/" },
+        { title: "My Questionnaire", pathname: "/design" }
+      ]
+    });
   });
 });

@@ -24,12 +24,14 @@ export const routes = [
   },
   {
     path: "/design/:sectionsId?/:questionsId?/:answersId?",
+    title: "",
     component: DesignQuestionnaire,
     layout: SidebarPageLayout,
     exact: false
   },
   {
     path: "*",
+    title: "",
     component: NotFound,
     layout: FullPageLayout,
     exact: true

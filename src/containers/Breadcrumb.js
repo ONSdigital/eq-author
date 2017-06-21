@@ -12,15 +12,20 @@ const getQuestionnaire = gql`
 `;
 
 export const mapStateToProps = (state, ownProps) => {
-  const { pathname } = state.router.location;
-  const route = getRouteByPath(pathname);
-  return { pathname, route };
+  return { pathname: state.router.location.pathname };
 };
 
-export const mapResultsToProps = ({ data, ownProps }) => {
-  const { title } = data.questionnaire || "";
-  const { pathname, route } = ownProps;
+export const mapResultsToProps = ({ data, ownProps: { pathname } }) => {
   const rootPathname = "/";
+  let title = "";
+
+  const route = getRouteByPath(pathname);
+
+  if (route) {
+    title = route.title;
+  } else if (data.questionnaire) {
+    title = data.questionnaire.title;
+  }
 
   return {
     breadcrumbs: [
@@ -29,7 +34,7 @@ export const mapResultsToProps = ({ data, ownProps }) => {
         pathname: rootPathname
       },
       {
-        title: route ? route.title : title,
+        title,
         pathname
       }
     ]
