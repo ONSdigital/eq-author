@@ -10,7 +10,7 @@ const StyledTextArea = styled.textarea`
   resize: none;
 `;
 
-export const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
+const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
   <StyledTextArea
     value={value}
     rows={rows}
