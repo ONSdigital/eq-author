@@ -24,26 +24,21 @@ const ActionButtonGroup = styled(ButtonGroup)`
 `;
 
 export class CreateQuestionnairePage extends Component {
-  constructor(props) {
-    super(props);
-    this.debouncedChangeHandler = debounce(this.onChange.bind(this), 300, {
-      leading: true
-    });
-  }
-
   componentWillReceiveProps({ questionnaire }) {
     this.setState(questionnaire);
   }
 
   onChange = value => {
-    this.setState(value, () => {
-      this.props.onUpdate(this.state);
-    });
+    this.setState(value);
   };
 
   onSubmit = e => {
     e.preventDefault();
     this.props.history.push("/design");
+  };
+
+  handleBlur = e => {
+    this.props.onUpdate(this.state);
   };
 
   renderLoading() {
@@ -57,7 +52,8 @@ export class CreateQuestionnairePage extends Component {
           <Label>Questionnaire Title</Label>
           <Input
             defaultValue={questionnaire.title}
-            handleChange={this.debouncedChangeHandler}
+            handleChange={this.onChange}
+            onBlur={this.handleBlur}
           />
         </Field>
         <Field id="description">
@@ -65,7 +61,8 @@ export class CreateQuestionnairePage extends Component {
           <TextArea
             defaultValue={questionnaire.description}
             rows={4}
-            handleChange={this.debouncedChangeHandler}
+            handleChange={this.onChange}
+            onBlur={this.handleBlur}
           />
         </Field>
         <Grid>
@@ -75,7 +72,8 @@ export class CreateQuestionnairePage extends Component {
               <Select
                 options={["default", "census", "starwars"]}
                 defaultValue={questionnaire.theme}
-                handleChange={this.debouncedChangeHandler}
+                handleChange={this.onChange}
+                onBlur={this.handleBlur}
               />
             </Field>
           </Column>
@@ -85,7 +83,8 @@ export class CreateQuestionnairePage extends Component {
               <Select
                 options={["StatisticsOfTradeAct"]}
                 defaultValue={questionnaire.legalBasis}
-                handleChange={this.debouncedChangeHandler}
+                handleChange={this.onChange}
+                onBlur={this.handleBlur}
               />
             </Field>
           </Column>
@@ -94,7 +93,8 @@ export class CreateQuestionnairePage extends Component {
           <Input
             type="checkbox"
             defaultChecked={questionnaire.navigation}
-            handleChange={this.debouncedChangeHandler}
+            handleChange={this.onChange}
+            onBlur={this.handleBlur}
           />
           <Label inline>Navigation</Label>
         </Field>

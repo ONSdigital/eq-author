@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import Breadcrumb from "components/Breadcrumb";
 import { getRouteByPath } from "routes";
 
-const getQuestionnaire = gql`
-  query GetQuestionnaire {
-    questionnaire(id: 1) {
-      title
+export const getQuestionnaire = gql`
+  query GetQuestionnaire($id: ID!) {
+    questionnaire(id: $id) {
+      title,
     }
   }
 `;
@@ -42,7 +42,8 @@ export const mapResultsToProps = ({ data, ownProps: { pathname } }) => {
 };
 
 const BreadcrumbsWithData = graphql(getQuestionnaire, {
-  props: mapResultsToProps
+  props: mapResultsToProps,
+  options: { variables: { id: 1 } }
 })(Breadcrumb);
 
 export default connect(mapStateToProps)(BreadcrumbsWithData);
