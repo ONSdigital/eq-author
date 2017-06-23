@@ -26,7 +26,7 @@ const StyledInput = styled.input`
   ${props => props.type === "checkbox" && checkBox}
 `;
 
-const Input = ({ type, value, id, ...otherProps }) =>
+export const Input = ({ type, value, id, ...otherProps }) =>
   <StyledInput
     type={type}
     value={value}

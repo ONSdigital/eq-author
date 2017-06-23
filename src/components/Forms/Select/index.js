@@ -18,7 +18,7 @@ const StyledSelect = styled.select`
   }
 `;
 
-const Select = ({ options, value, id, ...otherProps }) =>
+export const Select = ({ options, value, id, ...otherProps }) =>
   <StyledSelect id={id} name={id} value={value} onChange={noop} {...otherProps}>
     {options.map(opt =>
       <option key={opt} value={lowerCase(opt)}>{opt}</option>
