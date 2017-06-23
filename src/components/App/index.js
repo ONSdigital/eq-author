@@ -23,6 +23,7 @@ injectGlobal`
   body {
     font-family: 'Lato', sans-serif;
     color: ${colors.text};
+    input, select, textarea, button{font-family:inherit;}
   }
 `;
 

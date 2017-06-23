@@ -16,7 +16,6 @@ const PrimaryButton = css`
   color: white;
   position: relative;
   border: none;
-
   &:focus,
   &:hover {
     background-color: ${darken(colors.blue)}
