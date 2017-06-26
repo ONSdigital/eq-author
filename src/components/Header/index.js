@@ -62,7 +62,11 @@ export const Header = ({ breadcrumb, hasUtilityBtns }) =>
   </StyledHeader>;
 
 Header.propTypes = {
-  hasUtilityBtns: PropTypes.bool
+  hasUtilityBtns: PropTypes.bool,
+  breadcrumb: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired
+  })
 };
 
 Header.defaultProps = {

@@ -1,19 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
-const Centered = styled.div`
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import BaseLayout from "layouts/BaseLayout";
 
 const NotFound = props => {
-  return (
-    <Centered>
-      <h1>404 Error - Page not found</h1>
-    </Centered>
-  );
+  return <BaseLayout title="404—Page not found" hasNav={false} />;
 };
 
 export default NotFound;

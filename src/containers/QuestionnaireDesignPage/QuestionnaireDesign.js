@@ -1,5 +1,6 @@
 import React from "react";
-
+import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "layouts/BaseLayout";
 
 const QuestionnaireDesign = ({ loading, questionnaire }) => {
@@ -14,6 +15,11 @@ const QuestionnaireDesign = ({ loading, questionnaire }) => {
       {}
     </BaseLayout>
   );
+};
+
+QuestionnaireDesign.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  questionnaire: CustomPropTypes.questionnaire
 };
 
 export default QuestionnaireDesign;

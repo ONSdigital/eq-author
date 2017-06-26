@@ -2,6 +2,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
 
@@ -86,15 +88,11 @@ const CreateQuestionnaire = ({
 };
 
 CreateQuestionnaire.propTypes = {
+  children: PropTypes.node,
   handleChange: PropTypes.func,
   handleBlur: PropTypes.func,
   handleSubmit: PropTypes.func,
-  questionnaire: PropTypes.shape({
-    description: PropTypes.string,
-    legalBasis: PropTypes.string,
-    theme: PropTypes.string,
-    title: PropTypes.string
-  })
+  questionnaire: CustomPropTypes.questionnaire
 };
 
 export default CreateQuestionnaire;

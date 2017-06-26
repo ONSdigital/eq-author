@@ -5,6 +5,7 @@ import App from "components/App";
 import Header from "components/Header";
 import Nav from "components/Nav";
 
+import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { colors } from "constants/theme";
 
@@ -54,16 +55,15 @@ const BaseLayout = ({ children, title, hasNav, breadcrumb, hasUtilityBtns }) =>
   </App>;
 
 BaseLayout.propTypes = {
+  breadcrumb: CustomPropTypes.breadcrumb,
   children: PropTypes.node.isRequired,
   hasNav: PropTypes.bool,
-  hasBreadcrumbs: PropTypes.bool,
   hasUtilityBtns: PropTypes.bool,
   title: PropTypes.string
 };
 
 BaseLayout.defaultProps = {
   hasNav: true,
-  hasBreadcrumbs: false,
   hasUtilityBtns: false
 };
 

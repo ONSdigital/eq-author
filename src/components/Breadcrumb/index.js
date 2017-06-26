@@ -1,9 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 import iconChevron from "./chevron.svg";
+import CustomPropType from "custom-prop-types";
 
 const BreadcrumbList = styled.ol`
   list-style: none;
@@ -53,16 +54,7 @@ const Breadcrumb = ({ breadcrumb }) => {
 };
 
 Breadcrumb.propTypes = {
-  breadcrumbs: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      pathname: PropTypes.string.isRequired
-    })
-  ).isRequired
-};
-
-Breadcrumb.defaultProps = {
-  breadcrumbs: []
+  breadcrumb: CustomPropType.breadcrumb
 };
 
 export default Breadcrumb;
