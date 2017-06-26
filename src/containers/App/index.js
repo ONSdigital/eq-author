@@ -9,9 +9,7 @@ import routes from "routes";
 import client from "apollo/client";
 
 const renderRoute = route => props =>
-  <route.layout title={route.title}>
-    <route.component {...props} routes={route.routes} />
-  </route.layout>;
+  <route.component {...props} routes={route.routes} />;
 
 const App = ({ store, history }) =>
   <AppContainer>

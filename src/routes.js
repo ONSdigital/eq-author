@@ -6,41 +6,33 @@ import QuestionnaireMetaPage from "containers/QuestionnaireMetaPage";
 import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
 import NotFoundPage from "containers/NotFoundPage";
 
-import BaseLayout from "layouts/BaseLayout";
-import FullPageLayout from "layouts/FullPageLayout";
-
 export const routes = [
   {
     path: "/",
     title: "Home",
     component: QuestionnairesPage,
-    layout: BaseLayout,
     exact: true
   },
   {
     path: "/questionnaire/create",
     title: "New questionnaire",
-    component: QuestionnaireCreatePage,
-    layout: BaseLayout
+    component: QuestionnaireCreatePage
   },
   {
     path: "/questionnaire/:id/meta",
     title: "Questionairre meta",
-    component: QuestionnaireMetaPage,
-    layout: FullPageLayout
+    component: QuestionnaireMetaPage
   },
   {
     path: "/questionnaire/:id/design",
     title: "",
     component: QuestionnaireDesignPage,
-    layout: BaseLayout,
     exact: false
   },
   {
     path: "*",
     title: "",
     component: NotFoundPage,
-    layout: FullPageLayout,
     exact: true
   }
 ];

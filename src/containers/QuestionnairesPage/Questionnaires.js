@@ -5,30 +5,17 @@ import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
 import Panel from "components/Panel";
+import BaseLayout from "layouts/BaseLayout";
 
-import Title from "components/Title";
-
-const Centered = styled.div`
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const PanelWithTitle = styled.div`
-  text-align: center;
-  position: relative;
-  top: -4em;
-`;
-
-const PanelTitle = styled(Title)`
-  margin-bottom: 1em;
+const Center = styled.div`
+  width: 100%;
+  max-width: 25em;
+  margin: 0 auto;
 `;
 
 const Questionnaires = () =>
-  <Centered>
-    <PanelWithTitle>
-      <PanelTitle>Select to begin</PanelTitle>
+  <BaseLayout title="Select to begin" hasNav={false}>
+    <Center>
       <Panel>
         <ButtonGroup vertical>
           <LinkButton
@@ -43,8 +30,8 @@ const Questionnaires = () =>
           </Button>
         </ButtonGroup>
       </Panel>
-    </PanelWithTitle>
-  </Centered>;
+    </Center>
+  </BaseLayout>;
 
 Questionnaires.propTypes = {
   onFileSelected: PropTypes.func.isRequired

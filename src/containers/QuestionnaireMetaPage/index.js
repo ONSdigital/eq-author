@@ -1,5 +1,7 @@
 import { graphql, gql, compose } from "react-apollo";
-import QuestionnaireMeta from "./components/QuestionnaireMeta";
+import { connect } from "react-redux";
+
+import QuestionnaireMeta from "./QuestionnaireMeta";
 
 export const getQuestionnaire = gql`
   query GetQuestionnaire($id: ID!) {
@@ -41,8 +43,12 @@ export const updateQuestionnaire = gql`
   }
 `;
 
-const mapResultsToProps = results => {
-  const { loading, questionnaire } = results.data;
+export const mapStateToProps = (state, ownProps) => ({
+  id: ownProps.match.params.id
+});
+
+export const mapResultsToProps = ({ data, ownProps }) => {
+  const { loading, questionnaire } = data;
 
   return {
     questionnaire,
@@ -52,7 +58,7 @@ const mapResultsToProps = results => {
 
 export const withData = graphql(getQuestionnaire, {
   props: mapResultsToProps,
-  options: { variables: { id: 1 } }
+  options: props => ({ variables: { id: props.id } })
 });
 
 export const withMutation = graphql(updateQuestionnaire, {
@@ -63,4 +69,6 @@ export const withMutation = graphql(updateQuestionnaire, {
   })
 });
 
-export default compose(withData, withMutation)(QuestionnaireMeta);
+export default connect(mapStateToProps)(
+  compose(withData, withMutation)(QuestionnaireMeta)
+);

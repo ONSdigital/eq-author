@@ -12,7 +12,7 @@ const Center = styled.div`
   max-width: 40em;
   display: flex;
   flex-direction: column;
-  margin: 2em auto;
+  margin: 0 auto;
 `;
 
 const CreateQuestionnaire = ({

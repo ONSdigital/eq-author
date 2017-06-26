@@ -27,10 +27,17 @@ const NavWrapper = styled.div`
   border-bottom: 1px solid ${colors.borders};
 `;
 
-const BaseLayout = ({ children, hasNav, hasBreadcrumbs, hasUtilityBtns }) =>
+const Title = styled.div`
+  font-size: 1.4em;
+  font-weight: 700;
+  align-self: center;
+  margin: 2em 0;
+`;
+
+const BaseLayout = ({ children, title, hasNav, breadcrumb, hasUtilityBtns }) =>
   <App>
     <Wrapper>
-      <Header hasBreadcrumbs={hasBreadcrumbs} hasUtilityBtns={hasUtilityBtns} />
+      <Header breadcrumb={breadcrumb} hasUtilityBtns={hasUtilityBtns} />
       {hasNav &&
         <NavWrapper>
           <Grid fillHeight={false}>
@@ -40,6 +47,7 @@ const BaseLayout = ({ children, hasNav, hasBreadcrumbs, hasUtilityBtns }) =>
           </Grid>
         </NavWrapper>}
       <Main>
+        {title && <Title>{title}</Title>}
         {children}
       </Main>
     </Wrapper>
@@ -49,11 +57,12 @@ BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
   hasNav: PropTypes.bool,
   hasBreadcrumbs: PropTypes.bool,
-  hasUtilityBtns: PropTypes.bool
+  hasUtilityBtns: PropTypes.bool,
+  title: PropTypes.string
 };
 
 BaseLayout.defaultProps = {
-  hasNav: false,
+  hasNav: true,
   hasBreadcrumbs: false,
   hasUtilityBtns: false
 };

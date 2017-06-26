@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import QuestionnairePage from "./components/Questionnaires";
+import QuestionnairePage from "./Questionnaires";
 
 const mapStateToProps = (state, ownProps) => ({});
 const mapDispatchToProps = {};

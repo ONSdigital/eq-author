@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 import { colors } from "constants/theme";
 
 export const StyledNav = styled.nav`
@@ -30,14 +31,24 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = () =>
-  <StyledNav>
-    <StyledNavLink to="/create" activeClassName="selected">
-      Questionnaire meta
-    </StyledNavLink>
-    <StyledNavLink to="/design" activeClassName="selected">
-      Builder
-    </StyledNavLink>
-  </StyledNav>;
+const Nav = withRouter(({ match }) => {
+  const { id } = match.params;
+  return (
+    <StyledNav>
+      <StyledNavLink
+        to={`/questionnaire/${id}/meta`}
+        activeClassName="selected"
+      >
+        Questionnaire meta
+      </StyledNavLink>
+      <StyledNavLink
+        to={`/questionnaire/${id}/design`}
+        activeClassName="selected"
+      >
+        Builder
+      </StyledNavLink>
+    </StyledNav>
+  );
+});
 
 export default Nav;

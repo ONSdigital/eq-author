@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import BaseLayout from "layouts/BaseLayout";
 
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import Button from "components/Button";
@@ -43,18 +44,20 @@ export class QuestionnaireCreatePage extends Component {
 
   render() {
     return (
-      <QuestionnaireMeta
-        questionnaire={this.state}
-        handleChange={this.onChange}
-        handleSubmit={this.onSubmit}
-      >
+      <BaseLayout title={"Create a Questionnaire"} hasNav={false}>
+        <QuestionnaireMeta
+          questionnaire={this.state}
+          handleChange={this.onChange}
+          handleSubmit={this.onSubmit}
+        >
 
-        <ActionButtonGroup horizontal>
-          <Button type="submit" primary>Next</Button>
-          <LinkButton to="/" secondary>Cancel</LinkButton>
-        </ActionButtonGroup>
+          <ActionButtonGroup horizontal>
+            <Button type="submit" primary>Create</Button>
+            <LinkButton to="/" secondary>Cancel</LinkButton>
+          </ActionButtonGroup>
 
-      </QuestionnaireMeta>
+        </QuestionnaireMeta>
+      </BaseLayout>
     );
   }
 }

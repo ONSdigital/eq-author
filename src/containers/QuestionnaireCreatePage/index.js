@@ -1,5 +1,5 @@
 import { graphql, gql, compose } from "react-apollo";
-import QuestionnaireCreate from "./components/QuestionnaireCreate";
+import QuestionnaireCreate from "./QuestionnaireCreate";
 
 export const createQuestionnaire = gql`
   mutation createQuestionnaire($title: String!, $description: String!, $theme: String!, $legalBasis: String!, $navigation: Boolean) {

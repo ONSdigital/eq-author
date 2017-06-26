@@ -1,9 +1,24 @@
 /* eslint-disable camelcase */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
+import styled from "styled-components";
+
+import BaseLayout from "layouts/BaseLayout";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 
+const Center = styled.div`
+  margin: 2em 0;
+`;
+
 export class QuestionnaireMetaPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      questionnaire: { title: "" }
+    };
+  }
+
   componentWillReceiveProps({ questionnaire }) {
     this.setState(questionnaire);
   }
@@ -12,25 +27,33 @@ export class QuestionnaireMetaPage extends Component {
     this.setState(value);
   };
 
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.history.push("/questionnaire/design");
-  };
-
-  handleBlur = e => {
+  onBlur = e => {
     this.props.onUpdate(this.state);
   };
+
+  onSubmit = e => e.preventDefault();
 
   render() {
     const { loading, questionnaire } = this.props;
 
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
     return (
-      <QuestionnaireMeta
-        loading={loading}
-        questionnaire={questionnaire}
-        handleChange={this.onChange}
-        handleSubmit={this.onSubmit}
-      />
+      <BaseLayout
+        breadcrumb={{ path: window.location, title: this.state.title }}
+      >
+        <Center>
+          <QuestionnaireMeta
+            loading={loading}
+            questionnaire={questionnaire}
+            handleChange={this.onChange}
+            handleBlur={this.onBlur}
+            handleSubmit={this.onSubmit}
+          />
+        </Center>
+      </BaseLayout>
     );
   }
 }
