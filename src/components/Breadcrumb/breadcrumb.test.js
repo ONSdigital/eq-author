@@ -3,28 +3,19 @@ import Breadcrumb, { BreadcrumbLink } from "components/Breadcrumb";
 import { shallow } from "enzyme";
 
 describe("components/Breadcrumb", () => {
-  const breadcrumbs = [
-    {
-      title: "Home",
-      pathname: "/"
-    },
-    {
-      title: "Create questionnaire",
-      pathname: "/create"
-    }
-  ];
-  const wrapper = shallow(<Breadcrumb breadcrumbs={breadcrumbs} />);
+  const breadcrumb = {
+    title: "Create questionnaire",
+    path: "/create"
+  };
+  const wrapper = shallow(<Breadcrumb breadcrumb={breadcrumb} />);
 
   it("renders correctly ", function() {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should render breadcrumbs from props", () => {
-    expect(wrapper.find(BreadcrumbLink).length).toBe(breadcrumbs.length);
-    breadcrumbs.forEach(({ title, pathname }) =>
-      expect(
-        wrapper.contains(<BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>)
-      ).toBe(true)
+  it("should render breadcrumb from props", () => {
+    wrapper.contains(
+      <BreadcrumbLink to={breadcrumb.path}>{breadcrumb.title}</BreadcrumbLink>
     );
   });
 });

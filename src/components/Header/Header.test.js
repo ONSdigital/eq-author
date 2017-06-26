@@ -3,7 +3,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import { Header, UtilityBtns, Logo } from "components/Header";
-import Breadcrumb from "containers/Breadcrumb";
+import Breadcrumb from "components/Breadcrumb";
 
 let wrapper;
 
@@ -21,9 +21,9 @@ describe("components/Header", function() {
   });
 
   it("should conditionally render Breadcrumb", function() {
-    expect(wrapper.find(Breadcrumb).length).toBeGreaterThan(0);
-    wrapper.setProps({ hasBreadcrumbs: false });
     expect(wrapper.find(Breadcrumb).length).toBe(0);
+    wrapper.setProps({ breadcrumb: { path: "", title: "" } });
+    expect(wrapper.find(Breadcrumb).length).toBeGreaterThan(0);
   });
 
   it("should conditionally render UtilityBtns", function() {
