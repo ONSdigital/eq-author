@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
-import FileUpload from "components/FileUpload";
 import Panel from "components/Panel";
 
 import Title from "components/Title";
@@ -26,27 +25,29 @@ const PanelTitle = styled(Title)`
   margin-bottom: 1em;
 `;
 
-const QuestionnairePage = ({ onFileSelected }) =>
+const Questionnaires = () =>
   <Centered>
     <PanelWithTitle>
       <PanelTitle>Select to begin</PanelTitle>
       <Panel>
         <ButtonGroup vertical>
-          <LinkButton to="/create" id="btn-create-questionnaire" primary>
+          <LinkButton
+            to="/questionnaire/create"
+            id="btn-create-questionnaire"
+            primary
+          >
             Create questionnaire
           </LinkButton>
-          <FileUpload onFileSelected={onFileSelected} accept=".json">
-            <Button id="btn-load-questionnaire" secondary>
-              Load existing questionnaire
-            </Button>
-          </FileUpload>
+          <Button secondary disabled>
+            Load existing questionnaire
+          </Button>
         </ButtonGroup>
       </Panel>
     </PanelWithTitle>
   </Centered>;
 
-QuestionnairePage.propTypes = {
+Questionnaires.propTypes = {
   onFileSelected: PropTypes.func.isRequired
 };
 
-export default QuestionnairePage;
+export default Questionnaires;

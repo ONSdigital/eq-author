@@ -29,7 +29,7 @@ export const TextArea = ({
   />;
 
 TextArea.propTypes = {
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   id: PropTypes.string,
   handleChange: PropTypes.func,
   rows: PropTypes.number

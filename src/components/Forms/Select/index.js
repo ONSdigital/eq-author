@@ -46,7 +46,7 @@ Select.defaultProps = {
 
 Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  defaultValue: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   id: PropTypes.string,
   handleChange: PropTypes.func
 };

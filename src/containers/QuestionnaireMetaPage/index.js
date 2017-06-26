@@ -1,5 +1,5 @@
 import { graphql, gql, compose } from "react-apollo";
-import CreateQuestionnairePage from "pages/CreateQuestionnaire";
+import QuestionnaireMeta from "./components/QuestionnaireMeta";
 
 export const getQuestionnaire = gql`
   query GetQuestionnaire($id: ID!) {
@@ -63,4 +63,4 @@ export const withMutation = graphql(updateQuestionnaire, {
   })
 });
 
-export default compose(withData, withMutation)(CreateQuestionnairePage);
+export default compose(withData, withMutation)(QuestionnaireMeta);

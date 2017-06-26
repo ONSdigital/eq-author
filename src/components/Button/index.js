@@ -63,6 +63,11 @@ const StyledButton = styled.button`
     outline: none
   }
 
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
   ${props => props.primary && PrimaryButton}
   ${props => props.secondary && SecondaryButton}
   ${props => props.tertiary && TertiaryButton}

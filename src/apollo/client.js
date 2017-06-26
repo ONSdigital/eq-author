@@ -1,7 +1,5 @@
 import { ApolloClient, createNetworkInterface } from "react-apollo";
 
-console.log(process.env);
-
 const client = new ApolloClient({
   ddTypename: true,
   dataIdFromObject: result => {

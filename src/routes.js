@@ -1,38 +1,45 @@
 import { find } from "lodash";
 
-import QuestionnairePage from "containers/Questionnaire";
-import CreateQuestionnaire from "containers/CreateQuestionnaire";
-import DesignQuestionnaire from "containers/DesignQuestionnaire";
+import QuestionnairesPage from "containers/QuestionnairesPage";
+import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage";
+import QuestionnaireMetaPage from "containers/QuestionnaireMetaPage";
+import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
+import NotFoundPage from "containers/NotFoundPage";
 
-import NotFound from "pages/NotFound";
-
-import { BaseLayout, SidebarPageLayout, FullPageLayout } from "layouts";
+import BaseLayout from "layouts/BaseLayout";
+import FullPageLayout from "layouts/FullPageLayout";
 
 export const routes = [
   {
     path: "/",
     title: "Home",
-    component: QuestionnairePage,
+    component: QuestionnairesPage,
     layout: BaseLayout,
     exact: true
   },
   {
-    path: "/create",
+    path: "/questionnaire/create",
     title: "New questionnaire",
-    component: CreateQuestionnaire,
+    component: QuestionnaireCreatePage,
+    layout: BaseLayout
+  },
+  {
+    path: "/questionnaire/:id/meta",
+    title: "Questionairre meta",
+    component: QuestionnaireMetaPage,
     layout: FullPageLayout
   },
   {
-    path: "/design/:sectionsId?/:questionsId?/:answersId?",
+    path: "/questionnaire/:id/design",
     title: "",
-    component: DesignQuestionnaire,
-    layout: SidebarPageLayout,
+    component: QuestionnaireDesignPage,
+    layout: BaseLayout,
     exact: false
   },
   {
     path: "*",
     title: "",
-    component: NotFound,
+    component: NotFoundPage,
     layout: FullPageLayout,
     exact: true
   }
