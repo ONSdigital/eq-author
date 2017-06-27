@@ -53,7 +53,8 @@ const SectionNumber = styled.div`
   font-size: 1.125em;
   font-weight: bold;
   position: absolute;
-  left: -1em;
+  left: -1.2em;
+  color: #999999;
 `;
 
 const PageTitleInput = styled(InvisibleInput)`
@@ -65,7 +66,8 @@ const QuestionNumber = styled.div`
   font-size: 2em;
   font-weight: bold;
   position: absolute;
-  left: -1.5em;
+  left: -1.7em;
+  color: #999999;
 `;
 
 const InvisibleTextArea = styled(TextArea)`
