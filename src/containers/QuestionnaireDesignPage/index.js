@@ -34,4 +34,4 @@ export const withData = graphql(getQuestionnaire, {
   options: props => ({ variables: { id: props.id } })
 });
 
-export default connect(mapStateToProps)(compose(withData)(QuestionnaireDesign));
+export default compose(connect(mapStateToProps), withData)(QuestionnaireDesign);

@@ -34,12 +34,11 @@ export class QuestionnaireCreatePage extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    this.props.createQuestionnaire(this.state).then(({ data }) => {
+    return this.props.createQuestionnaire(this.state).then(({ data }) => {
       this.props.history.push(
         `/questionnaire/${data.createQuestionnaire.id}/design`
       );
     });
-    return false;
   };
 
   render() {

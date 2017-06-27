@@ -1,4 +1,4 @@
-import { graphql, gql, compose } from "react-apollo";
+import { graphql, gql } from "react-apollo";
 import QuestionnaireCreate from "./QuestionnaireCreate";
 
 export const createQuestionnaire = gql`
@@ -11,10 +11,8 @@ export const createQuestionnaire = gql`
 
 export const withMutation = graphql(createQuestionnaire, {
   props: ({ ownProps, mutate }) => ({
-    createQuestionnaire(variables) {
-      return mutate({ variables });
-    }
+    createQuestionnaire: variables => mutate({ variables })
   })
 });
 
-export default compose(withMutation)(QuestionnaireCreate);
+export default withMutation(QuestionnaireCreate);

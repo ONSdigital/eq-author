@@ -69,6 +69,6 @@ export const withMutation = graphql(updateQuestionnaire, {
   })
 });
 
-export default connect(mapStateToProps)(
-  compose(withData, withMutation)(QuestionnaireMeta)
+export default compose(connect(mapStateToProps), withData, withMutation)(
+  QuestionnaireMeta
 );

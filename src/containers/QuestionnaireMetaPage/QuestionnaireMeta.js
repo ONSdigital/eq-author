@@ -15,7 +15,7 @@ export class QuestionnaireMetaPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionnaire: { title: "" }
+      title: ""
     };
   }
 
@@ -42,7 +42,7 @@ export class QuestionnaireMetaPage extends Component {
 
     return (
       <BaseLayout
-        breadcrumb={{ path: window.location, title: this.state.title }}
+        breadcrumb={{ path: window.location.href, title: this.state.title }}
       >
         <Center>
           <QuestionnaireMeta

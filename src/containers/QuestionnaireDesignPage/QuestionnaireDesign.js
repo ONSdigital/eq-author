@@ -10,9 +10,9 @@ const QuestionnaireDesign = ({ loading, questionnaire }) => {
 
   return (
     <BaseLayout
-      breadcrumb={{ path: window.location, title: questionnaire.title }}
+      breadcrumb={{ path: window.location.href, title: questionnaire.title }}
     >
-      {}
+      Design goes here
     </BaseLayout>
   );
 };
