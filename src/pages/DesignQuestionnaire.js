@@ -21,7 +21,8 @@ const PageCanvas = styled.div`
 `;
 
 const StyledPageSection = styled.div`
-  padding: 3em;
+  padding: 2em 5em;
+  margin-bottom: -2px;
   border-bottom: 2px dashed #c6c6c6;
   outline-offset: -3px;
   outline: ${props =>
@@ -33,11 +34,12 @@ const StyledPageSection = styled.div`
 `;
 
 const InvisibleInput = styled(Input)`
-  font-size: 1em;
+  font-size: 2em;
+  font-weight: bold;
   display:inline-block;
   width: auto;
   border: none;
-  padding: 1rem;
+  padding: 0rem;
   color: ${colors.darkGrey};
   &:focus {
     border: none;
@@ -47,16 +49,31 @@ const InvisibleInput = styled(Input)`
   }
 `;
 
+const SectionNumber = styled.div`
+  font-size: 1.125em;
+  font-weight: bold;
+  position: absolute;
+  left: -1em;
+`;
+
 const PageTitleInput = styled(InvisibleInput)`
+  font-size: 1.125em;
+  font-weight: bold;
+`;
+
+const QuestionNumber = styled.div`
   font-size: 2em;
   font-weight: bold;
+  position: absolute;
+  left: -1.5em;
 `;
 
 const InvisibleTextArea = styled(TextArea)`
   ${sharedStyles}
   resize: none;
+  font-size: 0.875em;
   border:none;
-  padding: 1rem;
+  padding: 0;
   color: ${colors.darkGrey};
 
   &:focus {
@@ -131,9 +148,9 @@ const DesignQuestionnairePage = ({
       <form onChange={onChange}>
         <PageSection focussed>
           <Field id={`sections.${get(selectedGroup, "title")}.displayName`}>
-            <span style={{ fontSize: "2em", fontWeight: "bold" }}>
+            <SectionNumber>
               {groupNumber}.
-            </span>
+            </SectionNumber>
             <PageTitleInput
               placeholder="Section title"
               autoFocus
@@ -151,7 +168,9 @@ const DesignQuestionnairePage = ({
         </PageSection>
         <PageSection>
           <Field id={`questions.${get(selected, "id")}.displayName`}>
-            <span>{groupNumber}.{questionNumber}</span>
+            <QuestionNumber>
+              {groupNumber}.{questionNumber}
+            </QuestionNumber>
             <InvisibleInput
               placeholder="Question text"
               value={
