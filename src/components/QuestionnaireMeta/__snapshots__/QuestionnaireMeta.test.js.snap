@@ -22,7 +22,7 @@ exports[`QuestionnaireMeta should render 1`] = `
         <div
           className="Panel__Panel-hUpLEX BboLK"
         >
-          <Form
+          <Component
             handleSubmit={[Function]}
           >
             <Form__StyledForm
@@ -347,7 +347,7 @@ exports[`QuestionnaireMeta should render 1`] = `
                 Children
               </form>
             </Form__StyledForm>
-          </Form>
+          </Component>
         </div>
       </Panel__Panel>
     </div>

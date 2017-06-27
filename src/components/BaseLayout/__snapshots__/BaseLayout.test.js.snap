@@ -3,7 +3,7 @@
 exports[`components/BaseLayout shoulder render 1`] = `
 <App>
   <BaseLayout__Wrapper>
-    <Header
+    <Component
       hasUtilityBtns={false}
     />
     <BaseLayout__NavWrapper>
