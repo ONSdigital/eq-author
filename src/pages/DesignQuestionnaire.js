@@ -2,73 +2,190 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import CustomPropTypes from "proptypes";
-import ActionBar from "components/ActionBar";
-import Button from "components/Button";
-import OptionsPanel from "components/OptionsPanel";
-import HTMLPreview from "components/HTMLPreview";
 
-const EditLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+import { colors } from "constants/theme";
+import Field from "components/Forms/Field";
+import Input from "components/Forms/Input";
+import { sharedStyles } from "components/Forms/css";
+import TextArea from "react-textarea-autosize";
+import { get, noop } from "lodash";
+
+const PageCanvas = styled.div`
+  width: 75%;
+  max-width: 40em;
+  margin: 2em auto;
+  padding: 0;
+  border-radius: 2px;
+  background-color: #FFF;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 `;
 
-const ActionButton = styled(Button)`
-  margin: 0.5em;
+const StyledPageSection = styled.div`
+  padding: 2em 5em;
+  margin-bottom: -2px;
+  border-bottom: 2px dashed #c6c6c6;
+  outline-offset: -3px;
+  outline: ${props =>
+    props.focussed ? `3px solid ${colors.lightBlue}` : "none"};
+
+  &:last-child {
+    border: none;
+  }
 `;
 
-const EditSurface = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex-flow: column nowrap;
+const InvisibleInput = styled(Input)`
+  font-size: 2em;
+  font-weight: bold;
+  display:inline-block;
+  width: auto;
+  border: none;
+  padding: 0rem;
+  color: ${colors.darkGrey};
+  &:focus {
+    border: none;
+  }
+  &::placeholder {
+    color: #a3a3a3;
+  }
 `;
 
-const Preview = styled.div`
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
+const SectionNumber = styled.div`
+  font-size: 1.125em;
+  font-weight: bold;
+  position: absolute;
+  left: -1.2em;
+  color: #999999;
 `;
 
-const Options = styled.form`
-  position: relative;
+const PageTitleInput = styled(InvisibleInput)`
+  font-size: 1.125em;
+  font-weight: bold;
 `;
+
+const QuestionNumber = styled.div`
+  font-size: 2em;
+  font-weight: bold;
+  position: absolute;
+  left: -1.7em;
+  color: #999999;
+`;
+
+const InvisibleTextArea = styled(TextArea)`
+  ${sharedStyles}
+  resize: none;
+  font-size: 0.875em;
+  border:none;
+  padding: 0;
+  color: ${colors.darkGrey};
+
+  &:focus {
+    border: none;
+  }
+  &::placeholder {
+    color: #a3a3a3;
+  }
+`;
+
+class PageSection extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func
+  };
+
+  static defaultProps = {
+    onFocus: noop,
+    onBlur: noop
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      focussed: false
+    };
+  }
+
+  handleFocus = e => {
+    if (!this.state.focussed) {
+      this.setState({ focussed: true });
+      this.props.onFocus(e);
+    }
+  };
+
+  handleBlur = e => {
+    if (this.state.focussed) {
+      this.setState({ focussed: false });
+      this.props.onBlur(e);
+    }
+  };
+
+  render() {
+    return (
+      <StyledPageSection
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        focussed={this.state.focussed}
+      >
+        {this.props.children}
+      </StyledPageSection>
+    );
+  }
+}
 
 const DesignQuestionnairePage = ({
   selected,
-  selectedSection,
+  selectedSection: selectedGroup,
   onChange,
   clearQuestionnaire,
   deleteItem,
-  questionnaireItems
+  questionnaireItems,
+  groupNumber,
+  questionNumber
 }) => {
+  const isQuestionSelected = get(selected, "type") === "questions";
+
   return (
-    <EditLayout>
-
-      <ActionBar>
-        <ActionButton tertiary small onClick={clearQuestionnaire}>
-          Delete All
-        </ActionButton>
-      </ActionBar>
-
-      {selected &&
-        <EditSurface>
-          <Preview>
-            <HTMLPreview
-              questionnaireItems={questionnaireItems}
-              selectedSection={selectedSection}
+    <PageCanvas>
+      <form onChange={onChange}>
+        <PageSection focussed>
+          <Field id={`sections.${get(selectedGroup, "title")}.displayName`}>
+            <SectionNumber>
+              {groupNumber}.
+            </SectionNumber>
+            <PageTitleInput
+              placeholder="Section title"
+              autoFocus
+              value={get(selectedGroup, "displayName", "")}
             />
-          </Preview>
-
-          <Options onChange={onChange}>
-            <OptionsPanel selected={selected} deleteItem={deleteItem} />
-          </Options>
-        </EditSurface>}
-
-    </EditLayout>
+          </Field>
+          <Field id={`sections.${get(selectedGroup, "title")}.description`}>
+            <InvisibleTextArea
+              cols="30"
+              rows="5"
+              placeholder="Enter a description (optional)..."
+              value={get(selectedGroup, "description", "")}
+            />
+          </Field>
+        </PageSection>
+        <PageSection>
+          <Field id={`questions.${get(selected, "id")}.displayName`}>
+            <QuestionNumber>
+              {groupNumber}.{questionNumber}
+            </QuestionNumber>
+            <InvisibleInput
+              placeholder="Question text"
+              value={
+                isQuestionSelected ? get(selected, "item.displayName") : ""
+              }
+            />
+          </Field>
+        </PageSection>
+        <PageSection>
+          <p style={{ color: "#757575" }}>add an answer</p>
+        </PageSection>
+      </form>
+    </PageCanvas>
   );
 };
 
@@ -84,7 +201,14 @@ DesignQuestionnairePage.propTypes = {
   onChange: PropTypes.func.isRequired,
   clearQuestionnaire: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
-  questionnaireItems: CustomPropTypes.questionnaire.items
+  questionnaireItems: CustomPropTypes.questionnaire.items,
+  groupNumber: PropTypes.number,
+  questionNumber: PropTypes.number
+};
+
+DesignQuestionnairePage.defaultProps = {
+  groupNumber: 1,
+  questionNumber: 1
 };
 
 export default DesignQuestionnairePage;

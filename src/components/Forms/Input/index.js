@@ -31,7 +31,6 @@ export const Input = ({ type, value, id, ...otherProps }) =>
     type={type}
     value={value}
     id={id}
-    name={id}
     onChange={noop}
     {...otherProps}
   />;

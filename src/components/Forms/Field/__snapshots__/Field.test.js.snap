@@ -6,17 +6,20 @@ exports[`components/Forms/Field should render correctly 1`] = `
 >
   <Field__StyledField>
     <div
-      className="Field__StyledField-kQcQjL jnqEGC"
+      className="Field__StyledField-kQcQjL boYsWn"
     >
       <Label
         id="name"
+        name="name"
       >
         <Label__StyledLabel
           htmlFor="name"
+          name="name"
         >
           <label
             className="Label__StyledLabel-dxvnPe kqlodc"
             htmlFor="name"
+            name="name"
           >
             Name
           </label>
@@ -24,6 +27,7 @@ exports[`components/Forms/Field should render correctly 1`] = `
       </Label>
       <Input
         id="name"
+        name="name"
         type="text"
       >
         <Input__StyledInput
