@@ -11,7 +11,7 @@ const StyledField = styled.div`
 export const Field = ({ children, last, id, ...otherProps }) =>
   <StyledField last={last}>
     {Children.map(children, child =>
-      cloneElement(child, { id, ...otherProps })
+      cloneElement(child, { id, name: id, ...otherProps })
     )}
   </StyledField>;
 

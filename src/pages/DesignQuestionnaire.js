@@ -151,7 +151,7 @@ const DesignQuestionnairePage = ({
         </PageSection>
         <PageSection>
           <Field id={`questions.${get(selected, "id")}.displayName`}>
-            <span>1.1</span>
+            <span>{groupNumber}.{questionNumber}</span>
             <InvisibleInput
               placeholder="Question text"
               value={

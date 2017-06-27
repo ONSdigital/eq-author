@@ -15,7 +15,6 @@ export const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
     value={value}
     rows={rows}
     id={id}
-    name={id}
     onChange={noop}
     {...otherProps}
   />;
