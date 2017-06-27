@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import BaseLayout from "layouts/BaseLayout";
+import BaseLayout from "components/BaseLayout";
 
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import Button from "components/Button";

@@ -1,11 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { mountWithRouter } from "tests/utils/mountWithRouter";
-
-import createRouterContext from "react-router-test-context";
-
-import { mount } from "enzyme";
-import QuestionnaireCreate from "containers/QuestionnaireCreatePage/QuestionnaireCreate";
+import QuestionnaireCreate from "./QuestionnaireCreate";
 
 let wrapper;
 const createQuestionnaire = jest.fn(() => {

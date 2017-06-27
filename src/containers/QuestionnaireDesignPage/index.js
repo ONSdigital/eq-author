@@ -16,18 +16,14 @@ export const getQuestionnaire = gql`
   }
 `;
 
-export const mapStateToProps = (state, ownProps) => ({
-  id: ownProps.match.params.id
+export const mapStateToProps = (state, { match }) => ({
+  id: match.params.id
 });
 
-export const mapResultsToProps = ({ data, ownProps }) => {
-  const { loading, questionnaire } = data;
-
-  return {
-    questionnaire,
-    loading
-  };
-};
+export const mapResultsToProps = ({ data }) => ({
+  questionnaire: data.questionnaire,
+  loading: data.loading
+});
 
 export const withData = graphql(getQuestionnaire, {
   props: mapResultsToProps,

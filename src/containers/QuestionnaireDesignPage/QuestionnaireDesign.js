@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import BaseLayout from "layouts/BaseLayout";
+import BaseLayout from "components/BaseLayout";
 
 const QuestionnaireDesign = ({ loading, questionnaire }) => {
   if (loading) {

@@ -5,7 +5,7 @@ import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
 import Panel from "components/Panel";
-import BaseLayout from "layouts/BaseLayout";
+import BaseLayout from "components/BaseLayout";
 
 const Center = styled.div`
   width: 100%;
