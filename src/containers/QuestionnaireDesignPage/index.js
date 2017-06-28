@@ -1,20 +1,8 @@
-import { graphql, gql, compose } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
 
+import getQuestionnaire from "queries/getQuestionnaire";
 import QuestionnaireDesign from "./QuestionnaireDesign";
-
-export const getQuestionnaire = gql`
-  query GetQuestionnaire($id: ID!) {
-    questionnaire(id: $id) {
-      id,
-      title,
-      description,
-      navigation,
-      legalBasis,
-      theme
-    }
-  }
-`;
 
 export const mapStateToProps = (state, { match }) => ({
   id: match.params.id

@@ -1,47 +1,9 @@
-import { graphql, gql, compose } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
 
+import getQuestionnaire from "queries/getQuestionnaire";
+import updateQuestionnaire from "queries/updateQuestionnaire";
 import QuestionnaireMeta from "./QuestionnaireMeta";
-
-export const getQuestionnaire = gql`
-  query GetQuestionnaire($id: ID!) {
-    questionnaire(id: $id) {
-      id,
-      title,
-      description,
-      navigation,
-      legalBasis,
-      theme
-    }
-  }
-`;
-
-export const updateQuestionnaire = gql`
-  mutation UpdateQuestionnaire(
-    $id: ID!,
-    $title: String!,
-    $description: String!,
-    $theme: String!,
-    $legalBasis: String!,
-    $navigation: Boolean
-  ) {
-    updateQuestionnaire(
-      id: $id,
-      title: $title,
-      description: $description,
-      theme: $theme,
-      legalBasis: $legalBasis,
-      navigation: $navigation,
-    ) {
-      id,
-      title,
-      description,
-      theme,
-      legalBasis,
-      navigation
-    }
-  }
-`;
 
 export const mapStateToProps = (state, ownProps) => ({
   id: ownProps.match.params.id
