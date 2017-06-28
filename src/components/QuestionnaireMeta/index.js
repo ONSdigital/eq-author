@@ -47,15 +47,19 @@ const CreateQuestionnaire = ({
               required
             />
           </Field>
-          <Field id="surveyId">
-            <Label>Survey ID</Label>
-            <Input
-              defaultValue={questionnaire.surveyId}
-              onChange={onChange}
-              onBlur={onBlur}
-              required
-            />
-          </Field>
+          <Grid>
+            <Column cols={3}>
+              <Field id="surveyId">
+                <Label>Survey ID</Label>
+                <Input
+                  defaultValue={questionnaire.surveyId}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  required
+                />
+              </Field>
+            </Column>
+          </Grid>
           <Grid>
             <Column cols={6}>
               <Field id="theme">
