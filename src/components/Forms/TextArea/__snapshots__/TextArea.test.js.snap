@@ -1,9 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Forms/TextArea should render correctly 1`] = `
-<TextArea__StyledTextArea
+<Textarea
+  defaultValue="I am some text"
+  id="text"
   onChange={[Function]}
   rows={10}
-  value=""
-/>
+>
+  <TextArea__StyledTextArea
+    defaultValue="I am some text"
+    id="text"
+    name="text"
+    onChange={[Function]}
+    rows={10}
+  >
+    <textarea
+      className="TextArea__StyledTextArea-JkJqk jUePIz"
+      defaultValue="I am some text"
+      id="text"
+      name="text"
+      onChange={[Function]}
+      rows={10}
+    />
+  </TextArea__StyledTextArea>
+</Textarea>
 `;

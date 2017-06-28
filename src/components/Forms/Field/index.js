@@ -21,6 +21,4 @@ Field.propTypes = {
   last: PropTypes.bool
 };
 
-Field.displayName = "Field";
-
 export default Field;

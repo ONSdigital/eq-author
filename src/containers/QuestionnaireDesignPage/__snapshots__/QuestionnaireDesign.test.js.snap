@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/QuestionnaireDesign should render 1`] = `
+<QuestionnaireDesign
+  loading={true}
+>
+  <div>
+    Loading...
+  </div>
+</QuestionnaireDesign>
+`;

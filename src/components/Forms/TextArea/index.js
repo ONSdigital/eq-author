@@ -1,29 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { noop } from "lodash";
 import styled from "styled-components";
 import { sharedStyles } from "components/Forms/css";
-
-const noop = () => {};
 
 const StyledTextArea = styled.textarea`
   ${sharedStyles};
   resize: none;
 `;
 
-export const TextArea = ({ value, id, rows = 10, ...otherProps }) =>
+export const TextArea = ({ defaultValue, id, rows, onChange, ...otherProps }) =>
   <StyledTextArea
-    value={value}
+    defaultValue={defaultValue}
     rows={rows}
     id={id}
     name={id}
-    onChange={noop}
+    onChange={function(e) {
+      onChange({ [id]: e.target.value });
+    }}
     {...otherProps}
   />;
 
 TextArea.propTypes = {
-  value: PropTypes.string.isRequired,
+  defaultValue: PropTypes.string,
   id: PropTypes.string,
+  onChange: PropTypes.func,
   rows: PropTypes.number
+};
+
+TextArea.defaultProps = {
+  rows: 10,
+  onChange: noop
 };
 
 TextArea.displayName = "Textarea";

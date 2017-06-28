@@ -11,13 +11,10 @@ const TabPanelStyle = styled.div`
   }
 `;
 
-const TabPanel = ({ children, visible = true, ...otherProps }) => (
+const TabPanel = ({ children, visible = true, ...otherProps }) =>
   <TabPanelStyle aria-hidden={!visible} {...otherProps}>
     {children}
-  </TabPanelStyle>
-);
-
-TabPanel.displayName = "TabPanel";
+  </TabPanelStyle>;
 
 TabPanel.propTypes = {
   children: PropTypes.node,

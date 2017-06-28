@@ -63,21 +63,25 @@ const StyledButton = styled.button`
     outline: none
   }
 
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
   ${props => props.primary && PrimaryButton}
   ${props => props.secondary && SecondaryButton}
   ${props => props.tertiary && TertiaryButton}
   ${props => props.clear && ClearButton}
 `;
 
-const Button = props =>
-  <StyledButton {...props} type="button">
-    {props.children}
-  </StyledButton>;
+const Button = ({ children, type, ...otherProps }) =>
+  <StyledButton {...otherProps} type={type}>{children}</StyledButton>;
 
 Button.propTypes = {
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
   tertiary: PropTypes.bool,
+  type: PropTypes.oneOf(["button", "submit"]),
   clear: PropTypes.bool,
   children: PropTypes.node
 };

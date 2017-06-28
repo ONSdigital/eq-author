@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Forms/Form should render correctly 1`] = `
+<Form__StyledForm
+  method="POST"
+  onSubmit={[Function]}
+>
+  <input
+    name="input"
+    type="text"
+  />
+</Form__StyledForm>
+`;

@@ -18,6 +18,4 @@ Label.propTypes = {
   children: PropTypes.string.isRequired
 };
 
-Label.displayName = "Label";
-
 export default Label;
