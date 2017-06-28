@@ -58,6 +58,4 @@ Input.propTypes = {
   ])
 };
 
-Input.displayName = "Input";
-
 export default Input;

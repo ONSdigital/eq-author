@@ -67,6 +67,4 @@ BaseLayout.defaultProps = {
   hasUtilityBtns: false
 };
 
-BaseLayout.displayName = "BaseLayout";
-
 export default BaseLayout;

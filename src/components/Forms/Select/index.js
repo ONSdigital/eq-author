@@ -51,6 +51,4 @@ Select.propTypes = {
   onChange: PropTypes.func
 };
 
-Select.displayName = "Select";
-
 export default Select;

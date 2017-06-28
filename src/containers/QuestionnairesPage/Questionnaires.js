@@ -32,6 +32,4 @@ const Questionnaires = () =>
     </Center>
   </BaseLayout>;
 
-Questionnaires.displayName = "Questionnaires";
-
 export default Questionnaires;
