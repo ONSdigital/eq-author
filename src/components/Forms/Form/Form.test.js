@@ -3,11 +3,11 @@ import { shallow } from "enzyme";
 import { Form } from "components/Forms/Form";
 
 let wrapper;
-const onSubmit = jest.fn();
+const handleSubmit = jest.fn();
 describe("components/Forms/Form", () => {
   beforeEach(() => {
     wrapper = shallow(
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={handleSubmit}>
         <input name="input" type="text" />
       </Form>
     );
@@ -19,6 +19,6 @@ describe("components/Forms/Form", () => {
 
   it("should call onSubmit", () => {
     wrapper.simulate("submit");
-    expect(onSubmit).toHaveBeenCalled();
+    expect(handleSubmit).toHaveBeenCalled();
   });
 });
