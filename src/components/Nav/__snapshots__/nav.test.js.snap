@@ -1,18 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Nav should render Nav 1`] = `
-<Nav__StyledNav>
-  <Nav__StyledNavLink
-    activeClassName="selected"
-    to="/create"
-  >
-    Questionnaire meta
-  </Nav__StyledNavLink>
-  <Nav__StyledNavLink
-    activeClassName="selected"
-    to="/design"
-  >
-    Builder
-  </Nav__StyledNavLink>
-</Nav__StyledNav>
+<Route
+  render={[Function]}
+/>
 `;

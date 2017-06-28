@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Forms/Field should render correctly 1`] = `
-<Field
+<Component
   id="name"
 >
   <Field__StyledField>
     <div
       className="Field__StyledField-kQcQjL jnqEGC"
     >
-      <Label
+      <Component
         id="name"
       >
         <Label__StyledLabel
@@ -21,9 +21,10 @@ exports[`components/Forms/Field should render correctly 1`] = `
             Name
           </label>
         </Label__StyledLabel>
-      </Label>
-      <Input
+      </Component>
+      <Component
         id="name"
+        onChange={[Function]}
         type="text"
       >
         <Input__StyledInput
@@ -40,8 +41,8 @@ exports[`components/Forms/Field should render correctly 1`] = `
             type="text"
           />
         </Input__StyledInput>
-      </Input>
+      </Component>
     </div>
   </Field__StyledField>
-</Field>
+</Component>
 `;

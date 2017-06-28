@@ -1,9 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 import iconChevron from "./chevron.svg";
+import CustomPropType from "custom-prop-types";
 
 const BreadcrumbList = styled.ol`
   list-style: none;
@@ -35,28 +36,25 @@ export const BreadcrumbLink = styled(Link)`
   }
 `;
 
-const Breadcrumb = ({ breadcrumbs }) =>
-  <BreadcrumbNav aria-label="breadcrumb">
-    <BreadcrumbList>
-      {breadcrumbs.map(({ title, pathname }, index) =>
-        <BreadcrumbItem key={pathname}>
-          <BreadcrumbLink to={pathname}>{title}</BreadcrumbLink>
+const Breadcrumb = ({ breadcrumb }) => {
+  return (
+    <BreadcrumbNav aria-label="breadcrumb">
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink to={"/"}>Home</BreadcrumbLink>
         </BreadcrumbItem>
-      )}
-    </BreadcrumbList>
-  </BreadcrumbNav>;
-
-Breadcrumb.propTypes = {
-  breadcrumbs: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      pathname: PropTypes.string.isRequired
-    })
-  ).isRequired
+        <BreadcrumbItem>
+          <BreadcrumbLink to={breadcrumb.path}>
+            {breadcrumb.title}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </BreadcrumbNav>
+  );
 };
 
-Breadcrumb.defaultProps = {
-  breadcrumbs: []
+Breadcrumb.propTypes = {
+  breadcrumb: CustomPropType.breadcrumb
 };
 
 export default Breadcrumb;

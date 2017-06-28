@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`snapshot should not have changed inadvertently 1`] = `
-<Title__StyledTitle>
-  eQ Author
-</Title__StyledTitle>
-`;

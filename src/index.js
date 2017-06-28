@@ -3,14 +3,19 @@ import registerServiceWorker from "utils/registerServiceWorker";
 import createHistory from "history/createHashHistory";
 import configureStore from "store/configureStore";
 import App from "containers/App";
+import client from "apollo/client";
 
 const history = createHistory({
   basename: process.env.REACT_APP_BASE_NAME
 });
 
-const store = configureStore(history);
+const store = configureStore(history, client);
 
-const renderApp = render(document.getElementById("root"), { store, history });
+const renderApp = render(document.getElementById("root"), {
+  store,
+  client,
+  history
+});
 
 renderApp(App);
 

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {Field, Input, Label} from 'components/Forms';
-import RichTextArea from 'components/RichTextArea';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Field, Input, Label } from "components/Forms";
+import RichTextArea from "components/RichTextArea";
 
 export default class Question extends Component {
   handleChange = e => {
@@ -10,7 +10,7 @@ export default class Question extends Component {
     this.props.changeQuestion({
       [name]: value
     });
-  }
+  };
 
   render() {
     const { id, number, title, guidance } = this.props.question;
@@ -32,7 +32,11 @@ export default class Question extends Component {
         </Field>
         <Field>
           <Label htmlFor="guidancetitle">Guidance Title</Label>
-          <Input value={guidance.title} id="guidancetitle" name="guidance.title" />
+          <Input
+            value={guidance.title}
+            id="guidancetitle"
+            name="guidance.title"
+          />
         </Field>
         <Field>
           <Label htmlFor="guidancetext">Guidance Text</Label>
@@ -52,4 +56,4 @@ export default class Question extends Component {
 Question.propTypes = {
   question: PropTypes.string.isRequired,
   changeQuestion: PropTypes.string.isRequired
-}
+};

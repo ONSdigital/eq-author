@@ -29,8 +29,6 @@ const TabList = ({ children, selectedTab, handleTabSelected, ...otherProps }) =>
     )}
   </TabListStyle>;
 
-TabList.displayName = "TabList";
-
 TabList.propTypes = {
   children: PropTypes.node,
   selectedTab: PropTypes.number,

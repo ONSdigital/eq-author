@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionnaireMeta should render 1`] = `
+<CreateQuestionnaire
+  onBlur={[Function]}
+  onChange={[Function]}
+  onSubmit={[Function]}
+  questionnaire={
+    Object {
+      "description": "I am the description",
+      "legalBasis": "StatisticsOfTradeAct",
+      "theme": "default",
+      "title": "I am the title",
+    }
+  }
+>
+  <QuestionnaireMeta__Center>
+    <div
+      className="QuestionnaireMeta__Center-kAaRvC evpGZL"
+    >
+      <Panel__Panel>
+        <div
+          className="Panel__Panel-hUpLEX BboLK"
+        >
+          <Component
+            onSubmit={[Function]}
+          >
+            <Form__StyledForm
+              method="POST"
+              onSubmit={[Function]}
+            >
+              <form
+                className="Form__StyledForm-bdgkBZ eaxBsf"
+                method="POST"
+                onSubmit={[Function]}
+              >
+                <Component
+                  id="title"
+                >
+                  <Field__StyledField>
+                    <div
+                      className="Field__StyledField-kQcQjL jnqEGC"
+                    >
+                      <Component
+                        id="title"
+                      >
+                        <Label__StyledLabel
+                          htmlFor="title"
+                        >
+                          <label
+                            className="Label__StyledLabel-dxvnPe kqlodc"
+                            htmlFor="title"
+                          >
+                            Questionnaire Title
+                          </label>
+                        </Label__StyledLabel>
+                      </Component>
+                      <Component
+                        defaultValue="I am the title"
+                        id="title"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        required={true}
+                        type="text"
+                      >
+                        <Input__StyledInput
+                          defaultValue="I am the title"
+                          id="title"
+                          name="title"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          required={true}
+                          type="text"
+                        >
+                          <input
+                            className="Input__StyledInput-gzbIwR cIVRSX"
+                            defaultValue="I am the title"
+                            id="title"
+                            name="title"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            required={true}
+                            type="text"
+                          />
+                        </Input__StyledInput>
+                      </Component>
+                    </div>
+                  </Field__StyledField>
+                </Component>
+                <Component
+                  id="description"
+                >
+                  <Field__StyledField>
+                    <div
+                      className="Field__StyledField-kQcQjL jnqEGC"
+                    >
+                      <Component
+                        id="description"
+                      >
+                        <Label__StyledLabel
+                          htmlFor="description"
+                        >
+                          <label
+                            className="Label__StyledLabel-dxvnPe kqlodc"
+                            htmlFor="description"
+                          >
+                            Description
+                          </label>
+                        </Label__StyledLabel>
+                      </Component>
+                      <Textarea
+                        defaultValue="I am the description"
+                        id="description"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        required={true}
+                        rows={4}
+                      >
+                        <TextArea__StyledTextArea
+                          defaultValue="I am the description"
+                          id="description"
+                          name="description"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          required={true}
+                          rows={4}
+                        >
+                          <textarea
+                            className="TextArea__StyledTextArea-JkJqk jUePIz"
+                            defaultValue="I am the description"
+                            id="description"
+                            name="description"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            required={true}
+                            rows={4}
+                          />
+                        </TextArea__StyledTextArea>
+                      </Textarea>
+                    </div>
+                  </Field__StyledField>
+                </Component>
+                <Grid__Grid
+                  align="top"
+                  fillHeight={true}
+                >
+                  <div
+                    className="Grid__Grid-bojwg hBJKXj"
+                  >
+                    <Column__Column
+                      cols={6}
+                    >
+                      <div
+                        className="Column__Column-iwldqt cghxRZ"
+                        cols={6}
+                      >
+                        <Component
+                          id="theme"
+                        >
+                          <Field__StyledField>
+                            <div
+                              className="Field__StyledField-kQcQjL jnqEGC"
+                            >
+                              <Component
+                                id="theme"
+                              >
+                                <Label__StyledLabel
+                                  htmlFor="theme"
+                                >
+                                  <label
+                                    className="Label__StyledLabel-dxvnPe kqlodc"
+                                    htmlFor="theme"
+                                  >
+                                    Theme
+                                  </label>
+                                </Label__StyledLabel>
+                              </Component>
+                              <Component
+                                defaultValue="default"
+                                id="theme"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                options={
+                                  Array [
+                                    "default",
+                                    "census",
+                                    "starwars",
+                                  ]
+                                }
+                              >
+                                <Select__StyledSelect
+                                  defaultValue="default"
+                                  id="theme"
+                                  name="theme"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                >
+                                  <select
+                                    className="Select__StyledSelect-dmoCxq BuGqs"
+                                    defaultValue="default"
+                                    id="theme"
+                                    name="theme"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                  >
+                                    <option
+                                      value="default"
+                                    >
+                                      default
+                                    </option>
+                                    <option
+                                      value="census"
+                                    >
+                                      census
+                                    </option>
+                                    <option
+                                      value="starwars"
+                                    >
+                                      starwars
+                                    </option>
+                                  </select>
+                                </Select__StyledSelect>
+                              </Component>
+                            </div>
+                          </Field__StyledField>
+                        </Component>
+                      </div>
+                    </Column__Column>
+                    <Column__Column
+                      cols={6}
+                    >
+                      <div
+                        className="Column__Column-iwldqt cghxRZ"
+                        cols={6}
+                      >
+                        <Component
+                          id="legal_basis"
+                        >
+                          <Field__StyledField>
+                            <div
+                              className="Field__StyledField-kQcQjL jnqEGC"
+                            >
+                              <Component
+                                id="legal_basis"
+                              >
+                                <Label__StyledLabel
+                                  htmlFor="legal_basis"
+                                >
+                                  <label
+                                    className="Label__StyledLabel-dxvnPe kqlodc"
+                                    htmlFor="legal_basis"
+                                  >
+                                    Legal Basis
+                                  </label>
+                                </Label__StyledLabel>
+                              </Component>
+                              <Component
+                                defaultValue="StatisticsOfTradeAct"
+                                id="legal_basis"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                options={
+                                  Array [
+                                    "StatisticsOfTradeAct",
+                                  ]
+                                }
+                              >
+                                <Select__StyledSelect
+                                  defaultValue="StatisticsOfTradeAct"
+                                  id="legal_basis"
+                                  name="legal_basis"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                >
+                                  <select
+                                    className="Select__StyledSelect-dmoCxq BuGqs"
+                                    defaultValue="StatisticsOfTradeAct"
+                                    id="legal_basis"
+                                    name="legal_basis"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                  >
+                                    <option
+                                      value="statistics of trade act"
+                                    >
+                                      StatisticsOfTradeAct
+                                    </option>
+                                  </select>
+                                </Select__StyledSelect>
+                              </Component>
+                            </div>
+                          </Field__StyledField>
+                        </Component>
+                      </div>
+                    </Column__Column>
+                  </div>
+                </Grid__Grid>
+                <Component
+                  id="navigation"
+                >
+                  <Field__StyledField>
+                    <div
+                      className="Field__StyledField-kQcQjL jnqEGC"
+                    >
+                      <Component
+                        id="navigation"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        type="checkbox"
+                      >
+                        <Input__StyledInput
+                          id="navigation"
+                          name="navigation"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          type="checkbox"
+                        >
+                          <input
+                            className="Input__StyledInput-gzbIwR dLjWtU"
+                            id="navigation"
+                            name="navigation"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            type="checkbox"
+                          />
+                        </Input__StyledInput>
+                      </Component>
+                      <Component
+                        id="navigation"
+                        inline={true}
+                      >
+                        <Label__StyledLabel
+                          htmlFor="navigation"
+                          inline={true}
+                        >
+                          <label
+                            className="Label__StyledLabel-dxvnPe fHbTNI"
+                            htmlFor="navigation"
+                          >
+                            Navigation
+                          </label>
+                        </Label__StyledLabel>
+                      </Component>
+                    </div>
+                  </Field__StyledField>
+                </Component>
+                Children
+              </form>
+            </Form__StyledForm>
+          </Component>
+        </div>
+      </Panel__Panel>
+    </div>
+  </QuestionnaireMeta__Center>
+</CreateQuestionnaire>
+`;

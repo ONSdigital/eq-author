@@ -6,7 +6,7 @@ import { colors } from "constants/theme";
 
 import IconButton from "components/IconButton";
 import ButtonGroup from "components/ButtonGroup";
-import Breadcrumb from "containers/Breadcrumb";
+import Breadcrumb from "components/Breadcrumb";
 
 import { Grid, Column } from "components/Grid";
 
@@ -34,7 +34,7 @@ export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
 `;
 
-export const Header = ({ hasBreadcrumbs, hasUtilityBtns }) =>
+export const Header = ({ breadcrumb, hasUtilityBtns }) =>
   <StyledHeader>
 
     <Grid align="center">
@@ -46,7 +46,7 @@ export const Header = ({ hasBreadcrumbs, hasUtilityBtns }) =>
       </Column>
 
       <Column>
-        {hasBreadcrumbs && <Breadcrumb />}
+        {breadcrumb && <Breadcrumb breadcrumb={breadcrumb} />}
       </Column>
 
       <Column>
@@ -62,12 +62,14 @@ export const Header = ({ hasBreadcrumbs, hasUtilityBtns }) =>
   </StyledHeader>;
 
 Header.propTypes = {
-  hasBreadcrumbs: PropTypes.bool,
-  hasUtilityBtns: PropTypes.bool
+  hasUtilityBtns: PropTypes.bool,
+  breadcrumb: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired
+  })
 };
 
 Header.defaultProps = {
-  hasBreadcrumbs: true,
   hasUtilityBtns: true
 };
 
