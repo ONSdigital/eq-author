@@ -1,8 +1,35 @@
+dist: trusty
+
+sudo: required
+
 language: node_js
+
 node_js:
   - "7"
 
 cache: yarn
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-set-default
+
+before_install:
+  - export CHROME_BIN=/usr/bin/google-chrome
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+
+install:
+ - yarn install
+
+before_script:
+ # A few tools to run smoke tests.
+ - yarn global add chimp
+ - ./scripts/run_smoketests.sh
 
 script:
   - yarn test
@@ -11,9 +38,12 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
+  - yarn storybook-deploy
 
 env:
   - CXX=g++-4.8
+  - NODE_PATH=src/
+
 addons:
   apt:
     sources:

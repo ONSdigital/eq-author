@@ -1,20 +1,27 @@
 import React from "react";
-import { storiesOf } from "@kadira/storybook";
+import { storiesOf } from "@storybook/react";
+import styled from "styled-components";
 import ButtonGroup from "components/ButtonGroup";
 import Button from "components/Button";
 
+const Width = styled.div`
+  max-width: 30em;
+  padding: 2em;
+`;
+
 storiesOf("ButtonGroup", module)
-  .add("Vertical", props => (
-    <ButtonGroup>
+  .addDecorator(story => <Width>{story()}</Width>)
+  .add("Vertical", props =>
+    <ButtonGroup vertical>
       <Button primary>Button 1</Button>
       <Button secondary>Button 2</Button>
-      <Button secondary>Button 3</Button>
+      <Button tertiary>Button 3</Button>
     </ButtonGroup>
-  ))
-  .add("Horizontal", props => (
+  )
+  .add("Horizontal", props =>
     <ButtonGroup horizontal>
       <Button primary>Button 1</Button>
       <Button secondary>Button 2</Button>
-      <Button secondary>Button 3</Button>
+      <Button tertiary>Button 3</Button>
     </ButtonGroup>
-  ));
+  );

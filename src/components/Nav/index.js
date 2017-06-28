@@ -31,7 +31,8 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = withRouter(({ match }) => {
+const Nav = withRouter(props => {
+  const { match } = props;
   const { id } = match.params;
   return (
     <StyledNav>

@@ -11,6 +11,6 @@ module.exports = {
       maxInstances: 1,
       bail: 1
     },
-    logLevel: "silent"
+    logLevel: "error"
   }
 };

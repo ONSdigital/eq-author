@@ -1,28 +1,21 @@
 import React from "react";
-import { storiesOf } from "@kadira/storybook";
+import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 import Breadcrumb from "components/Breadcrumb";
-
-const Link = styled.a`
-  color: white;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+import { MemoryRouter } from "react-router";
+import { colors } from "constants/theme";
 
 const Background = styled.div`
-  background: #35415D;
+  background: ${colors.darkBlue};
+  padding: 1em;
 `;
 
-const links = [
-  <Link key="1" href="#">Home</Link>,
-  <Link key="2" href="#">Quarterly Business Survey</Link>
-];
-
-storiesOf("Breadcrumb", module).add("Default", () =>
-  <Background>
-    <Breadcrumb>
-      {links}
-    </Breadcrumb>
-  </Background>
-);
+storiesOf("Breadcrumb", module)
+  .addDecorator(story =>
+    <MemoryRouter initialEntries={["/"]}>
+      <Background>{story()}</Background>
+    </MemoryRouter>
+  )
+  .add("Default", () =>
+    <Breadcrumb breadcrumb={{ path: "", title: "Questionnaire" }} />
+  );
