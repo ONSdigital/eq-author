@@ -2,9 +2,9 @@
 
 exports[`QuestionnaireMeta should render 1`] = `
 <CreateQuestionnaire
-  handleBlur={[Function]}
-  handleChange={[Function]}
-  handleSubmit={[Function]}
+  onBlur={[Function]}
+  onChange={[Function]}
+  onSubmit={[Function]}
   questionnaire={
     Object {
       "description": "I am the description",
@@ -22,8 +22,8 @@ exports[`QuestionnaireMeta should render 1`] = `
         <div
           className="Panel__Panel-hUpLEX BboLK"
         >
-          <Component
-            handleSubmit={[Function]}
+          <Form
+            onSubmit={[Function]}
           >
             <Form__StyledForm
               method="POST"
@@ -57,9 +57,9 @@ exports[`QuestionnaireMeta should render 1`] = `
                       </Label>
                       <Input
                         defaultValue="I am the title"
-                        handleChange={[Function]}
                         id="title"
                         onBlur={[Function]}
+                        onChange={[Function]}
                         required={true}
                         type="text"
                       >
@@ -110,9 +110,9 @@ exports[`QuestionnaireMeta should render 1`] = `
                       </Label>
                       <Textarea
                         defaultValue="I am the description"
-                        handleChange={[Function]}
                         id="description"
                         onBlur={[Function]}
+                        onChange={[Function]}
                         required={true}
                         rows={4}
                       >
@@ -177,9 +177,9 @@ exports[`QuestionnaireMeta should render 1`] = `
                               </Label>
                               <Select
                                 defaultValue="default"
-                                handleChange={[Function]}
                                 id="theme"
                                 onBlur={[Function]}
+                                onChange={[Function]}
                                 options={
                                   Array [
                                     "default",
@@ -256,9 +256,9 @@ exports[`QuestionnaireMeta should render 1`] = `
                               </Label>
                               <Select
                                 defaultValue="StatisticsOfTradeAct"
-                                handleChange={[Function]}
                                 id="legal_basis"
                                 onBlur={[Function]}
+                                onChange={[Function]}
                                 options={
                                   Array [
                                     "StatisticsOfTradeAct",
@@ -303,9 +303,9 @@ exports[`QuestionnaireMeta should render 1`] = `
                       className="Field__StyledField-kQcQjL jnqEGC"
                     >
                       <Input
-                        handleChange={[Function]}
                         id="navigation"
                         onBlur={[Function]}
+                        onChange={[Function]}
                         type="checkbox"
                       >
                         <Input__StyledInput
@@ -347,7 +347,7 @@ exports[`QuestionnaireMeta should render 1`] = `
                 Children
               </form>
             </Form__StyledForm>
-          </Component>
+          </Form>
         </div>
       </Panel__Panel>
     </div>

@@ -19,21 +19,21 @@ const Center = styled.div`
 
 const CreateQuestionnaire = ({
   questionnaire,
-  handleSubmit,
-  handleBlur,
-  handleChange,
+  onSubmit,
+  onBlur,
+  onChange,
   children
 }) => {
   return (
     <Center>
       <Panel>
-        <Form handleSubmit={handleSubmit}>
+        <Form onSubmit={onSubmit}>
           <Field id="title">
             <Label>Questionnaire Title</Label>
             <Input
               defaultValue={questionnaire.title}
-              handleChange={handleChange}
-              onBlur={handleBlur}
+              onChange={onChange}
+              onBlur={onBlur}
               required
             />
           </Field>
@@ -42,8 +42,8 @@ const CreateQuestionnaire = ({
             <TextArea
               defaultValue={questionnaire.description}
               rows={4}
-              handleChange={handleChange}
-              onBlur={handleBlur}
+              onChange={onChange}
+              onBlur={onBlur}
               required
             />
           </Field>
@@ -54,8 +54,8 @@ const CreateQuestionnaire = ({
                 <Select
                   options={["default", "census", "starwars"]}
                   defaultValue={questionnaire.theme}
-                  handleChange={handleChange}
-                  onBlur={handleBlur}
+                  onChange={onChange}
+                  onBlur={onBlur}
                 />
               </Field>
             </Column>
@@ -65,8 +65,8 @@ const CreateQuestionnaire = ({
                 <Select
                   options={["StatisticsOfTradeAct"]}
                   defaultValue={questionnaire.legalBasis}
-                  handleChange={handleChange}
-                  onBlur={handleBlur}
+                  onChange={onChange}
+                  onBlur={onBlur}
                 />
               </Field>
             </Column>
@@ -75,8 +75,8 @@ const CreateQuestionnaire = ({
             <Input
               type="checkbox"
               defaultChecked={questionnaire.navigation}
-              handleChange={handleChange}
-              onBlur={handleBlur}
+              onChange={onChange}
+              onBlur={onBlur}
             />
             <Label inline>Navigation</Label>
           </Field>
@@ -89,9 +89,9 @@ const CreateQuestionnaire = ({
 
 CreateQuestionnaire.propTypes = {
   children: PropTypes.node,
-  handleChange: PropTypes.func,
-  handleBlur: PropTypes.func,
-  handleSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  onSubmit: PropTypes.func,
   questionnaire: CustomPropTypes.questionnaire
 };
 

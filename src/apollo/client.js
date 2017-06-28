@@ -1,7 +1,7 @@
 import { ApolloClient, createNetworkInterface } from "react-apollo";
 
 const client = new ApolloClient({
-  ddTypename: true,
+  addTypename: true,
   dataIdFromObject: result => {
     if (result.id && result.__typename) {
       // eslint-disable-line no-underscore-dangle

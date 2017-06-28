@@ -3,12 +3,12 @@ import React from "react";
 import { mount } from "enzyme";
 import FileUpload from "./";
 
-let fileUpload, handleChange;
+let fileUpload, onChange;
 
 beforeEach(() => {
-  handleChange = jest.fn();
+  onChange = jest.fn();
   fileUpload = mount(
-    <FileUpload onFileSelected={handleChange}>
+    <FileUpload onFileSelected={onChange}>
       <button>Hello</button>
     </FileUpload>
   );
@@ -24,7 +24,7 @@ it("passes file object onChange", () => {
 
   fileUpload.find("input").simulate("change", event);
 
-  expect(handleChange).toHaveBeenCalledWith(file);
+  expect(onChange).toHaveBeenCalledWith(file);
 });
 
 it("allows clicks on child components to trigger file input", () => {

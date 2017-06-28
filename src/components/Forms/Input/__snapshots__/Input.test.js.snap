@@ -3,8 +3,8 @@
 exports[`components/Forms/Input Text should render correctly 1`] = `
 <Input
   defaultValue="I am some text"
-  handleChange={[Function]}
   id="text"
+  onChange={[Function]}
   type="text"
 >
   <Input__StyledInput

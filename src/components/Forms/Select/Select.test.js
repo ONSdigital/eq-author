@@ -14,8 +14,8 @@ describe("Select", () => {
         options={options}
         onChange={handleChange}
         defaultValue={options[0]}
-        name="foo"
-        id="bar"
+        name="my-select"
+        id="my-select"
       />
     );
   });
@@ -52,6 +52,8 @@ describe("Select", () => {
 
     app.find("select").simulate("change", event);
 
-    expect(handleChange).toHaveBeenCalledWith(expect.objectContaining(event));
+    expect(handleChange).toHaveBeenCalledWith(
+      expect.objectContaining({ "my-select": "three" })
+    );
   });
 });

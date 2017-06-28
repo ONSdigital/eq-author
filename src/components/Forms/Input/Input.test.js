@@ -4,7 +4,7 @@ import { Input } from "components/Forms/Input";
 
 const defaultValue = "I am some text";
 
-const changeHandler = jest.fn();
+const handleChange = jest.fn();
 
 describe("components/Forms/Input", () => {
   describe("Text", () => {
@@ -12,11 +12,7 @@ describe("components/Forms/Input", () => {
 
     beforeEach(() => {
       wrapper = mount(
-        <Input
-          id="text"
-          handleChange={changeHandler}
-          defaultValue={defaultValue}
-        />
+        <Input id="text" onChange={handleChange} defaultValue={defaultValue} />
       );
     });
 
@@ -32,9 +28,9 @@ describe("components/Forms/Input", () => {
       expect(wrapper.props().defaultValue).toEqual(defaultValue);
     });
 
-    it("should call handleChange with appropriate args", () => {
+    it("should call onChange with appropriate args", () => {
       wrapper.simulate("change", { target: { value: "hello" } });
-      expect(changeHandler).toHaveBeenCalledWith({ text: "hello" });
+      expect(handleChange).toHaveBeenCalledWith({ text: "hello" });
     });
   });
 
@@ -44,16 +40,16 @@ describe("components/Forms/Input", () => {
     beforeEach(() => {
       wrapper = mount(
         <Input
-          id="text"
-          handleChange={changeHandler}
-          defaultValue={defaultValue}
+          id="my-checkbox"
+          type="checkbox"
+          onChange={handleChange}
+          defaultChecked={false}
         />
       );
     });
 
-    it("should render a checbox", () => {
-      wrapper = mount(<Input type="checkbox" />);
-      expect(wrapper.props()).toMatchObject({ type: "checkbox" });
+    it("should render a checkbox", () => {
+      expect(wrapper.find("input").node.type).toEqual("checkbox");
     });
 
     it("should pass `defaultChecked` prop to component", () => {
@@ -63,17 +59,9 @@ describe("components/Forms/Input", () => {
       expect(wrapper.find("input").node.checked).toEqual(false);
     });
 
-    it("should call handleChange with appropriate args", () => {
-      wrapper = mount(
-        <Input
-          type="checkbox"
-          id="checkbox"
-          handleChange={changeHandler}
-          defaultChecked
-        />
-      );
+    it("should call onChange with appropriate args", () => {
       wrapper.simulate("change", { target: { checked: true } });
-      expect(changeHandler).toHaveBeenCalledWith({ checkbox: true });
+      expect(handleChange).toHaveBeenCalledWith({ "my-checkbox": true });
     });
   });
 });

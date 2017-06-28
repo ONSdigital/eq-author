@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { noop } from "lodash";
+
 import Icon from "./icon.svg";
 import { lowerCase } from "lodash";
 import { colors } from "constants/theme";
 import { sharedStyles } from "components/Forms/css";
-
-const noop = () => {};
 
 const StyledSelect = styled.select`
   ${sharedStyles};
@@ -22,7 +22,7 @@ export const Select = ({
   options,
   defaultValue,
   id,
-  handleChange,
+  onChange,
   ...otherProps
 }) =>
   <StyledSelect
@@ -30,7 +30,7 @@ export const Select = ({
     name={id}
     defaultValue={defaultValue}
     onChange={function(e) {
-      handleChange({ [id]: e.target.value });
+      onChange({ [id]: e.target.value });
     }}
     {...otherProps}
   >
@@ -41,14 +41,14 @@ export const Select = ({
 
 Select.defaultProps = {
   options: [],
-  handleChange: noop
+  onChange: noop
 };
 
 Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultValue: PropTypes.string,
   id: PropTypes.string,
-  handleChange: PropTypes.func
+  onChange: PropTypes.func
 };
 
 Select.displayName = "Select";

@@ -8,6 +8,7 @@ let wrapper;
 const handleChange = jest.fn();
 const handleSubmit = jest.fn();
 const handleBlur = jest.fn();
+
 const questionnaire = {
   description: "I am the description",
   legalBasis: "StatisticsOfTradeAct",
@@ -20,9 +21,9 @@ describe("QuestionnaireMeta", () => {
     wrapper = mount(
       <QuestionnaireMeta
         questionnaire={questionnaire}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        handleBlur={handleBlur}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        onBlur={handleBlur}
       >
         Children
       </QuestionnaireMeta>
@@ -40,9 +41,7 @@ describe("QuestionnaireMeta", () => {
 
   it("should handle change event on child inputs", () => {
     const inputs = wrapper.find("[onChange]");
-    inputs.forEach(input => {
-      input.simulate("change");
-    });
+    inputs.forEach(input => input.simulate("change"));
 
     expect(inputs.length).toBeGreaterThan(0);
     expect(handleChange).toHaveBeenCalledTimes(inputs.length);
@@ -50,9 +49,7 @@ describe("QuestionnaireMeta", () => {
 
   it("should handle blur event on child inputs", () => {
     const inputs = wrapper.find("[onBlur]");
-    inputs.forEach(input => {
-      input.simulate("blur");
-    });
+    inputs.forEach(input => input.simulate("blur"));
 
     expect(inputs.length).toBeGreaterThan(0);
     expect(handleBlur).toHaveBeenCalledTimes(inputs.length);

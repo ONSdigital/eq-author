@@ -11,7 +11,7 @@ describe("components/Forms/TextArea", () => {
       <TextArea
         id="text"
         defaultValue={defaultValue}
-        handleChange={changeHandler}
+        onChange={changeHandler}
       />
     );
   });
@@ -24,7 +24,7 @@ describe("components/Forms/TextArea", () => {
     expect(wrapper.props().defaultValue).toEqual(defaultValue);
   });
 
-  it("should call handleChange with appropriate args", () => {
+  it("should call onChange with appropriate args", () => {
     wrapper.simulate("change", { target: { value: "hello" } });
     expect(changeHandler).toHaveBeenCalledWith({ text: "hello" });
   });

@@ -4,7 +4,7 @@ import QuestionnaireMeta from "./QuestionnaireMeta";
 
 let wrapper;
 
-const onUpdate = jest.fn();
+const handleUpdate = jest.fn();
 
 const questionnaire = {
   title: "My Questionnaire",
@@ -18,7 +18,7 @@ describe("containers/QuestionnaireMeta", () => {
   beforeEach(() => {
     wrapper = mountWithRouter(
       <QuestionnaireMeta
-        onUpdate={onUpdate}
+        onUpdate={handleUpdate}
         loading={false}
         questionnaire={questionnaire}
       />
@@ -32,20 +32,20 @@ describe("containers/QuestionnaireMeta", () => {
 
   it("should store updated values in state", () => {
     const value = { title: "My Title" };
-    wrapper.instance().onChange(value);
+    wrapper.instance().handleChange(value);
     expect(wrapper.state()).toMatchObject(value);
   });
 
   it("should save to API on blur event", () => {
     const value = { title: "My Title" };
-    wrapper.instance().onChange(value);
-    wrapper.instance().onBlur();
-    expect(onUpdate).toHaveBeenCalledWith(value);
+    wrapper.instance().handleChange(value);
+    wrapper.instance().handleBlur();
+    expect(handleUpdate).toHaveBeenCalledWith(value);
   });
 
   it("should prevent from submission", () => {
     const preventDefault = jest.fn();
-    wrapper.instance().onSubmit({ preventDefault });
+    wrapper.instance().handleSubmit({ preventDefault });
     expect(preventDefault).toHaveBeenCalled();
   });
 });

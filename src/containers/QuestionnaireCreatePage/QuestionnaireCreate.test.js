@@ -26,7 +26,7 @@ describe("containers/QuestionnaireCreate", () => {
 
   it("should call createQuestionnaire when submitted", () => {
     const preventDefault = jest.fn();
-    return wrapper.instance().onSubmit({ preventDefault }).then(() => {
+    return wrapper.instance().handleSubmit({ preventDefault }).then(() => {
       expect(preventDefault).toHaveBeenCalled();
       expect(createQuestionnaire).toHaveBeenCalled();
       expect(history.push).toHaveBeenCalledWith(expect.stringContaining("2"));
@@ -41,7 +41,7 @@ describe("containers/QuestionnaireCreate", () => {
 
   it("should store updated values in state", () => {
     const value = { title: "My Title" };
-    wrapper.instance().onChange(value);
+    wrapper.instance().handleChange(value);
     expect(wrapper.state()).toMatchObject(value);
   });
 });

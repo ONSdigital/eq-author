@@ -3,8 +3,8 @@
 exports[`components/Forms/TextArea should render correctly 1`] = `
 <Textarea
   defaultValue="I am some text"
-  handleChange={[Function]}
   id="text"
+  onChange={[Function]}
   rows={10}
 >
   <TextArea__StyledTextArea

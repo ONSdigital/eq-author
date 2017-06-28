@@ -52,7 +52,7 @@ export default class RichTextArea extends Component {
     };
   }
 
-  handleChange = value => {
+  onChange = value => {
     const html = value.getEditorState().getCurrentContent().hasText()
       ? value.toString("html")
       : "";
@@ -75,7 +75,7 @@ export default class RichTextArea extends Component {
           rows="10"
           value={this.state.value}
           toolbarConfig={toolbarConfig}
-          onChange={this.handleChange}
+          onChange={this.onChange}
         />
       </Wrapper>
     );

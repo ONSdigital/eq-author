@@ -40,10 +40,10 @@ const Breadcrumb = ({ breadcrumb }) => {
   return (
     <BreadcrumbNav aria-label="breadcrumb">
       <BreadcrumbList>
-        <BreadcrumbItem key="/">
+        <BreadcrumbItem>
           <BreadcrumbLink to={"/"}>Home</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbItem key={breadcrumb.path}>
+        <BreadcrumbItem>
           <BreadcrumbLink to={breadcrumb.path}>
             {breadcrumb.title}
           </BreadcrumbLink>

@@ -29,9 +29,9 @@ export class QuestionnaireCreatePage extends Component {
     this.setState(questionnaire);
   }
 
-  onChange = value => this.setState(value);
+  handleChange = value => this.setState(value);
 
-  onSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
 
     return this.props.createQuestionnaire(this.state).then(({ data }) => {
@@ -46,8 +46,8 @@ export class QuestionnaireCreatePage extends Component {
       <BaseLayout title={"Create a Questionnaire"} hasNav={false}>
         <QuestionnaireMeta
           questionnaire={this.state}
-          handleChange={this.onChange}
-          handleSubmit={this.onSubmit}
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
         >
 
           <ActionButtonGroup horizontal>

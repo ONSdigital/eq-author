@@ -23,15 +23,11 @@ export class QuestionnaireMetaPage extends Component {
     this.setState(questionnaire);
   }
 
-  onChange = value => {
-    this.setState(value);
-  };
+  handleChange = value => this.setState(value);
 
-  onBlur = e => {
-    this.props.onUpdate(this.state);
-  };
+  handleBlur = e => this.props.onUpdate(this.state);
 
-  onSubmit = e => e.preventDefault();
+  handleSubmit = e => e.preventDefault();
 
   render() {
     const { loading, questionnaire } = this.props;
@@ -48,9 +44,9 @@ export class QuestionnaireMetaPage extends Component {
           <QuestionnaireMeta
             loading={loading}
             questionnaire={questionnaire}
-            handleChange={this.onChange}
-            handleBlur={this.onBlur}
-            handleSubmit={this.onSubmit}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            onSubmit={this.handleSubmit}
           />
         </Center>
       </BaseLayout>

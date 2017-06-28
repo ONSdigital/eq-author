@@ -23,8 +23,8 @@ exports[`components/Forms/Field should render correctly 1`] = `
         </Label__StyledLabel>
       </Label>
       <Input
-        handleChange={[Function]}
         id="name"
+        onChange={[Function]}
         type="text"
       >
         <Input__StyledInput
