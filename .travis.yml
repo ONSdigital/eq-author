@@ -4,6 +4,8 @@ language: node_js
 node_js:
   - "6"
 
+group: deprecated-2017Q2
+
 cache: yarn
 
 addons:
