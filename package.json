@@ -12,7 +12,8 @@
     "serve": "npm install -g serve && serve -p 3000 build/",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "coverage": "yarn test -- --coverage -u"
   },
   "lint-staged": {
     "*.js": [
