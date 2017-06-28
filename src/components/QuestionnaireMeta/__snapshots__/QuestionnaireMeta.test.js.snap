@@ -22,7 +22,7 @@ exports[`QuestionnaireMeta should render 1`] = `
         <div
           className="Panel__Panel-hUpLEX BboLK"
         >
-          <Component
+          <Form
             onSubmit={[Function]}
           >
             <Form__StyledForm
@@ -34,14 +34,14 @@ exports[`QuestionnaireMeta should render 1`] = `
                 method="POST"
                 onSubmit={[Function]}
               >
-                <Component
+                <Field
                   id="title"
                 >
                   <Field__StyledField>
                     <div
                       className="Field__StyledField-kQcQjL jnqEGC"
                     >
-                      <Component
+                      <Label
                         id="title"
                       >
                         <Label__StyledLabel
@@ -54,8 +54,8 @@ exports[`QuestionnaireMeta should render 1`] = `
                             Questionnaire Title
                           </label>
                         </Label__StyledLabel>
-                      </Component>
-                      <Component
+                      </Label>
+                      <Input
                         defaultValue="I am the title"
                         id="title"
                         onBlur={[Function]}
@@ -83,18 +83,18 @@ exports[`QuestionnaireMeta should render 1`] = `
                             type="text"
                           />
                         </Input__StyledInput>
-                      </Component>
+                      </Input>
                     </div>
                   </Field__StyledField>
-                </Component>
-                <Component
+                </Field>
+                <Field
                   id="description"
                 >
                   <Field__StyledField>
                     <div
                       className="Field__StyledField-kQcQjL jnqEGC"
                     >
-                      <Component
+                      <Label
                         id="description"
                       >
                         <Label__StyledLabel
@@ -107,7 +107,7 @@ exports[`QuestionnaireMeta should render 1`] = `
                             Description
                           </label>
                         </Label__StyledLabel>
-                      </Component>
+                      </Label>
                       <Textarea
                         defaultValue="I am the description"
                         id="description"
@@ -139,7 +139,7 @@ exports[`QuestionnaireMeta should render 1`] = `
                       </Textarea>
                     </div>
                   </Field__StyledField>
-                </Component>
+                </Field>
                 <Grid__Grid
                   align="top"
                   fillHeight={true}
@@ -154,14 +154,14 @@ exports[`QuestionnaireMeta should render 1`] = `
                         className="Column__Column-iwldqt cghxRZ"
                         cols={6}
                       >
-                        <Component
+                        <Field
                           id="theme"
                         >
                           <Field__StyledField>
                             <div
                               className="Field__StyledField-kQcQjL jnqEGC"
                             >
-                              <Component
+                              <Label
                                 id="theme"
                               >
                                 <Label__StyledLabel
@@ -174,8 +174,8 @@ exports[`QuestionnaireMeta should render 1`] = `
                                     Theme
                                   </label>
                                 </Label__StyledLabel>
-                              </Component>
-                              <Component
+                              </Label>
+                              <Select
                                 defaultValue="default"
                                 id="theme"
                                 onBlur={[Function]}
@@ -220,10 +220,10 @@ exports[`QuestionnaireMeta should render 1`] = `
                                     </option>
                                   </select>
                                 </Select__StyledSelect>
-                              </Component>
+                              </Select>
                             </div>
                           </Field__StyledField>
-                        </Component>
+                        </Field>
                       </div>
                     </Column__Column>
                     <Column__Column
@@ -233,14 +233,14 @@ exports[`QuestionnaireMeta should render 1`] = `
                         className="Column__Column-iwldqt cghxRZ"
                         cols={6}
                       >
-                        <Component
+                        <Field
                           id="legal_basis"
                         >
                           <Field__StyledField>
                             <div
                               className="Field__StyledField-kQcQjL jnqEGC"
                             >
-                              <Component
+                              <Label
                                 id="legal_basis"
                               >
                                 <Label__StyledLabel
@@ -253,8 +253,8 @@ exports[`QuestionnaireMeta should render 1`] = `
                                     Legal Basis
                                   </label>
                                 </Label__StyledLabel>
-                              </Component>
-                              <Component
+                              </Label>
+                              <Select
                                 defaultValue="StatisticsOfTradeAct"
                                 id="legal_basis"
                                 onBlur={[Function]}
@@ -287,22 +287,22 @@ exports[`QuestionnaireMeta should render 1`] = `
                                     </option>
                                   </select>
                                 </Select__StyledSelect>
-                              </Component>
+                              </Select>
                             </div>
                           </Field__StyledField>
-                        </Component>
+                        </Field>
                       </div>
                     </Column__Column>
                   </div>
                 </Grid__Grid>
-                <Component
+                <Field
                   id="navigation"
                 >
                   <Field__StyledField>
                     <div
                       className="Field__StyledField-kQcQjL jnqEGC"
                     >
-                      <Component
+                      <Input
                         id="navigation"
                         onBlur={[Function]}
                         onChange={[Function]}
@@ -324,8 +324,8 @@ exports[`QuestionnaireMeta should render 1`] = `
                             type="checkbox"
                           />
                         </Input__StyledInput>
-                      </Component>
-                      <Component
+                      </Input>
+                      <Label
                         id="navigation"
                         inline={true}
                       >
@@ -340,14 +340,14 @@ exports[`QuestionnaireMeta should render 1`] = `
                             Navigation
                           </label>
                         </Label__StyledLabel>
-                      </Component>
+                      </Label>
                     </div>
                   </Field__StyledField>
-                </Component>
+                </Field>
                 Children
               </form>
             </Form__StyledForm>
-          </Component>
+          </Form>
         </div>
       </Panel__Panel>
     </div>
