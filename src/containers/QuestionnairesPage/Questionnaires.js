@@ -25,7 +25,7 @@ const Questionnaires = () =>
           >
             Create questionnaire
           </LinkButton>
-          <Button secondary disabled>
+          <Button id="btn-load-questionnaire" secondary disabled>
             Load existing questionnaire
           </Button>
         </ButtonGroup>
