@@ -148,11 +148,11 @@ exports[`QuestionnaireMeta should render 1`] = `
                     className="Grid__Grid-bojwg hBJKXj"
                   >
                     <Column__Column
-                      cols={3}
+                      cols={6}
                     >
                       <div
-                        className="Column__Column-iwldqt cJsDGn"
-                        cols={3}
+                        className="Column__Column-iwldqt cghxRZ"
+                        cols={6}
                       >
                         <Field
                           id="surveyId"
