@@ -5,14 +5,16 @@ export const updateQuestionnaire = gql`
     $id: ID!,
     $title: String!,
     $description: String!,
+    $surveyId: String!,
     $theme: String!,
-    $legalBasis: String!,
+    $legalBasis: LegalBasis!,
     $navigation: Boolean
   ) {
     updateQuestionnaire(
       id: $id,
       title: $title,
       description: $description,
+      surveyId: $surveyId,
       theme: $theme,
       legalBasis: $legalBasis,
       navigation: $navigation,
@@ -20,6 +22,7 @@ export const updateQuestionnaire = gql`
       id,
       title,
       description,
+      surveyId,
       theme,
       legalBasis,
       navigation

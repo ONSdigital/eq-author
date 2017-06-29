@@ -155,6 +155,74 @@ exports[`QuestionnaireMeta should render 1`] = `
                         cols={6}
                       >
                         <Field
+                          id="surveyId"
+                        >
+                          <Field__StyledField>
+                            <div
+                              className="Field__StyledField-kQcQjL jnqEGC"
+                            >
+                              <Label
+                                id="surveyId"
+                              >
+                                <Label__StyledLabel
+                                  htmlFor="surveyId"
+                                >
+                                  <label
+                                    className="Label__StyledLabel-dxvnPe kqlodc"
+                                    htmlFor="surveyId"
+                                  >
+                                    Survey ID
+                                  </label>
+                                </Label__StyledLabel>
+                              </Label>
+                              <Input
+                                id="surveyId"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                required={true}
+                                type="text"
+                              >
+                                <Input__StyledInput
+                                  id="surveyId"
+                                  name="surveyId"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  required={true}
+                                  type="text"
+                                >
+                                  <input
+                                    className="Input__StyledInput-gzbIwR cIVRSX"
+                                    id="surveyId"
+                                    name="surveyId"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    required={true}
+                                    type="text"
+                                  />
+                                </Input__StyledInput>
+                              </Input>
+                            </div>
+                          </Field__StyledField>
+                        </Field>
+                      </div>
+                    </Column__Column>
+                  </div>
+                </Grid__Grid>
+                <Grid__Grid
+                  align="top"
+                  fillHeight={true}
+                >
+                  <div
+                    className="Grid__Grid-bojwg hBJKXj"
+                  >
+                    <Column__Column
+                      cols={6}
+                    >
+                      <div
+                        className="Column__Column-iwldqt cghxRZ"
+                        cols={6}
+                      >
+                        <Field
                           id="theme"
                         >
                           <Field__StyledField>
@@ -184,7 +252,6 @@ exports[`QuestionnaireMeta should render 1`] = `
                                   Array [
                                     "default",
                                     "census",
-                                    "starwars",
                                   ]
                                 }
                               >
@@ -212,11 +279,6 @@ exports[`QuestionnaireMeta should render 1`] = `
                                       value="census"
                                     >
                                       census
-                                    </option>
-                                    <option
-                                      value="starwars"
-                                    >
-                                      starwars
                                     </option>
                                   </select>
                                 </Select__StyledSelect>
@@ -262,6 +324,7 @@ exports[`QuestionnaireMeta should render 1`] = `
                                 options={
                                   Array [
                                     "StatisticsOfTradeAct",
+                                    "Voluntary",
                                   ]
                                 }
                               >
@@ -284,6 +347,11 @@ exports[`QuestionnaireMeta should render 1`] = `
                                       value="statistics of trade act"
                                     >
                                       StatisticsOfTradeAct
+                                    </option>
+                                    <option
+                                      value="voluntary"
+                                    >
+                                      Voluntary
                                     </option>
                                   </select>
                                 </Select__StyledSelect>

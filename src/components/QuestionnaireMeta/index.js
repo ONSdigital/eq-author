@@ -49,10 +49,23 @@ const CreateQuestionnaire = ({
           </Field>
           <Grid>
             <Column cols={6}>
+              <Field id="surveyId">
+                <Label>Survey ID</Label>
+                <Input
+                  defaultValue={questionnaire.surveyId}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  required
+                />
+              </Field>
+            </Column>
+          </Grid>
+          <Grid>
+            <Column cols={6}>
               <Field id="theme">
                 <Label>Theme</Label>
                 <Select
-                  options={["default", "census", "starwars"]}
+                  options={["default", "census"]}
                   defaultValue={questionnaire.theme}
                   onChange={onChange}
                   onBlur={onBlur}
@@ -63,7 +76,7 @@ const CreateQuestionnaire = ({
               <Field id="legal_basis">
                 <Label>Legal Basis</Label>
                 <Select
-                  options={["StatisticsOfTradeAct"]}
+                  options={["StatisticsOfTradeAct", "Voluntary"]}
                   defaultValue={questionnaire.legalBasis}
                   onChange={onChange}
                   onBlur={onBlur}

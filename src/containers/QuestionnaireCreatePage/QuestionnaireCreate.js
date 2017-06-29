@@ -19,6 +19,7 @@ export class QuestionnaireCreatePage extends Component {
     this.state = {
       title: "",
       description: "",
+      surveyId: "",
       theme: "default",
       legalBasis: "StatisticsOfTradeAct",
       navigation: false
