@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertyPane should render 1`] = `
+<div
+  className="PropertyPane__PropertyPane-s20q6yz-0 gFeDPy"
+>
+  Child
+</div>
+`;

@@ -11,5 +11,8 @@ export default {
     theme: PropTypes.string,
     title: PropTypes.string,
     navigation: PropTypes.bool
+  }),
+  question: PropTypes.shape({
+    type: PropTypes.string.isRequired
   })
 };
