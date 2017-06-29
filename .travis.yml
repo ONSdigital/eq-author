@@ -1,50 +1,22 @@
-sudo: required
-dist: trusty
 language: node_js
 node_js:
-  - "6"
-
-group: deprecated-2017Q2
+  - "7"
 
 cache: yarn
 
-addons:
-  apt:
-    packages:
-      - oracle-java8-set-default
-
-before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-
-install:
- - yarn install
-
-before_script:
- # A few tools to run smoke tests.
- - yarn global add chimp
- - yarn global add serve
-
 script:
+  - yarn test
   - yarn lint -- --max-warnings=0
-  - yarn test -- --coverage
-
-env:
-  - secure: "x5tYroOoRdHt8xDpfIoH7Xy0YYg+gApnG2Cii6+mIUjeVJQJyl9gKepKxr+K22IMi+b9WxGJxHvjay9sYxaDFgLyVu/6XCpx74dmU0rnE6nKlYxza6cI5KDYWYS2PzMziKuRzCOb8Hp50gtLzq0LKxtLNB3ajn54r6vx4/jgSQ1GzuMoc419pOnbc56EPWWsk8JguLNRCEx/wIaed33X9Nig5j/ADCnXrIJ65wv1ErCgLSQGZqG+W4SlCbDfW9uzF9whzYMMB3HN/hzlSomwRMVVW2PmjP6n+BGN/RjVAdz0MI3lTsraYLn7C8h5p9xOGja98fTXq7nSFQY9nPjseQi6Q1e+MKpJmVaUkEVtosP8Lpkk/Fduqc5noXvITmxhPodrYZjBPQPFXXKN3OqLHebmZVs71DVfSQcYjcYi/pIUnZlW2h2VSYrlSEHri53evfKvwzTuH6+9xWJkJZYET62agDy2oZb4q7hAZoEXHWV7DxmvD8bHET0Be1cs3Og5RNmwVLjP7vR7KmOtN9Uc6ZA6LbKuJDsscmrA9kmyQ/tWui2qGfXoyrvGF2H0qO2sg9e0vf1fHc6ynKZ/30pRl43Kfm0sXGQmuiNIuQeB92nvUjf7+XYJ036jW2eVz3VvsBbMTTAzectX2tvMruMj74eBQEVuO6I2Kl9mAYA5cd0="
+  - yarn coverage
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
 
-deploy:
-  local_dir: build
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  on:
-    branch:
-      - master
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
