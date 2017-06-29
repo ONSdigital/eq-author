@@ -48,7 +48,7 @@ const CreateQuestionnaire = ({
             />
           </Field>
           <Grid>
-            <Column cols={3}>
+            <Column cols={6}>
               <Field id="surveyId">
                 <Label>Survey ID</Label>
                 <Input
