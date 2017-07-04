@@ -1,10 +1,10 @@
 import React from "react";
-import CustomPropTypes from "proptypes";
+import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, Select, TextArea } from "components/Forms";
 import RichTextArea from "components/RichTextArea";
 
-export const QuestionSettings = ({ options, ...otherProps }) => (
+export const QuestionSettings = ({ options, ...otherProps }) =>
   <Grid>
     <Column>
       <Field id={`questions.${options.id}.displayName`}>
@@ -28,14 +28,13 @@ export const QuestionSettings = ({ options, ...otherProps }) => (
         <TextArea value={options.description} rows={9} />
       </Field>
     </Column>
-  </Grid>
-);
+  </Grid>;
 
 QuestionSettings.propTypes = {
   options: CustomPropTypes.question
 };
 
-export const QuestionGuidance = ({ options, ...otherProps }) => (
+export const QuestionGuidance = ({ options, ...otherProps }) =>
   <Grid>
     <Column>
       <Field id={`questions.${options.id}.title`} last>
@@ -43,8 +42,7 @@ export const QuestionGuidance = ({ options, ...otherProps }) => (
         <RichTextArea />
       </Field>
     </Column>
-  </Grid>
-);
+  </Grid>;
 
 QuestionGuidance.propTypes = {
   options: CustomPropTypes.question

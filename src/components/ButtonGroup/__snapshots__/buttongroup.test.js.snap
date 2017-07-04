@@ -4,7 +4,7 @@ exports[`button group component snapshot Should not have changed inadvertently 1
 <ButtonGroup>
   <ButtonGroup__StyledButtonGroup>
     <div
-      className="ButtonGroup__StyledButtonGroup-bdkEkm iKFOjv"
+      className="ButtonGroup__StyledButtonGroup-xuy4ap-0 hXgNyE"
     />
   </ButtonGroup__StyledButtonGroup>
 </ButtonGroup>

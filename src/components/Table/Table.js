@@ -3,28 +3,27 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "constants/theme";
 
-const StyledTableWrapper = styled.div`
-  border: solid 1px ${colors.darkGrey};
+const TableWrapper = styled.div`
+  border: solid 1px ${colors.borders};
   border-radius: 2px;
   margin-bottom: 1em;
   overflow: hidden;
 `;
 
-const Table = styled.table`
+const StyledTable = styled.table`
   table-layout: auto;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: -1px;
 `;
 
-const TableWrapper = ({ children, ...otherProps }) => (
-  <StyledTableWrapper {...otherProps}>
-    <Table>{children}</Table>
-  </StyledTableWrapper>
-);
+const Table = ({ children, ...otherProps }) =>
+  <TableWrapper {...otherProps}>
+    <StyledTable>{children}</StyledTable>
+  </TableWrapper>;
 
-TableWrapper.propTypes = {
+Table.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default TableWrapper;
+export default Table;

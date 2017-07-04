@@ -15,7 +15,7 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
     type="text"
   >
     <input
-      className="Input__StyledInput-gzbIwR cIVRSX"
+      className="Input__StyledInput-s1lyryn2-0 jEbBDH"
       defaultValue="I am some text"
       id="text"
       name="text"

@@ -1,5 +1,5 @@
 import React from "react";
-import CustomPropTypes from "proptypes";
+import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, Select, TextArea } from "components/Forms";
 
@@ -39,7 +39,7 @@ AnswerSettings.propTypes = {
   options: CustomPropTypes.answer
 };
 
-export const MandatorySettings = ({ options, ...otherProps }) => (
+export const MandatorySettings = ({ options, ...otherProps }) =>
   <Grid>
     <Column cols="4">
       <Field id={`answers.${options.id}.mandatory`}>
@@ -53,8 +53,7 @@ export const MandatorySettings = ({ options, ...otherProps }) => (
         <Input value={options.qcode} rows={4} />
       </Field>
     </Column>
-  </Grid>
-);
+  </Grid>;
 
 MandatorySettings.propTypes = {
   options: CustomPropTypes.answer

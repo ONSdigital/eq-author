@@ -1,5 +1,5 @@
 import React from "react";
-import CustomPropTypes from "proptypes";
+import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Field, Label, Input, TextArea } from "components/Forms";
 

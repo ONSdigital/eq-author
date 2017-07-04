@@ -3,7 +3,7 @@
 set -euf -o pipefail
 
 # Run the server
-serve --port 3000 build/ &
+yarn storybook &
 pid=$!
 
 function display_result {
