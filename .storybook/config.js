@@ -29,7 +29,7 @@ function requireAll(requireContext) {
 }
 
 function loadStories() {
-  requireAll(require.context("components", true, /\/story\.js$/));
+  requireAll(require.context("components", true, /[/.]story\.js$/));
 }
 
 setOptions({
