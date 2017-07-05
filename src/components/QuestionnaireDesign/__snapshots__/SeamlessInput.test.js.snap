@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SeamlessInput should render 1`] = `
-<withSeamlessness(Input)
+<withSeamlessness(withChangeHandler(Input))
   focussed={false}
   id="foo"
   onChange={[Function]}
@@ -16,24 +16,33 @@ exports[`SeamlessInput should render 1`] = `
     size="small"
     value="123"
   >
-    <Input
+    <withChangeHandler(Input)
       aria-hidden={false}
-      className="withSeamlessness__StyledSeamless-um6dne-0 mMWcM"
+      className="withSeamlessness__StyledSeamless-s3omn9i-0 gfNuBU"
       name="foo"
       onChange={[Function]}
       size="small"
       value="123"
     >
-      <input
+      <Input
         aria-hidden={false}
-        className="withSeamlessness__StyledSeamless-um6dne-0 mMWcM"
+        className="withSeamlessness__StyledSeamless-s3omn9i-0 gfNuBU"
         name="foo"
         onChange={[Function]}
         size="small"
-        type="text"
         value="123"
-      />
-    </Input>
+      >
+        <input
+          aria-hidden={false}
+          className="withSeamlessness__StyledSeamless-s3omn9i-0 gfNuBU"
+          name="foo"
+          onChange={[Function]}
+          size="small"
+          type="text"
+          value="123"
+        />
+      </Input>
+    </withChangeHandler(Input)>
   </withSeamlessness__StyledSeamless>
-</withSeamlessness(Input)>
+</withSeamlessness(withChangeHandler(Input))>
 `;

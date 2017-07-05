@@ -92,19 +92,4 @@ describe("withSeamlessness", () => {
 
     expect(component.prop("name")).toEqual("foo");
   });
-
-  it("should invoke change handler with name and value", () => {
-    const component = shallow(
-      <Seamless id="foo" value="1" onChange={handleChange} />
-    );
-
-    component.simulate("change", { target: { value: "2" } });
-
-    expect(handleChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        name: "foo",
-        value: "2"
-      })
-    );
-  });
 });

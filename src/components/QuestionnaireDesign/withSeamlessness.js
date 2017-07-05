@@ -74,13 +74,6 @@ const withSeamlessness = WrappedComponent => {
 
     static displayName = `withSeamlessness(${WrappedComponent.displayName})`;
 
-    handleChange = e => {
-      this.props.onChange({
-        name: this.props.id,
-        value: e.target.value
-      });
-    };
-
     render() {
       const {
         id,
@@ -89,8 +82,10 @@ const withSeamlessness = WrappedComponent => {
         focussed,
         placeholder,
         autoFocus,
-        size
+        size,
+        onChange
       } = this.props;
+
       const shouldBeHidden = optional && !value && !focussed;
 
       return (
@@ -98,7 +93,7 @@ const withSeamlessness = WrappedComponent => {
           placeholder={placeholder}
           autoFocus={autoFocus}
           value={value}
-          onChange={this.handleChange}
+          onChange={onChange}
           name={id}
           size={size}
           aria-hidden={shouldBeHidden}

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import AutoResizeTextArea from "react-textarea-autosize";
 import withSeamlessness from "./withSeamlessness";
+import withChangeHandler from "components/Forms/withChangeHandler";
+import { flow } from "lodash";
 
 const TextArea = styled(AutoResizeTextArea)`
   resize: none;
 `;
 
-export default withSeamlessness(TextArea);
+export default flow(withChangeHandler, withSeamlessness)(TextArea);
