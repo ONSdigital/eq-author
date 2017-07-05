@@ -14,5 +14,14 @@ export default {
   }),
   question: PropTypes.shape({
     type: PropTypes.string.isRequired
+  }),
+  section: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string
+  }),
+  page: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    guidance: PropTypes.string
   })
 };

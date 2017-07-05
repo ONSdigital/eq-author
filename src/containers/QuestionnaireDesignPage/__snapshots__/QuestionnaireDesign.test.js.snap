@@ -1,11 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/QuestionnaireDesign should render 1`] = `
-<QuestionnaireDesign
-  loading={true}
+exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
+<BaseLayout
+  breadcrumb={
+    Object {
+      "path": "http://localhost/",
+      "title": "hello world",
+    }
+  }
+  hasNav={true}
+  hasUtilityBtns={false}
 >
-  <div>
-    Loading...
-  </div>
-</QuestionnaireDesign>
+  <QuestionnaireDesign
+    focussed="section"
+    onAnswerAdd={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    page={
+      Object {
+        "description": "lorem ipsum",
+        "guidance": "foo bar blah meh",
+        "title": "my questions",
+      }
+    }
+    section={
+      Object {
+        "description": "bar",
+        "title": "foo",
+      }
+    }
+  />
+</BaseLayout>
+`;
+
+exports[`containers/QuestionnaireDesign should render spinner when loading 1`] = `
+<div>
+  Loading...
+</div>
 `;
