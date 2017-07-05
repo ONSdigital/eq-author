@@ -1,12 +1,12 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import PageCanvas from "./PageCanvas";
 
 describe("SeamlessInput", () => {
   let component;
 
   beforeEach(() => {
-    component = mount(<PageCanvas />);
+    component = shallow(<PageCanvas>Children</PageCanvas>);
   });
 
   it("should render", () => {

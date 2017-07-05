@@ -11,8 +11,6 @@ import Button from "components/Button";
 import CustomPropTypes from "custom-prop-types";
 import { noop } from "lodash";
 
-const { page, section } = CustomPropTypes;
-
 const AddAnswerButton = styled(Button)`
   color: #757575;
 `;
@@ -88,8 +86,8 @@ const QuestionnaireDesign = ({
   </PageCanvas>;
 
 QuestionnaireDesign.propTypes = {
-  section,
-  page,
+  section: CustomPropTypes.section,
+  page: CustomPropTypes.page,
   onChange: PropTypes.func.isRequired,
   onAnswerAdd: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,

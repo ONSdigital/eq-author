@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import PageSection from "./PageSection";
 
 let component, handleFocus;
@@ -10,7 +10,7 @@ describe("PageSection", () => {
   beforeEach(() => {
     handleFocus = jest.fn();
 
-    component = mount(
+    component = shallow(
       <PageSection id="foo" onFocus={handleFocus} focussed>
         <Child />
       </PageSection>

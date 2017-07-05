@@ -1,26 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageSection should render 1`] = `
-<PageSection
+<PageSection__StyledPageSection
   focussed={true}
-  id="foo"
-  onBlur={[Function]}
   onFocus={[Function]}
 >
-  <PageSection__StyledPageSection
+  <Child
     focussed={true}
-    onFocus={[Function]}
-  >
-    <div
-      className="PageSection__StyledPageSection-hj2a31-0 gucgF"
-      onFocus={[Function]}
-    >
-      <Child
-        focussed={true}
-      >
-        <div />
-      </Child>
-    </div>
-  </PageSection__StyledPageSection>
-</PageSection>
+  />
+</PageSection__StyledPageSection>
 `;

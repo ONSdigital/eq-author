@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SeamlessInput should render 1`] = `
-<PageCanvas__PageCanvas>
-  <div
-    className="PageCanvas__PageCanvas-o1jumc-0 beftnW"
-  />
-</PageCanvas__PageCanvas>
+<div
+  className="PageCanvas__PageCanvas-o1jumc-0 beftnW"
+>
+  Children
+</div>
 `;

@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import withSeamlessness from "./withSeamlessness";
 
 describe("withSeamlessness", () => {
@@ -73,7 +73,7 @@ describe("withSeamlessness", () => {
     permutations.forEach((permutation, i) => {
       const { shouldBeHidden, ...otherProps } = permutation;
 
-      const component = mount(
+      const component = shallow(
         <Seamless
           {...otherProps}
           id={`permutation-${i}`}
@@ -81,23 +81,29 @@ describe("withSeamlessness", () => {
         />
       );
 
-      expect(component.find("input").prop("aria-hidden")).toEqual(
-        shouldBeHidden
-      );
+      expect(component.prop("aria-hidden")).toEqual(shouldBeHidden);
     });
   });
 
-  it("should invoke change handler with name and value", () => {
-    const component = mount(
+  it("should ensure 'name' prop matches 'id' prop", () => {
+    const component = shallow(
       <Seamless id="foo" value="1" onChange={handleChange} />
     );
 
-    component.simulate("change");
+    expect(component.prop("name")).toEqual("foo");
+  });
+
+  it("should invoke change handler with name and value", () => {
+    const component = shallow(
+      <Seamless id="foo" value="1" onChange={handleChange} />
+    );
+
+    component.simulate("change", { target: { value: "2" } });
 
     expect(handleChange).toHaveBeenCalledWith(
       expect.objectContaining({
         name: "foo",
-        value: "1"
+        value: "2"
       })
     );
   });
