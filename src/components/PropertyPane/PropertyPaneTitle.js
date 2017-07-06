@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 const PropertyPaneTitle = styled.h3`
-  font-size: 9px;
+  font-size: 0.6em;
   text-transform: uppercase;
   font-weight: 900;
   line-height: 1.5;

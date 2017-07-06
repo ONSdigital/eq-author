@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import QuestionProperties from "components/QuestionProperties";
 import styled from "styled-components";
 
-const Background = styled.span`
+const Background = styled.div`
   padding: 1em;
   display: block;
   max-width: 20em;
