@@ -136,6 +136,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
+          /\.svg$/,
           /\.json$/,
           /\.bmp$/,
           /\.gif$/,
@@ -200,6 +201,24 @@ module.exports = {
                   ],
                   flexbox: "no-2009"
                 })
+              ]
+            }
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "file-loader"
+          },
+          {
+            loader: "svgo-loader",
+            options: {
+              plugins: [
+                { removeTitle: true },
+                { convertColors: { shorthex: false } },
+                { convertPathData: false }
               ]
             }
           }

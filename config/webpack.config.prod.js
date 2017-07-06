@@ -132,6 +132,7 @@ module.exports = {
           /\.html$/,
           /\.(js|jsx)$/,
           /\.css$/,
+          /\.svg$/,
           /\.json$/,
           /\.bmp$/,
           /\.gif$/,
@@ -210,6 +211,24 @@ module.exports = {
           )
         )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "file-loader"
+          },
+          {
+            loader: "svgo-loader",
+            options: {
+              plugins: [
+                { removeTitle: true },
+                { convertColors: { shorthex: false } },
+                { convertPathData: false }
+              ]
+            }
+          }
+        ]
       }
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
