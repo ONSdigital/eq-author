@@ -8,7 +8,7 @@ exports[`QuestionProperties should render 1`] = `
     id="type"
   >
     <Label>
-      Question Type
+      Question type
     </Label>
     <Select
       defaultValue="General"
