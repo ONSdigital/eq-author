@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const Canvas = styled.div`
-  width: calc(50% - 1em);
-  margin: 2em auto;
+  width: 75%;
+  margin: 2em 0 0 1em;
   padding: 0;
   border-radius: 2px;
   background-color: #fff;
