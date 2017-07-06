@@ -3,21 +3,7 @@
 exports[`components/BaseLayout shoulder render 1`] = `
 <App>
   <BaseLayout__Wrapper>
-    <Header
-      hasUtilityBtns={false}
-    />
-    <BaseLayout__NavWrapper>
-      <Grid__Grid
-        align="top"
-        fillHeight={false}
-      >
-        <Column__Column
-          offset={3}
-        >
-          <withRouter() />
-        </Column__Column>
-      </Grid__Grid>
-    </BaseLayout__NavWrapper>
+    <Header />
     <BaseLayout__Main>
       Children
     </BaseLayout__Main>

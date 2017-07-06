@@ -10,7 +10,7 @@ exports[`QuestionProperties should render 1`] = `
     <Label>
       Question type
     </Label>
-    <Select
+    <withChangeHandler(Select)
       defaultValue="General"
       onBlur={[Function]}
       onChange={[Function]}

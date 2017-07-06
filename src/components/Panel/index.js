@@ -13,7 +13,7 @@ Panel.propTypes = {
 };
 
 export const CenteredPanel = styled(Panel)`
-  padding: 3em;
+  padding: 2em 2.5em;
   display: flex;
   flex: 1 1 100%;
   flex-direction: column;

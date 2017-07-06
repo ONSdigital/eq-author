@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { withRouter } from "react-router";
 import { colors } from "constants/theme";
+
+import CustomPropsTypes from "custom-prop-types";
 
 export const StyledNav = styled.nav`
   margin: 0;
@@ -31,9 +32,9 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = withRouter(props => {
-  const { match } = props;
-  const { id } = match.params;
+const Nav = ({ questionnaire }) => {
+  const { id } = questionnaire;
+
   return (
     <StyledNav>
       <StyledNavLink
@@ -43,13 +44,17 @@ const Nav = withRouter(props => {
         Questionnaire meta
       </StyledNavLink>
       <StyledNavLink
-        to={`/questionnaire/${id}/design`}
+        to={`/questionnaire/${id}/design/${questionnaire.sections[0].id}`}
         activeClassName="selected"
       >
         Builder
       </StyledNavLink>
     </StyledNav>
   );
-});
+};
+
+Nav.propTypes = {
+  questionnaire: CustomPropsTypes.questionnaire
+};
 
 export default Nav;

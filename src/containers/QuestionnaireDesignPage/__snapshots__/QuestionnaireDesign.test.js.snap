@@ -1,78 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
-<BaseLayout
-  breadcrumb={
+<QuestionnaireDesignPage
+  onBlur={[Function]}
+  onChange={[Function]}
+  onSubmit={[Function]}
+  questionnaire={
     Object {
-      "path": "http://localhost/",
       "title": "hello world",
     }
   }
-  hasNav={true}
-  hasUtilityBtns={false}
->
-  <Grid__Grid
-    align="top"
-    fillHeight={true}
-  >
-    <Column__Column
-      cols={3}
-      gutters={false}
-    >
-      Sidebar
-    </Column__Column>
-    <Column__Column
-      gutters={false}
-    >
-      <QuestionnaireDesign
-        focused="section"
-        onAnswerAdd={[Function]}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        page={
-          Object {
-            "description": "lorem ipsum",
-            "guidance": "foo bar blah meh",
-            "title": "my questions",
-            "type": "General",
-          }
-        }
-        section={
-          Object {
-            "description": "bar",
-            "title": "foo",
-          }
-        }
-      />
-    </Column__Column>
-    <Column__Column
-      cols={2}
-      gutters={false}
-    >
-      <PropertyPane__PropertyPane>
-        <PropertyPaneTitle__PropertyPaneTitle>
-          Question properties
-        </PropertyPaneTitle__PropertyPaneTitle>
-        <QuestionProperties
-          onSubmit={[Function]}
-          question={
-            Object {
-              "description": "lorem ipsum",
-              "guidance": "foo bar blah meh",
-              "title": "my questions",
-              "type": "General",
-            }
-          }
-        />
-      </PropertyPane__PropertyPane>
-    </Column__Column>
-  </Grid__Grid>
-</BaseLayout>
-`;
-
-exports[`containers/QuestionnaireDesign should render spinner when loading 1`] = `
-<div>
-  Loading...
-</div>
+  update={[Function]}
+/>
 `;

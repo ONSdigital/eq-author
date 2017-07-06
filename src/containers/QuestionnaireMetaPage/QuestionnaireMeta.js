@@ -1,69 +1,40 @@
 /* eslint-disable camelcase */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-
 import styled from "styled-components";
 
+import CustomPropTypes from "custom-prop-types";
+
+import withQuestionnaire from "components/WithQuestionnaire";
 import BaseLayout from "components/BaseLayout";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
+import { Grid, Column } from "components/Grid";
 
-const Center = styled.div`
-  margin: 2em 0;
-`;
+const Margin = styled.div`margin: 2em 1em;`;
 
-export class QuestionnaireMetaPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: ""
-    };
-  }
-
-  componentWillReceiveProps({ questionnaire }) {
-    this.setState(questionnaire);
-  }
-
-  handleChange = value => this.setState(value);
-
-  handleBlur = e => this.props.onUpdate(this.state);
-
-  handleSubmit = e => e.preventDefault();
+class QuestionnaireMetaPage extends Component {
+  static propTypes = {
+    breadcrumb: CustomPropTypes.breadcrumb,
+    questionnaire: CustomPropTypes.questionnaire
+  };
 
   render() {
-    const { loading, questionnaire } = this.props;
-
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+    const { questionnaire, breadcrumb, ...otherProps } = this.props;
 
     return (
-      <BaseLayout
-        breadcrumb={{ path: window.location.href, title: this.state.title }}
-      >
-        <Center>
-          <QuestionnaireMeta
-            loading={loading}
-            questionnaire={questionnaire}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onSubmit={this.handleSubmit}
-          />
-        </Center>
+      <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
+        <Grid align="top">
+          <Column gutters={false} offset={2}>
+            <Margin>
+              <QuestionnaireMeta
+                questionnaire={questionnaire}
+                {...otherProps}
+              />
+            </Margin>
+          </Column>
+        </Grid>
       </BaseLayout>
     );
   }
 }
 
-QuestionnaireMetaPage.propTypes = {
-  history: PropTypes.object, // eslint-disable-line
-  loading: PropTypes.bool.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  questionnaire: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    legalBasis: PropTypes.string.isRequired,
-    theme: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-  })
-};
-
-export default QuestionnaireMetaPage;
+export default withQuestionnaire(QuestionnaireMetaPage);

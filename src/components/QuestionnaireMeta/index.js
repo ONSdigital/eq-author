@@ -11,13 +11,12 @@ import { CenteredPanel } from "components/Panel";
 
 const Center = styled.div`
   width: 100%;
-  max-width: 40em;
+  max-width: 50em;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
 `;
 
-const CreateQuestionnaire = ({
+const QuestionnaireMeta = ({
   questionnaire,
   onSubmit,
   onBlur,
@@ -28,7 +27,7 @@ const CreateQuestionnaire = ({
     <Center>
       <CenteredPanel>
         <Form onSubmit={onSubmit}>
-          <Field id="title">
+          <Field id="questionnaire.title">
             <Label>Questionnaire Title</Label>
             <Input
               defaultValue={questionnaire.title}
@@ -37,7 +36,7 @@ const CreateQuestionnaire = ({
               required
             />
           </Field>
-          <Field id="description">
+          <Field id="questionnaire.description">
             <Label>Description</Label>
             <TextArea
               defaultValue={questionnaire.description}
@@ -49,7 +48,7 @@ const CreateQuestionnaire = ({
           </Field>
           <Grid>
             <Column cols={6}>
-              <Field id="surveyId">
+              <Field id="questionnaire.surveyId">
                 <Label>Survey ID</Label>
                 <Input
                   defaultValue={questionnaire.surveyId}
@@ -62,7 +61,7 @@ const CreateQuestionnaire = ({
           </Grid>
           <Grid>
             <Column cols={6}>
-              <Field id="theme">
+              <Field id="questionnaire.theme">
                 <Label>Theme</Label>
                 <Select
                   options={["default", "census"]}
@@ -73,7 +72,7 @@ const CreateQuestionnaire = ({
               </Field>
             </Column>
             <Column cols={6}>
-              <Field id="legal_basis">
+              <Field id="questionnaire.legalBasis">
                 <Label>Legal Basis</Label>
                 <Select
                   options={["StatisticsOfTradeAct", "Voluntary"]}
@@ -84,7 +83,7 @@ const CreateQuestionnaire = ({
               </Field>
             </Column>
           </Grid>
-          <Field id="navigation">
+          <Field id="questionnaire.navigation">
             <Input
               type="checkbox"
               defaultChecked={questionnaire.navigation}
@@ -100,7 +99,7 @@ const CreateQuestionnaire = ({
   );
 };
 
-CreateQuestionnaire.propTypes = {
+QuestionnaireMeta.propTypes = {
   children: PropTypes.node,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
@@ -108,4 +107,4 @@ CreateQuestionnaire.propTypes = {
   questionnaire: CustomPropTypes.questionnaire
 };
 
-export default CreateQuestionnaire;
+export default QuestionnaireMeta;

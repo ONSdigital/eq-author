@@ -1,21 +1,16 @@
 import React from "react";
-import Breadcrumb, { BreadcrumbLink } from "components/Breadcrumb";
+import Breadcrumb from "components/Breadcrumb";
 import { shallow } from "enzyme";
 
 describe("components/Breadcrumb", () => {
-  const breadcrumb = {
-    title: "Create questionnaire",
-    path: "/create"
-  };
-  const wrapper = shallow(<Breadcrumb breadcrumb={breadcrumb} />);
+  const title = "Create questionnaire";
+  const wrapper = shallow(<Breadcrumb title={title} />);
 
-  it("renders correctly ", function() {
+  it("renders correctly", function() {
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should render breadcrumb from props", () => {
-    wrapper.contains(
-      <BreadcrumbLink to={breadcrumb.path}>{breadcrumb.title}</BreadcrumbLink>
-    );
+    wrapper.contains(title);
   });
 });

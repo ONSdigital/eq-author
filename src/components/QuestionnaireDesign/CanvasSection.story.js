@@ -31,6 +31,7 @@ storiesOf("CanvasSection", module)
       }
 
       handleFocus = focused => this.setState({ focused });
+
       handleChange = ({ name, value }) => {
         this.setState({ [name]: value });
       };

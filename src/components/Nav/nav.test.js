@@ -1,15 +1,27 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
-import Nav, { StyledNav } from "components/Nav";
+import { shallow } from "enzyme";
+import Nav from "components/Nav";
 
-describe("components/Nav", function() {
-  it("should render Nav", function() {
-    const wrapper = shallow(<Nav />);
+let wrapper;
+
+describe("components/Nav", () => {
+  beforeEach(() => {
+    wrapper = shallow(
+      <Nav
+        questionnaire={{
+          id: 1,
+          title: "Questionnaire",
+          sections: [{ id: 0, title: "Section 1" }]
+        }}
+      />
+    );
+  });
+
+  it("should render Nav", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should contain links", function() {
-    const wrapper = mount(<StyledNav />);
+  it("should contain links", () => {
     expect(wrapper.find("a")).toBeTruthy();
   });
 });

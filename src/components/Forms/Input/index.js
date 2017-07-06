@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { sharedStyles } from "components/Forms/css";
 import iconCheckbox from "./icon-checkbox.svg";
-import { noop } from "lodash";
+import withChangeHandler from "components/Forms/withChangeHandler";
 
 const checkBox = css`
   display: inline-block;
@@ -25,30 +25,20 @@ const StyledInput = styled.input`
   ${props => props.type === "checkbox" && checkBox};
 `;
 
-const Input = ({ type, defaultValue, id, onChange, ...otherProps }) =>
+const Input = ({ type, defaultValue, id, ...otherProps }) =>
   <StyledInput
     type={type}
     defaultValue={defaultValue}
     id={id}
     name={id}
-    onChange={function(e) {
-      const { target } = e;
-      const value = {
-        text: target.value,
-        checkbox: target.checked
-      }[type];
-      onChange({ [id]: value });
-    }}
     {...otherProps}
   />;
 
 Input.defaultProps = {
-  type: "text",
-  onChange: noop
+  type: "text"
 };
 
 Input.propTypes = {
-  onChange: PropTypes.func,
   id: PropTypes.string,
   type: PropTypes.oneOf(["text", "checkbox", "radio"]).isRequired,
   defaultValue: PropTypes.oneOfType([
@@ -58,4 +48,4 @@ Input.propTypes = {
   ])
 };
 
-export default Input;
+export default withChangeHandler(Input);

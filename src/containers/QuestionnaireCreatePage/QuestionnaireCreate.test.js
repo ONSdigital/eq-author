@@ -1,5 +1,5 @@
 import React from "react";
-import { mountWithRouter } from "tests/utils/mountWithRouter";
+import { shallow } from "enzyme";
 import QuestionnaireCreate from "./QuestionnaireCreate";
 
 let wrapper;
@@ -9,15 +9,22 @@ const createQuestionnaire = jest.fn(() => {
   });
 });
 
+const createSection = jest.fn(() => {
+  return new Promise((resolve, reject) => {
+    resolve({ data: {} });
+  });
+});
+
 const history = {
   push: jest.fn()
 };
 
 describe("containers/QuestionnaireCreate", () => {
   beforeEach(() => {
-    wrapper = mountWithRouter(
+    wrapper = shallow(
       <QuestionnaireCreate
         createQuestionnaire={createQuestionnaire}
+        createSection={createSection}
         history={history}
         loading
       />
@@ -29,7 +36,6 @@ describe("containers/QuestionnaireCreate", () => {
     return wrapper.instance().handleSubmit({ preventDefault }).then(() => {
       expect(preventDefault).toHaveBeenCalled();
       expect(createQuestionnaire).toHaveBeenCalled();
-      expect(history.push).toHaveBeenCalledWith(expect.stringContaining("2"));
     });
   });
 
@@ -40,8 +46,8 @@ describe("containers/QuestionnaireCreate", () => {
   });
 
   it("should store updated values in state", () => {
-    const value = { title: "My Title" };
+    const value = { name: "questionnaire.title", value: "My Title" };
     wrapper.instance().handleChange(value);
-    expect(wrapper.state()).toMatchObject(value);
+    expect(wrapper.state().questionnaire.title).toEqual("My Title");
   });
 });

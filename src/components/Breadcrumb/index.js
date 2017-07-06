@@ -1,10 +1,9 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 import iconChevron from "./chevron.svg";
-import CustomPropType from "custom-prop-types";
 
 const BreadcrumbList = styled.ol`
   list-style: none;
@@ -23,9 +22,7 @@ const BreadcrumbItem = styled.li`
   }
 `;
 
-const BreadcrumbNav = styled.nav`
-  display: block;
-`;
+const BreadcrumbNav = styled.nav`display: block;`;
 
 export const BreadcrumbLink = styled(Link)`
   text-decoration: none;
@@ -36,7 +33,7 @@ export const BreadcrumbLink = styled(Link)`
   }
 `;
 
-const Breadcrumb = ({ breadcrumb }) => {
+const Breadcrumb = ({ title }) => {
   return (
     <BreadcrumbNav aria-label="breadcrumb">
       <BreadcrumbList>
@@ -44,9 +41,7 @@ const Breadcrumb = ({ breadcrumb }) => {
           <BreadcrumbLink to={"/"}>Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink to={breadcrumb.path}>
-            {breadcrumb.title}
-          </BreadcrumbLink>
+          {title}
         </BreadcrumbItem>
       </BreadcrumbList>
     </BreadcrumbNav>
@@ -54,7 +49,7 @@ const Breadcrumb = ({ breadcrumb }) => {
 };
 
 Breadcrumb.propTypes = {
-  breadcrumb: CustomPropType.breadcrumb
+  title: PropTypes.string.isRequired
 };
 
 export default Breadcrumb;

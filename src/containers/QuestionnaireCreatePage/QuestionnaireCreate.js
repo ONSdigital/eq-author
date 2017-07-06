@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import BaseLayout from "components/BaseLayout";
+import { merge, set } from "lodash";
 
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import Button from "components/Button";
@@ -13,16 +14,29 @@ const ActionButtonGroup = styled(ButtonGroup)`
   align-self: flex-start;
 `;
 
+const Center = styled.div`
+  margin: 0 auto;
+  max-width: 40em;
+  width: 100%;
+`;
+
 export class QuestionnaireCreatePage extends Component {
+  static propTypes = {
+    createQuestionnaire: PropTypes.func.isRequired,
+    createSection: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      description: "",
-      surveyId: "",
-      theme: "default",
-      legalBasis: "StatisticsOfTradeAct",
-      navigation: false
+      questionnaire: {
+        title: "",
+        description: "",
+        surveyId: "",
+        theme: "default",
+        legalBasis: "StatisticsOfTradeAct",
+        navigation: false
+      }
     };
   }
 
@@ -30,41 +44,46 @@ export class QuestionnaireCreatePage extends Component {
     this.setState(questionnaire);
   }
 
-  handleChange = value => this.setState(value);
+  handleChange = change => {
+    this.setState(merge({}, this.state, set({}, change.name, change.value)));
+  };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    return this.props.createQuestionnaire(this.state).then(({ data }) => {
-      this.props.history.push(
-        `/questionnaire/${data.createQuestionnaire.id}/design`
-      );
+    const { createQuestionnaire, createSection } = this.props;
+
+    return createQuestionnaire(this.state).then(({ data }) => {
+      createSection({
+        title: "",
+        description: "",
+        questionnaireId: data.createQuestionnaire.id
+      });
     });
   };
 
   render() {
     return (
-      <BaseLayout title={"Create a Questionnaire"} hasNav={false}>
-        <QuestionnaireMeta
-          questionnaire={this.state}
-          onChange={this.handleChange}
-          onSubmit={this.handleSubmit}
-        >
-
-          <ActionButtonGroup horizontal>
-            <Button type="submit" primary>Create</Button>
-            <LinkButton to="/" secondary>Cancel</LinkButton>
-          </ActionButtonGroup>
-
-        </QuestionnaireMeta>
+      <BaseLayout title={"Create a Questionnaire"}>
+        <Center>
+          <QuestionnaireMeta
+            questionnaire={this.state}
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+          >
+            <ActionButtonGroup horizontal>
+              <Button type="submit" primary>
+                Create
+              </Button>
+              <LinkButton to="/" secondary>
+                Cancel
+              </LinkButton>
+            </ActionButtonGroup>
+          </QuestionnaireMeta>
+        </Center>
       </BaseLayout>
     );
   }
 }
-
-QuestionnaireCreatePage.propTypes = {
-  history: PropTypes.object, // eslint-disable-line
-  createQuestionnaire: PropTypes.func.isRequired
-};
 
 export default QuestionnaireCreatePage;

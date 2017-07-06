@@ -22,26 +22,30 @@ exports[`components/Forms/Field should render correctly 1`] = `
           </label>
         </Label__StyledLabel>
       </Label>
-      <Input
+      <withChangeHandler(Input)
         id="name"
-        onChange={[Function]}
-        type="text"
       >
-        <Input__StyledInput
+        <Input
           id="name"
-          name="name"
           onChange={[Function]}
           type="text"
         >
-          <input
-            className="Input__StyledInput-nftdvc-0 emqhXO"
+          <Input__StyledInput
             id="name"
             name="name"
             onChange={[Function]}
             type="text"
-          />
-        </Input__StyledInput>
-      </Input>
+          >
+            <input
+              className="Input__StyledInput-s1dapwku-0 jYJVhX"
+              id="name"
+              name="name"
+              onChange={[Function]}
+              type="text"
+            />
+          </Input__StyledInput>
+        </Input>
+      </withChangeHandler(Input)>
     </div>
   </Field__StyledField>
 </Field>

@@ -1,27 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Forms/Input Text should render correctly 1`] = `
-<Input
+<withChangeHandler(Input)
   defaultValue="I am some text"
   id="text"
   onChange={[Function]}
-  type="text"
 >
-  <Input__StyledInput
+  <Input
     defaultValue="I am some text"
     id="text"
-    name="text"
     onChange={[Function]}
     type="text"
   >
-    <input
-      className="Input__StyledInput-nftdvc-0 emqhXO"
+    <Input__StyledInput
       defaultValue="I am some text"
       id="text"
       name="text"
       onChange={[Function]}
       type="text"
-    />
-  </Input__StyledInput>
-</Input>
+    >
+      <input
+        className="Input__StyledInput-s1dapwku-0 jYJVhX"
+        defaultValue="I am some text"
+        id="text"
+        name="text"
+        onChange={[Function]}
+        type="text"
+      />
+    </Input__StyledInput>
+  </Input>
+</withChangeHandler(Input)>
 `;

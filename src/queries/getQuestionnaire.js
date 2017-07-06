@@ -6,10 +6,32 @@ const getQuestionnaire = gql`
       id
       title
       description
-      navigation
+      surveyId
       legalBasis
       theme
-      surveyId
+      navigation
+      sections: groups {
+        id
+        title
+        description
+        pages {
+          id
+          title
+          ... on QuestionPage {
+            guidance
+            answers {
+              id
+              description
+              guidance
+              qCode
+              label
+              mandatory
+              type
+              questionPageId
+            }
+          }
+        }
+      }
     }
   }
 `;

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { noop } from "lodash";
 
 import Icon from "./icon.svg";
 import { colors } from "constants/theme";
 import { sharedStyles } from "components/Forms/css";
+import withChangeHandler from "components/Forms/withChangeHandler";
 
 const StyledSelect = styled.select`
   ${sharedStyles};
@@ -17,16 +17,8 @@ const StyledSelect = styled.select`
   }
 `;
 
-const Select = ({ options, defaultValue, id, onChange, ...otherProps }) =>
-  <StyledSelect
-    id={id}
-    name={id}
-    defaultValue={defaultValue}
-    onChange={function(e) {
-      onChange({ [id]: e.target.value });
-    }}
-    {...otherProps}
-  >
+const Select = ({ options, defaultValue, id, ...otherProps }) =>
+  <StyledSelect id={id} name={id} defaultValue={defaultValue} {...otherProps}>
     {options.map(opt =>
       <option key={opt} value={opt}>
         {opt}
@@ -35,15 +27,13 @@ const Select = ({ options, defaultValue, id, onChange, ...otherProps }) =>
   </StyledSelect>;
 
 Select.defaultProps = {
-  options: [],
-  onChange: noop
+  options: []
 };
 
 Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   defaultValue: PropTypes.string,
-  id: PropTypes.string,
-  onChange: PropTypes.func
+  id: PropTypes.string
 };
 
-export default Select;
+export default withChangeHandler(Select);

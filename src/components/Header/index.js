@@ -1,9 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 
+import CustomPropTypes from "custom-prop-types";
 import IconButton from "components/IconButton";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
@@ -34,21 +35,21 @@ export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
 `;
 
-const Header = ({ breadcrumb, hasUtilityBtns }) =>
+const Header = ({ questionnaire }) =>
   <StyledHeader>
     <Grid align="center">
-      <Column cols={3}>
+      <Column cols={2}>
         <Logo to="/">
           <img src={logo} alt="Dahl" />
         </Logo>
       </Column>
 
       <Column>
-        {breadcrumb && <Breadcrumb breadcrumb={breadcrumb} />}
+        {questionnaire && <Breadcrumb title={questionnaire.title} />}
       </Column>
 
       <Column>
-        {hasUtilityBtns &&
+        {questionnaire &&
           <UtilityBtns horizontal>
             <IconButton icon="preview" title="Preview" disabled />
             <IconButton icon="export" title="Export" disabled />
@@ -58,15 +59,7 @@ const Header = ({ breadcrumb, hasUtilityBtns }) =>
   </StyledHeader>;
 
 Header.propTypes = {
-  hasUtilityBtns: PropTypes.bool,
-  breadcrumb: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    path: PropTypes.string.isRequired
-  })
-};
-
-Header.defaultProps = {
-  hasUtilityBtns: true
+  questionnaire: CustomPropTypes.questionnaire
 };
 
 export default Header;

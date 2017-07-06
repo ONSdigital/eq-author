@@ -6,7 +6,7 @@ import updateQuestionnaire from "queries/updateQuestionnaire";
 import QuestionnaireMeta from "./QuestionnaireMeta";
 
 export const mapStateToProps = (state, ownProps) => ({
-  id: ownProps.match.params.id
+  questionnaireId: ownProps.match.params.questionnaireId
 });
 
 export const mapResultsToProps = ({ data, ownProps }) => {
@@ -20,13 +20,13 @@ export const mapResultsToProps = ({ data, ownProps }) => {
 
 export const withData = graphql(getQuestionnaire, {
   props: mapResultsToProps,
-  options: props => ({ variables: { id: props.id } })
+  options: props => ({ variables: { id: props.questionnaireId } })
 });
 
 export const withMutation = graphql(updateQuestionnaire, {
   props: ({ ownProps, mutate }) => ({
-    onUpdate(variables) {
-      return mutate({ variables });
+    update({ questionnaire }) {
+      return mutate({ variables: questionnaire });
     }
   })
 });

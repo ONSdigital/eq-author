@@ -6,7 +6,7 @@ import { colors } from "constants/theme";
 import { transparentize } from "polished";
 
 const StyledCanvasSection = styled.div`
-  padding: 2em 2.625em;
+  padding: 2em 2.5em;
   margin-bottom: -2px;
   border-bottom: 2px dashed #c6c6c6;
 
