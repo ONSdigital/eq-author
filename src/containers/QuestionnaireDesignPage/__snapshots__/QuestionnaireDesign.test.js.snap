@@ -34,6 +34,7 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
             "description": "lorem ipsum",
             "guidance": "foo bar blah meh",
             "title": "my questions",
+            "type": "General",
           }
         }
         section={
@@ -56,6 +57,9 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
           onSubmit={[Function]}
           question={
             Object {
+              "description": "lorem ipsum",
+              "guidance": "foo bar blah meh",
+              "title": "my questions",
               "type": "General",
             }
           }

@@ -26,7 +26,8 @@ export class QuestionnaireDesignPage extends React.Component {
       page: {
         title: "my questions",
         description: "lorem ipsum",
-        guidance: "foo bar blah meh"
+        guidance: "foo bar blah meh",
+        type: "General"
       },
       focussed: "section"
     };
@@ -75,10 +76,7 @@ export class QuestionnaireDesignPage extends React.Component {
           <Column cols={2} gutters={false}>
             <PropertyPane>
               <PropertyPaneTitle>Question properties</PropertyPaneTitle>
-              <QuestionProperties
-                question={{ type: "General" }}
-                onSubmit={noop}
-              />
+              <QuestionProperties question={page} onSubmit={noop} />
             </PropertyPane>
           </Column>
         </Grid>
