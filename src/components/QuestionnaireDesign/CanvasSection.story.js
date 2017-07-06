@@ -3,15 +3,15 @@ import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
-import PageSection from "./PageSection";
+import CanvasSection from "./CanvasSection";
 import SeamlessInput from "./SeamlessInput";
 
-storiesOf("PageSection", module)
+storiesOf("CanvasSection", module)
   .addDecorator(withKnobs)
   .add("Default", () =>
-    <PageSection id="foo" focussed={boolean("focussed", true)}>
+    <CanvasSection id="foo" focussed={boolean("focussed", true)}>
       <SeamlessInput id="foo" value="Hello World" onChange={action("change")} />
-    </PageSection>
+    </CanvasSection>
   )
   .add("Following focus", () => {
     class Wrapper extends React.Component {
@@ -35,7 +35,7 @@ storiesOf("PageSection", module)
 
         return (
           <div>
-            <PageSection
+            <CanvasSection
               onFocus={this.handleFocus}
               id="section-1"
               focussed={focussed === "section-1"}
@@ -46,8 +46,8 @@ storiesOf("PageSection", module)
                 onChange={this.handleChange}
                 autoFocus
               />
-            </PageSection>
-            <PageSection
+            </CanvasSection>
+            <CanvasSection
               onFocus={this.handleFocus}
               id="section-2"
               focussed={focussed === "section-2"}
@@ -57,7 +57,7 @@ storiesOf("PageSection", module)
                 value={this.state.bar}
                 onChange={this.handleChange}
               />
-            </PageSection>
+            </CanvasSection>
           </div>
         );
       }

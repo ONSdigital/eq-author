@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PageCanvas = styled.div`
+const Canvas = styled.div`
   width: calc(50% - 1em);
   margin: 2em auto;
   padding: 0;
@@ -10,4 +10,4 @@ const PageCanvas = styled.div`
     0 1px 5px 0 rgba(0, 0, 0, .12);
 `;
 
-export default PageCanvas;
+export default Canvas;

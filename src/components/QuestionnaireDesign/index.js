@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import PageSection from "./PageSection";
-import PageCanvas from "./PageCanvas";
+import CanvasSection from "./CanvasSection";
+import Canvas from "./Canvas";
 import SeamlessInput from "./SeamlessInput";
 import SeamlessTextArea from "./SeamlessTextArea";
 import Field from "components/Forms/Field";
@@ -23,9 +23,9 @@ const QuestionnaireDesign = ({
   onFocus,
   focussed
 }) =>
-  <PageCanvas>
+  <Canvas>
     <Form onChange={noop} onSubmit={noop}>
-      <PageSection
+      <CanvasSection
         id="section"
         onFocus={onFocus}
         focussed={focussed === "section"}
@@ -48,8 +48,8 @@ const QuestionnaireDesign = ({
             value={section.description}
           />
         </Field>
-      </PageSection>
-      <PageSection id="page" onFocus={onFocus} focussed={focussed === "page"}>
+      </CanvasSection>
+      <CanvasSection id="page" onFocus={onFocus} focussed={focussed === "page"}>
         <Field id="page.title">
           <SeamlessInput
             size="large"
@@ -72,8 +72,8 @@ const QuestionnaireDesign = ({
             onChange={onChange}
           />
         </Field>
-      </PageSection>
-      <PageSection
+      </CanvasSection>
+      <CanvasSection
         id="answers"
         onFocus={onFocus}
         focussed={focussed === "answers"}
@@ -81,9 +81,9 @@ const QuestionnaireDesign = ({
         <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
           add an answer
         </AddAnswerButton>
-      </PageSection>
+      </CanvasSection>
     </Form>
-  </PageCanvas>;
+  </Canvas>;
 
 QuestionnaireDesign.propTypes = {
   section: CustomPropTypes.section,

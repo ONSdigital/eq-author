@@ -4,7 +4,7 @@ import { noop } from "lodash";
 import styled from "styled-components";
 import { colors } from "constants/theme";
 
-const StyledPageSection = styled.div`
+const StyledCanvasSection = styled.div`
   padding: 2em 2.625em;
   margin-bottom: -2px;
   border-bottom: 2px dashed #c6c6c6;
@@ -20,7 +20,7 @@ const StyledPageSection = styled.div`
   }
 `;
 
-export default class PageSection extends Component {
+export default class CanvasSection extends Component {
   static propTypes = {
     children: PropTypes.node,
     onFocus: PropTypes.func,
@@ -42,9 +42,9 @@ export default class PageSection extends Component {
     const { children, focussed } = this.props;
 
     return (
-      <StyledPageSection onFocus={this.handleFocus} focussed={focussed}>
+      <StyledCanvasSection onFocus={this.handleFocus} focussed={focussed}>
         {Children.map(children, child => cloneElement(child, { focussed }))}
-      </StyledPageSection>
+      </StyledCanvasSection>
     );
   }
 }

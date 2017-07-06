@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageSection should render 1`] = `
-<PageSection__StyledPageSection
+exports[`CanvasSection should render 1`] = `
+<CanvasSection__StyledCanvasSection
   focussed={true}
   onFocus={[Function]}
 >
   <Child
     focussed={true}
   />
-</PageSection__StyledPageSection>
+</CanvasSection__StyledCanvasSection>
 `;

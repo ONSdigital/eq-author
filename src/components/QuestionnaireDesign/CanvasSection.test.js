@@ -1,19 +1,19 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PageSection from "./PageSection";
+import CanvasSection from "./CanvasSection";
 
 let component, handleFocus;
 
 const Child = () => <div />;
 
-describe("PageSection", () => {
+describe("CanvasSection", () => {
   beforeEach(() => {
     handleFocus = jest.fn();
 
     component = shallow(
-      <PageSection id="foo" onFocus={handleFocus} focussed>
+      <CanvasSection id="foo" onFocus={handleFocus} focussed>
         <Child />
-      </PageSection>
+      </CanvasSection>
     );
   });
 
