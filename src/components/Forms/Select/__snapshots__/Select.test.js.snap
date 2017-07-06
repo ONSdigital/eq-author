@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders without crashing 1`] = `
+<Select__StyledSelect
+  defaultValue="One"
+  id="my-select"
+  name="my-select"
+  onChange={[Function]}
+>
+  <option
+    value="One"
+  >
+    One
+  </option>
+  <option
+    value="Two"
+  >
+    Two
+  </option>
+  <option
+    value="Three"
+  >
+    Three
+  </option>
+  <option
+    value="Four"
+  >
+    Four
+  </option>
+  <option
+    value="Five"
+  >
+    Five
+  </option>
+</Select__StyledSelect>
+`;

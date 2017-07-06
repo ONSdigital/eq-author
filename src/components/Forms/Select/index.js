@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { noop } from "lodash";
 
 import Icon from "./icon.svg";
-import { lowerCase } from "lodash";
 import { colors } from "constants/theme";
 import { sharedStyles } from "components/Forms/css";
 
@@ -35,7 +34,9 @@ export const Select = ({
     {...otherProps}
   >
     {options.map(opt =>
-      <option key={opt} value={lowerCase(opt)}>{opt}</option>
+      <option key={opt} value={opt}>
+        {opt}
+      </option>
     )}
   </StyledSelect>;
 

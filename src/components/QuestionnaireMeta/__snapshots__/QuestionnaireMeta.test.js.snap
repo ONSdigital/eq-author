@@ -1,424 +1,126 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireMeta should render 1`] = `
-<CreateQuestionnaire
-  onBlur={[Function]}
-  onChange={[Function]}
-  onSubmit={[Function]}
-  questionnaire={
-    Object {
-      "description": "I am the description",
-      "legalBasis": "StatisticsOfTradeAct",
-      "theme": "default",
-      "title": "I am the title",
-    }
-  }
->
-  <QuestionnaireMeta__Center>
-    <div
-      className="QuestionnaireMeta__Center-s1h1m1vr-0 fPKJhR"
+<QuestionnaireMeta__Center>
+  <Panel__Panel>
+    <Form
+      onSubmit={[Function]}
     >
-      <Panel__Panel>
-        <div
-          className="Panel__Panel-s1xj5is3-0 eKolNO"
+      <Field
+        id="title"
+      >
+        <Label>
+          Questionnaire Title
+        </Label>
+        <Input
+          defaultValue="I am the title"
+          onBlur={[Function]}
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+      </Field>
+      <Field
+        id="description"
+      >
+        <Label>
+          Description
+        </Label>
+        <Textarea
+          defaultValue="I am the description"
+          onBlur={[Function]}
+          onChange={[Function]}
+          required={true}
+          rows={4}
+        />
+      </Field>
+      <Grid__Grid
+        align="top"
+        fillHeight={true}
+      >
+        <Column__Column
+          cols={6}
         >
-          <Form
-            onSubmit={[Function]}
+          <Field
+            id="surveyId"
           >
-            <Form__StyledForm
-              method="POST"
-              onSubmit={[Function]}
-            >
-              <form
-                className="Form__StyledForm-s6jv3gn-0 kunFFe"
-                method="POST"
-                onSubmit={[Function]}
-              >
-                <Field
-                  id="title"
-                >
-                  <Field__StyledField>
-                    <div
-                      className="Field__StyledField-cku5ef-0 bucpJC"
-                    >
-                      <Label
-                        id="title"
-                      >
-                        <Label__StyledLabel
-                          htmlFor="title"
-                        >
-                          <label
-                            className="Label__StyledLabel-gzykbj-0 jozQjw"
-                            htmlFor="title"
-                          >
-                            Questionnaire Title
-                          </label>
-                        </Label__StyledLabel>
-                      </Label>
-                      <Input
-                        defaultValue="I am the title"
-                        id="title"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        required={true}
-                        type="text"
-                      >
-                        <Input__StyledInput
-                          defaultValue="I am the title"
-                          id="title"
-                          name="title"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          required={true}
-                          type="text"
-                        >
-                          <input
-                            className="Input__StyledInput-s1lyryn2-0 jEbBDH"
-                            defaultValue="I am the title"
-                            id="title"
-                            name="title"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            required={true}
-                            type="text"
-                          />
-                        </Input__StyledInput>
-                      </Input>
-                    </div>
-                  </Field__StyledField>
-                </Field>
-                <Field
-                  id="description"
-                >
-                  <Field__StyledField>
-                    <div
-                      className="Field__StyledField-cku5ef-0 bucpJC"
-                    >
-                      <Label
-                        id="description"
-                      >
-                        <Label__StyledLabel
-                          htmlFor="description"
-                        >
-                          <label
-                            className="Label__StyledLabel-gzykbj-0 jozQjw"
-                            htmlFor="description"
-                          >
-                            Description
-                          </label>
-                        </Label__StyledLabel>
-                      </Label>
-                      <Textarea
-                        defaultValue="I am the description"
-                        id="description"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        required={true}
-                        rows={4}
-                      >
-                        <TextArea__StyledTextArea
-                          defaultValue="I am the description"
-                          id="description"
-                          name="description"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          required={true}
-                          rows={4}
-                        >
-                          <textarea
-                            className="TextArea__StyledTextArea-rz7ml5-0 jktJU"
-                            defaultValue="I am the description"
-                            id="description"
-                            name="description"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            required={true}
-                            rows={4}
-                          />
-                        </TextArea__StyledTextArea>
-                      </Textarea>
-                    </div>
-                  </Field__StyledField>
-                </Field>
-                <Grid__Grid
-                  align="top"
-                  fillHeight={true}
-                >
-                  <div
-                    className="Grid__Grid-s1akagex-0 cqbSSx"
-                  >
-                    <Column__Column
-                      cols={6}
-                    >
-                      <div
-                        className="Column__Column-s15zvkz9-0 jErPFr"
-                        cols={6}
-                      >
-                        <Field
-                          id="surveyId"
-                        >
-                          <Field__StyledField>
-                            <div
-                              className="Field__StyledField-cku5ef-0 bucpJC"
-                            >
-                              <Label
-                                id="surveyId"
-                              >
-                                <Label__StyledLabel
-                                  htmlFor="surveyId"
-                                >
-                                  <label
-                                    className="Label__StyledLabel-gzykbj-0 jozQjw"
-                                    htmlFor="surveyId"
-                                  >
-                                    Survey ID
-                                  </label>
-                                </Label__StyledLabel>
-                              </Label>
-                              <Input
-                                id="surveyId"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                required={true}
-                                type="text"
-                              >
-                                <Input__StyledInput
-                                  id="surveyId"
-                                  name="surveyId"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  required={true}
-                                  type="text"
-                                >
-                                  <input
-                                    className="Input__StyledInput-s1lyryn2-0 jEbBDH"
-                                    id="surveyId"
-                                    name="surveyId"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    required={true}
-                                    type="text"
-                                  />
-                                </Input__StyledInput>
-                              </Input>
-                            </div>
-                          </Field__StyledField>
-                        </Field>
-                      </div>
-                    </Column__Column>
-                  </div>
-                </Grid__Grid>
-                <Grid__Grid
-                  align="top"
-                  fillHeight={true}
-                >
-                  <div
-                    className="Grid__Grid-s1akagex-0 cqbSSx"
-                  >
-                    <Column__Column
-                      cols={6}
-                    >
-                      <div
-                        className="Column__Column-s15zvkz9-0 jErPFr"
-                        cols={6}
-                      >
-                        <Field
-                          id="theme"
-                        >
-                          <Field__StyledField>
-                            <div
-                              className="Field__StyledField-cku5ef-0 bucpJC"
-                            >
-                              <Label
-                                id="theme"
-                              >
-                                <Label__StyledLabel
-                                  htmlFor="theme"
-                                >
-                                  <label
-                                    className="Label__StyledLabel-gzykbj-0 jozQjw"
-                                    htmlFor="theme"
-                                  >
-                                    Theme
-                                  </label>
-                                </Label__StyledLabel>
-                              </Label>
-                              <Select
-                                defaultValue="default"
-                                id="theme"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                options={
-                                  Array [
-                                    "default",
-                                    "census",
-                                  ]
-                                }
-                              >
-                                <Select__StyledSelect
-                                  defaultValue="default"
-                                  id="theme"
-                                  name="theme"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                >
-                                  <select
-                                    className="Select__StyledSelect-s1ok10kz-0 aeALx"
-                                    defaultValue="default"
-                                    id="theme"
-                                    name="theme"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                  >
-                                    <option
-                                      value="default"
-                                    >
-                                      default
-                                    </option>
-                                    <option
-                                      value="census"
-                                    >
-                                      census
-                                    </option>
-                                  </select>
-                                </Select__StyledSelect>
-                              </Select>
-                            </div>
-                          </Field__StyledField>
-                        </Field>
-                      </div>
-                    </Column__Column>
-                    <Column__Column
-                      cols={6}
-                    >
-                      <div
-                        className="Column__Column-s15zvkz9-0 jErPFr"
-                        cols={6}
-                      >
-                        <Field
-                          id="legal_basis"
-                        >
-                          <Field__StyledField>
-                            <div
-                              className="Field__StyledField-cku5ef-0 bucpJC"
-                            >
-                              <Label
-                                id="legal_basis"
-                              >
-                                <Label__StyledLabel
-                                  htmlFor="legal_basis"
-                                >
-                                  <label
-                                    className="Label__StyledLabel-gzykbj-0 jozQjw"
-                                    htmlFor="legal_basis"
-                                  >
-                                    Legal Basis
-                                  </label>
-                                </Label__StyledLabel>
-                              </Label>
-                              <Select
-                                defaultValue="StatisticsOfTradeAct"
-                                id="legal_basis"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                options={
-                                  Array [
-                                    "StatisticsOfTradeAct",
-                                    "Voluntary",
-                                  ]
-                                }
-                              >
-                                <Select__StyledSelect
-                                  defaultValue="StatisticsOfTradeAct"
-                                  id="legal_basis"
-                                  name="legal_basis"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                >
-                                  <select
-                                    className="Select__StyledSelect-s1ok10kz-0 aeALx"
-                                    defaultValue="StatisticsOfTradeAct"
-                                    id="legal_basis"
-                                    name="legal_basis"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                  >
-                                    <option
-                                      value="statistics of trade act"
-                                    >
-                                      StatisticsOfTradeAct
-                                    </option>
-                                    <option
-                                      value="voluntary"
-                                    >
-                                      Voluntary
-                                    </option>
-                                  </select>
-                                </Select__StyledSelect>
-                              </Select>
-                            </div>
-                          </Field__StyledField>
-                        </Field>
-                      </div>
-                    </Column__Column>
-                  </div>
-                </Grid__Grid>
-                <Field
-                  id="navigation"
-                >
-                  <Field__StyledField>
-                    <div
-                      className="Field__StyledField-cku5ef-0 bucpJC"
-                    >
-                      <Input
-                        id="navigation"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        type="checkbox"
-                      >
-                        <Input__StyledInput
-                          id="navigation"
-                          name="navigation"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          type="checkbox"
-                        >
-                          <input
-                            className="Input__StyledInput-s1lyryn2-0 hCKjLU"
-                            id="navigation"
-                            name="navigation"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            type="checkbox"
-                          />
-                        </Input__StyledInput>
-                      </Input>
-                      <Label
-                        id="navigation"
-                        inline={true}
-                      >
-                        <Label__StyledLabel
-                          htmlFor="navigation"
-                          inline={true}
-                        >
-                          <label
-                            className="Label__StyledLabel-gzykbj-0 cbAXcL"
-                            htmlFor="navigation"
-                          >
-                            Navigation
-                          </label>
-                        </Label__StyledLabel>
-                      </Label>
-                    </div>
-                  </Field__StyledField>
-                </Field>
-                Children
-              </form>
-            </Form__StyledForm>
-          </Form>
-        </div>
-      </Panel__Panel>
-    </div>
-  </QuestionnaireMeta__Center>
-</CreateQuestionnaire>
+            <Label>
+              Survey ID
+            </Label>
+            <Input
+              onBlur={[Function]}
+              onChange={[Function]}
+              required={true}
+              type="text"
+            />
+          </Field>
+        </Column__Column>
+      </Grid__Grid>
+      <Grid__Grid
+        align="top"
+        fillHeight={true}
+      >
+        <Column__Column
+          cols={6}
+        >
+          <Field
+            id="theme"
+          >
+            <Label>
+              Theme
+            </Label>
+            <Select
+              defaultValue="default"
+              onBlur={[Function]}
+              onChange={[Function]}
+              options={
+                Array [
+                  "default",
+                  "census",
+                ]
+              }
+            />
+          </Field>
+        </Column__Column>
+        <Column__Column
+          cols={6}
+        >
+          <Field
+            id="legal_basis"
+          >
+            <Label>
+              Legal Basis
+            </Label>
+            <Select
+              defaultValue="StatisticsOfTradeAct"
+              onBlur={[Function]}
+              onChange={[Function]}
+              options={
+                Array [
+                  "StatisticsOfTradeAct",
+                  "Voluntary",
+                ]
+              }
+            />
+          </Field>
+        </Column__Column>
+      </Grid__Grid>
+      <Field
+        id="navigation"
+      >
+        <Input
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <Label
+          inline={true}
+        >
+          Navigation
+        </Label>
+      </Field>
+      Children
+    </Form>
+  </Panel__Panel>
+</QuestionnaireMeta__Center>
 `;

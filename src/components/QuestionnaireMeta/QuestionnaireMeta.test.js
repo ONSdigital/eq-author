@@ -1,5 +1,6 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
+import Form from "components/Forms/Form";
 
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 
@@ -18,7 +19,7 @@ const questionnaire = {
 
 describe("QuestionnaireMeta", () => {
   beforeEach(() => {
-    wrapper = mount(
+    wrapper = shallow(
       <QuestionnaireMeta
         questionnaire={questionnaire}
         onChange={handleChange}
@@ -35,7 +36,7 @@ describe("QuestionnaireMeta", () => {
   });
 
   it("should handle submit event", () => {
-    wrapper.find("form").simulate("submit");
+    wrapper.find(Form).simulate("submit");
     expect(handleSubmit).toHaveBeenCalled();
   });
 
