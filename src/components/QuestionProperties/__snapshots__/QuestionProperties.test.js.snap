@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionProperties should render 1`] = `
+<Form
+  onSubmit={[Function]}
+>
+  <Field
+    id="type"
+  >
+    <Label>
+      Question type
+    </Label>
+    <Select
+      defaultValue="General"
+      onBlur={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          "General",
+          "DateRange",
+          "RepeatingAnswer",
+          "Relationship",
+        ]
+      }
+    />
+  </Field>
+</Form>
+`;

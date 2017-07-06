@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertyPaneTitle should render 1`] = `
+<h3
+  className="PropertyPaneTitle__PropertyPaneTitle-s1du1f2z-0 frUgQG"
+>
+  Child
+</h3>
+`;
