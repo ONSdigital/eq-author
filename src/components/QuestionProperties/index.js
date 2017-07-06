@@ -15,7 +15,7 @@ const QuestionProperties = ({
   return (
     <Form onSubmit={onSubmit}>
       <Field id="type">
-        <Label>Question Type</Label>
+        <Label>Question type</Label>
         <Select
           options={["General", "DateRange", "RepeatingAnswer", "Relationship"]}
           defaultValue={question.type}
