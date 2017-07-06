@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import Canvas from "./Canvas";
 
-describe("SeamlessInput", () => {
+describe("Canvas", () => {
   let component;
 
   beforeEach(() => {

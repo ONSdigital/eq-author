@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SeamlessInput should render 1`] = `
+exports[`Canvas should render 1`] = `
 <div
-  className="Canvas__Canvas-s1kkp47t-0 jNCOqm"
+  className="Canvas__Canvas-s1h2plxo-0 iRXYJU"
 >
   Children
 </div>
