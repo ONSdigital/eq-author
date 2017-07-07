@@ -11,7 +11,7 @@ describe("CanvasSection", () => {
     handleFocus = jest.fn();
 
     component = shallow(
-      <CanvasSection id="foo" onFocus={handleFocus} focussed>
+      <CanvasSection id="foo" onFocus={handleFocus} focused>
         <Child />
       </CanvasSection>
     );
@@ -26,7 +26,7 @@ describe("CanvasSection", () => {
     expect(handleFocus).toHaveBeenCalledWith("foo");
   });
 
-  it("should pass on its focussed prop", () => {
-    expect(component.find(Child).prop("focussed")).toBe(true);
+  it("should pass on its focused prop", () => {
+    expect(component.find(Child).prop("focused")).toBe(true);
   });
 });

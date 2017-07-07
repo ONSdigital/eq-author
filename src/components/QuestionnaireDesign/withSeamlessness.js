@@ -58,14 +58,14 @@ const withSeamlessness = WrappedComponent => {
     static defaultProps = {
       size: "small",
       optional: false,
-      focussed: false
+      focused: false
     };
 
     static propTypes = {
       id: PropTypes.string,
       onChange: PropTypes.func.isRequired,
       value: PropTypes.string.isRequired,
-      focussed: PropTypes.bool,
+      focused: PropTypes.bool,
       optional: PropTypes.bool,
       autoFocus: PropTypes.bool,
       placeholder: PropTypes.string,
@@ -79,14 +79,14 @@ const withSeamlessness = WrappedComponent => {
         id,
         optional,
         value,
-        focussed,
+        focused,
         placeholder,
         autoFocus,
         size,
         onChange
       } = this.props;
 
-      const shouldBeHidden = optional && !value && !focussed;
+      const shouldBeHidden = optional && !value && !focused;
 
       return (
         <StyledSeamless

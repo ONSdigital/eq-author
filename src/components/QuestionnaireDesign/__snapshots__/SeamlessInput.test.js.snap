@@ -2,7 +2,7 @@
 
 exports[`SeamlessInput should render 1`] = `
 <withSeamlessness(withChangeHandler(Input))
-  focussed={false}
+  focused={false}
   id="foo"
   onChange={[Function]}
   optional={false}
@@ -18,7 +18,7 @@ exports[`SeamlessInput should render 1`] = `
   >
     <withChangeHandler(Input)
       aria-hidden={false}
-      className="withSeamlessness__StyledSeamless-s3omn9i-0 gfNuBU"
+      className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo"
       name="foo"
       onChange={[Function]}
       size="small"
@@ -26,7 +26,7 @@ exports[`SeamlessInput should render 1`] = `
     >
       <Input
         aria-hidden={false}
-        className="withSeamlessness__StyledSeamless-s3omn9i-0 gfNuBU"
+        className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo"
         name="foo"
         onChange={[Function]}
         size="small"
@@ -34,7 +34,7 @@ exports[`SeamlessInput should render 1`] = `
       >
         <input
           aria-hidden={false}
-          className="withSeamlessness__StyledSeamless-s3omn9i-0 gfNuBU"
+          className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo"
           name="foo"
           onChange={[Function]}
           size="small"

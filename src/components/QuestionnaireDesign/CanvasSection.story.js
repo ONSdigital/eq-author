@@ -9,7 +9,7 @@ import SeamlessInput from "./SeamlessInput";
 storiesOf("CanvasSection", module)
   .addDecorator(withKnobs)
   .add("Default", () =>
-    <CanvasSection id="foo" focussed={boolean("focussed", true)}>
+    <CanvasSection id="foo" focused={boolean("focused", true)}>
       <SeamlessInput id="foo" value="Hello World" onChange={action("change")} />
     </CanvasSection>
   )
@@ -19,26 +19,26 @@ storiesOf("CanvasSection", module)
         super(props);
 
         this.state = {
-          focussed: "section-1",
+          focused: "section-1",
           foo: "hello",
           bar: "world"
         };
       }
 
-      handleFocus = focussed => this.setState({ focussed });
+      handleFocus = focused => this.setState({ focused });
       handleChange = ({ name, value }) => {
         this.setState({ [name]: value });
       };
 
       render() {
-        const { focussed } = this.state;
+        const { focused } = this.state;
 
         return (
           <div>
             <CanvasSection
               onFocus={this.handleFocus}
               id="section-1"
-              focussed={focussed === "section-1"}
+              focused={focused === "section-1"}
             >
               <SeamlessInput
                 id="foo"
@@ -50,7 +50,7 @@ storiesOf("CanvasSection", module)
             <CanvasSection
               onFocus={this.handleFocus}
               id="section-2"
-              focussed={focussed === "section-2"}
+              focused={focused === "section-2"}
             >
               <SeamlessInput
                 id="bar"

@@ -29,7 +29,7 @@ export class QuestionnaireDesignPage extends React.Component {
         guidance: "foo bar blah meh",
         type: "General"
       },
-      focussed: "section"
+      focused: "section"
     };
   }
 
@@ -42,14 +42,14 @@ export class QuestionnaireDesignPage extends React.Component {
   };
 
   handleFocus = sectionId => {
-    if (sectionId !== this.state.focussed) {
-      this.setState({ focussed: sectionId });
+    if (sectionId !== this.state.focused) {
+      this.setState({ focused: sectionId });
     }
   };
 
   render() {
     const { loading, questionnaire } = this.props;
-    const { section, page, focussed } = this.state;
+    const { section, page, focused } = this.state;
 
     if (loading) {
       return <div>Loading...</div>;
@@ -67,7 +67,7 @@ export class QuestionnaireDesignPage extends React.Component {
             <QuestionnaireDesign
               section={section}
               page={page}
-              focussed={focussed}
+              focused={focused}
               onAnswerAdd={this.handleAnswerAdd}
               onChange={this.handleChange}
               onFocus={this.handleFocus}

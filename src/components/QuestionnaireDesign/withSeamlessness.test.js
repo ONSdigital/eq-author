@@ -23,49 +23,49 @@ describe("withSeamlessness", () => {
       {
         value: "",
         optional: false,
-        focussed: false,
+        focused: false,
         shouldBeHidden: false
       },
       {
         value: "foo",
         optional: false,
-        focussed: false,
+        focused: false,
         shouldBeHidden: false
       },
       {
         value: "",
         optional: true,
-        focussed: false,
+        focused: false,
         shouldBeHidden: true
       },
       {
         value: "foo",
         optional: true,
-        focussed: false,
+        focused: false,
         shouldBeHidden: false
       },
       {
         value: "",
         optional: false,
-        focussed: true,
+        focused: true,
         shouldBeHidden: false
       },
       {
         value: "foo",
         optional: false,
-        focussed: true,
+        focused: true,
         shouldBeHidden: false
       },
       {
         value: "",
         optional: true,
-        focussed: true,
+        focused: true,
         shouldBeHidden: false
       },
       {
         value: "foo",
         optional: true,
-        focussed: true,
+        focused: true,
         shouldBeHidden: false
       }
     ];

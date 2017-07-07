@@ -2,11 +2,11 @@
 
 exports[`CanvasSection should render 1`] = `
 <CanvasSection__StyledCanvasSection
-  focussed={true}
+  focused={true}
   onFocus={[Function]}
 >
   <Child
-    focussed={true}
+    focused={true}
   />
 </CanvasSection__StyledCanvasSection>
 `;

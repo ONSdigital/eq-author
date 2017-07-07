@@ -10,7 +10,7 @@ const StyledCanvasSection = styled.div`
   border-bottom: 2px dashed #c6c6c6;
   outline-offset: -3px;
   outline: ${props =>
-    props.focussed ? `3px solid ${colors.lightBlue}` : "none"};
+    props.focused ? `3px solid ${colors.lightBlue}` : "none"};
 
   &:last-child {
     border: none;
@@ -24,14 +24,14 @@ export default class CanvasSection extends Component {
   static propTypes = {
     children: PropTypes.node,
     onFocus: PropTypes.func,
-    focussed: PropTypes.bool,
+    focused: PropTypes.bool,
     id: PropTypes.string
   };
 
   static defaultProps = {
     onFocus: noop,
     onBlur: noop,
-    focussed: false
+    focused: false
   };
 
   handleFocus = e => {
@@ -39,11 +39,11 @@ export default class CanvasSection extends Component {
   };
 
   render() {
-    const { children, focussed } = this.props;
+    const { children, focused } = this.props;
 
     return (
-      <StyledCanvasSection onFocus={this.handleFocus} focussed={focussed}>
-        {Children.map(children, child => cloneElement(child, { focussed }))}
+      <StyledCanvasSection onFocus={this.handleFocus} focused={focused}>
+        {Children.map(children, child => cloneElement(child, { focused }))}
       </StyledCanvasSection>
     );
   }
