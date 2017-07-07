@@ -30,6 +30,7 @@ export default class CanvasSection extends Component {
   static propTypes = {
     children: PropTypes.node,
     onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     focused: PropTypes.bool,
     id: PropTypes.string
   };
@@ -44,11 +45,19 @@ export default class CanvasSection extends Component {
     this.props.onFocus(this.props.id);
   };
 
+  handleBlur = e => {
+    this.props.onBlur(null);
+  };
+
   render() {
     const { children, focused } = this.props;
 
     return (
-      <StyledCanvasSection onFocus={this.handleFocus} focused={focused}>
+      <StyledCanvasSection
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        focused={focused}
+      >
         {Children.map(children, child => cloneElement(child, { focused }))}
       </StyledCanvasSection>
     );

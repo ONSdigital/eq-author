@@ -21,6 +21,7 @@ const QuestionnaireDesign = ({
   onChange,
   onAnswerAdd,
   onFocus,
+  onBlur,
   focused
 }) =>
   <Canvas>
@@ -28,6 +29,7 @@ const QuestionnaireDesign = ({
       <CanvasSection
         id="section"
         onFocus={onFocus}
+        onBlur={onBlur}
         focused={focused === "section"}
       >
         <Field id="section.title">
@@ -49,7 +51,12 @@ const QuestionnaireDesign = ({
           />
         </Field>
       </CanvasSection>
-      <CanvasSection id="page" onFocus={onFocus} focused={focused === "page"}>
+      <CanvasSection
+        id="page"
+        onFocus={onFocus}
+        onBlur={onBlur}
+        focused={focused === "page"}
+      >
         <Field id="page.title">
           <SeamlessInput
             size="large"
@@ -76,6 +83,7 @@ const QuestionnaireDesign = ({
       <CanvasSection
         id="answers"
         onFocus={onFocus}
+        onBlur={onBlur}
         focused={focused === "answers"}
       >
         <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
@@ -91,7 +99,8 @@ QuestionnaireDesign.propTypes = {
   onChange: PropTypes.func.isRequired,
   onAnswerAdd: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
-  focused: PropTypes.oneOf(["section", "page", "answers"])
+  onBlur: PropTypes.func.isRequired,
+  focused: PropTypes.oneOf(["section", "page", "answers", null])
 };
 
 export default QuestionnaireDesign;

@@ -3,6 +3,7 @@
 exports[`CanvasSection should render 1`] = `
 <CanvasSection__StyledCanvasSection
   focused={true}
+  onBlur={[Function]}
   onFocus={[Function]}
 >
   <Child

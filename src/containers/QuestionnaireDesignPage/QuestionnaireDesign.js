@@ -41,7 +41,7 @@ export class QuestionnaireDesignPage extends React.Component {
     alert("add an answer to this parent");
   };
 
-  handleFocus = sectionId => {
+  handleFocusChange = sectionId => {
     if (sectionId !== this.state.focused) {
       this.setState({ focused: sectionId });
     }
@@ -70,7 +70,8 @@ export class QuestionnaireDesignPage extends React.Component {
               focused={focused}
               onAnswerAdd={this.handleAnswerAdd}
               onChange={this.handleChange}
-              onFocus={this.handleFocus}
+              onFocus={this.handleFocusChange}
+              onBlur={this.handleFocusChange}
             />
           </Column>
           <Column cols={2} gutters={false}>
