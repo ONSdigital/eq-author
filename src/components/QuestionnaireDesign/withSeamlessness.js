@@ -3,6 +3,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 
+/**
+ * 1.75em  = 28px/16px
+ * 1.125em = 18px/16px
+ * 0.875em = 14px/16px
+ */
 const sizes = {
   large: css`
     font-size: 1.75em;

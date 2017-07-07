@@ -18,7 +18,7 @@ exports[`SeamlessTextArea should render 1`] = `
   >
     <withChangeHandler(SeamlessTextArea__TextArea)
       aria-hidden={false}
-      className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo"
+      className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
       name="foo"
       onChange={[Function]}
       size="small"
@@ -26,7 +26,7 @@ exports[`SeamlessTextArea should render 1`] = `
     >
       <SeamlessTextArea__TextArea
         aria-hidden={false}
-        className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo"
+        className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
         name="foo"
         onChange={[Function]}
         size="small"
@@ -34,7 +34,7 @@ exports[`SeamlessTextArea should render 1`] = `
       >
         <TextareaAutosize
           aria-hidden={false}
-          className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+          className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
           name="foo"
           onChange={[Function]}
           onHeightChange={[Function]}
@@ -44,7 +44,7 @@ exports[`SeamlessTextArea should render 1`] = `
         >
           <textarea
             aria-hidden={false}
-            className="withSeamlessness__StyledSeamless-s8z3bxs-0 ffymfo SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+            className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
             name="foo"
             onChange={[Function]}
             size="small"
