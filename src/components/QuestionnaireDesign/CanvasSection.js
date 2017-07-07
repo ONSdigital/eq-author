@@ -9,15 +9,20 @@ const StyledCanvasSection = styled.div`
   padding: 2em 2.625em;
   margin-bottom: -2px;
   border-bottom: 2px dashed #c6c6c6;
+
+  transition: outline-color 0.1s ease-in;
   outline-offset: -2px;
-  outline: ${props =>
-    props.focused ? `2px solid ${colors.lightBlue} !important` : "none"};
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: ${props =>
+    props.focused ? `${colors.lightBlue} !important` : "transparent"};
+
+  &:hover {
+    outline-color: ${transparentize(0.6, colors.lightBlue)};
+  }
 
   &:last-child {
     border: none;
-  }
-  &:hover {
-    outline: 2px solid ${transparentize(0.6, colors.lightBlue)};
   }
 `;
 
