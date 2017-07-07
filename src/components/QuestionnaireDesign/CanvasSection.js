@@ -3,20 +3,21 @@ import PropTypes from "prop-types";
 import { noop } from "lodash";
 import styled from "styled-components";
 import { colors } from "constants/theme";
+import { transparentize } from "polished";
 
 const StyledCanvasSection = styled.div`
   padding: 2em 2.625em;
   margin-bottom: -2px;
   border-bottom: 2px dashed #c6c6c6;
-  outline-offset: -3px;
+  outline-offset: -2px;
   outline: ${props =>
-    props.focused ? `3px solid ${colors.lightBlue}` : "none"};
+    props.focused ? `2px solid ${colors.lightBlue} !important` : "none"};
 
   &:last-child {
     border: none;
   }
   &:hover {
-    outline: 3px solid ${colors.lightBlue};
+    outline: 2px solid ${transparentize(0.6, colors.lightBlue)};
   }
 `;
 
