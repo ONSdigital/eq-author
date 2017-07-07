@@ -13,5 +13,3 @@ export const sharedStyles = css`
     border: 1px solid ${colors.lightBlue};
   }
 `;
-
-export const hello = "hello";

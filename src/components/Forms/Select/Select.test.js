@@ -21,22 +21,7 @@ describe("Select", () => {
   });
 
   it("renders without crashing", () => {
-    shallow(select);
-  });
-
-  it("renders a select element", () => {
-    const app = mount(select);
-
-    expect(app.find("select").length).toEqual(1);
-  });
-
-  it("renders options as children of select", () => {
-    const app = mount(select);
-
-    expect(app.find("select").children().length).toEqual(options.length);
-    app.find("select").children().forEach(e => {
-      expect(e.type()).toEqual("option");
-    });
+    expect(shallow(select)).toMatchSnapshot();
   });
 
   it("calls onChange when value changed", () => {

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeamlessInput should render 1`] = `
+<withSeamlessness(withChangeHandler(Input))
+  focused={false}
+  id="foo"
+  onChange={[Function]}
+  optional={false}
+  size="small"
+  value="123"
+>
+  <withSeamlessness__StyledSeamless
+    aria-hidden={false}
+    name="foo"
+    onChange={[Function]}
+    size="small"
+    value="123"
+  >
+    <withChangeHandler(Input)
+      aria-hidden={false}
+      className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
+      name="foo"
+      onChange={[Function]}
+      size="small"
+      value="123"
+    >
+      <Input
+        aria-hidden={false}
+        className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
+        name="foo"
+        onChange={[Function]}
+        size="small"
+        value="123"
+      >
+        <input
+          aria-hidden={false}
+          className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
+          name="foo"
+          onChange={[Function]}
+          size="small"
+          type="text"
+          value="123"
+        />
+      </Input>
+    </withChangeHandler(Input)>
+  </withSeamlessness__StyledSeamless>
+</withSeamlessness(withChangeHandler(Input))>
+`;

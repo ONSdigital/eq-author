@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeamlessTextArea should render 1`] = `
+<withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+  focused={false}
+  id="foo"
+  onChange={[Function]}
+  optional={false}
+  size="small"
+  value="123"
+>
+  <withSeamlessness__StyledSeamless
+    aria-hidden={false}
+    name="foo"
+    onChange={[Function]}
+    size="small"
+    value="123"
+  >
+    <withChangeHandler(SeamlessTextArea__TextArea)
+      aria-hidden={false}
+      className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
+      name="foo"
+      onChange={[Function]}
+      size="small"
+      value="123"
+    >
+      <SeamlessTextArea__TextArea
+        aria-hidden={false}
+        className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD"
+        name="foo"
+        onChange={[Function]}
+        size="small"
+        value="123"
+      >
+        <TextareaAutosize
+          aria-hidden={false}
+          className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+          name="foo"
+          onChange={[Function]}
+          onHeightChange={[Function]}
+          size="small"
+          useCacheForDOMMeasurements={false}
+          value="123"
+        >
+          <textarea
+            aria-hidden={false}
+            className="withSeamlessness__StyledSeamless-dmq0g0-0 fGzgTD SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+            name="foo"
+            onChange={[Function]}
+            size="small"
+            style={
+              Object {
+                "height": 0,
+              }
+            }
+            value="123"
+          />
+        </TextareaAutosize>
+      </SeamlessTextArea__TextArea>
+    </withChangeHandler(SeamlessTextArea__TextArea)>
+  </withSeamlessness__StyledSeamless>
+</withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
+`;

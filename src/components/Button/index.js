@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { radius, colors } from "constants/theme";
-import tinycolor from "tinycolor2";
+import { darken } from "polished";
 
-const darken = color => tinycolor(color).darken(10).toString();
+const darken10 = darken(0.1);
 
 const ClearButton = css`
   background: transparent;
@@ -18,7 +18,7 @@ const PrimaryButton = css`
   border: none;
   &:focus,
   &:hover {
-    background-color: ${darken(colors.blue)}
+    background-color: ${darken10(colors.blue)}
   }
 `;
 
@@ -40,7 +40,7 @@ const TertiaryButton = css`
 
   &:focus,
   &:hover {
-    background-color: ${darken(colors.red)}
+    background-color: ${darken10(colors.red)}
   }
 `;
 
@@ -60,7 +60,7 @@ const StyledButton = styled.button`
 
   &:focus,
   &:active {
-    outline: none
+    outline: none;
   }
 
   &[disabled] {
@@ -68,14 +68,15 @@ const StyledButton = styled.button`
     opacity: 0.6;
   }
 
-  ${props => props.primary && PrimaryButton}
-  ${props => props.secondary && SecondaryButton}
-  ${props => props.tertiary && TertiaryButton}
-  ${props => props.clear && ClearButton}
+  ${props => props.primary && PrimaryButton} ${props =>
+      props.secondary && SecondaryButton} ${props =>
+      props.tertiary && TertiaryButton} ${props => props.clear && ClearButton};
 `;
 
 const Button = ({ children, type, ...otherProps }) =>
-  <StyledButton {...otherProps} type={type}>{children}</StyledButton>;
+  <StyledButton {...otherProps} type={type}>
+    {children}
+  </StyledButton>;
 
 Button.propTypes = {
   primary: PropTypes.bool,
