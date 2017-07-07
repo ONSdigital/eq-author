@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { colorBlue } from "constants/theme";
+import { colors } from "constants/theme";
 
 const SelectedTabTitle = css`
   border-bottom: none;
@@ -9,7 +9,7 @@ const SelectedTabTitle = css`
   border-style: solid;
   border-width: 0 0 2px 0;
   div{
-    color: ${colorBlue};
+    color: ${colors.blue};
   }
 `;
 
@@ -31,8 +31,8 @@ const StyledTabTitle = styled.li`
   cursor: pointer;
   transition: border-color 200ms ease-in-out;
   &:hover {
-    div{
-      color: ${colorBlue};
+    div {
+      color: ${colors.blue};
     }
   }
   &[aria-selected=true] {
@@ -52,11 +52,12 @@ const TabLabel = styled.div`
   transition: color 200ms ease-in-out;
 `;
 
-const TabTitle = ({ children, onClick, selected = true, ...otherProps }) => (
+const TabTitle = ({ children, onClick, selected = true, ...otherProps }) =>
   <StyledTabTitle onClick={onClick} aria-selected={selected} {...otherProps}>
-    <TabLabel>{children}</TabLabel>
-  </StyledTabTitle>
-);
+    <TabLabel>
+      {children}
+    </TabLabel>
+  </StyledTabTitle>;
 
 TabTitle.propTypes = {
   children: PropTypes.string.isRequired,

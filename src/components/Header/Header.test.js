@@ -2,7 +2,7 @@ import React from "react";
 
 import { shallow } from "enzyme";
 
-import { Header, UtilityBtns, Logo } from "components/Header";
+import Header, { UtilityBtns, Logo } from "components/Header";
 import Breadcrumb from "components/Breadcrumb";
 
 let wrapper;
@@ -36,7 +36,11 @@ describe("components/Header", function() {
 describe("components/Header/UtilityBtns", function() {
   it("will render children", function() {
     const children = "I am some children";
-    const wrapper = shallow(<UtilityBtns>{children}</UtilityBtns>);
+    const wrapper = shallow(
+      <UtilityBtns>
+        {children}
+      </UtilityBtns>
+    );
     expect(wrapper.contains(children)).toBe(true);
   });
 });
