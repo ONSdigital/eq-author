@@ -2,7 +2,7 @@
 
 exports[`QuestionnaireMeta should render 1`] = `
 <QuestionnaireMeta__Center>
-  <Panel__Panel>
+  <Panel__CenteredPanel>
     <Form
       onSubmit={[Function]}
     >
@@ -121,6 +121,6 @@ exports[`QuestionnaireMeta should render 1`] = `
       </Field>
       Children
     </Form>
-  </Panel__Panel>
+  </Panel__CenteredPanel>
 </QuestionnaireMeta__Center>
 `;

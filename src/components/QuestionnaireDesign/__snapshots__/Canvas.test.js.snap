@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Canvas should render 1`] = `
-<div
-  className="Canvas__Canvas-s1h2plxo-0 iRXYJU"
+<Panel__Panel
+  className="Canvas__Canvas-s1frdwdn-0 gmergn"
 >
   Children
-</div>
+</Panel__Panel>
 `;

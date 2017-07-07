@@ -11,8 +11,10 @@ export const colors = {
 };
 
 export const radius = "2px";
+export const shadow = "0 2px 4px rgba(0,0,0,0.1)";
 
 export default {
   colors,
-  radius
+  radius,
+  shadow
 };

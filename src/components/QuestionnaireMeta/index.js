@@ -7,7 +7,7 @@ import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
 
-import Panel from "components/Panel";
+import { CenteredPanel } from "components/Panel";
 
 const Center = styled.div`
   width: 100%;
@@ -26,7 +26,7 @@ const CreateQuestionnaire = ({
 }) => {
   return (
     <Center>
-      <Panel>
+      <CenteredPanel>
         <Form onSubmit={onSubmit}>
           <Field id="title">
             <Label>Questionnaire Title</Label>
@@ -95,7 +95,7 @@ const CreateQuestionnaire = ({
           </Field>
           {children}
         </Form>
-      </Panel>
+      </CenteredPanel>
     </Center>
   );
 };

@@ -1,23 +1,24 @@
-// import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-
-import { radius } from "constants/theme";
+import theme from "constants/theme";
 
 const Panel = styled.div`
-  border-radius: ${radius};
-  padding: 3em;
-  background-color: #FFF;
-  display: flex;
-  flex: 1 1 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: ${theme.radius};
+  background-color: ${theme.colors.white};
+  box-shadow: ${theme.shadow};
 `;
 
 Panel.propTypes = {
   children: PropTypes.node.isRequired
 };
+
+export const CenteredPanel = styled(Panel)`
+  padding: 3em;
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default Panel;

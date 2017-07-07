@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
-import Panel from "components/Panel";
+import { CenteredPanel } from "components/Panel";
 import BaseLayout from "components/BaseLayout";
 
 const Center = styled.div`
@@ -15,7 +15,7 @@ const Center = styled.div`
 const Questionnaires = () =>
   <BaseLayout title="Select to begin" hasNav={false}>
     <Center>
-      <Panel>
+      <CenteredPanel>
         <ButtonGroup vertical>
           <LinkButton
             to="/questionnaire/create"
@@ -28,7 +28,7 @@ const Questionnaires = () =>
             Load existing questionnaire
           </Button>
         </ButtonGroup>
-      </Panel>
+      </CenteredPanel>
     </Center>
   </BaseLayout>;
 
