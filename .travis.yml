@@ -35,6 +35,7 @@ script:
   - yarn test
   - yarn lint -- --max-warnings=0
   - yarn coverage
+  - yarn build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
