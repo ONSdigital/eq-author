@@ -54,6 +54,7 @@ export default class CanvasSection extends Component {
 
     return (
       <StyledCanvasSection
+        onClick={this.handleFocus}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         focused={focused}
