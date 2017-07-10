@@ -3,7 +3,8 @@
   "plugins": [
     "react",
     "babel",
-    "jasmine"
+    "jasmine",
+    "import"
   ],
   "env": {
     "jasmine": true,
@@ -68,6 +69,24 @@
     "react/jsx-no-bind": "warn",
     "react/jsx-pascal-case": "error",
 
-    "babel/no-invalid-this": "error"
+    "babel/no-invalid-this": "error",
+
+    "import/no-unresolved": "error",
+    "import/named": "error",
+    "import/namespace": "error",
+    "import/default": "error",
+    "import/export": "error",
+
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "warn",
+    "import/no-duplicates": "warn",
+    "import/unambiguous": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src"]
+      }
+    }
   }
 }

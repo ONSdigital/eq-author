@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import theme from "constants/theme";
+import { radius, colors, shadow } from "constants/theme";
 
 const Panel = styled.div`
-  border-radius: ${theme.radius};
-  background-color: ${theme.colors.white};
-  box-shadow: ${theme.shadow};
+  border-radius: ${radius};
+  background-color: ${colors.white};
+  box-shadow: ${shadow};
 `;
 
 Panel.propTypes = {

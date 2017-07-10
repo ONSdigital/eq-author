@@ -34,11 +34,9 @@ export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
 `;
 
-export const Header = ({ breadcrumb, hasUtilityBtns }) =>
+const Header = ({ breadcrumb, hasUtilityBtns }) =>
   <StyledHeader>
-
     <Grid align="center">
-
       <Column cols={3}>
         <Logo to="/">
           <img src={logo} alt="Dahl" />
@@ -56,9 +54,7 @@ export const Header = ({ breadcrumb, hasUtilityBtns }) =>
             <IconButton icon="export" title="Export" disabled />
           </UtilityBtns>}
       </Column>
-
     </Grid>
-
   </StyledHeader>;
 
 Header.propTypes = {
