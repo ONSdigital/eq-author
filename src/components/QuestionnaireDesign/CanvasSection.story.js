@@ -9,7 +9,12 @@ import SeamlessInput from "./SeamlessInput";
 storiesOf("CanvasSection", module)
   .addDecorator(withKnobs)
   .add("Default", () =>
-    <CanvasSection id="foo" focused={boolean("focused", true)}>
+    <CanvasSection
+      id="foo"
+      focused={boolean("focused", true)}
+      onFocus={action("focused")}
+      onBlur={action("blurred")}
+    >
       <SeamlessInput id="foo" value="Hello World" onChange={action("change")} />
     </CanvasSection>
   )
