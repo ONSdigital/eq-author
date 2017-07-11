@@ -50,7 +50,7 @@
     "dotenv": "^4.0.0",
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
-    "eslint-config-ons-author": "ONSdigital/eslint-config-ons-author#v1.0.0",
+    "eslint-config-ons-author": "ONSdigital/eslint-config-ons-author#v1.0.2",
     "eslint-loader": "^1.7.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
