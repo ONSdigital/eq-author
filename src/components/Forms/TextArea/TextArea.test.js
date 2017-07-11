@@ -1,12 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
-import { TextArea } from "components/Forms/TextArea";
-let wrapper;
+import TextArea from "components/Forms/TextArea";
+
 const defaultValue = "I am some text";
-const changeHandler = jest.fn();
 
 describe("components/Forms/TextArea", () => {
+  let wrapper;
+  let changeHandler;
+
   beforeEach(() => {
+    changeHandler = jest.fn();
     wrapper = mount(
       <TextArea
         id="text"

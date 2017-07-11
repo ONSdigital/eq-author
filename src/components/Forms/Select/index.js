@@ -17,13 +17,7 @@ const StyledSelect = styled.select`
   }
 `;
 
-export const Select = ({
-  options,
-  defaultValue,
-  id,
-  onChange,
-  ...otherProps
-}) =>
+const Select = ({ options, defaultValue, id, onChange, ...otherProps }) =>
   <StyledSelect
     id={id}
     name={id}

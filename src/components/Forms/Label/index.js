@@ -10,8 +10,10 @@ const StyledLabel = styled.label`
   vertical-align: middle;
 `;
 
-export const Label = ({ id, children, ...otherProps }) =>
-  <StyledLabel htmlFor={id} {...otherProps}>{children}</StyledLabel>;
+const Label = ({ id, children, ...otherProps }) =>
+  <StyledLabel htmlFor={id} {...otherProps}>
+    {children}
+  </StyledLabel>;
 
 Label.propTypes = {
   id: PropTypes.string,
