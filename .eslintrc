@@ -1,91 +1,15 @@
 {
-  "extends": ["eslint:recommended", "react-app", "plugin:react/recommended", "prettier"],
-  "plugins": [
-    "react",
-    "babel",
-    "jasmine",
-    "import"
+  "extends": [
+    "eslint-config-eq-author",
+    "eslint-config-eq-author/react"
   ],
-  "env": {
-    "jasmine": true,
-    "browser": true
-  },
-  "rules": {
-    "eqeqeq": "error",
-    "camelcase": "error",
-    "curly": "error",
-    "guard-for-in": "error",
-    "key-spacing": "off",
-    "new-cap": "off",
-    "consistent-return": "off",
-    "no-alert": "off",
-    "no-bitwise": "error",
-    "no-caller": "error",
-    "no-shadow": "off",
-    "no-console": "warn",
-    "no-extend-native": "error",
-    "no-shadow-restricted-names": "off",
-    "no-underscore-dangle": "off",
-    "no-unused-expressions": "error",
-    "no-use-before-define": "error",
-    "no-extra-bind": "error",
-    "no-lone-blocks": "error",
-    "no-loop-func": "error",
-    "no-new-func": "error",
-    "no-return-assign": "error",
-    "no-sequences": "error",
-    "no-throw-literal": "error",
-    "no-useless-call": "error",
-    "no-useless-concat": "error",
-    "no-useless-escape": "error",
-    "no-unneeded-ternary": "error",
-    "no-with": "error",
-    "strict": ["off", "function"],
-    "one-var": ["error", { "initialized": "never" }],
-    "no-eval": "error",
-    "no-floating-decimal": "error",
-    "no-implicit-coercion": "error",
-    "no-implied-eval": "error",
-    "no-invalid-this": "off",
-    "no-iterator": "error",
-    "no-new": "error",
-    "no-new-wrappers": "error",
-    "no-proto": "error",
-    "no-return-await": "error",
-    "no-script-url": "error",
-    "no-self-compare": "error",
-    "no-unmodified-loop-condition": "error",
-
-    "react/display-name": "off",
-    "react/prop-types": "warn",
-    "react/forbid-prop-types": "warn",
-    "react/no-danger": "error",
-    "react/no-did-mount-set-state": "error",
-    "react/no-did-update-set-state": "error",
-    "react/self-closing-comp": "error",
-
-    "react/jsx-boolean-value": "error",
-    "react/jsx-handler-names": "error",
-    "react/jsx-no-bind": "warn",
-    "react/jsx-pascal-case": "error",
-
-    "babel/no-invalid-this": "error",
-
-    "import/no-unresolved": "error",
-    "import/named": "error",
-    "import/namespace": "error",
-    "import/default": "error",
-    "import/export": "error",
-
-    "import/no-named-as-default": "off",
-    "import/no-named-as-default-member": "warn",
-    "import/no-duplicates": "warn",
-    "import/unambiguous": "off"
-  },
   "settings": {
     "import/resolver": {
       "node": {
-        "moduleDirectory": ["node_modules", "src"]
+        "moduleDirectory": [
+          "node_modules",
+          "src"
+        ]
       }
     }
   }

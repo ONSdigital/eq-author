@@ -8,7 +8,7 @@ const StyledField = styled.div`
   margin-bottom: ${props => (props.last ? "0" : "1")}em;
 `;
 
-export const Field = ({ children, last, id, ...otherProps }) =>
+const Field = ({ children, last, id, ...otherProps }) =>
   <StyledField last={last}>
     {Children.map(children, child =>
       cloneElement(child, { id, ...otherProps })

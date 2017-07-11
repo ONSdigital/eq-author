@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
-import { Field, Label, Input } from "components/Forms";
+import Field from "components/Forms/Field";
+import { Label, Input } from "components/Forms";
 
 let wrapper;
 

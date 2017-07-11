@@ -15,7 +15,7 @@ exports[`components/Forms/TextArea should render correctly 1`] = `
     rows={10}
   >
     <textarea
-      className="TextArea__StyledTextArea-rz7ml5-0 jktJU"
+      className="TextArea__StyledTextArea-s2970v7-0 enCULN"
       defaultValue="I am some text"
       id="text"
       name="text"

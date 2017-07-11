@@ -22,10 +22,10 @@ const checkBox = css`
 
 const StyledInput = styled.input`
   ${sharedStyles};
-  ${props => props.type === "checkbox" && checkBox}
+  ${props => props.type === "checkbox" && checkBox};
 `;
 
-export const Input = ({ type, defaultValue, id, onChange, ...otherProps }) =>
+const Input = ({ type, defaultValue, id, onChange, ...otherProps }) =>
   <StyledInput
     type={type}
     defaultValue={defaultValue}
