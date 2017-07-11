@@ -1,7 +1,7 @@
 {
   "extends": [
-    "eslint-config-ons-author",
-    "eslint-config-ons-author/react"
+    "eslint-config-eq-author",
+    "eslint-config-eq-author/react"
   ],
   "settings": {
     "import/resolver": {

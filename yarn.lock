@@ -3229,9 +3229,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-ons-author@ONSdigital/eslint-config-ons-author#v1.0.2:
+eslint-config-eq-author@^1.0.2:
   version "1.0.2"
-  resolved "https://codeload.github.com/ONSdigital/eslint-config-ons-author/tar.gz/13540156e512012231436fe0756e0d13250147bf"
+  resolved "https://registry.yarnpkg.com/eslint-config-eq-author/-/eslint-config-eq-author-1.0.2.tgz#a2c8f06734941299ea6002f091cba95daf1735db"
   dependencies:
     eslint-config-prettier "^2.1.1"
     eslint-config-react-app "^1.0.4"
@@ -3282,8 +3282,8 @@ eslint-plugin-babel@^4.1.1:
   resolved "https://registry.yarnpkg.com/eslint-plugin-babel/-/eslint-plugin-babel-4.1.1.tgz#ef285c87039b67beb3bbd227f5b0eed4fb376b87"
 
 eslint-plugin-flowtype@^2.34.0:
-  version "2.34.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.34.1.tgz#ea109175645b05d37baeac53b9b65066d79b9446"
+  version "2.35.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.35.0.tgz#d17494f0ae8b727c632d8b9d4b4a848e7e0c04af"
   dependencies:
     lodash "^4.15.0"
 
@@ -3303,8 +3303,8 @@ eslint-plugin-import@^2.3.0:
     read-pkg-up "^2.0.0"
 
 eslint-plugin-jasmine@^2.2.0:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jasmine/-/eslint-plugin-jasmine-2.6.2.tgz#259331192835100f4055ff3f9a6a97a160797935"
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jasmine/-/eslint-plugin-jasmine-2.7.1.tgz#bfa10f54653aec9bde96b8d7aae3bdd9474312db"
 
 eslint-plugin-jest@^20.0.3:
   version "20.0.3"
