@@ -3229,9 +3229,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-ons-author@ONSdigital/eslint-config-ons-author#fix-deps:
+eslint-config-ons-author@ONSdigital/eslint-config-ons-author#v1.0.0:
   version "1.0.0"
-  resolved "https://codeload.github.com/ONSdigital/eslint-config-ons-author/tar.gz/2f073a6959b0bf08bfc67116aa5b8c3534829e41"
+  resolved "https://codeload.github.com/ONSdigital/eslint-config-ons-author/tar.gz/d3c52d1625ba2c63751c302a978739664f89f860"
   dependencies:
     eslint-config-prettier "^2.1.1"
     eslint-config-react-app "^1.0.4"
