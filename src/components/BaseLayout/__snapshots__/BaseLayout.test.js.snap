@@ -10,3 +10,52 @@ exports[`components/BaseLayout shoulder render 1`] = `
   </BaseLayout__Wrapper>
 </App>
 `;
+
+exports[`components/BaseLayout shoulder render a Nav 1`] = `
+<App>
+  <BaseLayout__Wrapper>
+    <Header
+      questionnaire={
+        Object {
+          "title": "Questionnaire",
+        }
+      }
+    />
+    <BaseLayout__NavWrapper>
+      <Grid__Grid
+        align="top"
+        fillHeight={false}
+      >
+        <Column__Column
+          offset={2}
+        >
+          <Nav
+            questionnaire={
+              Object {
+                "title": "Questionnaire",
+              }
+            }
+          />
+        </Column__Column>
+      </Grid__Grid>
+    </BaseLayout__NavWrapper>
+    <BaseLayout__Main>
+      Children
+    </BaseLayout__Main>
+  </BaseLayout__Wrapper>
+</App>
+`;
+
+exports[`components/BaseLayout shoulder render a title 1`] = `
+<App>
+  <BaseLayout__Wrapper>
+    <Header />
+    <BaseLayout__Main>
+      <BaseLayout__Title>
+        Questionnaire
+      </BaseLayout__Title>
+      Children
+    </BaseLayout__Main>
+  </BaseLayout__Wrapper>
+</App>
+`;

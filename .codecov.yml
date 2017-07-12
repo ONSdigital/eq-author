@@ -9,7 +9,8 @@ coverage:
 comment: off
 
 ignore:
-  - "**/story.js"
+  - "**/*story.js"
   - "**/registerServiceWorker.js"
   - "features"
   - "scripts/*.js"
+  - "src/queries/*.js"
