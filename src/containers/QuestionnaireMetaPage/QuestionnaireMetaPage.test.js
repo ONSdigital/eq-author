@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnaireMetaPage from "./QuestionnaireMeta";
+import QuestionnaireMetaPage from "./QuestionnaireMetaPage";
 
 let wrapper;
 
@@ -18,7 +18,7 @@ describe("containers/QuestionnaireMeta", () => {
   beforeEach(() => {
     wrapper = shallow(
       <QuestionnaireMetaPage
-        update={handleUpdate}
+        onUpdate={handleUpdate}
         loading={false}
         questionnaire={questionnaire}
       />

@@ -9,7 +9,7 @@ const withQuestionnaire = WrappedComponent => {
     static propTypes = {
       loading: PropTypes.bool.isRequired,
       questionnaire: CustomPropTypes.questionnaire,
-      update: PropTypes.func.isRequired
+      onUpdate: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -32,7 +32,7 @@ const withQuestionnaire = WrappedComponent => {
       this.setState(newState);
     };
 
-    handleBlur = e => this.props.update(this.state);
+    handleBlur = e => this.props.onUpdate(this.state);
 
     handleSubmit = e => e.preventDefault();
 

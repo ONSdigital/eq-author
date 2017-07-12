@@ -19,7 +19,7 @@ describe("components/WithQuestionnaire", () => {
     WrappedComponent = withQuestionnaire(Child);
 
     wrapper = shallow(
-      <WrappedComponent update={handleUpdate} loading={false} />
+      <WrappedComponent onUpdate={handleUpdate} loading={false} />
     );
   });
 
@@ -47,15 +47,21 @@ describe("components/WithQuestionnaire", () => {
   });
 
   it("should store updated values in state", () => {
-    const value = { name: "questionnaire.title", value: "My Title" };
-    wrapper.instance().handleChange(value);
+    wrapper.simulate("change", {
+      name: "questionnaire.title",
+      value: "My Title"
+    });
+
     expect(wrapper.state().questionnaire).toEqual({ title: "My Title" });
   });
 
   it("should save to API on blur event", () => {
-    const value = { name: "questionnaire.title", value: "My Title" };
-    wrapper.instance().handleChange(value);
-    wrapper.instance().handleBlur();
+    wrapper
+      .simulate("change", {
+        name: "questionnaire.title",
+        value: "My Title"
+      })
+      .simulate("blur");
     expect(handleUpdate).toHaveBeenCalledWith(
       expect.objectContaining({ questionnaire: { title: "My Title" } })
     );

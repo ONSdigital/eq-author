@@ -1,6 +1,6 @@
 import React from "react";
-import Questionnaires from "./Questionnaires";
-import { mountWithRouter } from "tests/utils/mountWithRouter";
+import Questionnaires from "./QuestionnairesPage";
+import mountWithRouter from "tests/utils/mountWithRouter";
 
 let wrapper;
 

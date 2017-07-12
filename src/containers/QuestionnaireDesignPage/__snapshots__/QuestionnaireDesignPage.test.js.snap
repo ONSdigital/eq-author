@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
+<BaseLayout
+  questionnaire={
+    Object {
+      "sections": Array [
+        Object {
+          "title": "",
+        },
+      ],
+      "title": "hello world",
+    }
+  }
+>
+  <Grid__Grid
+    align="top"
+    fillHeight={true}
+  >
+    <Column__Column
+      cols={2}
+      gutters={false}
+    >
+      Sidebar
+    </Column__Column>
+    <Column__Column
+      gutters={false}
+    >
+      <QuestionnaireDesign
+        focused="section"
+        onAnswerAdd={[Function]}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onSubmit={[Function]}
+        page={
+          Object {
+            "description": "",
+            "guidance": "",
+            "title": "",
+            "type": "General",
+          }
+        }
+        section={
+          Object {
+            "title": "",
+          }
+        }
+      />
+    </Column__Column>
+    <Column__Column
+      cols={2}
+      gutters={false}
+    >
+      <PropertyPane__PropertyPane>
+        <PropertyPaneTitle__PropertyPaneTitle>
+          Question properties
+        </PropertyPaneTitle__PropertyPaneTitle>
+        <QuestionProperties
+          onSubmit={[Function]}
+          question={
+            Object {
+              "description": "",
+              "guidance": "",
+              "title": "",
+              "type": "General",
+            }
+          }
+        />
+      </PropertyPane__PropertyPane>
+    </Column__Column>
+  </Grid__Grid>
+</BaseLayout>
+`;

@@ -1,38 +1,27 @@
 import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
-import { find } from "lodash";
+import { find, pick } from "lodash";
 
 import getQuestionnaireQuery from "queries/getQuestionnaire";
 import updateSectionQuery from "queries/updateSection";
-import QuestionnaireDesign from "./QuestionnaireDesign";
+import QuestionnaireDesign from "./QuestionnaireDesignPage";
 
-export const mapStateToProps = (state, { match }) => {
-  const { questionnaireId, sectionId, pageId } = match.params;
-  return {
-    questionnaireId,
-    sectionId,
-    pageId
-  };
-};
+export const mapStateToProps = (state, { match }) =>
+  pick(match.params, ["questionnaireId", "sectionId", "pageId"]);
 
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;
   const { sectionId } = ownProps;
 
-  let props = {
+  const props = {
     questionnaire,
     loading
   };
 
   if (questionnaire) {
-    const section = find(questionnaire.sections, {
+    props.section = find(questionnaire.sections, {
       id: parseInt(sectionId, 10)
     });
-
-    props = {
-      ...props,
-      section
-    };
   }
 
   return props;
@@ -45,7 +34,7 @@ export const withQuestionnaire = graphql(getQuestionnaireQuery, {
 
 export const withUpdateSection = graphql(updateSectionQuery, {
   props: ({ ownProps, mutate }) => ({
-    update({ section }) {
+    onUpdate({ section }) {
       return mutate({ variables: section });
     }
   })

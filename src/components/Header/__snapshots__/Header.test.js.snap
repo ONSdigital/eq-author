@@ -42,3 +42,51 @@ exports[`components/Header renders correctly  1`] = `
   </Grid__Grid>
 </Header__StyledHeader>
 `;
+
+exports[`components/Header should conditionally render Breadcrumb 1`] = `
+<Header__StyledHeader>
+  <Grid__Grid
+    align="center"
+    fillHeight={true}
+  >
+    <Column__Column
+      cols={2}
+    >
+      <Header__Logo
+        to="/"
+      >
+        <img
+          alt="Dahl"
+          src="logo.svg"
+        />
+      </Header__Logo>
+    </Column__Column>
+    <Column__Column />
+    <Column__Column />
+  </Grid__Grid>
+</Header__StyledHeader>
+`;
+
+exports[`components/Header should conditionally render UtilityBtns 1`] = `
+<Header__StyledHeader>
+  <Grid__Grid
+    align="center"
+    fillHeight={true}
+  >
+    <Column__Column
+      cols={2}
+    >
+      <Header__Logo
+        to="/"
+      >
+        <img
+          alt="Dahl"
+          src="logo.svg"
+        />
+      </Header__Logo>
+    </Column__Column>
+    <Column__Column />
+    <Column__Column />
+  </Grid__Grid>
+</Header__StyledHeader>
+`;

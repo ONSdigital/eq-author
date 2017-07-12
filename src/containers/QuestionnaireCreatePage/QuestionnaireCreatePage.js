@@ -20,7 +20,7 @@ const Center = styled.div`
   width: 100%;
 `;
 
-export class QuestionnaireCreatePage extends Component {
+class QuestionnaireCreatePage extends Component {
   static propTypes = {
     createQuestionnaire: PropTypes.func.isRequired,
     createSection: PropTypes.func.isRequired

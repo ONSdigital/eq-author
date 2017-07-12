@@ -14,7 +14,7 @@ export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
     onSubmit: PropTypes.func.isRequired,
-    update: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     question: CustomPropTypes.question
@@ -45,12 +45,19 @@ export class QuestionnaireDesignPage extends Component {
     alert("add an answer to this parent");
   };
 
-  handleFocusChange = sectionId => {
-    if (sectionId !== this.state.focused) {
-      this.setState({ focused: sectionId });
-    }
+  handleBlur = canvasSectionName => {
+    this.setFocused(canvasSectionName);
+    this.props.onUpdate(this.state);
+  };
 
-    this.props.update(this.state);
+  handleFocus = canvasSectionName => {
+    this.setFocused(canvasSectionName);
+  };
+
+  setFocused = canvasSectionName => {
+    if (canvasSectionName !== this.state.focused) {
+      this.setState({ focused: canvasSectionName });
+    }
   };
 
   render() {
@@ -70,8 +77,8 @@ export class QuestionnaireDesignPage extends Component {
               focused={focused}
               onAnswerAdd={this.handleAnswerAdd}
               onChange={this.handleChange}
-              onFocus={this.handleFocusChange}
-              onBlur={this.handleFocusChange}
+              onFocus={this.handleFocus}
+              onBlur={this.handleBlur}
               onSubmit={onSubmit}
             />
           </Column>

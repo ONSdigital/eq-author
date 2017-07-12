@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnaireCreate from "./QuestionnaireCreate";
+import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage/QuestionnaireCreatePage";
+import QuestionnaireMeta from "components/QuestionnaireMeta";
 
 let wrapper;
 const createQuestionnaire = jest.fn(() => {
@@ -22,7 +23,7 @@ const history = {
 describe("containers/QuestionnaireCreate", () => {
   beforeEach(() => {
     wrapper = shallow(
-      <QuestionnaireCreate
+      <QuestionnaireCreatePage
         createQuestionnaire={createQuestionnaire}
         createSection={createSection}
         history={history}
@@ -31,12 +32,18 @@ describe("containers/QuestionnaireCreate", () => {
     );
   });
 
-  it("should call createQuestionnaire when submitted", () => {
+  it("should call createQuestionnaire and createSection when submitted", () => {
     const preventDefault = jest.fn();
-    return wrapper.instance().handleSubmit({ preventDefault }).then(() => {
-      expect(preventDefault).toHaveBeenCalled();
-      expect(createQuestionnaire).toHaveBeenCalled();
-    });
+    return wrapper
+      .instance()
+      .handleSubmit({ preventDefault })
+      .then(() => {
+        expect(preventDefault).toHaveBeenCalled();
+        expect(createQuestionnaire).toHaveBeenCalled();
+      })
+      .then(() => {
+        expect(createSection).toHaveBeenCalled();
+      });
   });
 
   it("should update state with questionnaire data when received as props", () => {
@@ -46,8 +53,10 @@ describe("containers/QuestionnaireCreate", () => {
   });
 
   it("should store updated values in state", () => {
-    const value = { name: "questionnaire.title", value: "My Title" };
-    wrapper.instance().handleChange(value);
+    wrapper.find(QuestionnaireMeta).simulate("change", {
+      name: "questionnaire.title",
+      value: "My Title"
+    });
     expect(wrapper.state().questionnaire.title).toEqual("My Title");
   });
 });
