@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { merge, set, noop } from "lodash";
+import { Link } from "react-router-dom";
+
 import CustomPropTypes from "custom-prop-types";
 
 import BaseLayout from "components/BaseLayout";
@@ -82,7 +84,32 @@ export class QuestionnaireDesignPage extends Component {
       <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            Sidebar
+            <div style={{ padding: "1em" }}>
+              <ul>
+                {questionnaire.sections.map(section =>
+                  <li key={section.id}>
+                    <Link
+                      to={`/questionnaire/${questionnaire.id}/design/${section.id}`}
+                    >
+                      {section.title}
+                    </Link>
+                    {section.pages &&
+                      <ul>
+                        {section.pages.map(page =>
+                          <li key={page.id}>
+                            <Link
+                              to={`/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`}
+                            >
+                              {page.title}
+                            </Link>
+                          </li>
+                        )}
+                      </ul>}
+                  </li>
+                )}
+              </ul>
+              <button>+ Add a page</button>
+            </div>
           </Column>
           <Column gutters={false}>
             <QuestionnaireDesign
