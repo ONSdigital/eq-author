@@ -4,6 +4,7 @@ import { find, pick } from "lodash";
 
 import getQuestionnaireQuery from "queries/getQuestionnaire";
 import updateSectionQuery from "queries/updateSection";
+import updatePageQuery from "queries/updatePage";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 
 export const mapStateToProps = (state, { match }) =>
@@ -11,7 +12,7 @@ export const mapStateToProps = (state, { match }) =>
 
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;
-  const { sectionId } = ownProps;
+  const { sectionId, pageId } = ownProps;
 
   const props = {
     questionnaire,
@@ -21,6 +22,10 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   if (questionnaire) {
     props.section = find(questionnaire.sections, {
       id: parseInt(sectionId, 10)
+    });
+
+    props.page = find(props.section.pages, {
+      id: parseInt(pageId, 10)
     });
   }
 
@@ -33,15 +38,20 @@ export const withQuestionnaire = graphql(getQuestionnaireQuery, {
 });
 
 export const withUpdateSection = graphql(updateSectionQuery, {
-  props: ({ ownProps, mutate }) => ({
-    onUpdate({ section }) {
-      return mutate({ variables: section });
-    }
+  props: ({ mutate }) => ({
+    onSectionUpdate: section => mutate({ variables: section })
+  })
+});
+
+export const withUpdatePage = graphql(updatePageQuery, {
+  props: ({ mutate }) => ({
+    onPageUpdate: page => mutate({ variables: page })
   })
 });
 
 export default compose(
   connect(mapStateToProps),
   withQuestionnaire,
-  withUpdateSection
+  withUpdateSection,
+  withUpdatePage
 )(QuestionnaireDesign);

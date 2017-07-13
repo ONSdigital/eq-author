@@ -17,6 +17,8 @@ const getQuestionnaire = gql`
         pages {
           id
           title
+          description
+          pageType
           ... on QuestionPage {
             guidance
             answers {

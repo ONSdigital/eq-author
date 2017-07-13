@@ -14,25 +14,22 @@ export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
     onSubmit: PropTypes.func.isRequired,
-    onUpdate: PropTypes.func.isRequired,
+    onSectionUpdate: PropTypes.func.isRequired,
+    onPageUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
+    page: CustomPropTypes.page,
     question: CustomPropTypes.question
   };
 
   constructor(props) {
     super(props);
 
-    const { section } = props;
+    const { section, page } = props;
 
     this.state = {
       section,
-      page: {
-        title: "",
-        description: "",
-        guidance: "",
-        type: "General"
-      },
+      page,
       focused: "section"
     };
   }
@@ -47,7 +44,17 @@ export class QuestionnaireDesignPage extends Component {
 
   handleBlur = canvasSectionName => {
     this.setFocused(canvasSectionName);
-    this.props.onUpdate(this.state);
+
+    switch (this.state.focused) {
+      case "section":
+        this.props.onSectionUpdate(this.state.section);
+        break;
+      case "page":
+        this.props.onPageUpdate(this.state.page);
+        break;
+      default:
+        break;
+    }
   };
 
   handleFocus = canvasSectionName => {

@@ -14,6 +14,7 @@ const createPage = gql`
       id
       description
       sectionId
+      type
     }
   }
 `;

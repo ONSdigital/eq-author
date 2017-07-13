@@ -51,15 +51,23 @@ class QuestionnaireCreatePage extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { createQuestionnaire, createSection } = this.props;
+    const { createQuestionnaire, createSection, createPage } = this.props;
 
-    return createQuestionnaire(this.state).then(({ data }) => {
-      createSection({
-        title: "",
-        description: "",
-        questionnaireId: data.createQuestionnaire.id
-      });
-    });
+    return createQuestionnaire(this.state.questionnaire)
+      .then(({ data }) =>
+        createSection({
+          title: "",
+          description: "",
+          questionnaireId: data.createQuestionnaire.id
+        })
+      )
+      .then(({ data }) =>
+        createPage({
+          title: "",
+          description: "",
+          sectionId: data.createSetction.id
+        })
+      );
   };
 
   render() {
