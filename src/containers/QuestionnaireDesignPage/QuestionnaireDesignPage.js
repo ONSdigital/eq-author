@@ -14,6 +14,7 @@ import QuestionnaireDesign from "components/QuestionnaireDesign";
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
+    onAddPage: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
@@ -66,6 +67,10 @@ export class QuestionnaireDesignPage extends Component {
     this.setFocused(canvasSectionName);
   };
 
+  handleAddPageClick = sectionId => {
+    this.props.onAddPage(this.state.section.id);
+  };
+
   setFocused = canvasSectionName => {
     if (canvasSectionName !== this.state.focused) {
       this.setState({ focused: canvasSectionName });
@@ -85,7 +90,13 @@ export class QuestionnaireDesignPage extends Component {
         <Grid align="top">
           <Column cols={2} gutters={false}>
             <div style={{ padding: "1em" }}>
-              <ul>
+              <ul
+                style={{
+                  fontSize: "0.9em",
+                  paddingLeft: "1em",
+                  marginBottom: "1em"
+                }}
+              >
                 {questionnaire.sections.map(section =>
                   <li key={section.id}>
                     <Link
@@ -94,7 +105,13 @@ export class QuestionnaireDesignPage extends Component {
                       {section.title}
                     </Link>
                     {section.pages &&
-                      <ul>
+                      <ul
+                        style={{
+                          fontSize: "0.9em",
+                          paddingLeft: "1em",
+                          marginBottom: "1em"
+                        }}
+                      >
                         {section.pages.map(page =>
                           <li key={page.id}>
                             <Link
@@ -105,10 +122,12 @@ export class QuestionnaireDesignPage extends Component {
                           </li>
                         )}
                       </ul>}
+                    <button onClick={this.handleAddPageClick}>
+                      + Add page
+                    </button>
                   </li>
                 )}
               </ul>
-              <button>+ Add a page</button>
             </div>
           </Column>
           <Column gutters={false}>
