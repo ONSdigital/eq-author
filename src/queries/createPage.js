@@ -4,12 +4,16 @@ const createPage = gql`
   mutation createPage(
     $title: String!
     $description: String!
-    $groupId: String!
+    $sectionId: String!
   ) {
-    createPage(title: $title, description: $description, groupId: $groupId) {
+    createPage(
+      title: $title
+      description: $description
+      sectionId: $sectionId
+    ) {
       id
       description
-      groupId
+      sectionId
     }
   }
 `;

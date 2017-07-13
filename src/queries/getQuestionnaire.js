@@ -10,7 +10,7 @@ const getQuestionnaire = gql`
       legalBasis
       theme
       navigation
-      sections: groups {
+      sections {
         id
         title
         description
