@@ -6,7 +6,7 @@ export const createSection = gql`
     $description: String!
     $questionnaireId: Int!
   ) {
-    createSection: createGroup(
+    createSection(
       title: $title
       description: $description
       questionnaireId: $questionnaireId
