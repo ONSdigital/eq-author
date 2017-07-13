@@ -68,14 +68,62 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   handleAddPageClick = sectionId => {
-    this.props.onAddPage(this.state.section.id);
+    this.props.onAddPage(this.state.section.id).then(() => {
+      this.setFocused("page");
+    });
   };
 
   setFocused = canvasSectionName => {
+    if (canvasSectionName === null) {
+      return;
+    }
     if (canvasSectionName !== this.state.focused) {
       this.setState({ focused: canvasSectionName });
     }
   };
+
+  renderSidebar(questionnaire) {
+    return (
+      <div style={{ padding: "1em" }}>
+        <ol
+          style={{
+            fontSize: "0.9em",
+            paddingLeft: "1em",
+            marginBottom: "1em"
+          }}
+        >
+          {questionnaire.sections.map(section =>
+            <li key={section.id}>
+              <Link
+                to={`/questionnaire/${questionnaire.id}/design/${section.id}`}
+              >
+                {section.title}
+              </Link>
+              {section.pages &&
+                <ol
+                  style={{
+                    fontSize: "0.9em",
+                    paddingLeft: "1em",
+                    marginBottom: "1em"
+                  }}
+                >
+                  {section.pages.map((page, i) =>
+                    <li key={page.id}>
+                      <Link
+                        to={`/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`}
+                      >
+                        {page.title || "Page Title"}
+                      </Link>
+                    </li>
+                  )}
+                </ol>}
+              <button onClick={this.handleAddPageClick}>+ Add page</button>
+            </li>
+          )}
+        </ol>
+      </div>
+    );
+  }
 
   render() {
     const { breadcrumb, questionnaire, loading } = this.props;
@@ -86,49 +134,13 @@ export class QuestionnaireDesignPage extends Component {
     }
 
     return (
-      <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
+      <BaseLayout
+        breadcrumb={breadcrumb}
+        questionnaire={this.state.questionnaire}
+      >
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            <div style={{ padding: "1em" }}>
-              <ul
-                style={{
-                  fontSize: "0.9em",
-                  paddingLeft: "1em",
-                  marginBottom: "1em"
-                }}
-              >
-                {questionnaire.sections.map(section =>
-                  <li key={section.id}>
-                    <Link
-                      to={`/questionnaire/${questionnaire.id}/design/${section.id}`}
-                    >
-                      {section.title}
-                    </Link>
-                    {section.pages &&
-                      <ul
-                        style={{
-                          fontSize: "0.9em",
-                          paddingLeft: "1em",
-                          marginBottom: "1em"
-                        }}
-                      >
-                        {section.pages.map(page =>
-                          <li key={page.id}>
-                            <Link
-                              to={`/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`}
-                            >
-                              {page.title}
-                            </Link>
-                          </li>
-                        )}
-                      </ul>}
-                    <button onClick={this.handleAddPageClick}>
-                      + Add page
-                    </button>
-                  </li>
-                )}
-              </ul>
-            </div>
+            {this.renderSidebar(questionnaire)}
           </Column>
           <Column gutters={false}>
             <QuestionnaireDesign

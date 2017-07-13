@@ -51,42 +51,49 @@ export const withUpdatePage = graphql(updatePageMutation, {
 });
 
 export const withCreatePage = graphql(createQuestionPageMutation, {
-  props: ({ ownProps, mutate }) => ({
+  props: ({ ownProps: { questionnaireId, history }, mutate }) => ({
     onAddPage(sectionId) {
+      const page = {
+        title: "",
+        description: "",
+        type: "General",
+        sectionId: sectionId
+      };
       return mutate({
-        variables: {
-          title: "New Page",
-          description: "",
-          sectionId: sectionId,
-          type: "General",
-          answers: []
-        },
+        variables: page,
         optimisticResponse: {
-          __typename: "Mutation",
           createQuestionPage: {
-            __typename: "Comment",
+            __typename: "QuestionPage",
             id: -1,
-            title: "Page Title",
-            description: "",
             guidance: "",
             pageType: "",
-            type: "",
-            sectionId: sectionId,
-            answers: []
+            answers: [],
+            ...page
           }
         },
         update(proxy, { data: { createQuestionPage } }) {
           const data = proxy.readQuery({
             query: getQuestionnaireQuery,
-            variables: { id: ownProps.questionnaireId }
+            variables: { id: questionnaireId }
           });
-          data.questionnaire.sections[0].pages.push(createQuestionPage);
+
+          const section = find(data.questionnaire.sections, {
+            id: parseInt(sectionId, 10)
+          });
+
+          section.pages.push(createQuestionPage);
+
           proxy.writeQuery({
             query: getQuestionnaireQuery,
-            variables: { id: ownProps.questionnaireId },
+            variables: { id: questionnaireId },
             data
           });
         }
+      }).then(({ data }) => {
+        const { id, sectionId } = data.createQuestionPage;
+        history.push(
+          `/questionnaire/${questionnaireId}/design/${sectionId}/${id}`
+        );
       });
     }
   })

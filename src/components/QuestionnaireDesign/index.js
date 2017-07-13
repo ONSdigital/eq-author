@@ -36,7 +36,6 @@ const QuestionnaireDesign = ({
           <SeamlessInput
             placeholder="Section title"
             size="medium"
-            autoFocus
             onChange={onChange}
             value={section.title}
           />
@@ -63,6 +62,7 @@ const QuestionnaireDesign = ({
             placeholder="Question title"
             onChange={onChange}
             value={page.title}
+            autoFocus
           />
         </Field>
         <Field id="page.description" optional>
