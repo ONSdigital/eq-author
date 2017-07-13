@@ -58,7 +58,7 @@ const BaseLayout = ({ children, title, questionnaire }) =>
   </App>;
 
 BaseLayout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   title: PropTypes.string,
   questionnaire: CustomPropTypes.questionnaire
 };
