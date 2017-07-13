@@ -2,21 +2,23 @@
 
 exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
 <BaseLayout
-  breadcrumb={
+  questionnaire={
     Object {
-      "path": "http://localhost/",
+      "sections": Array [
+        Object {
+          "title": "",
+        },
+      ],
       "title": "hello world",
     }
   }
-  hasNav={true}
-  hasUtilityBtns={false}
 >
   <Grid__Grid
     align="top"
     fillHeight={true}
   >
     <Column__Column
-      cols={3}
+      cols={2}
       gutters={false}
     >
       Sidebar
@@ -30,18 +32,18 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
+        onSubmit={[Function]}
         page={
           Object {
-            "description": "lorem ipsum",
-            "guidance": "foo bar blah meh",
-            "title": "my questions",
+            "description": "",
+            "guidance": "",
+            "title": "",
             "type": "General",
           }
         }
         section={
           Object {
-            "description": "bar",
-            "title": "foo",
+            "title": "",
           }
         }
       />
@@ -58,9 +60,9 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
           onSubmit={[Function]}
           question={
             Object {
-              "description": "lorem ipsum",
-              "guidance": "foo bar blah meh",
-              "title": "my questions",
+              "description": "",
+              "guidance": "",
+              "title": "",
               "type": "General",
             }
           }
@@ -69,10 +71,4 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
     </Column__Column>
   </Grid__Grid>
 </BaseLayout>
-`;
-
-exports[`containers/QuestionnaireDesign should render spinner when loading 1`] = `
-<div>
-  Loading...
-</div>
 `;

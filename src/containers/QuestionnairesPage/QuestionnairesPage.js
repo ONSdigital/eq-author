@@ -13,7 +13,7 @@ const Center = styled.div`
 `;
 
 const Questionnaires = () =>
-  <BaseLayout title="Select to begin" hasNav={false}>
+  <BaseLayout title="Select to begin">
     <Center>
       <CenteredPanel>
         <ButtonGroup vertical>

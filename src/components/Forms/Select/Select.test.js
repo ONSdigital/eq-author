@@ -24,7 +24,7 @@ describe("Select", () => {
     expect(shallow(select)).toMatchSnapshot();
   });
 
-  it("calls onChange when value changed", () => {
+  it("calls onChange when value chwanged", () => {
     const app = mount(select);
     app.find("select").simulate("change");
 
@@ -38,7 +38,7 @@ describe("Select", () => {
     app.find("select").simulate("change", event);
 
     expect(handleChange).toHaveBeenCalledWith(
-      expect.objectContaining({ "my-select": "three" })
+      expect.objectContaining({ name: "my-select", value: "three" })
     );
   });
 });

@@ -7,26 +7,25 @@ exports[`QuestionnaireMeta should render 1`] = `
       onSubmit={[Function]}
     >
       <Field
-        id="title"
+        id="questionnaire.title"
       >
         <Label>
           Questionnaire Title
         </Label>
-        <Input
+        <withChangeHandler(Input)
           defaultValue="I am the title"
           onBlur={[Function]}
           onChange={[Function]}
           required={true}
-          type="text"
         />
       </Field>
       <Field
-        id="description"
+        id="questionnaire.description"
       >
         <Label>
           Description
         </Label>
-        <Textarea
+        <withChangeHandler(TextArea)
           defaultValue="I am the description"
           onBlur={[Function]}
           onChange={[Function]}
@@ -42,16 +41,15 @@ exports[`QuestionnaireMeta should render 1`] = `
           cols={6}
         >
           <Field
-            id="surveyId"
+            id="questionnaire.surveyId"
           >
             <Label>
               Survey ID
             </Label>
-            <Input
+            <withChangeHandler(Input)
               onBlur={[Function]}
               onChange={[Function]}
               required={true}
-              type="text"
             />
           </Field>
         </Column__Column>
@@ -64,12 +62,12 @@ exports[`QuestionnaireMeta should render 1`] = `
           cols={6}
         >
           <Field
-            id="theme"
+            id="questionnaire.theme"
           >
             <Label>
               Theme
             </Label>
-            <Select
+            <withChangeHandler(Select)
               defaultValue="default"
               onBlur={[Function]}
               onChange={[Function]}
@@ -86,12 +84,12 @@ exports[`QuestionnaireMeta should render 1`] = `
           cols={6}
         >
           <Field
-            id="legal_basis"
+            id="questionnaire.legalBasis"
           >
             <Label>
               Legal Basis
             </Label>
-            <Select
+            <withChangeHandler(Select)
               defaultValue="StatisticsOfTradeAct"
               onBlur={[Function]}
               onChange={[Function]}
@@ -106,9 +104,9 @@ exports[`QuestionnaireMeta should render 1`] = `
         </Column__Column>
       </Grid__Grid>
       <Field
-        id="navigation"
+        id="questionnaire.navigation"
       >
-        <Input
+        <withChangeHandler(Input)
           onBlur={[Function]}
           onChange={[Function]}
           type="checkbox"

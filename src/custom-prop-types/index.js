@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 
 export default {
   breadcrumb: PropTypes.shape({
-    title: PropTypes.string,
-    path: PropTypes.string
+    title: PropTypes.string.isRequired
   }),
   questionnaire: PropTypes.shape({
     description: PropTypes.string,

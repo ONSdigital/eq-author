@@ -24,11 +24,11 @@ const App = ({ store, history }) =>
             component={QuestionnaireCreatePage}
           />
           <Route
-            path="/questionnaire/:id/meta"
+            path="/questionnaire/:questionnaireId/meta"
             component={QuestionnaireMetaPage}
           />
           <Route
-            path="/questionnaire/:id/design"
+            path="/questionnaire/:questionnaireId/design/:sectionId/:pageId?"
             component={QuestionnaireDesignPage}
           />
           <Route path="*" component={NotFoundPage} exact />

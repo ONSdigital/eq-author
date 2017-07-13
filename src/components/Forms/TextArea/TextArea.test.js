@@ -13,6 +13,7 @@ describe("components/Forms/TextArea", () => {
     wrapper = mount(
       <TextArea
         id="text"
+        name="text"
         defaultValue={defaultValue}
         onChange={changeHandler}
       />
@@ -25,10 +26,5 @@ describe("components/Forms/TextArea", () => {
 
   it("should pass `defaultValue` prop to component when type=text", () => {
     expect(wrapper.props().defaultValue).toEqual(defaultValue);
-  });
-
-  it("should call onChange with appropriate args", () => {
-    wrapper.simulate("change", { target: { value: "hello" } });
-    expect(changeHandler).toHaveBeenCalledWith({ text: "hello" });
   });
 });

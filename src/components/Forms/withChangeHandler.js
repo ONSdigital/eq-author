@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const withChangeHandler = WrappedComponent => {
   return class extends React.Component {
     static propTypes = {
-      onChange: PropTypes.func.isRequired,
+      onChange: PropTypes.func,
       id: PropTypes.string,
       name: PropTypes.string
     };

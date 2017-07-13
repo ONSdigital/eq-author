@@ -3,8 +3,10 @@ import { storiesOf } from "@storybook/react";
 import Header from "components/Header";
 
 storiesOf("Header", module)
-  .add("With Utility Buttons", () => <Header hasUtilityBtns />)
-  .add("Without Utility Buttons", () => <Header hasUtilityBtns={false} />)
+  .add("With Utility Buttons", () =>
+    <Header questionnaire={{ title: "My Questionnaire" }} />
+  )
+  .add("Without Utility Buttons", () => <Header />)
   .add("With Breadcrumb", () =>
-    <Header breadcrumb={{ path: "", title: "My Questionnaire" }} />
+    <Header questionnaire={{ title: "My Questionnaire" }} />
   );

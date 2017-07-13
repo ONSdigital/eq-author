@@ -1,11 +1,26 @@
-import { graphql } from "react-apollo";
-import QuestionnaireCreate from "./QuestionnaireCreate";
-import createQuestionnaire from "queries/createQuestionnaire";
+import { graphql, compose } from "react-apollo";
+import QuestionnaireCreatePage from "./QuestionnaireCreatePage";
+import createQuestionnaireQuery from "queries/createQuestionnaire";
+import createSectionQuery from "queries/createSection";
 
-export const withMutation = graphql(createQuestionnaire, {
+export const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
   props: ({ ownProps, mutate }) => ({
-    createQuestionnaire: variables => mutate({ variables })
+    createQuestionnaire: ({ questionnaire }) =>
+      mutate({ variables: questionnaire })
   })
 });
 
-export default withMutation(QuestionnaireCreate);
+export const withCreateSection = graphql(createSectionQuery, {
+  props: ({ ownProps: { match, history, location }, mutate }) => ({
+    createSection(variables) {
+      return mutate({ variables }).then(({ data }) => {
+        const { id, questionnaireId } = data.createSection;
+        history.push(`/questionnaire/${questionnaireId}/design/${id}`);
+      });
+    }
+  })
+});
+
+export default compose(withCreateQuestionnaire, withCreateSection)(
+  QuestionnaireCreatePage
+);

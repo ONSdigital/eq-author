@@ -21,16 +21,19 @@ describe("components/Forms/Input", () => {
     });
 
     it("should render a text input by default", () => {
-      expect(wrapper.props()).toMatchObject({ type: "text" });
+      expect(wrapper.find("input").node.type).toEqual("text");
     });
 
     it("should pass `defaultValue` prop to component when type=text", () => {
-      expect(wrapper.props().defaultValue).toEqual(defaultValue);
+      expect(wrapper.find("input").node.value).toEqual(defaultValue);
     });
 
     it("should call onChange with appropriate args", () => {
       wrapper.simulate("change", { target: { value: "hello" } });
-      expect(handleChange).toHaveBeenCalledWith({ text: "hello" });
+      expect(handleChange).toHaveBeenCalledWith({
+        name: "text",
+        value: "hello"
+      });
     });
   });
 
@@ -60,8 +63,15 @@ describe("components/Forms/Input", () => {
     });
 
     it("should call onChange with appropriate args", () => {
-      wrapper.simulate("change", { target: { checked: true } });
-      expect(handleChange).toHaveBeenCalledWith({ "my-checkbox": true });
+      wrapper.simulate("change", {
+        target: { type: "checkbox", checked: true }
+      });
+      expect(handleChange).toHaveBeenCalledWith(
+        expect.objectContaining({
+          name: "my-checkbox",
+          value: true
+        })
+      );
     });
   });
 });

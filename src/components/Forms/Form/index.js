@@ -5,7 +5,13 @@ import styled from "styled-components";
 const StyledForm = styled.form`width: 100%;`;
 
 const Form = ({ action, children, onSubmit, ...otherProps }) =>
-  <StyledForm action={action} method="POST" onSubmit={onSubmit} {...otherProps}>
+  <StyledForm
+    action={action}
+    method="POST"
+    onSubmit={onSubmit}
+    autoComplete="off"
+    {...otherProps}
+  >
     {children}
   </StyledForm>;
 
