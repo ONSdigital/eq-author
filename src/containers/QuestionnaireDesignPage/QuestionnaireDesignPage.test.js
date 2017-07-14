@@ -3,24 +3,32 @@ import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
 import QuestionnaireDesign from "components/QuestionnaireDesign";
 import { shallow } from "enzyme";
 
-let handleUpdate;
-let handleSubmit;
-
-let wrapper;
+let handleUpdate, handleSubmit, wrapper, handleSectionUpdate, handlePageUpdate;
 
 let section = { title: "" };
+let page = {
+  description: "",
+  guidance: "",
+  title: "",
+  type: "General"
+};
 
 describe("containers/QuestionnaireDesign", () => {
   beforeEach(() => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
+    handleSectionUpdate = jest.fn();
+    handlePageUpdate = jest.fn();
+
     wrapper = shallow(
       <QuestionnaireDesignPage
         onSubmit={handleSubmit}
-        loading={false}
         questionnaire={{ title: "hello world", sections: [section] }}
         onUpdate={handleUpdate}
+        onSectionUpdate={handleSectionUpdate}
+        onPageUpdate={handlePageUpdate}
         section={section}
+        page={page}
       />
     );
   });
@@ -39,7 +47,7 @@ describe("containers/QuestionnaireDesign", () => {
     );
   });
 
-  it("should save to API on blur event", () => {
+  it("should update Section when section field blurs", () => {
     wrapper
       .find(QuestionnaireDesign)
       .simulate("change", {
@@ -48,8 +56,23 @@ describe("containers/QuestionnaireDesign", () => {
       })
       .simulate("blur");
 
-    expect(handleUpdate).toHaveBeenCalledWith(
-      expect.objectContaining({ section: { title: "My Title" } })
+    expect(handleSectionUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({ title: "My Title" })
+    );
+  });
+
+  it("should update Page when page field blurs", () => {
+    wrapper
+      .setState({ focused: "page" })
+      .find(QuestionnaireDesign)
+      .simulate("change", {
+        name: "page.title",
+        value: "My Title"
+      })
+      .simulate("blur");
+
+    expect(handlePageUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({ title: "My Title" })
     );
   });
 
