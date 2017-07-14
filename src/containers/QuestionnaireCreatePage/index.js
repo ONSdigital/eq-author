@@ -5,29 +5,35 @@ import createSectionQuery from "queries/createSection";
 import createPageQuery from "queries/createPage";
 
 export const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
-  props: ({ ownProps, mutate }) => ({
-    createQuestionnaire: variables => mutate({ variables })
+  props: ({ mutate }) => ({
+    createQuestionnaire: questionnaire => mutate({ variables: questionnaire })
   })
 });
 
 export const withCreateSection = graphql(createSectionQuery, {
-  props: ({ ownProps: { match, history, location }, mutate }) => ({
-    createSection: variables => mutate({ variables })
+  props: ({ mutate }) => ({
+    createSection: section => mutate({ variables: section })
   })
 });
 
-const redirectToDesigner = history => ({ data }) => {
-  const { id, questionnaireId } = data.createSection;
-  history.push(`/questionnaire/${questionnaireId}/design/${id}`);
+const redirectToDesigner = (page, history) => ({ data }) => {
+  const { id } = data.createQuestionPage;
+  const { questionnaireId, sectionId } = page;
+  history.push(`/questionnaire/${questionnaireId}/design/${sectionId}/${id}`);
 };
 
 export const withCreatePage = graphql(createPageQuery, {
-  props: ({ ownProps: { history }, mutate }) => ({
-    createPage: variables =>
-      mutate({ variables }).then(redirectToDesigner(history))
+  props: ({ ownProps, mutate }) => ({
+    createPage: page => {
+      return mutate({ variables: page }).then(
+        redirectToDesigner(page, ownProps.history)
+      );
+    }
   })
 });
 
-export default compose(withCreateQuestionnaire, withCreateSection)(
-  QuestionnaireCreatePage
-);
+export default compose(
+  withCreateQuestionnaire,
+  withCreateSection,
+  withCreatePage
+)(QuestionnaireCreatePage);

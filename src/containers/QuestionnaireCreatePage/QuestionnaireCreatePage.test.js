@@ -4,17 +4,15 @@ import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage/Question
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 
 let wrapper;
-const createQuestionnaire = jest.fn(() => {
-  return new Promise((resolve, reject) => {
-    resolve({ data: { createQuestionnaire: { id: 2 } } });
-  });
-});
+const createQuestionnaire = jest.fn(() =>
+  Promise.resolve({ data: { createQuestionnaire: { id: 2 } } })
+);
 
-const createSection = jest.fn(() => {
-  return new Promise((resolve, reject) => {
-    resolve({ data: {} });
-  });
-});
+const createSection = jest.fn(() =>
+  Promise.resolve({ data: { createSection: { id: 2 } } })
+);
+
+const createPage = jest.fn(() => Promise.resolve({ data: {} }));
 
 const history = {
   push: jest.fn()
@@ -26,6 +24,7 @@ describe("containers/QuestionnaireCreate", () => {
       <QuestionnaireCreatePage
         createQuestionnaire={createQuestionnaire}
         createSection={createSection}
+        createPage={createPage}
         history={history}
         loading
       />
@@ -43,6 +42,9 @@ describe("containers/QuestionnaireCreate", () => {
       })
       .then(() => {
         expect(createSection).toHaveBeenCalled();
+      })
+      .then(() => {
+        expect(createPage).toHaveBeenCalled();
       });
   });
 
