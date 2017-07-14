@@ -7,6 +7,11 @@ import updateSectionQuery from "queries/updateSection";
 import updatePageQuery from "queries/updatePage";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 
+const findById = (collection, id) =>
+  find(collection, {
+    id: parseInt(id, 10)
+  });
+
 export const mapStateToProps = (state, { match }) =>
   pick(match.params, ["questionnaireId", "sectionId", "pageId"]);
 
@@ -20,13 +25,8 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   };
 
   if (questionnaire) {
-    props.section = find(questionnaire.sections, {
-      id: parseInt(sectionId, 10)
-    });
-
-    props.page = find(props.section.pages, {
-      id: parseInt(pageId, 10)
-    });
+    props.section = findById(questionnaire.sections, sectionId);
+    props.page = findById(props.section.pages, pageId);
   }
 
   return props;
