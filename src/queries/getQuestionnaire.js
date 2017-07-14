@@ -20,6 +20,7 @@ const getQuestionnaire = gql`
           description
           pageType
           ... on QuestionPage {
+            type
             guidance
             answers {
               id
