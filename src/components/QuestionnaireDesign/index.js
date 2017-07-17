@@ -1,4 +1,5 @@
 import React from "react";
+import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import CanvasSection from "./CanvasSection";
@@ -15,83 +16,115 @@ const AddAnswerButton = styled(Button)`
   color: #757575;
 `;
 
-const QuestionnaireDesign = ({
-  section,
-  page,
-  onChange,
-  onAnswerAdd,
-  onFocus,
-  onBlur,
-  focused
-}) =>
-  <Canvas>
-    <Form onChange={noop} onSubmit={noop}>
-      <CanvasSection
-        id="section"
-        onFocus={onFocus}
-        onBlur={onBlur}
-        focused={focused === "section"}
-      >
-        <Field id="section.title">
-          <SeamlessInput
-            placeholder="Section title"
-            size="medium"
-            onChange={onChange}
-            value={section.title}
-          />
-        </Field>
-        <Field id="section.description" optional>
-          <SeamlessTextArea
-            cols="30"
-            rows="5"
-            placeholder="Enter a description (optional)…"
-            onChange={onChange}
-            value={section.description}
-          />
-        </Field>
-      </CanvasSection>
-      <CanvasSection
-        id="page"
-        onFocus={onFocus}
-        onBlur={onBlur}
-        focused={focused === "page"}
-      >
-        <Field id="page.title">
-          <SeamlessInput
-            size="large"
-            placeholder="Question title"
-            onChange={onChange}
-            value={page.title}
-            autoFocus
-          />
-        </Field>
-        <Field id="page.description" optional>
-          <SeamlessInput
-            placeholder="Question text (optional)…"
-            value={page.description}
-            onChange={onChange}
-          />
-        </Field>
-        <Field id="page.guidance" optional>
-          <SeamlessInput
-            placeholder="Guidance text (optional)…"
-            value={page.guidance}
-            onChange={onChange}
-          />
-        </Field>
-      </CanvasSection>
-      <CanvasSection
-        id="answers"
-        onFocus={onFocus}
-        onBlur={onBlur}
-        focused={focused === "answers"}
-      >
-        <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
-          add an answer
-        </AddAnswerButton>
-      </CanvasSection>
-    </Form>
-  </Canvas>;
+class QuestionnaireDesign extends React.Component {
+  componentDidMount() {
+    this.setFocusOnTitle();
+  }
+
+  componentDidUpdate({ page }) {
+    if (page.id !== this.props.page.id) {
+      this.setFocusOnTitle();
+    }
+  }
+
+  setSectionTitle = input => (this.sectionTitle = findDOMNode(input));
+
+  setPageTitle = input => (this.pageTitle = findDOMNode(input));
+
+  setFocusOnTitle = () => {
+    const { section, page } = this.props;
+
+    if (section.title.length === 0) {
+      this.sectionTitle.focus();
+    } else if (page.title.length === 0) {
+      this.pageTitle.focus();
+    }
+  };
+
+  render() {
+    const {
+      section,
+      page,
+      onChange,
+      onAnswerAdd,
+      onFocus,
+      onBlur,
+      focused
+    } = this.props;
+
+    return (
+      <Canvas>
+        <Form onChange={noop} onSubmit={noop}>
+          <CanvasSection
+            id="section"
+            onFocus={onFocus}
+            onBlur={onBlur}
+            focused={focused === "section"}
+          >
+            <Field id="section.title">
+              <SeamlessInput
+                placeholder="Section title"
+                size="medium"
+                onChange={onChange}
+                value={section.title}
+                ref={this.setSectionTitle}
+              />
+            </Field>
+            <Field id="section.description" optional>
+              <SeamlessTextArea
+                cols="30"
+                rows="5"
+                placeholder="Enter a description (optional)…"
+                onChange={onChange}
+                value={section.description}
+              />
+            </Field>
+          </CanvasSection>
+          <CanvasSection
+            id="page"
+            onFocus={onFocus}
+            onBlur={onBlur}
+            focused={focused === "page"}
+          >
+            <Field id="page.title">
+              <SeamlessInput
+                size="large"
+                placeholder="Question title"
+                onChange={onChange}
+                value={page.title}
+                ref={this.setPageTitle}
+              />
+            </Field>
+            <Field id="page.description" optional>
+              <SeamlessInput
+                placeholder="Question text (optional)…"
+                value={page.description}
+                onChange={onChange}
+              />
+            </Field>
+            <Field id="page.guidance" optional>
+              <SeamlessInput
+                placeholder="Guidance text (optional)…"
+                value={page.guidance}
+                onChange={onChange}
+              />
+            </Field>
+          </CanvasSection>
+          <CanvasSection
+            id="answers"
+            onFocus={onFocus}
+            onBlur={onBlur}
+            focused={focused === "answers"}
+          >
+            <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
+              add an answer
+            </AddAnswerButton>
+          </CanvasSection>
+        </Form>
+      </Canvas>
+    );
+  }
+}
 
 QuestionnaireDesign.propTypes = {
   section: CustomPropTypes.section,

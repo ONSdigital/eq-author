@@ -16,7 +16,6 @@ exports[`QuestionnaireDesign should render 1`] = `
         id="section.title"
       >
         <withSeamlessness(withChangeHandler(Input))
-          autoFocus={true}
           focused={false}
           onChange={[Function]}
           optional={false}
@@ -50,6 +49,7 @@ exports[`QuestionnaireDesign should render 1`] = `
         id="page.title"
       >
         <withSeamlessness(withChangeHandler(Input))
+          autoFocus={false}
           focused={false}
           onChange={[Function]}
           optional={false}

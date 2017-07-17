@@ -42,11 +42,11 @@ export default class CanvasSection extends Component {
   };
 
   handleFocus = e => {
-    this.props.onFocus(this.props.id);
+    this.props.onFocus(this.props.id, e.target.name);
   };
 
   handleBlur = e => {
-    this.props.onBlur(null);
+    this.props.onBlur(null, e.target.name);
   };
 
   render() {

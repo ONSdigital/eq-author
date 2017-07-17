@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
 
 import CustomPropsTypes from "custom-prop-types";
@@ -32,10 +32,14 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = ({ questionnaire }) => {
+const Nav = withRouter(({ questionnaire, match }) => {
   const { id } = questionnaire;
   const section = questionnaire.sections[0];
   const page = section.pages[0];
+
+  const navIsActive = () => {
+    return match.params.sectionId;
+  };
 
   return (
     <StyledNav>
@@ -48,12 +52,13 @@ const Nav = ({ questionnaire }) => {
       <StyledNavLink
         to={`/questionnaire/${id}/design/${section.id}/${page.id}`}
         activeClassName="selected"
+        isActive={navIsActive}
       >
         Builder
       </StyledNavLink>
     </StyledNav>
   );
-};
+});
 
 Nav.propTypes = {
   questionnaire: CustomPropsTypes.questionnaire

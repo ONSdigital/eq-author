@@ -23,7 +23,6 @@ const getQuestionnaire = gql`
             type
             guidance
             type
-            description
             answers {
               id
               description

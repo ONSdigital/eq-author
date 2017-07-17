@@ -48,8 +48,8 @@ export class QuestionnaireDesignPage extends Component {
     alert("add an answer to this parent");
   };
 
-  handleBlur = canvasSectionName => {
-    this.setFocused(canvasSectionName);
+  handleBlur = focused => {
+    this.setFocused(focused);
 
     switch (this.state.focused) {
       case "section":
@@ -63,22 +63,21 @@ export class QuestionnaireDesignPage extends Component {
     }
   };
 
-  handleFocus = canvasSectionName => {
-    this.setFocused(canvasSectionName);
+  handleFocus = focused => {
+    this.setFocused(focused);
   };
 
-  handleAddPageClick = sectionId => {
-    this.props.onAddPage(this.state.section.id).then(() => {
-      this.setFocused("page");
-    });
+  handleAddPageClick = () => {
+    this.props.onAddPage(this.state.section.id);
   };
 
-  setFocused = canvasSectionName => {
-    if (canvasSectionName === null) {
+  setFocused = focused => {
+    if (focused === null) {
       return;
     }
-    if (canvasSectionName !== this.state.focused) {
-      this.setState({ focused: canvasSectionName });
+
+    if (focused !== this.state.focused) {
+      this.setState({ focused });
     }
   };
 
@@ -126,21 +125,18 @@ export class QuestionnaireDesignPage extends Component {
   }
 
   render() {
-    const { breadcrumb, questionnaire, loading } = this.props;
-    const { focused, page, section } = this.state;
+    const { breadcrumb, loading, questionnaire } = this.props;
+    const { section, page, focused } = this.state;
 
     if (loading) {
       return null;
     }
 
     return (
-      <BaseLayout
-        breadcrumb={breadcrumb}
-        questionnaire={this.state.questionnaire}
-      >
+      <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            {this.renderSidebar(questionnaire)}
+            {questionnaire && this.renderSidebar(questionnaire)}
           </Column>
           <Column gutters={false}>
             <QuestionnaireDesign
