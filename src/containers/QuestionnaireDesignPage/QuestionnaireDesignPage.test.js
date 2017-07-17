@@ -76,6 +76,22 @@ describe("containers/QuestionnaireDesign", () => {
     );
   });
 
+  it("should not update when unknown field blurs", () => {
+    wrapper
+      .setState({ focused: null })
+      .find(QuestionnaireDesign)
+      .simulate("blur");
+
+    expect(handlePageUpdate).not.toHaveBeenCalled();
+    expect(handleSectionUpdate).not.toHaveBeenCalled();
+  });
+
+  it("should set focus state when field receives focus", () => {
+    wrapper.find(QuestionnaireDesign).simulate("focus", "page");
+
+    expect(wrapper.state().focused).toBe("page");
+  });
+
   it("should set focused element on blur", () => {
     wrapper.simulate("blur");
     expect(wrapper.state().focused).toEqual("section");
