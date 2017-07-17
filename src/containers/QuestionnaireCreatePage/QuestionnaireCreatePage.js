@@ -22,9 +22,7 @@ const Center = styled.div`
 
 class QuestionnaireCreatePage extends Component {
   static propTypes = {
-    createQuestionnaire: PropTypes.func.isRequired,
-    createSection: PropTypes.func.isRequired,
-    createPage: PropTypes.func.isRequired
+    createQuestionnaire: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -51,31 +49,7 @@ class QuestionnaireCreatePage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    const { createQuestionnaire, createSection, createPage } = this.props;
-
-    // TODO: clean all this up when API assumes responsibility of creating initial Section and Page
-    return createQuestionnaire(this.state.questionnaire)
-      .then(({ data }) =>
-        createSection({
-          title: "",
-          description: "",
-          questionnaireId: data.createQuestionnaire.id
-        }).then(result =>
-          Object.assign({}, result.data.createSection, {
-            questionnaireId: data.createQuestionnaire.id
-          })
-        )
-      )
-      .then(data =>
-        createPage({
-          title: "",
-          description: "",
-          sectionId: data.id,
-          type: "General",
-          questionnaireId: data.questionnaireId
-        })
-      );
+    return this.props.createQuestionnaire(this.state.questionnaire);
   };
 
   render() {

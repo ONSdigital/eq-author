@@ -18,6 +18,12 @@ const createQuestionnaire = gql`
       navigation: $navigation
     ) {
       id
+      sections {
+        id
+        pages {
+          id
+        }
+      }
     }
   }
 `;
