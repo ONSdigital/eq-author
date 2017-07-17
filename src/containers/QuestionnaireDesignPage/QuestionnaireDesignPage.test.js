@@ -29,12 +29,25 @@ describe("containers/QuestionnaireDesign", () => {
         onPageUpdate={handlePageUpdate}
         section={section}
         page={page}
+        loading={false}
       />
     );
   });
 
+  it("should render nothing when loading", () => {
+    wrapper.setProps({ loading: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should render form when loaded", () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should update state with when receiving props", () => {
+    const newSection = { title: "foobar" };
+    wrapper.setProps({ section: newSection });
+
+    expect(wrapper.state().section).toBe(newSection);
   });
 
   it("should store updated values in state", () => {
@@ -100,5 +113,16 @@ describe("containers/QuestionnaireDesign", () => {
   it("should set focused element on focus", () => {
     wrapper.simulate("focus");
     expect(wrapper.state().focused).toEqual("section");
+  });
+
+  it("should alert when answer added", () => {
+    global.alert = jest.fn();
+
+    wrapper
+      .setState({ focused: null })
+      .find(QuestionnaireDesign)
+      .simulate("answerAdd");
+
+    expect(global.alert).toHaveBeenCalled();
   });
 });

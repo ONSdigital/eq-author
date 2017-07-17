@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { merge, set, noop } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 
-import withQuestionnaire from "components/WithQuestionnaire";
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
 import { PropertyPane, PropertyPaneTitle } from "components/PropertyPane";
@@ -13,13 +12,13 @@ import QuestionnaireDesign from "components/QuestionnaireDesign";
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
-    onSubmit: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
-    question: CustomPropTypes.question
+    question: CustomPropTypes.question,
+    loading: PropTypes.bool.isRequired
   };
 
   constructor(props) {
@@ -32,6 +31,10 @@ export class QuestionnaireDesignPage extends Component {
       page,
       focused: "section"
     };
+  }
+
+  componentWillReceiveProps({ section, page }) {
+    this.setState({ section, page });
   }
 
   handleChange = change => {
@@ -68,8 +71,12 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   render() {
-    const { breadcrumb, onSubmit, questionnaire } = this.props;
-    const { section, page, focused } = this.state;
+    const { breadcrumb, questionnaire, loading } = this.props;
+    const { focused, page, section } = this.state;
+
+    if (loading) {
+      return null;
+    }
 
     return (
       <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
@@ -86,7 +93,6 @@ export class QuestionnaireDesignPage extends Component {
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
-              onSubmit={onSubmit}
             />
           </Column>
           <Column cols={2} gutters={false}>
@@ -101,4 +107,4 @@ export class QuestionnaireDesignPage extends Component {
   }
 }
 
-export default withQuestionnaire(QuestionnaireDesignPage);
+export default QuestionnaireDesignPage;

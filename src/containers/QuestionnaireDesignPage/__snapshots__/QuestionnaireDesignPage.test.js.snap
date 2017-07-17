@@ -32,7 +32,6 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
-        onSubmit={[Function]}
         page={
           Object {
             "description": "",
@@ -72,3 +71,5 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
   </Grid__Grid>
 </BaseLayout>
 `;
+
+exports[`containers/QuestionnaireDesign should render nothing when loading 1`] = `null`;
