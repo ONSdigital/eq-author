@@ -77,9 +77,7 @@ export const withCreatePage = graphql(createQuestionPageMutation, {
             variables: { id: questionnaireId }
           });
 
-          const section = find(data.questionnaire.sections, {
-            id: parseInt(sectionId, 10)
-          });
+          const section = findById(data.questionnaire.sections, sectionId);
 
           section.pages.push(createQuestionPage);
 

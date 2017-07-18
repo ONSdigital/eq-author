@@ -37,6 +37,7 @@ export class QuestionnaireDesignPage extends Component {
   }
 
   componentWillReceiveProps({ section, page }) {
+    console.log(section, page);
     this.setState({ section, page });
   }
 
