@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
 
@@ -32,7 +33,7 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = withRouter(({ questionnaire, match }) => {
+export const NavWithoutRouter = ({ questionnaire, match }) => {
   const { id } = questionnaire;
   const section = questionnaire.sections[0];
   const page = section.pages[0];
@@ -58,10 +59,16 @@ const Nav = withRouter(({ questionnaire, match }) => {
       </StyledNavLink>
     </StyledNav>
   );
-});
-
-Nav.propTypes = {
-  questionnaire: CustomPropsTypes.questionnaire
 };
 
-export default Nav;
+NavWithoutRouter.propTypes = {
+  questionnaire: CustomPropsTypes.questionnaire,
+  match: PropTypes.shape({
+    isExact: PropTypes.bool,
+    params: PropTypes.object.isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  })
+};
+
+export default withRouter(NavWithoutRouter);

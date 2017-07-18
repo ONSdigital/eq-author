@@ -50,8 +50,29 @@ export const withUpdatePage = graphql(updatePageMutation, {
   })
 });
 
-export const withCreatePage = graphql(createQuestionPageMutation, {
-  props: ({ ownProps: { questionnaireId, history }, mutate }) => ({
+export const createUpdater = (questionnaireId, sectionId) => (
+  proxy,
+  result
+) => {
+  const data = proxy.readQuery({
+    query: getQuestionnaireQuery,
+    variables: { id: questionnaireId }
+  });
+
+  const section = findById(data.questionnaire.sections, sectionId);
+
+  section.pages.push(result.data.createQuestionPage);
+
+  proxy.writeQuery({
+    query: getQuestionnaireQuery,
+    variables: { id: questionnaireId },
+    data
+  });
+};
+
+export const mapMutateToProps = ({ ownProps, mutate }) => {
+  const { questionnaireId, history } = ownProps;
+  return {
     onAddPage(sectionId) {
       const page = {
         title: "",
@@ -71,22 +92,7 @@ export const withCreatePage = graphql(createQuestionPageMutation, {
             ...page
           }
         },
-        update(proxy, { data: { createQuestionPage } }) {
-          const data = proxy.readQuery({
-            query: getQuestionnaireQuery,
-            variables: { id: questionnaireId }
-          });
-
-          const section = findById(data.questionnaire.sections, sectionId);
-
-          section.pages.push(createQuestionPage);
-
-          proxy.writeQuery({
-            query: getQuestionnaireQuery,
-            variables: { id: questionnaireId },
-            data
-          });
-        }
+        update: createUpdater(questionnaireId, sectionId)
       }).then(({ data }) => {
         const { id, sectionId } = data.createQuestionPage;
         history.push(
@@ -94,7 +100,11 @@ export const withCreatePage = graphql(createQuestionPageMutation, {
         );
       });
     }
-  })
+  };
+};
+
+export const withCreatePage = graphql(createQuestionPageMutation, {
+  props: mapMutateToProps
 });
 
 export default compose(

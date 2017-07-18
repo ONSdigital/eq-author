@@ -1,25 +1,27 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Nav from "components/Nav";
+import mountWithRouter from "tests/utils/mountWithRouter";
+import { NavWithoutRouter } from "components/Nav";
 
 let wrapper;
 
+const questionnaire = {
+  id: 1,
+  title: "Questionnaire",
+  sections: [
+    {
+      id: 2,
+      title: "Section 1",
+      pages: [{ id: 3 }]
+    }
+  ]
+};
+
+const match = { params: {}, path: "", url: "" };
+
 describe("components/Nav", () => {
   beforeEach(() => {
-    wrapper = shallow(
-      <Nav
-        questionnaire={{
-          id: 1,
-          title: "Questionnaire",
-          sections: [
-            {
-              id: 2,
-              title: "Section 1",
-              pages: [{ id: 3 }]
-            }
-          ]
-        }}
-      />
+    wrapper = mountWithRouter(
+      <NavWithoutRouter questionnaire={questionnaire} match={match} />
     );
   });
 
@@ -29,5 +31,10 @@ describe("components/Nav", () => {
 
   it("should contain links", () => {
     expect(wrapper.find("a")).toBeTruthy();
+  });
+
+  it("should display active link when route matches", () => {
+    wrapper.setProps({ match: { ...match, params: { sectionId: "888" } } });
+    expect(wrapper).toMatchSnapshot();
   });
 });

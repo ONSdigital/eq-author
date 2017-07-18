@@ -17,6 +17,16 @@ const AddAnswerButton = styled(Button)`
 `;
 
 class QuestionnaireDesign extends React.Component {
+  static propTypes = {
+    section: CustomPropTypes.section,
+    page: CustomPropTypes.page,
+    onChange: PropTypes.func.isRequired,
+    onAnswerAdd: PropTypes.func.isRequired,
+    onFocus: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired,
+    focused: PropTypes.oneOf(["section", "page", "answers", null])
+  };
+
   componentDidMount() {
     this.setFocusOnTitle();
   }
@@ -125,15 +135,5 @@ class QuestionnaireDesign extends React.Component {
     );
   }
 }
-
-QuestionnaireDesign.propTypes = {
-  section: CustomPropTypes.section,
-  page: CustomPropTypes.page,
-  onChange: PropTypes.func.isRequired,
-  onAnswerAdd: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
-  focused: PropTypes.oneOf(["section", "page", "answers", null])
-};
 
 export default QuestionnaireDesign;

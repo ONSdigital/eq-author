@@ -37,7 +37,6 @@ export class QuestionnaireDesignPage extends Component {
   }
 
   componentWillReceiveProps({ section, page }) {
-    console.log(section, page);
     this.setState({ section, page });
   }
 
@@ -117,7 +116,9 @@ export class QuestionnaireDesignPage extends Component {
                     </li>
                   )}
                 </ol>}
-              <button onClick={this.handleAddPageClick}>+ Add page</button>
+              <button onClick={this.handleAddPageClick} id="btn-add-page">
+                + Add page
+              </button>
             </li>
           )}
         </ol>

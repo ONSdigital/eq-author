@@ -29,7 +29,7 @@ exports[`components/BaseLayout shoulder render a Nav 1`] = `
         <Column__Column
           offset={2}
         >
-          <Nav
+          <withRouter(NavWithoutRouter)
             questionnaire={
               Object {
                 "title": "Questionnaire",

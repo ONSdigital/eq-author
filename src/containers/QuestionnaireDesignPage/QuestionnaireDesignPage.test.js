@@ -3,30 +3,41 @@ import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
 import QuestionnaireDesign from "components/QuestionnaireDesign";
 import { shallow } from "enzyme";
 
-let handleUpdate, handleSubmit, wrapper, handleSectionUpdate, handlePageUpdate;
+let handleUpdate,
+  handleSubmit,
+  wrapper,
+  handleSectionUpdate,
+  handlePageUpdate,
+  handleAddPage;
 
-let section = { title: "" };
 let page = {
+  id: "1",
   description: "",
   guidance: "",
   title: "",
   type: "General"
 };
 
+let section = { id: "2", title: "", pages: [page] };
+
+let questionnaire = { id: "3", title: "hello world", sections: [section] };
+
 describe("containers/QuestionnaireDesign", () => {
   beforeEach(() => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
+    handleAddPage = jest.fn();
     handleSectionUpdate = jest.fn();
     handlePageUpdate = jest.fn();
 
     wrapper = shallow(
       <QuestionnaireDesignPage
         onSubmit={handleSubmit}
-        questionnaire={{ title: "hello world", sections: [section] }}
+        questionnaire={questionnaire}
         onUpdate={handleUpdate}
         onSectionUpdate={handleSectionUpdate}
         onPageUpdate={handlePageUpdate}
+        onAddPage={handleAddPage}
         section={section}
         page={page}
         loading={false}
@@ -44,10 +55,12 @@ describe("containers/QuestionnaireDesign", () => {
   });
 
   it("should update state with when receiving props", () => {
-    const newSection = { title: "foobar" };
-    wrapper.setProps({ section: newSection });
+    const section = { id: 4, title: "Section 2" };
+    const page = { id: 5, title: "Page 2", type: "General" };
+    wrapper.setProps({ section, page });
 
-    expect(wrapper.state().section).toBe(newSection);
+    expect(wrapper.state().section).toBe(section);
+    expect(wrapper.state().page).toBe(page);
   });
 
   it("should store updated values in state", () => {
@@ -124,5 +137,10 @@ describe("containers/QuestionnaireDesign", () => {
       .simulate("answerAdd");
 
     expect(global.alert).toHaveBeenCalled();
+  });
+
+  it("should call onAddPage when button is clicked", () => {
+    wrapper.find("#btn-add-page").simulate("click");
+    expect(handleAddPage).toHaveBeenCalledWith(section.id);
   });
 });

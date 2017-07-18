@@ -7,8 +7,7 @@ const withChangeHandler = WrappedComponent => {
       onChange: PropTypes.func,
       value: PropTypes.string,
       id: PropTypes.string,
-      name: PropTypes.string,
-      value: PropTypes.string
+      name: PropTypes.string
     };
 
     static displayName = `withChangeHandler(${WrappedComponent.displayName})`;

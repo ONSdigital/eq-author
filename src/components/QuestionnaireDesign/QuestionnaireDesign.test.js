@@ -1,15 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import QuestionnaireDesign from "./";
 
 describe("QuestionnaireDesign", () => {
-  let component;
+  let wrapper;
 
   beforeEach(() => {
-    component = shallow(
+    wrapper = mount(
       <QuestionnaireDesign
-        section={{ title: "My section" }}
-        page={{ title: "My page" }}
+        section={{ id: "0", title: "" }}
+        page={{ id: "1", title: "" }}
         onChange={jest.fn()}
         onAnswerAdd={jest.fn()}
         onFocus={jest.fn()}
@@ -19,6 +19,34 @@ describe("QuestionnaireDesign", () => {
   });
 
   it("should render", () => {
-    expect(component).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should focus on empty section title upon mount", () => {
+    expect(document.activeElement.name).toEqual("section.title");
+  });
+
+  it("should focus on empty page title when section title is not empty", () => {
+    wrapper.setProps({ section: { title: "Section 1" } });
+    wrapper.unmount();
+    wrapper.mount();
+
+    expect(document.activeElement.name).toEqual("page.title");
+  });
+
+  it("should move focus to empty section title upon navigation to new page", () => {
+    wrapper.setProps({
+      section: { id: "2", title: "" },
+      page: { id: "3", title: "" }
+    });
+    expect(document.activeElement.name).toEqual("section.title");
+  });
+
+  it("should move focus to empty page title upon navigation to new page", () => {
+    wrapper.setProps({
+      section: { title: "Section 1" },
+      page: { id: "3", title: "" }
+    });
+    expect(document.activeElement.name).toEqual("page.title");
   });
 });

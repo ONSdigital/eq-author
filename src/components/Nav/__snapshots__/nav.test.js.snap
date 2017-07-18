@@ -1,18 +1,193 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`components/Nav should display active link when route matches 1`] = `
+<NavWithoutRouter
+  match={
+    Object {
+      "params": Object {
+        "sectionId": "888",
+      },
+      "path": "",
+      "url": "",
+    }
+  }
+  questionnaire={
+    Object {
+      "id": 1,
+      "sections": Array [
+        Object {
+          "id": 2,
+          "pages": Array [
+            Object {
+              "id": 3,
+            },
+          ],
+          "title": "Section 1",
+        },
+      ],
+      "title": "Questionnaire",
+    }
+  }
+>
+  <Nav__StyledNav>
+    <nav
+      className="Nav__StyledNav-f9kp5e-0 iPtJPB"
+    >
+      <Nav__StyledNavLink
+        activeClassName="selected"
+        to="/questionnaire/1/meta"
+      >
+        <NavLink
+          activeClassName="selected"
+          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          to="/questionnaire/1/meta"
+        >
+          <Route
+            path="/questionnaire/1/meta"
+          >
+            <Link
+              className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              replace={false}
+              to="/questionnaire/1/meta"
+            >
+              <a
+                className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                href="/questionnaire/1/meta"
+                onClick={[Function]}
+              >
+                Questionnaire meta
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </Nav__StyledNavLink>
+      <Nav__StyledNavLink
+        activeClassName="selected"
+        isActive={[Function]}
+        to="/questionnaire/1/design/2/3"
+      >
+        <NavLink
+          activeClassName="selected"
+          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          isActive={[Function]}
+          to="/questionnaire/1/design/2/3"
+        >
+          <Route
+            path="/questionnaire/1/design/2/3"
+          >
+            <Link
+              className="selected Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              replace={false}
+              style={Object {}}
+              to="/questionnaire/1/design/2/3"
+            >
+              <a
+                className="selected Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                href="/questionnaire/1/design/2/3"
+                onClick={[Function]}
+                style={Object {}}
+              >
+                Builder
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </Nav__StyledNavLink>
+    </nav>
+  </Nav__StyledNav>
+</NavWithoutRouter>
+`;
+
 exports[`components/Nav should render Nav 1`] = `
-<Nav__StyledNav>
-  <Nav__StyledNavLink
-    activeClassName="selected"
-    to="/questionnaire/1/meta"
-  >
-    Questionnaire meta
-  </Nav__StyledNavLink>
-  <Nav__StyledNavLink
-    activeClassName="selected"
-    to="/questionnaire/1/design/2/3"
-  >
-    Builder
-  </Nav__StyledNavLink>
-</Nav__StyledNav>
+<NavWithoutRouter
+  match={
+    Object {
+      "params": Object {},
+      "path": "",
+      "url": "",
+    }
+  }
+  questionnaire={
+    Object {
+      "id": 1,
+      "sections": Array [
+        Object {
+          "id": 2,
+          "pages": Array [
+            Object {
+              "id": 3,
+            },
+          ],
+          "title": "Section 1",
+        },
+      ],
+      "title": "Questionnaire",
+    }
+  }
+>
+  <Nav__StyledNav>
+    <nav
+      className="Nav__StyledNav-f9kp5e-0 iPtJPB"
+    >
+      <Nav__StyledNavLink
+        activeClassName="selected"
+        to="/questionnaire/1/meta"
+      >
+        <NavLink
+          activeClassName="selected"
+          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          to="/questionnaire/1/meta"
+        >
+          <Route
+            path="/questionnaire/1/meta"
+          >
+            <Link
+              className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              replace={false}
+              to="/questionnaire/1/meta"
+            >
+              <a
+                className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                href="/questionnaire/1/meta"
+                onClick={[Function]}
+              >
+                Questionnaire meta
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </Nav__StyledNavLink>
+      <Nav__StyledNavLink
+        activeClassName="selected"
+        isActive={[Function]}
+        to="/questionnaire/1/design/2/3"
+      >
+        <NavLink
+          activeClassName="selected"
+          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          isActive={[Function]}
+          to="/questionnaire/1/design/2/3"
+        >
+          <Route
+            path="/questionnaire/1/design/2/3"
+          >
+            <Link
+              className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              replace={false}
+              to="/questionnaire/1/design/2/3"
+            >
+              <a
+                className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                href="/questionnaire/1/design/2/3"
+                onClick={[Function]}
+              >
+                Builder
+              </a>
+            </Link>
+          </Route>
+        </NavLink>
+      </Nav__StyledNavLink>
+    </nav>
+  </Nav__StyledNav>
+</NavWithoutRouter>
 `;
