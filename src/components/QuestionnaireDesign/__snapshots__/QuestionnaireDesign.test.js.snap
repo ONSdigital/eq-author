@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionnaireDesign should render 1`] = `
+<Canvas__Canvas>
+  <Form
+    onChange={[Function]}
+    onSubmit={[Function]}
+  >
+    <CanvasSection
+      focused={false}
+      id="section"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <Field
+        id="section.title"
+      >
+        <withSeamlessness(withChangeHandler(Input))
+          autoFocus={true}
+          focused={false}
+          onChange={[Function]}
+          optional={false}
+          placeholder="Section title"
+          size="medium"
+          value="My section"
+        />
+      </Field>
+      <Field
+        id="section.description"
+        optional={true}
+      >
+        <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+          cols="30"
+          focused={false}
+          onChange={[Function]}
+          optional={false}
+          placeholder="Enter a description (optional)…"
+          rows="5"
+          size="small"
+        />
+      </Field>
+    </CanvasSection>
+    <CanvasSection
+      focused={false}
+      id="page"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <Field
+        id="page.title"
+      >
+        <withSeamlessness(withChangeHandler(Input))
+          focused={false}
+          onChange={[Function]}
+          optional={false}
+          placeholder="Question title"
+          size="large"
+          value="My page"
+        />
+      </Field>
+      <Field
+        id="page.description"
+        optional={true}
+      >
+        <withSeamlessness(withChangeHandler(Input))
+          focused={false}
+          onChange={[Function]}
+          optional={false}
+          placeholder="Question text (optional)…"
+          size="small"
+        />
+      </Field>
+      <Field
+        id="page.guidance"
+        optional={true}
+      >
+        <withSeamlessness(withChangeHandler(Input))
+          focused={false}
+          onChange={[Function]}
+          optional={false}
+          placeholder="Guidance text (optional)…"
+          size="small"
+        />
+      </Field>
+    </CanvasSection>
+    <CanvasSection
+      focused={false}
+      id="answers"
+      onBlur={[Function]}
+      onFocus={[Function]}
+    >
+      <QuestionnaireDesign__AddAnswerButton
+        clear={true}
+        onClick={[Function]}
+        type="button"
+      >
+        add an answer
+      </QuestionnaireDesign__AddAnswerButton>
+    </CanvasSection>
+  </Form>
+</Canvas__Canvas>
+`;

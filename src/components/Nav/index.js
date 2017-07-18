@@ -34,6 +34,8 @@ const StyledNavLink = styled(NavLink)`
 
 const Nav = ({ questionnaire }) => {
   const { id } = questionnaire;
+  const section = questionnaire.sections[0];
+  const page = section.pages[0];
 
   return (
     <StyledNav>
@@ -44,7 +46,7 @@ const Nav = ({ questionnaire }) => {
         Questionnaire meta
       </StyledNavLink>
       <StyledNavLink
-        to={`/questionnaire/${id}/design/${questionnaire.sections[0].id}`}
+        to={`/questionnaire/${id}/design/${section.id}/${page.id}`}
         activeClassName="selected"
       >
         Builder

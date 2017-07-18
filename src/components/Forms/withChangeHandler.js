@@ -5,6 +5,7 @@ const withChangeHandler = WrappedComponent => {
   return class extends React.Component {
     static propTypes = {
       onChange: PropTypes.func,
+      value: PropTypes.string,
       id: PropTypes.string,
       name: PropTypes.string
     };
@@ -20,7 +21,15 @@ const withChangeHandler = WrappedComponent => {
     };
 
     render() {
-      return <WrappedComponent {...this.props} onChange={this.handleChange} />;
+      const { value } = this.props;
+
+      return (
+        <WrappedComponent
+          {...this.props}
+          value={value === null ? "" : value}
+          onChange={this.handleChange}
+        />
+      );
     }
   };
 };

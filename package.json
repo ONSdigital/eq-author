@@ -15,7 +15,8 @@
     "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
-    "coverage": "yarn test -- --coverage -u"
+    "coverage": "yarn test -- --coverage -u",
+    "postinstall": "rm -rf node_modules/react-apollo/node_modules/react-dom && echo 'ran temporary fix for react-apollo'"
   },
   "lint-staged": {
     "*.js": ["prettier --write", "git add"]

@@ -1,26 +1,26 @@
-import { graphql, compose } from "react-apollo";
+import { graphql } from "react-apollo";
 import QuestionnaireCreatePage from "./QuestionnaireCreatePage";
 import createQuestionnaireQuery from "queries/createQuestionnaire";
-import createSectionQuery from "queries/createSection";
 
-export const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
-  props: ({ ownProps, mutate }) => ({
-    createQuestionnaire: ({ questionnaire }) =>
-      mutate({ variables: questionnaire })
-  })
+export const mapMutateToProps = ({ ownProps, mutate }) => ({
+  createQuestionnaire: questionnaire =>
+    mutate({ variables: questionnaire }).then(
+      redirectToDesigner(ownProps.history)
+    )
 });
 
-export const withCreateSection = graphql(createSectionQuery, {
-  props: ({ ownProps: { match, history, location }, mutate }) => ({
-    createSection(variables) {
-      return mutate({ variables }).then(({ data }) => {
-        const { id, questionnaireId } = data.createSection;
-        history.push(`/questionnaire/${questionnaireId}/design/${id}`);
-      });
-    }
-  })
+export const redirectToDesigner = history => ({ data }) => {
+  const questionnaire = data.createQuestionnaire;
+  const section = questionnaire.sections[0];
+  const page = section.pages[0];
+
+  history.push(
+    `/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`
+  );
+};
+
+const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
+  props: mapMutateToProps
 });
 
-export default compose(withCreateQuestionnaire, withCreateSection)(
-  QuestionnaireCreatePage
-);
+export default withCreateQuestionnaire(QuestionnaireCreatePage);

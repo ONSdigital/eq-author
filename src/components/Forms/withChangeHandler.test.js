@@ -18,6 +18,14 @@ describe("withChangeHandler", () => {
     expect(EnhancedInput.displayName).toEqual("withChangeHandler(Input)");
   });
 
+  it("should handle null 'value' prop", () => {
+    const component = shallow(
+      <EnhancedInput id="foo" value={null} onChange={handleChange} />
+    );
+
+    expect(component.prop("value")).toBe("");
+  });
+
   it("should invoke change handler with name and value", () => {
     const component = shallow(
       <EnhancedInput id="foo" value="1" onChange={handleChange} />

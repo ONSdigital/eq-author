@@ -22,8 +22,7 @@ const Center = styled.div`
 
 class QuestionnaireCreatePage extends Component {
   static propTypes = {
-    createQuestionnaire: PropTypes.func.isRequired,
-    createSection: PropTypes.func.isRequired
+    createQuestionnaire: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -50,16 +49,7 @@ class QuestionnaireCreatePage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    const { createQuestionnaire, createSection } = this.props;
-
-    return createQuestionnaire(this.state).then(({ data }) => {
-      createSection({
-        title: "",
-        description: "",
-        questionnaireId: data.createQuestionnaire.id
-      });
-    });
+    return this.props.createQuestionnaire(this.state.questionnaire);
   };
 
   render() {

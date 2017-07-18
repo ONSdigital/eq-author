@@ -69,7 +69,7 @@ const withSeamlessness = WrappedComponent => {
     static propTypes = {
       id: PropTypes.string,
       onChange: PropTypes.func.isRequired,
-      value: PropTypes.string.isRequired,
+      value: PropTypes.string,
       focused: PropTypes.bool,
       optional: PropTypes.bool,
       autoFocus: PropTypes.bool,

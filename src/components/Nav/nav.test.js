@@ -11,7 +11,13 @@ describe("components/Nav", () => {
         questionnaire={{
           id: 1,
           title: "Questionnaire",
-          sections: [{ id: 0, title: "Section 1" }]
+          sections: [
+            {
+              id: 2,
+              title: "Section 1",
+              pages: [{ id: 3 }]
+            }
+          ]
         }}
       />
     );

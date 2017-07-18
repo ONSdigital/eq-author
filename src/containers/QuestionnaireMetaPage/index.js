@@ -19,7 +19,7 @@ export const withData = graphql(getQuestionnaire, {
 
 export const withMutation = graphql(updateQuestionnaire, {
   props: ({ mutate }) => ({
-    update({ questionnaire }) {
+    onUpdate({ questionnaire }) {
       return mutate({ variables: questionnaire });
     }
   })

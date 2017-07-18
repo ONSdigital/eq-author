@@ -1,14 +1,20 @@
 import { gql } from "react-apollo";
 
-const createPage = gql`
-  mutation createPage(
+const createQuestionPage = gql`
+  mutation CreateQuestionPage(
     $title: String!
     $description: String!
-    $sectionId: String!
+    $guidance: String
+    $type: QuestionType!
+    $mandatory: Boolean
+    $sectionId: Int!
   ) {
-    createPage(
+    createQuestionPage(
       title: $title
       description: $description
+      guidance: $guidance
+      type: $type
+      mandatory: $mandatory
       sectionId: $sectionId
     ) {
       id
@@ -18,4 +24,4 @@ const createPage = gql`
   }
 `;
 
-export default createPage;
+export default createQuestionPage;

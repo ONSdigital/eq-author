@@ -10,7 +10,7 @@ exports[`components/Nav should render Nav 1`] = `
   </Nav__StyledNavLink>
   <Nav__StyledNavLink
     activeClassName="selected"
-    to="/questionnaire/1/design/0"
+    to="/questionnaire/1/design/2/3"
   >
     Builder
   </Nav__StyledNavLink>
