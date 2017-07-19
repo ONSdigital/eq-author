@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Popout should render content when open is \`true\` 1`] = `
+<Popout
+  onToggleOpen={[Function]}
+  open={true}
+  trigger={
+    <button>
+      Click Me
+    </button>
+  }
+>
+  <h1>
+    hello world
+  </h1>
+</Popout>
+`;
+
+exports[`components/Popout shouldn't render content when open is \`false\` 1`] = `
+<Popout__Container>
+  <button
+    aria-expanded={false}
+    aria-haspopup={true}
+    onClick={[Function]}
+  >
+    Click Me
+  </button>
+</Popout__Container>
+`;
