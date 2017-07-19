@@ -1,2 +1,2 @@
 export { default as IconGrid } from "./IconGrid";
-export { default as IconGridSVG } from "./IconGridSVG";
+export { default as IconGridButton } from "./IconGridButton";

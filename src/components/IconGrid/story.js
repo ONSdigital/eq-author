@@ -1,17 +1,17 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { IconGrid, IconGridSVG } from "./index";
+import { IconGrid, IconGridButton } from "./index";
 
 storiesOf("IconGrid", module).add("Default", () =>
   <IconGrid>
-    <IconGridSVG icon="checkbox" title="checkbox" />
-    <IconGridSVG icon="currency" title="currency" />
-    <IconGridSVG icon="date" title="date" />
-    <IconGridSVG icon="number" title="number" />
-    <IconGridSVG icon="radio" title="radio" />
-    <IconGridSVG icon="select" title="select" />
-    <IconGridSVG icon="textarea" title="textarea" />
-    <IconGridSVG icon="textfield" title="textfield" />
-    <IconGridSVG icon="time" title="time" />
+    <IconGridButton icon="checkbox" title="checkbox" />
+    <IconGridButton icon="currency" title="currency" />
+    <IconGridButton icon="date" title="date" />
+    <IconGridButton icon="number" title="number" />
+    <IconGridButton icon="radio" title="radio" />
+    <IconGridButton icon="select" title="select" />
+    <IconGridButton icon="textarea" title="textarea" />
+    <IconGridButton icon="textfield" title="textfield" />
+    <IconGridButton icon="time" title="time" />
   </IconGrid>
 );

@@ -42,7 +42,7 @@ const Button = styled.button`
   }
 `;
 
-const IconGridSVG = ({ icon, title, disabled, handleClick }) => {
+const IconGridButton = ({ icon, title, disabled, handleClick }) => {
   return (
     <Button
       role="menuitem"
@@ -58,11 +58,11 @@ const IconGridSVG = ({ icon, title, disabled, handleClick }) => {
   );
 };
 
-IconGridSVG.propTypes = {
+IconGridButton.propTypes = {
   icon: PropTypes.oneOf(keys(icons)),
   title: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   handleClick: PropTypes.func
 };
 
-export default IconGridSVG;
+export default IconGridButton;
