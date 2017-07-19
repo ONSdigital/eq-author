@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNav should render 1`] = `
+<TransitionGroup
+  childFactory={[Function]}
+  component={[Function]}
+>
+  <FadeTransition
+    component={[Function]}
+    duration={200}
+  >
+    <PageNav__Link
+      activeClassName="selected"
+      disabled={false}
+      to="/questionnaire/1/design/3/2"
+    >
+      <PageNav__LinkText>
+        undefined1
+         
+        Page
+      </PageNav__LinkText>
+    </PageNav__Link>
+  </FadeTransition>
+</TransitionGroup>
+`;

@@ -138,9 +138,4 @@ describe("containers/QuestionnaireDesign", () => {
 
     expect(global.alert).toHaveBeenCalled();
   });
-
-  it("should call onAddPage when button is clicked", () => {
-    wrapper.find("#btn-add-page").simulate("click");
-    expect(handleAddPage).toHaveBeenCalledWith(section.id);
-  });
 });

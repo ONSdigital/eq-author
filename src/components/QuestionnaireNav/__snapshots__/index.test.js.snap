@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionnaireNav should render 1`] = `
+<QuestionnaireNav__Container>
+  <QuestionnaireNav__Title>
+    Questionnaire structure
+  </QuestionnaireNav__Title>
+  <QuestionnaireNav__NavList>
+    <SectionNav
+      onAddPageClick={[Function]}
+      questionnaire={
+        Object {
+          "id": "1",
+        }
+      }
+      transitionDuration={200}
+    />
+    <QuestionnaireNav__AddSection>
+      <QuestionnaireNav__AddSectionBtn
+        onClick={[Function]}
+        primary={true}
+      >
+        Create new section
+      </QuestionnaireNav__AddSectionBtn>
+    </QuestionnaireNav__AddSection>
+  </QuestionnaireNav__NavList>
+</QuestionnaireNav__Container>
+`;

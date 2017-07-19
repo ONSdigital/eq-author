@@ -32,54 +32,31 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
       cols={2}
       gutters={false}
     >
-      <div
-        style={
+      <QuestionnaireNav
+        onAddPageClick={[Function]}
+        onAddSectionClick={[Function]}
+        questionnaire={
           Object {
-            "padding": "1em",
+            "id": "3",
+            "sections": Array [
+              Object {
+                "id": "2",
+                "pages": Array [
+                  Object {
+                    "description": "",
+                    "guidance": "",
+                    "id": "1",
+                    "title": "",
+                    "type": "General",
+                  },
+                ],
+                "title": "",
+              },
+            ],
+            "title": "hello world",
           }
         }
-      >
-        <ol
-          style={
-            Object {
-              "fontSize": "0.9em",
-              "marginBottom": "1em",
-              "paddingLeft": "1em",
-            }
-          }
-        >
-          <li>
-            <Link
-              replace={false}
-              to="/questionnaire/3/design/2"
-            />
-            <ol
-              style={
-                Object {
-                  "fontSize": "0.9em",
-                  "marginBottom": "1em",
-                  "paddingLeft": "1em",
-                }
-              }
-            >
-              <li>
-                <Link
-                  replace={false}
-                  to="/questionnaire/3/design/2/1"
-                >
-                  Page Title
-                </Link>
-              </li>
-            </ol>
-            <button
-              id="btn-add-page"
-              onClick={[Function]}
-            >
-              + Add page
-            </button>
-          </li>
-        </ol>
-      </div>
+      />
     </Column__Column>
     <Column__Column
       gutters={false}

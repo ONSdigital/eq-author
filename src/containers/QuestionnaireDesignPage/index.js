@@ -77,9 +77,9 @@ export const redirectToDesigner = ownProps => ({ data }) => {
 };
 
 export const mapMutateToProps = ({ ownProps, mutate }) => {
-  const { questionnaireId, sectionId } = ownProps;
+  const { questionnaireId } = ownProps;
   return {
-    onAddPage() {
+    onAddPage(sectionId) {
       const page = {
         title: "",
         description: "",

@@ -72,6 +72,7 @@
     "react-router-test-context": "^0.1.0",
     "react-test-renderer": "^15.5.4",
     "recursive-readdir": "^2.2.1",
+    "storybook-router": "^0.2.8",
     "strip-ansi": "3.0.1",
     "style-loader": "^0.18.1",
     "svg-url-loader": "^2.0.2",
