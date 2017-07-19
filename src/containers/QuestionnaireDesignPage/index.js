@@ -70,8 +70,13 @@ export const createUpdater = (questionnaireId, sectionId) => (
   });
 };
 
+export const redirectToDesigner = ownProps => ({ data }) => {
+  const { history, sectionId, questionnaireId } = ownProps;
+  const { id } = data.createQuestionPage;
+  history.push(`/questionnaire/${questionnaireId}/design/${sectionId}/${id}`);
+};
+
 export const mapMutateToProps = ({ ownProps, mutate }) => {
-  const { questionnaireId, history } = ownProps;
   return {
     onAddPage(sectionId) {
       const page = {
@@ -92,13 +97,8 @@ export const mapMutateToProps = ({ ownProps, mutate }) => {
             ...page
           }
         },
-        update: createUpdater(questionnaireId, sectionId)
-      }).then(({ data }) => {
-        const { id, sectionId } = data.createQuestionPage;
-        history.push(
-          `/questionnaire/${questionnaireId}/design/${sectionId}/${id}`
-        );
-      });
+        update: createUpdater(ownProps.questionnaireId, sectionId)
+      }).then(redirectToDesigner(ownProps));
     }
   };
 };
