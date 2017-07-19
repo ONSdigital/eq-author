@@ -15,11 +15,13 @@
     "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
-    "coverage": "yarn test -- --coverage -u",
-    "postinstall": "rm -rf node_modules/react-apollo/node_modules/react-dom && echo 'ran temporary fix for react-apollo'"
+    "coverage": "yarn test -- --coverage -u"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.1.6",
@@ -92,7 +94,7 @@
     "polished": "^1.2.1",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.5.1",
-    "react-apollo": "^1.4.2",
+    "react-apollo": "^1.4.4",
     "react-dom": "^15.5.4",
     "react-error-overlay": "^1.0.7",
     "react-hot-loader": "next",
@@ -121,7 +123,9 @@
       "tests/setup/throwOnConsole.js"
     ],
     "setupTestFrameworkScriptFile": "tests/setup/mockLocalStorage.js",
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -132,13 +136,19 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
-  "moduleRoots": ["./src"]
+  "moduleRoots": [
+    "./src"
+  ]
 }
