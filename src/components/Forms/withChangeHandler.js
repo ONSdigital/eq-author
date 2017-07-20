@@ -21,11 +21,10 @@ const withChangeHandler = WrappedComponent => {
     };
 
     render() {
-      const { value } = this.props;
-
+      const { value, ...otherProps } = this.props;
       return (
         <WrappedComponent
-          {...this.props}
+          {...otherProps}
           value={value === null ? "" : value}
           onChange={this.handleChange}
         />

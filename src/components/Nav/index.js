@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
 
 import CustomPropsTypes from "custom-prop-types";
@@ -32,10 +33,18 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-const Nav = ({ questionnaire }) => {
+// TODO: find out why route matching doesn't work automatically
+// Given a route /foo/:bar/blah
+// I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
+// But this is not the case. Unsure if bug or implementation issue
+export const NavWithoutRouter = ({ questionnaire, match }) => {
   const { id } = questionnaire;
   const section = questionnaire.sections[0];
   const page = section.pages[0];
+
+  const navIsActive = () => {
+    return match.params.sectionId;
+  };
 
   return (
     <StyledNav>
@@ -48,6 +57,7 @@ const Nav = ({ questionnaire }) => {
       <StyledNavLink
         to={`/questionnaire/${id}/design/${section.id}/${page.id}`}
         activeClassName="selected"
+        isActive={navIsActive}
       >
         Builder
       </StyledNavLink>
@@ -55,8 +65,11 @@ const Nav = ({ questionnaire }) => {
   );
 };
 
-Nav.propTypes = {
-  questionnaire: CustomPropsTypes.questionnaire
+NavWithoutRouter.propTypes = {
+  questionnaire: CustomPropsTypes.questionnaire,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired
+  })
 };
 
-export default Nav;
+export default withRouter(NavWithoutRouter);

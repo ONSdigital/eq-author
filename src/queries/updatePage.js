@@ -18,6 +18,7 @@ const updatePage = gql`
       mandatory: $mandatory
     ) {
       id
+      title
     }
   }
 `;

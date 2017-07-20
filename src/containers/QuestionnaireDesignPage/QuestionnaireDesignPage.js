@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { merge, set, noop } from "lodash";
+import { Link } from "react-router-dom";
+
 import CustomPropTypes from "custom-prop-types";
 
 import BaseLayout from "components/BaseLayout";
@@ -12,6 +14,7 @@ import QuestionnaireDesign from "components/QuestionnaireDesign";
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
+    onAddPage: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
@@ -45,8 +48,8 @@ export class QuestionnaireDesignPage extends Component {
     alert("add an answer to this parent");
   };
 
-  handleBlur = canvasSectionName => {
-    this.setFocused(canvasSectionName);
+  handleBlur = focused => {
+    this.setFocused(focused);
 
     switch (this.state.focused) {
       case "section":
@@ -60,19 +63,72 @@ export class QuestionnaireDesignPage extends Component {
     }
   };
 
-  handleFocus = canvasSectionName => {
-    this.setFocused(canvasSectionName);
+  handleFocus = focused => {
+    this.setFocused(focused);
   };
 
-  setFocused = canvasSectionName => {
-    if (canvasSectionName !== this.state.focused) {
-      this.setState({ focused: canvasSectionName });
+  handleAddPageClick = () => {
+    this.props.onAddPage(this.state.section.id);
+  };
+
+  setFocused = focused => {
+    if (focused === null) {
+      return;
+    }
+
+    if (focused !== this.state.focused) {
+      this.setState({ focused });
     }
   };
 
+  renderSidebar(questionnaire) {
+    return (
+      <div style={{ padding: "1em" }}>
+        <ol
+          style={{
+            fontSize: "0.9em",
+            paddingLeft: "1em",
+            marginBottom: "1em"
+          }}
+        >
+          {questionnaire.sections.map(section =>
+            <li key={section.id}>
+              <Link
+                to={`/questionnaire/${questionnaire.id}/design/${section.id}`}
+              >
+                {section.title}
+              </Link>
+              {section.pages &&
+                <ol
+                  style={{
+                    fontSize: "0.9em",
+                    paddingLeft: "1em",
+                    marginBottom: "1em"
+                  }}
+                >
+                  {section.pages.map((page, i) =>
+                    <li key={page.id}>
+                      <Link
+                        to={`/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`}
+                      >
+                        {page.title || "Page Title"}
+                      </Link>
+                    </li>
+                  )}
+                </ol>}
+              <button onClick={this.handleAddPageClick} id="btn-add-page">
+                + Add page
+              </button>
+            </li>
+          )}
+        </ol>
+      </div>
+    );
+  }
+
   render() {
-    const { breadcrumb, questionnaire, loading } = this.props;
-    const { focused, page, section } = this.state;
+    const { breadcrumb, loading, questionnaire } = this.props;
+    const { section, page, focused } = this.state;
 
     if (loading) {
       return null;
@@ -82,7 +138,7 @@ export class QuestionnaireDesignPage extends Component {
       <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            Sidebar
+            {questionnaire && this.renderSidebar(questionnaire)}
           </Column>
           <Column gutters={false}>
             <QuestionnaireDesign

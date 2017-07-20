@@ -22,6 +22,7 @@ const getQuestionnaire = gql`
           ... on QuestionPage {
             type
             guidance
+            type
             answers {
               id
               description

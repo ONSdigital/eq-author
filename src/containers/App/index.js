@@ -28,7 +28,8 @@ const App = ({ store, history }) =>
             component={QuestionnaireMetaPage}
           />
           <Route
-            path="/questionnaire/:questionnaireId/design/:sectionId/:pageId?"
+            path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+            exact={false}
             component={QuestionnaireDesignPage}
           />
           <Route path="*" component={NotFoundPage} exact />

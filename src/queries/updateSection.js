@@ -6,9 +6,6 @@ export const updateSection = gql`
       id
       title
       description
-      pages {
-        id
-      }
     }
   }
 `;
