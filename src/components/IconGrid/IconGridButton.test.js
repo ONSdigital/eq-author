@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import IconGridButton, { icons } from "./IconGridButton";
+import IconGridButton from "./IconGridButton";
 
 const mockFn = jest.fn();
 let wrapper;
