@@ -33,6 +33,10 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+// TODO: find out why route matching doesn't work automatically
+// Given a route /foo/:bar/blah
+// I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
+// But this is not the case. Unsure if bug or implementation issue
 export const NavWithoutRouter = ({ questionnaire, match }) => {
   const { id } = questionnaire;
   const section = questionnaire.sections[0];
@@ -64,10 +68,7 @@ export const NavWithoutRouter = ({ questionnaire, match }) => {
 NavWithoutRouter.propTypes = {
   questionnaire: CustomPropsTypes.questionnaire,
   match: PropTypes.shape({
-    isExact: PropTypes.bool,
-    params: PropTypes.object.isRequired,
-    path: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
+    params: PropTypes.object.isRequired
   })
 };
 

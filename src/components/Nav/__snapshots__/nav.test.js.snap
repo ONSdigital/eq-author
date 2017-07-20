@@ -31,7 +31,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
 >
   <Nav__StyledNav>
     <nav
-      className="Nav__StyledNav-f9kp5e-0 iPtJPB"
+      className="Nav__StyledNav-s5gljj8-0 bGhjbk"
     >
       <Nav__StyledNavLink
         activeClassName="selected"
@@ -39,19 +39,19 @@ exports[`components/Nav should display active link when route matches 1`] = `
       >
         <NavLink
           activeClassName="selected"
-          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
           to="/questionnaire/1/meta"
         >
           <Route
             path="/questionnaire/1/meta"
           >
             <Link
-              className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
               replace={false}
               to="/questionnaire/1/meta"
             >
               <a
-                className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
                 href="/questionnaire/1/meta"
                 onClick={[Function]}
               >
@@ -68,7 +68,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
       >
         <NavLink
           activeClassName="selected"
-          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
           isActive={[Function]}
           to="/questionnaire/1/design/2/3"
         >
@@ -76,13 +76,13 @@ exports[`components/Nav should display active link when route matches 1`] = `
             path="/questionnaire/1/design/2/3"
           >
             <Link
-              className="selected Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              className="selected Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
               replace={false}
               style={Object {}}
               to="/questionnaire/1/design/2/3"
             >
               <a
-                className="selected Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                className="selected Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
                 style={Object {}}
@@ -127,7 +127,7 @@ exports[`components/Nav should render Nav 1`] = `
 >
   <Nav__StyledNav>
     <nav
-      className="Nav__StyledNav-f9kp5e-0 iPtJPB"
+      className="Nav__StyledNav-s5gljj8-0 bGhjbk"
     >
       <Nav__StyledNavLink
         activeClassName="selected"
@@ -135,19 +135,19 @@ exports[`components/Nav should render Nav 1`] = `
       >
         <NavLink
           activeClassName="selected"
-          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
           to="/questionnaire/1/meta"
         >
           <Route
             path="/questionnaire/1/meta"
           >
             <Link
-              className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
               replace={false}
               to="/questionnaire/1/meta"
             >
               <a
-                className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
                 href="/questionnaire/1/meta"
                 onClick={[Function]}
               >
@@ -164,7 +164,7 @@ exports[`components/Nav should render Nav 1`] = `
       >
         <NavLink
           activeClassName="selected"
-          className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
           isActive={[Function]}
           to="/questionnaire/1/design/2/3"
         >
@@ -172,12 +172,12 @@ exports[`components/Nav should render Nav 1`] = `
             path="/questionnaire/1/design/2/3"
           >
             <Link
-              className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+              className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
               replace={false}
               to="/questionnaire/1/design/2/3"
             >
               <a
-                className="Nav__StyledNavLink-f9kp5e-1 gMZAzY"
+                className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
               >
