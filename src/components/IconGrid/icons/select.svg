@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="12px" viewBox="0 0 41 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 20</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Answer-selector" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="selector-04" transform="translate(-412.000000, -351.000000)">
+            <g id="menu" transform="translate(153.000000, 175.000000)">
+                <g id="select" transform="translate(232.319648, 176.000000)">
+                    <g id="Group-21" transform="translate(19.941349, 0.000000)">
+                        <g id="Group-20" transform="translate(6.979472, 0.000000)">
+                            <rect id="Rectangle-6" stroke="#9B9B9B" x="0.5" y="0.5" width="38.8826979" height="11" rx="1"></rect>
+                            <polygon id="Triangle-2" fill="#9B9B9B" points="33.9002933 7 31.9061584 5 35.8944282 5"></polygon>
+                            <text id="Select" font-family="Lato-Regular, Lato" font-size="8" font-weight="normal" fill="#9B9B9B">
+                                <tspan x="1.75953079" y="9">Select</tspan>
+                            </text>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
