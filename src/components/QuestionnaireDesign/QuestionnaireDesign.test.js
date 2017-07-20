@@ -4,18 +4,22 @@ import QuestionnaireDesign from "./";
 
 describe("QuestionnaireDesign", () => {
   let wrapper;
-
-  beforeEach(() => {
-    wrapper = mount(
+  const createWrapper = props =>
+    mount(
       <QuestionnaireDesign
-        section={{ id: "0", title: "" }}
-        page={{ id: "1", title: "" }}
         onChange={jest.fn()}
         onAnswerAdd={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
+        {...props}
       />
     );
+
+  beforeEach(() => {
+    wrapper = createWrapper({
+      section: { title: "" },
+      page: { id: "3", title: "" }
+    });
   });
 
   it("should render", () => {
@@ -27,23 +31,19 @@ describe("QuestionnaireDesign", () => {
   });
 
   it("should focus on empty page title when section title is not empty", () => {
-    wrapper.setProps({ section: { title: "Section 1" } });
-    wrapper.unmount();
-    wrapper.mount();
-
+    wrapper = createWrapper({
+      section: { title: "Section 1" },
+      page: { id: "3", title: "" }
+    });
     expect(document.activeElement.name).toEqual("page.title");
   });
 
   it("should move focus to empty section title upon navigation to new page", () => {
-    wrapper.setProps({
-      section: { id: "2", title: "" },
-      page: { id: "3", title: "" }
-    });
     expect(document.activeElement.name).toEqual("section.title");
   });
 
   it("should move focus to empty page title upon navigation to new page", () => {
-    wrapper.setProps({
+    wrapper = createWrapper({
       section: { title: "Section 1" },
       page: { id: "3", title: "" }
     });

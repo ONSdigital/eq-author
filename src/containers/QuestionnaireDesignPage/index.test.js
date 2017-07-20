@@ -86,18 +86,12 @@ describe("containers/QuestionnaireDesignPage", () => {
   });
 
   describe("createUpdater", () => {
-    it("should have the correct values passed to readQuery/writeQuery and the result to be the correct page", () => {
+    it("should update the cache pass and the result to be the correct page", () => {
       const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        expect(variables.id).toEqual(questionnaire.id);
         return { questionnaire };
       });
 
-      const writeQuery = jest
-        .fn()
-        .mockImplementation(({ query, variables, data }) => {
-          expect(variables.id).toEqual(questionnaire.id);
-          expect(data.questionnaire.sections[0].pages).toContain(newPage);
-        });
+      const writeQuery = jest.fn();
 
       updaterFn(
         {
@@ -105,6 +99,19 @@ describe("containers/QuestionnaireDesignPage", () => {
           writeQuery
         },
         result
+      );
+
+      expect(readQuery).toHaveBeenCalledWith(
+        expect.objectContaining({ variables: { id: questionnaire.id } })
+      );
+
+      expect(writeQuery).toHaveBeenCalledWith(
+        expect.objectContaining({
+          variables: { id: questionnaire.id },
+          data: {
+            questionnaire
+          }
+        })
       );
     });
   });
@@ -126,7 +133,11 @@ describe("containers/QuestionnaireDesignPage", () => {
   describe("mapMutateToProps", () => {
     let ownProps, props;
     beforeEach(() => {
-      ownProps = { history };
+      ownProps = {
+        history,
+        sectionId: section.id,
+        questionnaireId: questionnaire.id
+      };
       props = mapMutateToProps({ ownProps, mutate });
     });
 
@@ -135,7 +146,7 @@ describe("containers/QuestionnaireDesignPage", () => {
     });
 
     it("should respond with an optimisticResponse", () => {
-      props.onAddPage(section.id).then(() => {
+      return props.onAddPage().then(() => {
         expect(mutate.mock.calls[0][0]).toMatchObject({
           optimisticResponse: {
             createQuestionPage: {
@@ -147,7 +158,7 @@ describe("containers/QuestionnaireDesignPage", () => {
     });
 
     it("should redirect", () => {
-      props.onAddPage(section.id).then(() => {
+      return props.onAddPage().then(() => {
         expect(history.push).toHaveBeenCalled();
       });
     });

@@ -8,13 +8,12 @@ exports[`QuestionnaireDesign should render 1`] = `
   onFocus={[Function]}
   page={
     Object {
-      "id": "1",
+      "id": "3",
       "title": "",
     }
   }
   section={
     Object {
-      "id": "0",
       "title": "",
     }
   }
