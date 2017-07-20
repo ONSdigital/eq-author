@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "constants/theme";
 
 import { keys } from "lodash";
 
@@ -38,7 +39,7 @@ const Button = styled.button`
   transition: all 200ms ease-in-out;
   &:hover,
   &:focus {
-    background-color: #eaeaea;
+    background-color: ${colors.borders};
   }
   &[disabled] {
     opacity: 0.5;
@@ -51,14 +52,9 @@ const Title = styled.h3`
   font-weight: normal;
 `;
 
-const IconGridButton = ({ icon, title, disabled, handleClick }) => {
+const IconGridButton = ({ icon, title, disabled, onClick }) => {
   return (
-    <Button
-      role="menuitem"
-      title={title}
-      onClick={handleClick}
-      disabled={disabled}
-    >
+    <Button role="menuitem" title={title} onClick={onClick} disabled={disabled}>
       <img src={icons[icon]} alt={title} />
       <Title>
         {title}
@@ -71,7 +67,7 @@ IconGridButton.propTypes = {
   icon: PropTypes.oneOf(keys(icons)),
   title: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  handleClick: PropTypes.func
+  onClick: PropTypes.func
 };
 
 export default IconGridButton;

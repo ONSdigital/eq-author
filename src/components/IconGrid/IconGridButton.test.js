@@ -9,7 +9,7 @@ let wrapper;
 describe("components/IconGrid", function() {
   beforeEach(() => {
     wrapper = shallow(
-      <IconGridButton icon="checkbox" title="Checkbox" handleClick={mockFn} />
+      <IconGridButton icon="checkbox" title="Checkbox" onClick={mockFn} />
     );
   });
 
@@ -17,11 +17,7 @@ describe("components/IconGrid", function() {
     expect(wrapper.find("img").props().src).toContain(icons.checkbox);
   });
 
-  it("will render a title", function() {
-    expect(wrapper.props().title).toEqual("Checkbox");
-  });
-
-  it("will handleClick", function() {
+  it("will onClick", function() {
     wrapper.simulate("click");
     expect(mockFn).toHaveBeenCalled();
   });
@@ -30,5 +26,9 @@ describe("components/IconGrid", function() {
     expect(() => {
       wrapper.setProps({ icon: "not-an-icon" });
     }).toThrow();
+  });
+
+  it("should render", () => {
+    expect(wrapper).toMatchSnapshot();
   });
 });
