@@ -13,10 +13,6 @@ describe("components/IconGrid", function() {
     );
   });
 
-  it("will render an icon", function() {
-    expect(wrapper.find("img").props().src).toContain(icons.checkbox);
-  });
-
   it("will onClick", function() {
     wrapper.simulate("click");
     expect(mockFn).toHaveBeenCalled();
