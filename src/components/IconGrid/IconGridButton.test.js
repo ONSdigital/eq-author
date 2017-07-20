@@ -14,7 +14,7 @@ describe("components/IconGrid", function() {
   });
 
   it("will render an icon", function() {
-    expect(wrapper.children().props().src).toContain(icons.checkbox);
+    expect(wrapper.find("img").props().src).toContain(icons.checkbox);
   });
 
   it("will render a title", function() {

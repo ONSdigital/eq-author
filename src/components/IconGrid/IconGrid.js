@@ -4,7 +4,10 @@ import styled from "styled-components";
 
 const Menu = styled.div`
   display: flex;
+  align-items: baseline;
   flex-wrap: wrap;
+  max-width: 21em;
+  margin: auto;
 `;
 
 const IconGrid = ({ children }) => {

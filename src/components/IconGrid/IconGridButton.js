@@ -27,19 +27,28 @@ export const icons = {
 };
 
 const Button = styled.button`
-  width: 100px;
-  height: 100px;
+  width: 8em;
+  height: 5em;
+  margin: 1em;
+  padding: 0;
   cursor: pointer;
   background: transparent;
   border: none;
-  opacity: 0.9;
-  transition: opacity 200ms ease-out;
-  &:hover {
-    opacity: 1;
+  opacity: 1;
+  transition: all 200ms ease-in-out;
+  &:hover,
+  &:focus {
+    background-color: #eaeaea;
   }
   &[disabled] {
     opacity: 0.5;
   }
+`;
+
+const Title = styled.h3`
+  margin: 0;
+  padding-top: 0.5em;
+  font-weight: normal;
 `;
 
 const IconGridButton = ({ icon, title, disabled, handleClick }) => {
@@ -51,9 +60,9 @@ const IconGridButton = ({ icon, title, disabled, handleClick }) => {
       disabled={disabled}
     >
       <img src={icons[icon]} alt={title} />
-      <h3>
+      <Title>
         {title}
-      </h3>
+      </Title>
     </Button>
   );
 };
