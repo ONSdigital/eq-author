@@ -4,6 +4,7 @@ import Popout, { UncontrolledPopout } from "./index";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
+import { CSSTransition } from "react-transition-group";
 
 const Trigger = styled.button`
   border-radius: 2px;
@@ -18,11 +19,27 @@ const Trigger = styled.button`
   }
 `;
 
+const FADE_TIMEOUT = 250;
+
 const Menu = styled.div`
   background-color: white;
   padding: 2em;
   box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0px;
   width: 340px;
+  transition: opacity ${FADE_TIMEOUT}ms;
+
+  &.fade-enter {
+    opacity: 0;
+  }
+  &.fade-enter-active {
+    opacity: 1;
+  }
+  &.fade-exit {
+    opacity: 1;
+  }
+  &.fade-exit-active {
+    opacity: 0;
+  }
 `;
 
 const CenterXY = styled.div`
@@ -32,13 +49,23 @@ const CenterXY = styled.div`
   transform: translateY(-50%) translateX(-50%);
 `;
 
+class Fade extends React.Component {
+  static defaultProps = {
+    in: false,
+    timeout: FADE_TIMEOUT
+  };
+  render() {
+    return <CSSTransition {...this.props} classNames="fade" />;
+  }
+}
+
 const CenterDecorator = storyFn =>
   <CenterXY>
     {storyFn()}
   </CenterXY>;
 
 const trigger = <Trigger>Click me</Trigger>;
-const content = (
+const Content = () =>
   <Menu>
     <h2>Hello world</h2>
     <p>
@@ -46,23 +73,27 @@ const content = (
       impedit, culpa cupiditate atque distinctio placeat. Beatae nam voluptas
       magnam, repellendus alias in officia nemo, voluptatum est velit vitae
     </p>
-  </Menu>
-);
+  </Menu>;
 
 storiesOf("Popout", module)
   .addDecorator(CenterDecorator)
   .addDecorator(withKnobs)
   .add("Stateless", () =>
     <Popout
-      open={boolean("open", true)}
+      open={boolean("open", false)}
       trigger={trigger}
       onToggleOpen={action("onOpen")}
     >
-      {content}
+      <Content />
     </Popout>
   )
   .add("Stateful", () =>
     <UncontrolledPopout trigger={trigger}>
-      {content}
+      <Content />
+    </UncontrolledPopout>
+  )
+  .add("Animated", () =>
+    <UncontrolledPopout trigger={trigger} transition={Fade}>
+      <Content />
     </UncontrolledPopout>
   );

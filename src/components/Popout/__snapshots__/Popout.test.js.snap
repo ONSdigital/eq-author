@@ -1,22 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Popout should render content when open is \`true\` 1`] = `
-<Popout
-  onToggleOpen={[Function]}
-  open={true}
-  trigger={
-    <button>
-      Click Me
-    </button>
-  }
->
-  <h1>
-    hello world
-  </h1>
-</Popout>
+exports[`components/Popout should render content when open 1`] = `
+<Popout__Container>
+  <button
+    aria-expanded={true}
+    aria-haspopup={true}
+    onClick={[Function]}
+  >
+    Click Me
+  </button>
+  <TransitionGroup
+    childFactory={[Function]}
+    component={[Function]}
+  >
+    <DefaultTransition>
+      <h1>
+        hello world
+      </h1>
+    </DefaultTransition>
+  </TransitionGroup>
+</Popout__Container>
 `;
 
-exports[`components/Popout shouldn't render content when open is \`false\` 1`] = `
+exports[`components/Popout shouldn't render content when closed 1`] = `
 <Popout__Container>
   <button
     aria-expanded={false}
@@ -25,5 +31,9 @@ exports[`components/Popout shouldn't render content when open is \`false\` 1`] =
   >
     Click Me
   </button>
+  <TransitionGroup
+    childFactory={[Function]}
+    component={[Function]}
+  />
 </Popout__Container>
 `;

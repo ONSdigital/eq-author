@@ -16,18 +16,13 @@ describe("components/Popout", () => {
     );
   });
 
-  it("shouldn't render content when open is `false`", () => {
+  it("shouldn't render content when closed", () => {
     component = React.cloneElement(component, { open: false });
     expect(shallow(component)).toMatchSnapshot();
   });
 
-  it("should render content when open is `true`", () => {
-    expect(component).toMatchSnapshot();
-  });
-
-  it("should open when trigger clicked", () => {
-    shallow(component).find("button").simulate("click");
-    expect(handleToggleOpen).toHaveBeenCalledWith(true);
+  it("should render content when open", () => {
+    expect(shallow(component)).toMatchSnapshot();
   });
 
   describe("event handlers", () => {
@@ -39,28 +34,53 @@ describe("components/Popout", () => {
       });
     });
 
-    it("should close when ESC key pressed", () => {
-      document.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 27 }));
-      expect(handleToggleOpen).toHaveBeenCalledWith(false);
+    describe("when open", () => {
+      it("should close when ESC key pressed", () => {
+        document.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 27 }));
+        expect(handleToggleOpen).toHaveBeenCalledWith(false);
+      });
+
+      it("should close when clicking outside", () => {
+        document.dispatchEvent(new MouseEvent("click"));
+        expect(handleToggleOpen).toHaveBeenCalledWith(false);
+      });
+
+      it("should not close when clicking inside", () => {
+        document.querySelector("h1").dispatchEvent(new MouseEvent("click"));
+        expect(handleToggleOpen).not.toHaveBeenCalled();
+      });
     });
 
-    it("should close when clicking outside", () => {
-      document.dispatchEvent(new MouseEvent("click"));
-      expect(handleToggleOpen).toHaveBeenCalledWith(false);
+    describe("when closed", () => {
+      beforeEach(() => {
+        mounted.setProps({ open: false });
+      });
+
+      it("should open when trigger clicked", () => {
+        mounted.find("button").simulate("click");
+        expect(handleToggleOpen).toHaveBeenCalledWith(true);
+      });
+
+      it("should not listen for ESC key presses", () => {
+        document.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 27 }));
+        expect(handleToggleOpen).not.toHaveBeenCalled();
+      });
+
+      it("should close listen for clicks outside", () => {
+        document.dispatchEvent(new MouseEvent("click"));
+        expect(handleToggleOpen).not.toHaveBeenCalled();
+      });
     });
 
-    it("should not close when clicking inside", () => {
-      document.querySelector("h1").dispatchEvent(new MouseEvent("click"));
-      expect(handleToggleOpen).not.toHaveBeenCalled();
-    });
+    describe("when unmounted", () => {
+      it("should clean up event handlers", () => {
+        mounted.unmount();
 
-    it("should clean up event handlers when unmounted", () => {
-      mounted.unmount();
+        document.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 27 }));
+        document.dispatchEvent(new MouseEvent("click"));
 
-      document.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 27 }));
-      document.dispatchEvent(new MouseEvent("click"));
-
-      expect(handleToggleOpen).not.toHaveBeenCalled();
+        expect(handleToggleOpen).not.toHaveBeenCalled();
+      });
     });
   });
 });
