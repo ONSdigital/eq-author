@@ -2,8 +2,8 @@ import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
 import { pick } from "lodash";
 
-import getQuestionnaire from "queries/getQuestionnaire";
-import updateQuestionnaire from "queries/updateQuestionnaire";
+import getQuestionnaire from "queries/getQuestionnaire.graphql";
+import updateQuestionnaire from "queries/updateQuestionnaire.graphql";
 import QuestionnaireMeta from "./QuestionnaireMetaPage";
 
 export const mapStateToProps = (state, ownProps) =>

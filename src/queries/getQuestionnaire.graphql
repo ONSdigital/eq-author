@@ -1,0 +1,37 @@
+query GetQuestionnaire($id: Int!) {
+  questionnaire(id: $id) {
+    id
+    title
+    description
+    surveyId
+    legalBasis
+    theme
+    navigation
+    sections {
+      id
+      title
+      description
+      pages {
+        id
+        title
+        description
+        pageType
+        ... on QuestionPage {
+          type
+          guidance
+          type
+          answers {
+            id
+            description
+            guidance
+            qCode
+            label
+            mandatory
+            type
+            questionPageId
+          }
+        }
+      }
+    }
+  }
+}

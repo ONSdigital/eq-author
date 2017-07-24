@@ -1,0 +1,7 @@
+mutation UpdateSection($id: Int!, $title: String!, $description: String!) {
+  updateSection(id: $id, title: $title, description: $description) {
+    id
+    title
+    description
+  }
+}
