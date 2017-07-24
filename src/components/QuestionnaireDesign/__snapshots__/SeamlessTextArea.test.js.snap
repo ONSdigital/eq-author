@@ -1,6 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SeamlessTextArea should render 1`] = `
+.c1 {
+  resize: none;
+}
+
+.c0 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 0.875em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c0::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c0:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c0::placeholder {
+  color: #a3a3a3;
+}
+
+.c0[aria-hidden="true"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
 <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
   focused={false}
   id="foo"
@@ -18,7 +63,7 @@ exports[`SeamlessTextArea should render 1`] = `
   >
     <withChangeHandler(SeamlessTextArea__TextArea)
       aria-hidden={false}
-      className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+      className="c0"
       name="foo"
       onChange={[Function]}
       size="small"
@@ -26,7 +71,7 @@ exports[`SeamlessTextArea should render 1`] = `
     >
       <SeamlessTextArea__TextArea
         aria-hidden={false}
-        className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+        className="c0"
         name="foo"
         onChange={[Function]}
         size="small"
@@ -34,7 +79,7 @@ exports[`SeamlessTextArea should render 1`] = `
       >
         <TextareaAutosize
           aria-hidden={false}
-          className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+          className="c0 c1"
           name="foo"
           onChange={[Function]}
           onHeightChange={[Function]}
@@ -44,7 +89,7 @@ exports[`SeamlessTextArea should render 1`] = `
         >
           <textarea
             aria-hidden={false}
-            className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+            className="c0 c1"
             name="foo"
             onChange={[Function]}
             size="small"

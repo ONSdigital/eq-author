@@ -1,12 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Forms/Field should render correctly 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.c1 {
+  display: block;
+  font-size: 0.9em;
+  margin-bottom: 0.4em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.c2 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+}
+
+.c2:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
 <Field
   id="name"
 >
   <Field__StyledField>
     <div
-      className="Field__StyledField-s8a2er2-0 cgUqzV"
+      className="c0"
     >
       <Label
         id="name"
@@ -15,7 +43,7 @@ exports[`components/Forms/Field should render correctly 1`] = `
           htmlFor="name"
         >
           <label
-            className="Label__StyledLabel-s137aorq-0 hjlMCV"
+            className="c1"
             htmlFor="name"
           >
             Name
@@ -37,7 +65,7 @@ exports[`components/Forms/Field should render correctly 1`] = `
             type="text"
           >
             <input
-              className="Input__StyledInput-s1dapwku-0 jYJVhX"
+              className="c2"
               id="name"
               name="name"
               onChange={[Function]}

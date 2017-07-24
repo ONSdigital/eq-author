@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Forms/TextArea should render correctly 1`] = `
+.c0 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+  resize: none;
+}
+
+.c0:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
 <withChangeHandler(TextArea)
   defaultValue="I am some text"
   id="text"
@@ -22,7 +37,7 @@ exports[`components/Forms/TextArea should render correctly 1`] = `
       rows={10}
     >
       <textarea
-        className="TextArea__StyledTextArea-s1ch2rp1-0 ZLPY"
+        className="c0"
         defaultValue="I am some text"
         id="text"
         name="text"

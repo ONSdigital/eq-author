@@ -1,6 +1,212 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireDesign should render 1`] = `
+.c3 {
+  padding: 2em 2.5em;
+  margin-bottom: -2px;
+  border-bottom: 2px dashed #c6c6c6;
+  -webkit-transition: outline-color 0.1s ease-in;
+  transition: outline-color 0.1s ease-in;
+  outline-offset: -2px;
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: transparent;
+}
+
+.c3:hover {
+  outline-color: rgba(97,189,224,0.4);
+}
+
+.c3:last-child {
+  border: none;
+}
+
+.c1 {
+  border-radius: 2px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.c0 {
+  width: 100%;
+  max-width: 50em;
+  margin: 2em 0 0 1em;
+}
+
+.c5 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 1.125em;
+  font-weight: bold;
+}
+
+.c5:focus {
+  outline: none;
+}
+
+.c5::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c5::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c5:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c5::placeholder {
+  color: #a3a3a3;
+}
+
+.c5[aria-hidden="true"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.c6 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 0.875em;
+}
+
+.c6:focus {
+  outline: none;
+}
+
+.c6::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c6::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c6:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c6::placeholder {
+  color: #a3a3a3;
+}
+
+.c6[aria-hidden="true"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.c8 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+.c8:focus {
+  outline: none;
+}
+
+.c8::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c8::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c8:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c8::placeholder {
+  color: #a3a3a3;
+}
+
+.c8[aria-hidden="true"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.c7 {
+  resize: none;
+}
+
+.c4 {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.c2 {
+  width: 100%;
+}
+
+.c10 {
+  padding: 0.8em 3em;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  -webkit-letter-spacing: -0.2px;
+  -moz-letter-spacing: -0.2px;
+  -ms-letter-spacing: -0.2px;
+  letter-spacing: -0.2px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+}
+
+.c10:focus,
+.c10:active {
+  outline: none;
+}
+
+.c10[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.c9 {
+  color: #757575;
+}
+
 <QuestionnaireDesign
   onAnswerAdd={[Function]}
   onBlur={[Function]}
@@ -20,10 +226,10 @@ exports[`QuestionnaireDesign should render 1`] = `
 >
   <Canvas__Canvas>
     <Panel__Panel
-      className="Canvas__Canvas-qnzytg-0 dCHvzb"
+      className="c0"
     >
       <div
-        className="Canvas__Canvas-qnzytg-0 dCHvzb Panel__Panel-s1ltqogb-0 hHCsaE"
+        className="c0 c1"
       >
         <Form
           onChange={[Function]}
@@ -37,7 +243,7 @@ exports[`QuestionnaireDesign should render 1`] = `
           >
             <form
               autoComplete="off"
-              className="Form__StyledForm-xt2rtm-0 fnYduB"
+              className="c2"
               method="POST"
               onChange={[Function]}
               onSubmit={[Function]}
@@ -55,7 +261,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                   onFocus={[Function]}
                 >
                   <div
-                    className="CanvasSection__StyledCanvasSection-s1564059-0 cFQolm"
+                    className="c3"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
@@ -66,7 +272,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                     >
                       <Field__StyledField>
                         <div
-                          className="Field__StyledField-s8a2er2-0 cgUqzV"
+                          className="c4"
                         >
                           <withSeamlessness(withChangeHandler(Input))
                             focused={false}
@@ -87,7 +293,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                             >
                               <withChangeHandler(Input)
                                 aria-hidden={false}
-                                className="withSeamlessness__StyledSeamless-cun0eo-0 fTyiaK"
+                                className="c5"
                                 name="section.title"
                                 onChange={[Function]}
                                 placeholder="Section title"
@@ -96,7 +302,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                               >
                                 <Input
                                   aria-hidden={false}
-                                  className="withSeamlessness__StyledSeamless-cun0eo-0 fTyiaK"
+                                  className="c5"
                                   name="section.title"
                                   onChange={[Function]}
                                   placeholder="Section title"
@@ -105,7 +311,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                                 >
                                   <input
                                     aria-hidden={false}
-                                    className="withSeamlessness__StyledSeamless-cun0eo-0 fTyiaK"
+                                    className="c5"
                                     name="section.title"
                                     onChange={[Function]}
                                     placeholder="Section title"
@@ -127,7 +333,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                     >
                       <Field__StyledField>
                         <div
-                          className="Field__StyledField-s8a2er2-0 cgUqzV"
+                          className="c4"
                         >
                           <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
                             cols="30"
@@ -148,7 +354,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                             >
                               <withChangeHandler(SeamlessTextArea__TextArea)
                                 aria-hidden={true}
-                                className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                className="c6"
                                 name="section.description"
                                 onChange={[Function]}
                                 placeholder="Enter a description (optional)…"
@@ -156,7 +362,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                               >
                                 <SeamlessTextArea__TextArea
                                   aria-hidden={true}
-                                  className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                  className="c6"
                                   name="section.description"
                                   onChange={[Function]}
                                   placeholder="Enter a description (optional)…"
@@ -164,7 +370,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                                 >
                                   <TextareaAutosize
                                     aria-hidden={true}
-                                    className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+                                    className="c6 c7"
                                     name="section.description"
                                     onChange={[Function]}
                                     onHeightChange={[Function]}
@@ -174,7 +380,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                                   >
                                     <textarea
                                       aria-hidden={true}
-                                      className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm SeamlessTextArea__TextArea-s1ob2fjv-0 YALXJ"
+                                      className="c6 c7"
                                       name="section.description"
                                       onChange={[Function]}
                                       placeholder="Enter a description (optional)…"
@@ -209,7 +415,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                   onFocus={[Function]}
                 >
                   <div
-                    className="CanvasSection__StyledCanvasSection-s1564059-0 cFQolm"
+                    className="c3"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
@@ -220,7 +426,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                     >
                       <Field__StyledField>
                         <div
-                          className="Field__StyledField-s8a2er2-0 cgUqzV"
+                          className="c4"
                         >
                           <withSeamlessness(withChangeHandler(Input))
                             focused={false}
@@ -241,7 +447,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                             >
                               <withChangeHandler(Input)
                                 aria-hidden={false}
-                                className="withSeamlessness__StyledSeamless-cun0eo-0 eVTZCK"
+                                className="c8"
                                 name="page.title"
                                 onChange={[Function]}
                                 placeholder="Question title"
@@ -250,7 +456,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                               >
                                 <Input
                                   aria-hidden={false}
-                                  className="withSeamlessness__StyledSeamless-cun0eo-0 eVTZCK"
+                                  className="c8"
                                   name="page.title"
                                   onChange={[Function]}
                                   placeholder="Question title"
@@ -259,7 +465,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                                 >
                                   <input
                                     aria-hidden={false}
-                                    className="withSeamlessness__StyledSeamless-cun0eo-0 eVTZCK"
+                                    className="c8"
                                     name="page.title"
                                     onChange={[Function]}
                                     placeholder="Question title"
@@ -281,7 +487,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                     >
                       <Field__StyledField>
                         <div
-                          className="Field__StyledField-s8a2er2-0 cgUqzV"
+                          className="c4"
                         >
                           <withSeamlessness(withChangeHandler(Input))
                             focused={false}
@@ -300,7 +506,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                             >
                               <withChangeHandler(Input)
                                 aria-hidden={true}
-                                className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                className="c6"
                                 name="page.description"
                                 onChange={[Function]}
                                 placeholder="Question text (optional)…"
@@ -308,7 +514,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                               >
                                 <Input
                                   aria-hidden={true}
-                                  className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                  className="c6"
                                   name="page.description"
                                   onChange={[Function]}
                                   placeholder="Question text (optional)…"
@@ -316,7 +522,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                                 >
                                   <input
                                     aria-hidden={true}
-                                    className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                    className="c6"
                                     name="page.description"
                                     onChange={[Function]}
                                     placeholder="Question text (optional)…"
@@ -337,7 +543,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                     >
                       <Field__StyledField>
                         <div
-                          className="Field__StyledField-s8a2er2-0 cgUqzV"
+                          className="c4"
                         >
                           <withSeamlessness(withChangeHandler(Input))
                             focused={false}
@@ -356,7 +562,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                             >
                               <withChangeHandler(Input)
                                 aria-hidden={true}
-                                className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                className="c6"
                                 name="page.guidance"
                                 onChange={[Function]}
                                 placeholder="Guidance text (optional)…"
@@ -364,7 +570,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                               >
                                 <Input
                                   aria-hidden={true}
-                                  className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                  className="c6"
                                   name="page.guidance"
                                   onChange={[Function]}
                                   placeholder="Guidance text (optional)…"
@@ -372,7 +578,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                                 >
                                   <input
                                     aria-hidden={true}
-                                    className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+                                    className="c6"
                                     name="page.guidance"
                                     onChange={[Function]}
                                     placeholder="Guidance text (optional)…"
@@ -402,7 +608,7 @@ exports[`QuestionnaireDesign should render 1`] = `
                   onFocus={[Function]}
                 >
                   <div
-                    className="CanvasSection__StyledCanvasSection-s1564059-0 cFQolm"
+                    className="c3"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
@@ -414,21 +620,21 @@ exports[`QuestionnaireDesign should render 1`] = `
                       type="button"
                     >
                       <Button
-                        className="QuestionnaireDesign__AddAnswerButton-s12qlbho-0 gQmmKj"
+                        className="c9"
                         clear={true}
                         focused={false}
                         onClick={[Function]}
                         type="button"
                       >
                         <Button__StyledButton
-                          className="QuestionnaireDesign__AddAnswerButton-s12qlbho-0 gQmmKj"
+                          className="c9"
                           clear={true}
                           focused={false}
                           onClick={[Function]}
                           type="button"
                         >
                           <button
-                            className="QuestionnaireDesign__AddAnswerButton-s12qlbho-0 gQmmKj Button__StyledButton-k1vukw-0 fEFKMH"
+                            className="c9 c10"
                             onClick={[Function]}
                             type="button"
                           >
