@@ -1,6 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Nav should display active link when route matches 1`] = `
+.c0 {
+  margin: 0;
+  display: block;
+}
+
+.c1 {
+  padding: 1em 1.5em;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.875em;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #4A4A4A;
+  -webkit-transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+  text-decoration: none;
+  border-color: rgba(5,108,153,0);
+  border-style: solid;
+  border-width: 0 0 2px 0;
+}
+
+.c1:hover {
+  color: #056C99;
+}
+
+.c1.c2 {
+  color: #056C99;
+  border-color: rgba(5,108,153,1);
+}
+
 <NavWithoutRouter
   match={
     Object {
@@ -31,27 +64,27 @@ exports[`components/Nav should display active link when route matches 1`] = `
 >
   <Nav__StyledNav>
     <nav
-      className="Nav__StyledNav-s5gljj8-0 bGhjbk"
+      className="c0"
     >
       <Nav__StyledNavLink
-        activeClassName="selected"
+        activeClassName="c2"
         to="/questionnaire/1/meta"
       >
         <NavLink
-          activeClassName="selected"
-          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+          activeClassName="c2"
+          className="c1"
           to="/questionnaire/1/meta"
         >
           <Route
             path="/questionnaire/1/meta"
           >
             <Link
-              className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+              className="c1"
               replace={false}
               to="/questionnaire/1/meta"
             >
               <a
-                className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+                className="c1"
                 href="/questionnaire/1/meta"
                 onClick={[Function]}
               >
@@ -62,13 +95,13 @@ exports[`components/Nav should display active link when route matches 1`] = `
         </NavLink>
       </Nav__StyledNavLink>
       <Nav__StyledNavLink
-        activeClassName="selected"
+        activeClassName="c2"
         isActive={[Function]}
         to="/questionnaire/1/design/2/3"
       >
         <NavLink
-          activeClassName="selected"
-          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+          activeClassName="c2"
+          className="c1"
           isActive={[Function]}
           to="/questionnaire/1/design/2/3"
         >
@@ -76,13 +109,13 @@ exports[`components/Nav should display active link when route matches 1`] = `
             path="/questionnaire/1/design/2/3"
           >
             <Link
-              className="selected Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+              className="c2 c1"
               replace={false}
               style={Object {}}
               to="/questionnaire/1/design/2/3"
             >
               <a
-                className="selected Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+                className="c2 c1"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
                 style={Object {}}
@@ -99,6 +132,39 @@ exports[`components/Nav should display active link when route matches 1`] = `
 `;
 
 exports[`components/Nav should render Nav 1`] = `
+.c0 {
+  margin: 0;
+  display: block;
+}
+
+.c1 {
+  padding: 1em 1.5em;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.875em;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #4A4A4A;
+  -webkit-transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+  text-decoration: none;
+  border-color: rgba(5,108,153,0);
+  border-style: solid;
+  border-width: 0 0 2px 0;
+}
+
+.c1:hover {
+  color: #056C99;
+}
+
+.c1.selected {
+  color: #056C99;
+  border-color: rgba(5,108,153,1);
+}
+
 <NavWithoutRouter
   match={
     Object {
@@ -127,7 +193,7 @@ exports[`components/Nav should render Nav 1`] = `
 >
   <Nav__StyledNav>
     <nav
-      className="Nav__StyledNav-s5gljj8-0 bGhjbk"
+      className="c0"
     >
       <Nav__StyledNavLink
         activeClassName="selected"
@@ -135,19 +201,19 @@ exports[`components/Nav should render Nav 1`] = `
       >
         <NavLink
           activeClassName="selected"
-          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+          className="c1"
           to="/questionnaire/1/meta"
         >
           <Route
             path="/questionnaire/1/meta"
           >
             <Link
-              className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+              className="c1"
               replace={false}
               to="/questionnaire/1/meta"
             >
               <a
-                className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+                className="c1"
                 href="/questionnaire/1/meta"
                 onClick={[Function]}
               >
@@ -164,7 +230,7 @@ exports[`components/Nav should render Nav 1`] = `
       >
         <NavLink
           activeClassName="selected"
-          className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+          className="c1"
           isActive={[Function]}
           to="/questionnaire/1/design/2/3"
         >
@@ -172,12 +238,12 @@ exports[`components/Nav should render Nav 1`] = `
             path="/questionnaire/1/design/2/3"
           >
             <Link
-              className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+              className="c1"
               replace={false}
               to="/questionnaire/1/design/2/3"
             >
               <a
-                className="Nav__StyledNavLink-s5gljj8-1 eDzvoZ"
+                className="c1"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
               >

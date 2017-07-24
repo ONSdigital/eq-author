@@ -1,6 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Forms/Input Text should render correctly 1`] = `
+.c0 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+}
+
+.c0:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
 <withChangeHandler(Input)
   defaultValue="I am some text"
   id="text"
@@ -20,7 +34,7 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
       type="text"
     >
       <input
-        className="Input__StyledInput-s1dapwku-0 jYJVhX"
+        className="c0"
         defaultValue="I am some text"
         id="text"
         name="text"

@@ -1,6 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SeamlessInput should render 1`] = `
+.c0 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 0.875em;
+}
+
+.c0:focus {
+  outline: none;
+}
+
+.c0::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c0::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c0:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c0::placeholder {
+  color: #a3a3a3;
+}
+
+.c0[aria-hidden="true"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
 <withSeamlessness(withChangeHandler(Input))
   focused={false}
   id="foo"
@@ -18,7 +59,7 @@ exports[`SeamlessInput should render 1`] = `
   >
     <withChangeHandler(Input)
       aria-hidden={false}
-      className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+      className="c0"
       name="foo"
       onChange={[Function]}
       size="small"
@@ -26,7 +67,7 @@ exports[`SeamlessInput should render 1`] = `
     >
       <Input
         aria-hidden={false}
-        className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+        className="c0"
         name="foo"
         onChange={[Function]}
         size="small"
@@ -34,7 +75,7 @@ exports[`SeamlessInput should render 1`] = `
       >
         <input
           aria-hidden={false}
-          className="withSeamlessness__StyledSeamless-cun0eo-0 bdLhvm"
+          className="c0"
           name="foo"
           onChange={[Function]}
           size="small"

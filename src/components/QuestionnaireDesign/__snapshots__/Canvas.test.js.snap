@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Canvas should render 1`] = `
+.c0 {
+  width: 100%;
+  max-width: 50em;
+  margin: 2em 0 0 1em;
+}
+
 <Panel__Panel
-  className="Canvas__Canvas-qnzytg-0 dCHvzb"
+  className="c0"
 >
   Children
 </Panel__Panel>
