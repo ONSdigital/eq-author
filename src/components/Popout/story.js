@@ -53,7 +53,9 @@ const CenterDecorator = storyFn =>
   </CenterXY>;
 
 const trigger = <Trigger>Click me</Trigger>;
-const Content = ({ onClose }) =>
+const Content = (
+  { onClose } // eslint-disable-line react/prop-types
+) =>
   <Menu>
     <CloseButton onClick={onClose}>×</CloseButton>
     <h2>Hello world</h2>
