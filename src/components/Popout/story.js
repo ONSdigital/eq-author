@@ -4,7 +4,7 @@ import Popout, { UncontrolledPopout } from "./index";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import { CSSTransition } from "react-transition-group";
+import ScaleTransition, { styles as scaleStyles } from "./ScaleTransition";
 
 const Trigger = styled.button`
   border-radius: 2px;
@@ -18,8 +18,6 @@ const Trigger = styled.button`
     background-color: #eee;
   }
 `;
-
-const FADE_TIMEOUT = 250;
 
 const CloseButton = styled.button`
   border: none;
@@ -38,20 +36,8 @@ const Menu = styled.div`
   padding: 2em;
   box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0px;
   width: 340px;
-  transition: opacity ${FADE_TIMEOUT}ms;
 
-  &.fade-enter {
-    opacity: 0;
-  }
-  &.fade-enter-active {
-    opacity: 1;
-  }
-  &.fade-exit {
-    opacity: 1;
-  }
-  &.fade-exit-active {
-    opacity: 0;
-  }
+  ${scaleStyles};
 `;
 
 const CenterXY = styled.div`
@@ -60,16 +46,6 @@ const CenterXY = styled.div`
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 `;
-
-class Fade extends React.Component {
-  static defaultProps = {
-    in: false,
-    timeout: FADE_TIMEOUT
-  };
-  render() {
-    return <CSSTransition {...this.props} classNames="fade" />;
-  }
-}
 
 const CenterDecorator = storyFn =>
   <CenterXY>
@@ -106,7 +82,7 @@ storiesOf("Popout", module)
     </UncontrolledPopout>
   )
   .add("Animated", () =>
-    <UncontrolledPopout trigger={trigger} transition={Fade}>
+    <UncontrolledPopout trigger={trigger} transition={ScaleTransition}>
       <Content />
     </UncontrolledPopout>
   );
