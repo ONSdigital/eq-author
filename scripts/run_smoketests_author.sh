@@ -3,7 +3,7 @@
 set -euf -o pipefail
 
 # Run the server
-yarn storybook &
+yarn start &
 pid=$!
 
 function display_result {
@@ -32,6 +32,6 @@ sleep 3
 echo "About to run tests..."
 
 # Run the tests
-yarn smoketest 2>&1
+yarn smoketest:author 2>&1
 
-display_result $? 5 "Smoke tests"
+display_result $? 5 "Author Smoke tests"

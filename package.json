@@ -7,7 +7,8 @@
     "start": "yarn && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "smoketest": "chimp config/chimp.js",
+    "smoketest:author": "chimp config/chimp.author.js",
+    "smoketest:storybook": "chimp config/chimp.storybook.js",
     "lint": "eslint src",
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build && gh-pages -d build",
@@ -18,7 +19,10 @@
     "coverage": "yarn test -- --coverage -u"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.1.6",
@@ -88,7 +92,9 @@
     "connected-react-router": "^4.2.1",
     "enzyme": "^2.8.2",
     "eq-author-graphql-schema": "https://github.com/ONSdigital/eq-author-graphql-schema.git",
+    "eq-author-mock-api": "https://github.com/ONSdigital/eq-author-mock-api.git",
     "eslint-config-eq-author": "^1.0.2",
+    "graphql-tag": "^2.4.2",
     "jest-transform-graphql": "^2.1.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
@@ -124,10 +130,12 @@
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js",
-      "tests/setup/throwOnConsole.js"
+      "<rootDir>/src/tests/setup/throwOnConsole.js"
     ],
-    "setupTestFrameworkScriptFile": "tests/setup/JestTestSetup.js",
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup/JestTestSetup.js",
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -139,13 +147,19 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
-  "moduleRoots": ["./src"]
+  "moduleRoots": [
+    "./src"
+  ]
 }

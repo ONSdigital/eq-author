@@ -12,5 +12,8 @@ module.exports = {
       bail: 1
     },
     logLevel: "error"
+  },
+  jasmineConfig: {
+    specFiles: ["smoketest-author-spec.js"]
   }
 };

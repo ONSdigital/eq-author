@@ -14,3 +14,7 @@ export const getElementText = element => {
 export const goToUrl = url => {
   browser.url(url);
 };
+
+export const startAtHomepage = () => {
+  goToUrl("http://localhost:3000/");
+};

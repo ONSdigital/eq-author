@@ -39,7 +39,7 @@ function getServedPath(appPackageJson) {
 }
 
 // config after eject: we're in ./config/
-module.exports = {
+const paths = {
   dotenv: resolveApp(".env"),
   appBuild: resolveApp("build"),
   appPublic: resolveApp("public"),
@@ -53,3 +53,11 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp("package.json")),
   servedPath: getServedPath(resolveApp("package.json"))
 };
+
+paths.babelIncludes = [
+  paths.appSrc,
+  path.resolve(process.cwd(), "node_modules/eq-author-graphql-schema"),
+  path.resolve(process.cwd(), "node_modules/eq-author-mock-api")
+];
+
+module.exports = paths;

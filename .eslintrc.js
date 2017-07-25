@@ -1,4 +1,4 @@
-const schema = require("eq-author-graphql-schema/schema");
+const schema = require("eq-author-graphql-schema");
 
 module.exports = {
   extends: ["eslint-config-eq-author", "eslint-config-eq-author/react"],

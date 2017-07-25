@@ -29,7 +29,8 @@ install:
 before_script:
  # A few tools to run smoke tests.
  - yarn global add chimp
- - ./scripts/run_smoketests.sh
+ - ./scripts/run_smoketests_author.sh
+ - ./scripts/run_smoketests_storybook.sh
 
 script:
   - yarn test
