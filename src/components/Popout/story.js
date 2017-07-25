@@ -21,6 +21,18 @@ const Trigger = styled.button`
 
 const FADE_TIMEOUT = 250;
 
+const CloseButton = styled.button`
+  border: none;
+  background: none;
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  font-size: 1em;
+  font-weight: bold;
+  color: #444;
+  text-transform: uppercase;
+`;
+
 const Menu = styled.div`
   background-color: white;
   padding: 2em;
@@ -65,8 +77,9 @@ const CenterDecorator = storyFn =>
   </CenterXY>;
 
 const trigger = <Trigger>Click me</Trigger>;
-const Content = () =>
+const Content = ({ onClose }) =>
   <Menu>
+    <CloseButton onClick={onClose}>×</CloseButton>
     <h2>Hello world</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. In ut ratione
@@ -82,7 +95,7 @@ storiesOf("Popout", module)
     <Popout
       open={boolean("open", false)}
       trigger={trigger}
-      onToggleOpen={action("onOpen")}
+      onToggleOpen={action("toggle open")}
     >
       <Content />
     </Popout>

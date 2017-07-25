@@ -9,9 +9,11 @@ describe("components/Popout", () => {
     trigger = <button>Click Me</button>;
     handleToggleOpen = jest.fn();
 
+    const Content = () => <h1>hello world</h1>;
+
     component = (
       <Popout trigger={trigger} open onToggleOpen={handleToggleOpen}>
-        <h1>hello world</h1>
+        <Content />
       </Popout>
     );
   });

@@ -22,7 +22,7 @@ const DefaultTransition = props =>
 class Popout extends React.Component {
   static propTypes = {
     trigger: PropTypes.element.isRequired,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.element.isRequired,
     open: PropTypes.bool,
     onToggleOpen: PropTypes.func.isRequired,
     transition: PropTypes.any // eslint-disable-line react/forbid-prop-types
@@ -86,7 +86,9 @@ class Popout extends React.Component {
 
     return (
       <Transition>
-        {React.Children.only(children)}
+        {React.cloneElement(React.Children.only(children), {
+          onClose: this.handleClose
+        })}
       </Transition>
     );
   }

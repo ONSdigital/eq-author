@@ -14,9 +14,9 @@ exports[`components/Popout should render content when open 1`] = `
     component={[Function]}
   >
     <DefaultTransition>
-      <h1>
-        hello world
-      </h1>
+      <Content
+        onClose={[Function]}
+      />
     </DefaultTransition>
   </TransitionGroup>
 </Popout__Container>
