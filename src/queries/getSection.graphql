@@ -1,0 +1,11 @@
+query getSection($id: Int!) {
+  section(id: $id) {
+    id
+    title
+    description
+    pages {
+      id
+    }
+    questionnaireId
+  }
+}

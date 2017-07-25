@@ -2,10 +2,10 @@ import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
 import { find, pick } from "lodash";
 
-import getQuestionnaireQuery from "queries/getQuestionnaire";
-import updateSectionMutation from "queries/updateSection";
-import updatePageMutation from "queries/updatePage";
-import createQuestionPageMutation from "queries/createQuestionPage";
+import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
+import updateSectionMutation from "queries/updateSection.graphql";
+import updatePageMutation from "queries/updatePage.graphql";
+import createQuestionPageMutation from "queries/createQuestionPage.graphql";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 
 const findById = (collection, id) =>

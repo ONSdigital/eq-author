@@ -18,10 +18,7 @@
     "coverage": "yarn test -- --coverage -u"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.1.6",
@@ -51,6 +48,7 @@
     "enzyme-to-json": "^1.5.1",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
+    "eslint-plugin-graphql": "^1.2.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "filesize": "^3.5.10",
@@ -88,7 +86,9 @@
   "dependencies": {
     "connected-react-router": "^4.2.1",
     "enzyme": "^2.8.2",
+    "eq-author-graphql-schema": "https://github.com/ONSdigital/eq-author-graphql-schema.git",
     "eslint-config-eq-author": "^1.0.2",
+    "jest-transform-graphql": "^2.1.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "normalizr": "^3.2.3",
@@ -124,9 +124,7 @@
       "tests/setup/throwOnConsole.js"
     ],
     "setupTestFrameworkScriptFile": "tests/setup/JestTestSetup.js",
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ],
+    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -135,21 +133,16 @@
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "\\.(gql|graphql)$": "jest-transform-graphql",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     }
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
-  "moduleRoots": [
-    "./src"
-  ]
+  "moduleRoots": ["./src"]
 }

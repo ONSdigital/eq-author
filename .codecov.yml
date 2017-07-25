@@ -15,3 +15,4 @@ ignore:
   - "scripts/*.js"
   - "src/queries/*.js"
   - "tests"
+  - ".eslintrc.js"
