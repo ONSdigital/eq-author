@@ -29,6 +29,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
     newPage = {
       id: 22,
+      sectionId: section.id,
       title: "New Page"
     };
 
@@ -40,7 +41,6 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
     ownProps = {
       history,
-      sectionId: section.id,
       questionnaireId: questionnaire.id
     };
 

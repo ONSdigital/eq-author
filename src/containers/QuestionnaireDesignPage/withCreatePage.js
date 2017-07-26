@@ -4,8 +4,8 @@ import createQuestionPageMutation from "queries/createQuestionPage.graphql";
 import { find } from "lodash";
 
 export const redirectToDesigner = ownProps => ({ data }) => {
-  const { history, sectionId, questionnaireId } = ownProps;
-  const { id } = data.createQuestionPage;
+  const { history, questionnaireId } = ownProps;
+  const { id, sectionId } = data.createQuestionPage;
   history.push(`/questionnaire/${questionnaireId}/design/${sectionId}/${id}`);
 };
 
