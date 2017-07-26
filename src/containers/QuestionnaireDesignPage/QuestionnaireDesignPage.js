@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { merge, set, noop } from "lodash";
-import { Link } from "react-router-dom";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -10,6 +9,7 @@ import { Grid, Column } from "components/Grid";
 import { PropertyPane, PropertyPaneTitle } from "components/PropertyPane";
 import QuestionProperties from "components/QuestionProperties";
 import QuestionnaireDesign from "components/QuestionnaireDesign";
+import QuestionnaireNav from "components/QuestionnaireNav";
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -67,8 +67,8 @@ export class QuestionnaireDesignPage extends Component {
     this.setFocused(focused);
   };
 
-  handleAddPageClick = () => {
-    this.props.onAddPage(this.state.section.id);
+  handleAddPage = sectionId => {
+    this.props.onAddPage(sectionId);
   };
 
   setFocused = focused => {
@@ -80,51 +80,6 @@ export class QuestionnaireDesignPage extends Component {
       this.setState({ focused });
     }
   };
-
-  renderSidebar(questionnaire) {
-    return (
-      <div style={{ padding: "1em" }}>
-        <ol
-          style={{
-            fontSize: "0.9em",
-            paddingLeft: "1em",
-            marginBottom: "1em"
-          }}
-        >
-          {questionnaire.sections.map(section =>
-            <li key={section.id}>
-              <Link
-                to={`/questionnaire/${questionnaire.id}/design/${section.id}`}
-              >
-                {section.title}
-              </Link>
-              {section.pages &&
-                <ol
-                  style={{
-                    fontSize: "0.9em",
-                    paddingLeft: "1em",
-                    marginBottom: "1em"
-                  }}
-                >
-                  {section.pages.map((page, i) =>
-                    <li key={page.id}>
-                      <Link
-                        to={`/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`}
-                      >
-                        {page.title || "Page Title"}
-                      </Link>
-                    </li>
-                  )}
-                </ol>}
-              <button onClick={this.handleAddPageClick} id="btn-add-page">
-                + Add page
-              </button>
-            </li>
-          )}
-        </ol>
-      </div>
-    );
-  }
 
   render() {
     const { breadcrumb, loading, questionnaire } = this.props;
@@ -138,7 +93,11 @@ export class QuestionnaireDesignPage extends Component {
       <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            {questionnaire && this.renderSidebar(questionnaire)}
+            <QuestionnaireNav
+              questionnaire={questionnaire}
+              onAddPage={this.handleAddPage}
+              onAddSection={noop}
+            />
           </Column>
           <Column gutters={false}>
             <QuestionnaireDesign

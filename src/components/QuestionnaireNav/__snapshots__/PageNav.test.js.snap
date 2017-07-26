@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNav should render 1`] = `
+<TransitionGroup
+  childFactory={[Function]}
+  component={[Function]}
+>
+  <CSSTransition
+    classNames="page"
+    timeout={200}
+  >
+    <PageNav__PageItem>
+      <PageNav__Link
+        activeClassName="selected"
+        aria-disabled={false}
+        to="/questionnaire/1/design/3/2"
+      >
+        <PageNav__LinkText>
+          undefined1
+           
+          Page
+        </PageNav__LinkText>
+      </PageNav__Link>
+    </PageNav__PageItem>
+  </CSSTransition>
+</TransitionGroup>
+`;

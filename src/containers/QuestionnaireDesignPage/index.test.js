@@ -146,7 +146,7 @@ describe("containers/QuestionnaireDesignPage", () => {
     });
 
     it("should respond with an optimisticResponse", () => {
-      return props.onAddPage().then(() => {
+      return props.onAddPage(section.id).then(() => {
         expect(mutate.mock.calls[0][0]).toMatchObject({
           optimisticResponse: {
             createQuestionPage: {
