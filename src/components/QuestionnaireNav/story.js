@@ -1,5 +1,6 @@
 import React, { cloneElement, Component, Children } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 import CustomPropTypes from "custom-prop-types";
 import { storiesOf } from "@storybook/react";
 import { random } from "lodash";
@@ -26,10 +27,9 @@ const questionnaire = {
   ]
 };
 
-class WithState extends Component {
+class QuestionnaireNavWithState extends Component {
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire,
-    children: PropTypes.node.isRequired
+    questionnaire: CustomPropTypes.questionnaire
   };
 
   constructor(props) {
@@ -49,12 +49,12 @@ class WithState extends Component {
       ...this.state.questionnaire
     };
 
-    questionnaire.sections[sectionId].pages.push(
-      this.getNewPage(
-        sectionId,
-        questionnaire.sections[sectionId].pages.length + 1
-      )
+    const newPage = this.getNewPage(
+      sectionId,
+      questionnaire.sections[sectionId].pages.length + 1
     );
+
+    questionnaire.sections[sectionId].pages.push(newPage);
 
     this.setState({ questionnaire });
   };
@@ -68,21 +68,16 @@ class WithState extends Component {
     };
 
     questionnaire.sections.push(section);
-
     this.setState({ questionnaire });
   };
 
   render() {
     return (
-      <div>
-        {Children.map(this.props.children, child =>
-          cloneElement(child, {
-            questionnaire: this.state.questionnaire,
-            onAddPageClick: this.handleAddPageClick,
-            onAddSectionClick: this.handleAddSectionClick
-          })
-        )}
-      </div>
+      <QuestionnaireNav
+        questionnaire={questionnaire}
+        onAddPageClick={this.handleAddPageClick}
+        onAddSectionClick={this.handleAddSectionClick}
+      />
     );
   }
 }
@@ -94,9 +89,5 @@ storiesOf("QuestionnaireNav", module)
     </Wrapper>
   )
   .add("Default", () => {
-    return (
-      <WithState questionnaire={questionnaire}>
-        <QuestionnaireNav />
-      </WithState>
-    );
+    return <QuestionnaireNavWithState questionnaire={questionnaire} />;
   });

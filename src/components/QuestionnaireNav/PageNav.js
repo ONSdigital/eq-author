@@ -1,20 +1,12 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import CustomPropTypes from "custom-prop-types";
-import { TransitionGroup } from "react-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import { colors } from "constants/theme";
 
-import FadeTransition from "components/QuestionnaireNav/FadeTransition";
-
 const duration = 200;
-
-const PageItemEntering = css`
-  opacity: 0;
-  height: 0;
-  transform: translateX(-20px);
-`;
 
 const PageItem = styled.li`
   padding: 0;
@@ -28,7 +20,11 @@ const PageItem = styled.li`
   transform: translateX(0);
   display: flex;
   align-items: center;
-  ${({ state }) => state === "entering" && PageItemEntering};
+  &.page-enter {
+    opacity: 0;
+    height: 0;
+    transform: translateX(-20px);
+  }
 `;
 
 const Link = styled(NavLink)`
@@ -41,6 +37,7 @@ const Link = styled(NavLink)`
   height: 100%;
   position: relative;
   overflow: hidden;
+  transition: opacity 100ms ease-out;
   &::before {
     opacity: 0;
     content: "";
@@ -66,7 +63,7 @@ const Link = styled(NavLink)`
       width: 100%;
     }
   }
-  &[disabled] {
+  &[aria-disabled=true] {
     pointer-events: none;
     opacity: 0.5;
   }
@@ -95,21 +92,19 @@ const PageNav = ({ section, questionnaire }) =>
     {section.pages.map((page, i) => {
       const pageNumber = `${section.number}${i + 1}`;
       return (
-        <FadeTransition
-          key={pageNumber}
-          component={PageItem}
-          duration={duration}
-        >
-          <Link
-            to={getLink(questionnaire.id, section.id, page.id)}
-            disabled={page.id < 0}
-            activeClassName="selected"
-          >
-            <LinkText>
-              {pageNumber} {page.title || "Page Title"}
-            </LinkText>
-          </Link>
-        </FadeTransition>
+        <CSSTransition key={pageNumber} timeout={duration} classNames="page">
+          <PageItem>
+            <Link
+              to={getLink(questionnaire.id, section.id, page.id)}
+              aria-disabled={page.id < 0}
+              activeClassName="selected"
+            >
+              <LinkText>
+                {pageNumber} {page.title || "Page Title"}
+              </LinkText>
+            </Link>
+          </PageItem>
+        </CSSTransition>
       );
     })}
   </TransitionGroup>;

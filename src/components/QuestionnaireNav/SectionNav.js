@@ -1,24 +1,17 @@
 import React from "react";
-import { TransitionGroup } from "react-transition-group";
+
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { colors } from "constants/theme";
 
 import sectionIcon from "./icon-section.svg";
 
 import PageNav from "components/QuestionnaireNav/PageNav";
-import FadeTransition from "components/QuestionnaireNav/FadeTransition";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const duration = 200;
-
-const SectionItemEntering = css`
-  opacity: 0;
-  height: 0;
-  padding: 0;
-  transform: translateX(-20px);
-`;
 
 const SectionItem = styled.li`
   margin: 0;
@@ -29,8 +22,17 @@ const SectionItem = styled.li`
     transform ${duration}ms ease-out ${duration}ms;
   opacity: 1;
   transform: translateX(0);
-  height: ${({ state }) => state === "entered" && "auto"};
-  ${({ state }) => state === "entering" && SectionItemEntering};
+
+  &.section-enter {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    transform: translateX(-20px);
+  }
+
+  &.section-entered {
+    height: auto;
+  }
 `;
 
 const SectionTitle = styled.h3`
@@ -71,24 +73,26 @@ const SectionNav = ({ questionnaire, onAddPageClick }) =>
         number: `${i + 1}.`
       }))
       .map((section, sectionNum) =>
-        <FadeTransition
+        <CSSTransition
           key={section.number}
-          component={SectionItem}
-          duration={duration}
+          timeout={duration}
+          classNames="section"
         >
-          <SectionTitle>
-            {section.title || "Section Title"}
-          </SectionTitle>
-          <PageNav section={section} questionnaire={questionnaire} />
-          <AddPageBtn
-            onClick={function() {
-              onAddPageClick(section.id);
-            }}
-            id="btn-add-page"
-          >
-            + Add page
-          </AddPageBtn>
-        </FadeTransition>
+          <SectionItem>
+            <SectionTitle>
+              {section.title || "Section Title"}
+            </SectionTitle>
+            <PageNav section={section} questionnaire={questionnaire} />
+            <AddPageBtn
+              onClick={function() {
+                onAddPageClick(section.id);
+              }}
+              id="btn-add-page"
+            >
+              + Add page
+            </AddPageBtn>
+          </SectionItem>
+        </CSSTransition>
       )}
   </TransitionGroup>;
 
