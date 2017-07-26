@@ -6,7 +6,9 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
 import { colors } from "constants/theme";
+
 import SectionNav from "components/QuestionnaireNav/SectionNav";
+
 import plusIcon from "./icon-plus.svg";
 
 const Container = styled.div`
@@ -53,24 +55,20 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-const QuestionnaireNav = ({
-  questionnaire,
-  onAddPageClick,
-  onAddSectionClick
-}) =>
+const QuestionnaireNav = ({ questionnaire, onAddPage, onAddSection }) =>
   <Container>
     <Title>Questionnaire structure</Title>
     <NavList>
       <SectionNav
         transitionDuration={200}
         questionnaire={questionnaire}
-        onAddPageClick={onAddPageClick}
+        onAddPage={onAddPage}
       />
       <AddSection>
         <AddSectionBtn
           primary
           onClick={function() {
-            onAddSectionClick(questionnaire.id);
+            onAddSection(questionnaire.id);
           }}
         >
           Create new section
@@ -81,7 +79,7 @@ const QuestionnaireNav = ({
 
 QuestionnaireNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,
-  onAddPageClick: PropTypes.func.isRequired,
-  onAddSectionClick: PropTypes.func.isRequired
+  onAddPage: PropTypes.func.isRequired,
+  onAddSection: PropTypes.func.isRequired
 };
 export default QuestionnaireNav;

@@ -65,7 +65,7 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-const SectionNav = ({ questionnaire, onAddPageClick }) =>
+const SectionNav = ({ questionnaire, onAddPage }) =>
   <TransitionGroup component={NavList}>
     {questionnaire.sections
       .map((section, i) => ({
@@ -85,7 +85,7 @@ const SectionNav = ({ questionnaire, onAddPageClick }) =>
             <PageNav section={section} questionnaire={questionnaire} />
             <AddPageBtn
               onClick={function() {
-                onAddPageClick(section.id);
+                onAddPage(section.id);
               }}
               id="btn-add-page"
             >
@@ -98,7 +98,7 @@ const SectionNav = ({ questionnaire, onAddPageClick }) =>
 
 SectionNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire,
-  onAddPageClick: PropTypes.func.isRequired
+  onAddPage: PropTypes.func.isRequired
 };
 
 export default SectionNav;

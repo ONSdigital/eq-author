@@ -4,7 +4,7 @@ import SectionNav, { AddPageBtn } from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
-  let handleAddPageClick;
+  let handleAddPage;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -15,12 +15,9 @@ describe("SectionNav", () => {
   };
 
   beforeEach(() => {
-    handleAddPageClick = jest.fn();
+    handleAddPage = jest.fn();
     wrapper = shallow(
-      <SectionNav
-        questionnaire={questionnaire}
-        onAddPageClick={handleAddPageClick}
-      />
+      <SectionNav questionnaire={questionnaire} onAddPage={handleAddPage} />
     );
   });
 
@@ -30,6 +27,6 @@ describe("SectionNav", () => {
 
   it("should handle 'add page' button clicks", () => {
     wrapper.find(AddPageBtn).simulate("click");
-    expect(handleAddPageClick).toHaveBeenCalledWith(section.id);
+    expect(handleAddPage).toHaveBeenCalledWith(section.id);
   });
 });

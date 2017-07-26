@@ -42,7 +42,7 @@ class QuestionnaireNavWithState extends Component {
     title: `Question ${sectionId + 1}.${pageId}`
   });
 
-  handleAddPageClick = sectionId => {
+  handleAddPage = sectionId => {
     const questionnaire = {
       ...this.state.questionnaire
     };
@@ -57,7 +57,7 @@ class QuestionnaireNavWithState extends Component {
     this.setState({ questionnaire });
   };
 
-  handleAddSectionClick = () => {
+  handleAddSection = () => {
     const id = questionnaire.sections.length;
     const section = {
       id,
@@ -73,8 +73,8 @@ class QuestionnaireNavWithState extends Component {
     return (
       <QuestionnaireNav
         questionnaire={questionnaire}
-        onAddPageClick={this.handleAddPageClick}
-        onAddSectionClick={this.handleAddSectionClick}
+        onAddPage={this.handleAddPage}
+        onAddSection={this.handleAddSection}
       />
     );
   }

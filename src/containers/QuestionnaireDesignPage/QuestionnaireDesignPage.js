@@ -67,7 +67,7 @@ export class QuestionnaireDesignPage extends Component {
     this.setFocused(focused);
   };
 
-  handleAddPageClick = sectionId => {
+  handleAddPage = sectionId => {
     this.props.onAddPage(sectionId);
   };
 
@@ -95,8 +95,8 @@ export class QuestionnaireDesignPage extends Component {
           <Column cols={2} gutters={false}>
             <QuestionnaireNav
               questionnaire={questionnaire}
-              onAddPageClick={this.handleAddPageClick}
-              onAddSectionClick={noop}
+              onAddPage={this.handleAddPage}
+              onAddSection={noop}
             />
           </Column>
           <Column gutters={false}>

@@ -33,8 +33,8 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
       gutters={false}
     >
       <QuestionnaireNav
-        onAddPageClick={[Function]}
-        onAddSectionClick={[Function]}
+        onAddPage={[Function]}
+        onAddSection={[Function]}
         questionnaire={
           Object {
             "id": "3",

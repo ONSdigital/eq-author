@@ -5,21 +5,23 @@ exports[`PageNav should render 1`] = `
   childFactory={[Function]}
   component={[Function]}
 >
-  <FadeTransition
-    component={[Function]}
-    duration={200}
+  <CSSTransition
+    classNames="page"
+    timeout={200}
   >
-    <PageNav__Link
-      activeClassName="selected"
-      disabled={false}
-      to="/questionnaire/1/design/3/2"
-    >
-      <PageNav__LinkText>
-        undefined1
-         
-        Page
-      </PageNav__LinkText>
-    </PageNav__Link>
-  </FadeTransition>
+    <PageNav__PageItem>
+      <PageNav__Link
+        activeClassName="selected"
+        aria-disabled={false}
+        to="/questionnaire/1/design/3/2"
+      >
+        <PageNav__LinkText>
+          undefined1
+           
+          Page
+        </PageNav__LinkText>
+      </PageNav__Link>
+    </PageNav__PageItem>
+  </CSSTransition>
 </TransitionGroup>
 `;

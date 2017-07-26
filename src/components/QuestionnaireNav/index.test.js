@@ -5,15 +5,15 @@ import QuestionnaireNav, { AddSectionBtn } from "components/QuestionnaireNav";
 describe("QuestionnaireNav", () => {
   let wrapper;
   const questionnaire = { id: "1" };
-  const handleAddSectionClick = jest.fn();
-  const handleAddPageClick = jest.fn();
+  const handleAddSection = jest.fn();
+  const handleAddPage = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
       <QuestionnaireNav
         questionnaire={questionnaire}
-        onAddPageClick={handleAddPageClick}
-        onAddSectionClick={handleAddSectionClick}
+        onAddPage={handleAddPage}
+        onAddSection={handleAddSection}
       />
     );
   });
@@ -24,6 +24,6 @@ describe("QuestionnaireNav", () => {
 
   it("should handle clicks on `create a new section`", () => {
     wrapper.find(AddSectionBtn).simulate("click");
-    expect(handleAddSectionClick).toHaveBeenCalledWith(questionnaire.id);
+    expect(handleAddSection).toHaveBeenCalledWith(questionnaire.id);
   });
 });
