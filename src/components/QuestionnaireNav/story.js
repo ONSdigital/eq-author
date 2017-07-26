@@ -1,6 +1,4 @@
-import React, { cloneElement, Component, Children } from "react";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router";
+import React, { Component } from "react";
 import CustomPropTypes from "custom-prop-types";
 import { storiesOf } from "@storybook/react";
 import { random } from "lodash";
