@@ -5,13 +5,11 @@ import { find, pick } from "lodash";
 import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
 import updateSectionMutation from "queries/updateSection.graphql";
 import updatePageMutation from "queries/updatePage.graphql";
-import createQuestionPageMutation from "queries/createQuestionPage.graphql";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
+import withCreatePage from "./withCreatePage";
+import withCreateSection from "./withCreateSection";
 
-const findById = (collection, id) =>
-  find(collection, {
-    id: parseInt(id, 10)
-  });
+const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
 export const mapStateToProps = (state, { match }) =>
   pick(match.params, ["questionnaireId", "sectionId", "pageId"]);
@@ -50,68 +48,11 @@ export const withUpdatePage = graphql(updatePageMutation, {
   })
 });
 
-export const createUpdater = (questionnaireId, sectionId) => (
-  proxy,
-  result
-) => {
-  const data = proxy.readQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId }
-  });
-
-  const section = findById(data.questionnaire.sections, sectionId);
-
-  section.pages.push(result.data.createQuestionPage);
-
-  proxy.writeQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId },
-    data
-  });
-};
-
-export const redirectToDesigner = ownProps => ({ data }) => {
-  const { history, sectionId, questionnaireId } = ownProps;
-  const { id } = data.createQuestionPage;
-  history.push(`/questionnaire/${questionnaireId}/design/${sectionId}/${id}`);
-};
-
-export const mapMutateToProps = ({ ownProps, mutate }) => {
-  const { questionnaireId } = ownProps;
-  return {
-    onAddPage(sectionId) {
-      const page = {
-        title: "",
-        description: "",
-        type: "General",
-        sectionId: sectionId
-      };
-      return mutate({
-        variables: page,
-        optimisticResponse: {
-          createQuestionPage: {
-            __typename: "QuestionPage",
-            id: -1,
-            guidance: "",
-            pageType: "",
-            answers: [],
-            ...page
-          }
-        },
-        update: createUpdater(questionnaireId, sectionId)
-      }).then(redirectToDesigner(ownProps));
-    }
-  };
-};
-
-export const withCreatePage = graphql(createQuestionPageMutation, {
-  props: mapMutateToProps
-});
-
 export default compose(
   connect(mapStateToProps),
   withQuestionnaire,
   withUpdateSection,
   withCreatePage,
+  withCreateSection,
   withUpdatePage
 )(QuestionnaireDesign);
