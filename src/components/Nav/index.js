@@ -16,7 +16,7 @@ const StyledNavLink = styled(NavLink)`
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
-  font-weight: 600;
+  font-weight: 400;
   user-select: none;
   color: ${colors.text};
   transition: color 200ms ease-in-out;

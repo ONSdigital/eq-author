@@ -26,7 +26,7 @@ const CloseButton = styled.button`
   top: 2em;
   right: 2em;
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 700;
   color: #444;
   text-transform: uppercase;
 `;

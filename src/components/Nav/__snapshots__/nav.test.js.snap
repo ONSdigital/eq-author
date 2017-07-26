@@ -11,7 +11,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
-  font-weight: 600;
+  font-weight: 400;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -142,7 +142,7 @@ exports[`components/Nav should render Nav 1`] = `
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
-  font-weight: 600;
+  font-weight: 400;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

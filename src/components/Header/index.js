@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
   align-items: center;
   background-color: ${colors.darkGrey};
   color: ${colors.white};
-  font-weight: 500;
+  font-weight: 400;
   padding: 1em 1.5em;
 `;
 
