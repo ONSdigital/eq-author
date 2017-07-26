@@ -16,21 +16,6 @@ describe("containers/QuestionnaireDesignPage", () => {
     sections: [section]
   };
 
-  let result, newPage;
-
-  beforeEach(() => {
-    newPage = {
-      id: 22,
-      title: "New Page"
-    };
-
-    result = {
-      data: {
-        createQuestionPage: newPage
-      }
-    };
-  });
-
   describe("mapStateToProps", () => {
     it("should map question, section and page id's from state to props", () => {
       const params = {
