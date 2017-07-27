@@ -1,6 +1,6 @@
 /* eslint-disable react/no-find-dom-node */
 import React from "react";
-import ReactDOM from "react-dom";
+import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import uncontrollable from "uncontrollable";
@@ -8,7 +8,10 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const ESC_KEY_CODE = 27;
 
-const Container = styled.div`position: relative;`;
+const Container = styled.div`
+  position: relative;
+  display: inline-block;
+`;
 
 const Layer = styled.div`
   position: absolute;
@@ -25,6 +28,8 @@ class Popout extends React.Component {
     children: PropTypes.element.isRequired,
     open: PropTypes.bool,
     onToggleOpen: PropTypes.func.isRequired,
+    onEntered: PropTypes.func,
+    onExited: PropTypes.func,
     transition: PropTypes.any // eslint-disable-line react/forbid-prop-types
   };
 
@@ -68,26 +73,37 @@ class Popout extends React.Component {
   };
 
   handleDocumentClick = e => {
-    if (!ReactDOM.findDOMNode(this).contains(e.target)) {
+    if (!findDOMNode(this).contains(e.target)) {
       this.handleClose();
     }
   };
 
   handleToggleOpen = e => {
     this.props.onToggleOpen(!this.props.open);
+
+    if (this.props.open) {
+      findDOMNode(this.trigger).focus();
+    }
   };
 
   handleClose = () => {
     this.props.onToggleOpen(false);
+    findDOMNode(this.trigger).focus();
   };
 
   renderContent() {
-    const { children, transition: Transition } = this.props;
+    const {
+      children,
+      transition: Transition,
+      onEntered,
+      onExited
+    } = this.props;
 
     return (
-      <Transition>
+      <Transition onEntered={onEntered} onExited={onExited}>
         {React.cloneElement(React.Children.only(children), {
-          onClose: this.handleClose
+          onClose: this.handleClose,
+          "aria-labelledby": this.props.trigger.props.id
         })}
       </Transition>
     );
@@ -99,7 +115,8 @@ class Popout extends React.Component {
         {React.cloneElement(this.props.trigger, {
           onClick: this.handleToggleOpen,
           "aria-haspopup": true,
-          "aria-expanded": this.props.open
+          "aria-expanded": this.props.open,
+          ref: trigger => (this.trigger = trigger)
         })}
 
         <TransitionGroup component={Layer}>

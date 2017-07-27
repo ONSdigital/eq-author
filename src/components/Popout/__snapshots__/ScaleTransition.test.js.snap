@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Popout/ScaleTransition should render 1`] = `
+<CSSTransition
+  classNames="scale"
+  in={false}
+  timeout={250}
+>
+  <div>
+    hello world
+  </div>
+</CSSTransition>
+`;

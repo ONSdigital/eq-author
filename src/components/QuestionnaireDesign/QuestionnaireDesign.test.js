@@ -1,11 +1,11 @@
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import QuestionnaireDesign from "./";
 
 describe("QuestionnaireDesign", () => {
   let wrapper;
-  const createWrapper = props =>
-    mount(
+  const createWrapper = (props, render = mount) =>
+    render(
       <QuestionnaireDesign
         onChange={jest.fn()}
         onAnswerAdd={jest.fn()}
@@ -23,6 +23,14 @@ describe("QuestionnaireDesign", () => {
   });
 
   it("should render", () => {
+    wrapper = createWrapper(
+      {
+        section: { title: "" },
+        page: { id: "3", title: "" }
+      },
+      shallow
+    );
+
     expect(wrapper).toMatchSnapshot();
   });
 

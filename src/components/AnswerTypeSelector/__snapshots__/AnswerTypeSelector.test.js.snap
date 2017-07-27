@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/AnswerTypeSelector should render content when open 1`] = `
+<Popout
+  onEntered={[Function]}
+  onToggleOpen={[Function]}
+  open={true}
+  transition={[Function]}
+  trigger={
+    <AnswerTypeSelector__AddAnswerBtn
+      id="add-answer-btn"
+      type="button"
+    >
+      Add an answer
+    </AnswerTypeSelector__AddAnswerBtn>
+  }
+>
+  <AnswerTypeGrid
+    onSelect={[Function]}
+  />
+</Popout>
+`;
+
+exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] = `
+<Popout
+  onEntered={[Function]}
+  onToggleOpen={[Function]}
+  open={false}
+  transition={[Function]}
+  trigger={
+    <AnswerTypeSelector__AddAnswerBtn
+      id="add-answer-btn"
+      type="button"
+    >
+      Add an answer
+    </AnswerTypeSelector__AddAnswerBtn>
+  }
+>
+  <AnswerTypeGrid
+    onSelect={[Function]}
+  />
+</Popout>
+`;

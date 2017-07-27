@@ -15,6 +15,10 @@ const Trigger = styled.button`
   outline: none;
 
   &:active {
+    background-color: #ccc;
+  }
+
+  &:focus {
     background-color: #eee;
   }
 `;

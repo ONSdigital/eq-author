@@ -4,8 +4,8 @@ import { css } from "styled-components";
 
 const FADE_TIMEOUT = 250;
 
-export const styles = css`transform-origin: bottom left;
-
+export const styles = css`
+  transform-origin: bottom left;
   transition: transform ${FADE_TIMEOUT / 2}ms;
 
   > * {

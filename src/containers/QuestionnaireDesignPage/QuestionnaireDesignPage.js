@@ -45,8 +45,8 @@ export class QuestionnaireDesignPage extends Component {
     this.setState(merge({}, this.state, set({}, change.name, change.value)));
   };
 
-  handleAnswerAdd = () => {
-    alert("add an answer to this parent");
+  handleAnswerAdd = type => {
+    alert(`Add answer of type: ${type}`);
   };
 
   handleBlur = focused => {
