@@ -73,12 +73,14 @@ class QuestionnaireDesign extends React.Component {
 
   setSectionTitle = input => {
     if (input) {
+      // check for null as TransitionGroup replaces these DOM elements
       this.sectionTitle = findDOMNode(input);
     }
   };
 
   setPageTitle = input => {
     if (input) {
+      // check for null as TransitionGroup replaces these DOM elements
       this.pageTitle = findDOMNode(input);
     }
   };
