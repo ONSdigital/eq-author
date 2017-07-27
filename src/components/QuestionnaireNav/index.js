@@ -49,32 +49,24 @@ export const AddSectionBtn = styled.button`
   }
 `;
 
-const NavList = styled.ol`
-  padding: 0;
-  margin: 0;
-  list-style: none;
-`;
-
 const QuestionnaireNav = ({ questionnaire, onAddPage, onAddSection }) =>
   <Container>
     <Title>Questionnaire structure</Title>
-    <NavList>
-      <SectionNav
-        transitionDuration={200}
-        questionnaire={questionnaire}
-        onAddPage={onAddPage}
-      />
-      <AddSection>
-        <AddSectionBtn
-          primary
-          onClick={function() {
-            onAddSection(questionnaire.id);
-          }}
-        >
-          Create new section
-        </AddSectionBtn>
-      </AddSection>
-    </NavList>
+    <SectionNav
+      transitionDuration={200}
+      questionnaire={questionnaire}
+      onAddPage={onAddPage}
+    />
+    <AddSection>
+      <AddSectionBtn
+        primary
+        onClick={function() {
+          onAddSection(questionnaire.id);
+        }}
+      >
+        Create new section
+      </AddSectionBtn>
+    </AddSection>
   </Container>;
 
 QuestionnaireNav.propTypes = {
