@@ -5,7 +5,6 @@ import { ConnectedRouter } from "react-router-redux";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router";
 import { ApolloProvider } from "react-apollo";
-import client from "apollo/client";
 
 import QuestionnairesPage from "containers/QuestionnairesPage";
 import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage";
@@ -13,7 +12,7 @@ import QuestionnaireMetaPage from "containers/QuestionnaireMetaPage";
 import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
 import NotFoundPage from "containers/NotFoundPage";
 
-const App = ({ store, history }) =>
+const App = ({ store, client, history }) =>
   <AppContainer>
     <ApolloProvider client={client} store={store}>
       <ConnectedRouter history={history}>
@@ -39,6 +38,7 @@ const App = ({ store, history }) =>
   </AppContainer>;
 
 App.propTypes = {
+  client: PropTypes.shape({}),
   store: PropTypes.shape({
     getState: PropTypes.func.isRequired
   }).isRequired,

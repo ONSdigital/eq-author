@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/App should render 1`] = `
+<AppContainer>
+  <ApolloProvider
+    client={Object {}}
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <ConnectedRouter
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 2,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Switch>
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/"
+        />
+        <Route
+          component={[Function]}
+          path="/questionnaire/create"
+        />
+        <Route
+          component={[Function]}
+          path="/questionnaire/:questionnaireId/meta"
+        />
+        <Route
+          component={[Function]}
+          exact={false}
+          path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="*"
+        />
+      </Switch>
+    </ConnectedRouter>
+  </ApolloProvider>
+</AppContainer>
+`;
