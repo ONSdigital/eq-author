@@ -28,7 +28,7 @@ describe("containers/QuestionnaireCreatePage", () => {
     );
   });
 
-  it("should call createQuestionnaire and createSection when submitted", () => {
+  it("should call createQuestionnaire when submitted", () => {
     const preventDefault = jest.fn();
     return wrapper.instance().handleSubmit({ preventDefault }).then(() => {
       expect(preventDefault).toHaveBeenCalled();

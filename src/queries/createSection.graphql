@@ -1,6 +1,6 @@
 mutation CreateSection(
   $title: String!
-  $description: String!
+  $description: String
   $questionnaireId: Int!
 ) {
   createSection(
@@ -14,6 +14,16 @@ mutation CreateSection(
     questionnaireId
     pages {
       id
+      title
+      description
+      ... on QuestionPage {
+        guidance
+        pageType
+        type
+        answers {
+          id
+        }
+      }
     }
   }
 }

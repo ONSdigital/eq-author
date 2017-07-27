@@ -8,7 +8,8 @@ let handleUpdate,
   wrapper,
   handleSectionUpdate,
   handlePageUpdate,
-  handleAddPage;
+  handleAddPage,
+  handleAddSection;
 
 let page = {
   id: "1",
@@ -29,6 +30,7 @@ describe("containers/QuestionnaireDesign", () => {
     handleAddPage = jest.fn();
     handleSectionUpdate = jest.fn();
     handlePageUpdate = jest.fn();
+    handleAddSection = jest.fn();
 
     wrapper = shallow(
       <QuestionnaireDesignPage
@@ -38,6 +40,7 @@ describe("containers/QuestionnaireDesign", () => {
         onSectionUpdate={handleSectionUpdate}
         onPageUpdate={handlePageUpdate}
         onAddPage={handleAddPage}
+        onAddSection={handleAddSection}
         section={section}
         page={page}
         loading={false}
