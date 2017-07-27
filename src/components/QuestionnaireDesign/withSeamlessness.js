@@ -11,12 +11,12 @@ import { colors } from "constants/theme";
 const sizes = {
   large: css`
     font-size: 1.75em;
-    font-weight: bold;
+    font-weight: 700;
   `,
 
   medium: css`
     font-size: 1.125em;
-    font-weight: bold;
+    font-weight: 700;
   `,
 
   small: css`

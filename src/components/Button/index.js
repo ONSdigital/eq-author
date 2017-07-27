@@ -48,7 +48,7 @@ const StyledButton = styled.button`
   padding: 0.8em 3em;
   border-radius: ${radius};
   font-size: 0.8em;
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
   line-height: 1;
   -webkit-font-smoothing: antialiased;

@@ -49,7 +49,7 @@ const Button = styled.button`
 const Title = styled.h3`
   margin: 0;
   padding-top: 0.5em;
-  font-weight: normal;
+  font-weight: 400;
 `;
 
 const IconGridButton = ({ icon, title, disabled, onClick }) => {

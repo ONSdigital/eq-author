@@ -41,7 +41,7 @@ exports[`QuestionnaireDesign should render 1`] = `
   display: block;
   width: 100%;
   font-size: 1.125em;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .c5:focus {
@@ -124,7 +124,7 @@ exports[`QuestionnaireDesign should render 1`] = `
   display: block;
   width: 100%;
   font-size: 1.75em;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .c8:focus {
@@ -176,7 +176,7 @@ exports[`QuestionnaireDesign should render 1`] = `
   padding: 0.8em 3em;
   border-radius: 2px;
   font-size: 0.8em;
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
