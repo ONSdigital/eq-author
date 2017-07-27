@@ -11,9 +11,37 @@ import Form from "components/Forms/Form";
 import Button from "components/Button";
 import CustomPropTypes from "custom-prop-types";
 import { noop } from "lodash";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const AddAnswerButton = styled(Button)`
   color: #757575;
+`;
+
+const duration = 300;
+
+const PageTransition = ({ children, ...props }) =>
+  <CSSTransition {...props} timeout={duration} classNames="fade">
+    {children}
+  </CSSTransition>;
+
+PageTransition.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+const AnimatedCanvasSection = styled(CanvasSection)`
+  position: relative;
+  &.fade-enter {
+    opacity: 0.25;
+    transform: translateX(-50px);
+    z-index: 200;
+  }
+  &.fade-enter.fade-enter-active {
+    opacity: 1;
+    z-index: 200;
+    transform: translateX(0);
+    transition: opacity ${duration}ms ease-out,
+      transform ${duration}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
 `;
 
 class QuestionnaireDesign extends React.Component {
@@ -37,9 +65,17 @@ class QuestionnaireDesign extends React.Component {
     }
   }
 
-  setSectionTitle = input => (this.sectionTitle = findDOMNode(input));
+  setSectionTitle = input => {
+    if (input) {
+      this.sectionTitle = findDOMNode(input);
+    }
+  };
 
-  setPageTitle = input => (this.pageTitle = findDOMNode(input));
+  setPageTitle = input => {
+    if (input) {
+      this.pageTitle = findDOMNode(input);
+    }
+  };
 
   setFocusOnTitle = () => {
     const { section, page } = this.props;
@@ -65,71 +101,81 @@ class QuestionnaireDesign extends React.Component {
     return (
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
-          <CanvasSection
-            id="section"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            focused={focused === "section"}
-          >
-            <Field id="section.title">
-              <SeamlessInput
-                placeholder="Section title"
-                size="medium"
-                onChange={onChange}
-                value={section.title}
-                ref={this.setSectionTitle}
-              />
-            </Field>
-            <Field id="section.description" optional>
-              <SeamlessTextArea
-                cols="30"
-                rows="5"
-                placeholder="Enter a description (optional)…"
-                onChange={onChange}
-                value={section.description}
-              />
-            </Field>
-          </CanvasSection>
-          <CanvasSection
-            id="page"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            focused={focused === "page"}
-          >
-            <Field id="page.title">
-              <SeamlessInput
-                size="large"
-                placeholder="Question title"
-                onChange={onChange}
-                value={page.title}
-                ref={this.setPageTitle}
-              />
-            </Field>
-            <Field id="page.description" optional>
-              <SeamlessInput
-                placeholder="Question text (optional)…"
-                value={page.description}
-                onChange={onChange}
-              />
-            </Field>
-            <Field id="page.guidance" optional>
-              <SeamlessInput
-                placeholder="Guidance text (optional)…"
-                value={page.guidance}
-                onChange={onChange}
-              />
-            </Field>
-          </CanvasSection>
-          <CanvasSection
-            id="answers"
-            onFocus={onFocus}
-            onBlur={onBlur}
-            focused={focused === "answers"}
-          >
-            <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
-              add an answer
-            </AddAnswerButton>
-          </CanvasSection>
+          <TransitionGroup>
+            <PageTransition key={`section-${section.id}`} enter exit={false}>
+              <AnimatedCanvasSection
+                id="section"
+                onFocus={onFocus}
+                onBlur={onBlur}
+                focused={focused === "section"}
+                key={section.id}
+              >
+                <Field id="section.title">
+                  <SeamlessInput
+                    placeholder="Section title"
+                    size="medium"
+                    onChange={onChange}
+                    value={section.title}
+                    ref={this.setSectionTitle}
+                  />
+                </Field>
+                <Field id="section.description" optional>
+                  <SeamlessTextArea
+                    cols="30"
+                    rows="5"
+                    placeholder="Enter a description (optional)…"
+                    onChange={onChange}
+                    value={section.description}
+                  />
+                </Field>
+              </AnimatedCanvasSection>
+            </PageTransition>
+            <PageTransition key={`page-${page.id}`} enter exit={false}>
+              <AnimatedCanvasSection
+                id="page"
+                onFocus={onFocus}
+                onBlur={onBlur}
+                focused={focused === "page"}
+              >
+                <Field id="page.title">
+                  <SeamlessInput
+                    size="large"
+                    placeholder="Question title"
+                    onChange={onChange}
+                    value={page.title}
+                    ref={this.setPageTitle}
+                  />
+                </Field>
+                <Field id="page.description" optional>
+                  <SeamlessInput
+                    placeholder="Question text (optional)…"
+                    value={page.description}
+                    onChange={onChange}
+                  />
+                </Field>
+                <Field id="page.guidance" optional>
+                  <SeamlessInput
+                    placeholder="Guidance text (optional)…"
+                    value={page.guidance}
+                    onChange={onChange}
+                  />
+                </Field>
+              </AnimatedCanvasSection>
+            </PageTransition>
+            <PageTransition key={`answer-${page.id}`} enter exit={false}>
+              <AnimatedCanvasSection
+                id="answers"
+                onFocus={onFocus}
+                onBlur={onBlur}
+                focused={focused === "answers"}
+                last
+              >
+                <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
+                  add an answer
+                </AddAnswerButton>
+              </AnimatedCanvasSection>
+            </PageTransition>
+          </TransitionGroup>
         </Form>
       </Canvas>
     );
