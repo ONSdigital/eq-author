@@ -20,7 +20,13 @@ const AddAnswerButton = styled(Button)`
 const duration = 300;
 
 const PageTransition = ({ children, ...props }) =>
-  <CSSTransition {...props} timeout={duration} classNames="fade">
+  <CSSTransition
+    {...props}
+    timeout={duration}
+    enter
+    exit={false}
+    classNames="fade"
+  >
     {children}
   </CSSTransition>;
 
@@ -102,7 +108,7 @@ class QuestionnaireDesign extends React.Component {
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
-            <PageTransition key={`section-${section.id}`} enter exit={false}>
+            <PageTransition key={`section-${section.id}`}>
               <AnimatedCanvasSection
                 id="section"
                 onFocus={onFocus}
@@ -130,7 +136,7 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </PageTransition>
-            <PageTransition key={`page-${page.id}`} enter exit={false}>
+            <PageTransition key={`page-${page.id}`}>
               <AnimatedCanvasSection
                 id="page"
                 onFocus={onFocus}
@@ -162,7 +168,7 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </PageTransition>
-            <PageTransition key={`answer-${page.id}`} enter exit={false}>
+            <PageTransition key={`answer-${page.id}`}>
               <AnimatedCanvasSection
                 id="answers"
                 onFocus={onFocus}
