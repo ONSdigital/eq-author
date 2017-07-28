@@ -1,29 +1,30 @@
 import React, { cloneElement, Component, Children } from "react";
 import PropTypes from "prop-types";
 import { noop } from "lodash";
-import styled from "styled-components";
-import { colors } from "constants/theme";
+import styled, { css } from "styled-components";
+import { colors, shadow } from "constants/theme";
 import { transparentize } from "polished";
+
+const focusedStyle = css`
+  box-shadow: none;
+  outline-color: ${colors.lightBlue} !important;
+`;
 
 const StyledCanvasSection = styled.div`
   padding: 2em 2.5em;
-  margin-bottom: -2px;
-  border-bottom: 2px dashed #c6c6c6;
-
-  transition: outline-color 0.1s ease-in;
-  outline-offset: -2px;
-  outline-width: 2px;
+  transition: outline-color 100ms ease-in;
+  background: white;
+  margin-bottom: 1px;
+  position: relative;
+  outline-width: 1px;
   outline-style: solid;
-  outline-color: ${props =>
-    props.focused ? `${colors.lightBlue} !important` : "transparent"};
-
+  outline-color: transparent;
+  box-shadow: ${shadow};
   &:hover {
     outline-color: ${transparentize(0.6, colors.lightBlue)};
   }
 
-  &:last-child {
-    border: none;
-  }
+  ${props => props.focused && focusedStyle};
 `;
 
 export default class CanvasSection extends Component {
@@ -50,10 +51,10 @@ export default class CanvasSection extends Component {
   };
 
   render() {
-    const { children, focused } = this.props;
-
+    const { children, focused, ...otherProps } = this.props;
     return (
       <StyledCanvasSection
+        {...otherProps}
         onClick={this.handleFocus}
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}

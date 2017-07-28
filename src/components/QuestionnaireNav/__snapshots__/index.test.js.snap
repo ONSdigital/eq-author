@@ -5,24 +5,22 @@ exports[`QuestionnaireNav should render 1`] = `
   <QuestionnaireNav__Title>
     Questionnaire structure
   </QuestionnaireNav__Title>
-  <QuestionnaireNav__NavList>
-    <SectionNav
-      onAddPage={[Function]}
-      questionnaire={
-        Object {
-          "id": "1",
-        }
+  <SectionNav
+    onAddPage={[Function]}
+    questionnaire={
+      Object {
+        "id": "1",
       }
-      transitionDuration={200}
-    />
-    <QuestionnaireNav__AddSection>
-      <QuestionnaireNav__AddSectionBtn
-        onClick={[Function]}
-        primary={true}
-      >
-        Create new section
-      </QuestionnaireNav__AddSectionBtn>
-    </QuestionnaireNav__AddSection>
-  </QuestionnaireNav__NavList>
+    }
+    transitionDuration={200}
+  />
+  <QuestionnaireNav__AddSection>
+    <QuestionnaireNav__AddSectionBtn
+      onClick={[Function]}
+      primary={true}
+    >
+      Create new section
+    </QuestionnaireNav__AddSectionBtn>
+  </QuestionnaireNav__AddSection>
 </QuestionnaireNav__Container>
 `;

@@ -7,9 +7,9 @@ exports[`Canvas should render 1`] = `
   margin: 2em 0 0 1em;
 }
 
-<Panel__Panel
+<div
   className="c0"
 >
   Children
-</Panel__Panel>
+</div>
 `;
