@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnswerInput should render 1`] = `
+<Input
+  onChange={[Function]}
+>
+  Child
+</Input>
+`;
