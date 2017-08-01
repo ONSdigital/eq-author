@@ -22,5 +22,9 @@ export default {
     title: PropTypes.string,
     description: PropTypes.string,
     guidance: PropTypes.string
+  }),
+  answer: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string
   })
 };

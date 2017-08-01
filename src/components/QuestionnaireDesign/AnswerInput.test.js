@@ -1,14 +1,26 @@
 import React from "react";
-import AnswerInput from "./AnswerInput";
 import { shallow } from "enzyme";
+import AnswerInput from "./AnswerInput";
 
-let wrapper;
+const answer = {
+  title: "Lorem ipsum",
+  description: "Nullam id dolor id nibh ultricies."
+};
 
-describe("AnswerInput", function() {
+const handleChange = jest.fn();
+
+describe("AnswerInput", () => {
+  let component;
+
   beforeEach(() => {
-    wrapper = shallow(<AnswerInput>Child</AnswerInput>);
+    component = shallow(
+      <AnswerInput onChange={handleChange} answer={answer}>
+        Child
+      </AnswerInput>
+    );
   });
+
   it("should render", () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
