@@ -81,13 +81,15 @@ const withSeamlessness = WrappedComponent => {
         placeholder,
         autoFocus,
         size,
-        onChange
+        onChange,
+        className
       } = this.props;
 
       const shouldBeHidden = optional && !value && !focused;
 
       return (
         <StyledSeamless
+          className={className}
           placeholder={placeholder}
           autoFocus={autoFocus}
           value={value}
