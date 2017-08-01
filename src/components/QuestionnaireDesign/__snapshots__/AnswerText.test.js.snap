@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnswerText should render 1`] = `
+<div>
+  <Field
+    id="answer.title"
+  >
+    <withSeamlessness(withChangeHandler(Input))
+      focused={false}
+      onChange={[Function]}
+      optional={false}
+      placeholder="Label"
+      size="medium"
+      value="Lorem ipsum"
+    />
+  </Field>
+  <Field
+    id="answer.description"
+  >
+    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+      cols="30"
+      focused={false}
+      onChange={[Function]}
+      optional={false}
+      placeholder="Enter a description (optional)…"
+      rows="5"
+      size="small"
+      value="Nullam id dolor id nibh ultricies."
+    />
+  </Field>
+  <Field
+    id="answer.description"
+  >
+    <withChangeHandler(Input)
+      disabled={true}
+    />
+  </Field>
+</div>
+`;
