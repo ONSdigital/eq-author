@@ -12,6 +12,32 @@ const CenterXY = styled.div`
   transform: translateY(-50%) translateX(-50%);
 `;
 
+const options = [
+  {
+    id: 1,
+    label: "",
+    value: "",
+    description: ""
+  },
+  {
+    id: 2,
+    label: "",
+    value: "",
+    description: ""
+  }
+];
+
+class InteractiveCheckboxAnswer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      options: []
+    };
+  }
+
+  addOption() {}
+}
+
 const CenterDecorator = storyFn =>
   <CenterXY>
     {storyFn()}
@@ -22,6 +48,14 @@ storiesOf("CheckboxAnswer", module)
   .addDecorator(withKnobs)
   .add("Default", () =>
     <CheckboxAnswer
+      onChange={action("changed")}
+      onAddOption={action("addOption")}
+      onAddOther={action("addOther")}
+    />
+  )
+  .add("Multiple options", () =>
+    <CheckboxAnswer
+      options={options}
       onChange={action("changed")}
       onAddOption={action("addOption")}
       onAddOther={action("addOther")}

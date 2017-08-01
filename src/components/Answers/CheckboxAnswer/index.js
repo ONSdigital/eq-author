@@ -20,6 +20,10 @@ const CheckboxOption = styled.div`
   border: 1px solid #e5e5e5;
   padding: 1em 1em 0em 1em;
   border-radius: 4px;
+
+  &:not(:first-child) {
+    margin-top: .5em;
+  }
 `;
 
 const SeamlessLabel = styled(SeamlessInput)`
@@ -48,26 +52,29 @@ const CheckboxAnswer = ({ options, onChange, onAddOption, onAddOther }) => {
   return (
     <CheckboxAnswerWrapper>
       <CheckboxOptions>
-        <CheckboxOption>
-          <Field id="test">
-            <StyledCheckboxInput type="checkbox" disabled />
-            <SeamlessLabel
-              placeholder="Label"
-              size="medium"
-              onChange={onChange}
-              value={answer.title}
-            />
-          </Field>
-          <Field id="test">
-            <SeamlessTextArea
-              cols="30"
-              rows="5"
-              placeholder="Optional description"
-              onChange={onChange}
-              value={answer.description}
-            />
-          </Field>
-        </CheckboxOption>
+        {options &&
+          options.map(option =>
+            <CheckboxOption key={option.id}>
+              <Field id="test">
+                <StyledCheckboxInput type="checkbox" disabled />
+                <SeamlessLabel
+                  placeholder="Label"
+                  size="medium"
+                  onChange={onChange}
+                  value={option.label}
+                />
+              </Field>
+              <Field id="test">
+                <SeamlessTextArea
+                  cols="30"
+                  rows="5"
+                  placeholder="Optional description"
+                  onChange={onChange}
+                  value={option.description}
+                />
+              </Field>
+            </CheckboxOption>
+          )}
       </CheckboxOptions>
       <div>
         <Button secondary onClick={onAddOption}>
@@ -84,7 +91,24 @@ const CheckboxAnswer = ({ options, onChange, onAddOption, onAddOther }) => {
   );
 };
 
+CheckboxAnswer.defaultProps = {
+  options: [
+    {
+      id: 1,
+      label: "",
+      description: ""
+    }
+  ]
+};
+
 CheckboxAnswer.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
+    })
+  ),
   onChange: PropTypes.func.isRequired,
   onAddOption: PropTypes.func.isRequired,
   onAddOther: PropTypes.func.isRequired
