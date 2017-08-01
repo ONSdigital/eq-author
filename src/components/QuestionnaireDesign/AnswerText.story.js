@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import AnswerInput from "./AnswerInput";
+import AnswerText from "./AnswerText";
 import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
 
@@ -15,13 +15,13 @@ const answer = {
   description: "Nullam id dolor id nibh ultricies."
 };
 
-storiesOf("AnswerInput", module)
+storiesOf("AnswerText", module)
   .addDecorator(story =>
     <Background>
       {story()}
     </Background>
   )
-  .add("Empty", () => <AnswerInput answer={{}} onChange={action("changed")} />)
+  .add("Empty", () => <AnswerText answer={{}} onChange={action("changed")} />)
   .add("Prefilled", () =>
-    <AnswerInput answer={answer} onChange={action("changed")} />
+    <AnswerText answer={answer} onChange={action("changed")} />
   );

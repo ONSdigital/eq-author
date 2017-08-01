@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import AnswerInput from "./AnswerInput";
+import AnswerText from "./AnswerText";
 
 const answer = {
   title: "Lorem ipsum",
@@ -9,15 +9,11 @@ const answer = {
 
 const handleChange = jest.fn();
 
-describe("AnswerInput", () => {
+describe("AnswerText", () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(
-      <AnswerInput onChange={handleChange} answer={answer}>
-        Child
-      </AnswerInput>
-    );
+    component = shallow(<AnswerText onChange={handleChange} answer={answer} />);
   });
 
   it("should render", () => {
