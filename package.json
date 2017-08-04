@@ -5,9 +5,10 @@
   "homepage": "./",
   "scripts": {
     "start": "yarn && node scripts/start.js",
+    "start:smoketest": "yarn && REACT_APP_API_URL=\"\" node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "smoketest:author": "REACT_APP_API_URL=\"\" chimp config/chimp.author.js",
+    "smoketest:author": "chimp config/chimp.author.js",
     "smoketest:storybook": "chimp config/chimp.storybook.js",
     "lint": "eslint src",
     "serve": "npm install -g serve && serve -p 3000 build/",

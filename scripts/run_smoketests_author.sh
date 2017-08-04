@@ -3,7 +3,7 @@
 set -euf -o pipefail
 
 # Run the server
-yarn start &
+yarn start:smoketest &
 pid=$!
 
 function display_result {
