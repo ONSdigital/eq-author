@@ -21,7 +21,8 @@ const PageItem = styled.li`
   transform: translateX(0);
   display: flex;
   align-items: center;
-  &.page-enter {
+  &.page-enter,
+  &.page-exit {
     opacity: 0;
     height: 0;
     transform: translateX(-20px);
@@ -31,12 +32,6 @@ const PageItem = styled.li`
     transition: opacity ${duration / 2}ms ease-out,
       transform ${duration / 2}ms ease-out,
       height ${duration / 2}ms ease-out ${duration / 2}ms;
-  }
-
-  &.page-exit-active {
-    opacity: 0;
-    height: 0;
-    transform: translateX(-20px);
   }
 `;
 

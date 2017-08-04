@@ -47,10 +47,6 @@ class QuestionnaireNavWithState extends Component {
   });
 
   handleAddPage = sectionId => {
-    const questionnaire = {
-      ...this.state.questionnaire
-    };
-
     const newPage = this.getNewPage(
       sectionId,
       questionnaire.sections[sectionId].pages.length + 1
@@ -74,10 +70,9 @@ class QuestionnaireNavWithState extends Component {
   };
 
   handleDeletePage = (sectionId, pageId) => {
-    const section = find(questionnaire.sections, {
-      id: parseInt(sectionId, 10)
-    });
-    remove(section.pages, { id: parseInt(pageId, 10) });
+    const section = find(questionnaire.sections, { id: sectionId });
+    remove(section.pages, { id: pageId });
+
     this.setState({ questionnaire });
   };
 

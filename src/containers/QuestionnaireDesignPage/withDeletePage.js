@@ -1,15 +1,27 @@
 import { graphql } from "react-apollo";
 import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
 import deletePageMutation from "queries/deletePage.graphql";
-import { find, remove } from "lodash";
-
-export const redirectToDesigner = ownProps => ({ data }) => {
-  const { history, questionnaireId } = ownProps;
-  const { id, sectionId } = data.createQuestionPage;
-  history.push(`/questionnaire/${questionnaireId}/design/${sectionId}/${id}`);
-};
+import { find, remove, get } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
+
+const maybeRedirect = ownProps => (...args) => {
+  const data = args[0].data;
+  const currentPage = parseInt(ownProps.pageId, 10);
+  const deletedPage = data.deletePage.id;
+
+  if (currentPage !== deletedPage) {
+    return;
+  }
+
+  const { questionnaire, sectionId, history } = ownProps;
+  const section = findById(questionnaire.sections, sectionId);
+  const pageId = get(section, "pages[0].id");
+
+  history.push(
+    `/questionnaire/${questionnaire.id}/design/${sectionId}/${pageId}`
+  );
+};
 
 export const createUpdater = (questionnaireId, sectionId, pageId) => (
   proxy,
@@ -46,7 +58,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       variables: page,
       optimisticResponse,
       update
-    });
+    }).then(maybeRedirect(ownProps));
   }
 });
 
