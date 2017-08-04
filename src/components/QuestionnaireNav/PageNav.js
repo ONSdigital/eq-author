@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import CustomPropTypes from "custom-prop-types";
@@ -21,6 +22,18 @@ const PageItem = styled.li`
   display: flex;
   align-items: center;
   &.page-enter {
+    opacity: 0;
+    height: 0;
+    transform: translateX(-20px);
+  }
+
+  &.page-exit {
+    transition: opacity ${duration / 2}ms ease-out,
+      transform ${duration / 2}ms ease-out,
+      height ${duration / 2}ms ease-out ${duration / 2}ms;
+  }
+
+  &.page-exit-active {
     opacity: 0;
     height: 0;
     transform: translateX(-20px);
@@ -84,15 +97,27 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
+const DeleteButton = styled.button`
+  border: none;
+  background: transparent;
+  font-size: 1.25em;
+  margin-right: 0.25em;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+`;
+
 const getLink = (questionnaireId, sectionId, pageId) =>
   `/questionnaire/${questionnaireId}/design/${sectionId}/${pageId}`;
 
-const PageNav = ({ section, questionnaire }) =>
+const PageNav = ({ section, questionnaire, onDelete }) =>
   <TransitionGroup component={NavList}>
     {section.pages.map((page, i) => {
       const pageNumber = `${section.number}${i + 1}`;
       return (
-        <CSSTransition key={pageNumber} timeout={duration} classNames="page">
+        <CSSTransition key={page.id} timeout={duration} classNames="page">
           <PageItem>
             <Link
               to={getLink(questionnaire.id, section.id, page.id)}
@@ -103,6 +128,12 @@ const PageNav = ({ section, questionnaire }) =>
                 {pageNumber} {page.title || "Page Title"}
               </LinkText>
             </Link>
+            <DeleteButton
+              type="button"
+              onClick={() => onDelete(section.id, page.id)}
+            >
+              ×
+            </DeleteButton>
           </PageItem>
         </CSSTransition>
       );
@@ -111,7 +142,8 @@ const PageNav = ({ section, questionnaire }) =>
 
 PageNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,
-  section: CustomPropTypes.section.isRequired
+  section: CustomPropTypes.section.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default PageNav;

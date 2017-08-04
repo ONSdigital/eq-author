@@ -8,6 +8,7 @@ import updatePageMutation from "queries/updatePage.graphql";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withCreatePage from "./withCreatePage";
 import withCreateSection from "./withCreateSection";
+import withDeletePage from "./withDeletePage";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
@@ -54,5 +55,6 @@ export default compose(
   withUpdateSection,
   withCreatePage,
   withCreateSection,
-  withUpdatePage
+  withUpdatePage,
+  withDeletePage
 )(QuestionnaireDesign);

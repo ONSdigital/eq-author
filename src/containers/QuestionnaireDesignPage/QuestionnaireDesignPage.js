@@ -15,6 +15,7 @@ export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
     onAddPage: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
@@ -76,6 +77,10 @@ export class QuestionnaireDesignPage extends Component {
     this.props.onAddSection(this.props.questionnaire.id);
   };
 
+  handleDeletePage = (sectionId, pageId) => {
+    this.props.onDeletePage(sectionId, pageId);
+  };
+
   setFocused = focused => {
     if (focused === null) {
       return;
@@ -102,6 +107,7 @@ export class QuestionnaireDesignPage extends Component {
               questionnaire={questionnaire}
               onAddPage={this.handleAddPage}
               onAddSection={this.handleAddSection}
+              onDeletePage={this.handleDeletePage}
             />
           </Column>
           <Column gutters={false}>
