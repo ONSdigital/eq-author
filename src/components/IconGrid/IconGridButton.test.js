@@ -9,19 +9,17 @@ let wrapper;
 describe("components/IconGrid", function() {
   beforeEach(() => {
     wrapper = shallow(
-      <IconGridButton icon="checkbox" title="Checkbox" onClick={mockFn} />
+      <IconGridButton
+        iconSrc="checkbox.svg"
+        title="Checkbox"
+        onClick={mockFn}
+      />
     );
   });
 
-  it("will onClick", function() {
+  it("will handle clicks", function() {
     wrapper.simulate("click");
     expect(mockFn).toHaveBeenCalled();
-  });
-
-  it("will blow up when an non-existant icon is used", function() {
-    expect(() => {
-      wrapper.setProps({ icon: "not-an-icon" });
-    }).toThrow();
   });
 
   it("should render", () => {

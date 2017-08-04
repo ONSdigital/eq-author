@@ -1,799 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireDesign should render 1`] = `
-.c3 {
-  padding: 2em 2.5em;
-  -webkit-transition: outline-color 100ms ease-in;
-  transition: outline-color 100ms ease-in;
-  background: white;
-  margin-bottom: 1px;
-  position: relative;
-  outline-width: 1px;
-  outline-style: solid;
-  outline-color: transparent;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.c3:hover {
-  outline-color: rgba(97,189,224,0.4);
-}
-
-.c0 {
-  width: 100%;
-  max-width: 50em;
-  margin: 2em 0 0 1em;
-}
-
-.c5 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  font-size: 1.125em;
-  font-weight: 700;
-}
-
-.c5:focus {
-  outline: none;
-}
-
-.c5::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c5::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c5:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c5::placeholder {
-  color: #a3a3a3;
-}
-
-.c5[aria-hidden="true"] {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-.c6 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  font-size: 0.875em;
-}
-
-.c6:focus {
-  outline: none;
-}
-
-.c6::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c6::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c6:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c6::placeholder {
-  color: #a3a3a3;
-}
-
-.c6[aria-hidden="true"] {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-.c8 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  font-size: 1.75em;
-  font-weight: 700;
-}
-
-.c8:focus {
-  outline: none;
-}
-
-.c8::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c8::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c8:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c8::placeholder {
-  color: #a3a3a3;
-}
-
-.c8[aria-hidden="true"] {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-.c7 {
-  resize: none;
-}
-
-.c4 {
-  display: block;
-  width: 100%;
-  margin-bottom: 1em;
-}
-
-.c1 {
-  width: 100%;
-}
-
-.c10 {
-  padding: 0.8em 3em;
-  border-radius: 2px;
-  font-size: 0.8em;
-  font-weight: 400;
-  cursor: pointer;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-transition: background-color 200ms ease-out;
-  transition: background-color 200ms ease-out;
-  -webkit-letter-spacing: -0.2px;
-  -moz-letter-spacing: -0.2px;
-  -ms-letter-spacing: -0.2px;
-  letter-spacing: -0.2px;
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  border: none;
-}
-
-.c10:focus,
-.c10:active {
-  outline: none;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.c9 {
-  color: #757575;
-}
-
-.c2 {
-  position: relative;
-}
-
-.c2.fade-enter {
-  opacity: 0.25;
-  -webkit-transform: translateX(-50px);
-  -ms-transform: translateX(-50px);
-  transform: translateX(-50px);
-  z-index: 200;
-}
-
-.c2.fade-enter.fade-enter-active {
-  opacity: 1;
-  z-index: 200;
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-  -webkit-transition: opacity 300ms ease-out,-webkit-transform 300ms cubic-bezier(0.175,0.885,0.320,1.275);
-  -webkit-transition: opacity 300ms ease-out,transform 300ms cubic-bezier(0.175,0.885,0.320,1.275);
-  transition: opacity 300ms ease-out,transform 300ms cubic-bezier(0.175,0.885,0.320,1.275);
-}
-
-<QuestionnaireDesign
-  onAnswerAdd={[Function]}
-  onBlur={[Function]}
-  onChange={[Function]}
-  onFocus={[Function]}
-  page={
-    Object {
-      "id": "3",
-      "title": "",
-    }
-  }
-  section={
-    Object {
-      "title": "",
-    }
-  }
->
-  <Canvas__Canvas>
-    <div
-      className="c0"
+<Canvas__Canvas>
+  <Form
+    onChange={[Function]}
+    onSubmit={[Function]}
+  >
+    <TransitionGroup
+      childFactory={[Function]}
+      component="div"
     >
-      <Form
-        onChange={[Function]}
-        onSubmit={[Function]}
-      >
-        <Form__StyledForm
-          autoComplete="off"
-          method="POST"
-          onChange={[Function]}
-          onSubmit={[Function]}
+      <PageTransition>
+        <QuestionnaireDesign__AnimatedCanvasSection
+          focused={false}
+          id="section"
+          onBlur={[Function]}
+          onFocus={[Function]}
         >
-          <form
-            autoComplete="off"
-            className="c1"
-            method="POST"
-            onChange={[Function]}
-            onSubmit={[Function]}
+          <Field
+            id="section.title"
           >
-            <TransitionGroup
-              childFactory={[Function]}
-              component="div"
-            >
-              <div>
-                <PageTransition
-                  in={true}
-                  onExited={[Function]}
-                >
-                  <CSSTransition
-                    classNames="fade"
-                    enter={true}
-                    exit={false}
-                    in={true}
-                    onExited={[Function]}
-                    timeout={300}
-                  >
-                    <Transition
-                      appear={false}
-                      enter={true}
-                      exit={false}
-                      in={true}
-                      mountOnEnter={false}
-                      onEnter={[Function]}
-                      onEntered={[Function]}
-                      onEntering={[Function]}
-                      onExit={[Function]}
-                      onExited={[Function]}
-                      onExiting={[Function]}
-                      timeout={300}
-                      unmountOnExit={false}
-                    >
-                      <QuestionnaireDesign__AnimatedCanvasSection
-                        focused={false}
-                        id="section"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                      >
-                        <CanvasSection
-                          className="c2"
-                          focused={false}
-                          id="section"
-                          onBlur={[Function]}
-                          onFocus={[Function]}
-                        >
-                          <CanvasSection__StyledCanvasSection
-                            className="c2"
-                            focused={false}
-                            id="section"
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                          >
-                            <div
-                              className="c2 c3"
-                              id="section"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                            >
-                              <Field
-                                focused={false}
-                                id="section.title"
-                              >
-                                <Field__StyledField>
-                                  <div
-                                    className="c4"
-                                  >
-                                    <withSeamlessness(withChangeHandler(Input))
-                                      focused={false}
-                                      id="section.title"
-                                      onChange={[Function]}
-                                      optional={false}
-                                      placeholder="Section title"
-                                      size="medium"
-                                      value=""
-                                    >
-                                      <withSeamlessness__StyledSeamless
-                                        aria-hidden={false}
-                                        name="section.title"
-                                        onChange={[Function]}
-                                        placeholder="Section title"
-                                        size="medium"
-                                        value=""
-                                      >
-                                        <withChangeHandler(Input)
-                                          aria-hidden={false}
-                                          className="c5"
-                                          name="section.title"
-                                          onChange={[Function]}
-                                          placeholder="Section title"
-                                          size="medium"
-                                          value=""
-                                        >
-                                          <Input
-                                            aria-hidden={false}
-                                            className="c5"
-                                            name="section.title"
-                                            onChange={[Function]}
-                                            placeholder="Section title"
-                                            size="medium"
-                                            value=""
-                                          >
-                                            <input
-                                              aria-hidden={false}
-                                              className="c5"
-                                              name="section.title"
-                                              onChange={[Function]}
-                                              placeholder="Section title"
-                                              size="medium"
-                                              type="text"
-                                              value=""
-                                            />
-                                          </Input>
-                                        </withChangeHandler(Input)>
-                                      </withSeamlessness__StyledSeamless>
-                                    </withSeamlessness(withChangeHandler(Input))>
-                                  </div>
-                                </Field__StyledField>
-                              </Field>
-                              <Field
-                                focused={false}
-                                id="section.description"
-                                optional={true}
-                              >
-                                <Field__StyledField>
-                                  <div
-                                    className="c4"
-                                  >
-                                    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-                                      cols="30"
-                                      focused={false}
-                                      id="section.description"
-                                      onChange={[Function]}
-                                      optional={true}
-                                      placeholder="Enter a description (optional)…"
-                                      rows="5"
-                                      size="small"
-                                    >
-                                      <withSeamlessness__StyledSeamless
-                                        aria-hidden={true}
-                                        name="section.description"
-                                        onChange={[Function]}
-                                        placeholder="Enter a description (optional)…"
-                                        size="small"
-                                      >
-                                        <withChangeHandler(SeamlessTextArea__TextArea)
-                                          aria-hidden={true}
-                                          className="c6"
-                                          name="section.description"
-                                          onChange={[Function]}
-                                          placeholder="Enter a description (optional)…"
-                                          size="small"
-                                        >
-                                          <SeamlessTextArea__TextArea
-                                            aria-hidden={true}
-                                            className="c6"
-                                            name="section.description"
-                                            onChange={[Function]}
-                                            placeholder="Enter a description (optional)…"
-                                            size="small"
-                                          >
-                                            <TextareaAutosize
-                                              aria-hidden={true}
-                                              className="c6 c7"
-                                              name="section.description"
-                                              onChange={[Function]}
-                                              onHeightChange={[Function]}
-                                              placeholder="Enter a description (optional)…"
-                                              size="small"
-                                              useCacheForDOMMeasurements={false}
-                                            >
-                                              <textarea
-                                                aria-hidden={true}
-                                                className="c6 c7"
-                                                name="section.description"
-                                                onChange={[Function]}
-                                                placeholder="Enter a description (optional)…"
-                                                size="small"
-                                                style={
-                                                  Object {
-                                                    "height": 0,
-                                                  }
-                                                }
-                                              />
-                                            </TextareaAutosize>
-                                          </SeamlessTextArea__TextArea>
-                                        </withChangeHandler(SeamlessTextArea__TextArea)>
-                                      </withSeamlessness__StyledSeamless>
-                                    </withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
-                                  </div>
-                                </Field__StyledField>
-                              </Field>
-                            </div>
-                          </CanvasSection__StyledCanvasSection>
-                        </CanvasSection>
-                      </QuestionnaireDesign__AnimatedCanvasSection>
-                    </Transition>
-                  </CSSTransition>
-                </PageTransition>
-                <PageTransition
-                  in={true}
-                  onExited={[Function]}
-                >
-                  <CSSTransition
-                    classNames="fade"
-                    enter={true}
-                    exit={false}
-                    in={true}
-                    onExited={[Function]}
-                    timeout={300}
-                  >
-                    <Transition
-                      appear={false}
-                      enter={true}
-                      exit={false}
-                      in={true}
-                      mountOnEnter={false}
-                      onEnter={[Function]}
-                      onEntered={[Function]}
-                      onEntering={[Function]}
-                      onExit={[Function]}
-                      onExited={[Function]}
-                      onExiting={[Function]}
-                      timeout={300}
-                      unmountOnExit={false}
-                    >
-                      <QuestionnaireDesign__AnimatedCanvasSection
-                        focused={false}
-                        id="page"
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                      >
-                        <CanvasSection
-                          className="c2"
-                          focused={false}
-                          id="page"
-                          onBlur={[Function]}
-                          onFocus={[Function]}
-                        >
-                          <CanvasSection__StyledCanvasSection
-                            className="c2"
-                            focused={false}
-                            id="page"
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                          >
-                            <div
-                              className="c2 c3"
-                              id="page"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                            >
-                              <Field
-                                focused={false}
-                                id="page.title"
-                              >
-                                <Field__StyledField>
-                                  <div
-                                    className="c4"
-                                  >
-                                    <withSeamlessness(withChangeHandler(Input))
-                                      focused={false}
-                                      id="page.title"
-                                      onChange={[Function]}
-                                      optional={false}
-                                      placeholder="Question title"
-                                      size="large"
-                                      value=""
-                                    >
-                                      <withSeamlessness__StyledSeamless
-                                        aria-hidden={false}
-                                        name="page.title"
-                                        onChange={[Function]}
-                                        placeholder="Question title"
-                                        size="large"
-                                        value=""
-                                      >
-                                        <withChangeHandler(Input)
-                                          aria-hidden={false}
-                                          className="c8"
-                                          name="page.title"
-                                          onChange={[Function]}
-                                          placeholder="Question title"
-                                          size="large"
-                                          value=""
-                                        >
-                                          <Input
-                                            aria-hidden={false}
-                                            className="c8"
-                                            name="page.title"
-                                            onChange={[Function]}
-                                            placeholder="Question title"
-                                            size="large"
-                                            value=""
-                                          >
-                                            <input
-                                              aria-hidden={false}
-                                              className="c8"
-                                              name="page.title"
-                                              onChange={[Function]}
-                                              placeholder="Question title"
-                                              size="large"
-                                              type="text"
-                                              value=""
-                                            />
-                                          </Input>
-                                        </withChangeHandler(Input)>
-                                      </withSeamlessness__StyledSeamless>
-                                    </withSeamlessness(withChangeHandler(Input))>
-                                  </div>
-                                </Field__StyledField>
-                              </Field>
-                              <Field
-                                focused={false}
-                                id="page.description"
-                                optional={true}
-                              >
-                                <Field__StyledField>
-                                  <div
-                                    className="c4"
-                                  >
-                                    <withSeamlessness(withChangeHandler(Input))
-                                      focused={false}
-                                      id="page.description"
-                                      onChange={[Function]}
-                                      optional={true}
-                                      placeholder="Question text (optional)…"
-                                      size="small"
-                                    >
-                                      <withSeamlessness__StyledSeamless
-                                        aria-hidden={true}
-                                        name="page.description"
-                                        onChange={[Function]}
-                                        placeholder="Question text (optional)…"
-                                        size="small"
-                                      >
-                                        <withChangeHandler(Input)
-                                          aria-hidden={true}
-                                          className="c6"
-                                          name="page.description"
-                                          onChange={[Function]}
-                                          placeholder="Question text (optional)…"
-                                          size="small"
-                                        >
-                                          <Input
-                                            aria-hidden={true}
-                                            className="c6"
-                                            name="page.description"
-                                            onChange={[Function]}
-                                            placeholder="Question text (optional)…"
-                                            size="small"
-                                          >
-                                            <input
-                                              aria-hidden={true}
-                                              className="c6"
-                                              name="page.description"
-                                              onChange={[Function]}
-                                              placeholder="Question text (optional)…"
-                                              size="small"
-                                              type="text"
-                                            />
-                                          </Input>
-                                        </withChangeHandler(Input)>
-                                      </withSeamlessness__StyledSeamless>
-                                    </withSeamlessness(withChangeHandler(Input))>
-                                  </div>
-                                </Field__StyledField>
-                              </Field>
-                              <Field
-                                focused={false}
-                                id="page.guidance"
-                                optional={true}
-                              >
-                                <Field__StyledField>
-                                  <div
-                                    className="c4"
-                                  >
-                                    <withSeamlessness(withChangeHandler(Input))
-                                      focused={false}
-                                      id="page.guidance"
-                                      onChange={[Function]}
-                                      optional={true}
-                                      placeholder="Guidance text (optional)…"
-                                      size="small"
-                                    >
-                                      <withSeamlessness__StyledSeamless
-                                        aria-hidden={true}
-                                        name="page.guidance"
-                                        onChange={[Function]}
-                                        placeholder="Guidance text (optional)…"
-                                        size="small"
-                                      >
-                                        <withChangeHandler(Input)
-                                          aria-hidden={true}
-                                          className="c6"
-                                          name="page.guidance"
-                                          onChange={[Function]}
-                                          placeholder="Guidance text (optional)…"
-                                          size="small"
-                                        >
-                                          <Input
-                                            aria-hidden={true}
-                                            className="c6"
-                                            name="page.guidance"
-                                            onChange={[Function]}
-                                            placeholder="Guidance text (optional)…"
-                                            size="small"
-                                          >
-                                            <input
-                                              aria-hidden={true}
-                                              className="c6"
-                                              name="page.guidance"
-                                              onChange={[Function]}
-                                              placeholder="Guidance text (optional)…"
-                                              size="small"
-                                              type="text"
-                                            />
-                                          </Input>
-                                        </withChangeHandler(Input)>
-                                      </withSeamlessness__StyledSeamless>
-                                    </withSeamlessness(withChangeHandler(Input))>
-                                  </div>
-                                </Field__StyledField>
-                              </Field>
-                            </div>
-                          </CanvasSection__StyledCanvasSection>
-                        </CanvasSection>
-                      </QuestionnaireDesign__AnimatedCanvasSection>
-                    </Transition>
-                  </CSSTransition>
-                </PageTransition>
-                <PageTransition
-                  in={true}
-                  onExited={[Function]}
-                >
-                  <CSSTransition
-                    classNames="fade"
-                    enter={true}
-                    exit={false}
-                    in={true}
-                    onExited={[Function]}
-                    timeout={300}
-                  >
-                    <Transition
-                      appear={false}
-                      enter={true}
-                      exit={false}
-                      in={true}
-                      mountOnEnter={false}
-                      onEnter={[Function]}
-                      onEntered={[Function]}
-                      onEntering={[Function]}
-                      onExit={[Function]}
-                      onExited={[Function]}
-                      onExiting={[Function]}
-                      timeout={300}
-                      unmountOnExit={false}
-                    >
-                      <QuestionnaireDesign__AnimatedCanvasSection
-                        focused={false}
-                        id="answers"
-                        last={true}
-                        onBlur={[Function]}
-                        onFocus={[Function]}
-                      >
-                        <CanvasSection
-                          className="c2"
-                          focused={false}
-                          id="answers"
-                          last={true}
-                          onBlur={[Function]}
-                          onFocus={[Function]}
-                        >
-                          <CanvasSection__StyledCanvasSection
-                            className="c2"
-                            focused={false}
-                            id="answers"
-                            last={true}
-                            onBlur={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                          >
-                            <div
-                              className="c2 c3"
-                              id="answers"
-                              onBlur={[Function]}
-                              onClick={[Function]}
-                              onFocus={[Function]}
-                            >
-                              <QuestionnaireDesign__AddAnswerButton
-                                clear={true}
-                                focused={false}
-                                onClick={[Function]}
-                                type="button"
-                              >
-                                <Button
-                                  className="c9"
-                                  clear={true}
-                                  focused={false}
-                                  onClick={[Function]}
-                                  type="button"
-                                >
-                                  <Button__StyledButton
-                                    className="c9"
-                                    clear={true}
-                                    focused={false}
-                                    onClick={[Function]}
-                                    type="button"
-                                  >
-                                    <button
-                                      className="c9 c10"
-                                      onClick={[Function]}
-                                      type="button"
-                                    >
-                                      add an answer
-                                    </button>
-                                  </Button__StyledButton>
-                                </Button>
-                              </QuestionnaireDesign__AddAnswerButton>
-                            </div>
-                          </CanvasSection__StyledCanvasSection>
-                        </CanvasSection>
-                      </QuestionnaireDesign__AnimatedCanvasSection>
-                    </Transition>
-                  </CSSTransition>
-                </PageTransition>
-              </div>
-            </TransitionGroup>
-          </form>
-        </Form__StyledForm>
-      </Form>
-    </div>
-  </Canvas__Canvas>
-</QuestionnaireDesign>
+            <withSeamlessness(withChangeHandler(Input))
+              focused={false}
+              onChange={[Function]}
+              optional={false}
+              placeholder="Section title"
+              size="medium"
+              value=""
+            />
+          </Field>
+          <Field
+            id="section.description"
+            optional={true}
+          >
+            <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+              cols="30"
+              focused={false}
+              onChange={[Function]}
+              optional={false}
+              placeholder="Enter a description (optional)…"
+              rows="5"
+              size="small"
+            />
+          </Field>
+        </QuestionnaireDesign__AnimatedCanvasSection>
+      </PageTransition>
+      <PageTransition>
+        <QuestionnaireDesign__AnimatedCanvasSection
+          focused={false}
+          id="page"
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <Field
+            id="page.title"
+          >
+            <withSeamlessness(withChangeHandler(Input))
+              focused={false}
+              onChange={[Function]}
+              optional={false}
+              placeholder="Question title"
+              size="large"
+              value=""
+            />
+          </Field>
+          <Field
+            id="page.description"
+            optional={true}
+          >
+            <withSeamlessness(withChangeHandler(Input))
+              focused={false}
+              onChange={[Function]}
+              optional={false}
+              placeholder="Question text (optional)…"
+              size="small"
+            />
+          </Field>
+          <Field
+            id="page.guidance"
+            optional={true}
+          >
+            <withSeamlessness(withChangeHandler(Input))
+              focused={false}
+              onChange={[Function]}
+              optional={false}
+              placeholder="Guidance text (optional)…"
+              size="small"
+            />
+          </Field>
+        </QuestionnaireDesign__AnimatedCanvasSection>
+      </PageTransition>
+      <PageTransition>
+        <QuestionnaireDesign__AnimatedCanvasSection
+          focused={false}
+          id="answers"
+          last={true}
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
+          <AnswerTypeSelector
+            onSelect={[Function]}
+          />
+        </QuestionnaireDesign__AnimatedCanvasSection>
+      </PageTransition>
+    </TransitionGroup>
+  </Form>
+</Canvas__Canvas>
 `;

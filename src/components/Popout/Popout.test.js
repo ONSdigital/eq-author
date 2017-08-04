@@ -72,6 +72,13 @@ describe("components/Popout", () => {
         document.dispatchEvent(new MouseEvent("click"));
         expect(handleToggleOpen).not.toHaveBeenCalled();
       });
+
+      it("should bind event handlers when state changes to open", () => {
+        mounted.setProps({ open: true });
+
+        document.dispatchEvent(new MouseEvent("click"));
+        expect(handleToggleOpen).toHaveBeenCalled();
+      });
     });
 
     describe("when unmounted", () => {

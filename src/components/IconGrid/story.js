@@ -2,33 +2,50 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { IconGrid, IconGridButton } from "./index";
+import { icons } from "components/AnswerTypeSelector/AnswerTypeButton";
 
 storiesOf("IconGrid", module).add("Default", () =>
   <IconGrid>
     <IconGridButton
-      icon="checkbox"
+      iconSrc={icons.checkbox}
       title="checkbox"
-      onChange={action("change")}
+      onClick={action("click")}
     />
     <IconGridButton
-      icon="currency"
+      iconSrc={icons.currency}
       title="currency"
-      onChange={action("change")}
+      onClick={action("click")}
     />
-    <IconGridButton icon="date" title="date" onChange={action("change")} />
-    <IconGridButton icon="number" title="number" onChange={action("change")} />
-    <IconGridButton icon="radio" title="radio" onChange={action("change")} />
-    <IconGridButton icon="select" title="select" onChange={action("change")} />
     <IconGridButton
-      icon="textarea"
+      iconSrc={icons.date}
+      title="date"
+      onClick={action("click")}
+    />
+    <IconGridButton
+      iconSrc={icons.number}
+      title="number"
+      onClick={action("click")}
+    />
+    <IconGridButton
+      iconSrc={icons.radio}
+      title="radio"
+      onClick={action("click")}
+    />
+    <IconGridButton
+      iconSrc={icons.select}
+      title="select"
+      onClick={action("click")}
+    />
+    <IconGridButton
+      iconSrc={icons.textarea}
       title="textarea"
-      onChange={action("change")}
+      onClick={action("click")}
     />
     <IconGridButton
-      icon="textfield"
+      iconSrc={icons.textfield}
       title="textfield"
-      onChange={action("change")}
+      onClick={action("click")}
     />
-    <IconGridButton icon="time" title="time" onChange={action("change")} />
+    <IconGridButton icon="time" title="time" onClick={action("click")} />
   </IconGrid>
 );

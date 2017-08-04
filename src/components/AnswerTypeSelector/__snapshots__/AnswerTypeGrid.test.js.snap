@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/AnswerTypeGrid should render 1`] = `
+<AnswerTypeGrid__Menu>
+  <AnswerTypeGrid__Header>
+    <AnswerTypeGrid__Title>
+      Answer Type
+    </AnswerTypeGrid__Title>
+    <AnswerTypeGrid__CloseButton
+      aria-label="Close"
+      onClick={[Function]}
+      type="button"
+    >
+      ×
+    </AnswerTypeGrid__CloseButton>
+  </AnswerTypeGrid__Header>
+  <IconGrid
+    aria-labelledby="foo"
+  >
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Checkbox"
+      type="checkbox"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Radio"
+      type="radio"
+    />
+    <AnswerTypeButton
+      onClick={[Function]}
+      title="Text"
+      type="textfield"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Textarea"
+      type="textarea"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Currency"
+      type="currency"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Number"
+      type="number"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Date"
+      type="date"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Time"
+      type="time"
+    />
+    <AnswerTypeButton
+      disabled={true}
+      onClick={[Function]}
+      title="Select list"
+      type="select"
+    />
+  </IconGrid>
+</AnswerTypeGrid__Menu>
+`;

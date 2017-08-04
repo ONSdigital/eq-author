@@ -8,31 +8,21 @@ import SeamlessInput from "./SeamlessInput";
 import SeamlessTextArea from "./SeamlessTextArea";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
-import Button from "components/Button";
 import CustomPropTypes from "custom-prop-types";
 import { noop } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-
-const AddAnswerButton = styled(Button)`
-  color: #757575;
-`;
+import AnswerTypeSelector from "components/AnswerTypeSelector";
 
 const duration = 300;
 
-const PageTransition = ({ children, ...props }) =>
+const PageTransition = props =>
   <CSSTransition
     {...props}
     timeout={duration}
     enter
     exit={false}
     classNames="fade"
-  >
-    {children}
-  </CSSTransition>;
-
-PageTransition.propTypes = {
-  children: PropTypes.node.isRequired
-};
+  />;
 
 const AnimatedCanvasSection = styled(CanvasSection)`
   position: relative;
@@ -178,9 +168,7 @@ class QuestionnaireDesign extends React.Component {
                 focused={focused === "answers"}
                 last
               >
-                <AddAnswerButton type="button" clear onClick={onAnswerAdd}>
-                  add an answer
-                </AddAnswerButton>
+                <AnswerTypeSelector onSelect={onAnswerAdd} />
               </AnimatedCanvasSection>
             </PageTransition>
           </TransitionGroup>

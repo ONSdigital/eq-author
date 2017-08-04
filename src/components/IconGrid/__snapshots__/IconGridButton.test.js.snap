@@ -5,6 +5,7 @@ exports[`components/IconGrid should render 1`] = `
   onClick={[Function]}
   role="menuitem"
   title="Checkbox"
+  type="button"
 >
   <img
     alt="Checkbox"
