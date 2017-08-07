@@ -1,6 +1,14 @@
 {
   "presets": ["es2015", "react", "stage-2"],
-  "plugins": [["styled-components", {
-      "ssr": true
-    }], "react-hot-loader/babel", "add-react-displayname"]
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true
+      }
+    ],
+    "react-hot-loader/babel",
+    "add-react-displayname",
+    "transform-flow-comments"
+  ]
 }

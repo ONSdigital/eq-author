@@ -1,6 +1,8 @@
+// @flow
+/* eslint-disable react/prop-types */
+
 import React from "react";
 import { findDOMNode } from "react-dom";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
@@ -9,7 +11,7 @@ import SeamlessTextArea from "./SeamlessTextArea";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
 import Button from "components/Button";
-import CustomPropTypes from "custom-prop-types";
+
 import { noop } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -30,10 +32,6 @@ const PageTransition = ({ children, ...props }) =>
     {children}
   </CSSTransition>;
 
-PageTransition.propTypes = {
-  children: PropTypes.node.isRequired
-};
-
 const AnimatedCanvasSection = styled(CanvasSection)`
   position: relative;
   &.fade-enter {
@@ -50,38 +48,35 @@ const AnimatedCanvasSection = styled(CanvasSection)`
   }
 `;
 
+type PageType = {
+  id: number
+};
+
 class QuestionnaireDesign extends React.Component {
-  static propTypes = {
-    section: CustomPropTypes.section,
-    page: CustomPropTypes.page,
-    onChange: PropTypes.func.isRequired,
-    onAnswerAdd: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    focused: PropTypes.oneOf(["section", "page", "answers", null])
-  };
+  sectionTitle: HTMLInputElement;
+  pageTitle: HTMLInputElement;
 
   componentDidMount() {
     this.setFocusOnTitle();
   }
 
-  componentDidUpdate({ page }) {
+  componentDidUpdate({ page }: { page: PageType }) {
     if (page.id !== this.props.page.id) {
       this.setFocusOnTitle();
     }
   }
 
-  setSectionTitle = input => {
-    if (input) {
-      // check for null as TransitionGroup replaces these DOM elements
-      this.sectionTitle = findDOMNode(input);
+  setSectionTitle = (input: HTMLInputElement) => {
+    const title = findDOMNode(input);
+    if (title instanceof HTMLInputElement) {
+      this.sectionTitle = title;
     }
   };
 
-  setPageTitle = input => {
-    if (input) {
-      // check for null as TransitionGroup replaces these DOM elements
-      this.pageTitle = findDOMNode(input);
+  setPageTitle = (input: HTMLInputElement) => {
+    const title = findDOMNode(input);
+    if (title instanceof HTMLInputElement) {
+      this.pageTitle = title;
     }
   };
 

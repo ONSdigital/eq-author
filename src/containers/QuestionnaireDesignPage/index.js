@@ -1,3 +1,5 @@
+// @flow
+
 import { graphql, compose } from "react-apollo";
 import { connect } from "react-redux";
 import { find, pick } from "lodash";
