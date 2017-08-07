@@ -14,5 +14,6 @@ ignore:
   - "features"
   - "scripts/*.js"
   - "src/queries/*.js"
+  - "src/tests/utils/MockResolvers.js"
   - "tests"
   - ".eslintrc.js"

@@ -32,6 +32,6 @@ sleep 3
 echo "About to run tests..."
 
 # Run the tests
-yarn smoketest 2>&1
+yarn smoketest:storybook 2>&1
 
-display_result $? 5 "Smoke tests"
+display_result $? 5 "Storybook Smoke tests"

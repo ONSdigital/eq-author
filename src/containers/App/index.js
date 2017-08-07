@@ -38,7 +38,7 @@ const App = ({ store, client, history }) =>
   </AppContainer>;
 
 App.propTypes = {
-  client: PropTypes.shape({}),
+  client: PropTypes.shape({}).isRequired,
   store: PropTypes.shape({
     getState: PropTypes.func.isRequired
   }).isRequired,

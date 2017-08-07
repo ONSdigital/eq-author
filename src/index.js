@@ -2,8 +2,21 @@ import render from "utils/render";
 import registerServiceWorker from "utils/registerServiceWorker";
 import createHistory from "history/createHashHistory";
 import configureStore from "store/configureStore";
+import createClient from "apollo/createClient";
 import App from "containers/App";
-import client from "apollo/client";
+
+let networkInterface;
+
+if (process.env.REACT_APP_USE_MOCK_API === "true") {
+  const mockNetworkInterface = require("./apollo/createMockNetworkInterface")
+    .default;
+  const mockResolvers = require("./tests/utils/MockResolvers").default;
+  networkInterface = mockNetworkInterface(mockResolvers);
+} else {
+  networkInterface = require("./apollo/createRealNetworkInterface").default;
+}
+
+const client = createClient(networkInterface);
 
 const history = createHistory({
   basename: process.env.REACT_APP_BASE_NAME
