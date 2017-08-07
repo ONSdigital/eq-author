@@ -1,22 +1,27 @@
 import { graphql } from "react-apollo";
 import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
 import deletePageMutation from "queries/deletePage.graphql";
-import { find, remove, get } from "lodash";
+import { find, findIndex, remove } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
-const maybeRedirect = ownProps => (...args) => {
-  const data = args[0].data;
-  const currentPage = parseInt(ownProps.pageId, 10);
-  const deletedPage = data.deletePage.id;
+const getNextPage = (pages, id) => {
+  const index = findIndex(pages, { id });
+  const nextPageIndex = index === 0 ? index + 1 : index - 1;
+  return pages[nextPageIndex].id;
+};
 
-  if (currentPage !== deletedPage) {
+const maybeRedirect = ownProps => ({ data }) => {
+  const currentPageId = parseInt(ownProps.pageId, 10);
+  const deletedPageId = data.deletePage.id;
+
+  if (currentPageId !== deletedPageId) {
     return;
   }
 
   const { questionnaire, sectionId, history } = ownProps;
   const section = findById(questionnaire.sections, sectionId);
-  const pageId = get(section, "pages[0].id");
+  const pageId = getNextPage(section.pages, currentPageId);
 
   history.push(
     `/questionnaire/${questionnaire.id}/design/${sectionId}/${pageId}`
