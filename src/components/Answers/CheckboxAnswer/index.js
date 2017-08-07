@@ -76,7 +76,7 @@ const CloseButton = styled.button`
 
   position: absolute;
   top: .5em;
-  right: .5em;
+  right: 1em;
 
   transition: color .2s ease-in-out;
 
