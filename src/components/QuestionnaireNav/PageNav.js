@@ -21,6 +21,7 @@ const PageItem = styled.li`
   transform: translateX(0);
   display: flex;
   align-items: center;
+
   &.page-enter,
   &.page-exit {
     opacity: 0;
@@ -46,6 +47,7 @@ const Link = styled(NavLink)`
   position: relative;
   overflow: hidden;
   transition: opacity 100ms ease-out;
+
   &::before {
     opacity: 0;
     content: "";
@@ -59,18 +61,21 @@ const Link = styled(NavLink)`
     background: ${colors.borders};
     z-index: 1;
   }
+
   &:hover {
     &::before {
       opacity: 0.5;
       width: 100%;
     }
   }
+
   &.selected {
     &::before {
       opacity: 1;
       width: 100%;
     }
   }
+
   &[aria-disabled=true] {
     pointer-events: none;
     opacity: 0.5;
@@ -100,8 +105,19 @@ const DeleteButton = styled.button`
   position: absolute;
   right: 0;
   top: 50%;
-  transform: translateY(-50%);
   z-index: 3;
+  cursor: pointer;
+
+  transform: translateY(-50%) translateX(50%);
+  opacity: 0;
+  transition: transform 0.1s ease-in, opacity 0.1s ease-in;
+
+  ${PageItem}:hover &,
+  ${Link}:focus + &,
+  &:focus {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
 `;
 
 const getLink = (questionnaireId, sectionId, pageId) =>
