@@ -3,6 +3,27 @@ import { mount, shallow } from "enzyme";
 import QuestionnaireDesign from "./";
 import DeleteButton from "components/DeleteButton";
 
+const option = {
+  id: 0
+};
+
+const answer = {
+  id: 1,
+  options: [option]
+};
+
+const page = {
+  id: 2,
+  title: "",
+  answers: [answer]
+};
+
+const section = {
+  id: 3,
+  title: "",
+  pages: [page]
+};
+
 describe("QuestionnaireDesign", () => {
   let wrapper;
   const createWrapper = (props, render = mount) =>
@@ -11,31 +32,29 @@ describe("QuestionnaireDesign", () => {
         onChange={jest.fn()}
         onAddAnswer={jest.fn()}
         onDeleteAnswer={jest.fn()}
+        onAddOption={jest.fn()}
+        onDeleteOption={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
-        answers={[]}
-        focused="answer"
+        focused={null}
         {...props}
       />
     );
 
   beforeEach(() => {
     wrapper = createWrapper({
-      section: { title: "" },
-      page: { id: "3", title: "" }
+      section,
+      page,
+      answers: [answer]
     });
   });
 
   it("should render", () => {
     wrapper = createWrapper(
       {
-        section: { title: "" },
-        page: { id: "3", title: "" },
-        answers: [
-          {
-            id: "4"
-          }
-        ]
+        section,
+        page,
+        answers: [answer]
       },
       shallow
     );
@@ -52,13 +71,19 @@ describe("QuestionnaireDesign", () => {
   });
 
   it("should focus on empty section title upon mount", () => {
+    wrapper = createWrapper({
+      section,
+      page,
+      answers: [answer]
+    });
     expect(document.activeElement.name).toEqual("section.title");
   });
 
   it("should focus on empty page title when section title is not empty", () => {
     wrapper = createWrapper({
-      section: { title: "Section 1" },
-      page: { id: "3", title: "" }
+      section: { title: "Section" },
+      page: { id: "3", title: "" },
+      answers: [answer]
     });
     expect(document.activeElement.name).toEqual("page.title");
   });
@@ -69,8 +94,9 @@ describe("QuestionnaireDesign", () => {
 
   it("should move focus to empty page title upon navigation to new page", () => {
     wrapper = createWrapper({
-      section: { title: "Section 1" },
-      page: { id: "3", title: "" }
+      section: { title: "Section" },
+      page,
+      answers: [answer]
     });
     expect(document.activeElement.name).toEqual("page.title");
   });

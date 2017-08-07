@@ -2,7 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StyledForm = styled.form`width: 100%;`;
+const StyledForm = styled.form`
+  width: 100%;
+  margin-bottom: 2em;
+`;
 
 const Form = ({ action, children, onSubmit, ...otherProps }) =>
   <StyledForm

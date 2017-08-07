@@ -1,3 +1,4 @@
+/* eslint-disable react/no-find-dom-node */
 import React from "react";
 import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
@@ -14,6 +15,7 @@ import CustomPropTypes from "custom-prop-types";
 import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
+import Answer from "components/Answer";
 
 const duration = 300;
 
@@ -56,20 +58,25 @@ const AnswerDeleteButton = styled(DeleteButton)`
 
 class QuestionnaireDesign extends React.Component {
   static propTypes = {
+    answers: PropTypes.arrayOf(CustomPropTypes.answer),
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
-    answers: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
+    onAddOption: PropTypes.func.isRequired,
+    onDeleteOption: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
-      const value = props[propName];
-
-      if (value && !/(section|page|answer)/.test(value)) {
+      if (
+        !/(section|page|answer)/.test(props[propName]) &&
+        props[propName] !== null
+      ) {
         return new Error(
-          `Invalid prop '${propName}' with value \`${value}\` supplied to \`${componentName}\`.`
+          `Invalid prop '${propName}' of '${props[
+            propName
+          ]}' supplied to '${componentName}'. Validation failed.`
         );
       }
     }
@@ -87,22 +94,19 @@ class QuestionnaireDesign extends React.Component {
 
   setSectionTitle = input => {
     if (input) {
-      // check for null as TransitionGroup replaces these DOM elements
       this.sectionTitle = findDOMNode(input);
     }
   };
 
   setPageTitle = input => {
     if (input) {
-      // check for null as TransitionGroup replaces these DOM elements
       this.pageTitle = findDOMNode(input);
     }
   };
 
   setFocusOnTitle = () => {
     const { section, page } = this.props;
-
-    if (get(section, "title.length") === 0) {
+    if (section.title.length === 0) {
       this.sectionTitle.focus();
     } else if (get(page, "title.length") === 0) {
       this.pageTitle.focus();
@@ -117,6 +121,8 @@ class QuestionnaireDesign extends React.Component {
       onChange,
       onAddAnswer,
       onDeleteAnswer,
+      onAddOption,
+      onDeleteOption,
       onFocus,
       onBlur,
       focused
@@ -186,30 +192,41 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </FadeTransition>
-            {answers.map((answer, i) => {
-              return (
-                <FadeTransition key={answer.id} exit={false}>
-                  <AnimatedCanvasSection
-                    id={`answer-${answer.id}`}
-                    key={answer.id}
+
+            {answers.map((answer, i) =>
+              <FadeTransition key={`answer-${i}`}>
+                <AnimatedCanvasSection
+                  id={`answer-${answer.id}`}
+                  key={answer.id}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  focused={
+                    focused && focused.indexOf(`answer-${answer.id}`) > -1
+                  }
+                >
+                  <Answer
+                    answer={answer}
+                    answerIndex={i}
+                    onChange={onChange}
+                    onAddOption={onAddOption}
+                    onDeleteOption={onDeleteOption}
+                    setAnswerLabel={this.setAnswerLabel}
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    focused={focused === `answer-${answer.id}`}
-                  >
-                    <TextAnswer answer={answer} onChange={onChange} index={i} />
-                    <AnswerDeleteButton
-                      onClick={function() {
-                        onDeleteAnswer(answer.id);
-                      }}
-                      title="Delete answer"
-                      type="button"
-                    />
-                  </AnimatedCanvasSection>
-                </FadeTransition>
-              );
-            })}
+                  />
+                  <AnswerDeleteButton
+                    onClick={function() {
+                      onDeleteAnswer(answer.id);
+                    }}
+                    title="Delete answer"
+                    type="button"
+                  />
+                </AnimatedCanvasSection>
+              </FadeTransition>
+            )}
+
             <FadeTransition key={`add-answer`}>
-              <AnimatedCanvasSection>
+              <AnimatedCanvasSection onFocus={onFocus} onBlur={onBlur}>
                 <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>
             </FadeTransition>

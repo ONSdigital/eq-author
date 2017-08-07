@@ -92,23 +92,30 @@ exports[`QuestionnaireDesign should render 1`] = `
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
       </FadeTransition>
-      <FadeTransition
-        exit={false}
-      >
+      <FadeTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
-          focused={false}
-          id="answer-4"
+          focused={null}
+          id="answer-1"
           onBlur={[Function]}
           onFocus={[Function]}
         >
-          <TextAnswer
+          <Answer
             answer={
               Object {
-                "id": "4",
+                "id": 1,
+                "options": Array [
+                  Object {
+                    "id": 0,
+                  },
+                ],
               }
             }
-            index={0}
+            answerIndex={0}
+            onAddOption={[Function]}
+            onBlur={[Function]}
             onChange={[Function]}
+            onDeleteOption={[Function]}
+            onFocus={[Function]}
           />
           <QuestionnaireDesign__AnswerDeleteButton
             onClick={[Function]}
@@ -118,7 +125,10 @@ exports[`QuestionnaireDesign should render 1`] = `
         </QuestionnaireDesign__AnimatedCanvasSection>
       </FadeTransition>
       <FadeTransition>
-        <QuestionnaireDesign__AnimatedCanvasSection>
+        <QuestionnaireDesign__AnimatedCanvasSection
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
           <AnswerTypeSelector
             onSelect={[Function]}
           />

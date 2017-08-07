@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxAnswer should match snapshot 1`] = `
-.c11 {
+.c10 {
   padding: 0.8em 3em;
   border-radius: 2px;
   font-size: 0.8em;
@@ -23,18 +23,18 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   border: 1px #EAEAEA solid;
 }
 
-.c11:focus,
-.c11:active {
+.c10:focus,
+.c10:active {
   outline: none;
 }
 
-.c11[disabled] {
+.c10[disabled] {
   pointer-events: none;
   opacity: 0.6;
 }
 
-.c11:focus,
-.c11:hover {
+.c10:focus,
+.c10:hover {
   background-color: #EAEAEA;
 }
 
@@ -45,6 +45,8 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   outline: none;
   display: block;
   width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
   font-size: 1.125em;
   font-weight: 700;
 }
@@ -69,10 +71,6 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   color: #a3a3a3;
 }
 
-.c7[aria-hidden="true"] {
-  visibility: hidden;
-}
-
 .c8 {
   border: none;
   padding: 0;
@@ -80,6 +78,8 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   outline: none;
   display: block;
   width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
   font-size: 0.875em;
 }
 
@@ -101,10 +101,6 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
 
 .c8::placeholder {
   color: #a3a3a3;
-}
-
-.c8[aria-hidden="true"] {
-  visibility: hidden;
 }
 
 .c9 {
@@ -148,17 +144,17 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
 
 .c0 {
   width: 20em;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .c1 {
-  margin: 1em 0;
+  margin: 0 0 1em 0;
 }
 
 .c2 {
   border: 1px solid #EAEAEA;
-  padding: 1em 1em 0em 1em;
-  border-radius: 4px;
+  padding: 1em 1em 0 1em;
+  border-radius: 3px;
   position: relative;
 }
 
@@ -210,58 +206,32 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   vertical-align: middle;
 }
 
-.c13 {
-  color: #48a6f6;
-  text-decoration: none;
-  border: 0;
-  background: none;
-}
-
 .c4 {
   border: 2px solid #EAEAEA;
   height: 1.4em;
   width: 1.4em;
 }
 
-.c10 {
-  cursor: pointer;
-  color: #c3c3c3;
-  padding: .2em;
-  border: 0;
-  background: none;
-  font-size: 1em;
-  position: absolute;
-  top: .5em;
-  right: 1em;
-  -webkit-transition: color .2s ease-in-out;
-  transition: color .2s ease-in-out;
-}
-
-.c10:hover {
-  color: #35414D;
-  -webkit-transition: color .2s ease-in-out;
-  transition: color .2s ease-in-out;
-}
-
-.c12 {
-  margin: 0 .5em;
-}
-
 <CheckboxAnswer
+  answer={
+    Object {
+      "id": 0,
+      "options": Array [
+        Object {
+          "description": "",
+          "id": 1,
+          "label": "",
+        },
+      ],
+    }
+  }
+  answerIndex={0}
   onAddOption={[Function]}
   onAddOther={[Function]}
-  onChangeDescription={[Function]}
-  onChangeLabel={[Function]}
+  onBlur={[Function]}
+  onChange={[Function]}
   onDeleteOption={[Function]}
-  options={
-    Array [
-      Object {
-        "description": "",
-        "id": 1,
-        "label": "",
-      },
-    ]
-  }
+  onFocus={[Function]}
 >
   <CheckboxAnswer__CheckboxAnswerWrapper>
     <div
@@ -301,7 +271,7 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                     className="c2"
                   >
                     <Field
-                      id="option.1.label"
+                      id="answers[0].options[0].label"
                     >
                       <Field__StyledField>
                         <div
@@ -309,35 +279,35 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                         >
                           <CheckboxAnswer__StyledCheckboxInput
                             disabled={true}
-                            id="option.1.label"
+                            id="answers[0].options[0].label"
                             type="checkbox"
                           >
                             <withChangeHandler(Input)
                               className="c4"
                               disabled={true}
-                              id="option.1.label"
+                              id="answers[0].options[0].label"
                               type="checkbox"
                             >
                               <Input
                                 className="c4"
                                 disabled={true}
-                                id="option.1.label"
+                                id="answers[0].options[0].label"
                                 onChange={[Function]}
                                 type="checkbox"
                               >
                                 <Input__StyledInput
                                   className="c4"
                                   disabled={true}
-                                  id="option.1.label"
-                                  name="option.1.label"
+                                  id="answers[0].options[0].label"
+                                  name="answers[0].options[0].label"
                                   onChange={[Function]}
                                   type="checkbox"
                                 >
                                   <input
                                     className="c4 c5"
                                     disabled={true}
-                                    id="option.1.label"
-                                    name="option.1.label"
+                                    id="answers[0].options[0].label"
+                                    name="answers[0].options[0].label"
                                     onChange={[Function]}
                                     type="checkbox"
                                   />
@@ -346,54 +316,68 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                             </withChangeHandler(Input)>
                           </CheckboxAnswer__StyledCheckboxInput>
                           <CheckboxAnswer__SeamlessLabel
-                            id="option.1.label"
+                            autoFocus={true}
+                            id="answers[0].options[0].label"
+                            onBlur={[Function]}
                             onChange={[Function]}
+                            onFocus={[Function]}
                             placeholder="Label"
                             size="medium"
                             value=""
                           >
                             <withSeamlessness(withChangeHandler(Input))
+                              autoFocus={true}
                               className="c6"
                               focused={false}
-                              id="option.1.label"
+                              id="answers[0].options[0].label"
+                              onBlur={[Function]}
                               onChange={[Function]}
+                              onFocus={[Function]}
                               optional={false}
                               placeholder="Label"
                               size="medium"
                               value=""
                             >
                               <withSeamlessness__StyledSeamless
-                                aria-hidden={false}
+                                autoFocus={true}
                                 className="c6"
-                                name="option.1.label"
+                                name="answers[0].options[0].label"
+                                onBlur={[Function]}
                                 onChange={[Function]}
+                                onFocus={[Function]}
                                 placeholder="Label"
                                 size="medium"
                                 value=""
                               >
                                 <withChangeHandler(Input)
-                                  aria-hidden={false}
+                                  autoFocus={true}
                                   className="c6 c7"
-                                  name="option.1.label"
+                                  name="answers[0].options[0].label"
+                                  onBlur={[Function]}
                                   onChange={[Function]}
+                                  onFocus={[Function]}
                                   placeholder="Label"
                                   size="medium"
                                   value=""
                                 >
                                   <Input
-                                    aria-hidden={false}
+                                    autoFocus={true}
                                     className="c6 c7"
-                                    name="option.1.label"
+                                    name="answers[0].options[0].label"
+                                    onBlur={[Function]}
                                     onChange={[Function]}
+                                    onFocus={[Function]}
                                     placeholder="Label"
                                     size="medium"
                                     value=""
                                   >
                                     <input
-                                      aria-hidden={false}
+                                      autoFocus={true}
                                       className="c6 c7"
-                                      name="option.1.label"
+                                      name="answers[0].options[0].label"
+                                      onBlur={[Function]}
                                       onChange={[Function]}
+                                      onFocus={[Function]}
                                       placeholder="Label"
                                       size="medium"
                                       type="text"
@@ -408,7 +392,7 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                       </Field__StyledField>
                     </Field>
                     <Field
-                      id="option.1.description"
+                      id="answers[0].options[0].description"
                     >
                       <Field__StyledField>
                         <div
@@ -417,8 +401,10 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                           <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
                             cols="30"
                             focused={false}
-                            id="option.1.description"
+                            id="answers[0].options[0].description"
+                            onBlur={[Function]}
                             onChange={[Function]}
+                            onFocus={[Function]}
                             optional={false}
                             placeholder="Optional description"
                             rows="5"
@@ -426,48 +412,63 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                             value=""
                           >
                             <withSeamlessness__StyledSeamless
-                              aria-hidden={false}
-                              name="option.1.description"
+                              cols="30"
+                              name="answers[0].options[0].description"
+                              onBlur={[Function]}
                               onChange={[Function]}
+                              onFocus={[Function]}
                               placeholder="Optional description"
+                              rows="5"
                               size="small"
                               value=""
                             >
                               <withChangeHandler(SeamlessTextArea__TextArea)
-                                aria-hidden={false}
                                 className="c8"
-                                name="option.1.description"
+                                cols="30"
+                                name="answers[0].options[0].description"
+                                onBlur={[Function]}
                                 onChange={[Function]}
+                                onFocus={[Function]}
                                 placeholder="Optional description"
+                                rows="5"
                                 size="small"
                                 value=""
                               >
                                 <SeamlessTextArea__TextArea
-                                  aria-hidden={false}
                                   className="c8"
-                                  name="option.1.description"
+                                  cols="30"
+                                  name="answers[0].options[0].description"
+                                  onBlur={[Function]}
                                   onChange={[Function]}
+                                  onFocus={[Function]}
                                   placeholder="Optional description"
+                                  rows="5"
                                   size="small"
                                   value=""
                                 >
                                   <TextareaAutosize
-                                    aria-hidden={false}
                                     className="c8 c9"
-                                    name="option.1.description"
+                                    cols="30"
+                                    name="answers[0].options[0].description"
+                                    onBlur={[Function]}
                                     onChange={[Function]}
+                                    onFocus={[Function]}
                                     onHeightChange={[Function]}
                                     placeholder="Optional description"
+                                    rows="5"
                                     size="small"
                                     useCacheForDOMMeasurements={false}
                                     value=""
                                   >
                                     <textarea
-                                      aria-hidden={false}
                                       className="c8 c9"
-                                      name="option.1.description"
+                                      cols="30"
+                                      name="answers[0].options[0].description"
+                                      onBlur={[Function]}
                                       onChange={[Function]}
+                                      onFocus={[Function]}
                                       placeholder="Optional description"
+                                      rows="5"
                                       size="small"
                                       style={
                                         Object {
@@ -484,20 +485,6 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                         </div>
                       </Field__StyledField>
                     </Field>
-                    <CheckboxAnswer__DeleteButton
-                      aria-label="Delete option"
-                      name="option.1.delete"
-                      onClick={[Function]}
-                    >
-                      <button
-                        aria-label="Delete option"
-                        className="c10"
-                        name="option.1.delete"
-                        onClick={[Function]}
-                      >
-                        ×
-                      </button>
-                    </CheckboxAnswer__DeleteButton>
                   </div>
                 </CheckboxAnswer__CheckboxOption>
               </Transition>
@@ -509,39 +496,22 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
         <Button
           onClick={[Function]}
           secondary={true}
+          type="button"
         >
           <Button__StyledButton
             onClick={[Function]}
             secondary={true}
+            type="button"
           >
             <button
-              className="c11"
+              className="c10"
               onClick={[Function]}
+              type="button"
             >
               Add another option
             </button>
           </Button__StyledButton>
         </Button>
-        <CheckboxAnswer__OtherOption>
-          <small
-            className="c12"
-          >
-            or
-             
-            <CheckboxAnswer__AddOtherLink
-              href="#"
-              onClick={[Function]}
-            >
-              <button
-                className="c13"
-                href="#"
-                onClick={[Function]}
-              >
-                add other
-              </button>
-            </CheckboxAnswer__AddOtherLink>
-          </small>
-        </CheckboxAnswer__OtherOption>
       </div>
     </div>
   </CheckboxAnswer__CheckboxAnswerWrapper>

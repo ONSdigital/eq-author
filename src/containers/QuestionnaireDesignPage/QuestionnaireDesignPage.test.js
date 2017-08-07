@@ -4,17 +4,7 @@ import QuestionnaireDesign from "components/QuestionnaireDesign";
 import QuestionnaireNav from "components/QuestionnaireNav";
 import { shallow } from "enzyme";
 
-let handleUpdate,
-  handleSubmit,
-  wrapper,
-  handleSectionUpdate,
-  handlePageUpdate,
-  handleAddPage,
-  handleAddSection,
-  handleDeletePage,
-  handleAddAnswer,
-  handleDeleteAnswer,
-  handleAnswerUpdate;
+let mockHandlers, wrapper;
 
 let answer = {
   id: 1,
@@ -36,30 +26,27 @@ let questionnaire = { id: "3", title: "hello world", sections: [section] };
 
 describe("containers/QuestionnaireDesignPage", () => {
   beforeEach(() => {
-    handleUpdate = jest.fn();
-    handleSubmit = jest.fn();
-    handleAddPage = jest.fn();
-    handleDeletePage = jest.fn();
-    handleSectionUpdate = jest.fn();
-    handlePageUpdate = jest.fn();
-    handleAddSection = jest.fn();
-    handleAddAnswer = jest.fn();
-    handleDeleteAnswer = jest.fn();
-    handleAnswerUpdate = jest.fn();
+    mockHandlers = {
+      onUpdate: jest.fn(),
+      onChange: jest.fn(),
+      onSubmit: jest.fn(),
+      onAddPage: jest.fn(),
+      onAddAnswer: jest.fn(),
+      onUpdatePage: jest.fn(),
+      onUpdateAnswer: jest.fn(),
+      onUpdateSection: jest.fn(),
+      onUpdateOption: jest.fn(),
+      onAddSection: jest.fn(),
+      onAddOption: jest.fn(),
+      onDeleteOption: jest.fn(),
+      onDeletePage: jest.fn(),
+      onDeleteAnswer: jest.fn()
+    };
 
     wrapper = shallow(
       <QuestionnaireDesignPage
-        onSubmit={handleSubmit}
+        {...mockHandlers}
         questionnaire={questionnaire}
-        onUpdate={handleUpdate}
-        onSectionUpdate={handleSectionUpdate}
-        onPageUpdate={handlePageUpdate}
-        onAddPage={handleAddPage}
-        onDeletePage={handleDeletePage}
-        onAddSection={handleAddSection}
-        onAddAnswer={handleAddAnswer}
-        onDeleteAnswer={handleDeleteAnswer}
-        onAnswerUpdate={handleAnswerUpdate}
         section={section}
         page={page}
         answers={page.answers}
@@ -105,7 +92,7 @@ describe("containers/QuestionnaireDesignPage", () => {
       })
       .simulate("blur", "section");
 
-    expect(handleSectionUpdate).toHaveBeenCalledWith(
+    expect(mockHandlers.onUpdateSection).toHaveBeenCalledWith(
       expect.objectContaining({ title: "My Title" })
     );
   });
@@ -120,7 +107,7 @@ describe("containers/QuestionnaireDesignPage", () => {
       })
       .simulate("blur", "page");
 
-    expect(handlePageUpdate).toHaveBeenCalledWith(
+    expect(mockHandlers.onUpdatePage).toHaveBeenCalledWith(
       expect.objectContaining({ title: "My Title" })
     );
   });
@@ -135,7 +122,7 @@ describe("containers/QuestionnaireDesignPage", () => {
       })
       .simulate("blur", "answer");
 
-    expect(handleAnswerUpdate).toHaveBeenCalledWith(
+    expect(mockHandlers.onUpdateAnswer).toHaveBeenCalledWith(
       expect.objectContaining({ label: "Label" })
     );
   });
@@ -146,8 +133,8 @@ describe("containers/QuestionnaireDesignPage", () => {
       .find(QuestionnaireDesign)
       .simulate("blur");
 
-    expect(handlePageUpdate).not.toHaveBeenCalled();
-    expect(handleSectionUpdate).not.toHaveBeenCalled();
+    expect(mockHandlers.onUpdatePage).not.toHaveBeenCalled();
+    expect(mockHandlers.onUpdateSection).not.toHaveBeenCalled();
   });
 
   it("should set focus state when field receives focus", () => {
@@ -172,7 +159,7 @@ describe("containers/QuestionnaireDesignPage", () => {
       .find(QuestionnaireDesign)
       .simulate("addAnswer");
 
-    expect(handleAddAnswer).toHaveBeenCalled();
+    expect(mockHandlers.onAddAnswer).toHaveBeenCalled();
   });
 
   it("should invoke callback when answer deleted", () => {
@@ -181,16 +168,16 @@ describe("containers/QuestionnaireDesignPage", () => {
       .find(QuestionnaireDesign)
       .simulate("deleteAnswer");
 
-    expect(handleDeleteAnswer).toHaveBeenCalled();
+    expect(mockHandlers.onDeleteAnswer).toHaveBeenCalled();
   });
 
   it("should pass onAddPage prop to QuestionNav", () => {
     wrapper.find(QuestionnaireNav).simulate("addPage", 1);
-    expect(handleAddPage).toHaveBeenCalledWith(1);
+    expect(mockHandlers.onAddPage).toHaveBeenCalledWith(1);
   });
 
   it("should pass onAddSection prop to QuestionNav", () => {
     wrapper.find(QuestionnaireNav).simulate("addSection");
-    expect(handleAddSection).toHaveBeenCalledWith(questionnaire.id);
+    expect(mockHandlers.onAddSection).toHaveBeenCalledWith(questionnaire.id);
   });
 });

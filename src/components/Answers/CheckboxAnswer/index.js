@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -17,16 +18,16 @@ const duration = 200;
 
 const CheckboxAnswerWrapper = styled.div`
   width: 20em;
-  margin: 0 auto;
+  margin: 0;
 `;
 
-const CheckboxOptions = styled.div`margin: 1em 0;`;
+const CheckboxOptions = styled.div`margin: 0 0 1em 0;`;
 
 export const CheckboxOption = styled.div`
-  border: 1px solid ${colors.borders};
-  padding: 1em 1em 0em 1em;
-  border-radius: 4px;
-
+  border: 1px solid
+    ${props => (props.focused ? colors.lightBlue : colors.borders)};
+  padding: 1em 1em 0 1em;
+  border-radius: 3px;
   position: relative;
 
   &:not(:first-child) {
@@ -83,6 +84,8 @@ const StyledCheckboxInput = styled(Input)`
   width: 1.4em;
 `;
 
+export const CloseButton = styled.button`display: block;`;
+
 export const DeleteButton = styled.button`
   cursor: pointer;
   color: ${colors.lightGrey};
@@ -103,89 +106,103 @@ export const DeleteButton = styled.button`
   }
 `;
 
-const OtherOption = styled.small`margin: 0 .5em;`;
-
 const CheckboxAnswer = ({
-  options,
-  onChangeLabel,
-  onChangeDescription,
+  id,
+  answerIndex,
+  answer,
+  onChange,
   onAddOption,
   onDeleteOption,
-  onAddOther
+  onFocus,
+  onBlur
 }) => {
   return (
     <CheckboxAnswerWrapper>
       <TransitionGroup component={CheckboxOptions}>
-        {options.map(option =>
-          <CSSTransition key={option.id} timeout={duration} classNames="option">
-            <CheckboxOption key={option.id}>
-              <Field id={`option.${option.id}.label`}>
-                <StyledCheckboxInput type="checkbox" disabled />
-                <SeamlessLabel
-                  placeholder="Label"
-                  size="medium"
-                  onChange={onChangeLabel}
-                  value={option.label}
-                />
-              </Field>
-              <Field id={`option.${option.id}.description`}>
-                <SeamlessTextArea
-                  cols="30"
-                  rows="5"
-                  placeholder="Optional description"
-                  onChange={onChangeDescription}
-                  value={option.description}
-                />
-              </Field>
-              <DeleteButton
-                aria-label="Delete option"
-                name={`option.${option.id}.delete`}
-                onClick={onDeleteOption}
-              >
-                &times;
-              </DeleteButton>
-            </CheckboxOption>
-          </CSSTransition>
-        )}
+        {answer.options.map((option, optionIndex) => {
+          const optionId = `answer-${answer.id}-option-${option.id}`;
+          const handleFocus = function(e) {
+            e.stopPropagation();
+            onFocus(optionId);
+          };
+          const handleBlur = function(e) {
+            e.stopPropagation();
+            onBlur();
+          };
+          return (
+            <CSSTransition
+              key={option.clientId || option.id}
+              timeout={duration}
+              classNames="option"
+            >
+              <CheckboxOption key={option.id} focused={option.focused}>
+                <Field
+                  id={`answers[${answerIndex}].options[${optionIndex}].label`}
+                >
+                  <StyledCheckboxInput type="checkbox" disabled />
+                  <SeamlessLabel
+                    placeholder="Label"
+                    size="medium"
+                    onChange={onChange}
+                    value={option.label}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    autoFocus
+                  />
+                </Field>
+                <Field
+                  id={`answers[${answerIndex}].options[${optionIndex}].description`}
+                >
+                  <SeamlessTextArea
+                    cols="30"
+                    rows="5"
+                    placeholder="Optional description"
+                    onChange={onChange}
+                    value={option.description}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                  />
+                </Field>
+                {optionIndex > 0 &&
+                  <CloseButton
+                    name={`answers[${answerIndex}].options[${optionIndex}].delete`}
+                    type="button"
+                    onClick={function(e) {
+                      e.preventDefault();
+                      onDeleteOption(option.id, answer.id);
+                    }}
+                  >
+                    &times;
+                  </CloseButton>}
+              </CheckboxOption>
+            </CSSTransition>
+          );
+        })}
       </TransitionGroup>
       <div>
-        <Button secondary onClick={onAddOption}>
+        <Button
+          type="button"
+          secondary
+          onClick={function() {
+            onAddOption(answer.id);
+          }}
+        >
           Add another option
         </Button>
-        <OtherOption>
-          or{" "}
-          <AddOtherLink href="#" onClick={onAddOther}>
-            add other
-          </AddOtherLink>
-        </OtherOption>
       </div>
     </CheckboxAnswerWrapper>
   );
 };
 
-CheckboxAnswer.defaultProps = {
-  options: [
-    {
-      id: 1,
-      label: "",
-      description: ""
-    }
-  ]
-};
-
 CheckboxAnswer.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      label: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired
-    })
-  ),
-  onChangeLabel: PropTypes.func.isRequired,
-  onChangeDescription: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  answerIndex: PropTypes.number.isRequired,
+  answer: CustomPropTypes.answer.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
   onAddOption: PropTypes.func.isRequired,
-  onDeleteOption: PropTypes.func.isRequired,
-  onAddOther: PropTypes.func.isRequired
+  onDeleteOption: PropTypes.func.isRequired
 };
 
 export default CheckboxAnswer;

@@ -1,0 +1,12 @@
+fragment Answer on Answer {
+  id
+  ... on MultipleChoiceAnswer {
+    options {
+      id
+      label
+      description
+      qCode
+      value
+    }
+  }
+}

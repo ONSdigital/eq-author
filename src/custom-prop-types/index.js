@@ -26,5 +26,10 @@ export default {
   answer: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string
+  }),
+  option: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
   })
 };

@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
-import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
-import deletePageMutation from "queries/deletePage.graphql";
+import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
+import deletePageMutation from "graphql/deletePage.graphql";
 import { find, findIndex, remove } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });

@@ -68,7 +68,7 @@ class AnswerTypeGrid extends React.Component {
       <Menu>
         <Header>
           <Title>Answer Type</Title>
-          <CloseButton onClick={onClose} aria-label="Close" type="button">
+          <CloseButton onClick={onClose} aria-label="Close" type="Button">
             ×
           </CloseButton>
         </Header>
@@ -89,7 +89,6 @@ class AnswerTypeGrid extends React.Component {
             type="TextField"
             title="Text"
             onClick={this.handleSelect}
-            ref={this.saveButtonRef}
           />
           <AnswerTypeButton
             type="TextArea"

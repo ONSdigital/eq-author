@@ -3,25 +3,34 @@ import React from "react";
 import Button from "components/Button";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import CheckboxAnswer, {
-  CheckboxOption,
-  DeleteButton,
-  AddOtherLink
-} from "./index";
+import CheckboxAnswer, { CheckboxOption, CloseButton } from "./index";
 
 import { mount } from "enzyme";
 
 describe("CheckboxAnswer", () => {
   let mockHandlers, wrapper;
   beforeAll(() => {
+    const answer = {
+      id: 0,
+      options: [
+        {
+          id: 1,
+          label: "",
+          description: ""
+        }
+      ]
+    };
     mockHandlers = {
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onAddOther: jest.fn(),
-      onChangeLabel: jest.fn(),
-      onChangeDescription: jest.fn()
+      onChange: jest.fn(),
+      onFocus: jest.fn(),
+      onBlur: jest.fn()
     };
-    wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
+    wrapper = mount(
+      <CheckboxAnswer {...mockHandlers} answer={answer} answerIndex={0} />
+    );
   });
 
   it("should match snapshot", () => {
@@ -33,7 +42,23 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should remove option when delete is pressed", () => {
-    wrapper.find(DeleteButton).forEach(node => {
+    wrapper.setProps({
+      answer: {
+        options: [
+          {
+            id: 1,
+            label: "",
+            description: ""
+          },
+          {
+            id: 2,
+            label: "",
+            description: ""
+          }
+        ]
+      }
+    });
+    wrapper.find(CloseButton).forEach(node => {
       node.simulate("click");
     });
 
@@ -48,20 +73,12 @@ describe("CheckboxAnswer", () => {
     expect(mockHandlers.onAddOption).toHaveBeenCalled();
   });
 
-  it("should add other answer when other link is clicked", () => {
-    wrapper.find(AddOtherLink).forEach(node => {
-      node.simulate("click");
-    });
-
-    expect(mockHandlers.onAddOther).toHaveBeenCalled();
-  });
-
   it("should update label when text entered", () => {
     wrapper.find(SeamlessInput).forEach(node => {
       node.simulate("change");
     });
 
-    expect(mockHandlers.onChangeLabel).toHaveBeenCalled();
+    expect(mockHandlers.onChange).toHaveBeenCalled();
   });
 
   it("should update description when text entered", () => {
@@ -69,6 +86,6 @@ describe("CheckboxAnswer", () => {
       node.simulate("change");
     });
 
-    expect(mockHandlers.onChangeDescription).toHaveBeenCalled();
+    expect(mockHandlers.onChange).toHaveBeenCalled();
   });
 });

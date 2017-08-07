@@ -15,17 +15,20 @@ export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
     onAddPage: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
+    onAddOption: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
+    onUpdateSection: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired,
+    onUpdateAnswer: PropTypes.func.isRequired,
+    onUpdateOption: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
+    onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
-    onSectionUpdate: PropTypes.func.isRequired,
-    onPageUpdate: PropTypes.func.isRequired,
-    onAnswerUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
-    answers: PropTypes.arrayOf(PropTypes.object),
+    answers: PropTypes.arrayOf(CustomPropTypes.answer),
     question: CustomPropTypes.question,
     loading: PropTypes.bool.isRequired
   };
@@ -63,18 +66,30 @@ export class QuestionnaireDesignPage extends Component {
     this.props.onDeleteAnswer(answerId);
   };
 
-  handleBlur = focused => {
-    this.setFocused(focused);
+  handleBlur = () => {
+    const { focused, section, page, answers } = this.state;
 
-    if (/section/.test(this.state.focused)) {
-      this.props.onSectionUpdate(this.state.section);
-    } else if (/page/.test(this.state.focused)) {
-      this.props.onPageUpdate(this.state.page);
-    } else if (/answer/.test(this.state.focused)) {
-      const answerId = this.state.focused.split("answer-")[1];
-      this.props.onAnswerUpdate(
-        find(this.state.answers, { id: parseInt(answerId, 10) })
-      );
+    let answerId, answer;
+
+    if (focused) {
+      answerId = focused.split("-")[1];
+      answer = find(answers, {
+        id: parseInt(answerId, 10)
+      });
+    }
+
+    if (/section/.test(focused)) {
+      this.props.onUpdateSection(section);
+    } else if (/page/.test(focused)) {
+      this.props.onUpdatePage(page);
+    } else if (/answer/.test(focused)) {
+      this.props.onUpdateAnswer(answer);
+    } else if (/option/.test(focused)) {
+      const optionId = focused.split("-")[3];
+      const option = find(answer.options, {
+        id: parseInt(optionId, 10)
+      });
+      this.props.onUpdateOption(option);
     }
   };
 
@@ -90,11 +105,19 @@ export class QuestionnaireDesignPage extends Component {
     this.props.onAddSection(this.props.questionnaire.id);
   };
 
-  setFocused = focused => {
-    if (focused === null) {
-      return;
-    }
+  handleAddAnswer = type => {
+    this.props.onAddAnswer(type);
+  };
 
+  handleAddOption = answerId => {
+    this.props.onAddOption(answerId);
+  };
+
+  handleDeleteOption = (answerId, optionId) => {
+    this.props.onDeleteOption(answerId, optionId);
+  };
+
+  setFocused = focused => {
     if (focused !== this.state.focused) {
       this.setState({ focused });
     }
@@ -130,6 +153,8 @@ export class QuestionnaireDesignPage extends Component {
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
+              onAddOption={this.handleAddOption}
+              onDeleteOption={this.handleDeleteOption}
             />
           </Column>
           <Column cols={2} gutters={false}>

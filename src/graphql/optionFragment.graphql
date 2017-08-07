@@ -1,0 +1,7 @@
+fragment Option on Option {
+  id
+  label
+  description
+  qCode
+  value
+}

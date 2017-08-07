@@ -90,8 +90,7 @@ const LinkText = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  ${({ fade }) => fade && "opacity: 0.5"};
+  opacity: ${({ fade }) => (fade ? 0.5 : 1)};
 `;
 
 const NavList = styled.ol`

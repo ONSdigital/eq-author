@@ -20,10 +20,10 @@ const StyledCanvasSection = styled.div`
   outline-style: solid;
   outline-color: transparent;
   box-shadow: ${shadow};
+
   &:hover {
     outline-color: ${transparentize(0.6, colors.lightBlue)};
   }
-
   ${props => props.focused && focusedStyle};
 `;
 
@@ -44,11 +44,13 @@ export default class CanvasSection extends Component {
   };
 
   handleFocus = e => {
-    this.props.onFocus(this.props.id);
+    if (this.props.id !== undefined) {
+      this.props.onFocus(this.props.id);
+    }
   };
 
   handleBlur = e => {
-    this.props.onBlur(null);
+    this.props.onBlur();
   };
 
   render() {

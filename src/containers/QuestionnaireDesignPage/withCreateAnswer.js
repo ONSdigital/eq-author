@@ -1,14 +1,6 @@
-import { graphql, gql } from "react-apollo";
-import createAnswerMutation from "queries/createAnswer.graphql";
-
-const pageFragment = gql`
-  fragment Page on QuestionPage {
-    id
-    answers {
-      id
-    }
-  }
-`;
+import { graphql } from "react-apollo";
+import createAnswerMutation from "graphql/createAnswer.graphql";
+import pageFragment from "graphql/pageFragment.graphql";
 
 export const createUpdater = pageId => (proxy, result) => {
   const id = `QuestionPage${pageId}`;
@@ -29,29 +21,40 @@ export const createUpdater = pageId => (proxy, result) => {
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddAnswer(type) {
     const answer = {
-      label: "",
+      type: type,
+      mandatory: false,
+      questionPageId: ownProps.page.id,
       description: "",
       guidance: "",
       qCode: "",
-      type: type,
-      mandatory: false,
-      questionPageId: ownProps.page.id
+      label: ""
     };
 
-    // const optimisticResponse = {
-    //   createAnswer: {
-    //     __typename: "Answer",
-    //     id: -1,
-    //     options: [],
-    //     ...answer
-    //   }
-    // };
+    const optimisticResponse = {
+      createAnswer: {
+        __typename: "Answer",
+        id: -1,
+        ...answer
+      }
+    };
+
+    if (type === "Checkbox") {
+      optimisticResponse.createAnswer = {
+        ...optimisticResponse.createAnswer,
+        __typename: "MultipleChoiceAnswer",
+        options: [
+          {
+            id: -1,
+            __typename: "Option"
+          }
+        ]
+      };
+    }
 
     const update = createUpdater(ownProps.pageId);
 
     return mutate({
       variables: answer,
-      // optimisticResponse,
       update
     });
   }

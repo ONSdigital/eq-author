@@ -1,6 +1,6 @@
-import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
+import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
-import createSectionMutation from "queries/createSection.graphql";
+import createSectionMutation from "graphql/createSection.graphql";
 
 export const redirectToDesigner = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
