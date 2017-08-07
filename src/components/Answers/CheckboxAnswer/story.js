@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { concat, split, merge, filter } from "lodash";
 import styled from "styled-components";
@@ -53,7 +53,7 @@ class CheckboxAnswerWrapper extends React.Component {
 
     filter(
       newState.options,
-      option => option.id === parseInt(optionToUpdate)
+      option => option.id === parseInt(optionToUpdate, 10)
     ).forEach(match => merge(match, { [fieldToUpdate]: value }));
 
     this.setState(newState);
@@ -81,7 +81,7 @@ class CheckboxAnswerWrapper extends React.Component {
     this.setState({
       options: filter(
         this.state.options,
-        option => option.id !== parseInt(optionToDelete)
+        option => option.id !== parseInt(optionToDelete, 10)
       )
     });
   };

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Button from "../../Button";
-import { Field, Input, Label } from "../../Forms";
+import { Field, Input } from "../../Forms";
 
 import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
 import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
@@ -51,10 +51,6 @@ const SeamlessLabel = styled(SeamlessInput)`
   display: inline-block !important;
   width: auto;
 `;
-
-const answer = {
-  title: ""
-};
 
 const AddOtherLink = styled.a`
   color: #48a6f6;
