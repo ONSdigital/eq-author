@@ -25,6 +25,8 @@ const CheckboxOption = styled.div`
   padding: 1em 1em 0em 1em;
   border-radius: 4px;
 
+  position: relative;
+
   transition: height ${duration / 2}ms ease-out,
     opacity ${duration}ms ease-out ${duration}ms, padding ${duration}ms ease-out,
     transform ${duration}ms ease-out ${duration}ms;
@@ -72,6 +74,10 @@ const CloseButton = styled.button`
   background: none;
   font-size: 1em;
 
+  position: absolute;
+  top: .5em;
+  right: .5em;
+
   transition: color .2s ease-in-out;
 
   &:hover {
@@ -101,12 +107,6 @@ const CheckboxAnswer = ({
               classNames="option"
             >
               <CheckboxOption key={option.id}>
-                <CloseButton
-                  name={"option." + option.id + ".delete"}
-                  onClick={onDeleteOption}
-                >
-                  &times;
-                </CloseButton>
                 <Field id={"option." + option.id + ".label"}>
                   <StyledCheckboxInput type="checkbox" disabled />
                   <SeamlessLabel
@@ -125,6 +125,12 @@ const CheckboxAnswer = ({
                     value={option.description}
                   />
                 </Field>
+                <CloseButton
+                  name={"option." + option.id + ".delete"}
+                  onClick={onDeleteOption}
+                >
+                  &times;
+                </CloseButton>
               </CheckboxOption>
             </CSSTransition>
           )}
