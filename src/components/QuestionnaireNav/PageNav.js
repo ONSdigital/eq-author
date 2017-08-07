@@ -40,7 +40,7 @@ const Link = styled(NavLink)`
   text-decoration: none;
   color: ${colors.text};
   font-size: 0.75em;
-  padding: 0.7em 0.9em;
+  padding: 0.7em 2.5em 0.7em 0.9em;
   display: block;
   flex: 1 1 auto;
   height: 100%;
@@ -62,7 +62,7 @@ const Link = styled(NavLink)`
     z-index: 1;
   }
 
-  &:hover {
+  ${PageItem}:hover & {
     &::before {
       opacity: 0.5;
       width: 100%;
@@ -71,7 +71,7 @@ const Link = styled(NavLink)`
 
   &.selected {
     &::before {
-      opacity: 1;
+      opacity: 1 !important;
       width: 100%;
     }
   }
@@ -83,6 +83,7 @@ const Link = styled(NavLink)`
 `;
 
 const LinkText = styled.span`
+  display: inline-block;
   width: 100%;
   position: relative;
   z-index: 2;
@@ -98,6 +99,7 @@ const NavList = styled.ol`
 `;
 
 const DeleteButton = styled.button`
+  color: ${colors.text};
   border: none;
   background: transparent;
   font-size: 1.25em;
@@ -125,7 +127,7 @@ const getLink = (questionnaireId, sectionId, pageId) =>
 
 const PageNav = ({ section, questionnaire, onDelete }) =>
   <TransitionGroup component={NavList}>
-    {section.pages.map((page, i) => {
+    {section.pages.map((page, i, pages) => {
       const pageNumber = `${section.number}${i + 1}`;
       return (
         <CSSTransition key={page.id} timeout={duration} classNames="page">
@@ -139,12 +141,13 @@ const PageNav = ({ section, questionnaire, onDelete }) =>
                 {pageNumber} {page.title || "Page Title"}
               </LinkText>
             </Link>
-            <DeleteButton
-              type="button"
-              onClick={() => onDelete(section.id, page.id)}
-            >
-              ×
-            </DeleteButton>
+            {pages.length > 1 &&
+              <DeleteButton
+                type="button"
+                onClick={() => onDelete(section.id, page.id)}
+              >
+                ×
+              </DeleteButton>}
           </PageItem>
         </CSSTransition>
       );
