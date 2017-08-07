@@ -9,6 +9,7 @@ import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withCreatePage from "./withCreatePage";
 import withCreateSection from "./withCreateSection";
 import withDeletePage from "./withDeletePage";
+import withCreateAnswer from "./withCreateAnswer";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
@@ -56,5 +57,6 @@ export default compose(
   withCreatePage,
   withCreateSection,
   withUpdatePage,
-  withDeletePage
+  withDeletePage,
+  withCreateAnswer
 )(QuestionnaireDesign);

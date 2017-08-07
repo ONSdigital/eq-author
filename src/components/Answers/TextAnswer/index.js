@@ -7,12 +7,12 @@ import SeamlessTextArea from "../../SeamlessTextArea/SeamlessTextArea";
 
 const TextAnswer = ({ answer, onChange }) =>
   <div>
-    <Field id="answer.title">
+    <Field id="answer.label">
       <SeamlessInput
         placeholder="Label"
         size="medium"
         onChange={onChange}
-        value={answer.title}
+        value={answer.label}
       />
     </Field>
     <Field id="answer.description">

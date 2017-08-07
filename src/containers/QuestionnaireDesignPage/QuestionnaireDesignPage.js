@@ -17,6 +17,7 @@ export class QuestionnaireDesignPage extends Component {
     onAddPage: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
+    onAddAnswer: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
@@ -51,7 +52,7 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   handleAnswerAdd = type => {
-    alert(`Add answer of type: ${type}`);
+    this.props.onAddAnswer("TextField");
   };
 
   handleBlur = focused => {

@@ -6,6 +6,7 @@ import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
 import SeamlessInput from "../SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
+import TextAnswer from "components/Answers/TextAnswer";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
@@ -168,6 +169,13 @@ class QuestionnaireDesign extends React.Component {
                 focused={focused === "answers"}
                 last
               >
+                {page.answers.map(answer =>
+                  <TextAnswer
+                    key={answer.id}
+                    answer={answer}
+                    onChange={onChange}
+                  />
+                )}
                 <AnswerTypeSelector onSelect={onAnswerAdd} />
               </AnimatedCanvasSection>
             </PageTransition>
