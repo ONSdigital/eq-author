@@ -20,7 +20,7 @@ const CheckboxAnswerWrapper = styled.div`
 
 const CheckboxOptions = styled.div`margin: 1em 0;`;
 
-const CheckboxOption = styled.div`
+export const CheckboxOption = styled.div`
   border: 1px solid #e5e5e5;
   padding: 1em 1em 0em 1em;
   border-radius: 4px;
@@ -54,7 +54,7 @@ const SeamlessLabel = styled(SeamlessInput)`
   width: auto;
 `;
 
-const AddOtherLink = styled.a`
+export const AddOtherLink = styled.a`
   color: #48a6f6;
   text-decoration: none;
 `;
@@ -65,7 +65,7 @@ const StyledCheckboxInput = styled(Input)`
   width: 1.4em;
 `;
 
-const CloseButton = styled.button`
+export const CloseButton = styled.button`
   float: right;
   cursor: pointer;
   color: #ccc;

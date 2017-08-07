@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxAnswer should match snapshot 1`] = `
+<CheckboxAnswer__CheckboxAnswerWrapper>
+  <TransitionGroup
+    childFactory={[Function]}
+    component={[Function]}
+  >
+    <CSSTransition
+      classNames="option"
+      timeout={200}
+    >
+      <CheckboxAnswer__CheckboxOption>
+        <Field
+          id="option.1.label"
+        >
+          <CheckboxAnswer__StyledCheckboxInput
+            disabled={true}
+            type="checkbox"
+          />
+          <CheckboxAnswer__SeamlessLabel
+            onChange={[Function]}
+            placeholder="Label"
+            size="medium"
+            value=""
+          />
+        </Field>
+        <Field
+          id="option.1.description"
+        >
+          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+            cols="30"
+            focused={false}
+            onChange={[Function]}
+            optional={false}
+            placeholder="Optional description"
+            rows="5"
+            size="small"
+            value=""
+          />
+        </Field>
+        <CheckboxAnswer__CloseButton
+          name="option.1.delete"
+          onClick={[Function]}
+        >
+          ×
+        </CheckboxAnswer__CloseButton>
+      </CheckboxAnswer__CheckboxOption>
+    </CSSTransition>
+  </TransitionGroup>
+  <div>
+    <Button
+      onClick={[Function]}
+      secondary={true}
+    >
+      Add another option
+    </Button>
+    <CheckboxAnswer__OtherOption>
+      or
+       
+      <CheckboxAnswer__AddOtherLink
+        href="#"
+        onClick={[Function]}
+      >
+        add other
+      </CheckboxAnswer__AddOtherLink>
+    </CheckboxAnswer__OtherOption>
+  </div>
+</CheckboxAnswer__CheckboxAnswerWrapper>
+`;
