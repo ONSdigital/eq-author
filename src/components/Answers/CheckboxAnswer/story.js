@@ -2,6 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
+import { concat, split, merge, filter } from "lodash";
 import styled from "styled-components";
 import CheckboxAnswer from "./index";
 
@@ -27,15 +28,80 @@ const options = [
   }
 ];
 
-class InteractiveCheckboxAnswer extends React.Component {
+class CheckboxAnswerWrapper extends React.Component {
   constructor() {
     super();
     this.state = {
-      options: []
+      options: [
+        {
+          id: 1,
+          label: "",
+          value: "",
+          description: ""
+        }
+      ],
+      counter: 1
     };
   }
 
-  addOption() {}
+  handleChange = ({ name, value }) => {
+    const params = split(name, /\./);
+    const optionToUpdate = params[1];
+    const fieldToUpdate = params[2];
+
+    const newState = merge({}, this.state);
+
+    filter(
+      newState.options,
+      option => option.id === parseInt(optionToUpdate)
+    ).forEach(match => merge(match, { [fieldToUpdate]: value }));
+
+    this.setState(newState);
+  };
+
+  handleAddOption = () => {
+    const nextId = this.state.counter + 1;
+    const newOption = {
+      id: nextId,
+      label: "",
+      value: "",
+      description: ""
+    };
+
+    this.setState({
+      counter: nextId,
+      options: concat(this.state.options, newOption)
+    });
+  };
+
+  handleDeleteOption = e => {
+    e.stopPropagation();
+
+    const optionToDelete = split(e.target.name, /\./)[1];
+    this.setState({
+      options: filter(
+        this.state.options,
+        option => option.id !== parseInt(optionToDelete)
+      )
+    });
+  };
+
+  handleAddOther() {
+    alert("Add other answer");
+  }
+
+  render() {
+    return (
+      <CheckboxAnswer
+        options={this.state.options}
+        onChangeLabel={this.handleChange}
+        onChangeDescription={this.handleChange}
+        onAddOption={this.handleAddOption}
+        onDeleteOption={this.handleDeleteOption}
+        onAddOther={this.handleAddOther}
+      />
+    );
+  }
 }
 
 const CenterDecorator = storyFn =>
@@ -48,16 +114,21 @@ storiesOf("CheckboxAnswer", module)
   .addDecorator(withKnobs)
   .add("Default", () =>
     <CheckboxAnswer
-      onChange={action("changed")}
+      onChangeLabel={action("changeLabel")}
+      onChangeDescription={action("changeDescription")}
       onAddOption={action("addOption")}
+      onDeleteOption={action("deleteOption")}
       onAddOther={action("addOther")}
     />
   )
   .add("Multiple options", () =>
     <CheckboxAnswer
       options={options}
-      onChange={action("changed")}
+      onChangeLabel={action("changeLabel")}
+      onChangeDescription={action("changeDescription")}
       onAddOption={action("addOption")}
+      onDeleteOption={action("deleteOption")}
       onAddOther={action("addOther")}
     />
-  );
+  )
+  .add("Interactive", () => <CheckboxAnswerWrapper />);

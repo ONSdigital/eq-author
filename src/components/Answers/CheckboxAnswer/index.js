@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
 import Button from "../../Button";
 import { Field, Input, Label } from "../../Forms";
 
@@ -9,8 +11,10 @@ import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
 
 import styled from "styled-components";
 
+const duration = 200;
+
 const CheckboxAnswerWrapper = styled.div`
-  width: 320px;
+  width: 20em;
   margin: 0 auto;
 `;
 
@@ -21,8 +25,25 @@ const CheckboxOption = styled.div`
   padding: 1em 1em 0em 1em;
   border-radius: 4px;
 
+  transition: height ${duration / 2}ms ease-out,
+    opacity ${duration}ms ease-out ${duration}ms, padding ${duration}ms ease-out,
+    transform ${duration}ms ease-out ${duration}ms;
+  opacity: 1;
+  transform: translateX(0);
+
   &:not(:first-child) {
     margin-top: .5em;
+  }
+
+  &.option-enter {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    transform: translateX(-20px);
+  }
+
+  &.option-entered {
+    height: auto;
   }
 `;
 
@@ -46,36 +67,72 @@ const StyledCheckboxInput = styled(Input)`
   width: 1.4em;
 `;
 
+const CloseButton = styled.button`
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  padding: .2em;
+  border: 0;
+  background: none;
+  font-size: 1em;
+
+  transition: color .2s ease-in-out;
+
+  &:hover {
+    color: #333;
+    transition: color .2s ease-in-out;
+  }
+`;
+
 const OtherOption = styled.small`margin: 0 .5em;`;
 
-const CheckboxAnswer = ({ options, onChange, onAddOption, onAddOther }) => {
+const CheckboxAnswer = ({
+  options,
+  onChangeLabel,
+  onChangeDescription,
+  onAddOption,
+  onDeleteOption,
+  onAddOther
+}) => {
   return (
     <CheckboxAnswerWrapper>
-      <CheckboxOptions>
+      <TransitionGroup component={CheckboxOptions}>
         {options &&
           options.map(option =>
-            <CheckboxOption key={option.id}>
-              <Field id="test">
-                <StyledCheckboxInput type="checkbox" disabled />
-                <SeamlessLabel
-                  placeholder="Label"
-                  size="medium"
-                  onChange={onChange}
-                  value={option.label}
-                />
-              </Field>
-              <Field id="test">
-                <SeamlessTextArea
-                  cols="30"
-                  rows="5"
-                  placeholder="Optional description"
-                  onChange={onChange}
-                  value={option.description}
-                />
-              </Field>
-            </CheckboxOption>
+            <CSSTransition
+              key={option.id}
+              timeout={duration}
+              classNames="option"
+            >
+              <CheckboxOption key={option.id}>
+                <CloseButton
+                  name={"option." + option.id + ".delete"}
+                  onClick={onDeleteOption}
+                >
+                  &times;
+                </CloseButton>
+                <Field id={"option." + option.id + ".label"}>
+                  <StyledCheckboxInput type="checkbox" disabled />
+                  <SeamlessLabel
+                    placeholder="Label"
+                    size="medium"
+                    onChange={onChangeLabel}
+                    value={option.label}
+                  />
+                </Field>
+                <Field id={"option." + option.id + ".description"}>
+                  <SeamlessTextArea
+                    cols="30"
+                    rows="5"
+                    placeholder="Optional description"
+                    onChange={onChangeDescription}
+                    value={option.description}
+                  />
+                </Field>
+              </CheckboxOption>
+            </CSSTransition>
           )}
-      </CheckboxOptions>
+      </TransitionGroup>
       <div>
         <Button secondary onClick={onAddOption}>
           Add another option
@@ -109,8 +166,10 @@ CheckboxAnswer.propTypes = {
       description: PropTypes.string.isRequired
     })
   ),
-  onChange: PropTypes.func.isRequired,
+  onChangeLabel: PropTypes.func.isRequired,
+  onChangeDescription: PropTypes.func.isRequired,
   onAddOption: PropTypes.func.isRequired,
+  onDeleteOption: PropTypes.func.isRequired,
   onAddOther: PropTypes.func.isRequired
 };
 
