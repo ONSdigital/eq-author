@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
-import { concat, split, merge, filter } from "lodash";
+import { concat, split, merge, reject, find } from "lodash";
 import styled from "styled-components";
 import CheckboxAnswer from "./index";
 
@@ -12,6 +12,11 @@ const CenterXY = styled.div`
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
 `;
+
+const createCounter = (start = 0, step = 1) => () => {
+  start = start + step;
+  return start;
+};
 
 const options = [
   {
@@ -39,9 +44,9 @@ class CheckboxAnswerWrapper extends React.Component {
           value: "",
           description: ""
         }
-      ],
-      counter: 1
+      ]
     };
+    this.nextId = createCounter();
   }
 
   handleChange = ({ name, value }) => {
@@ -49,25 +54,23 @@ class CheckboxAnswerWrapper extends React.Component {
 
     const newState = merge({}, this.state);
 
-    filter(
-      newState.options,
-      option => option.id === parseInt(optionToUpdate, 10)
-    ).forEach(match => merge(match, { [fieldToUpdate]: value }));
+    const foundOption = find(newState.options, {
+      id: parseInt(optionToUpdate, 10)
+    });
+    merge(foundOption, { [fieldToUpdate]: value });
 
     this.setState(newState);
   };
 
   handleAddOption = () => {
-    const nextId = this.state.counter + 1;
     const newOption = {
-      id: nextId,
+      id: this.nextId(),
       label: "",
       value: "",
       description: ""
     };
 
     this.setState({
-      counter: nextId,
       options: concat(this.state.options, newOption)
     });
   };
@@ -77,10 +80,7 @@ class CheckboxAnswerWrapper extends React.Component {
 
     const optionToDelete = split(e.target.name, /\./)[1];
     this.setState({
-      options: filter(
-        this.state.options,
-        option => option.id !== parseInt(optionToDelete, 10)
-      )
+      options: reject(this.state.options, { id: parseInt(optionToDelete, 10) })
     });
   };
 
