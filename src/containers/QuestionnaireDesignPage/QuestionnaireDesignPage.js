@@ -52,7 +52,7 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   handleAnswerAdd = type => {
-    this.props.onAddAnswer("TextField");
+    this.props.onAddAnswer(type);
   };
 
   handleBlur = focused => {

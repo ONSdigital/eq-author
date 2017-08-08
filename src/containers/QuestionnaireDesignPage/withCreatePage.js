@@ -1,7 +1,15 @@
-import { graphql } from "react-apollo";
-import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
+import { graphql, gql } from "react-apollo";
+
 import createQuestionPageMutation from "queries/createQuestionPage.graphql";
-import { find } from "lodash";
+
+const sectionFragment = gql`
+  fragment Section on Section {
+    id
+    pages {
+      id
+    }
+  }
+`;
 
 export const redirectToDesigner = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
@@ -13,21 +21,18 @@ export const createUpdater = (questionnaireId, sectionId) => (
   proxy,
   result
 ) => {
-  const data = proxy.readQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId }
-  });
-
-  const section = find(data.questionnaire.sections, {
-    id: parseInt(sectionId, 10)
+  const id = `Section${sectionId}`;
+  const section = proxy.readFragment({
+    id,
+    fragment: sectionFragment
   });
 
   section.pages.push(result.data.createQuestionPage);
 
-  proxy.writeQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId },
-    data
+  proxy.writeFragment({
+    id,
+    fragment: sectionFragment,
+    data: section
   });
 };
 
