@@ -27,12 +27,6 @@ export const CheckboxOption = styled.div`
 
   position: relative;
 
-  transition: height ${duration / 2}ms ease-out,
-    opacity ${duration}ms ease-out ${duration}ms, padding ${duration}ms ease-out,
-    transform ${duration}ms ease-out ${duration}ms;
-  opacity: 1;
-  transform: translateX(0);
-
   &:not(:first-child) {
     margin-top: .5em;
   }
@@ -40,12 +34,31 @@ export const CheckboxOption = styled.div`
   &.option-enter {
     opacity: 0;
     height: 0;
-    padding: 0;
     transform: translateX(-20px);
   }
 
-  &.option-entered {
-    height: auto;
+  &.option-enter-active {
+    transition: height ${duration / 2}ms ease-out,
+      opacity ${duration / 2}ms ease-out ${duration / 2}ms,
+      transform ${duration / 2}ms ease-out ${duration / 2}ms;
+    opacity: 1;
+    height: 5.625em;
+    transform: translateX(0);
+  }
+
+  &.option-exit {
+    opacity: 1;
+    height: 5.625em;
+    transform: translateX(0);
+  }
+
+  &.option-exit-active {
+    transition: opacity ${duration / 2}ms ease-out,
+      transform ${duration / 2}ms ease-out,
+      height ${duration / 2}ms ease-out ${duration / 2}ms;
+    opacity: 0;
+    height: 0;
+    transform: translateX(-20px);
   }
 `;
 
