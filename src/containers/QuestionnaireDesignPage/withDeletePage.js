@@ -7,8 +7,27 @@ const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
 const getNextPage = (pages, id) => {
   const index = findIndex(pages, { id });
-  const nextPageIndex = index === 0 ? index + 1 : index - 1;
+  let nextPageIndex;
+
+  if (index === 0) {
+    if (pages.length === 1) {
+      nextPageIndex = 0;
+    } else {
+      nextPageIndex = index + 1;
+    }
+  } else {
+    nextPageIndex = index - 1;
+  }
+
   return pages[nextPageIndex].id;
+};
+
+const maybeCreatePage = ({ questionnaire, onAddPage }, sectionId) => {
+  const section = findById(questionnaire.sections, sectionId);
+
+  if (section.pages.length === 1) {
+    return onAddPage(sectionId);
+  }
 };
 
 const maybeRedirect = ownProps => ({ data }) => {
@@ -63,7 +82,9 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       variables: page,
       optimisticResponse,
       update
-    }).then(maybeRedirect(ownProps));
+    })
+      .then(data => maybeCreatePage(ownProps, sectionId).then(() => data))
+      .then(maybeRedirect(ownProps));
   }
 });
 

@@ -141,13 +141,12 @@ const PageNav = ({ section, questionnaire, onDelete }) =>
                 {pageNumber} {page.title || "Page Title"}
               </LinkText>
             </Link>
-            {pages.length > 1 &&
-              <DeleteButton
-                type="button"
-                onClick={() => onDelete(section.id, page.id)}
-              >
-                ×
-              </DeleteButton>}
+            <DeleteButton
+              type="button"
+              onClick={() => onDelete(section.id, page.id)}
+            >
+              ×
+            </DeleteButton>
           </PageItem>
         </CSSTransition>
       );

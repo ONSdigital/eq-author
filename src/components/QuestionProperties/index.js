@@ -12,6 +12,10 @@ const QuestionProperties = ({
   onChange,
   children
 }) => {
+  if (!question) {
+    return null;
+  }
+
   return (
     <Form onSubmit={onSubmit}>
       <Field id="type">
