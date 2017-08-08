@@ -5,7 +5,7 @@ import { Field, Input } from "components/Forms/index";
 import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
 import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
 
-const AnswerText = ({ answer, onChange }) =>
+const TextAnswer = ({ answer, onChange }) =>
   <div>
     <Field id="answer.title">
       <SeamlessInput
@@ -29,9 +29,9 @@ const AnswerText = ({ answer, onChange }) =>
     </Field>
   </div>;
 
-AnswerText.propTypes = {
+TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired
 };
 
-export default AnswerText;
+export default TextAnswer;
