@@ -78,9 +78,9 @@ class QuestionnaireDesign extends React.Component {
   setFocusOnTitle = () => {
     const { section, page } = this.props;
 
-    if (section.title.length === 0) {
+    if (get(section, "title.length") === 0) {
       this.sectionTitle.focus();
-    } else if (page.title.length === 0) {
+    } else if (get(page, "title.length") === 0) {
       this.pageTitle.focus();
     }
   };

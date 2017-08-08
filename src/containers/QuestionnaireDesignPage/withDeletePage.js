@@ -22,29 +22,27 @@ const getNextPage = (pages, id) => {
   return pages[nextPageIndex].id;
 };
 
-const maybeCreatePage = ({ questionnaire, onAddPage }, sectionId) => {
+const handleDelete = (ownProps, sectionId, pageId, res) => {
+  const { questionnaire, history, onAddPage } = ownProps;
+
   const section = findById(questionnaire.sections, sectionId);
+  const currentPageId = parseInt(ownProps.pageId, 10);
+  const deletedPageId = res.data.deletePage.id;
 
   if (section.pages.length === 1) {
-    return onAddPage(sectionId);
-  }
-};
-
-const maybeRedirect = ownProps => ({ data }) => {
-  const currentPageId = parseInt(ownProps.pageId, 10);
-  const deletedPageId = data.deletePage.id;
-
-  if (currentPageId !== deletedPageId) {
-    return;
+    return onAddPage(sectionId).then(() => res);
   }
 
-  const { questionnaire, sectionId, history } = ownProps;
-  const section = findById(questionnaire.sections, sectionId);
-  const pageId = getNextPage(section.pages, currentPageId);
+  if (currentPageId === deletedPageId) {
+    const section = findById(questionnaire.sections, sectionId);
+    const pageId = getNextPage(section.pages, currentPageId);
 
-  history.push(
-    `/questionnaire/${questionnaire.id}/design/${sectionId}/${pageId}`
-  );
+    history.push(
+      `/questionnaire/${questionnaire.id}/design/${sectionId}/${pageId}`
+    );
+  }
+
+  return Promise.resolve(res);
 };
 
 export const createUpdater = (questionnaireId, sectionId, pageId) => (
@@ -82,9 +80,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       variables: page,
       optimisticResponse,
       update
-    })
-      .then(data => maybeCreatePage(ownProps, sectionId).then(() => data))
-      .then(maybeRedirect(ownProps));
+    }).then(res => handleDelete(ownProps, sectionId, pageId, res));
   }
 });
 
