@@ -98,7 +98,7 @@ export const CloseButton = styled.button`
   transition: color .2s ease-in-out;
 
   &:hover {
-    color: #333;
+    color: ${colors.darkGrey};
     transition: color .2s ease-in-out;
   }
 `;
