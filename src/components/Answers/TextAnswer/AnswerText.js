@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CustomPropTypes from "src/custom-prop-types/index";
+import CustomPropTypes from "custom-prop-types/index";
 import { Field, Input } from "components/Forms/index";
 import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
 import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
