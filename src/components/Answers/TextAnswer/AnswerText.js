@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
-import { Field, Input } from "components/Forms";
-import SeamlessInput from "./SeamlessInput";
-import SeamlessTextArea from "./SeamlessTextArea";
+import CustomPropTypes from "src/custom-prop-types/index";
+import { Field, Input } from "components/Forms/index";
+import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
+import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
 
 const AnswerText = ({ answer, onChange }) =>
   <div>
