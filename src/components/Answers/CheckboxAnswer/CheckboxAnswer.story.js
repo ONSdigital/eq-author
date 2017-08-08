@@ -45,9 +45,7 @@ class CheckboxAnswerWrapper extends React.Component {
   }
 
   handleChange = ({ name, value }) => {
-    const params = split(name, /\./);
-    const optionToUpdate = params[1];
-    const fieldToUpdate = params[2];
+    const [, optionToUpdate, fieldToUpdate] = split(name, /\./);
 
     const newState = merge({}, this.state);
 
