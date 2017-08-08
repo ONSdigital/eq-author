@@ -112,41 +112,36 @@ const CheckboxAnswer = ({
   return (
     <CheckboxAnswerWrapper>
       <TransitionGroup component={CheckboxOptions}>
-        {options &&
-          options.map(option =>
-            <CSSTransition
-              key={option.id}
-              timeout={duration}
-              classNames="option"
-            >
-              <CheckboxOption key={option.id}>
-                <Field id={"option." + option.id + ".label"}>
-                  <StyledCheckboxInput type="checkbox" disabled />
-                  <SeamlessLabel
-                    placeholder="Label"
-                    size="medium"
-                    onChange={onChangeLabel}
-                    value={option.label}
-                  />
-                </Field>
-                <Field id={"option." + option.id + ".description"}>
-                  <SeamlessTextArea
-                    cols="30"
-                    rows="5"
-                    placeholder="Optional description"
-                    onChange={onChangeDescription}
-                    value={option.description}
-                  />
-                </Field>
-                <CloseButton
-                  name={"option." + option.id + ".delete"}
-                  onClick={onDeleteOption}
-                >
-                  &times;
-                </CloseButton>
-              </CheckboxOption>
-            </CSSTransition>
-          )}
+        {options.map(option =>
+          <CSSTransition key={option.id} timeout={duration} classNames="option">
+            <CheckboxOption key={option.id}>
+              <Field id={`option.${option.id}.label`}>
+                <StyledCheckboxInput type="checkbox" disabled />
+                <SeamlessLabel
+                  placeholder="Label"
+                  size="medium"
+                  onChange={onChangeLabel}
+                  value={option.label}
+                />
+              </Field>
+              <Field id={`option.${option.id}.description`}>
+                <SeamlessTextArea
+                  cols="30"
+                  rows="5"
+                  placeholder="Optional description"
+                  onChange={onChangeDescription}
+                  value={option.description}
+                />
+              </Field>
+              <CloseButton
+                name={`option.${option.id}.delete`}
+                onClick={onDeleteOption}
+              >
+                &times;
+              </CloseButton>
+            </CheckboxOption>
+          </CSSTransition>
+        )}
       </TransitionGroup>
       <div>
         <Button secondary onClick={onAddOption}>
