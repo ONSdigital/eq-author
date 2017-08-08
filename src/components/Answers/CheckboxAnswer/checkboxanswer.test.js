@@ -1,6 +1,8 @@
 import React from "react";
 
 import Button from "../../Button";
+import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
+import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
 import CheckboxAnswer, {
   CheckboxOption,
   CloseButton,
@@ -56,5 +58,23 @@ describe("CheckboxAnswer", () => {
     });
 
     expect(mockHandlers.onAddOther).toHaveBeenCalled();
+  });
+
+  it("should update label when text entered", () => {
+    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
+    wrapper.find(SeamlessInput).forEach(node => {
+      node.simulate("change");
+    });
+
+    expect(mockHandlers.onChangeLabel).toHaveBeenCalled();
+  });
+
+  it("should update description when text entered", () => {
+    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
+    wrapper.find(SeamlessTextArea).forEach(node => {
+      node.simulate("change");
+    });
+
+    expect(mockHandlers.onChangeDescription).toHaveBeenCalled();
   });
 });
