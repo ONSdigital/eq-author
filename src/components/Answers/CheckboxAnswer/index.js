@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import Button from "../../Button";
-import { Field, Input } from "../../Forms";
+import Button from "components/Button";
+import { Field, Input } from "components/Forms";
 
-import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
-import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
+import SeamlessInput from "components/QuestionnaireDesign/SeamlessInput";
+import SeamlessTextArea from "components/QuestionnaireDesign/SeamlessTextArea";
+
+import { colors } from "constants/theme";
 
 import styled from "styled-components";
 
@@ -21,7 +23,7 @@ const CheckboxAnswerWrapper = styled.div`
 const CheckboxOptions = styled.div`margin: 1em 0;`;
 
 export const CheckboxOption = styled.div`
-  border: 1px solid #e5e5e5;
+  border: 1px solid ${colors.borders};
   padding: 1em 1em 0em 1em;
   border-radius: 4px;
 
@@ -65,11 +67,14 @@ export const CheckboxOption = styled.div`
 const SeamlessLabel = styled(SeamlessInput)`
   display: inline-block !important;
   width: auto;
+  vertical-align: middle;
 `;
 
-export const AddOtherLink = styled.a`
+export const AddOtherLink = styled.button`
   color: #48a6f6;
   text-decoration: none;
+  border: 0;
+  background: none;
 `;
 
 const StyledCheckboxInput = styled(Input)`
@@ -79,9 +84,8 @@ const StyledCheckboxInput = styled(Input)`
 `;
 
 export const CloseButton = styled.button`
-  float: right;
   cursor: pointer;
-  color: #ccc;
+  color: ${colors.lightGrey};
   padding: .2em;
   border: 0;
   background: none;
