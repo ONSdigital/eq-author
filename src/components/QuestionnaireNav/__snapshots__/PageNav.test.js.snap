@@ -21,6 +21,12 @@ exports[`PageNav should render 1`] = `
           Page
         </PageNav__LinkText>
       </PageNav__Link>
+      <PageNav__DeleteButton
+        onClick={[Function]}
+        type="button"
+      >
+        ×
+      </PageNav__DeleteButton>
     </PageNav__PageItem>
   </CSSTransition>
 </TransitionGroup>

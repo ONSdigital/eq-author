@@ -35,6 +35,7 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
       <QuestionnaireNav
         onAddPage={[Function]}
         onAddSection={[Function]}
+        onDeletePage={[Function]}
         questionnaire={
           Object {
             "id": "3",

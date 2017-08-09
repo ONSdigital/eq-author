@@ -98,7 +98,7 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-const DeleteButton = styled.button`
+export const DeleteButton = styled.button`
   color: ${colors.text};
   border: none;
   background: transparent;

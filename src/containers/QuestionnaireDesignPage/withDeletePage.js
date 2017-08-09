@@ -5,7 +5,7 @@ import { find, findIndex, remove } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
-const getNextPage = (pages, id) => {
+export const getNextPage = (pages, id) => {
   const index = findIndex(pages, { id });
   let nextPageIndex;
 
@@ -19,30 +19,30 @@ const getNextPage = (pages, id) => {
     nextPageIndex = index - 1;
   }
 
-  return pages[nextPageIndex].id;
+  return pages[nextPageIndex];
 };
 
-const handleDelete = (ownProps, sectionId, pageId, res) => {
+export const handleDeletion = (ownProps, sectionId, pageId) => {
   const { questionnaire, history, onAddPage } = ownProps;
 
   const section = findById(questionnaire.sections, sectionId);
   const currentPageId = parseInt(ownProps.pageId, 10);
-  const deletedPageId = res.data.deletePage.id;
+  const deletedPageId = parseInt(pageId, 10);
 
   if (section.pages.length === 1) {
-    return onAddPage(sectionId).then(() => res);
+    return onAddPage(sectionId);
   }
 
   if (currentPageId === deletedPageId) {
     const section = findById(questionnaire.sections, sectionId);
-    const pageId = getNextPage(section.pages, currentPageId);
+    const page = getNextPage(section.pages, currentPageId);
 
     history.push(
-      `/questionnaire/${questionnaire.id}/design/${sectionId}/${pageId}`
+      `/questionnaire/${questionnaire.id}/design/${sectionId}/${page.id}`
     );
   }
 
-  return Promise.resolve(res);
+  return Promise.resolve();
 };
 
 export const createUpdater = (questionnaireId, sectionId, pageId) => (
@@ -80,7 +80,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       variables: page,
       optimisticResponse,
       update
-    }).then(res => handleDelete(ownProps, sectionId, pageId, res));
+    }).then(res => handleDeletion(ownProps, sectionId, pageId).then(() => res));
   }
 });
 
