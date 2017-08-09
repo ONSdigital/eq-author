@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { partial } from "lodash";
 
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -143,7 +144,7 @@ const PageNav = ({ section, questionnaire, onDelete }) =>
             </Link>
             <DeleteButton
               type="button"
-              onClick={() => onDelete(section.id, page.id)}
+              onClick={partial(onDelete, section.id, page.id)}
             >
               ×
             </DeleteButton>

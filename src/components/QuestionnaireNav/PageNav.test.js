@@ -5,9 +5,9 @@ import PageNav, { DeleteButton } from "./PageNav";
 describe("PageNav", () => {
   let component, handleDelete;
 
-  const questionnaire = { id: "1", title: "Questionnaire" };
-  const page = { id: "2", title: "Page" };
-  const section = { id: "3", title: "Section", pages: [page] };
+  const questionnaire = { id: 1, title: "Questionnaire" };
+  const page = { id: 2, title: "Page" };
+  const section = { id: 3, title: "Section", pages: [page] };
 
   beforeEach(() => {
     handleDelete = jest.fn();
@@ -27,6 +27,6 @@ describe("PageNav", () => {
 
   it("should invoke callback when delete button clicked", () => {
     component.find(DeleteButton).simulate("click");
-    expect(handleDelete).toHaveBeenCalled();
+    expect(handleDelete).toHaveBeenCalledWith(3, 2);
   });
 });
