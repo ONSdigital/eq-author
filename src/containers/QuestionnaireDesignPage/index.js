@@ -54,9 +54,9 @@ export default compose(
   connect(mapStateToProps),
   withQuestionnaire,
   withUpdateSection,
-  withCreatePage,
   withCreateSection,
   withUpdatePage,
   withDeletePage,
+  withCreatePage,
   withCreateAnswer
 )(QuestionnaireDesign);

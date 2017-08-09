@@ -16,6 +16,10 @@ import AnswerTypeSelector from "components/AnswerTypeSelector";
 
 const duration = 300;
 
+const answerTypes = {
+  TextField: TextAnswer
+};
+
 const PageTransition = props =>
   <CSSTransition
     {...props}
@@ -46,7 +50,7 @@ class QuestionnaireDesign extends React.Component {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
     onChange: PropTypes.func.isRequired,
-    onAnswerAdd: PropTypes.func.isRequired,
+    onAddAnswer: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: PropTypes.oneOf(["section", "page", "answers", null])
@@ -91,7 +95,7 @@ class QuestionnaireDesign extends React.Component {
       section,
       page,
       onChange,
-      onAnswerAdd,
+      onAddAnswer,
       onFocus,
       onBlur,
       focused
@@ -161,7 +165,40 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </PageTransition>
-            <PageTransition key={`answer-${page.id}`}>
+            {page.answers.map(answer => {
+              const Answer = answerTypes[answer.type];
+
+              return (
+                <PageTransition key={answer.id}>
+                  <AnimatedCanvasSection
+                    key={answer.id}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    focused={false}
+                  >
+                    <Answer
+                      answer={answer}
+                      onChangeLabel={function(e) {
+                        console.log(e);
+                      }}
+                      onChangeDescription={function(e) {
+                        console.log(e);
+                      }}
+                      onAddOption={function(e) {
+                        console.log(e);
+                      }}
+                      onDeleteOption={function(e) {
+                        console.log(e);
+                      }}
+                      onAddOther={function(e) {
+                        console.log(e);
+                      }}
+                    />
+                  </AnimatedCanvasSection>
+                </PageTransition>
+              );
+            })}
+            <PageTransition key={`add-answer`}>
               <AnimatedCanvasSection
                 id="answers"
                 onFocus={onFocus}
@@ -169,14 +206,7 @@ class QuestionnaireDesign extends React.Component {
                 focused={focused === "answers"}
                 last
               >
-                {page.answers.map(answer =>
-                  <TextAnswer
-                    key={answer.id}
-                    answer={answer}
-                    onChange={onChange}
-                  />
-                )}
-                <AnswerTypeSelector onSelect={onAnswerAdd} />
+                <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>
             </PageTransition>
           </TransitionGroup>

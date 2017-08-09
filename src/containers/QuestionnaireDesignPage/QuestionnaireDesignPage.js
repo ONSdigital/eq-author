@@ -51,7 +51,7 @@ export class QuestionnaireDesignPage extends Component {
     this.setState(merge({}, this.state, set({}, change.name, change.value)));
   };
 
-  handleAnswerAdd = type => {
+  handleAddAnswer = type => {
     this.props.onAddAnswer(type);
   };
 
@@ -116,7 +116,7 @@ export class QuestionnaireDesignPage extends Component {
               section={section}
               page={page}
               focused={focused}
-              onAnswerAdd={this.handleAnswerAdd}
+              onAddAnswer={this.handleAddAnswer}
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}

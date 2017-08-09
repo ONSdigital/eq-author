@@ -8,7 +8,7 @@ describe("QuestionnaireDesign", () => {
     render(
       <QuestionnaireDesign
         onChange={jest.fn()}
-        onAnswerAdd={jest.fn()}
+        onAddAnswer={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
         {...props}

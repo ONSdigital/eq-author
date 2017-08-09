@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import TextAnswer from "./index";
+import TextAnswer from "./TextAnswer";
 
 const answer = {
   title: "Lorem ipsum",

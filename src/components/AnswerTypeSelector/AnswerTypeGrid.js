@@ -77,7 +77,7 @@ class AnswerTypeGrid extends React.Component {
             type="Checkbox"
             title="Checkbox"
             onClick={this.handleSelect}
-            disabled
+            ref={this.saveButtonRef}
           />
           <AnswerTypeButton
             type="Radio"

@@ -19,7 +19,7 @@ export const createUpdater = pageId => (proxy, result) => {
 
   page.answers.push(result.data.createAnswer);
 
-  proxy.writeQuery({
+  proxy.writeFragment({
     id,
     fragment: pageFragment,
     data: page
@@ -43,6 +43,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     //     __typename: "Section",
     //     id: -1,
     //     description: "",
+    //     pages: [],
     //     ...answer
     //   }
     // };
