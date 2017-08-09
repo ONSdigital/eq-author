@@ -78,7 +78,7 @@ export const AddOtherLink = styled.button`
 `;
 
 const StyledCheckboxInput = styled(Input)`
-  border: 2px solid #979797;
+  border: 2px solid ${colors.borders};
   height: 1.4em;
   width: 1.4em;
 `;

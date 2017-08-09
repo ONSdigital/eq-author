@@ -1,8 +1,8 @@
 import React from "react";
 
-import Button from "../../Button";
-import SeamlessInput from "../../QuestionnaireDesign/SeamlessInput";
-import SeamlessTextArea from "../../QuestionnaireDesign/SeamlessTextArea";
+import Button from "components/Button";
+import SeamlessInput from "components/QuestionnaireDesign/SeamlessInput";
+import SeamlessTextArea from "components/QuestionnaireDesign/SeamlessTextArea";
 import CheckboxAnswer, {
   CheckboxOption,
   CloseButton,
