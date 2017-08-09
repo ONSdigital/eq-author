@@ -5,9 +5,9 @@ import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 
-const TextAnswer = ({ answer, onChange }) =>
+const TextAnswer = ({ answer, index, onChange }) =>
   <div>
-    <Field id="answer.label">
+    <Field id={`answers[${index}].label`}>
       <SeamlessInput
         placeholder="Label"
         size="medium"
@@ -15,7 +15,7 @@ const TextAnswer = ({ answer, onChange }) =>
         value={answer.label}
       />
     </Field>
-    <Field id="answer.description">
+    <Field id={`answers[${index}].description`}>
       <SeamlessTextArea
         cols="30"
         rows="5"

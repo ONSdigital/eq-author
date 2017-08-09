@@ -16,10 +16,6 @@ import AnswerTypeSelector from "components/AnswerTypeSelector";
 
 const duration = 300;
 
-const answerTypes = {
-  TextField: TextAnswer
-};
-
 const PageTransition = props =>
   <CSSTransition
     {...props}
@@ -94,6 +90,7 @@ class QuestionnaireDesign extends React.Component {
     const {
       section,
       page,
+      answers,
       onChange,
       onAddAnswer,
       onFocus,
@@ -165,9 +162,7 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </PageTransition>
-            {page.answers.map(answer => {
-              const Answer = answerTypes[answer.type];
-
+            {answers.map((answer, i) => {
               return (
                 <PageTransition key={answer.id}>
                   <AnimatedCanvasSection
@@ -176,24 +171,7 @@ class QuestionnaireDesign extends React.Component {
                     onBlur={onBlur}
                     focused={false}
                   >
-                    <Answer
-                      answer={answer}
-                      onChangeLabel={function(e) {
-                        console.log(e);
-                      }}
-                      onChangeDescription={function(e) {
-                        console.log(e);
-                      }}
-                      onAddOption={function(e) {
-                        console.log(e);
-                      }}
-                      onDeleteOption={function(e) {
-                        console.log(e);
-                      }}
-                      onAddOther={function(e) {
-                        console.log(e);
-                      }}
-                    />
+                    <TextAnswer answer={answer} onChange={onChange} index={i} />
                   </AnimatedCanvasSection>
                 </PageTransition>
               );

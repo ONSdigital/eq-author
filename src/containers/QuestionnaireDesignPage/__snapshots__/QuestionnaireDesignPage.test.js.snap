@@ -64,7 +64,7 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
     >
       <QuestionnaireDesign
         focused="section"
-        onAnswerAdd={[Function]}
+        onAddAnswer={[Function]}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}

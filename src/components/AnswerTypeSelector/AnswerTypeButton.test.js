@@ -4,7 +4,7 @@ import AnswerTypeButton from "./AnswerTypeButton";
 import { IconGridButton } from "components/IconGrid";
 
 let component, handleClick;
-const answerType = "textfield";
+const answerType = "TextField";
 
 describe("components/AnswerTypeButton", () => {
   beforeEach(() => {

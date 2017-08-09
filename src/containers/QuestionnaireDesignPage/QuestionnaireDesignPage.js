@@ -30,17 +30,18 @@ export class QuestionnaireDesignPage extends Component {
   constructor(props) {
     super(props);
 
-    const { section, page } = props;
+    const { section, page, answers } = props;
 
     this.state = {
       section,
       page,
+      answers,
       focused: "section"
     };
   }
 
-  componentWillReceiveProps({ section, page }) {
-    this.setState({ section, page });
+  componentWillReceiveProps({ section, page, answers }) {
+    this.setState({ section, page, answers });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -94,7 +95,7 @@ export class QuestionnaireDesignPage extends Component {
 
   render() {
     const { breadcrumb, loading, questionnaire, onDeletePage } = this.props;
-    const { section, page, focused } = this.state;
+    const { section, page, answers, focused } = this.state;
 
     if (loading) {
       return null;
@@ -115,6 +116,7 @@ export class QuestionnaireDesignPage extends Component {
             <QuestionnaireDesign
               section={section}
               page={page}
+              answers={answers}
               focused={focused}
               onAddAnswer={this.handleAddAnswer}
               onChange={this.handleChange}
