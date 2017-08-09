@@ -6,8 +6,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Button from "components/Button";
 import { Field, Input } from "components/Forms";
 
-import SeamlessInput from "components/QuestionnaireDesign/SeamlessInput";
-import SeamlessTextArea from "components/QuestionnaireDesign/SeamlessTextArea";
+import SeamlessInput from "components/SeamlessInput/SeamlessInput";
+import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 
 import { colors } from "constants/theme";
 

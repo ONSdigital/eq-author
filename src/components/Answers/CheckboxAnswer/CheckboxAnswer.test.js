@@ -1,19 +1,19 @@
 import React from "react";
 
 import Button from "components/Button";
-import SeamlessInput from "components/QuestionnaireDesign/SeamlessInput";
-import SeamlessTextArea from "components/QuestionnaireDesign/SeamlessTextArea";
+import SeamlessInput from "components/SeamlessInput/SeamlessInput";
+import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import CheckboxAnswer, {
   CheckboxOption,
   CloseButton,
   AddOtherLink
 } from "./index";
 
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 
 describe("CheckboxAnswer", () => {
-  let mockHandlers;
-  beforeEach(() => {
+  let mockHandlers, wrapper;
+  beforeAll(() => {
     mockHandlers = {
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
@@ -21,20 +21,18 @@ describe("CheckboxAnswer", () => {
       onChangeLabel: jest.fn(),
       onChangeDescription: jest.fn()
     };
+    wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
   });
 
   it("should match snapshot", () => {
-    const wrapper = shallow(<CheckboxAnswer {...mockHandlers} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should have one option by default", () => {
-    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
     expect(wrapper.find(CheckboxOption)).toHaveLength(1);
   });
 
   it("should remove option when delete is pressed", () => {
-    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
     wrapper.find(CloseButton).forEach(node => {
       node.simulate("click");
     });
@@ -43,7 +41,6 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should add a new option when add button is clicked", () => {
-    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
     wrapper.find(Button).forEach(node => {
       node.simulate("click");
     });
@@ -52,7 +49,6 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should add other answer when other link is clicked", () => {
-    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
     wrapper.find(AddOtherLink).forEach(node => {
       node.simulate("click");
     });
@@ -61,7 +57,6 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should update label when text entered", () => {
-    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
     wrapper.find(SeamlessInput).forEach(node => {
       node.simulate("change");
     });
@@ -70,7 +65,6 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should update description when text entered", () => {
-    const wrapper = mount(<CheckboxAnswer {...mockHandlers} />);
     wrapper.find(SeamlessTextArea).forEach(node => {
       node.simulate("change");
     });

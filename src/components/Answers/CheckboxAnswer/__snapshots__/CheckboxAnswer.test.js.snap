@@ -1,70 +1,547 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxAnswer should match snapshot 1`] = `
-<CheckboxAnswer__CheckboxAnswerWrapper>
-  <TransitionGroup
-    childFactory={[Function]}
-    component={[Function]}
-  >
-    <CSSTransition
-      classNames="option"
-      timeout={200}
+.c11 {
+  padding: 0.8em 3em;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  -webkit-letter-spacing: -0.2px;
+  -moz-letter-spacing: -0.2px;
+  -ms-letter-spacing: -0.2px;
+  letter-spacing: -0.2px;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  color: #4A4A4A;
+  border: 1px #EAEAEA solid;
+}
+
+.c11:focus,
+.c11:active {
+  outline: none;
+}
+
+.c11[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.c11:focus,
+.c11:hover {
+  background-color: #EAEAEA;
+}
+
+.c7 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 1.125em;
+  font-weight: 700;
+}
+
+.c7:focus {
+  outline: none;
+}
+
+.c7::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c7::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c7:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c7::placeholder {
+  color: #a3a3a3;
+}
+
+.c7[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.c8 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  font-size: 0.875em;
+}
+
+.c8:focus {
+  outline: none;
+}
+
+.c8::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c8::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c8:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c8::placeholder {
+  color: #a3a3a3;
+}
+
+.c8[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.c9 {
+  resize: none;
+}
+
+.c5 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  padding: 0;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1em;
+}
+
+.c5:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
+.c5:checked {
+  background: url(icon-checkbox.svg) no-repeat center;
+  background-size: 0.8em auto;
+}
+
+.c3 {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.c0 {
+  width: 20em;
+  margin: 0 auto;
+}
+
+.c1 {
+  margin: 1em 0;
+}
+
+.c2 {
+  border: 1px solid #EAEAEA;
+  padding: 1em 1em 0em 1em;
+  border-radius: 4px;
+  position: relative;
+}
+
+.c2:not(:first-child) {
+  margin-top: .5em;
+}
+
+.c2.option-enter {
+  opacity: 0;
+  height: 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.c2.option-enter-active {
+  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,-webkit-transform 100ms ease-out 100ms;
+  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
+  transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
+  opacity: 1;
+  height: 5.625em;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.c2.option-exit {
+  opacity: 1;
+  height: 5.625em;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.c2.option-exit-active {
+  -webkit-transition: opacity 100ms ease-out,-webkit-transform 100ms ease-out,height 100ms ease-out 100ms;
+  -webkit-transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
+  transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
+  opacity: 0;
+  height: 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.c6 {
+  display: inline-block !important;
+  width: auto;
+  vertical-align: middle;
+}
+
+.c13 {
+  color: #48a6f6;
+  text-decoration: none;
+  border: 0;
+  background: none;
+}
+
+.c4 {
+  border: 2px solid #EAEAEA;
+  height: 1.4em;
+  width: 1.4em;
+}
+
+.c10 {
+  cursor: pointer;
+  color: #c3c3c3;
+  padding: .2em;
+  border: 0;
+  background: none;
+  font-size: 1em;
+  position: absolute;
+  top: .5em;
+  right: 1em;
+  -webkit-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+
+.c10:hover {
+  color: #35414D;
+  -webkit-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+
+.c12 {
+  margin: 0 .5em;
+}
+
+<CheckboxAnswer
+  onAddOption={[Function]}
+  onAddOther={[Function]}
+  onChangeDescription={[Function]}
+  onChangeLabel={[Function]}
+  onDeleteOption={[Function]}
+  options={
+    Array [
+      Object {
+        "description": "",
+        "id": 1,
+        "label": "",
+      },
+    ]
+  }
+>
+  <CheckboxAnswer__CheckboxAnswerWrapper>
+    <div
+      className="c0"
     >
-      <CheckboxAnswer__CheckboxOption>
-        <Field
-          id="option.1.label"
-        >
-          <CheckboxAnswer__StyledCheckboxInput
-            disabled={true}
-            type="checkbox"
-          />
-          <CheckboxAnswer__SeamlessLabel
-            onChange={[Function]}
-            placeholder="Label"
-            size="medium"
-            value=""
-          />
-        </Field>
-        <Field
-          id="option.1.description"
-        >
-          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-            cols="30"
-            focused={false}
-            onChange={[Function]}
-            optional={false}
-            placeholder="Optional description"
-            rows="5"
-            size="small"
-            value=""
-          />
-        </Field>
-        <CheckboxAnswer__CloseButton
-          name="option.1.delete"
-          onClick={[Function]}
-        >
-          ×
-        </CheckboxAnswer__CloseButton>
-      </CheckboxAnswer__CheckboxOption>
-    </CSSTransition>
-  </TransitionGroup>
-  <div>
-    <Button
-      onClick={[Function]}
-      secondary={true}
-    >
-      Add another option
-    </Button>
-    <CheckboxAnswer__OtherOption>
-      or
-       
-      <CheckboxAnswer__AddOtherLink
-        href="#"
-        onClick={[Function]}
+      <TransitionGroup
+        childFactory={[Function]}
+        component={[Function]}
       >
-        add other
-      </CheckboxAnswer__AddOtherLink>
-    </CheckboxAnswer__OtherOption>
-  </div>
-</CheckboxAnswer__CheckboxAnswerWrapper>
+        <CheckboxAnswer__CheckboxOptions>
+          <div
+            className="c1"
+          >
+            <CSSTransition
+              classNames="option"
+              in={true}
+              onExited={[Function]}
+              timeout={200}
+            >
+              <Transition
+                appear={false}
+                enter={true}
+                exit={true}
+                in={true}
+                mountOnEnter={false}
+                onEnter={[Function]}
+                onEntered={[Function]}
+                onEntering={[Function]}
+                onExit={[Function]}
+                onExited={[Function]}
+                onExiting={[Function]}
+                timeout={200}
+                unmountOnExit={false}
+              >
+                <CheckboxAnswer__CheckboxOption>
+                  <div
+                    className="c2"
+                  >
+                    <Field
+                      id="option.1.label"
+                    >
+                      <Field__StyledField>
+                        <div
+                          className="c3"
+                        >
+                          <CheckboxAnswer__StyledCheckboxInput
+                            disabled={true}
+                            id="option.1.label"
+                            type="checkbox"
+                          >
+                            <withChangeHandler(Input)
+                              className="c4"
+                              disabled={true}
+                              id="option.1.label"
+                              type="checkbox"
+                            >
+                              <Input
+                                className="c4"
+                                disabled={true}
+                                id="option.1.label"
+                                onChange={[Function]}
+                                type="checkbox"
+                              >
+                                <Input__StyledInput
+                                  className="c4"
+                                  disabled={true}
+                                  id="option.1.label"
+                                  name="option.1.label"
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                >
+                                  <input
+                                    className="c4 c5"
+                                    disabled={true}
+                                    id="option.1.label"
+                                    name="option.1.label"
+                                    onChange={[Function]}
+                                    type="checkbox"
+                                  />
+                                </Input__StyledInput>
+                              </Input>
+                            </withChangeHandler(Input)>
+                          </CheckboxAnswer__StyledCheckboxInput>
+                          <CheckboxAnswer__SeamlessLabel
+                            id="option.1.label"
+                            onChange={[Function]}
+                            placeholder="Label"
+                            size="medium"
+                            value=""
+                          >
+                            <withSeamlessness(withChangeHandler(Input))
+                              className="c6"
+                              focused={false}
+                              id="option.1.label"
+                              onChange={[Function]}
+                              optional={false}
+                              placeholder="Label"
+                              size="medium"
+                              value=""
+                            >
+                              <withSeamlessness__StyledSeamless
+                                aria-hidden={false}
+                                className="c6"
+                                name="option.1.label"
+                                onChange={[Function]}
+                                placeholder="Label"
+                                size="medium"
+                                value=""
+                              >
+                                <withChangeHandler(Input)
+                                  aria-hidden={false}
+                                  className="c6 c7"
+                                  name="option.1.label"
+                                  onChange={[Function]}
+                                  placeholder="Label"
+                                  size="medium"
+                                  value=""
+                                >
+                                  <Input
+                                    aria-hidden={false}
+                                    className="c6 c7"
+                                    name="option.1.label"
+                                    onChange={[Function]}
+                                    placeholder="Label"
+                                    size="medium"
+                                    value=""
+                                  >
+                                    <input
+                                      aria-hidden={false}
+                                      className="c6 c7"
+                                      name="option.1.label"
+                                      onChange={[Function]}
+                                      placeholder="Label"
+                                      size="medium"
+                                      type="text"
+                                      value=""
+                                    />
+                                  </Input>
+                                </withChangeHandler(Input)>
+                              </withSeamlessness__StyledSeamless>
+                            </withSeamlessness(withChangeHandler(Input))>
+                          </CheckboxAnswer__SeamlessLabel>
+                        </div>
+                      </Field__StyledField>
+                    </Field>
+                    <Field
+                      id="option.1.description"
+                    >
+                      <Field__StyledField>
+                        <div
+                          className="c3"
+                        >
+                          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+                            cols="30"
+                            focused={false}
+                            id="option.1.description"
+                            onChange={[Function]}
+                            optional={false}
+                            placeholder="Optional description"
+                            rows="5"
+                            size="small"
+                            value=""
+                          >
+                            <withSeamlessness__StyledSeamless
+                              aria-hidden={false}
+                              name="option.1.description"
+                              onChange={[Function]}
+                              placeholder="Optional description"
+                              size="small"
+                              value=""
+                            >
+                              <withChangeHandler(SeamlessTextArea__TextArea)
+                                aria-hidden={false}
+                                className="c8"
+                                name="option.1.description"
+                                onChange={[Function]}
+                                placeholder="Optional description"
+                                size="small"
+                                value=""
+                              >
+                                <SeamlessTextArea__TextArea
+                                  aria-hidden={false}
+                                  className="c8"
+                                  name="option.1.description"
+                                  onChange={[Function]}
+                                  placeholder="Optional description"
+                                  size="small"
+                                  value=""
+                                >
+                                  <TextareaAutosize
+                                    aria-hidden={false}
+                                    className="c8 c9"
+                                    name="option.1.description"
+                                    onChange={[Function]}
+                                    onHeightChange={[Function]}
+                                    placeholder="Optional description"
+                                    size="small"
+                                    useCacheForDOMMeasurements={false}
+                                    value=""
+                                  >
+                                    <textarea
+                                      aria-hidden={false}
+                                      className="c8 c9"
+                                      name="option.1.description"
+                                      onChange={[Function]}
+                                      placeholder="Optional description"
+                                      size="small"
+                                      style={
+                                        Object {
+                                          "height": 0,
+                                        }
+                                      }
+                                      value=""
+                                    />
+                                  </TextareaAutosize>
+                                </SeamlessTextArea__TextArea>
+                              </withChangeHandler(SeamlessTextArea__TextArea)>
+                            </withSeamlessness__StyledSeamless>
+                          </withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
+                        </div>
+                      </Field__StyledField>
+                    </Field>
+                    <CheckboxAnswer__CloseButton
+                      name="option.1.delete"
+                      onClick={[Function]}
+                    >
+                      <button
+                        className="c10"
+                        name="option.1.delete"
+                        onClick={[Function]}
+                      >
+                        ×
+                      </button>
+                    </CheckboxAnswer__CloseButton>
+                  </div>
+                </CheckboxAnswer__CheckboxOption>
+              </Transition>
+            </CSSTransition>
+          </div>
+        </CheckboxAnswer__CheckboxOptions>
+      </TransitionGroup>
+      <div>
+        <Button
+          onClick={[Function]}
+          secondary={true}
+        >
+          <Button__StyledButton
+            onClick={[Function]}
+            secondary={true}
+          >
+            <button
+              className="c11"
+              onClick={[Function]}
+            >
+              Add another option
+            </button>
+          </Button__StyledButton>
+        </Button>
+        <CheckboxAnswer__OtherOption>
+          <small
+            className="c12"
+          >
+            or
+             
+            <CheckboxAnswer__AddOtherLink
+              href="#"
+              onClick={[Function]}
+            >
+              <button
+                className="c13"
+                href="#"
+                onClick={[Function]}
+              >
+                add other
+              </button>
+            </CheckboxAnswer__AddOtherLink>
+          </small>
+        </CheckboxAnswer__OtherOption>
+      </div>
+    </div>
+  </CheckboxAnswer__CheckboxAnswerWrapper>
+</CheckboxAnswer>
 `;
