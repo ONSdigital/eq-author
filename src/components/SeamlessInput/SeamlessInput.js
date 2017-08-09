@@ -1,5 +1,5 @@
 import React from "react";
-import withSeamlessness from "./withSeamlessness";
+import withSeamlessness from "../QuestionnaireDesign/withSeamlessness";
 import withChangeHandler from "components/Forms/withChangeHandler";
 import { flow } from "lodash";
 

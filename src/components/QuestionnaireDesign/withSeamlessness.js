@@ -67,7 +67,8 @@ const withSeamlessness = WrappedComponent => {
       optional: PropTypes.bool,
       autoFocus: PropTypes.bool,
       placeholder: PropTypes.string,
-      size: PropTypes.oneOf(Object.keys(sizes))
+      size: PropTypes.oneOf(Object.keys(sizes)),
+      className: PropTypes.string
     };
 
     static displayName = `withSeamlessness(${WrappedComponent.displayName})`;
@@ -81,13 +82,15 @@ const withSeamlessness = WrappedComponent => {
         placeholder,
         autoFocus,
         size,
-        onChange
+        onChange,
+        className
       } = this.props;
 
       const shouldBeHidden = optional && !value && !focused;
 
       return (
         <StyledSeamless
+          className={className}
           placeholder={placeholder}
           autoFocus={autoFocus}
           value={value}

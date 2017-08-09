@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import AutoResizeTextArea from "react-textarea-autosize";
-import withSeamlessness from "./withSeamlessness";
+import withSeamlessness from "../QuestionnaireDesign/withSeamlessness";
 import withChangeHandler from "components/Forms/withChangeHandler";
 import { flow } from "lodash";
 

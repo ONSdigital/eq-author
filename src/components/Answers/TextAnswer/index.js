@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
-import { Field, Input } from "components/Forms";
-import SeamlessInput from "./SeamlessInput";
-import SeamlessTextArea from "./SeamlessTextArea";
+import CustomPropTypes from "custom-prop-types/index";
+import { Field, Input } from "components/Forms/index";
+import SeamlessInput from "../../SeamlessInput/SeamlessInput";
+import SeamlessTextArea from "../../SeamlessTextArea/SeamlessTextArea";
 
-const AnswerText = ({ answer, onChange }) =>
+const TextAnswer = ({ answer, onChange }) =>
   <div>
     <Field id="answer.title">
       <SeamlessInput
@@ -29,9 +29,9 @@ const AnswerText = ({ answer, onChange }) =>
     </Field>
   </div>;
 
-AnswerText.propTypes = {
+TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired
 };
 
-export default AnswerText;
+export default TextAnswer;

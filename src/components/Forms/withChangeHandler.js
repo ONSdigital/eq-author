@@ -7,7 +7,8 @@ const withChangeHandler = WrappedComponent => {
       onChange: PropTypes.func,
       value: PropTypes.string,
       id: PropTypes.string,
-      name: PropTypes.string
+      name: PropTypes.string,
+      className: PropTypes.string
     };
 
     static displayName = `withChangeHandler(${WrappedComponent.displayName})`;
@@ -21,12 +22,13 @@ const withChangeHandler = WrappedComponent => {
     };
 
     render() {
-      const { value, ...otherProps } = this.props;
+      const { value, className, ...otherProps } = this.props;
       return (
         <WrappedComponent
           {...otherProps}
           value={value === null ? "" : value}
           onChange={this.handleChange}
+          className={className}
         />
       );
     }
