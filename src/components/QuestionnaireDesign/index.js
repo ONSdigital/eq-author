@@ -45,11 +45,23 @@ class QuestionnaireDesign extends React.Component {
   static propTypes = {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
+    answers: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
-    focused: PropTypes.oneOf(["section", "page", "answers", null])
+    focused: function(props, propName, componentName) {
+      if (!/(section|page|answer)/.test(props[propName])) {
+        return new Error(
+          "Invalid prop `" +
+            props[propName] +
+            "` supplied to" +
+            " `" +
+            componentName +
+            "`. Validation failed."
+        );
+      }
+    }
   };
 
   componentDidMount() {
@@ -166,10 +178,11 @@ class QuestionnaireDesign extends React.Component {
               return (
                 <PageTransition key={answer.id}>
                   <AnimatedCanvasSection
+                    id={`answer-${answer.id}`}
                     key={answer.id}
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    focused={false}
+                    focused={focused === `answer-${answer.id}`}
                   >
                     <TextAnswer answer={answer} onChange={onChange} index={i} />
                   </AnimatedCanvasSection>
@@ -178,11 +191,9 @@ class QuestionnaireDesign extends React.Component {
             })}
             <PageTransition key={`add-answer`}>
               <AnimatedCanvasSection
-                id="answers"
+                id="add-answer"
                 onFocus={onFocus}
                 onBlur={onBlur}
-                focused={focused === "answers"}
-                last
               >
                 <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>

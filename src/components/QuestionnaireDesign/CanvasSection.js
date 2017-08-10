@@ -33,6 +33,7 @@ export default class CanvasSection extends Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     focused: PropTypes.bool,
+    answerId: PropTypes.string,
     id: PropTypes.string
   };
 
@@ -47,7 +48,7 @@ export default class CanvasSection extends Component {
   };
 
   handleBlur = e => {
-    this.props.onBlur(null);
+    this.props.onBlur(null, this.props.answerId);
   };
 
   render() {

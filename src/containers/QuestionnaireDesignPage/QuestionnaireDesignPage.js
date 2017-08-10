@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { merge, set, noop, isNil } from "lodash";
+import { merge, set, noop, find, isNil } from "lodash";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -20,9 +20,11 @@ export class QuestionnaireDesignPage extends Component {
     onAddAnswer: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
+    onAnswerUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
+    answers: PropTypes.arrayOf(PropTypes.object),
     question: CustomPropTypes.question,
     loading: PropTypes.bool.isRequired
   };
@@ -59,12 +61,18 @@ export class QuestionnaireDesignPage extends Component {
   handleBlur = focused => {
     this.setFocused(focused);
 
-    switch (this.state.focused) {
-      case "section":
+    const answerId = this.state.focused.split("answer-")[1];
+    switch (true) {
+      case /section/.test(this.state.focused):
         this.props.onSectionUpdate(this.state.section);
         break;
-      case "page":
+      case /page/.test(this.state.focused):
         this.props.onPageUpdate(this.state.page);
+        break;
+      case /answer/.test(this.state.focused):
+        this.props.onAnswerUpdate(
+          find(this.state.answers, { id: parseInt(answerId, 10) })
+        );
         break;
       default:
         break;

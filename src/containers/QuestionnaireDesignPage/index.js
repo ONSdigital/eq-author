@@ -5,6 +5,7 @@ import { find, pick } from "lodash";
 import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
 import updateSectionMutation from "queries/updateSection.graphql";
 import updatePageMutation from "queries/updatePage.graphql";
+import updateAnswerMutation from "queries/updateAnswer.graphql";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withCreatePage from "./withCreatePage";
 import withCreateSection from "./withCreateSection";
@@ -51,10 +52,17 @@ export const withUpdatePage = graphql(updatePageMutation, {
   })
 });
 
+export const withUpdateAnswer = graphql(updateAnswerMutation, {
+  props: ({ mutate }) => ({
+    onAnswerUpdate: answer => mutate({ variables: answer })
+  })
+});
+
 export default compose(
   connect(mapStateToProps),
   withQuestionnaire,
   withUpdateSection,
+  withUpdateAnswer,
   withCreateSection,
   withUpdatePage,
   withDeletePage,

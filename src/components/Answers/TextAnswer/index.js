@@ -31,7 +31,8 @@ const TextAnswer = ({ answer, index, onChange }) =>
 
 TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired
 };
 
 export default TextAnswer;

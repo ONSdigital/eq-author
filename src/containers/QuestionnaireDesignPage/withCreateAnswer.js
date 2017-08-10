@@ -1,4 +1,4 @@
-import { graphql, gql } from "react-apollo";
+import { graphql } from "react-apollo";
 import createAnswerMutation from "queries/createAnswer.graphql";
 
 // const answerFragment = gql`
