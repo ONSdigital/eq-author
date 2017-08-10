@@ -278,7 +278,7 @@ describe("MockDataStore", () => {
     ];
 
     it("should be possible to create a new option", () => {
-      const option = store.createOption(options[0]);
+      store.createOption(options[0]);
       expect(store.getOption(1)).toMatchObject(options[0]);
     });
 
