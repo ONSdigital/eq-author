@@ -43,7 +43,7 @@ class MockDataStore {
     return this.options[id];
   }
 
-  createQuestionaire(questionnaire) {
+  createQuestionnaire(questionnaire) {
     const id = ++this.counter.questionnaire;
     this.questionnaires[id] = merge(questionnaire, { id }, { sections: [] });
 

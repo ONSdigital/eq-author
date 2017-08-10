@@ -50,7 +50,7 @@ export default {
   }),
   Mutation: () => ({
     createQuestionnaire: (root, args, ctx) => {
-      return persistMutation(DataStore.createQuestionaire(merge({}, args)));
+      return persistMutation(DataStore.createQuestionnaire(merge({}, args)));
     },
     updateQuestionnaire: (root, args, ctx) => {
       return persistMutation(DataStore.updateQuestionnaire(merge({}, args)));
@@ -59,7 +59,19 @@ export default {
       return persistMutation(DataStore.deleteQuestionnaire(merge({}, args)));
     },
     createSection: (root, args, ctx) => {
-      return persistMutation(DataStore.createSection(merge({}, args)));
+      const section = persistMutation(DataStore.createSection(merge({}, args)));
+
+      persistMutation(
+        DataStore.createPage({
+          pageType: "QuestionPage",
+          title: "",
+          description: "",
+          type: "General",
+          sectionId: section.id
+        })
+      );
+
+      return section;
     },
     updateSection: (root, args, ctx) => {
       return persistMutation(DataStore.updateSection(merge({}, args)));
