@@ -193,11 +193,12 @@ describe("MockDataStore", () => {
     it("should be possible to delete a page", () => {
       const page = store.getPage(1);
 
-      store.deletePage(merge({}, page));
+      const deletedPage = store.deletePage(merge({}, { id: page.id }));
 
       expect(values(store.pages)).toHaveLength(0);
       expect(store.getPage(1)).toBeUndefined();
       expect(store.getSection(1).pages).not.toContain(page);
+      expect(deletedPage.__typename).not.toBeUndefined();
     });
 
     it("should be possible to delete a page containing answers", () => {

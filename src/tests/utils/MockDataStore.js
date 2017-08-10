@@ -146,7 +146,7 @@ class MockDataStore {
     }
 
     delete this.pages[page.id];
-    return page;
+    return pageToDelete;
   }
 
   createAnswer(answer) {
