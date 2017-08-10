@@ -151,7 +151,7 @@ class MockDataStore {
 
   createAnswer(answer) {
     const id = ++this.counter.answer;
-    this.answers[id] = merge(answer, { id }, { options: [] });
+    this.answers[id] = merge(answer, { id, options: [] });
 
     const answerType = this.answers[id].type;
     if (answerType === "Checkbox" || answerType === "Radio") {
@@ -165,7 +165,7 @@ class MockDataStore {
         defaultOptions.push(defaultOption);
       }
 
-      forEach(defaultOptions, o => this.createOption(merge({}, o)));
+      defaultOptions.forEach(it => this.createOption(merge({}, it)));
     }
 
     this.getPage(answer.pageId).answers.push(this.answers[id]);
@@ -200,8 +200,7 @@ class MockDataStore {
   }
 
   updateOption(option) {
-    this.options[option.id] = merge(this.options[option.id], option);
-    return this.options[option.id];
+    return merge(this.options[option.id], option);
   }
 
   deleteOption(option) {
