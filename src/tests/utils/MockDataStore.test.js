@@ -255,4 +255,120 @@ describe("MockDataStore", () => {
       expect(store.getPage(1).answers).not.toContain(answer);
     });
   });
+
+  describe("options", () => {
+    let store;
+    beforeEach(() => {
+      store = new MockDataStore();
+    });
+
+    const options = [
+      {
+        label: "Option one",
+        description: "The first option"
+      },
+      {
+        label: "Option two",
+        description: "The second option"
+      },
+      {
+        label: "Option three",
+        description: "The third option"
+      }
+    ];
+
+    it("should be possible to create a new option", () => {
+      const option = store.createOption(options[0]);
+      expect(store.getOption(1)).toMatchObject(options[0]);
+    });
+
+    it("should assign a new id for each newly added option", () => {
+      store.createOption(options[0]);
+      store.createOption(options[1]);
+
+      expect(store.getOption(1).id).toEqual(1);
+      expect(store.getOption(2).id).toEqual(2);
+    });
+
+    it("should continue to increment Ids even if option deleted", () => {
+      store.createOption(options[0]);
+      store.createOption(options[1]);
+      store.deleteOption({ id: 1 });
+      store.deleteOption({ id: 2 });
+
+      store.createOption(options[2]);
+
+      expect(store.getOption(3).id).toEqual(3);
+    });
+
+    it("should add the new option to an answer if answerId specified", () => {
+      store.createQuestionaire({});
+      store.createAnswer({ label: "Checkbox answer", pageId: 1 });
+
+      const option = store.createOption(merge({}, options[0], { answerId: 1 }));
+
+      expect(store.getAnswer(1).options).toContain(option);
+    });
+
+    it("should be possible to update an option", () => {
+      store.createOption(options[0]);
+      store.updateOption(
+        merge({}, store.getOption(1), { description: "Updated description" })
+      );
+      expect(store.getOption(1).description).toEqual("Updated description");
+    });
+
+    it("should have 1 option in the store after adding a single option", () => {
+      store.createOption(options[0]);
+      expect(values(store.options)).toHaveLength(1);
+    });
+
+    it("should have 0 options in the store after removing an option", () => {
+      store.createOption(options[0]);
+      store.deleteOption({ id: 1 });
+
+      expect(values(store.options)).toHaveLength(0);
+    });
+
+    it("should return undefined when trying to retrieve a deleted option from the store", () => {
+      store.createOption(options[0]);
+      store.deleteOption({ id: 1 });
+
+      expect(store.getOption(1)).toBeUndefined();
+    });
+
+    it("should remove the option from the answer when option is deleted", () => {
+      store.createQuestionaire({});
+      store.createAnswer({ label: "Checkbox answer", pageId: 1 });
+      const option = store.createOption(merge({}, options[0], { answerId: 1 }));
+
+      store.deleteOption({ id: 1 });
+
+      expect(store.getAnswer(1).options).not.toContain(option);
+    });
+
+    describe("answer specific option behaviour", () => {
+      it("should create a single option by default for a checkbox answer", () => {
+        store.createQuestionaire({});
+        store.createAnswer({
+          label: "Checkbox answer",
+          type: "Checkbox",
+          pageId: 1
+        });
+
+        expect(store.getAnswer(1).options).toHaveLength(1);
+      });
+
+      it("should create two default options for a radio answer", () => {
+        store.createQuestionaire({});
+        store.createAnswer({
+          label: "Checkbox answer",
+          type: "Radio",
+          pageId: 1
+        });
+
+        expect(store.getAnswer(1).options).toHaveLength(2);
+      });
+    });
+  });
 });

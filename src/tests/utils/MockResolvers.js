@@ -1,14 +1,16 @@
 import { merge } from "lodash";
 import MockDataStore from "./MockDataStore";
 
+const localStorageKey = "mockDataStore";
+
 const updateLocalStorage = dataStore => {
   if (typeof Storage !== "undefined") {
-    localStorage.setItem("mockDataStore", JSON.stringify(dataStore));
+    localStorage.setItem(localStorageKey, JSON.stringify(dataStore));
   }
 };
 
 const createMockDataStore = () => {
-  const seed = localStorage.getItem("mockDataStore");
+  const seed = localStorage.getItem(localStorageKey);
   return seed ? new MockDataStore(JSON.parse(seed)) : new MockDataStore();
 };
 
@@ -41,6 +43,9 @@ export default {
     },
     answer: (root, args, ctx) => {
       return DataStore.getAnswer(args.id);
+    },
+    option: (root, args, ctx) => {
+      return DataStore.getOption(args.id);
     }
   }),
   Mutation: () => ({
@@ -97,6 +102,15 @@ export default {
     },
     deleteAnswer: (root, args, ctx) => {
       return persistMutation(DataStore.deleteAnswer(merge({}, args)));
+    },
+    createOption: (root, args, ctx) => {
+      return persistMutation(DataStore.createOption(merge({}, args)));
+    },
+    updateOption: (root, args, ctx) => {
+      return persistMutation(DataStore.updateOption(merge({}, args)));
+    },
+    deleteOption: (root, args, ctx) => {
+      return persistMutation(DataStore.deleteOption(merge({}, args)));
     }
   })
 };

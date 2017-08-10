@@ -6,13 +6,15 @@ class MockDataStore {
       questionnaire: 0,
       section: 0,
       page: 0,
-      answer: 0
+      answer: 0,
+      option: 0
     };
 
     this.questionnaires = {};
     this.sections = {};
     this.pages = {};
     this.answers = {};
+    this.options = {};
 
     merge(this, seedData);
   }
@@ -35,6 +37,10 @@ class MockDataStore {
 
   getAnswer(id) {
     return this.answers[id];
+  }
+
+  getOption(id) {
+    return this.options[id];
   }
 
   createQuestionaire(questionnaire) {
@@ -145,7 +151,22 @@ class MockDataStore {
 
   createAnswer(answer) {
     const id = ++this.counter.answer;
-    this.answers[id] = merge(answer, { id });
+    this.answers[id] = merge(answer, { id }, { options: [] });
+
+    const answerType = this.answers[id].type;
+    if (answerType === "Checkbox" || answerType === "Radio") {
+      const defaultOptions = [];
+      const defaultOption = {
+        answerId: id
+      };
+
+      defaultOptions.push(defaultOption);
+      if (answerType === "Radio") {
+        defaultOptions.push(defaultOption);
+      }
+
+      forEach(defaultOptions, o => this.createOption(merge({}, o)));
+    }
 
     this.getPage(answer.pageId).answers.push(this.answers[id]);
     return this.answers[id];
@@ -166,6 +187,33 @@ class MockDataStore {
 
     delete this.answers[answer.id];
     return answer;
+  }
+
+  createOption(option) {
+    const id = ++this.counter.option;
+    this.options[id] = merge(option, { id });
+
+    if (option.answerId) {
+      this.getAnswer(option.answerId).options.push(this.options[id]);
+    }
+    return this.options[id];
+  }
+
+  updateOption(option) {
+    this.options[option.id] = merge(this.options[option.id], option);
+    return this.options[option.id];
+  }
+
+  deleteOption(option) {
+    const deletedOption = this.options[option.id];
+    if (deletedOption.answerId) {
+      remove(this.answers[deletedOption.answerId].options, {
+        id: deletedOption.id
+      });
+    }
+
+    delete this.options[option.id];
+    return deletedOption;
   }
 }
 
