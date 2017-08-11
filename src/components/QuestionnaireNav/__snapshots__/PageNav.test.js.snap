@@ -22,6 +22,7 @@ exports[`PageNav should render 1`] = `
         </PageNav__LinkText>
       </PageNav__Link>
       <PageNav__DeleteButton
+        aria-label="Delete page"
         onClick={[Function]}
         type="button"
       >
