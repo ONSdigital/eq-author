@@ -83,7 +83,7 @@ const StyledCheckboxInput = styled(Input)`
   width: 1.4em;
 `;
 
-export const CloseButton = styled.button`
+export const DeleteButton = styled.button`
   cursor: pointer;
   color: ${colors.lightGrey};
   padding: .2em;
@@ -137,13 +137,13 @@ const CheckboxAnswer = ({
                   value={option.description}
                 />
               </Field>
-              <CloseButton
+              <DeleteButton
                 aria-label="Delete option"
                 name={`option.${option.id}.delete`}
                 onClick={onDeleteOption}
               >
                 &times;
-              </CloseButton>
+              </DeleteButton>
             </CheckboxOption>
           </CSSTransition>
         )}
