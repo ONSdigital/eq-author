@@ -144,6 +144,7 @@ const PageNav = ({ section, questionnaire, onDelete }) =>
             </Link>
             <DeleteButton
               type="button"
+              aria-label="Delete page"
               onClick={partial(onDelete, section.id, page.id)}
             >
               ×

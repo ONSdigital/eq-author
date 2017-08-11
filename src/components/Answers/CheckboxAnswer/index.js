@@ -138,6 +138,7 @@ const CheckboxAnswer = ({
                 />
               </Field>
               <CloseButton
+                aria-label="Delete option"
                 name={`option.${option.id}.delete`}
                 onClick={onDeleteOption}
               >
