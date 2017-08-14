@@ -69,3 +69,7 @@ deploy:
     branch:
       - master
       - 89-harden-storybook
+
+branches:
+    only:
+        - master
