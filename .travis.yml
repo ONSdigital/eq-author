@@ -37,6 +37,11 @@ script:
   - yarn lint -- --max-warnings=0
   - yarn coverage
   - yarn build
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
+  - docker build -t onsdigital/eq-author:$TAG -f Dockerfile .
+  - echo "Pushing with tag [$TAG]"
+  - docker push onsdigital/eq-author:$TAG
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
