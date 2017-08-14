@@ -146,7 +146,7 @@ export class PageNavItem extends React.Component {
 
     this.setState({ isDeleting: true });
 
-    return onDelete(sectionId, pageId).catch(() => {
+    onDelete(sectionId, pageId).catch(() => {
       this.setState({ isDeleting: false });
     });
   };

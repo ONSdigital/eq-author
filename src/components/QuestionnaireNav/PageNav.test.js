@@ -32,6 +32,10 @@ describe("PageNav", () => {
       pageNavComponent = component.find(PageNavItem).dive();
     });
 
+    it("should render", () => {
+      expect(pageNavComponent).toMatchSnapshot();
+    });
+
     describe("when delete button clicked", () => {
       it("should invoke callback when delete button clicked", () => {
         pageNavComponent.find(DeleteButton).simulate("click");
@@ -44,17 +48,15 @@ describe("PageNav", () => {
       });
 
       it("should set isDeleting state false in event of failure", () => {
-        const handleDelete = jest.fn(() => Promise.reject());
+        const handleCatch = jest.fn(arg => arg());
+        const handleDelete = () => ({ catch: handleCatch });
+
         pageNavComponent.setProps({ onDelete: handleDelete });
+        pageNavComponent.find(DeleteButton).simulate("click");
 
-        return pageNavComponent.instance().handleDelete().then(() => {
-          expect(pageNavComponent.state().isDeleting).toBe(false);
-        });
+        expect(handleCatch).toHaveBeenCalled();
+        expect(pageNavComponent.state().isDeleting).toBe(false);
       });
-    });
-
-    it("should render", () => {
-      expect(pageNavComponent).toMatchSnapshot();
     });
   });
 });
