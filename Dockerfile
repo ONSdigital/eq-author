@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN npm install -g serve
 
-ENTRYPOINT yarn build; serve -p 3000 build/
+ENTRYPOINT ENTRYPOINT ["sh", "docker-entrypoint.sh"]
 
 # Install
 COPY . /app
