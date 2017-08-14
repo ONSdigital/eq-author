@@ -4,13 +4,8 @@ WORKDIR /app
 
 RUN npm install -g serve
 
-ENTRYPOINT serve -p 3000 build/
+ENTRYPOINT yarn build; serve -p 3000 build/
 
 # Install
 COPY . /app
 RUN yarn install
-RUN yarn build
-
-# Tidy up
-RUN rm -rf /app/node_modules
-RUN yarn cache clean
