@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { partial } from "lodash";
 
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -10,7 +9,7 @@ import { colors } from "constants/theme";
 
 const duration = 200;
 
-const PageItem = styled.li`
+const StyledPageItem = styled.li`
   padding: 0;
   margin: 0;
   font-weight: 500;
@@ -63,7 +62,7 @@ const Link = styled(NavLink)`
     z-index: 1;
   }
 
-  ${PageItem}:hover & {
+  ${StyledPageItem}:hover & {
     &::before {
       opacity: 0.5;
       width: 100%;
@@ -91,6 +90,8 @@ const LinkText = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  ${({ fade }) => fade && "opacity: 0.5"};
 `;
 
 const NavList = styled.ol`
@@ -115,7 +116,7 @@ export const DeleteButton = styled.button`
   opacity: 0;
   transition: transform 0.1s ease-in, opacity 0.1s ease-in;
 
-  ${PageItem}:hover &,
+  ${StyledPageItem}:hover &,
   ${Link}:focus + &,
   &:focus {
     opacity: 1;
@@ -126,30 +127,76 @@ export const DeleteButton = styled.button`
 const getLink = (questionnaireId, sectionId, pageId) =>
   `/questionnaire/${questionnaireId}/design/${sectionId}/${pageId}`;
 
+export class PageNavItem extends React.Component {
+  state = {
+    isDeleting: false
+  };
+
+  static propTypes = {
+    sectionId: PropTypes.number.isRequired,
+    questionnaireId: PropTypes.number.isRequired,
+    pageId: PropTypes.number.isRequired,
+    pageNumber: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    onDelete: PropTypes.func.isRequired
+  };
+
+  handleDelete = () => {
+    const { sectionId, pageId, onDelete } = this.props;
+
+    this.setState({ isDeleting: true });
+
+    return onDelete(sectionId, pageId).catch(() => {
+      this.setState({ isDeleting: false });
+    });
+  };
+
+  render() {
+    const {
+      sectionId,
+      questionnaireId,
+      pageId,
+      title,
+      pageNumber
+    } = this.props;
+
+    return (
+      <StyledPageItem>
+        <Link
+          to={getLink(questionnaireId, sectionId, pageId)}
+          aria-disabled={pageId < 0}
+          activeClassName="selected"
+        >
+          <LinkText fade={this.state.isDeleting}>
+            {pageNumber} {title || "Page Title"}
+          </LinkText>
+        </Link>
+        <DeleteButton
+          type="button"
+          aria-label="Delete page"
+          onClick={this.handleDelete}
+        >
+          ×
+        </DeleteButton>
+      </StyledPageItem>
+    );
+  }
+}
+
 const PageNav = ({ section, questionnaire, onDelete }) =>
   <TransitionGroup component={NavList}>
     {section.pages.map((page, i, pages) => {
       const pageNumber = `${section.number}${i + 1}`;
       return (
         <CSSTransition key={page.id} timeout={duration} classNames="page">
-          <PageItem>
-            <Link
-              to={getLink(questionnaire.id, section.id, page.id)}
-              aria-disabled={page.id < 0}
-              activeClassName="selected"
-            >
-              <LinkText>
-                {pageNumber} {page.title || "Page Title"}
-              </LinkText>
-            </Link>
-            <DeleteButton
-              type="button"
-              aria-label="Delete page"
-              onClick={partial(onDelete, section.id, page.id)}
-            >
-              ×
-            </DeleteButton>
-          </PageItem>
+          <PageNavItem
+            title={page.title}
+            pageNumber={pageNumber}
+            pageId={page.id}
+            sectionId={section.id}
+            questionnaireId={questionnaire.id}
+            onDelete={onDelete}
+          />
         </CSSTransition>
       );
     })}

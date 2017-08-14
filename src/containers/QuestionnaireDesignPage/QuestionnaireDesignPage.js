@@ -77,10 +77,6 @@ export class QuestionnaireDesignPage extends Component {
     this.props.onAddSection(this.props.questionnaire.id);
   };
 
-  handleDeletePage = (sectionId, pageId) => {
-    this.props.onDeletePage(sectionId, pageId);
-  };
-
   setFocused = focused => {
     if (focused === null) {
       return;
@@ -92,7 +88,7 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   render() {
-    const { breadcrumb, loading, questionnaire } = this.props;
+    const { breadcrumb, loading, questionnaire, onDeletePage } = this.props;
     const { section, page, focused } = this.state;
 
     if (loading) {
@@ -107,7 +103,7 @@ export class QuestionnaireDesignPage extends Component {
               questionnaire={questionnaire}
               onAddPage={this.handleAddPage}
               onAddSection={this.handleAddSection}
-              onDeletePage={this.handleDeletePage}
+              onDeletePage={onDeletePage}
             />
           </Column>
           <Column gutters={false}>

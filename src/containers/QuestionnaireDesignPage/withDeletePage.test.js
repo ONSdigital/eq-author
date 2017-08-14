@@ -149,21 +149,6 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
           props.onDeletePage(deletedPage.sectionId, deletedPage.id)
         ).resolves.toBe(result);
       });
-
-      it("should respond with an optimisticResponse", () => {
-        return props
-          .onDeletePage(deletedPage.sectionId, deletedPage.id)
-          .then(() => {
-            expect(mutate.mock.calls[0][0]).toMatchObject({
-              optimisticResponse: {
-                deletePage: {
-                  __typename: "Page",
-                  id: deletedPage.id
-                }
-              }
-            });
-          });
-      });
     });
   });
 

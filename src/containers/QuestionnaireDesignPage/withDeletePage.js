@@ -66,21 +66,12 @@ export const createUpdater = (questionnaireId, sectionId, pageId) => (
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeletePage(sectionId, pageId) {
-    const page = { id: pageId };
-    const optimisticResponse = {
-      deletePage: {
-        __typename: "Page",
-        ...page
-      }
-    };
-
+    const variables = { id: pageId };
     const update = createUpdater(ownProps.questionnaireId, sectionId, pageId);
 
-    return mutate({
-      variables: page,
-      optimisticResponse,
-      update
-    }).then(res => handleDeletion(ownProps, sectionId, pageId).then(() => res));
+    return mutate({ variables, update }).then(res =>
+      handleDeletion(ownProps, sectionId, pageId).then(() => res)
+    );
   }
 });
 
