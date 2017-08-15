@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -12,10 +11,6 @@ const QuestionProperties = ({
   onChange,
   children
 }) => {
-  if (!question) {
-    return null;
-  }
-
   return (
     <Form onSubmit={onSubmit}>
       <Field id="type">

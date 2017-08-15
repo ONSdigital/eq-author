@@ -96,10 +96,6 @@ class QuestionnaireDesign extends React.Component {
       focused
     } = this.props;
 
-    if (!page) {
-      return null;
-    }
-
     return (
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>

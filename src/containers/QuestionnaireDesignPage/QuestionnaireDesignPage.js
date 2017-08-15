@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { merge, set, noop } from "lodash";
+import { merge, set, noop, isNil } from "lodash";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -40,6 +40,10 @@ export class QuestionnaireDesignPage extends Component {
 
   componentWillReceiveProps({ section, page }) {
     this.setState({ section, page });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !isNil(nextState.page);
   }
 
   handleChange = change => {
