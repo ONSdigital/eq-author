@@ -48,7 +48,7 @@ export default class CanvasSection extends Component {
   };
 
   handleBlur = e => {
-    this.props.onBlur(null, this.props.answerId);
+    this.props.onBlur(null);
   };
 
   render() {

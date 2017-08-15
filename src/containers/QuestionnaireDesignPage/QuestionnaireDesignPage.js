@@ -61,7 +61,6 @@ export class QuestionnaireDesignPage extends Component {
   handleBlur = focused => {
     this.setFocused(focused);
 
-    const answerId = this.state.focused.split("answer-")[1];
     switch (true) {
       case /section/.test(this.state.focused):
         this.props.onSectionUpdate(this.state.section);
@@ -69,11 +68,14 @@ export class QuestionnaireDesignPage extends Component {
       case /page/.test(this.state.focused):
         this.props.onPageUpdate(this.state.page);
         break;
-      case /answer/.test(this.state.focused):
+      case /answer/.test(this.state.focused): {
+        const answerId = this.state.focused.split("answer-")[1];
+        console.log(answerId);
         this.props.onAnswerUpdate(
           find(this.state.answers, { id: parseInt(answerId, 10) })
         );
         break;
+      }
       default:
         break;
     }

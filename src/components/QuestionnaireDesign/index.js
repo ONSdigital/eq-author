@@ -190,11 +190,7 @@ class QuestionnaireDesign extends React.Component {
               );
             })}
             <PageTransition key={`add-answer`}>
-              <AnimatedCanvasSection
-                id="add-answer"
-                onFocus={onFocus}
-                onBlur={onBlur}
-              >
+              <AnimatedCanvasSection>
                 <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>
             </PageTransition>

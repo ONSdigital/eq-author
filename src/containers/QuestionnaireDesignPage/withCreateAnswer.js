@@ -1,30 +1,30 @@
-import { graphql } from "react-apollo";
+import { graphql, gql } from "react-apollo";
 import createAnswerMutation from "queries/createAnswer.graphql";
 
-// const answerFragment = gql`
-//   fragment Answer on QuestionPage {
-//     id
-//     answer {
-//       id
-//     }
-//   }
-// `;
-//
-// export const createUpdater = pageId => (proxy, result) => {
-//   const id = `QuestionPage${pageId}`;
-//   const page = proxy.readFragment({
-//     id,
-//     fragment: answerFragment
-//   });
-//
-//   page.answer.push(result.data.createAnswer);
-//
-//   proxy.writeFragment({
-//     id,
-//     fragment: answerFragment,
-//     data: answer
-//   });
-// };
+const pageFragment = gql`
+  fragment Page on QuestionPage {
+    id
+    answers {
+      id
+    }
+  }
+`;
+
+export const createUpdater = pageId => (proxy, result) => {
+  const id = `QuestionPage${pageId}`;
+  const page = proxy.readFragment({
+    id,
+    fragment: pageFragment
+  });
+
+  page.answers.push(result.data.createAnswer);
+
+  proxy.writeFragment({
+    id,
+    fragment: pageFragment,
+    data: page
+  });
+};
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddAnswer(type) {
@@ -38,22 +38,21 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       questionPageId: ownProps.page.id
     };
 
-    // const optimisticResponse = {
-    //   createSection: {
-    //     __typename: "Section",
-    //     id: -1,
-    //     description: "",
-    //     pages: [],
-    //     ...answer
-    //   }
-    // };
+    const optimisticResponse = {
+      createAnswer: {
+        __typename: "Answer",
+        id: -1,
+        options: [],
+        ...answer
+      }
+    };
 
-    // const update = createUpdater(ownProps.pageId);
+    const update = createUpdater(ownProps.pageId);
 
     return mutate({
       variables: answer,
-      // optimisticResponse,
-      refetchQueries: ["GetQuestionnaire"]
+      optimisticResponse,
+      update
     });
   }
 });
