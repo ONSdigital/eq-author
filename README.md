@@ -73,7 +73,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `yarn start:smoketest`
+### `yarn start:mockAPI`
 
 Runs the app against the Mock API implementation.
 This is primarily used for running smoketests using a suitable webdriver but it can be used as a means of running and testing the application without requiring the real API to be running.
