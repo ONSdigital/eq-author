@@ -9,7 +9,7 @@ exports[`components/AnswerTypeGrid should render 1`] = `
     <AnswerTypeGrid__CloseButton
       aria-label="Close"
       onClick={[Function]}
-      type="Button"
+      type="button"
     >
       ×
     </AnswerTypeGrid__CloseButton>

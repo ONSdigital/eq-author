@@ -1,6 +1,7 @@
 import React from "react";
 import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
 import QuestionnaireDesign from "components/QuestionnaireDesign";
+import QuestionnaireNav from "components/QuestionnaireNav";
 import { shallow } from "enzyme";
 
 let handleUpdate,
@@ -14,12 +15,18 @@ let handleUpdate,
   handleAddAnswer,
   handleAnswerUpdate;
 
+let answer = {
+  id: 1,
+  label: ""
+};
+
 let page = {
   id: "1",
   description: "",
   guidance: "",
   title: "",
-  type: "General"
+  type: "General",
+  answers: [answer]
 };
 
 let section = { id: "2", title: "", pages: [page] };
@@ -52,6 +59,7 @@ describe("containers/QuestionnaireDesignPage", () => {
         onAnswerUpdate={handleAnswerUpdate}
         section={section}
         page={page}
+        answers={page.answers}
         loading={false}
       />
     );
@@ -114,6 +122,21 @@ describe("containers/QuestionnaireDesignPage", () => {
     );
   });
 
+  it("should update Answer when page field blurs", () => {
+    wrapper
+      .setState({ focused: "answer-1" })
+      .find(QuestionnaireDesign)
+      .simulate("change", {
+        name: "answers[0].label",
+        value: "Label"
+      })
+      .simulate("blur", "answer");
+
+    expect(handleAnswerUpdate).toHaveBeenCalledWith(
+      expect.objectContaining({ label: "Label" })
+    );
+  });
+
   it("should not update when unknown field blurs", () => {
     wrapper
       .setState({ focused: null })
@@ -147,5 +170,15 @@ describe("containers/QuestionnaireDesignPage", () => {
       .simulate("addAnswer");
 
     expect(handleAddAnswer).toHaveBeenCalled();
+  });
+
+  it("should pass onAddPage prop to QuestionNav", () => {
+    wrapper.find(QuestionnaireNav).simulate("addPage", 1);
+    expect(handleAddPage).toHaveBeenCalledWith(1);
+  });
+
+  it("should pass onAddSection prop to QuestionNav", () => {
+    wrapper.find(QuestionnaireNav).simulate("addSection");
+    expect(handleAddSection).toHaveBeenCalledWith(questionnaire.id);
   });
 });

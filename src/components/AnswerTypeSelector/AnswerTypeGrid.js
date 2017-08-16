@@ -68,7 +68,7 @@ class AnswerTypeGrid extends React.Component {
       <Menu>
         <Header>
           <Title>Answer Type</Title>
-          <CloseButton onClick={onClose} aria-label="Close" type="Button">
+          <CloseButton onClick={onClose} aria-label="Close" type="button">
             ×
           </CloseButton>
         </Header>

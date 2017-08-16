@@ -10,6 +10,12 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
           "id": "2",
           "pages": Array [
             Object {
+              "answers": Array [
+                Object {
+                  "id": 1,
+                  "label": "",
+                },
+              ],
               "description": "",
               "guidance": "",
               "id": "1",
@@ -44,6 +50,12 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
                 "id": "2",
                 "pages": Array [
                   Object {
+                    "answers": Array [
+                      Object {
+                        "id": 1,
+                        "label": "",
+                      },
+                    ],
                     "description": "",
                     "guidance": "",
                     "id": "1",
@@ -63,6 +75,14 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
       gutters={false}
     >
       <QuestionnaireDesign
+        answers={
+          Array [
+            Object {
+              "id": 1,
+              "label": "",
+            },
+          ]
+        }
         focused="section"
         onAddAnswer={[Function]}
         onBlur={[Function]}
@@ -70,6 +90,12 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
         onFocus={[Function]}
         page={
           Object {
+            "answers": Array [
+              Object {
+                "id": 1,
+                "label": "",
+              },
+            ],
             "description": "",
             "guidance": "",
             "id": "1",
@@ -82,6 +108,12 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
             "id": "2",
             "pages": Array [
               Object {
+                "answers": Array [
+                  Object {
+                    "id": 1,
+                    "label": "",
+                  },
+                ],
                 "description": "",
                 "guidance": "",
                 "id": "1",
@@ -106,6 +138,12 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
           onSubmit={[Function]}
           question={
             Object {
+              "answers": Array [
+                Object {
+                  "id": 1,
+                  "label": "",
+                },
+              ],
               "description": "",
               "guidance": "",
               "id": "1",
