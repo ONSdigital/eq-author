@@ -43,7 +43,7 @@ class MockDataStore {
     return this.options[id];
   }
 
-  createQuestionaire(questionnaire) {
+  createQuestionnaire(questionnaire) {
     const id = ++this.counter.questionnaire;
     this.questionnaires[id] = merge(questionnaire, { id }, { sections: [] });
 
@@ -146,7 +146,7 @@ class MockDataStore {
     }
 
     delete this.pages[page.id];
-    return page;
+    return pageToDelete;
   }
 
   createAnswer(answer) {

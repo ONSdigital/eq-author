@@ -13,6 +13,7 @@ exports[`QuestionnaireMeta should render 1`] = `
           Questionnaire Title
         </Label>
         <withChangeHandler(Input)
+          autoFocus={true}
           defaultValue="I am the title"
           onBlur={[Function]}
           onChange={[Function]}

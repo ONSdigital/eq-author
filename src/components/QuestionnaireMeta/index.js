@@ -30,6 +30,7 @@ const QuestionnaireMeta = ({
           <Field id="questionnaire.title">
             <Label>Questionnaire Title</Label>
             <Input
+              autoFocus
               defaultValue={questionnaire.title}
               onChange={onChange}
               onBlur={onBlur}

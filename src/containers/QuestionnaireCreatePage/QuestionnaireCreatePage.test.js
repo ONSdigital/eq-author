@@ -30,10 +30,12 @@ describe("containers/QuestionnaireCreatePage", () => {
 
   it("should call createQuestionnaire when submitted", () => {
     const preventDefault = jest.fn();
-    return wrapper.instance().handleSubmit({ preventDefault }).then(() => {
-      expect(preventDefault).toHaveBeenCalled();
-      expect(createQuestionnaire).toHaveBeenCalled();
-    });
+    wrapper.find(QuestionnaireMeta).simulate("submit", { preventDefault });
+
+    expect(preventDefault).toHaveBeenCalled();
+    expect(createQuestionnaire).toHaveBeenCalledWith(
+      wrapper.state().questionnaire
+    );
   });
 
   it("should update state with questionnaire data when received as props", () => {

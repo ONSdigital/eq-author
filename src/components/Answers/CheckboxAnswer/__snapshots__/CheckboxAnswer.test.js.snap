@@ -484,18 +484,20 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
                         </div>
                       </Field__StyledField>
                     </Field>
-                    <CheckboxAnswer__CloseButton
+                    <CheckboxAnswer__DeleteButton
+                      aria-label="Delete option"
                       name="option.1.delete"
                       onClick={[Function]}
                     >
                       <button
+                        aria-label="Delete option"
                         className="c10"
                         name="option.1.delete"
                         onClick={[Function]}
                       >
                         ×
                       </button>
-                    </CheckboxAnswer__CloseButton>
+                    </CheckboxAnswer__DeleteButton>
                   </div>
                 </CheckboxAnswer__CheckboxOption>
               </Transition>

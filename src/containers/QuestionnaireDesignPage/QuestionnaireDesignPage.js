@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { merge, set, noop } from "lodash";
+import { merge, set, noop, isNil } from "lodash";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -15,6 +15,7 @@ export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
     onAddPage: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
@@ -39,6 +40,10 @@ export class QuestionnaireDesignPage extends Component {
 
   componentWillReceiveProps({ section, page }) {
     this.setState({ section, page });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !isNil(nextState.page);
   }
 
   handleChange = change => {
@@ -87,7 +92,7 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   render() {
-    const { breadcrumb, loading, questionnaire } = this.props;
+    const { breadcrumb, loading, questionnaire, onDeletePage } = this.props;
     const { section, page, focused } = this.state;
 
     if (loading) {
@@ -102,6 +107,7 @@ export class QuestionnaireDesignPage extends Component {
               questionnaire={questionnaire}
               onAddPage={this.handleAddPage}
               onAddSection={this.handleAddSection}
+              onDeletePage={onDeletePage}
             />
           </Column>
           <Column gutters={false}>

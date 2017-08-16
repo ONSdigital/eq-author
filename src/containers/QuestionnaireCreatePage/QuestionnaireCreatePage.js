@@ -49,7 +49,7 @@ class QuestionnaireCreatePage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    return this.props.createQuestionnaire(this.state.questionnaire);
+    this.props.createQuestionnaire(this.state.questionnaire);
   };
 
   render() {

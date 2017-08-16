@@ -49,13 +49,19 @@ export const AddSectionBtn = styled.button`
   }
 `;
 
-const QuestionnaireNav = ({ questionnaire, onAddPage, onAddSection }) =>
+const QuestionnaireNav = ({
+  questionnaire,
+  onAddPage,
+  onAddSection,
+  onDeletePage
+}) =>
   <Container>
     <Title>Questionnaire structure</Title>
     <SectionNav
       transitionDuration={200}
       questionnaire={questionnaire}
       onAddPage={onAddPage}
+      onDeletePage={onDeletePage}
     />
     <AddSection>
       <AddSectionBtn
@@ -72,6 +78,7 @@ const QuestionnaireNav = ({ questionnaire, onAddPage, onAddSection }) =>
 QuestionnaireNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,
   onAddPage: PropTypes.func.isRequired,
+  onDeletePage: PropTypes.func.isRequired,
   onAddSection: PropTypes.func.isRequired
 };
 export default QuestionnaireNav;

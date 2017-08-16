@@ -9,7 +9,7 @@ import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
-import { noop } from "lodash";
+import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 
@@ -56,7 +56,7 @@ class QuestionnaireDesign extends React.Component {
   }
 
   componentDidUpdate({ page }) {
-    if (page.id !== this.props.page.id) {
+    if (get(page, "id") !== get(this.props, "page.id")) {
       this.setFocusOnTitle();
     }
   }
@@ -78,9 +78,9 @@ class QuestionnaireDesign extends React.Component {
   setFocusOnTitle = () => {
     const { section, page } = this.props;
 
-    if (section.title.length === 0) {
+    if (get(section, "title.length") === 0) {
       this.sectionTitle.focus();
-    } else if (page.title.length === 0) {
+    } else if (get(page, "title.length") === 0) {
       this.pageTitle.focus();
     }
   };

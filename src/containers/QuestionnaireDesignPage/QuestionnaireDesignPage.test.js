@@ -9,7 +9,8 @@ let handleUpdate,
   handleSectionUpdate,
   handlePageUpdate,
   handleAddPage,
-  handleAddSection;
+  handleAddSection,
+  handleDeletePage;
 
 let page = {
   id: "1",
@@ -28,6 +29,7 @@ describe("containers/QuestionnaireDesign", () => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
     handleAddPage = jest.fn();
+    handleDeletePage = jest.fn();
     handleSectionUpdate = jest.fn();
     handlePageUpdate = jest.fn();
     handleAddSection = jest.fn();
@@ -40,6 +42,7 @@ describe("containers/QuestionnaireDesign", () => {
         onSectionUpdate={handleSectionUpdate}
         onPageUpdate={handlePageUpdate}
         onAddPage={handleAddPage}
+        onDeletePage={handleDeletePage}
         onAddSection={handleAddSection}
         section={section}
         page={page}
