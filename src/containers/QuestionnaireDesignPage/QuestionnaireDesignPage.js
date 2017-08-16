@@ -78,6 +78,17 @@ export class QuestionnaireDesignPage extends Component {
       default:
         break;
     }
+
+    if (/section/.test(this.state.focused)) {
+      this.props.onSectionUpdate(this.state.section);
+    } else if (/page/.test(this.state.focused)) {
+      this.props.onPageUpdate(this.state.page);
+    } else if (/answer/.test(this.state.focused)) {
+      const answerId = this.state.focused.split("answer-")[1];
+      this.props.onAnswerUpdate(
+        find(this.state.answers, { id: parseInt(answerId, 10) })
+      );
+    }
   };
 
   handleFocus = focused => {
