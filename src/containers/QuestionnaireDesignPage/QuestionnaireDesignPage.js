@@ -61,24 +61,6 @@ export class QuestionnaireDesignPage extends Component {
   handleBlur = focused => {
     this.setFocused(focused);
 
-    switch (true) {
-      case /section/.test(this.state.focused):
-        this.props.onSectionUpdate(this.state.section);
-        break;
-      case /page/.test(this.state.focused):
-        this.props.onPageUpdate(this.state.page);
-        break;
-      case /answer/.test(this.state.focused): {
-        const answerId = this.state.focused.split("answer-")[1];
-        this.props.onAnswerUpdate(
-          find(this.state.answers, { id: parseInt(answerId, 10) })
-        );
-        break;
-      }
-      default:
-        break;
-    }
-
     if (/section/.test(this.state.focused)) {
       this.props.onSectionUpdate(this.state.section);
     } else if (/page/.test(this.state.focused)) {
