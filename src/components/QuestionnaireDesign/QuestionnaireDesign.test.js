@@ -11,6 +11,7 @@ describe("QuestionnaireDesign", () => {
         onAddAnswer={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
+        focused="answer"
         {...props}
       />
     );
@@ -18,7 +19,8 @@ describe("QuestionnaireDesign", () => {
   beforeEach(() => {
     wrapper = createWrapper({
       section: { title: "" },
-      page: { id: "3", title: "" }
+      page: { id: "3", title: "" },
+      answers: []
     });
   });
 
@@ -26,7 +28,12 @@ describe("QuestionnaireDesign", () => {
     wrapper = createWrapper(
       {
         section: { title: "" },
-        page: { id: "3", title: "" }
+        page: { id: "3", title: "" },
+        answers: [
+          {
+            id: "4"
+          }
+        ]
       },
       shallow
     );
@@ -41,7 +48,8 @@ describe("QuestionnaireDesign", () => {
   it("should focus on empty page title when section title is not empty", () => {
     wrapper = createWrapper({
       section: { title: "Section 1" },
-      page: { id: "3", title: "" }
+      page: { id: "3", title: "" },
+      answers: []
     });
     expect(document.activeElement.name).toEqual("page.title");
   });
@@ -53,7 +61,8 @@ describe("QuestionnaireDesign", () => {
   it("should move focus to empty page title upon navigation to new page", () => {
     wrapper = createWrapper({
       section: { title: "Section 1" },
-      page: { id: "3", title: "" }
+      page: { id: "3", title: "" },
+      answers: []
     });
     expect(document.activeElement.name).toEqual("page.title");
   });

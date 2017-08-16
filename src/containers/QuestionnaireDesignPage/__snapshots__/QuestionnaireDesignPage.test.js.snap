@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
+exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
   questionnaire={
     Object {
@@ -120,4 +120,4 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
 </BaseLayout>
 `;
 
-exports[`containers/QuestionnaireDesign should render nothing when loading 1`] = `null`;
+exports[`containers/QuestionnaireDesignPage should render nothing when loading 1`] = `null`;

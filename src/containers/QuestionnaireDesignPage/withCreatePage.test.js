@@ -49,25 +49,25 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        return { questionnaire };
-      });
+      const readFragment = jest
+        .fn()
+        .mockImplementation(({ query, variables }) => {
+          return section;
+        });
 
-      const writeQuery = jest.fn();
+      const writeFragment = jest.fn();
 
       const updater = createUpdater(questionnaire.id, section.id);
-      updater({ readQuery, writeQuery }, result);
+      updater({ readFragment, writeFragment }, result);
 
-      expect(readQuery).toHaveBeenCalledWith(
-        expect.objectContaining({ variables: { id: questionnaire.id } })
+      expect(readFragment).toHaveBeenCalledWith(
+        expect.objectContaining({ id: `Section${section.id}` })
       );
 
-      expect(writeQuery).toHaveBeenCalledWith(
+      expect(writeFragment).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: { id: questionnaire.id },
-          data: {
-            questionnaire
-          }
+          id: `Section${section.id}`,
+          data: section
         })
       );
     });

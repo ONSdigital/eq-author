@@ -10,7 +10,9 @@ let handleUpdate,
   handlePageUpdate,
   handleAddPage,
   handleAddSection,
-  handleDeletePage;
+  handleDeletePage,
+  handleAddAnswer,
+  handleAnswerUpdate;
 
 let page = {
   id: "1",
@@ -24,7 +26,7 @@ let section = { id: "2", title: "", pages: [page] };
 
 let questionnaire = { id: "3", title: "hello world", sections: [section] };
 
-describe("containers/QuestionnaireDesign", () => {
+describe("containers/QuestionnaireDesignPage", () => {
   beforeEach(() => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
@@ -33,6 +35,8 @@ describe("containers/QuestionnaireDesign", () => {
     handleSectionUpdate = jest.fn();
     handlePageUpdate = jest.fn();
     handleAddSection = jest.fn();
+    handleAddAnswer = jest.fn();
+    handleAnswerUpdate = jest.fn();
 
     wrapper = shallow(
       <QuestionnaireDesignPage
@@ -44,6 +48,8 @@ describe("containers/QuestionnaireDesign", () => {
         onAddPage={handleAddPage}
         onDeletePage={handleDeletePage}
         onAddSection={handleAddSection}
+        onAddAnswer={handleAddAnswer}
+        onAnswerUpdate={handleAnswerUpdate}
         section={section}
         page={page}
         loading={false}
@@ -86,7 +92,7 @@ describe("containers/QuestionnaireDesign", () => {
         name: "section.title",
         value: "My Title"
       })
-      .simulate("blur");
+      .simulate("blur", "section");
 
     expect(handleSectionUpdate).toHaveBeenCalledWith(
       expect.objectContaining({ title: "My Title" })
@@ -101,7 +107,7 @@ describe("containers/QuestionnaireDesign", () => {
         name: "page.title",
         value: "My Title"
       })
-      .simulate("blur");
+      .simulate("blur", "page");
 
     expect(handlePageUpdate).toHaveBeenCalledWith(
       expect.objectContaining({ title: "My Title" })
@@ -134,14 +140,12 @@ describe("containers/QuestionnaireDesign", () => {
     expect(wrapper.state().focused).toEqual("section");
   });
 
-  it("should alert when answer added", () => {
-    global.alert = jest.fn();
-
+  it("should invoke callback when answer added", () => {
     wrapper
       .setState({ focused: null })
       .find(QuestionnaireDesign)
-      .simulate("answerAdd");
+      .simulate("addAnswer");
 
-    expect(global.alert).toHaveBeenCalled();
+    expect(handleAddAnswer).toHaveBeenCalled();
   });
 });

@@ -70,7 +70,6 @@ export class QuestionnaireDesignPage extends Component {
         break;
       case /answer/.test(this.state.focused): {
         const answerId = this.state.focused.split("answer-")[1];
-        console.log(answerId);
         this.props.onAnswerUpdate(
           find(this.state.answers, { id: parseInt(answerId, 10) })
         );

@@ -51,14 +51,11 @@ class QuestionnaireDesign extends React.Component {
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
-      if (!/(section|page|answer)/.test(props[propName])) {
+      const value = props[propName];
+
+      if (value && !/(section|page|answer)/.test(value)) {
         return new Error(
-          "Invalid prop `" +
-            props[propName] +
-            "` supplied to" +
-            " `" +
-            componentName +
-            "`. Validation failed."
+          `Invalid prop '${propName}' with value \`${value}\` supplied to \`${componentName}\`.`
         );
       }
     }

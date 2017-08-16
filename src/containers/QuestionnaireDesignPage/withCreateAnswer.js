@@ -38,20 +38,20 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       questionPageId: ownProps.page.id
     };
 
-    const optimisticResponse = {
-      createAnswer: {
-        __typename: "Answer",
-        id: -1,
-        options: [],
-        ...answer
-      }
-    };
+    // const optimisticResponse = {
+    //   createAnswer: {
+    //     __typename: "Answer",
+    //     id: -1,
+    //     options: [],
+    //     ...answer
+    //   }
+    // };
 
     const update = createUpdater(ownProps.pageId);
 
     return mutate({
       variables: answer,
-      optimisticResponse,
+      // optimisticResponse,
       update
     });
   }

@@ -3,9 +3,10 @@
 exports[`TextAnswer should render 1`] = `
 <div>
   <Field
-    id="answer.label"
+    id="answers[1].label"
   >
     <withSeamlessness(withChangeHandler(Input))
+      autoFocus={true}
       focused={false}
       onChange={[Function]}
       optional={false}
@@ -14,7 +15,7 @@ exports[`TextAnswer should render 1`] = `
     />
   </Field>
   <Field
-    id="answer.description"
+    id="answers[1].description"
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
