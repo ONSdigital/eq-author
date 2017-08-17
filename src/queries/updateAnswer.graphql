@@ -1,0 +1,9 @@
+mutation UpdateAnswer($id: Int!, $description: String, $label: String) {
+  updateAnswer(id: $id, description: $description, label: $label) {
+    id
+    description
+    guidance
+    label
+    type
+  }
+}

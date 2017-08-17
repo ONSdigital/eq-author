@@ -74,55 +74,55 @@ class AnswerTypeGrid extends React.Component {
         </Header>
         <IconGrid aria-labelledby={labelledby}>
           <AnswerTypeButton
-            type="checkbox"
+            type="Checkbox"
             title="Checkbox"
             onClick={this.handleSelect}
-            disabled
+            ref={this.saveButtonRef}
           />
           <AnswerTypeButton
-            type="radio"
+            type="Radio"
             title="Radio"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="textfield"
+            type="TextField"
             title="Text"
             onClick={this.handleSelect}
             ref={this.saveButtonRef}
           />
           <AnswerTypeButton
-            type="textarea"
+            type="TextArea"
             title="Textarea"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="currency"
+            type="Currency"
             title="Currency"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="number"
+            type="Number"
             title="Number"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="date"
+            type="Date"
             title="Date"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="time"
+            type="Time"
             title="Time"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="select"
+            type="Select"
             title="Select list"
             onClick={this.handleSelect}
             disabled

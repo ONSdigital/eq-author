@@ -14,15 +14,15 @@ import textfieldIcon from "./icons/textfield.svg";
 import timeIcon from "./icons/time.svg";
 
 export const icons = {
-  checkbox: checkboxIcon,
-  currency: currencyIcon,
-  date: dateIcon,
-  number: numberIcon,
-  radio: radioIcon,
-  select: selectIcon,
-  textarea: textareaIcon,
-  textfield: textfieldIcon,
-  time: timeIcon
+  Checkbox: checkboxIcon,
+  Currency: currencyIcon,
+  Date: dateIcon,
+  Number: numberIcon,
+  Radio: radioIcon,
+  Select: selectIcon,
+  TextArea: textareaIcon,
+  TextField: textfieldIcon,
+  Time: timeIcon
 };
 export default class AnswerTypeButton extends React.Component {
   static propTypes = {

@@ -93,11 +93,23 @@ exports[`QuestionnaireDesign should render 1`] = `
       <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
-          id="answers"
-          last={true}
+          id="answer-4"
           onBlur={[Function]}
           onFocus={[Function]}
         >
+          <TextAnswer
+            answer={
+              Object {
+                "id": "4",
+              }
+            }
+            index={0}
+            onChange={[Function]}
+          />
+        </QuestionnaireDesign__AnimatedCanvasSection>
+      </PageTransition>
+      <PageTransition>
+        <QuestionnaireDesign__AnimatedCanvasSection>
           <AnswerTypeSelector
             onSelect={[Function]}
           />

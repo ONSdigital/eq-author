@@ -5,10 +5,12 @@ import { find, pick } from "lodash";
 import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
 import updateSectionMutation from "queries/updateSection.graphql";
 import updatePageMutation from "queries/updatePage.graphql";
+import updateAnswerMutation from "queries/updateAnswer.graphql";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withCreatePage from "./withCreatePage";
 import withCreateSection from "./withCreateSection";
 import withDeletePage from "./withDeletePage";
+import withCreateAnswer from "./withCreateAnswer";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
@@ -27,6 +29,7 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   if (questionnaire) {
     props.section = findById(questionnaire.sections, sectionId);
     props.page = findById(props.section.pages, pageId);
+    props.answers = props.page.answers;
   }
 
   return props;
@@ -49,12 +52,20 @@ export const withUpdatePage = graphql(updatePageMutation, {
   })
 });
 
+export const withUpdateAnswer = graphql(updateAnswerMutation, {
+  props: ({ mutate }) => ({
+    onAnswerUpdate: answer => mutate({ variables: answer })
+  })
+});
+
 export default compose(
   connect(mapStateToProps),
   withQuestionnaire,
   withUpdateSection,
-  withCreatePage,
+  withUpdateAnswer,
   withCreateSection,
   withUpdatePage,
-  withDeletePage
+  withDeletePage,
+  withCreatePage,
+  withCreateAnswer
 )(QuestionnaireDesign);

@@ -18,57 +18,56 @@ exports[`components/AnswerTypeGrid should render 1`] = `
     aria-labelledby="foo"
   >
     <AnswerTypeButton
-      disabled={true}
       onClick={[Function]}
       title="Checkbox"
-      type="checkbox"
+      type="Checkbox"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Radio"
-      type="radio"
+      type="Radio"
     />
     <AnswerTypeButton
       onClick={[Function]}
       title="Text"
-      type="textfield"
+      type="TextField"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Textarea"
-      type="textarea"
+      type="TextArea"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Currency"
-      type="currency"
+      type="Currency"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Number"
-      type="number"
+      type="Number"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Date"
-      type="date"
+      type="Date"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Time"
-      type="time"
+      type="Time"
     />
     <AnswerTypeButton
       disabled={true}
       onClick={[Function]}
       title="Select list"
-      type="select"
+      type="Select"
     />
   </IconGrid>
 </AnswerTypeGrid__Menu>

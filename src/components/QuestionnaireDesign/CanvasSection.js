@@ -33,6 +33,7 @@ export default class CanvasSection extends Component {
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     focused: PropTypes.bool,
+    answerId: PropTypes.string,
     id: PropTypes.string
   };
 

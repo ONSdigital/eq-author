@@ -6,6 +6,7 @@ import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
 import SeamlessInput from "../SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
+import TextAnswer from "components/Answers/TextAnswer";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
@@ -44,11 +45,20 @@ class QuestionnaireDesign extends React.Component {
   static propTypes = {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
+    answers: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired,
-    onAnswerAdd: PropTypes.func.isRequired,
+    onAddAnswer: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
-    focused: PropTypes.oneOf(["section", "page", "answers", null])
+    focused: function(props, propName, componentName) {
+      const value = props[propName];
+
+      if (value && !/(section|page|answer)/.test(value)) {
+        return new Error(
+          `Invalid prop '${propName}' with value \`${value}\` supplied to \`${componentName}\`.`
+        );
+      }
+    }
   };
 
   componentDidMount() {
@@ -89,8 +99,9 @@ class QuestionnaireDesign extends React.Component {
     const {
       section,
       page,
+      answers,
       onChange,
-      onAnswerAdd,
+      onAddAnswer,
       onFocus,
       onBlur,
       focused
@@ -160,15 +171,24 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </PageTransition>
-            <PageTransition key={`answer-${page.id}`}>
-              <AnimatedCanvasSection
-                id="answers"
-                onFocus={onFocus}
-                onBlur={onBlur}
-                focused={focused === "answers"}
-                last
-              >
-                <AnswerTypeSelector onSelect={onAnswerAdd} />
+            {answers.map((answer, i) => {
+              return (
+                <PageTransition key={answer.id}>
+                  <AnimatedCanvasSection
+                    id={`answer-${answer.id}`}
+                    key={answer.id}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    focused={focused === `answer-${answer.id}`}
+                  >
+                    <TextAnswer answer={answer} onChange={onChange} index={i} />
+                  </AnimatedCanvasSection>
+                </PageTransition>
+              );
+            })}
+            <PageTransition key={`add-answer`}>
+              <AnimatedCanvasSection>
+                <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>
             </PageTransition>
           </TransitionGroup>

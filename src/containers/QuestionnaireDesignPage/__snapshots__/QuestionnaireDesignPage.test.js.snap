@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
+exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
   questionnaire={
     Object {
@@ -10,6 +10,12 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
           "id": "2",
           "pages": Array [
             Object {
+              "answers": Array [
+                Object {
+                  "id": 1,
+                  "label": "",
+                },
+              ],
               "description": "",
               "guidance": "",
               "id": "1",
@@ -44,6 +50,12 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
                 "id": "2",
                 "pages": Array [
                   Object {
+                    "answers": Array [
+                      Object {
+                        "id": 1,
+                        "label": "",
+                      },
+                    ],
                     "description": "",
                     "guidance": "",
                     "id": "1",
@@ -63,13 +75,27 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
       gutters={false}
     >
       <QuestionnaireDesign
+        answers={
+          Array [
+            Object {
+              "id": 1,
+              "label": "",
+            },
+          ]
+        }
         focused="section"
-        onAnswerAdd={[Function]}
+        onAddAnswer={[Function]}
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
         page={
           Object {
+            "answers": Array [
+              Object {
+                "id": 1,
+                "label": "",
+              },
+            ],
             "description": "",
             "guidance": "",
             "id": "1",
@@ -82,6 +108,12 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
             "id": "2",
             "pages": Array [
               Object {
+                "answers": Array [
+                  Object {
+                    "id": 1,
+                    "label": "",
+                  },
+                ],
                 "description": "",
                 "guidance": "",
                 "id": "1",
@@ -106,6 +138,12 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
           onSubmit={[Function]}
           question={
             Object {
+              "answers": Array [
+                Object {
+                  "id": 1,
+                  "label": "",
+                },
+              ],
               "description": "",
               "guidance": "",
               "id": "1",
@@ -120,4 +158,4 @@ exports[`containers/QuestionnaireDesign should render form when loaded 1`] = `
 </BaseLayout>
 `;
 
-exports[`containers/QuestionnaireDesign should render nothing when loading 1`] = `null`;
+exports[`containers/QuestionnaireDesignPage should render nothing when loading 1`] = `null`;

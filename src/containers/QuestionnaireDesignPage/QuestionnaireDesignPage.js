@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { merge, set, noop, isNil } from "lodash";
+import { merge, set, noop, find, isNil } from "lodash";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -17,11 +17,14 @@ export class QuestionnaireDesignPage extends Component {
     onAddPage: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
+    onAddAnswer: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
+    onAnswerUpdate: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
+    answers: PropTypes.arrayOf(PropTypes.object),
     question: CustomPropTypes.question,
     loading: PropTypes.bool.isRequired
   };
@@ -29,17 +32,18 @@ export class QuestionnaireDesignPage extends Component {
   constructor(props) {
     super(props);
 
-    const { section, page } = props;
+    const { section, page, answers } = props;
 
     this.state = {
       section,
       page,
+      answers,
       focused: "section"
     };
   }
 
-  componentWillReceiveProps({ section, page }) {
-    this.setState({ section, page });
+  componentWillReceiveProps({ section, page, answers }) {
+    this.setState({ section, page, answers });
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -50,22 +54,22 @@ export class QuestionnaireDesignPage extends Component {
     this.setState(merge({}, this.state, set({}, change.name, change.value)));
   };
 
-  handleAnswerAdd = type => {
-    alert(`Add answer of type: ${type}`);
+  handleAddAnswer = type => {
+    this.props.onAddAnswer(type);
   };
 
   handleBlur = focused => {
     this.setFocused(focused);
 
-    switch (this.state.focused) {
-      case "section":
-        this.props.onSectionUpdate(this.state.section);
-        break;
-      case "page":
-        this.props.onPageUpdate(this.state.page);
-        break;
-      default:
-        break;
+    if (/section/.test(this.state.focused)) {
+      this.props.onSectionUpdate(this.state.section);
+    } else if (/page/.test(this.state.focused)) {
+      this.props.onPageUpdate(this.state.page);
+    } else if (/answer/.test(this.state.focused)) {
+      const answerId = this.state.focused.split("answer-")[1];
+      this.props.onAnswerUpdate(
+        find(this.state.answers, { id: parseInt(answerId, 10) })
+      );
     }
   };
 
@@ -93,7 +97,7 @@ export class QuestionnaireDesignPage extends Component {
 
   render() {
     const { breadcrumb, loading, questionnaire, onDeletePage } = this.props;
-    const { section, page, focused } = this.state;
+    const { section, page, answers, focused } = this.state;
 
     if (loading) {
       return null;
@@ -114,8 +118,9 @@ export class QuestionnaireDesignPage extends Component {
             <QuestionnaireDesign
               section={section}
               page={page}
+              answers={answers}
               focused={focused}
-              onAnswerAdd={this.handleAnswerAdd}
+              onAddAnswer={this.handleAddAnswer}
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
