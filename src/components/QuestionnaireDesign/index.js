@@ -19,7 +19,7 @@ import Answer from "components/Answer";
 
 const duration = 300;
 
-const FadeTransition = props =>
+const PageTransition = props =>
   <CSSTransition
     timeout={duration}
     enter
@@ -132,7 +132,7 @@ class QuestionnaireDesign extends React.Component {
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
-            <FadeTransition key={`section-${section.id}`}>
+            <PageTransition key={`section-${section.id}`}>
               <AnimatedCanvasSection
                 id="section"
                 onFocus={onFocus}
@@ -159,8 +159,8 @@ class QuestionnaireDesign extends React.Component {
                   />
                 </Field>
               </AnimatedCanvasSection>
-            </FadeTransition>
-            <FadeTransition key={`page-${page.id}`} exit={false}>
+            </PageTransition>
+            <PageTransition key={`page-${page.id}`} exit={false}>
               <AnimatedCanvasSection
                 id="page"
                 onFocus={onFocus}
@@ -191,10 +191,10 @@ class QuestionnaireDesign extends React.Component {
                   />
                 </Field>
               </AnimatedCanvasSection>
-            </FadeTransition>
+            </PageTransition>
 
             {answers.map((answer, i) =>
-              <FadeTransition key={`answer-${i}`}>
+              <PageTransition key={`answer-${i}`}>
                 <AnimatedCanvasSection
                   id={`answer-${answer.id}`}
                   key={answer.id}
@@ -222,14 +222,14 @@ class QuestionnaireDesign extends React.Component {
                     type="button"
                   />
                 </AnimatedCanvasSection>
-              </FadeTransition>
+              </PageTransition>
             )}
 
-            <FadeTransition key={`add-answer`}>
+            <PageTransition key={`add-answer-${page.id}`}>
               <AnimatedCanvasSection onFocus={onFocus} onBlur={onBlur}>
                 <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>
-            </FadeTransition>
+            </PageTransition>
           </TransitionGroup>
         </Form>
       </Canvas>

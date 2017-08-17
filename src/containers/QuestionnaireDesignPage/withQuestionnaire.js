@@ -17,7 +17,7 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   if (questionnaire) {
     props.section = findById(questionnaire.sections, sectionId);
     props.page = findById(props.section.pages, pageId);
-    props.answers = props.page.answers;
+    props.answers = props.page !== undefined ? props.page.answers : [];
   }
 
   return props;
