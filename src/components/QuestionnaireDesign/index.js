@@ -7,6 +7,7 @@ import Canvas from "./Canvas";
 import SeamlessInput from "../SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
 import TextAnswer from "components/Answers/TextAnswer";
+import DeleteButton from "components/DeleteButton";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
@@ -41,6 +42,12 @@ const AnimatedCanvasSection = styled(CanvasSection)`
   }
 `;
 
+const AnswerDeleteButton = styled(DeleteButton)`
+  position: absolute;
+  right: .5em;
+  top: .4em;
+`;
+
 class QuestionnaireDesign extends React.Component {
   static propTypes = {
     section: CustomPropTypes.section,
@@ -48,6 +55,7 @@ class QuestionnaireDesign extends React.Component {
     answers: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
+    onDeleteAnswer: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
@@ -102,6 +110,7 @@ class QuestionnaireDesign extends React.Component {
       answers,
       onChange,
       onAddAnswer,
+      onDeleteAnswer,
       onFocus,
       onBlur,
       focused
@@ -181,6 +190,12 @@ class QuestionnaireDesign extends React.Component {
                     onBlur={onBlur}
                     focused={focused === `answer-${answer.id}`}
                   >
+                    <AnswerDeleteButton
+                      size="medium"
+                      onClick={() => onDeleteAnswer(answer.id)}
+                      title="Delete answer"
+                      type="button"
+                    />
                     <TextAnswer answer={answer} onChange={onChange} index={i} />
                   </AnimatedCanvasSection>
                 </PageTransition>

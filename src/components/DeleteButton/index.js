@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 
@@ -38,10 +38,8 @@ const StyledDeleteButton = styled.button`
     }};
 `;
 
-const DeleteButton = ({ onClick, size }) =>
-  <StyledDeleteButton size={size} onClick={onClick}>
-    &times;
-  </StyledDeleteButton>;
+const DeleteButton = props =>
+  <StyledDeleteButton {...props}>&times;</StyledDeleteButton>;
 
 DeleteButton.defaultProps = {
   size: "medium"
