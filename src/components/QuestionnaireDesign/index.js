@@ -18,6 +18,15 @@ import AnswerTypeSelector from "components/AnswerTypeSelector";
 const duration = 300;
 
 const PageTransition = props =>
+  <CSSTransition
+    {...props}
+    timeout={duration}
+    enter
+    exit={false}
+    classNames="fade"
+  />;
+
+const AnswerTransition = props =>
   <CSSTransition {...props} timeout={duration} enter exit classNames="fade" />;
 
 const AnimatedCanvasSection = styled(CanvasSection)`
@@ -25,6 +34,7 @@ const AnimatedCanvasSection = styled(CanvasSection)`
   &.fade-enter,
   &.fade-exit {
     opacity: 0.25;
+    transform-origin: 50% 0%;
     transform: translateX(-50px);
     z-index: 200;
   }
@@ -37,7 +47,9 @@ const AnimatedCanvasSection = styled(CanvasSection)`
   }
   &.fade-exit {
     opacity: 0;
+    padding: 0;
     transition: opacity ${duration / 2}ms ease-out,
+      padding ${duration / 2}ms ease-out ${duration / 2}ms,
       transform ${duration / 2}ms ease-out;
   }
 `;
@@ -182,7 +194,7 @@ class QuestionnaireDesign extends React.Component {
             </PageTransition>
             {answers.map((answer, i) => {
               return (
-                <PageTransition key={answer.id}>
+                <AnswerTransition key={answer.id}>
                   <AnimatedCanvasSection
                     id={`answer-${answer.id}`}
                     key={answer.id}
@@ -200,7 +212,7 @@ class QuestionnaireDesign extends React.Component {
                       type="button"
                     />
                   </AnimatedCanvasSection>
-                </PageTransition>
+                </AnswerTransition>
               );
             })}
             <PageTransition key={`add-answer`}>

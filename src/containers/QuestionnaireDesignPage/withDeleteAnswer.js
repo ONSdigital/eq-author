@@ -5,7 +5,7 @@ import { find, remove } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
-export const createUpdater = (questionnaireId, sectionId, pageId) => (
+export const deleteUpdater = (questionnaireId, sectionId, pageId, answerId) => (
   proxy,
   result
 ) => {
@@ -15,8 +15,9 @@ export const createUpdater = (questionnaireId, sectionId, pageId) => (
   });
 
   const section = findById(data.questionnaire.sections, sectionId);
+  const page = findById(section.pages, pageId);
 
-  remove(section.pages, { id: pageId });
+  remove(page.answers, { id: answerId });
 
   proxy.writeQuery({
     query: getQuestionnaireQuery,
@@ -28,8 +29,12 @@ export const createUpdater = (questionnaireId, sectionId, pageId) => (
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteAnswer(answerId) {
     const variables = { id: answerId };
-    console.log("ownProps", ownProps);
-    const update = createUpdater(ownProps.questionnaireId, answerId);
+    const update = deleteUpdater(
+      ownProps.questionnaireId,
+      ownProps.sectionId,
+      ownProps.pageId,
+      answerId
+    );
 
     return Promise.resolve(mutate({ variables, update }));
   }

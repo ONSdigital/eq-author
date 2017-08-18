@@ -90,7 +90,7 @@ exports[`QuestionnaireDesign should render 1`] = `
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
       </PageTransition>
-      <PageTransition>
+      <AnswerTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="answer-4"
@@ -113,7 +113,7 @@ exports[`QuestionnaireDesign should render 1`] = `
             type="button"
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </PageTransition>
+      </AnswerTransition>
       <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection>
           <AnswerTypeSelector
