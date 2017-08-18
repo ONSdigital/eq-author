@@ -8,7 +8,8 @@ let mockHandlers, wrapper;
 
 let answer = {
   id: 1,
-  label: ""
+  label: "",
+  options: [{ id: 1 }]
 };
 
 let page = {
@@ -127,6 +128,21 @@ describe("containers/QuestionnaireDesignPage", () => {
     );
   });
 
+  it("should update Option when option field blurs", () => {
+    wrapper
+      .setState({ focused: "answer-1-option-1" })
+      .find(QuestionnaireDesign)
+      .simulate("change", {
+        name: "answers[0].options[0].label",
+        value: "Label"
+      })
+      .simulate("blur", "option");
+
+    expect(mockHandlers.onUpdateOption).toHaveBeenCalledWith(
+      expect.objectContaining({ label: "Label" })
+    );
+  });
+
   it("should not update when unknown field blurs", () => {
     wrapper
       .setState({ focused: null })
@@ -154,11 +170,7 @@ describe("containers/QuestionnaireDesignPage", () => {
   });
 
   it("should invoke callback when answer added", () => {
-    wrapper
-      .setState({ focused: null })
-      .find(QuestionnaireDesign)
-      .simulate("addAnswer");
-
+    wrapper.find(QuestionnaireDesign).simulate("addAnswer");
     expect(mockHandlers.onAddAnswer).toHaveBeenCalled();
   });
 
@@ -179,5 +191,15 @@ describe("containers/QuestionnaireDesignPage", () => {
   it("should pass onAddSection prop to QuestionNav", () => {
     wrapper.find(QuestionnaireNav).simulate("addSection");
     expect(mockHandlers.onAddSection).toHaveBeenCalledWith(questionnaire.id);
+  });
+
+  it("should invoke callback when option deleted", () => {
+    wrapper.find(QuestionnaireDesign).simulate("deleteOption", 1, 1);
+    expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(1, 1);
+  });
+
+  it("should invoke callback when option added", () => {
+    wrapper.find(QuestionnaireDesign).simulate("addOption", 1);
+    expect(mockHandlers.onAddOption).toHaveBeenCalledWith(1);
   });
 });

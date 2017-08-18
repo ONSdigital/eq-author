@@ -70,7 +70,7 @@ class QuestionnaireDesign extends React.Component {
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
       if (
-        !/(section|page|answer)/.test(props[propName]) &&
+        !/(section|page|answer|option)/.test(props[propName]) &&
         props[propName] !== null
       ) {
         return new Error(

@@ -124,7 +124,8 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/**/*story.js",
-      "!src/graphql/*.js"
+      "!src/graphql/*.js",
+      "!src/tests/**/*.js"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js",

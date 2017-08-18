@@ -68,7 +68,6 @@ export class QuestionnaireDesignPage extends Component {
 
   handleBlur = () => {
     const { focused, section, page, answers } = this.state;
-
     let answerId, answer;
 
     if (focused) {
@@ -82,14 +81,14 @@ export class QuestionnaireDesignPage extends Component {
       this.props.onUpdateSection(section);
     } else if (/page/.test(focused)) {
       this.props.onUpdatePage(page);
-    } else if (/answer/.test(focused)) {
-      this.props.onUpdateAnswer(answer);
     } else if (/option/.test(focused)) {
       const optionId = focused.split("-")[3];
       const option = find(answer.options, {
         id: parseInt(optionId, 10)
       });
       this.props.onUpdateOption(option);
+    } else if (/answer/.test(focused)) {
+      this.props.onUpdateAnswer(answer);
     }
   };
 

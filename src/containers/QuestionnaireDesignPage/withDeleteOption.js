@@ -3,7 +3,7 @@ import { remove } from "lodash";
 import deleteOptionMutation from "graphql/deleteOption.graphql";
 import answerFragment from "graphql/answerFragment.graphql";
 
-export const createUpdater = (optionId, answerId) => (proxy, result) => {
+export const createUpdater = (optionId, answerId) => proxy => {
   const id = `MultipleChoiceAnswer${answerId}`;
   const answer = proxy.readFragment({
     id,
@@ -19,7 +19,7 @@ export const createUpdater = (optionId, answerId) => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ ownProps, mutate }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onDeleteOption(optionId, answerId) {
     const option = {
       id: optionId

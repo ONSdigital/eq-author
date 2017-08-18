@@ -65,7 +65,7 @@ export const CheckboxOption = styled.div`
   }
 `;
 
-const SeamlessLabel = styled(SeamlessInput)`
+export const SeamlessLabel = styled(SeamlessInput)`
   display: inline-block !important;
   width: auto;
   vertical-align: middle;
@@ -83,8 +83,6 @@ const StyledCheckboxInput = styled(Input)`
   height: 1.4em;
   width: 1.4em;
 `;
-
-export const CloseButton = styled.button`display: block;`;
 
 export const DeleteButton = styled.button`
   cursor: pointer;
@@ -164,8 +162,7 @@ const CheckboxAnswer = ({
                   />
                 </Field>
                 {optionIndex > 0 &&
-                  <CloseButton
-                    name={`answers[${answerIndex}].options[${optionIndex}].delete`}
+                  <DeleteButton
                     type="button"
                     onClick={function(e) {
                       e.preventDefault();
@@ -173,7 +170,7 @@ const CheckboxAnswer = ({
                     }}
                   >
                     &times;
-                  </CloseButton>}
+                  </DeleteButton>}
               </CheckboxOption>
             </CSSTransition>
           );

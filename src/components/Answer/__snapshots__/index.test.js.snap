@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Answer should render <CheckboxAnswer /> for answer type 'Checkbox' 1`] = `
+<CheckboxAnswer
+  answer={
+    Object {
+      "type": "Checkbox",
+    }
+  }
+  answerIndex={0}
+  index={0}
+  onAddOption={[Function]}
+  onBlur={[Function]}
+  onChange={[Function]}
+  onDeleteOption={[Function]}
+  onFocus={[Function]}
+/>
+`;
+
+exports[`Answer should render <TextAnswer /> for answer type 'TextField' 1`] = `
+<TextAnswer
+  answer={
+    Object {
+      "type": "TextField",
+    }
+  }
+  answerIndex={0}
+  index={0}
+  onAddOption={[Function]}
+  onBlur={[Function]}
+  onChange={[Function]}
+  onDeleteOption={[Function]}
+  onFocus={[Function]}
+/>
+`;
+
+exports[`Answer should render nothing for unknown answer type 1`] = `null`;

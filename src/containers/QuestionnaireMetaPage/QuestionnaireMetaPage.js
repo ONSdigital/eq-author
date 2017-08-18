@@ -11,7 +11,7 @@ import { Grid, Column } from "components/Grid";
 
 const Margin = styled.div`margin: 2em 1em;`;
 
-class QuestionnaireMetaPage extends Component {
+export class QuestionnaireMetaPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
     questionnaire: CustomPropTypes.questionnaire

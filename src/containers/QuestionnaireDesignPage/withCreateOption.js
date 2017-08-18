@@ -19,7 +19,7 @@ export const createUpdater = answerId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ ownProps, mutate }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onAddOption(answerId) {
     const option = {
       answerId

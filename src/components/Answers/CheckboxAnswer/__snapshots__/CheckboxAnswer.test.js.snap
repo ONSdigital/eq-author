@@ -1,519 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxAnswer should match snapshot 1`] = `
-.c10 {
-  padding: 0.8em 3em;
-  border-radius: 2px;
-  font-size: 0.8em;
-  font-weight: 400;
-  cursor: pointer;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-transition: background-color 200ms ease-out;
-  transition: background-color 200ms ease-out;
-  -webkit-letter-spacing: -0.2px;
-  -moz-letter-spacing: -0.2px;
-  -ms-letter-spacing: -0.2px;
-  letter-spacing: -0.2px;
-  position: relative;
-  overflow: hidden;
-  background-color: white;
-  color: #4A4A4A;
-  border: 1px #EAEAEA solid;
-}
-
-.c10:focus,
-.c10:active {
-  outline: none;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.c10:focus,
-.c10:hover {
-  background-color: #EAEAEA;
-}
-
-.c7 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
-  font-size: 1.125em;
-  font-weight: 700;
-}
-
-.c7:focus {
-  outline: none;
-}
-
-.c7::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c7::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c7:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c7::placeholder {
-  color: #a3a3a3;
-}
-
-.c8 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
-  font-size: 0.875em;
-}
-
-.c8:focus {
-  outline: none;
-}
-
-.c8::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c8::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c8:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c8::placeholder {
-  color: #a3a3a3;
-}
-
-.c9 {
-  resize: none;
-}
-
-.c5 {
-  padding: 0.7em;
-  width: 100%;
-  display: block;
-  border-radius: 2px;
-  border: 1px solid #EAEAEA;
-  font-size: 0.9em;
-  display: inline-block;
-  width: 1.1em;
-  height: 1.1em;
-  padding: 0;
-  margin: 0 1em 0 0;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 1em;
-}
-
-.c5:focus {
-  outline: none;
-  border: 1px solid #61BDE0;
-}
-
-.c5:checked {
-  background: url(icon-checkbox.svg) no-repeat center;
-  background-size: 0.8em auto;
-}
-
-.c3 {
-  display: block;
-  width: 100%;
-  margin-bottom: 1em;
-}
-
-.c0 {
-  width: 20em;
-  margin: 0;
-}
-
-.c1 {
-  margin: 0 0 1em 0;
-}
-
-.c2 {
-  border: 1px solid #EAEAEA;
-  padding: 1em 1em 0 1em;
-  border-radius: 3px;
-  position: relative;
-}
-
-.c2:not(:first-child) {
-  margin-top: .5em;
-}
-
-.c2.option-enter {
-  opacity: 0;
-  height: 0;
-  -webkit-transform: translateX(-20px);
-  -ms-transform: translateX(-20px);
-  transform: translateX(-20px);
-}
-
-.c2.option-enter-active {
-  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,-webkit-transform 100ms ease-out 100ms;
-  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
-  transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
-  opacity: 1;
-  height: 5.625em;
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-}
-
-.c2.option-exit {
-  opacity: 1;
-  height: 5.625em;
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-}
-
-.c2.option-exit-active {
-  -webkit-transition: opacity 100ms ease-out,-webkit-transform 100ms ease-out,height 100ms ease-out 100ms;
-  -webkit-transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
-  transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
-  opacity: 0;
-  height: 0;
-  -webkit-transform: translateX(-20px);
-  -ms-transform: translateX(-20px);
-  transform: translateX(-20px);
-}
-
-.c6 {
-  display: inline-block !important;
-  width: auto;
-  vertical-align: middle;
-}
-
-.c4 {
-  border: 2px solid #EAEAEA;
-  height: 1.4em;
-  width: 1.4em;
-}
-
-<CheckboxAnswer
-  answer={
-    Object {
-      "id": 0,
-      "options": Array [
-        Object {
-          "description": "",
-          "id": 1,
-          "label": "",
-        },
-      ],
-    }
-  }
-  answerIndex={0}
-  onAddOption={[Function]}
-  onAddOther={[Function]}
-  onBlur={[Function]}
-  onChange={[Function]}
-  onDeleteOption={[Function]}
-  onFocus={[Function]}
->
-  <CheckboxAnswer__CheckboxAnswerWrapper>
-    <div
-      className="c0"
+<CheckboxAnswer__CheckboxAnswerWrapper>
+  <TransitionGroup
+    childFactory={[Function]}
+    component={[Function]}
+  >
+    <CSSTransition
+      classNames="option"
+      timeout={200}
     >
-      <TransitionGroup
-        childFactory={[Function]}
-        component={[Function]}
-      >
-        <CheckboxAnswer__CheckboxOptions>
-          <div
-            className="c1"
-          >
-            <CSSTransition
-              classNames="option"
-              in={true}
-              onExited={[Function]}
-              timeout={200}
-            >
-              <Transition
-                appear={false}
-                enter={true}
-                exit={true}
-                in={true}
-                mountOnEnter={false}
-                onEnter={[Function]}
-                onEntered={[Function]}
-                onEntering={[Function]}
-                onExit={[Function]}
-                onExited={[Function]}
-                onExiting={[Function]}
-                timeout={200}
-                unmountOnExit={false}
-              >
-                <CheckboxAnswer__CheckboxOption>
-                  <div
-                    className="c2"
-                  >
-                    <Field
-                      id="answers[0].options[0].label"
-                    >
-                      <Field__StyledField>
-                        <div
-                          className="c3"
-                        >
-                          <CheckboxAnswer__StyledCheckboxInput
-                            disabled={true}
-                            id="answers[0].options[0].label"
-                            type="checkbox"
-                          >
-                            <withChangeHandler(Input)
-                              className="c4"
-                              disabled={true}
-                              id="answers[0].options[0].label"
-                              type="checkbox"
-                            >
-                              <Input
-                                className="c4"
-                                disabled={true}
-                                id="answers[0].options[0].label"
-                                onChange={[Function]}
-                                type="checkbox"
-                              >
-                                <Input__StyledInput
-                                  className="c4"
-                                  disabled={true}
-                                  id="answers[0].options[0].label"
-                                  name="answers[0].options[0].label"
-                                  onChange={[Function]}
-                                  type="checkbox"
-                                >
-                                  <input
-                                    className="c4 c5"
-                                    disabled={true}
-                                    id="answers[0].options[0].label"
-                                    name="answers[0].options[0].label"
-                                    onChange={[Function]}
-                                    type="checkbox"
-                                  />
-                                </Input__StyledInput>
-                              </Input>
-                            </withChangeHandler(Input)>
-                          </CheckboxAnswer__StyledCheckboxInput>
-                          <CheckboxAnswer__SeamlessLabel
-                            autoFocus={true}
-                            id="answers[0].options[0].label"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onFocus={[Function]}
-                            placeholder="Label"
-                            size="medium"
-                            value=""
-                          >
-                            <withSeamlessness(withChangeHandler(Input))
-                              autoFocus={true}
-                              className="c6"
-                              focused={false}
-                              id="answers[0].options[0].label"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              optional={false}
-                              placeholder="Label"
-                              size="medium"
-                              value=""
-                            >
-                              <withSeamlessness__StyledSeamless
-                                autoFocus={true}
-                                className="c6"
-                                name="answers[0].options[0].label"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onFocus={[Function]}
-                                placeholder="Label"
-                                size="medium"
-                                value=""
-                              >
-                                <withChangeHandler(Input)
-                                  autoFocus={true}
-                                  className="c6 c7"
-                                  name="answers[0].options[0].label"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onFocus={[Function]}
-                                  placeholder="Label"
-                                  size="medium"
-                                  value=""
-                                >
-                                  <Input
-                                    autoFocus={true}
-                                    className="c6 c7"
-                                    name="answers[0].options[0].label"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    placeholder="Label"
-                                    size="medium"
-                                    value=""
-                                  >
-                                    <input
-                                      autoFocus={true}
-                                      className="c6 c7"
-                                      name="answers[0].options[0].label"
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onFocus={[Function]}
-                                      placeholder="Label"
-                                      size="medium"
-                                      type="text"
-                                      value=""
-                                    />
-                                  </Input>
-                                </withChangeHandler(Input)>
-                              </withSeamlessness__StyledSeamless>
-                            </withSeamlessness(withChangeHandler(Input))>
-                          </CheckboxAnswer__SeamlessLabel>
-                        </div>
-                      </Field__StyledField>
-                    </Field>
-                    <Field
-                      id="answers[0].options[0].description"
-                    >
-                      <Field__StyledField>
-                        <div
-                          className="c3"
-                        >
-                          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-                            cols="30"
-                            focused={false}
-                            id="answers[0].options[0].description"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onFocus={[Function]}
-                            optional={false}
-                            placeholder="Optional description"
-                            rows="5"
-                            size="small"
-                            value=""
-                          >
-                            <withSeamlessness__StyledSeamless
-                              cols="30"
-                              name="answers[0].options[0].description"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onFocus={[Function]}
-                              placeholder="Optional description"
-                              rows="5"
-                              size="small"
-                              value=""
-                            >
-                              <withChangeHandler(SeamlessTextArea__TextArea)
-                                className="c8"
-                                cols="30"
-                                name="answers[0].options[0].description"
-                                onBlur={[Function]}
-                                onChange={[Function]}
-                                onFocus={[Function]}
-                                placeholder="Optional description"
-                                rows="5"
-                                size="small"
-                                value=""
-                              >
-                                <SeamlessTextArea__TextArea
-                                  className="c8"
-                                  cols="30"
-                                  name="answers[0].options[0].description"
-                                  onBlur={[Function]}
-                                  onChange={[Function]}
-                                  onFocus={[Function]}
-                                  placeholder="Optional description"
-                                  rows="5"
-                                  size="small"
-                                  value=""
-                                >
-                                  <TextareaAutosize
-                                    className="c8 c9"
-                                    cols="30"
-                                    name="answers[0].options[0].description"
-                                    onBlur={[Function]}
-                                    onChange={[Function]}
-                                    onFocus={[Function]}
-                                    onHeightChange={[Function]}
-                                    placeholder="Optional description"
-                                    rows="5"
-                                    size="small"
-                                    useCacheForDOMMeasurements={false}
-                                    value=""
-                                  >
-                                    <textarea
-                                      className="c8 c9"
-                                      cols="30"
-                                      name="answers[0].options[0].description"
-                                      onBlur={[Function]}
-                                      onChange={[Function]}
-                                      onFocus={[Function]}
-                                      placeholder="Optional description"
-                                      rows="5"
-                                      size="small"
-                                      style={
-                                        Object {
-                                          "height": 0,
-                                        }
-                                      }
-                                      value=""
-                                    />
-                                  </TextareaAutosize>
-                                </SeamlessTextArea__TextArea>
-                              </withChangeHandler(SeamlessTextArea__TextArea)>
-                            </withSeamlessness__StyledSeamless>
-                          </withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
-                        </div>
-                      </Field__StyledField>
-                    </Field>
-                  </div>
-                </CheckboxAnswer__CheckboxOption>
-              </Transition>
-            </CSSTransition>
-          </div>
-        </CheckboxAnswer__CheckboxOptions>
-      </TransitionGroup>
-      <div>
-        <Button
-          onClick={[Function]}
-          secondary={true}
-          type="button"
+      <CheckboxAnswer__CheckboxOption>
+        <Field
+          id="answers[0].options[0].label"
         >
-          <Button__StyledButton
-            onClick={[Function]}
-            secondary={true}
-            type="button"
-          >
-            <button
-              className="c10"
-              onClick={[Function]}
-              type="button"
-            >
-              Add another option
-            </button>
-          </Button__StyledButton>
-        </Button>
-      </div>
-    </div>
-  </CheckboxAnswer__CheckboxAnswerWrapper>
-</CheckboxAnswer>
+          <CheckboxAnswer__StyledCheckboxInput
+            disabled={true}
+            type="checkbox"
+          />
+          <CheckboxAnswer__SeamlessLabel
+            autoFocus={true}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="Label"
+            size="medium"
+            value=""
+          />
+        </Field>
+        <Field
+          id="answers[0].options[0].description"
+        >
+          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+            cols="30"
+            focused={false}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            optional={false}
+            placeholder="Optional description"
+            rows="5"
+            size="small"
+            value=""
+          />
+        </Field>
+      </CheckboxAnswer__CheckboxOption>
+    </CSSTransition>
+  </TransitionGroup>
+  <div>
+    <Button
+      onClick={[Function]}
+      secondary={true}
+      type="button"
+    >
+      Add another option
+    </Button>
+  </div>
+</CheckboxAnswer__CheckboxAnswerWrapper>
 `;

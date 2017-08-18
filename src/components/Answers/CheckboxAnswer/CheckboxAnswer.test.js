@@ -1,16 +1,19 @@
 import React from "react";
 
 import Button from "components/Button";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import CheckboxAnswer, { CheckboxOption, CloseButton } from "./index";
+import CheckboxAnswer, {
+  CheckboxOption,
+  DeleteButton,
+  SeamlessLabel
+} from "./index";
 
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 
 describe("CheckboxAnswer", () => {
-  let mockHandlers, wrapper;
+  let mockHandlers, wrapper, answer;
   beforeAll(() => {
-    const answer = {
+    answer = {
       id: 0,
       options: [
         {
@@ -28,7 +31,7 @@ describe("CheckboxAnswer", () => {
       onFocus: jest.fn(),
       onBlur: jest.fn()
     };
-    wrapper = mount(
+    wrapper = shallow(
       <CheckboxAnswer {...mockHandlers} answer={answer} answerIndex={0} />
     );
   });
@@ -58,8 +61,11 @@ describe("CheckboxAnswer", () => {
         ]
       }
     });
-    wrapper.find(CloseButton).forEach(node => {
-      node.simulate("click");
+
+    const preventDefault = jest.fn();
+
+    wrapper.find(DeleteButton).forEach(node => {
+      node.simulate("click", { preventDefault });
     });
 
     expect(mockHandlers.onDeleteOption).toHaveBeenCalled();
@@ -74,7 +80,7 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should update label when text entered", () => {
-    wrapper.find(SeamlessInput).forEach(node => {
+    wrapper.find(SeamlessLabel).forEach(node => {
       node.simulate("change");
     });
 
@@ -87,5 +93,23 @@ describe("CheckboxAnswer", () => {
     });
 
     expect(mockHandlers.onChange).toHaveBeenCalled();
+  });
+
+  it("should invoke onBlur when option is blurred", () => {
+    const stopPropagation = jest.fn();
+    wrapper.find(SeamlessLabel).first().simulate("blur", { stopPropagation });
+
+    expect(stopPropagation).toHaveBeenCalled();
+    expect(mockHandlers.onBlur).toHaveBeenCalled();
+  });
+
+  it("should invoke onFocus with optionId when option is focused", () => {
+    const stopPropagation = jest.fn();
+    wrapper.find(SeamlessLabel).first().simulate("focus", { stopPropagation });
+
+    expect(stopPropagation).toHaveBeenCalled();
+    expect(mockHandlers.onFocus).toHaveBeenCalledWith(
+      expect.stringMatching(new RegExp(`option-${answer.options[0].id}$`))
+    );
   });
 });
