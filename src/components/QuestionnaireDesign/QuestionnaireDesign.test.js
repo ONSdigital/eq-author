@@ -9,6 +9,7 @@ describe("QuestionnaireDesign", () => {
       <QuestionnaireDesign
         onChange={jest.fn()}
         onAddAnswer={jest.fn()}
+        onDeleteAnswer={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
         answers={[]}

@@ -190,6 +190,7 @@ class QuestionnaireDesign extends React.Component {
                     onBlur={onBlur}
                     focused={focused === `answer-${answer.id}`}
                   >
+                    <TextAnswer answer={answer} onChange={onChange} index={i} />
                     <AnswerDeleteButton
                       size="medium"
                       onClick={function() {
@@ -198,7 +199,6 @@ class QuestionnaireDesign extends React.Component {
                       title="Delete answer"
                       type="button"
                     />
-                    <TextAnswer answer={answer} onChange={onChange} index={i} />
                   </AnimatedCanvasSection>
                 </PageTransition>
               );

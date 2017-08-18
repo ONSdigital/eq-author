@@ -106,6 +106,12 @@ exports[`QuestionnaireDesign should render 1`] = `
             index={0}
             onChange={[Function]}
           />
+          <QuestionnaireDesign__AnswerDeleteButton
+            onClick={[Function]}
+            size="medium"
+            title="Delete answer"
+            type="button"
+          />
         </QuestionnaireDesign__AnimatedCanvasSection>
       </PageTransition>
       <PageTransition>
