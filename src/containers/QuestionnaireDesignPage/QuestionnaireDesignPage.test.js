@@ -175,6 +175,15 @@ describe("containers/QuestionnaireDesignPage", () => {
     expect(handleAddAnswer).toHaveBeenCalled();
   });
 
+  it("should invoke callback when answer deleted", () => {
+    wrapper
+      .setState({ focused: null })
+      .find(QuestionnaireDesign)
+      .simulate("deleteAnswer");
+
+    expect(handleDeleteAnswer).toHaveBeenCalled();
+  });
+
   it("should pass onAddPage prop to QuestionNav", () => {
     wrapper.find(QuestionnaireNav).simulate("addPage", 1);
     expect(handleAddPage).toHaveBeenCalledWith(1);
