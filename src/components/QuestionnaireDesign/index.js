@@ -18,17 +18,12 @@ import AnswerTypeSelector from "components/AnswerTypeSelector";
 const duration = 300;
 
 const PageTransition = props =>
-  <CSSTransition
-    {...props}
-    timeout={duration}
-    enter
-    exit={false}
-    classNames="fade"
-  />;
+  <CSSTransition {...props} timeout={duration} enter exit classNames="fade" />;
 
 const AnimatedCanvasSection = styled(CanvasSection)`
   position: relative;
-  &.fade-enter {
+  &.fade-enter,
+  &.fade-exit {
     opacity: 0.25;
     transform: translateX(-50px);
     z-index: 200;
@@ -39,6 +34,11 @@ const AnimatedCanvasSection = styled(CanvasSection)`
     transform: translateX(0);
     transition: opacity ${duration}ms ease-out,
       transform ${duration}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
+  &.fade-exit {
+    opacity: 0;
+    transition: opacity ${duration / 2}ms ease-out,
+      transform ${duration / 2}ms ease-out;
   }
 `;
 
@@ -192,7 +192,9 @@ class QuestionnaireDesign extends React.Component {
                   >
                     <AnswerDeleteButton
                       size="medium"
-                      onClick={() => onDeleteAnswer(answer.id)}
+                      onClick={function() {
+                        onDeleteAnswer(answer.id);
+                      }}
                       title="Delete answer"
                       type="button"
                     />
