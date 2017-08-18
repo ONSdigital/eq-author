@@ -1,7 +1,7 @@
 export const onDesignQuestionnairePage = () => {
   const pageTitle = browser.getText("h2");
 
-  return pageTitle == "QUESTIONNAIRE STRUCTURE";
+  return pageTitle === "QUESTIONNAIRE STRUCTURE";
 };
 
 export const navigationHasDefaultSectionTitle = () => {

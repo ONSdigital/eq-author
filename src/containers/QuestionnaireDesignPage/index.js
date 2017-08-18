@@ -65,7 +65,7 @@ export default compose(
   withUpdateAnswer,
   withCreateSection,
   withUpdatePage,
-  withDeletePage,
   withCreatePage,
+  withDeletePage, // NOTE: this *must* come after withCreatePage
   withCreateAnswer
 )(QuestionnaireDesign);
