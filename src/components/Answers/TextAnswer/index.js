@@ -5,9 +5,9 @@ import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 
-const TextAnswer = ({ answer, index, onChange }) =>
+const TextAnswer = ({ answer, answerIndex, onChange }) =>
   <div>
-    <Field id={`answers[${index}].label`}>
+    <Field id={`answers[${answerIndex}].label`}>
       <SeamlessInput
         placeholder="Label"
         size="medium"
@@ -15,7 +15,7 @@ const TextAnswer = ({ answer, index, onChange }) =>
         value={answer.label}
       />
     </Field>
-    <Field id={`answers[${index}].description`}>
+    <Field id={`answers[${answerIndex}].description`}>
       <SeamlessTextArea
         cols="30"
         rows="5"
@@ -32,7 +32,7 @@ const TextAnswer = ({ answer, index, onChange }) =>
 TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired
+  answerIndex: PropTypes.number.isRequired
 };
 
 export default TextAnswer;
