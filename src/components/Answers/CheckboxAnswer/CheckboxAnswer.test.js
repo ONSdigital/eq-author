@@ -23,6 +23,7 @@ describe("CheckboxAnswer", () => {
         }
       ]
     };
+
     mockHandlers = {
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
@@ -45,52 +46,47 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should remove option when delete is pressed", () => {
-    wrapper.setProps({
-      answer: {
-        options: [
-          {
-            id: 1,
-            label: "",
-            description: ""
-          },
-          {
-            id: 2,
-            label: "",
-            description: ""
-          }
-        ]
-      }
-    });
+    const answer = {
+      id: 1,
+      options: [
+        {
+          id: 1,
+          label: "",
+          description: ""
+        },
+        {
+          id: 2,
+          label: "",
+          description: ""
+        }
+      ]
+    };
 
+    wrapper.setProps({ answer });
     const preventDefault = jest.fn();
 
-    wrapper.find(DeleteButton).forEach(node => {
-      node.simulate("click", { preventDefault });
-    });
+    wrapper.find(DeleteButton).last().simulate("click", { preventDefault });
 
-    expect(mockHandlers.onDeleteOption).toHaveBeenCalled();
+    expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(
+      answer.options[1].id,
+      answer.id
+    );
   });
 
   it("should add a new option when add button is clicked", () => {
-    wrapper.find(Button).forEach(node => {
-      node.simulate("click");
-    });
+    wrapper.find(Button).first().simulate("click");
 
     expect(mockHandlers.onAddOption).toHaveBeenCalled();
   });
 
   it("should update label when text entered", () => {
-    wrapper.find(SeamlessLabel).forEach(node => {
-      node.simulate("change");
-    });
+    wrapper.find(SeamlessLabel).first().simulate("change");
 
     expect(mockHandlers.onChange).toHaveBeenCalled();
   });
 
   it("should update description when text entered", () => {
-    wrapper.find(SeamlessTextArea).forEach(node => {
-      node.simulate("change");
-    });
+    wrapper.find(SeamlessTextArea).first().simulate("change");
 
     expect(mockHandlers.onChange).toHaveBeenCalled();
   });

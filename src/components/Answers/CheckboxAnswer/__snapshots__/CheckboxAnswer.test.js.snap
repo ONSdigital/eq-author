@@ -19,7 +19,6 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
             type="checkbox"
           />
           <CheckboxAnswer__SeamlessLabel
-            autoFocus={true}
             onBlur={[Function]}
             onChange={[Function]}
             onFocus={[Function]}

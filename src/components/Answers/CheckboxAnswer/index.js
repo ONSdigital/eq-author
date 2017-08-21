@@ -145,7 +145,6 @@ const CheckboxAnswer = ({
                     value={option.label}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    autoFocus
                   />
                 </Field>
                 <Field
