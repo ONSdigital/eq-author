@@ -3115,13 +3115,13 @@ enzyme@^2.8.2:
     prop-types "^15.5.10"
     uuid "^3.0.1"
 
+eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#766717f:
+  version "1.0.0"
+  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/766717f"
+
 "eq-author-graphql-schema@https://github.com/ONSdigital/eq-author-graphql-schema.git":
   version "1.0.0"
   resolved "https://github.com/ONSdigital/eq-author-graphql-schema.git#766717f60e1efb38ee54d4643ef1d17828d3c5e6"
-
-"eq-author-graphql-schema@https://github.com/ONSdigital/eq-author-graphql-schema.git#a7c565b177e03abeffabe1c04be8065e79456bfc":
-  version "1.0.0"
-  resolved "https://github.com/ONSdigital/eq-author-graphql-schema.git#a7c565b177e03abeffabe1c04be8065e79456bfc"
 
 "eq-author-mock-api@https://github.com/ONSdigital/eq-author-mock-api.git":
   version "1.0.0"
@@ -4059,15 +4059,15 @@ glob-to-regexp@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.1.0.tgz#e0369d426578fd456d47dc23b09de05c1da9ea5d"
 
-glob@7.1.1:
+glob@7.1.1, glob@lucetius/node-glob#chimp:
   version "7.1.1"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
+  resolved "https://codeload.github.com/lucetius/node-glob/tar.gz/51c7ca6e69bfbd17db5f1ea710e3f2a7a457d9ce"
   dependencies:
     fs.realpath "^1.0.0"
     inflight "^1.0.4"
     inherits "2"
     minimatch "^3.0.2"
-    once "^1.3.0"
+    once "1.3.0"
     path-is-absolute "^1.0.0"
 
 glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.0.6, glob@^7.1.1, glob@~7.1.1:
@@ -4079,17 +4079,6 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.0.6, glob@^7.1.1, glob@~7.1.1:
     inherits "2"
     minimatch "^3.0.4"
     once "^1.3.0"
-    path-is-absolute "^1.0.0"
-
-glob@lucetius/node-glob#chimp:
-  version "7.1.1"
-  resolved "https://codeload.github.com/lucetius/node-glob/tar.gz/51c7ca6e69bfbd17db5f1ea710e3f2a7a457d9ce"
-  dependencies:
-    fs.realpath "^1.0.0"
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "^3.0.2"
-    once "1.3.0"
     path-is-absolute "^1.0.0"
 
 global-modules@1.0.0, global-modules@^1.0.0:
