@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`largeu 1`] = `
+exports[`large 1`] = `
 .c0 {
   color: #c3c3c3;
   border: none;
@@ -9,7 +9,7 @@ exports[`largeu 1`] = `
   -webkit-transition: color .2s ease-in;
   transition: color .2s ease-in;
   font-size: 3em;
-  padding: 0 .3em;
+  padding: .3em;
 }
 
 .c0:hover {
@@ -43,7 +43,7 @@ exports[`medium 1`] = `
   -webkit-transition: color .2s ease-in;
   transition: color .2s ease-in;
   font-size: 2em;
-  padding: 0 .3em;
+  padding: .3em;
 }
 
 .c0:hover {

@@ -2,7 +2,7 @@ import { mapMutateToProps, deleteUpdater } from "./withDeleteAnswer";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
   let mutate, result, ownProps, onDeleteAnswer;
-  let deletedAnswer, currentPage, currentSection, questionnaire;
+  let deletedAnswer, currentPage;
 
   beforeEach(() => {
     deletedAnswer = {
@@ -16,17 +16,6 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
       answers: [deletedAnswer]
     };
 
-    currentSection = {
-      id: 1,
-      pages: [currentPage, { id: 3 }]
-    };
-
-    questionnaire = {
-      id: 1,
-      title: "My Questionnaire",
-      sections: [currentSection]
-    };
-
     result = {
       data: {
         deleteAnswer: deletedAnswer
@@ -36,9 +25,6 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
     onDeleteAnswer = jest.fn(() => Promise.resolve());
 
     ownProps = {
-      questionnaire,
-      questionnaireId: questionnaire.id,
-      sectionId: currentSection.id,
       pageId: currentPage.id,
       onDeleteAnswer
     };
@@ -48,29 +34,21 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
 
   describe("deleteUpdater", () => {
     it("should remove the answer from the cache", () => {
-      const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        return { questionnaire };
-      });
-      const writeQuery = jest.fn();
+      const writeFragment = jest.fn();
+      const readFragment = jest.fn().mockImplementation(() => currentPage);
+      const id = `QuestionPage${currentPage.id}`;
 
-      const updater = deleteUpdater(
-        questionnaire.id,
-        currentSection.id,
-        currentPage.id,
-        deletedAnswer.id
-      );
-      updater({ readQuery, writeQuery }, result);
+      const updater = deleteUpdater(currentPage.id, deletedAnswer.id);
+      updater({ readFragment, writeFragment }, result);
 
-      expect(readQuery).toHaveBeenCalledWith(
-        expect.objectContaining({ variables: { id: questionnaire.id } })
+      expect(readFragment).toHaveBeenCalledWith(
+        expect.objectContaining({ id })
       );
 
-      expect(writeQuery).toHaveBeenCalledWith(
+      expect(writeFragment).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: { id: questionnaire.id },
-          data: {
-            questionnaire
-          }
+          id,
+          data: currentPage
         })
       );
 

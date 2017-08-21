@@ -10,7 +10,7 @@ exports[`QuestionnaireDesign should render 1`] = `
       childFactory={[Function]}
       component="div"
     >
-      <PageTransition>
+      <FadeTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="section"
@@ -44,8 +44,8 @@ exports[`QuestionnaireDesign should render 1`] = `
             />
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </PageTransition>
-      <PageTransition>
+      </FadeTransition>
+      <FadeTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="page"
@@ -89,8 +89,8 @@ exports[`QuestionnaireDesign should render 1`] = `
             />
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </PageTransition>
-      <AnswerTransition>
+      </FadeTransition>
+      <FadeTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="answer-4"
@@ -108,19 +108,18 @@ exports[`QuestionnaireDesign should render 1`] = `
           />
           <QuestionnaireDesign__AnswerDeleteButton
             onClick={[Function]}
-            size="medium"
             title="Delete answer"
             type="button"
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </AnswerTransition>
-      <PageTransition>
+      </FadeTransition>
+      <FadeTransition>
         <QuestionnaireDesign__AnimatedCanvasSection>
           <AnswerTypeSelector
             onSelect={[Function]}
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </PageTransition>
+      </FadeTransition>
     </TransitionGroup>
   </Form>
 </Canvas__Canvas>
