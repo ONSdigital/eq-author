@@ -21,14 +21,13 @@ export const createUpdater = pageId => (proxy, result) => {
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddAnswer(type) {
     const answer = {
-      type: type,
+      type,
       mandatory: false,
       questionPageId: ownProps.page.id,
-      description: "foooooo",
+      description: "",
       guidance: "",
       qCode: "",
-      label: "",
-      autoFocus: true
+      label: ""
     };
 
     const update = createUpdater(ownProps.pageId);
