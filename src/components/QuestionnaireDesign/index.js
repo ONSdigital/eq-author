@@ -47,10 +47,8 @@ const AnimatedCanvasSection = styled(CanvasSection)`
   }
   &.fade-exit {
     opacity: 0;
-    padding: 0;
     transition: opacity ${duration / 2}ms ease-out,
-      padding ${duration / 2}ms ease-out ${duration / 2}ms,
-      transform ${duration / 2}ms ease-out;
+      transform ${duration / 2}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
   }
 `;
 
