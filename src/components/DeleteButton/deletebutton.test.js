@@ -7,7 +7,7 @@ describe("DeleteButton", () => {
   it("should render", () => {
     expect(mount(<DeleteButton size="small" />)).toMatchSnapshot("small");
     expect(mount(<DeleteButton size="medium" />)).toMatchSnapshot("medium");
-    expect(mount(<DeleteButton size="large" />)).toMatchSnapshot("largeu");
+    expect(mount(<DeleteButton size="large" />)).toMatchSnapshot("large");
   });
 
   it("should invoke callback when clicked", () => {
@@ -17,11 +17,5 @@ describe("DeleteButton", () => {
     wrapper.simulate("click");
 
     expect(onClickCallback).toHaveBeenCalled();
-  });
-
-  it("should display an &times;", () => {
-    const wrapper = mount(<DeleteButton />);
-
-    expect(wrapper.text()).toEqual("×");
   });
 });

@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import { reject, concat } from "lodash";
 
@@ -64,6 +63,6 @@ class Wrapper extends React.Component {
   }
 }
 
-storiesOf("QuestionnaireDesign", module)
-  .addDecorator(withKnobs)
-  .add("Deleting an answer", () => <Wrapper />);
+storiesOf("QuestionnaireDesign", module).add("Deleting an answer", () =>
+  <Wrapper />
+);

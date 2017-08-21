@@ -1,7 +1,7 @@
 import { mapMutateToProps, deleteUpdater } from "./withDeleteAnswer";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
-  let history, mutate, result, ownProps, onDeleteAnswer;
+  let mutate, result, ownProps, onDeleteAnswer;
   let deletedAnswer, currentPage, currentSection, questionnaire;
 
   beforeEach(() => {
@@ -27,10 +27,6 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
       sections: [currentSection]
     };
 
-    history = {
-      push: jest.fn()
-    };
-
     result = {
       data: {
         deleteAnswer: deletedAnswer
@@ -44,7 +40,6 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
       questionnaireId: questionnaire.id,
       sectionId: currentSection.id,
       pageId: currentPage.id,
-      history,
       onDeleteAnswer
     };
 

@@ -1,9 +1,24 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 
-const defaultSize = "1.25em";
+const sizes = {
+  small: css`
+    font-size: 1.25em;
+    padding: 0 auto;
+  `,
+
+  medium: css`
+    font-size: 2em;
+    padding: .3em;
+  `,
+
+  large: css`
+    font-size: 3em;
+    padding: .3em;
+  `
+};
 
 const StyledDeleteButton = styled.button`
   color: ${colors.lightGrey};
@@ -18,24 +33,7 @@ const StyledDeleteButton = styled.button`
     transition: color .2s ease-out;
   }
 
-  font-size: ${props => {
-    if (props.size === "medium") {
-      return "2em";
-    } else if (props.size === "large") {
-      return "3em";
-    } else {
-      return defaultSize;
-    }
-  }};
-
-  padding: 0
-    ${props => {
-      if (props.size === "medium" || props.size === "large") {
-        return ".3em";
-      } else {
-        return "auto";
-      }
-    }};
+  ${props => sizes[props.size]};
 `;
 
 const DeleteButton = props =>

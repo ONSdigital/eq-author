@@ -75,20 +75,6 @@ describe("QuestionnaireDesign", () => {
     expect(document.activeElement.name).toEqual("page.title");
   });
 
-  it("should display a delete button when an answer is rendered", () => {
-    wrapper = createWrapper({
-      section: { title: "" },
-      page: { id: "1", title: "" },
-      answers: [
-        {
-          id: "1"
-        }
-      ]
-    });
-
-    expect(wrapper.find(DeleteButton).nodes).toHaveLength(1);
-  });
-
   it("should have a delete button per answer", () => {
     wrapper = createWrapper({
       section: { title: "" },

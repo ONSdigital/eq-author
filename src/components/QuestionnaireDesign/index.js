@@ -17,24 +17,20 @@ import AnswerTypeSelector from "components/AnswerTypeSelector";
 
 const duration = 300;
 
-const PageTransition = props =>
+const FadeTransition = props =>
   <CSSTransition
-    {...props}
     timeout={duration}
     enter
     exit={false}
     classNames="fade"
+    {...props}
   />;
-
-const AnswerTransition = props =>
-  <CSSTransition {...props} timeout={duration} enter exit classNames="fade" />;
 
 const AnimatedCanvasSection = styled(CanvasSection)`
   position: relative;
   &.fade-enter,
   &.fade-exit {
     opacity: 0.25;
-    transform-origin: 50% 0%;
     transform: translateX(-50px);
     z-index: 200;
   }
@@ -130,7 +126,7 @@ class QuestionnaireDesign extends React.Component {
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
-            <PageTransition key={`section-${section.id}`}>
+            <FadeTransition key={`section-${section.id}`}>
               <AnimatedCanvasSection
                 id="section"
                 onFocus={onFocus}
@@ -157,8 +153,8 @@ class QuestionnaireDesign extends React.Component {
                   />
                 </Field>
               </AnimatedCanvasSection>
-            </PageTransition>
-            <PageTransition key={`page-${page.id}`}>
+            </FadeTransition>
+            <FadeTransition key={`page-${page.id}`}>
               <AnimatedCanvasSection
                 id="page"
                 onFocus={onFocus}
@@ -189,10 +185,10 @@ class QuestionnaireDesign extends React.Component {
                   />
                 </Field>
               </AnimatedCanvasSection>
-            </PageTransition>
+            </FadeTransition>
             {answers.map((answer, i) => {
               return (
-                <AnswerTransition key={answer.id}>
+                <FadeTransition key={answer.id}>
                   <AnimatedCanvasSection
                     id={`answer-${answer.id}`}
                     key={answer.id}
@@ -202,7 +198,6 @@ class QuestionnaireDesign extends React.Component {
                   >
                     <TextAnswer answer={answer} onChange={onChange} index={i} />
                     <AnswerDeleteButton
-                      size="medium"
                       onClick={function() {
                         onDeleteAnswer(answer.id);
                       }}
@@ -210,14 +205,14 @@ class QuestionnaireDesign extends React.Component {
                       type="button"
                     />
                   </AnimatedCanvasSection>
-                </AnswerTransition>
+                </FadeTransition>
               );
             })}
-            <PageTransition key={`add-answer`}>
+            <FadeTransition key={`add-answer`}>
               <AnimatedCanvasSection>
                 <AnswerTypeSelector onSelect={onAddAnswer} />
               </AnimatedCanvasSection>
-            </PageTransition>
+            </FadeTransition>
           </TransitionGroup>
         </Form>
       </Canvas>
