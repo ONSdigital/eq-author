@@ -18,6 +18,7 @@ export class QuestionnaireDesignPage extends Component {
     onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
+    onDeleteAnswer: PropTypes.func.isRequired,
     onSectionUpdate: PropTypes.func.isRequired,
     onPageUpdate: PropTypes.func.isRequired,
     onAnswerUpdate: PropTypes.func.isRequired,
@@ -56,6 +57,10 @@ export class QuestionnaireDesignPage extends Component {
 
   handleAddAnswer = type => {
     this.props.onAddAnswer(type);
+  };
+
+  handleDeleteAnswer = answerId => {
+    this.props.onDeleteAnswer(answerId);
   };
 
   handleBlur = focused => {
@@ -121,6 +126,7 @@ export class QuestionnaireDesignPage extends Component {
               answers={answers}
               focused={focused}
               onAddAnswer={this.handleAddAnswer}
+              onDeleteAnswer={this.handleDeleteAnswer}
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}

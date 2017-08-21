@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import QuestionnaireDesign from "./";
+import DeleteButton from "components/DeleteButton";
 
 describe("QuestionnaireDesign", () => {
   let wrapper;
@@ -9,6 +10,7 @@ describe("QuestionnaireDesign", () => {
       <QuestionnaireDesign
         onChange={jest.fn()}
         onAddAnswer={jest.fn()}
+        onDeleteAnswer={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
         answers={[]}
@@ -71,5 +73,71 @@ describe("QuestionnaireDesign", () => {
       page: { id: "3", title: "" }
     });
     expect(document.activeElement.name).toEqual("page.title");
+  });
+
+  it("should display a delete button when an answer is rendered", () => {
+    wrapper = createWrapper({
+      section: { title: "" },
+      page: { id: "1", title: "" },
+      answers: [
+        {
+          id: "1"
+        }
+      ]
+    });
+
+    expect(wrapper.find(DeleteButton).nodes).toHaveLength(1);
+  });
+
+  it("should have a delete button per answer", () => {
+    wrapper = createWrapper({
+      section: { title: "" },
+      page: { id: "1", title: "" },
+      answers: [
+        {
+          id: "1"
+        },
+        {
+          id: "2"
+        }
+      ]
+    });
+
+    expect(wrapper.find(DeleteButton).nodes).toHaveLength(2);
+  });
+
+  it("should call handler when answer deleted", () => {
+    wrapper = createWrapper({
+      section: { title: "" },
+      page: { id: "1", title: "" },
+      answers: [
+        {
+          id: 1
+        }
+      ]
+    });
+
+    wrapper.find(DeleteButton).simulate("click");
+
+    expect(wrapper.prop("onDeleteAnswer")).toHaveBeenCalledWith(1);
+  });
+
+  it("should delete the correct answer", () => {
+    wrapper = createWrapper({
+      section: { title: "" },
+      page: { id: "1", title: "" },
+      answers: [
+        {
+          id: 1
+        },
+        {
+          id: 2
+        }
+      ]
+    });
+
+    wrapper.find(DeleteButton).last().simulate("click");
+
+    expect(wrapper.prop("onDeleteAnswer")).toHaveBeenCalledWith(2);
   });
 });

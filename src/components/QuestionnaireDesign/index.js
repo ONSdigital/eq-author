@@ -7,6 +7,7 @@ import Canvas from "./Canvas";
 import SeamlessInput from "../SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
 import TextAnswer from "components/Answers/TextAnswer";
+import DeleteButton from "components/DeleteButton";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
@@ -25,10 +26,15 @@ const PageTransition = props =>
     classNames="fade"
   />;
 
+const AnswerTransition = props =>
+  <CSSTransition {...props} timeout={duration} enter exit classNames="fade" />;
+
 const AnimatedCanvasSection = styled(CanvasSection)`
   position: relative;
-  &.fade-enter {
+  &.fade-enter,
+  &.fade-exit {
     opacity: 0.25;
+    transform-origin: 50% 0%;
     transform: translateX(-50px);
     z-index: 200;
   }
@@ -39,6 +45,17 @@ const AnimatedCanvasSection = styled(CanvasSection)`
     transition: opacity ${duration}ms ease-out,
       transform ${duration}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
   }
+  &.fade-exit {
+    opacity: 0;
+    transition: opacity ${duration / 2}ms ease-out,
+      transform ${duration / 2}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  }
+`;
+
+const AnswerDeleteButton = styled(DeleteButton)`
+  position: absolute;
+  right: .5em;
+  top: .4em;
 `;
 
 class QuestionnaireDesign extends React.Component {
@@ -48,6 +65,7 @@ class QuestionnaireDesign extends React.Component {
     answers: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
+    onDeleteAnswer: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
@@ -102,6 +120,7 @@ class QuestionnaireDesign extends React.Component {
       answers,
       onChange,
       onAddAnswer,
+      onDeleteAnswer,
       onFocus,
       onBlur,
       focused
@@ -173,7 +192,7 @@ class QuestionnaireDesign extends React.Component {
             </PageTransition>
             {answers.map((answer, i) => {
               return (
-                <PageTransition key={answer.id}>
+                <AnswerTransition key={answer.id}>
                   <AnimatedCanvasSection
                     id={`answer-${answer.id}`}
                     key={answer.id}
@@ -182,8 +201,16 @@ class QuestionnaireDesign extends React.Component {
                     focused={focused === `answer-${answer.id}`}
                   >
                     <TextAnswer answer={answer} onChange={onChange} index={i} />
+                    <AnswerDeleteButton
+                      size="medium"
+                      onClick={function() {
+                        onDeleteAnswer(answer.id);
+                      }}
+                      title="Delete answer"
+                      type="button"
+                    />
                   </AnimatedCanvasSection>
-                </PageTransition>
+                </AnswerTransition>
               );
             })}
             <PageTransition key={`add-answer`}>
