@@ -24,32 +24,12 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       type: type,
       mandatory: false,
       questionPageId: ownProps.page.id,
-      description: "",
+      description: "foooooo",
       guidance: "",
       qCode: "",
-      label: ""
+      label: "",
+      autoFocus: true
     };
-
-    const optimisticResponse = {
-      createAnswer: {
-        __typename: "Answer",
-        id: -1,
-        ...answer
-      }
-    };
-
-    if (type === "Checkbox") {
-      optimisticResponse.createAnswer = {
-        ...optimisticResponse.createAnswer,
-        __typename: "MultipleChoiceAnswer",
-        options: [
-          {
-            id: -1,
-            __typename: "Option"
-          }
-        ]
-      };
-    }
 
     const update = createUpdater(ownProps.pageId);
 
