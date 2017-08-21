@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
-import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
-import deleteAnswerMutation from "queries/deleteAnswer.graphql";
+import getQuestionnaireQuery from "../../queries/getQuestionnaire.graphql";
+import deleteAnswerMutation from "../../queries/deleteAnswer.graphql";
 import { find, remove } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
