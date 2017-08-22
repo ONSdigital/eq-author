@@ -13,6 +13,7 @@ describe("Answer", () => {
         onBlur={jest.fn()}
         onAddOption={jest.fn()}
         onDeleteOption={jest.fn()}
+        onEntered={jest.fn()}
         index={0}
       />
     );

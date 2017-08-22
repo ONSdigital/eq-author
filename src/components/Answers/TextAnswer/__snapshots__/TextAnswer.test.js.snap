@@ -6,6 +6,7 @@ exports[`TextAnswer should render 1`] = `
     id="answers[1].label"
   >
     <withSeamlessness(withChangeHandler(Input))
+      data-autoFocus={true}
       focused={false}
       onChange={[Function]}
       optional={false}

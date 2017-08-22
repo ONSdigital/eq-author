@@ -8,42 +8,26 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   >
     <CSSTransition
       classNames="option"
+      onEntered={[Function]}
       timeout={200}
     >
-      <CheckboxAnswer__CheckboxOption>
-        <Field
-          id="answers[0].options[0].label"
-        >
-          <CheckboxAnswer__StyledCheckboxInput
-            disabled={true}
-            type="checkbox"
-          />
-          <CheckboxAnswer__SeamlessLabel
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            placeholder="Label"
-            size="medium"
-            value=""
-          />
-        </Field>
-        <Field
-          id="answers[0].options[0].description"
-        >
-          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-            cols="30"
-            focused={false}
-            onBlur={[Function]}
-            onChange={[Function]}
-            onFocus={[Function]}
-            optional={false}
-            placeholder="Optional description"
-            rows="5"
-            size="small"
-            value=""
-          />
-        </Field>
-      </CheckboxAnswer__CheckboxOption>
+      <CheckboxOption
+        answerIndex={0}
+        hasDeleteButton={false}
+        onBlur={[Function]}
+        onChange={[Function]}
+        onDelete={[Function]}
+        onFocus={[Function]}
+        option={
+          Object {
+            "description": "",
+            "id": 1,
+            "label": "",
+          }
+        }
+        optionIndex={0}
+        optionName="answer-0-option-1"
+      />
     </CSSTransition>
   </TransitionGroup>
   <div>

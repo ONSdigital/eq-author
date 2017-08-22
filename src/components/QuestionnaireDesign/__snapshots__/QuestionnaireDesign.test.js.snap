@@ -10,7 +10,7 @@ exports[`QuestionnaireDesign should render 1`] = `
       childFactory={[Function]}
       component="div"
     >
-      <FadeTransition>
+      <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="section"
@@ -44,10 +44,8 @@ exports[`QuestionnaireDesign should render 1`] = `
             />
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
-      <FadeTransition
-        exit={false}
-      >
+      </PageTransition>
+      <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="page"
@@ -91,8 +89,10 @@ exports[`QuestionnaireDesign should render 1`] = `
             />
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
-      <FadeTransition>
+      </PageTransition>
+      <PageTransition
+        onEntered={[Function]}
+      >
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={null}
           id="answer-1"
@@ -115,6 +115,7 @@ exports[`QuestionnaireDesign should render 1`] = `
             onBlur={[Function]}
             onChange={[Function]}
             onDeleteOption={[Function]}
+            onEntered={[Function]}
             onFocus={[Function]}
           />
           <QuestionnaireDesign__AnswerDeleteButton
@@ -123,8 +124,8 @@ exports[`QuestionnaireDesign should render 1`] = `
             type="button"
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
-      <FadeTransition>
+      </PageTransition>
+      <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           onBlur={[Function]}
           onFocus={[Function]}
@@ -133,7 +134,7 @@ exports[`QuestionnaireDesign should render 1`] = `
             onSelect={[Function]}
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
+      </PageTransition>
     </TransitionGroup>
   </Form>
 </Canvas__Canvas>

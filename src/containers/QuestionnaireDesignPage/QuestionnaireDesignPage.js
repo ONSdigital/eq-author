@@ -55,20 +55,22 @@ export class QuestionnaireDesignPage extends Component {
   }
 
   handleChange = change => {
-    this.setState(merge({}, this.state, set({}, change.name, change.value)));
+    return this.setState(
+      merge({}, this.state, set({}, change.name, change.value))
+    );
   };
 
   handleAddAnswer = type => {
-    this.props.onAddAnswer(type);
+    return this.props.onAddAnswer(type);
   };
 
   handleDeleteAnswer = answerId => {
-    this.props.onDeleteAnswer(answerId);
+    return this.props.onDeleteAnswer(answerId);
   };
 
   handleBlur = () => {
     const { focused, section, page, answers } = this.state;
-    let answerId, answer;
+    let answerId, answer, optionId, option;
 
     if (focused) {
       answerId = focused.split("-")[1];
@@ -82,13 +84,17 @@ export class QuestionnaireDesignPage extends Component {
     } else if (/page/.test(focused)) {
       this.props.onUpdatePage(page);
     } else if (/option/.test(focused)) {
-      const optionId = focused.split("-")[3];
-      const option = find(answer.options, {
-        id: parseInt(optionId, 10)
-      });
-      this.props.onUpdateOption(option);
+      if (answer) {
+        optionId = focused.split("-")[3];
+        option = find(answer.options, {
+          id: parseInt(optionId, 10)
+        });
+        this.props.onUpdateOption(option);
+      }
     } else if (/answer/.test(focused)) {
-      this.props.onUpdateAnswer(answer);
+      if (answer) {
+        this.props.onUpdateAnswer(answer);
+      }
     }
   };
 
@@ -96,24 +102,8 @@ export class QuestionnaireDesignPage extends Component {
     this.setFocused(focused);
   };
 
-  handleAddPage = sectionId => {
-    this.props.onAddPage(sectionId);
-  };
-
   handleAddSection = () => {
-    this.props.onAddSection(this.props.questionnaire.id);
-  };
-
-  handleAddAnswer = type => {
-    this.props.onAddAnswer(type);
-  };
-
-  handleAddOption = answerId => {
-    this.props.onAddOption(answerId);
-  };
-
-  handleDeleteOption = (answerId, optionId) => {
-    this.props.onDeleteOption(answerId, optionId);
+    return this.props.onAddSection(this.props.questionnaire.id);
   };
 
   setFocused = focused => {
@@ -123,7 +113,15 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   render() {
-    const { breadcrumb, loading, questionnaire, onDeletePage } = this.props;
+    const {
+      breadcrumb,
+      loading,
+      questionnaire,
+      onDeletePage,
+      onAddPage,
+      onAddOption,
+      onDeleteOption
+    } = this.props;
     const { section, page, answers, focused } = this.state;
 
     if (loading) {
@@ -136,7 +134,7 @@ export class QuestionnaireDesignPage extends Component {
           <Column cols={2} gutters={false}>
             <QuestionnaireNav
               questionnaire={questionnaire}
-              onAddPage={this.handleAddPage}
+              onAddPage={onAddPage}
               onAddSection={this.handleAddSection}
               onDeletePage={onDeletePage}
             />
@@ -152,8 +150,8 @@ export class QuestionnaireDesignPage extends Component {
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
-              onAddOption={this.handleAddOption}
-              onDeleteOption={this.handleDeleteOption}
+              onAddOption={onAddOption}
+              onDeleteOption={onDeleteOption}
             />
           </Column>
           <Column cols={2} gutters={false}>

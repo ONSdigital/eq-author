@@ -63,7 +63,6 @@ const withSeamlessness = WrappedComponent => {
       value: PropTypes.string,
       focused: PropTypes.bool,
       optional: PropTypes.bool,
-      autoFocus: PropTypes.bool,
       placeholder: PropTypes.string,
       size: PropTypes.oneOf(Object.keys(sizes)),
       className: PropTypes.string
@@ -78,7 +77,6 @@ const withSeamlessness = WrappedComponent => {
         value,
         focused,
         placeholder,
-        autoFocus,
         size,
         onChange,
         className,
@@ -89,7 +87,6 @@ const withSeamlessness = WrappedComponent => {
         <StyledSeamless
           className={className}
           placeholder={placeholder}
-          autoFocus={autoFocus}
           value={value}
           onChange={onChange}
           name={id}

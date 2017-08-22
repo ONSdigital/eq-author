@@ -4,6 +4,10 @@ import TextAnswer from "components/Answers/TextAnswer";
 import CheckboxAnswer from "components/Answers/CheckboxAnswer";
 
 class Answer extends Component {
+  static propTypes = {
+    answer: CustomPropTypes.answer
+  };
+
   render() {
     const { answer } = this.props;
     switch (answer.type) {
@@ -11,14 +15,11 @@ class Answer extends Component {
         return <TextAnswer {...this.props} />;
       case "Checkbox":
         return <CheckboxAnswer {...this.props} />;
+
       default:
         return null;
     }
   }
 }
-
-Answer.propTypes = {
-  answer: CustomPropTypes.answer
-};
 
 export default Answer;

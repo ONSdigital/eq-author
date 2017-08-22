@@ -29,7 +29,9 @@ export default {
   }),
   option: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    label: PropTypes.string,
+    description: PropTypes.string,
+    qCode: PropTypes.string,
+    value: PropTypes.string
   })
 };

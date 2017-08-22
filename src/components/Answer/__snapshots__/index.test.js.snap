@@ -13,6 +13,7 @@ exports[`Answer should render <CheckboxAnswer /> for answer type 'Checkbox' 1`] 
   onBlur={[Function]}
   onChange={[Function]}
   onDeleteOption={[Function]}
+  onEntered={[Function]}
   onFocus={[Function]}
 />
 `;
@@ -30,6 +31,7 @@ exports[`Answer should render <TextAnswer /> for answer type 'TextField' 1`] = `
   onBlur={[Function]}
   onChange={[Function]}
   onDeleteOption={[Function]}
+  onEntered={[Function]}
   onFocus={[Function]}
 />
 `;
