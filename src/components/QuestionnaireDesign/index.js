@@ -154,7 +154,7 @@ class QuestionnaireDesign extends React.Component {
                 </Field>
               </AnimatedCanvasSection>
             </FadeTransition>
-            <FadeTransition key={`page-${page.id}`}>
+            <FadeTransition key={`page-${page.id}`} exit={false}>
               <AnimatedCanvasSection
                 id="page"
                 onFocus={onFocus}
@@ -188,7 +188,7 @@ class QuestionnaireDesign extends React.Component {
             </FadeTransition>
             {answers.map((answer, i) => {
               return (
-                <FadeTransition key={answer.id}>
+                <FadeTransition key={answer.id} exit={false}>
                   <AnimatedCanvasSection
                     id={`answer-${answer.id}`}
                     key={answer.id}
