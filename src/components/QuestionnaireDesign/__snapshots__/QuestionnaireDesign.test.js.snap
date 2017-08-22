@@ -45,7 +45,9 @@ exports[`QuestionnaireDesign should render 1`] = `
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
       </FadeTransition>
-      <FadeTransition>
+      <FadeTransition
+        exit={false}
+      >
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="page"
@@ -90,7 +92,9 @@ exports[`QuestionnaireDesign should render 1`] = `
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
       </FadeTransition>
-      <FadeTransition>
+      <FadeTransition
+        exit={false}
+      >
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="answer-4"
