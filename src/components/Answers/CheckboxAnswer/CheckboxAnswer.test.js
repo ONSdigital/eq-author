@@ -5,7 +5,7 @@ import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import CheckboxAnswer, {
   CheckboxOption,
-  CloseButton,
+  DeleteButton,
   AddOtherLink
 } from "./index";
 
@@ -33,7 +33,7 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should remove option when delete is pressed", () => {
-    wrapper.find(CloseButton).forEach(node => {
+    wrapper.find(DeleteButton).forEach(node => {
       node.simulate("click");
     });
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
+import { get } from "lodash";
 
 import CustomPropsTypes from "custom-prop-types";
 
@@ -39,8 +40,8 @@ const StyledNavLink = styled(NavLink)`
 // But this is not the case. Unsure if bug or implementation issue
 export const NavWithoutRouter = ({ questionnaire, match }) => {
   const { id } = questionnaire;
-  const section = questionnaire.sections[0];
-  const page = section.pages[0];
+  const section = get(questionnaire, "sections[0]", {});
+  const page = get(section, "pages[0]", {});
 
   const navIsActive = () => {
     return match.params.sectionId;

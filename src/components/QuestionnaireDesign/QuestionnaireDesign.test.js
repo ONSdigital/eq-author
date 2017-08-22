@@ -8,9 +8,11 @@ describe("QuestionnaireDesign", () => {
     render(
       <QuestionnaireDesign
         onChange={jest.fn()}
-        onAnswerAdd={jest.fn()}
+        onAddAnswer={jest.fn()}
         onFocus={jest.fn()}
         onBlur={jest.fn()}
+        answers={[]}
+        focused="answer"
         {...props}
       />
     );
@@ -26,12 +28,25 @@ describe("QuestionnaireDesign", () => {
     wrapper = createWrapper(
       {
         section: { title: "" },
-        page: { id: "3", title: "" }
+        page: { id: "3", title: "" },
+        answers: [
+          {
+            id: "4"
+          }
+        ]
       },
       shallow
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should fail invalid 'focused' prop value", () => {
+    expect(() => {
+      createWrapper({
+        focused: "I AM NOT A VALID VALUE"
+      });
+    }).toThrow();
   });
 
   it("should focus on empty section title upon mount", () => {

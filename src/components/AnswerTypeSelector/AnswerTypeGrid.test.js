@@ -32,7 +32,7 @@ describe("components/AnswerTypeGrid", () => {
 
   describe("when answer type button clicked", () => {
     it("should invoke `onSelect` callback", () => {
-      const answerType = "textfield";
+      const answerType = "TextField";
       component.find(AnswerTypeButton).first().simulate("click", answerType);
 
       expect(handleClose).toHaveBeenCalled();

@@ -4,7 +4,7 @@ import SectionNav, { AddPageBtn } from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
-  let handleAddPage;
+  let handleAddPage, handleDeletePage;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -16,8 +16,13 @@ describe("SectionNav", () => {
 
   beforeEach(() => {
     handleAddPage = jest.fn();
+    handleDeletePage = jest.fn();
     wrapper = shallow(
-      <SectionNav questionnaire={questionnaire} onAddPage={handleAddPage} />
+      <SectionNav
+        questionnaire={questionnaire}
+        onAddPage={handleAddPage}
+        onDeletePage={handleDeletePage}
+      />
     );
   });
 

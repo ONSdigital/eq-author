@@ -7,6 +7,7 @@ describe("QuestionnaireNav", () => {
   const questionnaire = { id: "1" };
   const handleAddSection = jest.fn();
   const handleAddPage = jest.fn();
+  const handleDeletePage = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
@@ -14,6 +15,7 @@ describe("QuestionnaireNav", () => {
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
+        onDeletePage={handleDeletePage}
       />
     );
   });

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CustomPropTypes from "custom-prop-types";
 import { storiesOf } from "@storybook/react";
-import { random } from "lodash";
+import { random, find, remove } from "lodash";
 
 import styled from "styled-components";
 
@@ -19,6 +19,10 @@ const questionnaire = {
         {
           title: "Question 1.1",
           id: 2
+        },
+        {
+          title: "Question 1.2",
+          id: 3
         }
       ]
     }
@@ -43,10 +47,6 @@ class QuestionnaireNavWithState extends Component {
   });
 
   handleAddPage = sectionId => {
-    const questionnaire = {
-      ...this.state.questionnaire
-    };
-
     const newPage = this.getNewPage(
       sectionId,
       questionnaire.sections[sectionId].pages.length + 1
@@ -69,12 +69,20 @@ class QuestionnaireNavWithState extends Component {
     this.setState({ questionnaire });
   };
 
+  handleDeletePage = (sectionId, pageId) => {
+    const section = find(questionnaire.sections, { id: sectionId });
+    remove(section.pages, { id: pageId });
+
+    this.setState({ questionnaire });
+  };
+
   render() {
     return (
       <QuestionnaireNav
         questionnaire={questionnaire}
         onAddPage={this.handleAddPage}
         onAddSection={this.handleAddSection}
+        onDeletePage={this.handleDeletePage}
       />
     );
   }

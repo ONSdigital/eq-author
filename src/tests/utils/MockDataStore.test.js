@@ -45,13 +45,13 @@ describe("MockDataStore", () => {
   describe("mutations", () => {
     it("should be possible to create individual data model entities", () => {
       const result = new MockDataStore();
-      result.createQuestionaire(seedData.questionnaires[1]);
+      result.createQuestionnaire(seedData.questionnaires[1]);
       expect(values(result.questionnaires)).toHaveLength(1);
     });
 
     it("should increment the relevant counter when creating entities", () => {
       const result = new MockDataStore();
-      result.createQuestionaire(seedData.questionnaires[1]);
+      result.createQuestionnaire(seedData.questionnaires[1]);
 
       expect(result.counter.questionnaire).toBe(1);
     });
@@ -61,10 +61,10 @@ describe("MockDataStore", () => {
     it("should return all the questionnaires", () => {
       const store = new MockDataStore();
 
-      const questionnaire1 = store.createQuestionaire(
+      const questionnaire1 = store.createQuestionnaire(
         merge({}, seedData.questionnaires[1], { id: 1 })
       );
-      const questionnaire2 = store.createQuestionaire(
+      const questionnaire2 = store.createQuestionnaire(
         merge({}, seedData.questionnaires[1], { id: 2 })
       );
 
@@ -78,7 +78,7 @@ describe("MockDataStore", () => {
     it("should be possible to retrieve a created questionnaire", () => {
       const store = new MockDataStore();
 
-      const questionnaire = store.createQuestionaire(
+      const questionnaire = store.createQuestionnaire(
         merge({}, seedData.questionnaires[1], { title: "test" })
       );
 
@@ -87,7 +87,7 @@ describe("MockDataStore", () => {
 
     it("should create a section and page automatically for a new questionnaire", () => {
       const result = new MockDataStore();
-      result.createQuestionaire(seedData.questionnaires[1]);
+      result.createQuestionnaire(seedData.questionnaires[1]);
 
       expect(values(result.sections)).toHaveLength(1);
       expect(values(result.pages)).toHaveLength(1);
@@ -95,7 +95,7 @@ describe("MockDataStore", () => {
 
     it("should be possible to update questionnaire details", () => {
       const store = new MockDataStore();
-      const questionnaire = store.createQuestionaire({
+      const questionnaire = store.createQuestionnaire({
         title: "Questionnaire 1"
       });
       store.updateQuestionnaire(merge({}, questionnaire, { title: "Updated" }));
@@ -106,7 +106,7 @@ describe("MockDataStore", () => {
     describe("deleting a questionnaire", () => {
       it("should be possible to delete a questionnaire", () => {
         const store = new MockDataStore();
-        const questionnaire = store.createQuestionaire({
+        const questionnaire = store.createQuestionnaire({
           title: "Questionnaire 1"
         });
 
@@ -117,7 +117,7 @@ describe("MockDataStore", () => {
 
       it("should remove any sections associated with a deleted questionnaire", () => {
         const store = new MockDataStore();
-        const questionnaire = store.createQuestionaire({
+        const questionnaire = store.createQuestionnaire({
           title: "Questionnaire 1"
         });
 
@@ -132,7 +132,7 @@ describe("MockDataStore", () => {
   describe("section", () => {
     it("should be possible to add a section to a questionnaire", () => {
       const store = new MockDataStore();
-      store.createQuestionaire(merge({}, { id: 1, sections: [] }));
+      store.createQuestionnaire(merge({}, { id: 1, sections: [] }));
 
       const section = store.createSection(merge({}, { questionnaireId: 1 }));
 
@@ -144,7 +144,7 @@ describe("MockDataStore", () => {
 
     it("should be possible to update section details", () => {
       const store = new MockDataStore();
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
 
       store.updateSection(merge({}, store.getSection(1), { title: "Updated" }));
 
@@ -154,7 +154,7 @@ describe("MockDataStore", () => {
     describe("deleting a section", () => {
       it("should delete all pages under the deleted section", () => {
         const store = new MockDataStore();
-        store.createQuestionaire({});
+        store.createQuestionnaire({});
 
         const section = store.getSection(1);
         store.deleteSection(merge({}, section));
@@ -172,7 +172,7 @@ describe("MockDataStore", () => {
 
     beforeEach(() => {
       store = new MockDataStore();
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
     });
 
     it("should be possible to add a page to a section", () => {
@@ -193,11 +193,12 @@ describe("MockDataStore", () => {
     it("should be possible to delete a page", () => {
       const page = store.getPage(1);
 
-      store.deletePage(merge({}, page));
+      const deletedPage = store.deletePage(merge({}, { id: page.id }));
 
       expect(values(store.pages)).toHaveLength(0);
       expect(store.getPage(1)).toBeUndefined();
       expect(store.getSection(1).pages).not.toContain(page);
+      expect(deletedPage.__typename).not.toBeUndefined();
     });
 
     it("should be possible to delete a page containing answers", () => {
@@ -219,7 +220,7 @@ describe("MockDataStore", () => {
     });
 
     it("should be possible to add an answer to a page", () => {
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
 
       const answer = store.createAnswer({ label: "test answer", pageId: 1 });
 
@@ -231,7 +232,7 @@ describe("MockDataStore", () => {
     });
 
     it("should be possible to update an answer", () => {
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
       store.createAnswer({ label: "test answer", pageId: 1 });
 
       store.updateAnswer(
@@ -242,7 +243,7 @@ describe("MockDataStore", () => {
     });
 
     it("should be possible to remove an answer", () => {
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
       const answer = store.createAnswer({ label: "test answer", pageId: 1 });
 
       expect(values(store.answers)).toHaveLength(1);
@@ -302,7 +303,7 @@ describe("MockDataStore", () => {
     });
 
     it("should add the new option to an answer if answerId specified", () => {
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
       store.createAnswer({ label: "Checkbox answer", pageId: 1 });
 
       const option = store.createOption(merge({}, options[0], { answerId: 1 }));
@@ -338,7 +339,7 @@ describe("MockDataStore", () => {
     });
 
     it("should remove the option from the answer when option is deleted", () => {
-      store.createQuestionaire({});
+      store.createQuestionnaire({});
       store.createAnswer({ label: "Checkbox answer", pageId: 1 });
       const option = store.createOption(merge({}, options[0], { answerId: 1 }));
 
@@ -349,7 +350,7 @@ describe("MockDataStore", () => {
 
     describe("answer specific option behaviour", () => {
       it("should create a single option by default for a checkbox answer", () => {
-        store.createQuestionaire({});
+        store.createQuestionnaire({});
         store.createAnswer({
           label: "Checkbox answer",
           type: "Checkbox",
@@ -360,7 +361,7 @@ describe("MockDataStore", () => {
       });
 
       it("should create two default options for a radio answer", () => {
-        store.createQuestionaire({});
+        store.createQuestionnaire({});
         store.createAnswer({
           label: "Checkbox answer",
           type: "Radio",

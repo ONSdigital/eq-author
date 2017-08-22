@@ -3,7 +3,7 @@
 set -euf -o pipefail
 
 # Run the server
-yarn start:smoketest &
+yarn start:mockAPI &
 pid=$!
 
 function display_result {

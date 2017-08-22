@@ -78,5 +78,16 @@ describe("eQ Author Smoketest", () => {
 
       expect(getFirstSectionTitle()).toEqual("My Section Title");
     });
+
+    it("should create a new page when deleting only page in section", () => {
+      const prevUrl = browser.getUrl();
+      browser.click("[aria-label='Delete page']");
+
+      browser.waitUntil(
+        () => prevUrl !== browser.getUrl(),
+        1000,
+        "expected navigation to new page after 1s"
+      );
+    });
   });
 });
