@@ -87,6 +87,7 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
         onAddAnswer={[Function]}
         onBlur={[Function]}
         onChange={[Function]}
+        onDeleteAnswer={[Function]}
         onFocus={[Function]}
         page={
           Object {

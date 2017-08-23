@@ -13,7 +13,6 @@ const TextAnswer = ({ answer, index, onChange }) =>
         size="medium"
         onChange={onChange}
         value={answer.label}
-        autoFocus
       />
     </Field>
     <Field id={`answers[${index}].description`}>

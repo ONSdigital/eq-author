@@ -13,11 +13,6 @@ const CenterXY = styled.div`
   transform: translateY(-50%) translateX(-50%);
 `;
 
-const createCounter = (start = 0, step = 1) => () => {
-  start = start + step;
-  return start;
-};
-
 const options = [
   {
     id: 1,
@@ -46,7 +41,7 @@ class CheckboxAnswerWrapper extends React.Component {
         }
       ]
     };
-    this.nextId = createCounter();
+    this.nextId = 1;
   }
 
   handleChange = ({ name, value }) => {
@@ -64,7 +59,7 @@ class CheckboxAnswerWrapper extends React.Component {
 
   handleAddOption = () => {
     const newOption = {
-      id: this.nextId(),
+      id: ++this.nextId,
       label: "",
       value: "",
       description: ""
