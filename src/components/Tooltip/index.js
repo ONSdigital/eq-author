@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const StyledTooltip = styled(ReactTooltip)`
     background-color: #707070 !important;
-    &::after {
+    &::before, &::after {
       border-bottom: none !important;
     }
 `;

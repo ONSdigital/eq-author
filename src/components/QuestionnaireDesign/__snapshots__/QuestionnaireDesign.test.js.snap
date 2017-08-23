@@ -120,11 +120,15 @@ exports[`QuestionnaireDesign should render 1`] = `
             onEntered={[Function]}
             onFocus={[Function]}
           />
-          <QuestionnaireDesign__AnswerDeleteButton
-            onClick={[Function]}
-            title="Delete answer"
-            type="button"
-          />
+          <Tooltip
+            tooltipId="answer-4"
+            tooltipText="Delete answer"
+          >
+            <QuestionnaireDesign__AnswerDeleteButton
+              onClick={[Function]}
+              type="button"
+            />
+          </Tooltip>
         </QuestionnaireDesign__AnimatedCanvasSection>
       </PageTransition>
       <PageTransition>
