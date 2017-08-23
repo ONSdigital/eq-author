@@ -13,6 +13,7 @@ let handleUpdate,
   handleAddSection,
   handleDeletePage,
   handleAddAnswer,
+  handleDeleteAnswer,
   handleAnswerUpdate;
 
 let answer = {
@@ -43,6 +44,7 @@ describe("containers/QuestionnaireDesignPage", () => {
     handlePageUpdate = jest.fn();
     handleAddSection = jest.fn();
     handleAddAnswer = jest.fn();
+    handleDeleteAnswer = jest.fn();
     handleAnswerUpdate = jest.fn();
 
     wrapper = shallow(
@@ -56,6 +58,7 @@ describe("containers/QuestionnaireDesignPage", () => {
         onDeletePage={handleDeletePage}
         onAddSection={handleAddSection}
         onAddAnswer={handleAddAnswer}
+        onDeleteAnswer={handleDeleteAnswer}
         onAnswerUpdate={handleAnswerUpdate}
         section={section}
         page={page}
@@ -170,6 +173,15 @@ describe("containers/QuestionnaireDesignPage", () => {
       .simulate("addAnswer");
 
     expect(handleAddAnswer).toHaveBeenCalled();
+  });
+
+  it("should invoke callback when answer deleted", () => {
+    wrapper
+      .setState({ focused: null })
+      .find(QuestionnaireDesign)
+      .simulate("deleteAnswer");
+
+    expect(handleDeleteAnswer).toHaveBeenCalled();
   });
 
   it("should pass onAddPage prop to QuestionNav", () => {
