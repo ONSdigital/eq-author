@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tooltip should render 1`] = `
+<div>
+  <button
+    data-for="buttonTooltip"
+    data-tip={true}
+  >
+    Click me
+  </button>
+  <Tooltip__StyledTooltip
+    effect="solid"
+    id="buttonTooltip"
+    place="bottom"
+  >
+    <span>
+      This is a button
+    </span>
+  </Tooltip__StyledTooltip>
+</div>
+`;
