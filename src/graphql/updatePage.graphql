@@ -14,5 +14,9 @@ mutation UpdateQuestionPage(
   ) {
     id
     title
+    description
+    guidance
+    type
+    mandatory
   }
 }

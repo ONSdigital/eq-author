@@ -13,8 +13,8 @@ export const sectionFragment = gql`
 
 export const redirectToDesigner = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
-  const { id, sectionId } = data.createQuestionPage;
-  history.push(`/questionnaire/${questionnaireId}/design/${sectionId}/${id}`);
+  const { id, section } = data.createQuestionPage;
+  history.push(`/questionnaire/${questionnaireId}/design/${section.id}/${id}`);
 };
 
 export const createUpdater = (questionnaireId, sectionId) => (

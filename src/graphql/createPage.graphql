@@ -14,6 +14,5 @@ mutation CreateQuestionPage(
   ) {
     id
     description
-    sectionId
   }
 }

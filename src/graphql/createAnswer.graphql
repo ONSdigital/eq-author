@@ -23,7 +23,6 @@ mutation createAnswer(
     label
     type
     mandatory
-    questionPageId
     ... on MultipleChoiceAnswer {
       options {
         id
