@@ -9,7 +9,8 @@ import { Grid, Column } from "components/Grid";
 import { PropertyPane, PropertyPaneTitle } from "components/PropertyPane";
 import QuestionProperties from "components/QuestionProperties";
 import QuestionnaireDesign from "components/QuestionnaireDesign";
-import QuestionnaireNav from "components/QuestionnaireNav";
+
+import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -122,6 +123,7 @@ export class QuestionnaireDesignPage extends Component {
       onAddOption,
       onDeleteOption
     } = this.props;
+
     const { section, page, answers, focused } = this.state;
 
     if (loading) {
@@ -132,11 +134,9 @@ export class QuestionnaireDesignPage extends Component {
       <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            <QuestionnaireNav
-              questionnaire={questionnaire}
-              onAddPage={onAddPage}
-              onAddSection={this.handleAddSection}
-              onDeletePage={onDeletePage}
+            <QuestionnaireNavContainer
+              questionnaireId={this.props.match.params.questionnaireId}
+              pageId={this.props.match.params.pageId}
             />
           </Column>
           <Column gutters={false}>
