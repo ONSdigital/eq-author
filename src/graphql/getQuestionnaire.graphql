@@ -27,7 +27,6 @@ query GetQuestionnaire($id: Int!) {
             qCode
             label
             type
-            questionPageId
             ... on MultipleChoiceAnswer {
               options {
                 id
