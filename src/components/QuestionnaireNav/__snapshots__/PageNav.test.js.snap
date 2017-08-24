@@ -15,13 +15,17 @@ exports[`PageNav PageNavItem should render 1`] = `
       Page
     </PageNav__LinkText>
   </PageNav__Link>
-  <PageNav__DeleteButton
-    aria-label="Delete page"
-    onClick={[Function]}
-    type="button"
+  <Tooltip
+    content="Delete page"
   >
-    ×
-  </PageNav__DeleteButton>
+    <PageNav__DeleteButton
+      aria-label="Delete page"
+      onClick={[Function]}
+      type="button"
+    >
+      ×
+    </PageNav__DeleteButton>
+  </Tooltip>
 </PageNav__StyledPageItem>
 `;
 
