@@ -13,7 +13,7 @@ module.exports = {
     "graphql/template-strings": [
       "error",
       {
-        env: "apollo",
+        env: "literal",
         schemaString: schema
       }
     ]
