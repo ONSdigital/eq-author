@@ -1,0 +1,9 @@
+export const CHECKBOX = "Checkbox";
+export const RADIO = "Radio";
+export const TEXTFIELD = "TextField";
+export const TEXTAREA = "TextArea";
+export const CURRENCY = "Currency";
+export const NUMBER = "Number";
+export const DATE = "Date";
+export const TIME = "Time";
+export const SELECT = "Select";

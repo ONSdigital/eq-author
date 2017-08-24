@@ -35,5 +35,3 @@ exports[`Answer should render <TextAnswer /> for answer type 'TextField' 1`] = `
   onFocus={[Function]}
 />
 `;
-
-exports[`Answer should render nothing for unknown answer type 1`] = `null`;

@@ -54,7 +54,7 @@ class CheckboxAnswerWrapper extends React.Component {
     };
 
     const newState = merge({}, this.state);
-    newState.answers[0].options.push(newOption);
+    this.state.answers[0].options.push(newOption);
     this.setState(newState);
   };
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
 import CustomPropTypes from "custom-prop-types";
 import TextAnswer from "components/Answers/TextAnswer";
 import CheckboxAnswer from "components/Answers/CheckboxAnswer";
@@ -11,9 +12,9 @@ class Answer extends Component {
   render() {
     const { answer } = this.props;
     switch (answer.type) {
-      case "TextField":
+      case TEXTFIELD:
         return <TextAnswer {...this.props} />;
-      case "Checkbox":
+      case CHECKBOX:
         return <CheckboxAnswer {...this.props} />;
 
       default:

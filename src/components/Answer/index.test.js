@@ -2,6 +2,8 @@ import React from "react";
 import Answer from "./index";
 import { shallow } from "enzyme";
 
+import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
+
 describe("Answer", () => {
   function render(type) {
     return shallow(
@@ -20,14 +22,10 @@ describe("Answer", () => {
   }
 
   it("should render <TextAnswer /> for answer type 'TextField'", () => {
-    expect(render("TextField")).toMatchSnapshot();
+    expect(render(TEXTFIELD)).toMatchSnapshot();
   });
 
   it("should render <CheckboxAnswer /> for answer type 'Checkbox'", () => {
-    expect(render("Checkbox")).toMatchSnapshot();
-  });
-
-  it("should render nothing for unknown answer type", () => {
-    expect(render("I AM NOT A VALID ANSWER TYPE")).toMatchSnapshot();
+    expect(render(CHECKBOX)).toMatchSnapshot();
   });
 });

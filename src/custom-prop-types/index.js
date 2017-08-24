@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import * as answerTypes from "constants/answer-types";
 
 export default {
   breadcrumb: PropTypes.shape({
@@ -25,7 +26,8 @@ export default {
   }),
   answer: PropTypes.shape({
     title: PropTypes.string,
-    description: PropTypes.string
+    description: PropTypes.string,
+    type: PropTypes.oneOf(Object.values(answerTypes))
   }),
   option: PropTypes.shape({
     id: PropTypes.number.isRequired,

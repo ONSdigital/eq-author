@@ -30,7 +30,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       label: ""
     };
 
-    const update = createUpdater(ownProps.pageId);
+    const update = createUpdater(ownProps.page.id);
 
     return mutate({
       variables: answer,

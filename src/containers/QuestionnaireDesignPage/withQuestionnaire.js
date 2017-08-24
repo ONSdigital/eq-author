@@ -1,7 +1,7 @@
 import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
 
-import { find } from "lodash";
+import { find, get } from "lodash";
 
 const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
 
@@ -17,7 +17,7 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   if (questionnaire) {
     props.section = findById(questionnaire.sections, sectionId);
     props.page = findById(props.section.pages, pageId);
-    props.answers = props.page !== undefined ? props.page.answers : [];
+    props.answers = get(props.page, "answers", []);
   }
 
   return props;
