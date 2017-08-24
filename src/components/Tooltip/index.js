@@ -2,6 +2,7 @@ import React from "react";
 import ReactTooltip from "react-tooltip";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { uniqueId } from "lodash";
 
 const StyledTooltip = styled(ReactTooltip)`
     background-color: #707070 !important;
@@ -10,29 +11,32 @@ const StyledTooltip = styled(ReactTooltip)`
     }
 `;
 
-const Tooltip = ({ tooltipText, tooltipId, children, ...props }) => {
-  const childrenWithTooltip = React.Children.map(children, (child, id) =>
-    React.cloneElement(child, {
-      "data-tip": true,
-      "data-for": `${tooltipId}`
-    })
-  );
+class Tooltip extends React.Component {
+  getGeneratedId() {
+    return this.id || (this.id = uniqueId("tooltip-"));
+  }
 
-  return (
-    <div>
-      {childrenWithTooltip}
-      <StyledTooltip id={tooltipId} place="bottom" effect="solid" {...props}>
-        <span>
-          {tooltipText}
-        </span>
-      </StyledTooltip>
-    </div>
-  );
-};
+  render() {
+    const { children, content, ...otherProps } = this.props;
+    const child = React.Children.only(children);
+    const id = child.props.id || this.getGeneratedId();
+
+    return (
+      <div>
+        {React.cloneElement(child, {
+          "data-tip": true,
+          "data-for": id
+        })}
+        <StyledTooltip id={id} place="bottom" effect="solid" {...otherProps}>
+          {content}
+        </StyledTooltip>
+      </div>
+    );
+  }
+}
 
 Tooltip.propTypes = {
-  tooltipText: PropTypes.string.isRequired,
-  tooltipId: PropTypes.string.isRequired,
+  content: PropTypes.node.isRequired,
   children: PropTypes.element.isRequired
 };
 

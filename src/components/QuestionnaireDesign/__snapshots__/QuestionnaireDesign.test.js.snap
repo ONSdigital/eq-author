@@ -121,8 +121,7 @@ exports[`QuestionnaireDesign should render 1`] = `
             onFocus={[Function]}
           />
           <Tooltip
-            tooltipId="answer-4"
-            tooltipText="Delete answer"
+            content="Delete answer"
           >
             <QuestionnaireDesign__AnswerDeleteButton
               onClick={[Function]}

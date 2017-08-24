@@ -5,6 +5,7 @@ exports[`Tooltip should render 1`] = `
   <button
     data-for="buttonTooltip"
     data-tip={true}
+    id="buttonTooltip"
   >
     Click me
   </button>
@@ -13,9 +14,51 @@ exports[`Tooltip should render 1`] = `
     id="buttonTooltip"
     place="bottom"
   >
-    <span>
-      This is a button
-    </span>
+    This is a button
+  </Tooltip__StyledTooltip>
+</div>
+`;
+
+exports[`Tooltip should render arbitrary content 1`] = `
+<div>
+  <button
+    data-for="buttonTooltip"
+    data-tip={true}
+    id="buttonTooltip"
+  >
+    Click me
+  </button>
+  <Tooltip__StyledTooltip
+    effect="solid"
+    id="buttonTooltip"
+    place="bottom"
+  >
+    <ul>
+      <li>
+        foo
+      </li>
+      <li>
+        bar
+      </li>
+    </ul>
+  </Tooltip__StyledTooltip>
+</div>
+`;
+
+exports[`Tooltip should use auto-generated id if one is not supplied 1`] = `
+<div>
+  <button
+    data-for="tooltip-1"
+    data-tip={true}
+  >
+    Click me
+  </button>
+  <Tooltip__StyledTooltip
+    effect="solid"
+    id="tooltip-1"
+    place="bottom"
+  >
+    This is a tooltip
   </Tooltip__StyledTooltip>
 </div>
 `;

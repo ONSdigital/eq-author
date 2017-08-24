@@ -220,10 +220,7 @@ class QuestionnaireDesign extends React.Component {
                     onBlur={onBlur}
                     onEntered={this.handleEntered}
                   />
-                  <Tooltip
-                    tooltipText="Delete answer"
-                    tooltipId={`answer-${answer.id}`}
-                  >
+                  <Tooltip content="Delete answer">
                     <AnswerDeleteButton
                       onClick={function() {
                         onDeleteAnswer(answer.id);
