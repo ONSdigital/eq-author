@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+import Tooltip from "components/Tooltip";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
@@ -170,13 +171,15 @@ export class PageNavItem extends React.Component {
             {pageNumber} {title || "Page Title"}
           </LinkText>
         </Link>
-        <DeleteButton
-          type="button"
-          aria-label="Delete page"
-          onClick={this.handleDelete}
-        >
-          ×
-        </DeleteButton>
+        <Tooltip content="Delete page">
+          <DeleteButton
+            type="button"
+            aria-label="Delete page"
+            onClick={this.handleDelete}
+          >
+            ×
+          </DeleteButton>
+        </Tooltip>
       </StyledPageItem>
     );
   }

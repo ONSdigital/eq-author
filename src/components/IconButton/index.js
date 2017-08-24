@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Tooltip from "components/Tooltip";
 
 import { keys } from "lodash";
 
@@ -27,9 +28,13 @@ export const Button = styled.button`
 `;
 
 const IconButton = ({ icon, title, disabled, handleClick }) =>
-  <Button title={title} onClick={handleClick} disabled={disabled}>
-    <img src={icons[icon]} alt={title} />
-  </Button>;
+  <Tooltip content={title}>
+    <div>
+      <Button onClick={handleClick} disabled={disabled}>
+        <img src={icons[icon]} alt={title} />
+      </Button>
+    </div>
+  </Tooltip>;
 
 IconButton.propTypes = {
   icon: PropTypes.oneOf(keys(icons)),
