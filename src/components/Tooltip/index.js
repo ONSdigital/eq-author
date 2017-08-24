@@ -4,10 +4,19 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { uniqueId } from "lodash";
 
+const FONT_SIZE = 10;
+
 const StyledTooltip = styled(ReactTooltip)`
-    background-color: #707070 !important;
+    background-color: rgba(97, 97, 97, 0.9) !important;
+    font-size: ${FONT_SIZE / 16}em !important;
+    line-height: ${22 / FONT_SIZE}em !important;
+    padding: 0 ${6 / FONT_SIZE}em !important;
+    border-radius: 2px !important;
+    white-space: pre;
+
     &::before, &::after {
       border-bottom: none !important;
+      border-top: none !important;
     }
 `;
 
