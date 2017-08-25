@@ -1,10 +1,14 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import QuestionnaireDesign from "./";
+import AnswerTypeSelector from "components/AnswerTypeSelector";
 import DeleteButton from "components/DeleteButton";
+import Answer from "components/Answer";
 
 const option = {
-  id: 0
+  id: 0,
+  label: "",
+  description: ""
 };
 
 const answer = {
@@ -25,39 +29,35 @@ const section = {
 };
 
 describe("QuestionnaireDesign", () => {
-  let wrapper;
-  const createWrapper = (props, render = mount) =>
-    render(
+  let wrapper, mockHandlers;
+  const createWrapper = (props, render = mount) => {
+    return render(
       <QuestionnaireDesign
-        onChange={jest.fn()}
-        onAddAnswer={jest.fn()}
-        onDeleteAnswer={jest.fn()}
-        onAddOption={jest.fn()}
-        onDeleteOption={jest.fn()}
-        onFocus={jest.fn()}
-        onBlur={jest.fn()}
+        {...mockHandlers}
         focused={null}
+        section={section}
+        page={page}
+        answers={[answer]}
         {...props}
       />
     );
+  };
 
   beforeEach(() => {
-    wrapper = createWrapper({
-      section,
-      page,
-      answers: [answer]
-    });
+    mockHandlers = {
+      onChange: jest.fn(),
+      onAddAnswer: jest.fn(),
+      onDeleteAnswer: jest.fn(),
+      onAddOption: jest.fn(),
+      onDeleteOption: jest.fn(),
+      onFocus: jest.fn(),
+      onBlur: jest.fn()
+    };
+    wrapper = createWrapper();
   });
 
   it("should render", () => {
-    wrapper = createWrapper(
-      {
-        section,
-        page,
-        answers: [answer]
-      },
-      shallow
-    );
+    wrapper = createWrapper({}, shallow);
 
     expect(wrapper).toMatchSnapshot();
   });
@@ -71,11 +71,6 @@ describe("QuestionnaireDesign", () => {
   });
 
   it("should focus on empty section title upon mount", () => {
-    wrapper = createWrapper({
-      section,
-      page,
-      answers: [answer]
-    });
     expect(document.activeElement.name).toEqual("section.title");
   });
 
@@ -95,10 +90,16 @@ describe("QuestionnaireDesign", () => {
   it("should move focus to empty page title upon navigation to new page", () => {
     wrapper = createWrapper({
       section: { title: "Section" },
-      page,
+      page: { id: "1", title: "I have a title" },
       answers: [answer]
     });
+
+    expect(document.activeElement.name).toEqual("section.title");
+
+    wrapper.setProps({ page: { id: "2", title: "" } });
+
     expect(document.activeElement.name).toEqual("page.title");
+    expect(document.activeElement.value).toEqual("");
   });
 
   it("should have a delete button per answer", () => {
@@ -130,7 +131,6 @@ describe("QuestionnaireDesign", () => {
     });
 
     wrapper.find(DeleteButton).simulate("click");
-
     expect(wrapper.prop("onDeleteAnswer")).toHaveBeenCalledWith(1);
   });
 
@@ -149,7 +149,29 @@ describe("QuestionnaireDesign", () => {
     });
 
     wrapper.find(DeleteButton).last().simulate("click");
-
     expect(wrapper.prop("onDeleteAnswer")).toHaveBeenCalledWith(2);
+  });
+
+  it("should add an answer with a type", () => {
+    wrapper = createWrapper({}, shallow);
+    wrapper.find(AnswerTypeSelector).simulate("select", "Textfield");
+    expect(mockHandlers.onAddAnswer).toHaveBeenCalledWith("Textfield");
+  });
+
+  it("should add an option to answer via `id`", () => {
+    wrapper = createWrapper({}, shallow);
+    wrapper.find(Answer).simulate("addOption", 1);
+    expect(mockHandlers.onAddOption).toHaveBeenCalledWith(1);
+  });
+
+  it("should focus on a designated field when a transition is complete", () => {
+    const input = { focus: jest.fn() };
+    const node = {
+      querySelectorAll: jest.fn(() => [input])
+    };
+
+    wrapper = createWrapper({}, shallow);
+    wrapper.find(Answer).simulate("entered", node);
+    expect(input.focus).toHaveBeenCalled();
   });
 });

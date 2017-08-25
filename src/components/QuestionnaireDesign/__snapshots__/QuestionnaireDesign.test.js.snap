@@ -105,7 +105,9 @@ exports[`QuestionnaireDesign should render 1`] = `
                 "id": 1,
                 "options": Array [
                   Object {
+                    "description": "",
                     "id": 0,
+                    "label": "",
                   },
                 ],
               }

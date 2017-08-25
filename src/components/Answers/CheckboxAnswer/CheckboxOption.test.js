@@ -6,18 +6,20 @@ import CheckboxOption, { SeamlessLabel } from "./CheckboxOption";
 import { shallow } from "enzyme";
 
 describe("CheckboxOption", () => {
-  let mockHandlers, wrapper, option;
+  let mockHandlers, wrapper;
+
+  const option = {
+    id: 1,
+    label: "",
+    description: ""
+  };
+
+  const answer = {
+    id: 0,
+    options: [option]
+  };
+
   beforeAll(() => {
-    const answer = {
-      id: 0
-    };
-
-    option = {
-      id: 1,
-      label: "",
-      description: ""
-    };
-
     mockHandlers = {
       onAddOption: jest.fn(),
       onChange: jest.fn(),
@@ -69,8 +71,8 @@ describe("CheckboxOption", () => {
     wrapper.find(SeamlessLabel).first().simulate("focus", { stopPropagation });
 
     expect(stopPropagation).toHaveBeenCalled();
-    // expect(mockHandlers.onFocus).toHaveBeenCalledWith(
-    //   expect.stringMatching(new RegExp(`option-${answer.options[0].id}$`))
-    // );
+    expect(mockHandlers.onFocus).toHaveBeenCalledWith(
+      expect.stringMatching(new RegExp(`option-${answer.options[0].id}$`))
+    );
   });
 });
