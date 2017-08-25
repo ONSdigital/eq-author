@@ -22,6 +22,8 @@ const StyledPageItem = styled.li`
   transform: translateX(0);
   display: flex;
   align-items: center;
+  z-index: ${props => props.index};
+  position: relative;
 
   &.page-enter,
   &.page-exit {
@@ -138,7 +140,8 @@ export class PageNavItem extends React.Component {
     pageId: PropTypes.number.isRequired,
     pageNumber: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    index: PropTypes.number.isRequired
   };
 
   handleDelete = () => {
@@ -157,11 +160,12 @@ export class PageNavItem extends React.Component {
       questionnaireId,
       pageId,
       title,
-      pageNumber
+      pageNumber,
+      index
     } = this.props;
 
     return (
-      <StyledPageItem>
+      <StyledPageItem index={index}>
         <Link
           to={getLink(questionnaireId, sectionId, pageId)}
           aria-disabled={pageId < 0}
@@ -198,6 +202,7 @@ const PageNav = ({ section, questionnaire, onDelete }) =>
             sectionId={section.id}
             questionnaireId={questionnaire.id}
             onDelete={onDelete}
+            index={pages.length - i}
           />
         </CSSTransition>
       );

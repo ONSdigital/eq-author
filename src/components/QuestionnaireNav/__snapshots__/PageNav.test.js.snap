@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PageNav PageNavItem should render 1`] = `
-<PageNav__StyledPageItem>
+<PageNav__StyledPageItem
+  index={1}
+>
   <PageNav__Link
     activeClassName="selected"
     aria-disabled={false}
@@ -39,6 +41,7 @@ exports[`PageNav should render 1`] = `
     timeout={200}
   >
     <PageNavItem
+      index={1}
       onDelete={[Function]}
       pageId={2}
       pageNumber="undefined1"
