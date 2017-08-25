@@ -31,7 +31,8 @@ export class QuestionnaireDesignPage extends Component {
     page: CustomPropTypes.page,
     answers: PropTypes.arrayOf(CustomPropTypes.answer),
     question: CustomPropTypes.question,
-    loading: PropTypes.bool.isRequired
+    loading: PropTypes.bool.isRequired,
+    match: CustomPropTypes.match
   };
 
   constructor(props) {
@@ -118,8 +119,6 @@ export class QuestionnaireDesignPage extends Component {
       breadcrumb,
       loading,
       questionnaire,
-      onDeletePage,
-      onAddPage,
       onAddOption,
       onDeleteOption
     } = this.props;

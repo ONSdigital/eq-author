@@ -1,5 +1,5 @@
 import { graphql, gql } from "react-apollo";
-import deleteAnswerMutation from "../../queries/deleteAnswer.graphql";
+import deleteAnswerMutation from "graphql/deleteAnswer.graphql";
 import { remove } from "lodash";
 
 const pageFragment = gql`

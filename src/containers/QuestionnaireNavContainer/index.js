@@ -1,12 +1,12 @@
 import { graphql, compose } from "react-apollo";
 import { withRouter } from "react-router";
 
-import getQuestionnaireQuery from "queries/getQuestionnaire.graphql";
-import withCreatePage from "../QuestionnaireDesignPage/withCreatePage";
-import withDeletePage from "../QuestionnaireDesignPage/withDeletePage";
+import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
+import withCreatePage from "../Enhancers/withCreatePage";
+import withDeletePage from "../Enhancers/withDeletePage";
 
 import QuestionnaireNav from "components/QuestionnaireNav";
-import withCreateSection from "../QuestionnaireDesignPage/withCreateSection";
+import withCreateSection from "../Enhancers/withCreateSection";
 
 export const mapResultsToProps = ({ data }) => {
   return {

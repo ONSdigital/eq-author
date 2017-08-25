@@ -1,7 +1,6 @@
 import React from "react";
-import { set, merge, words } from "lodash";
+import { set, merge } from "lodash";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import SectionEditor from "./index";
 

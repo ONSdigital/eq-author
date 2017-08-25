@@ -1,9 +1,225 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SectionEditor should render 1`] = `
-<component
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.c1 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  font-size: 1.125em;
+  font-weight: 700;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c1::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c1::placeholder {
+  color: #a3a3a3;
+}
+
+.c2 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  font-size: 0.875em;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c2::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c2:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c2::placeholder {
+  color: #a3a3a3;
+}
+
+.c3 {
+  resize: none;
+}
+
+<SectionEditor
   onChange={[Function]}
   sectionDescription="Description"
   sectionTitle="Title"
-/>
+>
+  <div>
+    <Field
+      id="section.title"
+    >
+      <Field__StyledField>
+        <div
+          className="c0"
+        >
+          <withSeamlessness(withChangeHandler(Input))
+            focused={false}
+            id="section.title"
+            onChange={[Function]}
+            optional={false}
+            placeholder="Section title"
+            size="medium"
+            value="Title"
+          >
+            <withSeamlessness__StyledSeamless
+              name="section.title"
+              onChange={[Function]}
+              placeholder="Section title"
+              size="medium"
+              value="Title"
+            >
+              <withChangeHandler(Input)
+                className="c1"
+                name="section.title"
+                onChange={[Function]}
+                placeholder="Section title"
+                size="medium"
+                value="Title"
+              >
+                <Input
+                  className="c1"
+                  name="section.title"
+                  onChange={[Function]}
+                  placeholder="Section title"
+                  size="medium"
+                  value="Title"
+                >
+                  <input
+                    className="c1"
+                    name="section.title"
+                    onChange={[Function]}
+                    placeholder="Section title"
+                    size="medium"
+                    type="text"
+                    value="Title"
+                  />
+                </Input>
+              </withChangeHandler(Input)>
+            </withSeamlessness__StyledSeamless>
+          </withSeamlessness(withChangeHandler(Input))>
+        </div>
+      </Field__StyledField>
+    </Field>
+    <Field
+      id="section.description"
+      optional={true}
+    >
+      <Field__StyledField>
+        <div
+          className="c0"
+        >
+          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+            cols="30"
+            focused={false}
+            id="section.description"
+            onChange={[Function]}
+            optional={true}
+            placeholder="Enter a description (optional)…"
+            rows="5"
+            size="small"
+            value="Description"
+          >
+            <withSeamlessness__StyledSeamless
+              cols="30"
+              name="section.description"
+              onChange={[Function]}
+              placeholder="Enter a description (optional)…"
+              rows="5"
+              size="small"
+              value="Description"
+            >
+              <withChangeHandler(SeamlessTextArea__TextArea)
+                className="c2"
+                cols="30"
+                name="section.description"
+                onChange={[Function]}
+                placeholder="Enter a description (optional)…"
+                rows="5"
+                size="small"
+                value="Description"
+              >
+                <SeamlessTextArea__TextArea
+                  className="c2"
+                  cols="30"
+                  name="section.description"
+                  onChange={[Function]}
+                  placeholder="Enter a description (optional)…"
+                  rows="5"
+                  size="small"
+                  value="Description"
+                >
+                  <TextareaAutosize
+                    className="c2 c3"
+                    cols="30"
+                    name="section.description"
+                    onChange={[Function]}
+                    onHeightChange={[Function]}
+                    placeholder="Enter a description (optional)…"
+                    rows="5"
+                    size="small"
+                    useCacheForDOMMeasurements={false}
+                    value="Description"
+                  >
+                    <textarea
+                      className="c2 c3"
+                      cols="30"
+                      name="section.description"
+                      onChange={[Function]}
+                      placeholder="Enter a description (optional)…"
+                      rows="5"
+                      size="small"
+                      style={
+                        Object {
+                          "height": 0,
+                        }
+                      }
+                      value="Description"
+                    />
+                  </TextareaAutosize>
+                </SeamlessTextArea__TextArea>
+              </withChangeHandler(SeamlessTextArea__TextArea)>
+            </withSeamlessness__StyledSeamless>
+          </withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
+        </div>
+      </Field__StyledField>
+    </Field>
+  </div>
+</SectionEditor>
 `;

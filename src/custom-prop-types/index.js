@@ -35,5 +35,12 @@ export default {
     description: PropTypes.string,
     qCode: PropTypes.string,
     value: PropTypes.string
-  })
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      questionnaireId: PropTypes.string.isRequired,
+      sectionId: PropTypes.string.isRequired,
+      pageId: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired
 };

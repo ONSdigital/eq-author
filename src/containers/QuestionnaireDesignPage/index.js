@@ -3,18 +3,18 @@ import { connect } from "react-redux";
 import { pick } from "lodash";
 
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
-import withQuestionnaire from "./withQuestionnaire";
-import withCreatePage from "./withCreatePage";
-import withCreateSection from "./withCreateSection";
-import withCreateAnswer from "./withCreateAnswer";
-import withCreateOption from "./withCreateOption";
-import withUpdateSection from "./withUpdateSection";
-import withUpdatePage from "./withUpdatePage";
-import withUpdateAnswer from "./withUpdateAnswer";
-import withUpdateOption from "./withUpdateOption";
-import withDeleteOption from "./withDeleteOption";
-import withDeletePage from "./withDeletePage";
-import withDeleteAnswer from "./withDeleteAnswer";
+import withQuestionnaire from "../Enhancers/withQuestionnaire";
+import withCreatePage from "../Enhancers/withCreatePage";
+import withCreateSection from "../Enhancers/withCreateSection";
+import withCreateAnswer from "../Enhancers/withCreateAnswer";
+import withCreateOption from "../Enhancers/withCreateOption";
+import withUpdateSection from "../Enhancers/withUpdateSection";
+import withUpdatePage from "../Enhancers/withUpdatePage";
+import withUpdateAnswer from "../Enhancers/withUpdateAnswer";
+import withUpdateOption from "../Enhancers/withUpdateOption";
+import withDeleteOption from "../Enhancers/withDeleteOption";
+import withDeletePage from "../Enhancers/withDeletePage";
+import withDeleteAnswer from "../Enhancers/withDeleteAnswer";
 
 export const mapStateToProps = (state, { match }) =>
   pick(match.params, ["questionnaireId", "sectionId", "pageId"]);
