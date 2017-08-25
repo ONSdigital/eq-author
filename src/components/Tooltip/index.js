@@ -36,7 +36,13 @@ class Tooltip extends React.Component {
           "data-tip": true,
           "data-for": id
         })}
-        <StyledTooltip id={id} place="bottom" effect="solid" {...otherProps}>
+        <StyledTooltip
+          id={id}
+          place="bottom"
+          effect="solid"
+          delayShow={200}
+          {...otherProps}
+        >
           {content}
         </StyledTooltip>
       </div>

@@ -10,6 +10,7 @@ exports[`Tooltip should render 1`] = `
     Click me
   </button>
   <Tooltip__StyledTooltip
+    delayShow={200}
     effect="solid"
     id="buttonTooltip"
     place="bottom"
@@ -29,6 +30,7 @@ exports[`Tooltip should render arbitrary content 1`] = `
     Click me
   </button>
   <Tooltip__StyledTooltip
+    delayShow={200}
     effect="solid"
     id="buttonTooltip"
     place="bottom"
@@ -54,6 +56,7 @@ exports[`Tooltip should use auto-generated id if one is not supplied 1`] = `
     Click me
   </button>
   <Tooltip__StyledTooltip
+    delayShow={200}
     effect="solid"
     id="tooltip-1"
     place="bottom"
