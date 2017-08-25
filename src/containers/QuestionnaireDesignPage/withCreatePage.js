@@ -1,8 +1,8 @@
 import { graphql, gql } from "react-apollo";
 
-import createQuestionPageMutation from "queries/createQuestionPage.graphql";
+import createQuestionPageMutation from "graphql/createQuestionPage.graphql";
 
-const sectionFragment = gql`
+export const sectionFragment = gql`
   fragment Section on Section {
     id
     pages {

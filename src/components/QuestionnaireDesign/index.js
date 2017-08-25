@@ -1,3 +1,4 @@
+/* eslint-disable react/no-find-dom-node */
 import React from "react";
 import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
@@ -6,7 +7,6 @@ import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
 import SeamlessInput from "../SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
-import TextAnswer from "components/Answers/TextAnswer";
 import DeleteButton from "components/DeleteButton";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
@@ -14,16 +14,17 @@ import CustomPropTypes from "custom-prop-types";
 import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
+import Answer from "components/Answer";
 
 const duration = 300;
 
-const FadeTransition = props =>
+const PageTransition = props =>
   <CSSTransition
+    {...props}
     timeout={duration}
     enter
     exit={false}
     classNames="fade"
-    {...props}
   />;
 
 const AnimatedCanvasSection = styled(CanvasSection)`
@@ -41,11 +42,6 @@ const AnimatedCanvasSection = styled(CanvasSection)`
     transition: opacity ${duration}ms ease-out,
       transform ${duration}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
   }
-  &.fade-exit {
-    opacity: 0;
-    transition: opacity ${duration / 2}ms ease-out,
-      transform ${duration / 2}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-  }
 `;
 
 const AnswerDeleteButton = styled(DeleteButton)`
@@ -56,20 +52,21 @@ const AnswerDeleteButton = styled(DeleteButton)`
 
 class QuestionnaireDesign extends React.Component {
   static propTypes = {
+    answers: PropTypes.arrayOf(CustomPropTypes.answer),
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
-    answers: PropTypes.arrayOf(PropTypes.object),
     onChange: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
+    onAddOption: PropTypes.func.isRequired,
+    onDeleteOption: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
       const value = props[propName];
-
-      if (value && !/(section|page|answer)/.test(value)) {
+      if (value && !/(section|page|answer|option)/.test(value)) {
         return new Error(
-          `Invalid prop '${propName}' with value \`${value}\` supplied to \`${componentName}\`.`
+          `Invalid prop '${propName}' of '${value}' supplied to '${componentName}'. Validation failed.`
         );
       }
     }
@@ -87,26 +84,36 @@ class QuestionnaireDesign extends React.Component {
 
   setSectionTitle = input => {
     if (input) {
-      // check for null as TransitionGroup replaces these DOM elements
       this.sectionTitle = findDOMNode(input);
     }
   };
 
   setPageTitle = input => {
     if (input) {
-      // check for null as TransitionGroup replaces these DOM elements
       this.pageTitle = findDOMNode(input);
     }
   };
 
   setFocusOnTitle = () => {
     const { section, page } = this.props;
-
     if (get(section, "title.length") === 0) {
       this.sectionTitle.focus();
     } else if (get(page, "title.length") === 0) {
       this.pageTitle.focus();
     }
+  };
+
+  handleAddAnswer = type => {
+    this.props.onAddAnswer(type);
+  };
+
+  handleAddOption = answerId => {
+    this.props.onAddOption(answerId);
+  };
+
+  handleEntered = node => {
+    const inputs = node.querySelectorAll("[data-autoFocus]");
+    inputs[inputs.length - 1].focus();
   };
 
   render() {
@@ -115,8 +122,8 @@ class QuestionnaireDesign extends React.Component {
       page,
       answers,
       onChange,
-      onAddAnswer,
       onDeleteAnswer,
+      onDeleteOption,
       onFocus,
       onBlur,
       focused
@@ -126,7 +133,7 @@ class QuestionnaireDesign extends React.Component {
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
-            <FadeTransition key={`section-${section.id}`}>
+            <PageTransition key={`section-${section.id}`}>
               <AnimatedCanvasSection
                 id="section"
                 onFocus={onFocus}
@@ -153,8 +160,8 @@ class QuestionnaireDesign extends React.Component {
                   />
                 </Field>
               </AnimatedCanvasSection>
-            </FadeTransition>
-            <FadeTransition key={`page-${page.id}`} exit={false}>
+            </PageTransition>
+            <PageTransition key={`page-${page.id}`}>
               <AnimatedCanvasSection
                 id="page"
                 onFocus={onFocus}
@@ -185,34 +192,48 @@ class QuestionnaireDesign extends React.Component {
                   />
                 </Field>
               </AnimatedCanvasSection>
-            </FadeTransition>
-            {answers.map((answer, i) => {
-              return (
-                <FadeTransition key={answer.id} exit={false}>
-                  <AnimatedCanvasSection
-                    id={`answer-${answer.id}`}
-                    key={answer.id}
+            </PageTransition>
+
+            {answers.map((answer, answerIndex) =>
+              <PageTransition
+                key={`page-${page.id}-answer-${answer.id}`}
+                onEntered={this.handleEntered}
+              >
+                <AnimatedCanvasSection
+                  id={`answer-${answer.id}`}
+                  key={answer.id}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  focused={
+                    focused && focused.indexOf(`answer-${answer.id}`) > -1
+                  }
+                >
+                  <Answer
+                    answer={answer}
+                    answerIndex={answerIndex}
+                    onChange={onChange}
+                    onAddOption={this.handleAddOption}
+                    onDeleteOption={onDeleteOption}
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    focused={focused === `answer-${answer.id}`}
-                  >
-                    <TextAnswer answer={answer} onChange={onChange} index={i} />
-                    <AnswerDeleteButton
-                      onClick={function() {
-                        onDeleteAnswer(answer.id);
-                      }}
-                      title="Delete answer"
-                      type="button"
-                    />
-                  </AnimatedCanvasSection>
-                </FadeTransition>
-              );
-            })}
-            <FadeTransition key={`add-answer`}>
-              <AnimatedCanvasSection>
-                <AnswerTypeSelector onSelect={onAddAnswer} />
+                    onEntered={this.handleEntered}
+                  />
+                  <AnswerDeleteButton
+                    onClick={function() {
+                      onDeleteAnswer(answer.id);
+                    }}
+                    title="Delete answer"
+                    type="button"
+                  />
+                </AnimatedCanvasSection>
+              </PageTransition>
+            )}
+
+            <PageTransition key={`add-answer-${page.id}`}>
+              <AnimatedCanvasSection onFocus={onFocus} onBlur={onBlur}>
+                <AnswerTypeSelector onSelect={this.handleAddAnswer} />
               </AnimatedCanvasSection>
-            </FadeTransition>
+            </PageTransition>
           </TransitionGroup>
         </Form>
       </Canvas>

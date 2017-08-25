@@ -1,14 +1,6 @@
-import { graphql, gql } from "react-apollo";
-import createAnswerMutation from "queries/createAnswer.graphql";
-
-const pageFragment = gql`
-  fragment Page on QuestionPage {
-    id
-    answers {
-      id
-    }
-  }
-`;
+import { graphql } from "react-apollo";
+import createAnswerMutation from "graphql/createAnswer.graphql";
+import pageFragment from "graphql/pageFragment.graphql";
 
 export const createUpdater = pageId => (proxy, result) => {
   const id = `QuestionPage${pageId}`;
@@ -29,30 +21,22 @@ export const createUpdater = pageId => (proxy, result) => {
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddAnswer(type) {
     const answer = {
-      label: "",
+      type,
+      mandatory: false,
+      questionPageId: ownProps.page.id,
       description: "",
       guidance: "",
       qCode: "",
-      type: type,
-      mandatory: false,
-      questionPageId: ownProps.page.id
+      label: ""
     };
 
-    // const optimisticResponse = {
-    //   createAnswer: {
-    //     __typename: "Answer",
-    //     id: -1,
-    //     options: [],
-    //     ...answer
-    //   }
-    // };
-
-    const update = createUpdater(ownProps.pageId);
+    const update = createUpdater(ownProps.page.id);
 
     return mutate({
       variables: answer,
-      // optimisticResponse,
       update
+    }).then(result => {
+      return result.data.createAnswer;
     });
   }
 });

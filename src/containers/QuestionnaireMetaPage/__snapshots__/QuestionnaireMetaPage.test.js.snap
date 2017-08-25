@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/QuestionnaireMeta should render 1`] = `
+<BaseLayout
+  questionnaire={
+    Object {
+      "description": "",
+      "legalBasis": "",
+      "navigation": true,
+      "theme": "default",
+      "title": "My Questionnaire",
+    }
+  }
+>
+  <Grid__Grid
+    align="top"
+    fillHeight={true}
+  >
+    <Column__Column
+      gutters={false}
+      offset={2}
+    >
+      <QuestionnaireMetaPage__Margin>
+        <QuestionnaireMeta
+          loading={false}
+          onUpdate={[Function]}
+          questionnaire={
+            Object {
+              "description": "",
+              "legalBasis": "",
+              "navigation": true,
+              "theme": "default",
+              "title": "My Questionnaire",
+            }
+          }
+        />
+      </QuestionnaireMetaPage__Margin>
+    </Column__Column>
+  </Grid__Grid>
+</BaseLayout>
+`;

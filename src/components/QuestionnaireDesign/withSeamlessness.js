@@ -31,6 +31,7 @@ const styles = css`
   outline: none;
   display: block;
   width: 100%;
+  transition: opacity 200ms ease-out;
 
   ${props => sizes[props.size]}
 
@@ -42,9 +43,6 @@ const styles = css`
     color: #a3a3a3;
   }
 
-  &[aria-hidden="true"] {
-    visibility: hidden;
-  }
 `;
 
 const withSeamlessness = WrappedComponent => {
@@ -65,7 +63,6 @@ const withSeamlessness = WrappedComponent => {
       value: PropTypes.string,
       focused: PropTypes.bool,
       optional: PropTypes.bool,
-      autoFocus: PropTypes.bool,
       placeholder: PropTypes.string,
       size: PropTypes.oneOf(Object.keys(sizes)),
       className: PropTypes.string
@@ -80,24 +77,21 @@ const withSeamlessness = WrappedComponent => {
         value,
         focused,
         placeholder,
-        autoFocus,
         size,
         onChange,
-        className
+        className,
+        ...otherProps
       } = this.props;
-
-      const shouldBeHidden = optional && !value && !focused;
 
       return (
         <StyledSeamless
           className={className}
           placeholder={placeholder}
-          autoFocus={autoFocus}
           value={value}
           onChange={onChange}
           name={id}
           size={size}
-          aria-hidden={shouldBeHidden}
+          {...otherProps}
         />
       );
     }

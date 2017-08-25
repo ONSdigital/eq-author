@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnaireMetaPage from "./QuestionnaireMetaPage";
+import { QuestionnaireMetaPage } from "./QuestionnaireMetaPage";
 
 let wrapper;
 
@@ -25,8 +25,7 @@ describe("containers/QuestionnaireMeta", () => {
     );
   });
 
-  it("should update state with questionnaire data when received as props", () => {
-    wrapper.setProps({ questionnaire });
-    expect(wrapper.state().questionnaire).toMatchObject(questionnaire);
+  it("should render", () => {
+    expect(wrapper).toMatchSnapshot();
   });
 });

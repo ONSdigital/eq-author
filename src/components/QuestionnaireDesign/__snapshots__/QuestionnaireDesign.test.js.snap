@@ -10,7 +10,7 @@ exports[`QuestionnaireDesign should render 1`] = `
       childFactory={[Function]}
       component="div"
     >
-      <FadeTransition>
+      <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="section"
@@ -44,10 +44,8 @@ exports[`QuestionnaireDesign should render 1`] = `
             />
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
-      <FadeTransition
-        exit={false}
-      >
+      </PageTransition>
+      <PageTransition>
         <QuestionnaireDesign__AnimatedCanvasSection
           focused={false}
           id="page"
@@ -91,24 +89,36 @@ exports[`QuestionnaireDesign should render 1`] = `
             />
           </Field>
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
-      <FadeTransition
-        exit={false}
+      </PageTransition>
+      <PageTransition
+        onEntered={[Function]}
       >
         <QuestionnaireDesign__AnimatedCanvasSection
-          focused={false}
-          id="answer-4"
+          focused={null}
+          id="answer-1"
           onBlur={[Function]}
           onFocus={[Function]}
         >
-          <TextAnswer
+          <Answer
             answer={
               Object {
-                "id": "4",
+                "id": 1,
+                "options": Array [
+                  Object {
+                    "description": "",
+                    "id": 0,
+                    "label": "",
+                  },
+                ],
               }
             }
-            index={0}
+            answerIndex={0}
+            onAddOption={[Function]}
+            onBlur={[Function]}
             onChange={[Function]}
+            onDeleteOption={[Function]}
+            onEntered={[Function]}
+            onFocus={[Function]}
           />
           <QuestionnaireDesign__AnswerDeleteButton
             onClick={[Function]}
@@ -116,14 +126,17 @@ exports[`QuestionnaireDesign should render 1`] = `
             type="button"
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
-      <FadeTransition>
-        <QuestionnaireDesign__AnimatedCanvasSection>
+      </PageTransition>
+      <PageTransition>
+        <QuestionnaireDesign__AnimatedCanvasSection
+          onBlur={[Function]}
+          onFocus={[Function]}
+        >
           <AnswerTypeSelector
             onSelect={[Function]}
           />
         </QuestionnaireDesign__AnimatedCanvasSection>
-      </FadeTransition>
+      </PageTransition>
     </TransitionGroup>
   </Form>
 </Canvas__Canvas>

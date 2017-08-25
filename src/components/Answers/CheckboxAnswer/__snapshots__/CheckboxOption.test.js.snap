@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxOption should match snapshot 1`] = `
+<CheckboxOption__StyledCheckboxOption>
+  <Field
+    id="answers[0].options[1].label"
+  >
+    <CheckboxOption__StyledCheckboxInput
+      disabled={true}
+      type="checkbox"
+    />
+    <CheckboxOption__SeamlessLabel
+      data-autoFocus={true}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Label"
+      size="medium"
+      value=""
+    />
+  </Field>
+  <Field
+    id="answers[0].options[1].description"
+  >
+    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+      cols="30"
+      focused={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      optional={false}
+      placeholder="Optional description"
+      rows="5"
+      size="small"
+      value=""
+    />
+  </Field>
+  <CheckboxOption__DeleteButton
+    onClick={[Function]}
+    type="button"
+  >
+    ×
+  </CheckboxOption__DeleteButton>
+</CheckboxOption__StyledCheckboxOption>
+`;

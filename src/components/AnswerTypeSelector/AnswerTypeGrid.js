@@ -89,7 +89,6 @@ class AnswerTypeGrid extends React.Component {
             type="TextField"
             title="Text"
             onClick={this.handleSelect}
-            ref={this.saveButtonRef}
           />
           <AnswerTypeButton
             type="TextArea"

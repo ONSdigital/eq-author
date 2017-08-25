@@ -24,5 +24,14 @@ mutation createAnswer(
     type
     mandatory
     questionPageId
+    ... on MultipleChoiceAnswer {
+      options {
+        id
+        label
+        description
+        qCode
+        value
+      }
+    }
   }
 }

@@ -29,6 +29,15 @@ query GetQuestionnaire($id: Int!) {
             mandatory
             type
             questionPageId
+            ... on MultipleChoiceAnswer {
+              options {
+                id
+                label
+                description
+                qCode
+                value
+              }
+            }
           }
         }
       }

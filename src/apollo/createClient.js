@@ -1,4 +1,5 @@
 import { ApolloClient } from "react-apollo";
+import fragmentMatcher from "./fragmentMatcher";
 
 export default networkInterface => {
   return new ApolloClient({
@@ -11,6 +12,7 @@ export default networkInterface => {
       }
       return null;
     },
+    fragmentMatcher,
     networkInterface
   });
 };

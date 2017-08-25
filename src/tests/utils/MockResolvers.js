@@ -22,6 +22,7 @@ const persistMutation = result => {
 };
 
 export default {
+  String: () => "",
   Query: () => ({
     questionnaires: (root, args, ctx) => {
       return DataStore.getQuestionnaires(args.id);

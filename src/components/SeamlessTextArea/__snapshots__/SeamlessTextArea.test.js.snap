@@ -12,6 +12,8 @@ exports[`SeamlessTextArea should render 1`] = `
   outline: none;
   display: block;
   width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
   font-size: 0.875em;
 }
 
@@ -35,10 +37,6 @@ exports[`SeamlessTextArea should render 1`] = `
   color: #a3a3a3;
 }
 
-.c0[aria-hidden="true"] {
-  visibility: hidden;
-}
-
 <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
   focused={false}
   id="foo"
@@ -48,14 +46,12 @@ exports[`SeamlessTextArea should render 1`] = `
   value="123"
 >
   <withSeamlessness__StyledSeamless
-    aria-hidden={false}
     name="foo"
     onChange={[Function]}
     size="small"
     value="123"
   >
     <withChangeHandler(SeamlessTextArea__TextArea)
-      aria-hidden={false}
       className="c0"
       name="foo"
       onChange={[Function]}
@@ -63,7 +59,6 @@ exports[`SeamlessTextArea should render 1`] = `
       value="123"
     >
       <SeamlessTextArea__TextArea
-        aria-hidden={false}
         className="c0"
         name="foo"
         onChange={[Function]}
@@ -71,7 +66,6 @@ exports[`SeamlessTextArea should render 1`] = `
         value="123"
       >
         <TextareaAutosize
-          aria-hidden={false}
           className="c0 c1"
           name="foo"
           onChange={[Function]}
@@ -81,7 +75,6 @@ exports[`SeamlessTextArea should render 1`] = `
           value="123"
         >
           <textarea
-            aria-hidden={false}
             className="c0 c1"
             name="foo"
             onChange={[Function]}

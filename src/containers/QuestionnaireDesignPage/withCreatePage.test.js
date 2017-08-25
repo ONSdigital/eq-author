@@ -1,7 +1,8 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToDesigner
+  redirectToDesigner,
+  sectionFragment
 } from "./withCreatePage";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
@@ -60,16 +61,16 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
       const updater = createUpdater(questionnaire.id, section.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith(
-        expect.objectContaining({ id: `Section${section.id}` })
-      );
+      expect(readFragment).toHaveBeenCalledWith({
+        id: `Section${section.id}`,
+        fragment: sectionFragment
+      });
 
-      expect(writeFragment).toHaveBeenCalledWith(
-        expect.objectContaining({
-          id: `Section${section.id}`,
-          data: section
-        })
-      );
+      expect(writeFragment).toHaveBeenCalledWith({
+        id: `Section${section.id}`,
+        fragment: sectionFragment,
+        data: section
+      });
     });
   });
 

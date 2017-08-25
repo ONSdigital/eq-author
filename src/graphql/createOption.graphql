@@ -1,0 +1,9 @@
+mutation createOption($answerId: Int!) {
+  createOption(answerId: $answerId) {
+    id
+    label
+    description
+    qCode
+    value
+  }
+}
