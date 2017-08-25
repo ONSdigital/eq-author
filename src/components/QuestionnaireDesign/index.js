@@ -72,13 +72,6 @@ class QuestionnaireDesign extends React.Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      autoFocusId: null
-    };
-  }
-
   componentDidMount() {
     this.setFocusOnTitle();
   }
