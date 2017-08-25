@@ -48,8 +48,10 @@ const AnimatedCanvasSection = styled(CanvasSection)`
 
 const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
-  right: .5em;
-  top: .4em;
+  padding: 0;
+  line-height: 1;
+  right: .8em;
+  top: .8em;
 `;
 
 class QuestionnaireDesign extends React.Component {
