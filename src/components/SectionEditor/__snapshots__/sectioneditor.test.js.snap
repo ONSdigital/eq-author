@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionEditor should render 1`] = `
+<component
+  onChange={[Function]}
+  sectionDescription="Description"
+  sectionTitle="Title"
+/>
+`;
