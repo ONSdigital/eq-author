@@ -30,8 +30,10 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
     newPage = {
       id: 22,
-      sectionId: section.id,
-      title: "New Page"
+      title: "New Page",
+      section: {
+        id: section.id
+      }
     };
 
     result = {
@@ -99,7 +101,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
         expect(mutate.mock.calls[0][0]).toMatchObject({
           optimisticResponse: {
             createQuestionPage: {
-              sectionId: section.id
+              id: -1
             }
           }
         });

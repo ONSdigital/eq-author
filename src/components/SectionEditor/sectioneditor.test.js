@@ -9,6 +9,7 @@ describe("SectionEditor", () => {
         <SectionEditor
           onChange={jest.fn()}
           sectionTitle="Title"
+          sectionTitleRef={jest.fn()}
           sectionDescription="Description"
         />
       )

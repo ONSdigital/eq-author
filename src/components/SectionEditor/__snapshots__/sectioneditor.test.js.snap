@@ -80,6 +80,7 @@ exports[`SectionEditor should render 1`] = `
   onChange={[Function]}
   sectionDescription="Description"
   sectionTitle="Title"
+  sectionTitleRef={[Function]}
 >
   <div>
     <Field
