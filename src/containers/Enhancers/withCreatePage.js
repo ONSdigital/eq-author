@@ -43,7 +43,8 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     const page = {
       title: "",
       description: "",
-      type: "General"
+      type: "General",
+      sectionId: sectionId
     };
 
     const optimisticResponse = {

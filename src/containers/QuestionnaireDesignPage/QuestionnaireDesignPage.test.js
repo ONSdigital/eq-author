@@ -1,7 +1,6 @@
 import React from "react";
 import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
 import QuestionnaireDesign from "components/QuestionnaireDesign";
-import QuestionnaireNav from "components/QuestionnaireNav";
 import { shallow } from "enzyme";
 
 let mockHandlers, wrapper;
