@@ -6,7 +6,6 @@ import styled from "styled-components";
 import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
 import SeamlessInput from "../SeamlessInput/SeamlessInput";
-import SeamlessTextArea from "../SeamlessTextArea/SeamlessTextArea";
 import DeleteButton from "components/DeleteButton";
 import Field from "components/Forms/Field";
 import Form from "components/Forms/Form";
@@ -15,6 +14,7 @@ import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import Answer from "components/Answer";
+import SectionEditor from "components/SectionEditor";
 
 import Tooltip from "components/Tooltip";
 
@@ -145,24 +145,12 @@ class QuestionnaireDesign extends React.Component {
                 focused={focused === "section"}
                 key={section.id}
               >
-                <Field id="section.title">
-                  <SeamlessInput
-                    placeholder="Section title"
-                    size="medium"
-                    onChange={onChange}
-                    value={section.title}
-                    ref={this.setSectionTitle}
-                  />
-                </Field>
-                <Field id="section.description" optional>
-                  <SeamlessTextArea
-                    cols="30"
-                    rows="5"
-                    placeholder="Enter a description (optional)…"
-                    onChange={onChange}
-                    value={section.description}
-                  />
-                </Field>
+                <SectionEditor
+                  onChange={onChange}
+                  sectionTitle={section.title}
+                  sectionTitleRef={this.setSectionTitle}
+                  sectionDescription={section.description}
+                />
               </AnimatedCanvasSection>
             </PageTransition>
             <PageTransition key={`page-${page.id}`}>

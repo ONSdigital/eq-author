@@ -13,6 +13,7 @@ const SectionEditor = props =>
         size="medium"
         onChange={props.onChange}
         value={props.sectionTitle}
+        ref={props.sectionTitleRef}
       />
     </Field>
     <Field id="section.description" optional>
@@ -34,7 +35,8 @@ SectionEditor.defaultPropTypes = {
 SectionEditor.propTypes = {
   sectionTitle: PropTypes.string,
   sectionDescription: PropTypes.string,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  sectionTitleRef: PropTypes.func.isRequired
 };
 
 export default SectionEditor;
