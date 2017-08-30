@@ -104,10 +104,6 @@ export class QuestionnaireDesignPage extends Component {
     this.setFocused(focused);
   };
 
-  handleAddSection = () => {
-    return this.props.onAddSection(this.props.questionnaire.id);
-  };
-
   setFocused = focused => {
     if (focused !== this.state.focused) {
       this.setState({ focused });
