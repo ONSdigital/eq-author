@@ -125,5 +125,38 @@ export default {
     deleteOption: (root, args, ctx) => {
       return persistMutation(DataStore.deleteOption(merge({}, args)));
     }
+  }),
+
+  Questionnaire: () => ({
+    sections: (questionnaire, args, ctx) =>
+      DataStore.getSections(questionnaire.id)
+  }),
+
+  Section: () => ({
+    pages: (section, args, ctx) => DataStore.getPages(section.id),
+    questionnaire: (section, args, ctx) =>
+      DataStore.getQuestionnaire(section.questionnaireId)
+  }),
+
+  Page: () => ({
+    __resolveType: ({ pageType }) => pageType
+  }),
+
+  QuestionPage: () => ({
+    answers: (page, args, ctx) => DataStore.getAnswers(page.id),
+    section: (page, args, ctx) => DataStore.getSection(page.sectionId)
+  }),
+
+  Answer: () => ({
+    __resolveType: (answer, args, ctx) => answer.__typename
+  }),
+
+  BasicAnswer: () => ({
+    page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId)
+  }),
+
+  MultipleChoiceAnswer: () => ({
+    page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId),
+    options: (answer, args, ctx) => DataStore.getOptions(answer.id)
   })
 };

@@ -35,8 +35,6 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     return mutate({
       variables: answer,
       update
-    }).then(result => {
-      return result.data.createAnswer;
     });
   }
 });
