@@ -187,8 +187,8 @@ class MockDataStore {
 
   deleteAnswer(answer) {
     const answerToDelete = this.answers[answer.id];
-    if (answerToDelete.pageId) {
-      remove(this.pages[answerToDelete.pageId].answers, {
+    if (answerToDelete.questionPageId) {
+      remove(this.pages[answerToDelete.questionPageId].answers, {
         id: answerToDelete.id
       });
     }
