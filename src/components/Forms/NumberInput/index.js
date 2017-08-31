@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "components/Forms/Input";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import arrowIcon from "./arrow.svg";
 
@@ -87,15 +88,19 @@ class NumberInput extends React.Component {
         />
         <NumericButtons>
           <NumericButton type="button" onClick={this.handleUp}>
-            <InvertedVertically src={arrowIcon} width="18" />
+            <InvertedVertically src={arrowIcon} width="18" alt="Increase" />
           </NumericButton>
           <NumericButton type="button" onClick={this.handleDown}>
-            <img src={arrowIcon} width="18" />
+            <img src={arrowIcon} width="18" alt="Decrease" />
           </NumericButton>
         </NumericButtons>
       </NumericWrapper>
     );
   }
 }
+
+NumberInput.propTypes = {
+  value: PropTypes.number
+};
 
 export default NumberInput;
