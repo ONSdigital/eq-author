@@ -60,9 +60,6 @@ class QuestionnaireDesign extends React.Component {
     page: CustomPropTypes.page,
     onChange: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
-    onDeleteAnswer: PropTypes.func.isRequired,
-    onAddOption: PropTypes.func.isRequired,
-    onDeleteOption: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {

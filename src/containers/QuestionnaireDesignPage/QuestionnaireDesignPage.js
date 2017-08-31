@@ -15,14 +15,11 @@ import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
-    onAddOption: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
     onUpdateSection: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     onUpdateAnswer: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    onDeleteOption: PropTypes.func.isRequired,
-    onDeleteAnswer: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
@@ -61,10 +58,6 @@ export class QuestionnaireDesignPage extends Component {
 
   handleAddAnswer = type => {
     return this.props.onAddAnswer(type);
-  };
-
-  handleDeleteAnswer = answerId => {
-    return this.props.onDeleteAnswer(answerId);
   };
 
   handleBlur = () => {
@@ -108,13 +101,7 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   render() {
-    const {
-      breadcrumb,
-      loading,
-      questionnaire,
-      onAddOption,
-      onDeleteOption
-    } = this.props;
+    const { breadcrumb, loading, questionnaire } = this.props;
 
     const { section, page, answers, focused } = this.state;
 
@@ -138,12 +125,9 @@ export class QuestionnaireDesignPage extends Component {
               answers={answers}
               focused={focused}
               onAddAnswer={this.handleAddAnswer}
-              onDeleteAnswer={this.handleDeleteAnswer}
               onChange={this.handleChange}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
-              onAddOption={onAddOption}
-              onDeleteOption={onDeleteOption}
             />
           </Column>
           <Column cols={2} gutters={false}>

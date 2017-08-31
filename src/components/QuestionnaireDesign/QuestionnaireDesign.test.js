@@ -28,6 +28,7 @@ const section = {
   pages: [page]
 };
 
+// eslint-disable-next-line jest/no-disabled-tests
 xdescribe("QuestionnaireDesign", () => {
   let wrapper, mockHandlers;
   const createWrapper = (props, render = mount) => {
