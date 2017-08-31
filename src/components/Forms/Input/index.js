@@ -40,7 +40,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
   id: PropTypes.string,
-  type: PropTypes.oneOf(["text", "checkbox", "radio"]).isRequired,
+  type: PropTypes.oneOf(["text", "checkbox", "radio", "number"]).isRequired,
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,
