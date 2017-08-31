@@ -1,0 +1,20 @@
+query GetAnswer($id: Int!) {
+  answer(id: $id) {
+    id
+    description
+    guidance
+    qCode
+    label
+    mandatory
+    type
+    ... on MultipleChoiceAnswer {
+      options {
+        id
+        label
+        description
+        qCode
+        value
+      }
+    }
+  }
+}

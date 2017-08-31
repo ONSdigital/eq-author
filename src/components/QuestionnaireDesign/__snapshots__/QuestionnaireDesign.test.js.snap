@@ -47,7 +47,7 @@ exports[`QuestionnaireDesign should render 1`] = `
           onBlur={[Function]}
           onFocus={[Function]}
         >
-          <Answer
+          <Connect(Apollo(Apollo(Apollo(AnswerEditor))))
             answer={
               Object {
                 "id": 1,
@@ -61,10 +61,8 @@ exports[`QuestionnaireDesign should render 1`] = `
               }
             }
             answerIndex={0}
-            onAddOption={[Function]}
             onBlur={[Function]}
             onChange={[Function]}
-            onDeleteOption={[Function]}
             onEntered={[Function]}
             onFocus={[Function]}
           />

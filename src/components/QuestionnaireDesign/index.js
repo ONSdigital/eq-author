@@ -5,15 +5,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
-import DeleteButton from "components/DeleteButton";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
 import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
-import Answer from "components/Answer";
 import SectionEditor from "components/SectionEditor";
 import PageEditor from "../PageEditor/index";
+import AnswerContainer from "containers/AnswerContainer";
 
 import Tooltip from "components/Tooltip";
 
@@ -52,6 +51,7 @@ const AnswerDeleteButton = styled(DeleteButton)`
   right: .8em;
   top: .8em;
 `;
+
 
 class QuestionnaireDesign extends React.Component {
   static propTypes = {
@@ -110,10 +110,6 @@ class QuestionnaireDesign extends React.Component {
     this.props.onAddAnswer(type);
   };
 
-  handleAddOption = answerId => {
-    this.props.onAddOption(answerId);
-  };
-
   handleEntered = node => {
     const inputs = node.querySelectorAll("[data-autoFocus]");
     inputs[inputs.length - 1].focus();
@@ -125,8 +121,6 @@ class QuestionnaireDesign extends React.Component {
       page,
       answers,
       onChange,
-      onDeleteAnswer,
-      onDeleteOption,
       onFocus,
       onBlur,
       focused
@@ -183,12 +177,12 @@ class QuestionnaireDesign extends React.Component {
                     focused && focused.indexOf(`answer-${answer.id}`) > -1
                   }
                 >
-                  <Answer
+                  <AnswerContainer
+                    // answerId={answer.id}
                     answer={answer}
                     answerIndex={answerIndex}
+                    pageId={page.id}
                     onChange={onChange}
-                    onAddOption={this.handleAddOption}
-                    onDeleteOption={onDeleteOption}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onEntered={this.handleEntered}
