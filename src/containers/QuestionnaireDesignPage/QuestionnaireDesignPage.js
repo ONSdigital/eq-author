@@ -15,15 +15,12 @@ import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
-    onAddPage: PropTypes.func.isRequired,
-    onAddSection: PropTypes.func.isRequired,
     onAddOption: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
     onUpdateSection: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     onUpdateAnswer: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
