@@ -15,6 +15,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import Answer from "components/Answer";
 import SectionEditor from "components/SectionEditor";
+import PageEditor from "../PageEditor/index";
 
 import Tooltip from "components/Tooltip";
 
@@ -160,29 +161,13 @@ class QuestionnaireDesign extends React.Component {
                 onBlur={onBlur}
                 focused={focused === "page"}
               >
-                <Field id="page.title">
-                  <SeamlessInput
-                    size="large"
-                    placeholder="Question title"
-                    onChange={onChange}
-                    value={page.title}
-                    ref={this.setPageTitle}
-                  />
-                </Field>
-                <Field id="page.description" optional>
-                  <SeamlessInput
-                    placeholder="Question text (optional)…"
-                    value={page.description}
-                    onChange={onChange}
-                  />
-                </Field>
-                <Field id="page.guidance" optional>
-                  <SeamlessInput
-                    placeholder="Guidance text (optional)…"
-                    value={page.guidance}
-                    onChange={onChange}
-                  />
-                </Field>
+                <PageEditor
+                  onChange={onChange}
+                  pageTitle={page.title}
+                  pageTitleRef={this.setPageTitle}
+                  pageDescription={page.description}
+                  pageGuidance={page.guidance}
+                />
               </AnimatedCanvasSection>
             </PageTransition>
 

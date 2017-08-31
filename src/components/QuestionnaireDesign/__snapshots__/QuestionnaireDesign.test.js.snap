@@ -31,42 +31,11 @@ exports[`QuestionnaireDesign should render 1`] = `
           onBlur={[Function]}
           onFocus={[Function]}
         >
-          <Field
-            id="page.title"
-          >
-            <withSeamlessness(withChangeHandler(Input))
-              focused={false}
-              onChange={[Function]}
-              optional={false}
-              placeholder="Question title"
-              size="large"
-              value=""
-            />
-          </Field>
-          <Field
-            id="page.description"
-            optional={true}
-          >
-            <withSeamlessness(withChangeHandler(Input))
-              focused={false}
-              onChange={[Function]}
-              optional={false}
-              placeholder="Question text (optional)…"
-              size="small"
-            />
-          </Field>
-          <Field
-            id="page.guidance"
-            optional={true}
-          >
-            <withSeamlessness(withChangeHandler(Input))
-              focused={false}
-              onChange={[Function]}
-              optional={false}
-              placeholder="Guidance text (optional)…"
-              size="small"
-            />
-          </Field>
+          <PageEditor
+            onChange={[Function]}
+            pageTitle=""
+            pageTitleRef={[Function]}
+          />
         </QuestionnaireDesign__AnimatedCanvasSection>
       </PageTransition>
       <PageTransition
