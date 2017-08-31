@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Editor should render 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.c1 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  font-size: 1.75em;
+  font-weight: 700;
+}
+
+.c1:focus {
+  outline: none;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c1::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c1:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c1::placeholder {
+  color: #a3a3a3;
+}
+
+.c2 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  font-size: 0.875em;
+}
+
+.c2:focus {
+  outline: none;
+}
+
+.c2::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c2::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c2:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c2::placeholder {
+  color: #a3a3a3;
+}
+
+<PageEditor
+  onChange={[Function]}
+  pageDescription="Page description"
+  pageGuidance="Page guidance"
+  pageTitle="Page title"
+  pageTitleRef={[Function]}
+>
+  <div>
+    <Field
+      id="page.title"
+    >
+      <Field__StyledField>
+        <div
+          className="c0"
+        >
+          <withSeamlessness(withChangeHandler(Input))
+            focused={false}
+            id="page.title"
+            onChange={[Function]}
+            optional={false}
+            placeholder="Question title"
+            size="large"
+            value="Page title"
+          >
+            <withSeamlessness__StyledSeamless
+              name="page.title"
+              onChange={[Function]}
+              placeholder="Question title"
+              size="large"
+              value="Page title"
+            >
+              <withChangeHandler(Input)
+                className="c1"
+                name="page.title"
+                onChange={[Function]}
+                placeholder="Question title"
+                size="large"
+                value="Page title"
+              >
+                <Input
+                  className="c1"
+                  name="page.title"
+                  onChange={[Function]}
+                  placeholder="Question title"
+                  size="large"
+                  value="Page title"
+                >
+                  <input
+                    className="c1"
+                    name="page.title"
+                    onChange={[Function]}
+                    placeholder="Question title"
+                    size="large"
+                    type="text"
+                    value="Page title"
+                  />
+                </Input>
+              </withChangeHandler(Input)>
+            </withSeamlessness__StyledSeamless>
+          </withSeamlessness(withChangeHandler(Input))>
+        </div>
+      </Field__StyledField>
+    </Field>
+    <Field
+      id="page.description"
+      optional={true}
+    >
+      <Field__StyledField>
+        <div
+          className="c0"
+        >
+          <withSeamlessness(withChangeHandler(Input))
+            focused={false}
+            id="page.description"
+            onChange={[Function]}
+            optional={true}
+            placeholder="Question text (optional)…"
+            size="small"
+            value="Page description"
+          >
+            <withSeamlessness__StyledSeamless
+              name="page.description"
+              onChange={[Function]}
+              placeholder="Question text (optional)…"
+              size="small"
+              value="Page description"
+            >
+              <withChangeHandler(Input)
+                className="c2"
+                name="page.description"
+                onChange={[Function]}
+                placeholder="Question text (optional)…"
+                size="small"
+                value="Page description"
+              >
+                <Input
+                  className="c2"
+                  name="page.description"
+                  onChange={[Function]}
+                  placeholder="Question text (optional)…"
+                  size="small"
+                  value="Page description"
+                >
+                  <input
+                    className="c2"
+                    name="page.description"
+                    onChange={[Function]}
+                    placeholder="Question text (optional)…"
+                    size="small"
+                    type="text"
+                    value="Page description"
+                  />
+                </Input>
+              </withChangeHandler(Input)>
+            </withSeamlessness__StyledSeamless>
+          </withSeamlessness(withChangeHandler(Input))>
+        </div>
+      </Field__StyledField>
+    </Field>
+    <Field
+      id="page.guidance"
+      optional={true}
+    >
+      <Field__StyledField>
+        <div
+          className="c0"
+        >
+          <withSeamlessness(withChangeHandler(Input))
+            focused={false}
+            id="page.guidance"
+            onChange={[Function]}
+            optional={true}
+            placeholder="Guidance text (optional)…"
+            size="small"
+            value="Page guidance"
+          >
+            <withSeamlessness__StyledSeamless
+              name="page.guidance"
+              onChange={[Function]}
+              placeholder="Guidance text (optional)…"
+              size="small"
+              value="Page guidance"
+            >
+              <withChangeHandler(Input)
+                className="c2"
+                name="page.guidance"
+                onChange={[Function]}
+                placeholder="Guidance text (optional)…"
+                size="small"
+                value="Page guidance"
+              >
+                <Input
+                  className="c2"
+                  name="page.guidance"
+                  onChange={[Function]}
+                  placeholder="Guidance text (optional)…"
+                  size="small"
+                  value="Page guidance"
+                >
+                  <input
+                    className="c2"
+                    name="page.guidance"
+                    onChange={[Function]}
+                    placeholder="Guidance text (optional)…"
+                    size="small"
+                    type="text"
+                    value="Page guidance"
+                  />
+                </Input>
+              </withChangeHandler(Input)>
+            </withSeamlessness__StyledSeamless>
+          </withSeamlessness(withChangeHandler(Input))>
+        </div>
+      </Field__StyledField>
+    </Field>
+  </div>
+</PageEditor>
+`;
