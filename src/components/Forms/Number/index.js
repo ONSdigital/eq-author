@@ -50,9 +50,9 @@ class NumberInput extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.defaultValue) {
+    if (this.props.value) {
       this.setState({
-        value: this.props.defaultValue.toString()
+        value: this.props.value
       });
     }
   }
@@ -73,7 +73,7 @@ class NumberInput extends React.Component {
 
   handleChange = e => {
     this.setState({
-      value: e.value.toString()
+      value: e.value
     });
     if (this.props.onChange) {
       this.props.onChange(e);
@@ -110,7 +110,7 @@ NumberInput.defaultProps = {
 NumberInput.propTypes = {
   onChange: PropTypes.func,
   showSpinner: PropTypes.bool,
-  defaultValue: PropTypes.number
+  value: PropTypes.string
 };
 
 export default NumberInput;

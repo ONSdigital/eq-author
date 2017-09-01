@@ -32,6 +32,13 @@ describe("components/Forms/Input", () => {
       expect(numberWithSpinner.find("input").node.value).toEqual("0");
     });
 
+    it("should set `defaultValue` to value in state", () => {
+      const wrapper = mount(
+        <Number id="number" onChange={handleChange} value={"5"} />
+      );
+      expect(wrapper.state("value")).toEqual("5");
+    });
+
     it("should call onChange with appropriate args", () => {
       numberWithSpinner
         .find("input")
@@ -44,12 +51,12 @@ describe("components/Forms/Input", () => {
 
     describe("spinner buttons", () => {
       it("should increase the value when up button pressed", () => {
-        numberWithSpinner.find(SpinnerButton).nodes[0].props.onClick();
+        numberWithSpinner.find(SpinnerButton).at(0).simulate("click");
         expect(numberWithSpinner.state("value")).toEqual("1");
       });
 
       it("should decrease the value when down button pressed", () => {
-        numberWithSpinner.find(SpinnerButton).nodes[1].props.onClick();
+        numberWithSpinner.find(SpinnerButton).at(1).simulate("click");
         expect(numberWithSpinner.state("value")).toEqual("-1");
       });
     });
