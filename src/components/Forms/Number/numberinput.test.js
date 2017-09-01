@@ -49,6 +49,12 @@ describe("components/Forms/Input", () => {
       });
     });
 
+    it("should change internal state when input change fired", () => {
+      const wrapper = mount(<Number id="number" value={"5"} />);
+      wrapper.find("input").simulate("change", { target: { value: "3" } });
+      expect(wrapper.state("value")).toEqual("3");
+    });
+
     describe("spinner buttons", () => {
       it("should increase the value when up button pressed", () => {
         numberWithSpinner.find(SpinnerButton).at(0).simulate("click");

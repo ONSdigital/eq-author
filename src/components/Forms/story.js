@@ -1,6 +1,5 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import styled from "styled-components";
 import Field from "components/Forms/Field";
@@ -32,7 +31,7 @@ storiesOf("Forms", module)
   .add("Input/Number", props =>
     <Field id="name">
       <Label>Name</Label>
-      <Number onChange={action("changed")} />
+      <Number />
     </Field>
   )
   .add("Input/Checkbox", props =>
