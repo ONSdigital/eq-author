@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import arrowIcon from "./arrow.svg";
 
-const NumericWrapper = styled.div`
+const NumberWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
@@ -19,7 +19,7 @@ const InvertedVertically = styled.img`
   -ms-filter: "FlipV";
 `;
 
-const StyledNumeric = styled(Input)`
+const StyledInput = styled(Input)`
   &[type=number]::-webkit-inner-spin-button, 
   &[type=number]::-webkit-outer-spin-button { 
       -webkit-appearance: none;
@@ -31,12 +31,12 @@ const StyledNumeric = styled(Input)`
   width: 4em;
 `;
 
-const NumericButtons = styled.div`
+const SpinnerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const NumericButton = styled.button`
+export const SpinnerButton = styled.button`
   border: 0;
   background: none;
 `;
@@ -45,17 +45,17 @@ class NumberInput extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: 0
+      value: "0"
     };
   }
 
-  componentWillMount = () => {
-    if (this.props.value) {
+  componentWillMount() {
+    if (this.props.defaultValue) {
       this.setState({
-        value: parseInt(this.props.value, 10).toString()
+        value: this.props.defaultValue.toString()
       });
     }
-  };
+  }
 
   handleUp = () => {
     const newValue = parseInt(this.state.value, 10) + 1;
@@ -71,36 +71,46 @@ class NumberInput extends React.Component {
     });
   };
 
-  handleChange = ({ value }) => {
+  handleChange = e => {
     this.setState({
-      value: parseInt(value, 10).toString()
+      value: e.value.toString()
     });
+    if (this.props.onChange) {
+      this.props.onChange(e);
+    }
   };
 
-  render(props) {
+  render() {
     return (
-      <NumericWrapper>
-        <StyledNumeric
+      <NumberWrapper>
+        <StyledInput
           type="number"
           value={this.state.value}
           onChange={this.handleChange}
-          {...props}
+          {...this.props}
         />
-        <NumericButtons>
-          <NumericButton type="button" onClick={this.handleUp}>
-            <InvertedVertically src={arrowIcon} width="18" alt="Increase" />
-          </NumericButton>
-          <NumericButton type="button" onClick={this.handleDown}>
-            <img src={arrowIcon} width="18" alt="Decrease" />
-          </NumericButton>
-        </NumericButtons>
-      </NumericWrapper>
+        {this.props.showSpinner &&
+          <SpinnerButtonWrapper>
+            <SpinnerButton type="button" onClick={this.handleUp}>
+              <InvertedVertically src={arrowIcon} width="18" alt="Increase" />
+            </SpinnerButton>
+            <SpinnerButton type="button" onClick={this.handleDown}>
+              <img src={arrowIcon} width="18" alt="Decrease" />
+            </SpinnerButton>
+          </SpinnerButtonWrapper>}
+      </NumberWrapper>
     );
   }
 }
 
+NumberInput.defaultProps = {
+  showSpinner: true
+};
+
 NumberInput.propTypes = {
-  value: PropTypes.number
+  onChange: PropTypes.func,
+  showSpinner: PropTypes.bool,
+  defaultValue: PropTypes.number
 };
 
 export default NumberInput;

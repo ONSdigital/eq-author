@@ -1,0 +1,339 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withSpinner 1`] = `
+.c2 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+}
+
+.c2:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c5 {
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+}
+
+.c1 {
+  width: 4em;
+}
+
+.c1[type=number]::-webkit-inner-spin-button,
+.c1[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 {
+  border: 0;
+  background: none;
+}
+
+<NumberInput
+  id="number"
+  onChange={[Function]}
+  showSpinner={true}
+  value="0"
+>
+  <Number__NumberWrapper>
+    <div
+      className="c0"
+    >
+      <Number__StyledInput
+        id="number"
+        onChange={[Function]}
+        showSpinner={true}
+        type="number"
+        value="0"
+      >
+        <withChangeHandler(Input)
+          className="c1"
+          id="number"
+          onChange={[Function]}
+          showSpinner={true}
+          type="number"
+          value="0"
+        >
+          <Input
+            className="c1"
+            id="number"
+            onChange={[Function]}
+            showSpinner={true}
+            type="number"
+            value="0"
+          >
+            <Input__StyledInput
+              className="c1"
+              id="number"
+              name="number"
+              onChange={[Function]}
+              showSpinner={true}
+              type="number"
+              value="0"
+            >
+              <input
+                className="c1 c2"
+                id="number"
+                name="number"
+                onChange={[Function]}
+                type="number"
+                value="0"
+              />
+            </Input__StyledInput>
+          </Input>
+        </withChangeHandler(Input)>
+      </Number__StyledInput>
+      <Number__SpinnerButtonWrapper>
+        <div
+          className="c3"
+        >
+          <Number__SpinnerButton
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="c4"
+              onClick={[Function]}
+              type="button"
+            >
+              <Number__InvertedVertically
+                alt="Increase"
+                src="arrow.svg"
+                width="18"
+              >
+                <img
+                  alt="Increase"
+                  className="c5"
+                  src="arrow.svg"
+                  width="18"
+                />
+              </Number__InvertedVertically>
+            </button>
+          </Number__SpinnerButton>
+          <Number__SpinnerButton
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="c4"
+              onClick={[Function]}
+              type="button"
+            >
+              <img
+                alt="Decrease"
+                src="arrow.svg"
+                width="18"
+              />
+            </button>
+          </Number__SpinnerButton>
+        </div>
+      </Number__SpinnerButtonWrapper>
+    </div>
+  </Number__NumberWrapper>
+</NumberInput>
+`;
+
+exports[`withoutSpinner 1`] = `
+.c2 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+}
+
+.c2:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c5 {
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+}
+
+.c1 {
+  width: 4em;
+}
+
+.c1[type=number]::-webkit-inner-spin-button,
+.c1[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4 {
+  border: 0;
+  background: none;
+}
+
+<NumberInput
+  id="number"
+  onChange={[Function]}
+  showSpinner={true}
+  value="0"
+>
+  <Number__NumberWrapper>
+    <div
+      className="c0"
+    >
+      <Number__StyledInput
+        id="number"
+        onChange={[Function]}
+        showSpinner={true}
+        type="number"
+        value="0"
+      >
+        <withChangeHandler(Input)
+          className="c1"
+          id="number"
+          onChange={[Function]}
+          showSpinner={true}
+          type="number"
+          value="0"
+        >
+          <Input
+            className="c1"
+            id="number"
+            onChange={[Function]}
+            showSpinner={true}
+            type="number"
+            value="0"
+          >
+            <Input__StyledInput
+              className="c1"
+              id="number"
+              name="number"
+              onChange={[Function]}
+              showSpinner={true}
+              type="number"
+              value="0"
+            >
+              <input
+                className="c1 c2"
+                id="number"
+                name="number"
+                onChange={[Function]}
+                type="number"
+                value="0"
+              />
+            </Input__StyledInput>
+          </Input>
+        </withChangeHandler(Input)>
+      </Number__StyledInput>
+      <Number__SpinnerButtonWrapper>
+        <div
+          className="c3"
+        >
+          <Number__SpinnerButton
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="c4"
+              onClick={[Function]}
+              type="button"
+            >
+              <Number__InvertedVertically
+                alt="Increase"
+                src="arrow.svg"
+                width="18"
+              >
+                <img
+                  alt="Increase"
+                  className="c5"
+                  src="arrow.svg"
+                  width="18"
+                />
+              </Number__InvertedVertically>
+            </button>
+          </Number__SpinnerButton>
+          <Number__SpinnerButton
+            onClick={[Function]}
+            type="button"
+          >
+            <button
+              className="c4"
+              onClick={[Function]}
+              type="button"
+            >
+              <img
+                alt="Decrease"
+                src="arrow.svg"
+                width="18"
+              />
+            </button>
+          </Number__SpinnerButton>
+        </div>
+      </Number__SpinnerButtonWrapper>
+    </div>
+  </Number__NumberWrapper>
+</NumberInput>
+`;
