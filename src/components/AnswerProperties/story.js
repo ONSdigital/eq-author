@@ -9,12 +9,10 @@ const Background = styled.div`
   max-width: 20em;
 `;
 
-const question = {
-  type: "General"
-};
+const answer = {};
 
 storiesOf("Answer Properties", module).add("Default", () =>
   <Background>
-    <AnswerProperties question={question} />
+    <AnswerProperties answer={answer} />
   </Background>
 );

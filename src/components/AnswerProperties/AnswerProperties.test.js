@@ -9,10 +9,10 @@ import { mount } from "enzyme";
 
 let wrapper;
 
-const handleUpdate = jest.fn();
-const handleSubmit = jest.fn();
-const handleChange = jest.fn();
-const handleBlur = jest.fn();
+let handleUpdate;
+let handleSubmit;
+let handleChange;
+let handleBlur;
 
 const answer = {
   title: "answer-title",
@@ -22,6 +22,11 @@ const answer = {
 
 describe("Answer Properties", () => {
   beforeEach(() => {
+    handleUpdate = jest.fn();
+    handleSubmit = jest.fn();
+    handleChange = jest.fn();
+    handleBlur = jest.fn();
+
     wrapper = mount(
       <AnswerProperties
         answer={answer}

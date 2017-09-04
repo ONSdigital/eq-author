@@ -6,7 +6,7 @@ exports[`Answer Properties should render 1`] = `
   margin-bottom: 2em;
 }
 
-.c4 {
+.c5 {
   padding: 0.7em;
   width: 100%;
   display: block;
@@ -25,17 +25,17 @@ exports[`Answer Properties should render 1`] = `
   font-size: 1em;
 }
 
-.c4:focus {
+.c5:focus {
   outline: none;
   border: 1px solid #61BDE0;
 }
 
-.c4:checked {
+.c5:checked {
   background: url(icon-checkbox.svg) no-repeat center;
   background-size: 0.8em auto;
 }
 
-.c2 {
+.c3 {
   display: block;
   font-size: 0.9em;
   margin-bottom: 0.4em;
@@ -58,24 +58,17 @@ exports[`Answer Properties should render 1`] = `
   border: 1px solid #61BDE0;
 }
 
-.c5 {
+.c2 {
   display: block;
   width: 100%;
   margin-bottom: 1em;
 }
 
-.c3 {
-  border: 2px solid #EAEAEA;
-  height: 1.4em;
-  width: 1.4em;
-  margin-right: 0;
-}
-
 .c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
@@ -83,8 +76,13 @@ exports[`Answer Properties should render 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: space-between;
   justify-content: space-between;
-  width: 100%;
-  margin-bottom: 1em;
+}
+
+.c4 {
+  border: 2px solid #EAEAEA;
+  height: 1.4em;
+  width: 1.4em;
+  margin-right: 0;
 }
 
 <AnswerProperties
@@ -118,51 +116,31 @@ exports[`Answer Properties should render 1`] = `
         <AnswerProperties__FlexField
           id="answer.required"
         >
-          <div
+          <Field
             className="c1"
             id="answer.required"
           >
-            <Label>
-              <Label__StyledLabel>
-                <label
-                  className="c2"
-                >
-                  Required
-                </label>
-              </Label__StyledLabel>
-            </Label>
-            <AnswerProperties__StyledCheckboxInput
-              answer={
-                Object {
-                  "description": "answer-description",
-                  "title": "answer-title",
-                  "type": "TextField",
-                }
-              }
-              loading={false}
-              onBlur={[Function]}
-              onChange={[Function]}
-              onSubmit={[Function]}
-              onUpdate={[Function]}
-              type="checkbox"
+            <Field__StyledField
+              className="c1"
             >
-              <withChangeHandler(Input)
-                answer={
-                  Object {
-                    "description": "answer-description",
-                    "title": "answer-title",
-                    "type": "TextField",
-                  }
-                }
-                className="c3"
-                loading={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onSubmit={[Function]}
-                onUpdate={[Function]}
-                type="checkbox"
+              <div
+                className="c1 c2"
               >
-                <Input
+                <Label
+                  id="answer.required"
+                >
+                  <Label__StyledLabel
+                    htmlFor="answer.required"
+                  >
+                    <label
+                      className="c3"
+                      htmlFor="answer.required"
+                    >
+                      Required
+                    </label>
+                  </Label__StyledLabel>
+                </Label>
+                <AnswerProperties__StyledCheckboxInput
                   answer={
                     Object {
                       "description": "answer-description",
@@ -170,7 +148,7 @@ exports[`Answer Properties should render 1`] = `
                       "type": "TextField",
                     }
                   }
-                  className="c3"
+                  id="answer.required"
                   loading={false}
                   onBlur={[Function]}
                   onChange={[Function]}
@@ -178,7 +156,7 @@ exports[`Answer Properties should render 1`] = `
                   onUpdate={[Function]}
                   type="checkbox"
                 >
-                  <Input__StyledInput
+                  <withChangeHandler(Input)
                     answer={
                       Object {
                         "description": "answer-description",
@@ -186,7 +164,8 @@ exports[`Answer Properties should render 1`] = `
                         "type": "TextField",
                       }
                     }
-                    className="c3"
+                    className="c4"
+                    id="answer.required"
                     loading={false}
                     onBlur={[Function]}
                     onChange={[Function]}
@@ -194,25 +173,64 @@ exports[`Answer Properties should render 1`] = `
                     onUpdate={[Function]}
                     type="checkbox"
                   >
-                    <input
-                      className="c3 c4"
+                    <Input
+                      answer={
+                        Object {
+                          "description": "answer-description",
+                          "title": "answer-title",
+                          "type": "TextField",
+                        }
+                      }
+                      className="c4"
+                      id="answer.required"
+                      loading={false}
                       onBlur={[Function]}
                       onChange={[Function]}
                       onSubmit={[Function]}
+                      onUpdate={[Function]}
                       type="checkbox"
-                    />
-                  </Input__StyledInput>
-                </Input>
-              </withChangeHandler(Input)>
-            </AnswerProperties__StyledCheckboxInput>
-          </div>
+                    >
+                      <Input__StyledInput
+                        answer={
+                          Object {
+                            "description": "answer-description",
+                            "title": "answer-title",
+                            "type": "TextField",
+                          }
+                        }
+                        className="c4"
+                        id="answer.required"
+                        loading={false}
+                        name="answer.required"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onSubmit={[Function]}
+                        onUpdate={[Function]}
+                        type="checkbox"
+                      >
+                        <input
+                          className="c4 c5"
+                          id="answer.required"
+                          name="answer.required"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onSubmit={[Function]}
+                          type="checkbox"
+                        />
+                      </Input__StyledInput>
+                    </Input>
+                  </withChangeHandler(Input)>
+                </AnswerProperties__StyledCheckboxInput>
+              </div>
+            </Field__StyledField>
+          </Field>
         </AnswerProperties__FlexField>
         <Field
           id="answer.validation.message"
         >
           <Field__StyledField>
             <div
-              className="c5"
+              className="c2"
             >
               <Label
                 id="answer.validation.message"
@@ -221,7 +239,7 @@ exports[`Answer Properties should render 1`] = `
                   htmlFor="answer.validation.message"
                 >
                   <label
-                    className="c2"
+                    className="c3"
                     htmlFor="answer.validation.message"
                   >
                     Custom validation message

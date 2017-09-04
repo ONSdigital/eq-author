@@ -6,19 +6,19 @@ import { Form, Field, Label, TextArea, Input } from "components/Forms";
 import styled from "styled-components";
 import { colors } from "constants/theme";
 
+const FlexField = styled(Field)`
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const StyledCheckboxInput = styled(Input)`
   border: 2px solid ${colors.borders};
   height: 1.4em;
   width: 1.4em;
   margin-right: 0;
 `;
-const FlexField = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: ${props => (props.last ? "0" : "1")}em;
-`;
+
 const AnswerProperties = props => {
   return (
     <Form onSubmit={props.onSubmit}>
@@ -35,9 +35,8 @@ const AnswerProperties = props => {
 };
 
 AnswerProperties.propTypes = {
-  answer: CustomPropTypes.answer,
-  children: PropTypes.node,
-  onChange: PropTypes.func,
+  answer: CustomPropTypes.answer.isRequired,
+  onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   onSubmit: PropTypes.func
 };
