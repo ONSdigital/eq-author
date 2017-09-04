@@ -4,7 +4,7 @@ import { findDOMNode } from "react-dom";
 import Input from "components/Forms/Input";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-
+import { clamp } from "lodash";
 import arrowIcon from "./arrow.svg";
 
 const NumberWrapper = styled.div`
@@ -48,18 +48,31 @@ export const SpinnerButton = styled.button`
 class NumberInput extends React.Component {
   handleUp = () => {
     const name = this.props.name || this.props.id;
-    const value = (parseInt(this.numberInput.value, 10) + 1).toString();
+    const value = clamp(
+      parseInt(this.props.value, 10) + 1,
+      this.props.min,
+      this.props.max
+    ).toString();
     this.props.onChange({ name, value });
   };
 
   handleDown = () => {
     const name = this.props.name || this.props.id;
-    const value = (parseInt(this.numberInput.value, 10) - 1).toString();
+    const value = clamp(
+      parseInt(this.props.value, 10) - 1,
+      this.props.min,
+      this.props.max
+    ).toString();
     this.props.onChange({ name, value });
   };
 
-  setNumberInput = input => {
-    this.numberInput = findDOMNode(input);
+  handleChange = ({ name, value }) => {
+    const newValue = clamp(
+      parseInt(value, 10),
+      this.props.min,
+      this.props.max
+    ).toString();
+    this.props.onChange({ name, value: newValue });
   };
 
   render() {
@@ -68,8 +81,7 @@ class NumberInput extends React.Component {
         <StyledInput
           type="number"
           value={this.props.value}
-          onChange={this.props.onChange}
-          ref={this.setNumberInput}
+          onChange={this.handleChange}
           aria-live="assertive"
           role="alert"
           {...this.props}
@@ -106,7 +118,9 @@ NumberInput.propTypes = {
   onChange: PropTypes.func,
   showSpinner: PropTypes.bool,
   value: PropTypes.string,
-  step: PropTypes.number
+  step: PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number
 };
 
 export default NumberInput;

@@ -32,7 +32,9 @@ class NumberWrapper extends React.Component {
 
   render = () =>
     <Field id="number.input">
-      <Label>Name</Label>
+      <Label>
+        Name {this.state["number.input"]}
+      </Label>
       <Number
         onChange={this.handleChange}
         value={this.state["number.input"]}
@@ -56,6 +58,9 @@ storiesOf("Forms", module)
   .add("Input/Number", props => <NumberWrapper />)
   .add("Input/Number Without Spinner", props =>
     <NumberWrapper showSpinner={false} />
+  )
+  .add("Input/Number Min=0 Max=100", props =>
+    <NumberWrapper min={0} max={100} />
   )
   .add("Input/Checkbox", props =>
     <Field id="navigation">
