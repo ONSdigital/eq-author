@@ -55,12 +55,6 @@ class NumberInput extends React.Component {
     this.props.onChange({ name, value });
   };
 
-  handleChange = e => {
-    if (this.props.onChange) {
-      this.props.onChange(e);
-    }
-  };
-
   setNumberInput = input => {
     this.numberInput = findDOMNode(input);
   };
@@ -71,7 +65,7 @@ class NumberInput extends React.Component {
         <StyledInput
           type="number"
           value={this.props.value}
-          onChange={this.handleChange}
+          onChange={this.props.onChange}
           ref={this.setNumberInput}
           aria-live="assertive"
           role="alert"
