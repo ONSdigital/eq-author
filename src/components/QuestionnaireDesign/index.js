@@ -16,6 +16,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import Answer from "components/Answer";
 
+import Tooltip from "components/Tooltip";
+
 const duration = 300;
 
 const PageTransition = props =>
@@ -46,8 +48,10 @@ const AnimatedCanvasSection = styled(CanvasSection)`
 
 const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
-  right: .5em;
-  top: .4em;
+  padding: 0;
+  line-height: 1;
+  right: .8em;
+  top: .8em;
 `;
 
 class QuestionnaireDesign extends React.Component {
@@ -218,13 +222,14 @@ class QuestionnaireDesign extends React.Component {
                     onBlur={onBlur}
                     onEntered={this.handleEntered}
                   />
-                  <AnswerDeleteButton
-                    onClick={function() {
-                      onDeleteAnswer(answer.id);
-                    }}
-                    title="Delete answer"
-                    type="button"
-                  />
+                  <Tooltip content="Delete answer">
+                    <AnswerDeleteButton
+                      onClick={function() {
+                        onDeleteAnswer(answer.id);
+                      }}
+                      type="button"
+                    />
+                  </Tooltip>
                 </AnimatedCanvasSection>
               </PageTransition>
             )}

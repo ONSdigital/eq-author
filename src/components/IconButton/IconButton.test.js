@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import IconButton, { icons } from "components/IconButton";
+import IconButton, { Button } from "components/IconButton";
 
 const mockFn = jest.fn();
 let iconButton;
@@ -13,20 +13,21 @@ describe("components/IconButton", function() {
     );
   });
 
-  it("will render an icon", function() {
-    expect(iconButton.children().props().src).toContain(icons.export);
+  it("will render an export icon", function() {
+    expect(iconButton).toMatchSnapshot();
   });
 
-  it("will render a title", function() {
-    expect(iconButton.props().title).toEqual("Export");
+  it("will render a preview icon", function() {
+    iconButton.setProps({ icon: "preview" });
+    expect(iconButton).toMatchSnapshot();
   });
 
   it("will handleClick", function() {
-    iconButton.simulate("click");
+    iconButton.find(Button).simulate("click");
     expect(mockFn).toHaveBeenCalled();
   });
 
-  it("will blow up when an non-existant icon is used", function() {
+  it("will blow up when an non-existent icon is used", function() {
     expect(() => {
       iconButton.setProps({ icon: "not-an-icon" });
     }).toThrow();
