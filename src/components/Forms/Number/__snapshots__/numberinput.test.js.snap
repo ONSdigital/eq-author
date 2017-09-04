@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`withSpinner 1`] = `
+exports[`components/Forms/Input Number should render correctly with spinner buttons 1`] = `
 .c2 {
   padding: 0.7em;
   width: 100%;
@@ -43,7 +43,6 @@ exports[`withSpinner 1`] = `
 .c1[type=number]::-webkit-inner-spin-button,
 .c1[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -moz-appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -69,6 +68,7 @@ exports[`withSpinner 1`] = `
   id="number"
   onChange={[Function]}
   showSpinner={true}
+  step={1}
   value="0"
 >
   <Number__NumberWrapper>
@@ -76,42 +76,57 @@ exports[`withSpinner 1`] = `
       className="c0"
     >
       <Number__StyledInput
+        aria-live="assertive"
         id="number"
         onChange={[Function]}
+        role="alert"
         showSpinner={true}
+        step={1}
         type="number"
         value="0"
       >
         <withChangeHandler(Input)
+          aria-live="assertive"
           className="c1"
           id="number"
           onChange={[Function]}
+          role="alert"
           showSpinner={true}
+          step={1}
           type="number"
           value="0"
         >
           <Input
+            aria-live="assertive"
             className="c1"
             id="number"
             onChange={[Function]}
+            role="alert"
             showSpinner={true}
+            step={1}
             type="number"
             value="0"
           >
             <Input__StyledInput
+              aria-live="assertive"
               className="c1"
               id="number"
               name="number"
               onChange={[Function]}
+              role="alert"
               showSpinner={true}
+              step={1}
               type="number"
               value="0"
             >
               <input
+                aria-live="assertive"
                 className="c1 c2"
                 id="number"
                 name="number"
                 onChange={[Function]}
+                role="alert"
+                step={1}
                 type="number"
                 value="0"
               />
@@ -124,21 +139,25 @@ exports[`withSpinner 1`] = `
           className="c3"
         >
           <Number__SpinnerButton
+            aria-controls="number"
             onClick={[Function]}
+            title="Add 1"
             type="button"
           >
             <button
+              aria-controls="number"
               className="c4"
               onClick={[Function]}
+              title="Add 1"
               type="button"
             >
               <Number__InvertedVertically
-                alt="Increase"
+                alt="Add 1"
                 src="arrow.svg"
                 width="18"
               >
                 <img
-                  alt="Increase"
+                  alt="Add 1"
                   className="c5"
                   src="arrow.svg"
                   width="18"
@@ -147,16 +166,20 @@ exports[`withSpinner 1`] = `
             </button>
           </Number__SpinnerButton>
           <Number__SpinnerButton
+            aria-controls="number"
             onClick={[Function]}
+            title="Subtract 1"
             type="button"
           >
             <button
+              aria-controls="number"
               className="c4"
               onClick={[Function]}
+              title="Subtract 1"
               type="button"
             >
               <img
-                alt="Decrease"
+                alt="Subtract 1"
                 src="arrow.svg"
                 width="18"
               />
@@ -169,7 +192,7 @@ exports[`withSpinner 1`] = `
 </NumberInput>
 `;
 
-exports[`withoutSpinner 1`] = `
+exports[`components/Forms/Input Number should render correctly without spinner buttons 1`] = `
 .c2 {
   padding: 0.7em;
   width: 100%;
@@ -212,7 +235,6 @@ exports[`withoutSpinner 1`] = `
 .c1[type=number]::-webkit-inner-spin-button,
 .c1[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -moz-appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -238,6 +260,7 @@ exports[`withoutSpinner 1`] = `
   id="number"
   onChange={[Function]}
   showSpinner={true}
+  step={1}
   value="0"
 >
   <Number__NumberWrapper>
@@ -245,42 +268,57 @@ exports[`withoutSpinner 1`] = `
       className="c0"
     >
       <Number__StyledInput
+        aria-live="assertive"
         id="number"
         onChange={[Function]}
+        role="alert"
         showSpinner={true}
+        step={1}
         type="number"
         value="0"
       >
         <withChangeHandler(Input)
+          aria-live="assertive"
           className="c1"
           id="number"
           onChange={[Function]}
+          role="alert"
           showSpinner={true}
+          step={1}
           type="number"
           value="0"
         >
           <Input
+            aria-live="assertive"
             className="c1"
             id="number"
             onChange={[Function]}
+            role="alert"
             showSpinner={true}
+            step={1}
             type="number"
             value="0"
           >
             <Input__StyledInput
+              aria-live="assertive"
               className="c1"
               id="number"
               name="number"
               onChange={[Function]}
+              role="alert"
               showSpinner={true}
+              step={1}
               type="number"
               value="0"
             >
               <input
+                aria-live="assertive"
                 className="c1 c2"
                 id="number"
                 name="number"
                 onChange={[Function]}
+                role="alert"
+                step={1}
                 type="number"
                 value="0"
               />
@@ -293,21 +331,25 @@ exports[`withoutSpinner 1`] = `
           className="c3"
         >
           <Number__SpinnerButton
+            aria-controls="number"
             onClick={[Function]}
+            title="Add 1"
             type="button"
           >
             <button
+              aria-controls="number"
               className="c4"
               onClick={[Function]}
+              title="Add 1"
               type="button"
             >
               <Number__InvertedVertically
-                alt="Increase"
+                alt="Add 1"
                 src="arrow.svg"
                 width="18"
               >
                 <img
-                  alt="Increase"
+                  alt="Add 1"
                   className="c5"
                   src="arrow.svg"
                   width="18"
@@ -316,16 +358,20 @@ exports[`withoutSpinner 1`] = `
             </button>
           </Number__SpinnerButton>
           <Number__SpinnerButton
+            aria-controls="number"
             onClick={[Function]}
+            title="Subtract 1"
             type="button"
           >
             <button
+              aria-controls="number"
               className="c4"
               onClick={[Function]}
+              title="Subtract 1"
               type="button"
             >
               <img
-                alt="Decrease"
+                alt="Subtract 1"
                 src="arrow.svg"
                 width="18"
               />

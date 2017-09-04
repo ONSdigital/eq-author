@@ -1,4 +1,6 @@
+/* eslint-disable react/no-find-dom-node */
 import React from "react";
+import { findDOMNode } from "react-dom";
 import Input from "components/Forms/Input";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -23,7 +25,6 @@ const StyledInput = styled(Input)`
   &[type=number]::-webkit-inner-spin-button, 
   &[type=number]::-webkit-outer-spin-button { 
       -webkit-appearance: none;
-      -moz-appearance: none;
       appearance: none;
       margin: 0; 
   }
@@ -42,42 +43,26 @@ export const SpinnerButton = styled.button`
 `;
 
 class NumberInput extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      value: "0"
-    };
-  }
-
-  componentWillMount() {
-    if (this.props.value) {
-      this.setState({
-        value: this.props.value
-      });
-    }
-  }
-
   handleUp = () => {
-    const newValue = parseInt(this.state.value, 10) + 1;
-    this.setState({
-      value: newValue.toString()
-    });
+    const name = this.props.name || this.props.id;
+    const value = (parseInt(this.numberInput.value, 10) + 1).toString();
+    this.props.onChange({ name, value });
   };
 
   handleDown = () => {
-    const newValue = parseInt(this.state.value, 10) - 1;
-    this.setState({
-      value: newValue.toString()
-    });
+    const name = this.props.name || this.props.id;
+    const value = (parseInt(this.numberInput.value, 10) - 1).toString();
+    this.props.onChange({ name, value });
   };
 
   handleChange = e => {
-    this.setState({
-      value: e.value
-    });
     if (this.props.onChange) {
       this.props.onChange(e);
     }
+  };
+
+  setNumberInput = input => {
+    this.numberInput = findDOMNode(input);
   };
 
   render() {
@@ -85,17 +70,38 @@ class NumberInput extends React.Component {
       <NumberWrapper>
         <StyledInput
           type="number"
-          value={this.state.value}
+          value={this.props.value}
           onChange={this.handleChange}
+          ref={this.setNumberInput}
+          aria-live="assertive"
+          role="alert"
           {...this.props}
         />
         {this.props.showSpinner &&
           <SpinnerButtonWrapper>
-            <SpinnerButton type="button" onClick={this.handleUp}>
-              <InvertedVertically src={arrowIcon} width="18" alt="Increase" />
+            <SpinnerButton
+              type="button"
+              title={`Add ${this.props.step}`}
+              onClick={this.handleUp}
+              aria-controls={this.props.id}
+            >
+              <InvertedVertically
+                src={arrowIcon}
+                width="18"
+                alt={`Add ${this.props.step}`}
+              />
             </SpinnerButton>
-            <SpinnerButton type="button" onClick={this.handleDown}>
-              <img src={arrowIcon} width="18" alt="Decrease" />
+            <SpinnerButton
+              type="button"
+              title={`Subtract ${this.props.step}`}
+              onClick={this.handleDown}
+              aria-controls={this.props.id}
+            >
+              <img
+                src={arrowIcon}
+                width="18"
+                alt={`Subtract ${this.props.step}`}
+              />
             </SpinnerButton>
           </SpinnerButtonWrapper>}
       </NumberWrapper>
@@ -104,13 +110,17 @@ class NumberInput extends React.Component {
 }
 
 NumberInput.defaultProps = {
-  showSpinner: true
+  showSpinner: true,
+  step: 1
 };
 
 NumberInput.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func,
   showSpinner: PropTypes.bool,
-  value: PropTypes.string
+  value: PropTypes.string,
+  step: PropTypes.number
 };
 
 export default NumberInput;

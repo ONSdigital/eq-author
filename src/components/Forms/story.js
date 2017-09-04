@@ -16,6 +16,31 @@ const Width = styled.div`
 
 const options = ["Default", "UKIS", "Census"];
 
+class NumberWrapper extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      "number.input": "0"
+    };
+  }
+
+  handleChange = ({ value }) => {
+    this.setState({
+      "number.input": value
+    });
+  };
+
+  render = () =>
+    <Field id="number.input">
+      <Label>Name</Label>
+      <Number
+        onChange={this.handleChange}
+        value={this.state["number.input"]}
+        {...this.props}
+      />
+    </Field>;
+}
+
 storiesOf("Forms", module)
   .addDecorator(story =>
     <Width>
@@ -28,11 +53,9 @@ storiesOf("Forms", module)
       <Input type="text" />
     </Field>
   )
-  .add("Input/Number", props =>
-    <Field id="name">
-      <Label>Name</Label>
-      <Number />
-    </Field>
+  .add("Input/Number", props => <NumberWrapper />)
+  .add("Input/Number Without Spinner", props =>
+    <NumberWrapper showSpinner={false} />
   )
   .add("Input/Checkbox", props =>
     <Field id="navigation">
