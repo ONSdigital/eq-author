@@ -4,7 +4,7 @@ import Number, { SpinnerButton } from "components/Forms/Number";
 
 const defaultValue = "0";
 
-const handleChange = jest.fn();
+let handleChange;
 
 describe("components/Forms/Input", () => {
   describe("Number", () => {
@@ -12,6 +12,7 @@ describe("components/Forms/Input", () => {
     let numberWithoutSpinner;
 
     beforeEach(() => {
+      handleChange = jest.fn();
       numberWithSpinner = mount(
         <Number id="number" onChange={handleChange} value={defaultValue} />
       );

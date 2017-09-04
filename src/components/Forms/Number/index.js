@@ -12,21 +12,14 @@ const NumberWrapper = styled.div`
   flex-direction: row;
 `;
 
-const InvertedVertically = styled.img`
-  -moz-transform: scaleY(-1);
-  -o-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  transform: scaleY(-1);
-  filter: FlipV;
-  -ms-filter: "FlipV";
-`;
-
 const StyledInput = styled(Input)`
   &[type=number]::-webkit-inner-spin-button, 
   &[type=number]::-webkit-outer-spin-button { 
-      -webkit-appearance: none;
       appearance: none;
       margin: 0; 
+  }
+   &[type=number] {
+    -moz-appearance: textfield;
   }
   
   width: 4em;
@@ -38,8 +31,18 @@ const SpinnerButtonWrapper = styled.div`
 `;
 
 export const SpinnerButton = styled.button`
-  border: 0;
-  background: none;
+  border: none;
+  width: 18px;
+  height: 18px;
+  background: url(${arrowIcon}) no-repeat;
+  background-size: 18px 18px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+    transition: opacity .2s ease-in-out;
+  }
+
+  transform: scaleY(${props => (props["data-inverted"] ? -1 : 1)});
 `;
 
 class NumberInput extends React.Component {
@@ -78,25 +81,14 @@ class NumberInput extends React.Component {
               title={`Add ${this.props.step}`}
               onClick={this.handleUp}
               aria-controls={this.props.id}
-            >
-              <InvertedVertically
-                src={arrowIcon}
-                width="18"
-                alt={`Add ${this.props.step}`}
-              />
-            </SpinnerButton>
+              data-inverted
+            />
             <SpinnerButton
               type="button"
               title={`Subtract ${this.props.step}`}
               onClick={this.handleDown}
               aria-controls={this.props.id}
-            >
-              <img
-                src={arrowIcon}
-                width="18"
-                alt={`Subtract ${this.props.step}`}
-              />
-            </SpinnerButton>
+            />
           </SpinnerButtonWrapper>}
       </NumberWrapper>
     );

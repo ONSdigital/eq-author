@@ -25,17 +25,6 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   flex-direction: row;
 }
 
-.c5 {
-  -moz-transform: scaleY(-1);
-  -o-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  -ms-transform: scaleY(-1);
-  transform: scaleY(-1);
-  filter: FlipV;
-  -ms-filter: "FlipV";
-}
-
 .c1 {
   width: 4em;
 }
@@ -43,10 +32,13 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 .c1[type=number]::-webkit-inner-spin-button,
 .c1[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+.c1[type=number] {
+  -moz-appearance: textfield;
 }
 
 .c3 {
@@ -60,8 +52,39 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 }
 
 .c4 {
-  border: 0;
-  background: none;
+  border: none;
+  width: 18px;
+  height: 18px;
+  background: url(arrow.svg) no-repeat;
+  background-size: 18px 18px;
+  cursor: pointer;
+  -webkit-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+.c4:hover {
+  opacity: 0.6;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
+}
+
+.c5 {
+  border: none;
+  width: 18px;
+  height: 18px;
+  background: url(arrow.svg) no-repeat;
+  background-size: 18px 18px;
+  cursor: pointer;
+  -webkit-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.c5:hover {
+  opacity: 0.6;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
 }
 
 <NumberInput
@@ -140,6 +163,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
         >
           <Number__SpinnerButton
             aria-controls="number"
+            data-inverted={true}
             onClick={[Function]}
             title="Add 1"
             type="button"
@@ -147,23 +171,11 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
             <button
               aria-controls="number"
               className="c4"
+              data-inverted={true}
               onClick={[Function]}
               title="Add 1"
               type="button"
-            >
-              <Number__InvertedVertically
-                alt="Add 1"
-                src="arrow.svg"
-                width="18"
-              >
-                <img
-                  alt="Add 1"
-                  className="c5"
-                  src="arrow.svg"
-                  width="18"
-                />
-              </Number__InvertedVertically>
-            </button>
+            />
           </Number__SpinnerButton>
           <Number__SpinnerButton
             aria-controls="number"
@@ -173,17 +185,11 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
           >
             <button
               aria-controls="number"
-              className="c4"
+              className="c5"
               onClick={[Function]}
               title="Subtract 1"
               type="button"
-            >
-              <img
-                alt="Subtract 1"
-                src="arrow.svg"
-                width="18"
-              />
-            </button>
+            />
           </Number__SpinnerButton>
         </div>
       </Number__SpinnerButtonWrapper>
@@ -217,17 +223,6 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   flex-direction: row;
 }
 
-.c5 {
-  -moz-transform: scaleY(-1);
-  -o-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  -webkit-transform: scaleY(-1);
-  -ms-transform: scaleY(-1);
-  transform: scaleY(-1);
-  filter: FlipV;
-  -ms-filter: "FlipV";
-}
-
 .c1 {
   width: 4em;
 }
@@ -235,10 +230,13 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 .c1[type=number]::-webkit-inner-spin-button,
 .c1[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+.c1[type=number] {
+  -moz-appearance: textfield;
 }
 
 .c3 {
@@ -252,8 +250,39 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 }
 
 .c4 {
-  border: 0;
-  background: none;
+  border: none;
+  width: 18px;
+  height: 18px;
+  background: url(arrow.svg) no-repeat;
+  background-size: 18px 18px;
+  cursor: pointer;
+  -webkit-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+.c4:hover {
+  opacity: 0.6;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
+}
+
+.c5 {
+  border: none;
+  width: 18px;
+  height: 18px;
+  background: url(arrow.svg) no-repeat;
+  background-size: 18px 18px;
+  cursor: pointer;
+  -webkit-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.c5:hover {
+  opacity: 0.6;
+  -webkit-transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out;
 }
 
 <NumberInput
@@ -332,6 +361,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
         >
           <Number__SpinnerButton
             aria-controls="number"
+            data-inverted={true}
             onClick={[Function]}
             title="Add 1"
             type="button"
@@ -339,23 +369,11 @@ exports[`components/Forms/Input Number should render correctly without spinner b
             <button
               aria-controls="number"
               className="c4"
+              data-inverted={true}
               onClick={[Function]}
               title="Add 1"
               type="button"
-            >
-              <Number__InvertedVertically
-                alt="Add 1"
-                src="arrow.svg"
-                width="18"
-              >
-                <img
-                  alt="Add 1"
-                  className="c5"
-                  src="arrow.svg"
-                  width="18"
-                />
-              </Number__InvertedVertically>
-            </button>
+            />
           </Number__SpinnerButton>
           <Number__SpinnerButton
             aria-controls="number"
@@ -365,17 +383,11 @@ exports[`components/Forms/Input Number should render correctly without spinner b
           >
             <button
               aria-controls="number"
-              className="c4"
+              className="c5"
               onClick={[Function]}
               title="Subtract 1"
               type="button"
-            >
-              <img
-                alt="Subtract 1"
-                src="arrow.svg"
-                width="18"
-              />
-            </button>
+            />
           </Number__SpinnerButton>
         </div>
       </Number__SpinnerButtonWrapper>
