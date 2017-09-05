@@ -87,14 +87,14 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   transition: opacity .2s ease-in-out;
 }
 
-<NumberInput
+<Number
   id="number"
   onChange={[Function]}
   showSpinner={true}
   step={1}
   value="0"
 >
-  <Number__NumberWrapper>
+  <Number__StyledDiv>
     <div
       className="c0"
     >
@@ -194,8 +194,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
         </div>
       </Number__SpinnerButtonWrapper>
     </div>
-  </Number__NumberWrapper>
-</NumberInput>
+  </Number__StyledDiv>
+</Number>
 `;
 
 exports[`components/Forms/Input Number should render correctly without spinner buttons 1`] = `
@@ -285,14 +285,14 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   transition: opacity .2s ease-in-out;
 }
 
-<NumberInput
+<Number
   id="number"
   onChange={[Function]}
   showSpinner={true}
   step={1}
   value="0"
 >
-  <Number__NumberWrapper>
+  <Number__StyledDiv>
     <div
       className="c0"
     >
@@ -392,6 +392,6 @@ exports[`components/Forms/Input Number should render correctly without spinner b
         </div>
       </Number__SpinnerButtonWrapper>
     </div>
-  </Number__NumberWrapper>
-</NumberInput>
+  </Number__StyledDiv>
+</Number>
 `;

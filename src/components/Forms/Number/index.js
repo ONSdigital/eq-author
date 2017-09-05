@@ -1,13 +1,12 @@
 /* eslint-disable react/no-find-dom-node */
 import React from "react";
-import { findDOMNode } from "react-dom";
 import Input from "components/Forms/Input";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { clamp } from "lodash";
 import arrowIcon from "./arrow.svg";
 
-const NumberWrapper = styled.div`
+const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
 `;
@@ -45,7 +44,7 @@ export const SpinnerButton = styled.button`
   transform: scaleY(${props => (props["data-inverted"] ? -1 : 1)});
 `;
 
-class NumberInput extends React.Component {
+class Number extends React.Component {
   handleUp = () => {
     const name = this.props.name || this.props.id;
     const value = clamp(
@@ -77,14 +76,14 @@ class NumberInput extends React.Component {
 
   render() {
     return (
-      <NumberWrapper>
+      <StyledDiv>
         <StyledInput
+          {...this.props}
           type="number"
           value={this.props.value}
           onChange={this.handleChange}
           aria-live="assertive"
           role="alert"
-          {...this.props}
         />
         {this.props.showSpinner &&
           <SpinnerButtonWrapper>
@@ -102,17 +101,17 @@ class NumberInput extends React.Component {
               aria-controls={this.props.id}
             />
           </SpinnerButtonWrapper>}
-      </NumberWrapper>
+      </StyledDiv>
     );
   }
 }
 
-NumberInput.defaultProps = {
+Number.defaultProps = {
   showSpinner: true,
   step: 1
 };
 
-NumberInput.propTypes = {
+Number.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
@@ -123,4 +122,4 @@ NumberInput.propTypes = {
   max: PropTypes.number
 };
 
-export default NumberInput;
+export default Number;

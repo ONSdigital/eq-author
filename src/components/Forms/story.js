@@ -32,9 +32,7 @@ class NumberWrapper extends React.Component {
 
   render = () =>
     <Field id="number.input">
-      <Label>
-        Name {this.state["number.input"]}
-      </Label>
+      <Label>Name</Label>
       <Number
         onChange={this.handleChange}
         value={this.state["number.input"]}
