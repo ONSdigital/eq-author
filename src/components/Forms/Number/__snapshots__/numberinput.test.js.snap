@@ -91,6 +91,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 
 <Number
   id="number"
+  max={10}
+  min={-10}
   onChange={[Function]}
   showSpinner={true}
   step={1}
@@ -103,6 +105,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
       <Number__StyledInput
         aria-live="assertive"
         id="number"
+        max={10}
+        min={-10}
         onChange={[Function]}
         role="alert"
         showSpinner={true}
@@ -114,6 +118,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
           aria-live="assertive"
           className="c1"
           id="number"
+          max={10}
+          min={-10}
           onChange={[Function]}
           role="alert"
           showSpinner={true}
@@ -125,6 +131,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
             aria-live="assertive"
             className="c1"
             id="number"
+            max={10}
+            min={-10}
             onChange={[Function]}
             role="alert"
             showSpinner={true}
@@ -136,6 +144,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
               aria-live="assertive"
               className="c1"
               id="number"
+              max={10}
+              min={-10}
               name="number"
               onChange={[Function]}
               role="alert"
@@ -148,6 +158,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
                 aria-live="assertive"
                 className="c1 c2"
                 id="number"
+                max={10}
+                min={-10}
                 name="number"
                 onChange={[Function]}
                 role="alert"
@@ -290,6 +302,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 
 <Number
   id="number"
+  max={10}
+  min={-10}
   onChange={[Function]}
   showSpinner={true}
   step={1}
@@ -302,6 +316,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
       <Number__StyledInput
         aria-live="assertive"
         id="number"
+        max={10}
+        min={-10}
         onChange={[Function]}
         role="alert"
         showSpinner={true}
@@ -313,6 +329,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
           aria-live="assertive"
           className="c1"
           id="number"
+          max={10}
+          min={-10}
           onChange={[Function]}
           role="alert"
           showSpinner={true}
@@ -324,6 +342,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
             aria-live="assertive"
             className="c1"
             id="number"
+            max={10}
+            min={-10}
             onChange={[Function]}
             role="alert"
             showSpinner={true}
@@ -335,6 +355,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
               aria-live="assertive"
               className="c1"
               id="number"
+              max={10}
+              min={-10}
               name="number"
               onChange={[Function]}
               role="alert"
@@ -347,6 +369,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
                 aria-live="assertive"
                 className="c1 c2"
                 id="number"
+                max={10}
+                min={-10}
                 name="number"
                 onChange={[Function]}
                 role="alert"

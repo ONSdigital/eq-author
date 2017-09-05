@@ -17,10 +17,10 @@ const Width = styled.div`
 const options = ["Default", "UKIS", "Census"];
 
 class NumberWrapper extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      "number.input": "0"
+      "number.input": props.min.toString()
     };
   }
 
@@ -34,9 +34,9 @@ class NumberWrapper extends React.Component {
     <Field id="number.input">
       <Label>Name</Label>
       <Number
+        {...this.props}
         onChange={this.handleChange}
         value={this.state["number.input"]}
-        {...this.props}
       />
     </Field>;
 }
@@ -53,12 +53,12 @@ storiesOf("Forms", module)
       <Input type="text" />
     </Field>
   )
-  .add("Input/Number", props => <NumberWrapper />)
+  .add("Input/Number", props => <NumberWrapper min={0} max={100} />)
   .add("Input/Number Without Spinner", props =>
-    <NumberWrapper showSpinner={false} />
+    <NumberWrapper showSpinner={false} min={0} max={100} />
   )
-  .add("Input/Number Min=0 Max=100", props =>
-    <NumberWrapper min={0} max={100} />
+  .add("Input/Number Min=1 Max=100", props =>
+    <NumberWrapper min={1} max={100} />
   )
   .add("Input/Checkbox", props =>
     <Field id="navigation">

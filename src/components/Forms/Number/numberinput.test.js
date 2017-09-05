@@ -15,10 +15,22 @@ describe("components/Forms/Input", () => {
     beforeEach(() => {
       handleChange = jest.fn();
       numberWithSpinner = mount(
-        <Number id="number" onChange={handleChange} value={defaultValue} />
+        <Number
+          id="number"
+          onChange={handleChange}
+          value={defaultValue}
+          min={-10}
+          max={10}
+        />
       );
       numberWithoutSpinner = mount(
-        <Number id="number" onChange={handleChange} value={defaultValue} />
+        <Number
+          id="number"
+          onChange={handleChange}
+          value={defaultValue}
+          min={-10}
+          max={10}
+        />
       );
       numberWithMinMax = mount(
         <Number
@@ -118,7 +130,7 @@ describe("components/Forms/Input", () => {
       });
 
       it("should default to 0 when NaN and no min specified", () => {
-        numberWithSpinner
+        numberWithMinMax
           .find("input")
           .simulate("change", { name: "number", target: { value: " " } });
         expect(handleChange).toBeCalledWith({

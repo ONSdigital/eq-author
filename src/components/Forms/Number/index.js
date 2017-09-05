@@ -67,7 +67,7 @@ class Number extends React.Component {
 
     const newValue =
       isNaN(enteredValue) || enteredValue === -0
-        ? this.props.min || 0
+        ? this.props.min
         : enteredValue;
 
     this.props.onChange({ name, value: newValue.toString() });
@@ -105,6 +105,7 @@ class Number extends React.Component {
 }
 
 Number.defaultProps = {
+  min: 0,
   showSpinner: true,
   step: 1
 };
@@ -117,7 +118,7 @@ Number.propTypes = {
   value: PropTypes.string,
   step: PropTypes.number,
   min: PropTypes.number,
-  max: PropTypes.number
+  max: PropTypes.number.isRequired
 };
 
 export default Number;
