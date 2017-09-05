@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import { clamp, isNaN } from "lodash";
 import arrowIcon from "./arrow.svg";
 
+const spinnerIconSize = "20px";
+
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -27,12 +29,13 @@ const StyledInput = styled(Input)`
 const SpinnerButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const SpinnerButton = styled.button`
   border: none;
-  width: 18px;
-  height: 18px;
+  width: ${spinnerIconSize};
+  height: ${spinnerIconSize};
   background: url(${arrowIcon}) no-repeat;
   background-size: contain;
   cursor: pointer;

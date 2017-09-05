@@ -49,12 +49,16 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
 }
 
 .c4 {
   border: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: url(arrow.svg) no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -72,8 +76,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 
 .c5 {
   border: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: url(arrow.svg) no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -260,12 +264,16 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between;
 }
 
 .c4 {
   border: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: url(arrow.svg) no-repeat;
   background-size: contain;
   cursor: pointer;
@@ -283,8 +291,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 
 .c5 {
   border: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: url(arrow.svg) no-repeat;
   background-size: contain;
   cursor: pointer;
