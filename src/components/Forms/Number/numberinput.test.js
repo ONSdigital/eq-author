@@ -10,6 +10,7 @@ describe("components/Forms/Input", () => {
   describe("Number", () => {
     let numberWithSpinner;
     let numberWithoutSpinner;
+    let numberWithMinMax;
 
     beforeEach(() => {
       handleChange = jest.fn();
@@ -18,6 +19,15 @@ describe("components/Forms/Input", () => {
       );
       numberWithoutSpinner = mount(
         <Number id="number" onChange={handleChange} value={defaultValue} />
+      );
+      numberWithMinMax = mount(
+        <Number
+          id="number"
+          onChange={handleChange}
+          value={defaultValue}
+          min={0}
+          max={100}
+        />
       );
     });
 
@@ -53,6 +63,49 @@ describe("components/Forms/Input", () => {
         expect(handleChange).toBeCalledWith({
           name: "number",
           value: "-1"
+        });
+      });
+    });
+
+    describe("min/max", () => {
+      it("should not go over the max", () => {
+        numberWithMinMax.setProps({
+          value: "100"
+        });
+        numberWithMinMax.find(SpinnerButton).at(0).simulate("click");
+        expect(handleChange).toBeCalledWith({
+          name: "number",
+          value: "100"
+        });
+      });
+
+      it("should not go over the max when changed", () => {
+        numberWithMinMax.setProps({
+          value: "101"
+        });
+        numberWithMinMax.find("input").simulate("change");
+        expect(handleChange).toBeCalledWith({
+          name: "number",
+          value: "100"
+        });
+      });
+
+      it("should not go under the min", () => {
+        numberWithMinMax.find(SpinnerButton).at(1).simulate("click");
+        expect(handleChange).toBeCalledWith({
+          name: "number",
+          value: "0"
+        });
+      });
+
+      it("should not go under the min when changed", () => {
+        numberWithMinMax.setProps({
+          value: "-1"
+        });
+        numberWithMinMax.find("input").simulate("change");
+        expect(handleChange).toBeCalledWith({
+          name: "number",
+          value: "0"
         });
       });
     });
