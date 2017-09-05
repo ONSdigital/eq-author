@@ -19,6 +19,7 @@ describe("Storybook @watch", () => {
   it("can navigate links", () => {
     links.map(element => {
       const result = browser.elementIdClick(element.ELEMENT);
+      element.scroll();
       expect(result.state).toEqual("success");
     });
   });
