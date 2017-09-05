@@ -41,7 +41,7 @@ export const SpinnerButton = styled.button`
     transition: opacity .2s ease-in-out;
   }
 
-  transform: scaleY(${props => (props["data-inverted"] ? -1 : 1)});
+  transform: scaleY(${props => (props["inverted"] ? -1 : 1)});
 `;
 
 class Number extends React.Component {
@@ -98,7 +98,7 @@ class Number extends React.Component {
               title={`Add ${this.props.step}`}
               onClick={this.handleUp}
               aria-controls={this.props.id}
-              data-inverted
+              inverted
             />
             <SpinnerButton
               type="button"

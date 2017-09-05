@@ -163,7 +163,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
         >
           <Number__SpinnerButton
             aria-controls="number"
-            data-inverted={true}
+            inverted={true}
             onClick={[Function]}
             title="Add 1"
             type="button"
@@ -171,7 +171,6 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
             <button
               aria-controls="number"
               className="c4"
-              data-inverted={true}
               onClick={[Function]}
               title="Add 1"
               type="button"
@@ -361,7 +360,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
         >
           <Number__SpinnerButton
             aria-controls="number"
-            data-inverted={true}
+            inverted={true}
             onClick={[Function]}
             title="Add 1"
             type="button"
@@ -369,7 +368,6 @@ exports[`components/Forms/Input Number should render correctly without spinner b
             <button
               aria-controls="number"
               className="c4"
-              data-inverted={true}
               onClick={[Function]}
               title="Add 1"
               type="button"
