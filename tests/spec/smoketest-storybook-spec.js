@@ -16,7 +16,7 @@ describe("Storybook @watch", () => {
     expect(links.length).toBeGreaterThan(0); // body...
   });
 
-  xit("can navigate links", () => {
+  it("can navigate links", () => {
     links.map(element => {
       const result = browser.elementIdClick(element.ELEMENT);
       expect(result.state).toEqual("success");
