@@ -3,7 +3,7 @@ import React from "react";
 import Input from "components/Forms/Input";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { clamp, isNaN, toString } from "lodash";
+import { clamp, isNaN } from "lodash";
 import arrowIcon from "./arrow.svg";
 
 const StyledDiv = styled.div`
@@ -34,35 +34,28 @@ export const SpinnerButton = styled.button`
   width: 18px;
   height: 18px;
   background: url(${arrowIcon}) no-repeat;
-  background-size: 18px 18px;
+  background-size: contain;
   cursor: pointer;
+  opacity: 0.6;
   &:hover {
-    opacity: 0.6;
+    opacity: 1;
     transition: opacity .2s ease-in-out;
   }
 
-  transform: scaleY(${props => (props["inverted"] ? -1 : 1)});
+  transform: scaleY(${props => (props.inverted ? -1 : 1)});
 `;
 
 class Number extends React.Component {
   handleUp = () => {
     const name = this.props.name || this.props.id;
-    const value = clamp(
-      parseInt(this.props.value, 10) + 1,
-      this.props.min,
-      this.props.max
-    ).toString();
-    this.props.onChange({ name, value });
+    const value = parseInt(this.props.value, 10) + 1;
+    this.handleChange({ name, value });
   };
 
   handleDown = () => {
     const name = this.props.name || this.props.id;
-    const value = clamp(
-      parseInt(this.props.value, 10) - 1,
-      this.props.min,
-      this.props.max
-    ).toString();
-    this.props.onChange({ name, value });
+    const value = parseInt(this.props.value, 10) - 1;
+    this.handleChange({ name, value });
   };
 
   handleChange = ({ name, value }) => {
@@ -77,7 +70,7 @@ class Number extends React.Component {
         ? this.props.min || 0
         : enteredValue;
 
-    this.props.onChange({ name, value: toString(newValue) });
+    this.props.onChange({ name, value: newValue.toString() });
   };
 
   render() {
@@ -86,7 +79,6 @@ class Number extends React.Component {
         <StyledInput
           {...this.props}
           type="number"
-          value={this.props.value}
           onChange={this.handleChange}
           aria-live="assertive"
           role="alert"

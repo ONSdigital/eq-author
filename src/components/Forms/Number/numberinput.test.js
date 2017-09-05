@@ -80,10 +80,9 @@ describe("components/Forms/Input", () => {
       });
 
       it("should not go over the max when changed", () => {
-        numberWithMinMax.setProps({
-          value: "101"
-        });
-        numberWithMinMax.find("input").simulate("change");
+        numberWithMinMax
+          .find("input")
+          .simulate("change", { name: "number", target: { value: "101" } });
         expect(handleChange).toBeCalledWith({
           name: "number",
           value: "100"
@@ -99,10 +98,9 @@ describe("components/Forms/Input", () => {
       });
 
       it("should not go under the min when changed", () => {
-        numberWithMinMax.setProps({
-          value: "-1"
-        });
-        numberWithMinMax.find("input").simulate("change");
+        numberWithMinMax
+          .find("input")
+          .simulate("change", { name: "number", target: { value: "-1" } });
         expect(handleChange).toBeCalledWith({
           name: "number",
           value: "0"
@@ -110,10 +108,9 @@ describe("components/Forms/Input", () => {
       });
 
       it("should default to min when NaN", () => {
-        numberWithMinMax.setProps({
-          value: " "
-        });
-        numberWithMinMax.find("input").simulate("change");
+        numberWithMinMax
+          .find("input")
+          .simulate("change", { name: "number", target: { value: " " } });
         expect(handleChange).toBeCalledWith({
           name: "number",
           value: "0"
@@ -121,10 +118,9 @@ describe("components/Forms/Input", () => {
       });
 
       it("should default to 0 when NaN and no min specified", () => {
-        numberWithSpinner.setProps({
-          value: " "
-        });
-        numberWithSpinner.find("input").simulate("change");
+        numberWithSpinner
+          .find("input")
+          .simulate("change", { name: "number", target: { value: " " } });
         expect(handleChange).toBeCalledWith({
           name: "number",
           value: "0"

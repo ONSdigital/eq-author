@@ -56,15 +56,16 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   width: 18px;
   height: 18px;
   background: url(arrow.svg) no-repeat;
-  background-size: 18px 18px;
+  background-size: contain;
   cursor: pointer;
+  opacity: 0.6;
   -webkit-transform: scaleY(-1);
   -ms-transform: scaleY(-1);
   transform: scaleY(-1);
 }
 
 .c4:hover {
-  opacity: 0.6;
+  opacity: 1;
   -webkit-transition: opacity .2s ease-in-out;
   transition: opacity .2s ease-in-out;
 }
@@ -74,15 +75,16 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   width: 18px;
   height: 18px;
   background: url(arrow.svg) no-repeat;
-  background-size: 18px 18px;
+  background-size: contain;
   cursor: pointer;
+  opacity: 0.6;
   -webkit-transform: scaleY(1);
   -ms-transform: scaleY(1);
   transform: scaleY(1);
 }
 
 .c5:hover {
-  opacity: 0.6;
+  opacity: 1;
   -webkit-transition: opacity .2s ease-in-out;
   transition: opacity .2s ease-in-out;
 }
@@ -253,15 +255,16 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   width: 18px;
   height: 18px;
   background: url(arrow.svg) no-repeat;
-  background-size: 18px 18px;
+  background-size: contain;
   cursor: pointer;
+  opacity: 0.6;
   -webkit-transform: scaleY(-1);
   -ms-transform: scaleY(-1);
   transform: scaleY(-1);
 }
 
 .c4:hover {
-  opacity: 0.6;
+  opacity: 1;
   -webkit-transition: opacity .2s ease-in-out;
   transition: opacity .2s ease-in-out;
 }
@@ -271,15 +274,16 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   width: 18px;
   height: 18px;
   background: url(arrow.svg) no-repeat;
-  background-size: 18px 18px;
+  background-size: contain;
   cursor: pointer;
+  opacity: 0.6;
   -webkit-transform: scaleY(1);
   -ms-transform: scaleY(1);
   transform: scaleY(1);
 }
 
 .c5:hover {
-  opacity: 0.6;
+  opacity: 1;
   -webkit-transition: opacity .2s ease-in-out;
   transition: opacity .2s ease-in-out;
 }
