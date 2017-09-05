@@ -1,5 +1,3 @@
-"use strict";
-
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
@@ -11,6 +9,7 @@ const eslintFormatter = require("react-dev-utils/eslintFormatter");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const getClientEnvironment = require("./env");
 const paths = require("./paths");
+const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -28,7 +27,8 @@ const env = getClientEnvironment(publicUrl);
 module.exports = {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
-  devtool: "cheap-module-source-map",
+  // devtool: "cheap-module-source-map",
+  devtool: "source-map",
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
@@ -85,7 +85,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: [".js", ".json", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -110,14 +110,14 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(t|j)s?$/,
         enforce: "pre",
         use: [
           {
             options: {
               formatter: eslintFormatter
             },
-            loader: require.resolve("eslint-loader")
+            loader: require.resolve("awesome-typescript-loader")
           }
         ],
         include: paths.appSrc
@@ -134,7 +134,7 @@ module.exports = {
       {
         exclude: [
           /\.html$/,
-          /\.(js|jsx)$/,
+          /\.(js|jsx|ts|tsx)$/,
           /\.css$/,
           /\.svg$/,
           /\.json$/,
@@ -160,6 +160,11 @@ module.exports = {
           name: "static/media/[name].[hash:8].[ext]"
         }
       },
+      // Typescript
+      {
+        test: /\.tsx?$/,
+        loader: require.resolve("awesome-typescript-loader")
+      },
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
@@ -171,6 +176,12 @@ module.exports = {
           // directory for faster rebuilds.
           cacheDirectory: true
         }
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader",
+        exclude: [/node_modules/]
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -264,7 +275,8 @@ module.exports = {
     // solution that requires the user to opt into importing specific locales.
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new TsConfigPathsPlugin /* { configFileName, compiler } */()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
@@ -273,6 +285,7 @@ module.exports = {
     net: "empty",
     tls: "empty"
   },
+
   // Turn off performance hints during development because we don't do any
   // splitting or minification in interest of speed. These warnings become
   // cumbersome.

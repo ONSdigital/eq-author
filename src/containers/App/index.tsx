@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import { AppContainer } from "react-hot-loader";
 import { ConnectedRouter } from "react-router-redux";
 import { Switch } from "react-router-dom";
@@ -36,15 +35,5 @@ const App = ({ store, client, history }) =>
       </ConnectedRouter>
     </ApolloProvider>
   </AppContainer>;
-
-App.propTypes = {
-  client: PropTypes.shape({}).isRequired,
-  store: PropTypes.shape({
-    getState: PropTypes.func.isRequired
-  }).isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
-};
 
 export default App;
