@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyAnswer should render 1`] = `
+<div>
+  <Field
+    id="answers[1].label"
+  >
+    <withSeamlessness(withChangeHandler(Input))
+      data-autoFocus={true}
+      focused={false}
+      onChange={[Function]}
+      optional={false}
+      placeholder="Label"
+      size="medium"
+    />
+  </Field>
+  <Field
+    id="answers[1].description"
+  >
+    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+      cols="30"
+      focused={false}
+      onChange={[Function]}
+      optional={false}
+      placeholder="Enter a description (optional)…"
+      rows="5"
+      size="small"
+      value="Nullam id dolor id nibh ultricies."
+    />
+  </Field>
+  <CurrencyAnswer__FieldWrapper>
+    <CurrencyComponent
+      currencyUnit="£"
+    />
+    <CurrencyAnswer__StyledInput
+      disabled={true}
+    />
+  </CurrencyAnswer__FieldWrapper>
+</div>
+`;
