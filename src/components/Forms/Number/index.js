@@ -3,7 +3,7 @@ import React from "react";
 import Input from "components/Forms/Input";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { clamp } from "lodash";
+import { clamp, isNaN, toString } from "lodash";
 import arrowIcon from "./arrow.svg";
 
 const StyledDiv = styled.div`
@@ -66,12 +66,18 @@ class Number extends React.Component {
   };
 
   handleChange = ({ name, value }) => {
-    const newValue = clamp(
+    const enteredValue = clamp(
       parseInt(value, 10),
       this.props.min,
       this.props.max
-    ).toString();
-    this.props.onChange({ name, value: newValue });
+    );
+
+    const newValue =
+      isNaN(enteredValue) || enteredValue === -0
+        ? this.props.min || 0
+        : enteredValue;
+
+    this.props.onChange({ name, value: toString(newValue) });
   };
 
   render() {

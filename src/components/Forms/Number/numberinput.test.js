@@ -108,6 +108,28 @@ describe("components/Forms/Input", () => {
           value: "0"
         });
       });
+
+      it("should default to min when NaN", () => {
+        numberWithMinMax.setProps({
+          value: " "
+        });
+        numberWithMinMax.find("input").simulate("change");
+        expect(handleChange).toBeCalledWith({
+          name: "number",
+          value: "0"
+        });
+      });
+
+      it("should default to 0 when NaN and no min specified", () => {
+        numberWithSpinner.setProps({
+          value: " "
+        });
+        numberWithSpinner.find("input").simulate("change");
+        expect(handleChange).toBeCalledWith({
+          name: "number",
+          value: "0"
+        });
+      });
     });
   });
 });
