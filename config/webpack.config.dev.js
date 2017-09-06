@@ -112,19 +112,19 @@ module.exports = {
 
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
-        test: /\.(t|j)s?$/,
-        enforce: "pre",
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter
-            },
-            loader: require.resolve("awesome-typescript-loader")
-          }
-        ],
-        include: paths.appSrc
-      },
+      // {
+      //   test: /\.(t|j)s?$/,
+      //   enforce: "pre",
+      //   use: [
+      //     {
+      //       options: {
+      //         formatter: eslintFormatter
+      //       },
+      //       loader: require.resolve("awesome-typescript-loader")
+      //     }
+      //   ],
+      //   include: paths.appSrc
+      // },
       // ** ADDING/UPDATING LOADERS **
       // The "file" loader handles all assets unless explicitly excluded.
       // The `exclude` list *must* be updated with every change to loader extensions.
@@ -165,21 +165,11 @@ module.exports = {
       },
       // Typescript
       {
-        test: /\.(ts|tsx)$/,
-        loader: [require.resolve("awesome-typescript-loader")]
+        test: /\.(ts|tsx|js|jsx)$/,
+        loader: require.resolve("awesome-typescript-loader"),
+        exclude: [/node_modules/]
       },
-      // Process JS with Babel.
-      {
-        test: /\.(js|jsx)$/,
-        include: paths.appSrc,
-        loader: require.resolve("babel-loader"),
-        options: {
-          // This is a feature of `babel-loader` for webpack (not Babel itself).
-          // It enables caching results in ./node_modules/.cache/babel-loader/
-          // directory for faster rebuilds.
-          cacheDirectory: true
-        }
-      },
+
       {
         enforce: "pre",
         test: /\.js$/,
@@ -279,8 +269,8 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new TsConfigPathsPlugin /* { configFileName, compiler } */(),
-    new CheckerPlugin()
+    new TsConfigPathsPlugin /* { configFileName, compiler } */()
+    // new CheckerPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
