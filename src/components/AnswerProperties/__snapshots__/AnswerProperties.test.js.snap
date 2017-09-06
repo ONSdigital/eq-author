@@ -1,320 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Properties should render 1`] = `
-.c0 {
-  width: 100%;
-  margin-bottom: 2em;
-}
-
-.c5 {
-  padding: 0.7em;
-  width: 100%;
-  display: block;
-  border-radius: 2px;
-  border: 1px solid #EAEAEA;
-  font-size: 0.9em;
-  display: inline-block;
-  width: 1.1em;
-  height: 1.1em;
-  padding: 0;
-  margin: 0 1em 0 0;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-size: 1em;
-}
-
-.c5:focus {
-  outline: none;
-  border: 1px solid #61BDE0;
-}
-
-.c5:checked {
-  background: url(icon-checkbox.svg) no-repeat center;
-  background-size: 0.8em auto;
-}
-
-.c3 {
-  display: block;
-  font-size: 0.9em;
-  margin-bottom: 0.4em;
-  font-weight: 700;
-  vertical-align: middle;
-}
-
-.c6 {
-  padding: 0.7em;
-  width: 100%;
-  display: block;
-  border-radius: 2px;
-  border: 1px solid #EAEAEA;
-  font-size: 0.9em;
-  resize: none;
-}
-
-.c6:focus {
-  outline: none;
-  border: 1px solid #61BDE0;
-}
-
-.c2 {
-  display: block;
-  width: 100%;
-  margin-bottom: 1em;
-}
-
-.c1 {
-  display: -webkit-box !important;
-  display: -webkit-flex !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: space-between;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: space-between;
-  justify-content: space-between;
-}
-
-.c4 {
-  border: 2px solid #EAEAEA;
-  height: 1.4em;
-  width: 1.4em;
-  margin-right: 0;
-}
-
-<AnswerProperties
-  answer={
-    Object {
-      "description": "answer-description",
-      "title": "answer-title",
-      "type": "TextField",
-    }
-  }
-  loading={false}
-  onBlur={[Function]}
-  onChange={[Function]}
+<Form
   onSubmit={[Function]}
-  onUpdate={[Function]}
 >
-  <Form
-    onSubmit={[Function]}
+  <AnswerProperties__FlexField
+    id="answer.required"
   >
-    <Form__StyledForm
-      autoComplete="off"
-      method="POST"
+    <Label>
+      Required
+    </Label>
+    <AnswerProperties__StyledCheckboxInput
+      answer={
+        Object {
+          "description": "answer-description",
+          "title": "answer-title",
+          "type": "TextField",
+        }
+      }
+      loading={false}
+      onBlur={[Function]}
+      onChange={[Function]}
       onSubmit={[Function]}
-    >
-      <form
-        autoComplete="off"
-        className="c0"
-        method="POST"
-        onSubmit={[Function]}
-      >
-        <AnswerProperties__FlexField
-          id="answer.required"
-        >
-          <Field
-            className="c1"
-            id="answer.required"
-          >
-            <Field__StyledField
-              className="c1"
-            >
-              <div
-                className="c1 c2"
-              >
-                <Label
-                  id="answer.required"
-                >
-                  <Label__StyledLabel
-                    htmlFor="answer.required"
-                  >
-                    <label
-                      className="c3"
-                      htmlFor="answer.required"
-                    >
-                      Required
-                    </label>
-                  </Label__StyledLabel>
-                </Label>
-                <AnswerProperties__StyledCheckboxInput
-                  answer={
-                    Object {
-                      "description": "answer-description",
-                      "title": "answer-title",
-                      "type": "TextField",
-                    }
-                  }
-                  id="answer.required"
-                  loading={false}
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onSubmit={[Function]}
-                  onUpdate={[Function]}
-                  type="checkbox"
-                >
-                  <withChangeHandler(Input)
-                    answer={
-                      Object {
-                        "description": "answer-description",
-                        "title": "answer-title",
-                        "type": "TextField",
-                      }
-                    }
-                    className="c4"
-                    id="answer.required"
-                    loading={false}
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onSubmit={[Function]}
-                    onUpdate={[Function]}
-                    type="checkbox"
-                  >
-                    <Input
-                      answer={
-                        Object {
-                          "description": "answer-description",
-                          "title": "answer-title",
-                          "type": "TextField",
-                        }
-                      }
-                      className="c4"
-                      id="answer.required"
-                      loading={false}
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onSubmit={[Function]}
-                      onUpdate={[Function]}
-                      type="checkbox"
-                    >
-                      <Input__StyledInput
-                        answer={
-                          Object {
-                            "description": "answer-description",
-                            "title": "answer-title",
-                            "type": "TextField",
-                          }
-                        }
-                        className="c4"
-                        id="answer.required"
-                        loading={false}
-                        name="answer.required"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onSubmit={[Function]}
-                        onUpdate={[Function]}
-                        type="checkbox"
-                      >
-                        <input
-                          className="c4 c5"
-                          id="answer.required"
-                          name="answer.required"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onSubmit={[Function]}
-                          type="checkbox"
-                        />
-                      </Input__StyledInput>
-                    </Input>
-                  </withChangeHandler(Input)>
-                </AnswerProperties__StyledCheckboxInput>
-              </div>
-            </Field__StyledField>
-          </Field>
-        </AnswerProperties__FlexField>
-        <Field
-          id="answer.validation.message"
-        >
-          <Field__StyledField>
-            <div
-              className="c2"
-            >
-              <Label
-                id="answer.validation.message"
-              >
-                <Label__StyledLabel
-                  htmlFor="answer.validation.message"
-                >
-                  <label
-                    className="c3"
-                    htmlFor="answer.validation.message"
-                  >
-                    Custom validation message
-                  </label>
-                </Label__StyledLabel>
-              </Label>
-              <withChangeHandler(TextArea)
-                answer={
-                  Object {
-                    "description": "answer-description",
-                    "title": "answer-title",
-                    "type": "TextField",
-                  }
-                }
-                id="answer.validation.message"
-                loading={false}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onSubmit={[Function]}
-                onUpdate={[Function]}
-                placeholder="Optional"
-              >
-                <TextArea
-                  answer={
-                    Object {
-                      "description": "answer-description",
-                      "title": "answer-title",
-                      "type": "TextField",
-                    }
-                  }
-                  id="answer.validation.message"
-                  loading={false}
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onSubmit={[Function]}
-                  onUpdate={[Function]}
-                  placeholder="Optional"
-                  rows={10}
-                >
-                  <TextArea__StyledTextArea
-                    answer={
-                      Object {
-                        "description": "answer-description",
-                        "title": "answer-title",
-                        "type": "TextField",
-                      }
-                    }
-                    id="answer.validation.message"
-                    loading={false}
-                    name="answer.validation.message"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onSubmit={[Function]}
-                    onUpdate={[Function]}
-                    placeholder="Optional"
-                    rows={10}
-                  >
-                    <textarea
-                      className="c6"
-                      id="answer.validation.message"
-                      name="answer.validation.message"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onSubmit={[Function]}
-                      placeholder="Optional"
-                      rows={10}
-                    />
-                  </TextArea__StyledTextArea>
-                </TextArea>
-              </withChangeHandler(TextArea)>
-            </div>
-          </Field__StyledField>
-        </Field>
-      </form>
-    </Form__StyledForm>
-  </Form>
-</AnswerProperties>
+      onUpdate={[Function]}
+      type="checkbox"
+    />
+  </AnswerProperties__FlexField>
+  <Field
+    id="answer.validation.message"
+  >
+    <Label>
+      Custom validation message
+    </Label>
+    <withChangeHandler(TextArea)
+      answer={
+        Object {
+          "description": "answer-description",
+          "title": "answer-title",
+          "type": "TextField",
+        }
+      }
+      loading={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onSubmit={[Function]}
+      onUpdate={[Function]}
+      placeholder="Optional"
+    />
+  </Field>
+</Form>
 `;

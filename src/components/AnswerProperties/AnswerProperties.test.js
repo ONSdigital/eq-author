@@ -5,7 +5,7 @@ import Input from "components/Forms/Input";
 import { TEXTFIELD } from "constants/answer-types";
 
 import AnswerProperties from "components/AnswerProperties";
-import { mount } from "enzyme";
+import { shallow, mount } from "enzyme";
 
 let wrapper;
 
@@ -13,6 +13,8 @@ let handleUpdate;
 let handleSubmit;
 let handleChange;
 let handleBlur;
+
+let answerProperties;
 
 const answer = {
   title: "answer-title",
@@ -27,7 +29,7 @@ describe("Answer Properties", () => {
     handleChange = jest.fn();
     handleBlur = jest.fn();
 
-    wrapper = mount(
+    answerProperties = () =>
       <AnswerProperties
         answer={answer}
         onUpdate={handleUpdate}
@@ -35,36 +37,43 @@ describe("Answer Properties", () => {
         onSubmit={handleSubmit}
         onChange={handleChange}
         onBlur={handleBlur}
-      />
-    );
+      />;
+
+    wrapper = shallow(answerProperties());
   });
 
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should handle submit event", () => {
-    wrapper.find(Form).simulate("submit");
-    expect(handleSubmit).toHaveBeenCalled();
-  });
+  describe("behaviour", () => {
+    beforeEach(() => {
+      wrapper = mount(answerProperties());
+    });
 
-  it("should handle change event for checkbox", () => {
-    wrapper.find(Input).simulate("change");
-    expect(handleChange).toHaveBeenCalled();
-  });
+    it("should handle submit event", () => {
+      wrapper.find(Form).simulate("submit");
+      expect(handleSubmit).toHaveBeenCalled();
+    });
 
-  it("should handle blur event for checkbox", () => {
-    wrapper.find(Input).simulate("blur");
-    expect(handleBlur).toHaveBeenCalled();
-  });
+    it("should handle change event for checkbox", () => {
+      wrapper.find(Input).simulate("change");
+      expect(handleChange).toHaveBeenCalled();
+    });
 
-  it("should handle change event for text area", () => {
-    wrapper.find("textarea").simulate("change");
-    expect(handleChange).toHaveBeenCalled();
-  });
+    it("should handle blur event for checkbox", () => {
+      wrapper.find(Input).simulate("blur");
+      expect(handleBlur).toHaveBeenCalled();
+    });
 
-  it("should handle blur event for text area", () => {
-    wrapper.find("textarea").simulate("blur");
-    expect(handleBlur).toHaveBeenCalled();
+    it("should handle change event for text area", () => {
+      wrapper.find("textarea").simulate("change");
+      expect(handleChange).toHaveBeenCalled();
+    });
+
+    it("should handle blur event for text area", () => {
+      wrapper.find("textarea").simulate("blur");
+      expect(handleBlur).toHaveBeenCalled();
+    });
   });
 });
