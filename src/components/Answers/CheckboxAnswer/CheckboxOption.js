@@ -118,7 +118,6 @@ class CheckboxOption extends Component {
     option: CustomPropTypes.option.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired
   };

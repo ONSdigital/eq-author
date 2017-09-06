@@ -17,8 +17,6 @@ export class QuestionnaireDesignPage extends Component {
     breadcrumb: CustomPropTypes.breadcrumb,
     onUpdateSection: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
-    onUpdateAnswer: PropTypes.func.isRequired,
-    onUpdateOption: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     questionnaireId: PropTypes.string,

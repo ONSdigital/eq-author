@@ -66,8 +66,7 @@ class TextAnswer extends React.Component {
 
 TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 export default TextAnswer;

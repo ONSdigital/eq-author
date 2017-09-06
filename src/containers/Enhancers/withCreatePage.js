@@ -54,6 +54,10 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
         guidance: "",
         pageType: "",
         answers: [],
+        section: {
+          __typename: "Section",
+          id: sectionId
+        },
         ...page
       }
     };
