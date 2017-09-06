@@ -1,9 +1,22 @@
 import { graphql } from "react-apollo";
 import QuestionnaireCreatePage from "./QuestionnaireCreatePage";
-
 import createQuestionnaireQuery from "schema/createQuestionnaire.graphql";
 
-export const mapMutateToProps = ({ ownProps, mutate }) => ({
+interface Props {
+  history: object;
+}
+
+interface MutateFunc {
+  (options: object);
+}
+
+export const mapMutateToProps = ({
+  ownProps,
+  mutate
+}: {
+  ownProps: Props;
+  mutate: MutateFunc;
+}) => ({
   createQuestionnaire: questionnaire =>
     mutate({ variables: questionnaire }).then(
       redirectToDesigner(ownProps.history)

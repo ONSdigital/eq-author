@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
     "sourceMap": true,
     "strictNullChecks": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
     "module": "es6",
     "jsx": "react",
     "target": "es5",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["../node_modules/@types"],
     "baseUrl": "./src",
     "lib": ["es5", "es6", "dom", "esnext.asynciterable"]
   },
