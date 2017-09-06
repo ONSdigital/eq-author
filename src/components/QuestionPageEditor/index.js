@@ -24,14 +24,17 @@ class QuestionPageEditor extends React.Component {
     page: CustomPropTypes.page
   };
 
+  handleDeleteAnswer = answerId => {
+    this.props.onDeleteAnswer(this.props.page.id, answerId);
+  };
+
   render() {
     const {
       page,
       onUpdatePage,
       onAddAnswer,
       onAddOption,
-      onDeleteOption,
-      onDeleteAnswer
+      onDeleteOption
     } = this.props;
     const { answers } = page;
     const onFocus = () => {};
@@ -61,14 +64,13 @@ class QuestionPageEditor extends React.Component {
             <AnswerEditor
               answer={answer}
               answerIndex={answerIndex}
-              pageId={page.id}
               onChange={onChange}
               onFocus={onFocus}
               onBlur={onBlur}
               onEntered={this.handleEntered}
               onAddOption={onAddOption}
               onDeleteOption={onDeleteOption}
-              onDeleteAnswer={onDeleteAnswer}
+              onDeleteAnswer={this.handleDeleteAnswer}
             />
           </CanvasSection>
         )}

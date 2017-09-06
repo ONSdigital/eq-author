@@ -27,10 +27,10 @@ export const deleteUpdater = (pageId, answerId) => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ ownProps, mutate }) => ({
-  onDeleteAnswer(answerId) {
+export const mapMutateToProps = ({ mutate }) => ({
+  onDeleteAnswer(pageId, answerId) {
     const variables = { id: answerId };
-    const update = deleteUpdater(ownProps.page.id, answerId);
+    const update = deleteUpdater(pageId, answerId);
 
     return mutate({ variables, update });
   }
