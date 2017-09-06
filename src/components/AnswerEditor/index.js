@@ -23,7 +23,6 @@ const AnswerEditor = props => {
         onDeleteOption={props.onDeleteOption}
         onFocus={props.onFocus}
         onBlur={props.onBlur}
-        onEntered={props.onEntered}
       />
       <AnswerDeleteButton
         onClick={function() {
@@ -44,8 +43,8 @@ AnswerEditor.propTypes = {
   onDeleteOption: PropTypes.func.isRequired,
   onDeleteAnswer: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
-  onEntered: PropTypes.func.isRequired
+  onBlur: PropTypes.func.isRequired
+  // onEntered: PropTypes.func.isRequired
 };
 
 export default AnswerEditor;

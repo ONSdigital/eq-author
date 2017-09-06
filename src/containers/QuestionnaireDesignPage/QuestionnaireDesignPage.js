@@ -15,7 +15,6 @@ import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
-    onAddAnswer: PropTypes.func.isRequired,
     onUpdateSection: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     onUpdateAnswer: PropTypes.func.isRequired,
@@ -32,11 +31,9 @@ export class QuestionnaireDesignPage extends Component {
   constructor(props) {
     super(props);
 
-    const { section, page, answers } = props;
+    const { answers } = props;
 
     this.state = {
-      section,
-      page,
       answers,
       focused: "section"
     };
@@ -56,12 +53,8 @@ export class QuestionnaireDesignPage extends Component {
     );
   };
 
-  handleAddAnswer = type => {
-    return this.props.onAddAnswer(type);
-  };
-
   handleBlur = () => {
-    const { focused, section, page, answers } = this.state;
+    const { focused, answers } = this.state;
     let answerId, answer, optionId, option;
 
     if (focused) {
@@ -71,11 +64,7 @@ export class QuestionnaireDesignPage extends Component {
       });
     }
 
-    if (/section/.test(focused)) {
-      this.props.onUpdateSection(section);
-    } else if (/page/.test(focused)) {
-      this.props.onUpdatePage(page);
-    } else if (/option/.test(focused)) {
+    if (/option/.test(focused)) {
       if (answer) {
         optionId = focused.split("-")[3];
         option = find(answer.options, {
@@ -124,8 +113,8 @@ export class QuestionnaireDesignPage extends Component {
               page={page}
               answers={answers}
               focused={focused}
-              onAddAnswer={this.handleAddAnswer}
-              onChange={this.handleChange}
+              onUpdatePage={this.props.onUpdatePage}
+              onUpdateSection={this.props.onUpdateSection}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
             />

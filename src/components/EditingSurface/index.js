@@ -9,10 +9,8 @@ import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
 import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import AnswerTypeSelector from "components/AnswerTypeSelector";
 import SectionEditor from "components/SectionEditor";
-import PageEditor from "../PageEditor/index";
-import AnswerContainer from "containers/AnswerContainer";
+import QuestionPageEditor from "components/QuestionPageEditor";
 
 import Tooltip from "components/Tooltip";
 
@@ -27,7 +25,7 @@ const PageTransition = props =>
     classNames="fade"
   />;
 
-const AnimatedCanvasSection = styled(CanvasSection)`
+const AnimatedSection = styled.div`
   position: relative;
   &.fade-enter,
   &.fade-exit {
@@ -46,11 +44,10 @@ const AnimatedCanvasSection = styled(CanvasSection)`
 
 class EditingSurface extends React.Component {
   static propTypes = {
-    answers: PropTypes.arrayOf(CustomPropTypes.answer),
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
-    onChange: PropTypes.func.isRequired,
-    onAddAnswer: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired,
+    onUpdateSection: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     focused: function(props, propName, componentName) {
@@ -86,16 +83,12 @@ class EditingSurface extends React.Component {
   };
 
   setFocusOnTitle = () => {
-    const { section, page } = this.props;
-    if (get(section, "title.length") === 0) {
-      this.sectionTitle.focus();
-    } else if (get(page, "title.length") === 0) {
-      this.pageTitle.focus();
-    }
-  };
-
-  handleAddAnswer = type => {
-    this.props.onAddAnswer(type);
+    // const { section, page } = this.props;
+    // if (get(section, "title.length") === 0) {
+    //   this.sectionTitle.focus();
+    // } else if (get(page, "title.length") === 0) {
+    //   this.pageTitle.focus();
+    // }
   };
 
   handleEntered = node => {
@@ -107,11 +100,11 @@ class EditingSurface extends React.Component {
     const {
       section,
       page,
-      answers,
-      onChange,
       onFocus,
       onBlur,
-      focused
+      focused,
+      onUpdatePage,
+      onUpdateSection
     } = this.props;
 
     return (
@@ -119,73 +112,22 @@ class EditingSurface extends React.Component {
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
             <PageTransition key={`section-${section.id}`}>
-              <AnimatedCanvasSection
-                id="section"
-                onFocus={onFocus}
-                onBlur={onBlur}
-                focused={focused === "section"}
-                key={section.id}
-              >
-                <SectionEditor
-                  onChange={onChange}
-                  sectionTitle={section.title}
-                  sectionTitleRef={this.setSectionTitle}
-                  sectionDescription={section.description}
-                />
-              </AnimatedCanvasSection>
-            </PageTransition>
-            <PageTransition key={`page-${page.id}`}>
-              <AnimatedCanvasSection
-                id="page"
-                onFocus={onFocus}
-                onBlur={onBlur}
-                focused={focused === "page"}
-              >
-                <PageEditor
-                  onChange={onChange}
-                  pageTitle={page.title}
-                  pageTitleRef={this.setPageTitle}
-                  pageDescription={page.description}
-                  pageGuidance={page.guidance}
-                />
-              </AnimatedCanvasSection>
-            </PageTransition>
-
-            {answers.map((answer, answerIndex) =>
-              <PageTransition
-                key={`page-${page.id}-answer-${answer.id}`}
-                onEntered={this.handleEntered}
-              >
-                <AnimatedCanvasSection
-                  id={`answer-${answer.id}`}
-                  key={answer.id}
+              <AnimatedSection>
+                <CanvasSection
+                  id="section"
                   onFocus={onFocus}
                   onBlur={onBlur}
-                  focused={
-                    focused && focused.indexOf(`answer-${answer.id}`) > -1
-                  }
+                  focused={focused === "section"}
+                  key={section.id}
                 >
-                  <AnswerContainer
-                    // answerId={answer.id}
-                    answer={answer}
-                    answerIndex={answerIndex}
-                    pageId={page.id}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    onEntered={this.handleEntered}
-                  />
-                  <Tooltip content="Delete answer">
-
-                  </Tooltip>
-                </AnimatedCanvasSection>
-              </PageTransition>
-            )}
-
-            <PageTransition key={`add-answer-${page.id}`}>
-              <AnimatedCanvasSection onFocus={onFocus} onBlur={onBlur}>
-                <AnswerTypeSelector onSelect={this.handleAddAnswer} />
-              </AnimatedCanvasSection>
+                  <SectionEditor onChange={onUpdateSection} section={section} />
+                </CanvasSection>
+              </AnimatedSection>
+            </PageTransition>
+            <PageTransition key={`page-${page.id}`}>
+              <AnimatedSection>
+                <QuestionPageEditor onUpdatePage={onUpdatePage} page={page} />
+              </AnimatedSection>
             </PageTransition>
           </TransitionGroup>
         </Form>

@@ -52,8 +52,8 @@ class CheckboxAnswer extends Component {
     answer: CustomPropTypes.answer.isRequired,
     answerIndex: PropTypes.number.isRequired,
     onAddOption: PropTypes.func.isRequired,
-    onDeleteOption: PropTypes.func.isRequired,
-    onEntered: PropTypes.func.isRequired
+    onDeleteOption: PropTypes.func.isRequired
+    // onEntered: PropTypes.func.isRequired
   };
 
   handleOptionDelete = optionId => {
@@ -70,7 +70,6 @@ class CheckboxAnswer extends Component {
       answer,
       answerIndex,
       onAddOption,
-      onEntered,
       onDeleteOption,
       ...otherProps
     } = this.props;
@@ -82,12 +81,7 @@ class CheckboxAnswer extends Component {
             const optionName = `answer-${answer.id}-option-${option.id}`;
 
             return (
-              <CSSTransition
-                timeout={200}
-                classNames="option"
-                key={optionName}
-                onEntered={onEntered}
-              >
+              <CSSTransition timeout={200} classNames="option" key={optionName}>
                 <CheckboxOption
                   option={option}
                   optionIndex={optionIndex}
