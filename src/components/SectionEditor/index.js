@@ -64,7 +64,7 @@ class SectionEditor extends React.Component {
 }
 
 SectionEditor.propTypes = {
-  section: CustomPropTypes.section,
+  section: CustomPropTypes.section.isRequired,
   onChange: PropTypes.func.isRequired
 };
 

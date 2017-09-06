@@ -1,18 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
-import SectionEditor from "./index";
+import SectionEditor from "components/SectionEditor";
 
 describe("SectionEditor", () => {
+  const section = {};
+
   it("should render", () => {
     expect(
-      mount(
-        <SectionEditor
-          onChange={jest.fn()}
-          sectionTitle="Title"
-          sectionTitleRef={jest.fn()}
-          sectionDescription="Description"
-        />
-      )
+      mount(<SectionEditor section={section} onChange={jest.fn()} />)
     ).toMatchSnapshot();
   });
 });
