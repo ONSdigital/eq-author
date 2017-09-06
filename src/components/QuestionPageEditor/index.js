@@ -22,6 +22,7 @@ class QuestionPageEditor extends React.Component {
     onAddOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
+    onUpdateOption: PropTypes.func.isRequired,
     page: CustomPropTypes.page
   };
 
