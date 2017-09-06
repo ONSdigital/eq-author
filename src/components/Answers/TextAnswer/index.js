@@ -5,18 +5,19 @@ import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 
-const TextAnswer = ({ answer, answerIndex, onChange }) =>
+const TextAnswer = ({ answer, onChange, onBlur }) =>
   <div>
-    <Field id={`answers[${answerIndex}].label`}>
+    <Field id="label">
       <SeamlessInput
         placeholder="Label"
         size="medium"
         onChange={onChange}
+        onBlur={onBlur}
         value={answer.label}
         data-autoFocus
       />
     </Field>
-    <Field id={`answers[${answerIndex}].description`}>
+    <Field id="description">
       <SeamlessTextArea
         cols="30"
         rows="5"
@@ -25,15 +26,13 @@ const TextAnswer = ({ answer, answerIndex, onChange }) =>
         value={answer.description}
       />
     </Field>
-    <Field id="answer.description">
-      <Input disabled />
-    </Field>
+    <Input disabled />
   </div>;
 
 TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
-  answerIndex: PropTypes.number.isRequired
+  onBlur: PropTypes.func.isRequired
 };
 
 export default TextAnswer;

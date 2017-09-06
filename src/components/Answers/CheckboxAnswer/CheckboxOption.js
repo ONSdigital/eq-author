@@ -86,12 +86,36 @@ export const SeamlessLabel = styled(SeamlessInput)`
 `;
 
 class CheckboxOption extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      option: props.option
+    };
+  }
+
+  componentWillReceiveProps({ option }) {
+    if (option.id !== this.props.option.id) {
+      this.setState({ option });
+    }
+  }
+
+  handleChange = ({ name, value }) => {
+    this.setState({
+      option: {
+        ...this.state.option,
+        [name]: value
+      }
+    });
+  };
+
+  handleBlur = e => {
+    e.stopPropagation();
+    this.props.onChange(this.state.option);
+  };
+
   static propTypes = {
-    id: PropTypes.string,
-    answerIndex: PropTypes.number.isRequired,
     option: CustomPropTypes.option.isRequired,
-    optionName: PropTypes.string.isRequired,
-    optionIndex: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
@@ -101,12 +125,7 @@ class CheckboxOption extends Component {
 
   handleFocus = e => {
     e.stopPropagation();
-    this.props.onFocus(this.props.optionName);
-  };
-
-  handleBlur = e => {
-    e.stopPropagation();
-    this.props.onBlur();
+    // this.props.onFocus(this.props.optionName);
   };
 
   handleDeleteClick = e => {
@@ -115,37 +134,32 @@ class CheckboxOption extends Component {
   };
 
   render() {
-    const {
-      option,
-      optionIndex,
-      answerIndex,
-      onChange,
-      hasDeleteButton
-    } = this.props;
-
-    const id = `answers[${answerIndex}].options[${optionIndex}]`;
+    const { hasDeleteButton } = this.props;
 
     return (
-      <StyledCheckboxOption key={option.id} focused={option.focused}>
-        <Field id={`${id}.label`}>
+      <StyledCheckboxOption
+        key={this.state.option.id}
+        focused={this.state.option.focused}
+      >
+        <Field id="label">
           <StyledCheckboxInput type="checkbox" disabled />
           <SeamlessLabel
             placeholder="Label"
             size="medium"
-            onChange={onChange}
-            value={option.label}
+            value={this.state.option.label}
+            onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             data-autoFocus
           />
         </Field>
-        <Field id={`${id}.description`}>
+        <Field id="description">
           <SeamlessTextArea
             cols="30"
             rows="5"
             placeholder="Optional description"
-            onChange={onChange}
-            value={option.description}
+            onChange={this.handleChange}
+            value={this.state.option.description}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
           />

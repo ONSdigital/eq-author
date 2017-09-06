@@ -92,7 +92,7 @@ export class QuestionnaireDesignPage extends Component {
   render() {
     const { breadcrumb, loading, questionnaire } = this.props;
 
-    const { section, page, answers, focused } = this.state;
+    const { section, page, focused } = this.state;
 
     if (loading) {
       return null;
@@ -111,7 +111,6 @@ export class QuestionnaireDesignPage extends Component {
             <EditingSurface
               section={section}
               page={page}
-              answers={answers}
               focused={focused}
               onUpdatePage={this.props.onUpdatePage}
               onUpdateSection={this.props.onUpdateSection}

@@ -16,6 +16,7 @@ import withDeleteOption from "containers/Enhancers/withDeleteOption";
 
 class QuestionPageEditor extends React.Component {
   static propTypes = {
+    onUpdateAnswer: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     onAddAnswer: PropTypes.func.isRequired,
     onAddOption: PropTypes.func.isRequired,
@@ -32,14 +33,15 @@ class QuestionPageEditor extends React.Component {
     const {
       page,
       onUpdatePage,
+      onUpdateAnswer,
       onAddAnswer,
       onAddOption,
+      onUpdateOption,
       onDeleteOption
     } = this.props;
     const { answers } = page;
     const onFocus = () => {};
     const onBlur = () => {};
-    const onChange = () => {};
     const focused = "meh";
 
     return (
@@ -53,7 +55,7 @@ class QuestionPageEditor extends React.Component {
           <MetaEditor onChange={onUpdatePage} page={page} />
         </CanvasSection>
 
-        {answers.map((answer, answerIndex) =>
+        {answers.map(answer =>
           <CanvasSection
             id={`answer-${answer.id}`}
             key={answer.id}
@@ -63,12 +65,12 @@ class QuestionPageEditor extends React.Component {
           >
             <AnswerEditor
               answer={answer}
-              answerIndex={answerIndex}
-              onChange={onChange}
+              onChange={onUpdateAnswer}
               onFocus={onFocus}
               onBlur={onBlur}
               onEntered={this.handleEntered}
               onAddOption={onAddOption}
+              onUpdateOption={onUpdateOption}
               onDeleteOption={onDeleteOption}
               onDeleteAnswer={this.handleDeleteAnswer}
             />
