@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 
-import createOptionMutation from "graphql/createOption.graphql";
-import answerFragment from "graphql/answerFragment.graphql";
+import createOptionMutation from "schema/createOption.graphql";
+import answerFragment from "schema/answerFragment.graphql";
 
 export const createUpdater = answerId => (proxy, result) => {
   const id = `MultipleChoiceAnswer${answerId}`;

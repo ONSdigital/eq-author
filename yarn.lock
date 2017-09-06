@@ -152,6 +152,10 @@
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.10.2.tgz#d7c79acbaa17453b6681c80c34b38fcb10c4c08c"
 
+"@types/graphql@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.11.0.tgz#19a3f9d52f168e6a9ad5ce4b762a5062ea55d6fd"
+
 "@types/graphql@^0.9.0":
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.9.4.tgz#cdeb6bcbef9b6c584374b81aa7f48ecf3da404fa"
@@ -159,6 +163,10 @@
 "@types/history@*", "@types/history@^4.6.0":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.0.tgz#093d67ed780d889c9543f6dca24ebee0b6b9fc45"
+
+"@types/node@^8.0.26":
+  version "8.0.26"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.26.tgz#4d58be925306fd22b1141085535a0268b8beb189"
 
 "@types/react-dom@^15.5.4":
   version "15.5.4"

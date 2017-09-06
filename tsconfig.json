@@ -8,24 +8,15 @@
     "target": "es5",
     "allowJs": true,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "typeRoots": ["../node_modules/@types"],
     "baseUrl": "./src",
-    "lib": [
-      "es5",
-      "es6",
-      "dom",
-      "es2015.core",
-      "es2015.collection",
-      "es2015.generator",
-      "es2015.iterable",
-      "es2015.promise",
-      "es2015.proxy",
-      "es2015.reflect",
-      "es2015.symbol",
-      "es2015.symbol.wellknown",
-      "esnext.asynciterable"
-    ]
+    "lib": ["es5", "es6", "dom", "esnext.asynciterable"]
   },
   "include": ["./src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true,
+    "useCache": true
+  }
 }

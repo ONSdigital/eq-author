@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
-import createAnswerMutation from "graphql/createAnswer.graphql";
-import pageFragment from "graphql/pageFragment.graphql";
+import createAnswerMutation from "schema/createAnswer.graphql";
+import pageFragment from "schema/pageFragment.graphql";
 
 export const createUpdater = pageId => (proxy, result) => {
   const id = `QuestionPage${pageId}`;

@@ -1,4 +1,4 @@
-import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
+import getQuestionnaireQuery from "schema/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
 
 import { find, get } from "lodash";

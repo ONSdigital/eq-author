@@ -1,4 +1,4 @@
-import updateSectionMutation from "graphql/updateSection.graphql";
+import updateSectionMutation from "schema/updateSection.graphql";
 import { graphql } from "react-apollo";
 
 export default graphql(updateSectionMutation, {

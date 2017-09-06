@@ -1,6 +1,7 @@
 import { graphql } from "react-apollo";
 import QuestionnaireCreatePage from "./QuestionnaireCreatePage";
-import createQuestionnaireQuery from "graphql/createQuestionnaire.graphql";
+
+import createQuestionnaireQuery from "schema/createQuestionnaire.graphql";
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   createQuestionnaire: questionnaire =>

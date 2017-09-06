@@ -1,4 +1,4 @@
-import updatePageMutation from "graphql/updatePage.graphql";
+import updatePageMutation from "schema/updatePage.graphql";
 import { graphql } from "react-apollo";
 
 export default graphql(updatePageMutation, {

@@ -9,7 +9,10 @@ const eslintFormatter = require("react-dev-utils/eslintFormatter");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const getClientEnvironment = require("./env");
 const paths = require("./paths");
-const { TsConfigPathsPlugin } = require("awesome-typescript-loader");
+const {
+  TsConfigPathsPlugin,
+  CheckerPlugin
+} = require("awesome-typescript-loader");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -162,8 +165,8 @@ module.exports = {
       },
       // Typescript
       {
-        test: /\.tsx?$/,
-        loader: require.resolve("awesome-typescript-loader")
+        test: /\.(ts|tsx)$/,
+        loader: [require.resolve("awesome-typescript-loader")]
       },
       // Process JS with Babel.
       {
@@ -276,7 +279,8 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new TsConfigPathsPlugin /* { configFileName, compiler } */()
+    new TsConfigPathsPlugin /* { configFileName, compiler } */(),
+    new CheckerPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

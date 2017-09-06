@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { AppContainer } from "react-hot-loader";
 import { ConnectedRouter } from "react-router-redux";
 import { Switch } from "react-router-dom";

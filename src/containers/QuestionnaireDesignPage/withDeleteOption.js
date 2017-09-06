@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 import { remove } from "lodash";
-import deleteOptionMutation from "graphql/deleteOption.graphql";
-import answerFragment from "graphql/answerFragment.graphql";
+import deleteOptionMutation from "schema/deleteOption.graphql";
+import answerFragment from "schema/answerFragment.graphql";
 
 export const createUpdater = (optionId, answerId) => proxy => {
   const id = `MultipleChoiceAnswer${answerId}`;
