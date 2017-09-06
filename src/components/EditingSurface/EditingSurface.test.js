@@ -3,7 +3,6 @@ import { mount, shallow } from "enzyme";
 import EditingSurface from "./";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import DeleteButton from "components/DeleteButton";
-import Answer from "components/Answer";
 
 const option = {
   id: 0,
@@ -159,20 +158,20 @@ xdescribe("EditingSurface", () => {
     expect(mockHandlers.onAddAnswer).toHaveBeenCalledWith("Textfield");
   });
 
-  it("should add an option to answer via `id`", () => {
-    wrapper = createWrapper({}, shallow);
-    wrapper.find(Answer).simulate("addOption", 1);
-    expect(mockHandlers.onAddOption).toHaveBeenCalledWith(1);
-  });
-
-  it("should focus on a designated field when a transition is complete", () => {
-    const input = { focus: jest.fn() };
-    const node = {
-      querySelectorAll: jest.fn(() => [input])
-    };
-
-    wrapper = createWrapper({}, shallow);
-    wrapper.find(Answer).simulate("entered", node);
-    expect(input.focus).toHaveBeenCalled();
-  });
+  // it("should add an option to answer via `id`", () => {
+  //   wrapper = createWrapper({}, shallow);
+  //   wrapper.find(Answer).simulate("addOption", 1);
+  //   expect(mockHandlers.onAddOption).toHaveBeenCalledWith(1);
+  // });
+  //
+  // it("should focus on a designated field when a transition is complete", () => {
+  //   const input = { focus: jest.fn() };
+  //   const node = {
+  //     querySelectorAll: jest.fn(() => [input])
+  //   };
+  //
+  //   wrapper = createWrapper({}, shallow);
+  //   wrapper.find(Answer).simulate("entered", node);
+  //   expect(input.focus).toHaveBeenCalled();
+  // });
 });
