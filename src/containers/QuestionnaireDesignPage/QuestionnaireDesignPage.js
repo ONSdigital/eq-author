@@ -8,7 +8,7 @@ import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
 import { PropertyPane, PropertyPaneTitle } from "components/PropertyPane";
 import QuestionProperties from "components/QuestionProperties";
-import QuestionnaireDesign from "components/QuestionnaireDesign";
+import EditingSurface from "components/EditingSurface";
 
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 
@@ -119,7 +119,7 @@ export class QuestionnaireDesignPage extends Component {
             />
           </Column>
           <Column gutters={false}>
-            <QuestionnaireDesign
+            <EditingSurface
               section={section}
               page={page}
               answers={answers}

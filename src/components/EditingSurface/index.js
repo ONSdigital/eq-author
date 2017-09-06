@@ -44,16 +44,7 @@ const AnimatedCanvasSection = styled(CanvasSection)`
   }
 `;
 
-const AnswerDeleteButton = styled(DeleteButton)`
-  position: absolute;
-  padding: 0;
-  line-height: 1;
-  right: .8em;
-  top: .8em;
-`;
-
-
-class QuestionnaireDesign extends React.Component {
+class EditingSurface extends React.Component {
   static propTypes = {
     answers: PropTypes.arrayOf(CustomPropTypes.answer),
     section: CustomPropTypes.section,
@@ -185,12 +176,7 @@ class QuestionnaireDesign extends React.Component {
                     onEntered={this.handleEntered}
                   />
                   <Tooltip content="Delete answer">
-                    <AnswerDeleteButton
-                      onClick={function() {
-                        onDeleteAnswer(answer.id);
-                      }}
-                      type="button"
-                    />
+
                   </Tooltip>
                 </AnimatedCanvasSection>
               </PageTransition>
@@ -208,4 +194,4 @@ class QuestionnaireDesign extends React.Component {
   }
 }
 
-export default QuestionnaireDesign;
+export default EditingSurface;

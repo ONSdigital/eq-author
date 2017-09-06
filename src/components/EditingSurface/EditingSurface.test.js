@@ -1,6 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import QuestionnaireDesign from "./";
+import EditingSurface from "./";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import DeleteButton from "components/DeleteButton";
 import Answer from "components/Answer";
@@ -29,11 +29,11 @@ const section = {
 };
 
 // eslint-disable-next-line jest/no-disabled-tests
-xdescribe("QuestionnaireDesign", () => {
+xdescribe("EditingSurface", () => {
   let wrapper, mockHandlers;
   const createWrapper = (props, render = mount) => {
     return render(
-      <QuestionnaireDesign
+      <EditingSurface
         {...mockHandlers}
         focused={null}
         section={section}

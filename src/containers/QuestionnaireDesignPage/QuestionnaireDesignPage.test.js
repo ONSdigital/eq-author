@@ -1,7 +1,7 @@
 /* eslint-disable jest/no-disabled-tests */
 import React from "react";
 import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
-import QuestionnaireDesign from "components/QuestionnaireDesign";
+import EditingSurface from "components/EditingSurface";
 import QuestionnaireNav from "components/QuestionnaireNav";
 import { shallow } from "enzyme";
 
@@ -85,7 +85,7 @@ describe("containers/QuestionnaireDesignPage", () => {
   });
 
   it("should store updated values in state", () => {
-    wrapper.find(QuestionnaireDesign).simulate("change", {
+    wrapper.find(EditingSurface).simulate("change", {
       name: "section.title",
       value: "My Title"
     });
@@ -96,7 +96,7 @@ describe("containers/QuestionnaireDesignPage", () => {
 
   it("should update Section when section field blurs", () => {
     wrapper
-      .find(QuestionnaireDesign)
+      .find(EditingSurface)
       .simulate("change", {
         name: "section.title",
         value: "My Title"
@@ -111,7 +111,7 @@ describe("containers/QuestionnaireDesignPage", () => {
   it("should update Page when page field blurs", () => {
     wrapper
       .setState({ focused: "page" })
-      .find(QuestionnaireDesign)
+      .find(EditingSurface)
       .simulate("change", {
         name: "page.title",
         value: "My Title"
@@ -126,7 +126,7 @@ describe("containers/QuestionnaireDesignPage", () => {
   it("should update Answer when page field blurs", () => {
     wrapper
       .setState({ focused: "answer-1" })
-      .find(QuestionnaireDesign)
+      .find(EditingSurface)
       .simulate("change", {
         name: "answers[0].label",
         value: "Label"
@@ -141,7 +141,7 @@ describe("containers/QuestionnaireDesignPage", () => {
   it("should update Option when option field blurs", () => {
     wrapper
       .setState({ focused: "answer-1-option-1" })
-      .find(QuestionnaireDesign)
+      .find(EditingSurface)
       .simulate("change", {
         name: "answers[0].options[0].label",
         value: "Label"
@@ -154,17 +154,14 @@ describe("containers/QuestionnaireDesignPage", () => {
   });
 
   it("should not update when unknown field blurs", () => {
-    wrapper
-      .setState({ focused: null })
-      .find(QuestionnaireDesign)
-      .simulate("blur");
+    wrapper.setState({ focused: null }).find(EditingSurface).simulate("blur");
 
     expect(mockHandlers.onUpdatePage).not.toHaveBeenCalled();
     expect(mockHandlers.onUpdateSection).not.toHaveBeenCalled();
   });
 
   it("should set focus state when field receives focus", () => {
-    wrapper.find(QuestionnaireDesign).simulate("focus", "page");
+    wrapper.find(EditingSurface).simulate("focus", "page");
 
     expect(wrapper.state().focused).toBe("page");
   });
@@ -180,14 +177,14 @@ describe("containers/QuestionnaireDesignPage", () => {
   });
 
   it("should invoke callback when answer added", () => {
-    wrapper.find(QuestionnaireDesign).simulate("addAnswer");
+    wrapper.find(EditingSurface).simulate("addAnswer");
     expect(mockHandlers.onAddAnswer).toHaveBeenCalled();
   });
 
   xit("should invoke callback when answer deleted", () => {
     wrapper
       .setState({ focused: null })
-      .find(QuestionnaireDesign)
+      .find(EditingSurface)
       .simulate("deleteAnswer");
 
     expect(mockHandlers.onDeleteAnswer).toHaveBeenCalled();
@@ -204,12 +201,12 @@ describe("containers/QuestionnaireDesignPage", () => {
   });
 
   xit("should invoke callback when option deleted", () => {
-    wrapper.find(QuestionnaireDesign).simulate("deleteOption", 1, 1);
+    wrapper.find(EditingSurface).simulate("deleteOption", 1, 1);
     expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(1, 1);
   });
 
   xit("should invoke callback when option added", () => {
-    wrapper.find(QuestionnaireDesign).simulate("addOption", 1);
+    wrapper.find(EditingSurface).simulate("addOption", 1);
     expect(mockHandlers.onAddOption).toHaveBeenCalledWith(1);
   });
 });

@@ -51,7 +51,7 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
     <Column__Column
       gutters={false}
     >
-      <QuestionnaireDesign
+      <EditingSurface
         answers={
           Array [
             Object {
