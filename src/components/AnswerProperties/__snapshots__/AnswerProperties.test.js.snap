@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Answer Properties should render 1`] = `
+<Form
+  onSubmit={[Function]}
+>
+  <AnswerProperties__FlexField
+    id="answer.required"
+  >
+    <Label>
+      Required
+    </Label>
+    <AnswerProperties__StyledCheckboxInput
+      answer={
+        Object {
+          "description": "answer-description",
+          "title": "answer-title",
+          "type": "TextField",
+        }
+      }
+      loading={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onSubmit={[Function]}
+      onUpdate={[Function]}
+      type="checkbox"
+    />
+  </AnswerProperties__FlexField>
+  <Field
+    id="answer.validation.message"
+  >
+    <Label>
+      Custom validation message
+    </Label>
+    <withChangeHandler(TextArea)
+      answer={
+        Object {
+          "description": "answer-description",
+          "title": "answer-title",
+          "type": "TextField",
+        }
+      }
+      loading={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onSubmit={[Function]}
+      onUpdate={[Function]}
+      placeholder="Optional"
+    />
+  </Field>
+</Form>
+`;

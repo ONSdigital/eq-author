@@ -8,8 +8,8 @@ const StyledField = styled.div`
   margin-bottom: ${props => (props.last ? "0" : "1")}em;
 `;
 
-const Field = ({ children, last, id, ...otherProps }) =>
-  <StyledField last={last}>
+const Field = ({ children, last, id, className, ...otherProps }) =>
+  <StyledField last={last} className={className}>
     {Children.map(children, child =>
       cloneElement(child, { id, ...otherProps })
     )}
@@ -18,7 +18,8 @@ const Field = ({ children, last, id, ...otherProps }) =>
 Field.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
-  last: PropTypes.bool
+  last: PropTypes.bool,
+  className: PropTypes.string
 };
 
 export default Field;
