@@ -51,7 +51,7 @@ describe("eQ Author Smoketest", () => {
         true
       );
       clickCreateButton();
-      expect(onDesignQuestionnairePage()).toEqual(true);
+      expect(onDesignQuestionnairePage()).toBe(true);
     });
   });
 

@@ -1,7 +1,6 @@
 export const onCreateQuestionnairePage = () => {
   const pageTitle = browser.getText("h1");
-
-  return pageTitle == "Create a Questionnaire";
+  return pageTitle === "Create a Questionnaire";
 };
 
 const questionnaireTitle = "#questionnaire\\.title";

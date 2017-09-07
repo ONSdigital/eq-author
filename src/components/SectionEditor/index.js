@@ -38,7 +38,7 @@ class SectionEditor extends React.Component {
     const { section } = this.state;
 
     return (
-      <div>
+      <div id="section-editor">
         <Field id="title">
           <SeamlessInput
             placeholder="Section title"
