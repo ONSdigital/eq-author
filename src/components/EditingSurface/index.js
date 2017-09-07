@@ -12,8 +12,6 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SectionEditor from "components/SectionEditor";
 import QuestionPageEditor from "components/QuestionPageEditor";
 
-import Tooltip from "components/Tooltip";
-
 const duration = 300;
 
 const PageTransition = props =>

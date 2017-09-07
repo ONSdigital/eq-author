@@ -1,7 +1,10 @@
-import { mapMutateToProps, deleteUpdater } from "./withDeleteAnswer";
+import {
+  mapMutateToProps,
+  deleteUpdater
+} from "containers/Enhancers/withDeleteAnswer";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
-  let mutate, result, onDeleteAnswer;
+  let mutate, result;
   let deletedAnswer, currentPage;
 
   beforeEach(() => {
@@ -21,8 +24,6 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
         deleteAnswer: deletedAnswer
       }
     };
-
-    onDeleteAnswer = jest.fn(() => Promise.resolve());
 
     mutate = jest.fn(() => Promise.resolve(result));
   });
