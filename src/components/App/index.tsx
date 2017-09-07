@@ -27,13 +27,9 @@ injectGlobal`
   }
 `;
 
-const App = ({ children }) =>
+const App = ({ children }: { children: JSX.Element }) =>
   <ThemeProvider theme={theme}>
     {children}
   </ThemeProvider>;
-
-App.propTypes = {
-  children: PropTypes.element.isRequired
-};
 
 export default App;

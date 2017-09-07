@@ -7,7 +7,7 @@ import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 
 const TextAnswer = ({ answer, answerIndex, onChange }) =>
   <div>
-    <Field id={`answers[${answerIndex}].label`}>
+    <Field id={`answers[${answerIndex}].label`} last={false}>
       <SeamlessInput
         placeholder="Label"
         size="medium"
@@ -16,7 +16,7 @@ const TextAnswer = ({ answer, answerIndex, onChange }) =>
         data-autoFocus
       />
     </Field>
-    <Field id={`answers[${answerIndex}].description`}>
+    <Field id={`answers[${answerIndex}].description`} last={false}>
       <SeamlessTextArea
         cols="30"
         rows="5"
@@ -25,15 +25,9 @@ const TextAnswer = ({ answer, answerIndex, onChange }) =>
         value={answer.description}
       />
     </Field>
-    <Field id="answer.description">
+    <Field id="answer.description" last={false}>
       <Input disabled />
     </Field>
   </div>;
-
-TextAnswer.propTypes = {
-  answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired,
-  answerIndex: PropTypes.number.isRequired
-};
 
 export default TextAnswer;

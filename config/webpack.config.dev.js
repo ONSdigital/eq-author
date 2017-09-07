@@ -113,14 +113,11 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       // {
-      //   test: /\.(t|j)s?$/,
+      //   test: /\.(js|jsx|ts|tsx)$/,
       //   enforce: "pre",
       //   use: [
       //     {
-      //       options: {
-      //         formatter: eslintFormatter
-      //       },
-      //       loader: require.resolve("awesome-typescript-loader")
+      //       loader: require.resolve("eslint-loader")
       //     }
       //   ],
       //   include: paths.appSrc
@@ -269,8 +266,8 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new TsConfigPathsPlugin /* { configFileName, compiler } */()
-    // new CheckerPlugin()
+    new TsConfigPathsPlugin /* { configFileName, compiler } */(),
+    new CheckerPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

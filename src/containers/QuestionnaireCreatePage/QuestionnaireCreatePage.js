@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import BaseLayout from "components/BaseLayout";
 import { merge, set } from "lodash";
@@ -21,10 +20,6 @@ const Center = styled.div`
 `;
 
 class QuestionnaireCreatePage extends Component {
-  static propTypes = {
-    createQuestionnaire: PropTypes.func.isRequired
-  };
-
   constructor(props) {
     super(props);
     this.state = {

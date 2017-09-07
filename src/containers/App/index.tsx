@@ -3,7 +3,7 @@ import { AppContainer } from "react-hot-loader";
 import { ConnectedRouter } from "react-router-redux";
 import { Switch } from "react-router-dom";
 import { Route } from "react-router";
-import { ApolloProvider, ApolloClient } from "react-apollo";
+import { ApolloProvider } from "react-apollo";
 
 import QuestionnairesPage from "containers/QuestionnairesPage";
 import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage";
