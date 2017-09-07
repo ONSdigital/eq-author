@@ -3,7 +3,7 @@
 exports[`CheckboxOption should match snapshot 1`] = `
 <CheckboxOption__StyledCheckboxOption>
   <Field
-    id="answers[0].options[1].label"
+    id="label"
   >
     <CheckboxOption__StyledCheckboxInput
       disabled={true}
@@ -20,7 +20,7 @@ exports[`CheckboxOption should match snapshot 1`] = `
     />
   </Field>
   <Field
-    id="answers[0].options[1].description"
+    id="description"
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
