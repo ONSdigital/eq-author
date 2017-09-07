@@ -1,8 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import EditingSurface from "./";
-import AnswerTypeSelector from "components/AnswerTypeSelector";
-import DeleteButton from "components/DeleteButton";
 
 const option = {
   id: 0,
@@ -12,6 +10,7 @@ const option = {
 
 const answer = {
   id: 1,
+  type: "Checkbox",
   options: [option]
 };
 
@@ -27,29 +26,25 @@ const section = {
   pages: [page]
 };
 
-// eslint-disable-next-line jest/no-disabled-tests
-xdescribe("EditingSurface", () => {
-  let wrapper, mockHandlers;
+describe("EditingSurface", () => {
+  let wrapper;
+  let mockMutations;
+
   const createWrapper = (props, render = mount) => {
     return render(
       <EditingSurface
-        {...mockHandlers}
-        focused={null}
         section={section}
         page={page}
-        answers={[answer]}
+        {...mockMutations}
         {...props}
       />
     );
   };
 
   beforeEach(() => {
-    mockHandlers = {
-      onChange: jest.fn(),
-      onAddAnswer: jest.fn(),
-      onDeleteAnswer: jest.fn(),
-      onAddOption: jest.fn(),
-      onDeleteOption: jest.fn(),
+    mockMutations = {
+      onUpdateSection: jest.fn(),
+      onUpdatePage: jest.fn(),
       onFocus: jest.fn(),
       onBlur: jest.fn()
     };
@@ -70,108 +65,52 @@ xdescribe("EditingSurface", () => {
     }).toThrow();
   });
 
-  it("should focus on empty section title upon mount", () => {
-    expect(document.activeElement.name).toEqual("section.title");
-  });
-
-  it("should focus on empty page title when section title is not empty", () => {
-    wrapper = createWrapper({
-      section: { title: "Section" },
-      page: { id: "3", title: "" },
-      answers: [answer]
-    });
-    expect(document.activeElement.name).toEqual("page.title");
-  });
-
-  it("should move focus to empty section title upon navigation to new page", () => {
-    expect(document.activeElement.name).toEqual("section.title");
-  });
-
-  it("should move focus to empty page title upon navigation to new page", () => {
-    wrapper = createWrapper({
-      section: { title: "Section" },
-      page: { id: "1", title: "I have a title" },
-      answers: [answer]
+  xdescribe("focus behaviour", () => {
+    it("should focus on empty section title upon mount", () => {
+      // TODO This logic needs to be re-introduced.
+      expect(document.activeElement.name).toEqual("section.title");
     });
 
-    expect(document.activeElement.name).toEqual("section.title");
-
-    wrapper.setProps({ page: { id: "2", title: "" } });
-
-    expect(document.activeElement.name).toEqual("page.title");
-    expect(document.activeElement.value).toEqual("");
-  });
-
-  it("should have a delete button per answer", () => {
-    wrapper = createWrapper({
-      section: { title: "" },
-      page: { id: "1", title: "" },
-      answers: [
-        {
-          id: "1"
-        },
-        {
-          id: "2"
-        }
-      ]
+    it("should focus on empty page title when section title is not empty", () => {
+      // TODO This logic needs to be re-introduced.
+      wrapper = createWrapper({
+        section: { title: "Section" },
+        page: { id: "3", title: "" }
+      });
+      expect(document.activeElement.name).toEqual("page.title");
     });
 
-    expect(wrapper.find(DeleteButton).nodes).toHaveLength(2);
-  });
-
-  it("should call handler when answer deleted", () => {
-    wrapper = createWrapper({
-      section: { title: "" },
-      page: { id: "1", title: "" },
-      answers: [
-        {
-          id: 1
-        }
-      ]
+    it("should move focus to empty section title upon navigation to new page", () => {
+      // TODO This logic needs to be re-introduced.
+      expect(document.activeElement.name).toEqual("section.title");
     });
 
-    wrapper.find(DeleteButton).simulate("click");
-    expect(wrapper.prop("onDeleteAnswer")).toHaveBeenCalledWith(1);
-  });
+    it("should move focus to empty page title upon navigation to new page", () => {
+      // TODO This logic needs to be re-introduced.
+      wrapper = createWrapper({
+        section: { title: "Section" },
+        page: { id: "1", title: "I have a title" },
+        answers: [answer]
+      });
 
-  it("should delete the correct answer", () => {
-    wrapper = createWrapper({
-      section: { title: "" },
-      page: { id: "1", title: "" },
-      answers: [
-        {
-          id: 1
-        },
-        {
-          id: 2
-        }
-      ]
+      expect(document.activeElement.name).toEqual("section.title");
+
+      wrapper.setProps({ page: { id: "2", title: "" } });
+
+      expect(document.activeElement.name).toEqual("page.title");
+      expect(document.activeElement.value).toEqual("");
     });
 
-    wrapper.find(DeleteButton).last().simulate("click");
-    expect(wrapper.prop("onDeleteAnswer")).toHaveBeenCalledWith(2);
-  });
+    it("should focus on a designated field when a transition is complete", () => {
+      // TODO This logic needs to be re-introduced.
+      const input = { focus: jest.fn() };
+      const node = {
+        querySelectorAll: jest.fn(() => [input])
+      };
 
-  it("should add an answer with a type", () => {
-    wrapper = createWrapper({}, shallow);
-    wrapper.find(AnswerTypeSelector).simulate("select", "Textfield");
-    expect(mockHandlers.onAddAnswer).toHaveBeenCalledWith("Textfield");
+      wrapper = createWrapper({}, shallow);
+      wrapper.find(Answer).simulate("entered", node);
+      expect(input.focus).toHaveBeenCalled();
+    });
   });
-
-  // it("should add an option to answer via `id`", () => {
-  //   wrapper = createWrapper({}, shallow);
-  //   wrapper.find(Answer).simulate("addOption", 1);
-  //   expect(mockHandlers.onAddOption).toHaveBeenCalledWith(1);
-  // });
-  //
-  // it("should focus on a designated field when a transition is complete", () => {
-  //   const input = { focus: jest.fn() };
-  //   const node = {
-  //     querySelectorAll: jest.fn(() => [input])
-  //   };
-  //
-  //   wrapper = createWrapper({}, shallow);
-  //   wrapper.find(Answer).simulate("entered", node);
-  //   expect(input.focus).toHaveBeenCalled();
-  // });
 });

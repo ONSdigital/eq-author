@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditingSurface should render 1`] = `
+<Canvas__Canvas>
+  <Form
+    onChange={[Function]}
+    onSubmit={[Function]}
+  >
+    <TransitionGroup
+      childFactory={[Function]}
+      component="div"
+    >
+      <PageTransition>
+        <EditingSurface__AnimatedSection>
+          <CanvasSection
+            focused={false}
+            id="section"
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <SectionEditor
+              onChange={[Function]}
+              section={
+                Object {
+                  "id": 3,
+                  "pages": Array [
+                    Object {
+                      "answers": Array [
+                        Object {
+                          "id": 1,
+                          "options": Array [
+                            Object {
+                              "description": "",
+                              "id": 0,
+                              "label": "",
+                            },
+                          ],
+                          "type": "Checkbox",
+                        },
+                      ],
+                      "id": 2,
+                      "title": "",
+                    },
+                  ],
+                  "title": "",
+                }
+              }
+            />
+          </CanvasSection>
+        </EditingSurface__AnimatedSection>
+      </PageTransition>
+      <PageTransition>
+        <EditingSurface__AnimatedSection>
+          <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QuestionPageEditor))))))
+            onUpdatePage={[Function]}
+            page={
+              Object {
+                "answers": Array [
+                  Object {
+                    "id": 1,
+                    "options": Array [
+                      Object {
+                        "description": "",
+                        "id": 0,
+                        "label": "",
+                      },
+                    ],
+                    "type": "Checkbox",
+                  },
+                ],
+                "id": 2,
+                "title": "",
+              }
+            }
+          />
+        </EditingSurface__AnimatedSection>
+      </PageTransition>
+    </TransitionGroup>
+  </Form>
+</Canvas__Canvas>
+`;

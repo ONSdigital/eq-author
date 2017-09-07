@@ -14,7 +14,7 @@ import withCreateOption from "containers/Enhancers/withCreateOption";
 import withUpdateOption from "containers/Enhancers/withUpdateOption";
 import withDeleteOption from "containers/Enhancers/withDeleteOption";
 
-class QuestionPageEditor extends React.Component {
+export class QuestionPageEditor extends React.Component {
   static propTypes = {
     onUpdateAnswer: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,

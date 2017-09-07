@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] = `
+exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
   questionnaire={
     Object {
@@ -52,24 +52,11 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
       gutters={false}
     >
       <EditingSurface
-        answers={
-          Array [
-            Object {
-              "id": 1,
-              "label": "",
-              "options": Array [
-                Object {
-                  "id": 1,
-                },
-              ],
-            },
-          ]
-        }
         focused="section"
-        onAddAnswer={[Function]}
         onBlur={[Function]}
-        onChange={[Function]}
         onFocus={[Function]}
+        onUpdatePage={[Function]}
+        onUpdateSection={[Function]}
         page={
           Object {
             "answers": Array [
@@ -155,4 +142,4 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
 </BaseLayout>
 `;
 
-exports[`containers/QuestionnaireDesignPage should render nothing when loading 1`] = `null`;
+exports[`QuestionnaireDesignPage should render nothing when loading 1`] = `null`;

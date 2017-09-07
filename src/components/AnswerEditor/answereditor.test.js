@@ -1,14 +1,20 @@
 import React from "react";
-import { mount } from "enzyme";
-import AnswerEditor from "./index";
+import { shallow, mount } from "enzyme";
+import DeleteButton from "components/DeleteButton";
+import CheckboxAnswer from "components/Answers/CheckboxAnswer";
+import AnswerEditor from "components/AnswerEditor";
 
 describe("Answer Editor", () => {
-  let mockProps;
+  let mockMutations;
   let mockAnswer;
   let mockCheckboxAnswer;
 
+  const createWrapper = (props, render = shallow) => {
+    return render(<AnswerEditor {...props} />);
+  };
+
   beforeEach(() => {
-    mockProps = {
+    mockMutations = {
       onChange: jest.fn(),
       onDeleteAnswer: jest.fn(),
       onAddOption: jest.fn(),
@@ -41,13 +47,50 @@ describe("Answer Editor", () => {
 
   it("should render TextField", () => {
     expect(
-      mount(<AnswerEditor answer={mockAnswer} {...mockProps} />)
+      createWrapper(
+        {
+          answer: mockAnswer,
+          ...mockMutations
+        },
+        mount
+      )
     ).toMatchSnapshot("Textfield");
   });
 
   it("should render Checkbox", () => {
     expect(
-      mount(<AnswerEditor answer={mockCheckboxAnswer} {...mockProps} />)
+      createWrapper(
+        {
+          answer: mockCheckboxAnswer,
+          ...mockMutations
+        },
+        mount
+      )
     ).toMatchSnapshot("Checkbox");
+  });
+
+  it("should call handler when answer deleted", () => {
+    const wrapper = createWrapper(
+      {
+        answer: mockAnswer,
+        ...mockMutations
+      },
+      mount
+    );
+
+    wrapper.find(DeleteButton).simulate("click");
+    expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(1);
+  });
+
+  it("should add an option to answer via `id`", () => {
+    const wrapper = createWrapper(
+      {
+        answer: mockCheckboxAnswer,
+        ...mockMutations
+      },
+      shallow
+    );
+    wrapper.find(CheckboxAnswer).simulate("addOption", 1);
+    expect(mockMutations.onAddOption).toHaveBeenCalledWith(1);
   });
 });

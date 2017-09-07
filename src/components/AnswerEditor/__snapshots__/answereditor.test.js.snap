@@ -18,6 +18,43 @@ exports[`Checkbox 1`] = `
   transition: color .2s ease-out;
 }
 
+.c10 {
+  padding: 0.8em 3em;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  -webkit-letter-spacing: -0.2px;
+  -moz-letter-spacing: -0.2px;
+  -ms-letter-spacing: -0.2px;
+  letter-spacing: -0.2px;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  color: #4A4A4A;
+  border: 1px #EAEAEA solid;
+}
+
+.c10:focus,
+.c10:active {
+  outline: none;
+}
+
+.c10[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.c10:focus,
+.c10:hover {
+  background-color: #EAEAEA;
+}
+
 .c5 {
   padding: 0.7em;
   width: 100%;
@@ -121,43 +158,6 @@ exports[`Checkbox 1`] = `
 
 .c9 {
   resize: none;
-}
-
-.c10 {
-  padding: 0.8em 3em;
-  border-radius: 2px;
-  font-size: 0.8em;
-  font-weight: 400;
-  cursor: pointer;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-transition: background-color 200ms ease-out;
-  transition: background-color 200ms ease-out;
-  -webkit-letter-spacing: -0.2px;
-  -moz-letter-spacing: -0.2px;
-  -ms-letter-spacing: -0.2px;
-  letter-spacing: -0.2px;
-  position: relative;
-  overflow: hidden;
-  background-color: white;
-  color: #4A4A4A;
-  border: 1px #EAEAEA solid;
-}
-
-.c10:focus,
-.c10:active {
-  outline: none;
-}
-
-.c10[disabled] {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.c10:focus,
-.c10:hover {
-  background-color: #EAEAEA;
 }
 
 .c4 {

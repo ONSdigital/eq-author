@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question Page Editor should render 1`] = `
+<div>
+  <CanvasSection
+    focused={false}
+    id="page"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <MetaEditor
+      onChange={[Function]}
+      page={
+        Object {
+          "answers": Array [
+            Object {
+              "description": "",
+              "id": 1,
+              "title": "First name",
+              "type": "TextField",
+            },
+            Object {
+              "description": "",
+              "id": 2,
+              "title": "Last name",
+              "type": "TextField",
+            },
+          ],
+          "description": "",
+          "guidance": "",
+          "id": 1,
+          "title": "",
+        }
+      }
+    />
+  </CanvasSection>
+  <CanvasSection
+    focused={false}
+    id="answer-1"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <AnswerEditor
+      answer={
+        Object {
+          "description": "",
+          "id": 1,
+          "title": "First name",
+          "type": "TextField",
+        }
+      }
+      onAddOption={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onFocus={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </CanvasSection>
+  <CanvasSection
+    focused={false}
+    id="answer-2"
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <AnswerEditor
+      answer={
+        Object {
+          "description": "",
+          "id": 2,
+          "title": "Last name",
+          "type": "TextField",
+        }
+      }
+      onAddOption={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onFocus={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </CanvasSection>
+  <CanvasSection
+    focused={false}
+    onBlur={[Function]}
+    onFocus={[Function]}
+  >
+    <AnswerTypeSelector
+      onSelect={[Function]}
+    />
+  </CanvasSection>
+</div>
+`;
