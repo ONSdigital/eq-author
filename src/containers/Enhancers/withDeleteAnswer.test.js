@@ -1,7 +1,7 @@
 import { mapMutateToProps, deleteUpdater } from "./withDeleteAnswer";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
-  let mutate, result, ownProps, onDeleteAnswer;
+  let mutate, result, onDeleteAnswer;
   let deletedAnswer, currentPage;
 
   beforeEach(() => {
@@ -23,11 +23,6 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
     };
 
     onDeleteAnswer = jest.fn(() => Promise.resolve());
-
-    ownProps = {
-      pageId: currentPage.id,
-      onDeleteAnswer
-    };
 
     mutate = jest.fn(() => Promise.resolve(result));
   });
@@ -60,31 +55,29 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
     let props;
 
     beforeEach(() => {
-      props = mapMutateToProps({ ownProps, mutate });
+      props = mapMutateToProps({ mutate });
     });
 
-    it("should have a onDeletePage prop", () => {
+    it("should have a onDeleteAnswer prop", () => {
       expect(props.onDeleteAnswer).toBeInstanceOf(Function);
     });
 
-    describe("onDeletePage", () => {
-      it("should call mutate", () => {
-        return props.onDeleteAnswer(deletedAnswer.id).then(() => {
-          expect(mutate).toHaveBeenCalledWith(
-            expect.objectContaining({
-              variables: {
-                id: deletedAnswer.id
-              }
-            })
-          );
-        });
-      });
-
-      it("should return promise that resolves to deletePage result", () => {
-        return expect(props.onDeleteAnswer(deletedAnswer.id)).resolves.toBe(
-          result
+    it("should call mutate when onDeleteAnswer is invoked", () => {
+      return props.onDeleteAnswer(currentPage.id, deletedAnswer.id).then(() => {
+        expect(mutate).toHaveBeenCalledWith(
+          expect.objectContaining({
+            variables: {
+              id: deletedAnswer.id
+            }
+          })
         );
       });
+    });
+
+    it("should return promise that resolves to deletePage result", () => {
+      return expect(props.onDeleteAnswer(deletedAnswer.id)).resolves.toBe(
+        result
+      );
     });
   });
 });
