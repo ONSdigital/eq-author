@@ -4,10 +4,10 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
   questionnaire={
     Object {
-      "id": "3",
+      "id": 3,
       "sections": Array [
         Object {
-          "id": "2",
+          "id": 2,
           "pages": Array [
             Object {
               "answers": Array [
@@ -23,7 +23,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
               ],
               "description": "",
               "guidance": "",
-              "id": "1",
+              "id": 1,
               "title": "",
               "type": "General",
             },
@@ -43,9 +43,42 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
       cols={2}
       gutters={false}
     >
-      <withRouter(Apollo(Apollo(Apollo(Apollo(QuestionnaireNav)))))
-        pageId="1"
-        questionnaireId="3"
+      <withRouter(Apollo(Apollo(Apollo(QuestionnaireNav))))
+        pageId={1}
+        questionnaire={
+          Object {
+            "id": 3,
+            "sections": Array [
+              Object {
+                "id": 2,
+                "pages": Array [
+                  Object {
+                    "answers": Array [
+                      Object {
+                        "id": 1,
+                        "label": "",
+                        "options": Array [
+                          Object {
+                            "id": 1,
+                          },
+                        ],
+                      },
+                    ],
+                    "description": "",
+                    "guidance": "",
+                    "id": 1,
+                    "title": "",
+                    "type": "General",
+                  },
+                ],
+                "title": "",
+              },
+            ],
+            "title": "hello world",
+          }
+        }
+        questionnaireId={3}
+        sectionId={2}
       />
     </Column__Column>
     <Column__Column
@@ -72,14 +105,14 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
             ],
             "description": "",
             "guidance": "",
-            "id": "1",
+            "id": 1,
             "title": "",
             "type": "General",
           }
         }
         section={
           Object {
-            "id": "2",
+            "id": 2,
             "pages": Array [
               Object {
                 "answers": Array [
@@ -95,7 +128,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                 ],
                 "description": "",
                 "guidance": "",
-                "id": "1",
+                "id": 1,
                 "title": "",
                 "type": "General",
               },
@@ -130,7 +163,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
               ],
               "description": "",
               "guidance": "",
-              "id": "1",
+              "id": 1,
               "title": "",
               "type": "General",
             }

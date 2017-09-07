@@ -17,10 +17,11 @@ export class QuestionnaireDesignPage extends Component {
     onUpdateSection: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
-    questionnaireId: PropTypes.string,
     section: CustomPropTypes.section,
+    questionnaireId: PropTypes.number.isRequired,
+    pageId: PropTypes.number.isRequired,
+    sectionId: PropTypes.number.isRequired,
     page: CustomPropTypes.page,
-    pageId: PropTypes.string,
     breadcrumb: CustomPropTypes.breadcrumb,
     loading: PropTypes.bool.isRequired
   };
@@ -56,6 +57,7 @@ export class QuestionnaireDesignPage extends Component {
       section,
       page,
       questionnaireId,
+      sectionId,
       pageId,
       onUpdatePage,
       onUpdateSection
@@ -72,7 +74,9 @@ export class QuestionnaireDesignPage extends Component {
         <Grid align="top">
           <Column cols={2} gutters={false}>
             <QuestionnaireNavContainer
+              questionnaire={questionnaire}
               questionnaireId={questionnaireId}
+              sectionId={sectionId}
               pageId={pageId}
             />
           </Column>

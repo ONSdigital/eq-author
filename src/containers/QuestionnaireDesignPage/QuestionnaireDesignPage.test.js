@@ -13,7 +13,7 @@ describe("QuestionnaireDesignPage", () => {
   };
 
   const page = {
-    id: "1",
+    id: 1,
     description: "",
     guidance: "",
     title: "",
@@ -22,13 +22,13 @@ describe("QuestionnaireDesignPage", () => {
   };
 
   const section = {
-    id: "2",
+    id: 2,
     title: "",
     pages: [page]
   };
 
   const questionnaire = {
-    id: "3",
+    id: 3,
     title: "hello world",
     sections: [section]
   };
@@ -47,6 +47,7 @@ describe("QuestionnaireDesignPage", () => {
         section={section}
         page={page}
         pageId={page.id}
+        sectionId={section.id}
         loading={false}
       />
     );
