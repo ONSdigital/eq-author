@@ -65,13 +65,12 @@ class AnswerEditor extends React.Component {
 AnswerEditor.propTypes = {
   answer: CustomPropTypes.answer,
   onChange: PropTypes.func.isRequired,
-  onAddOption: PropTypes.func.isRequired,
-  onDeleteOption: PropTypes.func.isRequired,
   onDeleteAnswer: PropTypes.func.isRequired,
+  onAddOption: PropTypes.func.isRequired,
+  onUpdateOption: PropTypes.func.isRequired,
+  onDeleteOption: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired,
-  onUpdateOption: PropTypes.func.isRequired
-  // onEntered: PropTypes.func.isRequired
+  onBlur: PropTypes.func.isRequired
 };
 
 export default AnswerEditor;
