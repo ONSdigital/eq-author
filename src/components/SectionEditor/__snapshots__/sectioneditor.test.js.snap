@@ -81,7 +81,9 @@ exports[`SectionEditor should render 1`] = `
   onChange={[Function]}
   section={Object {}}
 >
-  <div>
+  <div
+    id="section-editor"
+  >
     <Field
       id="title"
     >
