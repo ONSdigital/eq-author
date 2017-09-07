@@ -3,11 +3,12 @@
 exports[`TextAnswer should render 1`] = `
 <div>
   <Field
-    id="answers[1].label"
+    id="label"
   >
     <withSeamlessness(withChangeHandler(Input))
       data-autoFocus={true}
       focused={false}
+      onBlur={[Function]}
       onChange={[Function]}
       optional={false}
       placeholder="Label"
@@ -15,11 +16,12 @@ exports[`TextAnswer should render 1`] = `
     />
   </Field>
   <Field
-    id="answers[1].description"
+    id="description"
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
       focused={false}
+      onBlur={[Function]}
       onChange={[Function]}
       optional={false}
       placeholder="Enter a description (optional)…"
@@ -28,12 +30,8 @@ exports[`TextAnswer should render 1`] = `
       value="Nullam id dolor id nibh ultricies."
     />
   </Field>
-  <Field
-    id="answer.description"
-  >
-    <withChangeHandler(Input)
-      disabled={true}
-    />
-  </Field>
+  <withChangeHandler(Input)
+    disabled={true}
+  />
 </div>
 `;

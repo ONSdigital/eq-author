@@ -10,26 +10,23 @@ const answer = {
 };
 
 describe("TextAnswer", () => {
-  const i = 1;
   let handleChange;
-  let component;
+  let wrapper;
 
   beforeEach(() => {
     handleChange = jest.fn();
-
-    component = shallow(
-      <TextAnswer onChange={handleChange} answer={answer} answerIndex={i} />
-    );
+    wrapper = shallow(<TextAnswer onChange={handleChange} answer={answer} />);
   });
 
   it("should render", () => {
-    expect(component).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it("should invoke callback on change", () => {
-    component.find(SeamlessTextArea).simulate("change");
-    component.find(SeamlessInput).simulate("change");
+  it("should invoke callback on blur", () => {
+    wrapper.find(SeamlessInput).simulate("blur");
+    wrapper.find(SeamlessTextArea).simulate("blur");
 
     expect(handleChange).toHaveBeenCalledTimes(2);
+    expect(handleChange).toHaveBeenCalledWith(answer);
   });
 });
