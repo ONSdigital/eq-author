@@ -6,6 +6,7 @@ const StyledField = styled.div`
   display: block;
   width: 100%;
   margin-bottom: ${props => (props.last ? "0" : "1")}em;
+  position: relative;
 `;
 
 const Field = ({ children, last, id, className, ...otherProps }) =>
