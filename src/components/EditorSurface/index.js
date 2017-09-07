@@ -40,7 +40,7 @@ const AnimatedSection = styled.div`
   }
 `;
 
-class EditingSurface extends React.Component {
+class EditorSurface extends React.Component {
   static propTypes = {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
@@ -134,4 +134,4 @@ class EditingSurface extends React.Component {
   }
 }
 
-export default EditingSurface;
+export default EditorSurface;

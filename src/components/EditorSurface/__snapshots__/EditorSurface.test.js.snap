@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EditingSurface should render 1`] = `
+exports[`EditorSurface should render 1`] = `
 <Canvas__Canvas>
   <Form
     onChange={[Function]}
@@ -11,7 +11,7 @@ exports[`EditingSurface should render 1`] = `
       component="div"
     >
       <PageTransition>
-        <EditingSurface__AnimatedSection>
+        <EditorSurface__AnimatedSection>
           <CanvasSection
             focused={false}
             id="section"
@@ -47,10 +47,10 @@ exports[`EditingSurface should render 1`] = `
               }
             />
           </CanvasSection>
-        </EditingSurface__AnimatedSection>
+        </EditorSurface__AnimatedSection>
       </PageTransition>
       <PageTransition>
-        <EditingSurface__AnimatedSection>
+        <EditorSurface__AnimatedSection>
           <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE))))))
             onUpdatePage={[Function]}
             page={
@@ -73,7 +73,7 @@ exports[`EditingSurface should render 1`] = `
               }
             }
           />
-        </EditingSurface__AnimatedSection>
+        </EditorSurface__AnimatedSection>
       </PageTransition>
     </TransitionGroup>
   </Form>

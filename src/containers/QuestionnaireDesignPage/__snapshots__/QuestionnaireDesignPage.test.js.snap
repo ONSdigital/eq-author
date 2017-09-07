@@ -51,7 +51,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     <Column__Column
       gutters={false}
     >
-      <EditingSurface
+      <EditorSurface
         focused="section"
         onBlur={[Function]}
         onFocus={[Function]}

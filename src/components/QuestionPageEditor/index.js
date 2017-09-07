@@ -2,7 +2,7 @@ import React from "react";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
-import CanvasSection from "components/EditingSurface/CanvasSection";
+import CanvasSection from "components/EditorSurface/CanvasSection";
 import PropTypes from "prop-types";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";

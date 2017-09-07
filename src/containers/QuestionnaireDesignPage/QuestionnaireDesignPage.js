@@ -8,7 +8,7 @@ import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
 import { PropertyPane, PropertyPaneTitle } from "components/PropertyPane";
 import QuestionProperties from "components/QuestionProperties";
-import EditingSurface from "components/EditingSurface";
+import EditorSurface from "components/EditorSurface";
 
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 
@@ -77,7 +77,7 @@ export class QuestionnaireDesignPage extends Component {
             />
           </Column>
           <Column gutters={false}>
-            <EditingSurface
+            <EditorSurface
               section={section}
               page={page}
               focused={focused}

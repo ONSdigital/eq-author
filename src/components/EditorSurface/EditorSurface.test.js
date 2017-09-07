@@ -1,6 +1,9 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import EditingSurface from "./";
+
+import EditorSurface from "./";
+import AnswerTypeSelector from "components/AnswerTypeSelector";
+import DeleteButton from "components/DeleteButton";
 
 const option = {
   id: 0,
@@ -26,13 +29,13 @@ const section = {
   pages: [page]
 };
 
-describe("EditingSurface", () => {
+describe("EditorSurface", () => {
   let wrapper;
   let mockMutations;
 
   const createWrapper = (props, render = mount) => {
     return render(
-      <EditingSurface
+      <EditorSurface
         section={section}
         page={page}
         {...mockMutations}
