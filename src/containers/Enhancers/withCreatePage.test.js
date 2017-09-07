@@ -1,8 +1,8 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToDesigner,
-  sectionFragment
+  redirectToNewPage,
+  fragment
 } from "./withCreatePage";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
@@ -52,33 +52,28 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const readFragment = jest
-        .fn()
-        .mockImplementation(({ query, variables }) => {
-          return section;
-        });
-
+      const readFragment = jest.fn().mockImplementation(() => section);
       const writeFragment = jest.fn();
 
-      const updater = createUpdater(questionnaire.id, section.id);
+      const updater = createUpdater(section.id);
       updater({ readFragment, writeFragment }, result);
 
       expect(readFragment).toHaveBeenCalledWith({
         id: `Section${section.id}`,
-        fragment: sectionFragment
+        fragment: fragment
       });
 
       expect(writeFragment).toHaveBeenCalledWith({
         id: `Section${section.id}`,
-        fragment: sectionFragment,
+        fragment: fragment,
         data: section
       });
     });
   });
 
-  describe("redirectToDesigner", () => {
+  describe("redirectToNewPage", () => {
     it("should redirect to the correct url", () => {
-      redirectToDesigner(ownProps)(result);
+      redirectToNewPage(ownProps)(result);
 
       expect(history.push).toHaveBeenCalledWith(
         `/questionnaire/${questionnaire.id}/design/${section.id}/${newPage.id}`

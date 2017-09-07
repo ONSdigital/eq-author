@@ -1,7 +1,7 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToDesigner
+  redirectToNewPage
 } from "./withCreateSection";
 
 describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
@@ -68,9 +68,9 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
     });
   });
 
-  describe("redirectToDesigner", () => {
+  describe("redirectToNewPage", () => {
     it("should redirect to the correct url", () => {
-      redirectToDesigner(ownProps)(result);
+      redirectToNewPage(ownProps)(result);
 
       expect(history.push).toHaveBeenCalledWith(
         `/questionnaire/${questionnaire.id}/design/${newSection.id}/${newPage.id}`

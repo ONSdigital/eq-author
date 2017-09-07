@@ -2,7 +2,7 @@ import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
 import createSectionMutation from "graphql/createSection.graphql";
 
-export const redirectToDesigner = ownProps => ({ data }) => {
+export const redirectToNewPage = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
   const section = data.createSection;
   const page = section.pages[0];
@@ -51,7 +51,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       variables: section,
       optimisticResponse,
       update
-    }).then(redirectToDesigner(ownProps));
+    }).then(redirectToNewPage(ownProps));
   }
 });
 

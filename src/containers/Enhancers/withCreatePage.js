@@ -2,7 +2,7 @@ import { graphql, gql } from "react-apollo";
 
 import createQuestionPageMutation from "graphql/createQuestionPage.graphql";
 
-export const sectionFragment = gql`
+export const fragment = gql`
   fragment Section on Section {
     id
     pages {
@@ -11,40 +11,32 @@ export const sectionFragment = gql`
   }
 `;
 
-export const redirectToDesigner = ownProps => ({ data }) => {
+export const redirectToNewPage = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
   const { id, section } = data.createQuestionPage;
   history.push(`/questionnaire/${questionnaireId}/design/${section.id}/${id}`);
 };
 
-export const createUpdater = (questionnaireId, sectionId) => (
-  proxy,
-  result
-) => {
+export const createUpdater = sectionId => (proxy, result) => {
   const id = `Section${sectionId}`;
-  const section = proxy.readFragment({
-    id,
-    fragment: sectionFragment
-  });
+  const section = proxy.readFragment({ id, fragment });
 
   section.pages.push(result.data.createQuestionPage);
 
   proxy.writeFragment({
     id,
-    fragment: sectionFragment,
+    fragment,
     data: section
   });
 };
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onAddPage(sectionId) {
-    const { questionnaireId } = ownProps;
-
     const page = {
       title: "",
       description: "",
       type: "General",
-      sectionId: sectionId
+      sectionId
     };
 
     const optimisticResponse = {
@@ -62,13 +54,13 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       }
     };
 
-    const update = createUpdater(questionnaireId, sectionId);
+    const update = createUpdater(sectionId);
 
     return mutate({
       variables: page,
       optimisticResponse,
       update
-    }).then(redirectToDesigner(ownProps));
+    }).then(redirectToNewPage(ownProps));
   }
 });
 

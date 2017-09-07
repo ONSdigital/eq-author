@@ -3,7 +3,7 @@ import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import deletePageMutation from "graphql/deletePage.graphql";
 import { find, findIndex, remove } from "lodash";
 
-const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
+const findById = (collection, id) => find(collection, { id });
 
 export const getNextPage = (pages, id) => {
   const index = findIndex(pages, { id });
@@ -22,19 +22,16 @@ export const getNextPage = (pages, id) => {
   return pages[nextPageIndex];
 };
 
-export const handleDeletion = (ownProps, sectionId, pageId) => {
-  const { questionnaire, history, onAddPage } = ownProps;
+export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
+  const { questionnaire, history, onAddPage, pageId: currentPageId } = ownProps;
 
   const section = findById(questionnaire.sections, sectionId);
-  const currentPageId = parseInt(ownProps.pageId, 10);
-  const deletedPageId = parseInt(pageId, 10);
 
   if (section.pages.length === 1) {
     return onAddPage(sectionId);
   }
 
   if (currentPageId === deletedPageId) {
-    const section = findById(questionnaire.sections, sectionId);
     const page = getNextPage(section.pages, currentPageId);
 
     history.push(

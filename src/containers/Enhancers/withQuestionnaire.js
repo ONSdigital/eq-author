@@ -1,28 +1,26 @@
 import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
+import { find } from "lodash";
 
-import { find, get } from "lodash";
-
-const findById = (collection, id) => find(collection, { id: parseInt(id, 10) });
+const findById = (collection, id) => find(collection, { id });
 
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;
   const { sectionId, pageId } = ownProps;
 
-  const props = {
-    questionnaire,
-    loading
-  };
-
-  if (questionnaire) {
-    props.section = findById(questionnaire.sections, sectionId);
-    if (props.section) {
-      props.page = findById(props.section.pages, pageId);
-      props.answers = get(props.page, "answers", []);
-    }
+  if (loading) {
+    return { loading };
   }
 
-  return props;
+  const section = findById(questionnaire.sections, sectionId);
+  const page = findById(section.pages, pageId);
+
+  return {
+    loading,
+    questionnaire,
+    section,
+    page
+  };
 };
 
 export default graphql(getQuestionnaireQuery, {
