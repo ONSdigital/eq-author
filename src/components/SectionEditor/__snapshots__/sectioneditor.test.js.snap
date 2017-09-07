@@ -78,13 +78,11 @@ exports[`SectionEditor should render 1`] = `
 
 <SectionEditor
   onChange={[Function]}
-  sectionDescription="Description"
-  sectionTitle="Title"
-  sectionTitleRef={[Function]}
+  section={Object {}}
 >
   <div>
     <Field
-      id="section.title"
+      id="title"
     >
       <Field__StyledField>
         <div
@@ -92,44 +90,44 @@ exports[`SectionEditor should render 1`] = `
         >
           <withSeamlessness(withChangeHandler(Input))
             focused={false}
-            id="section.title"
+            id="title"
+            onBlur={[Function]}
             onChange={[Function]}
             optional={false}
             placeholder="Section title"
             size="medium"
-            value="Title"
           >
             <withSeamlessness__StyledSeamless
-              name="section.title"
+              name="title"
+              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Section title"
               size="medium"
-              value="Title"
             >
               <withChangeHandler(Input)
                 className="c1"
-                name="section.title"
+                name="title"
+                onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Section title"
                 size="medium"
-                value="Title"
               >
                 <Input
                   className="c1"
-                  name="section.title"
+                  name="title"
+                  onBlur={[Function]}
                   onChange={[Function]}
                   placeholder="Section title"
                   size="medium"
-                  value="Title"
                 >
                   <input
                     className="c1"
-                    name="section.title"
+                    name="title"
+                    onBlur={[Function]}
                     onChange={[Function]}
                     placeholder="Section title"
                     size="medium"
                     type="text"
-                    value="Title"
                   />
                 </Input>
               </withChangeHandler(Input)>
@@ -139,7 +137,7 @@ exports[`SectionEditor should render 1`] = `
       </Field__StyledField>
     </Field>
     <Field
-      id="section.description"
+      id="description"
       optional={true}
     >
       <Field__StyledField>
@@ -149,59 +147,60 @@ exports[`SectionEditor should render 1`] = `
           <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
             cols="30"
             focused={false}
-            id="section.description"
+            id="description"
+            onBlur={[Function]}
             onChange={[Function]}
             optional={true}
             placeholder="Enter a description (optional)…"
             rows="5"
             size="small"
-            value="Description"
           >
             <withSeamlessness__StyledSeamless
               cols="30"
-              name="section.description"
+              name="description"
+              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Enter a description (optional)…"
               rows="5"
               size="small"
-              value="Description"
             >
               <withChangeHandler(SeamlessTextArea__TextArea)
                 className="c2"
                 cols="30"
-                name="section.description"
+                name="description"
+                onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Enter a description (optional)…"
                 rows="5"
                 size="small"
-                value="Description"
               >
                 <SeamlessTextArea__TextArea
                   className="c2"
                   cols="30"
-                  name="section.description"
+                  name="description"
+                  onBlur={[Function]}
                   onChange={[Function]}
                   placeholder="Enter a description (optional)…"
                   rows="5"
                   size="small"
-                  value="Description"
                 >
                   <TextareaAutosize
                     className="c2 c3"
                     cols="30"
-                    name="section.description"
+                    name="description"
+                    onBlur={[Function]}
                     onChange={[Function]}
                     onHeightChange={[Function]}
                     placeholder="Enter a description (optional)…"
                     rows="5"
                     size="small"
                     useCacheForDOMMeasurements={false}
-                    value="Description"
                   >
                     <textarea
                       className="c2 c3"
                       cols="30"
-                      name="section.description"
+                      name="description"
+                      onBlur={[Function]}
                       onChange={[Function]}
                       placeholder="Enter a description (optional)…"
                       rows="5"
@@ -211,7 +210,6 @@ exports[`SectionEditor should render 1`] = `
                           "height": 0,
                         }
                       }
-                      value="Description"
                     />
                   </TextareaAutosize>
                 </SeamlessTextArea__TextArea>
