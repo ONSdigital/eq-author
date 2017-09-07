@@ -22,6 +22,7 @@ describe("CheckboxAnswer", () => {
 
   let mockHandlers = {
     onAddOption: jest.fn(),
+    onUpdateOption: jest.fn(),
     onDeleteOption: jest.fn(),
     onChange: jest.fn(),
     onEntered: jest.fn(),

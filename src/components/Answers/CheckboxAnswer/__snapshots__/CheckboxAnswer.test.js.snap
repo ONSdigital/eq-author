@@ -8,15 +8,17 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   >
     <CSSTransition
       classNames="option"
-      onEntered={[Function]}
       timeout={200}
     >
       <CheckboxOption
         answerIndex={0}
         hasDeleteButton={false}
+        onAddOption={[Function]}
         onBlur={[Function]}
         onChange={[Function]}
         onDelete={[Function]}
+        onDeleteOption={[Function]}
+        onEntered={[Function]}
         onFocus={[Function]}
         option={
           Object {
@@ -25,8 +27,6 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
             "label": "",
           }
         }
-        optionIndex={0}
-        optionName="answer-0-option-1"
       />
     </CSSTransition>
   </TransitionGroup>
