@@ -1,8 +1,6 @@
 import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
-import { find } from "lodash";
-
-const findById = (collection, id) => find(collection, { id });
+import findById from "utils/findById";
 
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;
