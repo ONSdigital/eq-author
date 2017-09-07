@@ -2,15 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { merge, reject, set } from "lodash";
-import styled from "styled-components";
 import CheckboxAnswer from "./index";
-
-const CenterXY = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-`;
 
 const options = [
   {
@@ -90,12 +82,6 @@ class CheckboxAnswerWrapper extends React.Component {
   }
 }
 
-const CenterDecorator = storyFn =>
-  <CenterXY>
-    {storyFn()}
-  </CenterXY>;
-
-storiesOf("CheckboxAnswer", module)
-  .addDecorator(CenterDecorator)
+storiesOf("AnswerTypes/CheckboxAnswer", module)
   .addDecorator(withKnobs)
   .add("Default", () => <CheckboxAnswerWrapper />);

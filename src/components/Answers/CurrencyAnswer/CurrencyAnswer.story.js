@@ -15,7 +15,7 @@ const answer = {
   description: "Nullam id dolor id nibh ultricies."
 };
 
-storiesOf("CurrencyAnswer", module)
+storiesOf("AnswerTypes/CurrencyAnswer", module)
   .addDecorator(story =>
     <Background>
       {story()}
