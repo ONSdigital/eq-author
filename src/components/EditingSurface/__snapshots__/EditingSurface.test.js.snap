@@ -51,7 +51,7 @@ exports[`EditingSurface should render 1`] = `
       </PageTransition>
       <PageTransition>
         <EditingSurface__AnimatedSection>
-          <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QuestionPageEditor))))))
+          <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE))))))
             onUpdatePage={[Function]}
             page={
               Object {

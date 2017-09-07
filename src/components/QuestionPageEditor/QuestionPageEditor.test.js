@@ -1,4 +1,4 @@
-import { QuestionPageEditor as QPE } from "components/QuestionPageEditor";
+import { QPE } from "components/QuestionPageEditor";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import React from "react";
