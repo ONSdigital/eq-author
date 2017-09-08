@@ -14,7 +14,7 @@ const Center = styled.div`
   flex-direction: column;
 `;
 
-const QuestionnaireMeta = ({
+export const StatelessQuestionnaireMeta = ({
   questionnaire,
   onSubmit,
   onUpdate,
@@ -98,7 +98,7 @@ const QuestionnaireMeta = ({
   );
 };
 
-QuestionnaireMeta.propTypes = {
+StatelessQuestionnaireMeta.propTypes = {
   children: PropTypes.node,
   onChange: PropTypes.func,
   onUpdate: PropTypes.func,
@@ -106,4 +106,4 @@ QuestionnaireMeta.propTypes = {
   questionnaire: CustomPropTypes.questionnaire
 };
 
-export default withEntityEditor("questionnaire")(QuestionnaireMeta);
+export default withEntityEditor("questionnaire")(StatelessQuestionnaireMeta);

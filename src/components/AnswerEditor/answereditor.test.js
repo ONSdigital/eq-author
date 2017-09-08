@@ -1,8 +1,8 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import DeleteButton from "components/DeleteButton";
+import { shallow } from "enzyme";
 import CheckboxAnswer from "components/Answers/CheckboxAnswer";
-import AnswerEditor from "components/AnswerEditor";
+import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
+import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
 
 describe("Answer Editor", () => {
   let mockMutations;
@@ -21,6 +21,7 @@ describe("Answer Editor", () => {
       onUpdateOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onBlur: jest.fn(),
+      onUpdate: jest.fn(),
       onEntered: jest.fn(),
       onFocus: jest.fn()
     };
@@ -29,12 +30,12 @@ describe("Answer Editor", () => {
       id: 1,
       title: "",
       description: "",
-      type: "TextField"
+      type: TEXTFIELD
     };
 
     mockCheckboxAnswer = {
       ...mockAnswer,
-      type: "Checkbox",
+      type: CHECKBOX,
       options: [
         {
           id: 1,
@@ -46,51 +47,37 @@ describe("Answer Editor", () => {
   });
 
   it("should render TextField", () => {
-    expect(
-      createWrapper(
-        {
-          answer: mockAnswer,
-          ...mockMutations
-        },
-        mount
-      )
-    ).toMatchSnapshot("Textfield");
+    const wrapper = createWrapper({
+      answer: mockAnswer,
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("should render Checkbox", () => {
-    expect(
-      createWrapper(
-        {
-          answer: mockCheckboxAnswer,
-          ...mockMutations
-        },
-        mount
-      )
-    ).toMatchSnapshot("Checkbox");
+    const wrapper = createWrapper({
+      answer: mockCheckboxAnswer,
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("should call handler when answer deleted", () => {
-    const wrapper = createWrapper(
-      {
-        answer: mockAnswer,
-        ...mockMutations
-      },
-      mount
-    );
+    const wrapper = createWrapper({
+      answer: mockAnswer,
+      ...mockMutations
+    });
 
-    wrapper.find(DeleteButton).simulate("click");
-    expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(1);
+    wrapper.find(AnswerDeleteButton).first().simulate("click");
+    expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(mockAnswer.id);
   });
 
   it("should add an option to answer via `id`", () => {
-    const wrapper = createWrapper(
-      {
-        answer: mockCheckboxAnswer,
-        ...mockMutations
-      },
-      shallow
-    );
-    wrapper.find(CheckboxAnswer).simulate("addOption", 1);
-    expect(mockMutations.onAddOption).toHaveBeenCalledWith(1);
+    const wrapper = createWrapper({
+      answer: mockCheckboxAnswer,
+      ...mockMutations
+    });
+    wrapper.find(CheckboxAnswer).simulate("addOption");
+    expect(mockMutations.onAddOption).toHaveBeenCalled();
   });
 });

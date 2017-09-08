@@ -43,7 +43,6 @@ class QuestionnaireCreatePage extends Component {
         <Center>
           <QuestionnaireMeta
             questionnaire={defaultQuestionnaire}
-            onChange={this.handleChange}
             onSubmit={this.handleSubmit}
             onUpdate={noop}
           >

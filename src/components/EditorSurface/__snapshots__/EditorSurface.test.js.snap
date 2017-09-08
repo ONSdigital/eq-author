@@ -18,8 +18,8 @@ exports[`EditorSurface should render 1`] = `
             onBlur={[Function]}
             onFocus={[Function]}
           >
-            <SectionEditor
-              onChange={[Function]}
+            <withEntityEditor(StatelessSectionEditor)
+              onUpdate={[Function]}
               section={
                 Object {
                   "id": 3,

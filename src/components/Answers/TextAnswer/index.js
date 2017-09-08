@@ -6,7 +6,7 @@ import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
 
-class TextAnswer extends React.Component {
+export class StatelessTextAnswer extends React.Component {
   render() {
     const { answer, onChange, onUpdate } = this.props;
 
@@ -38,10 +38,10 @@ class TextAnswer extends React.Component {
   }
 }
 
-TextAnswer.propTypes = {
+StatelessTextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
 };
 
-export default withEntityEditor("answer")(TextAnswer);
+export default withEntityEditor("answer")(StatelessTextAnswer);

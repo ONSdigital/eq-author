@@ -1,4 +1,3 @@
-/* eslint-disable react/no-find-dom-node */
 import React from "react";
 import Input from "components/Forms/Input";
 import styled from "styled-components";

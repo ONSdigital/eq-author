@@ -8,8 +8,8 @@ exports[`Question Page Editor should render 1`] = `
     onBlur={[Function]}
     onFocus={[Function]}
   >
-    <MetaEditor
-      onChange={[Function]}
+    <withEntityEditor(MetaEditor)
+      onUpdate={[Function]}
       page={
         Object {
           "answers": Array [
@@ -51,10 +51,10 @@ exports[`Question Page Editor should render 1`] = `
       }
       onAddOption={[Function]}
       onBlur={[Function]}
-      onChange={[Function]}
       onDeleteAnswer={[Function]}
       onDeleteOption={[Function]}
       onFocus={[Function]}
+      onUpdate={[Function]}
       onUpdateOption={[Function]}
     />
   </CanvasSection>
@@ -75,10 +75,10 @@ exports[`Question Page Editor should render 1`] = `
       }
       onAddOption={[Function]}
       onBlur={[Function]}
-      onChange={[Function]}
       onDeleteAnswer={[Function]}
       onDeleteOption={[Function]}
       onFocus={[Function]}
+      onUpdate={[Function]}
       onUpdateOption={[Function]}
     />
   </CanvasSection>

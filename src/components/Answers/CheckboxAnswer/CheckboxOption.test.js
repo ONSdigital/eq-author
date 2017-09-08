@@ -2,7 +2,7 @@ import React from "react";
 
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import {
-  CheckboxOption as CBO,
+  StatelessCheckboxOption,
   DeleteButton,
   SeamlessLabel
 } from "./CheckboxOption";
@@ -34,7 +34,11 @@ describe("CheckboxOption", () => {
     };
 
     wrapper = shallow(
-      <CBO {...mockMutations} option={option} hasDeleteButton />
+      <StatelessCheckboxOption
+        {...mockMutations}
+        option={option}
+        hasDeleteButton
+      />
     );
   });
 

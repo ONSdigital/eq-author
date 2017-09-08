@@ -8,7 +8,7 @@ import TextAnswer from "components/Answers/TextAnswer";
 import CheckboxAnswer from "components/Answers/CheckboxAnswer";
 import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
 
-const AnswerDeleteButton = styled(DeleteButton)`
+export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
   right: .5em;
   top: .4em;

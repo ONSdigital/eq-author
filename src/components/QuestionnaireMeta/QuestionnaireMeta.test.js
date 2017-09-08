@@ -2,13 +2,14 @@ import React from "react";
 import { shallow } from "enzyme";
 import Form from "components/Forms/Form";
 
-import QuestionnaireMeta from "components/QuestionnaireMeta";
+import { StatelessQuestionnaireMeta } from "components/QuestionnaireMeta";
 
 let wrapper;
 
 const handleChange = jest.fn();
 const handleSubmit = jest.fn();
 const handleBlur = jest.fn();
+const handleUpdate = jest.fn();
 
 const questionnaire = {
   description: "I am the description",
@@ -20,14 +21,15 @@ const questionnaire = {
 describe("QuestionnaireMeta", () => {
   beforeEach(() => {
     wrapper = shallow(
-      <QuestionnaireMeta
+      <StatelessQuestionnaireMeta
         questionnaire={questionnaire}
         onChange={handleChange}
+        onUpdate={handleUpdate}
         onSubmit={handleSubmit}
         onBlur={handleBlur}
       >
         Children
-      </QuestionnaireMeta>
+      </StatelessQuestionnaireMeta>
     );
   });
 
@@ -53,6 +55,6 @@ describe("QuestionnaireMeta", () => {
     inputs.forEach(input => input.simulate("blur"));
 
     expect(inputs.length).toBeGreaterThan(0);
-    expect(handleBlur).toHaveBeenCalledTimes(inputs.length);
+    expect(handleUpdate).toHaveBeenCalledTimes(inputs.length);
   });
 });

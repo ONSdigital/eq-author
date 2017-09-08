@@ -10,7 +10,7 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
       classNames="option"
       timeout={200}
     >
-      <CheckboxOption
+      <withEntityEditor(StatelessCheckboxOption)
         answerIndex={0}
         hasDeleteButton={false}
         onAddOption={[Function]}
@@ -20,6 +20,7 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
         onDeleteOption={[Function]}
         onEntered={[Function]}
         onFocus={[Function]}
+        onUpdate={[Function]}
         option={
           Object {
             "description": "",

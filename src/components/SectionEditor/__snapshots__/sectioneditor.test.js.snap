@@ -1,227 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SectionEditor should render 1`] = `
-.c0 {
-  display: block;
-  width: 100%;
-  margin-bottom: 1em;
-  position: relative;
-}
-
-.c1 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
-  font-size: 1.125em;
-  font-weight: 700;
-}
-
-.c1:focus {
-  outline: none;
-}
-
-.c1::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c1::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c1:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c1::placeholder {
-  color: #a3a3a3;
-}
-
-.c2 {
-  border: none;
-  padding: 0;
-  color: #35414D;
-  outline: none;
-  display: block;
-  width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
-  font-size: 0.875em;
-}
-
-.c2:focus {
-  outline: none;
-}
-
-.c2::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c2::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c2:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c2::placeholder {
-  color: #a3a3a3;
-}
-
-.c3 {
-  resize: none;
-}
-
-<SectionEditor
-  onChange={[Function]}
-  section={Object {}}
+<div
+  id="section-editor"
 >
-  <div
-    id="section-editor"
+  <Field
+    id="title"
   >
-    <Field
-      id="title"
-    >
-      <Field__StyledField>
-        <div
-          className="c0"
-        >
-          <withSeamlessness(withChangeHandler(Input))
-            focused={false}
-            id="title"
-            onBlur={[Function]}
-            onChange={[Function]}
-            optional={false}
-            placeholder="Section title"
-            size="medium"
-          >
-            <withSeamlessness__StyledSeamless
-              name="title"
-              onBlur={[Function]}
-              onChange={[Function]}
-              placeholder="Section title"
-              size="medium"
-            >
-              <withChangeHandler(Input)
-                className="c1"
-                name="title"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Section title"
-                size="medium"
-              >
-                <Input
-                  className="c1"
-                  name="title"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  placeholder="Section title"
-                  size="medium"
-                >
-                  <input
-                    className="c1"
-                    name="title"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    placeholder="Section title"
-                    size="medium"
-                    type="text"
-                  />
-                </Input>
-              </withChangeHandler(Input)>
-            </withSeamlessness__StyledSeamless>
-          </withSeamlessness(withChangeHandler(Input))>
-        </div>
-      </Field__StyledField>
-    </Field>
-    <Field
-      id="description"
-      optional={true}
-    >
-      <Field__StyledField>
-        <div
-          className="c0"
-        >
-          <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-            cols="30"
-            focused={false}
-            id="description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            optional={true}
-            placeholder="Enter a description (optional)…"
-            rows="5"
-            size="small"
-          >
-            <withSeamlessness__StyledSeamless
-              cols="30"
-              name="description"
-              onBlur={[Function]}
-              onChange={[Function]}
-              placeholder="Enter a description (optional)…"
-              rows="5"
-              size="small"
-            >
-              <withChangeHandler(SeamlessTextArea__TextArea)
-                className="c2"
-                cols="30"
-                name="description"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Enter a description (optional)…"
-                rows="5"
-                size="small"
-              >
-                <SeamlessTextArea__TextArea
-                  className="c2"
-                  cols="30"
-                  name="description"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  placeholder="Enter a description (optional)…"
-                  rows="5"
-                  size="small"
-                >
-                  <TextareaAutosize
-                    className="c2 c3"
-                    cols="30"
-                    name="description"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onHeightChange={[Function]}
-                    placeholder="Enter a description (optional)…"
-                    rows="5"
-                    size="small"
-                    useCacheForDOMMeasurements={false}
-                  >
-                    <textarea
-                      className="c2 c3"
-                      cols="30"
-                      name="description"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      placeholder="Enter a description (optional)…"
-                      rows="5"
-                      size="small"
-                      style={
-                        Object {
-                          "height": 0,
-                        }
-                      }
-                    />
-                  </TextareaAutosize>
-                </SeamlessTextArea__TextArea>
-              </withChangeHandler(SeamlessTextArea__TextArea)>
-            </withSeamlessness__StyledSeamless>
-          </withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
-        </div>
-      </Field__StyledField>
-    </Field>
-  </div>
-</SectionEditor>
+    <withSeamlessness(withChangeHandler(Input))
+      focused={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      optional={false}
+      placeholder="Section title"
+      size="medium"
+    />
+  </Field>
+  <Field
+    id="description"
+    optional={true}
+  >
+    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+      cols="30"
+      focused={false}
+      onBlur={[Function]}
+      onChange={[Function]}
+      optional={false}
+      placeholder="Enter a description (optional)…"
+      rows="5"
+      size="small"
+    />
+  </Field>
+</div>
 `;

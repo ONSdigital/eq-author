@@ -7,7 +7,7 @@ import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
 
-class SectionEditor extends React.Component {
+export class StatelessSectionEditor extends React.Component {
   render() {
     const { section, onUpdate, onChange } = this.props;
 
@@ -37,10 +37,10 @@ class SectionEditor extends React.Component {
   }
 }
 
-SectionEditor.propTypes = {
+StatelessSectionEditor.propTypes = {
   section: CustomPropTypes.section.isRequired,
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
 };
 
-export default withEntityEditor("section")(SectionEditor);
+export default withEntityEditor("section")(StatelessSectionEditor);
