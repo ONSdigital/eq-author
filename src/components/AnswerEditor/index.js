@@ -14,25 +14,17 @@ export const AnswerDeleteButton = styled(DeleteButton)`
   top: .4em;
 `;
 
+const AnswerTypeMap = {
+  [TEXTFIELD]: TextAnswer,
+  [CHECKBOX]: CheckboxAnswer
+};
+
 class AnswerEditor extends React.Component {
   handleDeleteAnswer = () => {
     this.props.onDeleteAnswer(this.props.answer.id);
   };
 
-  getRenderedAnswer(type) {
-    switch (type) {
-      case TEXTFIELD:
-        return TextAnswer;
-      case CHECKBOX:
-        return CheckboxAnswer;
-      default:
-        return null;
-    }
-  }
-
   render() {
-    const Answer = this.getRenderedAnswer(this.props.answer.type);
-
     const {
       onAddOption,
       onUpdateOption,
@@ -41,6 +33,8 @@ class AnswerEditor extends React.Component {
       onUpdate,
       answer
     } = this.props;
+
+    const Answer = AnswerTypeMap[answer.type];
 
     return (
       <div>
