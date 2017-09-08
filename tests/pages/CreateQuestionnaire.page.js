@@ -3,12 +3,12 @@ export const onCreateQuestionnairePage = () => {
   return pageTitle === "Create a Questionnaire";
 };
 
-const questionnaireTitle = "#questionnaire\\.title";
-const questionnaireDescription = "#questionnaire\\.description";
-const questionnaireSurveyId = "#questionnaire\\.surveyId";
-const questionnaireTheme = "#questionnaire\\.theme";
-const questionnaireLegalBasis = "#questionnaire\\.legalBasis";
-const questionnaireNavigation = "#questionnaire\\.navigation";
+const questionnaireTitle = "#title";
+const questionnaireDescription = "#description";
+const questionnaireSurveyId = "#surveyId";
+const questionnaireTheme = "#theme";
+const questionnaireLegalBasis = "#legalBasis";
+const questionnaireNavigation = "#navigation";
 const createButton = 'button[type="submit"]';
 
 export const enterQuestionnaireDetails = (
