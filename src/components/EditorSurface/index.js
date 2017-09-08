@@ -118,7 +118,7 @@ class EditorSurface extends React.Component {
                   focused={focused === "section"}
                   key={section.id}
                 >
-                  <SectionEditor onChange={onUpdateSection} section={section} />
+                  <SectionEditor onUpdate={onUpdateSection} section={section} />
                 </CanvasSection>
               </AnimatedSection>
             </PageTransition>

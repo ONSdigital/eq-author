@@ -4,37 +4,11 @@ import CustomPropTypes from "custom-prop-types";
 import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import withEntityEditor from "components/withEntityEditor";
 
 class TextAnswer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      answer: props.answer
-    };
-  }
-
-  componentWillReceiveProps({ answer }) {
-    if (answer.id !== this.props.answer.id) {
-      this.setState({ answer });
-    }
-  }
-
-  handleChange = ({ name, value }) => {
-    this.setState({
-      answer: {
-        ...this.state.answer,
-        [name]: value
-      }
-    });
-  };
-
-  handleBlur = e => {
-    this.props.onChange(this.state.answer);
-  };
-
   render() {
-    const { answer } = this.state;
+    const { answer, onChange, onUpdate } = this.props;
 
     return (
       <div>
@@ -42,8 +16,8 @@ class TextAnswer extends React.Component {
           <SeamlessInput
             placeholder="Label"
             size="medium"
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
+            onChange={onChange}
+            onBlur={onUpdate}
             value={answer.label}
             data-autoFocus
           />
@@ -53,8 +27,8 @@ class TextAnswer extends React.Component {
             cols="30"
             rows="5"
             placeholder="Enter a description (optional)…"
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
+            onChange={onChange}
+            onBlur={onUpdate}
             value={answer.description}
           />
         </Field>
@@ -66,7 +40,8 @@ class TextAnswer extends React.Component {
 
 TextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired
 };
 
-export default TextAnswer;
+export default withEntityEditor("answer")(TextAnswer);

@@ -78,7 +78,7 @@ class CheckboxAnswer extends Component {
                   {...otherProps}
                   option={option}
                   onDelete={this.handleOptionDelete}
-                  onChange={onUpdateOption}
+                  onUpdate={onUpdateOption}
                   hasDeleteButton={options.length > 1}
                 />
               </CSSTransition>

@@ -5,6 +5,7 @@ import { colors } from "constants/theme";
 import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import withEntityEditor from "components/withEntityEditor";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -86,37 +87,10 @@ export const SeamlessLabel = styled(SeamlessInput)`
 `;
 
 class CheckboxOption extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      option: props.option
-    };
-  }
-
-  componentWillReceiveProps({ option }) {
-    if (option.id !== this.props.option.id) {
-      this.setState({ option });
-    }
-  }
-
-  handleChange = ({ name, value }) => {
-    this.setState({
-      option: {
-        ...this.state.option,
-        [name]: value
-      }
-    });
-  };
-
-  handleBlur = e => {
-    e.stopPropagation();
-    this.props.onChange(this.state.option);
-  };
-
   static propTypes = {
     option: CustomPropTypes.option.isRequired,
     onChange: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired
@@ -133,22 +107,19 @@ class CheckboxOption extends Component {
   };
 
   render() {
-    const { hasDeleteButton } = this.props;
+    const { hasDeleteButton, option, onChange, onUpdate } = this.props;
 
     return (
-      <StyledCheckboxOption
-        key={this.state.option.id}
-        focused={this.state.option.focused}
-      >
+      <StyledCheckboxOption key={option.id} focused={option.focused}>
         <Field id="label">
           <StyledCheckboxInput type="checkbox" disabled />
           <SeamlessLabel
             placeholder="Label"
             size="medium"
-            value={this.state.option.label}
-            onChange={this.handleChange}
+            value={option.label}
+            onChange={onChange}
             onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onBlur={onUpdate}
             data-autoFocus
           />
         </Field>
@@ -157,10 +128,10 @@ class CheckboxOption extends Component {
             cols="30"
             rows="5"
             placeholder="Optional description"
-            onChange={this.handleChange}
-            value={this.state.option.description}
+            onChange={onChange}
+            value={option.description}
             onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onBlur={onUpdate}
           />
         </Field>
         {hasDeleteButton &&
@@ -172,4 +143,4 @@ class CheckboxOption extends Component {
   }
 }
 
-export default CheckboxOption;
+export default withEntityEditor("option")(CheckboxOption);

@@ -38,7 +38,7 @@ class AnswerEditor extends React.Component {
       onUpdateOption,
       onDeleteOption,
       onFocus,
-      onChange,
+      onUpdate,
       answer
     } = this.props;
 
@@ -46,7 +46,7 @@ class AnswerEditor extends React.Component {
       <div>
         <Answer
           answer={answer}
-          onChange={onChange}
+          onUpdate={onUpdate}
           onAddOption={onAddOption}
           onUpdateOption={onUpdateOption}
           onDeleteOption={onDeleteOption}
@@ -64,7 +64,7 @@ class AnswerEditor extends React.Component {
 
 AnswerEditor.propTypes = {
   answer: CustomPropTypes.answer,
-  onChange: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
   onDeleteAnswer: PropTypes.func.isRequired,
   onAddOption: PropTypes.func.isRequired,
   onUpdateOption: PropTypes.func.isRequired,

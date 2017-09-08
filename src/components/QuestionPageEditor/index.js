@@ -53,7 +53,7 @@ export class QPE extends React.Component {
           onBlur={onBlur}
           focused={focused === "page"}
         >
-          <MetaEditor onChange={onUpdatePage} page={page} />
+          <MetaEditor onUpdate={onUpdatePage} page={page} />
         </CanvasSection>
 
         {answers.map(answer =>
@@ -66,7 +66,7 @@ export class QPE extends React.Component {
           >
             <AnswerEditor
               answer={answer}
-              onChange={onUpdateAnswer}
+              onUpdate={onUpdateAnswer}
               onFocus={onFocus}
               onBlur={onBlur}
               onEntered={this.handleEntered}

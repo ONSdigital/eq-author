@@ -5,37 +5,11 @@ import CustomPropTypes from "custom-prop-types";
 import Field from "components/Forms/Field";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import withEntityEditor from "components/withEntityEditor";
 
 class SectionEditor extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      section: props.section
-    };
-  }
-
-  componentWillReceiveProps({ section }) {
-    if (section.id !== this.props.section.id) {
-      this.setState({ section });
-    }
-  }
-
-  handleChange = ({ name, value }) => {
-    this.setState({
-      section: {
-        ...this.state.section,
-        [name]: value
-      }
-    });
-  };
-
-  handleBlur = e => {
-    this.props.onChange(this.state.section);
-  };
-
   render() {
-    const { section } = this.state;
+    const { section, onUpdate, onChange } = this.props;
 
     return (
       <div id="section-editor">
@@ -43,9 +17,9 @@ class SectionEditor extends React.Component {
           <SeamlessInput
             placeholder="Section title"
             size="medium"
-            onChange={this.handleChange}
             value={section.title}
-            onBlur={this.handleBlur}
+            onChange={onChange}
+            onBlur={onUpdate}
           />
         </Field>
         <Field id="description" optional>
@@ -53,9 +27,9 @@ class SectionEditor extends React.Component {
             cols="30"
             rows="5"
             placeholder="Enter a description (optional)…"
-            onChange={this.handleChange}
             value={section.description}
-            onBlur={this.handleBlur}
+            onChange={onChange}
+            onBlur={onUpdate}
           />
         </Field>
       </div>
@@ -65,7 +39,8 @@ class SectionEditor extends React.Component {
 
 SectionEditor.propTypes = {
   section: CustomPropTypes.section.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired
 };
 
-export default SectionEditor;
+export default withEntityEditor("section")(SectionEditor);
