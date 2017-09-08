@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import TextAnswer from "components/Answers/TextAnswer";
+import TextAreaAnswer from "components/Answers/TextAreaAnswer";
 import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
 
@@ -15,13 +15,15 @@ const answer = {
   description: "Nullam id dolor id nibh ultricies."
 };
 
-storiesOf("AnswerTypes/TextAnswer", module)
+storiesOf("AnswerTypes/TextAreaAnswer", module)
   .addDecorator(story =>
     <Background>
       {story()}
     </Background>
   )
-  .add("Empty", () => <TextAnswer answer={{}} onChange={action("changed")} />)
+  .add("Empty", () =>
+    <TextAreaAnswer answer={{}} onChange={action("changed")} />
+  )
   .add("Prefilled", () =>
-    <TextAnswer answer={answer} onChange={action("changed")} />
+    <TextAreaAnswer answer={answer} onChange={action("changed")} />
   );
