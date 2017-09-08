@@ -1,9 +1,8 @@
-/* eslint-disable camelcase */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import BaseLayout from "components/BaseLayout";
-import { merge, set } from "lodash";
+import { noop } from "lodash";
 
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import Button from "components/Button";
@@ -20,46 +19,33 @@ const Center = styled.div`
   width: 100%;
 `;
 
+const defaultQuestionnaire = {
+  title: "",
+  description: "",
+  surveyId: "",
+  theme: "default",
+  legalBasis: "StatisticsOfTradeAct",
+  navigation: false
+};
+
 class QuestionnaireCreatePage extends Component {
   static propTypes = {
     createQuestionnaire: PropTypes.func.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      questionnaire: {
-        title: "",
-        description: "",
-        surveyId: "",
-        theme: "default",
-        legalBasis: "StatisticsOfTradeAct",
-        navigation: false
-      }
-    };
-  }
-
-  componentWillReceiveProps({ questionnaire }) {
-    this.setState(questionnaire);
-  }
-
-  handleChange = change => {
-    this.setState(merge({}, this.state, set({}, change.name, change.value)));
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.createQuestionnaire(this.state.questionnaire);
+  handleSubmit = questionnaire => {
+    this.props.createQuestionnaire(questionnaire);
   };
 
   render() {
     return (
-      <BaseLayout title={"Create a Questionnaire"}>
+      <BaseLayout title="Create a Questionnaire">
         <Center>
           <QuestionnaireMeta
-            questionnaire={this.state}
+            questionnaire={defaultQuestionnaire}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
+            onUpdate={noop}
           >
             <ActionButtonGroup horizontal>
               <Button type="submit" primary>

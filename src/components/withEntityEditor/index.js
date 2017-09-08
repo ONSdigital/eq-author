@@ -6,7 +6,7 @@ const withEntityEditor = propName => WrappedComponent => {
     static propTypes = {
       [propName]: PropTypes.object.isRequired, // eslint-disable-line
       onUpdate: PropTypes.func.isRequired,
-      onSubmit: PropTypes.func.isRequired
+      onSubmit: PropTypes.func
     };
 
     static displayName = `withEntityEditor(${WrappedComponent.displayName})`;
@@ -40,6 +40,11 @@ const withEntityEditor = propName => WrappedComponent => {
       this.props.onUpdate(this.state[propName]);
     };
 
+    handleSubmit = e => {
+      e.preventDefault();
+      this.props.onSubmit(this.state[propName]);
+    };
+
     render() {
       const props = { [propName]: this.state[propName] };
 
@@ -49,6 +54,7 @@ const withEntityEditor = propName => WrappedComponent => {
           {...props}
           onChange={this.handleChange}
           onUpdate={this.handleUpdate}
+          onSubmit={this.handleSubmit}
         />
       );
     }

@@ -1,13 +1,11 @@
-/* eslint-disable camelcase */
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
 import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
-
 import { CenteredPanel } from "components/Panel";
+import withEntityEditor from "components/withEntityEditor";
 
 const Center = styled.div`
   width: 100%;
@@ -19,7 +17,7 @@ const Center = styled.div`
 const QuestionnaireMeta = ({
   questionnaire,
   onSubmit,
-  onBlur,
+  onUpdate,
   onChange,
   children
 }) => {
@@ -27,34 +25,34 @@ const QuestionnaireMeta = ({
     <Center>
       <CenteredPanel>
         <Form onSubmit={onSubmit}>
-          <Field id="questionnaire.title">
+          <Field id="title">
             <Label>Questionnaire Title</Label>
             <Input
               autoFocus
               defaultValue={questionnaire.title}
               onChange={onChange}
-              onBlur={onBlur}
+              onBlur={onUpdate}
               required
             />
           </Field>
-          <Field id="questionnaire.description">
+          <Field id="description">
             <Label>Description</Label>
             <TextArea
               defaultValue={questionnaire.description}
               rows={4}
               onChange={onChange}
-              onBlur={onBlur}
+              onBlur={onUpdate}
               required
             />
           </Field>
           <Grid>
             <Column cols={6}>
-              <Field id="questionnaire.surveyId">
+              <Field id="surveyId">
                 <Label>Survey ID</Label>
                 <Input
                   defaultValue={questionnaire.surveyId}
                   onChange={onChange}
-                  onBlur={onBlur}
+                  onBlur={onUpdate}
                   required
                 />
               </Field>
@@ -62,34 +60,34 @@ const QuestionnaireMeta = ({
           </Grid>
           <Grid>
             <Column cols={6}>
-              <Field id="questionnaire.theme">
+              <Field id="theme">
                 <Label>Theme</Label>
                 <Select
                   options={["default", "census"]}
                   defaultValue={questionnaire.theme}
                   onChange={onChange}
-                  onBlur={onBlur}
+                  onBlur={onUpdate}
                 />
               </Field>
             </Column>
             <Column cols={6}>
-              <Field id="questionnaire.legalBasis">
+              <Field id="legalBasis">
                 <Label>Legal Basis</Label>
                 <Select
                   options={["StatisticsOfTradeAct", "Voluntary"]}
                   defaultValue={questionnaire.legalBasis}
                   onChange={onChange}
-                  onBlur={onBlur}
+                  onBlur={onUpdate}
                 />
               </Field>
             </Column>
           </Grid>
-          <Field id="questionnaire.navigation">
+          <Field id="navigation">
             <Input
               type="checkbox"
               defaultChecked={questionnaire.navigation}
               onChange={onChange}
-              onBlur={onBlur}
+              onBlur={onUpdate}
             />
             <Label inline>Navigation</Label>
           </Field>
@@ -103,9 +101,9 @@ const QuestionnaireMeta = ({
 QuestionnaireMeta.propTypes = {
   children: PropTypes.node,
   onChange: PropTypes.func,
-  onBlur: PropTypes.func,
+  onUpdate: PropTypes.func,
   onSubmit: PropTypes.func,
   questionnaire: CustomPropTypes.questionnaire
 };
 
-export default QuestionnaireMeta;
+export default withEntityEditor("questionnaire")(QuestionnaireMeta);

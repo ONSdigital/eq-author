@@ -1,24 +1,26 @@
-/* eslint-disable camelcase */
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-
-import withQuestionnaire from "components/WithQuestionnaire";
 import BaseLayout from "components/BaseLayout";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import { Grid, Column } from "components/Grid";
 
 const Margin = styled.div`margin: 2em 1em;`;
 
-export class QuestionnaireMetaPage extends Component {
+class QuestionnaireMetaPage extends Component {
   static propTypes = {
     breadcrumb: CustomPropTypes.breadcrumb,
-    questionnaire: CustomPropTypes.questionnaire
+    questionnaire: CustomPropTypes.questionnaire,
+    loading: PropTypes.bool
   };
 
   render() {
-    const { questionnaire, breadcrumb, ...otherProps } = this.props;
+    const { questionnaire, breadcrumb, loading, ...otherProps } = this.props;
+
+    if (loading) {
+      return null;
+    }
 
     return (
       <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
@@ -37,4 +39,4 @@ export class QuestionnaireMetaPage extends Component {
   }
 }
 
-export default withQuestionnaire(QuestionnaireMetaPage);
+export default QuestionnaireMetaPage;
