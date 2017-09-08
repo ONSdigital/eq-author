@@ -1,9 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-
 import EditorSurface from "./";
-import AnswerTypeSelector from "components/AnswerTypeSelector";
-import DeleteButton from "components/DeleteButton";
 
 const option = {
   id: 0,
