@@ -86,7 +86,7 @@ export const SeamlessLabel = styled(SeamlessInput)`
   vertical-align: middle;
 `;
 
-class CheckboxOption extends Component {
+export class CheckboxOption extends Component {
   static propTypes = {
     option: CustomPropTypes.option.isRequired,
     onChange: PropTypes.func.isRequired,
