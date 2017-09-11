@@ -40,7 +40,6 @@ exports[`SeamlessTextArea should render 1`] = `
 <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
   id="foo"
   onChange={[Function]}
-  optional={false}
   size="small"
   value="123"
 >

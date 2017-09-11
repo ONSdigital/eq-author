@@ -9,7 +9,6 @@ exports[`TextAnswer should render 1`] = `
       data-autoFocus={true}
       onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Label"
       size="medium"
     />
@@ -21,7 +20,6 @@ exports[`TextAnswer should render 1`] = `
       cols="30"
       onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Enter a description (optional)…"
       rows="5"
       size="small"

@@ -20,7 +20,7 @@ class MetaEditor extends React.Component {
             onBlur={onUpdate}
           />
         </Field>
-        <Field id="description" optional>
+        <Field id="description">
           <SeamlessInput
             placeholder="Question text (optional)…"
             value={page.description}
@@ -28,7 +28,7 @@ class MetaEditor extends React.Component {
             onBlur={onUpdate}
           />
         </Field>
-        <Field id="guidance" optional>
+        <Field id="guidance">
           <SeamlessInput
             placeholder="Guidance text (optional)…"
             value={page.guidance}

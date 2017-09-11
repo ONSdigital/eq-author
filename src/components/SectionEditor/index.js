@@ -22,7 +22,7 @@ export class StatelessSectionEditor extends React.Component {
             onBlur={onUpdate}
           />
         </Field>
-        <Field id="description" optional>
+        <Field id="description">
           <SeamlessTextArea
             cols="30"
             rows="5"

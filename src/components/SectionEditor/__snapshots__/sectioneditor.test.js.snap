@@ -10,20 +10,17 @@ exports[`SectionEditor should render 1`] = `
     <withSeamlessness(withChangeHandler(Input))
       onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Section title"
       size="medium"
     />
   </Field>
   <Field
     id="description"
-    optional={true}
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
       onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Enter a description (optional)…"
       rows="5"
       size="small"

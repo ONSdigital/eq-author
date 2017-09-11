@@ -25,7 +25,6 @@ exports[`CheckboxOption should match snapshot 1`] = `
       cols="30"
       onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Optional description"
       rows="5"
       size="small"

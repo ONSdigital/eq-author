@@ -8,7 +8,6 @@ exports[`CurrencyAnswer should render 1`] = `
     <withSeamlessness(withChangeHandler(Input))
       data-autoFocus={true}
       onChange={[Function]}
-      optional={false}
       placeholder="Label"
       size="medium"
     />
@@ -19,7 +18,6 @@ exports[`CurrencyAnswer should render 1`] = `
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
       onChange={[Function]}
-      optional={false}
       placeholder="Enter a description (optional)…"
       rows="5"
       size="small"
