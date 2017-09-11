@@ -20,7 +20,7 @@ const withEntityEditor = propName => WrappedComponent => {
     }
 
     componentWillReceiveProps(nextProps) {
-      if (nextProps[propName].id === this.props[propName].id) {
+      if (nextProps[propName].id !== this.props[propName].id) {
         this.setState({
           [propName]: nextProps[propName]
         });
