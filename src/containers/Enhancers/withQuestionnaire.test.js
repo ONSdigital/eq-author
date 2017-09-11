@@ -36,6 +36,18 @@ describe("containers/withQuestionnaire", () => {
       expect(props.section).toEqual(section);
       expect(props.page).toEqual(page);
     });
+
+    it("should handle no section selected", () => {
+      const props = mapResultsToProps({
+        data: { loading: false, questionnaire },
+        ownProps: {}
+      });
+
+      expect(props).toEqual({
+        loading: false,
+        questionnaire
+      });
+    });
   });
 
   describe("mapOptionsToProps", () => {

@@ -10,6 +10,13 @@ export const mapResultsToProps = ({ data, ownProps }) => {
     return { loading };
   }
 
+  if (!sectionId) {
+    return {
+      loading,
+      questionnaire
+    };
+  }
+
   const section = findById(questionnaire.sections, sectionId);
   const page = findById(section.pages, pageId);
 
