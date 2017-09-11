@@ -1,4 +1,4 @@
-import { mapResultsToProps } from "./withQuestionnaire";
+import { mapResultsToProps, mapPropToOptions } from "./withQuestionnaire";
 
 const page = {
   id: 3,
@@ -35,6 +35,15 @@ describe("containers/withQuestionnaire", () => {
       expect(props.questionnaire).toEqual(questionnaire);
       expect(props.section).toEqual(section);
       expect(props.page).toEqual(page);
+    });
+  });
+
+  describe("mapOptionsToProps", () => {
+    it("should pass questionnaireId as a variable", () => {
+      const questionnaireId = 1;
+      const options = mapPropToOptions({ questionnaireId });
+
+      expect(options.variables).toEqual({ id: questionnaireId });
     });
   });
 });

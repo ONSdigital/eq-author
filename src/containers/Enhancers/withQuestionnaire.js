@@ -21,7 +21,11 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   };
 };
 
+export const mapPropToOptions = props => ({
+  variables: { id: props.questionnaireId }
+});
+
 export default graphql(getQuestionnaireQuery, {
   props: mapResultsToProps,
-  options: props => ({ variables: { id: props.questionnaireId } })
+  options: mapPropToOptions
 });
