@@ -40,10 +40,6 @@ export class QuestionnaireDesignPage extends Component {
   handleBlur = () => {};
 
   handleFocus = focused => {
-    this.setFocused(focused);
-  };
-
-  setFocused = focused => {
     if (focused !== this.state.focused) {
       this.setState({ focused });
     }
