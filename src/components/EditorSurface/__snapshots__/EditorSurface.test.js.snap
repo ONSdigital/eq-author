@@ -13,8 +13,8 @@ exports[`EditorSurface should render 1`] = `
       <PageTransition>
         <EditorSurface__AnimatedSection>
           <CanvasSection
-            focused={true}
             id="Section3"
+            isFocused={true}
             onFocus={[Function]}
           >
             <withEntityEditor(StatelessSectionEditor)

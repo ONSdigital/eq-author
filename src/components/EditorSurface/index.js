@@ -108,7 +108,7 @@ class EditorSurface extends React.Component {
                 <CanvasSection
                   id={sectionId}
                   onFocus={onFocus}
-                  focused={focused === sectionId}
+                  isFocused={focused === sectionId}
                 >
                   <SectionEditor onUpdate={onUpdateSection} section={section} />
                 </CanvasSection>

@@ -12,7 +12,12 @@ describe("CanvasSection", () => {
     handleBlur = jest.fn();
 
     component = shallow(
-      <CanvasSection id="foo" onFocus={handleFocus} onBlur={handleBlur} focused>
+      <CanvasSection
+        id="foo"
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        isFocused
+      >
         <Child />
       </CanvasSection>
     );

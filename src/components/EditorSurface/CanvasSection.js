@@ -23,19 +23,19 @@ const StyledCanvasSection = styled.div`
   &:hover {
     outline-color: ${transparentize(0.6, colors.lightBlue)};
   }
-  ${props => props.focused && focusedStyle};
+  ${props => props.isFocused && focusedStyle};
 `;
 
 export default class CanvasSection extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     onFocus: PropTypes.func.isRequired,
-    focused: PropTypes.bool,
+    isFocused: PropTypes.bool,
     id: PropTypes.string.isRequired
   };
 
   static defaultProps = {
-    focused: false
+    isFocused: false
   };
 
   handleFocus = () => {

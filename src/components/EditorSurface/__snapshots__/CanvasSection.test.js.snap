@@ -2,8 +2,8 @@
 
 exports[`CanvasSection should render 1`] = `
 <CanvasSection__StyledCanvasSection
-  focused={true}
   id="foo"
+  isFocused={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}

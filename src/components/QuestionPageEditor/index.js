@@ -56,7 +56,7 @@ export class QPE extends React.Component {
         <CanvasSection
           id={getIdFromObject(page)}
           onFocus={onFocus}
-          focused={this.isFocused(page)}
+          isFocused={this.isFocused(page)}
         >
           <MetaEditor onUpdate={onUpdatePage} page={page} />
         </CanvasSection>
@@ -66,7 +66,7 @@ export class QPE extends React.Component {
             id={getIdFromObject(answer)}
             key={getIdFromObject(answer)}
             onFocus={onFocus}
-            focused={this.isFocused(answer)}
+            isFocused={this.isFocused(answer)}
           >
             <AnswerEditor
               answer={answer}
@@ -81,7 +81,7 @@ export class QPE extends React.Component {
         <CanvasSection
           onFocus={onFocus}
           id="answer-selector"
-          focused={focused === "answer-selector"}
+          isFocused={focused === "answer-selector"}
         >
           <AnswerTypeSelector onSelect={onAddAnswer} />
         </CanvasSection>

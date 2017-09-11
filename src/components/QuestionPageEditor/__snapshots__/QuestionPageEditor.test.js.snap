@@ -3,8 +3,8 @@
 exports[`Question Page Editor should render 1`] = `
 <div>
   <CanvasSection
-    focused={false}
     id="Page1"
+    isFocused={false}
     onFocus={[Function]}
   >
     <withEntityEditor(MetaEditor)
@@ -37,8 +37,8 @@ exports[`Question Page Editor should render 1`] = `
     />
   </CanvasSection>
   <CanvasSection
-    focused={false}
     id="BasicAnswer1"
+    isFocused={false}
     onFocus={[Function]}
   >
     <AnswerEditor
@@ -59,8 +59,8 @@ exports[`Question Page Editor should render 1`] = `
     />
   </CanvasSection>
   <CanvasSection
-    focused={false}
     id="BasicAnswer2"
+    isFocused={false}
     onFocus={[Function]}
   >
     <AnswerEditor
@@ -81,8 +81,8 @@ exports[`Question Page Editor should render 1`] = `
     />
   </CanvasSection>
   <CanvasSection
-    focused={false}
     id="answer-selector"
+    isFocused={false}
     onFocus={[Function]}
   >
     <AnswerTypeSelector
