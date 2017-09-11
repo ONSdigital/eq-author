@@ -8,7 +8,6 @@ exports[`SectionEditor should render 1`] = `
     id="title"
   >
     <withSeamlessness(withChangeHandler(Input))
-      focused={false}
       onBlur={[Function]}
       onChange={[Function]}
       optional={false}
@@ -22,7 +21,6 @@ exports[`SectionEditor should render 1`] = `
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
-      focused={false}
       onBlur={[Function]}
       onChange={[Function]}
       optional={false}

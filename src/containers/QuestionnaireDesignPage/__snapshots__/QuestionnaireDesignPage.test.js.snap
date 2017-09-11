@@ -86,7 +86,6 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     >
       <EditorSurface
         focused="section"
-        onBlur={[Function]}
         onFocus={[Function]}
         onUpdatePage={[Function]}
         onUpdateSection={[Function]}

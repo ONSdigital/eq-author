@@ -37,8 +37,6 @@ export class QuestionnaireDesignPage extends Component {
     return !isNil(nextProps.page);
   }
 
-  handleBlur = () => {};
-
   handleFocus = focused => {
     if (focused !== this.state.focused) {
       this.setState({ focused });
@@ -59,8 +57,6 @@ export class QuestionnaireDesignPage extends Component {
       onUpdateSection
     } = this.props;
 
-    const { focused } = this.state;
-
     if (loading) {
       return null;
     }
@@ -80,11 +76,10 @@ export class QuestionnaireDesignPage extends Component {
             <EditorSurface
               section={section}
               page={page}
-              focused={focused}
               onUpdatePage={onUpdatePage}
               onUpdateSection={onUpdateSection}
+              focused={this.state.focused}
               onFocus={this.handleFocus}
-              onBlur={this.handleBlur}
             />
           </Column>
           <Column cols={2} gutters={false}>

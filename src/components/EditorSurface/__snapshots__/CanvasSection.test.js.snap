@@ -8,8 +8,6 @@ exports[`CanvasSection should render 1`] = `
   onClick={[Function]}
   onFocus={[Function]}
 >
-  <Child
-    focused={true}
-  />
+  <Child />
 </CanvasSection__StyledCanvasSection>
 `;

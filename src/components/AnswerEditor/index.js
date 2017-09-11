@@ -29,7 +29,6 @@ class AnswerEditor extends React.Component {
       onAddOption,
       onUpdateOption,
       onDeleteOption,
-      onFocus,
       onUpdate,
       answer
     } = this.props;
@@ -44,7 +43,6 @@ class AnswerEditor extends React.Component {
           onAddOption={onAddOption}
           onUpdateOption={onUpdateOption}
           onDeleteOption={onDeleteOption}
-          onFocus={onFocus}
         />
         <AnswerDeleteButton
           onClick={this.handleDeleteAnswer}
@@ -62,9 +60,7 @@ AnswerEditor.propTypes = {
   onDeleteAnswer: PropTypes.func.isRequired,
   onAddOption: PropTypes.func.isRequired,
   onUpdateOption: PropTypes.func.isRequired,
-  onDeleteOption: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired
+  onDeleteOption: PropTypes.func.isRequired
 };
 
 export default AnswerEditor;

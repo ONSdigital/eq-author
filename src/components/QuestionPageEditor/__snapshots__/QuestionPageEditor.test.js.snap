@@ -4,22 +4,24 @@ exports[`Question Page Editor should render 1`] = `
 <div>
   <CanvasSection
     focused={false}
-    id="page"
-    onBlur={[Function]}
+    id="Page1"
     onFocus={[Function]}
   >
     <withEntityEditor(MetaEditor)
       onUpdate={[Function]}
       page={
         Object {
+          "__typename": "Page",
           "answers": Array [
             Object {
+              "__typename": "BasicAnswer",
               "description": "",
               "id": 1,
               "title": "First name",
               "type": "TextField",
             },
             Object {
+              "__typename": "BasicAnswer",
               "description": "",
               "id": 2,
               "title": "Last name",
@@ -36,13 +38,13 @@ exports[`Question Page Editor should render 1`] = `
   </CanvasSection>
   <CanvasSection
     focused={false}
-    id="answer-1"
-    onBlur={[Function]}
+    id="BasicAnswer1"
     onFocus={[Function]}
   >
     <AnswerEditor
       answer={
         Object {
+          "__typename": "BasicAnswer",
           "description": "",
           "id": 1,
           "title": "First name",
@@ -50,23 +52,21 @@ exports[`Question Page Editor should render 1`] = `
         }
       }
       onAddOption={[Function]}
-      onBlur={[Function]}
       onDeleteAnswer={[Function]}
       onDeleteOption={[Function]}
-      onFocus={[Function]}
       onUpdate={[Function]}
       onUpdateOption={[Function]}
     />
   </CanvasSection>
   <CanvasSection
     focused={false}
-    id="answer-2"
-    onBlur={[Function]}
+    id="BasicAnswer2"
     onFocus={[Function]}
   >
     <AnswerEditor
       answer={
         Object {
+          "__typename": "BasicAnswer",
           "description": "",
           "id": 2,
           "title": "Last name",
@@ -74,17 +74,15 @@ exports[`Question Page Editor should render 1`] = `
         }
       }
       onAddOption={[Function]}
-      onBlur={[Function]}
       onDeleteAnswer={[Function]}
       onDeleteOption={[Function]}
-      onFocus={[Function]}
       onUpdate={[Function]}
       onUpdateOption={[Function]}
     />
   </CanvasSection>
   <CanvasSection
     focused={false}
-    onBlur={[Function]}
+    id="answer-selector"
     onFocus={[Function]}
   >
     <AnswerTypeSelector

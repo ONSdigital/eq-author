@@ -11,6 +11,7 @@ import { noop, get } from "lodash";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SectionEditor from "components/SectionEditor";
 import QuestionPageEditor from "components/QuestionPageEditor";
+import getIdFromObject from "utils/getIdFromObject";
 
 const duration = 300;
 
@@ -47,15 +48,7 @@ class EditorSurface extends React.Component {
     onUpdatePage: PropTypes.func.isRequired,
     onUpdateSection: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
-    focused: function(props, propName, componentName) {
-      const value = props[propName];
-      if (value && !/(section|page|answer|option)/.test(value)) {
-        return new Error(
-          `Invalid prop '${propName}' of '${value}' supplied to '${componentName}'. Validation failed.`
-        );
-      }
-    }
+    focused: PropTypes.string.isRequired
   };
 
   componentDidMount() {
@@ -99,32 +92,36 @@ class EditorSurface extends React.Component {
       section,
       page,
       onFocus,
-      onBlur,
       focused,
       onUpdatePage,
       onUpdateSection
     } = this.props;
 
+    const sectionId = getIdFromObject(section);
+
     return (
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
-            <PageTransition key={`section-${section.id}`}>
+            <PageTransition key={sectionId}>
               <AnimatedSection>
                 <CanvasSection
-                  id="section"
+                  id={sectionId}
                   onFocus={onFocus}
-                  onBlur={onBlur}
-                  focused={focused === "section"}
-                  key={section.id}
+                  focused={focused === sectionId}
                 >
                   <SectionEditor onUpdate={onUpdateSection} section={section} />
                 </CanvasSection>
               </AnimatedSection>
             </PageTransition>
-            <PageTransition key={`page-${page.id}`}>
+            <PageTransition key={getIdFromObject(page)}>
               <AnimatedSection>
-                <QuestionPageEditor onUpdatePage={onUpdatePage} page={page} />
+                <QuestionPageEditor
+                  onUpdatePage={onUpdatePage}
+                  page={page}
+                  onFocus={onFocus}
+                  focused={focused}
+                />
               </AnimatedSection>
             </PageTransition>
           </TransitionGroup>

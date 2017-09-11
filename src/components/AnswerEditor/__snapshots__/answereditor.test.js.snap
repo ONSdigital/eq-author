@@ -20,7 +20,6 @@ exports[`Answer Editor should render Checkbox 1`] = `
     }
     onAddOption={[Function]}
     onDeleteOption={[Function]}
-    onFocus={[Function]}
     onUpdate={[Function]}
     onUpdateOption={[Function]}
   />
@@ -45,7 +44,6 @@ exports[`Answer Editor should render TextField 1`] = `
     }
     onAddOption={[Function]}
     onDeleteOption={[Function]}
-    onFocus={[Function]}
     onUpdate={[Function]}
     onUpdateOption={[Function]}
   />

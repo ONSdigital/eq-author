@@ -39,8 +39,7 @@ const StyledCheckboxInput = styled(Input)`
 `;
 
 export const StyledCheckboxOption = styled.div`
-  border: 1px solid
-    ${props => (props.focused ? colors.lightBlue : colors.borders)};
+  border: 1px solid ${colors.borders};
   padding: 1em 1em 0 1em;
   border-radius: 3px;
   position: relative;
@@ -91,18 +90,11 @@ export class StatelessCheckboxOption extends Component {
     option: CustomPropTypes.option.isRequired,
     onChange: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired
   };
 
-  handleFocus = e => {
-    e.stopPropagation();
-    // this.props.onFocus(this.props.optionName);
-  };
-
   handleDeleteClick = e => {
-    e.preventDefault();
     this.props.onDelete(this.props.option.id);
   };
 
@@ -110,7 +102,7 @@ export class StatelessCheckboxOption extends Component {
     const { hasDeleteButton, option, onChange, onUpdate } = this.props;
 
     return (
-      <StyledCheckboxOption key={option.id} focused={option.focused}>
+      <StyledCheckboxOption key={option.id}>
         <Field id="label">
           <StyledCheckboxInput type="checkbox" disabled />
           <SeamlessLabel
@@ -118,7 +110,6 @@ export class StatelessCheckboxOption extends Component {
             size="medium"
             value={option.label}
             onChange={onChange}
-            onFocus={this.handleFocus}
             onBlur={onUpdate}
             data-autoFocus
           />
@@ -130,7 +121,6 @@ export class StatelessCheckboxOption extends Component {
             placeholder="Optional description"
             onChange={onChange}
             value={option.description}
-            onFocus={this.handleFocus}
             onBlur={onUpdate}
           />
         </Field>

@@ -1,6 +1,5 @@
-import React, { cloneElement, Component, Children } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { noop } from "lodash";
 import styled, { css } from "styled-components";
 import { colors, shadow } from "constants/theme";
 import { transparentize } from "polished";
@@ -27,44 +26,29 @@ const StyledCanvasSection = styled.div`
   ${props => props.focused && focusedStyle};
 `;
 
-export default class CanvasSection extends Component {
+export default class CanvasSection extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    onFocus: PropTypes.func,
-    onBlur: PropTypes.func,
+    onFocus: PropTypes.func.isRequired,
     focused: PropTypes.bool,
-    answerId: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string.isRequired
   };
 
   static defaultProps = {
-    onFocus: noop,
-    onBlur: noop,
     focused: false
   };
 
-  handleFocus = e => {
-    if (this.props.id !== undefined) {
-      this.props.onFocus(this.props.id);
-    }
-  };
-
-  handleBlur = e => {
-    this.props.onBlur();
+  handleFocus = () => {
+    this.props.onFocus(this.props.id);
   };
 
   render() {
-    const { children, focused, ...otherProps } = this.props;
     return (
       <StyledCanvasSection
-        {...otherProps}
+        {...this.props}
         onClick={this.handleFocus}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-        focused={focused}
-      >
-        {Children.map(children, child => cloneElement(child, { focused }))}
-      </StyledCanvasSection>
+      />
     );
   }
 }

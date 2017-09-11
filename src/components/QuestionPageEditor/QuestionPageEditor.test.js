@@ -18,22 +18,26 @@ describe("Question Page Editor", () => {
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onDeleteAnswer: jest.fn(),
-      onUpdateOption: jest.fn()
+      onUpdateOption: jest.fn(),
+      onFocus: jest.fn()
     };
 
     page = {
+      __typename: "Page",
       id: 1,
       title: "",
       description: "",
       guidance: "",
       answers: [
         {
+          __typename: "BasicAnswer",
           id: 1,
           title: "First name",
           description: "",
           type: "TextField"
         },
         {
+          __typename: "BasicAnswer",
           id: 2,
           title: "Last name",
           description: "",

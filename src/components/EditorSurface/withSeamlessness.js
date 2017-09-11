@@ -53,15 +53,13 @@ const withSeamlessness = WrappedComponent => {
   return class extends React.Component {
     static defaultProps = {
       size: "small",
-      optional: false,
-      focused: false
+      optional: false
     };
 
     static propTypes = {
       id: PropTypes.string,
       onChange: PropTypes.func.isRequired,
       value: PropTypes.string,
-      focused: PropTypes.bool,
       optional: PropTypes.bool,
       placeholder: PropTypes.string,
       size: PropTypes.oneOf(Object.keys(sizes)),
@@ -75,7 +73,6 @@ const withSeamlessness = WrappedComponent => {
         id,
         optional,
         value,
-        focused,
         placeholder,
         size,
         onChange,

@@ -66,15 +66,8 @@ describe("CheckboxOption", () => {
   });
 
   it("should invoke onDelete callback when option deleted", () => {
-    wrapper.find(DeleteButton).first().simulate("click", mockEvent);
+    wrapper.find(DeleteButton).simulate("click", mockEvent);
 
     expect(mockMutations.onDelete).toHaveBeenCalledWith(option.id);
-    expect(mockEvent.preventDefault).toHaveBeenCalled();
-  });
-
-  it("should invoke stop propagation of focus event", () => {
-    wrapper.find(SeamlessLabel).first().simulate("focus", mockEvent);
-
-    expect(mockEvent.stopPropagation).toHaveBeenCalled();
   });
 });

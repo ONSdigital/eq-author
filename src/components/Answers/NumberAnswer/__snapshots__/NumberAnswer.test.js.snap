@@ -7,7 +7,6 @@ exports[`NumberAnswer should render 1`] = `
   >
     <withSeamlessness(withChangeHandler(Input))
       data-autoFocus={true}
-      focused={false}
       onChange={[Function]}
       optional={false}
       placeholder="Label"
@@ -20,7 +19,6 @@ exports[`NumberAnswer should render 1`] = `
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
-      focused={false}
       onChange={[Function]}
       optional={false}
       placeholder="Enter a description (optional)…"

@@ -4,7 +4,6 @@ import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
 import CanvasSection from "components/EditorSurface/CanvasSection";
 import PropTypes from "prop-types";
-import { noop } from "lodash";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
 
@@ -15,6 +14,8 @@ import withCreateOption from "containers/Enhancers/withCreateOption";
 import withUpdateOption from "containers/Enhancers/withUpdateOption";
 import withDeleteOption from "containers/Enhancers/withDeleteOption";
 
+import getIdFromObject from "utils/getIdFromObject";
+
 export class QPE extends React.Component {
   static propTypes = {
     onUpdateAnswer: PropTypes.func.isRequired,
@@ -24,12 +25,18 @@ export class QPE extends React.Component {
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    page: CustomPropTypes.page
+    onFocus: PropTypes.func.isRequired,
+    page: CustomPropTypes.page,
+    focused: PropTypes.string
   };
 
   handleDeleteAnswer = answerId => {
     this.props.onDeleteAnswer(this.props.page.id, answerId);
   };
+
+  isFocused(entity) {
+    return this.props.focused === getIdFromObject(entity);
+  }
 
   render() {
     const {
@@ -39,38 +46,31 @@ export class QPE extends React.Component {
       onAddAnswer,
       onAddOption,
       onUpdateOption,
-      onDeleteOption
+      onDeleteOption,
+      onFocus,
+      focused
     } = this.props;
-    const { answers } = page;
-    const onFocus = noop;
-    const onBlur = noop;
-    const focused = "meh";
 
     return (
       <div>
         <CanvasSection
-          id="page"
+          id={getIdFromObject(page)}
           onFocus={onFocus}
-          onBlur={onBlur}
-          focused={focused === "page"}
+          focused={this.isFocused(page)}
         >
           <MetaEditor onUpdate={onUpdatePage} page={page} />
         </CanvasSection>
 
-        {answers.map(answer =>
+        {page.answers.map(answer =>
           <CanvasSection
-            id={`answer-${answer.id}`}
-            key={answer.id}
+            id={getIdFromObject(answer)}
+            key={getIdFromObject(answer)}
             onFocus={onFocus}
-            onBlur={onBlur}
-            focused={focused && focused.indexOf(`answer-${answer.id}`) > -1}
+            focused={this.isFocused(answer)}
           >
             <AnswerEditor
               answer={answer}
               onUpdate={onUpdateAnswer}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              onEntered={this.handleEntered}
               onAddOption={onAddOption}
               onUpdateOption={onUpdateOption}
               onDeleteOption={onDeleteOption}
@@ -78,7 +78,11 @@ export class QPE extends React.Component {
             />
           </CanvasSection>
         )}
-        <CanvasSection onFocus={onFocus} onBlur={onBlur}>
+        <CanvasSection
+          onFocus={onFocus}
+          id="answer-selector"
+          focused={focused === "answer-selector"}
+        >
           <AnswerTypeSelector onSelect={onAddAnswer} />
         </CanvasSection>
       </div>

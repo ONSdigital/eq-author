@@ -27,10 +27,6 @@ describe("CanvasSection", () => {
     expect(handleFocus).toHaveBeenCalledWith("foo");
   });
 
-  it("should pass on its focused prop", () => {
-    expect(component.find(Child).prop("focused")).toBe(true);
-  });
-
   it("should handle blur", () => {
     component.simulate("blur");
     expect(handleBlur).toHaveBeenCalled();

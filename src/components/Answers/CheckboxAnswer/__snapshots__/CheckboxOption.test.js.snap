@@ -13,7 +13,6 @@ exports[`CheckboxOption should match snapshot 1`] = `
       data-autoFocus={true}
       onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
       placeholder="Label"
       size="medium"
       value=""
@@ -24,10 +23,8 @@ exports[`CheckboxOption should match snapshot 1`] = `
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
-      focused={false}
       onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
       optional={false}
       placeholder="Optional description"
       rows="5"

@@ -34,7 +34,6 @@ exports[`SeamlessInput should render 1`] = `
 }
 
 <withSeamlessness(withChangeHandler(Input))
-  focused={false}
   id="foo"
   onChange={[Function]}
   optional={false}

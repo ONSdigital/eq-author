@@ -7,7 +7,6 @@ exports[`TextAnswer should render 1`] = `
   >
     <withSeamlessness(withChangeHandler(Input))
       data-autoFocus={true}
-      focused={false}
       onBlur={[Function]}
       onChange={[Function]}
       optional={false}
@@ -20,7 +19,6 @@ exports[`TextAnswer should render 1`] = `
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
-      focused={false}
       onBlur={[Function]}
       onChange={[Function]}
       optional={false}
