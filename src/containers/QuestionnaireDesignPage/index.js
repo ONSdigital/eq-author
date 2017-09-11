@@ -1,17 +1,13 @@
 import { compose } from "react-apollo";
 import { connect } from "react-redux";
-import { pick, parseInt, mapValues } from "lodash";
 
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withQuestionnaire from "../Enhancers/withQuestionnaire";
 import withUpdateSection from "../Enhancers/withUpdateSection";
 import withUpdatePage from "../Enhancers/withUpdatePage";
+import getUrlParams from "../../utils/getUrlParams";
 
-export const mapStateToProps = (state, { match }) =>
-  mapValues(
-    pick(match.params, ["questionnaireId", "sectionId", "pageId"]),
-    val => parseInt(val)
-  );
+export const mapStateToProps = (state, { match }) => getUrlParams(match.params);
 
 export default compose(
   connect(mapStateToProps),
