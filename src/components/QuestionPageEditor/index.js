@@ -4,6 +4,7 @@ import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
 import CanvasSection from "components/EditorSurface/CanvasSection";
 import PropTypes from "prop-types";
+import { noop } from "lodash";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
 
@@ -41,8 +42,8 @@ export class QPE extends React.Component {
       onDeleteOption
     } = this.props;
     const { answers } = page;
-    const onFocus = () => {};
-    const onBlur = () => {};
+    const onFocus = noop;
+    const onBlur = noop;
     const focused = "meh";
 
     return (
