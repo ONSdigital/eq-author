@@ -1,15 +1,11 @@
 import React from "react";
 
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import {
-  StatelessCheckboxOption,
-  DeleteButton,
-  SeamlessLabel
-} from "./CheckboxOption";
+import { StatelessOption, DeleteButton, SeamlessLabel } from "./Option";
 
 import { shallow } from "enzyme";
 
-describe("CheckboxOption", () => {
+describe("Option", () => {
   let mockMutations;
   let mockEvent;
   let wrapper;
@@ -34,11 +30,7 @@ describe("CheckboxOption", () => {
     };
 
     wrapper = shallow(
-      <StatelessCheckboxOption
-        {...mockMutations}
-        option={option}
-        hasDeleteButton
-      />
+      <StatelessOption {...mockMutations} option={option} hasDeleteButton />
     );
   });
 

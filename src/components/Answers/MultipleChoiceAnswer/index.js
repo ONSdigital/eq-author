@@ -10,14 +10,14 @@ import { colors } from "constants/theme";
 
 import Button from "components/Button";
 
-import CheckboxOption from "./CheckboxOption";
+import Option from "./Option";
 
-const CheckboxAnswerWrapper = styled.div`
+const AnswerWrapper = styled.div`
   width: 20em;
   margin: 0;
 `;
 
-const CheckboxOptions = styled.div`margin: 0 0 1em 0;`;
+const Options = styled.div`margin: 0 0 1em 0;`;
 
 export const AddOtherLink = styled.button`
   color: #48a6f6;
@@ -46,13 +46,12 @@ export const DeleteButton = styled.button`
   }
 `;
 
-class CheckboxAnswer extends Component {
+class MultipleChoiceAnswer extends Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired
-    // onEntered: PropTypes.func.isRequired
   };
 
   handleOptionDelete = optionId => {
@@ -68,30 +67,28 @@ class CheckboxAnswer extends Component {
     const { answer, onUpdateOption, ...otherProps } = this.props;
 
     return (
-      <CheckboxAnswerWrapper>
-        <TransitionGroup component={CheckboxOptions}>
-          {answer.options.map((option, optionIndex, options) => {
-            return (
-              <CSSTransition timeout={200} classNames="option" key={option.id}>
-                <CheckboxOption
-                  {...otherProps}
-                  option={option}
-                  onDelete={this.handleOptionDelete}
-                  onUpdate={onUpdateOption}
-                  hasDeleteButton={options.length > 1}
-                />
-              </CSSTransition>
-            );
-          })}
+      <AnswerWrapper>
+        <TransitionGroup component={Options}>
+          {answer.options.map((option, optionIndex, options) =>
+            <CSSTransition timeout={200} classNames="option" key={option.id}>
+              <Option
+                {...otherProps}
+                option={option}
+                onDelete={this.handleOptionDelete}
+                onUpdate={onUpdateOption}
+                hasDeleteButton={options.length > 1}
+              />
+            </CSSTransition>
+          )}
         </TransitionGroup>
         <div>
           <Button type="button" secondary onClick={this.handleAddOptionClick}>
             Add another option
           </Button>
         </div>
-      </CheckboxAnswerWrapper>
+      </AnswerWrapper>
     );
   }
 }
 
-export default CheckboxAnswer;
+export default MultipleChoiceAnswer;

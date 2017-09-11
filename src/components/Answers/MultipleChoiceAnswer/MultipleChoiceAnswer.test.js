@@ -1,12 +1,12 @@
 import React from "react";
 
 import Button from "components/Button";
-import CheckboxAnswer from "./";
-import CheckboxOption from "./CheckboxOption";
+import MultipleChoiceAnswer from "./";
+import Option from "./Option";
 
 import { shallow } from "enzyme";
 
-describe("CheckboxAnswer", () => {
+describe("MultipleChoiceAnswer", () => {
   let wrapper;
 
   let answer = {
@@ -24,23 +24,18 @@ describe("CheckboxAnswer", () => {
     onAddOption: jest.fn(),
     onUpdateOption: jest.fn(),
     onDeleteOption: jest.fn(),
-    onChange: jest.fn(),
-    onEntered: jest.fn(),
-    onFocus: jest.fn(),
-    onBlur: jest.fn()
+    onChange: jest.fn()
   };
 
   const createWrapper = ({ answer }, render = shallow) =>
-    render(<CheckboxAnswer {...mockHandlers} answer={answer} />);
+    render(<MultipleChoiceAnswer {...mockHandlers} answer={answer} />);
 
   beforeEach(() => {
-    wrapper = createWrapper({
-      answer
-    });
+    wrapper = createWrapper({ answer });
   });
 
   it("should have one option by default", () => {
-    expect(wrapper.find(CheckboxOption)).toHaveLength(1);
+    expect(wrapper.find(Option)).toHaveLength(1);
   });
 
   it("should match snapshot", () => {
@@ -54,7 +49,7 @@ describe("CheckboxAnswer", () => {
   });
 
   it("should not show delete button when one option", () => {
-    expect(wrapper.find(CheckboxOption).prop("hasDeleteButton")).toBe(false);
+    expect(wrapper.find(Option).prop("hasDeleteButton")).toBe(false);
   });
 
   it("should show delete button when more than one option", () => {
@@ -75,14 +70,15 @@ describe("CheckboxAnswer", () => {
     };
 
     wrapper.setProps({ answer });
-    wrapper.find(CheckboxOption).forEach(option => {
+
+    wrapper.find(Option).forEach(option => {
       expect(option.prop("hasDeleteButton")).toBe(true);
     });
   });
 
   it("should handle deleting an option", () => {
     const optionId = answer.options[0].id;
-    wrapper.find(CheckboxOption).first().simulate("delete", optionId);
+    wrapper.find(Option).first().simulate("delete", optionId);
 
     expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(
       optionId,

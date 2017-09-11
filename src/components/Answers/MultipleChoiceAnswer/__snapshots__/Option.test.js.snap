@@ -1,15 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxOption should match snapshot 1`] = `
-<CheckboxOption__StyledCheckboxOption>
+exports[`Option should match snapshot 1`] = `
+<Option__StyledOption>
   <Field
     id="label"
   >
-    <CheckboxOption__StyledCheckboxInput
+    <Option__StyledInput
       disabled={true}
-      type="checkbox"
     />
-    <CheckboxOption__SeamlessLabel
+    <Option__SeamlessLabel
       data-autoFocus={true}
       onBlur={[Function]}
       onChange={[Function]}
@@ -31,11 +30,11 @@ exports[`CheckboxOption should match snapshot 1`] = `
       value=""
     />
   </Field>
-  <CheckboxOption__DeleteButton
+  <Option__DeleteButton
     onClick={[Function]}
     type="button"
   >
     ×
-  </CheckboxOption__DeleteButton>
-</CheckboxOption__StyledCheckboxOption>
+  </Option__DeleteButton>
+</Option__StyledOption>
 `;

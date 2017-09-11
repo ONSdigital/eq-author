@@ -19,3 +19,4 @@ yarn-error.log*
 /storybook-static
 .vscode/
 graphql.config.json
+jsonfig.json

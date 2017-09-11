@@ -32,14 +32,9 @@ export const DeleteButton = styled.button`
   }
 `;
 
-const StyledCheckboxInput = styled(Input)`
-  border: 2px solid ${colors.borders};
-  height: 1.4em;
-  width: 1.4em;
-`;
-
-export const StyledCheckboxOption = styled.div`
-  border: 1px solid ${colors.borders};
+export const StyledOption = styled.div`
+  border: 1px solid
+    ${props => (props.focused ? colors.lightBlue : colors.borders)};
   padding: 1em 1em 0 1em;
   border-radius: 3px;
   position: relative;
@@ -83,15 +78,22 @@ export const SeamlessLabel = styled(SeamlessInput)`
   display: inline-block !important;
   width: auto;
   vertical-align: middle;
+  `;
+
+const StyledInput = styled(Input)`
+  border: 2px solid ${colors.borders};
+  height: 1.4em;
+  width: 1.4em;
 `;
 
-export class StatelessCheckboxOption extends Component {
+export class StatelessOption extends Component {
   static propTypes = {
     option: CustomPropTypes.option.isRequired,
     onChange: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    hasDeleteButton: PropTypes.bool.isRequired
+    hasDeleteButton: PropTypes.bool.isRequired,
+    type: PropTypes.oneOf(["radio", "checkbox"])
   };
 
   handleDeleteClick = e => {
@@ -99,12 +101,12 @@ export class StatelessCheckboxOption extends Component {
   };
 
   render() {
-    const { hasDeleteButton, option, onChange, onUpdate } = this.props;
+    const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
     return (
-      <StyledCheckboxOption key={option.id}>
+      <StyledOption key={option.id}>
         <Field id="label">
-          <StyledCheckboxInput type="checkbox" disabled />
+          <StyledInput type={type} disabled />
           <SeamlessLabel
             placeholder="Label"
             size="medium"
@@ -128,9 +130,9 @@ export class StatelessCheckboxOption extends Component {
           <DeleteButton type="button" onClick={this.handleDeleteClick}>
             &times;
           </DeleteButton>}
-      </StyledCheckboxOption>
+      </StyledOption>
     );
   }
 }
 
-export default withEntityEditor("option")(StatelessCheckboxOption);
+export default withEntityEditor("option")(StatelessOption);

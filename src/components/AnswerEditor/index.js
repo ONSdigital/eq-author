@@ -5,8 +5,8 @@ import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
 import TextAnswer from "components/Answers/TextAnswer";
-import CheckboxAnswer from "components/Answers/CheckboxAnswer";
-import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
+import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
+import { TEXTFIELD, CHECKBOX, RADIO } from "constants/answer-types";
 
 export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
@@ -14,36 +14,28 @@ export const AnswerDeleteButton = styled(DeleteButton)`
   top: .4em;
 `;
 
-const AnswerTypeMap = {
-  [TEXTFIELD]: TextAnswer,
-  [CHECKBOX]: CheckboxAnswer
-};
-
 class AnswerEditor extends React.Component {
   handleDeleteAnswer = () => {
     this.props.onDeleteAnswer(this.props.answer.id);
   };
 
+  renderAnswer(answer) {
+    switch (answer.type) {
+      case TEXTFIELD:
+        return <TextAnswer {...this.props} />;
+      case CHECKBOX:
+        return <MultipleChoiceAnswer type="checkbox" {...this.props} />;
+      case RADIO:
+        return <MultipleChoiceAnswer type="radio" {...this.props} />;
+      default:
+        return null;
+    }
+  }
+
   render() {
-    const {
-      onAddOption,
-      onUpdateOption,
-      onDeleteOption,
-      onUpdate,
-      answer
-    } = this.props;
-
-    const Answer = AnswerTypeMap[answer.type];
-
     return (
       <div>
-        <Answer
-          answer={answer}
-          onUpdate={onUpdate}
-          onAddOption={onAddOption}
-          onUpdateOption={onUpdateOption}
-          onDeleteOption={onDeleteOption}
-        />
+        {this.renderAnswer(this.props.answer)}
         <AnswerDeleteButton
           onClick={this.handleDeleteAnswer}
           title="Delete answer"
