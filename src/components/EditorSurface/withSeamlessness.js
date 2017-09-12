@@ -84,6 +84,7 @@ const withSeamlessness = WrappedComponent => {
           value={value}
           onChange={onChange}
           name={id}
+          id={id}
           size={size}
           {...otherProps}
         />

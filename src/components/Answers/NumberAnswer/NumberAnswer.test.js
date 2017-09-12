@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import NumberAnswer from "components/Answers/NumberAnswer";
+import { StatelessNumberAnswer } from "components/Answers/NumberAnswer";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 
@@ -12,13 +12,19 @@ const answer = {
 describe("NumberAnswer", () => {
   const i = 1;
   let handleChange;
+  let handleUpdate;
   let component;
 
   beforeEach(() => {
     handleChange = jest.fn();
+    handleUpdate = jest.fn();
 
     component = shallow(
-      <NumberAnswer onChange={handleChange} answer={answer} answerIndex={i} />
+      <StatelessNumberAnswer
+        onChange={handleChange}
+        onUpdate={handleUpdate}
+        answer={answer}
+      />
     );
   });
 
@@ -31,5 +37,12 @@ describe("NumberAnswer", () => {
     component.find(SeamlessInput).simulate("change");
 
     expect(handleChange).toHaveBeenCalledTimes(2);
+  });
+
+  it("should invoke update callback on blur", () => {
+    component.find(SeamlessTextArea).simulate("blur");
+    component.find(SeamlessInput).simulate("blur");
+
+    expect(handleUpdate).toHaveBeenCalledTimes(2);
   });
 });
