@@ -21,7 +21,12 @@ storiesOf("AnswerTypes/NumberAnswer", module)
       {story()}
     </Background>
   )
-  .add("Empty", () => <NumberAnswer answer={{}} onChange={action("changed")} />)
+  .add("Empty", () =>
+    <NumberAnswer
+      answer={{ label: "", description: "" }}
+      onUpdate={action("updated")}
+    />
+  )
   .add("Prefilled", () =>
-    <NumberAnswer answer={answer} onChange={action("changed")} />
+    <NumberAnswer answer={answer} onUpdate={action("updated")} />
   );

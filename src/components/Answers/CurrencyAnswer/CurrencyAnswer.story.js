@@ -22,8 +22,11 @@ storiesOf("AnswerTypes/CurrencyAnswer", module)
     </Background>
   )
   .add("Empty", () =>
-    <CurrencyAnswer answer={{}} onChange={action("changed")} />
+    <CurrencyAnswer
+      answer={{ label: "", description: "" }}
+      onUpdate={action("updated")}
+    />
   )
   .add("Prefilled", () =>
-    <CurrencyAnswer answer={answer} onChange={action("changed")} />
+    <CurrencyAnswer answer={answer} onUpdate={action("updated")} />
   );

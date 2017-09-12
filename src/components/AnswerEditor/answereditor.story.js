@@ -34,15 +34,12 @@ class AnswerEditorWrapper extends React.Component {
   render() {
     return (
       <AnswerEditor
-        onChange={action("change")}
         answer={this.state.answer}
-        answerIndex="0"
         onAddOption={action("addOption")}
-        onBlur={action("blur")}
+        onUpdate={action("onUpdate")}
         onDeleteAnswer={action("deleteAnswer")}
+        onUpdateOption={action("onUpdateOption")}
         onDeleteOption={action("deleteOption")}
-        onEntered={action("entered")}
-        onFocus={action("focus")}
       />
     );
   }

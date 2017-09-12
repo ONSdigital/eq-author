@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withKnobs } from "@storybook/addon-knobs";
+import { action } from "@storybook/addon-actions";
 import { merge, reject, set } from "lodash";
 import CheckboxAnswer from "./index";
 
@@ -19,18 +19,14 @@ const options = [
   }
 ];
 
-const answers = [
-  {
-    id: 0,
-    options: [options[0]]
-  }
-];
-
 class CheckboxAnswerWrapper extends React.Component {
   constructor() {
     super();
     this.state = {
-      answers
+      answer: {
+        id: 0,
+        options
+      }
     };
     this.nextId = 1;
   }
@@ -41,18 +37,18 @@ class CheckboxAnswerWrapper extends React.Component {
 
   handleAddOption = () => {
     const newOption = {
-      id: ++this.nextId,
-      ...options[0]
+      ...options[0],
+      id: ++this.nextId
     };
 
     const newState = merge({}, this.state);
-    this.state.answers[0].options.push(newOption);
+    newState.answer.options.push(newOption);
     this.setState(newState);
   };
 
   handleDeleteOption = optionId => {
     const newState = merge({}, this.state);
-    newState.answers[0].options = reject(newState.answers[0].options, {
+    newState.answer.options = reject(newState.answer.options, {
       id: optionId
     });
     this.setState(newState);
@@ -62,26 +58,19 @@ class CheckboxAnswerWrapper extends React.Component {
     alert("Add other answer");
   }
 
-  handleFocus() {}
-
-  handleBlur() {}
-
   render() {
     return (
       <CheckboxAnswer
-        answer={this.state.answers[0]}
-        answerIndex={0}
-        onChange={this.handleChange}
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        answer={this.state.answer}
+        onUpdateOption={action("update option")}
+        onUpdate={action("update")}
         onAddOption={this.handleAddOption}
         onDeleteOption={this.handleDeleteOption}
-        onAddOther={this.handleAddOther}
       />
     );
   }
 }
 
-storiesOf("AnswerTypes/CheckboxAnswer", module)
-  .addDecorator(withKnobs)
-  .add("Default", () => <CheckboxAnswerWrapper />);
+storiesOf("AnswerTypes/CheckboxAnswer", module).add("Default", () =>
+  <CheckboxAnswerWrapper />
+);
