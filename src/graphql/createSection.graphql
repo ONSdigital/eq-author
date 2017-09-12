@@ -18,7 +18,6 @@ mutation CreateSection(
       ... on QuestionPage {
         guidance
         pageType
-        type
         answers {
           id
         }

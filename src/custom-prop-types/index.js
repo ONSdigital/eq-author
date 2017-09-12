@@ -12,9 +12,7 @@ export default {
     title: PropTypes.string,
     navigation: PropTypes.bool
   }),
-  question: PropTypes.shape({
-    type: PropTypes.string.isRequired
-  }),
+  question: PropTypes.object,
   section: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string

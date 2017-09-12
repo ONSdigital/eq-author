@@ -17,9 +17,7 @@ query GetQuestionnaire($id: Int!) {
         description
         pageType
         ... on QuestionPage {
-          type
           guidance
-          type
           answers {
             id
             description

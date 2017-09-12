@@ -2,14 +2,12 @@ mutation createQuestionPage(
   $title: String!
   $description: String
   $guidance: String
-  $type: QuestionType!
   $sectionId: Int!
 ) {
   createQuestionPage(
     title: $title
     description: $description
     guidance: $guidance
-    type: $type
     sectionId: $sectionId
   ) {
     id
@@ -17,7 +15,6 @@ mutation createQuestionPage(
     description
     guidance
     pageType
-    type
     answers {
       id
     }

@@ -3,14 +3,12 @@ mutation UpdateQuestionPage(
   $title: String
   $description: String
   $guidance: String
-  $type: QuestionType
 ) {
   updateQuestionPage(
     id: $id
     title: $title
     description: $description
     guidance: $guidance
-    type: $type
   ) {
     id
     title
