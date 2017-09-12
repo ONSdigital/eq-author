@@ -3,7 +3,6 @@ mutation CreateQuestionPage(
   $description: String!
   $guidance: String
   $type: QuestionType!
-  $mandatory: Boolean
   $sectionId: Int!
 ) {
   createQuestionPage(
@@ -11,7 +10,6 @@ mutation CreateQuestionPage(
     description: $description
     guidance: $guidance
     type: $type
-    mandatory: $mandatory
     sectionId: $sectionId
   ) {
     id
