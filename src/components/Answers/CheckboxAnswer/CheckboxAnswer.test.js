@@ -2,7 +2,7 @@ import React from "react";
 
 import Button from "components/Button";
 import CheckboxAnswer from "./";
-import CheckboxOption, { DeleteButton } from "./CheckboxOption";
+import CheckboxOption from "./CheckboxOption";
 
 import { shallow } from "enzyme";
 

@@ -10,7 +10,6 @@ const answer = {
 };
 
 describe("NumberAnswer", () => {
-  const i = 1;
   let handleChange;
   let handleUpdate;
   let component;
