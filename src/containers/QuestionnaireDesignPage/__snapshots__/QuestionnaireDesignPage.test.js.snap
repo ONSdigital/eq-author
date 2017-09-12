@@ -140,36 +140,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     <Column__Column
       cols={2}
       gutters={false}
-    >
-      <PropertyPane__PropertyPane>
-        <PropertyPaneTitle__PropertyPaneTitle>
-          Question properties
-        </PropertyPaneTitle__PropertyPaneTitle>
-        <QuestionProperties
-          onSubmit={[Function]}
-          question={
-            Object {
-              "answers": Array [
-                Object {
-                  "id": 1,
-                  "label": "",
-                  "options": Array [
-                    Object {
-                      "id": 1,
-                    },
-                  ],
-                },
-              ],
-              "description": "",
-              "guidance": "",
-              "id": 1,
-              "title": "",
-              "type": "General",
-            }
-          }
-        />
-      </PropertyPane__PropertyPane>
-    </Column__Column>
+    />
   </Grid__Grid>
 </BaseLayout>
 `;

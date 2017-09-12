@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Properties should render 1`] = `
+<Form
+  onSubmit={[Function]}
+>
+  <Field
+    id="page.type"
+  >
+    <Label>
+      Page type
+    </Label>
+    <withChangeHandler(Select)
+      defaultValue="Question"
+      onBlur={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          "Question",
+          "Interstitial",
+        ]
+      }
+    />
+  </Field>
+  <Field
+    id="page.order"
+  >
+    <Label>
+      Order
+    </Label>
+    <Number
+      max={10}
+      min={0}
+      onBlur={[Function]}
+      onChange={[Function]}
+      showSpinner={true}
+      step={1}
+      value="0"
+    />
+  </Field>
+</Form>
+`;
