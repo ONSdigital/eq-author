@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Question Page Editor should render 1`] = `
-<div>
+<div
+  id="question-page-editor"
+>
   <CanvasSection
     id="Page1"
     isFocused={false}

@@ -20,6 +20,7 @@ export class StatelessSectionEditor extends React.Component {
             value={section.title}
             onChange={onChange}
             onBlur={onUpdate}
+            ref={this.props.titleRef}
           />
         </Field>
         <Field id="description">
@@ -40,7 +41,8 @@ export class StatelessSectionEditor extends React.Component {
 StatelessSectionEditor.propTypes = {
   section: CustomPropTypes.section.isRequired,
   onChange: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired
+  onUpdate: PropTypes.func.isRequired,
+  titleRef: PropTypes.func
 };
 
 export default withEntityEditor("section")(StatelessSectionEditor);

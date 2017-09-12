@@ -48,6 +48,7 @@ exports[`EditorSurface should render 1`] = `
                   "title": "",
                 }
               }
+              titleRef={[Function]}
             />
           </CanvasSection>
         </EditorSurface__AnimatedSection>
@@ -80,6 +81,7 @@ exports[`EditorSurface should render 1`] = `
                 "title": "",
               }
             }
+            titleRef={[Function]}
           />
         </EditorSurface__AnimatedSection>
       </PageTransition>

@@ -74,12 +74,12 @@ class EditorSurface extends React.Component {
   };
 
   setFocusOnTitle = () => {
-    // const { section, page } = this.props;
-    // if (get(section, "title.length") === 0) {
-    //   this.sectionTitle.focus();
-    // } else if (get(page, "title.length") === 0) {
-    //   this.pageTitle.focus();
-    // }
+    const { section, page } = this.props;
+    if (get(section, "title.length") === 0) {
+      this.sectionTitle.focus();
+    } else if (get(page, "title.length") === 0) {
+      this.pageTitle.focus();
+    }
   };
 
   handleEntered = node => {
@@ -110,7 +110,11 @@ class EditorSurface extends React.Component {
                   onFocus={onFocus}
                   isFocused={focused === sectionId}
                 >
-                  <SectionEditor onUpdate={onUpdateSection} section={section} />
+                  <SectionEditor
+                    onUpdate={onUpdateSection}
+                    section={section}
+                    titleRef={this.setSectionTitle}
+                  />
                 </CanvasSection>
               </AnimatedSection>
             </PageTransition>
@@ -121,6 +125,7 @@ class EditorSurface extends React.Component {
                   page={page}
                   onFocus={onFocus}
                   focused={focused}
+                  titleRef={this.setPageTitle}
                 />
               </AnimatedSection>
             </PageTransition>

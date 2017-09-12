@@ -62,58 +62,118 @@ describe("EditorSurface", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  // it("should fail invalid 'focused' prop value", () => {
-  //   expect(() => {
-  //     createWrapper({
-  //       focused: "I AM NOT A VALID VALUE"
-  //     });
-  //   }).toThrow();
-  // });
-
   // eslint-disable-next-line jest/no-disabled-tests
-  xdescribe("focus behaviour", () => {
-    // TODO This logic needs to be re-introduced.
+  describe("focus behaviour", () => {
+    function createWrapperWithTitles({ section = "", page = "" } = {}) {
+      return createWrapper(
+        {
+          section: {
+            __typename: "Section",
+            id: 2,
+            title: section
+          },
+          page: {
+            __typename: "QuestionPage",
+            id: 1,
+            title: page,
+            answers: []
+          }
+        },
+        mount
+      );
+    }
 
-    it("should focus on empty section title upon mount", () => {
-      expect(document.activeElement.name).toEqual("section.title");
-    });
+    describe("when section title is empty", () => {
+      describe("and page title is populated", () => {
+        it("should focus on section title", () => {
+          wrapper = createWrapperWithTitles({
+            page: "a page title"
+          });
 
-    it("should focus on empty page title when section title is not empty", () => {
-      wrapper = createWrapper({
-        section: { title: "Section" },
-        page: { id: "3", title: "" }
+          const sectionInput = wrapper.find(
+            "#section-editor input[name='title']"
+          );
+          expect(sectionInput.matchesElement(document.activeElement)).toBe(
+            true
+          );
+        });
       });
-      expect(document.activeElement.name).toEqual("page.title");
+
+      describe("and page title is empty", () => {
+        it("should focus on section title", () => {
+          wrapper = createWrapperWithTitles();
+
+          const sectionInput = wrapper.find(
+            "#section-editor input[name='title']"
+          );
+          expect(sectionInput.matchesElement(document.activeElement)).toBe(
+            true
+          );
+        });
+      });
     });
 
-    it("should move focus to empty section title upon navigation to new page", () => {
-      expect(document.activeElement.name).toEqual("section.title");
-    });
+    describe("when section title is populated", () => {
+      describe("and page title is empty", () => {
+        it("should focus on page title", () => {
+          wrapper = createWrapperWithTitles({
+            section: "a section title"
+          });
 
-    it("should move focus to empty page title upon navigation to new page", () => {
-      wrapper = createWrapper({
-        section: { title: "Section" },
-        page: { id: "1", title: "I have a title" },
-        answers: [answer]
+          const sectionInput = wrapper.find(
+            "#question-page-editor input[name='title']"
+          );
+          expect(sectionInput.matchesElement(document.activeElement)).toBe(
+            true
+          );
+        });
       });
 
-      expect(document.activeElement.name).toEqual("section.title");
+      describe("and page title is populated", () => {
+        it("should focus on neither", () => {
+          wrapper = createWrapperWithTitles({
+            section: "a section title",
+            page: "a page title"
+          });
 
-      wrapper.setProps({ page: { id: "2", title: "" } });
+          const pageInput = wrapper.find(
+            "#question-page-editor input[name='title']"
+          );
+          const sectionInput = wrapper.find(
+            "#section-editor input[name='title']"
+          );
 
-      expect(document.activeElement.name).toEqual("page.title");
-      expect(document.activeElement.value).toEqual("");
+          expect(pageInput.matchesElement(document.activeElement)).toBe(false);
+          expect(sectionInput.matchesElement(document.activeElement)).toBe(
+            false
+          );
+        });
+      });
     });
 
-    it("should focus on a designated field when a transition is complete", () => {
-      // const input = { focus: jest.fn() };
-      // const node = {
-      //   querySelectorAll: jest.fn(() => [input])
-      // };
-      //
-      // wrapper = createWrapper({}, shallow);
-      // // wrapper.find(Answer).simulate("entered", node);
-      // expect(input.focus).toHaveBeenCalled();
+    describe("when navigating to new page", () => {
+      it("should attempt to move focus", () => {
+        const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
+        wrapper.setProps({
+          page: {
+            id: 1,
+            title: "I have a title",
+            __typename: "QuestionPage",
+            answers: []
+          }
+        });
+
+        expect(spy).toHaveBeenCalled();
+      });
+    });
+
+    describe("when navigating to same page", () => {
+      it("should attempt to move focus", () => {
+        const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
+        wrapper.setProps({ page });
+
+        expect(spy).not.toHaveBeenCalled();
+      });
     });
   });
 });

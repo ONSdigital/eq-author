@@ -26,6 +26,7 @@ export class QPE extends React.Component {
     onDeleteAnswer: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
+    titleRef: PropTypes.func,
     page: CustomPropTypes.page,
     focused: PropTypes.string
   };
@@ -52,13 +53,17 @@ export class QPE extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div id="question-page-editor">
         <CanvasSection
           id={getIdFromObject(page)}
           onFocus={onFocus}
           isFocused={this.isFocused(page)}
         >
-          <MetaEditor onUpdate={onUpdatePage} page={page} />
+          <MetaEditor
+            onUpdate={onUpdatePage}
+            page={page}
+            titleRef={this.props.titleRef}
+          />
         </CanvasSection>
 
         {page.answers.map(answer =>

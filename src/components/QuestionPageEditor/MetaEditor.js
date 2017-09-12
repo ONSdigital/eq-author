@@ -18,6 +18,7 @@ class MetaEditor extends React.Component {
             value={page.title}
             onChange={onChange}
             onBlur={onUpdate}
+            ref={this.props.titleRef}
           />
         </Field>
         <Field id="description">
@@ -44,7 +45,8 @@ class MetaEditor extends React.Component {
 MetaEditor.propTypes = {
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
-  page: CustomPropTypes.page
+  page: CustomPropTypes.page,
+  titleRef: PropTypes.func
 };
 
 export default withEntityEditor("page")(MetaEditor);
