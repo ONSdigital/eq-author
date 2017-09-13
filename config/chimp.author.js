@@ -1,19 +1,9 @@
-module.exports = {
-  path: "tests/spec",
-  jasmine: true,
-  browser: "chrome",
-  log: "info",
-  debug: false,
-  webdriverio: {
-    desiredCapabilities: {
-      browserName: "chrome",
-      javascriptEnabled: true,
-      maxInstances: 1,
-      bail: 1
-    },
-    logLevel: "error"
-  },
+/* eslint-disable import/unambiguous */
+const commonConfig = require("./chimp-common");
+const merge = require("lodash").merge;
+
+module.exports = merge({}, commonConfig, {
   jasmineConfig: {
     specFiles: ["smoketest-author-spec.js"]
   }
-};
+});
