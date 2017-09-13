@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MetaEditor should render 1`] = `
+<div>
+  <Field
+    id="title"
+  >
+    <withSeamlessness(withChangeHandler(Input))
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Question title"
+      size="large"
+      value="Page title"
+    />
+  </Field>
+  <Field
+    id="description"
+  >
+    <withSeamlessness(withChangeHandler(Input))
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Question text (optional)…"
+      size="small"
+      value="Page description"
+    />
+  </Field>
+  <Field
+    id="guidance"
+  >
+    <withSeamlessness(withChangeHandler(Input))
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Guidance text (optional)…"
+      size="small"
+      value="Page guidance"
+    />
+  </Field>
+</div>
+`;

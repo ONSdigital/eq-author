@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import withEntityEditor from "components/withEntityEditor";
 
-class MetaEditor extends React.Component {
+export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate } = this.props;
 
@@ -42,11 +42,11 @@ class MetaEditor extends React.Component {
   }
 }
 
-MetaEditor.propTypes = {
+StatelessMetaEditor.propTypes = {
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   page: CustomPropTypes.page,
   titleRef: PropTypes.func
 };
 
-export default withEntityEditor("page")(MetaEditor);
+export default withEntityEditor("page")(StatelessMetaEditor);
