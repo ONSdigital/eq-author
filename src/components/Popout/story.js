@@ -4,7 +4,7 @@ import Popout, { UncontrolledPopout } from "./index";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import ScaleTransition, { styles as scaleStyles } from "./ScaleTransition";
+import ScaleTransition from "./ScaleTransition";
 
 const Trigger = styled.button`
   border-radius: 2px;
@@ -40,8 +40,6 @@ const Menu = styled.div`
   padding: 2em;
   box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0px;
   width: 340px;
-
-  ${scaleStyles};
 `;
 
 const CenterXY = styled.div`
