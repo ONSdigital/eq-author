@@ -1,21 +1,21 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
-import { css } from "styled-components";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const FADE_TIMEOUT = 250;
-
-export const styles = css`
+const Animated = styled.div`
   transform-origin: bottom left;
-  transition: transform ${FADE_TIMEOUT / 2}ms;
+  transition: transform ${props => props.duration / 2}ms;
 
-  > * {
-    transition: opacity ${FADE_TIMEOUT / 2}ms ${FADE_TIMEOUT / 2}ms;
+  > * > * {
+    transition: opacity ${props => props.duration / 2}ms
+      ${props => props.duration / 2}ms;
   }
 
   &.scale-enter {
     transform: scale(0);
 
-    > * {
+    > * > * {
       opacity: 0;
     }
   }
@@ -23,17 +23,18 @@ export const styles = css`
   &.scale-enter-active {
     transform: scale(1);
 
-    > * {
+    > * > * {
       opacity: 1;
     }
   }
 
   &.scale-exit {
     transform: scale(1);
-    transition: transform ${FADE_TIMEOUT / 2}ms ${FADE_TIMEOUT / 2}ms;
+    transition: transform ${props => props.duration / 2}ms
+      ${props => props.duration / 2}ms;
 
-    > * {
-      transition: opacity ${FADE_TIMEOUT / 2}ms;
+    > * > * {
+      transition: opacity ${props => props.duration / 2}ms;
       opacity: 1;
     }
   }
@@ -41,19 +42,32 @@ export const styles = css`
   &.scale-exit-active {
     transform: scale(0);
 
-    > * {
+    > * > * {
       opacity: 0;
     }
-  }`;
+  }
+`;
 
 class ScaleTransition extends React.Component {
   static defaultProps = {
     in: false,
-    timeout: FADE_TIMEOUT
+    duration: 250
+  };
+
+  static propTypes = {
+    duration: PropTypes.number,
+    children: PropTypes.element
   };
 
   render() {
-    return <CSSTransition {...this.props} classNames="scale" />;
+    const { duration, children, ...otherProps } = this.props;
+    return (
+      <CSSTransition timeout={duration} {...otherProps} classNames="scale">
+        <Animated duration={duration}>
+          {children}
+        </Animated>
+      </CSSTransition>
+    );
   }
 }
 

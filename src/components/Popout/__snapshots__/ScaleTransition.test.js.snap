@@ -6,8 +6,12 @@ exports[`components/Popout/ScaleTransition should render 1`] = `
   in={false}
   timeout={250}
 >
-  <div>
-    hello world
-  </div>
+  <ScaleTransition__Animated
+    duration={250}
+  >
+    <div>
+      hello world
+    </div>
+  </ScaleTransition__Animated>
 </CSSTransition>
 `;
