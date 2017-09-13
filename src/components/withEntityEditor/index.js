@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const withEntityEditor = propName => WrappedComponent => {
+const withEntityEditor = entityPropName => WrappedComponent => {
   return class EntityEditor extends React.Component {
     static propTypes = {
-      [propName]: PropTypes.object.isRequired, // eslint-disable-line
+      [entityPropName]: PropTypes.object.isRequired, // eslint-disable-line
       onUpdate: PropTypes.func.isRequired,
       onSubmit: PropTypes.func
     };
@@ -15,38 +15,38 @@ const withEntityEditor = propName => WrappedComponent => {
       super(props);
 
       this.state = {
-        [propName]: props[propName]
+        [entityPropName]: props[entityPropName]
       };
     }
 
     componentWillReceiveProps(nextProps) {
-      if (nextProps[propName].id !== this.props[propName].id) {
+      if (nextProps[entityPropName].id !== this.props[entityPropName].id) {
         this.setState({
-          [propName]: nextProps[propName]
+          [entityPropName]: nextProps[entityPropName]
         });
       }
     }
 
     handleChange = ({ name, value }) => {
       this.setState({
-        [propName]: {
-          ...this.state[propName],
+        [entityPropName]: {
+          ...this.state[entityPropName],
           [name]: value
         }
       });
     };
 
     handleUpdate = () => {
-      this.props.onUpdate(this.state[propName]);
+      this.props.onUpdate(this.state[entityPropName]);
     };
 
     handleSubmit = e => {
       e.preventDefault();
-      this.props.onSubmit(this.state[propName]);
+      this.props.onSubmit(this.state[entityPropName]);
     };
 
     render() {
-      const props = { [propName]: this.state[propName] };
+      const props = { [entityPropName]: this.state[entityPropName] };
 
       return (
         <WrappedComponent
