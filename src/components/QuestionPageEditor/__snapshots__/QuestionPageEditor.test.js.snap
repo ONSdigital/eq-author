@@ -38,50 +38,63 @@ exports[`Question Page Editor should render 1`] = `
       }
     />
   </CanvasSection>
-  <CanvasSection
-    id="BasicAnswer1"
-    isFocused={false}
-    onFocus={[Function]}
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
   >
-    <AnswerEditor
-      answer={
-        Object {
-          "__typename": "BasicAnswer",
-          "description": "",
-          "id": 1,
-          "title": "First name",
-          "type": "TextField",
-        }
-      }
-      onAddOption={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
-    />
-  </CanvasSection>
-  <CanvasSection
-    id="BasicAnswer2"
-    isFocused={false}
-    onFocus={[Function]}
-  >
-    <AnswerEditor
-      answer={
-        Object {
-          "__typename": "BasicAnswer",
-          "description": "",
-          "id": 2,
-          "title": "Last name",
-          "type": "TextField",
-        }
-      }
-      onAddOption={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
-    />
-  </CanvasSection>
+    <SlideTransition
+      duration={300}
+    >
+      <CanvasSection
+        id="BasicAnswer1"
+        isFocused={false}
+        onFocus={[Function]}
+      >
+        <AnswerEditor
+          answer={
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": 1,
+              "title": "First name",
+              "type": "TextField",
+            }
+          }
+          onAddOption={[Function]}
+          onDeleteAnswer={[Function]}
+          onDeleteOption={[Function]}
+          onUpdate={[Function]}
+          onUpdateOption={[Function]}
+        />
+      </CanvasSection>
+    </SlideTransition>
+    <SlideTransition
+      duration={300}
+    >
+      <CanvasSection
+        id="BasicAnswer2"
+        isFocused={false}
+        onFocus={[Function]}
+      >
+        <AnswerEditor
+          answer={
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": 2,
+              "title": "Last name",
+              "type": "TextField",
+            }
+          }
+          onAddOption={[Function]}
+          onDeleteAnswer={[Function]}
+          onDeleteOption={[Function]}
+          onUpdate={[Function]}
+          onUpdateOption={[Function]}
+        />
+      </CanvasSection>
+    </SlideTransition>
+  </TransitionGroup>
   <CanvasSection__BasicSection>
     <AnswerTypeSelector
       onSelect={[Function]}

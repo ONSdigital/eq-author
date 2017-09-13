@@ -10,81 +10,81 @@ exports[`EditorSurface should render 1`] = `
       childFactory={[Function]}
       component="div"
     >
-      <PageTransition>
-        <EditorSurface__AnimatedSection>
-          <CanvasSection
-            id="Section3"
-            isFocused={true}
-            onFocus={[Function]}
-          >
-            <withEntityEditor(StatelessSectionEditor)
-              onUpdate={[Function]}
-              section={
-                Object {
-                  "__typename": "Section",
-                  "id": 3,
-                  "pages": Array [
-                    Object {
-                      "__typename": "Page",
-                      "answers": Array [
-                        Object {
-                          "__typename": "MultipleChoiceAnswer",
-                          "id": 1,
-                          "options": Array [
-                            Object {
-                              "__typename": "Option",
-                              "description": "",
-                              "id": 0,
-                              "label": "",
-                            },
-                          ],
-                          "type": "Checkbox",
-                        },
-                      ],
-                      "id": 2,
-                      "title": "",
-                    },
-                  ],
-                  "title": "",
-                }
-              }
-              titleRef={[Function]}
-            />
-          </CanvasSection>
-        </EditorSurface__AnimatedSection>
-      </PageTransition>
-      <PageTransition>
-        <EditorSurface__AnimatedSection>
-          <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE))))))
-            focused="Section3"
-            onFocus={[Function]}
-            onUpdatePage={[Function]}
-            page={
+      <SlideTransition
+        duration={300}
+      >
+        <CanvasSection
+          id="Section3"
+          isFocused={true}
+          onFocus={[Function]}
+        >
+          <withEntityEditor(StatelessSectionEditor)
+            onUpdate={[Function]}
+            section={
               Object {
-                "__typename": "Page",
-                "answers": Array [
+                "__typename": "Section",
+                "id": 3,
+                "pages": Array [
                   Object {
-                    "__typename": "MultipleChoiceAnswer",
-                    "id": 1,
-                    "options": Array [
+                    "__typename": "Page",
+                    "answers": Array [
                       Object {
-                        "__typename": "Option",
-                        "description": "",
-                        "id": 0,
-                        "label": "",
+                        "__typename": "MultipleChoiceAnswer",
+                        "id": 1,
+                        "options": Array [
+                          Object {
+                            "__typename": "Option",
+                            "description": "",
+                            "id": 0,
+                            "label": "",
+                          },
+                        ],
+                        "type": "Checkbox",
                       },
                     ],
-                    "type": "Checkbox",
+                    "id": 2,
+                    "title": "",
                   },
                 ],
-                "id": 2,
                 "title": "",
               }
             }
             titleRef={[Function]}
           />
-        </EditorSurface__AnimatedSection>
-      </PageTransition>
+        </CanvasSection>
+      </SlideTransition>
+      <SlideTransition
+        duration={300}
+      >
+        <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE))))))
+          focused="Section3"
+          onFocus={[Function]}
+          onUpdatePage={[Function]}
+          page={
+            Object {
+              "__typename": "Page",
+              "answers": Array [
+                Object {
+                  "__typename": "MultipleChoiceAnswer",
+                  "id": 1,
+                  "options": Array [
+                    Object {
+                      "__typename": "Option",
+                      "description": "",
+                      "id": 0,
+                      "label": "",
+                    },
+                  ],
+                  "type": "Checkbox",
+                },
+              ],
+              "id": 2,
+              "title": "",
+            }
+          }
+          titleRef={[Function]}
+        />
+      </SlideTransition>
     </TransitionGroup>
   </Form>
 </Canvas__Canvas>

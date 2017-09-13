@@ -5,6 +5,8 @@ import MetaEditor from "./MetaEditor";
 import CanvasSection, {
   BasicSection
 } from "components/EditorSurface/CanvasSection";
+import SlideTransition from "components/SlideTransition";
+import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
@@ -65,24 +67,27 @@ export class QPE extends React.Component {
             titleRef={this.props.titleRef}
           />
         </CanvasSection>
-
-        {page.answers.map(answer =>
-          <CanvasSection
-            id={getIdFromObject(answer)}
-            key={getIdFromObject(answer)}
-            onFocus={onFocus}
-            isFocused={this.isFocused(answer)}
-          >
-            <AnswerEditor
-              answer={answer}
-              onUpdate={onUpdateAnswer}
-              onAddOption={onAddOption}
-              onUpdateOption={onUpdateOption}
-              onDeleteOption={onDeleteOption}
-              onDeleteAnswer={this.handleDeleteAnswer}
-            />
-          </CanvasSection>
-        )}
+        <TransitionGroup>
+          {page.answers.map(answer =>
+            <SlideTransition key={getIdFromObject(answer)}>
+              <CanvasSection
+                id={getIdFromObject(answer)}
+                key={getIdFromObject(answer)}
+                onFocus={onFocus}
+                isFocused={this.isFocused(answer)}
+              >
+                <AnswerEditor
+                  answer={answer}
+                  onUpdate={onUpdateAnswer}
+                  onAddOption={onAddOption}
+                  onUpdateOption={onUpdateOption}
+                  onDeleteOption={onDeleteOption}
+                  onDeleteAnswer={this.handleDeleteAnswer}
+                />
+              </CanvasSection>
+            </SlideTransition>
+          )}
+        </TransitionGroup>
         <BasicSection>
           <AnswerTypeSelector onSelect={onAddAnswer} />
         </BasicSection>

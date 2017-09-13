@@ -2,44 +2,16 @@
 import React from "react";
 import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import CanvasSection from "./CanvasSection";
 import Canvas from "./Canvas";
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
 import { noop, get } from "lodash";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
 import SectionEditor from "components/SectionEditor";
 import QuestionPageEditor from "components/QuestionPageEditor";
 import getIdFromObject from "utils/getIdFromObject";
-
-const duration = 300;
-
-const PageTransition = props =>
-  <CSSTransition
-    {...props}
-    timeout={duration}
-    enter
-    exit={false}
-    classNames="fade"
-  />;
-
-const AnimatedSection = styled.div`
-  position: relative;
-  &.fade-enter,
-  &.fade-exit {
-    opacity: 0.25;
-    transform: translateX(-50px);
-    z-index: 200;
-  }
-  &.fade-enter.fade-enter-active {
-    opacity: 1;
-    z-index: 200;
-    transform: translateX(0);
-    transition: opacity ${duration}ms ease-out,
-      transform ${duration}ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-  }
-`;
+import SlideTransition from "components/SlideTransition";
 
 class EditorSurface extends React.Component {
   static propTypes = {
@@ -103,32 +75,28 @@ class EditorSurface extends React.Component {
       <Canvas>
         <Form onChange={noop} onSubmit={noop}>
           <TransitionGroup>
-            <PageTransition key={sectionId}>
-              <AnimatedSection>
-                <CanvasSection
-                  id={sectionId}
-                  onFocus={onFocus}
-                  isFocused={focused === sectionId}
-                >
-                  <SectionEditor
-                    onUpdate={onUpdateSection}
-                    section={section}
-                    titleRef={this.setSectionTitle}
-                  />
-                </CanvasSection>
-              </AnimatedSection>
-            </PageTransition>
-            <PageTransition key={getIdFromObject(page)}>
-              <AnimatedSection>
-                <QuestionPageEditor
-                  onUpdatePage={onUpdatePage}
-                  page={page}
-                  onFocus={onFocus}
-                  focused={focused}
-                  titleRef={this.setPageTitle}
+            <SlideTransition key={sectionId}>
+              <CanvasSection
+                id={sectionId}
+                onFocus={onFocus}
+                isFocused={focused === sectionId}
+              >
+                <SectionEditor
+                  onUpdate={onUpdateSection}
+                  section={section}
+                  titleRef={this.setSectionTitle}
                 />
-              </AnimatedSection>
-            </PageTransition>
+              </CanvasSection>
+            </SlideTransition>
+            <SlideTransition key={getIdFromObject(page)}>
+              <QuestionPageEditor
+                onUpdatePage={onUpdatePage}
+                page={page}
+                onFocus={onFocus}
+                focused={focused}
+                titleRef={this.setPageTitle}
+              />
+            </SlideTransition>
           </TransitionGroup>
         </Form>
       </Canvas>
