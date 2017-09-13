@@ -1,6 +1,6 @@
 import createClient from "./createClient";
 import { ApolloClient } from "apollo-client";
-import getIdFromObject from "utils/getIdFromObject";
+import getIdForObject from "utils/getIdForObject";
 
 describe("createClient", () => {
   let networkInterface, client;
@@ -18,8 +18,8 @@ describe("createClient", () => {
     expect(client.networkInterface).toBe(networkInterface);
   });
 
-  it("should use getIdFromObject to for keying entities", () => {
-    expect(client.dataIdFromObject).toBe(getIdFromObject);
+  it("should use getIdForObject to for keying entities", () => {
+    expect(client.dataIdFromObject).toBe(getIdForObject);
   });
 
   it("should set add typename to true", () => {

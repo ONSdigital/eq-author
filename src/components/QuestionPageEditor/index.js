@@ -10,7 +10,7 @@ import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
-import getIdFromObject from "utils/getIdFromObject";
+import getIdForObject from "utils/getIdForObject";
 
 import withDeleteAnswer from "containers/Enhancers/withDeleteAnswer";
 import withCreateAnswer from "containers/Enhancers/withCreateAnswer";
@@ -39,7 +39,7 @@ export class QPE extends React.Component {
   };
 
   isFocused(entity) {
-    return this.props.focused === getIdFromObject(entity);
+    return this.props.focused === getIdForObject(entity);
   }
 
   render() {
@@ -57,7 +57,7 @@ export class QPE extends React.Component {
     return (
       <div id="question-page-editor">
         <CanvasSection
-          id={getIdFromObject(page)}
+          id={getIdForObject(page)}
           onFocus={onFocus}
           isFocused={this.isFocused(page)}
         >
@@ -69,10 +69,10 @@ export class QPE extends React.Component {
         </CanvasSection>
         <TransitionGroup>
           {page.answers.map(answer =>
-            <SlideTransition key={getIdFromObject(answer)}>
+            <SlideTransition key={getIdForObject(answer)}>
               <CanvasSection
-                id={getIdFromObject(answer)}
-                key={getIdFromObject(answer)}
+                id={getIdForObject(answer)}
+                key={getIdForObject(answer)}
                 onFocus={onFocus}
                 isFocused={this.isFocused(answer)}
               >

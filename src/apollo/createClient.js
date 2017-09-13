@@ -1,11 +1,11 @@
 import { ApolloClient } from "react-apollo";
 import fragmentMatcher from "./fragmentMatcher";
-import getIdFromObject from "utils/getIdFromObject";
+import getIdForObject from "utils/getIdForObject";
 
 export default networkInterface => {
   return new ApolloClient({
     addTypename: true,
-    dataIdFromObject: getIdFromObject,
+    dataIdFromObject: getIdForObject,
     fragmentMatcher,
     networkInterface
   });

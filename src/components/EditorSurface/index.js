@@ -10,7 +10,7 @@ import { noop, get } from "lodash";
 import { TransitionGroup } from "react-transition-group";
 import SectionEditor from "components/SectionEditor";
 import QuestionPageEditor from "components/QuestionPageEditor";
-import getIdFromObject from "utils/getIdFromObject";
+import getIdForObject from "utils/getIdForObject";
 import SlideTransition from "components/SlideTransition";
 
 class EditorSurface extends React.Component {
@@ -54,11 +54,6 @@ class EditorSurface extends React.Component {
     }
   };
 
-  handleEntered = node => {
-    const inputs = node.querySelectorAll("[data-autoFocus]");
-    inputs[inputs.length - 1].focus();
-  };
-
   render() {
     const {
       section,
@@ -69,7 +64,7 @@ class EditorSurface extends React.Component {
       onUpdateSection
     } = this.props;
 
-    const sectionId = getIdFromObject(section);
+    const sectionId = getIdForObject(section);
 
     return (
       <Canvas>
@@ -88,7 +83,7 @@ class EditorSurface extends React.Component {
                 />
               </CanvasSection>
             </SlideTransition>
-            <SlideTransition key={getIdFromObject(page)}>
+            <SlideTransition key={getIdForObject(page)}>
               <QuestionPageEditor
                 onUpdatePage={onUpdatePage}
                 page={page}
