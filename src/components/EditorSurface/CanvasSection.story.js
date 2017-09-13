@@ -4,7 +4,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
 import CanvasSection from "./CanvasSection";
-import SeamlessInput from "../SeamlessInput/SeamlessInput";
+import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 
 storiesOf("CanvasSection", module)
   .addDecorator(withKnobs)

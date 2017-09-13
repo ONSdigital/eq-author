@@ -2,10 +2,10 @@ import { compose } from "react-apollo";
 import { connect } from "react-redux";
 
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
-import withQuestionnaire from "../enhancers/withQuestionnaire";
-import withUpdateSection from "../enhancers/withUpdateSection";
-import withUpdatePage from "../enhancers/withUpdatePage";
-import getUrlParams from "../../utils/getUrlParams";
+import withQuestionnaire from "containers/enhancers/withQuestionnaire";
+import withUpdateSection from "containers/enhancers/withUpdateSection";
+import withUpdatePage from "containers/enhancers/withUpdatePage";
+import getUrlParams from "utils/getUrlParams";
 
 export const mapStateToProps = (state, { match }) => getUrlParams(match.params);
 
