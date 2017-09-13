@@ -82,14 +82,10 @@ exports[`Question Page Editor should render 1`] = `
       onUpdateOption={[Function]}
     />
   </CanvasSection>
-  <CanvasSection
-    id="answer-selector"
-    isFocused={false}
-    onFocus={[Function]}
-  >
+  <CanvasSection__BasicSection>
     <AnswerTypeSelector
       onSelect={[Function]}
     />
-  </CanvasSection>
+  </CanvasSection__BasicSection>
 </div>
 `;

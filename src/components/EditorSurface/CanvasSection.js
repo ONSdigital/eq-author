@@ -9,16 +9,19 @@ const focusedStyle = css`
   outline-color: ${colors.lightBlue} !important;
 `;
 
-const StyledCanvasSection = styled.div`
+export const BasicSection = styled.div`
   padding: 2em 2.5em;
-  transition: outline-color 100ms ease-in;
-  background: white;
-  margin-bottom: 1px;
+  background-color: white;
   position: relative;
+  box-shadow: ${shadow};
+`;
+
+const FocusableSection = styled(BasicSection)`
+  transition: outline-color 100ms ease-in;
+  margin-bottom: 1px;
   outline-width: 1px;
   outline-style: solid;
   outline-color: transparent;
-  box-shadow: ${shadow};
 
   &:hover {
     outline-color: ${transparentize(0.6, colors.lightBlue)};
@@ -44,7 +47,7 @@ export default class CanvasSection extends React.Component {
 
   render() {
     return (
-      <StyledCanvasSection
+      <FocusableSection
         {...this.props}
         onClick={this.handleFocus}
         onFocus={this.handleFocus}

@@ -2,10 +2,13 @@ import React from "react";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
-import CanvasSection from "components/EditorSurface/CanvasSection";
+import CanvasSection, {
+  BasicSection
+} from "components/EditorSurface/CanvasSection";
 import PropTypes from "prop-types";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
+import getIdFromObject from "utils/getIdFromObject";
 
 import withDeleteAnswer from "containers/Enhancers/withDeleteAnswer";
 import withCreateAnswer from "containers/Enhancers/withCreateAnswer";
@@ -13,8 +16,6 @@ import withUpdateAnswer from "containers/Enhancers/withUpdateAnswer";
 import withCreateOption from "containers/Enhancers/withCreateOption";
 import withUpdateOption from "containers/Enhancers/withUpdateOption";
 import withDeleteOption from "containers/Enhancers/withDeleteOption";
-
-import getIdFromObject from "utils/getIdFromObject";
 
 export class QPE extends React.Component {
   static propTypes = {
@@ -48,8 +49,7 @@ export class QPE extends React.Component {
       onAddOption,
       onUpdateOption,
       onDeleteOption,
-      onFocus,
-      focused
+      onFocus
     } = this.props;
 
     return (
@@ -83,13 +83,9 @@ export class QPE extends React.Component {
             />
           </CanvasSection>
         )}
-        <CanvasSection
-          onFocus={onFocus}
-          id="answer-selector"
-          isFocused={focused === "answer-selector"}
-        >
+        <BasicSection>
           <AnswerTypeSelector onSelect={onAddAnswer} />
-        </CanvasSection>
+        </BasicSection>
       </div>
     );
   }
