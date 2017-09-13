@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] = `
+exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
   questionnaire={
     Object {
-      "id": "3",
+      "id": 3,
       "sections": Array [
         Object {
-          "id": "2",
+          "id": 2,
           "pages": Array [
             Object {
               "answers": Array [
@@ -23,7 +23,7 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
               ],
               "description": "",
               "guidance": "",
-              "id": "1",
+              "id": 1,
               "title": "",
               "type": "General",
             },
@@ -43,16 +43,14 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
       cols={2}
       gutters={false}
     >
-      <QuestionnaireNav
-        onAddPage={[Function]}
-        onAddSection={[Function]}
-        onDeletePage={[Function]}
+      <withRouter(Apollo(Apollo(Apollo(QuestionnaireNav))))
+        pageId={1}
         questionnaire={
           Object {
-            "id": "3",
+            "id": 3,
             "sections": Array [
               Object {
-                "id": "2",
+                "id": 2,
                 "pages": Array [
                   Object {
                     "answers": Array [
@@ -68,7 +66,7 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
                     ],
                     "description": "",
                     "guidance": "",
-                    "id": "1",
+                    "id": 1,
                     "title": "",
                     "type": "General",
                   },
@@ -79,33 +77,18 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
             "title": "hello world",
           }
         }
+        questionnaireId={3}
+        sectionId={2}
       />
     </Column__Column>
     <Column__Column
       gutters={false}
     >
-      <QuestionnaireDesign
-        answers={
-          Array [
-            Object {
-              "id": 1,
-              "label": "",
-              "options": Array [
-                Object {
-                  "id": 1,
-                },
-              ],
-            },
-          ]
-        }
+      <EditorSurface
         focused="section"
-        onAddAnswer={[Function]}
-        onAddOption={[Function]}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onDeleteAnswer={[Function]}
-        onDeleteOption={[Function]}
         onFocus={[Function]}
+        onUpdatePage={[Function]}
+        onUpdateSection={[Function]}
         page={
           Object {
             "answers": Array [
@@ -121,14 +104,14 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
             ],
             "description": "",
             "guidance": "",
-            "id": "1",
+            "id": 1,
             "title": "",
             "type": "General",
           }
         }
         section={
           Object {
-            "id": "2",
+            "id": 2,
             "pages": Array [
               Object {
                 "answers": Array [
@@ -144,7 +127,7 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
                 ],
                 "description": "",
                 "guidance": "",
-                "id": "1",
+                "id": 1,
                 "title": "",
                 "type": "General",
               },
@@ -179,7 +162,7 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
               ],
               "description": "",
               "guidance": "",
-              "id": "1",
+              "id": 1,
               "title": "",
               "type": "General",
             }
@@ -191,4 +174,4 @@ exports[`containers/QuestionnaireDesignPage should render form when loaded 1`] =
 </BaseLayout>
 `;
 
-exports[`containers/QuestionnaireDesignPage should render nothing when loading 1`] = `null`;
+exports[`QuestionnaireDesignPage should render nothing when loading 1`] = `null`;

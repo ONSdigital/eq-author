@@ -6,6 +6,5 @@ query getSection($id: Int!) {
     pages {
       id
     }
-    questionnaireId
   }
 }

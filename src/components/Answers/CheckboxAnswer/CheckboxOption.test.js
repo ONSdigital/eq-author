@@ -1,12 +1,18 @@
 import React from "react";
 
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import CheckboxOption, { SeamlessLabel } from "./CheckboxOption";
+import {
+  StatelessCheckboxOption,
+  DeleteButton,
+  SeamlessLabel
+} from "./CheckboxOption";
 
 import { shallow } from "enzyme";
 
 describe("CheckboxOption", () => {
-  let mockHandlers, wrapper;
+  let mockMutations;
+  let mockEvent;
+  let wrapper;
 
   const option = {
     id: 1,
@@ -14,30 +20,24 @@ describe("CheckboxOption", () => {
     description: ""
   };
 
-  const answer = {
-    id: 0,
-    options: [option]
-  };
+  beforeEach(() => {
+    mockEvent = {
+      stopPropagation: jest.fn(),
+      preventDefault: jest.fn()
+    };
 
-  beforeAll(() => {
-    mockHandlers = {
-      onAddOption: jest.fn(),
+    mockMutations = {
       onChange: jest.fn(),
+      onUpdate: jest.fn(),
       onFocus: jest.fn(),
-      onBlur: jest.fn(),
-      onEntered: jest.fn(),
       onDelete: jest.fn()
     };
 
     wrapper = shallow(
-      <CheckboxOption
-        {...mockHandlers}
-        hasDeleteButton
-        answerId={answer.id}
-        answerIndex={0}
+      <StatelessCheckboxOption
+        {...mockMutations}
         option={option}
-        optionIndex={1}
-        optionName={`answer-${answer.id}-option-${option.id}`}
+        hasDeleteButton
       />
     );
   });
@@ -46,33 +46,28 @@ describe("CheckboxOption", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should update label when text entered", () => {
+  it("should call onChange on input", () => {
+    wrapper.find(SeamlessLabel).first().simulate("change");
     wrapper.find(SeamlessLabel).first().simulate("change");
 
-    expect(mockHandlers.onChange).toHaveBeenCalled();
+    expect(mockMutations.onChange).toHaveBeenCalledTimes(2);
   });
 
-  it("should update description when text entered", () => {
-    wrapper.find(SeamlessTextArea).first().simulate("change");
+  it("should update label on blur", () => {
+    wrapper.find(SeamlessLabel).first().simulate("blur", mockEvent);
 
-    expect(mockHandlers.onChange).toHaveBeenCalled();
+    expect(mockMutations.onUpdate).toHaveBeenCalled();
   });
 
-  it("should invoke onBlur when option is blurred", () => {
-    const stopPropagation = jest.fn();
-    wrapper.find(SeamlessLabel).first().simulate("blur", { stopPropagation });
+  it("should update description on blur", () => {
+    wrapper.find(SeamlessTextArea).first().simulate("blur", mockEvent);
 
-    expect(stopPropagation).toHaveBeenCalled();
-    expect(mockHandlers.onBlur).toHaveBeenCalled();
+    expect(mockMutations.onUpdate).toHaveBeenCalled();
   });
 
-  it("should invoke onFocus with optionId when option is focused", () => {
-    const stopPropagation = jest.fn();
-    wrapper.find(SeamlessLabel).first().simulate("focus", { stopPropagation });
+  it("should invoke onDelete callback when option deleted", () => {
+    wrapper.find(DeleteButton).simulate("click", mockEvent);
 
-    expect(stopPropagation).toHaveBeenCalled();
-    expect(mockHandlers.onFocus).toHaveBeenCalledWith(
-      expect.stringMatching(new RegExp(`option-${answer.options[0].id}$`))
-    );
+    expect(mockMutations.onDelete).toHaveBeenCalledWith(option.id);
   });
 });

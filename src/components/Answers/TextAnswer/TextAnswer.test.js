@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import TextAnswer from "components/Answers/TextAnswer";
+import { StatelessTextAnswer } from "components/Answers/TextAnswer";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 
@@ -10,25 +10,36 @@ const answer = {
 };
 
 describe("TextAnswer", () => {
-  const i = 1;
   let handleChange;
-  let component;
+  let handleUpdate;
+  let wrapper;
 
   beforeEach(() => {
     handleChange = jest.fn();
-
-    component = shallow(
-      <TextAnswer onChange={handleChange} answer={answer} answerIndex={i} />
+    handleUpdate = jest.fn();
+    wrapper = shallow(
+      <StatelessTextAnswer
+        onChange={handleChange}
+        onUpdate={handleUpdate}
+        answer={answer}
+      />
     );
   });
 
   it("should render", () => {
-    expect(component).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it("should invoke callback on change", () => {
-    component.find(SeamlessTextArea).simulate("change");
-    component.find(SeamlessInput).simulate("change");
+  it("should invoke update callback onBlur", () => {
+    wrapper.find(SeamlessInput).simulate("blur");
+    wrapper.find(SeamlessTextArea).simulate("blur");
+
+    expect(handleUpdate).toHaveBeenCalledTimes(2);
+  });
+
+  it("should invoke change callback onChange", () => {
+    wrapper.find(SeamlessInput).simulate("change");
+    wrapper.find(SeamlessTextArea).simulate("change");
 
     expect(handleChange).toHaveBeenCalledTimes(2);
   });

@@ -5,6 +5,7 @@ import { colors } from "constants/theme";
 import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import withEntityEditor from "components/withEntityEditor";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -38,8 +39,7 @@ const StyledCheckboxInput = styled(Input)`
 `;
 
 export const StyledCheckboxOption = styled.div`
-  border: 1px solid
-    ${props => (props.focused ? colors.lightBlue : colors.borders)};
+  border: 1px solid ${colors.borders};
   padding: 1em 1em 0 1em;
   border-radius: 3px;
   position: relative;
@@ -85,69 +85,43 @@ export const SeamlessLabel = styled(SeamlessInput)`
   vertical-align: middle;
 `;
 
-class CheckboxOption extends Component {
+export class StatelessCheckboxOption extends Component {
   static propTypes = {
-    id: PropTypes.string,
-    answerIndex: PropTypes.number.isRequired,
     option: CustomPropTypes.option.isRequired,
-    optionName: PropTypes.string.isRequired,
-    optionIndex: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired
   };
 
-  handleFocus = e => {
-    e.stopPropagation();
-    this.props.onFocus(this.props.optionName);
-  };
-
-  handleBlur = e => {
-    e.stopPropagation();
-    this.props.onBlur();
-  };
-
   handleDeleteClick = e => {
-    e.preventDefault();
     this.props.onDelete(this.props.option.id);
   };
 
   render() {
-    const {
-      option,
-      optionIndex,
-      answerIndex,
-      onChange,
-      hasDeleteButton
-    } = this.props;
-
-    const id = `answers[${answerIndex}].options[${optionIndex}]`;
+    const { hasDeleteButton, option, onChange, onUpdate } = this.props;
 
     return (
-      <StyledCheckboxOption key={option.id} focused={option.focused}>
-        <Field id={`${id}.label`}>
+      <StyledCheckboxOption key={option.id}>
+        <Field id="label">
           <StyledCheckboxInput type="checkbox" disabled />
           <SeamlessLabel
             placeholder="Label"
             size="medium"
-            onChange={onChange}
             value={option.label}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onChange={onChange}
+            onBlur={onUpdate}
             data-autoFocus
           />
         </Field>
-        <Field id={`${id}.description`}>
+        <Field id="description">
           <SeamlessTextArea
             cols="30"
             rows="5"
             placeholder="Optional description"
             onChange={onChange}
             value={option.description}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
+            onBlur={onUpdate}
           />
         </Field>
         {hasDeleteButton &&
@@ -159,4 +133,4 @@ class CheckboxOption extends Component {
   }
 }
 
-export default CheckboxOption;
+export default withEntityEditor("option")(StatelessCheckboxOption);

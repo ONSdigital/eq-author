@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { QuestionnaireMetaPage } from "./QuestionnaireMetaPage";
+import QuestionnaireMetaPage from "./QuestionnaireMetaPage";
 
 let wrapper;
 
@@ -26,6 +26,11 @@ describe("containers/QuestionnaireMeta", () => {
   });
 
   it("should render", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render nothing while loading", () => {
+    wrapper.setProps({ loading: true });
     expect(wrapper).toMatchSnapshot();
   });
 });

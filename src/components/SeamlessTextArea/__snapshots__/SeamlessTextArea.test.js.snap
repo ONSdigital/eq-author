@@ -38,14 +38,13 @@ exports[`SeamlessTextArea should render 1`] = `
 }
 
 <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-  focused={false}
   id="foo"
   onChange={[Function]}
-  optional={false}
   size="small"
   value="123"
 >
   <withSeamlessness__StyledSeamless
+    id="foo"
     name="foo"
     onChange={[Function]}
     size="small"
@@ -53,6 +52,7 @@ exports[`SeamlessTextArea should render 1`] = `
   >
     <withChangeHandler(SeamlessTextArea__TextArea)
       className="c0"
+      id="foo"
       name="foo"
       onChange={[Function]}
       size="small"
@@ -60,6 +60,7 @@ exports[`SeamlessTextArea should render 1`] = `
     >
       <SeamlessTextArea__TextArea
         className="c0"
+        id="foo"
         name="foo"
         onChange={[Function]}
         size="small"
@@ -67,6 +68,7 @@ exports[`SeamlessTextArea should render 1`] = `
       >
         <TextareaAutosize
           className="c0 c1"
+          id="foo"
           name="foo"
           onChange={[Function]}
           onHeightChange={[Function]}
@@ -76,6 +78,7 @@ exports[`SeamlessTextArea should render 1`] = `
         >
           <textarea
             className="c0 c1"
+            id="foo"
             name="foo"
             onChange={[Function]}
             size="small"

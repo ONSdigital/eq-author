@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CanvasSection should render 1`] = `
+<CanvasSection__FocusableSection
+  id="foo"
+  isFocused={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+>
+  <Child />
+</CanvasSection__FocusableSection>
+`;

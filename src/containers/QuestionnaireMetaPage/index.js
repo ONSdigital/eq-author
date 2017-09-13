@@ -1,30 +1,17 @@
-import { graphql, compose } from "react-apollo";
+import { compose } from "react-apollo";
 import { connect } from "react-redux";
-import { pick } from "lodash";
 
-import getQuestionnaire from "graphql/getQuestionnaire.graphql";
-import updateQuestionnaire from "graphql/updateQuestionnaire.graphql";
+import getUrlParams from "utils/getUrlParams";
+
 import QuestionnaireMeta from "./QuestionnaireMetaPage";
+import withQuestionnaire from "containers/enhancers/withQuestionnaire";
+import withUpdateQuestionnaire from "containers/enhancers/withUpdateQuestionnaire";
 
 export const mapStateToProps = (state, ownProps) =>
-  pick(ownProps.match.params, ["questionnaireId"]);
+  getUrlParams(ownProps.match.params);
 
-export const mapResultsToProps = ({ data }) =>
-  pick(data, ["questionnaire", "loading"]);
-
-export const withData = graphql(getQuestionnaire, {
-  props: mapResultsToProps,
-  options: props => ({ variables: { id: props.questionnaireId } })
-});
-
-export const withMutation = graphql(updateQuestionnaire, {
-  props: ({ mutate }) => ({
-    onUpdate({ questionnaire }) {
-      return mutate({ variables: questionnaire });
-    }
-  })
-});
-
-export default compose(connect(mapStateToProps), withData, withMutation)(
-  QuestionnaireMeta
-);
+export default compose(
+  connect(mapStateToProps),
+  withQuestionnaire,
+  withUpdateQuestionnaire
+)(QuestionnaireMeta);

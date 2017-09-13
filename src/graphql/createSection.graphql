@@ -11,7 +11,6 @@ mutation CreateSection(
     id
     title
     description
-    questionnaireId
     pages {
       id
       title

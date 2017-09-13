@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question Page Editor should render 1`] = `
+<div
+  id="question-page-editor"
+>
+  <CanvasSection
+    id="Page1"
+    isFocused={false}
+    onFocus={[Function]}
+  >
+    <withEntityEditor(StatelessMetaEditor)
+      onUpdate={[Function]}
+      page={
+        Object {
+          "__typename": "Page",
+          "answers": Array [
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": 1,
+              "title": "First name",
+              "type": "TextField",
+            },
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": 2,
+              "title": "Last name",
+              "type": "TextField",
+            },
+          ],
+          "description": "",
+          "guidance": "",
+          "id": 1,
+          "title": "",
+        }
+      }
+    />
+  </CanvasSection>
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
+  >
+    <SlideTransition
+      duration={300}
+    >
+      <CanvasSection
+        id="BasicAnswer1"
+        isFocused={false}
+        onFocus={[Function]}
+      >
+        <AnswerEditor
+          answer={
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": 1,
+              "title": "First name",
+              "type": "TextField",
+            }
+          }
+          onAddOption={[Function]}
+          onDeleteAnswer={[Function]}
+          onDeleteOption={[Function]}
+          onUpdate={[Function]}
+          onUpdateOption={[Function]}
+        />
+      </CanvasSection>
+    </SlideTransition>
+    <SlideTransition
+      duration={300}
+    >
+      <CanvasSection
+        id="BasicAnswer2"
+        isFocused={false}
+        onFocus={[Function]}
+      >
+        <AnswerEditor
+          answer={
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": 2,
+              "title": "Last name",
+              "type": "TextField",
+            }
+          }
+          onAddOption={[Function]}
+          onDeleteAnswer={[Function]}
+          onDeleteOption={[Function]}
+          onUpdate={[Function]}
+          onUpdateOption={[Function]}
+        />
+      </CanvasSection>
+    </SlideTransition>
+  </TransitionGroup>
+  <CanvasSection__BasicSection>
+    <AnswerTypeSelector
+      onSelect={[Function]}
+    />
+  </CanvasSection__BasicSection>
+</div>
+`;

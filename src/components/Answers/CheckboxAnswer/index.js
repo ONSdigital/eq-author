@@ -1,4 +1,3 @@
-/* eslint-disable react/no-find-dom-node */
 import React, { Component } from "react";
 
 import PropTypes from "prop-types";
@@ -50,10 +49,10 @@ export const DeleteButton = styled.button`
 class CheckboxAnswer extends Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
-    answerIndex: PropTypes.number.isRequired,
     onAddOption: PropTypes.func.isRequired,
-    onDeleteOption: PropTypes.func.isRequired,
-    onEntered: PropTypes.func.isRequired
+    onUpdateOption: PropTypes.func.isRequired,
+    onDeleteOption: PropTypes.func.isRequired
+    // onEntered: PropTypes.func.isRequired
   };
 
   handleOptionDelete = optionId => {
@@ -66,36 +65,20 @@ class CheckboxAnswer extends Component {
   };
 
   render() {
-    const {
-      answer,
-      answerIndex,
-      onAddOption,
-      onEntered,
-      onDeleteOption,
-      ...otherProps
-    } = this.props;
+    const { answer, onUpdateOption, ...otherProps } = this.props;
 
     return (
       <CheckboxAnswerWrapper>
         <TransitionGroup component={CheckboxOptions}>
           {answer.options.map((option, optionIndex, options) => {
-            const optionName = `answer-${answer.id}-option-${option.id}`;
-
             return (
-              <CSSTransition
-                timeout={200}
-                classNames="option"
-                key={optionName}
-                onEntered={onEntered}
-              >
+              <CSSTransition timeout={200} classNames="option" key={option.id}>
                 <CheckboxOption
-                  option={option}
-                  optionIndex={optionIndex}
-                  optionName={optionName}
-                  answerIndex={answerIndex}
-                  onDelete={this.handleOptionDelete}
-                  hasDeleteButton={options.length > 1}
                   {...otherProps}
+                  option={option}
+                  onDelete={this.handleOptionDelete}
+                  onUpdate={onUpdateOption}
+                  hasDeleteButton={options.length > 1}
                 />
               </CSSTransition>
             );

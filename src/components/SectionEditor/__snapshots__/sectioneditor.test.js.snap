@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionEditor should render 1`] = `
+<div
+  id="section-editor"
+>
+  <Field
+    id="title"
+  >
+    <withSeamlessness(withChangeHandler(Input))
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Section title"
+      size="medium"
+    />
+  </Field>
+  <Field
+    id="description"
+  >
+    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+      cols="30"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Enter a description (optional)…"
+      rows="5"
+      size="small"
+    />
+  </Field>
+</div>
+`;

@@ -4,15 +4,12 @@ import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import { IconGrid } from "components/IconGrid";
 import AnswerTypeButton from "./AnswerTypeButton";
-import { styles as scaleStyles } from "components/Popout/ScaleTransition";
 import styled from "styled-components";
 
 const Menu = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0px;
   width: 340px;
-
-  ${scaleStyles};
 `;
 
 const Header = styled.div`

@@ -3,26 +3,24 @@
 exports[`NumberAnswer should render 1`] = `
 <div>
   <Field
-    id="answers[1].label"
+    id="label"
   >
     <withSeamlessness(withChangeHandler(Input))
       data-autoFocus={true}
-      focused={false}
+      onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Label"
       size="medium"
       value="Lorem ipsum"
     />
   </Field>
   <Field
-    id="answers[1].description"
+    id="description"
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
-      focused={false}
+      onBlur={[Function]}
       onChange={[Function]}
-      optional={false}
       placeholder="Enter a description (optional)…"
       rows="5"
       size="small"

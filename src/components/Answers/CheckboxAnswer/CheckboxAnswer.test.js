@@ -2,9 +2,9 @@ import React from "react";
 
 import Button from "components/Button";
 import CheckboxAnswer from "./";
-import CheckboxOption, { DeleteButton } from "./CheckboxOption";
+import CheckboxOption from "./CheckboxOption";
 
-import { mount, shallow } from "enzyme";
+import { shallow } from "enzyme";
 
 describe("CheckboxAnswer", () => {
   let wrapper;
@@ -22,6 +22,7 @@ describe("CheckboxAnswer", () => {
 
   let mockHandlers = {
     onAddOption: jest.fn(),
+    onUpdateOption: jest.fn(),
     onDeleteOption: jest.fn(),
     onChange: jest.fn(),
     onEntered: jest.fn(),
@@ -30,9 +31,7 @@ describe("CheckboxAnswer", () => {
   };
 
   const createWrapper = ({ answer }, render = shallow) =>
-    render(
-      <CheckboxAnswer {...mockHandlers} answer={answer} answerIndex={0} />
-    );
+    render(<CheckboxAnswer {...mockHandlers} answer={answer} />);
 
   beforeEach(() => {
     wrapper = createWrapper({
@@ -51,14 +50,14 @@ describe("CheckboxAnswer", () => {
   it("should add a new option when add button is clicked", () => {
     const preventDefault = jest.fn();
     wrapper.find(Button).first().simulate("click", { preventDefault });
-    expect(mockHandlers.onAddOption).toHaveBeenCalled();
+    expect(mockHandlers.onAddOption).toHaveBeenCalledWith(answer.id);
   });
 
-  it("should only have delete button when options > 1", () => {
-    expect(wrapper.find(DeleteButton).length).toBe(0);
+  it("should not show delete button when one option", () => {
+    expect(wrapper.find(CheckboxOption).prop("hasDeleteButton")).toBe(false);
   });
 
-  it("should handle deleting an option", () => {
+  it("should show delete button when more than one option", () => {
     const answer = {
       id: 0,
       options: [
@@ -74,9 +73,20 @@ describe("CheckboxAnswer", () => {
         }
       ]
     };
-    const { id } = answer.options[0];
-    wrapper = createWrapper({ answer }, mount);
-    wrapper.find(DeleteButton).first().simulate("click");
-    expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(id, answer.id);
+
+    wrapper.setProps({ answer });
+    wrapper.find(CheckboxOption).forEach(option => {
+      expect(option.prop("hasDeleteButton")).toBe(true);
+    });
+  });
+
+  it("should handle deleting an option", () => {
+    const optionId = answer.options[0].id;
+    wrapper.find(CheckboxOption).first().simulate("delete", optionId);
+
+    expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(
+      optionId,
+      answer.id
+    );
   });
 });

@@ -8,16 +8,18 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
   >
     <CSSTransition
       classNames="option"
-      onEntered={[Function]}
       timeout={200}
     >
-      <CheckboxOption
-        answerIndex={0}
+      <withEntityEditor(StatelessCheckboxOption)
         hasDeleteButton={false}
+        onAddOption={[Function]}
         onBlur={[Function]}
         onChange={[Function]}
         onDelete={[Function]}
+        onDeleteOption={[Function]}
+        onEntered={[Function]}
         onFocus={[Function]}
+        onUpdate={[Function]}
         option={
           Object {
             "description": "",
@@ -25,8 +27,6 @@ exports[`CheckboxAnswer should match snapshot 1`] = `
             "label": "",
           }
         }
-        optionIndex={0}
-        optionName="answer-0-option-1"
       />
     </CSSTransition>
   </TransitionGroup>

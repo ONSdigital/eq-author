@@ -3,7 +3,7 @@
 exports[`CheckboxOption should match snapshot 1`] = `
 <CheckboxOption__StyledCheckboxOption>
   <Field
-    id="answers[0].options[1].label"
+    id="label"
   >
     <CheckboxOption__StyledCheckboxInput
       disabled={true}
@@ -13,22 +13,18 @@ exports[`CheckboxOption should match snapshot 1`] = `
       data-autoFocus={true}
       onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
       placeholder="Label"
       size="medium"
       value=""
     />
   </Field>
   <Field
-    id="answers[0].options[1].description"
+    id="description"
   >
     <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
       cols="30"
-      focused={false}
       onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      optional={false}
       placeholder="Optional description"
       rows="5"
       size="small"

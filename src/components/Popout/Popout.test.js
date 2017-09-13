@@ -42,9 +42,26 @@ describe("components/Popout", () => {
         expect(handleToggleOpen).toHaveBeenCalledWith(false);
       });
 
+      it("should not close when key other than ESC pressed", () => {
+        document.dispatchEvent(new KeyboardEvent("keyup", { keyCode: 28 }));
+        expect(handleToggleOpen).not.toHaveBeenCalled();
+      });
+
       it("should close when clicking outside", () => {
         document.dispatchEvent(new MouseEvent("click"));
         expect(handleToggleOpen).toHaveBeenCalledWith(false);
+      });
+
+      it("should not close on mouse events other than click", () => {
+        document.dispatchEvent(new MouseEvent("dblclick"));
+        document.dispatchEvent(new MouseEvent("mousedown"));
+        document.dispatchEvent(new MouseEvent("mouseenter"));
+        document.dispatchEvent(new MouseEvent("mouseleave"));
+        document.dispatchEvent(new MouseEvent("mousemove"));
+        document.dispatchEvent(new MouseEvent("mouseover"));
+        document.dispatchEvent(new MouseEvent("mouseout"));
+        document.dispatchEvent(new MouseEvent("mouseup"));
+        expect(handleToggleOpen).not.toHaveBeenCalled();
       });
 
       it("should not close when clicking inside", () => {

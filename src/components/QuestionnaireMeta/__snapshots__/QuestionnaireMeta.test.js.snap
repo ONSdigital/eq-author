@@ -7,7 +7,7 @@ exports[`QuestionnaireMeta should render 1`] = `
       onSubmit={[Function]}
     >
       <Field
-        id="questionnaire.title"
+        id="title"
       >
         <Label>
           Questionnaire Title
@@ -21,7 +21,7 @@ exports[`QuestionnaireMeta should render 1`] = `
         />
       </Field>
       <Field
-        id="questionnaire.description"
+        id="description"
       >
         <Label>
           Description
@@ -42,7 +42,7 @@ exports[`QuestionnaireMeta should render 1`] = `
           cols={6}
         >
           <Field
-            id="questionnaire.surveyId"
+            id="surveyId"
           >
             <Label>
               Survey ID
@@ -63,7 +63,7 @@ exports[`QuestionnaireMeta should render 1`] = `
           cols={6}
         >
           <Field
-            id="questionnaire.theme"
+            id="theme"
           >
             <Label>
               Theme
@@ -85,7 +85,7 @@ exports[`QuestionnaireMeta should render 1`] = `
           cols={6}
         >
           <Field
-            id="questionnaire.legalBasis"
+            id="legalBasis"
           >
             <Label>
               Legal Basis
@@ -105,7 +105,7 @@ exports[`QuestionnaireMeta should render 1`] = `
         </Column__Column>
       </Grid__Grid>
       <Field
-        id="questionnaire.navigation"
+        id="navigation"
       >
         <withChangeHandler(Input)
           onBlur={[Function]}

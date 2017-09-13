@@ -4,36 +4,44 @@ import CustomPropTypes from "custom-prop-types";
 import { Field, Input } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import withEntityEditor from "components/withEntityEditor";
 
-const TextAnswer = ({ answer, answerIndex, onChange }) =>
-  <div>
-    <Field id={`answers[${answerIndex}].label`}>
-      <SeamlessInput
-        placeholder="Label"
-        size="medium"
-        onChange={onChange}
-        value={answer.label}
-        data-autoFocus
-      />
-    </Field>
-    <Field id={`answers[${answerIndex}].description`}>
-      <SeamlessTextArea
-        cols="30"
-        rows="5"
-        placeholder="Enter a description (optional)…"
-        onChange={onChange}
-        value={answer.description}
-      />
-    </Field>
-    <Field id="answer.description">
-      <Input disabled />
-    </Field>
-  </div>;
+export class StatelessTextAnswer extends React.Component {
+  render() {
+    const { answer, onChange, onUpdate } = this.props;
 
-TextAnswer.propTypes = {
+    return (
+      <div>
+        <Field id="label">
+          <SeamlessInput
+            placeholder="Label"
+            size="medium"
+            onChange={onChange}
+            onBlur={onUpdate}
+            value={answer.label}
+            data-autoFocus
+          />
+        </Field>
+        <Field id="description">
+          <SeamlessTextArea
+            cols="30"
+            rows="5"
+            placeholder="Enter a description (optional)…"
+            onChange={onChange}
+            onBlur={onUpdate}
+            value={answer.description}
+          />
+        </Field>
+        <Input disabled />
+      </div>
+    );
+  }
+}
+
+StatelessTextAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
-  answerIndex: PropTypes.number.isRequired
+  onUpdate: PropTypes.func.isRequired
 };
 
-export default TextAnswer;
+export default withEntityEditor("answer")(StatelessTextAnswer);

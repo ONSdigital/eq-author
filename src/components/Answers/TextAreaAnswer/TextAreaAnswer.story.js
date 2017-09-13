@@ -22,8 +22,11 @@ storiesOf("AnswerTypes/TextAreaAnswer", module)
     </Background>
   )
   .add("Empty", () =>
-    <TextAreaAnswer answer={{}} onChange={action("changed")} />
+    <TextAreaAnswer
+      answer={{ label: "", description: "" }}
+      onUpdate={action("updated")}
+    />
   )
   .add("Prefilled", () =>
-    <TextAreaAnswer answer={answer} onChange={action("changed")} />
+    <TextAreaAnswer answer={answer} onUpdate={action("updated")} />
   );

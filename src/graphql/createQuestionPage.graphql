@@ -21,6 +21,8 @@ mutation createQuestionPage(
     answers {
       id
     }
-    sectionId
+    section {
+      id
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { values, merge, forEach, remove } from "lodash";
+import { values, merge, forEach, remove, filter, includes } from "lodash";
 
 class MockDataStore {
   constructor(seedData = {}) {
@@ -151,7 +151,15 @@ class MockDataStore {
 
   createAnswer(answer) {
     const id = ++this.counter.answer;
-    this.answers[id] = merge(answer, { id, options: [] });
+    this.answers[id] = merge(
+      answer,
+      { id, options: [] },
+      {
+        __typename: includes(["Checkbox", "Radio"], answer.type)
+          ? "MultipleChoiceAnswer"
+          : "BasicAnswer"
+      }
+    );
 
     const answerType = this.answers[id].type;
     if (answerType === "Checkbox" || answerType === "Radio") {
@@ -168,7 +176,7 @@ class MockDataStore {
       defaultOptions.forEach(it => this.createOption(merge({}, it)));
     }
 
-    this.getPage(answer.pageId).answers.push(this.answers[id]);
+    this.getPage(answer.questionPageId).answers.push(this.answers[id]);
     return this.answers[id];
   }
 
@@ -179,14 +187,14 @@ class MockDataStore {
 
   deleteAnswer(answer) {
     const answerToDelete = this.answers[answer.id];
-    if (answerToDelete.pageId) {
-      remove(this.pages[answerToDelete.pageId].answers, {
+    if (answerToDelete.questionPageId) {
+      remove(this.pages[answerToDelete.questionPageId].answers, {
         id: answerToDelete.id
       });
     }
 
     delete this.answers[answer.id];
-    return answer;
+    return answerToDelete;
   }
 
   createOption(option) {
@@ -213,6 +221,22 @@ class MockDataStore {
 
     delete this.options[option.id];
     return deletedOption;
+  }
+
+  getSections(questionnaireId) {
+    return filter(values(this.sections), { questionnaireId: questionnaireId });
+  }
+
+  getPages(sectionId) {
+    return filter(values(this.sections), { sectionId: sectionId });
+  }
+
+  getAnswers(pageId) {
+    return filter(values(this.answers), { questionPageId: pageId });
+  }
+
+  getOptions(answerId) {
+    return filter(values(this.options), { answerId: answerId });
   }
 }
 

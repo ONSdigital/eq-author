@@ -21,8 +21,7 @@ exports[`containers/QuestionnaireMeta should render 1`] = `
       offset={2}
     >
       <QuestionnaireMetaPage__Margin>
-        <QuestionnaireMeta
-          loading={false}
+        <withEntityEditor(StatelessQuestionnaireMeta)
           onUpdate={[Function]}
           questionnaire={
             Object {
@@ -39,3 +38,5 @@ exports[`containers/QuestionnaireMeta should render 1`] = `
   </Grid__Grid>
 </BaseLayout>
 `;
+
+exports[`containers/QuestionnaireMeta should render nothing while loading 1`] = `null`;

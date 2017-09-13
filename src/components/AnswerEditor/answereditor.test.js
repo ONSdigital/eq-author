@@ -1,0 +1,83 @@
+import React from "react";
+import { shallow } from "enzyme";
+import CheckboxAnswer from "components/Answers/CheckboxAnswer";
+import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
+import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
+
+describe("Answer Editor", () => {
+  let mockMutations;
+  let mockAnswer;
+  let mockCheckboxAnswer;
+
+  const createWrapper = (props, render = shallow) => {
+    return render(<AnswerEditor {...props} />);
+  };
+
+  beforeEach(() => {
+    mockMutations = {
+      onChange: jest.fn(),
+      onDeleteAnswer: jest.fn(),
+      onAddOption: jest.fn(),
+      onUpdateOption: jest.fn(),
+      onDeleteOption: jest.fn(),
+      onBlur: jest.fn(),
+      onUpdate: jest.fn(),
+      onEntered: jest.fn(),
+      onFocus: jest.fn()
+    };
+
+    mockAnswer = {
+      id: 1,
+      title: "",
+      description: "",
+      type: TEXTFIELD
+    };
+
+    mockCheckboxAnswer = {
+      ...mockAnswer,
+      type: CHECKBOX,
+      options: [
+        {
+          id: 1,
+          label: "",
+          description: ""
+        }
+      ]
+    };
+  });
+
+  it("should render TextField", () => {
+    const wrapper = createWrapper({
+      answer: mockAnswer,
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render Checkbox", () => {
+    const wrapper = createWrapper({
+      answer: mockCheckboxAnswer,
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should call handler when answer deleted", () => {
+    const wrapper = createWrapper({
+      answer: mockAnswer,
+      ...mockMutations
+    });
+
+    wrapper.find(AnswerDeleteButton).first().simulate("click");
+    expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(mockAnswer.id);
+  });
+
+  it("should add an option to answer via `id`", () => {
+    const wrapper = createWrapper({
+      answer: mockCheckboxAnswer,
+      ...mockMutations
+    });
+    wrapper.find(CheckboxAnswer).simulate("addOption");
+    expect(mockMutations.onAddOption).toHaveBeenCalled();
+  });
+});

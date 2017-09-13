@@ -3,52 +3,21 @@ import { shallow } from "enzyme";
 import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage/QuestionnaireCreatePage";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 
-let wrapper, createQuestionnaire, history;
+let wrapper, createQuestionnaire;
 
 describe("containers/QuestionnaireCreatePage", () => {
   beforeEach(() => {
-    createQuestionnaire = jest.fn(() =>
-      Promise.resolve({
-        data: {
-          createQuestionnaire: {
-            id: 1
-          }
-        }
-      })
-    );
-
-    history = { push: jest.fn() };
+    createQuestionnaire = jest.fn();
 
     wrapper = shallow(
-      <QuestionnaireCreatePage
-        createQuestionnaire={createQuestionnaire}
-        history={history}
-        loading
-      />
+      <QuestionnaireCreatePage createQuestionnaire={createQuestionnaire} />
     );
   });
 
   it("should call createQuestionnaire when submitted", () => {
-    const preventDefault = jest.fn();
-    wrapper.find(QuestionnaireMeta).simulate("submit", { preventDefault });
+    const questionnaire = { title: "my questionnaire" };
+    wrapper.find(QuestionnaireMeta).simulate("submit", questionnaire);
 
-    expect(preventDefault).toHaveBeenCalled();
-    expect(createQuestionnaire).toHaveBeenCalledWith(
-      wrapper.state().questionnaire
-    );
-  });
-
-  it("should update state with questionnaire data when received as props", () => {
-    const questionnaire = { title: "My Questionnaire" };
-    wrapper.setProps({ questionnaire });
-    expect(wrapper.state()).toMatchObject(questionnaire);
-  });
-
-  it("should store updated values in state", () => {
-    wrapper.find(QuestionnaireMeta).simulate("change", {
-      name: "questionnaire.title",
-      value: "My Title"
-    });
-    expect(wrapper.state().questionnaire.title).toEqual("My Title");
+    expect(createQuestionnaire).toHaveBeenCalledWith(questionnaire);
   });
 });
