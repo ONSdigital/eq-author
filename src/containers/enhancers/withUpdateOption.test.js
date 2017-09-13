@@ -1,27 +1,27 @@
-import { mapMutateToProps } from "./withUpdateSection";
+import { mapMutateToProps } from "./withUpdateOption";
 
-describe("Enhancers > withUpdateSection", () => {
+describe("enhancers > withUpdateOption", () => {
   describe("mapMutateToProps", () => {
     let props;
     let mutate;
-    let section;
+    let option;
 
     beforeEach(() => {
       mutate = jest.fn();
       props = mapMutateToProps({ mutate });
-      section = jest.fn();
+      option = jest.fn();
     });
 
-    it("should have an onUpdateSection prop", () => {
-      expect(props.onUpdateSection).toBeInstanceOf(Function);
+    it("should have an onUpdateOption prop", () => {
+      expect(props.onUpdateOption).toBeInstanceOf(Function);
     });
 
     it("should call mutate", () => {
-      props.onUpdateSection(section);
+      props.onUpdateOption(option);
 
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: section
+          variables: option
         })
       );
     });

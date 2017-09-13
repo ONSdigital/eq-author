@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import getUrlParams from "utils/getUrlParams";
 
 import QuestionnaireMeta from "./QuestionnaireMetaPage";
-import withQuestionnaire from "../Enhancers/withQuestionnaire";
-import withUpdateQuestionnaire from "../Enhancers/withUpdateQuestionnaire";
+import withQuestionnaire from "../enhancers/withQuestionnaire";
+import withUpdateQuestionnaire from "../enhancers/withUpdateQuestionnaire";
 
 export const mapStateToProps = (state, ownProps) =>
   getUrlParams(ownProps.match.params);

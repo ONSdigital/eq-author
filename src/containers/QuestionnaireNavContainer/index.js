@@ -1,11 +1,11 @@
 import { compose } from "react-apollo";
 import { withRouter } from "react-router";
 
-import withCreatePage from "../Enhancers/withCreatePage";
-import withDeletePage from "../Enhancers/withDeletePage";
+import withCreatePage from "../enhancers/withCreatePage";
+import withDeletePage from "../enhancers/withDeletePage";
 
 import QuestionnaireNav from "components/QuestionnaireNav";
-import withCreateSection from "../Enhancers/withCreateSection";
+import withCreateSection from "../enhancers/withCreateSection";
 
 export default compose(
   withRouter,

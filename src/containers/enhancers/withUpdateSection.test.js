@@ -1,27 +1,27 @@
-import { mapMutateToProps } from "./withUpdatePage";
+import { mapMutateToProps } from "./withUpdateSection";
 
-describe("Enhancers > withUpdatePage", () => {
+describe("enhancers > withUpdateSection", () => {
   describe("mapMutateToProps", () => {
     let props;
     let mutate;
-    let page;
+    let section;
 
     beforeEach(() => {
       mutate = jest.fn();
       props = mapMutateToProps({ mutate });
-      page = jest.fn();
+      section = jest.fn();
     });
 
-    it("should have an onUpdatePage prop", () => {
-      expect(props.onUpdatePage).toBeInstanceOf(Function);
+    it("should have an onUpdateSection prop", () => {
+      expect(props.onUpdateSection).toBeInstanceOf(Function);
     });
 
     it("should call mutate", () => {
-      props.onUpdatePage(page);
+      props.onUpdateSection(section);
 
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: page
+          variables: section
         })
       );
     });

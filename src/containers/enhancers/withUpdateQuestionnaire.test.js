@@ -1,6 +1,6 @@
 import { mapMutateToProps } from "./withUpdateQuestionnaire";
 
-describe("Enhancers > withUpdateQuestionnaire", () => {
+describe("enhancers > withUpdateQuestionnaire", () => {
   describe("mapMutateToProps", () => {
     let props;
     let mutate;

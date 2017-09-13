@@ -12,12 +12,12 @@ import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
 
-import withDeleteAnswer from "containers/Enhancers/withDeleteAnswer";
-import withCreateAnswer from "containers/Enhancers/withCreateAnswer";
-import withUpdateAnswer from "containers/Enhancers/withUpdateAnswer";
-import withCreateOption from "containers/Enhancers/withCreateOption";
-import withUpdateOption from "containers/Enhancers/withUpdateOption";
-import withDeleteOption from "containers/Enhancers/withDeleteOption";
+import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
+import withCreateAnswer from "containers/enhancers/withCreateAnswer";
+import withUpdateAnswer from "containers/enhancers/withUpdateAnswer";
+import withCreateOption from "containers/enhancers/withCreateOption";
+import withUpdateOption from "containers/enhancers/withUpdateOption";
+import withDeleteOption from "containers/enhancers/withDeleteOption";
 
 export class QPE extends React.Component {
   static propTypes = {

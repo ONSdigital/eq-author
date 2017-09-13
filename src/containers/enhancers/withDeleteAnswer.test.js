@@ -1,7 +1,7 @@
 import {
   mapMutateToProps,
   deleteUpdater
-} from "containers/Enhancers/withDeleteAnswer";
+} from "containers/enhancers/withDeleteAnswer";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
   let mutate, result;
