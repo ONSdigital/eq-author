@@ -31,12 +31,16 @@ exports[`Option should match snapshot 1`] = `
     />
   </Field>
   <Option__DeleteContainer>
-    <DeleteButton
-      aria-label="Delete option"
-      onClick={[Function]}
-      size="small"
-      type="button"
-    />
+    <Tooltip
+      content="Delete option"
+    >
+      <DeleteButton
+        aria-label="Delete option"
+        onClick={[Function]}
+        size="small"
+        type="button"
+      />
+    </Tooltip>
   </Option__DeleteContainer>
 </Option__StyledOption>
 `;
