@@ -17,6 +17,9 @@ yarn-debug.log*
 yarn-error.log*
 
 /storybook-static
+
+# vscode-specific stuff
 .vscode/
+jsconfig.json
+
 graphql.config.json
-jsonfig.json
