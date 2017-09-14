@@ -7,11 +7,13 @@ import DeleteButton from "components/DeleteButton";
 import TextAnswer from "components/Answers/TextAnswer";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import { TEXTFIELD, CHECKBOX, RADIO } from "constants/answer-types";
+import Tooltip from "components/Tooltip";
 
 export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
-  right: .5em;
-  top: .4em;
+  right: .8em;
+  top: .7em;
+  padding: 0;
 `;
 
 class AnswerEditor extends React.Component {
@@ -36,10 +38,12 @@ class AnswerEditor extends React.Component {
     return (
       <div>
         {this.renderAnswer(this.props.answer)}
-        <AnswerDeleteButton
-          onClick={this.handleDeleteAnswer}
-          aria-label="Delete answer"
-        />
+        <Tooltip content="Delete answer">
+          <AnswerDeleteButton
+            onClick={this.handleDeleteAnswer}
+            aria-label="Delete answer"
+          />
+        </Tooltip>
       </div>
     );
   }

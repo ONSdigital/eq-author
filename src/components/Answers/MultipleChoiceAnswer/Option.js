@@ -10,6 +10,7 @@ import withEntityEditor from "components/withEntityEditor";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
+import Tooltip from "components/Tooltip";
 
 const duration = 200;
 
@@ -90,11 +91,13 @@ export class StatelessOption extends Component {
   renderDeleteButton() {
     return (
       <DeleteContainer>
-        <DeleteButton
-          size="small"
-          aria-label="Delete option"
-          onClick={this.handleDeleteClick}
-        />
+        <Tooltip content="Delete option">
+          <DeleteButton
+            size="small"
+            aria-label="Delete option"
+            onClick={this.handleDeleteClick}
+          />
+        </Tooltip>
       </DeleteContainer>
     );
   }
