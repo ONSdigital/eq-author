@@ -12,9 +12,7 @@ const handleSubmit = jest.fn();
 const handleChange = jest.fn();
 const handleBlur = jest.fn();
 
-const question = {
-  type: "General"
-};
+const question = jest.fn();
 
 describe("QuestionProperties", () => {
   beforeEach(() => {
@@ -51,6 +49,6 @@ describe("QuestionProperties", () => {
 
   it("should pass question type to select", () => {
     const selectValue = wrapper.find(Select).prop("defaultValue");
-    expect(selectValue).toEqual(question.type);
+    expect(selectValue).toBeUndefined();
   });
 });
