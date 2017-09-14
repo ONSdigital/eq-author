@@ -12,17 +12,12 @@ const handleSubmit = jest.fn();
 const handleChange = jest.fn();
 const handleBlur = jest.fn();
 
-const question = {
-  type: "General"
-};
-
 describe("QuestionProperties", () => {
   beforeEach(() => {
     wrapper = shallow(
       <QuestionProperties
         onUpdate={handleUpdate}
         loading={false}
-        question={question}
         onSubmit={handleSubmit}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -47,10 +42,5 @@ describe("QuestionProperties", () => {
   it("should handle blur event", () => {
     wrapper.find(Select).simulate("blur");
     expect(handleBlur).toHaveBeenCalled();
-  });
-
-  it("should pass question type to select", () => {
-    const selectValue = wrapper.find(Select).prop("defaultValue");
-    expect(selectValue).toEqual(question.type);
   });
 });

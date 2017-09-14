@@ -57,7 +57,6 @@ class MockDataStore {
       pageType: "QuestionPage",
       title: "",
       description: "",
-      type: "General",
       sectionId: defaultSection.id
     });
 

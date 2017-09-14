@@ -3087,19 +3087,15 @@ enzyme@^2.8.2:
     prop-types "^15.5.10"
     uuid "^3.0.1"
 
-eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#b73c17a:
+eq-author-graphql-schema@ONSDigital/eq-author-graphql-schema#16132f5, eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#16132f5:
   version "1.0.0"
-  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/b73c17a"
+  resolved "https://codeload.github.com/ONSDigital/eq-author-graphql-schema/tar.gz/16132f5"
 
-"eq-author-graphql-schema@https://github.com/ONSdigital/eq-author-graphql-schema.git":
+eq-author-mock-api@ONSDigital/eq-author-mock-api#204e37f:
   version "1.0.0"
-  resolved "https://github.com/ONSdigital/eq-author-graphql-schema.git#766717f60e1efb38ee54d4643ef1d17828d3c5e6"
-
-"eq-author-mock-api@https://github.com/ONSdigital/eq-author-mock-api.git":
-  version "1.0.0"
-  resolved "https://github.com/ONSdigital/eq-author-mock-api.git#dc775047e8d19ba7558c13f9644a1ac67a44eaeb"
+  resolved "https://codeload.github.com/ONSDigital/eq-author-mock-api/tar.gz/204e37f"
   dependencies:
-    eq-author-graphql-schema "https://github.com/ONSdigital/eq-author-graphql-schema.git"
+    eq-author-graphql-schema ONSDigital/eq-author-graphql-schema#16132f5
     graphql "^0.10.5"
     graphql-tag "^2.4.2"
     graphql-tools "^1.1.0"
@@ -4165,8 +4161,8 @@ graphql-tag@^2.0.0, graphql-tag@^2.4.2:
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.4.2.tgz#6a63297d8522d03a2b72d26f1b239aab343840cd"
 
 graphql-tools@^1.1.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-1.2.1.tgz#8d462abaa7b0f3bb2aa633df1e7a848720197671"
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-1.2.2.tgz#ff791e91b78e05eec18a32716a7732bc7bf5cb4d"
   dependencies:
     deprecated-decorator "^0.1.6"
     uuid "^3.0.1"
