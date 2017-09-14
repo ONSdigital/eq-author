@@ -38,6 +38,11 @@ describe("Option", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("shouldn't render delete button if not applicable", () => {
+    wrapper.setProps({ hasDeleteButton: false });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should call onChange on input", () => {
     wrapper.find(SeamlessLabel).first().simulate("change");
     wrapper.find(SeamlessLabel).first().simulate("change");

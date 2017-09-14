@@ -38,3 +38,36 @@ exports[`Option should match snapshot 1`] = `
   </Option__DeleteButton>
 </Option__StyledOption>
 `;
+
+exports[`Option shouldn't render delete button if not applicable 1`] = `
+<Option__StyledOption>
+  <Field
+    id="label"
+  >
+    <Option__StyledInput
+      disabled={true}
+    />
+    <Option__SeamlessLabel
+      data-autoFocus={true}
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Label"
+      size="medium"
+      value=""
+    />
+  </Field>
+  <Field
+    id="description"
+  >
+    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+      cols="30"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="Optional description"
+      rows="5"
+      size="small"
+      value=""
+    />
+  </Field>
+</Option__StyledOption>
+`;
