@@ -9,32 +9,19 @@ import withEntityEditor from "components/withEntityEditor";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
+import DeleteButton from "components/DeleteButton";
 
 const duration = 200;
 
-export const DeleteButton = styled.button`
-  cursor: pointer;
-  color: ${colors.lightGrey};
+export const DeleteContainer = styled.div`
   padding: .2em;
-  border: 0;
-  background: none;
-  font-size: 1em;
-
   position: absolute;
   top: .5em;
   right: 1em;
-
-  transition: color .2s ease-in-out;
-
-  &:hover {
-    color: ${colors.darkGrey};
-    transition: color .2s ease-in-out;
-  }
 `;
 
 export const StyledOption = styled.div`
-  border: 1px solid
-    ${props => (props.focused ? colors.lightBlue : colors.borders)};
+  border: 1px solid ${colors.borders};
   padding: 1em 1em 0 1em;
   border-radius: 3px;
   position: relative;
@@ -100,6 +87,18 @@ export class StatelessOption extends Component {
     this.props.onDelete(this.props.option.id);
   };
 
+  renderDeleteButton() {
+    return (
+      <DeleteContainer>
+        <DeleteButton
+          size="small"
+          aria-label="Delete option"
+          onClick={this.handleDeleteClick}
+        />
+      </DeleteContainer>
+    );
+  }
+
   render() {
     const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
@@ -126,10 +125,7 @@ export class StatelessOption extends Component {
             onBlur={onUpdate}
           />
         </Field>
-        {hasDeleteButton &&
-          <DeleteButton type="button" onClick={this.handleDeleteClick}>
-            &times;
-          </DeleteButton>}
+        {hasDeleteButton && this.renderDeleteButton()}
       </StyledOption>
     );
   }

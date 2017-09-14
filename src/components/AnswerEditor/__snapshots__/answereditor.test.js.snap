@@ -26,9 +26,8 @@ exports[`Answer Editor should render Checkbox 1`] = `
     type="checkbox"
   />
   <AnswerEditor__AnswerDeleteButton
+    aria-label="Delete answer"
     onClick={[Function]}
-    title="Delete answer"
-    type="button"
   />
 </div>
 `;
@@ -51,9 +50,8 @@ exports[`Answer Editor should render TextField 1`] = `
     onUpdateOption={[Function]}
   />
   <AnswerEditor__AnswerDeleteButton
+    aria-label="Delete answer"
     onClick={[Function]}
-    title="Delete answer"
-    type="button"
   />
 </div>
 `;

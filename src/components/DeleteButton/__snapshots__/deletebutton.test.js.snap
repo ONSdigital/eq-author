@@ -19,14 +19,20 @@ exports[`large 1`] = `
 }
 
 <DeleteButton
+  aria-label="Delete"
   size="large"
+  type="button"
 >
   <DeleteButton__StyledDeleteButton
+    aria-label="Delete"
     size="large"
+    type="button"
   >
     <button
+      aria-label="Delete"
       className="c0"
       size="large"
+      type="button"
     >
       ×
     </button>
@@ -53,14 +59,20 @@ exports[`medium 1`] = `
 }
 
 <DeleteButton
+  aria-label="Delete"
   size="medium"
+  type="button"
 >
   <DeleteButton__StyledDeleteButton
+    aria-label="Delete"
     size="medium"
+    type="button"
   >
     <button
+      aria-label="Delete"
       className="c0"
       size="medium"
+      type="button"
     >
       ×
     </button>
@@ -87,14 +99,20 @@ exports[`small 1`] = `
 }
 
 <DeleteButton
+  aria-label="Delete"
   size="small"
+  type="button"
 >
   <DeleteButton__StyledDeleteButton
+    aria-label="Delete"
     size="small"
+    type="button"
   >
     <button
+      aria-label="Delete"
       className="c0"
       size="small"
+      type="button"
     >
       ×
     </button>

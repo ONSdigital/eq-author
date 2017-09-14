@@ -38,8 +38,7 @@ class AnswerEditor extends React.Component {
         {this.renderAnswer(this.props.answer)}
         <AnswerDeleteButton
           onClick={this.handleDeleteAnswer}
-          title="Delete answer"
-          type="button"
+          aria-label="Delete answer"
         />
       </div>
     );

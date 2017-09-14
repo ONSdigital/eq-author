@@ -1,7 +1,8 @@
 import React from "react";
 
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import { StatelessOption, DeleteButton, SeamlessLabel } from "./Option";
+import { StatelessOption, SeamlessLabel } from "./Option";
+import DeleteButton from "components/DeleteButton";
 
 import { shallow } from "enzyme";
 
