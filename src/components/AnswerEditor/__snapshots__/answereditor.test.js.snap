@@ -23,7 +23,7 @@ exports[`Answer Editor should render Checkbox 1`] = `
     onDeleteOption={[Function]}
     onUpdate={[Function]}
     onUpdateOption={[Function]}
-    type="checkbox"
+    type="Checkbox"
   />
   <Tooltip
     content="Delete answer"
