@@ -10,6 +10,7 @@ import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
+import { get } from "lodash";
 
 export const DeleteContainer = styled.div`
   padding: .2em;
@@ -18,6 +19,11 @@ export const DeleteContainer = styled.div`
   right: 1em;
 `;
 
+const borderSizes = {
+  [CHECKBOX]: "3px",
+  [RADIO]: "100%"
+};
+
 const DummyInput = styled.div`
   border: ${radius} solid ${colors.borders};
   height: 1.4em;
@@ -25,14 +31,8 @@ const DummyInput = styled.div`
   display: inline-block;
   margin: 0 1em 0 0;
   vertical-align: middle;
-`;
 
-const DummyCheckbox = styled(DummyInput)`
-  border-radius: ${radius};
-`;
-
-const DummyRadio = styled(DummyInput)`
-  border-radius: 100%;
+  border-radius: ${props => get(borderSizes, props.type, "initial")};
 `;
 
 export const StyledOption = styled.div`
@@ -121,24 +121,13 @@ export class StatelessOption extends Component {
     );
   }
 
-  renderDummyInput(type) {
-    switch (type) {
-      case CHECKBOX:
-        return <DummyCheckbox />;
-      case RADIO:
-        return <DummyRadio />;
-      default:
-        return null;
-    }
-  }
-
   render() {
     const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
     return (
       <StyledOption key={option.id}>
         <Field id="label">
-          {this.renderDummyInput(type)}
+          <DummyInput type={type} />
           <SeamlessLabel
             placeholder="Label"
             size="medium"
