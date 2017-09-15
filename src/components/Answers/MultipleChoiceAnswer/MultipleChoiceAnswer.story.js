@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { merge, reject, set } from "lodash";
+import { reject } from "lodash";
 import MultipleChoiceAnswer from "./index";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 
