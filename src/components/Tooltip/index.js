@@ -3,6 +3,7 @@ import ReactTooltip from "react-tooltip";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { uniqueId } from "lodash";
+import { radius } from "constants/theme";
 
 const FONT_SIZE = 10;
 
@@ -11,7 +12,7 @@ const StyledTooltip = styled(ReactTooltip)`
     font-size: ${FONT_SIZE / 16}em !important;
     line-height: ${22 / FONT_SIZE}em !important;
     padding: 0 ${6 / FONT_SIZE}em !important;
-    border-radius: 2px !important;
+    border-radius: ${radius} !important;
     white-space: pre;
 
     &::before, &::after {
