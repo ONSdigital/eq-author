@@ -3,13 +3,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-
 import styled from "styled-components";
-
 import { colors } from "constants/theme";
-
 import Button from "components/Button";
-
 import Option from "./Option";
 
 const AnswerWrapper = styled.div`

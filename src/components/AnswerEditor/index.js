@@ -26,9 +26,9 @@ class AnswerEditor extends React.Component {
       case TEXTFIELD:
         return <TextAnswer {...this.props} />;
       case CHECKBOX:
-        return <MultipleChoiceAnswer type="checkbox" {...this.props} />;
+        return <MultipleChoiceAnswer type={CHECKBOX} {...this.props} />;
       case RADIO:
-        return <MultipleChoiceAnswer type="radio" {...this.props} />;
+        return <MultipleChoiceAnswer type={RADIO} {...this.props} />;
       default:
         return null;
     }

@@ -1,24 +1,38 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-import { colors } from "constants/theme";
-import { Field, Input } from "components/Forms";
+import { colors, radius } from "constants/theme";
+import { Field } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
-
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
-
-const duration = 200;
+import { CHECKBOX, RADIO } from "constants/answer-types";
 
 export const DeleteContainer = styled.div`
   padding: .2em;
   position: absolute;
   top: .5em;
   right: 1em;
+`;
+
+const DummyInput = styled.div`
+  border: ${radius} solid ${colors.borders};
+  height: 1.4em;
+  width: 1.4em;
+  display: inline-block;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+`;
+
+const DummyCheckbox = styled(DummyInput)`
+  border-radius: ${radius};
+`;
+
+const DummyRadio = styled(DummyInput)`
+  border-radius: 100%;
 `;
 
 export const StyledOption = styled.div`
@@ -38,9 +52,11 @@ export const StyledOption = styled.div`
   }
 
   &.option-enter-active {
-    transition: height ${duration / 2}ms ease-out,
-      opacity ${duration / 2}ms ease-out ${duration / 2}ms,
-      transform ${duration / 2}ms ease-out ${duration / 2}ms;
+    transition: height ${props => props.duration / 2}ms ease-out,
+      opacity ${props => props.duration / 2}ms ease-out
+        ${props => props.duration / 2}ms,
+      transform ${props => props.duration / 2}ms ease-out
+        ${props => props.duration / 2}ms;
     opacity: 1;
     height: 5.625em;
     transform: translateX(0);
@@ -53,25 +69,28 @@ export const StyledOption = styled.div`
   }
 
   &.option-exit-active {
-    transition: opacity ${duration / 2}ms ease-out,
-      transform ${duration / 2}ms ease-out,
-      height ${duration / 2}ms ease-out ${duration / 2}ms;
+    transition: opacity ${props => props.duration / 2}ms ease-out,
+      transform ${props => props.duration / 2}ms ease-out,
+      height ${props => props.duration / 2}ms ease-out
+        ${props => props.duration / 2}ms;
     opacity: 0;
     height: 0;
     transform: translateX(-20px);
   }
 `;
 
+StyledOption.defaultProps = {
+  duration: 200
+};
+
+StyledOption.propTypes = {
+  duration: PropTypes.number
+};
+
 export const SeamlessLabel = styled(SeamlessInput)`
   display: inline-block !important;
   width: auto;
   vertical-align: middle;
-  `;
-
-const StyledInput = styled(Input)`
-  border: 2px solid ${colors.borders};
-  height: 1.4em;
-  width: 1.4em;
 `;
 
 export class StatelessOption extends Component {
@@ -81,7 +100,7 @@ export class StatelessOption extends Component {
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf(["radio", "checkbox"])
+    type: PropTypes.oneOf([RADIO, CHECKBOX])
   };
 
   handleDeleteClick = e => {
@@ -102,13 +121,24 @@ export class StatelessOption extends Component {
     );
   }
 
+  renderDummyInput(type) {
+    switch (type) {
+      case CHECKBOX:
+        return <DummyCheckbox />;
+      case RADIO:
+        return <DummyRadio />;
+      default:
+        return null;
+    }
+  }
+
   render() {
     const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
     return (
       <StyledOption key={option.id}>
         <Field id="label">
-          <StyledInput type={type} disabled />
+          {this.renderDummyInput(type)}
           <SeamlessLabel
             placeholder="Label"
             size="medium"
