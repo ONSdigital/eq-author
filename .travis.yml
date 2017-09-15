@@ -7,7 +7,10 @@ language: node_js
 node_js:
   - "7"
 
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
 
 addons:
   apt:
@@ -27,25 +30,24 @@ install:
  - yarn install
 
 before_script:
- # A few tools to run smoke tests.
  - yarn global add chimp
- - ./scripts/run_smoketests_author.sh
- - ./scripts/run_smoketests_storybook.sh
+ - yarn global add serve
+ - set -e
 
 script:
-  - yarn test
   - yarn lint -- --max-warnings=0
+  - yarn test
   - yarn coverage
-  - yarn build
+  - ./scripts/run_smoketests_author.sh
+  - ./scripts/run_smoketests_storybook.sh
+
+after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
   - docker build -t onsdigital/eq-author:$TAG -f Dockerfile .
   - echo "Pushing with tag [$TAG]"
   - docker push onsdigital/eq-author:$TAG
-
-after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
-  - yarn storybook-build
 
 env:
   global:

@@ -1,37 +1,22 @@
 #!/bin/bash
 
-set -euf -o pipefail
+set -evuf -o pipefail
 
-# Run the server
-yarn start:mockAPI &
+# Build a version of the app which runs with the mockAPI
+yarn build:mockAPI
+
+# Serve the app
+./node_modules/.bin/serve -S -p 3000 build/ &
 pid=$!
 
-function display_result {
-  RESULT=$1
-  EXIT_STATUS=$2
-  TEST=$3
-
-  if [ $RESULT -ne 0 ]; then
-    echo -e "\033[31m$TEST failed\033[0m"
-    exit $EXIT_STATUS
-  else
-    echo -e "\033[32m$TEST passed\033[0m"
-  fi
-}
-
-# Shutdown server whenever script exists
 function finish {
-  echo "Killing server"
+  echo "Shutting down the server..."
   kill -s SIGKILL $pid
 }
-trap finish EXIT
+trap finish INT KILL TERM EXIT
 
 # Wait for server to start listening
-sleep 3
-
-echo "About to run tests..."
+./node_modules/.bin/wait-on http://localhost:3000 -t 10000
 
 # Run the tests
-yarn smoketest:author 2>&1
-
-display_result $? 5 "Author Smoke tests"
+yarn smoketest:author

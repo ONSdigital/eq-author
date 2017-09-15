@@ -17,8 +17,7 @@ export const navigationSectionHasTitle = title => {
 const sectionTitleInput = "#section-editor [name='title']";
 
 export const setSectionTitle = sectionTitle => {
-  browser.click(sectionTitleInput);
-  browser.keys(sectionTitle);
+  browser.setValue(sectionTitleInput, sectionTitle);
 };
 
 export const getFirstSectionTitle = () => {
