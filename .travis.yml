@@ -32,6 +32,7 @@ install:
 before_script:
  - yarn global add chimp
  - yarn global add serve
+ - set -e
 
 script:
   - yarn lint -- --max-warnings=0
