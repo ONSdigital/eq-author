@@ -1,0 +1,24 @@
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Canvas" transform="translate(-6782 3706)">
+        <g id="Group">
+            <g id="Rectangle 8">
+                <use xlink:href="#path0_fill" transform="translate(6782 -3706)" fill="#4F4F4F"/>
+            </g>
+            <g id="Group">
+                <g id="Line 2">
+                    <use xlink:href="#path1_stroke" transform="translate(6785.6 -3689.2)" fill="#FFFFFF"/>
+                </g>
+                <g id="Line 2">
+                    <use xlink:href="#path1_stroke" transform="translate(6785.6 -3698.8)" fill="#FFFFFF"/>
+                </g>
+                <g id="Line 2">
+                    <use xlink:href="#path1_stroke" transform="translate(6785.6 -3694)" fill="#FFFFFF"/>
+                </g>
+            </g>
+        </g>
+    </g>
+    <defs>
+        <path id="path0_fill" d="M 20 0L 4 0C 1.79086 0 0 1.79086 0 4L 0 24L 2.4 20.4444L 20 20.4444C 22.2091 20.4444 24 18.6536 24 16.4444L 24 4C 24 1.79086 22.2091 0 20 0Z"/>
+        <path id="path1_stroke" d="M 0 0L 16.8 0L 16.8 -3L 0 -3L 0 0Z"/>
+    </defs>
+</svg>
