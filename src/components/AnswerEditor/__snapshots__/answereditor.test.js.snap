@@ -36,6 +36,42 @@ exports[`Answer Editor should render Checkbox 1`] = `
 </div>
 `;
 
+exports[`Answer Editor should render Radio 1`] = `
+<div>
+  <MultipleChoiceAnswer
+    answer={
+      Object {
+        "description": "",
+        "id": 1,
+        "options": Array [
+          Object {
+            "description": "",
+            "id": 1,
+            "label": "",
+          },
+        ],
+        "title": "",
+        "type": "Radio",
+      }
+    }
+    onAddOption={[Function]}
+    onDeleteAnswer={[Function]}
+    onDeleteOption={[Function]}
+    onUpdate={[Function]}
+    onUpdateOption={[Function]}
+    type="Radio"
+  />
+  <Tooltip
+    content="Delete answer"
+  >
+    <AnswerEditor__AnswerDeleteButton
+      aria-label="Delete answer"
+      onClick={[Function]}
+    />
+  </Tooltip>
+</div>
+`;
+
 exports[`Answer Editor should render TextField 1`] = `
 <div>
   <withEntityEditor(StatelessTextAnswer)

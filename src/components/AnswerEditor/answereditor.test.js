@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
-import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
+import { TEXTFIELD, CHECKBOX, RADIO } from "constants/answer-types";
 
 describe("Answer Editor", () => {
   let mockMutations;
@@ -53,6 +53,17 @@ describe("Answer Editor", () => {
   it("should render Checkbox", () => {
     const wrapper = createWrapper({
       answer: mockMultipleChoiceAnswer,
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render Radio", () => {
+    const wrapper = createWrapper({
+      answer: {
+        ...mockMultipleChoiceAnswer,
+        type: RADIO
+      },
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
