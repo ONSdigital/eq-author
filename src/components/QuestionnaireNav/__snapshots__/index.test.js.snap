@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireNav should render 1`] = `
-<QuestionnaireNav__Container>
+<QuestionnaireNav__Container
+  id="questionnaire-nav"
+>
   <QuestionnaireNav__Title>
     Questionnaire structure
   </QuestionnaireNav__Title>
