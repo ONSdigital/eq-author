@@ -1,8 +1,8 @@
 import React from "react";
 import Form from "components/Forms/Form";
-
+import { Select, Number } from "components/Forms";
 import PageProperties from "components/PageProperties";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 
 let wrapper;
 
@@ -44,24 +44,20 @@ describe("Page Properties", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe("behaviour", () => {
-    beforeEach(() => {
-      wrapper = mount(pageProperties());
-    });
+  it("should handle submit event", () => {
+    wrapper.find(Form).simulate("submit");
+    expect(handleSubmit).toHaveBeenCalled();
+  });
 
-    it("should handle submit event", () => {
-      wrapper.find(Form).simulate("submit");
-      expect(handleSubmit).toHaveBeenCalled();
-    });
+  it("should invoke onChange callback on change", () => {
+    wrapper.find(Select).simulate("change");
+    wrapper.find(Number).simulate("change");
+    expect(handleChange).toHaveBeenCalledTimes(2);
+  });
 
-    it("should handle change event for select", () => {
-      wrapper.find("select").simulate("change");
-      expect(handleChange).toHaveBeenCalled();
-    });
-
-    it("should handle blur event for any inputs", () => {
-      wrapper.find("input").simulate("blur");
-      expect(handleBlur).toHaveBeenCalled();
-    });
+  it("should handle onBlur callback on blur", () => {
+    wrapper.find(Select).simulate("blur");
+    wrapper.find(Number).simulate("blur");
+    expect(handleBlur).toHaveBeenCalledTimes(2);
   });
 });
