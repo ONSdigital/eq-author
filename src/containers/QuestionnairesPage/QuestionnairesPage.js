@@ -103,7 +103,7 @@ const DeleteIcon = ({ onClick }) => {
     border: 0;
   `;
 
-  return <StyledButton onClick={onClick} />;
+  return <StyledButton title="Delete questionnaire" onClick={onClick} />;
 };
 
 DeleteIcon.propTypes = {
