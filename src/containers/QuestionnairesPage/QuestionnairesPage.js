@@ -9,6 +9,8 @@ import BaseLayout from "components/BaseLayout";
 import { noop } from "lodash";
 import { colors } from "../../constants/theme";
 
+import { NavLink } from "react-router-dom";
+
 import CommentsSvg from "./commentsIcon.svg";
 import UnreadCommentsSvg from "./unreadComments.svg";
 import DeleteSvg from "./trashIcon.svg";
@@ -30,7 +32,7 @@ const questionnairesListPropType = PropTypes.arrayOf(
   }).isRequired
 );
 
-const Link = styled.a`
+const Link = styled(NavLink)`
   text-decoration: none;
   color: ${colors.blue};
   opacity: 1;
@@ -172,7 +174,7 @@ const ExistingQuetionnairesTable = props => {
             return (
               <TR key={questionnaire.id}>
                 <TD>
-                  <Link href={`#${url}`}>
+                  <Link to={url}>
                     {questionnaire.title}
                   </Link>
                 </TD>
