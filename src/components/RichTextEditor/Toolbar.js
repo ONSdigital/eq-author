@@ -72,15 +72,18 @@ const ToolbarPanel = styled.div`
 
 const visible = css`
   opacity: 1;
-  transform: translateY(calc(-100% - 1em));
-  transition: opacity 50ms ease-in 100ms, transform 200ms ease-out;
+  transform: translateY(-120%);
+  transition: opacity 50ms ease-in, transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: all;
 `;
 
 const HoveringToolbar = styled.div`
-  transform: translateY(-100%);
+  pointer-events: none;
+  transform: translateY(-50%);
   position: absolute;
+  z-index: 999;
   opacity: 0;
-  transition: opacity 50ms ease-in, transform 200ms ease-out;
+  transition: opacity 50ms ease-in, transform 2000ms ease-in;
   ${props => props.visible && visible};
 `;
 
@@ -94,18 +97,18 @@ const buttons = [
     type: STYLE_BLOCK,
     style: "header-two"
   },
-  {
-    name: "list",
-    icon: iconList,
-    type: STYLE_BLOCK,
-    style: "unordered-list-item"
-  },
   { name: "bold", icon: iconBold, type: STYLE_INLINE, style: "BOLD" },
   {
     name: "emphasis",
     icon: iconEmphasis,
     type: STYLE_INLINE,
     style: "emphasis"
+  },
+  {
+    name: "list",
+    icon: iconList,
+    type: STYLE_BLOCK,
+    style: "unordered-list-item"
   }
 ];
 
@@ -154,7 +157,7 @@ class ToolBar extends React.Component {
                   active={active(button)}
                   icon={button.icon}
                   onMouseDown={function(e) {
-                    e.preventDefault();
+                    e.preventDefault(); // prevents focus on the button
                     if (!disabled) {
                       onToggle(button);
                     }

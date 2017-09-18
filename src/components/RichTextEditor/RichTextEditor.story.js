@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/react";
 import RichTextEditor from "components/RichTextEditor";
 import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
-import { stateToHTML } from "draft-js-export-html";
 import { action } from "@storybook/addon-actions";
 
 const Wrapper = styled.div`
