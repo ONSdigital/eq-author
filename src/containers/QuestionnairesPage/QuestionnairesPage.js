@@ -142,9 +142,10 @@ DeleteIcon.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-const ExistingQuetionnairesTable = ({ questionnaires }) => {
+const ExistingQuetionnairesTable = props => {
   const handleDelete = noop;
 
+  const { questionnaires } = props;
   if (questionnaires && questionnaires.length > 0) {
     return (
       <Table>
@@ -165,10 +166,13 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
             const mm = date.getMonth() + 1;
             const yyyy = date.getFullYear();
 
+            const url = `/questionnaire/${questionnaire.id}/design/${questionnaire
+              .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
+
             return (
               <TR key={questionnaire.id}>
                 <TD>
-                  <Link href="#">
+                  <Link href={`#${url}`}>
                     {questionnaire.title}
                   </Link>
                 </TD>
@@ -204,27 +208,30 @@ ExistingQuetionnairesTable.propTypes = {
   questionnaires: questionnairesListPropType
 };
 
-const Questionnaires = ({ questionnaires }) =>
-  <BaseLayout>
-    <Center>
-      <Title>Your questionnaires</Title>
-      <StyledButtonGroup horizontal>
-        <LinkButton
-          to="/questionnaire/create"
-          id="btn-create-questionnaire"
-          primary
-        >
-          Create
-        </LinkButton>
-        <Button id="btn-load-questionnaire" secondary disabled>
-          Upload
-        </Button>
-      </StyledButtonGroup>
-      <CenteredPanel>
-        <ExistingQuetionnairesTable questionnaires={questionnaires} />
-      </CenteredPanel>
-    </Center>
-  </BaseLayout>;
+const Questionnaires = props => {
+  return (
+    <BaseLayout>
+      <Center>
+        <Title>Your questionnaires</Title>
+        <StyledButtonGroup horizontal>
+          <LinkButton
+            to="/questionnaire/create"
+            id="btn-create-questionnaire"
+            primary
+          >
+            Create
+          </LinkButton>
+          <Button id="btn-load-questionnaire" secondary disabled>
+            Upload
+          </Button>
+        </StyledButtonGroup>
+        <CenteredPanel>
+          <ExistingQuetionnairesTable {...props} />
+        </CenteredPanel>
+      </Center>
+    </BaseLayout>
+  );
+};
 
 Questionnaires.propTypes = {
   questionnaires: questionnairesListPropType
