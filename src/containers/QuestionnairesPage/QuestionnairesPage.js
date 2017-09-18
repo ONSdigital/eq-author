@@ -7,10 +7,38 @@ import LinkButton from "components/LinkButton";
 import { CenteredPanel } from "components/Panel";
 import BaseLayout from "components/BaseLayout";
 import { noop } from "lodash";
+import { colors } from "../../constants/theme";
 
 import CommentsSvg from "./commentsIcon.svg";
 import UnreadCommentsSvg from "./unreadComments.svg";
 import DeleteSvg from "./trashIcon.svg";
+
+const questionnairesListPropType = PropTypes.arrayOf(
+  PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    theme: PropTypes.string.isRequired,
+    status: PropTypes.string,
+    comments: PropTypes.shape({
+      unread: PropTypes.bool.isRequired,
+      count: PropTypes.number.isRequired
+    }).isRequired,
+    actions: PropTypes.shape({
+      delete: PropTypes.bool.isRequired
+    }).isRequired
+  }).isRequired
+);
+
+const Link = styled.a`
+  text-decoration: none;
+  color: ${colors.blue};
+  opacity: 1;
+  transition: opacity .2s ease-in-out;
+  &:hover {
+    opacity: .7;
+  }
+`;
 
 const Center = styled.div`
   width: 100%;
@@ -131,30 +159,39 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
           </tr>
         </thead>
         <tbody>
-          {questionnaires.map(questionnaire =>
-            <TR key={questionnaire.id}>
-              <TD>
-                {questionnaire.name}
-              </TD>
-              <TD>
-                {questionnaire.date}
-              </TD>
-              <TD>
-                {questionnaire.theme}
-              </TD>
-              <TD>
-                {questionnaire.status}
-              </TD>
-              <TD>
-                {questionnaire.comments.count > 0 &&
-                  <CommentsIcon hasUnread={questionnaire.comments.unread} />}
-              </TD>
-              <TD>
-                {questionnaire.actions.delete &&
-                  <DeleteIcon onClick={handleDelete} />}
-              </TD>
-            </TR>
-          )}
+          {questionnaires.map(questionnaire => {
+            const date = new Date(questionnaire.createdAt);
+            const dd = date.getDate();
+            const mm = date.getMonth() + 1;
+            const yyyy = date.getFullYear();
+
+            return (
+              <TR key={questionnaire.id}>
+                <TD>
+                  <Link href="#">
+                    {questionnaire.title}
+                  </Link>
+                </TD>
+                <TD>
+                  {`${dd}/${mm}/${yyyy}`}
+                </TD>
+                <TD>
+                  {questionnaire.theme}
+                </TD>
+                <TD>
+                  {questionnaire.status}
+                </TD>
+                <TD>
+                  {questionnaire.comments.count > 0 &&
+                    <CommentsIcon hasUnread={questionnaire.comments.unread} />}
+                </TD>
+                <TD>
+                  {questionnaire.actions.delete &&
+                    <DeleteIcon onClick={handleDelete} />}
+                </TD>
+              </TR>
+            );
+          })}
         </tbody>
       </Table>
     );
@@ -164,70 +201,10 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
 };
 
 ExistingQuetionnairesTable.propTypes = {
-  questionnaires: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      theme: PropTypes.string.isRequired,
-      status: PropTypes.string,
-      comments: PropTypes.shape({
-        unread: PropTypes.bool.isRequired,
-        count: PropTypes.number.isRequired
-      }).isRequired,
-      actions: PropTypes.shape({
-        delete: PropTypes.bool.isRequired
-      }).isRequired
-    }).isRequired
-  )
+  questionnaires: questionnairesListPropType
 };
 
-const questionnaireData = [
-  {
-    id: 1,
-    name: "Retail turnover",
-    date: "10/07/2017",
-    theme: "Business",
-    status: "Unpublished",
-    comments: {
-      unread: true,
-      count: 1
-    },
-    actions: {
-      delete: true
-    }
-  },
-  {
-    id: 2,
-    name: "MWSS",
-    date: "20/08/2017",
-    theme: "Business",
-    status: "Unpublished",
-    comments: {
-      unread: false,
-      count: 0
-    },
-    actions: {
-      delete: true
-    }
-  },
-  {
-    id: 3,
-    name: "Census",
-    date: "10/07/2017",
-    theme: "Business",
-    status: "Unpublished",
-    comments: {
-      unread: false,
-      count: 1
-    },
-    actions: {
-      delete: true
-    }
-  }
-];
-
-const Questionnaires = () =>
+const Questionnaires = ({ questionnaires }) =>
   <BaseLayout>
     <Center>
       <Title>Your questionnaires</Title>
@@ -244,9 +221,12 @@ const Questionnaires = () =>
         </Button>
       </StyledButtonGroup>
       <CenteredPanel>
-        <ExistingQuetionnairesTable questionnaires={questionnaireData} />
+        <ExistingQuetionnairesTable questionnaires={questionnaires} />
       </CenteredPanel>
     </Center>
   </BaseLayout>;
 
+Questionnaires.propTypes = {
+  questionnaires: questionnairesListPropType
+};
 export default Questionnaires;
