@@ -1,13 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "components/Button";
 import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
 import { CenteredPanel } from "components/Panel";
 import BaseLayout from "components/BaseLayout";
+import { noop } from "lodash";
 
 import CommentsSvg from "./commentsIcon.svg";
 import UnreadCommentsSvg from "./unreadComments.svg";
+import DeleteSvg from "./trashIcon.svg";
 
 const Center = styled.div`
   width: 100%;
@@ -86,11 +89,30 @@ const CommentsIcon = ({ hasUnread }) => {
   );
 };
 
+CommentsIcon.propTypes = {
+  hasUnread: PropTypes.bool.isRequired
+};
+
 const DeleteIcon = ({ onClick }) => {
-  return <i>Delete</i>;
+  const StyledButton = styled(Button)`
+    width: 16px;
+    height: 20px;
+    padding: .5em;
+    background: url(${DeleteSvg}) no-repeat;
+    background-size: contain;
+    border: 0;
+  `;
+
+  return <StyledButton onClick={onClick} />;
+};
+
+DeleteIcon.propTypes = {
+  onClick: PropTypes.func.isRequired
 };
 
 const ExistingQuetionnairesTable = ({ questionnaires }) => {
+  const handleDelete = noop;
+
   if (questionnaires && questionnaires.length > 0) {
     return (
       <Table>
@@ -121,7 +143,7 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
               </TD>
               <TD>
                 {questionnaire.actions.delete &&
-                  <DeleteIcon onClick={() => {}} />}
+                  <DeleteIcon onClick={handleDelete} />}
               </TD>
             </TR>
           )}
@@ -131,6 +153,25 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
   } else {
     return <p>You have no questionnaires</p>;
   }
+};
+
+ExistingQuetionnairesTable.propTypes = {
+  questionnaires: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      theme: PropTypes.string.isRequired,
+      status: PropTypes.string,
+      comments: PropTypes.shape({
+        unread: PropTypes.bool.isRequired,
+        count: PropTypes.number.isRequired
+      }).isRequired,
+      actions: PropTypes.shape({
+        delete: PropTypes.bool.isRequired
+      }).isRequired
+    }).isRequired
+  )
 };
 
 const questionnaireData = [
