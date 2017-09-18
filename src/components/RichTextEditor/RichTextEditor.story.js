@@ -68,7 +68,8 @@ const content = {
 
 const props = {
   onUpdate: action("onUpdate"),
-  label: "Enter some text"
+  label: "Enter some text",
+  placeholder: "Enter some text..."
 };
 
 storiesOf("RichTextEditor", module)
@@ -80,9 +81,7 @@ storiesOf("RichTextEditor", module)
     </Wrapper>
   )
   .add("Default", () => <RichTextEditor {...props} />)
-  .add("With placeholder", () =>
-    <RichTextEditor placeholder="Enter some text..." {...props} />
-  )
+  .add("No bold", () => <RichTextEditor {...props} bold={false} />)
   .add("With existing content", () =>
     <RichTextEditor content={JSON.stringify(content)} {...props} />
   );

@@ -39,25 +39,45 @@ const ButtonGroup = styled.div`
   flex-direction: row;
 `;
 
+export const STYLE_BLOCK = "block";
+export const STYLE_INLINE = "inline";
+
+const controls = [
+  { name: "heading", label: "H", type: STYLE_BLOCK, style: "header-two" },
+  {
+    name: "list",
+    label: "UL",
+    type: STYLE_BLOCK,
+    style: "unordered-list-item"
+  },
+  { name: "bold", label: "B", type: STYLE_INLINE, style: "BOLD" },
+  { name: "emphasis", label: "E", type: STYLE_INLINE, style: "emphasis" }
+];
+
 class ToolBar extends React.Component {
+  static defaultProps = {
+    bold: true,
+    emphasis: true,
+    heading: true,
+    list: true
+  };
+
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
-    controls: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        style: PropTypes.string.isRequired
-      })
-    ).isRequired,
-    active: PropTypes.func.isRequired
+    active: PropTypes.func.isRequired,
+    bold: PropTypes.bool,
+    emphasis: PropTypes.bool,
+    heading: PropTypes.bool,
+    list: PropTypes.bool
   };
 
   render() {
-    const { active, onToggle, controls } = this.props;
+    const { active, onToggle } = this.props;
+
     return (
       <Wrapper>
         <ButtonGroup>
-          {controls.map(control =>
+          {controls.filter(control => this.props[control.name]).map(control =>
             <Button
               key={control.label}
               active={active(control)}

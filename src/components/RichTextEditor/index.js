@@ -10,7 +10,7 @@ import {
 
 import "draft-js/dist/Draft.css";
 
-import Toolbar from "./Toolbar";
+import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
 const {
   handleKeyCommand,
@@ -19,21 +19,11 @@ const {
   toggleInlineStyle
 } = RichUtils;
 
-const STYLE_BLOCK = "block";
-const STYLE_INLINE = "inline";
-
 const styleMap = {
   emphasis: {
     backgroundColor: "#cbe2c8"
   }
 };
-
-const controls = [
-  { type: STYLE_BLOCK, label: "H", style: "header-two" },
-  { type: STYLE_BLOCK, label: "UL", style: "unordered-list-item" },
-  { type: STYLE_INLINE, label: "B", style: "BOLD" },
-  { type: STYLE_INLINE, label: "E", style: "emphasis" }
-];
 
 class RTE extends React.Component {
   static defaultProps = {
@@ -122,17 +112,17 @@ class RTE extends React.Component {
   };
 
   render() {
-    const { editorState, focus } = this.state;
+    const { editorState } = this.state;
 
     return (
       <div>
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
-          controls={controls}
           active={this.active}
+          {...this.props}
         />
-        <div onClick={this.handleClick} focus={focus}>
+        <div onClick={this.handleClick}>
           <Editor
             ariaLabel={this.props.label}
             placeholder={this.props.placeholder}
