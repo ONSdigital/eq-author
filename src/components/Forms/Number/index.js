@@ -13,15 +13,15 @@ const StyledDiv = styled.div`
 `;
 
 const StyledInput = styled(Input)`
-  &[type=number]::-webkit-inner-spin-button, 
-  &[type=number]::-webkit-outer-spin-button { 
+  &[type=number]::-webkit-inner-spin-button,
+  &[type=number]::-webkit-outer-spin-button {
       appearance: none;
-      margin: 0; 
+      margin: 0;
   }
    &[type=number] {
     -moz-appearance: textfield;
   }
-  
+
   width: 4em;
 `;
 

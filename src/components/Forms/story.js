@@ -3,12 +3,14 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import styled from "styled-components";
-import Field from "components/Forms/Field";
-import Input from "components/Forms/Input";
-import Label from "components/Forms/Label";
-import Select from "components/Forms/Select";
-import TextArea from "components/Forms/TextArea";
-import Number from "components/Forms/Number";
+import {
+  Field,
+  Input,
+  Label,
+  Select,
+  TextArea,
+  Number
+} from "components/Forms";
 
 const Width = styled.div`
   max-width: 30em;

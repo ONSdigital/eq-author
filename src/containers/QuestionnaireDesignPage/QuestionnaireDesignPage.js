@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { noop, isNil } from "lodash";
 
+import { isNil } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
-import { PropertyPane, PropertyPaneTitle } from "components/PropertyPane";
-import QuestionProperties from "components/QuestionProperties";
+
 import EditorSurface from "components/EditorSurface";
 
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
@@ -82,12 +81,7 @@ export class QuestionnaireDesignPage extends Component {
               onFocus={this.handleFocus}
             />
           </Column>
-          <Column cols={2} gutters={false}>
-            <PropertyPane>
-              <PropertyPaneTitle>Question properties</PropertyPaneTitle>
-              <QuestionProperties question={page} onSubmit={noop} />
-            </PropertyPane>
-          </Column>
+          <Column cols={2} gutters={false} />
         </Grid>
       </BaseLayout>
     );

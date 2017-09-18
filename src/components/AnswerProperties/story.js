@@ -11,7 +11,7 @@ const Background = styled.div`
 
 const answer = {};
 
-storiesOf("Answer Properties", module).add("Default", () =>
+storiesOf("Properties/Answer", module).add("Default", () =>
   <Background>
     <AnswerProperties answer={answer} />
   </Background>

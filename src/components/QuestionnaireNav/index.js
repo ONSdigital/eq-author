@@ -55,7 +55,7 @@ const QuestionnaireNav = ({
   onAddSection,
   onDeletePage
 }) =>
-  <Container>
+  <Container id="questionnaire-nav">
     <Title>Questionnaire structure</Title>
     <SectionNav
       transitionDuration={200}

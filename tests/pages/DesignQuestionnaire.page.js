@@ -21,7 +21,7 @@ export const setSectionTitle = sectionTitle => {
 };
 
 export const getFirstSectionTitle = () => {
-  const navigationSectionTitleSelector = "h3";
+  const navigationSectionTitleSelector = "#questionnaire-nav h3";
   browser.waitForExist(navigationSectionTitleSelector);
-  return browser.getText(navigationSectionTitleSelector)[0];
+  return browser.getText(navigationSectionTitleSelector);
 };

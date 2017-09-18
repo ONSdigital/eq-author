@@ -11,7 +11,6 @@ import {
 } from "../pages/CreateQuestionnaire.page";
 import {
   onDesignQuestionnairePage,
-  navigationHasDefaultSectionTitle,
   setSectionTitle,
   getFirstSectionTitle
 } from "../pages/DesignQuestionnaire.page";
@@ -71,7 +70,7 @@ describe("eQ Author Smoketest", () => {
     });
 
     it("should update navigation title when section title changed", () => {
-      expect(navigationHasDefaultSectionTitle()).toEqual(true);
+      expect(getFirstSectionTitle()).toEqual("Section Title");
 
       setSectionTitle("My Section Title");
       browser.keys("Tab");
