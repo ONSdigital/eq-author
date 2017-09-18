@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 import {
   Editor,
   EditorState,
@@ -24,6 +25,19 @@ const styleMap = {
     backgroundColor: "#cbe2c8"
   }
 };
+
+const Wrapper = styled.div`
+  position: relative;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  ul,
+  ol {
+    margin: 0 0 0.5em 0;
+  }
+`;
 
 class RTE extends React.Component {
   static defaultProps = {
@@ -51,7 +65,8 @@ class RTE extends React.Component {
     }
 
     this.state = {
-      editorState
+      editorState,
+      showPlaceholder: true
     };
   }
 
@@ -112,20 +127,27 @@ class RTE extends React.Component {
   };
 
   render() {
-    const { editorState } = this.state;
-
+    const { editorState, focus } = this.state;
+    let { placeholder, label, ...otherProps } = this.props;
+    var contentState = editorState.getCurrentContent();
+    if (!contentState.hasText()) {
+      if (contentState.getBlockMap().first().getType() !== "unstyled") {
+        placeholder = "";
+      }
+    }
     return (
-      <div>
+      <Wrapper>
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
           active={this.active}
-          {...this.props}
+          visible={focus}
+          {...otherProps}
         />
         <div onClick={this.handleClick}>
           <Editor
-            ariaLabel={this.props.label}
-            placeholder={this.props.placeholder}
+            ariaLabel={label}
+            placeholder={placeholder}
             editorState={editorState}
             onKeyCommand={this.handleKeyCommand}
             onChange={this.handleChange}
@@ -137,7 +159,7 @@ class RTE extends React.Component {
             spellCheck
           />
         </div>
-      </div>
+      </Wrapper>
     );
   }
 }

@@ -7,7 +7,7 @@ import { stateToHTML } from "draft-js-export-html";
 import { action } from "@storybook/addon-actions";
 
 const Wrapper = styled.div`
-  margin: 1em;
+  margin: 7em 1em 0;
   max-width: 30em;
 `;
 
