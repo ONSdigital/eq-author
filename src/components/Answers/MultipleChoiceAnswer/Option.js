@@ -19,7 +19,7 @@ export const DeleteContainer = styled.div`
   right: 1em;
 `;
 
-const borderSizes = {
+const borderRadii = {
   [CHECKBOX]: "3px",
   [RADIO]: "100%"
 };
@@ -32,7 +32,7 @@ const DummyInput = styled.div`
   margin: 0 1em 0 0;
   vertical-align: middle;
 
-  border-radius: ${props => get(borderSizes, props.type, "initial")};
+  border-radius: ${props => get(borderRadii, props.type, "initial")};
 `;
 
 export const StyledOption = styled.div`

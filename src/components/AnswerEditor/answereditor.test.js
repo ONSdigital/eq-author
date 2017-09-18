@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
-import { TEXTFIELD, CHECKBOX, RADIO } from "constants/answer-types";
+import { TEXTFIELD, CHECKBOX, RADIO, TIME } from "constants/answer-types";
 
 describe("Answer Editor", () => {
   let mockMutations;
@@ -67,6 +67,20 @@ describe("Answer Editor", () => {
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should throw for unknown answer types", () => {
+    const unknownAnswer = {
+      ...mockAnswer,
+      type: TIME
+    };
+
+    expect(() => {
+      createWrapper({
+        answer: unknownAnswer,
+        ...mockMutations
+      });
+    }).toThrow(TypeError);
   });
 
   it("should call handler when answer deleted", () => {

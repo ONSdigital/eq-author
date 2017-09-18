@@ -29,7 +29,7 @@ class AnswerEditor extends React.Component {
       case RADIO:
         return <MultipleChoiceAnswer type={answer.type} {...this.props} />;
       default:
-        return null;
+        throw new TypeError(`Unknown answer type: ${answer.type}`);
     }
   }
 
