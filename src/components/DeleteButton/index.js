@@ -40,7 +40,9 @@ const DeleteButton = props =>
   <StyledDeleteButton {...props}>&times;</StyledDeleteButton>;
 
 DeleteButton.defaultProps = {
-  size: "medium"
+  size: "medium",
+  type: "button",
+  "aria-label": "Delete"
 };
 
 DeleteButton.propTypes = {

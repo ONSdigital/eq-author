@@ -23,7 +23,6 @@ exports[`components/AnswerTypeGrid should render 1`] = `
       type="Checkbox"
     />
     <AnswerTypeButton
-      disabled={true}
       onClick={[Function]}
       title="Radio"
       type="Radio"

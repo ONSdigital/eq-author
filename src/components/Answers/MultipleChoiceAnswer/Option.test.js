@@ -1,15 +1,12 @@
 import React from "react";
 
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import {
-  StatelessCheckboxOption,
-  DeleteButton,
-  SeamlessLabel
-} from "./CheckboxOption";
+import { StatelessOption, SeamlessLabel } from "./Option";
+import DeleteButton from "components/DeleteButton";
 
 import { shallow } from "enzyme";
 
-describe("CheckboxOption", () => {
+describe("Option", () => {
   let mockMutations;
   let mockEvent;
   let wrapper;
@@ -34,15 +31,16 @@ describe("CheckboxOption", () => {
     };
 
     wrapper = shallow(
-      <StatelessCheckboxOption
-        {...mockMutations}
-        option={option}
-        hasDeleteButton
-      />
+      <StatelessOption {...mockMutations} option={option} hasDeleteButton />
     );
   });
 
   it("should match snapshot", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("shouldn't render delete button if not applicable", () => {
+    wrapper.setProps({ hasDeleteButton: false });
     expect(wrapper).toMatchSnapshot();
   });
 

@@ -1,44 +1,41 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-import { colors } from "constants/theme";
-import { Field, Input } from "components/Forms";
+import { colors, radius } from "constants/theme";
+import { Field } from "components/Forms";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
-
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
+import DeleteButton from "components/DeleteButton";
+import Tooltip from "components/Tooltip";
+import { CHECKBOX, RADIO } from "constants/answer-types";
+import { get } from "lodash";
 
-const duration = 200;
-
-export const DeleteButton = styled.button`
-  cursor: pointer;
-  color: ${colors.lightGrey};
+export const DeleteContainer = styled.div`
   padding: .2em;
-  border: 0;
-  background: none;
-  font-size: 1em;
-
   position: absolute;
   top: .5em;
   right: 1em;
-
-  transition: color .2s ease-in-out;
-
-  &:hover {
-    color: ${colors.darkGrey};
-    transition: color .2s ease-in-out;
-  }
 `;
 
-const StyledCheckboxInput = styled(Input)`
-  border: 2px solid ${colors.borders};
+const borderRadii = {
+  [CHECKBOX]: "3px",
+  [RADIO]: "100%"
+};
+
+const DummyInput = styled.div`
+  border: ${radius} solid ${colors.borders};
   height: 1.4em;
   width: 1.4em;
+  display: inline-block;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+
+  border-radius: ${props => get(borderRadii, props.type, "initial")};
 `;
 
-export const StyledCheckboxOption = styled.div`
+export const StyledOption = styled.div`
   border: 1px solid ${colors.borders};
   padding: 1em 1em 0 1em;
   border-radius: 3px;
@@ -55,9 +52,11 @@ export const StyledCheckboxOption = styled.div`
   }
 
   &.option-enter-active {
-    transition: height ${duration / 2}ms ease-out,
-      opacity ${duration / 2}ms ease-out ${duration / 2}ms,
-      transform ${duration / 2}ms ease-out ${duration / 2}ms;
+    transition: height ${props => props.duration / 2}ms ease-out,
+      opacity ${props => props.duration / 2}ms ease-out
+        ${props => props.duration / 2}ms,
+      transform ${props => props.duration / 2}ms ease-out
+        ${props => props.duration / 2}ms;
     opacity: 1;
     height: 5.625em;
     transform: translateX(0);
@@ -70,14 +69,23 @@ export const StyledCheckboxOption = styled.div`
   }
 
   &.option-exit-active {
-    transition: opacity ${duration / 2}ms ease-out,
-      transform ${duration / 2}ms ease-out,
-      height ${duration / 2}ms ease-out ${duration / 2}ms;
+    transition: opacity ${props => props.duration / 2}ms ease-out,
+      transform ${props => props.duration / 2}ms ease-out,
+      height ${props => props.duration / 2}ms ease-out
+        ${props => props.duration / 2}ms;
     opacity: 0;
     height: 0;
     transform: translateX(-20px);
   }
 `;
+
+StyledOption.defaultProps = {
+  duration: 200
+};
+
+StyledOption.propTypes = {
+  duration: PropTypes.number
+};
 
 export const SeamlessLabel = styled(SeamlessInput)`
   display: inline-block !important;
@@ -85,26 +93,41 @@ export const SeamlessLabel = styled(SeamlessInput)`
   vertical-align: middle;
 `;
 
-export class StatelessCheckboxOption extends Component {
+export class StatelessOption extends Component {
   static propTypes = {
     option: CustomPropTypes.option.isRequired,
     onChange: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    hasDeleteButton: PropTypes.bool.isRequired
+    hasDeleteButton: PropTypes.bool.isRequired,
+    type: PropTypes.oneOf([RADIO, CHECKBOX])
   };
 
   handleDeleteClick = e => {
     this.props.onDelete(this.props.option.id);
   };
 
+  renderDeleteButton() {
+    return (
+      <DeleteContainer>
+        <Tooltip content="Delete option">
+          <DeleteButton
+            size="small"
+            aria-label="Delete option"
+            onClick={this.handleDeleteClick}
+          />
+        </Tooltip>
+      </DeleteContainer>
+    );
+  }
+
   render() {
-    const { hasDeleteButton, option, onChange, onUpdate } = this.props;
+    const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
     return (
-      <StyledCheckboxOption key={option.id}>
+      <StyledOption key={option.id}>
         <Field id="label">
-          <StyledCheckboxInput type="checkbox" disabled />
+          <DummyInput type={type} />
           <SeamlessLabel
             placeholder="Label"
             size="medium"
@@ -124,13 +147,10 @@ export class StatelessCheckboxOption extends Component {
             onBlur={onUpdate}
           />
         </Field>
-        {hasDeleteButton &&
-          <DeleteButton type="button" onClick={this.handleDeleteClick}>
-            &times;
-          </DeleteButton>}
-      </StyledCheckboxOption>
+        {hasDeleteButton && this.renderDeleteButton()}
+      </StyledOption>
     );
   }
 }
 
-export default withEntityEditor("option")(StatelessCheckboxOption);
+export default withEntityEditor("option")(StatelessOption);

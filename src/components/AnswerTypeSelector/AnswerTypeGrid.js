@@ -80,7 +80,6 @@ class AnswerTypeGrid extends React.Component {
             type="Radio"
             title="Radio"
             onClick={this.handleSelect}
-            disabled
           />
           <AnswerTypeButton
             type="TextField"

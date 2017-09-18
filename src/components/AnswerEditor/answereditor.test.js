@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
-import CheckboxAnswer from "components/Answers/CheckboxAnswer";
+import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
-import { TEXTFIELD, CHECKBOX } from "constants/answer-types";
+import { TEXTFIELD, CHECKBOX, RADIO, TIME } from "constants/answer-types";
 
 describe("Answer Editor", () => {
   let mockMutations;
   let mockAnswer;
-  let mockCheckboxAnswer;
+  let mockMultipleChoiceAnswer;
 
   const createWrapper = (props, render = shallow) => {
     return render(<AnswerEditor {...props} />);
@@ -15,15 +15,11 @@ describe("Answer Editor", () => {
 
   beforeEach(() => {
     mockMutations = {
-      onChange: jest.fn(),
       onDeleteAnswer: jest.fn(),
+      onUpdate: jest.fn(),
       onAddOption: jest.fn(),
       onUpdateOption: jest.fn(),
-      onDeleteOption: jest.fn(),
-      onBlur: jest.fn(),
-      onUpdate: jest.fn(),
-      onEntered: jest.fn(),
-      onFocus: jest.fn()
+      onDeleteOption: jest.fn()
     };
 
     mockAnswer = {
@@ -33,7 +29,7 @@ describe("Answer Editor", () => {
       type: TEXTFIELD
     };
 
-    mockCheckboxAnswer = {
+    mockMultipleChoiceAnswer = {
       ...mockAnswer,
       type: CHECKBOX,
       options: [
@@ -56,10 +52,35 @@ describe("Answer Editor", () => {
 
   it("should render Checkbox", () => {
     const wrapper = createWrapper({
-      answer: mockCheckboxAnswer,
+      answer: mockMultipleChoiceAnswer,
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render Radio", () => {
+    const wrapper = createWrapper({
+      answer: {
+        ...mockMultipleChoiceAnswer,
+        type: RADIO
+      },
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should throw for unknown answer types", () => {
+    const unknownAnswer = {
+      ...mockAnswer,
+      type: TIME
+    };
+
+    expect(() => {
+      createWrapper({
+        answer: unknownAnswer,
+        ...mockMutations
+      });
+    }).toThrow(TypeError);
   });
 
   it("should call handler when answer deleted", () => {
@@ -74,10 +95,10 @@ describe("Answer Editor", () => {
 
   it("should add an option to answer via `id`", () => {
     const wrapper = createWrapper({
-      answer: mockCheckboxAnswer,
+      answer: mockMultipleChoiceAnswer,
       ...mockMutations
     });
-    wrapper.find(CheckboxAnswer).simulate("addOption");
+    wrapper.find(MultipleChoiceAnswer).simulate("addOption");
     expect(mockMutations.onAddOption).toHaveBeenCalled();
   });
 });
