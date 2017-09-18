@@ -6,7 +6,6 @@ import ButtonGroup from "components/ButtonGroup";
 import LinkButton from "components/LinkButton";
 import { CenteredPanel } from "components/Panel";
 import BaseLayout from "components/BaseLayout";
-import { noop } from "lodash";
 import { colors } from "../../constants/theme";
 
 import { NavLink } from "react-router-dom";
@@ -145,7 +144,9 @@ DeleteIcon.propTypes = {
 };
 
 const ExistingQuetionnairesTable = props => {
-  const handleDelete = noop;
+  const handleDelete = questionnaireId => {
+    props.onDeleteQuestionnaire(questionnaireId);
+  };
 
   const { questionnaires } = props;
   if (questionnaires && questionnaires.length > 0) {
@@ -193,7 +194,11 @@ const ExistingQuetionnairesTable = props => {
                 </TD>
                 <TD>
                   {questionnaire.actions.delete &&
-                    <DeleteIcon onClick={handleDelete} />}
+                    <DeleteIcon
+                      onClick={function() {
+                        handleDelete(questionnaire.id);
+                      }}
+                    />}
                 </TD>
               </TR>
             );
@@ -207,7 +212,8 @@ const ExistingQuetionnairesTable = props => {
 };
 
 ExistingQuetionnairesTable.propTypes = {
-  questionnaires: questionnairesListPropType
+  questionnaires: questionnairesListPropType,
+  onDeleteQuestionnaire: PropTypes.func.isRequired
 };
 
 const Questionnaires = props => {

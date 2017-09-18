@@ -20,7 +20,10 @@ export const redirectToDesigner = history => ({ data }) => {
 };
 
 const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
-  props: mapMutateToProps
+  props: mapMutateToProps,
+  options: {
+    refetchQueries: ["GetQuestionnaireList"]
+  }
 });
 
 export default withCreateQuestionnaire(QuestionnaireCreatePage);
