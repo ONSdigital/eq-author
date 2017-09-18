@@ -33,30 +33,34 @@ const StyledButtonGroup = styled(ButtonGroup)`
 const Table = styled.table`
   width: 100%;
   font-size: .8em;
+  border-collapse: collapse;
 `;
 
 const TH = styled.th`
   color: #8e8e8e;
   text-align: center;
+  padding-bottom: 1.5em;
   &:nth-child(1) {
     text-align: left;
   }
 `;
 
-const TR = styled.tr`
-  line-height: 3.5em;
-  border: 5px solid red !important;
-`;
+const TR = styled.tr`border-top: 1px solid #e2e2e2;`;
 
 const TD = styled.td`
+  padding: 1.1em 0;
   text-align: center;
   &:nth-child(1),
-  &:nth-child(5) {
+  &:nth-child(6) {
     text-align: left;
   }
 `;
 
 const CommentsIcon = ({ hasUnread }) => {
+  const handleClick = () => {
+    alert("Not implemented yet.");
+  };
+
   const StyledSpan = styled.span`
     position: relative;
     width: 2em;
@@ -83,7 +87,7 @@ const CommentsIcon = ({ hasUnread }) => {
 
   return (
     <StyledSpan>
-      <StyledButton title={"Click to see comments"} />
+      <StyledButton title={"Click to see comments"} onClick={handleClick} />
       {hasUnread && <UnreadIcon title={"You have unread comments"} />}
     </StyledSpan>
   );
@@ -121,6 +125,7 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
             <TH>Questionnaire name</TH>
             <TH>Date</TH>
             <TH>Theme</TH>
+            <TH>Status</TH>
             <TH>Comments</TH>
             <TH />
           </tr>
@@ -136,6 +141,9 @@ const ExistingQuetionnairesTable = ({ questionnaires }) => {
               </TD>
               <TD>
                 {questionnaire.theme}
+              </TD>
+              <TD>
+                {questionnaire.status}
               </TD>
               <TD>
                 {questionnaire.comments.count > 0 &&
@@ -183,6 +191,34 @@ const questionnaireData = [
     status: "Unpublished",
     comments: {
       unread: true,
+      count: 1
+    },
+    actions: {
+      delete: true
+    }
+  },
+  {
+    id: 2,
+    name: "MWSS",
+    date: "20/08/2017",
+    theme: "Business",
+    status: "Unpublished",
+    comments: {
+      unread: false,
+      count: 0
+    },
+    actions: {
+      delete: true
+    }
+  },
+  {
+    id: 3,
+    name: "Census",
+    date: "10/07/2017",
+    theme: "Business",
+    status: "Unpublished",
+    comments: {
+      unread: false,
       count: 1
     },
     actions: {
