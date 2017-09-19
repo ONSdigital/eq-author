@@ -16,7 +16,7 @@ import DeleteSvg from "./trashIcon.svg";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-const duration = 200;
+const duration = 300;
 
 const questionnairesListPropType = PropTypes.arrayOf(
   PropTypes.shape({
@@ -86,10 +86,13 @@ const TH = styled.th`
 const TR = styled.tr`
   border-top: 1px solid #e2e2e2;
   opacity: 1;
+  height: 2em;
 
   &.row-exit {
     opacity: 0.01;
-    transition: opacity ${duration}ms ease-out;
+    height: 0em;
+    transition: opacity ${duration}ms ease-out,
+      height ${duration / 2}ms ease-out ${duration / 2}ms;
   }
 `;
 
