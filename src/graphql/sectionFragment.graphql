@@ -1,0 +1,6 @@
+fragment Section on Section {
+  id
+  pages {
+    id
+  }
+}

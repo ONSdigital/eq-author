@@ -2,9 +2,9 @@ import {
   mapMutateToProps,
   createUpdater,
   getNextPage,
-  handleDeletion,
-  fragment
+  handleDeletion
 } from "./withDeletePage";
+import fragment from "graphql/sectionFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
   let history, mutate, result, ownProps, onAddPage;

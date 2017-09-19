@@ -1,9 +1,9 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToNewPage,
-  fragment
+  redirectToNewPage
 } from "./withCreatePage";
+import fragment from "graphql/sectionFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
   const page = {

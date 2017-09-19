@@ -1,0 +1,5 @@
+fragment Questionnaire on Questionnaire {
+  sections {
+    id
+  }
+}

@@ -1,7 +1,8 @@
-import { graphql, gql } from "react-apollo";
+import { graphql } from "react-apollo";
 import deletePageMutation from "graphql/deletePage.graphql";
 import { findIndex, remove } from "lodash";
 import findById from "utils/findById";
+import fragment from "graphql/sectionFragment.graphql";
 
 export const getNextPage = (pages, id) => {
   const index = findIndex(pages, { id });
@@ -39,14 +40,6 @@ export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
 
   return Promise.resolve();
 };
-
-export const fragment = gql`
-  fragment Section2 on Section {
-    pages {
-      id
-    }
-  }
-`;
 
 export const createUpdater = (sectionId, pageId) => (proxy, result) => {
   const id = `Section${sectionId}`;

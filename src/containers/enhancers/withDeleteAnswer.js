@@ -1,28 +1,17 @@
-import { graphql, gql } from "react-apollo";
+import { graphql } from "react-apollo";
 import deleteAnswerMutation from "graphql/deleteAnswer.graphql";
 import { remove } from "lodash";
-
-export const fragment = gql`
-  fragment Page on QuestionPage {
-    id
-    answers {
-      id
-    }
-  }
-`;
+import fragment from "graphql/pageFragment.graphql";
 
 export const deleteUpdater = (pageId, answerId) => (proxy, result) => {
   const id = `QuestionPage${pageId}`;
-  const page = proxy.readFragment({
-    id,
-    fragment: fragment
-  });
+  const page = proxy.readFragment({ id, fragment });
 
   remove(page.answers, { id: answerId });
 
   proxy.writeFragment({
     id,
-    fragment: fragment,
+    fragment,
     data: page
   });
 };

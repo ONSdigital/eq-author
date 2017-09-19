@@ -1,13 +1,6 @@
-import { graphql, gql } from "react-apollo";
+import { graphql } from "react-apollo";
 import createSectionMutation from "graphql/createSection.graphql";
-
-export const fragment = gql`
-  fragment Questionnaire on Questionnaire {
-    sections {
-      id
-    }
-  }
-`;
+import fragment from "graphql/questionnaireFragment.graphql";
 
 export const redirectToNewPage = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
@@ -21,14 +14,14 @@ export const redirectToNewPage = ownProps => ({ data }) => {
 
 export const createUpdater = questionnaireId => (proxy, result) => {
   const id = `Questionnaire${questionnaireId}`;
-  const data = proxy.readFragment({ id, fragment });
+  const questionnaire = proxy.readFragment({ id, fragment });
 
-  data.sections.push(result.data.createSection);
+  questionnaire.sections.push(result.data.createSection);
 
   proxy.writeFragment({
     id,
     fragment,
-    data
+    data: questionnaire
   });
 };
 

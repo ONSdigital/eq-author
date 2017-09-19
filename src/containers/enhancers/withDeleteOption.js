@@ -5,10 +5,7 @@ import fragment from "graphql/answerFragment.graphql";
 
 export const createUpdater = (optionId, answerId) => proxy => {
   const id = `MultipleChoiceAnswer${answerId}`;
-  const answer = proxy.readFragment({
-    id,
-    fragment
-  });
+  const answer = proxy.readFragment({ id, fragment });
 
   remove(answer.options, { id: optionId });
 

@@ -2,14 +2,5 @@ fragment Page on QuestionPage {
   id
   answers {
     id
-    ... on MultipleChoiceAnswer {
-      options {
-        id
-        label
-        description
-        qCode
-        value
-      }
-    }
   }
 }
