@@ -26,8 +26,15 @@ class AnswerEditor extends React.Component {
       case TEXTFIELD:
         return <TextAnswer {...this.props} />;
       case CHECKBOX:
-      case RADIO:
         return <MultipleChoiceAnswer type={answer.type} {...this.props} />;
+      case RADIO:
+        return (
+          <MultipleChoiceAnswer
+            minOptions={2}
+            type={answer.type}
+            {...this.props}
+          />
+        );
       default:
         throw new TypeError(`Unknown answer type: ${answer.type}`);
     }
