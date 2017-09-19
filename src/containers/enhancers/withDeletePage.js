@@ -1,5 +1,4 @@
-import { graphql } from "react-apollo";
-import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
+import { graphql, gql } from "react-apollo";
 import deletePageMutation from "graphql/deletePage.graphql";
 import { findIndex, remove } from "lodash";
 import findById from "utils/findById";
@@ -41,29 +40,31 @@ export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
   return Promise.resolve();
 };
 
-export const createUpdater = (questionnaireId, sectionId, pageId) => (
-  proxy,
-  result
-) => {
-  const data = proxy.readQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId }
-  });
+export const fragment = gql`
+  fragment Section2 on Section {
+    pages {
+      id
+    }
+  }
+`;
 
-  const section = findById(data.questionnaire.sections, sectionId);
+export const createUpdater = (sectionId, pageId) => (proxy, result) => {
+  const id = `Section${sectionId}`;
+  const section = proxy.readFragment({ id, fragment });
+
   remove(section.pages, { id: pageId });
 
-  proxy.writeQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId },
-    data
+  proxy.writeFragment({
+    id,
+    fragment,
+    data: section
   });
 };
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeletePage(sectionId, pageId) {
     const variables = { id: pageId };
-    const update = createUpdater(ownProps.questionnaireId, sectionId, pageId);
+    const update = createUpdater(sectionId, pageId);
 
     return mutate({ variables, update }).then(res =>
       handleDeletion(ownProps, sectionId, pageId).then(() => res)

@@ -2,7 +2,8 @@ import {
   mapMutateToProps,
   createUpdater,
   getNextPage,
-  handleDeletion
+  handleDeletion,
+  fragment
 } from "./withDeletePage";
 
 describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
@@ -62,31 +63,19 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
 
   describe("createUpdater", () => {
     it("should remove the page from the cache", () => {
-      const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        return { questionnaire };
+      const id = `Section${targetSection.id}`;
+      const readFragment = jest.fn(() => targetSection);
+      const writeFragment = jest.fn();
+
+      const updater = createUpdater(targetSection.id, deletedPage.id);
+      updater({ readFragment, writeFragment }, result);
+
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: targetSection
       });
-      const writeQuery = jest.fn();
-
-      const updater = createUpdater(
-        questionnaire.id,
-        targetSection.id,
-        deletedPage.id
-      );
-      updater({ readQuery, writeQuery }, result);
-
-      expect(readQuery).toHaveBeenCalledWith(
-        expect.objectContaining({ variables: { id: questionnaire.id } })
-      );
-
-      expect(writeQuery).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: { id: questionnaire.id },
-          data: {
-            questionnaire
-          }
-        })
-      );
-
       expect(targetSection.pages).not.toContain(deletedPage);
     });
   });

@@ -1,7 +1,8 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToNewPage
+  redirectToNewPage,
+  fragment
 } from "./withCreateSection";
 
 describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
@@ -44,27 +45,21 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        return { questionnaire };
+      const id = `Questionnaire${questionnaire.id}`;
+
+      const readFragment = jest.fn(() => questionnaire);
+      const writeFragment = jest.fn();
+
+      const updater = createUpdater(questionnaire.id);
+      updater({ readFragment, writeFragment }, result);
+
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: questionnaire
       });
-
-      const writeQuery = jest.fn();
-
-      const updater = createUpdater(questionnaire.id, newSection.id);
-      updater({ readQuery, writeQuery }, result);
-
-      expect(readQuery).toHaveBeenCalledWith(
-        expect.objectContaining({ variables: { id: questionnaire.id } })
-      );
-
-      expect(writeQuery).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: { id: questionnaire.id },
-          data: {
-            questionnaire
-          }
-        })
-      );
+      expect(questionnaire.sections).toContain(newSection);
     });
   });
 
