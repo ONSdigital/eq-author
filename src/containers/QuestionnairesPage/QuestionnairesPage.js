@@ -14,6 +14,10 @@ import CommentsSvg from "./commentsIcon.svg";
 import UnreadCommentsSvg from "./unreadComments.svg";
 import DeleteSvg from "./trashIcon.svg";
 
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+const duration = 200;
+
 const questionnairesListPropType = PropTypes.arrayOf(
   PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -36,6 +40,11 @@ const Link = styled(NavLink)`
   color: ${colors.blue};
   opacity: 1;
   transition: opacity .2s ease-in-out;
+  width: 260px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     opacity: .7;
   }
@@ -74,26 +83,42 @@ const TH = styled.th`
   }
 `;
 
-const TR = styled.tr`border-top: 1px solid #e2e2e2;`;
+const TR = styled.tr`
+  border-top: 1px solid #e2e2e2;
+  opacity: 1;
+
+  &.row-exit {
+    opacity: 0.01;
+    transition: opacity ${duration}ms ease-out;
+  }
+`;
 
 const TD = styled.td`
-  padding: 1.1em 0;
+  padding: 1.1em;
   text-align: center;
+
+  &:nth-child(1) {
+    padding-left: 0;
+  }
+
+  &:nth-child(6) {
+    padding-right: 0;
+  }
+
   &:nth-child(1),
   &:nth-child(6) {
     text-align: left;
   }
 `;
 
-const CommentsIcon = ({ hasUnread }) => {
+const CommentsButton = ({ hasUnread }) => {
   const handleClick = () => {
     alert("Not implemented yet.");
   };
 
   const StyledSpan = styled.span`
     position: relative;
-    width: 2em;
-    height: 2em;
+    top: 2px;
   `;
 
   const StyledButton = styled(Button)`
@@ -103,9 +128,14 @@ const CommentsIcon = ({ hasUnread }) => {
     background: url(${CommentsSvg}) no-repeat;
     background-size: contain;
     border: 0;
+    
+    &:hover { 
+      opacity: 0.7;
+      transition: opacity 150ms ease-in;
+    }
   `;
 
-  const UnreadIcon = styled.span`
+  const UnreadCommentsNotifier = styled.span`
     background: url(${UnreadCommentsSvg}) no-repeat;
     width: 8px;
     height: 8px;
@@ -117,16 +147,17 @@ const CommentsIcon = ({ hasUnread }) => {
   return (
     <StyledSpan>
       <StyledButton title={"Click to see comments"} onClick={handleClick} />
-      {hasUnread && <UnreadIcon title={"You have unread comments"} />}
+      {hasUnread &&
+        <UnreadCommentsNotifier title={"You have unread comments"} />}
     </StyledSpan>
   );
 };
 
-CommentsIcon.propTypes = {
+CommentsButton.propTypes = {
   hasUnread: PropTypes.bool.isRequired
 };
 
-const DeleteIcon = ({ onClick }) => {
+const DeleteQuestionnaireButton = ({ onClick }) => {
   const StyledButton = styled(Button)`
     width: 16px;
     height: 20px;
@@ -134,13 +165,29 @@ const DeleteIcon = ({ onClick }) => {
     background: url(${DeleteSvg}) no-repeat;
     background-size: contain;
     border: 0;
+    
+    
+    &:hover { 
+      opacity: 0.7;
+      transition: opacity 150ms ease-in;
+    }
+    
   `;
 
   return <StyledButton title="Delete questionnaire" onClick={onClick} />;
 };
 
-DeleteIcon.propTypes = {
+DeleteQuestionnaireButton.propTypes = {
   onClick: PropTypes.func.isRequired
+};
+
+const TBody = ({ children }) =>
+  <tbody>
+    {children}
+  </tbody>;
+
+TBody.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
 const ExistingQuetionnairesTable = props => {
@@ -162,7 +209,8 @@ const ExistingQuetionnairesTable = props => {
             <TH />
           </tr>
         </thead>
-        <tbody>
+
+        <TransitionGroup enter={false} component={TBody}>
           {questionnaires.map(questionnaire => {
             const date = new Date(questionnaire.createdAt);
             const dd = date.getDate();
@@ -173,37 +221,50 @@ const ExistingQuetionnairesTable = props => {
               .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
 
             return (
-              <TR key={questionnaire.id}>
-                <TD>
-                  <Link to={url}>
-                    {questionnaire.title}
-                  </Link>
-                </TD>
-                <TD>
-                  {`${dd}/${mm}/${yyyy}`}
-                </TD>
-                <TD>
-                  {questionnaire.theme}
-                </TD>
-                <TD>
-                  {questionnaire.status}
-                </TD>
-                <TD>
-                  {questionnaire.comments.count > 0 &&
-                    <CommentsIcon hasUnread={questionnaire.comments.unread} />}
-                </TD>
-                <TD>
-                  {questionnaire.actions.delete &&
-                    <DeleteIcon
-                      onClick={function() {
-                        handleDelete(questionnaire.id);
-                      }}
-                    />}
-                </TD>
-              </TR>
+              <CSSTransition
+                {...props}
+                key={questionnaire.id}
+                timeout={duration}
+                classNames="row"
+              >
+                <TR>
+                  <TD>
+                    <Link
+                      to={url}
+                      title={questionnaire.title}
+                      aria-label={questionnaire.title}
+                    >
+                      {questionnaire.title}
+                    </Link>
+                  </TD>
+                  <TD>
+                    {`${dd}/${mm}/${yyyy}`}
+                  </TD>
+                  <TD>
+                    {questionnaire.theme}
+                  </TD>
+                  <TD>
+                    {questionnaire.status}
+                  </TD>
+                  <TD>
+                    {questionnaire.comments.count > 0 &&
+                      <CommentsButton
+                        hasUnread={questionnaire.comments.unread}
+                      />}
+                  </TD>
+                  <TD>
+                    {questionnaire.actions.delete &&
+                      <DeleteQuestionnaireButton
+                        onClick={function() {
+                          handleDelete(questionnaire.id);
+                        }}
+                      />}
+                  </TD>
+                </TR>
+              </CSSTransition>
             );
           })}
-        </tbody>
+        </TransitionGroup>
       </Table>
     );
   } else {

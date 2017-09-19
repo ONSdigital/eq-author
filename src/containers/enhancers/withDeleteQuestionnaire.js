@@ -1,27 +1,33 @@
 import { graphql } from "react-apollo";
+import { remove } from "lodash";
 import deleteQuestionnaire from "graphql/deleteQuestionnaire.graphql";
-
-export const handleDeletion = (ownProps, questionnaireId) => {
-  const { history } = ownProps;
-
-  if (history) {
-    history.push("/");
-  }
-  return Promise.resolve();
-};
+import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteQuestionnaire(questionnaireId) {
-    const variables = { id: questionnaireId };
-    return mutate({ variables }).then(res =>
-      handleDeletion(ownProps, questionnaireId).then(() => res)
-    );
+    return mutate({
+      variables: {
+        id: questionnaireId
+      },
+      optimisticResponse: {
+        deleteQuestionnaire: {
+          id: questionnaireId,
+          __typename: "Questionnaire"
+        }
+      }
+    });
   }
 });
+
+export const handleUpdate = (proxy, { data: { deleteQuestionnaire } }) => {
+  const data = proxy.readQuery({ query: getQuestionnaireList });
+  remove(data.questionnaires, { id: deleteQuestionnaire.id });
+  proxy.writeQuery({ query: getQuestionnaireList, data });
+};
 
 export default graphql(deleteQuestionnaire, {
   props: mapMutateToProps,
   options: {
-    refetchQueries: ["GetQuestionnaireList"]
+    update: handleUpdate
   }
 });
