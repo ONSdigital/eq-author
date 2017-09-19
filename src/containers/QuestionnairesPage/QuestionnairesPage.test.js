@@ -6,7 +6,13 @@ let wrapper;
 
 describe("containers/Questionnaires", () => {
   beforeEach(() => {
-    wrapper = mountWithRouter(<Questionnaires />);
+    const questionnaires = [];
+    wrapper = mountWithRouter(
+      <Questionnaires
+        questionnaires={questionnaires}
+        onDeleteQuestionnaire={jest.fn()}
+      />
+    );
   });
 
   it("should render a 'Create Questionnaire' button", () => {
