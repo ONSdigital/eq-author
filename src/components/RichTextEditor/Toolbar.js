@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { noop } from "lodash";
 
 import { radius, colors, shadow } from "constants/theme";
 import iconBold from "./icon-bold.svg";
 import iconEmphasis from "./icon-emphasis.svg";
 import iconHeading from "./icon-heading.svg";
 import iconList from "./icon-list.svg";
-import VisuallyHidden from "components/VisuallyHidden";
 import IconButton from "components/IconButton";
 
 const ButtonGroup = styled.div`
@@ -16,22 +16,18 @@ const ButtonGroup = styled.div`
 `;
 
 const activeState = css`
-  background-color: #eee;
-  color: #333;
-  &:hover,
-  &:focus {
-    background-color: #eee;
-    color: #333;
-  }
+  opacity: 1 !important;
+  background-color: #f5f5f5;
 `;
 
 const Button = styled(IconButton)`
   display: block;
+  opacity: 0.7;
   &:hover,
   &:focus {
-    background-color: #f9f9f9;
+    background-color: #f5f5f5;
     outline: none;
-    opacity: 1;
+    opacity: 0.8;
   }
 
   &[disabled] {
@@ -52,19 +48,19 @@ const ToolbarPanel = styled.div`
 
 const visible = css`
   opacity: 1;
-  transform: translateY(-120%);
+  transform: translateY(-120%) scale(1);
   transition: opacity 50ms ease-in,
-    transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.4);
   pointer-events: all;
 `;
 
 const HoveringToolbar = styled.div`
   pointer-events: none;
-  transform: translateY(-50%);
+  transform: translateY(-80%) scale(0.6);
   position: absolute;
   z-index: 999;
-  opacity: 0;
-  transition: opacity 50ms ease-in, transform 2000ms ease-in;
+  opacity: 0.01;
+  transition: opacity 50ms ease-in, transform 200ms ease-in;
   ${props => props.visible && visible};
 `;
 
@@ -73,20 +69,20 @@ export const STYLE_INLINE = "inline";
 
 const buttons = [
   {
-    name: "heading",
+    title: "Heading",
     icon: iconHeading,
     type: STYLE_BLOCK,
     style: "header-two"
   },
-  { name: "bold", icon: iconBold, type: STYLE_INLINE, style: "BOLD" },
+  { title: "Bold", icon: iconBold, type: STYLE_INLINE, style: "BOLD" },
   {
-    name: "emphasis",
+    title: "Emphasis",
     icon: iconEmphasis,
     type: STYLE_INLINE,
     style: "emphasis"
   },
   {
-    name: "list",
+    title: "List",
     icon: iconList,
     type: STYLE_BLOCK,
     style: "unordered-list-item"
@@ -129,25 +125,20 @@ class ToolBar extends React.Component {
       <HoveringToolbar visible={this.state.visible}>
         <ToolbarPanel {...this.props} onFocus={this.handleFocus}>
           <ButtonGroup>
-            {buttons.map(button => {
-              const disabled = !this.props[button.name];
-              return (
-                <Button
-                  key={button.name}
-                  disabled={disabled}
-                  active={active(button)}
-                  icon={button.icon}
-                  onMouseDown={function(e) {
-                    e.preventDefault(); // prevents focus on the button
-                    if (!disabled) {
-                      onToggle(button);
-                    }
-                  }}
-                >
-                  <VisuallyHidden>{button.name}</VisuallyHidden>
-                </Button>
-              );
-            })}
+            {buttons.map(button => (
+              <Button
+                key={button.title}
+                disabled={!this.props[button.title.toLowerCase()]}
+                active={active(button)}
+                icon={button.icon}
+                title={button.title}
+                onClick={noop} // don't use click due to focus reason
+                onMouseDown={function(e) {
+                  e.preventDefault(); // prevents focus on the button
+                  onToggle(button);
+                }}
+              />
+            ))}
           </ButtonGroup>
         </ToolbarPanel>
       </HoveringToolbar>

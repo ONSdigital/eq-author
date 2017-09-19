@@ -25,14 +25,14 @@ export const Button = styled.button`
   }
 `;
 
-const IconButton = ({ icon, title, disabled, handleClick, className }) => (
+const IconButton = ({ icon, title, disabled, handleClick, ...otherProps }) => (
   <Tooltip content={title}>
     <div>
       <Button
         onClick={handleClick}
         disabled={disabled}
         icon={icon}
-        className={className}
+        {...otherProps}
       >
         <VisuallyHidden>{title}</VisuallyHidden>
       </Button>
