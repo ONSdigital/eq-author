@@ -132,7 +132,7 @@ class RTE extends React.Component {
     const { editorState } = this.state;
     let active;
 
-    if (control.type === "block") {
+    if (control.type === STYLE_BLOCK) {
       const selection = editorState.getSelection();
       const blockType = editorState
         .getCurrentContent()

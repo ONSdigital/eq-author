@@ -1,34 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/IconButton will render a preview icon 1`] = `
+exports[`components/IconButton will render an icon 1`] = `
 <Tooltip
-  content="Export"
+  content="Test"
 >
   <div>
     <IconButton__Button
+      icon="icon-test.svg"
       onClick={[Function]}
     >
-      <img
-        alt="Export"
-        src="icon-preview.svg"
-      />
-    </IconButton__Button>
-  </div>
-</Tooltip>
-`;
-
-exports[`components/IconButton will render an export icon 1`] = `
-<Tooltip
-  content="Export"
->
-  <div>
-    <IconButton__Button
-      onClick={[Function]}
-    >
-      <img
-        alt="Export"
-        src="icon-export.svg"
-      />
+      <VisuallyHidden__VisuallyHidden>
+        Test
+      </VisuallyHidden__VisuallyHidden>
     </IconButton__Button>
   </div>
 </Tooltip>

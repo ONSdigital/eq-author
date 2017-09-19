@@ -7,6 +7,8 @@ import iconBold from "./icon-bold.svg";
 import iconEmphasis from "./icon-emphasis.svg";
 import iconHeading from "./icon-heading.svg";
 import iconList from "./icon-list.svg";
+import VisuallyHidden from "components/VisuallyHidden";
+import IconButton from "components/IconButton";
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -23,19 +25,8 @@ const activeState = css`
   }
 `;
 
-const Button = styled.button`
+const Button = styled(IconButton)`
   display: block;
-  padding: 0;
-  border: none;
-  background: transparent url(${props => props.icon}) no-repeat center;
-  cursor: pointer;
-  color: #6d6d6d;
-  font-weight: 900;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 0.9rem;
-  opacity: 0.7;
-  appearance: none;
   &:hover,
   &:focus {
     background-color: #f9f9f9;
@@ -49,17 +40,6 @@ const Button = styled.button`
   }
 
   ${props => props.active && activeState};
-`;
-
-const VisuallyHidden = styled.span`
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
 `;
 
 const ToolbarPanel = styled.div`

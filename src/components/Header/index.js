@@ -12,6 +12,8 @@ import Breadcrumb from "components/Breadcrumb";
 import { Grid, Column } from "components/Grid";
 
 import logo from "./logo.svg";
+import exportIcon from "./icon-export.svg";
+import previewIcon from "./icon-preview.svg";
 
 const StyledHeader = styled.header`
   height: 4em;
@@ -31,11 +33,9 @@ export const Logo = styled(Link)`
   text-decoration: none;
 `;
 
-export const UtilityBtns = styled(ButtonGroup)`
-  justify-content: flex-end;
-`;
+export const UtilityBtns = styled(ButtonGroup)`justify-content: flex-end;`;
 
-const Header = ({ questionnaire }) =>
+const Header = ({ questionnaire }) => (
   <StyledHeader>
     <Grid align="center">
       <Column cols={2}>
@@ -49,14 +49,16 @@ const Header = ({ questionnaire }) =>
       </Column>
 
       <Column>
-        {questionnaire &&
+        {questionnaire && (
           <UtilityBtns horizontal>
-            <IconButton icon="preview" title="Preview" disabled />
-            <IconButton icon="export" title="Export" disabled />
-          </UtilityBtns>}
+            <IconButton icon={previewIcon} title="Preview" disabled />
+            <IconButton icon={exportIcon} title="Export" disabled />
+          </UtilityBtns>
+        )}
       </Column>
     </Grid>
-  </StyledHeader>;
+  </StyledHeader>
+);
 
 Header.propTypes = {
   questionnaire: CustomPropTypes.questionnaire
