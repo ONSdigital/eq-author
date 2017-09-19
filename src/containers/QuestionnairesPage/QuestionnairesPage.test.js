@@ -1,6 +1,6 @@
 import React from "react";
 import Questionnaires from "./QuestionnairesPage";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import { merge } from "lodash";
 import mountWithRouter from "tests/utils/mountWithRouter";
 
