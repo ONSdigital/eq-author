@@ -13,12 +13,7 @@ import "draft-js/dist/Draft.css";
 
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
-const {
-  handleKeyCommand,
-  onTab,
-  toggleBlockType,
-  toggleInlineStyle
-} = RichUtils;
+const { toggleBlockType, toggleInlineStyle } = RichUtils;
 
 const styleMap = {
   emphasis: {
@@ -54,19 +49,31 @@ const Wrapper = styled.div`
   }
 
   .public-DraftEditorPlaceholder-root {
-    ${props => props.placeholderStyle === "header-two" && heading} ${props =>
-        props.placeholderStyle === "unordered-list-item" && list};
+    ${props => props.placeholderStyle === "header-two" && heading};
+    ${props => props.placeholderStyle === "unordered-list-item" && list};
   }
 `;
 
-class RTE extends React.Component {
+class RichTextEditor extends React.Component {
   static defaultProps = {
-    content: "",
     placeholder: ""
   };
 
   static propTypes = {
-    content: PropTypes.string,
+    value: PropTypes.shape({
+      entityMap: PropTypes.object,
+      blocks: PropTypes.arrayOf(
+        PropTypes.shape({
+          key: PropTypes.string,
+          text: PropTypes.string,
+          type: PropTypes.string,
+          depth: PropTypes.number,
+          inlineStyleRanges: PropTypes.array,
+          entityRanges: PropTypes.array,
+          data: PropTypes.object
+        })
+      )
+    }),
     placeholder: PropTypes.string,
     onUpdate: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired
@@ -77,9 +84,7 @@ class RTE extends React.Component {
     let editorState;
 
     if (props.value) {
-      editorState = EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.value))
-      );
+      editorState = EditorState.createWithContent(convertFromRaw(props.value));
     } else {
       editorState = EditorState.createEmpty();
     }
@@ -95,20 +100,8 @@ class RTE extends React.Component {
 
   handleClick = () => this.editor.focus();
 
-  handleChange = editorState => this.setState({ editorState });
-
-  handleKeyCommand(command, editorState) {
-    const newState = handleKeyCommand(editorState, command);
-    if (newState) {
-      this.handleChange(newState);
-      return true;
-    }
-    return false;
-  }
-
-  handleTab = e => {
-    const maxDepth = 4;
-    this.handleChange(onTab(e, this.state.editorState, maxDepth));
+  handleChange = editorState => {
+    return this.setState({ editorState });
   };
 
   handleToggle = ({ type, style }) => {
@@ -128,20 +121,21 @@ class RTE extends React.Component {
     this.setState({ focus: true });
   };
 
-  active = control => {
+  isActiveControl = ({ style, type }) => {
     const { editorState } = this.state;
     let active;
 
-    if (control.type === STYLE_BLOCK) {
+    if (type === STYLE_BLOCK) {
       const selection = editorState.getSelection();
       const blockType = editorState
         .getCurrentContent()
         .getBlockForKey(selection.getStartKey())
         .getType();
-      active = control.style === blockType;
+
+      active = style === blockType;
     } else {
       const currentStyle = editorState.getCurrentInlineStyle();
-      active = currentStyle.has(control.style);
+      active = currentStyle.has(style);
     }
 
     return active;
@@ -149,6 +143,7 @@ class RTE extends React.Component {
 
   render() {
     const { editorState, focus } = this.state;
+
     const contentState = editorState.getCurrentContent();
     let { placeholder, label, ...otherProps } = this.props;
 
@@ -162,18 +157,16 @@ class RTE extends React.Component {
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
-          active={this.active}
+          isActiveControl={this.isActiveControl}
           visible={focus}
           {...otherProps}
         />
-        <div onClick={this.handleClick}>
+        <div onClick={this.handleClick} id="rte-click-context">
           <Editor
             ariaLabel={label}
             placeholder={placeholder}
             editorState={editorState}
-            onKeyCommand={this.handleKeyCommand}
             onChange={this.handleChange}
-            onTab={this.handleTab}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
             ref={this.getEditorNode}
@@ -186,4 +179,4 @@ class RTE extends React.Component {
   }
 }
 
-export default RTE;
+export default RichTextEditor;

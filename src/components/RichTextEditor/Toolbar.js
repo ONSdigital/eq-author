@@ -20,7 +20,7 @@ const activeState = css`
   background-color: #f5f5f5;
 `;
 
-const Button = styled(IconButton)`
+export const Button = styled(IconButton)`
   display: block;
   opacity: 0.7;
   &:hover,
@@ -38,7 +38,7 @@ const Button = styled(IconButton)`
   ${props => props.active && activeState};
 `;
 
-const ToolbarPanel = styled.div`
+export const ToolbarPanel = styled.div`
   border-radius: ${radius};
   background-color: ${colors.white};
   box-shadow: ${shadow};
@@ -74,7 +74,12 @@ const buttons = [
     type: STYLE_BLOCK,
     style: "header-two"
   },
-  { title: "Bold", icon: iconBold, type: STYLE_INLINE, style: "BOLD" },
+  {
+    title: "Bold",
+    icon: iconBold,
+    type: STYLE_INLINE,
+    style: "BOLD"
+  },
   {
     title: "Emphasis",
     icon: iconEmphasis,
@@ -103,7 +108,7 @@ class ToolBar extends React.Component {
 
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
-    active: PropTypes.func.isRequired,
+    isActiveControl: PropTypes.func.isRequired,
     bold: PropTypes.bool,
     emphasis: PropTypes.bool,
     heading: PropTypes.bool,
@@ -119,7 +124,7 @@ class ToolBar extends React.Component {
   };
 
   render() {
-    const { active, onToggle } = this.props;
+    const { isActiveControl, onToggle } = this.props;
 
     return (
       <HoveringToolbar visible={this.state.visible}>
@@ -129,10 +134,10 @@ class ToolBar extends React.Component {
               <Button
                 key={button.title}
                 disabled={!this.props[button.title.toLowerCase()]}
-                active={active(button)}
+                active={isActiveControl(button)}
                 icon={button.icon}
                 title={button.title}
-                onClick={noop} // don't use click due to focus reason
+                onClick={noop} // don't use click due to focus
                 onMouseDown={function(e) {
                   e.preventDefault(); // prevents focus on the button
                   onToggle(button);

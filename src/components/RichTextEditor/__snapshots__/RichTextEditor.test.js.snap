@@ -1,0 +1,1034 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/RichTextEditor should render 1`] = `
+<RichTextEditor__Wrapper
+  placeholderStyle="unstyled"
+>
+  <ToolBar
+    bold={true}
+    editorState={
+      EditorState {
+        "_immutable": Object {
+          "allowUndo": true,
+          "currentContent": Object {
+            "blockMap": Object {
+              "123": Object {
+                "characterList": Array [],
+                "data": Object {},
+                "depth": 0,
+                "key": "123",
+                "text": "",
+                "type": "unstyled",
+              },
+            },
+            "entityMap": Object {
+              "__add": [Function],
+              "__create": [Function],
+              "__get": [Function],
+              "__getLastCreatedEntityKey": [Function],
+              "__mergeData": [Function],
+              "__replaceData": [Function],
+              "add": [Function],
+              "create": [Function],
+              "get": [Function],
+              "getLastCreatedEntityKey": [Function],
+              "mergeData": [Function],
+              "replaceData": [Function],
+            },
+            "selectionAfter": Object {
+              "anchorKey": "123",
+              "anchorOffset": 0,
+              "focusKey": "123",
+              "focusOffset": 0,
+              "hasFocus": false,
+              "isBackward": false,
+            },
+            "selectionBefore": Object {
+              "anchorKey": "123",
+              "anchorOffset": 0,
+              "focusKey": "123",
+              "focusOffset": 0,
+              "hasFocus": false,
+              "isBackward": false,
+            },
+          },
+          "decorator": null,
+          "directionMap": Object {
+            "123": "LTR",
+          },
+          "forceSelection": false,
+          "inCompositionMode": false,
+          "inlineStyleOverride": null,
+          "lastChangeType": null,
+          "nativelyRenderedContent": null,
+          "redoStack": Array [],
+          "selection": Object {
+            "anchorKey": "123",
+            "anchorOffset": 0,
+            "focusKey": "123",
+            "focusOffset": 0,
+            "hasFocus": false,
+            "isBackward": false,
+          },
+          "treeMap": Object {
+            "123": Array [
+              Object {
+                "decoratorKey": null,
+                "end": 0,
+                "leaves": Array [
+                  Object {
+                    "end": 0,
+                    "start": 0,
+                  },
+                ],
+                "start": 0,
+              },
+            ],
+          },
+          "undoStack": Array [],
+        },
+      }
+    }
+    emphasis={true}
+    heading={true}
+    isActiveControl={[Function]}
+    list={true}
+    onToggle={[Function]}
+    onUpdate={[Function]}
+  />
+  <div
+    id="rte-click-context"
+    onClick={[Function]}
+  >
+    <DraftEditor
+      ariaLabel="I am a label"
+      blockRenderMap={
+        Immutable.Map {
+          ordered-list-item: Object {
+            "element": "li",
+            "wrapper": <ol
+              className="public-DraftStyleDefault-ol"
+          />,
+          },
+          header-six: Object {
+            "element": "h6",
+          },
+          header-four: Object {
+            "element": "h4",
+          },
+          header-one: Object {
+            "element": "h1",
+          },
+          unordered-list-item: Object {
+            "element": "li",
+            "wrapper": <ul
+              className="public-DraftStyleDefault-ul"
+          />,
+          },
+          atomic: Object {
+            "element": "figure",
+          },
+          unstyled: Object {
+            "aliasedElements": Array [
+              "p",
+            ],
+            "element": "div",
+          },
+          header-two: Object {
+            "element": "h2",
+          },
+          code-block: Object {
+            "element": "pre",
+            "wrapper": <pre
+              className="public-DraftStyleDefault-pre"
+          />,
+          },
+          blockquote: Object {
+            "element": "blockquote",
+          },
+          header-five: Object {
+            "element": "h5",
+          },
+          header-three: Object {
+            "element": "h3",
+          },
+        }
+      }
+      blockRendererFn={[Function]}
+      blockStyleFn={[Function]}
+      customStyleMap={
+        Object {
+          "emphasis": Object {
+            "backgroundColor": "#cbe2c8",
+          },
+        }
+      }
+      editorState={
+        EditorState {
+          "_immutable": Object {
+            "allowUndo": true,
+            "currentContent": Object {
+              "blockMap": Object {
+                "123": Object {
+                  "characterList": Array [],
+                  "data": Object {},
+                  "depth": 0,
+                  "key": "123",
+                  "text": "",
+                  "type": "unstyled",
+                },
+              },
+              "entityMap": Object {
+                "__add": [Function],
+                "__create": [Function],
+                "__get": [Function],
+                "__getLastCreatedEntityKey": [Function],
+                "__mergeData": [Function],
+                "__replaceData": [Function],
+                "add": [Function],
+                "create": [Function],
+                "get": [Function],
+                "getLastCreatedEntityKey": [Function],
+                "mergeData": [Function],
+                "replaceData": [Function],
+              },
+              "selectionAfter": Object {
+                "anchorKey": "123",
+                "anchorOffset": 0,
+                "focusKey": "123",
+                "focusOffset": 0,
+                "hasFocus": false,
+                "isBackward": false,
+              },
+              "selectionBefore": Object {
+                "anchorKey": "123",
+                "anchorOffset": 0,
+                "focusKey": "123",
+                "focusOffset": 0,
+                "hasFocus": false,
+                "isBackward": false,
+              },
+            },
+            "decorator": null,
+            "directionMap": Object {
+              "123": "LTR",
+            },
+            "forceSelection": false,
+            "inCompositionMode": false,
+            "inlineStyleOverride": null,
+            "lastChangeType": null,
+            "nativelyRenderedContent": null,
+            "redoStack": Array [],
+            "selection": Object {
+              "anchorKey": "123",
+              "anchorOffset": 0,
+              "focusKey": "123",
+              "focusOffset": 0,
+              "hasFocus": false,
+              "isBackward": false,
+            },
+            "treeMap": Object {
+              "123": Array [
+                Object {
+                  "decoratorKey": null,
+                  "end": 0,
+                  "leaves": Array [
+                    Object {
+                      "end": 0,
+                      "start": 0,
+                    },
+                  ],
+                  "start": 0,
+                },
+              ],
+            },
+            "undoStack": Array [],
+          },
+        }
+      }
+      keyBindingFn={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      readOnly={false}
+      spellCheck={true}
+      stripPastedStyles={false}
+    />
+  </div>
+</RichTextEditor__Wrapper>
+`;
+
+exports[`components/RichTextEditor should render existing content 1`] = `
+<RichTextEditor__Wrapper
+  placeholderStyle="header-two"
+>
+  <ToolBar
+    bold={true}
+    editorState={
+      EditorState {
+        "_immutable": Object {
+          "allowUndo": true,
+          "currentContent": Object {
+            "blockMap": Object {
+              "4qi4u": Object {
+                "characterList": Array [
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "BOLD",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "BOLD",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "BOLD",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "BOLD",
+                    ],
+                  },
+                ],
+                "data": Object {},
+                "depth": 0,
+                "key": "4qi4u",
+                "text": "Bold",
+                "type": "unordered-list-item",
+              },
+              "87jjn": Object {
+                "characterList": Array [
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                ],
+                "data": Object {},
+                "depth": 0,
+                "key": "87jjn",
+                "text": "Regular",
+                "type": "unordered-list-item",
+              },
+              "d300p": Object {
+                "characterList": Array [
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [],
+                  },
+                ],
+                "data": Object {},
+                "depth": 0,
+                "key": "d300p",
+                "text": "List of styles:",
+                "type": "header-two",
+              },
+              "e23rk": Object {
+                "characterList": Array [
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                  Object {
+                    "entity": null,
+                    "style": Array [
+                      "emphasis",
+                    ],
+                  },
+                ],
+                "data": Object {},
+                "depth": 0,
+                "key": "e23rk",
+                "text": "Emphasis",
+                "type": "unordered-list-item",
+              },
+            },
+            "entityMap": Object {
+              "__add": [Function],
+              "__create": [Function],
+              "__get": [Function],
+              "__getLastCreatedEntityKey": [Function],
+              "__mergeData": [Function],
+              "__replaceData": [Function],
+              "add": [Function],
+              "create": [Function],
+              "get": [Function],
+              "getLastCreatedEntityKey": [Function],
+              "mergeData": [Function],
+              "replaceData": [Function],
+            },
+            "selectionAfter": Object {
+              "anchorKey": "d300p",
+              "anchorOffset": 0,
+              "focusKey": "d300p",
+              "focusOffset": 0,
+              "hasFocus": false,
+              "isBackward": false,
+            },
+            "selectionBefore": Object {
+              "anchorKey": "d300p",
+              "anchorOffset": 0,
+              "focusKey": "d300p",
+              "focusOffset": 0,
+              "hasFocus": false,
+              "isBackward": false,
+            },
+          },
+          "decorator": null,
+          "directionMap": Object {
+            "4qi4u": "LTR",
+            "87jjn": "LTR",
+            "d300p": "LTR",
+            "e23rk": "LTR",
+          },
+          "forceSelection": false,
+          "inCompositionMode": false,
+          "inlineStyleOverride": null,
+          "lastChangeType": null,
+          "nativelyRenderedContent": null,
+          "redoStack": Array [],
+          "selection": Object {
+            "anchorKey": "d300p",
+            "anchorOffset": 0,
+            "focusKey": "d300p",
+            "focusOffset": 0,
+            "hasFocus": false,
+            "isBackward": false,
+          },
+          "treeMap": Object {
+            "4qi4u": Array [
+              Object {
+                "decoratorKey": null,
+                "end": 4,
+                "leaves": Array [
+                  Object {
+                    "end": 4,
+                    "start": 0,
+                  },
+                ],
+                "start": 0,
+              },
+            ],
+            "87jjn": Array [
+              Object {
+                "decoratorKey": null,
+                "end": 7,
+                "leaves": Array [
+                  Object {
+                    "end": 7,
+                    "start": 0,
+                  },
+                ],
+                "start": 0,
+              },
+            ],
+            "d300p": Array [
+              Object {
+                "decoratorKey": null,
+                "end": 15,
+                "leaves": Array [
+                  Object {
+                    "end": 15,
+                    "start": 0,
+                  },
+                ],
+                "start": 0,
+              },
+            ],
+            "e23rk": Array [
+              Object {
+                "decoratorKey": null,
+                "end": 8,
+                "leaves": Array [
+                  Object {
+                    "end": 8,
+                    "start": 0,
+                  },
+                ],
+                "start": 0,
+              },
+            ],
+          },
+          "undoStack": Array [],
+        },
+      }
+    }
+    emphasis={true}
+    heading={true}
+    isActiveControl={[Function]}
+    list={true}
+    onToggle={[Function]}
+    onUpdate={[Function]}
+    value={
+      Object {
+        "blocks": Array [
+          Object {
+            "data": Object {},
+            "depth": 0,
+            "entityRanges": Array [],
+            "inlineStyleRanges": Array [],
+            "key": "d300p",
+            "text": "List of styles:",
+            "type": "header-two",
+          },
+          Object {
+            "data": Object {},
+            "depth": 0,
+            "entityRanges": Array [],
+            "inlineStyleRanges": Array [],
+            "key": "87jjn",
+            "text": "Regular",
+            "type": "unordered-list-item",
+          },
+          Object {
+            "data": Object {},
+            "depth": 0,
+            "entityRanges": Array [],
+            "inlineStyleRanges": Array [
+              Object {
+                "length": 4,
+                "offset": 0,
+                "style": "BOLD",
+              },
+            ],
+            "key": "4qi4u",
+            "text": "Bold",
+            "type": "unordered-list-item",
+          },
+          Object {
+            "data": Object {},
+            "depth": 0,
+            "entityRanges": Array [],
+            "inlineStyleRanges": Array [
+              Object {
+                "length": 8,
+                "offset": 0,
+                "style": "emphasis",
+              },
+            ],
+            "key": "e23rk",
+            "text": "Emphasis",
+            "type": "unordered-list-item",
+          },
+        ],
+        "entityMap": Object {},
+      }
+    }
+  />
+  <div
+    id="rte-click-context"
+    onClick={[Function]}
+  >
+    <DraftEditor
+      ariaLabel="I am a label"
+      blockRenderMap={
+        Immutable.Map {
+          ordered-list-item: Object {
+            "element": "li",
+            "wrapper": <ol
+              className="public-DraftStyleDefault-ol"
+          />,
+          },
+          header-six: Object {
+            "element": "h6",
+          },
+          header-four: Object {
+            "element": "h4",
+          },
+          header-one: Object {
+            "element": "h1",
+          },
+          unordered-list-item: Object {
+            "element": "li",
+            "wrapper": <ul
+              className="public-DraftStyleDefault-ul"
+          />,
+          },
+          atomic: Object {
+            "element": "figure",
+          },
+          unstyled: Object {
+            "aliasedElements": Array [
+              "p",
+            ],
+            "element": "div",
+          },
+          header-two: Object {
+            "element": "h2",
+          },
+          code-block: Object {
+            "element": "pre",
+            "wrapper": <pre
+              className="public-DraftStyleDefault-pre"
+          />,
+          },
+          blockquote: Object {
+            "element": "blockquote",
+          },
+          header-five: Object {
+            "element": "h5",
+          },
+          header-three: Object {
+            "element": "h3",
+          },
+        }
+      }
+      blockRendererFn={[Function]}
+      blockStyleFn={[Function]}
+      customStyleMap={
+        Object {
+          "emphasis": Object {
+            "backgroundColor": "#cbe2c8",
+          },
+        }
+      }
+      editorState={
+        EditorState {
+          "_immutable": Object {
+            "allowUndo": true,
+            "currentContent": Object {
+              "blockMap": Object {
+                "4qi4u": Object {
+                  "characterList": Array [
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "BOLD",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "BOLD",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "BOLD",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "BOLD",
+                      ],
+                    },
+                  ],
+                  "data": Object {},
+                  "depth": 0,
+                  "key": "4qi4u",
+                  "text": "Bold",
+                  "type": "unordered-list-item",
+                },
+                "87jjn": Object {
+                  "characterList": Array [
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                  ],
+                  "data": Object {},
+                  "depth": 0,
+                  "key": "87jjn",
+                  "text": "Regular",
+                  "type": "unordered-list-item",
+                },
+                "d300p": Object {
+                  "characterList": Array [
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [],
+                    },
+                  ],
+                  "data": Object {},
+                  "depth": 0,
+                  "key": "d300p",
+                  "text": "List of styles:",
+                  "type": "header-two",
+                },
+                "e23rk": Object {
+                  "characterList": Array [
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                    Object {
+                      "entity": null,
+                      "style": Array [
+                        "emphasis",
+                      ],
+                    },
+                  ],
+                  "data": Object {},
+                  "depth": 0,
+                  "key": "e23rk",
+                  "text": "Emphasis",
+                  "type": "unordered-list-item",
+                },
+              },
+              "entityMap": Object {
+                "__add": [Function],
+                "__create": [Function],
+                "__get": [Function],
+                "__getLastCreatedEntityKey": [Function],
+                "__mergeData": [Function],
+                "__replaceData": [Function],
+                "add": [Function],
+                "create": [Function],
+                "get": [Function],
+                "getLastCreatedEntityKey": [Function],
+                "mergeData": [Function],
+                "replaceData": [Function],
+              },
+              "selectionAfter": Object {
+                "anchorKey": "d300p",
+                "anchorOffset": 0,
+                "focusKey": "d300p",
+                "focusOffset": 0,
+                "hasFocus": false,
+                "isBackward": false,
+              },
+              "selectionBefore": Object {
+                "anchorKey": "d300p",
+                "anchorOffset": 0,
+                "focusKey": "d300p",
+                "focusOffset": 0,
+                "hasFocus": false,
+                "isBackward": false,
+              },
+            },
+            "decorator": null,
+            "directionMap": Object {
+              "4qi4u": "LTR",
+              "87jjn": "LTR",
+              "d300p": "LTR",
+              "e23rk": "LTR",
+            },
+            "forceSelection": false,
+            "inCompositionMode": false,
+            "inlineStyleOverride": null,
+            "lastChangeType": null,
+            "nativelyRenderedContent": null,
+            "redoStack": Array [],
+            "selection": Object {
+              "anchorKey": "d300p",
+              "anchorOffset": 0,
+              "focusKey": "d300p",
+              "focusOffset": 0,
+              "hasFocus": false,
+              "isBackward": false,
+            },
+            "treeMap": Object {
+              "4qi4u": Array [
+                Object {
+                  "decoratorKey": null,
+                  "end": 4,
+                  "leaves": Array [
+                    Object {
+                      "end": 4,
+                      "start": 0,
+                    },
+                  ],
+                  "start": 0,
+                },
+              ],
+              "87jjn": Array [
+                Object {
+                  "decoratorKey": null,
+                  "end": 7,
+                  "leaves": Array [
+                    Object {
+                      "end": 7,
+                      "start": 0,
+                    },
+                  ],
+                  "start": 0,
+                },
+              ],
+              "d300p": Array [
+                Object {
+                  "decoratorKey": null,
+                  "end": 15,
+                  "leaves": Array [
+                    Object {
+                      "end": 15,
+                      "start": 0,
+                    },
+                  ],
+                  "start": 0,
+                },
+              ],
+              "e23rk": Array [
+                Object {
+                  "decoratorKey": null,
+                  "end": 8,
+                  "leaves": Array [
+                    Object {
+                      "end": 8,
+                      "start": 0,
+                    },
+                  ],
+                  "start": 0,
+                },
+              ],
+            },
+            "undoStack": Array [],
+          },
+        }
+      }
+      keyBindingFn={[Function]}
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder=""
+      readOnly={false}
+      spellCheck={true}
+      stripPastedStyles={false}
+    />
+  </div>
+</RichTextEditor__Wrapper>
+`;
