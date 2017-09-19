@@ -18,12 +18,7 @@ describe("enhancers > withUpdateQuestionnaire", () => {
 
     it("should call mutate", () => {
       props.onUpdate(questionnaire);
-
-      expect(mutate).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: questionnaire
-        })
-      );
+      expect(mutate).toHaveBeenCalledWith({ variables: questionnaire });
     });
   });
 });

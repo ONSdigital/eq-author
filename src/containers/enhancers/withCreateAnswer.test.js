@@ -1,4 +1,5 @@
 import { mapMutateToProps, createUpdater } from "./withCreateAnswer";
+import fragment from "graphql/pageFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
   let mutate, result, page, answer, ownProps;
@@ -33,22 +34,20 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const writeFragment = jest.fn();
-      const readFragment = jest.fn().mockImplementation(() => page);
-      const updater = createUpdater(page.id);
       const id = `QuestionPage${page.id}`;
+      const writeFragment = jest.fn();
+      const readFragment = jest.fn(() => page);
+
+      const updater = createUpdater(page.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith(
-        expect.objectContaining({ id })
-      );
-
-      expect(writeFragment).toHaveBeenCalledWith(
-        expect.objectContaining({
-          id,
-          data: page
-        })
-      );
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: page
+      });
+      expect(page.answers).toContain(answer);
     });
   });
 

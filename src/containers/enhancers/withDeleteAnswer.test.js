@@ -1,6 +1,7 @@
 import {
   mapMutateToProps,
-  deleteUpdater
+  deleteUpdater,
+  fragment
 } from "containers/enhancers/withDeleteAnswer";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
@@ -30,24 +31,19 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
 
   describe("deleteUpdater", () => {
     it("should remove the answer from the cache", () => {
-      const writeFragment = jest.fn();
-      const readFragment = jest.fn().mockImplementation(() => currentPage);
       const id = `QuestionPage${currentPage.id}`;
+      const writeFragment = jest.fn();
+      const readFragment = jest.fn(() => currentPage);
 
       const updater = deleteUpdater(currentPage.id, deletedAnswer.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith(
-        expect.objectContaining({ id })
-      );
-
-      expect(writeFragment).toHaveBeenCalledWith(
-        expect.objectContaining({
-          id,
-          data: currentPage
-        })
-      );
-
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: currentPage
+      });
       expect(currentPage.answers).not.toContain(deletedAnswer);
     });
   });

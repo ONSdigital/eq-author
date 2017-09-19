@@ -46,7 +46,6 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
       const id = `Questionnaire${questionnaire.id}`;
-
       const readFragment = jest.fn(() => questionnaire);
       const writeFragment = jest.fn();
 

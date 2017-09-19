@@ -52,22 +52,20 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const readFragment = jest.fn().mockImplementation(() => section);
+      const id = `Section${section.id}`;
+      const readFragment = jest.fn(() => section);
       const writeFragment = jest.fn();
 
       const updater = createUpdater(section.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith({
-        id: `Section${section.id}`,
-        fragment: fragment
-      });
-
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
       expect(writeFragment).toHaveBeenCalledWith({
-        id: `Section${section.id}`,
-        fragment: fragment,
+        id,
+        fragment,
         data: section
       });
+      expect(section.pages).toContain(newPage);
     });
   });
 
