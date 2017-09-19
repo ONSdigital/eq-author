@@ -73,7 +73,8 @@ const ToolbarPanel = styled.div`
 const visible = css`
   opacity: 1;
   transform: translateY(-120%);
-  transition: opacity 50ms ease-in, transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: opacity 50ms ease-in,
+    transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: all;
 `;
 
@@ -163,9 +164,7 @@ class ToolBar extends React.Component {
                     }
                   }}
                 >
-                  <VisuallyHidden>
-                    {button.name}
-                  </VisuallyHidden>
+                  <VisuallyHidden>{button.name}</VisuallyHidden>
                 </Button>
               );
             })}

@@ -10,7 +10,6 @@ import {
 } from "draft-js";
 
 import "draft-js/dist/Draft.css";
-
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
 const {
@@ -26,6 +25,13 @@ const styleMap = {
   }
 };
 
+const heading = css`
+  font-size: 1.3em;
+  font-weight: bold;
+`;
+
+const list = css`margin-left: 1.5em;`;
+
 const Wrapper = styled.div`
   position: relative;
   h1,
@@ -36,6 +42,19 @@ const Wrapper = styled.div`
   ul,
   ol {
     margin: 0 0 0.5em 0;
+  }
+
+  h2 {
+    ${heading};
+  }
+
+  li {
+    ${list};
+  }
+
+  .public-DraftEditorPlaceholder-root {
+    ${props => props.placeholderStyle === "header-two" && heading} ${props =>
+        props.placeholderStyle === "unordered-list-item" && list};
   }
 `;
 
@@ -65,8 +84,7 @@ class RTE extends React.Component {
     }
 
     this.state = {
-      editorState,
-      showPlaceholder: true
+      editorState
     };
   }
 
@@ -131,12 +149,21 @@ class RTE extends React.Component {
     let { placeholder, label, ...otherProps } = this.props;
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== "unstyled") {
-        placeholder = "";
+      if (
+        contentState
+          .getBlockMap()
+          .first()
+          .getType() !== "unstyled"
+      ) {
       }
     }
     return (
-      <Wrapper>
+      <Wrapper
+        placeholderStyle={contentState
+          .getBlockMap()
+          .first()
+          .getType()}
+      >
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
