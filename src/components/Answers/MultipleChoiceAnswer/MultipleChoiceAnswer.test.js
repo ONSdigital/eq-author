@@ -3,6 +3,7 @@ import React from "react";
 import Button from "components/Button";
 import MultipleChoiceAnswer from "./";
 import Option from "./Option";
+import { times } from "lodash";
 
 import { shallow } from "enzyme";
 
@@ -48,41 +49,48 @@ describe("MultipleChoiceAnswer", () => {
     expect(mockHandlers.onAddOption).toHaveBeenCalledWith(answer.id);
   });
 
-  it("should not show delete button when one option", () => {
-    expect(wrapper.find(Option).prop("hasDeleteButton")).toBe(false);
-  });
+  describe("delete button", () => {
+    const minOptions = 2;
 
-  it("should show delete button when more than one option", () => {
-    const answer = {
-      id: 0,
-      options: [
-        {
-          id: 1,
-          label: "",
-          description: ""
-        },
-        {
-          id: 2,
-          label: "",
-          description: ""
-        }
-      ]
-    };
-
-    wrapper.setProps({ answer });
-
-    wrapper.find(Option).forEach(option => {
-      expect(option.prop("hasDeleteButton")).toBe(true);
+    const createAnswer = numberOptions => ({
+      ...answer,
+      options: times(numberOptions, id => ({
+        id: id,
+        label: "",
+        description: ""
+      }))
     });
-  });
 
-  it("should handle deleting an option", () => {
-    const optionId = answer.options[0].id;
-    wrapper.find(Option).first().simulate("delete", optionId);
+    beforeEach(() => {
+      wrapper.setProps({ minOptions });
+    });
 
-    expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(
-      optionId,
-      answer.id
-    );
+    it("should not show when number options <= minOptions", () => {
+      const answer = createAnswer(minOptions);
+      wrapper.setProps({ answer });
+
+      wrapper.find(Option).forEach(option => {
+        expect(option.prop("hasDeleteButton")).toBe(false);
+      });
+    });
+
+    it("should show when number options > minOptions", () => {
+      const answer = createAnswer(minOptions + 1);
+      wrapper.setProps({ answer });
+
+      wrapper.find(Option).forEach(option => {
+        expect(option.prop("hasDeleteButton")).toBe(true);
+      });
+    });
+
+    it("should handle deleting an option", () => {
+      const optionId = answer.options[0].id;
+      wrapper.find(Option).first().simulate("delete", optionId);
+
+      expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(
+        optionId,
+        answer.id
+      );
+    });
   });
 });

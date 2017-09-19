@@ -18,6 +18,7 @@ exports[`Answer Editor should render Checkbox 1`] = `
         "type": "Checkbox",
       }
     }
+    minOptions={1}
     onAddOption={[Function]}
     onDeleteAnswer={[Function]}
     onDeleteOption={[Function]}
@@ -54,6 +55,7 @@ exports[`Answer Editor should render Radio 1`] = `
         "type": "Radio",
       }
     }
+    minOptions={2}
     onAddOption={[Function]}
     onDeleteAnswer={[Function]}
     onDeleteOption={[Function]}

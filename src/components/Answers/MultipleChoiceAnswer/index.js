@@ -47,7 +47,12 @@ class MultipleChoiceAnswer extends Component {
     answer: CustomPropTypes.answer.isRequired,
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    onDeleteOption: PropTypes.func.isRequired
+    onDeleteOption: PropTypes.func.isRequired,
+    minOptions: PropTypes.number.isRequired
+  };
+
+  static defaultProps = {
+    minOptions: 1
   };
 
   handleOptionDelete = optionId => {
@@ -60,7 +65,7 @@ class MultipleChoiceAnswer extends Component {
   };
 
   render() {
-    const { answer, onUpdateOption, ...otherProps } = this.props;
+    const { answer, onUpdateOption, minOptions, ...otherProps } = this.props;
 
     return (
       <AnswerWrapper>
@@ -72,7 +77,7 @@ class MultipleChoiceAnswer extends Component {
                 option={option}
                 onDelete={this.handleOptionDelete}
                 onUpdate={onUpdateOption}
-                hasDeleteButton={options.length > 1}
+                hasDeleteButton={options.length > minOptions}
               />
             </CSSTransition>
           )}
