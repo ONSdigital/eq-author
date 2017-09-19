@@ -1,6 +1,6 @@
 import React from "react";
 import Questionnaires from "./QuestionnairesPage";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { merge } from "lodash";
 import mountWithRouter from "tests/utils/mountWithRouter";
 
@@ -95,7 +95,7 @@ describe("containers/Questionnaires", () => {
       ],
       onDeleteQuestionnaire
     };
-    const wrapper = shallow(<Questionnaires {...props} />);
+    const wrapper = createWrapper(props);
 
     expect(wrapper).toMatchSnapshot();
   });
