@@ -31,9 +31,9 @@ const Button = styled.button`
   cursor: pointer;
   color: #6d6d6d;
   font-weight: 900;
-  width: 4em;
-  height: 4em;
-  font-size: 0.9em;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 0.9rem;
   opacity: 0.7;
   appearance: none;
   &:hover,
@@ -66,7 +66,7 @@ const ToolbarPanel = styled.div`
   border-radius: ${radius};
   background-color: ${colors.white};
   box-shadow: ${shadow};
-  padding: 0 0.5em;
+  padding: 0 0.5rem;
   display: inline-block;
 `;
 

@@ -10,6 +10,7 @@ import {
 } from "draft-js";
 
 import "draft-js/dist/Draft.css";
+
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
 const {
@@ -75,9 +76,9 @@ class RTE extends React.Component {
     super(props);
     let editorState;
 
-    if (props.content) {
+    if (props.value) {
       editorState = EditorState.createWithContent(
-        convertFromRaw(JSON.parse(props.content))
+        convertFromRaw(JSON.parse(props.value))
       );
     } else {
       editorState = EditorState.createEmpty();
@@ -130,6 +131,7 @@ class RTE extends React.Component {
   active = control => {
     const { editorState } = this.state;
     let active;
+
     if (control.type === "block") {
       const selection = editorState.getSelection();
       const blockType = editorState
@@ -141,22 +143,15 @@ class RTE extends React.Component {
       const currentStyle = editorState.getCurrentInlineStyle();
       active = currentStyle.has(control.style);
     }
+
     return active;
   };
 
   render() {
     const { editorState, focus } = this.state;
+    const contentState = editorState.getCurrentContent();
     let { placeholder, label, ...otherProps } = this.props;
-    var contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (
-        contentState
-          .getBlockMap()
-          .first()
-          .getType() !== "unstyled"
-      ) {
-      }
-    }
+
     return (
       <Wrapper
         placeholderStyle={contentState

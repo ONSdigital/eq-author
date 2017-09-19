@@ -1,26 +1,25 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import RichTextEditor from "components/RichTextEditor";
-import styled, { css } from "styled-components";
-import { colors } from "constants/theme";
+import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
 
 const Wrapper = styled.div`
-  margin: 7em 1em 0;
+  margin: 4em 1em 0;
   max-width: 30em;
-`;
-
-const focused = css`
-  border-color: ${colors.lightBlue};
 `;
 
 const RTE = styled.div`
   padding: 1em;
   border-radius: 2px;
-  border: 1px solid #eee;
-  min-height: 10em;
+  border: 1px solid #f4ecec;
+  min-height: 3em;
   font-size: 0.9em;
-  ${props => props.focus && focused};
+`;
+
+const Title = styled.div`
+  font-size: 1.6em;
+  font-weight: 700;
 `;
 
 const content = {
@@ -72,15 +71,17 @@ const props = {
 };
 
 storiesOf("RichTextEditor", module)
-  .addDecorator(story =>
+  .addDecorator(story => (
     <Wrapper>
-      <RTE>
-        {story()}
-      </RTE>
+      <RTE>{story()}</RTE>
     </Wrapper>
-  )
+  ))
   .add("Default", () => <RichTextEditor {...props} />)
-  .add("No bold", () => <RichTextEditor {...props} bold={false} />)
-  .add("With existing content", () =>
-    <RichTextEditor content={JSON.stringify(content)} {...props} />
-  );
+  .add("With existing value", () => (
+    <RichTextEditor value={JSON.stringify(content)} {...props} />
+  ))
+  .add("Title field", () => (
+    <Title>
+      <RichTextEditor {...props} bold={false} list={false} heading={false} />
+    </Title>
+  ));
