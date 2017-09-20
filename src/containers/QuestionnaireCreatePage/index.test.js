@@ -1,4 +1,8 @@
-import { redirectToDesigner, mapMutateToProps } from "./index";
+import {
+  redirectToDesigner,
+  mapMutateToProps,
+  updateQuestionnaireList
+} from "./index";
 
 let history, mutate, results;
 
@@ -55,6 +59,61 @@ describe("containers/QuestionnaireCreatePage", () => {
         );
         expect(history.push).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe("updateQuestionnaireList", () => {
+    let proxy;
+    let readQuery;
+    let writeQuery;
+    let data;
+
+    beforeEach(() => {
+      data = {
+        questionnaires: [
+          {
+            id: 1
+          },
+          {
+            id: 2
+          }
+        ]
+      };
+
+      readQuery = jest.fn().mockImplementation(({ query }) => {
+        return data;
+      });
+
+      writeQuery = jest.fn();
+
+      proxy = {
+        readQuery,
+        writeQuery
+      };
+    });
+
+    it("should update the getQuestionnaireList query with new questionnaire.", () => {
+      const newQuestionnaire = { id: 3 };
+      updateQuestionnaireList(proxy, {
+        data: { createQuestionnaire: newQuestionnaire }
+      });
+
+      expect(readQuery).toHaveBeenCalled();
+      expect(writeQuery).toHaveBeenCalledWith(
+        expect.objectContaining({
+          data: {
+            questionnaires: [
+              {
+                id: 1
+              },
+              {
+                id: 2
+              },
+              newQuestionnaire
+            ]
+          }
+        })
+      );
     });
   });
 });

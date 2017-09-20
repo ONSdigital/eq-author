@@ -20,14 +20,19 @@ export const redirectToDesigner = history => ({ data }) => {
   );
 };
 
+export const updateQuestionnaireList = (
+  proxy,
+  { data: { createQuestionnaire } }
+) => {
+  const data = proxy.readQuery({ query: getQuestionnaireList });
+  data.questionnaires.push(createQuestionnaire);
+  proxy.writeQuery({ query: getQuestionnaireList, data });
+};
+
 const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
   props: mapMutateToProps,
   options: {
-    refetchQueries: [
-      {
-        query: getQuestionnaireList
-      }
-    ]
+    update: updateQuestionnaireList
   }
 });
 
