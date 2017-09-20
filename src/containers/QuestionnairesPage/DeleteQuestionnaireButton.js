@@ -5,22 +5,22 @@ import Button from "components/Button";
 
 import DeleteSvg from "./deleteQuestionnaireIcon.svg";
 
-const DeleteQuestionnaireButton = ({ onClick }) => {
-  const StyledButton = styled(Button)`
-    width: 16px;
-    height: 20px;
-    padding: .5em;
-    background: url(${DeleteSvg}) no-repeat;
-    background-size: contain;
-    border: 0;
-    opacity: .7;
-    
-    &:hover { 
-      opacity: 1;
-      transition: opacity 150ms ease-in;
-    }
-  `;
+export const StyledButton = styled(Button)`
+  width: 16px;
+  height: 20px;
+  padding: .5em;
+  background: url(${DeleteSvg}) no-repeat;
+  background-size: contain;
+  border: 0;
+  opacity: .7;
+  
+  &:hover { 
+    opacity: 1;
+    transition: opacity 150ms ease-in;
+  }
+`;
 
+const DeleteQuestionnaireButton = ({ onClick }) => {
   return <StyledButton title="Delete questionnaire" onClick={onClick} />;
 };
 

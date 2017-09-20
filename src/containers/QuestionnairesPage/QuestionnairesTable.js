@@ -81,12 +81,10 @@ TBody.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
-const QuestionnairesTable = props => {
+const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
   const handleDelete = questionnaireId => {
-    props.onDeleteQuestionnaire(questionnaireId);
+    onDeleteQuestionnaire(questionnaireId);
   };
-
-  const { questionnaires } = props;
 
   if (!questionnaires || questionnaires.length === 0) {
     return <p>You have no questionnaires</p>;
@@ -107,17 +105,14 @@ const QuestionnairesTable = props => {
 
       <TransitionGroup enter={false} component={TBody}>
         {questionnaires.map(questionnaire => {
-          const date = new Date(questionnaire.createdAt);
-          const dd = date.getDate();
-          const mm = date.getMonth() + 1;
-          const yyyy = date.getFullYear();
-
+          const createdAt = new Date(
+            questionnaire.createdAt
+          ).toLocaleDateString("en-gb");
           const url = `/questionnaire/${questionnaire.id}/design/${questionnaire
             .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
 
           return (
             <CSSTransition
-              {...props}
               key={questionnaire.id}
               timeout={duration}
               classNames="row"
@@ -133,7 +128,7 @@ const QuestionnairesTable = props => {
                   </Link>
                 </TD>
                 <TD>
-                  {`${dd}/${mm}/${yyyy}`}
+                  {createdAt}
                 </TD>
                 <TD>
                   {questionnaire.theme}

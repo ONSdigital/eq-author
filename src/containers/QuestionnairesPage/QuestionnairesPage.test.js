@@ -67,39 +67,6 @@ describe("containers/Questionnaires", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should render an icon when there are comments", () => {
-    const props = {
-      questionnaires: [
-        merge({}, questionnaire, {
-          comments: {
-            count: 10
-          }
-        })
-      ],
-      onDeleteQuestionnaire
-    };
-    const wrapper = shallow(<Questionnaires {...props} />);
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should render a notification when there are unread comments", () => {
-    const props = {
-      questionnaires: [
-        merge({}, questionnaire, {
-          comments: {
-            comments: 10,
-            unread: true
-          }
-        })
-      ],
-      onDeleteQuestionnaire
-    };
-    const wrapper = createWrapper(props);
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it("should render without the delete button", () => {
     const props = {
       questionnaires: [
