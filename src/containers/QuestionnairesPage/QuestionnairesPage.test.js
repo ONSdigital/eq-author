@@ -1,7 +1,6 @@
 import React from "react";
 import Questionnaires from "./QuestionnairesPage";
 import { shallow } from "enzyme";
-import { merge } from "lodash";
 import mountWithRouter from "tests/utils/mountWithRouter";
 
 describe("containers/Questionnaires", () => {
@@ -60,22 +59,6 @@ describe("containers/Questionnaires", () => {
   it("should render when there are questionnaires", () => {
     const props = {
       questionnaires: [questionnaire],
-      onDeleteQuestionnaire
-    };
-    const wrapper = shallow(<Questionnaires {...props} />);
-
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should render without the delete button", () => {
-    const props = {
-      questionnaires: [
-        merge({}, questionnaire, {
-          actions: {
-            delete: false
-          }
-        })
-      ],
       onDeleteQuestionnaire
     };
     const wrapper = shallow(<Questionnaires {...props} />);

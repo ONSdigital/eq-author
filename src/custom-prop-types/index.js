@@ -50,9 +50,6 @@ export default {
       comments: PropTypes.shape({
         unread: PropTypes.bool.isRequired,
         count: PropTypes.number.isRequired
-      }).isRequired,
-      actions: PropTypes.shape({
-        delete: PropTypes.bool.isRequired
       }).isRequired
     }).isRequired
   )

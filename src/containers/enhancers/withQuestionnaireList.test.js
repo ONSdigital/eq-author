@@ -49,9 +49,6 @@ describe("withQuestionnaireList", () => {
             comments: {
               unread: true,
               count: 1
-            },
-            actions: {
-              delete: true
             }
           }
         ]

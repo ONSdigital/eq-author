@@ -143,12 +143,11 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
                     />}
                 </TD>
                 <TD>
-                  {questionnaire.actions.delete &&
-                    <DeleteQuestionnaireButton
-                      onClick={function() {
-                        handleDelete(questionnaire.id);
-                      }}
-                    />}
+                  <DeleteQuestionnaireButton
+                    onClick={function() {
+                      handleDelete(questionnaire.id);
+                    }}
+                  />
                 </TD>
               </TR>
             </CSSTransition>

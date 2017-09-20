@@ -18,9 +18,6 @@ export const mapResultsToProps = ({ data, ownProps }) => {
       comments: {
         unread: true,
         count: 1
-      },
-      actions: {
-        delete: true
       }
     });
   });
