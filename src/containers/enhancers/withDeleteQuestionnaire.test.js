@@ -1,4 +1,5 @@
 import { mapMutateToProps, handleUpdate } from "./withDeleteQuestionnaire";
+import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 describe("withDeleteQuestionnaire", () => {
   let mutate, result, ownProps, onAddPage;
@@ -36,11 +37,9 @@ describe("withDeleteQuestionnaire", () => {
     ];
 
     it("should remove the questionnaire from the cache", () => {
-      const readQuery = jest.fn().mockImplementation(({ query }) => {
-        return {
-          questionnaires: cachedQuestionnaires
-        };
-      });
+      const readQuery = jest.fn(() => ({
+        questionnaires: cachedQuestionnaires
+      }));
 
       const writeQuery = jest.fn();
 
@@ -57,22 +56,23 @@ describe("withDeleteQuestionnaire", () => {
         }
       });
 
-      expect(readQuery).toHaveBeenCalled();
+      expect(readQuery).toHaveBeenCalledWith({
+        query: getQuestionnaireList
+      });
 
-      expect(writeQuery).toHaveBeenCalledWith(
-        expect.objectContaining({
-          data: {
-            questionnaires: [
-              {
-                id: 2
-              },
-              {
-                id: 3
-              }
-            ]
-          }
-        })
-      );
+      expect(writeQuery).toHaveBeenCalledWith({
+        query: getQuestionnaireList,
+        data: {
+          questionnaires: [
+            {
+              id: 2
+            },
+            {
+              id: 3
+            }
+          ]
+        }
+      });
     });
   });
 
