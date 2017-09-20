@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommentsButton should render when there are no unread comments 1`] = `
+<CommentsButton__StyledSpan>
+  <CommentsButton__StyledButton
+    onClick={[Function]}
+    title="Click to see comments"
+  />
+</CommentsButton__StyledSpan>
+`;
+
+exports[`CommentsButton should render when there are unread comments 1`] = `
+<CommentsButton__StyledSpan>
+  <CommentsButton__StyledButton
+    onClick={[Function]}
+    title="Click to see comments"
+  />
+  <CommentsButton__UnreadCommentsNotifier
+    title="You have unread comments"
+  />
+</CommentsButton__StyledSpan>
+`;
