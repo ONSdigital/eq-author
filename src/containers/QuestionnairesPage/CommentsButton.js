@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Button from "components/Button";
 
 import CommentsSvg from "./commentsIcon.svg";
-import UnreadCommentsSvg from "./commentsUnreadNotification.svg";
 
 const handleClick = () => {
   alert("Not implemented yet.");
@@ -31,7 +30,8 @@ const StyledButton = styled(Button)`
 `;
 
 const UnreadCommentsNotifier = styled.span`
-  background: url(${UnreadCommentsSvg}) no-repeat;
+  border-radius: 100%;
+  background: #006c97;
   width: 8px;
   height: 8px;
   position: absolute;
