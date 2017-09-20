@@ -13,9 +13,10 @@ const DeleteQuestionnaireButton = ({ onClick }) => {
     background: url(${DeleteSvg}) no-repeat;
     background-size: contain;
     border: 0;
+    opacity: .7;
     
     &:hover { 
-      opacity: 0.7;
+      opacity: 1;
       transition: opacity 150ms ease-in;
     }
   `;

@@ -81,7 +81,7 @@ TBody.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
 
-const QuetionnairesTable = props => {
+const QuestionnairesTable = props => {
   const handleDelete = questionnaireId => {
     props.onDeleteQuestionnaire(questionnaireId);
   };
@@ -164,9 +164,9 @@ const QuetionnairesTable = props => {
   );
 };
 
-QuetionnairesTable.propTypes = {
+QuestionnairesTable.propTypes = {
   questionnaires: CustomPropTypes.questionnaireList,
   onDeleteQuestionnaire: PropTypes.func.isRequired
 };
 
-export default QuetionnairesTable;
+export default QuestionnairesTable;
