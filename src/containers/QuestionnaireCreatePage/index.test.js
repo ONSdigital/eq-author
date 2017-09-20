@@ -4,6 +4,8 @@ import {
   updateQuestionnaireList
 } from "./index";
 
+import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
+
 let history, mutate, results;
 
 const page = {
@@ -80,9 +82,7 @@ describe("containers/QuestionnaireCreatePage", () => {
         ]
       };
 
-      readQuery = jest.fn().mockImplementation(({ query }) => {
-        return data;
-      });
+      readQuery = jest.fn(() => data);
 
       writeQuery = jest.fn();
 
@@ -98,22 +98,23 @@ describe("containers/QuestionnaireCreatePage", () => {
         data: { createQuestionnaire: newQuestionnaire }
       });
 
-      expect(readQuery).toHaveBeenCalled();
-      expect(writeQuery).toHaveBeenCalledWith(
-        expect.objectContaining({
-          data: {
-            questionnaires: [
-              {
-                id: 1
-              },
-              {
-                id: 2
-              },
-              newQuestionnaire
-            ]
-          }
-        })
-      );
+      expect(readQuery).toHaveBeenCalledWith({
+        query: getQuestionnaireList
+      });
+      expect(writeQuery).toHaveBeenCalledWith({
+        query: getQuestionnaireList,
+        data: {
+          questionnaires: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            },
+            newQuestionnaire
+          ]
+        }
+      });
     });
   });
 });

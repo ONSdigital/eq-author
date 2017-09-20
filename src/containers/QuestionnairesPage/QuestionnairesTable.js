@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { NavLink } from "react-router-dom";
 
 import { colors } from "../../constants/theme";
 import CommentsButton from "./CommentsButton";
@@ -11,7 +10,7 @@ import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton";
 
 const duration = 300;
 
-const Link = styled(NavLink)`
+const Link = styled.a`
   text-decoration: none;
   color: ${colors.blue};
   opacity: 1;
@@ -108,7 +107,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
           const createdAt = new Date(
             questionnaire.createdAt
           ).toLocaleDateString("en-gb");
-          const url = `/questionnaire/${questionnaire.id}/design/${questionnaire
+          const url = `#/questionnaire/${questionnaire.id}/design/${questionnaire
             .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
 
           return (
@@ -120,7 +119,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
               <TR>
                 <TD>
                   <Link
-                    to={url}
+                    href={url}
                     title={questionnaire.title}
                     aria-label={questionnaire.title}
                   >

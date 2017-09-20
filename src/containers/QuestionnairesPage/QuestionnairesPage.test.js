@@ -85,7 +85,7 @@ describe("containers/Questionnaires", () => {
     });
 
     const linkToQuestionnaire = wrapper.find("a").last();
-    const expectedUrl = `/questionnaire/${questionnaire.id}/design/${questionnaire
+    const expectedUrl = `#/questionnaire/${questionnaire.id}/design/${questionnaire
       .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
     expect(linkToQuestionnaire.props().href).toEqual(expectedUrl);
   });
