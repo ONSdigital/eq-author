@@ -1,6 +1,7 @@
 import { graphql } from "react-apollo";
 import QuestionnaireCreatePage from "./QuestionnaireCreatePage";
 import createQuestionnaireQuery from "graphql/createQuestionnaire.graphql";
+import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   createQuestionnaire: questionnaire =>
@@ -22,7 +23,7 @@ export const redirectToDesigner = history => ({ data }) => {
 const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
   props: mapMutateToProps,
   options: {
-    refetchQueries: ["GetQuestionnaireList"]
+    refetchQueries: [getQuestionnaireList]
   }
 });
 
