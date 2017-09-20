@@ -39,5 +39,21 @@ export default {
       sectionId: PropTypes.string.isRequired,
       pageId: PropTypes.string.isRequired
     }).isRequired
-  }).isRequired
+  }).isRequired,
+  questionnaireList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      theme: PropTypes.string.isRequired,
+      status: PropTypes.string,
+      comments: PropTypes.shape({
+        unread: PropTypes.bool.isRequired,
+        count: PropTypes.number.isRequired
+      }).isRequired,
+      actions: PropTypes.shape({
+        delete: PropTypes.bool.isRequired
+      }).isRequired
+    }).isRequired
+  )
 };
