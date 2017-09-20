@@ -1,16 +1,18 @@
 #/bin/bash
 
-pushd ../eq-author-graphql-schema
+yarn cache clean
+
+cd ../eq-author-graphql-schema
 rm -Rf node_modules
 yarn
-popd
+cd -
 
-pushd ../eq-author-api
+cd ../eq-author-api
 docker ps -aq | xargs docker rm -vf
 rm -Rf node_modules
 yarn
 docker-compose build
-popd
+cd -
 
 rm -Rf node_modules
 yarn
