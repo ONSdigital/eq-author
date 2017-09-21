@@ -8,26 +8,25 @@ import { colors } from "../../constants/theme";
 import CommentsButton from "./CommentsButton";
 import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton";
 
-const duration = 300;
+const duration = 200;
 
 const Link = styled.a`
   text-decoration: none;
   color: ${colors.blue};
-  opacity: 1;
-  transition: opacity .2s ease-in-out;
-  width: 260px;
-  display: inline-block;
+  width: 100%;
+  max-width: 33em;
+  display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   &:hover {
-    opacity: .7;
+    text-decoration: underline;
   }
 `;
 
 const Table = styled.table`
   width: 100%;
-  font-size: .8em;
+  font-size: 0.8em;
   border-collapse: collapse;
 `;
 
@@ -43,23 +42,32 @@ const TH = styled.th`
 const TR = styled.tr`
   border-top: 1px solid #e2e2e2;
   opacity: 1;
-  height: 2em;
-
+  transition: opacity ${duration / 2}ms ease-out,
+    border-color ${duration / 10}ms ease-in ${duration / 10 * 9}ms;
   &.row-exit {
     opacity: 0.01;
-    height: 0em;
-    transition: opacity ${duration}ms ease-out,
-      height ${duration / 2}ms ease-out ${duration / 2}ms;
+    border-color: white;
   }
 `;
 
 const TD = styled.td`
-  padding: 1.2em;
   text-align: center;
-
+  line-height: 2;
   &:nth-child(1),
   &:nth-child(6) {
     text-align: left;
+  }
+`;
+
+const Collapsable = styled.div`
+  height: 3.75em;
+  padding: 1em;
+
+  .row-exit & {
+    height: 0;
+    padding: 0;
+    transition: height ${duration / 2}ms ease-in ${duration / 2}ms,
+      padding ${duration / 2}ms ease-in ${duration / 2}ms;
   }
 `;
 
@@ -110,35 +118,47 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
             >
               <TR>
                 <TD>
-                  <Link
-                    href={url}
-                    title={questionnaire.title}
-                    aria-label={questionnaire.title}
-                  >
-                    {questionnaire.title}
-                  </Link>
+                  <Collapsable first>
+                    <Link
+                      href={url}
+                      title={questionnaire.title}
+                      aria-label={questionnaire.title}
+                    >
+                      {questionnaire.title}
+                    </Link>
+                  </Collapsable>
                 </TD>
                 <TD>
-                  {createdAt}
+                  <Collapsable>
+                    {createdAt}
+                  </Collapsable>
                 </TD>
                 <TD>
-                  {questionnaire.theme}
+                  <Collapsable>
+                    {questionnaire.theme}
+                  </Collapsable>
                 </TD>
                 <TD>
-                  {questionnaire.status}
+                  <Collapsable>
+                    {questionnaire.status}
+                  </Collapsable>
                 </TD>
                 <TD>
-                  {questionnaire.comments.count > 0 &&
-                    <CommentsButton
-                      hasUnread={questionnaire.comments.unread}
-                    />}
+                  <Collapsable>
+                    {questionnaire.comments.count > 0 &&
+                      <CommentsButton
+                        hasUnread={questionnaire.comments.unread}
+                      />}
+                  </Collapsable>
                 </TD>
                 <TD>
-                  <DeleteQuestionnaireButton
-                    onClick={function() {
-                      handleDelete(questionnaire.id);
-                    }}
-                  />
+                  <Collapsable last>
+                    <DeleteQuestionnaireButton
+                      onClick={function() {
+                        handleDelete(questionnaire.id);
+                      }}
+                    />
+                  </Collapsable>
                 </TD>
               </TR>
             </CSSTransition>

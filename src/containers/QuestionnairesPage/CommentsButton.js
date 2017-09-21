@@ -9,21 +9,18 @@ const handleClick = () => {
   alert("Not implemented yet.");
 };
 
-const StyledSpan = styled.span`
-  position: relative;
-  top: 2px;
-`;
+const StyledSpan = styled.span`position: relative;`;
 
 const StyledButton = styled(Button)`
   width: 18px;
   height: 18px;
-  padding: .5em;
+  padding: 0.5em;
   background: url(${CommentsSvg}) no-repeat;
   background-size: contain;
   border: 0;
-  opacity: .7;
-  
-  &:hover { 
+  opacity: 0.7;
+
+  &:hover {
     opacity: 1;
     transition: opacity 150ms ease-in;
   }
