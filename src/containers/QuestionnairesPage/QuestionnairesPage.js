@@ -44,7 +44,7 @@ const Questionnaires = props => {
           </Button>
         </StyledButtonGroup>
         <CenteredPanel>
-          <QuestionnairesTable {...props} />
+          {!props.loading && <QuestionnairesTable {...props} />}
         </CenteredPanel>
       </Center>
     </BaseLayout>

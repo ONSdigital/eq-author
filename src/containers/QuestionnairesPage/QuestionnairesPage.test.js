@@ -66,6 +66,15 @@ describe("containers/Questionnaires", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should not render table whilst data is loading", () => {
+    const props = {
+      loading: true
+    };
+    const wrapper = shallow(<Questionnaires {...props} />);
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should call delete handler when delete button is pressed", () => {
     const wrapper = createWrapper({
       questionnaires: [questionnaire],

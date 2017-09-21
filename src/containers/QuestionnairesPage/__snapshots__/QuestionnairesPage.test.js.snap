@@ -1,5 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`containers/Questionnaires should not render table whilst data is loading 1`] = `
+<BaseLayout>
+  <QuestionnairesPage__Center>
+    <QuestionnairesPage__Title>
+      Your questionnaires
+    </QuestionnairesPage__Title>
+    <QuestionnairesPage__StyledButtonGroup
+      horizontal={true}
+    >
+      <withRouter(LB)
+        id="btn-create-questionnaire"
+        primary={true}
+        to="/questionnaire/create"
+      >
+        Create
+      </withRouter(LB)>
+      <Button
+        disabled={true}
+        id="btn-load-questionnaire"
+        secondary={true}
+      >
+        Upload
+      </Button>
+    </QuestionnairesPage__StyledButtonGroup>
+    <Panel__CenteredPanel />
+  </QuestionnairesPage__Center>
+</BaseLayout>
+`;
+
 exports[`containers/Questionnaires should render when there are no questionnaires 1`] = `
 <BaseLayout>
   <QuestionnairesPage__Center>
