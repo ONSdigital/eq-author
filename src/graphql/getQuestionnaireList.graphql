@@ -1,0 +1,14 @@
+query GetQuestionnaireList {
+ questionnaires {
+    id
+    title
+    createdAt
+    theme
+    sections {
+        id
+        pages {
+            id
+        }
+    }
+  }
+}

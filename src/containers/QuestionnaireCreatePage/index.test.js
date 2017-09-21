@@ -1,4 +1,10 @@
-import { redirectToDesigner, mapMutateToProps } from "./index";
+import {
+  redirectToDesigner,
+  mapMutateToProps,
+  updateQuestionnaireList
+} from "./index";
+
+import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 let history, mutate, results;
 
@@ -54,6 +60,60 @@ describe("containers/QuestionnaireCreatePage", () => {
           expect.objectContaining({ variables: questionnaire })
         );
         expect(history.push).toHaveBeenCalled();
+      });
+    });
+  });
+
+  describe("updateQuestionnaireList", () => {
+    let proxy;
+    let readQuery;
+    let writeQuery;
+    let data;
+
+    beforeEach(() => {
+      data = {
+        questionnaires: [
+          {
+            id: 1
+          },
+          {
+            id: 2
+          }
+        ]
+      };
+
+      readQuery = jest.fn(() => data);
+
+      writeQuery = jest.fn();
+
+      proxy = {
+        readQuery,
+        writeQuery
+      };
+    });
+
+    it("should update the getQuestionnaireList query with new questionnaire.", () => {
+      const newQuestionnaire = { id: 3 };
+      updateQuestionnaireList(proxy, {
+        data: { createQuestionnaire: newQuestionnaire }
+      });
+
+      expect(readQuery).toHaveBeenCalledWith({
+        query: getQuestionnaireList
+      });
+      expect(writeQuery).toHaveBeenCalledWith({
+        query: getQuestionnaireList,
+        data: {
+          questionnaires: [
+            {
+              id: 1
+            },
+            {
+              id: 2
+            },
+            newQuestionnaire
+          ]
+        }
       });
     });
   });

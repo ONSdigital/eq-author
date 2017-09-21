@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteQuestionnaireButton should render 1`] = `
+<DeleteQuestionnaireButton__StyledButton
+  onClick={[Function]}
+  title="Delete questionnaire"
+/>
+`;

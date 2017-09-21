@@ -1,7 +1,8 @@
-import { connect } from "react-redux";
+import { compose } from "react-apollo";
 import Questionnaires from "./QuestionnairesPage";
+import withQuestionnaireList from "../enhancers/withQuestionnaireList";
+import withDeleteQuestionnaire from "../enhancers/withDeleteQuestionnaire";
 
-const mapStateToProps = (state, ownProps) => ({});
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Questionnaires);
+export default compose(withQuestionnaireList, withDeleteQuestionnaire)(
+  Questionnaires
+);

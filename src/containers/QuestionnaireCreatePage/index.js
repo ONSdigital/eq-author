@@ -1,6 +1,7 @@
 import { graphql } from "react-apollo";
 import QuestionnaireCreatePage from "./QuestionnaireCreatePage";
 import createQuestionnaireQuery from "graphql/createQuestionnaire.graphql";
+import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   createQuestionnaire: questionnaire =>
@@ -19,8 +20,20 @@ export const redirectToDesigner = history => ({ data }) => {
   );
 };
 
+export const updateQuestionnaireList = (
+  proxy,
+  { data: { createQuestionnaire } }
+) => {
+  const data = proxy.readQuery({ query: getQuestionnaireList });
+  data.questionnaires.push(createQuestionnaire);
+  proxy.writeQuery({ query: getQuestionnaireList, data });
+};
+
 const withCreateQuestionnaire = graphql(createQuestionnaireQuery, {
-  props: mapMutateToProps
+  props: mapMutateToProps,
+  options: {
+    update: updateQuestionnaireList
+  }
 });
 
 export default withCreateQuestionnaire(QuestionnaireCreatePage);

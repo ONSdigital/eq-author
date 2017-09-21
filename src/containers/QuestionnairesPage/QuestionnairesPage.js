@@ -1,35 +1,64 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "components/Button";
-import ButtonGroup from "components/ButtonGroup";
-import LinkButton from "components/LinkButton";
-import { CenteredPanel } from "components/Panel";
+import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
+import { CenteredPanel } from "components/Panel";
+import ButtonGroup from "components/ButtonGroup";
+import Button from "components/Button";
+import LinkButton from "components/LinkButton";
+import QuestionnairesTable from "./QuestionnairesTable";
 
 const Center = styled.div`
   width: 100%;
-  max-width: 25em;
+  max-width: 55em;
   margin: 0 auto;
 `;
 
-const Questionnaires = () =>
-  <BaseLayout title="Select to begin">
-    <Center>
-      <CenteredPanel>
-        <ButtonGroup vertical>
+const Title = styled.h2`
+  font-size: 0.6em;
+  text-transform: uppercase;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 3em 0 1.5em 0;
+`;
+
+const StyledButtonGroup = styled(ButtonGroup)`
+  margin: 0 0 1em 0;
+`;
+
+const StyledCenteredPanel = styled(CenteredPanel)`
+  padding: 0;
+`;
+
+const Questionnaires = props => {
+  return (
+    <BaseLayout>
+      <Center>
+        <Title>Your questionnaires</Title>
+        <StyledButtonGroup horizontal>
           <LinkButton
             to="/questionnaire/create"
             id="btn-create-questionnaire"
             primary
           >
-            Create questionnaire
+            Create
           </LinkButton>
           <Button id="btn-load-questionnaire" secondary disabled>
-            Load existing questionnaire
+            Upload
           </Button>
-        </ButtonGroup>
-      </CenteredPanel>
-    </Center>
-  </BaseLayout>;
+        </StyledButtonGroup>
+        <StyledCenteredPanel>
+          {!props.loading && <QuestionnairesTable {...props} />}
+        </StyledCenteredPanel>
+      </Center>
+    </BaseLayout>
+  );
+};
+
+Questionnaires.propTypes = {
+  loading: PropTypes.bool,
+  questionnaires: CustomPropTypes.questionnaireList
+};
 
 export default Questionnaires;
