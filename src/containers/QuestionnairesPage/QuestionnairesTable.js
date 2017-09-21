@@ -22,6 +22,7 @@ const Link = styled.a`
   &:hover {
     text-decoration: underline;
   }
+  text-transform: capitalize;
 `;
 
 const Table = styled.table`
@@ -30,14 +31,17 @@ const Table = styled.table`
   border-collapse: collapse;
 `;
 
+const ColumnPropTypes = {
+  centerAligned: PropTypes.bool
+};
+
 const TH = styled.th`
   padding: 1.5em 1em;
   color: #8e8e8e;
-  text-align: center;
-  &:nth-child(1) {
-    text-align: left;
-  }
+  text-align: ${props => (props.centerAligned ? "center" : "left")};
 `;
+
+TH.propTypes = ColumnPropTypes;
 
 const TR = styled.tr`
   border-top: 1px solid #e2e2e2;
@@ -53,11 +57,10 @@ const TR = styled.tr`
 const TD = styled.td`
   text-align: center;
   line-height: 2;
-  &:nth-child(1),
-  &:nth-child(6) {
-    text-align: left;
-  }
+  text-align: ${props => (props.centerAligned ? "center" : "left")};
 `;
+
+TD.propTypes = ColumnPropTypes;
 
 const Collapsable = styled.div`
   height: 3.75em;
@@ -97,7 +100,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
           <TH>Date</TH>
           <TH>Theme</TH>
           <TH>Status</TH>
-          <TH>Comments</TH>
+          <TH centerAligned>Comments</TH>
           <TH />
         </tr>
       </thead>
@@ -143,7 +146,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
                     {questionnaire.status}
                   </Collapsable>
                 </TD>
-                <TD>
+                <TD centerAligned>
                   <Collapsable>
                     {questionnaire.comments.count > 0 &&
                       <CommentsButton
