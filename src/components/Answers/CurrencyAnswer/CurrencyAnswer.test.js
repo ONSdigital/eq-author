@@ -1,8 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { StatelessCurrencyAnswer } from "components/Answers/CurrencyAnswer";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
+import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 
 const answer = {
   title: "Lorem ipsum",
@@ -19,7 +17,7 @@ describe("CurrencyAnswer", () => {
     handleUpdate = jest.fn();
 
     component = shallow(
-      <StatelessCurrencyAnswer
+      <CurrencyAnswer
         onChange={handleChange}
         onUpdate={handleUpdate}
         answer={answer}
@@ -29,19 +27,5 @@ describe("CurrencyAnswer", () => {
 
   it("should render", () => {
     expect(component).toMatchSnapshot();
-  });
-
-  it("should invoke callback on change", () => {
-    component.find(SeamlessTextArea).simulate("change");
-    component.find(SeamlessInput).simulate("change");
-
-    expect(handleChange).toHaveBeenCalledTimes(2);
-  });
-
-  it("should invoke update callback on blur", () => {
-    component.find(SeamlessTextArea).simulate("blur");
-    component.find(SeamlessInput).simulate("blur");
-
-    expect(handleUpdate).toHaveBeenCalledTimes(2);
   });
 });
