@@ -32,9 +32,9 @@ const Table = styled.table`
 `;
 
 const TH = styled.th`
+  padding: 1.5em 1em;
   color: #8e8e8e;
   text-align: center;
-  padding-bottom: 1.5em;
   &:nth-child(1) {
     text-align: left;
   }
@@ -54,16 +54,8 @@ const TR = styled.tr`
 `;
 
 const TD = styled.td`
-  padding: 1.1em;
+  padding: 1.2em;
   text-align: center;
-
-  &:nth-child(1) {
-    padding-left: 0;
-  }
-
-  &:nth-child(6) {
-    padding-right: 0;
-  }
 
   &:nth-child(1),
   &:nth-child(6) {

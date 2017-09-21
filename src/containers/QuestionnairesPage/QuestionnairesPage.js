@@ -27,6 +27,10 @@ const StyledButtonGroup = styled(ButtonGroup)`
   margin: 0 0 1em 0;
 `;
 
+const StyledCenteredPanel = styled(CenteredPanel)`
+  padding: 0;
+`;
+
 const Questionnaires = props => {
   return (
     <BaseLayout>
@@ -44,9 +48,9 @@ const Questionnaires = props => {
             Upload
           </Button>
         </StyledButtonGroup>
-        <CenteredPanel>
+        <StyledCenteredPanel>
           {!props.loading && <QuestionnairesTable {...props} />}
-        </CenteredPanel>
+        </StyledCenteredPanel>
       </Center>
     </BaseLayout>
   );

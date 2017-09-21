@@ -24,7 +24,7 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
         Upload
       </Button>
     </QuestionnairesPage__StyledButtonGroup>
-    <Panel__CenteredPanel />
+    <QuestionnairesPage__StyledCenteredPanel />
   </QuestionnairesPage__Center>
 </BaseLayout>
 `;
@@ -53,12 +53,12 @@ exports[`containers/Questionnaires should render when there are no questionnaire
         Upload
       </Button>
     </QuestionnairesPage__StyledButtonGroup>
-    <Panel__CenteredPanel>
+    <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
         onDeleteQuestionnaire={[Function]}
         questionnaires={Array []}
       />
-    </Panel__CenteredPanel>
+    </QuestionnairesPage__StyledCenteredPanel>
   </QuestionnairesPage__Center>
 </BaseLayout>
 `;
@@ -87,7 +87,7 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
         Upload
       </Button>
     </QuestionnairesPage__StyledButtonGroup>
-    <Panel__CenteredPanel>
+    <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
         onDeleteQuestionnaire={[Function]}
         questionnaires={
@@ -118,7 +118,7 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
           ]
         }
       />
-    </Panel__CenteredPanel>
+    </QuestionnairesPage__StyledCenteredPanel>
   </QuestionnairesPage__Center>
 </BaseLayout>
 `;
