@@ -21,7 +21,7 @@ However, there are a number of risks:
 
 ### Flow vs. TypeScript
 
-There are two significant options in the strongly-typed Javascript market—[Flow](https://flow.org/) (Facebook) and [TypeScript](https://www.typescriptlang.org/) (Microsoft). Whilst Flow is a type-checker, TypeScript is a subset of the JavaScript language itself and both require additional tooling (in our case, via Webpack) to work.
+There are two significant options in the strongly-typed Javascript market—[Flow](https://flow.org/) (Facebook) and [TypeScript](https://www.typescriptlang.org/) (Microsoft). Whilst Flow is a type-checker, TypeScript is a superset of the JavaScript language itself and both require additional tooling (in our case, via Webpack) to work.
 
 For this exercise, we evaluated both options by setting up the relevant tools and refactoring some existing code to include types.
 
