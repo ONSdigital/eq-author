@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import { CenteredPanel } from "components/Panel";
@@ -52,6 +53,7 @@ const Questionnaires = props => {
 };
 
 Questionnaires.propTypes = {
+  loading: PropTypes.bool,
   questionnaires: CustomPropTypes.questionnaireList
 };
 
