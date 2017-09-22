@@ -157,6 +157,7 @@ class RichTextEditor extends React.Component {
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
+          onFocus={this.handleFocus}
           isActiveControl={this.isActiveControl}
           visible={focus}
           {...otherProps}

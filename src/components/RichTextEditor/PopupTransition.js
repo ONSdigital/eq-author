@@ -1,6 +1,6 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const Animated = styled.div`

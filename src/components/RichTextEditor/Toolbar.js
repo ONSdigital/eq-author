@@ -86,10 +86,6 @@ const Layer = styled.div`
 `;
 
 class ToolBar extends React.Component {
-  state = {
-    visible: false
-  };
-
   static defaultProps = {
     bold: true,
     emphasis: true,
@@ -106,22 +102,14 @@ class ToolBar extends React.Component {
     list: PropTypes.bool
   };
 
-  componentWillReceiveProps({ visible }) {
-    this.setState({ visible });
-  }
-
-  handleFocus = () => {
-    this.setState({ visible: true });
-  };
-
   render() {
-    const { isActiveControl, onToggle } = this.props;
+    const { isActiveControl, onToggle, onFocus } = this.props;
 
     return (
       <TransitionGroup component={Layer}>
-        {this.state.visible && (
+        {this.props.visible && (
           <PopupTransition duration={200}>
-            <ToolbarPanel {...this.props} onFocus={this.handleFocus}>
+            <ToolbarPanel {...this.props} onFocus={onFocus}>
               <ButtonGroup>
                 {buttons.map(button => (
                   <Button
