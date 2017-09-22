@@ -16,6 +16,7 @@ describe("Answer Editor", () => {
   beforeEach(() => {
     mockMutations = {
       onDeleteAnswer: jest.fn(),
+      onChange: jest.fn(),
       onUpdate: jest.fn(),
       onAddOption: jest.fn(),
       onUpdateOption: jest.fn(),

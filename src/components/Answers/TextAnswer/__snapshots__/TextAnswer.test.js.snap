@@ -1,33 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextAnswer should render 1`] = `
-<div>
-  <Field
-    id="label"
-  >
-    <withSeamlessness(withChangeHandler(Input))
-      data-autoFocus={true}
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="Label"
-      size="medium"
-    />
-  </Field>
-  <Field
-    id="description"
-  >
-    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-      cols="30"
-      onBlur={[Function]}
-      onChange={[Function]}
-      placeholder="Enter a description (optional)…"
-      rows="5"
-      size="small"
-      value="Nullam id dolor id nibh ultricies."
-    />
-  </Field>
-  <withChangeHandler(Input)
-    disabled={true}
-  />
-</div>
+<withEntityEditor(StatelessBasicAnswer)
+  answer={
+    Object {
+      "description": "Nullam id dolor id nibh ultricies.",
+      "title": "Lorem ipsum",
+    }
+  }
+  onChange={[Function]}
+  onUpdate={[Function]}
+>
+  <TextInput__DummyTextInput />
+</withEntityEditor(StatelessBasicAnswer)>
 `;

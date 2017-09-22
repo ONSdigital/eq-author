@@ -1,8 +1,8 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
 import NumberAnswer from "components/Answers/NumberAnswer";
-import styled from "styled-components";
+import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import styled from "styled-components";
 
 const Background = styled.div`
   padding: 1em;
@@ -24,9 +24,14 @@ storiesOf("AnswerTypes/NumberAnswer", module)
   .add("Empty", () =>
     <NumberAnswer
       answer={{ label: "", description: "" }}
+      onChange={action("changed")}
       onUpdate={action("updated")}
     />
   )
   .add("Prefilled", () =>
-    <NumberAnswer answer={answer} onUpdate={action("updated")} />
+    <NumberAnswer
+      answer={answer}
+      onChange={action("changed")}
+      onUpdate={action("updated")}
+    />
   );
