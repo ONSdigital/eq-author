@@ -9,6 +9,8 @@ import iconEmphasis from "./icon-emphasis.svg";
 import iconHeading from "./icon-heading.svg";
 import iconList from "./icon-list.svg";
 import IconButton from "components/IconButton";
+import { TransitionGroup } from "react-transition-group";
+import PopupTransition from "./PopupTransition";
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -39,29 +41,12 @@ export const Button = styled(IconButton)`
 `;
 
 export const ToolbarPanel = styled.div`
+  z-index: 999;
   border-radius: ${radius};
   background-color: ${colors.white};
   box-shadow: ${shadow};
   padding: 0 0.5rem;
   display: inline-block;
-`;
-
-const visible = css`
-  opacity: 1;
-  transform: translateY(-120%) scale(1);
-  transition: opacity 50ms ease-in,
-    transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.4);
-  pointer-events: all;
-`;
-
-const HoveringToolbar = styled.div`
-  pointer-events: none;
-  transform: translateY(-80%) scale(0.6);
-  position: absolute;
-  z-index: 999;
-  opacity: 0.01;
-  transition: opacity 50ms ease-in, transform 200ms ease-in;
-  ${props => props.visible && visible};
 `;
 
 export const STYLE_BLOCK = "block";
@@ -93,6 +78,12 @@ const buttons = [
     style: "unordered-list-item"
   }
 ];
+
+const Layer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+`;
 
 class ToolBar extends React.Component {
   state = {
@@ -127,26 +118,30 @@ class ToolBar extends React.Component {
     const { isActiveControl, onToggle } = this.props;
 
     return (
-      <HoveringToolbar visible={this.state.visible}>
-        <ToolbarPanel {...this.props} onFocus={this.handleFocus}>
-          <ButtonGroup>
-            {buttons.map(button => (
-              <Button
-                key={button.title}
-                disabled={!this.props[button.title.toLowerCase()]}
-                active={isActiveControl(button)}
-                icon={button.icon}
-                title={button.title}
-                onClick={noop} // don't use click due to focus
-                onMouseDown={function(e) {
-                  e.preventDefault(); // prevents focus on the button
-                  onToggle(button);
-                }}
-              />
-            ))}
-          </ButtonGroup>
-        </ToolbarPanel>
-      </HoveringToolbar>
+      <TransitionGroup component={Layer}>
+        {this.state.visible && (
+          <PopupTransition duration={200}>
+            <ToolbarPanel {...this.props} onFocus={this.handleFocus}>
+              <ButtonGroup>
+                {buttons.map(button => (
+                  <Button
+                    key={button.title}
+                    disabled={!this.props[button.title.toLowerCase()]}
+                    active={isActiveControl(button)}
+                    icon={button.icon}
+                    title={button.title}
+                    onClick={noop} // don't use click due to focus
+                    onMouseDown={function(e) {
+                      e.preventDefault(); // prevents focus on the button
+                      onToggle(button);
+                    }}
+                  />
+                ))}
+              </ButtonGroup>
+            </ToolbarPanel>
+          </PopupTransition>
+        )}
+      </TransitionGroup>
     );
   }
 }
