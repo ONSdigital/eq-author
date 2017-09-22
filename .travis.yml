@@ -28,6 +28,7 @@ before_install:
 
 install:
  - yarn install
+ - yarn upgrade eq-author-graphql-schema
 
 before_script:
  - yarn global add chimp
