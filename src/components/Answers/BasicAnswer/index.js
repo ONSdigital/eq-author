@@ -6,7 +6,7 @@ import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
 
-export const BasicAnswerPropTypes = {
+const BasicAnswerPropTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired

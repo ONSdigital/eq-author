@@ -2,9 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors, radius } from "constants/theme";
-import BasicAnswer, {
-  BasicAnswerPropTypes
-} from "components/Answers/BasicAnswer";
+import BasicAnswer from "components/Answers/BasicAnswer";
 import DummyTextInput from "components/Answers/Dummy/TextInput";
 
 const StyledSpan = styled.span`
@@ -50,7 +48,5 @@ const CurrencyAnswer = props =>
       <DummyTextInput />
     </FieldWrapper>
   </BasicAnswer>;
-
-CurrencyAnswer.propTypes = BasicAnswerPropTypes;
 
 export default CurrencyAnswer;

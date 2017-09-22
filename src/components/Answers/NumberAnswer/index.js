@@ -1,7 +1,5 @@
 import React from "react";
-import BasicAnswer, {
-  BasicAnswerPropTypes
-} from "components/Answers/BasicAnswer";
+import BasicAnswer from "components/Answers/BasicAnswer";
 import DummyTextInput from "components/Answers/Dummy/TextInput";
 
 const NumberAnswer = props =>
@@ -10,7 +8,5 @@ const NumberAnswer = props =>
       <DummyTextInput />
     </div>
   </BasicAnswer>;
-
-NumberAnswer.propTypes = BasicAnswerPropTypes;
 
 export default NumberAnswer;
