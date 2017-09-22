@@ -6,12 +6,6 @@ import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
 
-const BasicAnswerPropTypes = {
-  answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired
-};
-
 export const StatelessBasicAnswer = ({
   answer,
   onChange,
@@ -43,7 +37,9 @@ export const StatelessBasicAnswer = ({
   </div>;
 
 StatelessBasicAnswer.propTypes = {
-  ...BasicAnswerPropTypes,
+  answer: CustomPropTypes.answer.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired
 };
 
