@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { BasicAnswerFields } from "components/Answers/BasicAnswer";
+import { StatelessBasicAnswer } from "components/Answers/BasicAnswer";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 
@@ -13,9 +13,9 @@ describe("BasicAnswer", () => {
 
   const createWrapper = (props, children, render = shallow) => {
     return render(
-      <BasicAnswerFields {...props}>
+      <StatelessBasicAnswer {...props}>
         {children}
-      </BasicAnswerFields>
+      </StatelessBasicAnswer>
     );
   };
 

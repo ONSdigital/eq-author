@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextAreaAnswer should render 1`] = `
-<withEntityEditor(BasicAnswerFields)
+<withEntityEditor(StatelessBasicAnswer)
   answer={
     Object {
       "description": "Nullam id dolor id nibh ultricies.",
@@ -16,5 +16,5 @@ exports[`TextAreaAnswer should render 1`] = `
       rows={5}
     />
   </div>
-</withEntityEditor(BasicAnswerFields)>
+</withEntityEditor(StatelessBasicAnswer)>
 `;

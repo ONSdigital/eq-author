@@ -12,7 +12,12 @@ const BasicAnswerPropTypes = {
   onUpdate: PropTypes.func.isRequired
 };
 
-export const BasicAnswerFields = ({ answer, onChange, onUpdate, children }) =>
+export const StatelessBasicAnswer = ({
+  answer,
+  onChange,
+  onUpdate,
+  children
+}) =>
   <div>
     <Field id="label">
       <SeamlessInput
@@ -37,9 +42,9 @@ export const BasicAnswerFields = ({ answer, onChange, onUpdate, children }) =>
     {children}
   </div>;
 
-BasicAnswerFields.propTypes = {
+StatelessBasicAnswer.propTypes = {
   ...BasicAnswerPropTypes,
   children: PropTypes.element.isRequired
 };
 
-export default withEntityEditor("answer")(BasicAnswerFields);
+export default withEntityEditor("answer")(StatelessBasicAnswer);

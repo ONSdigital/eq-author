@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { sharedStyles } from "components/Forms/css";
 
 const DummyTextArea = styled.div`
-  ${sharedStyles} padding: 1.2em 1.2em 1.2em 2em;
+  ${sharedStyles};
+  padding: 1.2em 1.2em 1.2em 2em;
   position: relative;
   background-color: transparent;
   z-index: 2;

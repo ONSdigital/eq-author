@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CurrencyAnswer should render 1`] = `
-<withEntityEditor(BasicAnswerFields)
+<withEntityEditor(StatelessBasicAnswer)
   answer={
     Object {
       "description": "Nullam id dolor id nibh ultricies.",
@@ -17,5 +17,5 @@ exports[`CurrencyAnswer should render 1`] = `
     />
     <TextInput__DummyTextInput />
   </CurrencyAnswer__FieldWrapper>
-</withEntityEditor(BasicAnswerFields)>
+</withEntityEditor(StatelessBasicAnswer)>
 `;
