@@ -64,7 +64,7 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
         expect(mutate).toHaveBeenCalledWith(
           expect.objectContaining({
             variables: {
-              id: deletedAnswer.id
+              input: { id: deletedAnswer.id }
             }
           })
         );

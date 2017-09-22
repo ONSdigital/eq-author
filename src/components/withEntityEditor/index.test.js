@@ -1,12 +1,20 @@
 import React from "react";
 import withEntityEditor from "./";
 import { shallow } from "enzyme";
+import { gql } from "react-apollo";
 
 const Component = props => <div {...props} />;
 
+const fragment = gql`
+  fragment Entity on Entity {
+    id
+    title
+  }
+`;
+
 describe("withEntityEditor", () => {
   let wrapper, entity, handleUpdate, handleSubmit;
-  const ComponentWithEntity = withEntityEditor("entity")(Component);
+  const ComponentWithEntity = withEntityEditor("entity", fragment)(Component);
 
   beforeEach(() => {
     handleUpdate = jest.fn();
@@ -27,6 +35,16 @@ describe("withEntityEditor", () => {
 
   it("should have an appropriate displayName", () => {
     expect(ComponentWithEntity.displayName).toBe("withEntityEditor(Component)");
+  });
+
+  it("should filter out unknown fields", () => {
+    wrapper.setProps({
+      entity: {
+        ...entity,
+        extraProp: false
+      }
+    });
+    expect(wrapper.state("entity").extraProp).toBeUndefined();
   });
 
   it("should put entity into state", () => {

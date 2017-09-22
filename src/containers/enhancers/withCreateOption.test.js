@@ -57,7 +57,9 @@ describe("containers/QuestionnaireDesignPage/withCreateOption", () => {
       return props.onAddOption(answer.id).then(() => {
         expect(mutate).toHaveBeenCalledWith(
           expect.objectContaining({
-            variables: { answerId: answer.id }
+            variables: {
+              input: { answerId: answer.id }
+            }
           })
         );
       });

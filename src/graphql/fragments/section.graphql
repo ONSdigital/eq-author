@@ -1,0 +1,5 @@
+fragment Section on Section {
+  id
+  title
+  description
+}

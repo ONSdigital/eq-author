@@ -1,0 +1,7 @@
+fragment Answer on Answer {
+  id
+  description
+  guidance
+  label
+  type
+}

@@ -11,6 +11,7 @@ import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { get } from "lodash";
+import optionFragment from "graphql/fragments/option.graphql";
 
 export const DeleteContainer = styled.div`
   padding: .2em;
@@ -153,4 +154,4 @@ export class StatelessOption extends Component {
   }
 }
 
-export default withEntityEditor("option")(StatelessOption);
+export default withEntityEditor("option", optionFragment)(StatelessOption);

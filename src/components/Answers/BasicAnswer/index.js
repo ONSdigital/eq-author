@@ -5,6 +5,7 @@ import CustomPropTypes from "custom-prop-types";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
+import answerFragment from "graphql/fragments/answer.graphql";
 
 export const StatelessBasicAnswer = ({
   answer,
@@ -43,4 +44,4 @@ StatelessBasicAnswer.propTypes = {
   children: PropTypes.element.isRequired
 };
 
-export default withEntityEditor("answer")(StatelessBasicAnswer);
+export default withEntityEditor("answer", answerFragment)(StatelessBasicAnswer);

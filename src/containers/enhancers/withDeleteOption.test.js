@@ -59,7 +59,9 @@ describe("containers/QuestionnaireDesignPage/withDeleteOption", () => {
 
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: { id: option.id }
+          variables: {
+            input: { id: option.id }
+          }
         })
       );
     });

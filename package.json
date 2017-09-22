@@ -98,6 +98,7 @@
     "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#b34dc52",
     "eq-author-mock-api": "ONSDigital/eq-author-mock-api#204e37f",
     "eslint-config-eq-author": "^1.0.2",
+    "graphql-anywhere": "^3.1.0",
     "graphql-tag": "^2.4.2",
     "jest-transform-graphql": "^2.1.0",
     "lodash": "^4.17.4",

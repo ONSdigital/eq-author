@@ -47,7 +47,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     const update = createUpdater(sectionId);
 
     return mutate({
-      variables: page,
+      variables: { input: page },
       optimisticResponse,
       update
     }).then(redirectToNewPage(ownProps));

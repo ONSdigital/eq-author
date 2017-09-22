@@ -1,21 +1,5 @@
-mutation createAnswer(
-  $description: String
-  $guidance: String
-  $label: String
-  $qCode: String
-  $type: AnswerType!
-  $mandatory: Boolean!
-  $questionPageId: Int!
-) {
-  createAnswer(
-    description: $description
-    guidance: $guidance
-    label: $label
-    qCode: $qCode
-    type: $type
-    mandatory: $mandatory
-    questionPageId: $questionPageId
-  ) {
+mutation createAnswer($input: CreateAnswerInput!) {
+  createAnswer(input: $input) {
     id
     description
     guidance

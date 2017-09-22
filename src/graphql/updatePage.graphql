@@ -1,18 +1,7 @@
-mutation UpdateQuestionPage(
-  $id: Int!
-  $title: String
-  $description: String
-  $guidance: String
-) {
-  updateQuestionPage(
-    id: $id
-    title: $title
-    description: $description
-    guidance: $guidance
-  ) {
-    id
-    title
-    description
-    guidance
+#import "./fragments/page.graphql"
+
+mutation UpdateQuestionPage($input: UpdateQuestionPageInput!) {
+  updateQuestionPage(input: $input) {
+    ...Page
   }
 }

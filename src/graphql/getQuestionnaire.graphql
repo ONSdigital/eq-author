@@ -1,16 +1,13 @@
+#import "./fragments/questionnaire.graphql"
+#import "./fragments/section.graphql"
+#import "./fragments/answer.graphql"
+#import "./fragments/option.graphql"
+
 query GetQuestionnaire($id: Int!) {
   questionnaire(id: $id) {
-    id
-    title
-    description
-    surveyId
-    legalBasis
-    theme
-    navigation
+    ...Questionnaire
     sections {
-      id
-      title
-      description
+      ...Section
       pages {
         id
         title
@@ -19,19 +16,10 @@ query GetQuestionnaire($id: Int!) {
         ... on QuestionPage {
           guidance
           answers {
-            id
-            description
-            guidance
-            qCode
-            label
-            type
+            ...Answer
             ... on MultipleChoiceAnswer {
               options {
-                id
-                label
-                description
-                qCode
-                value
+                ...Option
               }
             }
           }

@@ -1,15 +1,5 @@
-mutation CreateQuestionPage(
-  $title: String!
-  $description: String!
-  $guidance: String
-  $sectionId: Int!
-) {
-  createQuestionPage(
-    title: $title
-    description: $description
-    guidance: $guidance
-    sectionId: $sectionId
-  ) {
+mutation CreateQuestionPage($input: CreateQuestionPageInput!) {
+  createQuestionPage(input: $input) {
     id
     description
   }

@@ -63,12 +63,15 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
 
     it("should call mutate", () => {
       props.onAddAnswer("Checkbox");
+
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: expect.objectContaining({
-            questionPageId: page.id,
-            type: "Checkbox"
-          })
+          variables: {
+            input: expect.objectContaining({
+              questionPageId: page.id,
+              type: "Checkbox"
+            })
+          }
         })
       );
     });

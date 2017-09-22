@@ -33,7 +33,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     const update = createUpdater(ownProps.page.id);
 
     return mutate({
-      variables: answer,
+      variables: { input: answer },
       update
     });
   }

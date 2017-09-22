@@ -17,6 +17,8 @@ describe("withUpdateAnswer", () => {
     const answer = { id: 1 };
 
     props.onUpdateAnswer(answer);
-    expect(mutate).toHaveBeenCalledWith({ variables: answer });
+    expect(mutate).toHaveBeenCalledWith({
+      variables: { input: answer }
+    });
   });
 });

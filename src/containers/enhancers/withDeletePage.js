@@ -56,12 +56,13 @@ export const createUpdater = (sectionId, pageId) => (proxy, result) => {
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeletePage(sectionId, pageId) {
-    const variables = { id: pageId };
+    const page = { id: pageId };
     const update = createUpdater(sectionId, pageId);
 
-    return mutate({ variables, update }).then(res =>
-      handleDeletion(ownProps, sectionId, pageId).then(() => res)
-    );
+    return mutate({
+      variables: { input: page },
+      update
+    }).then(res => handleDeletion(ownProps, sectionId, pageId).then(() => res));
   }
 });
 

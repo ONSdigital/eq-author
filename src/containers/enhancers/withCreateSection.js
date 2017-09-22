@@ -46,7 +46,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     const update = createUpdater(ownProps.questionnaireId);
 
     return mutate({
-      variables: section,
+      variables: { input: section },
       optimisticResponse,
       update
     }).then(redirectToNewPage(ownProps));

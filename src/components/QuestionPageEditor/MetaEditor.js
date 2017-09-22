@@ -4,6 +4,7 @@ import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import withEntityEditor from "components/withEntityEditor";
+import pageFragment from "graphql/fragments/page.graphql";
 
 export class StatelessMetaEditor extends React.Component {
   render() {
@@ -49,4 +50,4 @@ StatelessMetaEditor.propTypes = {
   titleRef: PropTypes.func
 };
 
-export default withEntityEditor("page")(StatelessMetaEditor);
+export default withEntityEditor("page", pageFragment)(StatelessMetaEditor);

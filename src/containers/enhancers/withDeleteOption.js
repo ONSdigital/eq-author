@@ -25,7 +25,7 @@ export const mapMutateToProps = ({ mutate }) => ({
     const update = createUpdater(optionId, answerId);
 
     return mutate({
-      variables: option,
+      variables: { input: option },
       update
     });
   }

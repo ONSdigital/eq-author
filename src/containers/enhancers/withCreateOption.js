@@ -17,14 +17,12 @@ export const createUpdater = answerId => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate }) => ({
   onAddOption(answerId) {
-    const option = {
-      answerId
-    };
+    const option = { answerId };
 
     const update = createUpdater(answerId);
 
     return mutate({
-      variables: option,
+      variables: { input: option },
       update
     });
   }

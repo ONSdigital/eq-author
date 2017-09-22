@@ -7,7 +7,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteQuestionnaire(questionnaireId) {
     return mutate({
       variables: {
-        id: questionnaireId
+        input: { id: questionnaireId }
       },
       optimisticResponse: {
         deleteQuestionnaire: {

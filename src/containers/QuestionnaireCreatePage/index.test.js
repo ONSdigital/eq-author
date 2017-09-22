@@ -56,9 +56,9 @@ describe("containers/QuestionnaireCreatePage", () => {
       const props = mapMutateToProps({ ownProps, mutate });
 
       return props.createQuestionnaire(questionnaire).then(() => {
-        expect(mutate).toHaveBeenCalledWith(
-          expect.objectContaining({ variables: questionnaire })
-        );
+        expect(mutate).toHaveBeenCalledWith({
+          variables: { input: questionnaire }
+        });
         expect(history.push).toHaveBeenCalled();
       });
     });

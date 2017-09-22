@@ -18,7 +18,9 @@ describe("enhancers > withUpdateSection", () => {
 
     it("should call mutate", () => {
       props.onUpdateSection(section);
-      expect(mutate).toHaveBeenCalledWith({ variables: section });
+      expect(mutate).toHaveBeenCalledWith({
+        variables: { input: section }
+      });
     });
   });
 });

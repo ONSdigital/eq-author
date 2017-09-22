@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { filter } from "graphql-anywhere";
 
-const withEntityEditor = entityPropName => WrappedComponent => {
+const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
   return class EntityEditor extends React.Component {
     static propTypes = {
       [entityPropName]: PropTypes.object.isRequired, // eslint-disable-line
@@ -14,8 +15,10 @@ const withEntityEditor = entityPropName => WrappedComponent => {
     constructor(props) {
       super(props);
 
+      const entity = props[entityPropName];
+
       this.state = {
-        [entityPropName]: props[entityPropName]
+        [entityPropName]: filter(fragment, entity)
       };
     }
 
