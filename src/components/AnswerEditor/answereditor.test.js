@@ -1,8 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { merge } from "lodash";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
-import { TEXTFIELD, CHECKBOX, RADIO, TIME } from "constants/answer-types";
+import {
+  TEXTFIELD,
+  NUMBER,
+  CHECKBOX,
+  RADIO,
+  TIME
+} from "constants/answer-types";
 
 describe("Answer Editor", () => {
   let mockMutations;
@@ -46,6 +53,14 @@ describe("Answer Editor", () => {
   it("should render TextField", () => {
     const wrapper = createWrapper({
       answer: mockAnswer,
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render Number", () => {
+    const wrapper = createWrapper({
+      answer: merge({}, mockAnswer, { type: NUMBER }),
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
