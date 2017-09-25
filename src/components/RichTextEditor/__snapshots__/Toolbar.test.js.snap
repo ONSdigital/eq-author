@@ -1,96 +1,70 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/RichTextEditor/Toolbar should render as hidden 1`] = `
-<Toolbar__HoveringToolbar
-  visible={false}
->
-  <Toolbar__ToolbarPanel
-    bold={true}
-    emphasis={true}
-    heading={true}
-    isActiveControl={[Function]}
-    list={true}
-    onFocus={[Function]}
-    onToggle={[Function]}
-  >
-    <Toolbar__ButtonGroup>
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-heading.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="Heading"
-      />
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-bold.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="Bold"
-      />
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-emphasis.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="Emphasis"
-      />
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-list.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="List"
-      />
-    </Toolbar__ButtonGroup>
-  </Toolbar__ToolbarPanel>
-</Toolbar__HoveringToolbar>
+<TransitionGroup
+  childFactory={[Function]}
+  component={[Function]}
+/>
 `;
 
 exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
-<Toolbar__HoveringToolbar
-  visible={true}
+<TransitionGroup
+  childFactory={[Function]}
+  component={[Function]}
 >
-  <Toolbar__ToolbarPanel
-    bold={true}
-    emphasis={true}
-    heading={true}
-    isActiveControl={[Function]}
-    list={true}
-    onFocus={[Function]}
-    onToggle={[Function]}
-    visible={true}
+  <PopupTransition
+    duration={200}
+    in={false}
   >
-    <Toolbar__ButtonGroup>
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-heading.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="Heading"
-      />
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-bold.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="Bold"
-      />
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-emphasis.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="Emphasis"
-      />
-      <Toolbar__Button
-        disabled={false}
-        icon="icon-list.svg"
-        onClick={[Function]}
-        onMouseDown={[Function]}
-        title="List"
-      />
-    </Toolbar__ButtonGroup>
-  </Toolbar__ToolbarPanel>
-</Toolbar__HoveringToolbar>
+    <Toolbar__ToolbarPanel
+      controls={
+        Object {
+          "bold": true,
+          "emphasis": true,
+          "heading": true,
+          "list": true,
+        }
+      }
+      isActiveControl={[Function]}
+      onFocus={[Function]}
+      onToggle={[Function]}
+      visible={true}
+    >
+      <Toolbar__ButtonGroup>
+        <Toolbar__Button
+          disabled={false}
+          icon="icon-heading.svg"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          title="Heading"
+        />
+        <Toolbar__Button
+          disabled={false}
+          icon="icon-bold.svg"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          title="Bold"
+        />
+        <Toolbar__Button
+          disabled={false}
+          icon="icon-emphasis.svg"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          title="Emphasis"
+        />
+        <Toolbar__Button
+          disabled={false}
+          icon="icon-list.svg"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          title="List"
+        />
+      </Toolbar__ButtonGroup>
+    </Toolbar__ToolbarPanel>
+  </PopupTransition>
+</TransitionGroup>
 `;

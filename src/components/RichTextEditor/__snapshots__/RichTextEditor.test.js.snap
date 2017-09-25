@@ -5,7 +5,14 @@ exports[`components/RichTextEditor should render 1`] = `
   placeholderStyle="unstyled"
 >
   <ToolBar
-    bold={true}
+    controls={
+      Object {
+        "bold": true,
+        "emphasis": true,
+        "heading": true,
+        "list": true,
+      }
+    }
     editorState={
       EditorState {
         "_immutable": Object {
@@ -89,12 +96,11 @@ exports[`components/RichTextEditor should render 1`] = `
         },
       }
     }
-    emphasis={true}
-    heading={true}
     isActiveControl={[Function]}
-    list={true}
+    onFocus={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
+    visible={false}
   />
   <div
     id="rte-click-context"
@@ -264,7 +270,14 @@ exports[`components/RichTextEditor should render existing content 1`] = `
   placeholderStyle="header-two"
 >
   <ToolBar
-    bold={true}
+    controls={
+      Object {
+        "bold": true,
+        "emphasis": true,
+        "heading": true,
+        "list": true,
+      }
+    }
     editorState={
       EditorState {
         "_immutable": Object {
@@ -578,10 +591,8 @@ exports[`components/RichTextEditor should render existing content 1`] = `
         },
       }
     }
-    emphasis={true}
-    heading={true}
     isActiveControl={[Function]}
-    list={true}
+    onFocus={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
     value={
@@ -639,6 +650,7 @@ exports[`components/RichTextEditor should render existing content 1`] = `
         "entityMap": Object {},
       }
     }
+    visible={false}
   />
   <div
     id="rte-click-context"

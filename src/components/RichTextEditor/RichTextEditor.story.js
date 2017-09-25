@@ -3,6 +3,8 @@ import { storiesOf } from "@storybook/react";
 import RichTextEditor from "components/RichTextEditor";
 import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
+
 import content from "./testContent";
 
 const Wrapper = styled.div`
@@ -30,17 +32,38 @@ const props = {
 };
 
 storiesOf("RichTextEditor", module)
+  .addDecorator(withKnobs)
   .addDecorator(story => (
     <Wrapper>
       <RTE>{story()}</RTE>
     </Wrapper>
   ))
   .add("Default", () => <RichTextEditor {...props} />)
+  .add("Configurable controls", () => (
+    <RichTextEditor
+      {...props}
+      controls={{
+        heading: boolean("heading", true),
+        bold: boolean("bold", true),
+        emphasis: boolean("emphasis", true),
+        list: boolean("list", true)
+      }}
+      visible
+    />
+  ))
   .add("With existing value", () => (
     <RichTextEditor value={content} {...props} />
   ))
   .add("Title field", () => (
     <Title>
-      <RichTextEditor {...props} bold={false} list={false} heading={false} />
+      <RichTextEditor
+        {...props}
+        controls={{
+          bold: false,
+          list: false,
+          heading: false,
+          emphasis: true
+        }}
+      />
     </Title>
   ));

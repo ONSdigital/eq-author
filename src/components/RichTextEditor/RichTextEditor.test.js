@@ -35,19 +35,14 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should store a reference to the editor DOM node", () => {
-    wrapper.instance().getEditorNode(editorNode);
+    wrapper.instance().setEditorNode(editorNode);
     expect(wrapper.instance().editor).toEqual(editorNode);
   });
 
   it("should focus upon click", () => {
-    wrapper.instance().getEditorNode(editorNode);
+    wrapper.instance().setEditorNode(editorNode);
     wrapper.find("#rte-click-context").simulate("click");
     expect(editorNode.focus).toHaveBeenCalled();
-  });
-
-  it("should set focus state to true upon focus", () => {
-    wrapper.find(Editor).simulate("focus");
-    expect(wrapper.state("focus")).toBe(true);
   });
 
   it("should store editorState in local state upon change event", () => {
@@ -77,6 +72,5 @@ describe("components/RichTextEditor", function() {
         blocks: expect.any(Array)
       })
     );
-    expect(wrapper.state("focus")).toBe(false);
   });
 });

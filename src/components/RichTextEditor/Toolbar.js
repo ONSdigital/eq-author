@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { noop } from "lodash";
+import { TransitionGroup } from "react-transition-group";
+import PopupTransition from "./PopupTransition";
 
 import { radius, colors, shadow } from "constants/theme";
 import iconBold from "./icon-bold.svg";
@@ -9,8 +11,6 @@ import iconEmphasis from "./icon-emphasis.svg";
 import iconHeading from "./icon-heading.svg";
 import iconList from "./icon-list.svg";
 import IconButton from "components/IconButton";
-import { TransitionGroup } from "react-transition-group";
-import PopupTransition from "./PopupTransition";
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -41,12 +41,12 @@ export const Button = styled(IconButton)`
 `;
 
 export const ToolbarPanel = styled.div`
-  z-index: 999;
   border-radius: ${radius};
   background-color: ${colors.white};
   box-shadow: ${shadow};
   padding: 0 0.5rem;
   display: inline-block;
+  pointer-events: auto;
 `;
 
 export const STYLE_BLOCK = "block";
@@ -54,24 +54,28 @@ export const STYLE_INLINE = "inline";
 
 const buttons = [
   {
+    id: "heading",
     title: "Heading",
     icon: iconHeading,
     type: STYLE_BLOCK,
     style: "header-two"
   },
   {
+    id: "bold",
     title: "Bold",
     icon: iconBold,
     type: STYLE_INLINE,
     style: "BOLD"
   },
   {
+    id: "emphasis",
     title: "Emphasis",
     icon: iconEmphasis,
     type: STYLE_INLINE,
     style: "emphasis"
   },
   {
+    id: "list",
     title: "List",
     icon: iconList,
     type: STYLE_BLOCK,
@@ -81,29 +85,68 @@ const buttons = [
 
 const Layer = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  z-index: 999;
+  top: 0;
+  pointer-events: none;
 `;
 
 class ToolBar extends React.Component {
   static defaultProps = {
-    bold: true,
-    emphasis: true,
-    heading: true,
-    list: true
+    controls: {
+      bold: true,
+      emphasis: true,
+      heading: true,
+      list: true
+    },
+    visible: false
   };
 
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
+    onFocus: PropTypes.func.isRequired,
     isActiveControl: PropTypes.func.isRequired,
-    bold: PropTypes.bool,
-    emphasis: PropTypes.bool,
-    heading: PropTypes.bool,
-    list: PropTypes.bool
+    visible: PropTypes.bool.isRequired,
+    controls: PropTypes.shape({
+      bold: PropTypes.bool,
+      emphasis: PropTypes.bool,
+      heading: PropTypes.bool,
+      list: PropTypes.bool
+    })
   };
 
+  renderButton(button) {
+    const { isActiveControl, onToggle } = this.props;
+    const controls = {
+      ...ToolBar.defaultProps.controls,
+      ...this.props.controls
+    };
+
+    return (
+      <Button
+        key={button.title}
+        disabled={!controls[button.id]}
+        active={isActiveControl(button)}
+        icon={button.icon}
+        title={button.title}
+        onClick={noop} // don't use click due to focus
+        onMouseDown={function(e) {
+          e.preventDefault(); // prevents focus on the button
+          if (e.button === 0) {
+            // left mouse button
+            onToggle(button);
+          }
+        }}
+        onKeyDown={function(e) {
+          if (e.key === "Enter" || e.key === "Space") {
+            onToggle(button);
+          }
+        }}
+      />
+    );
+  }
+
   render() {
-    const { isActiveControl, onToggle, onFocus } = this.props;
+    const { onFocus } = this.props;
 
     return (
       <TransitionGroup component={Layer}>
@@ -111,20 +154,7 @@ class ToolBar extends React.Component {
           <PopupTransition duration={200}>
             <ToolbarPanel {...this.props} onFocus={onFocus}>
               <ButtonGroup>
-                {buttons.map(button => (
-                  <Button
-                    key={button.title}
-                    disabled={!this.props[button.title.toLowerCase()]}
-                    active={isActiveControl(button)}
-                    icon={button.icon}
-                    title={button.title}
-                    onClick={noop} // don't use click due to focus
-                    onMouseDown={function(e) {
-                      e.preventDefault(); // prevents focus on the button
-                      onToggle(button);
-                    }}
-                  />
-                ))}
+                {buttons.map(button => this.renderButton(button))}
               </ButtonGroup>
             </ToolbarPanel>
           </PopupTransition>

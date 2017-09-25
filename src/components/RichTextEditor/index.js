@@ -14,6 +14,7 @@ import "draft-js/dist/Draft.css";
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
 const { toggleBlockType, toggleInlineStyle } = RichUtils;
+const { createWithContent, createEmpty } = EditorState;
 
 const styleMap = {
   emphasis: {
@@ -81,20 +82,17 @@ class RichTextEditor extends React.Component {
 
   constructor(props) {
     super(props);
-    let editorState;
 
-    if (props.value) {
-      editorState = EditorState.createWithContent(convertFromRaw(props.value));
-    } else {
-      editorState = EditorState.createEmpty();
-    }
+    const editorState = props.value
+      ? createWithContent(convertFromRaw(props.value))
+      : createEmpty();
 
     this.state = {
       editorState
     };
   }
 
-  getEditorNode = editor => {
+  setEditorNode = editor => {
     this.editor = editor;
   };
 
@@ -114,16 +112,15 @@ class RichTextEditor extends React.Component {
     const content = this.state.editorState.getCurrentContent();
     const rawState = convertToRaw(content);
     this.props.onUpdate(rawState);
-    this.setState({ focus: false });
+    this.setState({ focused: false });
   };
 
   handleFocus = () => {
-    this.setState({ focus: true });
+    this.setState({ focused: true });
   };
 
   isActiveControl = ({ style, type }) => {
     const { editorState } = this.state;
-    let active;
 
     if (type === STYLE_BLOCK) {
       const selection = editorState.getSelection();
@@ -132,17 +129,15 @@ class RichTextEditor extends React.Component {
         .getBlockForKey(selection.getStartKey())
         .getType();
 
-      active = style === blockType;
+      return style === blockType;
     } else {
       const currentStyle = editorState.getCurrentInlineStyle();
-      active = currentStyle.has(style);
+      return currentStyle.has(style);
     }
-
-    return active;
   };
 
   render() {
-    const { editorState, focus } = this.state;
+    const { editorState, focused } = this.state;
 
     const contentState = editorState.getCurrentContent();
     let { placeholder, label, ...otherProps } = this.props;
@@ -159,7 +154,7 @@ class RichTextEditor extends React.Component {
           onToggle={this.handleToggle}
           onFocus={this.handleFocus}
           isActiveControl={this.isActiveControl}
-          visible={focus}
+          visible={focused}
           {...otherProps}
         />
         <div onClick={this.handleClick} id="rte-click-context">
@@ -170,7 +165,7 @@ class RichTextEditor extends React.Component {
             onChange={this.handleChange}
             onBlur={this.handleBlur}
             onFocus={this.handleFocus}
-            ref={this.getEditorNode}
+            ref={this.setEditorNode}
             customStyleMap={styleMap}
             spellCheck
           />

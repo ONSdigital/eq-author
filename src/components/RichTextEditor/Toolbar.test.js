@@ -13,6 +13,7 @@ describe("components/RichTextEditor/Toolbar", function() {
   beforeEach(() => {
     props = {
       onToggle: jest.fn(),
+      onFocus: jest.fn(),
       isActiveControl: jest.fn()
     };
     wrapper = shallow(<Toolbar {...props} />);
@@ -24,35 +25,38 @@ describe("components/RichTextEditor/Toolbar", function() {
 
   it("should render as visible", () => {
     wrapper.setProps({ visible: true });
-    expect(wrapper.state("visible")).toBe(true);
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should be visible following a focus event", () => {
-    wrapper.find(ToolbarPanel).simulate("focus");
-    expect(wrapper.state("visible")).toBe(true);
+  it("should maintain visibility following a focus event", () => {
+    wrapper
+      .setProps({ visible: true })
+      .find(ToolbarPanel)
+      .simulate("focus");
+
+    expect(props.onFocus).toHaveBeenCalled();
   });
 
   it("should render Buttons as disabled according to props provided", () => {
-    const buttonProps = {
+    const controls = {
       bold: false,
       emphasis: false,
       list: false,
       heading: false
     };
-    wrapper = shallow(<Toolbar {...props} {...buttonProps} />);
+    wrapper = shallow(<Toolbar {...props} controls={controls} />);
     wrapper.find(Button).forEach(node => {
       expect(node.props().disabled).toBe(true);
     });
   });
 
   it("should call onToggle when clicked with appropriate button object", () => {
-    const preventDefault = jest.fn();
+    let preventDefault;
     wrapper.find(Button).forEach((node, i) => {
+      preventDefault = jest.fn();
       node.simulate("MouseDown", { preventDefault });
-      expect(preventDefault).toHaveBeenCalledTimes(i + 1);
-      expect(props.onToggle).toHaveBeenCalledTimes(i + 1);
-      expect(props.onToggle).toHaveBeenCalledWith(
+      expect(preventDefault).toHaveBeenCalled();
+      expect(props.onToggle.mock.calls[i][0]).toBe(
         expect.objectContaining({
           title: expect.any(String),
           icon: expect.any(String),

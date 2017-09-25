@@ -7,7 +7,7 @@ const Animated = styled.div`
   transform-origin: center center;
   transition: opacity ${props => props.duration / 4}ms ease-in,
     transform ${props => props.duration}ms cubic-bezier(0.175, 0.885, 0.32, 1.4);
-  transform: translateY(-2em) scale(1);
+  transform: translateY(-3em) scale(1);
 
   &.popup-enter {
     opacity: 0.01;
@@ -16,12 +16,12 @@ const Animated = styled.div`
 
   &.popup-enter-active {
     opacity: 1;
-    transform: translateY(-2em) scale(1);
+    transform: translateY(-3em) scale(1);
   }
 
   &.popup-exit {
     opacity: 1;
-    transform: translateY(-2em) scale(1);
+    transform: translateY(-3em) scale(1);
     transition: opacity ${props => props.duration / 4}ms ease-in,
       transform ${props => props.duration}ms ease-in;
   }
