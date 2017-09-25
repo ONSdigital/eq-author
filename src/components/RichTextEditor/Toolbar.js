@@ -114,7 +114,7 @@ class ToolBar extends React.Component {
     })
   };
 
-  renderButton(button) {
+  renderButton = button => {
     const { isActiveControl, onToggle } = this.props;
     const controls = {
       ...ToolBar.defaultProps.controls,
@@ -143,7 +143,7 @@ class ToolBar extends React.Component {
         }}
       />
     );
-  }
+  };
 
   render() {
     const { onFocus } = this.props;
@@ -153,9 +153,7 @@ class ToolBar extends React.Component {
         {this.props.visible && (
           <PopupTransition duration={200}>
             <ToolbarPanel {...this.props} onFocus={onFocus}>
-              <ButtonGroup>
-                {buttons.map(button => this.renderButton(button))}
-              </ButtonGroup>
+              <ButtonGroup>{buttons.map(this.renderButton)}</ButtonGroup>
             </ToolbarPanel>
           </PopupTransition>
         )}
