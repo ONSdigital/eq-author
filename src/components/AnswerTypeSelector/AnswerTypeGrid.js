@@ -96,7 +96,6 @@ class AnswerTypeGrid extends React.Component {
             type="Currency"
             title="Currency"
             onClick={this.handleSelect}
-            disabled
           />
           <AnswerTypeButton
             type="Number"

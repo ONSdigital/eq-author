@@ -28,6 +28,10 @@ const FieldWrapper = styled.div`
   position: relative;
 `;
 
+const DummyCurrencyInput = styled(DummyTextInput)`
+  width: 50%;
+`;
+
 const CurrencyComponent = props =>
   <StyledSpan>
     {props.currencyUnit}
@@ -45,7 +49,7 @@ const CurrencyAnswer = props =>
   <BasicAnswer {...props}>
     <FieldWrapper>
       <CurrencyComponent />
-      <DummyTextInput />
+      <DummyCurrencyInput />
     </FieldWrapper>
   </BasicAnswer>;
 

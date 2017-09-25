@@ -39,7 +39,6 @@ exports[`components/AnswerTypeGrid should render 1`] = `
       type="TextArea"
     />
     <AnswerTypeButton
-      disabled={true}
       onClick={[Function]}
       title="Currency"
       type="Currency"

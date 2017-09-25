@@ -6,6 +6,7 @@ import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
 import {
   TEXTFIELD,
   NUMBER,
+  CURRENCY,
   CHECKBOX,
   RADIO,
   TIME
@@ -61,6 +62,14 @@ describe("Answer Editor", () => {
   it("should render Number", () => {
     const wrapper = createWrapper({
       answer: merge({}, mockAnswer, { type: NUMBER }),
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render Currency", () => {
+    const wrapper = createWrapper({
+      answer: merge({}, mockAnswer, { type: CURRENCY }),
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
