@@ -32,7 +32,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     const optimisticResponse = {
       createQuestionPage: {
         __typename: "QuestionPage",
-        id: -1,
+        id: "-1",
         guidance: "",
         pageType: "",
         answers: [],

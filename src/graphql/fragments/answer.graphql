@@ -1,5 +1,5 @@
 fragment Answer on Answer {
-  id
+  id: newId
   description
   guidance
   label

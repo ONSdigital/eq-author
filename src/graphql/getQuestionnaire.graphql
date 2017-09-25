@@ -9,7 +9,7 @@ query GetQuestionnaire($id: Int!) {
     sections {
       ...Section
       pages {
-        id
+        id: newId
         title
         description
         pageType

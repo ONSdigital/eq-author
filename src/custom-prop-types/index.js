@@ -27,7 +27,7 @@ export default {
     type: PropTypes.oneOf(Object.values(answerTypes))
   }),
   option: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     label: PropTypes.string,
     description: PropTypes.string,
     qCode: PropTypes.string,
@@ -42,7 +42,7 @@ export default {
   }).isRequired,
   questionnaireList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       createdAt: PropTypes.string.isRequired,
       theme: PropTypes.string.isRequired,

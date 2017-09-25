@@ -1,19 +1,12 @@
+#import "./fragments/answer.graphql"
+#import "./fragments/option.graphql"
+
 mutation createAnswer($input: CreateAnswerInput!) {
   createAnswer(input: $input) {
-    id
-    description
-    guidance
-    qCode
-    label
-    type
-    mandatory
+    ...Answer
     ... on MultipleChoiceAnswer {
       options {
-        id
-        label
-        description
-        qCode
-        value
+        ...Option
       }
     }
   }

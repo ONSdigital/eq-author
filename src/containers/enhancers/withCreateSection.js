@@ -36,7 +36,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     const optimisticResponse = {
       createSection: {
         __typename: "Section",
-        id: -1,
+        id: "-1",
         description: "",
         pages: [],
         ...section

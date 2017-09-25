@@ -1,6 +1,6 @@
 fragment Page on QuestionPage {
-  id
+  id: newId
   answers {
-    id
+    id: newId
   }
 }

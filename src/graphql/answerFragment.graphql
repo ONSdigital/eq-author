@@ -1,7 +1,7 @@
 fragment Answer on Answer {
   ... on MultipleChoiceAnswer {
     options {
-      id
+      id: newId
     }
   }
 }

@@ -1,14 +1,14 @@
 query GetQuestionnaireList {
- questionnaires {
-    id
+  questionnaires {
+    id: newId
     title
     createdAt
     theme
     sections {
-        id
-        pages {
-            id
-        }
+      id: newId
+      pages {
+        id: newId
+      }
     }
   }
 }

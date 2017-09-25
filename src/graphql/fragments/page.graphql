@@ -1,5 +1,5 @@
 fragment Page on QuestionPage {
-  id
+  id: newId
   title
   description
   guidance

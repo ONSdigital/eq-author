@@ -135,9 +135,9 @@ export class PageNavItem extends React.Component {
   };
 
   static propTypes = {
-    sectionId: PropTypes.number.isRequired,
-    questionnaireId: PropTypes.number.isRequired,
-    pageId: PropTypes.number.isRequired,
+    sectionId: PropTypes.string.isRequired,
+    questionnaireId: PropTypes.string.isRequired,
+    pageId: PropTypes.string.isRequired,
     pageNumber: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired,
@@ -168,7 +168,7 @@ export class PageNavItem extends React.Component {
       <StyledPageItem index={index}>
         <Link
           to={getLink(questionnaireId, sectionId, pageId)}
-          aria-disabled={pageId < 0}
+          aria-disabled={parseInt(pageId, 10) < 0}
           activeClassName="selected"
         >
           <LinkText fade={this.state.isDeleting}>
