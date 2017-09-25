@@ -5,8 +5,9 @@ import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
 import TextAnswer from "components/Answers/TextAnswer";
+import NumberAnswer from "components/Answers/NumberAnswer";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
-import { TEXTFIELD, CHECKBOX, RADIO } from "constants/answer-types";
+import { TEXTFIELD, NUMBER, CHECKBOX, RADIO } from "constants/answer-types";
 import Tooltip from "components/Tooltip";
 
 export const AnswerDeleteButton = styled(DeleteButton)`
@@ -25,6 +26,8 @@ class AnswerEditor extends React.Component {
     switch (answer.type) {
       case TEXTFIELD:
         return <TextAnswer {...this.props} />;
+      case NUMBER:
+        return <NumberAnswer {...this.props} />;
       case CHECKBOX:
         return <MultipleChoiceAnswer type={answer.type} {...this.props} />;
       case RADIO:

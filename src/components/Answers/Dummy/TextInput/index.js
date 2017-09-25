@@ -6,7 +6,7 @@ const DummyTextInput = styled.div`
   padding: 1.2em 1.2em 1.2em 2em;
   position: relative;
   background-color: transparent;
-  z-index: 2;
+  z-index: 0;
 `;
 
 export default DummyTextInput;

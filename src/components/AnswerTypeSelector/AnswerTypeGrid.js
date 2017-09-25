@@ -102,7 +102,6 @@ class AnswerTypeGrid extends React.Component {
             type="Number"
             title="Number"
             onClick={this.handleSelect}
-            disabled
           />
           <AnswerTypeButton
             type="Date"

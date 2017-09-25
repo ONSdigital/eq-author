@@ -94,7 +94,7 @@
   "dependencies": {
     "connected-react-router": "^4.2.1",
     "enzyme": "^2.8.2",
-    "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#4620141",
+    "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#b34dc52",
     "eq-author-mock-api": "ONSDigital/eq-author-mock-api#204e37f",
     "eslint-config-eq-author": "^1.0.2",
     "graphql-tag": "^2.4.2",
