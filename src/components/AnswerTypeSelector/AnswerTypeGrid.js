@@ -99,7 +99,7 @@ class AnswerTypeGrid extends React.Component {
             disabled
           />
           <AnswerTypeButton
-            type="Integer"
+            type="Number"
             title="Number"
             onClick={this.handleSelect}
           />
