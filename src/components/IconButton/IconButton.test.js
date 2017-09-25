@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 
 import IconButton, { Button } from "components/IconButton";
 import iconTest from "./icon-test.svg";
@@ -9,7 +9,7 @@ let iconButton;
 
 describe("components/IconButton", function() {
   beforeEach(() => {
-    iconButton = shallow(
+    iconButton = mount(
       <IconButton icon={iconTest} title="Test" handleClick={mockFn} />
     );
   });

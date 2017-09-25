@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/RichTextEditor/Toolbar should render as hidden 1`] = `
+exports[`components/RichTextEditor/Toolbar should render as hidden by default 1`] = `
 <TransitionGroup
   childFactory={[Function]}
   component={[Function]}

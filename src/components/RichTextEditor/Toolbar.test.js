@@ -6,34 +6,40 @@ import Toolbar, {
 
 import { shallow } from "enzyme";
 
-let wrapper;
-let props;
+let wrapper, props, buttons;
 
-describe("components/RichTextEditor/Toolbar", function() {
+const shape = expect.objectContaining({
+  id: expect.any(String),
+  title: expect.any(String),
+  icon: expect.any(String),
+  type: expect.any(String),
+  style: expect.any(String)
+});
+
+describe("components/RichTextEditor/Toolbar", () => {
   beforeEach(() => {
     props = {
       onToggle: jest.fn(),
       onFocus: jest.fn(),
       isActiveControl: jest.fn()
     };
-    wrapper = shallow(<Toolbar {...props} />);
+    wrapper = shallow(<Toolbar {...props} visible />);
+    buttons = wrapper.find(Button);
   });
 
-  it("should render as hidden", () => {
+  it("should render as hidden by default", () => {
+    wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find(Button).length).toBe(0);
   });
 
   it("should render as visible", () => {
-    wrapper.setProps({ visible: true });
+    expect(buttons.length).toBeGreaterThan(0);
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should maintain visibility following a focus event", () => {
-    wrapper
-      .setProps({ visible: true })
-      .find(ToolbarPanel)
-      .simulate("focus");
-
+    wrapper.find(ToolbarPanel).simulate("focus");
     expect(props.onFocus).toHaveBeenCalled();
   });
 
@@ -44,7 +50,7 @@ describe("components/RichTextEditor/Toolbar", function() {
       list: false,
       heading: false
     };
-    wrapper = shallow(<Toolbar {...props} controls={controls} />);
+    wrapper = shallow(<Toolbar {...props} controls={controls} visible />);
     wrapper.find(Button).forEach(node => {
       expect(node.props().disabled).toBe(true);
     });
@@ -52,18 +58,33 @@ describe("components/RichTextEditor/Toolbar", function() {
 
   it("should call onToggle when clicked with appropriate button object", () => {
     let preventDefault;
-    wrapper.find(Button).forEach((node, i) => {
+
+    buttons.forEach((node, i) => {
       preventDefault = jest.fn();
-      node.simulate("MouseDown", { preventDefault });
+      node.simulate("MouseDown", { preventDefault, button: 0 });
       expect(preventDefault).toHaveBeenCalled();
-      expect(props.onToggle.mock.calls[i][0]).toBe(
-        expect.objectContaining({
-          title: expect.any(String),
-          icon: expect.any(String),
-          type: expect.any(String),
-          style: expect.any(String)
-        })
-      );
+      expect(props.onToggle).toHaveBeenLastCalledWith(shape);
+    });
+  });
+
+  it("should call onToggle when 'Enter' key is pressed when focused on a button", () => {
+    buttons.forEach((node, i) => {
+      node.simulate("KeyDown", { key: "Enter" });
+      expect(props.onToggle).toHaveBeenLastCalledWith(shape);
+    });
+  });
+
+  it("should call onToggle when 'space' key is pressed when focused on a button", () => {
+    buttons.forEach((node, i) => {
+      node.simulate("KeyDown", { key: "Space" });
+      expect(props.onToggle).toHaveBeenLastCalledWith(shape);
+    });
+  });
+
+  it("should not call onToggle when, for example, 'ESC' key is pressed when focused on a button", () => {
+    buttons.forEach((node, i) => {
+      node.simulate("KeyDown", { key: "ESC" });
+      expect(props.onToggle).not.toHaveBeenLastCalledWith(shape);
     });
   });
 });
