@@ -47,7 +47,7 @@ exports[`components/AnswerTypeGrid should render 1`] = `
     <AnswerTypeButton
       onClick={[Function]}
       title="Number"
-      type="Integer"
+      type="Number"
     />
     <AnswerTypeButton
       disabled={true}

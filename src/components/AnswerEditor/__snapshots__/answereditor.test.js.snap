@@ -46,7 +46,7 @@ exports[`Answer Editor should render Number 1`] = `
         "description": "",
         "id": 1,
         "title": "",
-        "type": "Integer",
+        "type": "Number",
       }
     }
     onAddOption={[Function]}
