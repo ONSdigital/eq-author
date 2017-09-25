@@ -15,7 +15,7 @@ exports[`CurrencyAnswer should render 1`] = `
     <CurrencyComponent
       currencyUnit="£"
     />
-    <CurrencyAnswer__DummyCurrencyInput />
+    <TextInput__DummyTextInput />
   </CurrencyAnswer__FieldWrapper>
 </withEntityEditor(StatelessBasicAnswer)>
 `;
