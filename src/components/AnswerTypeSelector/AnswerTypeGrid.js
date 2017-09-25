@@ -99,10 +99,9 @@ class AnswerTypeGrid extends React.Component {
             disabled
           />
           <AnswerTypeButton
-            type="Number"
+            type="Integer"
             title="Number"
             onClick={this.handleSelect}
-            disabled
           />
           <AnswerTypeButton
             type="Date"

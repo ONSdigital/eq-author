@@ -6,7 +6,7 @@ import { keys } from "lodash";
 import checkboxIcon from "./icons/checkbox.svg";
 import currencyIcon from "./icons/currency.svg";
 import dateIcon from "./icons/date.svg";
-import numberIcon from "./icons/number.svg";
+import numberIcon from "./icons/integer.svg";
 import radioIcon from "./icons/radio.svg";
 import selectIcon from "./icons/select.svg";
 import textareaIcon from "./icons/textarea.svg";
@@ -17,7 +17,7 @@ export const icons = {
   Checkbox: checkboxIcon,
   Currency: currencyIcon,
   Date: dateIcon,
-  Number: numberIcon,
+  Integer: numberIcon,
   Radio: radioIcon,
   Select: selectIcon,
   TextArea: textareaIcon,
