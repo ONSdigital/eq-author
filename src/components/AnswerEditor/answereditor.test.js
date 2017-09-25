@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { merge } from "lodash";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
 import {
@@ -61,7 +60,7 @@ describe("Answer Editor", () => {
 
   it("should render Number", () => {
     const wrapper = createWrapper({
-      answer: merge({}, mockAnswer, { type: NUMBER }),
+      answer: { ...mockAnswer, type: NUMBER },
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
@@ -69,7 +68,7 @@ describe("Answer Editor", () => {
 
   it("should render Currency", () => {
     const wrapper = createWrapper({
-      answer: merge({}, mockAnswer, { type: CURRENCY }),
+      answer: { ...mockAnswer, type: CURRENCY },
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
