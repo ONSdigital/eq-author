@@ -19,8 +19,9 @@ const Layer = styled.div`
   left: 0;
 `;
 
-const DefaultTransition = props =>
-  <CSSTransition {...props} timeout={0} classNames="" />;
+const DefaultTransition = props => (
+  <CSSTransition {...props} timeout={0} classNames="" />
+);
 
 class Popout extends React.Component {
   static propTypes = {

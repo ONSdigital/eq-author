@@ -8,17 +8,18 @@ import { radius } from "constants/theme";
 const FONT_SIZE = 10;
 
 const StyledTooltip = styled(ReactTooltip)`
-    background-color: rgba(97, 97, 97, 0.9) !important;
-    font-size: ${FONT_SIZE / 16}em !important;
-    line-height: ${22 / FONT_SIZE}em !important;
-    padding: 0 ${6 / FONT_SIZE}em !important;
-    border-radius: ${radius} !important;
-    white-space: pre;
+  background-color: rgba(97, 97, 97, 0.9) !important;
+  font-size: ${FONT_SIZE / 16}rem !important;
+  line-height: ${22 / FONT_SIZE}em !important;
+  padding: 0 ${6 / FONT_SIZE}em !important;
+  border-radius: ${radius} !important;
+  white-space: pre;
 
-    &::before, &::after {
-      border-bottom: none !important;
-      border-top: none !important;
-    }
+  &::before,
+  &::after {
+    border-bottom: none !important;
+    border-top: none !important;
+  }
 `;
 
 class Tooltip extends React.Component {
