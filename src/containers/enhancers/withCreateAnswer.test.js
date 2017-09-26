@@ -6,14 +6,14 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
 
   beforeEach(() => {
     page = {
-      id: 22,
-      sectionId: 33,
+      id: "22",
+      sectionId: "33",
       title: "New Page",
       answers: []
     };
 
     answer = {
-      id: 123,
+      id: "123",
       label: "foo",
       description: "bar"
     };

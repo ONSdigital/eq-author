@@ -18,21 +18,21 @@ exports[`Question Page Editor should render 1`] = `
             Object {
               "__typename": "BasicAnswer",
               "description": "",
-              "id": 1,
+              "id": "1",
               "title": "First name",
               "type": "TextField",
             },
             Object {
               "__typename": "BasicAnswer",
               "description": "",
-              "id": 2,
+              "id": "2",
               "title": "Last name",
               "type": "TextField",
             },
           ],
           "description": "",
           "guidance": "",
-          "id": 1,
+          "id": "1",
           "title": "",
         }
       }
@@ -55,7 +55,7 @@ exports[`Question Page Editor should render 1`] = `
             Object {
               "__typename": "BasicAnswer",
               "description": "",
-              "id": 1,
+              "id": "1",
               "title": "First name",
               "type": "TextField",
             }
@@ -81,7 +81,7 @@ exports[`Question Page Editor should render 1`] = `
             Object {
               "__typename": "BasicAnswer",
               "description": "",
-              "id": 2,
+              "id": "2",
               "title": "Last name",
               "type": "TextField",
             }

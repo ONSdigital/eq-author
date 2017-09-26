@@ -6,11 +6,11 @@ describe("containers/QuestionnaireDesignPage/withDeleteOption", () => {
 
   beforeEach(() => {
     option = {
-      id: 123
+      id: "123"
     };
 
     answer = {
-      id: 456,
+      id: "456",
       label: "foo",
       description: "bar",
       options: [option]

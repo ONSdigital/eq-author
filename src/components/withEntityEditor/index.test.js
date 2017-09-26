@@ -20,7 +20,7 @@ describe("withEntityEditor", () => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
     entity = {
-      id: 1,
+      id: "1",
       title: "foo"
     };
 
@@ -79,7 +79,7 @@ describe("withEntityEditor", () => {
   });
 
   it("should update state when new entity passed via props", () => {
-    const newEntity = { id: 2, title: "blah" };
+    const newEntity = { id: "2", title: "blah" };
     wrapper.setProps({ entity: newEntity });
 
     expect(wrapper.state("entity")).toEqual(newEntity);

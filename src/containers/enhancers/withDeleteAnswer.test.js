@@ -10,13 +10,13 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
 
   beforeEach(() => {
     deletedAnswer = {
-      id: 2,
-      sectionId: 2
+      id: "2",
+      sectionId: "2"
     };
 
     currentPage = {
-      id: 1,
-      sectionId: 1,
+      id: "1",
+      sectionId: "1",
       answers: [deletedAnswer]
     };
 

@@ -7,7 +7,7 @@ import fragment from "graphql/questionnaireFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
   const questionnaire = {
-    id: 1,
+    id: "1",
     title: "My Questionnaire",
     sections: []
   };
@@ -20,11 +20,11 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
     };
 
     newPage = {
-      id: 5
+      id: "5"
     };
 
     newSection = {
-      id: 4,
+      id: "4",
       title: "New Section",
       pages: [newPage]
     };

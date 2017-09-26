@@ -3,7 +3,7 @@ import fragment from "graphql/answerFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreateOption", () => {
   const answer = {
-    id: 1,
+    id: "1",
     options: []
   };
 
@@ -11,7 +11,7 @@ describe("containers/QuestionnaireDesignPage/withCreateOption", () => {
 
   beforeEach(() => {
     newOption = {
-      id: 2
+      id: "2"
     };
 
     result = {

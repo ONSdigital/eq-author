@@ -3,7 +3,7 @@
 exports[`containers/withQuestionnaire mapOptionsToProps should pass questionnaireId as a variable 1`] = `
 Object {
   "variables": Object {
-    "id": 1,
+    "id": "1",
   },
 }
 `;
@@ -18,13 +18,13 @@ exports[`containers/withQuestionnaire mapResultsToProps should handle no section
 Object {
   "loading": false,
   "questionnaire": Object {
-    "id": 1,
+    "id": "1",
     "sections": Array [
       Object {
-        "id": 2,
+        "id": "2",
         "pages": Array [
           Object {
-            "id": 3,
+            "id": "3",
             "title": "My Page",
           },
         ],
@@ -40,17 +40,17 @@ exports[`containers/withQuestionnaire mapResultsToProps should handle questionna
 Object {
   "loading": false,
   "page": Object {
-    "id": 3,
+    "id": "3",
     "title": "My Page",
   },
   "questionnaire": Object {
-    "id": 1,
+    "id": "1",
     "sections": Array [
       Object {
-        "id": 2,
+        "id": "2",
         "pages": Array [
           Object {
-            "id": 3,
+            "id": "3",
             "title": "My Page",
           },
         ],
@@ -60,10 +60,10 @@ Object {
     "title": "My Questionnaire",
   },
   "section": Object {
-    "id": 2,
+    "id": "2",
     "pages": Array [
       Object {
-        "id": 3,
+        "id": "3",
         "title": "My Page",
       },
     ],

@@ -43,10 +43,10 @@ exports[`PageNav should render 1`] = `
     <PageNavItem
       index={1}
       onDelete={[Function]}
-      pageId={2}
+      pageId="2"
       pageNumber="undefined1"
-      questionnaireId={1}
-      sectionId={3}
+      questionnaireId="1"
+      sectionId="3"
       title="Page"
     />
   </CSSTransition>

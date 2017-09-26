@@ -12,27 +12,27 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
 
   beforeEach(() => {
     deletedPage = {
-      id: 2,
-      sectionId: 2
+      id: "2",
+      sectionId: "2"
     };
 
     currentPage = {
-      id: 1,
-      sectionId: 1
+      id: "1",
+      sectionId: "1"
     };
 
     currentSection = {
-      id: 1,
-      pages: [currentPage, { id: 3 }]
+      id: "1",
+      pages: [currentPage, { id: "3" }]
     };
 
     targetSection = {
-      id: 2,
+      id: "2",
       pages: [deletedPage]
     };
 
     questionnaire = {
-      id: 1,
+      id: "1",
       title: "My Questionnaire",
       sections: [currentSection, targetSection]
     };
@@ -83,26 +83,26 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
   describe("getNextPage", () => {
     describe("when page is first in section", () => {
       it("should select first page when only one page", () => {
-        const pages = [{ id: 1 }];
-        const { id } = getNextPage(pages, 1);
+        const pages = [{ id: "1" }];
+        const { id } = getNextPage(pages, "1");
 
-        expect(id).toBe(1);
+        expect(id).toBe("1");
       });
 
       it("should select following page when more than one page", () => {
-        const pages = [{ id: 1 }, { id: 2 }];
-        const { id } = getNextPage(pages, 1);
+        const pages = [{ id: "1" }, { id: "2" }];
+        const { id } = getNextPage(pages, "1");
 
-        expect(id).toBe(2);
+        expect(id).toBe("2");
       });
     });
 
     describe("when page is not first in section", () => {
       it("should select previous page", () => {
-        const pages = [{ id: 1 }, { id: 2 }];
-        const { id } = getNextPage(pages, 2);
+        const pages = [{ id: "1" }, { id: "2" }];
+        const { id } = getNextPage(pages, "2");
 
-        expect(id).toBe(1);
+        expect(id).toBe("1");
       });
     });
   });

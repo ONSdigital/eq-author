@@ -7,16 +7,16 @@ import fragment from "graphql/sectionFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
   const page = {
-    id: 3,
+    id: "3",
     title: "My Page"
   };
   const section = {
-    id: 2,
+    id: "2",
     title: "My Section",
     pages: [page]
   };
   const questionnaire = {
-    id: 1,
+    id: "1",
     title: "My Questionnaire",
     sections: [section]
   };
@@ -29,7 +29,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
     };
 
     newPage = {
-      id: 22,
+      id: "22",
       title: "New Page",
       section: {
         id: section.id
@@ -94,7 +94,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
         expect(mutate.mock.calls[0][0]).toMatchObject({
           optimisticResponse: {
             createQuestionPage: {
-              id: -1
+              id: "-1"
             }
           }
         });

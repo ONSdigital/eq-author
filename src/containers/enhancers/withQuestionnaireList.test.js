@@ -34,7 +34,7 @@ describe("withQuestionnaireList", () => {
           loading: false,
           questionnaires: [
             {
-              id: 1
+              id: "1"
             }
           ]
         }
@@ -44,7 +44,7 @@ describe("withQuestionnaireList", () => {
         loading: false,
         questionnaires: [
           {
-            id: 1,
+            id: "1",
             status: "Unpublished",
             comments: {
               unread: true,
