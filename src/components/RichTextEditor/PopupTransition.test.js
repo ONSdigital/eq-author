@@ -1,15 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
-import ScaleTransition from "./ScaleTransition";
+import PopupTransition from "./PopupTransition";
 
-describe("components/Popout/ScaleTransition", () => {
+describe("components/Popout/PopupTransition", () => {
   let component;
 
   beforeEach(() => {
     component = mount(
-      <ScaleTransition>
+      <PopupTransition duration={200} arbitraryProp="foo">
         <div>hello world</div>
-      </ScaleTransition>
+      </PopupTransition>
     );
   });
 

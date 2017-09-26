@@ -52,7 +52,7 @@ export const ToolbarPanel = styled.div`
 export const STYLE_BLOCK = "block";
 export const STYLE_INLINE = "inline";
 
-const buttons = [
+export const buttons = [
   {
     id: "heading",
     title: "Heading",
@@ -150,13 +150,14 @@ class ToolBar extends React.Component {
 
     return (
       <TransitionGroup component={Layer}>
-        {this.props.visible && (
+        {this.props.visible &&
           <PopupTransition duration={200}>
             <ToolbarPanel {...this.props} onFocus={onFocus}>
-              <ButtonGroup>{buttons.map(this.renderButton)}</ButtonGroup>
+              <ButtonGroup>
+                {buttons.map(this.renderButton)}
+              </ButtonGroup>
             </ToolbarPanel>
-          </PopupTransition>
-        )}
+          </PopupTransition>}
       </TransitionGroup>
     );
   }

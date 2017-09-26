@@ -2,11 +2,13 @@ import React from "react";
 import RichTextEditor from "components/RichTextEditor";
 import Toolbar, {
   STYLE_BLOCK,
-  STYLE_INLINE
+  STYLE_INLINE,
+  buttons
 } from "components/RichTextEditor/Toolbar";
 import { shallow, mount } from "enzyme";
+import findById from "utils/findById";
 import content from "./testContent";
-import { RichUtils, Editor, EditorState } from "draft-js";
+import { RichUtils, Editor, EditorState, convertFromRaw } from "draft-js";
 
 // https://github.com/facebook/draft-js/issues/702
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
@@ -46,9 +48,9 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should store editorState in local state upon change event", () => {
-    const editorState = EditorState.createEmpty();
-    wrapper = mount(<RichTextEditor {...props} />);
-    wrapper.find(Editor).simulate("change", { editorState });
+    const editorState = EditorState.createWithContent(convertFromRaw(content));
+    const handleChange = wrapper.find(Editor).prop("onChange");
+    handleChange(editorState);
     expect(wrapper.state("editorState")).toEqual(editorState);
   });
 
@@ -72,5 +74,20 @@ describe("components/RichTextEditor", function() {
         blocks: expect.any(Array)
       })
     );
+  });
+
+  it("should call the relevant method to determine if the element is active", () => {
+    const inlineStyle = findById(buttons, "bold");
+    const blockElement = findById(buttons, "heading");
+
+    const instance = wrapper.instance();
+    instance.hasCurrentStyle = jest.fn();
+    instance.getBlockType = jest.fn();
+
+    instance.isActiveControl(inlineStyle);
+    expect(instance.hasCurrentStyle).toHaveBeenCalled();
+
+    instance.isActiveControl(blockElement);
+    expect(instance.getBlockType).toHaveBeenCalled();
   });
 });

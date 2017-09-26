@@ -119,27 +119,29 @@ class RichTextEditor extends React.Component {
     this.setState({ focused: true });
   };
 
+  getBlockType = editorState => {
+    const selection = editorState.getSelection();
+
+    return editorState
+      .getCurrentContent()
+      .getBlockForKey(selection.getStartKey());
+  };
+
+  hasCurrentStyle = (editorState, style) =>
+    editorState.getCurrentInlineStyle().has(style);
+
   isActiveControl = ({ style, type }) => {
     const { editorState } = this.state;
 
-    if (type === STYLE_BLOCK) {
-      const selection = editorState.getSelection();
-      const blockType = editorState
-        .getCurrentContent()
-        .getBlockForKey(selection.getStartKey())
-        .getType();
-
-      return style === blockType;
-    } else {
-      const currentStyle = editorState.getCurrentInlineStyle();
-      return currentStyle.has(style);
-    }
+    return type === STYLE_BLOCK
+      ? style === this.getBlockType(editorState)
+      : this.hasCurrentStyle(editorState, style);
   };
 
   render() {
     const { editorState, focused } = this.state;
-
     const contentState = editorState.getCurrentContent();
+
     let { placeholder, label, ...otherProps } = this.props;
 
     return (
