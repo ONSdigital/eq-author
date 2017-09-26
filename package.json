@@ -7,7 +7,7 @@
     "start": "yarn && node scripts/start.js",
     "start:mockAPI": "REACT_APP_USE_MOCK_API=true node scripts/start.js",
     "build": "node scripts/build.js",
-    "build:mockAPI": "yarn && REACT_APP_USE_MOCK_API=true node scripts/build.js",
+    "build:mockAPI": "REACT_APP_USE_MOCK_API=true node scripts/build.js",
     "test": "node scripts/test.js",
     "smoketest:author": "chimp config/chimp.author.js",
     "smoketest:storybook": "chimp config/chimp.storybook.js",

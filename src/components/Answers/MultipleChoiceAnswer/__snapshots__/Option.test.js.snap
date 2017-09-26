@@ -9,6 +9,7 @@ exports[`Option should match snapshot 1`] = `
   >
     <Option__DummyInput />
     <Option__SeamlessLabel
+      data-qa="optionLabel"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"
@@ -51,6 +52,7 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
   >
     <Option__DummyInput />
     <Option__SeamlessLabel
+      data-qa="optionLabel"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"

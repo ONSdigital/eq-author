@@ -19,7 +19,7 @@ export const setSectionTitle = sectionTitle => {
 };
 
 export const getFirstSectionTitle = () => {
-  const navigationSectionTitleSelector = "#questionnaire-nav h3";
+  const navigationSectionTitleSelector = "h3[class*='SectionTitle']";
   browser.waitForExist(navigationSectionTitleSelector);
   return browser.getText(navigationSectionTitleSelector);
 };

@@ -83,7 +83,12 @@ class MultipleChoiceAnswer extends Component {
           ))}
         </TransitionGroup>
         <div>
-          <Button type="button" secondary onClick={this.handleAddOptionClick}>
+          <Button
+            type="button"
+            secondary
+            onClick={this.handleAddOptionClick}
+            data-qa="addAnotherOption"
+          >
             Add another option
           </Button>
         </div>

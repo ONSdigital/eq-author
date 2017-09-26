@@ -1,7 +1,7 @@
 import { merge } from "lodash";
 import MockDataStore from "./MockDataStore";
 
-const { GraphQLDate } = require("graphql-iso-date");
+import { GraphQLDate } from "graphql-iso-date";
 
 const localStorageKey = "mockDataStore";
 
