@@ -5,7 +5,7 @@ import Toolbar, {
   STYLE_INLINE,
   buttons
 } from "components/RichTextEditor/Toolbar";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import findById from "utils/findById";
 import content from "./testContent";
 import { RichUtils, Editor, EditorState, convertFromRaw } from "draft-js";
