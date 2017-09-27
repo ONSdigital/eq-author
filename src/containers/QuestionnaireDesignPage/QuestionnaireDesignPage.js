@@ -45,11 +45,10 @@ export class QuestionnaireDesignPage extends Component {
 
   getMetaTitle = () => {
     const { questionnaire, page } = this.props;
-    let docTitle = `${questionnaire.title}`;
-    if (page.title) {
-      docTitle = `${page.title} - ${docTitle}`;
-    }
-    return docTitle;
+
+    return page.title
+      ? `${page.title} - ${questionnaire.title}`
+      : `${questionnaire.title}`;
   };
 
   render() {
@@ -74,7 +73,7 @@ export class QuestionnaireDesignPage extends Component {
       <BaseLayout
         breadcrumb={breadcrumb}
         questionnaire={questionnaire}
-        docTitle={`${this.getMetaTitle()}`}
+        docTitle={this.getMetaTitle()}
       >
         <Grid align="top">
           <Column cols={2} gutters={false}>
