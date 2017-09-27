@@ -1,4 +1,4 @@
-fragment BasicQuestionnaire on Questionnaire {
+fragment MinimalQuestionnaire on Questionnaire {
   sections {
     id: newId
   }

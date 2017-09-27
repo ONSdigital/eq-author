@@ -1,4 +1,4 @@
-fragment BasicPage on QuestionPage {
+fragment MinimalPage on QuestionPage {
   id: newId
   answers {
     id: newId
