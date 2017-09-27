@@ -2,7 +2,6 @@ import { merge } from "lodash";
 import MockDataStore from "./MockDataStore";
 
 const localStorageKey = "mockDataStore";
-const getNewId = entity => entity.id.toString(10);
 
 const updateLocalStorage = dataStore => {
   if (typeof Storage !== "undefined") {
@@ -138,26 +137,22 @@ export default {
 
   Questionnaire: () => ({
     sections: (questionnaire, args, ctx) =>
-      DataStore.getSections(questionnaire.id),
-    newId: getNewId
+      DataStore.getSections(questionnaire.id)
   }),
 
   Section: () => ({
     pages: (section, args, ctx) => DataStore.getPages(section.id),
     questionnaire: (section, args, ctx) =>
-      DataStore.getQuestionnaire(section.questionnaireId),
-    newId: getNewId
+      DataStore.getQuestionnaire(section.questionnaireId)
   }),
 
   Page: () => ({
-    __resolveType: ({ pageType }) => pageType,
-    newId: getNewId
+    __resolveType: ({ pageType }) => pageType
   }),
 
   QuestionPage: () => ({
     answers: (page, args, ctx) => DataStore.getAnswers(page.id),
-    section: (page, args, ctx) => DataStore.getSection(page.sectionId),
-    newId: getNewId
+    section: (page, args, ctx) => DataStore.getSection(page.sectionId)
   }),
 
   Answer: () => ({
@@ -165,17 +160,11 @@ export default {
   }),
 
   BasicAnswer: () => ({
-    page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId),
-    newId: getNewId
+    page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId)
   }),
 
   MultipleChoiceAnswer: () => ({
     page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId),
-    options: (answer, args, ctx) => DataStore.getOptions(answer.id),
-    newId: getNewId
-  }),
-
-  Option: () => ({
-    newId: getNewId
+    options: (answer, args, ctx) => DataStore.getOptions(answer.id)
   })
 };

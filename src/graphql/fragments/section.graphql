@@ -1,5 +1,5 @@
 fragment Section on Section {
-  id: newId
+  id
   title
   description
 }

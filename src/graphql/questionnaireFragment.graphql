@@ -1,5 +1,5 @@
 fragment MinimalQuestionnaire on Questionnaire {
   sections {
-    id: newId
+    id
   }
 }

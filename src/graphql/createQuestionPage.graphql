@@ -5,10 +5,10 @@ mutation createQuestionPage($input: CreateQuestionPageInput!) {
     ...Page
     pageType
     answers {
-      id: newId
+      id
     }
     section {
-      id: newId
+      id
     }
   }
 }

@@ -1,10 +1,10 @@
 #import "./fragments/section.graphql"
 
-query getSection($id: Int!) {
+query getSection($id: ID!) {
   section(id: $id) {
     ...Section
     pages {
-      id: newId
+      id
     }
   }
 }

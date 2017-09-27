@@ -1,6 +1,6 @@
 fragment MinimalSection on Section {
-  id: newId
+  id
   pages {
-    id: newId
+    id
   }
 }

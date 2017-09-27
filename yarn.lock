@@ -3047,9 +3047,9 @@ enzyme@^2.8.2:
     prop-types "^15.5.10"
     uuid "^3.0.1"
 
-eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#ff87872:
+eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#e5caa74:
   version "1.0.0"
-  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/ff87872089cbfde430e3dbe9e90c1301fa01ae5d"
+  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/e5caa744b1fe0962c21b19448531e64a42174b01"
 
 eq-author-mock-api@ONSdigital/eq-author-mock-api#4342f6a:
   version "1.0.0"
