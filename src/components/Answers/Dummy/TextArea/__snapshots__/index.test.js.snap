@@ -11,7 +11,6 @@ exports[`components/Answers/Dummy/TextArea shoulder render 1`] = `
   padding: 1.2em 1.2em 1.2em 2em;
   position: relative;
   background-color: transparent;
-  z-index: 2;
   height: NaNem;
 }
 
