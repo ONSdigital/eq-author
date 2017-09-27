@@ -25,6 +25,7 @@ const FieldWrapper = styled.div`
   width: 100%;
   margin-bottom: 1em;
   position: relative;
+  overflow: hidden;
 `;
 
 const CurrencyComponent = props => (
