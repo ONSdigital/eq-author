@@ -7,6 +7,7 @@ const DummyTextInput = styled.div`
   position: relative;
   background-color: transparent;
   z-index: 0;
+  width: 50%;
 `;
 
 export default DummyTextInput;

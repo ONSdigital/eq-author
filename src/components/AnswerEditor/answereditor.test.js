@@ -1,11 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { merge } from "lodash";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
 import {
   TEXTFIELD,
   NUMBER,
+  CURRENCY,
   CHECKBOX,
   RADIO,
   TIME
@@ -60,7 +60,15 @@ describe("Answer Editor", () => {
 
   it("should render Number", () => {
     const wrapper = createWrapper({
-      answer: merge({}, mockAnswer, { type: NUMBER }),
+      answer: { ...mockAnswer, type: NUMBER },
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render Currency", () => {
+    const wrapper = createWrapper({
+      answer: { ...mockAnswer, type: CURRENCY },
       ...mockMutations
     });
     expect(wrapper).toMatchSnapshot();
