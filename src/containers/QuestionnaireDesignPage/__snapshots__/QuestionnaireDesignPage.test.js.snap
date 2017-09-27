@@ -85,7 +85,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     <Column__Column
       gutters={false}
     >
-      <Canvas__Canvas>
+      <MainCanvas__MainCanvas>
         <EditorSurface
           focused="section"
           onFocus={[Function]}
@@ -138,7 +138,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
             }
           }
         />
-      </Canvas__Canvas>
+      </MainCanvas__MainCanvas>
     </Column__Column>
     <Column__Column
       cols={2}
