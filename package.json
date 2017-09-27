@@ -95,7 +95,7 @@
     "connected-react-router": "^4.2.1",
     "draft-js": "^0.10.1",
     "enzyme": "^2.8.2",
-    "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#ff87872",
+    "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#e5caa74",
     "eq-author-mock-api": "ONSdigital/eq-author-mock-api#4342f6a",
     "eslint-config-eq-author": "^1.0.2",
     "graphql-anywhere": "^3.1.0",

@@ -4,14 +4,14 @@ mutation CreateSection($input: CreateSectionInput!) {
   createSection(input: $input) {
     ...Section
     pages {
-      id: newId
+      id
       title
       description
       ... on QuestionPage {
         guidance
         pageType
         answers {
-          id: newId
+          id
         }
       }
     }

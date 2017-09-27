@@ -1,10 +1,10 @@
 mutation createQuestionnaire($input: CreateQuestionnaireInput!) {
   createQuestionnaire(input: $input) {
-    id: newId
+    id
     sections {
-      id: newId
+      id
       pages {
-        id: newId
+        id
       }
     }
   }

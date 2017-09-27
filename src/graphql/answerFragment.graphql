@@ -1,7 +1,7 @@
 fragment MinimalAnswer on Answer {
   ... on MultipleChoiceAnswer {
     options {
-      id: newId
+      id
     }
   }
 }

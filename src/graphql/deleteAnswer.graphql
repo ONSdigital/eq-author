@@ -1,5 +1,5 @@
 mutation DeleteAnswer($input: DeleteAnswerInput!) {
   deleteAnswer(input: $input) {
-    id: newId
+    id
   }
 }

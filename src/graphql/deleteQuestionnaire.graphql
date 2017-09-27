@@ -1,5 +1,5 @@
-mutation DeleteQuestionnaire($input: DeleteQuestionnaireInput) {
+mutation DeleteQuestionnaire($input: DeleteQuestionnaireInput!) {
   deleteQuestionnaire(input: $input) {
-    id: newId
+    id
   }
 }

@@ -1,6 +1,6 @@
 fragment MinimalPage on QuestionPage {
-  id: newId
+  id
   answers {
-    id: newId
+    id
   }
 }

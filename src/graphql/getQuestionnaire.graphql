@@ -3,13 +3,13 @@
 #import "./fragments/answer.graphql"
 #import "./fragments/option.graphql"
 
-query GetQuestionnaire($id: Int!) {
+query GetQuestionnaire($id: ID!) {
   questionnaire(id: $id) {
     ...Questionnaire
     sections {
       ...Section
       pages {
-        id: newId
+        id
         title
         description
         pageType
