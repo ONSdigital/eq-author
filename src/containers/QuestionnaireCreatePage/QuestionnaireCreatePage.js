@@ -9,9 +9,7 @@ import Button from "components/Button";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
 
-const ActionButtonGroup = styled(ButtonGroup)`
-  align-self: flex-start;
-`;
+const ActionButtonGroup = styled(ButtonGroup)`align-self: flex-start;`;
 
 const Center = styled.div`
   margin: 0 auto;
@@ -38,8 +36,9 @@ class QuestionnaireCreatePage extends Component {
   };
 
   render() {
+    const title = "Create a Questionnaire";
     return (
-      <BaseLayout title="Create a Questionnaire">
+      <BaseLayout title={title} docTitle={title}>
         <Center>
           <QuestionnaireMeta
             questionnaire={defaultQuestionnaire}

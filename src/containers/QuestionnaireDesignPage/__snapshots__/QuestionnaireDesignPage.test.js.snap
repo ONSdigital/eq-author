@@ -2,6 +2,7 @@
 
 exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
+  docTitle="hello world"
   questionnaire={
     Object {
       "id": "3",

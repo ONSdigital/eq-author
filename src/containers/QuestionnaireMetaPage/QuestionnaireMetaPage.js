@@ -23,7 +23,11 @@ class QuestionnaireMetaPage extends Component {
     }
 
     return (
-      <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
+      <BaseLayout
+        breadcrumb={breadcrumb}
+        questionnaire={questionnaire}
+        docTitle="Questionnaire Meta"
+      >
         <Grid align="top">
           <Column gutters={false} offset={2}>
             <Margin>

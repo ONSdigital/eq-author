@@ -2,6 +2,7 @@
 
 exports[`containers/QuestionnaireMeta should render 1`] = `
 <BaseLayout
+  docTitle="Questionnaire Meta"
   questionnaire={
     Object {
       "description": "",
