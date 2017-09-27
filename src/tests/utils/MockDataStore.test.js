@@ -293,8 +293,8 @@ describe("MockDataStore", () => {
       store.createOption(options[0]);
       store.createOption(options[1]);
 
-      expect(store.getOption(1).id).toEqual(1);
-      expect(store.getOption(2).id).toEqual(2);
+      expect(store.getOption("1").id).toEqual("1");
+      expect(store.getOption("2").id).toEqual("2");
     });
 
     it("should continue to increment Ids even if option deleted", () => {
@@ -305,7 +305,7 @@ describe("MockDataStore", () => {
 
       store.createOption(options[2]);
 
-      expect(store.getOption(3).id).toEqual(3);
+      expect(store.getOption("3").id).toEqual("3");
     });
 
     it("should add the new option to an answer if answerId specified", () => {
@@ -343,7 +343,7 @@ describe("MockDataStore", () => {
       store.createOption(options[0]);
       store.deleteOption({ id: "1" });
 
-      expect(store.getOption(1)).toBeUndefined();
+      expect(store.getOption("1")).toBeUndefined();
     });
 
     it("should remove the option from the answer when option is deleted", () => {
@@ -355,7 +355,7 @@ describe("MockDataStore", () => {
 
       store.deleteOption({ id: "1" });
 
-      expect(store.getAnswer(1).options).not.toContain(option);
+      expect(store.getAnswer("1").options).not.toContain(option);
     });
 
     describe("answer specific option behaviour", () => {
