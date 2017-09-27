@@ -1,4 +1,4 @@
-fragment Answer on Answer {
+fragment BasicAnswer on Answer {
   ... on MultipleChoiceAnswer {
     options {
       id: newId

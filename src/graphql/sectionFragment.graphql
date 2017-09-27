@@ -1,4 +1,4 @@
-fragment Section on Section {
+fragment BasicSection on Section {
   id: newId
   pages {
     id: newId
