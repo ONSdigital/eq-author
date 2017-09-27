@@ -21,7 +21,7 @@ describe("eQ Author Smoketest", () => {
   });
 
   it("should load the eQ author page", () => {
-    expect(getPageTitle()).toEqual("eQ Author Prototype");
+    expect(getPageTitle()).toEqual("Your Questionnaires - Dahl");
   });
 
   it("should display button to create questionnaire", () => {
