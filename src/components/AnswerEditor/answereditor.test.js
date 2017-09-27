@@ -6,6 +6,7 @@ import {
   TEXTFIELD,
   NUMBER,
   CURRENCY,
+  TEXTAREA,
   CHECKBOX,
   RADIO,
   TIME
@@ -74,6 +75,14 @@ describe("Answer Editor", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should render TextArea", () => {
+    const wrapper = createWrapper({
+      answer: { ...mockAnswer, type: TEXTAREA },
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should render Checkbox", () => {
     const wrapper = createWrapper({
       answer: mockMultipleChoiceAnswer,
@@ -113,7 +122,10 @@ describe("Answer Editor", () => {
       ...mockMutations
     });
 
-    wrapper.find(AnswerDeleteButton).first().simulate("click");
+    wrapper
+      .find(AnswerDeleteButton)
+      .first()
+      .simulate("click");
     expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(mockAnswer.id);
   });
 

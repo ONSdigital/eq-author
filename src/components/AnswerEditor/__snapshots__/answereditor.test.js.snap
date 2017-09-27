@@ -134,6 +134,35 @@ exports[`Answer Editor should render Radio 1`] = `
 </div>
 `;
 
+exports[`Answer Editor should render TextArea 1`] = `
+<div>
+  <TextAreaAnswer
+    answer={
+      Object {
+        "description": "",
+        "id": 1,
+        "title": "",
+        "type": "TextArea",
+      }
+    }
+    onAddOption={[Function]}
+    onChange={[Function]}
+    onDeleteAnswer={[Function]}
+    onDeleteOption={[Function]}
+    onUpdate={[Function]}
+    onUpdateOption={[Function]}
+  />
+  <Tooltip
+    content="Delete answer"
+  >
+    <AnswerEditor__AnswerDeleteButton
+      aria-label="Delete answer"
+      onClick={[Function]}
+    />
+  </Tooltip>
+</div>
+`;
+
 exports[`Answer Editor should render TextField 1`] = `
 <div>
   <TextAnswer
