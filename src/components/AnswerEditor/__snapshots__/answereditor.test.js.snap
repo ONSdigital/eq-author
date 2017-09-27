@@ -44,7 +44,7 @@ exports[`Answer Editor should render Currency 1`] = `
     answer={
       Object {
         "description": "",
-        "id": 1,
+        "id": "1",
         "title": "",
         "type": "Currency",
       }
@@ -140,7 +140,7 @@ exports[`Answer Editor should render TextArea 1`] = `
     answer={
       Object {
         "description": "",
-        "id": 1,
+        "id": "1",
         "title": "",
         "type": "TextArea",
       }
