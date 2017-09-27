@@ -24,21 +24,21 @@ describe("Question Page Editor", () => {
 
     page = {
       __typename: "Page",
-      id: 1,
+      id: "1",
       title: "",
       description: "",
       guidance: "",
       answers: [
         {
           __typename: "BasicAnswer",
-          id: 1,
+          id: "1",
           title: "First name",
           description: "",
           type: "TextField"
         },
         {
           __typename: "BasicAnswer",
-          id: 2,
+          id: "2",
           title: "Last name",
           description: "",
           type: "TextField"
@@ -54,7 +54,7 @@ describe("Question Page Editor", () => {
   });
 
   it("should delete the correct answer", () => {
-    wrapper.find(AnswerEditor).first().simulate("deleteAnswer", 2);
+    wrapper.find(AnswerEditor).first().simulate("deleteAnswer", "2");
     expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(
       page.id,
       page.answers[1].id

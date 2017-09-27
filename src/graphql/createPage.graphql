@@ -1,16 +1,7 @@
-mutation CreateQuestionPage(
-  $title: String!
-  $description: String!
-  $guidance: String
-  $sectionId: Int!
-) {
-  createQuestionPage(
-    title: $title
-    description: $description
-    guidance: $guidance
-    sectionId: $sectionId
-  ) {
-    id
-    description
+#import "./fragments/page.graphql"
+
+mutation CreateQuestionPage($input: CreateQuestionPageInput!) {
+  createQuestionPage(input: $input) {
+    ...Page
   }
 }

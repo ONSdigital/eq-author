@@ -20,7 +20,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
         option={
           Object {
             "description": "",
-            "id": 1,
+            "id": "1",
             "label": "",
           }
         }

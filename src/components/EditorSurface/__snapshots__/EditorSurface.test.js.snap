@@ -23,26 +23,26 @@ exports[`EditorSurface should render 1`] = `
             section={
               Object {
                 "__typename": "Section",
-                "id": 3,
+                "id": "3",
                 "pages": Array [
                   Object {
                     "__typename": "Page",
                     "answers": Array [
                       Object {
                         "__typename": "MultipleChoiceAnswer",
-                        "id": 1,
+                        "id": "1",
                         "options": Array [
                           Object {
                             "__typename": "Option",
                             "description": "",
-                            "id": 0,
+                            "id": "0",
                             "label": "",
                           },
                         ],
                         "type": "Checkbox",
                       },
                     ],
-                    "id": 2,
+                    "id": "2",
                     "title": "",
                   },
                 ],
@@ -66,19 +66,19 @@ exports[`EditorSurface should render 1`] = `
               "answers": Array [
                 Object {
                   "__typename": "MultipleChoiceAnswer",
-                  "id": 1,
+                  "id": "1",
                   "options": Array [
                     Object {
                       "__typename": "Option",
                       "description": "",
-                      "id": 0,
+                      "id": "0",
                       "label": "",
                     },
                   ],
                   "type": "Checkbox",
                 },
               ],
-              "id": 2,
+              "id": "2",
               "title": "",
             }
           }

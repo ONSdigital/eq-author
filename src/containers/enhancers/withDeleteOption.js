@@ -1,20 +1,17 @@
 import { graphql } from "react-apollo";
 import { remove } from "lodash";
 import deleteOptionMutation from "graphql/deleteOption.graphql";
-import answerFragment from "graphql/answerFragment.graphql";
+import fragment from "graphql/answerFragment.graphql";
 
 export const createUpdater = (optionId, answerId) => proxy => {
   const id = `MultipleChoiceAnswer${answerId}`;
-  const answer = proxy.readFragment({
-    id,
-    fragment: answerFragment
-  });
+  const answer = proxy.readFragment({ id, fragment });
 
   remove(answer.options, { id: optionId });
 
   proxy.writeFragment({
     id,
-    fragment: answerFragment,
+    fragment,
     data: answer
   });
 };
@@ -28,7 +25,7 @@ export const mapMutateToProps = ({ mutate }) => ({
     const update = createUpdater(optionId, answerId);
 
     return mutate({
-      variables: option,
+      variables: { input: option },
       update
     });
   }

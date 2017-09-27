@@ -44,8 +44,12 @@ class MockDataStore {
   }
 
   createQuestionnaire(questionnaire) {
-    const id = ++this.counter.questionnaire;
-    this.questionnaires[id] = merge(questionnaire, { id }, { sections: [] });
+    const id = (++this.counter.questionnaire).toString();
+    this.questionnaires[id] = merge(questionnaire, {
+      id,
+      sections: [],
+      createdAt: new Date().toISOString()
+    });
 
     const defaultSection = this.createSection({
       title: "",
@@ -83,7 +87,7 @@ class MockDataStore {
   }
 
   createSection(section) {
-    const id = ++this.counter.section;
+    const id = (++this.counter.section).toString();
     this.sections[id] = merge(section, { id }, { pages: [] });
 
     this.getQuestionnaire(section.questionnaireId).sections.push(
@@ -115,7 +119,7 @@ class MockDataStore {
   }
 
   createPage(page) {
-    const id = ++this.counter.page;
+    const id = (++this.counter.page).toString();
     this.pages[id] = merge(
       page,
       { id },
@@ -149,7 +153,7 @@ class MockDataStore {
   }
 
   createAnswer(answer) {
-    const id = ++this.counter.answer;
+    const id = (++this.counter.answer).toString();
     this.answers[id] = merge(
       answer,
       { id, options: [] },
@@ -197,7 +201,7 @@ class MockDataStore {
   }
 
   createOption(option) {
-    const id = ++this.counter.option;
+    const id = (++this.counter.option).toString();
     this.options[id] = merge(option, { id });
 
     if (option.answerId) {

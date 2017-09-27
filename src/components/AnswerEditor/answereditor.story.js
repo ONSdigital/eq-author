@@ -22,7 +22,7 @@ class AnswerEditorWrapper extends React.Component {
         description: "Section description",
         options: [
           {
-            id: 0,
+            id: "0",
             label: "Option 1",
             description: "Option 1 description"
           }

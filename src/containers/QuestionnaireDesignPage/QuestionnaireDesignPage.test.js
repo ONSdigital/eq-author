@@ -8,13 +8,13 @@ describe("QuestionnaireDesignPage", () => {
   let wrapper;
 
   const answer = {
-    id: 1,
+    id: "1",
     label: "",
-    options: [{ id: 1 }]
+    options: [{ id: "1" }]
   };
 
   const page = {
-    id: 1,
+    id: "1",
     description: "",
     guidance: "",
     title: "",
@@ -23,13 +23,13 @@ describe("QuestionnaireDesignPage", () => {
   };
 
   const section = {
-    id: 2,
+    id: "2",
     title: "",
     pages: [page]
   };
 
   const questionnaire = {
-    id: 3,
+    id: "3",
     title: "hello world",
     sections: [section]
   };

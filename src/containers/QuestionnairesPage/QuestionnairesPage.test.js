@@ -11,7 +11,7 @@ describe("containers/Questionnaires", () => {
   let onDeleteQuestionnaire;
 
   const questionnaire = {
-    id: 1,
+    id: "1",
     title: "Test questionnaire",
     createdAt: "01/01/1970",
     theme: "default",
@@ -24,10 +24,10 @@ describe("containers/Questionnaires", () => {
     },
     sections: [
       {
-        id: 5,
+        id: "5",
         pages: [
           {
-            id: 10
+            id: "10"
           }
         ]
       }

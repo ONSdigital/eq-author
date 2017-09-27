@@ -1,6 +1,6 @@
-import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
 import createSectionMutation from "graphql/createSection.graphql";
+import fragment from "graphql/questionnaireFragment.graphql";
 
 export const redirectToNewPage = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
@@ -13,17 +13,15 @@ export const redirectToNewPage = ownProps => ({ data }) => {
 };
 
 export const createUpdater = questionnaireId => (proxy, result) => {
-  const data = proxy.readQuery({
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId }
-  });
+  const id = `Questionnaire${questionnaireId}`;
+  const questionnaire = proxy.readFragment({ id, fragment });
 
-  data.questionnaire.sections.push(result.data.createSection);
+  questionnaire.sections.push(result.data.createSection);
 
-  proxy.writeQuery({
-    data,
-    query: getQuestionnaireQuery,
-    variables: { id: questionnaireId }
+  proxy.writeFragment({
+    id,
+    fragment,
+    data: questionnaire
   });
 };
 
@@ -38,7 +36,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     const optimisticResponse = {
       createSection: {
         __typename: "Section",
-        id: -1,
+        id: "-1",
         description: "",
         pages: [],
         ...section
@@ -48,7 +46,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     const update = createUpdater(ownProps.questionnaireId);
 
     return mutate({
-      variables: section,
+      variables: { input: section },
       optimisticResponse,
       update
     }).then(redirectToNewPage(ownProps));

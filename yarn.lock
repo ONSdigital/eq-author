@@ -3047,13 +3047,13 @@ enzyme@^2.8.2:
     prop-types "^15.5.10"
     uuid "^3.0.1"
 
-eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#b34dc52:
+eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#ff87872:
   version "1.0.0"
-  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/b34dc527e3c068dfeff0753efcaa7b52ddfde56a"
+  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/ff87872089cbfde430e3dbe9e90c1301fa01ae5d"
 
-eq-author-mock-api@ONSDigital/eq-author-mock-api#204e37f:
+eq-author-mock-api@ONSdigital/eq-author-mock-api#4342f6a:
   version "1.0.0"
-  resolved "https://codeload.github.com/ONSDigital/eq-author-mock-api/tar.gz/204e37f"
+  resolved "https://codeload.github.com/ONSdigital/eq-author-mock-api/tar.gz/4342f6a13f02d804be4577a0304592786c3e43b7"
   dependencies:
     graphql "^0.10.5"
     graphql-tag "^2.4.2"
@@ -4107,7 +4107,7 @@ graceful-fs@4.1.11, graceful-fs@^4.1.0, graceful-fs@^4.1.11, graceful-fs@^4.1.2,
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-graphql-anywhere@^3.0.1:
+graphql-anywhere@^3.0.1, graphql-anywhere@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/graphql-anywhere/-/graphql-anywhere-3.1.0.tgz#3ea0d8e8646b5cee68035016a9a7557c15c21e96"
 
@@ -4132,8 +4132,8 @@ graphql-tag@^2.0.0, graphql-tag@^2.4.2:
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.4.2.tgz#6a63297d8522d03a2b72d26f1b239aab343840cd"
 
 graphql-tools@^1.1.0:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-1.2.2.tgz#ff791e91b78e05eec18a32716a7732bc7bf5cb4d"
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-1.2.3.tgz#079bf4d157e46c0a0bae9fec117e0eea6e03ba2c"
   dependencies:
     deprecated-decorator "^0.1.6"
     uuid "^3.0.1"

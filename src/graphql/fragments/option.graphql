@@ -1,7 +1,5 @@
 fragment Option on Option {
-  id
-  label
+  id: newId
   description
-  qCode
-  value
+  label
 }

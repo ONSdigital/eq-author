@@ -2,6 +2,7 @@ import { merge } from "lodash";
 import MockDataStore from "./MockDataStore";
 
 const localStorageKey = "mockDataStore";
+const getNewId = entity => entity.id.toString(10);
 
 const updateLocalStorage = dataStore => {
   if (typeof Storage !== "undefined") {
@@ -25,7 +26,7 @@ export default {
   String: () => "",
   Query: () => ({
     questionnaires: (root, args, ctx) => {
-      return DataStore.getQuestionnaires(args.id);
+      return DataStore.getQuestionnaires();
     },
     questionnaire: (root, args, ctx) => {
       return DataStore.getQuestionnaire(args.id);
@@ -51,16 +52,24 @@ export default {
   }),
   Mutation: () => ({
     createQuestionnaire: (root, args, ctx) => {
-      return persistMutation(DataStore.createQuestionnaire(merge({}, args)));
+      return persistMutation(
+        DataStore.createQuestionnaire(merge({}, args.input))
+      );
     },
     updateQuestionnaire: (root, args, ctx) => {
-      return persistMutation(DataStore.updateQuestionnaire(merge({}, args)));
+      return persistMutation(
+        DataStore.updateQuestionnaire(merge({}, args.input))
+      );
     },
     deleteQuestionnaire: (root, args, ctx) => {
-      return persistMutation(DataStore.deleteQuestionnaire(merge({}, args)));
+      return persistMutation(
+        DataStore.deleteQuestionnaire(merge({}, args.input))
+      );
     },
     createSection: (root, args, ctx) => {
-      const section = persistMutation(DataStore.createSection(merge({}, args)));
+      const section = persistMutation(
+        DataStore.createSection(merge({}, args.input))
+      );
 
       persistMutation(
         DataStore.createPage({
@@ -75,76 +84,80 @@ export default {
       return section;
     },
     updateSection: (root, args, ctx) => {
-      return persistMutation(DataStore.updateSection(merge({}, args)));
+      return persistMutation(DataStore.updateSection(merge({}, args.input)));
     },
     deleteSection: (root, args, ctx) => {
-      return persistMutation(DataStore.deleteSection(merge({}, args)));
+      return persistMutation(DataStore.deleteSection(merge({}, args.input)));
     },
     createGroup: (root, args, ctx) => {
-      return persistMutation(DataStore.createSection(merge({}, args)));
+      return persistMutation(DataStore.createSection(merge({}, args.input)));
     },
     updateGroup: (root, args, ctx) => {
-      return persistMutation(DataStore.updateSection(merge({}, args)));
+      return persistMutation(DataStore.updateSection(merge({}, args.input)));
     },
     deleteGroup: (root, args, ctx) => {
-      return persistMutation(DataStore.deleteSection(merge({}, args)));
+      return persistMutation(DataStore.deleteSection(merge({}, args.input)));
     },
     createPage: (root, args, ctx) => {
-      return persistMutation(DataStore.createPage(merge({}, args)));
+      return persistMutation(DataStore.createPage(merge({}, args.input)));
     },
     updatePage: (root, args, ctx) => {
-      return persistMutation(DataStore.updatePage(merge({}, args)));
+      return persistMutation(DataStore.updatePage(merge({}, args.input)));
     },
     deletePage: (root, args, ctx) => {
-      return persistMutation(DataStore.deletePage(merge({}, args)));
+      return persistMutation(DataStore.deletePage(merge({}, args.input)));
     },
     createQuestionPage: (root, args, ctx) => {
-      return persistMutation(DataStore.createPage(merge({}, args)));
+      return persistMutation(DataStore.createPage(merge({}, args.input)));
     },
     updateQuestionPage: (root, args, ctx) => {
-      return persistMutation(DataStore.updatePage(merge({}, args)));
+      return persistMutation(DataStore.updatePage(merge({}, args.input)));
     },
     deleteQuestionPage: (root, args, ctx) => {
-      return persistMutation(DataStore.deletePage(merge({}, args)));
+      return persistMutation(DataStore.deletePage(merge({}, args.input)));
     },
     createAnswer: (root, args, ctx) => {
-      return persistMutation(DataStore.createAnswer(merge({}, args)));
+      return persistMutation(DataStore.createAnswer(merge({}, args.input)));
     },
     updateAnswer: (root, args, ctx) => {
-      return persistMutation(DataStore.updateAnswer(merge({}, args)));
+      return persistMutation(DataStore.updateAnswer(merge({}, args.input)));
     },
     deleteAnswer: (root, args, ctx) => {
-      return persistMutation(DataStore.deleteAnswer(merge({}, args)));
+      return persistMutation(DataStore.deleteAnswer(merge({}, args.input)));
     },
     createOption: (root, args, ctx) => {
-      return persistMutation(DataStore.createOption(merge({}, args)));
+      return persistMutation(DataStore.createOption(merge({}, args.input)));
     },
     updateOption: (root, args, ctx) => {
-      return persistMutation(DataStore.updateOption(merge({}, args)));
+      return persistMutation(DataStore.updateOption(merge({}, args.input)));
     },
     deleteOption: (root, args, ctx) => {
-      return persistMutation(DataStore.deleteOption(merge({}, args)));
+      return persistMutation(DataStore.deleteOption(merge({}, args.input)));
     }
   }),
 
   Questionnaire: () => ({
     sections: (questionnaire, args, ctx) =>
-      DataStore.getSections(questionnaire.id)
+      DataStore.getSections(questionnaire.id),
+    newId: getNewId
   }),
 
   Section: () => ({
     pages: (section, args, ctx) => DataStore.getPages(section.id),
     questionnaire: (section, args, ctx) =>
-      DataStore.getQuestionnaire(section.questionnaireId)
+      DataStore.getQuestionnaire(section.questionnaireId),
+    newId: getNewId
   }),
 
   Page: () => ({
-    __resolveType: ({ pageType }) => pageType
+    __resolveType: ({ pageType }) => pageType,
+    newId: getNewId
   }),
 
   QuestionPage: () => ({
     answers: (page, args, ctx) => DataStore.getAnswers(page.id),
-    section: (page, args, ctx) => DataStore.getSection(page.sectionId)
+    section: (page, args, ctx) => DataStore.getSection(page.sectionId),
+    newId: getNewId
   }),
 
   Answer: () => ({
@@ -152,11 +165,17 @@ export default {
   }),
 
   BasicAnswer: () => ({
-    page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId)
+    page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId),
+    newId: getNewId
   }),
 
   MultipleChoiceAnswer: () => ({
     page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId),
-    options: (answer, args, ctx) => DataStore.getOptions(answer.id)
+    options: (answer, args, ctx) => DataStore.getOptions(answer.id),
+    newId: getNewId
+  }),
+
+  Option: () => ({
+    newId: getNewId
   })
 };

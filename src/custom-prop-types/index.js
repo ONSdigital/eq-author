@@ -6,6 +6,7 @@ export default {
     title: PropTypes.string.isRequired
   }),
   questionnaire: PropTypes.shape({
+    id: PropTypes.string,
     description: PropTypes.string,
     legalBasis: PropTypes.string,
     theme: PropTypes.string,
@@ -13,21 +14,24 @@ export default {
     navigation: PropTypes.bool
   }),
   section: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string
   }),
   page: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     guidance: PropTypes.string
   }),
   answer: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.oneOf(Object.values(answerTypes))
   }),
   option: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     label: PropTypes.string,
     description: PropTypes.string,
     qCode: PropTypes.string,
@@ -42,7 +46,7 @@ export default {
   }).isRequired,
   questionnaireList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       createdAt: PropTypes.string.isRequired,
       theme: PropTypes.string.isRequired,

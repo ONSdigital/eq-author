@@ -5,9 +5,9 @@ import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   createQuestionnaire: questionnaire =>
-    mutate({ variables: questionnaire }).then(
-      redirectToDesigner(ownProps.history)
-    )
+    mutate({
+      variables: { input: questionnaire }
+    }).then(redirectToDesigner(ownProps.history))
 });
 
 export const redirectToDesigner = history => ({ data }) => {

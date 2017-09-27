@@ -4,28 +4,28 @@ import EditorSurface from "./";
 
 const option = {
   __typename: "Option",
-  id: 0,
+  id: "0",
   label: "",
   description: ""
 };
 
 const answer = {
   __typename: "MultipleChoiceAnswer",
-  id: 1,
+  id: "1",
   type: "Checkbox",
   options: [option]
 };
 
 const page = {
   __typename: "Page",
-  id: 2,
+  id: "2",
   title: "",
   answers: [answer]
 };
 
 const section = {
   __typename: "Section",
-  id: 3,
+  id: "3",
   title: "",
   pages: [page]
 };
@@ -69,12 +69,12 @@ describe("EditorSurface", () => {
         {
           section: {
             __typename: "Section",
-            id: 2,
+            id: "2",
             title: section
           },
           page: {
             __typename: "QuestionPage",
-            id: 1,
+            id: "1",
             title: page,
             answers: []
           }
@@ -156,7 +156,7 @@ describe("EditorSurface", () => {
         const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
         wrapper.setProps({
           page: {
-            id: 1,
+            id: "1",
             title: "I have a title",
             __typename: "QuestionPage",
             answers: []

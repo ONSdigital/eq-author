@@ -18,12 +18,9 @@ describe("enhancers > withUpdatePage", () => {
 
     it("should call mutate", () => {
       props.onUpdatePage(page);
-
-      expect(mutate).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: page
-        })
-      );
+      expect(mutate).toHaveBeenCalledWith({
+        variables: { input: page }
+      });
     });
   });
 });

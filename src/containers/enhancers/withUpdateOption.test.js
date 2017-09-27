@@ -18,12 +18,9 @@ describe("enhancers > withUpdateOption", () => {
 
     it("should call mutate", () => {
       props.onUpdateOption(option);
-
-      expect(mutate).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: option
-        })
-      );
+      expect(mutate).toHaveBeenCalledWith({
+        variables: { input: option }
+      });
     });
   });
 });

@@ -1,15 +1,16 @@
 import { mapMutateToProps, createUpdater } from "./withDeleteOption";
+import fragment from "graphql/answerFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeleteOption", () => {
   let mutate, result, answer, option;
 
   beforeEach(() => {
     option = {
-      id: 123
+      id: "123"
     };
 
     answer = {
-      id: 456,
+      id: "456",
       label: "foo",
       description: "bar",
       options: [option]
@@ -26,24 +27,19 @@ describe("containers/QuestionnaireDesignPage/withDeleteOption", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const writeFragment = jest.fn();
-      const readFragment = jest.fn().mockImplementation(() => answer);
       const id = `MultipleChoiceAnswer${answer.id}`;
-      const updater = createUpdater(option.id, answer.id);
+      const writeFragment = jest.fn();
+      const readFragment = jest.fn(() => answer);
 
+      const updater = createUpdater(option.id, answer.id);
       updater({ readFragment, writeFragment });
 
-      expect(readFragment).toHaveBeenCalledWith(
-        expect.objectContaining({ id })
-      );
-
-      expect(writeFragment).toHaveBeenCalledWith(
-        expect.objectContaining({
-          id,
-          data: answer
-        })
-      );
-
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: answer
+      });
       expect(answer.options).not.toContain(option);
     });
   });
@@ -63,7 +59,9 @@ describe("containers/QuestionnaireDesignPage/withDeleteOption", () => {
 
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: { id: option.id }
+          variables: {
+            input: { id: option.id }
+          }
         })
       );
     });

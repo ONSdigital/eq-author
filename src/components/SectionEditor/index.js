@@ -6,6 +6,7 @@ import Field from "components/Forms/Field";
 import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
+import sectionFragment from "graphql/fragments/section.graphql";
 
 export class StatelessSectionEditor extends React.Component {
   render() {
@@ -45,4 +46,6 @@ StatelessSectionEditor.propTypes = {
   titleRef: PropTypes.func
 };
 
-export default withEntityEditor("section")(StatelessSectionEditor);
+export default withEntityEditor("section", sectionFragment)(
+  StatelessSectionEditor
+);

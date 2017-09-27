@@ -1,25 +1,17 @@
-mutation CreateSection(
-  $title: String!
-  $description: String
-  $questionnaireId: Int!
-) {
-  createSection(
-    title: $title
-    description: $description
-    questionnaireId: $questionnaireId
-  ) {
-    id
-    title
-    description
+#import "./fragments/section.graphql"
+
+mutation CreateSection($input: CreateSectionInput!) {
+  createSection(input: $input) {
+    ...Section
     pages {
-      id
+      id: newId
       title
       description
       ... on QuestionPage {
         guidance
         pageType
         answers {
-          id
+          id: newId
         }
       }
     }

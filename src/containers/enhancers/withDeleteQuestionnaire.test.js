@@ -7,7 +7,7 @@ describe("withDeleteQuestionnaire", () => {
 
   beforeEach(() => {
     questionnaire = {
-      id: 1
+      id: "1"
     };
 
     result = {
@@ -26,13 +26,13 @@ describe("withDeleteQuestionnaire", () => {
   describe("handleUpdate", () => {
     let cachedQuestionnaires = [
       {
-        id: 1
+        id: "1"
       },
       {
-        id: 2
+        id: "2"
       },
       {
-        id: 3
+        id: "3"
       }
     ];
 
@@ -51,7 +51,7 @@ describe("withDeleteQuestionnaire", () => {
       handleUpdate(proxy, {
         data: {
           deleteQuestionnaire: {
-            id: 1
+            id: "1"
           }
         }
       });
@@ -65,10 +65,10 @@ describe("withDeleteQuestionnaire", () => {
         data: {
           questionnaires: [
             {
-              id: 2
+              id: "2"
             },
             {
-              id: 3
+              id: "3"
             }
           ]
         }
@@ -79,7 +79,7 @@ describe("withDeleteQuestionnaire", () => {
   describe("mapMutateToProps", () => {
     let props;
 
-    const questionnaireId = 1;
+    const questionnaireId = "1";
 
     beforeEach(() => {
       props = mapMutateToProps({ ownProps, mutate });
@@ -95,7 +95,7 @@ describe("withDeleteQuestionnaire", () => {
           expect(mutate).toHaveBeenCalledWith(
             expect.objectContaining({
               variables: {
-                id: questionnaireId
+                input: { id: questionnaireId }
               }
             })
           );

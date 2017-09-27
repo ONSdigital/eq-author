@@ -9,14 +9,14 @@ import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 let history, mutate, results;
 
 const page = {
-  id: 3
+  id: "3"
 };
 const section = {
-  id: 2,
+  id: "2",
   pages: [page]
 };
 const questionnaire = {
-  id: 1,
+  id: "1",
   sections: [section]
 };
 
@@ -56,9 +56,9 @@ describe("containers/QuestionnaireCreatePage", () => {
       const props = mapMutateToProps({ ownProps, mutate });
 
       return props.createQuestionnaire(questionnaire).then(() => {
-        expect(mutate).toHaveBeenCalledWith(
-          expect.objectContaining({ variables: questionnaire })
-        );
+        expect(mutate).toHaveBeenCalledWith({
+          variables: { input: questionnaire }
+        });
         expect(history.push).toHaveBeenCalled();
       });
     });
@@ -74,10 +74,10 @@ describe("containers/QuestionnaireCreatePage", () => {
       data = {
         questionnaires: [
           {
-            id: 1
+            id: "1"
           },
           {
-            id: 2
+            id: "2"
           }
         ]
       };
@@ -93,7 +93,7 @@ describe("containers/QuestionnaireCreatePage", () => {
     });
 
     it("should update the getQuestionnaireList query with new questionnaire.", () => {
-      const newQuestionnaire = { id: 3 };
+      const newQuestionnaire = { id: "3" };
       updateQuestionnaireList(proxy, {
         data: { createQuestionnaire: newQuestionnaire }
       });
@@ -106,10 +106,10 @@ describe("containers/QuestionnaireCreatePage", () => {
         data: {
           questionnaires: [
             {
-              id: 1
+              id: "1"
             },
             {
-              id: 2
+              id: "2"
             },
             newQuestionnaire
           ]

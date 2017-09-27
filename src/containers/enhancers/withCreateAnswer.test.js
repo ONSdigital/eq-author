@@ -1,18 +1,19 @@
 import { mapMutateToProps, createUpdater } from "./withCreateAnswer";
+import fragment from "graphql/pageFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
   let mutate, result, page, answer, ownProps;
 
   beforeEach(() => {
     page = {
-      id: 22,
-      sectionId: 33,
+      id: "22",
+      sectionId: "33",
       title: "New Page",
       answers: []
     };
 
     answer = {
-      id: 123,
+      id: "123",
       label: "foo",
       description: "bar"
     };
@@ -33,22 +34,20 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const writeFragment = jest.fn();
-      const readFragment = jest.fn().mockImplementation(() => page);
-      const updater = createUpdater(page.id);
       const id = `QuestionPage${page.id}`;
+      const writeFragment = jest.fn();
+      const readFragment = jest.fn(() => page);
+
+      const updater = createUpdater(page.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith(
-        expect.objectContaining({ id })
-      );
-
-      expect(writeFragment).toHaveBeenCalledWith(
-        expect.objectContaining({
-          id,
-          data: page
-        })
-      );
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: page
+      });
+      expect(page.answers).toContain(answer);
     });
   });
 
@@ -64,12 +63,15 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
 
     it("should call mutate", () => {
       props.onAddAnswer("Checkbox");
+
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({
-          variables: expect.objectContaining({
-            questionPageId: page.id,
-            type: "Checkbox"
-          })
+          variables: {
+            input: expect.objectContaining({
+              questionPageId: page.id,
+              type: "Checkbox"
+            })
+          }
         })
       );
     });

@@ -1,0 +1,9 @@
+fragment Questionnaire on Questionnaire {
+  id: newId
+  title
+  description
+  surveyId
+  theme
+  legalBasis
+  navigation
+}

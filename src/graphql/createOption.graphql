@@ -1,9 +1,7 @@
-mutation createOption($answerId: Int!) {
-  createOption(answerId: $answerId) {
-    id
-    label
-    description
-    qCode
-    value
+#import "./fragments/option.graphql"
+
+mutation createOption($input: CreateOptionInput!) {
+  createOption(input: $input) {
+    ...Option
   }
 }

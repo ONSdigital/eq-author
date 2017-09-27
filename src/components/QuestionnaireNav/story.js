@@ -10,19 +10,19 @@ import QuestionnaireNav from "components/QuestionnaireNav";
 const Wrapper = styled.div`width: 20em;`;
 
 const questionnaire = {
-  id: 1,
+  id: "1",
   sections: [
     {
       title: "Section 1",
-      id: 0,
+      id: "0",
       pages: [
         {
           title: "Question 1.1",
-          id: 2
+          id: "2"
         },
         {
           title: "Question 1.2",
-          id: 3
+          id: "3"
         }
       ]
     }
@@ -42,7 +42,7 @@ class QuestionnaireNavWithState extends Component {
   }
 
   getNewPage = (sectionId, pageId) => ({
-    id: random(100),
+    id: random(100).toString(),
     title: `Question ${sectionId + 1}.${pageId}`
   });
 
@@ -58,7 +58,7 @@ class QuestionnaireNavWithState extends Component {
   };
 
   handleAddSection = () => {
-    const id = questionnaire.sections.length;
+    const id = questionnaire.sections.length.toString();
     const section = {
       id,
       title: `Section ${id + 1}`,

@@ -14,9 +14,11 @@ describe("withUpdateAnswer", () => {
 
   it("should invoke mutate passing answer as variable", () => {
     const props = mapMutateToProps({ mutate });
-    const answer = { id: 1 };
+    const answer = { id: "1" };
 
     props.onUpdateAnswer(answer);
-    expect(mutate).toHaveBeenCalledWith({ variables: answer });
+    expect(mutate).toHaveBeenCalledWith({
+      variables: { input: answer }
+    });
   });
 });

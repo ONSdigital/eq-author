@@ -1,7 +1,7 @@
-mutation UpdateOption($id: Int!, $description: String, $label: String) {
-  updateOption(id: $id, label: $label, description: $description) {
-    id
-    description
-    label
+#import "./fragments/option.graphql"
+
+mutation UpdateOption($input: UpdateOptionInput!) {
+  updateOption(input: $input) {
+    ...Option
   }
 }

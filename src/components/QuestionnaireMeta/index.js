@@ -6,6 +6,7 @@ import { Grid, Column } from "components/Grid";
 import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
 import { CenteredPanel } from "components/Panel";
 import withEntityEditor from "components/withEntityEditor";
+import questionnaireFragment from "graphql/fragments/questionnaire.graphql";
 
 const Center = styled.div`
   width: 100%;
@@ -106,4 +107,6 @@ StatelessQuestionnaireMeta.propTypes = {
   questionnaire: CustomPropTypes.questionnaire
 };
 
-export default withEntityEditor("questionnaire")(StatelessQuestionnaireMeta);
+export default withEntityEditor("questionnaire", questionnaireFragment)(
+  StatelessQuestionnaireMeta
+);

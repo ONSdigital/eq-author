@@ -1,15 +1,6 @@
-fragment Page on QuestionPage {
-  id
+fragment MinimalPage on QuestionPage {
+  id: newId
   answers {
-    id
-    ... on MultipleChoiceAnswer {
-      options {
-        id
-        label
-        description
-        qCode
-        value
-      }
-    }
+    id: newId
   }
 }

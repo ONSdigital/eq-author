@@ -1,12 +1,7 @@
-fragment Answer on Answer {
-  id
+fragment MinimalAnswer on Answer {
   ... on MultipleChoiceAnswer {
     options {
-      id
-      label
-      description
-      qCode
-      value
+      id: newId
     }
   }
 }

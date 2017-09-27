@@ -8,13 +8,13 @@ import { CHECKBOX, RADIO } from "constants/answer-types";
 
 const options = [
   {
-    id: 0,
+    id: "0",
     label: "",
     value: "",
     description: ""
   },
   {
-    id: 1,
+    id: "1",
     label: "",
     value: "",
     description: ""
@@ -28,7 +28,7 @@ class MultipleChoiceAnswerWrapper extends React.Component {
 
   state = {
     answer: {
-      id: 0,
+      id: "0",
       options
     }
   };
@@ -39,7 +39,7 @@ class MultipleChoiceAnswerWrapper extends React.Component {
     const { answer } = this.state;
     const newOption = {
       ...options[0],
-      id: ++this.nextId
+      id: (++this.nextId).toString()
     };
 
     const newState = {

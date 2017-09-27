@@ -1,16 +1,16 @@
 import { mapResultsToProps, mapPropToOptions } from "./withQuestionnaire";
 
 const page = {
-  id: 3,
+  id: "3",
   title: "My Page"
 };
 const section = {
-  id: 2,
+  id: "2",
   title: "My Section",
   pages: [page]
 };
 const questionnaire = {
-  id: 1,
+  id: "1",
   title: "My Questionnaire",
   sections: [section]
 };
@@ -20,7 +20,7 @@ describe("containers/withQuestionnaire", () => {
     it("should handle loading", () => {
       const props = mapResultsToProps({
         data: { loading: true, questionnaire: undefined },
-        ownProps: { sectionId: 1, pageId: 2 }
+        ownProps: { sectionId: "1", pageId: "2" }
       });
       expect(props).toMatchSnapshot();
     });
@@ -46,7 +46,7 @@ describe("containers/withQuestionnaire", () => {
 
   describe("mapOptionsToProps", () => {
     it("should pass questionnaireId as a variable", () => {
-      const options = mapPropToOptions({ questionnaireId: 1 });
+      const options = mapPropToOptions({ questionnaireId: "1" });
       expect(options).toMatchSnapshot();
     });
   });

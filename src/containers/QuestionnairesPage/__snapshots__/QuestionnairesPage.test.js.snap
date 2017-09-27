@@ -101,13 +101,13 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
                 "unread": false,
               },
               "createdAt": "01/01/1970",
-              "id": 1,
+              "id": "1",
               "sections": Array [
                 Object {
-                  "id": 5,
+                  "id": "5",
                   "pages": Array [
                     Object {
-                      "id": 10,
+                      "id": "10",
                     },
                   ],
                 },

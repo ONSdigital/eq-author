@@ -4,6 +4,7 @@ import {
   getNextPage,
   handleDeletion
 } from "./withDeletePage";
+import fragment from "graphql/sectionFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
   let history, mutate, result, ownProps, onAddPage;
@@ -11,27 +12,27 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
 
   beforeEach(() => {
     deletedPage = {
-      id: 2,
-      sectionId: 2
+      id: "2",
+      sectionId: "2"
     };
 
     currentPage = {
-      id: 1,
-      sectionId: 1
+      id: "1",
+      sectionId: "1"
     };
 
     currentSection = {
-      id: 1,
-      pages: [currentPage, { id: 3 }]
+      id: "1",
+      pages: [currentPage, { id: "3" }]
     };
 
     targetSection = {
-      id: 2,
+      id: "2",
       pages: [deletedPage]
     };
 
     questionnaire = {
-      id: 1,
+      id: "1",
       title: "My Questionnaire",
       sections: [currentSection, targetSection]
     };
@@ -62,31 +63,19 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
 
   describe("createUpdater", () => {
     it("should remove the page from the cache", () => {
-      const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        return { questionnaire };
+      const id = `Section${targetSection.id}`;
+      const readFragment = jest.fn(() => targetSection);
+      const writeFragment = jest.fn();
+
+      const updater = createUpdater(targetSection.id, deletedPage.id);
+      updater({ readFragment, writeFragment }, result);
+
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: targetSection
       });
-      const writeQuery = jest.fn();
-
-      const updater = createUpdater(
-        questionnaire.id,
-        targetSection.id,
-        deletedPage.id
-      );
-      updater({ readQuery, writeQuery }, result);
-
-      expect(readQuery).toHaveBeenCalledWith(
-        expect.objectContaining({ variables: { id: questionnaire.id } })
-      );
-
-      expect(writeQuery).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: { id: questionnaire.id },
-          data: {
-            questionnaire
-          }
-        })
-      );
-
       expect(targetSection.pages).not.toContain(deletedPage);
     });
   });
@@ -94,26 +83,26 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
   describe("getNextPage", () => {
     describe("when page is first in section", () => {
       it("should select first page when only one page", () => {
-        const pages = [{ id: 1 }];
-        const { id } = getNextPage(pages, 1);
+        const pages = [{ id: "1" }];
+        const { id } = getNextPage(pages, "1");
 
-        expect(id).toBe(1);
+        expect(id).toBe("1");
       });
 
       it("should select following page when more than one page", () => {
-        const pages = [{ id: 1 }, { id: 2 }];
-        const { id } = getNextPage(pages, 1);
+        const pages = [{ id: "1" }, { id: "2" }];
+        const { id } = getNextPage(pages, "1");
 
-        expect(id).toBe(2);
+        expect(id).toBe("2");
       });
     });
 
     describe("when page is not first in section", () => {
       it("should select previous page", () => {
-        const pages = [{ id: 1 }, { id: 2 }];
-        const { id } = getNextPage(pages, 2);
+        const pages = [{ id: "1" }, { id: "2" }];
+        const { id } = getNextPage(pages, "2");
 
-        expect(id).toBe(1);
+        expect(id).toBe("1");
       });
     });
   });
@@ -137,7 +126,7 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
             expect(mutate).toHaveBeenCalledWith(
               expect.objectContaining({
                 variables: {
-                  id: deletedPage.id
+                  input: { id: deletedPage.id }
                 }
               })
             );

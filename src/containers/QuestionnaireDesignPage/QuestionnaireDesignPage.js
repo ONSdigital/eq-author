@@ -17,9 +17,9 @@ export class QuestionnaireDesignPage extends Component {
     onUpdatePage: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
-    questionnaireId: PropTypes.number.isRequired,
-    pageId: PropTypes.number.isRequired,
-    sectionId: PropTypes.number.isRequired,
+    questionnaireId: PropTypes.string.isRequired,
+    pageId: PropTypes.string.isRequired,
+    sectionId: PropTypes.string.isRequired,
     page: CustomPropTypes.page,
     breadcrumb: CustomPropTypes.breadcrumb,
     loading: PropTypes.bool.isRequired

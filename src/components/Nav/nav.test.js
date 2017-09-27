@@ -5,13 +5,13 @@ import { NavWithoutRouter } from "components/Nav";
 let wrapper;
 
 const questionnaire = {
-  id: 1,
+  id: "1",
   title: "Questionnaire",
   sections: [
     {
-      id: 2,
+      id: "2",
       title: "Section 1",
-      pages: [{ id: 3 }]
+      pages: [{ id: "3" }]
     }
   ]
 };

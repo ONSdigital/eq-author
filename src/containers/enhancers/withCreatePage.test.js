@@ -1,22 +1,22 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToNewPage,
-  fragment
+  redirectToNewPage
 } from "./withCreatePage";
+import fragment from "graphql/sectionFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
   const page = {
-    id: 3,
+    id: "3",
     title: "My Page"
   };
   const section = {
-    id: 2,
+    id: "2",
     title: "My Section",
     pages: [page]
   };
   const questionnaire = {
-    id: 1,
+    id: "1",
     title: "My Questionnaire",
     sections: [section]
   };
@@ -29,7 +29,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
     };
 
     newPage = {
-      id: 22,
+      id: "22",
       title: "New Page",
       section: {
         id: section.id
@@ -52,22 +52,20 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const readFragment = jest.fn().mockImplementation(() => section);
+      const id = `Section${section.id}`;
+      const readFragment = jest.fn(() => section);
       const writeFragment = jest.fn();
 
       const updater = createUpdater(section.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith({
-        id: `Section${section.id}`,
-        fragment: fragment
-      });
-
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
       expect(writeFragment).toHaveBeenCalledWith({
-        id: `Section${section.id}`,
-        fragment: fragment,
+        id,
+        fragment,
         data: section
       });
+      expect(section.pages).toContain(newPage);
     });
   });
 
@@ -96,7 +94,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
         expect(mutate.mock.calls[0][0]).toMatchObject({
           optimisticResponse: {
             createQuestionPage: {
-              id: -1
+              id: "-1"
             }
           }
         });

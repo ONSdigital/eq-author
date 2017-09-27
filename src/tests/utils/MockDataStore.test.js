@@ -62,10 +62,10 @@ describe("MockDataStore", () => {
       const store = new MockDataStore();
 
       const questionnaire1 = store.createQuestionnaire(
-        merge({}, seedData.questionnaires[1], { id: 1 })
+        merge({}, seedData.questionnaires[1], { id: "1" })
       );
       const questionnaire2 = store.createQuestionnaire(
-        merge({}, seedData.questionnaires[1], { id: 2 })
+        merge({}, seedData.questionnaires[1], { id: "2" })
       );
 
       expect(store.getQuestionnaires()).toEqual(
@@ -132,9 +132,9 @@ describe("MockDataStore", () => {
   describe("section", () => {
     it("should be possible to add a section to a questionnaire", () => {
       const store = new MockDataStore();
-      store.createQuestionnaire(merge({}, { id: 1, sections: [] }));
+      store.createQuestionnaire(merge({}, { id: "1", sections: [] }));
 
-      const section = store.createSection(merge({}, { questionnaireId: 1 }));
+      const section = store.createSection(merge({}, { questionnaireId: "1" }));
 
       expect(store.getSection(2)).toEqual(section);
       expect(store.getQuestionnaire(1).sections).toEqual(
@@ -176,7 +176,7 @@ describe("MockDataStore", () => {
     });
 
     it("should be possible to add a page to a section", () => {
-      const page = store.createPage(merge({}, { sectionId: 1 }));
+      const page = store.createPage(merge({}, { sectionId: "1" }));
 
       expect(store.getPage(2)).toEqual(page);
       expect(store.getSection(1).pages).toEqual(expect.arrayContaining([page]));
@@ -203,7 +203,7 @@ describe("MockDataStore", () => {
 
     it("should be possible to delete a page containing answers", () => {
       const page = store.getPage(1);
-      store.createAnswer({ label: "test answer", questionPageId: 1 });
+      store.createAnswer({ label: "test answer", questionPageId: "1" });
 
       store.deletePage(merge({}, page));
 
@@ -224,7 +224,7 @@ describe("MockDataStore", () => {
 
       const answer = store.createAnswer({
         label: "test answer",
-        questionPageId: 1
+        questionPageId: "1"
       });
 
       expect(store.getAnswer(1)).toEqual(answer);
@@ -236,7 +236,7 @@ describe("MockDataStore", () => {
 
     it("should be possible to update an answer", () => {
       store.createQuestionnaire({});
-      store.createAnswer({ label: "test answer", questionPageId: 1 });
+      store.createAnswer({ label: "test answer", questionPageId: "1" });
 
       store.updateAnswer(
         merge({}, store.getAnswer(1), { label: "updated answer" })
@@ -249,7 +249,7 @@ describe("MockDataStore", () => {
       store.createQuestionnaire({});
       const answer = store.createAnswer({
         label: "test answer",
-        questionPageId: 1
+        questionPageId: "1"
       });
 
       expect(values(store.answers)).toHaveLength(1);
@@ -293,26 +293,28 @@ describe("MockDataStore", () => {
       store.createOption(options[0]);
       store.createOption(options[1]);
 
-      expect(store.getOption(1).id).toEqual(1);
-      expect(store.getOption(2).id).toEqual(2);
+      expect(store.getOption("1").id).toEqual("1");
+      expect(store.getOption("2").id).toEqual("2");
     });
 
     it("should continue to increment Ids even if option deleted", () => {
       store.createOption(options[0]);
       store.createOption(options[1]);
-      store.deleteOption({ id: 1 });
-      store.deleteOption({ id: 2 });
+      store.deleteOption({ id: "1" });
+      store.deleteOption({ id: "2" });
 
       store.createOption(options[2]);
 
-      expect(store.getOption(3).id).toEqual(3);
+      expect(store.getOption("3").id).toEqual("3");
     });
 
     it("should add the new option to an answer if answerId specified", () => {
       store.createQuestionnaire({});
-      store.createAnswer({ label: "Checkbox answer", questionPageId: 1 });
+      store.createAnswer({ label: "Checkbox answer", questionPageId: "1" });
 
-      const option = store.createOption(merge({}, options[0], { answerId: 1 }));
+      const option = store.createOption(
+        merge({}, options[0], { answerId: "1" })
+      );
 
       expect(store.getAnswer(1).options).toContain(option);
     });
@@ -332,26 +334,28 @@ describe("MockDataStore", () => {
 
     it("should have 0 options in the store after removing an option", () => {
       store.createOption(options[0]);
-      store.deleteOption({ id: 1 });
+      store.deleteOption({ id: "1" });
 
       expect(values(store.options)).toHaveLength(0);
     });
 
     it("should return undefined when trying to retrieve a deleted option from the store", () => {
       store.createOption(options[0]);
-      store.deleteOption({ id: 1 });
+      store.deleteOption({ id: "1" });
 
-      expect(store.getOption(1)).toBeUndefined();
+      expect(store.getOption("1")).toBeUndefined();
     });
 
     it("should remove the option from the answer when option is deleted", () => {
       store.createQuestionnaire({});
-      store.createAnswer({ label: "Checkbox answer", questionPageId: 1 });
-      const option = store.createOption(merge({}, options[0], { answerId: 1 }));
+      store.createAnswer({ label: "Checkbox answer", questionPageId: "1" });
+      const option = store.createOption(
+        merge({}, options[0], { answerId: "1" })
+      );
 
-      store.deleteOption({ id: 1 });
+      store.deleteOption({ id: "1" });
 
-      expect(store.getAnswer(1).options).not.toContain(option);
+      expect(store.getAnswer("1").options).not.toContain(option);
     });
 
     describe("answer specific option behaviour", () => {
@@ -360,7 +364,7 @@ describe("MockDataStore", () => {
         store.createAnswer({
           label: "Checkbox answer",
           type: "Checkbox",
-          questionPageId: 1
+          questionPageId: "1"
         });
 
         expect(store.getAnswer(1).options).toHaveLength(1);
@@ -371,7 +375,7 @@ describe("MockDataStore", () => {
         store.createAnswer({
           label: "Checkbox answer",
           type: "Radio",
-          questionPageId: 1
+          questionPageId: "1"
         });
 
         expect(store.getAnswer(1).options).toHaveLength(2);

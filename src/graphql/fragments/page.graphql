@@ -1,0 +1,6 @@
+fragment Page on QuestionPage {
+  id: newId
+  title
+  description
+  guidance
+}

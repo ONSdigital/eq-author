@@ -12,7 +12,7 @@ describe("Option", () => {
   let wrapper;
 
   const option = {
-    id: 1,
+    id: "1",
     label: "",
     description: ""
   };

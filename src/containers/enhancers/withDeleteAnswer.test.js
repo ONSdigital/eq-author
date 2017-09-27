@@ -2,6 +2,7 @@ import {
   mapMutateToProps,
   deleteUpdater
 } from "containers/enhancers/withDeleteAnswer";
+import fragment from "graphql/pageFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
   let mutate, result;
@@ -9,13 +10,13 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
 
   beforeEach(() => {
     deletedAnswer = {
-      id: 2,
-      sectionId: 2
+      id: "2",
+      sectionId: "2"
     };
 
     currentPage = {
-      id: 1,
-      sectionId: 1,
+      id: "1",
+      sectionId: "1",
       answers: [deletedAnswer]
     };
 
@@ -30,24 +31,19 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
 
   describe("deleteUpdater", () => {
     it("should remove the answer from the cache", () => {
-      const writeFragment = jest.fn();
-      const readFragment = jest.fn().mockImplementation(() => currentPage);
       const id = `QuestionPage${currentPage.id}`;
+      const writeFragment = jest.fn();
+      const readFragment = jest.fn(() => currentPage);
 
       const updater = deleteUpdater(currentPage.id, deletedAnswer.id);
       updater({ readFragment, writeFragment }, result);
 
-      expect(readFragment).toHaveBeenCalledWith(
-        expect.objectContaining({ id })
-      );
-
-      expect(writeFragment).toHaveBeenCalledWith(
-        expect.objectContaining({
-          id,
-          data: currentPage
-        })
-      );
-
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: currentPage
+      });
       expect(currentPage.answers).not.toContain(deletedAnswer);
     });
   });
@@ -68,7 +64,7 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
         expect(mutate).toHaveBeenCalledWith(
           expect.objectContaining({
             variables: {
-              id: deletedAnswer.id
+              input: { id: deletedAnswer.id }
             }
           })
         );

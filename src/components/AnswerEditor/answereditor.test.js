@@ -32,7 +32,7 @@ describe("Answer Editor", () => {
     };
 
     mockAnswer = {
-      id: 1,
+      id: "1",
       title: "",
       description: "",
       type: TEXTFIELD
@@ -43,7 +43,7 @@ describe("Answer Editor", () => {
       type: CHECKBOX,
       options: [
         {
-          id: 1,
+          id: "1",
           label: "",
           description: ""
         }

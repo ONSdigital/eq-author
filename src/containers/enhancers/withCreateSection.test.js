@@ -3,10 +3,11 @@ import {
   createUpdater,
   redirectToNewPage
 } from "./withCreateSection";
+import fragment from "graphql/questionnaireFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
   const questionnaire = {
-    id: 1,
+    id: "1",
     title: "My Questionnaire",
     sections: []
   };
@@ -19,11 +20,11 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
     };
 
     newPage = {
-      id: 5
+      id: "5"
     };
 
     newSection = {
-      id: 4,
+      id: "4",
       title: "New Section",
       pages: [newPage]
     };
@@ -44,27 +45,20 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
 
   describe("createUpdater", () => {
     it("should update the cache pass and the result to be the correct page", () => {
-      const readQuery = jest.fn().mockImplementation(({ query, variables }) => {
-        return { questionnaire };
+      const id = `Questionnaire${questionnaire.id}`;
+      const readFragment = jest.fn(() => questionnaire);
+      const writeFragment = jest.fn();
+
+      const updater = createUpdater(questionnaire.id);
+      updater({ readFragment, writeFragment }, result);
+
+      expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+      expect(writeFragment).toHaveBeenCalledWith({
+        id,
+        fragment,
+        data: questionnaire
       });
-
-      const writeQuery = jest.fn();
-
-      const updater = createUpdater(questionnaire.id, newSection.id);
-      updater({ readQuery, writeQuery }, result);
-
-      expect(readQuery).toHaveBeenCalledWith(
-        expect.objectContaining({ variables: { id: questionnaire.id } })
-      );
-
-      expect(writeQuery).toHaveBeenCalledWith(
-        expect.objectContaining({
-          variables: { id: questionnaire.id },
-          data: {
-            questionnaire
-          }
-        })
-      );
+      expect(questionnaire.sections).toContain(newSection);
     });
   });
 

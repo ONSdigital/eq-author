@@ -1,24 +1,10 @@
-mutation createQuestionnaire(
-  $title: String!
-  $description: String!
-  $surveyId: String!
-  $theme: String!
-  $legalBasis: LegalBasis!
-  $navigation: Boolean
-) {
-  createQuestionnaire(
-    title: $title
-    description: $description
-    surveyId: $surveyId
-    theme: $theme
-    legalBasis: $legalBasis
-    navigation: $navigation
-  ) {
-    id
+mutation createQuestionnaire($input: CreateQuestionnaireInput!) {
+  createQuestionnaire(input: $input) {
+    id: newId
     sections {
-      id
+      id: newId
       pages {
-        id
+        id: newId
       }
     }
   }
