@@ -18,7 +18,6 @@ const StyledSpan = styled.span`
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 1;
 `;
 
 const FieldWrapper = styled.div`
@@ -26,12 +25,12 @@ const FieldWrapper = styled.div`
   width: 100%;
   margin-bottom: 1em;
   position: relative;
+  overflow: hidden;
 `;
 
-const CurrencyComponent = props =>
-  <StyledSpan>
-    {props.currencyUnit}
-  </StyledSpan>;
+const CurrencyComponent = props => (
+  <StyledSpan>{props.currencyUnit}</StyledSpan>
+);
 
 CurrencyComponent.propTypes = {
   currencyUnit: PropTypes.string
@@ -41,12 +40,13 @@ CurrencyComponent.defaultProps = {
   currencyUnit: "£"
 };
 
-const CurrencyAnswer = props =>
+const CurrencyAnswer = props => (
   <BasicAnswer {...props}>
     <FieldWrapper>
       <CurrencyComponent />
       <DummyTextInput />
     </FieldWrapper>
-  </BasicAnswer>;
+  </BasicAnswer>
+);
 
 export default CurrencyAnswer;
