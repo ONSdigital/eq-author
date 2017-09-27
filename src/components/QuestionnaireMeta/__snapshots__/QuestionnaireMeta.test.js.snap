@@ -1,125 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireMeta should render 1`] = `
-<QuestionnaireMeta__Center>
-  <Panel__CenteredPanel>
-    <Form
-      onSubmit={[Function]}
+<Panel__CenteredPanel>
+  <Form
+    onSubmit={[Function]}
+  >
+    <Field
+      id="title"
     >
-      <Field
-        id="title"
+      <Label>
+        Questionnaire Title
+      </Label>
+      <withChangeHandler(Input)
+        autoFocus={true}
+        defaultValue="I am the title"
+        onBlur={[Function]}
+        onChange={[Function]}
+        required={true}
+      />
+    </Field>
+    <Field
+      id="description"
+    >
+      <Label>
+        Description
+      </Label>
+      <withChangeHandler(TextArea)
+        defaultValue="I am the description"
+        onBlur={[Function]}
+        onChange={[Function]}
+        required={true}
+        rows={4}
+      />
+    </Field>
+    <Grid__Grid
+      align="top"
+      fillHeight={true}
+    >
+      <Column__Column
+        cols={6}
       >
-        <Label>
-          Questionnaire Title
-        </Label>
-        <withChangeHandler(Input)
-          autoFocus={true}
-          defaultValue="I am the title"
-          onBlur={[Function]}
-          onChange={[Function]}
-          required={true}
-        />
-      </Field>
-      <Field
-        id="description"
-      >
-        <Label>
-          Description
-        </Label>
-        <withChangeHandler(TextArea)
-          defaultValue="I am the description"
-          onBlur={[Function]}
-          onChange={[Function]}
-          required={true}
-          rows={4}
-        />
-      </Field>
-      <Grid__Grid
-        align="top"
-        fillHeight={true}
-      >
-        <Column__Column
-          cols={6}
+        <Field
+          id="surveyId"
         >
-          <Field
-            id="surveyId"
-          >
-            <Label>
-              Survey ID
-            </Label>
-            <withChangeHandler(Input)
-              onBlur={[Function]}
-              onChange={[Function]}
-              required={true}
-            />
-          </Field>
-        </Column__Column>
-      </Grid__Grid>
-      <Grid__Grid
-        align="top"
-        fillHeight={true}
+          <Label>
+            Survey ID
+          </Label>
+          <withChangeHandler(Input)
+            onBlur={[Function]}
+            onChange={[Function]}
+            required={true}
+          />
+        </Field>
+      </Column__Column>
+    </Grid__Grid>
+    <Grid__Grid
+      align="top"
+      fillHeight={true}
+    >
+      <Column__Column
+        cols={6}
       >
-        <Column__Column
-          cols={6}
+        <Field
+          id="theme"
         >
-          <Field
-            id="theme"
-          >
-            <Label>
-              Theme
-            </Label>
-            <withChangeHandler(Select)
-              defaultValue="default"
-              onBlur={[Function]}
-              onChange={[Function]}
-              options={
-                Array [
-                  "default",
-                  "census",
-                ]
-              }
-            />
-          </Field>
-        </Column__Column>
-        <Column__Column
-          cols={6}
-        >
-          <Field
-            id="legalBasis"
-          >
-            <Label>
-              Legal Basis
-            </Label>
-            <withChangeHandler(Select)
-              defaultValue="StatisticsOfTradeAct"
-              onBlur={[Function]}
-              onChange={[Function]}
-              options={
-                Array [
-                  "StatisticsOfTradeAct",
-                  "Voluntary",
-                ]
-              }
-            />
-          </Field>
-        </Column__Column>
-      </Grid__Grid>
-      <Field
-        id="navigation"
+          <Label>
+            Theme
+          </Label>
+          <withChangeHandler(Select)
+            defaultValue="default"
+            onBlur={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                "default",
+                "census",
+              ]
+            }
+          />
+        </Field>
+      </Column__Column>
+      <Column__Column
+        cols={6}
       >
-        <withChangeHandler(Input)
-          onBlur={[Function]}
-          onChange={[Function]}
-          type="checkbox"
-        />
-        <Label
-          inline={true}
+        <Field
+          id="legalBasis"
         >
-          Navigation
-        </Label>
-      </Field>
-      Children
-    </Form>
-  </Panel__CenteredPanel>
-</QuestionnaireMeta__Center>
+          <Label>
+            Legal Basis
+          </Label>
+          <withChangeHandler(Select)
+            defaultValue="StatisticsOfTradeAct"
+            onBlur={[Function]}
+            onChange={[Function]}
+            options={
+              Array [
+                "StatisticsOfTradeAct",
+                "Voluntary",
+              ]
+            }
+          />
+        </Field>
+      </Column__Column>
+    </Grid__Grid>
+    <Field
+      id="navigation"
+    >
+      <withChangeHandler(Input)
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <Label
+        inline={true}
+      >
+        Navigation
+      </Label>
+    </Field>
+    Children
+  </Form>
+</Panel__CenteredPanel>
 `;

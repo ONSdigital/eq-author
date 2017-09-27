@@ -85,58 +85,60 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     <Column__Column
       gutters={false}
     >
-      <EditorSurface
-        focused="section"
-        onFocus={[Function]}
-        onUpdatePage={[Function]}
-        onUpdateSection={[Function]}
-        page={
-          Object {
-            "answers": Array [
-              Object {
-                "id": "1",
-                "label": "",
-                "options": Array [
-                  Object {
-                    "id": "1",
-                  },
-                ],
-              },
-            ],
-            "description": "",
-            "guidance": "",
-            "id": "1",
-            "title": "",
-            "type": "General",
+      <Canvas__Canvas>
+        <EditorSurface
+          focused="section"
+          onFocus={[Function]}
+          onUpdatePage={[Function]}
+          onUpdateSection={[Function]}
+          page={
+            Object {
+              "answers": Array [
+                Object {
+                  "id": "1",
+                  "label": "",
+                  "options": Array [
+                    Object {
+                      "id": "1",
+                    },
+                  ],
+                },
+              ],
+              "description": "",
+              "guidance": "",
+              "id": "1",
+              "title": "",
+              "type": "General",
+            }
           }
-        }
-        section={
-          Object {
-            "id": "2",
-            "pages": Array [
-              Object {
-                "answers": Array [
-                  Object {
-                    "id": "1",
-                    "label": "",
-                    "options": Array [
-                      Object {
-                        "id": "1",
-                      },
-                    ],
-                  },
-                ],
-                "description": "",
-                "guidance": "",
-                "id": "1",
-                "title": "",
-                "type": "General",
-              },
-            ],
-            "title": "",
+          section={
+            Object {
+              "id": "2",
+              "pages": Array [
+                Object {
+                  "answers": Array [
+                    Object {
+                      "id": "1",
+                      "label": "",
+                      "options": Array [
+                        Object {
+                          "id": "1",
+                        },
+                      ],
+                    },
+                  ],
+                  "description": "",
+                  "guidance": "",
+                  "id": "1",
+                  "title": "",
+                  "type": "General",
+                },
+              ],
+              "title": "",
+            }
           }
-        }
-      />
+        />
+      </Canvas__Canvas>
     </Column__Column>
     <Column__Column
       cols={2}

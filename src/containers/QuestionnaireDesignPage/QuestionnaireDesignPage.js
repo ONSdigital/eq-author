@@ -6,6 +6,7 @@ import CustomPropTypes from "custom-prop-types";
 
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
+import MainCanvas from "components/MainCanvas";
 
 import EditorSurface from "components/EditorSurface";
 
@@ -85,14 +86,16 @@ export class QuestionnaireDesignPage extends Component {
             />
           </Column>
           <Column gutters={false}>
-            <EditorSurface
-              section={section}
-              page={page}
-              onUpdatePage={onUpdatePage}
-              onUpdateSection={onUpdateSection}
-              focused={this.state.focused}
-              onFocus={this.handleFocus}
-            />
+            <MainCanvas>
+              <EditorSurface
+                section={section}
+                page={page}
+                onUpdatePage={onUpdatePage}
+                onUpdateSection={onUpdateSection}
+                focused={this.state.focused}
+                onFocus={this.handleFocus}
+              />
+            </MainCanvas>
           </Column>
           <Column cols={2} gutters={false} />
         </Grid>
