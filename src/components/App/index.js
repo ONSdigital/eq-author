@@ -22,17 +22,32 @@ injectGlobal`
   }
   body {
     font-family: 'Lato', sans-serif;
+    overflow: hidden;
     color: ${colors.text};
   }
   input, select, textarea, button {
     font-family:inherit;
   }
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+      border-radius: 0;
+      box-shadow: none;
+      background: #333;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      border-radius: 0;
+      box-shadow: none;
+
+  }
 `;
 
-const App = ({ children }) =>
-  <ThemeProvider theme={theme}>
-    {children}
-  </ThemeProvider>;
+const App = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
 
 App.propTypes = {
   children: PropTypes.element.isRequired
