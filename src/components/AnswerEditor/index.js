@@ -7,14 +7,22 @@ import DeleteButton from "components/DeleteButton";
 import TextAnswer from "components/Answers/TextAnswer";
 import NumberAnswer from "components/Answers/NumberAnswer";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
-import { TEXTFIELD, NUMBER, CURRENCY, CHECKBOX, RADIO } from "constants/answer-types";
+import {
+  TEXTFIELD,
+  NUMBER,
+  CURRENCY,
+  TEXTAREA,
+  CHECKBOX,
+  RADIO
+} from "constants/answer-types";
 import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 import Tooltip from "components/Tooltip";
+import TextAreaAnswer from "components/Answers/TextAreaAnswer";
 
 export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
-  right: .8em;
-  top: .7em;
+  right: 0.8em;
+  top: 0.7em;
   padding: 0;
 `;
 
@@ -31,6 +39,8 @@ class AnswerEditor extends React.Component {
         return <NumberAnswer {...this.props} />;
       case CURRENCY:
         return <CurrencyAnswer {...this.props} />;
+      case TEXTAREA:
+        return <TextAreaAnswer {...this.props} />;
       case CHECKBOX:
         return <MultipleChoiceAnswer type={answer.type} {...this.props} />;
       case RADIO:

@@ -90,7 +90,6 @@ class AnswerTypeGrid extends React.Component {
             type="TextArea"
             title="Textarea"
             onClick={this.handleSelect}
-            disabled
           />
           <AnswerTypeButton
             type="Currency"
