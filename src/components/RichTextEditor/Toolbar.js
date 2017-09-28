@@ -19,7 +19,7 @@ const ButtonGroup = styled.div`
 
 const activeState = css`
   opacity: 1 !important;
-  background-color: #f5f5f5;
+  background-color: ${colors.lighterGrey};
 `;
 
 export const Button = styled(IconButton)`
@@ -27,7 +27,7 @@ export const Button = styled(IconButton)`
   opacity: 0.7;
   &:hover,
   &:focus {
-    background-color: #f5f5f5;
+    background-color: ${colors.lighterGrey};
     outline: none;
     opacity: 0.8;
   }
@@ -150,14 +150,13 @@ class ToolBar extends React.Component {
 
     return (
       <TransitionGroup component={Layer}>
-        {this.props.visible &&
+        {this.props.visible && (
           <PopupTransition duration={200}>
             <ToolbarPanel {...this.props} onFocus={onFocus}>
-              <ButtonGroup>
-                {buttons.map(this.renderButton)}
-              </ButtonGroup>
+              <ButtonGroup>{buttons.map(this.renderButton)}</ButtonGroup>
             </ToolbarPanel>
-          </PopupTransition>}
+          </PopupTransition>
+        )}
       </TransitionGroup>
     );
   }

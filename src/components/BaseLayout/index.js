@@ -12,7 +12,7 @@ import { Grid, Column } from "components/Grid";
 import { colors } from "constants/theme";
 
 const Wrapper = styled.div`
-  background-color: #f5f5f5;
+  background-color: ${colors.lighterGrey};
   height: 100vh;
   min-width: 80em;
   display: flex;

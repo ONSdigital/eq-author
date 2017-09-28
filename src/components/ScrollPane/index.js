@@ -7,7 +7,7 @@ const MainCanvas = styled.div`
   position: relative;
   background-color: rgba(0, 0, 0, 0);
   -webkit-background-clip: text;
-  transition: background-color 0.8s;
+  transition: background-color 0.2s;
 
   ::-webkit-scrollbar-thumb {
     border-radius: 0;

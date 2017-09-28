@@ -7,7 +7,7 @@ import DummyTextInput from "components/Answers/Dummy/TextInput";
 
 const StyledSpan = styled.span`
   display: inline-block;
-  background-color: #f5f5f5;
+  background-color: ${colors.lighterGrey};
   border-right: 1px solid ${colors.borders};
   border-radius: ${radius} 0 0 ${radius};
   padding: 0.6em 0;
