@@ -2,13 +2,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const numCols = 12;
-
 const colWidth = num => `${num / numCols * 100}%`;
 
 const Column = styled.div`
   flex: 1 1 auto;
   padding: ${({ gutters }) => (gutters !== false ? "0 0.5em" : "0")};
-  min-width: ${({ cols }) => colWidth(cols)};
   max-width: ${({ cols }) => colWidth(cols)};
   margin-left: ${({ offset }) => (offset ? colWidth(offset) : "0")};
   &:first-child {
@@ -23,6 +21,10 @@ Column.propTypes = {
   cols: PropTypes.number,
   gutters: PropTypes.bool,
   offset: PropTypes.number
+};
+
+Column.defaultProps = {
+  cols: numCols
 };
 
 export default Column;

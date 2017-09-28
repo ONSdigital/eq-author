@@ -12,7 +12,7 @@ import { colors } from "constants/theme";
 
 const Wrapper = styled.div`
   background-color: #f5f5f5;
-  min-height: 100vh;
+  height: 100vh;
   min-width: 80em;
   display: flex;
   flex-direction: column;

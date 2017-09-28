@@ -22,10 +22,11 @@ injectGlobal`
   }
   body {
     font-family: 'Lato', sans-serif;
+    overflow: hidden;
     color: ${colors.text};
   }
   input, select, textarea, button {
-    font-family:inherit;
+    font-family: inherit;
   }
 `;
 
