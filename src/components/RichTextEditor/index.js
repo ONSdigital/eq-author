@@ -5,19 +5,21 @@ import {
   Editor,
   EditorState,
   RichUtils,
-  convertFromRaw,
-  convertToRaw
+  convertToRaw,
+  convertFromHTML,
+  ContentState,
+  Modifier
 } from "draft-js";
-
 import "draft-js/dist/Draft.css";
+import draftToHtml from "draftjs-to-html";
 
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
 const { toggleBlockType, toggleInlineStyle } = RichUtils;
-const { createWithContent, createEmpty } = EditorState;
+const { createWithContent } = EditorState;
 
 const styleMap = {
-  emphasis: {
+  ITALIC: {
     backgroundColor: "#cbe2c8"
   }
 };
@@ -28,6 +30,20 @@ const heading = css`
 `;
 
 const list = css`margin-left: 1.5em;`;
+
+const sizes = {
+  large: css`
+    font-size: 1.75em;
+    font-weight: 700;
+  `,
+
+  medium: css`
+    font-size: 1.125em;
+    font-weight: 700;
+  `,
+
+  small: css`font-size: 0.875em;`
+};
 
 const Wrapper = styled.div`
   position: relative;
@@ -49,47 +65,65 @@ const Wrapper = styled.div`
     ${list};
   }
 
+  ${props => sizes[props.size]};
+
   .public-DraftEditorPlaceholder-root {
     ${props => props.placeholderStyle === "header-two" && heading};
     ${props => props.placeholderStyle === "unordered-list-item" && list};
+    color: #a3a3a3;
   }
 `;
 
+Wrapper.defaultProps = {
+  size: "small"
+};
+
+const toHTML = editorState =>
+  draftToHtml(convertToRaw(editorState.getCurrentContent()));
+
+const fromHTML = html => {
+  const { contentBlocks, entityMap } = convertFromHTML(html);
+  const state = ContentState.createFromBlockArray(contentBlocks, entityMap);
+
+  return createWithContent(state);
+};
+
 class RichTextEditor extends React.Component {
   static defaultProps = {
-    placeholder: ""
+    placeholder: "",
+    multiline: false
   };
 
   static propTypes = {
-    value: PropTypes.shape({
-      entityMap: PropTypes.object,
-      blocks: PropTypes.arrayOf(
-        PropTypes.shape({
-          key: PropTypes.string,
-          text: PropTypes.string,
-          type: PropTypes.string,
-          depth: PropTypes.number,
-          inlineStyleRanges: PropTypes.array,
-          entityRanges: PropTypes.array,
-          data: PropTypes.object
-        })
-      )
-    }),
+    value: PropTypes.string,
     placeholder: PropTypes.string,
     onUpdate: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    multiline: PropTypes.bool,
+    size: PropTypes.oneOf(Object.keys(sizes))
   };
 
   constructor(props) {
     super(props);
 
     const editorState = props.value
-      ? createWithContent(convertFromRaw(props.value))
-      : createEmpty();
+      ? fromHTML(props.value)
+      : EditorState.createEmpty();
 
     this.state = {
       editorState
     };
+  }
+
+  focus() {
+    if (this.editor) {
+      this.editor.focus();
+    }
+  }
+
+  getHTML() {
+    return toHTML(this.state.editorState);
   }
 
   setEditorNode = editor => {
@@ -109,9 +143,11 @@ class RichTextEditor extends React.Component {
   };
 
   handleBlur = () => {
-    const content = this.state.editorState.getCurrentContent();
-    const rawState = convertToRaw(content);
-    this.props.onUpdate(rawState);
+    this.props.onUpdate({
+      name: this.props.id,
+      value: this.getHTML()
+    });
+
     this.setState({ focused: false });
   };
 
@@ -138,14 +174,34 @@ class RichTextEditor extends React.Component {
       : this.hasCurrentStyle(editorState, style);
   };
 
+  handlePaste = text => {
+    this.handleChange(
+      EditorState.push(
+        this.state.editorState,
+        Modifier.replaceText(
+          this.state.editorState.getCurrentContent(),
+          this.state.editorState.getSelection(),
+          text.replace(/\n/g, " ")
+        )
+      )
+    );
+
+    return "handled";
+  };
+
+  handleReturn = () => {
+    return "handled";
+  };
+
   render() {
     const { editorState, focused } = this.state;
     const contentState = editorState.getCurrentContent();
 
-    let { placeholder, label, ...otherProps } = this.props;
+    let { placeholder, label, multiline, size, ...otherProps } = this.props;
 
     return (
       <Wrapper
+        size={size}
         placeholderStyle={contentState
           .getBlockMap()
           .first()
@@ -169,6 +225,8 @@ class RichTextEditor extends React.Component {
             onFocus={this.handleFocus}
             ref={this.setEditorNode}
             customStyleMap={styleMap}
+            handleReturn={multiline ? undefined : this.handleReturn}
+            handlePastedText={multiline ? undefined : this.handlePaste}
             spellCheck
           />
         </div>

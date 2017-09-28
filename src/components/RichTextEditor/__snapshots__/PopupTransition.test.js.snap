@@ -8,9 +8,9 @@ exports[`components/Popout/PopupTransition should render 1`] = `
   -webkit-transition: opacity 50ms ease-in,-webkit-transform 200ms cubic-bezier(0.175,0.885,0.32,1.4);
   -webkit-transition: opacity 50ms ease-in,transform 200ms cubic-bezier(0.175,0.885,0.32,1.4);
   transition: opacity 50ms ease-in,transform 200ms cubic-bezier(0.175,0.885,0.32,1.4);
-  -webkit-transform: translateY(-3em) scale(1);
-  -ms-transform: translateY(-3em) scale(1);
-  transform: translateY(-3em) scale(1);
+  -webkit-transform: translateY(-3rem) scale(1);
+  -ms-transform: translateY(-3rem) scale(1);
+  transform: translateY(-3rem) scale(1);
 }
 
 .c0.popup-enter {
@@ -22,16 +22,16 @@ exports[`components/Popout/PopupTransition should render 1`] = `
 
 .c0.popup-enter-active {
   opacity: 1;
-  -webkit-transform: translateY(-3em) scale(1);
-  -ms-transform: translateY(-3em) scale(1);
-  transform: translateY(-3em) scale(1);
+  -webkit-transform: translateY(-3rem) scale(1);
+  -ms-transform: translateY(-3rem) scale(1);
+  transform: translateY(-3rem) scale(1);
 }
 
 .c0.popup-exit {
   opacity: 1;
-  -webkit-transform: translateY(-3em) scale(1);
-  -ms-transform: translateY(-3em) scale(1);
-  transform: translateY(-3em) scale(1);
+  -webkit-transform: translateY(-3rem) scale(1);
+  -ms-transform: translateY(-3rem) scale(1);
+  transform: translateY(-3rem) scale(1);
   -webkit-transition: opacity 50ms ease-in,-webkit-transform 200ms ease-in;
   -webkit-transition: opacity 50ms ease-in,transform 200ms ease-in;
   transition: opacity 50ms ease-in,transform 200ms ease-in;

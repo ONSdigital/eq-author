@@ -30,13 +30,13 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       }
     }
 
-    handleChange = ({ name, value }) => {
-      this.setState({
-        [entityPropName]: {
-          ...this.state[entityPropName],
-          [name]: value
-        }
-      });
+    handleChange = ({ name, value }, cb) => {
+      const entity = {
+        ...this.state[entityPropName],
+        [name]: value
+      };
+
+      this.setState({ [entityPropName]: entity }, cb);
     };
 
     handleUpdate = () => {

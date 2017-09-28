@@ -31,10 +31,9 @@ const section = {
 };
 
 describe("EditorSurface", () => {
-  let wrapper;
-  let mockMutations;
+  let wrapper, mockMutations;
 
-  const createWrapper = (props, render = mount) => {
+  const createWrapper = (props = {}, render = shallow) => {
     return render(
       <EditorSurface
         section={section}
@@ -53,17 +52,22 @@ describe("EditorSurface", () => {
       onFocus: jest.fn(),
       onBlur: jest.fn()
     };
-    wrapper = createWrapper();
   });
 
   it("should render", () => {
-    wrapper = createWrapper({}, shallow);
-
+    wrapper = createWrapper();
     expect(wrapper).toMatchSnapshot();
   });
 
   // eslint-disable-next-line jest/no-disabled-tests
   describe("focus behaviour", () => {
+    let sectionSpy, pageSpy;
+
+    beforeEach(() => {
+      sectionSpy = { focus: jest.fn() };
+      pageSpy = { focus: jest.fn() };
+    });
+
     function createWrapperWithTitles({ section = "", page = "" } = {}) {
       return createWrapper(
         {
@@ -79,23 +83,21 @@ describe("EditorSurface", () => {
             answers: []
           }
         },
-        mount
+        shallow
       );
     }
 
     describe("when section title is empty", () => {
       describe("and page title is populated", () => {
         it("should focus on section title", () => {
-          wrapper = createWrapperWithTitles({
-            page: "a page title"
-          });
+          wrapper = createWrapperWithTitles({ page: "a page title" });
 
-          const sectionInput = wrapper.find(
-            "#section-editor input[name='title']"
-          );
-          expect(sectionInput.matchesElement(document.activeElement)).toBe(
-            true
-          );
+          wrapper.instance().setSectionTitle(sectionSpy);
+          wrapper.instance().setPageTitle(pageSpy);
+          wrapper.instance().setFocusOnTitle();
+
+          expect(sectionSpy.focus).toHaveBeenCalled();
+          expect(pageSpy.focus).not.toHaveBeenCalled();
         });
       });
 
@@ -103,12 +105,12 @@ describe("EditorSurface", () => {
         it("should focus on section title", () => {
           wrapper = createWrapperWithTitles();
 
-          const sectionInput = wrapper.find(
-            "#section-editor input[name='title']"
-          );
-          expect(sectionInput.matchesElement(document.activeElement)).toBe(
-            true
-          );
+          wrapper.instance().setSectionTitle(sectionSpy);
+          wrapper.instance().setPageTitle(pageSpy);
+          wrapper.instance().setFocusOnTitle();
+
+          expect(sectionSpy.focus).toHaveBeenCalled();
+          expect(pageSpy.focus).not.toHaveBeenCalled();
         });
       });
     });
@@ -116,16 +118,14 @@ describe("EditorSurface", () => {
     describe("when section title is populated", () => {
       describe("and page title is empty", () => {
         it("should focus on page title", () => {
-          wrapper = createWrapperWithTitles({
-            section: "a section title"
-          });
+          wrapper = createWrapperWithTitles({ section: "a section title" });
 
-          const sectionInput = wrapper.find(
-            "#question-page-editor input[name='title']"
-          );
-          expect(sectionInput.matchesElement(document.activeElement)).toBe(
-            true
-          );
+          wrapper.instance().setSectionTitle(sectionSpy);
+          wrapper.instance().setPageTitle(pageSpy);
+          wrapper.instance().setFocusOnTitle();
+
+          expect(pageSpy.focus).toHaveBeenCalled();
+          expect(sectionSpy.focus).not.toHaveBeenCalled();
         });
       });
 
@@ -136,24 +136,21 @@ describe("EditorSurface", () => {
             page: "a page title"
           });
 
-          const pageInput = wrapper.find(
-            "#question-page-editor input[name='title']"
-          );
-          const sectionInput = wrapper.find(
-            "#section-editor input[name='title']"
-          );
+          wrapper.instance().setSectionTitle(sectionSpy);
+          wrapper.instance().setPageTitle(pageSpy);
+          wrapper.instance().setFocusOnTitle();
 
-          expect(pageInput.matchesElement(document.activeElement)).toBe(false);
-          expect(sectionInput.matchesElement(document.activeElement)).toBe(
-            false
-          );
+          expect(pageSpy.focus).not.toHaveBeenCalled();
+          expect(sectionSpy.focus).not.toHaveBeenCalled();
         });
       });
     });
 
     describe("when navigating to new page", () => {
       it("should attempt to move focus", () => {
+        wrapper = createWrapper({}, mount);
         const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
+
         wrapper.setProps({
           page: {
             id: "1",
@@ -168,7 +165,8 @@ describe("EditorSurface", () => {
     });
 
     describe("when navigating to same page", () => {
-      it("should attempt to move focus", () => {
+      it("should not attempt to move focus", () => {
+        const wrapper = createWrapper({}, mount);
         const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
         wrapper.setProps({ page });
 

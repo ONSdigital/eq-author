@@ -3,35 +3,45 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
 import Field from "components/Forms/Field";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import RichTextEditor from "components/RichTextEditor";
 import withEntityEditor from "components/withEntityEditor";
 import sectionFragment from "graphql/fragments/section.graphql";
+import { flip, partial } from "lodash";
+
+const titleControls = {
+  emphasis: true
+};
+
+const descriptionControls = {
+  bold: true,
+  emphasis: true
+};
 
 export class StatelessSectionEditor extends React.Component {
   render() {
     const { section, onUpdate, onChange } = this.props;
+    const handleUpdate = partial(flip(onChange), onUpdate);
 
     return (
       <div id="section-editor">
         <Field id="title">
-          <SeamlessInput
+          <RichTextEditor
             placeholder="Section title"
-            size="medium"
             value={section.title}
-            onChange={onChange}
-            onBlur={onUpdate}
             ref={this.props.titleRef}
+            onUpdate={handleUpdate}
+            label="title"
+            controls={titleControls}
+            size="medium"
           />
         </Field>
         <Field id="description">
-          <SeamlessTextArea
-            cols="30"
-            rows="5"
+          <RichTextEditor
             placeholder="Enter a description (optional)…"
             value={section.description}
-            onChange={onChange}
-            onBlur={onUpdate}
+            onUpdate={handleUpdate}
+            label="description"
+            controls={descriptionControls}
           />
         </Field>
       </div>

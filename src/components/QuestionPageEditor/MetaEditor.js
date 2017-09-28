@@ -1,41 +1,62 @@
 import React from "react";
 import Field from "components/Forms/Field";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
+import RichTextEditor from "components/RichTextEditor";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
 
+import { flip, partial } from "lodash";
+
+const titleControls = {
+  emphasis: true
+};
+const descriptionControls = {
+  bold: true,
+  emphasis: true
+};
+const guidanceControls = {
+  heading: true,
+  bold: true,
+  emphasis: true,
+  list: true
+};
+
 export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate } = this.props;
+    const handleUpdate = partial(flip(onChange), onUpdate);
 
     return (
       <div>
         <Field id="title">
-          <SeamlessInput
-            size="large"
+          <RichTextEditor
             placeholder="Question title"
             value={page.title}
-            onChange={onChange}
-            onBlur={onUpdate}
             ref={this.props.titleRef}
+            onUpdate={handleUpdate}
+            label="title"
+            controls={titleControls}
+            size="large"
           />
         </Field>
         <Field id="description">
-          <SeamlessInput
+          <RichTextEditor
             placeholder="Question text (optional)…"
             value={page.description}
-            onChange={onChange}
-            onBlur={onUpdate}
+            onUpdate={handleUpdate}
+            label="guidance"
+            controls={descriptionControls}
           />
         </Field>
         <Field id="guidance">
-          <SeamlessInput
+          <RichTextEditor
             placeholder="Guidance text (optional)…"
             value={page.guidance}
-            onChange={onChange}
-            onBlur={onUpdate}
+            onUpdate={handleUpdate}
+            label="guidance"
+            controls={guidanceControls}
+            multiline
           />
         </Field>
       </div>

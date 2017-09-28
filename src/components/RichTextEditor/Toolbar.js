@@ -72,7 +72,7 @@ export const buttons = [
     title: "Emphasis",
     icon: iconEmphasis,
     type: STYLE_INLINE,
-    style: "emphasis"
+    style: "ITALIC"
   },
   {
     id: "list",
@@ -92,12 +92,7 @@ const Layer = styled.div`
 
 class ToolBar extends React.Component {
   static defaultProps = {
-    controls: {
-      bold: true,
-      emphasis: true,
-      heading: true,
-      list: true
-    },
+    controls: {},
     visible: false
   };
 
@@ -115,11 +110,7 @@ class ToolBar extends React.Component {
   };
 
   renderButton = button => {
-    const { isActiveControl, onToggle } = this.props;
-    const controls = {
-      ...ToolBar.defaultProps.controls,
-      ...this.props.controls
-    };
+    const { isActiveControl, onToggle, controls } = this.props;
 
     return (
       <Button

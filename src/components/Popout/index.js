@@ -17,6 +17,7 @@ const Layer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 10;
 `;
 
 const DefaultTransition = props => (

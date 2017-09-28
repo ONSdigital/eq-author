@@ -4,7 +4,7 @@ import Toolbar, {
   Button
 } from "components/RichTextEditor/Toolbar";
 
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 
 let wrapper, props, buttons;
 
@@ -85,6 +85,18 @@ describe("components/RichTextEditor/Toolbar", () => {
     buttons.forEach((node, i) => {
       node.simulate("KeyDown", { key: "ESC" });
       expect(props.onToggle).not.toHaveBeenLastCalledWith(shape);
+    });
+  });
+
+  describe("Button", () => {
+    it("matches snapshot", () => {
+      const wrapper = mount(<Button icon="foo.svg" title="foo" />);
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should style appropriately when active", () => {
+      const wrapper = mount(<Button active icon="foo.svg" title="foo" />);
+      expect(wrapper).toMatchSnapshot();
     });
   });
 });
