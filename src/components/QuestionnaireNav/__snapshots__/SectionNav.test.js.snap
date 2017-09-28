@@ -10,9 +10,15 @@ exports[`SectionNav should render 1`] = `
     timeout={200}
   >
     <SectionNav__SectionItem>
-      <SectionNav__SectionTitle>
-        Section
-      </SectionNav__SectionTitle>
+      <SectionNav__Link
+        activeClassName="selected"
+        aria-disabled={false}
+        to="/questionnaire/1/design/3/2"
+      >
+        <SectionNav__SectionTitle>
+          Section
+        </SectionNav__SectionTitle>
+      </SectionNav__Link>
       <PageNav
         onDelete={[Function]}
         questionnaire={

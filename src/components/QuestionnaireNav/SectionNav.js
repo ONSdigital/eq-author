@@ -11,6 +11,11 @@ import sectionIcon from "./icon-section.svg";
 import PageNav from "components/QuestionnaireNav/PageNav";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
+import { NavLink } from "react-router-dom";
+
+import { first } from "lodash";
+import { getLink } from "utils/URLUtils";
+
 const duration = 200;
 
 const SectionItem = styled.li`
@@ -35,6 +40,13 @@ const SectionItem = styled.li`
 
   &.section-entered {
     height: auto;
+  }
+`;
+
+const Link = styled(NavLink)`
+  text-decoration: none;
+  &:visited {
+    color: ${colors.text};
   }
 `;
 
@@ -68,6 +80,8 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
+export const getFirstPage = section => first(section.pages) || { id: "-1" };
+
 const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
   <TransitionGroup component={NavList}>
     {questionnaire.sections
@@ -82,7 +96,17 @@ const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
           classNames="section"
         >
           <SectionItem>
-            <SectionTitle>{section.title || "Section Title"}</SectionTitle>
+            <Link
+              to={getLink(
+                questionnaire.id,
+                section.id,
+                getFirstPage(section).id
+              )}
+              aria-disabled={parseInt(getFirstPage(section).id, 10) < 0}
+              activeClassName="selected"
+            >
+              <SectionTitle>{section.title || "Section Title"}</SectionTitle>
+            </Link>
             <PageNav
               section={section}
               questionnaire={questionnaire}

@@ -1,7 +1,7 @@
 import { compose } from "react-apollo";
 import { connect } from "react-redux";
 
-import getUrlParams from "utils/getUrlParams";
+import { getUrlParams } from "utils/URLUtils";
 
 import QuestionnaireMeta from "./QuestionnaireMetaPage";
 import withQuestionnaire from "containers/enhancers/withQuestionnaire";
