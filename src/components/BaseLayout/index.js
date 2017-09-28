@@ -4,6 +4,7 @@ import styled from "styled-components";
 import App from "components/App";
 import Header from "components/Header";
 import Nav from "components/Nav";
+import ScrollPane from "components/ScrollPane";
 import DocumentTitle from "react-document-title";
 
 import CustomPropTypes from "custom-prop-types";
@@ -32,8 +33,8 @@ const NavWrapper = styled.div`
 const Title = styled.h1`
   font-size: 1.4em;
   font-weight: 700;
-  align-self: center;
   margin: 2em 0;
+  text-align: center;
 `;
 
 const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
@@ -51,8 +52,14 @@ const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
           </NavWrapper>
         )}
         <Main>
-          {title && <Title>{title}</Title>}
-          {children}
+          {title ? (
+            <ScrollPane>
+              <Title>{title}</Title>
+              {children}
+            </ScrollPane>
+          ) : (
+            children
+          )}
         </Main>
       </Wrapper>
     </App>

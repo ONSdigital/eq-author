@@ -9,6 +9,7 @@ import Button from "components/Button";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
 import MainCanvas from "components/MainCanvas";
+import ScrollPane from "components/ScrollPane";
 
 const ActionButtonGroup = styled(ButtonGroup)`align-self: flex-start;`;
 
@@ -34,22 +35,24 @@ class QuestionnaireCreatePage extends Component {
     const title = "Create a Questionnaire";
     return (
       <BaseLayout title={title} docTitle={title}>
-        <MainCanvas>
-          <QuestionnaireMeta
-            questionnaire={defaultQuestionnaire}
-            onSubmit={this.handleSubmit}
-            onUpdate={noop}
-          >
-            <ActionButtonGroup horizontal>
-              <Button type="submit" primary>
-                Create
-              </Button>
-              <LinkButton to="/" secondary>
-                Cancel
-              </LinkButton>
-            </ActionButtonGroup>
-          </QuestionnaireMeta>
-        </MainCanvas>
+        <ScrollPane>
+          <MainCanvas>
+            <QuestionnaireMeta
+              questionnaire={defaultQuestionnaire}
+              onSubmit={this.handleSubmit}
+              onUpdate={noop}
+            >
+              <ActionButtonGroup horizontal>
+                <Button type="submit" primary>
+                  Create
+                </Button>
+                <LinkButton to="/" secondary>
+                  Cancel
+                </LinkButton>
+              </ActionButtonGroup>
+            </QuestionnaireMeta>
+          </MainCanvas>
+        </ScrollPane>
       </BaseLayout>
     );
   }

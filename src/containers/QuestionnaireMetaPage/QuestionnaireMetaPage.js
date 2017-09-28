@@ -4,6 +4,7 @@ import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import MainCanvas from "components/MainCanvas";
+import ScrollPane from "components/ScrollPane";
 
 class QuestionnaireMetaPage extends Component {
   static propTypes = {
@@ -25,9 +26,11 @@ class QuestionnaireMetaPage extends Component {
         questionnaire={questionnaire}
         docTitle="Questionnaire Meta"
       >
-        <MainCanvas>
-          <QuestionnaireMeta questionnaire={questionnaire} {...otherProps} />
-        </MainCanvas>
+        <ScrollPane>
+          <MainCanvas>
+            <QuestionnaireMeta questionnaire={questionnaire} {...otherProps} />
+          </MainCanvas>
+        </ScrollPane>
       </BaseLayout>
     );
   }
