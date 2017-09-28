@@ -3,7 +3,7 @@ import React from "react";
 import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import CanvasSection from "./CanvasSection";
-import Canvas from "./Canvas";
+
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
 import { noop, get } from "lodash";
@@ -67,34 +67,32 @@ class EditorSurface extends React.Component {
     const sectionId = getIdForObject(section);
 
     return (
-      <Canvas>
-        <Form onChange={noop} onSubmit={noop}>
-          <TransitionGroup>
-            <SlideTransition key={sectionId}>
-              <CanvasSection
-                id={sectionId}
-                onFocus={onFocus}
-                isFocused={focused === sectionId}
-              >
-                <SectionEditor
-                  onUpdate={onUpdateSection}
-                  section={section}
-                  titleRef={this.setSectionTitle}
-                />
-              </CanvasSection>
-            </SlideTransition>
-            <SlideTransition key={getIdForObject(page)}>
-              <QuestionPageEditor
-                onUpdatePage={onUpdatePage}
-                page={page}
-                onFocus={onFocus}
-                focused={focused}
-                titleRef={this.setPageTitle}
+      <Form onChange={noop} onSubmit={noop}>
+        <TransitionGroup>
+          <SlideTransition key={sectionId}>
+            <CanvasSection
+              id={sectionId}
+              onFocus={onFocus}
+              isFocused={focused === sectionId}
+            >
+              <SectionEditor
+                onUpdate={onUpdateSection}
+                section={section}
+                titleRef={this.setSectionTitle}
               />
-            </SlideTransition>
-          </TransitionGroup>
-        </Form>
-      </Canvas>
+            </CanvasSection>
+          </SlideTransition>
+          <SlideTransition key={getIdForObject(page)}>
+            <QuestionPageEditor
+              onUpdatePage={onUpdatePage}
+              page={page}
+              onFocus={onFocus}
+              focused={focused}
+              titleRef={this.setPageTitle}
+            />
+          </SlideTransition>
+        </TransitionGroup>
+      </Form>
     );
   }
 }

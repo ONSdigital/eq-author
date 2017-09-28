@@ -6,20 +6,22 @@ let wrapper;
 
 describe("components/BaseLayout", () => {
   beforeEach(() => {
-    wrapper = shallow(<BaseLayout>Children</BaseLayout>);
+    wrapper = shallow(
+      <BaseLayout docTitle="BaseLayout Test">Children</BaseLayout>
+    );
   });
 
-  it("shoulder render", function() {
+  it("should render", function() {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("shoulder render a Nav", function() {
+  it("should render a Nav", function() {
     wrapper.setProps({ questionnaire: { title: "Questionnaire" } });
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("shoulder render a title", function() {
-    wrapper.setProps({ title: "Questionnaire" });
+  it("should render a title", function() {
+    wrapper.setProps({ title: "Title" });
     expect(wrapper).toMatchSnapshot();
   });
 });

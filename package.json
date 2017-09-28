@@ -108,6 +108,7 @@
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.5.1",
     "react-apollo": "^1.4.4",
+    "react-document-title": "^2.0.3",
     "react-dom": "^15.5.4",
     "react-error-overlay": "^1.0.7",
     "react-hot-loader": "next",

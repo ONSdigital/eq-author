@@ -4,6 +4,7 @@ import styled from "styled-components";
 import App from "components/App";
 import Header from "components/Header";
 import Nav from "components/Nav";
+import DocumentTitle from "react-document-title";
 
 import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
@@ -35,31 +36,33 @@ const Title = styled.h1`
   margin: 2em 0;
 `;
 
-const BaseLayout = ({ children, title, questionnaire }) =>
-  <App>
-    <Wrapper>
-      <Header questionnaire={questionnaire} />
-      {questionnaire &&
-        <NavWrapper>
-          <Grid fillHeight={false}>
-            <Column offset={2}>
-              <Nav questionnaire={questionnaire} />
-            </Column>
-          </Grid>
-        </NavWrapper>}
-      <Main>
-        {title &&
-          <Title>
-            {title}
-          </Title>}
-        {children}
-      </Main>
-    </Wrapper>
-  </App>;
+const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
+  <DocumentTitle title={`${docTitle} - Dahl`}>
+    <App>
+      <Wrapper>
+        <Header questionnaire={questionnaire} />
+        {questionnaire && (
+          <NavWrapper>
+            <Grid fillHeight={false}>
+              <Column offset={2}>
+                <Nav questionnaire={questionnaire} />
+              </Column>
+            </Grid>
+          </NavWrapper>
+        )}
+        <Main>
+          {title && <Title>{title}</Title>}
+          {children}
+        </Main>
+      </Wrapper>
+    </App>
+  </DocumentTitle>
+);
 
 BaseLayout.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
+  docTitle: PropTypes.string.isRequired,
   questionnaire: CustomPropTypes.questionnaire
 };
 

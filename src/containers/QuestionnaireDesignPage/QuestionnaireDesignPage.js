@@ -6,6 +6,7 @@ import CustomPropTypes from "custom-prop-types";
 
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
+import MainCanvas from "components/MainCanvas";
 
 import EditorSurface from "components/EditorSurface";
 
@@ -42,6 +43,14 @@ export class QuestionnaireDesignPage extends Component {
     }
   };
 
+  getMetaTitle = () => {
+    const { questionnaire, page } = this.props;
+
+    return page.title
+      ? `${page.title} - ${questionnaire.title}`
+      : `${questionnaire.title}`;
+  };
+
   render() {
     const {
       breadcrumb,
@@ -61,7 +70,11 @@ export class QuestionnaireDesignPage extends Component {
     }
 
     return (
-      <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
+      <BaseLayout
+        breadcrumb={breadcrumb}
+        questionnaire={questionnaire}
+        docTitle={this.getMetaTitle()}
+      >
         <Grid align="top">
           <Column cols={2} gutters={false}>
             <QuestionnaireNavContainer
@@ -72,14 +85,16 @@ export class QuestionnaireDesignPage extends Component {
             />
           </Column>
           <Column gutters={false}>
-            <EditorSurface
-              section={section}
-              page={page}
-              onUpdatePage={onUpdatePage}
-              onUpdateSection={onUpdateSection}
-              focused={this.state.focused}
-              onFocus={this.handleFocus}
-            />
+            <MainCanvas>
+              <EditorSurface
+                section={section}
+                page={page}
+                onUpdatePage={onUpdatePage}
+                onUpdateSection={onUpdateSection}
+                focused={this.state.focused}
+                onFocus={this.handleFocus}
+              />
+            </MainCanvas>
           </Column>
           <Column cols={2} gutters={false} />
         </Grid>

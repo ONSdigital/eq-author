@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
-import { Grid, Column } from "components/Grid";
-
-const Margin = styled.div`margin: 2em 1em;`;
+import MainCanvas from "components/MainCanvas";
 
 class QuestionnaireMetaPage extends Component {
   static propTypes = {
@@ -23,17 +20,14 @@ class QuestionnaireMetaPage extends Component {
     }
 
     return (
-      <BaseLayout breadcrumb={breadcrumb} questionnaire={questionnaire}>
-        <Grid align="top">
-          <Column gutters={false} offset={2}>
-            <Margin>
-              <QuestionnaireMeta
-                questionnaire={questionnaire}
-                {...otherProps}
-              />
-            </Margin>
-          </Column>
-        </Grid>
+      <BaseLayout
+        breadcrumb={breadcrumb}
+        questionnaire={questionnaire}
+        docTitle="Questionnaire Meta"
+      >
+        <MainCanvas>
+          <QuestionnaireMeta questionnaire={questionnaire} {...otherProps} />
+        </MainCanvas>
       </BaseLayout>
     );
   }

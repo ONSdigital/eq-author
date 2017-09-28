@@ -1,12 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Canvas from "./Canvas";
+import MainCanvas from "./index";
 
-describe("Canvas", () => {
+describe("MainCanvas", () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<Canvas>Children</Canvas>);
+    component = shallow(<MainCanvas>Children</MainCanvas>);
   });
 
   it("should render", () => {

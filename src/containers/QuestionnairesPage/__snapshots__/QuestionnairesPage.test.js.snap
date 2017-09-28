@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`containers/Questionnaires should not render table whilst data is loading 1`] = `
-<BaseLayout>
+<BaseLayout
+  docTitle="Your Questionnaires"
+  title="Your Questionnaires"
+>
   <QuestionnairesPage__Center>
-    <QuestionnairesPage__Title>
-      Your questionnaires
-    </QuestionnairesPage__Title>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -30,11 +30,11 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
 `;
 
 exports[`containers/Questionnaires should render when there are no questionnaires 1`] = `
-<BaseLayout>
+<BaseLayout
+  docTitle="Your Questionnaires"
+  title="Your Questionnaires"
+>
   <QuestionnairesPage__Center>
-    <QuestionnairesPage__Title>
-      Your questionnaires
-    </QuestionnairesPage__Title>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -64,11 +64,11 @@ exports[`containers/Questionnaires should render when there are no questionnaire
 `;
 
 exports[`containers/Questionnaires should render when there are questionnaires 1`] = `
-<BaseLayout>
+<BaseLayout
+  docTitle="Your Questionnaires"
+  title="Your Questionnaires"
+>
   <QuestionnairesPage__Center>
-    <QuestionnairesPage__Title>
-      Your questionnaires
-    </QuestionnairesPage__Title>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >

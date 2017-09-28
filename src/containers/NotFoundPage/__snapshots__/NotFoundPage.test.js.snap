@@ -2,6 +2,7 @@
 
 exports[`CanvasSection should render 1`] = `
 <BaseLayout
+  docTitle="Page not found"
   hasNav={false}
   title="404—Page not found"
 />

@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Canvas should render 1`] = `
+exports[`MainCanvas should render 1`] = `
 .c0 {
   width: 100%;
-  max-width: 50em;
-  margin: 2em 0 0 1em;
+  max-width: 55em;
+  margin: 2em auto 1em;
 }
 
 <div

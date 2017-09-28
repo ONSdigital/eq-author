@@ -1,61 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/BaseLayout shoulder render 1`] = `
-<App>
-  <BaseLayout__Wrapper>
-    <Header />
-    <BaseLayout__Main>
-      Children
-    </BaseLayout__Main>
-  </BaseLayout__Wrapper>
-</App>
+exports[`components/BaseLayout should render 1`] = `
+<SideEffect(DocumentTitle)
+  title="BaseLayout Test - Dahl"
+>
+  <App>
+    <BaseLayout__Wrapper>
+      <Header />
+      <BaseLayout__Main>
+        Children
+      </BaseLayout__Main>
+    </BaseLayout__Wrapper>
+  </App>
+</SideEffect(DocumentTitle)>
 `;
 
-exports[`components/BaseLayout shoulder render a Nav 1`] = `
-<App>
-  <BaseLayout__Wrapper>
-    <Header
-      questionnaire={
-        Object {
-          "title": "Questionnaire",
+exports[`components/BaseLayout should render a Nav 1`] = `
+<SideEffect(DocumentTitle)
+  title="BaseLayout Test - Dahl"
+>
+  <App>
+    <BaseLayout__Wrapper>
+      <Header
+        questionnaire={
+          Object {
+            "title": "Questionnaire",
+          }
         }
-      }
-    />
-    <BaseLayout__NavWrapper>
-      <Grid__Grid
-        align="top"
-        fillHeight={false}
-      >
-        <Column__Column
-          offset={2}
+      />
+      <BaseLayout__NavWrapper>
+        <Grid__Grid
+          align="top"
+          fillHeight={false}
         >
-          <withRouter(NavWithoutRouter)
-            questionnaire={
-              Object {
-                "title": "Questionnaire",
+          <Column__Column
+            offset={2}
+          >
+            <withRouter(NavWithoutRouter)
+              questionnaire={
+                Object {
+                  "title": "Questionnaire",
+                }
               }
-            }
-          />
-        </Column__Column>
-      </Grid__Grid>
-    </BaseLayout__NavWrapper>
-    <BaseLayout__Main>
-      Children
-    </BaseLayout__Main>
-  </BaseLayout__Wrapper>
-</App>
+            />
+          </Column__Column>
+        </Grid__Grid>
+      </BaseLayout__NavWrapper>
+      <BaseLayout__Main>
+        Children
+      </BaseLayout__Main>
+    </BaseLayout__Wrapper>
+  </App>
+</SideEffect(DocumentTitle)>
 `;
 
-exports[`components/BaseLayout shoulder render a title 1`] = `
-<App>
-  <BaseLayout__Wrapper>
-    <Header />
-    <BaseLayout__Main>
-      <BaseLayout__Title>
-        Questionnaire
-      </BaseLayout__Title>
-      Children
-    </BaseLayout__Main>
-  </BaseLayout__Wrapper>
-</App>
+exports[`components/BaseLayout should render a title 1`] = `
+<SideEffect(DocumentTitle)
+  title="BaseLayout Test - Dahl"
+>
+  <App>
+    <BaseLayout__Wrapper>
+      <Header />
+      <BaseLayout__Main>
+        <BaseLayout__Title>
+          Title
+        </BaseLayout__Title>
+        Children
+      </BaseLayout__Main>
+    </BaseLayout__Wrapper>
+  </App>
+</SideEffect(DocumentTitle)>
 `;

@@ -2,6 +2,7 @@
 
 exports[`containers/QuestionnaireMeta should render 1`] = `
 <BaseLayout
+  docTitle="Questionnaire Meta"
   questionnaire={
     Object {
       "description": "",
@@ -12,30 +13,20 @@ exports[`containers/QuestionnaireMeta should render 1`] = `
     }
   }
 >
-  <Grid__Grid
-    align="top"
-    fillHeight={true}
-  >
-    <Column__Column
-      gutters={false}
-      offset={2}
-    >
-      <QuestionnaireMetaPage__Margin>
-        <withEntityEditor(StatelessQuestionnaireMeta)
-          onUpdate={[Function]}
-          questionnaire={
-            Object {
-              "description": "",
-              "legalBasis": "",
-              "navigation": true,
-              "theme": "default",
-              "title": "My Questionnaire",
-            }
-          }
-        />
-      </QuestionnaireMetaPage__Margin>
-    </Column__Column>
-  </Grid__Grid>
+  <MainCanvas__MainCanvas>
+    <withEntityEditor(StatelessQuestionnaireMeta)
+      onUpdate={[Function]}
+      questionnaire={
+        Object {
+          "description": "",
+          "legalBasis": "",
+          "navigation": true,
+          "theme": "default",
+          "title": "My Questionnaire",
+        }
+      }
+    />
+  </MainCanvas__MainCanvas>
 </BaseLayout>
 `;
 

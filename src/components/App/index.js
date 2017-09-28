@@ -29,10 +29,9 @@ injectGlobal`
   }
 `;
 
-const App = ({ children }) =>
-  <ThemeProvider theme={theme}>
-    {children}
-  </ThemeProvider>;
+const App = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+);
 
 App.propTypes = {
   children: PropTypes.element.isRequired

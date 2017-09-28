@@ -8,16 +8,9 @@ import QuestionnaireMeta from "components/QuestionnaireMeta";
 import Button from "components/Button";
 import LinkButton from "components/LinkButton";
 import ButtonGroup from "components/ButtonGroup";
+import MainCanvas from "components/MainCanvas";
 
-const ActionButtonGroup = styled(ButtonGroup)`
-  align-self: flex-start;
-`;
-
-const Center = styled.div`
-  margin: 0 auto;
-  max-width: 40em;
-  width: 100%;
-`;
+const ActionButtonGroup = styled(ButtonGroup)`align-self: flex-start;`;
 
 const defaultQuestionnaire = {
   title: "",
@@ -38,9 +31,10 @@ class QuestionnaireCreatePage extends Component {
   };
 
   render() {
+    const title = "Create a Questionnaire";
     return (
-      <BaseLayout title="Create a Questionnaire">
-        <Center>
+      <BaseLayout title={title} docTitle={title}>
+        <MainCanvas>
           <QuestionnaireMeta
             questionnaire={defaultQuestionnaire}
             onSubmit={this.handleSubmit}
@@ -55,7 +49,7 @@ class QuestionnaireCreatePage extends Component {
               </LinkButton>
             </ActionButtonGroup>
           </QuestionnaireMeta>
-        </Center>
+        </MainCanvas>
       </BaseLayout>
     );
   }

@@ -1,19 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
 import { CenteredPanel } from "components/Panel";
 import withEntityEditor from "components/withEntityEditor";
 import questionnaireFragment from "graphql/fragments/questionnaire.graphql";
-
-const Center = styled.div`
-  width: 100%;
-  max-width: 50em;
-  display: flex;
-  flex-direction: column;
-`;
 
 export const StatelessQuestionnaireMeta = ({
   questionnaire,
@@ -23,79 +15,77 @@ export const StatelessQuestionnaireMeta = ({
   children
 }) => {
   return (
-    <Center>
-      <CenteredPanel>
-        <Form onSubmit={onSubmit}>
-          <Field id="title">
-            <Label>Questionnaire Title</Label>
-            <Input
-              autoFocus
-              defaultValue={questionnaire.title}
-              onChange={onChange}
-              onBlur={onUpdate}
-              required
-            />
-          </Field>
-          <Field id="description">
-            <Label>Description</Label>
-            <TextArea
-              defaultValue={questionnaire.description}
-              rows={4}
-              onChange={onChange}
-              onBlur={onUpdate}
-              required
-            />
-          </Field>
-          <Grid>
-            <Column cols={6}>
-              <Field id="surveyId">
-                <Label>Survey ID</Label>
-                <Input
-                  defaultValue={questionnaire.surveyId}
-                  onChange={onChange}
-                  onBlur={onUpdate}
-                  required
-                />
-              </Field>
-            </Column>
-          </Grid>
-          <Grid>
-            <Column cols={6}>
-              <Field id="theme">
-                <Label>Theme</Label>
-                <Select
-                  options={["default", "census"]}
-                  defaultValue={questionnaire.theme}
-                  onChange={onChange}
-                  onBlur={onUpdate}
-                />
-              </Field>
-            </Column>
-            <Column cols={6}>
-              <Field id="legalBasis">
-                <Label>Legal Basis</Label>
-                <Select
-                  options={["StatisticsOfTradeAct", "Voluntary"]}
-                  defaultValue={questionnaire.legalBasis}
-                  onChange={onChange}
-                  onBlur={onUpdate}
-                />
-              </Field>
-            </Column>
-          </Grid>
-          <Field id="navigation">
-            <Input
-              type="checkbox"
-              defaultChecked={questionnaire.navigation}
-              onChange={onChange}
-              onBlur={onUpdate}
-            />
-            <Label inline>Navigation</Label>
-          </Field>
-          {children}
-        </Form>
-      </CenteredPanel>
-    </Center>
+    <CenteredPanel>
+      <Form onSubmit={onSubmit}>
+        <Field id="title">
+          <Label>Questionnaire Title</Label>
+          <Input
+            autoFocus
+            defaultValue={questionnaire.title}
+            onChange={onChange}
+            onBlur={onUpdate}
+            required
+          />
+        </Field>
+        <Field id="description">
+          <Label>Description</Label>
+          <TextArea
+            defaultValue={questionnaire.description}
+            rows={4}
+            onChange={onChange}
+            onBlur={onUpdate}
+            required
+          />
+        </Field>
+        <Grid>
+          <Column cols={6}>
+            <Field id="surveyId">
+              <Label>Survey ID</Label>
+              <Input
+                defaultValue={questionnaire.surveyId}
+                onChange={onChange}
+                onBlur={onUpdate}
+                required
+              />
+            </Field>
+          </Column>
+        </Grid>
+        <Grid>
+          <Column cols={6}>
+            <Field id="theme">
+              <Label>Theme</Label>
+              <Select
+                options={["default", "census"]}
+                defaultValue={questionnaire.theme}
+                onChange={onChange}
+                onBlur={onUpdate}
+              />
+            </Field>
+          </Column>
+          <Column cols={6}>
+            <Field id="legalBasis">
+              <Label>Legal Basis</Label>
+              <Select
+                options={["StatisticsOfTradeAct", "Voluntary"]}
+                defaultValue={questionnaire.legalBasis}
+                onChange={onChange}
+                onBlur={onUpdate}
+              />
+            </Field>
+          </Column>
+        </Grid>
+        <Field id="navigation">
+          <Input
+            type="checkbox"
+            defaultChecked={questionnaire.navigation}
+            onChange={onChange}
+            onBlur={onUpdate}
+          />
+          <Label inline>Navigation</Label>
+        </Field>
+        {children}
+      </Form>
+    </CenteredPanel>
   );
 };
 
