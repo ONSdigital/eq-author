@@ -45,6 +45,7 @@ const SectionItem = styled.li`
 
 const Link = styled(NavLink)`
   text-decoration: none;
+  &:link,
   &:visited {
     color: ${colors.text};
   }
