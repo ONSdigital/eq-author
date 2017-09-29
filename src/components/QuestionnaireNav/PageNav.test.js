@@ -1,13 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PageNav, { DeleteButton, PageNavItem } from "./PageNav";
+import PageNav, {
+  DeleteButton,
+  PageNavItem,
+  LinkText,
+  StyledPageItem
+} from "./PageNav";
 
 describe("PageNav", () => {
   let component, handleDelete;
 
   const questionnaire = { id: "1", title: "Questionnaire" };
   const page = { id: "2", title: "Page" };
-  const section = { id: "3", title: "Section", pages: [page] };
+  const section = { id: "3", title: "Section", pages: [page], number: 1 };
 
   beforeEach(() => {
     handleDelete = jest.fn(() => Promise.resolve());
@@ -57,6 +62,25 @@ describe("PageNav", () => {
         expect(handleCatch).toHaveBeenCalled();
         expect(pageNavComponent.state().isDeleting).toBe(false);
       });
+    });
+  });
+
+  describe("LinkText", () => {
+    it("should be opaque", () => {
+      const wrapper = shallow(<LinkText />);
+      expect(wrapper).toHaveStyleRule("opacity", "1");
+    });
+
+    it("should be partially transparent if fade prop passed", () => {
+      const wrapper = shallow(<LinkText fade />);
+      expect(wrapper).toHaveStyleRule("opacity", "0.5");
+    });
+  });
+
+  describe("StyledPageItem", () => {
+    it("should have configurable z-index", () => {
+      const wrapper = shallow(<StyledPageItem index={123} />);
+      expect(wrapper).toHaveStyleRule("z-index", "123");
     });
   });
 });

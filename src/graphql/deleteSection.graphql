@@ -1,0 +1,5 @@
+mutation DeleteSection($input: DeleteSectionInput!) {
+  deleteSection(input: $input) {
+    id
+  }
+}

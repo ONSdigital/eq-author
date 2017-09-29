@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
 import { get } from "lodash";
+import { getLink } from "utils/UrlUtils";
 
 import CustomPropsTypes from "custom-prop-types";
 
@@ -56,7 +57,7 @@ export const NavWithoutRouter = ({ questionnaire, match }) => {
         Questionnaire meta
       </StyledNavLink>
       <StyledNavLink
-        to={`/questionnaire/${id}/design/${section.id}/${page.id}`}
+        to={getLink(id, section.id, page.id)}
         activeClassName="selected"
         isActive={navIsActive}
       >

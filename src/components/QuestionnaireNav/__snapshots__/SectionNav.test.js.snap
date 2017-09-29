@@ -1,23 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SectionNav LinkedSectionHeader should render when section has no pages 1`] = `
-<SectionNav__SectionTitle>
-  Section
-</SectionNav__SectionTitle>
-`;
-
-exports[`SectionNav LinkedSectionHeader should render when section has pages 1`] = `
-<SectionNav__Link
-  activeClassName="selected"
-  aria-disabled={false}
-  to="/questionnaire/1/design/3/2"
->
-  <SectionNav__SectionTitle>
-    Section
-  </SectionNav__SectionTitle>
-</SectionNav__Link>
-`;
-
 exports[`SectionNav should render 1`] = `
 <TransitionGroup
   childFactory={[Function]}
@@ -27,81 +9,43 @@ exports[`SectionNav should render 1`] = `
     classNames="section"
     timeout={200}
   >
-    <SectionNav__SectionItem>
-      <LinkedSectionTitle
-        questionnaire={
-          Object {
-            "id": "1",
-            "sections": Array [
-              Object {
-                "id": "3",
-                "pages": Array [
-                  Object {
-                    "id": "2",
-                    "title": "Page",
-                  },
-                ],
-                "title": "Section",
-              },
-            ],
-            "title": "Questionnaire",
-          }
+    <SectionNavItem
+      duration={200}
+      onAddPage={[Function]}
+      onDeletePage={[Function]}
+      onDeleteSection={[Function]}
+      questionnaire={
+        Object {
+          "id": "1",
+          "sections": Array [
+            Object {
+              "id": "3",
+              "pages": Array [
+                Object {
+                  "id": "2",
+                  "title": "Page",
+                },
+              ],
+              "title": "Section",
+            },
+          ],
+          "title": "Questionnaire",
         }
-        section={
-          Object {
-            "id": "3",
-            "number": "1.",
-            "pages": Array [
-              Object {
-                "id": "2",
-                "title": "Page",
-              },
-            ],
-            "title": "Section",
-          }
+      }
+      section={
+        Object {
+          "id": "3",
+          "number": 1,
+          "pages": Array [
+            Object {
+              "id": "2",
+              "title": "Page",
+            },
+          ],
+          "title": "Section",
         }
-      />
-      <PageNav
-        onDelete={[Function]}
-        questionnaire={
-          Object {
-            "id": "1",
-            "sections": Array [
-              Object {
-                "id": "3",
-                "pages": Array [
-                  Object {
-                    "id": "2",
-                    "title": "Page",
-                  },
-                ],
-                "title": "Section",
-              },
-            ],
-            "title": "Questionnaire",
-          }
-        }
-        section={
-          Object {
-            "id": "3",
-            "number": "1.",
-            "pages": Array [
-              Object {
-                "id": "2",
-                "title": "Page",
-              },
-            ],
-            "title": "Section",
-          }
-        }
-      />
-      <SectionNav__AddPageBtn
-        id="btn-add-page"
-        onClick={[Function]}
-      >
-        + Add page
-      </SectionNav__AddPageBtn>
-    </SectionNav__SectionItem>
+      }
+    />
   </CSSTransition>
 </TransitionGroup>
 `;

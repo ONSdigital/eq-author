@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SectionNav, { AddPageBtn, LinkedSectionTitle } from "./SectionNav";
+import SectionNav from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
-  let handleAddPage, handleDeletePage;
+  let handleAddPage, handleDeleteSection, handleDeletePage;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -16,11 +16,13 @@ describe("SectionNav", () => {
 
   beforeEach(() => {
     handleAddPage = jest.fn();
+    handleDeleteSection = jest.fn();
     handleDeletePage = jest.fn();
     wrapper = shallow(
       <SectionNav
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
+        onDeleteSection={handleDeleteSection}
         onDeletePage={handleDeletePage}
       />
     );
@@ -28,28 +30,5 @@ describe("SectionNav", () => {
 
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should handle 'add page' button clicks", () => {
-    wrapper.find(AddPageBtn).simulate("click");
-    expect(handleAddPage).toHaveBeenCalledWith(section.id);
-  });
-
-  describe("LinkedSectionHeader", () => {
-    it("should render when section has pages", () => {
-      section.pages = [page];
-      const result = shallow(
-        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
-      );
-      expect(result).toMatchSnapshot();
-    });
-
-    it("should render when section has no pages", () => {
-      section.pages = [];
-      const result = shallow(
-        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
-      );
-      expect(result).toMatchSnapshot();
-    });
   });
 });

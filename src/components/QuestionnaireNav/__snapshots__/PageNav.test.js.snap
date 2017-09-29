@@ -12,7 +12,7 @@ exports[`PageNav PageNavItem should render 1`] = `
     <PageNav__LinkText
       fade={false}
     >
-      undefined1
+      1.1
        
       Page
     </PageNav__LinkText>
@@ -38,13 +38,13 @@ exports[`PageNav should render 1`] = `
 >
   <CSSTransition
     classNames="page"
-    timeout={200}
+    timeout={300}
   >
     <PageNavItem
       index={1}
       onDelete={[Function]}
       pageId="2"
-      pageNumber="undefined1"
+      pageNumber="1.1"
       questionnaireId="1"
       sectionId="3"
       title="Page"

@@ -1,25 +1,10 @@
 import { graphql } from "react-apollo";
 import deletePageMutation from "graphql/deletePage.graphql";
-import { findIndex, remove } from "lodash";
+import { remove } from "lodash";
 import findById from "utils/findById";
 import fragment from "graphql/sectionFragment.graphql";
-
-export const getNextPage = (pages, id) => {
-  const index = findIndex(pages, { id });
-  let nextPageIndex;
-
-  if (index === 0) {
-    if (pages.length === 1) {
-      nextPageIndex = 0;
-    } else {
-      nextPageIndex = index + 1;
-    }
-  } else {
-    nextPageIndex = index - 1;
-  }
-
-  return pages[nextPageIndex];
-};
+import getNextPage from "utils/getNextOnDelete";
+import { getLink } from "utils/UrlUtils";
 
 export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
   const { questionnaire, history, onAddPage, pageId: currentPageId } = ownProps;
@@ -33,9 +18,7 @@ export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
   if (currentPageId === deletedPageId) {
     const page = getNextPage(section.pages, currentPageId);
 
-    history.push(
-      `/questionnaire/${questionnaire.id}/design/${sectionId}/${page.id}`
-    );
+    history.push(getLink(questionnaire.id, sectionId, page.id));
   }
 
   return Promise.resolve();

@@ -3,7 +3,7 @@ import {
   mapMutateToProps,
   updateQuestionnaireList
 } from "./index";
-
+import { getLink } from "utils/UrlUtils";
 import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 let history, mutate, results;
@@ -38,7 +38,7 @@ describe("containers/QuestionnaireCreatePage", () => {
       redirectToDesigner(history)(results);
 
       expect(history.push).toHaveBeenCalledWith(
-        `/questionnaire/${questionnaire.id}/design/${section.id}/${page.id}`
+        getLink(questionnaire.id, section.id, page.id)
       );
     });
   });

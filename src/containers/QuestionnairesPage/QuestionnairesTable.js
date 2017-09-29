@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-
+import { getLink } from "utils/UrlUtils";
 import { colors } from "../../constants/theme";
 import CommentsButton from "./CommentsButton";
 import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton";
@@ -62,7 +62,7 @@ const TD = styled.td`
 
 TD.propTypes = ColumnPropTypes;
 
-const Collapsable = styled.div`
+const Collapsible = styled.div`
   height: 3.75em;
   padding: 1em;
 
@@ -74,10 +74,7 @@ const Collapsable = styled.div`
   }
 `;
 
-const TBody = ({ children }) =>
-  <tbody>
-    {children}
-  </tbody>;
+const TBody = ({ children }) => <tbody>{children}</tbody>;
 
 TBody.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired
@@ -110,8 +107,11 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
           const createdAt = new Date(
             questionnaire.createdAt
           ).toLocaleDateString("en-gb");
-          const url = `#/questionnaire/${questionnaire.id}/design/${questionnaire
-            .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
+          const url = `#${getLink(
+            questionnaire.id,
+            questionnaire.sections[0].id,
+            questionnaire.sections[0].pages[0].id
+          )}`;
 
           return (
             <CSSTransition
@@ -121,7 +121,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
             >
               <TR>
                 <TD>
-                  <Collapsable first>
+                  <Collapsible first>
                     <Link
                       href={url}
                       title={questionnaire.title}
@@ -129,39 +129,34 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
                     >
                       {questionnaire.title}
                     </Link>
-                  </Collapsable>
+                  </Collapsible>
                 </TD>
                 <TD>
-                  <Collapsable>
-                    {createdAt}
-                  </Collapsable>
+                  <Collapsible>{createdAt}</Collapsible>
                 </TD>
                 <TD>
-                  <Collapsable>
-                    {questionnaire.theme}
-                  </Collapsable>
+                  <Collapsible>{questionnaire.theme}</Collapsible>
                 </TD>
                 <TD>
-                  <Collapsable>
-                    {questionnaire.status}
-                  </Collapsable>
+                  <Collapsible>{questionnaire.status}</Collapsible>
                 </TD>
                 <TD centerAligned>
-                  <Collapsable>
-                    {questionnaire.comments.count > 0 &&
+                  <Collapsible>
+                    {questionnaire.comments.count > 0 && (
                       <CommentsButton
                         hasUnread={questionnaire.comments.unread}
-                      />}
-                  </Collapsable>
+                      />
+                    )}
+                  </Collapsible>
                 </TD>
                 <TD>
-                  <Collapsable last>
+                  <Collapsible last>
                     <DeleteQuestionnaireButton
                       onClick={function() {
                         handleDelete(questionnaire.id);
                       }}
                     />
-                  </Collapsable>
+                  </Collapsible>
                 </TD>
               </TR>
             </CSSTransition>

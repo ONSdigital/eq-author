@@ -4,6 +4,7 @@ import {
   redirectToNewPage
 } from "./withCreatePage";
 import fragment from "graphql/sectionFragment.graphql";
+import { getLink } from "utils/UrlUtils";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
   const page = {
@@ -74,7 +75,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
       redirectToNewPage(ownProps)(result);
 
       expect(history.push).toHaveBeenCalledWith(
-        `/questionnaire/${questionnaire.id}/design/${section.id}/${newPage.id}`
+        getLink(questionnaire.id, section.id, newPage.id)
       );
     });
   });
@@ -87,18 +88,6 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
     it("should have a onAddPage prop", () => {
       expect(props.onAddPage).toBeInstanceOf(Function);
-    });
-
-    it("should respond with an optimisticResponse", () => {
-      return props.onAddPage(section.id).then(() => {
-        expect(mutate.mock.calls[0][0]).toMatchObject({
-          optimisticResponse: {
-            createQuestionPage: {
-              id: "-1"
-            }
-          }
-        });
-      });
     });
 
     it("should redirect", () => {
