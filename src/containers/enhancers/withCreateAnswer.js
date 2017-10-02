@@ -35,7 +35,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     return mutate({
       variables: { input: answer },
       update
-    });
+    }).then(({ data }) => data.createAnswer.id);
   }
 });
 

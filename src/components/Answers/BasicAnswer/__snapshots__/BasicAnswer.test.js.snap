@@ -1,11 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BasicAnswer should render 1`] = `
-<div>
+<div
+  id="answer-undefined"
+>
   <Field
     id="label"
   >
     <withSeamlessness(withChangeHandler(WrappingTextArea))
+      data-autofocus={true}
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"

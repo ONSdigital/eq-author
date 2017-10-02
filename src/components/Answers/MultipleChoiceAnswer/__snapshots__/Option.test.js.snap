@@ -12,6 +12,7 @@ exports[`Option should match snapshot 1`] = `
       type="Radio"
     />
     <Option__SeamlessLabel
+      data-autofocus={true}
       data-qa="optionLabel"
       onBlur={[Function]}
       onChange={[Function]}
@@ -286,6 +287,7 @@ exports[`Option should render a checkbox 1`] = `
                 />
               </Option__DummyInput>
               <Option__SeamlessLabel
+                data-autofocus={true}
                 data-qa="optionLabel"
                 id="label"
                 key=".1"
@@ -297,6 +299,7 @@ exports[`Option should render a checkbox 1`] = `
               >
                 <withSeamlessness(withChangeHandler(WrappingTextArea))
                   className="c4"
+                  data-autofocus={true}
                   data-qa="optionLabel"
                   id="label"
                   onBlur={[Function]}
@@ -307,6 +310,7 @@ exports[`Option should render a checkbox 1`] = `
                 >
                   <withSeamlessness__StyledSeamless
                     className="c4"
+                    data-autofocus={true}
                     data-qa="optionLabel"
                     id="label"
                     name="label"
@@ -318,6 +322,7 @@ exports[`Option should render a checkbox 1`] = `
                   >
                     <withChangeHandler(WrappingTextArea)
                       className="c4 c5"
+                      data-autofocus={true}
                       data-qa="optionLabel"
                       id="label"
                       name="label"
@@ -329,6 +334,7 @@ exports[`Option should render a checkbox 1`] = `
                     >
                       <WrappingTextArea
                         className="c4 c5"
+                        data-autofocus={true}
                         data-qa="optionLabel"
                         id="label"
                         name="label"
@@ -340,6 +346,7 @@ exports[`Option should render a checkbox 1`] = `
                       >
                         <SeamlessTextArea__TextArea
                           className="c4 c5"
+                          data-autofocus={true}
                           data-qa="optionLabel"
                           id="label"
                           name="label"
@@ -352,6 +359,7 @@ exports[`Option should render a checkbox 1`] = `
                         >
                           <TextareaAutosize
                             className="c4 c5 c6"
+                            data-autofocus={true}
                             data-qa="optionLabel"
                             id="label"
                             name="label"
@@ -366,6 +374,7 @@ exports[`Option should render a checkbox 1`] = `
                           >
                             <textarea
                               className="c4 c5 c6"
+                              data-autofocus={true}
                               data-qa="optionLabel"
                               id="label"
                               name="label"
@@ -570,6 +579,7 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
       type="Radio"
     />
     <Option__SeamlessLabel
+      data-autofocus={true}
       data-qa="optionLabel"
       onBlur={[Function]}
       onChange={[Function]}

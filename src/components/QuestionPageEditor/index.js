@@ -38,6 +38,17 @@ export class QPE extends React.Component {
     this.props.onDeleteAnswer(this.props.page.id, answerId);
   };
 
+  handleAddAnswer = answerType => {
+    this.props.onAddAnswer(answerType).then(answerId => {
+      const node = document.querySelector(
+        `#answer-${answerId} [data-autofocus]`
+      );
+      if (node) {
+        node.focus();
+      }
+    });
+  };
+
   isFocused(entity) {
     return this.props.focused === getIdForObject(entity);
   }
@@ -47,7 +58,6 @@ export class QPE extends React.Component {
       page,
       onUpdatePage,
       onUpdateAnswer,
-      onAddAnswer,
       onAddOption,
       onUpdateOption,
       onDeleteOption,
@@ -68,7 +78,7 @@ export class QPE extends React.Component {
           />
         </CanvasSection>
         <TransitionGroup>
-          {page.answers.map(answer =>
+          {page.answers.map(answer => (
             <SlideTransition key={getIdForObject(answer)}>
               <CanvasSection
                 id={getIdForObject(answer)}
@@ -86,10 +96,10 @@ export class QPE extends React.Component {
                 />
               </CanvasSection>
             </SlideTransition>
-          )}
+          ))}
         </TransitionGroup>
         <BasicSection>
-          <AnswerTypeSelector onSelect={onAddAnswer} />
+          <AnswerTypeSelector onSelect={this.handleAddAnswer} />
         </BasicSection>
       </div>
     );

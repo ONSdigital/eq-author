@@ -12,7 +12,7 @@ export const StatelessBasicAnswer = ({
   onUpdate,
   children
 }) => (
-  <div>
+  <div id={`answer-${answer.id}`}>
     <Field id="label">
       <SeamlessTextArea
         placeholder="Label"
@@ -20,6 +20,7 @@ export const StatelessBasicAnswer = ({
         onChange={onChange}
         onBlur={onUpdate}
         value={answer.label}
+        data-autofocus
       />
     </Field>
     <Field id="description">

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MultipleChoiceAnswer should match snapshot 1`] = `
-<MultipleChoiceAnswer__AnswerWrapper>
+<MultipleChoiceAnswer__AnswerWrapper
+  id="answer-0"
+>
   <TransitionGroup
     childFactory={[Function]}
     component={[Function]}
