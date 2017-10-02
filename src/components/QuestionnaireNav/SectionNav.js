@@ -81,17 +81,16 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-export const getFirstPage = section => first(section.pages);
-
 export const LinkedSectionTitle = ({ questionnaire, section }) => {
   const sectionTitle = (
     <SectionTitle>{section.title || "Section Title"}</SectionTitle>
   );
   if (section.pages.length > 0) {
+    const firstPage = first(section.pages);
     return (
       <Link
-        to={getLink(questionnaire.id, section.id, getFirstPage(section).id)}
-        aria-disabled={parseInt(getFirstPage(section).id, 10) < 0}
+        to={getLink(questionnaire.id, section.id, firstPage.id)}
+        aria-disabled={parseInt(firstPage.id, 10) < 0}
         activeClassName="selected"
       >
         {sectionTitle}
@@ -124,7 +123,6 @@ const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
             <LinkedSectionTitle
               questionnaire={questionnaire}
               section={section}
-              hasPages={section.pages.length > 0}
             />
             <PageNav
               section={section}

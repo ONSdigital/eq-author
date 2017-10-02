@@ -29,7 +29,6 @@ exports[`SectionNav should render 1`] = `
   >
     <SectionNav__SectionItem>
       <LinkedSectionTitle
-        hasPages={true}
         questionnaire={
           Object {
             "id": "1",
