@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SectionNav, { AddPageBtn } from "./SectionNav";
+import SectionNav, { AddPageBtn, LinkedSectionTitle } from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
@@ -33,5 +33,23 @@ describe("SectionNav", () => {
   it("should handle 'add page' button clicks", () => {
     wrapper.find(AddPageBtn).simulate("click");
     expect(handleAddPage).toHaveBeenCalledWith(section.id);
+  });
+
+  describe("LinkedSectionHeader", () => {
+    it("should render when section has pages", () => {
+      section.pages = [page];
+      const result = shallow(
+        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
+      );
+      expect(result).toMatchSnapshot();
+    });
+
+    it("should render when section has no pages", () => {
+      section.pages = [];
+      const result = shallow(
+        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
+      );
+      expect(result).toMatchSnapshot();
+    });
   });
 });

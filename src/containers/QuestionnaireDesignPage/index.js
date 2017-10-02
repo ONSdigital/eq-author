@@ -5,7 +5,7 @@ import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withQuestionnaire from "containers/enhancers/withQuestionnaire";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
 import withUpdatePage from "containers/enhancers/withUpdatePage";
-import getUrlParams from "utils/getUrlParams";
+import { getUrlParams } from "utils/UrlUtils";
 
 export const mapStateToProps = (state, { match }) => getUrlParams(match.params);
 
