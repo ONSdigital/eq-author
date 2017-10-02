@@ -18,12 +18,16 @@ exports[`components/Header renders correctly  1`] = `
         />
       </Header__Logo>
     </Column__Column>
-    <Column__Column>
+    <Column__Column
+      cols={12}
+    >
       <Breadcrumb
         title="Questionnaire"
       />
     </Column__Column>
-    <Column__Column>
+    <Column__Column
+      cols={12}
+    >
       <Header__UtilityBtns
         horizontal={true}
       >
@@ -61,8 +65,12 @@ exports[`components/Header should conditionally render Breadcrumb 1`] = `
         />
       </Header__Logo>
     </Column__Column>
-    <Column__Column />
-    <Column__Column />
+    <Column__Column
+      cols={12}
+    />
+    <Column__Column
+      cols={12}
+    />
   </Grid__Grid>
 </Header__StyledHeader>
 `;
@@ -85,8 +93,12 @@ exports[`components/Header should conditionally render UtilityBtns 1`] = `
         />
       </Header__Logo>
     </Column__Column>
-    <Column__Column />
-    <Column__Column />
+    <Column__Column
+      cols={12}
+    />
+    <Column__Column
+      cols={12}
+    />
   </Grid__Grid>
 </Header__StyledHeader>
 `;

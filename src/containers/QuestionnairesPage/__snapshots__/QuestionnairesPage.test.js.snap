@@ -5,7 +5,7 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
 >
-  <QuestionnairesPage__Center>
+  <MainCanvas__MainCanvas>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -25,7 +25,7 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
       </Button>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel />
-  </QuestionnairesPage__Center>
+  </MainCanvas__MainCanvas>
 </BaseLayout>
 `;
 
@@ -34,7 +34,7 @@ exports[`containers/Questionnaires should render when there are no questionnaire
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
 >
-  <QuestionnairesPage__Center>
+  <MainCanvas__MainCanvas>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -59,7 +59,7 @@ exports[`containers/Questionnaires should render when there are no questionnaire
         questionnaires={Array []}
       />
     </QuestionnairesPage__StyledCenteredPanel>
-  </QuestionnairesPage__Center>
+  </MainCanvas__MainCanvas>
 </BaseLayout>
 `;
 
@@ -68,7 +68,7 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
 >
-  <QuestionnairesPage__Center>
+  <MainCanvas__MainCanvas>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -119,6 +119,6 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
         }
       />
     </QuestionnairesPage__StyledCenteredPanel>
-  </QuestionnairesPage__Center>
+  </MainCanvas__MainCanvas>
 </BaseLayout>
 `;

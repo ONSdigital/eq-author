@@ -3,8 +3,9 @@
 exports[`MainCanvas should render 1`] = `
 .c0 {
   width: 100%;
-  max-width: 55em;
+  max-width: 50em;
   margin: 2em auto 1em;
+  position: relative;
 }
 
 <div
