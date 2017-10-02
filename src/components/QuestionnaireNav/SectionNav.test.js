@@ -1,6 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SectionNav, { AddPageBtn, getFirstPage } from "./SectionNav";
+import SectionNav, {
+  AddPageBtn,
+  getFirstPage,
+  LinkedSectionTitle
+} from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
@@ -46,10 +50,28 @@ describe("SectionNav", () => {
       expect(getFirstPage(section)).toBe(page);
     });
 
-    it("should return an optimistic response when the section doesn't yet have any pages", () => {
+    it("should return undefined when the section doesn't have any pages", () => {
       section.pages = [];
 
-      expect(getFirstPage(section)).toEqual({ id: "-1" });
+      expect(getFirstPage(section)).toBeUndefined();
+    });
+  });
+
+  describe("LinkedSectionHeader", () => {
+    it("should render when section has pages", () => {
+      section.pages = [page];
+      const result = shallow(
+        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
+      );
+      expect(result).toMatchSnapshot();
+    });
+
+    it("should render when section has no pages", () => {
+      section.pages = [];
+      const result = shallow(
+        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
+      );
+      expect(result).toMatchSnapshot();
     });
   });
 });

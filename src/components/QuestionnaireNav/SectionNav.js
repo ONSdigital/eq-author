@@ -81,7 +81,31 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-export const getFirstPage = section => first(section.pages) || { id: "-1" };
+export const getFirstPage = section => first(section.pages);
+
+export const LinkedSectionTitle = ({ questionnaire, section }) => {
+  const sectionTitle = (
+    <SectionTitle>{section.title || "Section Title"}</SectionTitle>
+  );
+  if (section.pages.length > 0) {
+    return (
+      <Link
+        to={getLink(questionnaire.id, section.id, getFirstPage(section).id)}
+        aria-disabled={parseInt(getFirstPage(section).id, 10) < 0}
+        activeClassName="selected"
+      >
+        {sectionTitle}
+      </Link>
+    );
+  } else {
+    return sectionTitle;
+  }
+};
+
+LinkedSectionTitle.propTypes = {
+  questionnaire: CustomPropTypes.questionnaire.isRequired,
+  section: CustomPropTypes.section.isRequired
+};
 
 const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
   <TransitionGroup component={NavList}>
@@ -97,17 +121,11 @@ const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
           classNames="section"
         >
           <SectionItem>
-            <Link
-              to={getLink(
-                questionnaire.id,
-                section.id,
-                getFirstPage(section).id
-              )}
-              aria-disabled={parseInt(getFirstPage(section).id, 10) < 0}
-              activeClassName="selected"
-            >
-              <SectionTitle>{section.title || "Section Title"}</SectionTitle>
-            </Link>
+            <LinkedSectionTitle
+              questionnaire={questionnaire}
+              section={section}
+              hasPages={section.pages.length > 0}
+            />
             <PageNav
               section={section}
               questionnaire={questionnaire}
