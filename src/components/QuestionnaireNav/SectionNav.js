@@ -22,11 +22,7 @@ const SectionItem = styled.li`
   opacity: 1;
   transform: translateX(0);
 
-  &:not(:first-child) {
-    border-top: 1px solid #c3c3c3;
-  }
-
-  &:last-child {
+  &:not(:last-child) {
     border-bottom: 1px solid #c3c3c3;
   }
 

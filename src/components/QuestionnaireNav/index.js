@@ -26,6 +26,7 @@ const Title = styled.h2`
 `;
 
 const AddSection = styled.div`
+  border-top: 1px solid #c3c3c3;
   padding: 1em 0;
   position: sticky;
   bottom: 0;
