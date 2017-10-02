@@ -14,7 +14,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 
 import { first } from "lodash";
-import { getLink } from "utils/URLUtils";
+import { getLink } from "utils/UrlUtils";
 
 const duration = 200;
 

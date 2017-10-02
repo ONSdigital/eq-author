@@ -1,4 +1,4 @@
-import { getUrlParams, getLink } from "utils/URLUtils";
+import { getUrlParams, getLink } from "utils/UrlUtils";
 
 describe("Utils > getUrlParams", () => {
   it("should extract only url params", () => {
