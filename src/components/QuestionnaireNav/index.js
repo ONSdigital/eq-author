@@ -22,11 +22,16 @@ const Title = styled.h2`
   font-weight: 900;
   margin: 0;
   line-height: 1.5;
+  position: relative;
 `;
 
 const AddSection = styled.div`
-  padding: 1em 0.5em;
-  border-bottom: 1px solid ${colors.lightGrey};
+  border-top: 1px solid #c3c3c3;
+  padding: 1em 0;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background: ${colors.lighterGrey};
 `;
 
 export const AddSectionBtn = styled.button`
@@ -38,6 +43,7 @@ export const AddSectionBtn = styled.button`
   color: ${colors.text};
   font-weight: 600;
   font-size: 0.75em;
+
   &::before {
     vertical-align: middle;
     display: inline-block;
@@ -54,7 +60,7 @@ const QuestionnaireNav = ({
   onAddPage,
   onAddSection,
   onDeletePage
-}) =>
+}) => (
   <Container id="questionnaire-nav">
     <Title>Questionnaire structure</Title>
     <SectionNav
@@ -73,7 +79,8 @@ const QuestionnaireNav = ({
         Create new section
       </AddSectionBtn>
     </AddSection>
-  </Container>;
+  </Container>
+);
 
 QuestionnaireNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,

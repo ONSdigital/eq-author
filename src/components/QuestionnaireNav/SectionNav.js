@@ -15,13 +15,16 @@ const duration = 200;
 
 const SectionItem = styled.li`
   margin: 0;
-  border-bottom: 1px solid #c3c3c3;
   padding: 0.5em 0;
   transition: height ${duration / 2}ms ease-out,
     opacity ${duration}ms ease-out ${duration}ms, padding ${duration}ms ease-out,
     transform ${duration}ms ease-out ${duration}ms;
   opacity: 1;
   transform: translateX(0);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #c3c3c3;
+  }
 
   &.section-enter {
     opacity: 0;
@@ -65,23 +68,21 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) =>
+const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
   <TransitionGroup component={NavList}>
     {questionnaire.sections
       .map((section, i) => ({
         ...section,
         number: `${i + 1}.`
       }))
-      .map((section, sectionNum) =>
+      .map((section, sectionNum) => (
         <CSSTransition
           key={section.number}
           timeout={duration}
           classNames="section"
         >
           <SectionItem>
-            <SectionTitle>
-              {section.title || "Section Title"}
-            </SectionTitle>
+            <SectionTitle>{section.title || "Section Title"}</SectionTitle>
             <PageNav
               section={section}
               questionnaire={questionnaire}
@@ -97,8 +98,9 @@ const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) =>
             </AddPageBtn>
           </SectionItem>
         </CSSTransition>
-      )}
-  </TransitionGroup>;
+      ))}
+  </TransitionGroup>
+);
 
 SectionNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire,

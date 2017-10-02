@@ -13,20 +13,22 @@ exports[`containers/QuestionnaireMeta should render 1`] = `
     }
   }
 >
-  <MainCanvas__MainCanvas>
-    <withEntityEditor(StatelessQuestionnaireMeta)
-      onUpdate={[Function]}
-      questionnaire={
-        Object {
-          "description": "",
-          "legalBasis": "",
-          "navigation": true,
-          "theme": "default",
-          "title": "My Questionnaire",
+  <ScrollPane__ScrollPane>
+    <MainCanvas__MainCanvas>
+      <withEntityEditor(StatelessQuestionnaireMeta)
+        onUpdate={[Function]}
+        questionnaire={
+          Object {
+            "description": "",
+            "legalBasis": "",
+            "navigation": true,
+            "theme": "default",
+            "title": "My Questionnaire",
+          }
         }
-      }
-    />
-  </MainCanvas__MainCanvas>
+      />
+    </MainCanvas__MainCanvas>
+  </ScrollPane__ScrollPane>
 </BaseLayout>
 `;
 

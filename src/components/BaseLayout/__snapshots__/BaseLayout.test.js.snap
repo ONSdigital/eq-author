@@ -34,6 +34,7 @@ exports[`components/BaseLayout should render a Nav 1`] = `
           fillHeight={false}
         >
           <Column__Column
+            cols={12}
             offset={2}
           >
             <withRouter(NavWithoutRouter)
@@ -62,10 +63,12 @@ exports[`components/BaseLayout should render a title 1`] = `
     <BaseLayout__Wrapper>
       <Header />
       <BaseLayout__Main>
-        <BaseLayout__Title>
-          Title
-        </BaseLayout__Title>
-        Children
+        <ScrollPane__ScrollPane>
+          <BaseLayout__Title>
+            Title
+          </BaseLayout__Title>
+          Children
+        </ScrollPane__ScrollPane>
       </BaseLayout__Main>
     </BaseLayout__Wrapper>
   </App>

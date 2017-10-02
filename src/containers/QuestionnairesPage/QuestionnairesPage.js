@@ -8,22 +8,16 @@ import ButtonGroup from "components/ButtonGroup";
 import Button from "components/Button";
 import LinkButton from "components/LinkButton";
 import QuestionnairesTable from "./QuestionnairesTable";
-
-const Center = styled.div`
-  width: 100%;
-  max-width: 55em;
-  margin: 0 auto;
-`;
+import MainCanvas from "components/MainCanvas";
 
 const StyledButtonGroup = styled(ButtonGroup)`margin: 0 0 1em 0;`;
-
 const StyledCenteredPanel = styled(CenteredPanel)`padding: 0;`;
 
 const Questionnaires = props => {
   const title = "Your Questionnaires";
   return (
     <BaseLayout title={title} docTitle={title}>
-      <Center>
+      <MainCanvas>
         <StyledButtonGroup horizontal>
           <LinkButton
             to="/questionnaire/create"
@@ -39,7 +33,7 @@ const Questionnaires = props => {
         <StyledCenteredPanel>
           {!props.loading && <QuestionnairesTable {...props} />}
         </StyledCenteredPanel>
-      </Center>
+      </MainCanvas>
     </BaseLayout>
   );
 };

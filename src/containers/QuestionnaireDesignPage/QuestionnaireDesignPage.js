@@ -7,6 +7,7 @@ import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
 import MainCanvas from "components/MainCanvas";
+import ScrollPane from "components/ScrollPane";
 
 import EditorSurface from "components/EditorSurface";
 
@@ -77,24 +78,28 @@ export class QuestionnaireDesignPage extends Component {
       >
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            <QuestionnaireNavContainer
-              questionnaire={questionnaire}
-              questionnaireId={questionnaireId}
-              sectionId={sectionId}
-              pageId={pageId}
-            />
+            <ScrollPane>
+              <QuestionnaireNavContainer
+                questionnaire={questionnaire}
+                questionnaireId={questionnaireId}
+                sectionId={sectionId}
+                pageId={pageId}
+              />
+            </ScrollPane>
           </Column>
           <Column gutters={false}>
-            <MainCanvas>
-              <EditorSurface
-                section={section}
-                page={page}
-                onUpdatePage={onUpdatePage}
-                onUpdateSection={onUpdateSection}
-                focused={this.state.focused}
-                onFocus={this.handleFocus}
-              />
-            </MainCanvas>
+            <ScrollPane>
+              <MainCanvas>
+                <EditorSurface
+                  section={section}
+                  page={page}
+                  onUpdatePage={onUpdatePage}
+                  onUpdateSection={onUpdateSection}
+                  focused={this.state.focused}
+                  onFocus={this.handleFocus}
+                />
+              </MainCanvas>
+            </ScrollPane>
           </Column>
           <Column cols={2} gutters={false} />
         </Grid>
