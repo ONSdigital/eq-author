@@ -4,28 +4,25 @@ exports[`Option should match snapshot 1`] = `
 <Option__StyledOption
   duration={200}
 >
-  <Field
+  <Option__LabelField
     id="label"
   >
     <Option__DummyInput />
     <Option__SeamlessLabel
-      data-autoFocus={true}
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"
       size="medium"
       value=""
     />
-  </Field>
+  </Option__LabelField>
   <Field
     id="description"
   >
-    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-      cols="30"
+    <withSeamlessness(withChangeHandler(WrappingTextArea))
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Optional description"
-      rows="5"
       size="small"
       value=""
     />
@@ -49,28 +46,25 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
 <Option__StyledOption
   duration={200}
 >
-  <Field
+  <Option__LabelField
     id="label"
   >
     <Option__DummyInput />
     <Option__SeamlessLabel
-      data-autoFocus={true}
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"
       size="medium"
       value=""
     />
-  </Field>
+  </Option__LabelField>
   <Field
     id="description"
   >
-    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-      cols="30"
+    <withSeamlessness(withChangeHandler(WrappingTextArea))
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Optional description"
-      rows="5"
       size="small"
       value=""
     />

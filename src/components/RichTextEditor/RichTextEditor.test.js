@@ -7,7 +7,7 @@ import Toolbar, {
 } from "components/RichTextEditor/Toolbar";
 import { shallow } from "enzyme";
 import findById from "utils/findById";
-import { RichUtils, Editor, EditorState, convertFromRaw } from "draft-js";
+import { RichUtils, Editor, EditorState } from "draft-js";
 
 // https://github.com/facebook/draft-js/issues/702
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");

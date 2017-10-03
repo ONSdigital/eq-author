@@ -3,8 +3,6 @@ import { StatelessMetaEditor } from "./MetaEditor";
 import { shallow, mount } from "enzyme";
 import RichTextEditor from "components/RichTextEditor";
 
-const noop = () => {};
-
 describe("MetaEditor", () => {
   let wrapper, handleUpdate, handleChange, handleTitleRef, page;
 
