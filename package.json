@@ -5,7 +5,7 @@
   "homepage": "./",
   "scripts": {
     "start": "yarn && node scripts/start.js",
-    "start:mockAPI": "yarn && REACT_APP_USE_MOCK_API=true node scripts/start.js",
+    "start:mockAPI": "REACT_APP_USE_MOCK_API=true node scripts/start.js",
     "build": "node scripts/build.js",
     "build:mockAPI": "yarn && REACT_APP_USE_MOCK_API=true node scripts/build.js",
     "test": "node scripts/test.js",
@@ -99,7 +99,9 @@
     "eq-author-mock-api": "ONSdigital/eq-author-mock-api#4342f6a",
     "eslint-config-eq-author": "^1.0.2",
     "graphql-anywhere": "^3.1.0",
+    "graphql-iso-date": "^3.3.0",
     "graphql-tag": "^2.4.2",
+    "graphql-tools": "^1.2.3",
     "jest-transform-graphql": "^2.1.0",
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
