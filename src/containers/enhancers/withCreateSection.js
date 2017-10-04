@@ -10,6 +10,8 @@ export const redirectToNewPage = ownProps => ({ data }) => {
   history.push(
     `/questionnaire/${questionnaireId}/design/${section.id}/${page.id}`
   );
+
+  return section;
 };
 
 export const createUpdater = questionnaireId => (proxy, result) => {

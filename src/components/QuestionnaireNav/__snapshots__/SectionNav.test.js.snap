@@ -23,85 +23,95 @@ exports[`SectionNav should render 1`] = `
   childFactory={[Function]}
   component={[Function]}
 >
-  <CSSTransition
-    classNames="section"
-    timeout={200}
+  <SectionNavItem
+    saveSectionItemRef={[Function]}
+    section={
+      Object {
+        "id": "3",
+        "number": "1.",
+        "pages": Array [
+          Object {
+            "id": "2",
+            "title": "Page",
+          },
+        ],
+        "title": "Section",
+      }
+    }
   >
-    <SectionNav__SectionItem>
-      <LinkedSectionTitle
-        questionnaire={
-          Object {
-            "id": "1",
-            "sections": Array [
-              Object {
-                "id": "3",
-                "pages": Array [
-                  Object {
-                    "id": "2",
-                    "title": "Page",
-                  },
-                ],
-                "title": "Section",
-              },
-            ],
-            "title": "Questionnaire",
-          }
+    <LinkedSectionTitle
+      questionnaire={
+        Object {
+          "id": "1",
+          "sections": Array [
+            Object {
+              "id": "3",
+              "pages": Array [
+                Object {
+                  "id": "2",
+                  "title": "Page",
+                },
+              ],
+              "title": "Section",
+            },
+          ],
+          "title": "Questionnaire",
         }
-        section={
-          Object {
-            "id": "3",
-            "number": "1.",
-            "pages": Array [
-              Object {
-                "id": "2",
-                "title": "Page",
-              },
-            ],
-            "title": "Section",
-          }
+      }
+      section={
+        Object {
+          "id": "3",
+          "number": "1.",
+          "pages": Array [
+            Object {
+              "id": "2",
+              "title": "Page",
+            },
+          ],
+          "title": "Section",
         }
-      />
-      <PageNav
-        onDelete={[Function]}
-        questionnaire={
-          Object {
-            "id": "1",
-            "sections": Array [
-              Object {
-                "id": "3",
-                "pages": Array [
-                  Object {
-                    "id": "2",
-                    "title": "Page",
-                  },
-                ],
-                "title": "Section",
-              },
-            ],
-            "title": "Questionnaire",
-          }
+      }
+    />
+    <PageNav
+      onDelete={[Function]}
+      questionnaire={
+        Object {
+          "id": "1",
+          "sections": Array [
+            Object {
+              "id": "3",
+              "pages": Array [
+                Object {
+                  "id": "2",
+                  "title": "Page",
+                },
+              ],
+              "title": "Section",
+            },
+          ],
+          "title": "Questionnaire",
         }
-        section={
-          Object {
-            "id": "3",
-            "number": "1.",
-            "pages": Array [
-              Object {
-                "id": "2",
-                "title": "Page",
-              },
-            ],
-            "title": "Section",
-          }
+      }
+      section={
+        Object {
+          "id": "3",
+          "number": "1.",
+          "pages": Array [
+            Object {
+              "id": "2",
+              "title": "Page",
+            },
+          ],
+          "title": "Section",
         }
-      />
-      <SectionNav__AddPageBtn
-        id="btn-add-page"
-        onClick={[Function]}
-      >
-        + Add page
-      </SectionNav__AddPageBtn>
-    </SectionNav__SectionItem>
-  </CSSTransition>
+      }
+    />
+    <SectionNav__AddPageBtn
+      id="btn-add-page"
+      onClick={[Function]}
+    >
+      + Add page
+    </SectionNav__AddPageBtn>
+  </SectionNavItem>
 </TransitionGroup>
 `;

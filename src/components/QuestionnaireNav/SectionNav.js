@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
@@ -9,39 +8,13 @@ import { colors } from "constants/theme";
 import sectionIcon from "./icon-section.svg";
 
 import PageNav from "components/QuestionnaireNav/PageNav";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import SectionNavItem from "components/QuestionnaireNav/SectionNavItem";
+import { TransitionGroup } from "react-transition-group";
 
 import { NavLink } from "react-router-dom";
 
-import { first } from "lodash";
+import { first, delay } from "lodash";
 import { getLink } from "utils/UrlUtils";
-
-const duration = 200;
-
-const SectionItem = styled.li`
-  margin: 0;
-  padding: 0.5em 0;
-  transition: height ${duration / 2}ms ease-out,
-    opacity ${duration}ms ease-out ${duration}ms, padding ${duration}ms ease-out,
-    transform ${duration}ms ease-out ${duration}ms;
-  opacity: 1;
-  transform: translateX(0);
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #c3c3c3;
-  }
-
-  &.section-enter {
-    opacity: 0;
-    height: 0;
-    padding: 0;
-    transform: translateX(-20px);
-  }
-
-  &.section-entered {
-    height: auto;
-  }
-`;
 
 const Link = styled(NavLink)`
   text-decoration: none;
@@ -106,47 +79,66 @@ LinkedSectionTitle.propTypes = {
   section: CustomPropTypes.section.isRequired
 };
 
-const SectionNav = ({ questionnaire, onAddPage, onDeletePage }) => (
-  <TransitionGroup component={NavList}>
-    {questionnaire.sections
-      .map((section, i) => ({
-        ...section,
-        number: `${i + 1}.`
-      }))
-      .map((section, sectionNum) => (
-        <CSSTransition
-          key={section.number}
-          timeout={duration}
-          classNames="section"
-        >
-          <SectionItem>
-            <LinkedSectionTitle
-              questionnaire={questionnaire}
-              section={section}
-            />
-            <PageNav
-              section={section}
-              questionnaire={questionnaire}
-              onDelete={onDeletePage}
-            />
-            <AddPageBtn
-              onClick={function() {
-                onAddPage(section.id);
-              }}
-              id="btn-add-page"
-            >
-              + Add page
-            </AddPageBtn>
-          </SectionItem>
-        </CSSTransition>
-      ))}
-  </TransitionGroup>
-);
+class SectionNav extends Component {
+  sectionItems = [];
 
-SectionNav.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire,
-  onAddPage: PropTypes.func.isRequired,
-  onDeletePage: PropTypes.func.isRequired
-};
+  static propTypes = {
+    questionnaire: CustomPropTypes.questionnaire,
+    onAddPage: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired
+  };
+
+  scrollSectionIntoView = id => {
+    delay(
+      node => {
+        node.scrollIntoView({ behavior: "smooth" });
+      },
+      200,
+      this.sectionItems[id]
+    );
+  };
+
+  saveSectionItemRef = (id, node) => {
+    this.sectionItems[id] = node;
+  };
+
+  render() {
+    const { questionnaire, onAddPage, onDeletePage } = this.props;
+    return (
+      <TransitionGroup component={NavList}>
+        {questionnaire.sections
+          .map((section, i) => ({
+            ...section,
+            number: `${i + 1}.`
+          }))
+          .map((section, sectionNum) => (
+            <SectionNavItem
+              key={section.number}
+              section={section}
+              saveSectionItemRef={this.saveSectionItemRef}
+            >
+              <LinkedSectionTitle
+                questionnaire={questionnaire}
+                section={section}
+              />
+              <PageNav
+                section={section}
+                questionnaire={questionnaire}
+                onDelete={onDeletePage}
+              />
+              <AddPageBtn
+                onClick={function() {
+                  onAddPage(section.id);
+                }}
+                id="btn-add-page"
+              >
+                + Add page
+              </AddPageBtn>
+            </SectionNavItem>
+          ))}
+      </TransitionGroup>
+    );
+  }
+}
 
 export default SectionNav;

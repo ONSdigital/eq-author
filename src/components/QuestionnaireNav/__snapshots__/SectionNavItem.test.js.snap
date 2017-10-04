@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionNav should render 1`] = `
+<CSSTransition
+  classNames="section"
+  timeout={200}
+>
+  <SectionNavItem__ListItem
+    innerRef={[Function]}
+  >
+    Section Title
+  </SectionNavItem__ListItem>
+</CSSTransition>
+`;

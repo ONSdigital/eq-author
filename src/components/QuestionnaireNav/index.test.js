@@ -1,16 +1,19 @@
 import React from "react";
-import { shallow } from "enzyme";
+import mountWithRouter from "tests/utils/mountWithRouter";
 import QuestionnaireNav, { AddSectionBtn } from "components/QuestionnaireNav";
 
 describe("QuestionnaireNav", () => {
   let wrapper;
-  const questionnaire = { id: "1" };
-  const handleAddSection = jest.fn();
+  const page = { id: "1", title: "Page 1" };
+  const section = { id: "1", title: "Section 1", pages: [page] };
+  const questionnaire = { id: "3", sections: [section] };
+
+  const handleAddSection = jest.fn(() => Promise.resolve(section));
   const handleAddPage = jest.fn();
   const handleDeletePage = jest.fn();
 
   beforeEach(() => {
-    wrapper = shallow(
+    wrapper = mountWithRouter(
       <QuestionnaireNav
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
