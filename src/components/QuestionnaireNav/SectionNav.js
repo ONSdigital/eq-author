@@ -89,13 +89,7 @@ class SectionNav extends Component {
   };
 
   scrollSectionIntoView = id => {
-    delay(
-      node => {
-        node.scrollIntoView({ behavior: "smooth" });
-      },
-      200,
-      this.sectionItems[id]
-    );
+    this.sectionItems[id].scrollIntoView({ behavior: "smooth" });
   };
 
   saveSectionItemRef = (id, node) => {

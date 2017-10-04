@@ -32,12 +32,11 @@ const ListItem = styled.li`
   }
 `;
 
-const duration = 200;
-
 const SectionNavItem = ({
   children,
   section,
   saveSectionItemRef,
+  duration,
   ...props
 }) => (
   <CSSTransition timeout={duration} classNames="section">
@@ -45,7 +44,6 @@ const SectionNavItem = ({
       innerRef={function(node) {
         saveSectionItemRef(section.id, node);
       }}
-      {...props}
     >
       {children}
     </ListItem>
