@@ -45,10 +45,17 @@ class MockDataStore {
 
   createQuestionnaire(questionnaire) {
     const id = (++this.counter.questionnaire).toString();
+
+    const dateAsString = new Date().toISOString();
+    const dateWithoutTime = dateAsString.substring(
+      0,
+      dateAsString.indexOf("T")
+    );
+
     this.questionnaires[id] = merge(questionnaire, {
       id,
       sections: [],
-      createdAt: new Date().toISOString()
+      createdAt: dateWithoutTime
     });
 
     const defaultSection = this.createSection({

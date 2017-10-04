@@ -1,6 +1,8 @@
 import { merge } from "lodash";
 import MockDataStore from "./MockDataStore";
 
+const { GraphQLDate } = require("graphql-iso-date");
+
 const localStorageKey = "mockDataStore";
 
 const updateLocalStorage = dataStore => {
@@ -137,7 +139,8 @@ export default {
 
   Questionnaire: () => ({
     sections: (questionnaire, args, ctx) =>
-      DataStore.getSections(questionnaire.id)
+      DataStore.getSections(questionnaire.id),
+    createdAt: () => GraphQLDate
   }),
 
   Section: () => ({
