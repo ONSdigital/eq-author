@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HoverDeleteButton should render 1`] = `
+.c0 {
+  color: #4A4A4A;
+  border: none;
+  background: transparent;
+  font-size: 1.25em;
+  padding: 0.125em 0.625em 0.125em 0.375em;
+  position: absolute;
+  right: 0;
+  z-index: 3;
+  cursor: pointer;
+  -webkit-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.1s ease-in,opacity 0.1s ease-in;
+  -webkit-transition: transform 0.1s ease-in,opacity 0.1s ease-in;
+  transition: transform 0.1s ease-in,opacity 0.1s ease-in;
+}
+
+<button
+  className="c0"
+  onClick={[Function]}
+/>
+`;

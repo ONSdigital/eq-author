@@ -1,11 +1,12 @@
 import { graphql } from "react-apollo";
 import fragment from "graphql/sectionFragment.graphql";
 import createQuestionPageMutation from "graphql/createQuestionPage.graphql";
+import { getLink } from "utils/UrlUtils";
 
 export const redirectToNewPage = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
   const { id, section } = data.createQuestionPage;
-  history.push(`/questionnaire/${questionnaireId}/design/${section.id}/${id}`);
+  history.push(getLink(questionnaireId, section.id, id));
 };
 
 export const createUpdater = sectionId => (proxy, result) => {
@@ -29,26 +30,10 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       sectionId
     };
 
-    const optimisticResponse = {
-      createQuestionPage: {
-        __typename: "QuestionPage",
-        id: "-1",
-        guidance: "",
-        pageType: "",
-        answers: [],
-        section: {
-          __typename: "Section",
-          id: sectionId
-        },
-        ...page
-      }
-    };
-
     const update = createUpdater(sectionId);
 
     return mutate({
       variables: { input: page },
-      optimisticResponse,
       update
     }).then(redirectToNewPage(ownProps));
   }

@@ -59,6 +59,7 @@ const QuestionnaireNav = ({
   questionnaire,
   onAddPage,
   onAddSection,
+  onDeleteSection,
   onDeletePage
 }) => (
   <Container id="questionnaire-nav">
@@ -67,6 +68,7 @@ const QuestionnaireNav = ({
       transitionDuration={200}
       questionnaire={questionnaire}
       onAddPage={onAddPage}
+      onDeleteSection={onDeleteSection}
       onDeletePage={onDeletePage}
     />
     <AddSection>
@@ -85,6 +87,7 @@ const QuestionnaireNav = ({
 QuestionnaireNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,
   onAddPage: PropTypes.func.isRequired,
+  onDeleteSection: PropTypes.func.isRequired,
   onDeletePage: PropTypes.func.isRequired,
   onAddSection: PropTypes.func.isRequired
 };

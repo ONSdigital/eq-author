@@ -2,6 +2,7 @@ import React from "react";
 import Questionnaires from "./QuestionnairesPage";
 import { shallow } from "enzyme";
 import mountWithRouter from "tests/utils/mountWithRouter";
+import { getLink } from "utils/UrlUtils";
 
 describe("containers/Questionnaires", () => {
   const createWrapper = props => {
@@ -94,8 +95,11 @@ describe("containers/Questionnaires", () => {
     });
 
     const linkToQuestionnaire = wrapper.find("a").last();
-    const expectedUrl = `#/questionnaire/${questionnaire.id}/design/${questionnaire
-      .sections[0].id}/${questionnaire.sections[0].pages[0].id}/`;
+    const expectedUrl = `#${getLink(
+      questionnaire.id,
+      questionnaire.sections[0].id,
+      questionnaire.sections[0].pages[0].id
+    )}`;
     expect(linkToQuestionnaire.props().href).toEqual(expectedUrl);
   });
 });

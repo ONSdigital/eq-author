@@ -32,7 +32,7 @@ export class QuestionnaireDesignPage extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return !isNil(nextProps.page);
+    return !isNil(nextProps.section) && !isNil(nextProps.page);
   }
 
   handleFocus = focused => {

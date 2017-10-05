@@ -10,6 +10,7 @@ exports[`QuestionnaireNav should render 1`] = `
   <SectionNav
     onAddPage={[Function]}
     onDeletePage={[Function]}
+    onDeleteSection={[Function]}
     questionnaire={
       Object {
         "id": "1",

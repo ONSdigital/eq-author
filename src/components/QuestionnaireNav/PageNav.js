@@ -1,39 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
+import { getLink } from "utils/UrlUtils";
 import Tooltip from "components/Tooltip";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import { colors } from "constants/theme";
 import getTextFromHTML from "utils/getTextFromHTML";
+import HoverDeleteButton from "./HoverDeleteButton";
 
-const duration = 200;
+const duration = 300;
 
-const StyledPageItem = styled.li`
+export const StyledPageItem = styled.li`
   padding: 0;
   margin: 0;
   font-weight: 500;
-  transition: height ${duration / 2}ms ease-out,
-    opacity ${duration}ms ease-out ${duration}ms,
-    transform ${duration}ms ease-out ${duration}ms;
-  opacity: 1;
-  height: 2em;
-  transform: translateX(0);
   display: flex;
   align-items: center;
   z-index: ${props => props.index};
   position: relative;
 
   &.page-enter,
-  &.page-exit {
+  &.page-exit.page-exit-active {
     opacity: 0;
     height: 0;
     transform: translateX(-20px);
   }
 
-  &.page-exit {
+  &.page-exit,
+  &.page-enter.page-enter-active {
+    opacity: 1;
+    height: 2em;
+    transform: translateX(0);
+  }
+
+  &.page-enter-active {
+    transition: height ${duration / 2}ms ease-out,
+      opacity ${duration / 2}ms ease-out ${duration / 2}ms,
+      transform ${duration / 2}ms ease-out ${duration / 2}ms;
+  }
+
+  &.page-exit-active {
     transition: opacity ${duration / 2}ms ease-out,
       transform ${duration / 2}ms ease-out,
       height ${duration / 2}ms ease-out ${duration / 2}ms;
@@ -86,7 +94,7 @@ const Link = styled(NavLink)`
   }
 `;
 
-const LinkText = styled.span`
+export const LinkText = styled.span`
   display: inline-block;
   width: 100%;
   position: relative;
@@ -103,32 +111,16 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-export const DeleteButton = styled.button`
-  color: ${colors.text};
-  border: none;
-  background: transparent;
-  font-size: 1.25em;
-  margin-right: 0.25em;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  z-index: 3;
-  cursor: pointer;
-
-  transform: translateY(-50%) translateX(50%);
-  opacity: 0;
-  transition: transform 0.1s ease-in, opacity 0.1s ease-in;
+export const DeleteButton = styled(HoverDeleteButton)`
+  top: 0.1em;
 
   ${StyledPageItem}:hover &,
   ${Link}:focus + &,
   &:focus {
     opacity: 1;
-    transform: translateY(-50%) translateX(0);
+    transform: translateX(0);
   }
 `;
-
-const getLink = (questionnaireId, sectionId, pageId) =>
-  `/questionnaire/${questionnaireId}/design/${sectionId}/${pageId}`;
 
 export class PageNavItem extends React.Component {
   state = {
@@ -193,7 +185,7 @@ export class PageNavItem extends React.Component {
 const PageNav = ({ section, questionnaire, onDelete }) => (
   <TransitionGroup component={NavList}>
     {section.pages.map((page, i, pages) => {
-      const pageNumber = `${section.number}${i + 1}`;
+      const pageNumber = `${section.number}.${i + 1}`;
       return (
         <CSSTransition key={page.id} timeout={duration} classNames="page">
           <PageNavItem
