@@ -89,7 +89,11 @@ class SectionNav extends Component {
   };
 
   scrollSectionIntoView = id => {
-    this.sectionItems[id].scrollIntoView({ behavior: "smooth" });
+    this.sectionItems[id].scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
   };
 
   saveSectionItemRef = (id, node) => {
@@ -107,6 +111,7 @@ class SectionNav extends Component {
           }))
           .map((section, sectionNum) => (
             <SectionNavItem
+              duration={200}
               key={section.number}
               section={section}
               saveSectionItemRef={this.saveSectionItemRef}

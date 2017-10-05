@@ -50,7 +50,10 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       variables: { input: page },
       optimisticResponse,
       update
-    }).then(redirectToNewPage(ownProps));
+    }).then(res => {
+      redirectToNewPage(ownProps);
+      return res.data.createQuestionPage;
+    });
   }
 });
 

@@ -10,8 +10,6 @@ export const redirectToNewPage = ownProps => ({ data }) => {
   history.push(
     `/questionnaire/${questionnaireId}/design/${section.id}/${page.id}`
   );
-
-  return section;
 };
 
 export const createUpdater = questionnaireId => (proxy, result) => {
@@ -51,7 +49,10 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       variables: { input: section },
       optimisticResponse,
       update
-    }).then(redirectToNewPage(ownProps));
+    }).then(res => {
+      redirectToNewPage(ownProps);
+      return res.data.createSection;
+    });
   }
 });
 

@@ -59,15 +59,22 @@ class QuestionnaireNav extends Component {
     this.sectionNav = sectionNav;
   };
 
-  handleClick = () => {
+  handleAddSectionClick = () => {
     const { questionnaire, onAddSection } = this.props;
-    onAddSection(questionnaire.id).then(section => {
-      this.sectionNav.scrollSectionIntoView(section.id);
-    });
+    onAddSection(questionnaire.id).then(({ id }) =>
+      this.sectionNav.scrollSectionIntoView(id)
+    );
+  };
+
+  handleAddPage = sectionId => {
+    const { onAddPage } = this.props;
+    onAddPage(sectionId).then(({ section }) =>
+      this.sectionNav.scrollSectionIntoView(section.id)
+    );
   };
 
   render() {
-    const { questionnaire, onAddPage, onDeletePage } = this.props;
+    const { questionnaire, onDeletePage } = this.props;
 
     return (
       <Container id="questionnaire-nav">
@@ -75,12 +82,12 @@ class QuestionnaireNav extends Component {
         <SectionNav
           transitionDuration={200}
           questionnaire={questionnaire}
-          onAddPage={onAddPage}
+          onAddPage={this.handleAddPage}
           onDeletePage={onDeletePage}
           ref={this.saveSectionNavRef}
         />
         <AddSection>
-          <AddSectionBtn primary onClick={this.handleClick}>
+          <AddSectionBtn primary onClick={this.handleAddSectionClick}>
             Create new section
           </AddSectionBtn>
         </AddSection>
