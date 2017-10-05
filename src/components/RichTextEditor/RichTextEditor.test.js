@@ -7,19 +7,28 @@ import Toolbar, {
 } from "components/RichTextEditor/Toolbar";
 import { shallow } from "enzyme";
 import findById from "utils/findById";
-import content from "./testContent";
-import { RichUtils, Editor, EditorState, convertFromRaw } from "draft-js";
+import { RichUtils, Editor, EditorState } from "draft-js";
 
 // https://github.com/facebook/draft-js/issues/702
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
 
 let wrapper, props, editorNode;
 
+const content = `
+  <h2>List of styles:</h2>
+  <ul>
+    <li>Regular</li>
+    <li><strong>Bold</strong></li>
+    <li><em>Emphasis</em></li>
+  </ul>
+`;
+
 describe("components/RichTextEditor", function() {
   beforeEach(() => {
     props = {
       onUpdate: jest.fn(),
-      label: "I am a label"
+      label: "I am a label",
+      id: "test"
     };
     editorNode = {
       focus: jest.fn()
@@ -36,6 +45,11 @@ describe("components/RichTextEditor", function() {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should allow multiline input", () => {
+    wrapper = shallow(<RichTextEditor {...props} multiline />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should store a reference to the editor DOM node", () => {
     wrapper.instance().setEditorNode(editorNode);
     expect(wrapper.instance().editor).toEqual(editorNode);
@@ -48,10 +62,10 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should store editorState in local state upon change event", () => {
-    const editorState = EditorState.createWithContent(convertFromRaw(content));
+    const editorState = EditorState.createEmpty();
     const handleChange = wrapper.find(Editor).prop("onChange");
     handleChange(editorState);
-    expect(wrapper.state("editorState")).toEqual(editorState);
+    expect(wrapper.state("editorState")).toBe(editorState);
   });
 
   it("should handle toggling a control", () => {
@@ -68,12 +82,10 @@ describe("components/RichTextEditor", function() {
 
   it("should call onUpdate with raw editor state onBlur", () => {
     wrapper.find(Editor).simulate("blur");
-    expect(props.onUpdate).toHaveBeenCalledWith(
-      expect.objectContaining({
-        entityMap: expect.any(Object),
-        blocks: expect.any(Array)
-      })
-    );
+    expect(props.onUpdate).toHaveBeenCalledWith({
+      name: "test",
+      value: `<p></p>\n`
+    });
   });
 
   it("should call the relevant method to determine if the element is active", () => {
@@ -89,5 +101,18 @@ describe("components/RichTextEditor", function() {
 
     instance.isActiveControl(blockElement);
     expect(instance.getBlockType).toHaveBeenCalled();
+  });
+
+  it("should remove carriage returns on paste", () => {
+    const text = "hello\nworld";
+    const handled = wrapper.instance().handlePaste(text);
+    const html = wrapper.instance().getHTML();
+
+    expect(handled).toBe("handled");
+    expect(html).toContain("hello world");
+  });
+
+  it("should disable enter key", () => {
+    expect(wrapper.instance().handleReturn()).toBe("handled");
   });
 });

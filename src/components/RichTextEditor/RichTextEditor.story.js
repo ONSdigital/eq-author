@@ -5,7 +5,14 @@ import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 
-import content from "./testContent";
+const content = `
+<h2>List of styles:</h2>
+<ul>
+  <li>Regular</li>
+  <li><strong>Bold</strong></li>
+  <li><em>Emphasis</em></li>
+</ul>
+`;
 
 const Wrapper = styled.div`
   margin: 4em 1em 0;

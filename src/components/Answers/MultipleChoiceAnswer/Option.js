@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { colors, radius } from "constants/theme";
 import { Field } from "components/Forms";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import withEntityEditor from "components/withEntityEditor";
 import PropTypes from "prop-types";
@@ -14,9 +13,9 @@ import { get } from "lodash";
 import optionFragment from "graphql/fragments/option.graphql";
 
 export const DeleteContainer = styled.div`
-  padding: .2em;
+  padding: 0.2em;
   position: absolute;
-  top: .5em;
+  top: 0.5em;
   right: 1em;
 `;
 
@@ -31,7 +30,7 @@ const DummyInput = styled.div`
   width: 1.4em;
   display: inline-block;
   margin: 0 1em 0 0;
-  vertical-align: middle;
+  vertical-align: top;
 
   border-radius: ${props => get(borderRadii, props.type, "initial")};
 `;
@@ -43,7 +42,7 @@ export const StyledOption = styled.div`
   position: relative;
 
   &:not(:first-child) {
-    margin-top: .5em;
+    margin-top: 0.5em;
   }
 
   &.option-enter {
@@ -88,11 +87,15 @@ StyledOption.propTypes = {
   duration: PropTypes.number
 };
 
-export const SeamlessLabel = styled(SeamlessInput)`
+export const SeamlessLabel = styled(SeamlessTextArea)`
   display: inline-block !important;
   width: auto;
   vertical-align: middle;
+  margin-right: 1.5em;
+  flex: 1 1 0%;
 `;
+
+const LabelField = styled(Field)`display: flex;`;
 
 export class StatelessOption extends Component {
   static propTypes = {
@@ -127,7 +130,7 @@ export class StatelessOption extends Component {
 
     return (
       <StyledOption key={option.id}>
-        <Field id="label">
+        <LabelField id="label">
           <DummyInput type={type} />
           <SeamlessLabel
             placeholder="Label"
@@ -135,13 +138,10 @@ export class StatelessOption extends Component {
             value={option.label}
             onChange={onChange}
             onBlur={onUpdate}
-            data-autoFocus
           />
-        </Field>
+        </LabelField>
         <Field id="description">
           <SeamlessTextArea
-            cols="30"
-            rows="5"
             placeholder="Optional description"
             onChange={onChange}
             value={option.description}

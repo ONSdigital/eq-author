@@ -1,15 +1,12 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-
 import styled from "styled-components";
 import { colors } from "constants/theme";
-
 import sectionIcon from "./icon-section.svg";
-
 import PageNav from "components/QuestionnaireNav/PageNav";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 import { NavLink } from "react-router-dom";
 
@@ -83,22 +80,25 @@ const NavList = styled.ol`
 
 export const LinkedSectionTitle = ({ questionnaire, section }) => {
   const sectionTitle = (
-    <SectionTitle>{section.title || "Section Title"}</SectionTitle>
+    <SectionTitle>
+      {getTextFromHTML(section.title) || "Section Title"}
+    </SectionTitle>
   );
-  if (section.pages.length > 0) {
-    const firstPage = first(section.pages);
-    return (
-      <Link
-        to={getLink(questionnaire.id, section.id, firstPage.id)}
-        aria-disabled={parseInt(firstPage.id, 10) < 0}
-        activeClassName="selected"
-      >
-        {sectionTitle}
-      </Link>
-    );
-  } else {
+
+  if (section.pages.length === 0) {
     return sectionTitle;
   }
+
+  const firstPage = first(section.pages);
+  return (
+    <Link
+      to={getLink(questionnaire.id, section.id, firstPage.id)}
+      aria-disabled={parseInt(firstPage.id, 10) < 0}
+      activeClassName="selected"
+    >
+      {sectionTitle}
+    </Link>
+  );
 };
 
 LinkedSectionTitle.propTypes = {

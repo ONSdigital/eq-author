@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { isNil } from "lodash";
 import CustomPropTypes from "custom-prop-types";
-
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
 import MainCanvas from "components/MainCanvas";
 import ScrollPane from "components/ScrollPane";
-
 import EditorSurface from "components/EditorSurface";
-
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -46,9 +43,10 @@ export class QuestionnaireDesignPage extends Component {
 
   getMetaTitle = () => {
     const { questionnaire, page } = this.props;
+    const pageTitle = getTextFromHTML(page.title);
 
-    return page.title
-      ? `${page.title} - ${questionnaire.title}`
+    return pageTitle
+      ? `${pageTitle} - ${questionnaire.title}`
       : `${questionnaire.title}`;
   };
 

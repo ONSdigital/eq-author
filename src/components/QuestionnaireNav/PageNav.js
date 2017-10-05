@@ -7,6 +7,7 @@ import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import { colors } from "constants/theme";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 const duration = 200;
 
@@ -79,7 +80,7 @@ const Link = styled(NavLink)`
     }
   }
 
-  &[aria-disabled=true] {
+  &[aria-disabled="true"] {
     pointer-events: none;
     opacity: 0.5;
   }
@@ -172,7 +173,7 @@ export class PageNavItem extends React.Component {
           activeClassName="selected"
         >
           <LinkText fade={this.state.isDeleting}>
-            {pageNumber} {title || "Page Title"}
+            {pageNumber} {getTextFromHTML(title) || "Page Title"}
           </LinkText>
         </Link>
         <Tooltip content="Delete page">
@@ -189,7 +190,7 @@ export class PageNavItem extends React.Component {
   }
 }
 
-const PageNav = ({ section, questionnaire, onDelete }) =>
+const PageNav = ({ section, questionnaire, onDelete }) => (
   <TransitionGroup component={NavList}>
     {section.pages.map((page, i, pages) => {
       const pageNumber = `${section.number}${i + 1}`;
@@ -207,7 +208,8 @@ const PageNav = ({ section, questionnaire, onDelete }) =>
         </CSSTransition>
       );
     })}
-  </TransitionGroup>;
+  </TransitionGroup>
+);
 
 PageNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,

@@ -1,7 +1,7 @@
 import React from "react";
 import { StatelessMetaEditor } from "./MetaEditor";
 import { shallow, mount } from "enzyme";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
+import RichTextEditor from "components/RichTextEditor";
 
 describe("MetaEditor", () => {
   let wrapper, handleUpdate, handleChange, handleTitleRef, page;
@@ -36,19 +36,21 @@ describe("MetaEditor", () => {
   it("should expose title input as ref", () => {
     wrapper = render(mount);
 
-    const input = wrapper.find(SeamlessInput).first();
+    const input = wrapper.find(RichTextEditor).first();
     const ref = handleTitleRef.mock.calls[0][0];
 
     expect(input.matchesElement(ref)).toBe(true);
   });
 
-  it("should invoke change callback onChange", () => {
-    wrapper.find(SeamlessInput).forEach(input => input.simulate("change"));
-    expect(handleChange).toHaveBeenCalledTimes(3);
-  });
+  it("should invoke change and update onUpdate", () => {
+    const editors = wrapper.find(RichTextEditor);
+    expect(editors.length).toBeGreaterThan(0);
 
-  it("should invoke update callback onBlur", () => {
-    wrapper.find(SeamlessInput).forEach(input => input.simulate("blur"));
-    expect(handleUpdate).toHaveBeenCalledTimes(3);
+    editors.forEach((rte, i) => {
+      const change = { name: "title", value: `<p>${i}</p>` };
+      rte.simulate("update", change);
+
+      expect(handleChange).toHaveBeenLastCalledWith(change, handleUpdate);
+    });
   });
 });

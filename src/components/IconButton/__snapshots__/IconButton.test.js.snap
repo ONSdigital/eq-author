@@ -75,11 +75,13 @@ exports[`components/IconButton will render an icon 1`] = `
         <IconButton__Button
           icon="icon-test.svg"
           onClick={[Function]}
+          type="button"
         >
           <button
             className="c0"
             icon="icon-test.svg"
             onClick={[Function]}
+            type="button"
           >
             <VisuallyHidden__VisuallyHidden>
               <span

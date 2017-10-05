@@ -7,9 +7,15 @@ exports[`SectionEditor should render 1`] = `
   <Field
     id="title"
   >
-    <withSeamlessness(withChangeHandler(Input))
-      onBlur={[Function]}
-      onChange={[Function]}
+    <RichTextEditor
+      controls={
+        Object {
+          "emphasis": true,
+        }
+      }
+      label="title"
+      multiline={false}
+      onUpdate={[Function]}
       placeholder="Section title"
       size="medium"
     />
@@ -17,13 +23,17 @@ exports[`SectionEditor should render 1`] = `
   <Field
     id="description"
   >
-    <withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
-      cols="30"
-      onBlur={[Function]}
-      onChange={[Function]}
+    <RichTextEditor
+      controls={
+        Object {
+          "bold": true,
+          "emphasis": true,
+        }
+      }
+      label="description"
+      multiline={false}
+      onUpdate={[Function]}
       placeholder="Enter a description (optional)…"
-      rows="5"
-      size="small"
     />
   </Field>
 </div>
