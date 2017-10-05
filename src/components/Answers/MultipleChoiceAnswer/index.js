@@ -9,7 +9,7 @@ import Button from "components/Button";
 import Option from "./Option";
 
 const AnswerWrapper = styled.div`
-  width: 20em;
+  width: 25em;
   margin: 0;
 `;
 
@@ -25,20 +25,20 @@ export const AddOtherLink = styled.button`
 export const DeleteButton = styled.button`
   cursor: pointer;
   color: ${colors.lightGrey};
-  padding: .2em;
+  padding: 0.2em;
   border: 0;
   background: none;
   font-size: 1em;
 
   position: absolute;
-  top: .5em;
+  top: 0.5em;
   right: 1em;
 
-  transition: color .2s ease-in-out;
+  transition: color 0.2s ease-in-out;
 
   &:hover {
     color: ${colors.darkGrey};
-    transition: color .2s ease-in-out;
+    transition: color 0.2s ease-in-out;
   }
 `;
 
@@ -70,7 +70,7 @@ class MultipleChoiceAnswer extends Component {
     return (
       <AnswerWrapper>
         <TransitionGroup component={Options}>
-          {answer.options.map((option, optionIndex, options) =>
+          {answer.options.map((option, optionIndex, options) => (
             <CSSTransition timeout={200} classNames="option" key={option.id}>
               <Option
                 {...otherProps}
@@ -80,7 +80,7 @@ class MultipleChoiceAnswer extends Component {
                 hasDeleteButton={options.length > minOptions}
               />
             </CSSTransition>
-          )}
+          ))}
         </TransitionGroup>
         <div>
           <Button type="button" secondary onClick={this.handleAddOptionClick}>

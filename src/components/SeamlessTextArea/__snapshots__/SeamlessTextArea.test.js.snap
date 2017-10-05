@@ -37,7 +37,7 @@ exports[`SeamlessTextArea should render 1`] = `
   color: #a3a3a3;
 }
 
-<withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))
+<withSeamlessness(withChangeHandler(WrappingTextArea))
   id="foo"
   onChange={[Function]}
   size="small"
@@ -50,7 +50,7 @@ exports[`SeamlessTextArea should render 1`] = `
     size="small"
     value="123"
   >
-    <withChangeHandler(SeamlessTextArea__TextArea)
+    <withChangeHandler(WrappingTextArea)
       className="c0"
       id="foo"
       name="foo"
@@ -58,7 +58,7 @@ exports[`SeamlessTextArea should render 1`] = `
       size="small"
       value="123"
     >
-      <SeamlessTextArea__TextArea
+      <WrappingTextArea
         className="c0"
         id="foo"
         name="foo"
@@ -66,32 +66,44 @@ exports[`SeamlessTextArea should render 1`] = `
         size="small"
         value="123"
       >
-        <TextareaAutosize
-          className="c0 c1"
+        <SeamlessTextArea__TextArea
+          className="c0"
           id="foo"
           name="foo"
           onChange={[Function]}
-          onHeightChange={[Function]}
+          onKeyDown={[Function]}
           size="small"
-          useCacheForDOMMeasurements={false}
           value="123"
         >
-          <textarea
+          <TextareaAutosize
             className="c0 c1"
             id="foo"
             name="foo"
             onChange={[Function]}
+            onHeightChange={[Function]}
+            onKeyDown={[Function]}
             size="small"
-            style={
-              Object {
-                "height": 0,
-              }
-            }
+            useCacheForDOMMeasurements={false}
             value="123"
-          />
-        </TextareaAutosize>
-      </SeamlessTextArea__TextArea>
-    </withChangeHandler(SeamlessTextArea__TextArea)>
+          >
+            <textarea
+              className="c0 c1"
+              id="foo"
+              name="foo"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              size="small"
+              style={
+                Object {
+                  "height": 0,
+                }
+              }
+              value="123"
+            />
+          </TextareaAutosize>
+        </SeamlessTextArea__TextArea>
+      </WrappingTextArea>
+    </withChangeHandler(WrappingTextArea)>
   </withSeamlessness__StyledSeamless>
-</withSeamlessness(withChangeHandler(SeamlessTextArea__TextArea))>
+</withSeamlessness(withChangeHandler(WrappingTextArea))>
 `;

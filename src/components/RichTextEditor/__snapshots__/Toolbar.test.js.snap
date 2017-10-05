@@ -1,5 +1,292 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
+.c3 {
+  background-color: rgba(97,97,97,0.9) !important;
+  font-size: 0.625rem !important;
+  line-height: 2.2em !important;
+  padding: 0 0.6em !important;
+  border-radius: 2px !important;
+  white-space: pre;
+}
+
+.c3::before,
+.c3::after {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.c2 {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  opacity: 0.9;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  background: transparent url(foo.svg) no-repeat center;
+  width: 3.5em;
+  height: 3.5em;
+}
+
+.c1:hover {
+  opacity: 1;
+}
+
+.c1[disabled] {
+  opacity: 0.5;
+}
+
+.c0 {
+  display: block;
+  opacity: 0.7;
+}
+
+.c0:hover,
+.c0:focus {
+  background-color: #f5f5f5;
+  outline: none;
+  opacity: 0.8;
+}
+
+.c0[disabled] {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+<Toolbar__Button
+  icon="foo.svg"
+  title="foo"
+>
+  <IconButton
+    className="c0"
+    icon="foo.svg"
+    title="foo"
+  >
+    <Tooltip
+      content="foo"
+    >
+      <div>
+        <div
+          data-for="tooltip-1"
+          data-tip={true}
+        >
+          <IconButton__Button
+            className="c0"
+            icon="foo.svg"
+            type="button"
+          >
+            <button
+              className="c0 c1"
+              icon="foo.svg"
+              type="button"
+            >
+              <VisuallyHidden__VisuallyHidden>
+                <span
+                  className="c2"
+                >
+                  foo
+                </span>
+              </VisuallyHidden__VisuallyHidden>
+            </button>
+          </IconButton__Button>
+        </div>
+        <Tooltip__StyledTooltip
+          delayShow={200}
+          effect="solid"
+          id="tooltip-1"
+          place="bottom"
+        >
+          <ReactTooltip
+            className="c3"
+            delayShow={200}
+            effect="solid"
+            id="tooltip-1"
+            insecure={true}
+            place="bottom"
+            resizeHide={true}
+            wrapper="div"
+          >
+            <div
+              className="__react_component_tooltip place-top type-dark "
+              data-id="tooltip"
+            />
+          </ReactTooltip>
+        </Tooltip__StyledTooltip>
+      </div>
+    </Tooltip>
+  </IconButton>
+</Toolbar__Button>
+`;
+
+exports[`components/RichTextEditor/Toolbar Button should style appropriately when active 1`] = `
+.c3 {
+  background-color: rgba(97,97,97,0.9) !important;
+  font-size: 0.625rem !important;
+  line-height: 2.2em !important;
+  padding: 0 0.6em !important;
+  border-radius: 2px !important;
+  white-space: pre;
+}
+
+.c3::before,
+.c3::after {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.c2 {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  opacity: 0.9;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  background: transparent url(foo.svg) no-repeat center;
+  width: 3.5em;
+  height: 3.5em;
+}
+
+.c1:hover {
+  opacity: 1;
+}
+
+.c1[disabled] {
+  opacity: 0.5;
+}
+
+.c0 {
+  display: block;
+  opacity: 0.7;
+  opacity: 1 !important;
+  background-color: #f5f5f5;
+}
+
+.c0:hover,
+.c0:focus {
+  background-color: #f5f5f5;
+  outline: none;
+  opacity: 0.8;
+}
+
+.c0[disabled] {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+<Toolbar__Button
+  active={true}
+  icon="foo.svg"
+  title="foo"
+>
+  <IconButton
+    active={true}
+    className="c0"
+    icon="foo.svg"
+    title="foo"
+  >
+    <Tooltip
+      content="foo"
+    >
+      <div>
+        <div
+          data-for="tooltip-2"
+          data-tip={true}
+        >
+          <IconButton__Button
+            active={true}
+            className="c0"
+            icon="foo.svg"
+            type="button"
+          >
+            <button
+              className="c0 c1"
+              icon="foo.svg"
+              type="button"
+            >
+              <VisuallyHidden__VisuallyHidden>
+                <span
+                  className="c2"
+                >
+                  foo
+                </span>
+              </VisuallyHidden__VisuallyHidden>
+            </button>
+          </IconButton__Button>
+        </div>
+        <Tooltip__StyledTooltip
+          delayShow={200}
+          effect="solid"
+          id="tooltip-2"
+          place="bottom"
+        >
+          <ReactTooltip
+            className="c3"
+            delayShow={200}
+            effect="solid"
+            id="tooltip-2"
+            insecure={true}
+            place="bottom"
+            resizeHide={true}
+            wrapper="div"
+          >
+            <div
+              className="__react_component_tooltip place-top type-dark "
+              data-id="tooltip"
+            />
+          </ReactTooltip>
+        </Tooltip__StyledTooltip>
+      </div>
+    </Tooltip>
+  </IconButton>
+</Toolbar__Button>
+`;
+
 exports[`components/RichTextEditor/Toolbar should render as hidden by default 1`] = `
 <TransitionGroup
   childFactory={[Function]}
@@ -17,14 +304,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
     in={false}
   >
     <Toolbar__ToolbarPanel
-      controls={
-        Object {
-          "bold": true,
-          "emphasis": true,
-          "heading": true,
-          "list": true,
-        }
-      }
+      controls={Object {}}
       isActiveControl={[Function]}
       onFocus={[Function]}
       onToggle={[Function]}
@@ -32,7 +312,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
     >
       <Toolbar__ButtonGroup>
         <Toolbar__Button
-          disabled={false}
+          disabled={true}
           icon="icon-heading.svg"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -40,7 +320,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           title="Heading"
         />
         <Toolbar__Button
-          disabled={false}
+          disabled={true}
           icon="icon-bold.svg"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -48,7 +328,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           title="Bold"
         />
         <Toolbar__Button
-          disabled={false}
+          disabled={true}
           icon="icon-emphasis.svg"
           onClick={[Function]}
           onKeyDown={[Function]}
@@ -56,7 +336,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           title="Emphasis"
         />
         <Toolbar__Button
-          disabled={false}
+          disabled={true}
           icon="icon-list.svg"
           onClick={[Function]}
           onKeyDown={[Function]}

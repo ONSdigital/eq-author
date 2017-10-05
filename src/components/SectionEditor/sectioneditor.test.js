@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { StatelessSectionEditor } from "components/SectionEditor";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import RichTextEditor from "components/RichTextEditor";
 
 describe("SectionEditor", () => {
   const section = {};
@@ -24,15 +23,15 @@ describe("SectionEditor", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should invoke change callback onChange", () => {
-    wrapper.find(SeamlessInput).simulate("change");
-    wrapper.find(SeamlessTextArea).simulate("change");
-    expect(handleChange).toHaveBeenCalledTimes(2);
-  });
+  it("should invoke change and update callbacks onUpdate", () => {
+    const editors = wrapper.find(RichTextEditor);
+    expect(editors.length).toBeGreaterThan(0);
 
-  it("should invoke update callback onBlur", () => {
-    wrapper.find(SeamlessInput).simulate("blur");
-    wrapper.find(SeamlessTextArea).simulate("blur");
-    expect(handleUpdate).toHaveBeenCalledTimes(2);
+    editors.forEach((rte, i) => {
+      const change = { name: "title", value: `<p>${i}</p>` };
+      rte.simulate("update", change);
+
+      expect(handleChange).toHaveBeenLastCalledWith(change, handleUpdate);
+    });
   });
 });

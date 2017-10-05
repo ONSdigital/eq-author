@@ -1,6 +1,5 @@
 /* eslint-disable react/no-find-dom-node */
 import React from "react";
-import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
 import CanvasSection from "./CanvasSection";
 
@@ -12,6 +11,7 @@ import SectionEditor from "components/SectionEditor";
 import QuestionPageEditor from "components/QuestionPageEditor";
 import getIdForObject from "utils/getIdForObject";
 import SlideTransition from "components/SlideTransition";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 class EditorSurface extends React.Component {
   static propTypes = {
@@ -35,21 +35,24 @@ class EditorSurface extends React.Component {
 
   setSectionTitle = input => {
     if (input) {
-      this.sectionTitle = findDOMNode(input);
+      this.sectionTitle = input;
     }
   };
 
   setPageTitle = input => {
     if (input) {
-      this.pageTitle = findDOMNode(input);
+      this.pageTitle = input;
     }
   };
 
   setFocusOnTitle = () => {
     const { section, page } = this.props;
-    if (get(section, "title.length") === 0) {
+    const sectionTitle = getTextFromHTML(get(section, "title"));
+    const pageTitle = getTextFromHTML(get(page, "title"));
+
+    if (!sectionTitle) {
       this.sectionTitle.focus();
-    } else if (get(page, "title.length") === 0) {
+    } else if (!pageTitle) {
       this.pageTitle.focus();
     }
   };

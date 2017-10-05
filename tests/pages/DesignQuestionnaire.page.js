@@ -1,9 +1,6 @@
 export const onDesignQuestionnairePage = () => {
-  const navigationHeadingSelector = "h2";
-  browser.waitForExist(navigationHeadingSelector);
-  return (
-    browser.getText(navigationHeadingSelector) === "QUESTIONNAIRE STRUCTURE"
-  );
+  browser.waitForExist("#questionnaire-nav");
+  return true;
 };
 
 export const navigationHasDefaultSectionTitle = () => {
@@ -14,10 +11,11 @@ export const navigationSectionHasTitle = title => {
   return getFirstSectionTitle() === title;
 };
 
-const sectionTitleInput = "#section-editor [name='title']";
+const sectionTitleInput = "#section-editor [aria-label='title']";
 
 export const setSectionTitle = sectionTitle => {
-  browser.setValue(sectionTitleInput, sectionTitle);
+  browser.click(sectionTitleInput);
+  browser.keys(sectionTitle.split(""));
 };
 
 export const getFirstSectionTitle = () => {

@@ -32,6 +32,7 @@ const IconButton = ({ icon, title, disabled, handleClick, ...otherProps }) => (
         onClick={handleClick}
         disabled={disabled}
         icon={icon}
+        type="button"
         {...otherProps}
       >
         <VisuallyHidden>{title}</VisuallyHidden>
