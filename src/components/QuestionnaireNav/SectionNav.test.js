@@ -3,8 +3,7 @@ import { shallow } from "enzyme";
 import SectionNav, { AddPageBtn, LinkedSectionTitle } from "./SectionNav";
 
 describe("SectionNav", () => {
-  let wrapper;
-  let handleAddPage, handleDeletePage;
+  let wrapper, handleAddPage, handleDeletePage;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };

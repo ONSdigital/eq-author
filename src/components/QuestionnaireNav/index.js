@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import PropTypes from "prop-types";
@@ -55,32 +54,47 @@ export const AddSectionBtn = styled.button`
   }
 `;
 
-const QuestionnaireNav = ({
-  questionnaire,
-  onAddPage,
-  onAddSection,
-  onDeletePage
-}) => (
-  <Container id="questionnaire-nav">
-    <Title>Questionnaire structure</Title>
-    <SectionNav
-      transitionDuration={200}
-      questionnaire={questionnaire}
-      onAddPage={onAddPage}
-      onDeletePage={onDeletePage}
-    />
-    <AddSection>
-      <AddSectionBtn
-        primary
-        onClick={function() {
-          onAddSection(questionnaire.id);
-        }}
-      >
-        Create new section
-      </AddSectionBtn>
-    </AddSection>
-  </Container>
-);
+class QuestionnaireNav extends Component {
+  saveSectionNavRef = sectionNav => {
+    this.sectionNav = sectionNav;
+  };
+
+  handleAddSectionClick = () => {
+    const { questionnaire, onAddSection } = this.props;
+    onAddSection(questionnaire.id).then(({ id }) =>
+      this.sectionNav.scrollSectionIntoView(id)
+    );
+  };
+
+  handleAddPage = sectionId => {
+    const { onAddPage } = this.props;
+    onAddPage(sectionId).then(({ section }) =>
+      this.sectionNav.scrollSectionIntoView(section.id)
+    );
+  };
+
+  render() {
+    const { questionnaire, onDeletePage } = this.props;
+
+    return (
+      <Container id="questionnaire-nav">
+        <Title>Questionnaire structure</Title>
+        <SectionNav
+          transitionDuration={200}
+          questionnaire={questionnaire}
+          onAddPage={this.handleAddPage}
+          onDeletePage={onDeletePage}
+          ref={this.saveSectionNavRef}
+        />
+        <AddSection>
+          <AddSectionBtn primary onClick={this.handleAddSectionClick}>
+            Create new section
+          </AddSectionBtn>
+        </AddSection>
+      </Container>
+    );
+  }
+}
 
 QuestionnaireNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,
@@ -88,4 +102,5 @@ QuestionnaireNav.propTypes = {
   onDeletePage: PropTypes.func.isRequired,
   onAddSection: PropTypes.func.isRequired
 };
+
 export default QuestionnaireNav;
