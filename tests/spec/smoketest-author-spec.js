@@ -75,6 +75,8 @@ describe("eQ Author Smoketest", () => {
       setSectionTitle("My Section Title");
       browser.keys("Tab");
 
+      browser.pause(300);
+
       expect(getFirstSectionTitle()).toEqual("My Section Title");
     });
 

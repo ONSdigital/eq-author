@@ -138,6 +138,7 @@ export class StatelessOption extends Component {
             value={option.label}
             onChange={onChange}
             onBlur={onUpdate}
+            data-qa="optionLabel"
           />
         </LabelField>
         <Field id="description">
