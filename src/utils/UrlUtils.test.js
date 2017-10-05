@@ -1,4 +1,4 @@
-import getUrlParams from "utils/getUrlParams";
+import { getUrlParams, getLink } from "utils/UrlUtils";
 
 describe("Utils > getUrlParams", () => {
   it("should extract only url params", () => {
@@ -16,5 +16,12 @@ describe("Utils > getUrlParams", () => {
       sectionId: "2",
       pageId: "3"
     });
+  });
+});
+
+describe("getLink", () => {
+  it("should produce link to a page", () => {
+    const result = getLink("1", "10", "5");
+    expect(result).toBe("/questionnaire/1/design/10/5");
   });
 });
