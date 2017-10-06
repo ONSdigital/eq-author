@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertiesPanel should render when there are answers 1`] = `
+<PropertiesPanel__StyledDiv>
+  <ScrollPane__ScrollPane>
+    <StatelessAccordion>
+      <AccordionPanel
+        id="Page1"
+        open={false}
+        title="Page properties"
+      >
+        <PageProperties
+          onBlur={[Function]}
+          onChange={[Function]}
+          onSubmit={[Function]}
+          orderMax={10}
+          orderMin={1}
+          page={
+            Object {
+              "__typename": "Page",
+              "answers": Array [
+                Object {
+                  "__typename": "Answer",
+                  "id": "1",
+                },
+                Object {
+                  "__typename": "Answer",
+                  "id": "2",
+                },
+              ],
+              "id": "1",
+              "type": "Questionnaire",
+            }
+          }
+        />
+      </AccordionPanel>
+      <AccordionPanel
+        id="Answer1"
+        open={false}
+        title="Answer 1 properties"
+      >
+        <AnswerProperties
+          answer={
+            Object {
+              "__typename": "Answer",
+              "id": "1",
+            }
+          }
+          onChange={[Function]}
+          onSubmit={[Function]}
+        />
+      </AccordionPanel>
+      <AccordionPanel
+        id="Answer2"
+        open={false}
+        title="Answer 2 properties"
+      >
+        <AnswerProperties
+          answer={
+            Object {
+              "__typename": "Answer",
+              "id": "2",
+            }
+          }
+          onChange={[Function]}
+          onSubmit={[Function]}
+        />
+      </AccordionPanel>
+    </StatelessAccordion>
+  </ScrollPane__ScrollPane>
+</PropertiesPanel__StyledDiv>
+`;
+
+exports[`PropertiesPanel should render when there are no answers 1`] = `
+<PropertiesPanel__StyledDiv>
+  <ScrollPane__ScrollPane>
+    <StatelessAccordion>
+      <AccordionPanel
+        id="Page1"
+        open={false}
+        title="Page properties"
+      >
+        <PageProperties
+          onBlur={[Function]}
+          onChange={[Function]}
+          onSubmit={[Function]}
+          orderMax={10}
+          orderMin={1}
+          page={
+            Object {
+              "__typename": "Page",
+              "answers": Array [],
+              "id": "1",
+              "type": "Questionnaire",
+            }
+          }
+        />
+      </AccordionPanel>
+    </StatelessAccordion>
+  </ScrollPane__ScrollPane>
+</PropertiesPanel__StyledDiv>
+`;
