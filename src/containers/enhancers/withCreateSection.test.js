@@ -85,7 +85,8 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
     });
 
     it("should redirect", () => {
-      return props.onAddSection().then(() => {
+      return props.onAddSection().then(result => {
+        expect(result).toEqual(newSection);
         expect(history.push).toHaveBeenCalled();
       });
     });

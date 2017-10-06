@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 import styled from "styled-components";
 
@@ -29,6 +29,7 @@ const AddSection = styled.div`
   border-top: 1px solid #c3c3c3;
   padding: 1em 0;
   position: sticky;
+  z-index: 99999;
   bottom: 0;
   left: 0;
   background: ${colors.lighterGrey};
@@ -55,40 +56,55 @@ export const AddSectionBtn = styled.button`
   }
 `;
 
-const QuestionnaireNav = ({
-  questionnaire,
-  onAddPage,
-  onAddSection,
-  onDeleteSection,
-  onDeletePage
-}) => (
-  <Container id="questionnaire-nav">
-    <Title>Questionnaire structure</Title>
-    <SectionNav
-      transitionDuration={200}
-      questionnaire={questionnaire}
-      onAddPage={onAddPage}
-      onDeleteSection={onDeleteSection}
-      onDeletePage={onDeletePage}
-    />
-    <AddSection>
-      <AddSectionBtn
-        primary
-        onClick={function() {
-          onAddSection(questionnaire.id);
-        }}
-      >
-        Create new section
-      </AddSectionBtn>
-    </AddSection>
-  </Container>
-);
+class QuestionnaireNav extends Component {
+  static propTypes = {
+    questionnaire: CustomPropTypes.questionnaire.isRequired,
+    onAddPage: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
+    onAddSection: PropTypes.func.isRequired,
+    onDeleteSection: PropTypes.func.isRequired
+  };
 
-QuestionnaireNav.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire.isRequired,
-  onAddPage: PropTypes.func.isRequired,
-  onDeleteSection: PropTypes.func.isRequired,
-  onDeletePage: PropTypes.func.isRequired,
-  onAddSection: PropTypes.func.isRequired
-};
+  saveSectionNavRef = sectionNav => {
+    this.sectionNav = sectionNav;
+  };
+
+  handleAddSectionClick = () => {
+    const { questionnaire, onAddSection } = this.props;
+    onAddSection(questionnaire.id).then(({ id }) =>
+      this.sectionNav.scrollSectionIntoView(id)
+    );
+  };
+
+  handleAddPage = sectionId => {
+    const { onAddPage } = this.props;
+    onAddPage(sectionId).then(({ section }) =>
+      this.sectionNav.scrollSectionIntoView(section.id)
+    );
+  };
+
+  render() {
+    const { questionnaire, onDeletePage, onDeleteSection } = this.props;
+
+    return (
+      <Container id="questionnaire-nav">
+        <Title>Questionnaire structure</Title>
+        <SectionNav
+          transitionDuration={200}
+          questionnaire={questionnaire}
+          onAddPage={this.handleAddPage}
+          onDeletePage={onDeletePage}
+          onDeleteSection={onDeleteSection}
+          ref={this.saveSectionNavRef}
+        />
+        <AddSection>
+          <AddSectionBtn primary onClick={this.handleAddSectionClick}>
+            Create new section
+          </AddSectionBtn>
+        </AddSection>
+      </Container>
+    );
+  }
+}
+
 export default QuestionnaireNav;

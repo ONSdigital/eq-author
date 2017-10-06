@@ -1,23 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SectionNavItem LinkedSectionTitle should render link when section has pages 1`] = `
-<SectionNavItem__Link
-  activeClassName="selected"
-  aria-disabled={false}
-  to="/questionnaire/1/design/3/2"
->
-  <SectionNavItem__SectionTitle>
-    Section
-  </SectionNavItem__SectionTitle>
-</SectionNavItem__Link>
-`;
-
-exports[`SectionNavItem LinkedSectionTitle should render without link when section has no pages 1`] = `
-<SectionNavItem__SectionTitle>
-  Section
-</SectionNavItem__SectionTitle>
-`;
-
 exports[`SectionNavItem should render 1`] = `
 <SectionNavItem__StyledSectionNavItem
   duration={123}
@@ -27,7 +9,7 @@ exports[`SectionNavItem should render 1`] = `
   <div
     className="section-title-wrapper"
   >
-    <LinkedSectionTitle
+    <SectionTitle
       questionnaire={
         Object {
           "id": "1",
