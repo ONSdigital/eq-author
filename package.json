@@ -16,16 +16,14 @@
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build && gh-pages -d build",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9001",
-    "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
+    "storybook-build":
+      "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test --coverage"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.12",
@@ -72,6 +70,7 @@
     "jest-styled-components": "^4.7.0",
     "jest-transform-graphql": "^2.1.0",
     "json-loader": "^0.5.7",
+    "json-schema-faker": "0.4.3",
     "lint-staged": "^4.2.3",
     "node-glob": "^1.2.0",
     "object-assign": "^4.1.1",
@@ -127,6 +126,7 @@
     "react-dom": "^16.0.0",
     "react-error-overlay": "^2.0.2",
     "react-hot-loader": "^3.0.0",
+    "react-menu-list": "^5.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -153,10 +153,9 @@
       "<rootDir>/config/polyfills.js",
       "<rootDir>/src/tests/setup/throwOnConsole.js"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup/JestTestSetup.js",
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ],
+    "setupTestFrameworkScriptFile":
+      "<rootDir>/src/tests/setup/JestTestSetup.js",
+    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -167,22 +166,14 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
-    ],
+    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": [
-      "<rootDir>/src/"
-    ]
+    "modulePaths": ["<rootDir>/src/"]
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
-  "moduleRoots": [
-    "./src"
-  ]
+  "moduleRoots": ["./src"]
 }

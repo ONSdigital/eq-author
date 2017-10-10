@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/QuestionnaireMenu should render a QuestionnaireMenu 1`] = `
+<SectionMenu
+  onItemChosen={[Function]}
+  sections={
+    Array [
+      Object {
+        "id": "3",
+        "pages": Array [
+          Object {
+            "answers": Array [
+              Object {
+                "id": "4",
+                "title": "Answer",
+              },
+            ],
+            "id": "2",
+            "title": "Page",
+          },
+        ],
+        "title": "Section",
+      },
+    ]
+  }
+/>
+`;
