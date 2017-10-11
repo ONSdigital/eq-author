@@ -48,9 +48,9 @@ class Header extends React.Component {
     let previewUrl;
     if (questionnaire) {
       const timestamp = Date.now();
-      const publisherUrl = "http://docker.for.mac.localhost:9000/publish"; // TODO Get from process.env
+      const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
       const goLaunchASurveyQuickLaunchUrl =
-        "http://localhost:8000/quick-launch"; // TODO Get from process.env
+        process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
       const urlEncodedParam = encodeURIComponent(
         `${publisherUrl}/${questionnaire.id}?r=${timestamp}`
       );
