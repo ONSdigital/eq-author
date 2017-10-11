@@ -90,8 +90,9 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
       expect(props.onAddPage).toBeInstanceOf(Function);
     });
 
-    it("should redirect", () => {
-      return props.onAddPage(section.id).then(() => {
+    it("should redirect and return the new page", () => {
+      return props.onAddPage(section.id).then(result => {
+        expect(result).toEqual(newPage);
         expect(history.push).toHaveBeenCalled();
       });
     });

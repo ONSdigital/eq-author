@@ -35,7 +35,10 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     return mutate({
       variables: { input: page },
       update
-    }).then(redirectToNewPage(ownProps));
+    }).then(result => {
+      redirectToNewPage(ownProps)(result);
+      return result.data.createQuestionPage;
+    });
   }
 });
 

@@ -2,14 +2,16 @@ import { shallow } from "enzyme";
 import PageNav from "./PageNav";
 import SectionNavItem, {
   AddPageBtn,
-  SectionDeleteButton,
-  LinkedSectionTitle
+  SectionDeleteButton
 } from "./SectionNavItem";
 import React from "react";
 
 describe("SectionNavItem", () => {
-  let wrapper;
-  let handleAddPage, handleDeleteSection, handleDeletePage;
+  let wrapper,
+    handleAddPage,
+    handleDeleteSection,
+    handleDeletePage,
+    saveSectionItemRef;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -20,9 +22,10 @@ describe("SectionNavItem", () => {
   };
 
   beforeEach(() => {
-    handleAddPage = jest.fn();
+    handleAddPage = jest.fn(() => Promise.resolve);
     handleDeleteSection = jest.fn();
     handleDeletePage = jest.fn();
+    saveSectionItemRef = jest.fn();
 
     wrapper = shallow(
       <SectionNavItem
@@ -31,6 +34,7 @@ describe("SectionNavItem", () => {
         onAddPage={handleAddPage}
         onDeleteSection={handleDeleteSection}
         onDeletePage={handleDeletePage}
+        saveSectionItemRef={saveSectionItemRef}
         duration={123}
       />
     );
@@ -62,22 +66,9 @@ describe("SectionNavItem", () => {
     expect(handleDeletePage).toHaveBeenCalled();
   });
 
-  describe("LinkedSectionTitle", () => {
-    it("should render link when section has pages", () => {
-      const result = shallow(
-        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
-      );
-
-      expect(result).toMatchSnapshot();
-    });
-
-    it("should render without link when section has no pages", () => {
-      section.pages = [];
-      const result = shallow(
-        <LinkedSectionTitle questionnaire={questionnaire} section={section} />
-      );
-
-      expect(result).toMatchSnapshot();
-    });
+  it("saveSectionItemRef", () => {
+    const elem = shallow(<div />);
+    wrapper.instance().saveRef(elem);
+    expect(saveSectionItemRef).toHaveBeenCalledWith(section.id, elem);
   });
 });

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionNavItem SectionTitle should render link when section has pages 1`] = `
+<SectionTitle__Link
+  activeClassName="selected"
+  to="/questionnaire/1/design/3/2"
+>
+  <SectionTitle__Title>
+    Section
+  </SectionTitle__Title>
+</SectionTitle__Link>
+`;
+
+exports[`SectionNavItem SectionTitle should render without link when section has no pages 1`] = `
+<SectionTitle__Title>
+  Section
+</SectionTitle__Title>
+`;
+
+exports[`SectionNavItem should render 1`] = `undefined`;

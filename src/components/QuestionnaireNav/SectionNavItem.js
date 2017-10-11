@@ -1,43 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { first } from "lodash";
-import { getLink } from "utils/UrlUtils";
-import { NavLink } from "react-router-dom";
+
 import { colors } from "constants/theme";
-import sectionIcon from "./icon-section.svg";
-import HoverDeleteButton from "./HoverDeleteButton";
+import HoverDeleteButton from "components/QuestionnaireNav/HoverDeleteButton";
 import PageNav from "components/QuestionnaireNav/PageNav";
+import SectionTitle from "components/QuestionnaireNav/SectionTitle";
 import Tooltip from "components/Tooltip";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import getTextFromHTML from "utils/getTextFromHTML";
-
-const Link = styled(NavLink)`
-  text-decoration: none;
-  &:link,
-  &:visited {
-    color: ${colors.text};
-  }
-`;
-
-const SectionTitle = styled.h3`
-  padding: 0.5em 2.5em 0.5em 0;
-  font-size: 0.75em;
-  margin: 0;
-  font-weight: 900;
-  display: flex;
-  position: relative;
-  width: 100%;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  &:before {
-    content: url(${sectionIcon});
-    margin-right: 0.5em;
-  }
-`;
 
 export const AddPageBtn = styled.button`
   appearance: none;
@@ -62,37 +32,6 @@ export const SectionDeleteButton = styled(HoverDeleteButton)`
   }
 `;
 
-export const LinkedSectionTitle = ({ questionnaire, section }) => {
-  if (!section) {
-    return null;
-  }
-
-  const sectionTitle = (
-    <SectionTitle>
-      {getTextFromHTML(section.title) || "Section Title"}
-    </SectionTitle>
-  );
-  if (section.pages.length > 0) {
-    const firstPage = first(section.pages);
-    return (
-      <Link
-        to={getLink(questionnaire.id, section.id, firstPage.id)}
-        aria-disabled={parseInt(firstPage.id, 10) < 0}
-        activeClassName="selected"
-      >
-        {sectionTitle}
-      </Link>
-    );
-  } else {
-    return sectionTitle;
-  }
-};
-
-LinkedSectionTitle.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire.isRequired,
-  section: CustomPropTypes.section.isRequired
-};
-
 const halfDuration = props => props.duration / 2;
 const duration = props => props.duration;
 
@@ -113,7 +52,6 @@ const StyledSectionNavItem = styled.li`
   &.section-enter-active {
     opacity: 1;
     transform: translateX(0);
-
     transition: opacity ${duration}ms ease-out, transform ${duration}ms ease-out;
   }
 
@@ -126,7 +64,6 @@ const StyledSectionNavItem = styled.li`
     opacity: 0;
     transform: translateX(-20px);
     height: 0 !important;
-
     transition: opacity ${halfDuration}ms ease-out,
       transform ${halfDuration}ms ease-out,
       height ${halfDuration}ms ease-in ${halfDuration}ms;
@@ -144,7 +81,8 @@ class SectionNavItem extends React.Component {
     onDeleteSection: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
     section: CustomPropTypes.section.isRequired,
-    duration: PropTypes.number.isRequired
+    duration: PropTypes.number.isRequired,
+    saveSectionItemRef: PropTypes.func.isRequired
   };
 
   state = {
@@ -165,7 +103,9 @@ class SectionNavItem extends React.Component {
   };
 
   saveRef = elem => {
+    const { section, saveSectionItemRef } = this.props;
     this.elem = elem;
+    saveSectionItemRef(section.id, elem);
   };
 
   render() {
@@ -178,7 +118,7 @@ class SectionNavItem extends React.Component {
         duration={duration}
       >
         <div className="section-title-wrapper">
-          <LinkedSectionTitle questionnaire={questionnaire} section={section} />
+          <SectionTitle questionnaire={questionnaire} section={section} />
           <Tooltip content="Delete section" offset={{ right: -5 }}>
             <SectionDeleteButton
               type="button"
