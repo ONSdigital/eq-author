@@ -31,9 +31,10 @@ exports[`components/Header renders correctly  1`] = `
       <Header__UtilityBtns
         horizontal={true}
       >
-        <IconButton
-          disabled={true}
+        <IconLink
+          href="undefined?url=undefined%2Fundefined%3Fr%3D1507732964886"
           icon="icon-preview.svg"
+          target="_blank"
           title="Preview"
         />
         <IconButton
