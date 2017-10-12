@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 
 import IconLink, { StyledLink } from "components/IconLink";
 import iconTest from "./icon-test.svg";
@@ -9,7 +9,7 @@ let wrapper;
 
 describe("components/IconLink", function() {
   beforeEach(() => {
-    wrapper = mount(
+    wrapper = shallow(
       <IconLink
         href="http://localhost"
         icon={iconTest}
