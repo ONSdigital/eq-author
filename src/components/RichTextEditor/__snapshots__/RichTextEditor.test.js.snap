@@ -92,6 +92,7 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
     }
     id="test"
     isActiveControl={[Function]}
+    onBlur={[Function]}
     onFocus={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
@@ -352,6 +353,7 @@ exports[`components/RichTextEditor should render 1`] = `
     }
     id="test"
     isActiveControl={[Function]}
+    onBlur={[Function]}
     onFocus={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
@@ -663,6 +665,7 @@ exports[`components/RichTextEditor should render existing content 1`] = `
     }
     id="test"
     isActiveControl={[Function]}
+    onBlur={[Function]}
     onFocus={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}

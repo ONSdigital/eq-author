@@ -99,6 +99,7 @@ class ToolBar extends React.Component {
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
+    onBlur: PropTypes.func.isRequired,
     isActiveControl: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired,
     controls: PropTypes.shape({
@@ -137,13 +138,13 @@ class ToolBar extends React.Component {
   };
 
   render() {
-    const { onFocus } = this.props;
+    const { onFocus, onBlur } = this.props;
 
     return (
       <TransitionGroup component={Layer}>
         {this.props.visible && (
           <PopupTransition duration={200}>
-            <ToolbarPanel {...this.props} onFocus={onFocus}>
+            <ToolbarPanel onFocus={onFocus} onBlur={onBlur}>
               <ButtonGroup>{buttons.map(this.renderButton)}</ButtonGroup>
             </ToolbarPanel>
           </PopupTransition>
