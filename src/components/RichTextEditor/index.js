@@ -39,27 +39,32 @@ const sizes = {
 
 const Wrapper = styled.div`
   position: relative;
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  ul,
-  ol {
-    margin: 0 0 0.5em 0;
+
+  .header-two,
+  .unstyled,
+  .unordered-list-item {
+    line-height: 1.5;
+    margin: 0;
   }
 
-  h2 {
+  .header-two {
     ${heading};
+    margin-bottom: 0.5rem;
   }
 
-  li {
+  .unstyled {
+    margin-bottom: 1rem;
+  }
+
+  .unordered-list-item {
     ${list};
+    margin-bottom: 0.25rem;
   }
 
   ${props => sizes[props.size]};
 
   .public-DraftEditorPlaceholder-root {
+    /* style placeholder based on prospective style */
     ${props => props.placeholderStyle === "header-two" && heading};
     ${props => props.placeholderStyle === "unordered-list-item" && list};
     color: #a3a3a3;
@@ -72,6 +77,7 @@ Wrapper.defaultProps = {
 
 const toHTML = editorState => convertToHTML(editorState.getCurrentContent());
 const fromHTML = html => createWithContent(convertFromHTML(html));
+const getBlockStyle = block => block.getType();
 
 class RichTextEditor extends React.Component {
   static defaultProps = {
@@ -213,6 +219,7 @@ class RichTextEditor extends React.Component {
             onFocus={this.handleFocus}
             ref={this.setEditorNode}
             customStyleMap={styleMap}
+            blockStyleFn={getBlockStyle}
             handleReturn={multiline ? undefined : this.handleReturn}
             handlePastedText={multiline ? undefined : this.handlePaste}
             spellCheck
