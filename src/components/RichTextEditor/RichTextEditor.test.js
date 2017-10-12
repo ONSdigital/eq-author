@@ -93,14 +93,14 @@ describe("components/RichTextEditor", function() {
     const blockElement = findById(buttons, "heading");
 
     const instance = wrapper.instance();
-    instance.hasCurrentStyle = jest.fn();
-    instance.getBlockType = jest.fn();
+    instance.hasInlineStyle = jest.fn();
+    instance.hasBlockStyle = jest.fn();
 
     instance.isActiveControl(inlineStyle);
-    expect(instance.hasCurrentStyle).toHaveBeenCalled();
+    expect(instance.hasInlineStyle).toHaveBeenCalled();
 
     instance.isActiveControl(blockElement);
-    expect(instance.getBlockType).toHaveBeenCalled();
+    expect(instance.hasBlockStyle).toHaveBeenCalled();
   });
 
   it("should remove carriage returns on paste", () => {

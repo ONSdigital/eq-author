@@ -155,23 +155,26 @@ class RichTextEditor extends React.Component {
     this.setState({ focused: true });
   };
 
-  getBlockType = editorState => {
+  hasBlockStyle = (editorState, style) => {
     const selection = editorState.getSelection();
 
-    return editorState
+    const blockStyle = editorState
       .getCurrentContent()
-      .getBlockForKey(selection.getStartKey());
+      .getBlockForKey(selection.getStartKey())
+      .getType();
+
+    return blockStyle === style;
   };
 
-  hasCurrentStyle = (editorState, style) =>
+  hasInlineStyle = (editorState, style) =>
     editorState.getCurrentInlineStyle().has(style);
 
   isActiveControl = ({ style, type }) => {
     const { editorState } = this.state;
 
     return type === STYLE_BLOCK
-      ? style === this.getBlockType(editorState)
-      : this.hasCurrentStyle(editorState, style);
+      ? this.hasBlockStyle(editorState, style)
+      : this.hasInlineStyle(editorState, style);
   };
 
   handlePaste = text => {
@@ -196,8 +199,7 @@ class RichTextEditor extends React.Component {
   render() {
     const { editorState, focused } = this.state;
     const contentState = editorState.getCurrentContent();
-
-    let { placeholder, label, multiline, size, ...otherProps } = this.props;
+    const { placeholder, label, multiline, size, ...otherProps } = this.props;
 
     return (
       <Wrapper
