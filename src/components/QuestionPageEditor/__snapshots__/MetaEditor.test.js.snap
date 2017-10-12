@@ -43,7 +43,7 @@ exports[`MetaEditor should render 1`] = `
       controls={
         Object {
           "bold": true,
-          "emphasis": true,
+          "emphasis": false,
           "heading": true,
           "list": true,
         }

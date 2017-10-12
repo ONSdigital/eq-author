@@ -18,7 +18,7 @@ const descriptionControls = {
 const guidanceControls = {
   heading: true,
   bold: true,
-  emphasis: true,
+  emphasis: false,
   list: true
 };
 
