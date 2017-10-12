@@ -7,6 +7,7 @@ exports[`SectionNav should render 1`] = `
 >
   <CSSTransition
     classNames="section"
+    key="3"
     timeout={200}
   >
     <SectionNavItem

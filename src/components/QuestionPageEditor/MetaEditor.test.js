@@ -38,8 +38,9 @@ describe("MetaEditor", () => {
 
     const input = wrapper.find(RichTextEditor).first();
     const ref = handleTitleRef.mock.calls[0][0];
-
-    expect(input.matchesElement(ref)).toBe(true);
+    // workaround as matchesElement no longer works in this case
+    // previous test: expect(input.matchesElement(ref)).toBe(true);
+    expect(input.props()).toEqual(ref.props);
   });
 
   it("should invoke change and update onUpdate", () => {

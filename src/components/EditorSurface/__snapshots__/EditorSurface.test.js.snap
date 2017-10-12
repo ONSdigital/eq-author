@@ -11,6 +11,7 @@ exports[`EditorSurface should render 1`] = `
   >
     <SlideTransition
       duration={300}
+      key="Section3"
     >
       <CanvasSection
         id="Section3"
@@ -54,6 +55,7 @@ exports[`EditorSurface should render 1`] = `
     </SlideTransition>
     <SlideTransition
       duration={300}
+      key="Page2"
     >
       <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE))))))
         focused="Section3"

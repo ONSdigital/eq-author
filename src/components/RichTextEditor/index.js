@@ -21,7 +21,9 @@ const heading = css`
   font-weight: bold;
 `;
 
-const list = css`margin-left: 1.5em;`;
+const list = css`
+  margin-left: 1.5em;
+`;
 
 const sizes = {
   large: css`
@@ -34,7 +36,9 @@ const sizes = {
     font-weight: 700;
   `,
 
-  small: css`font-size: 0.875em;`
+  small: css`
+    font-size: 0.875em;
+  `
 };
 
 const Wrapper = styled.div`
@@ -122,7 +126,9 @@ class RichTextEditor extends React.Component {
     this.editor = editor;
   };
 
-  handleClick = () => this.editor.focus();
+  handleClick = () => {
+    this.focus();
+  };
 
   handleChange = editorState => {
     return this.setState({ editorState });

@@ -23,18 +23,22 @@ exports[`components/Forms/TextArea should render correctly 1`] = `
   onChange={[Function]}
 >
   <TextArea
+    className={undefined}
     defaultValue="I am some text"
     id="text"
     name="text"
     onChange={[Function]}
     rows={10}
+    value={undefined}
   >
     <TextArea__StyledTextArea
+      className={undefined}
       defaultValue="I am some text"
       id="text"
       name="text"
       onChange={[Function]}
       rows={10}
+      value={undefined}
     >
       <textarea
         className="c0"
@@ -43,6 +47,7 @@ exports[`components/Forms/TextArea should render correctly 1`] = `
         name="text"
         onChange={[Function]}
         rows={10}
+        value={undefined}
       />
     </TextArea__StyledTextArea>
   </TextArea>

@@ -36,15 +36,15 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     }
   }
 >
-  <Grid__Grid
+  <Grid
     align="top"
     fillHeight={true}
   >
-    <Column__Column
+    <Column
       cols={2}
       gutters={false}
     >
-      <ScrollPane__ScrollPane>
+      <ScrollPane>
         <withRouter(Apollo(Apollo(Apollo(Apollo(QuestionnaireNav)))))
           pageId="1"
           questionnaire={
@@ -82,14 +82,14 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
           questionnaireId="3"
           sectionId="2"
         />
-      </ScrollPane__ScrollPane>
-    </Column__Column>
-    <Column__Column
+      </ScrollPane>
+    </Column>
+    <Column
       cols={12}
       gutters={false}
     >
-      <ScrollPane__ScrollPane>
-        <MainCanvas__MainCanvas>
+      <ScrollPane>
+        <MainCanvas>
           <EditorSurface
             focused="section"
             onFocus={[Function]}
@@ -142,10 +142,10 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
               }
             }
           />
-        </MainCanvas__MainCanvas>
-      </ScrollPane__ScrollPane>
-    </Column__Column>
-    <Column__Column
+        </MainCanvas>
+      </ScrollPane>
+    </Column>
+    <Column
       cols={2}
       gutters={false}
     >
@@ -173,9 +173,9 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
           }
         }
       />
-    </Column__Column>
-  </Grid__Grid>
+    </Column>
+  </Grid>
 </BaseLayout>
 `;
 
-exports[`QuestionnaireDesignPage should render nothing when loading 1`] = `null`;
+exports[`QuestionnaireDesignPage should render nothing when loading 1`] = `""`;

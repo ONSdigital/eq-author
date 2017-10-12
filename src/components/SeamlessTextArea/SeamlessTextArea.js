@@ -8,7 +8,9 @@ import { flow } from "lodash";
 
 const ENTER_KEY = 13;
 
-const TextArea = styled(AutoResizeTextArea)`resize: none;`;
+const TextArea = styled(AutoResizeTextArea)`
+  resize: none;
+`;
 
 class WrappingTextArea extends React.Component {
   static propTypes = {

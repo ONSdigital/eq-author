@@ -13,6 +13,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledInput = styled(Input)`
+  width: 4em;
+
   &[type="number"]::-webkit-inner-spin-button,
   &[type="number"]::-webkit-outer-spin-button {
     appearance: none;
@@ -22,8 +24,6 @@ const StyledInput = styled(Input)`
   &[type="number"] {
     appearance: textfield;
   }
-
-  width: 4em;
 `;
 
 const SpinnerButtonWrapper = styled.div`
@@ -68,7 +68,7 @@ class Number extends React.Component {
       this.props.min,
       this.props.max
     );
-
+    /* eslint-disable no-compare-neg-zero */
     const newValue =
       isNaN(enteredValue) || enteredValue === -0
         ? this.props.min

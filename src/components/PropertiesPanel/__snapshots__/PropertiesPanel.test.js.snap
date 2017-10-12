@@ -2,7 +2,7 @@
 
 exports[`PropertiesPanel should render when there are answers 1`] = `
 <PropertiesPanel__StyledDiv>
-  <ScrollPane__ScrollPane>
+  <ScrollPane>
     <StatelessAccordion>
       <AccordionPanel
         id="Page1"
@@ -36,6 +36,7 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
       </AccordionPanel>
       <AccordionPanel
         id="Answer1"
+        key="1"
         open={false}
         title="Answer 1 properties"
       >
@@ -52,6 +53,7 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
       </AccordionPanel>
       <AccordionPanel
         id="Answer2"
+        key="2"
         open={false}
         title="Answer 2 properties"
       >
@@ -67,13 +69,13 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
         />
       </AccordionPanel>
     </StatelessAccordion>
-  </ScrollPane__ScrollPane>
+  </ScrollPane>
 </PropertiesPanel__StyledDiv>
 `;
 
 exports[`PropertiesPanel should render when there are no answers 1`] = `
 <PropertiesPanel__StyledDiv>
-  <ScrollPane__ScrollPane>
+  <ScrollPane>
     <StatelessAccordion>
       <AccordionPanel
         id="Page1"
@@ -97,6 +99,6 @@ exports[`PropertiesPanel should render when there are no answers 1`] = `
         />
       </AccordionPanel>
     </StatelessAccordion>
-  </ScrollPane__ScrollPane>
+  </ScrollPane>
 </PropertiesPanel__StyledDiv>
 `;

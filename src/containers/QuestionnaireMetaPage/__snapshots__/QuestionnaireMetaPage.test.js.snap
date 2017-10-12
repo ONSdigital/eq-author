@@ -13,8 +13,8 @@ exports[`containers/QuestionnaireMeta should render 1`] = `
     }
   }
 >
-  <ScrollPane__ScrollPane>
-    <MainCanvas__MainCanvas>
+  <ScrollPane>
+    <MainCanvas>
       <withEntityEditor(StatelessQuestionnaireMeta)
         onUpdate={[Function]}
         questionnaire={
@@ -27,9 +27,9 @@ exports[`containers/QuestionnaireMeta should render 1`] = `
           }
         }
       />
-    </MainCanvas__MainCanvas>
-  </ScrollPane__ScrollPane>
+    </MainCanvas>
+  </ScrollPane>
 </BaseLayout>
 `;
 
-exports[`containers/QuestionnaireMeta should render nothing while loading 1`] = `null`;
+exports[`containers/QuestionnaireMeta should render nothing while loading 1`] = `""`;

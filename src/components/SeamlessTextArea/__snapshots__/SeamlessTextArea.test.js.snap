@@ -44,9 +44,11 @@ exports[`SeamlessTextArea should render 1`] = `
   value="123"
 >
   <withSeamlessness__StyledSeamless
+    className={undefined}
     id="foo"
     name="foo"
     onChange={[Function]}
+    placeholder={undefined}
     size="small"
     value="123"
   >
@@ -55,6 +57,7 @@ exports[`SeamlessTextArea should render 1`] = `
       id="foo"
       name="foo"
       onChange={[Function]}
+      placeholder={undefined}
       size="small"
       value="123"
     >
@@ -63,6 +66,7 @@ exports[`SeamlessTextArea should render 1`] = `
         id="foo"
         name="foo"
         onChange={[Function]}
+        placeholder={undefined}
         size="small"
         value="123"
       >
@@ -72,6 +76,7 @@ exports[`SeamlessTextArea should render 1`] = `
           name="foo"
           onChange={[Function]}
           onKeyDown={[Function]}
+          placeholder={undefined}
           size="small"
           value="123"
         >
@@ -82,6 +87,7 @@ exports[`SeamlessTextArea should render 1`] = `
             onChange={[Function]}
             onHeightChange={[Function]}
             onKeyDown={[Function]}
+            placeholder={undefined}
             size="small"
             useCacheForDOMMeasurements={false}
             value="123"
@@ -92,6 +98,7 @@ exports[`SeamlessTextArea should render 1`] = `
               name="foo"
               onChange={[Function]}
               onKeyDown={[Function]}
+              placeholder={undefined}
               size="small"
               style={
                 Object {

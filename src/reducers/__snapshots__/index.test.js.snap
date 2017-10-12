@@ -4,7 +4,7 @@ exports[`reducers should combine reducers 1`] = `
 Object {
   "counter": 2,
   "router": Object {
-    "location": null,
+    "locationBeforeTransitions": null,
   },
 }
 `;

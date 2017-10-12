@@ -12,7 +12,7 @@ exports[`containers/App should render 1`] = `
       }
     }
   >
-    <ConnectedRouter
+    <Router
       history={
         Object {
           "action": "POP",
@@ -59,7 +59,7 @@ exports[`containers/App should render 1`] = `
           path="*"
         />
       </Switch>
-    </ConnectedRouter>
+    </Router>
   </ApolloProvider>
 </AppContainer>
 `;

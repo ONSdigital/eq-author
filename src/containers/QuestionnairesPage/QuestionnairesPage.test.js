@@ -1,13 +1,11 @@
 import React from "react";
 import Questionnaires from "./QuestionnairesPage";
 import { shallow } from "enzyme";
-import mountWithRouter from "tests/utils/mountWithRouter";
-import { getLink } from "utils/UrlUtils";
+import shallowWithRouter from "tests/utils/shallowWithRouter";
 
 describe("containers/Questionnaires", () => {
-  const createWrapper = props => {
-    return mountWithRouter(<Questionnaires {...props} />);
-  };
+  const createWrapper = props =>
+    shallowWithRouter(<Questionnaires {...props} />);
 
   let onDeleteQuestionnaire;
 
@@ -44,7 +42,7 @@ describe("containers/Questionnaires", () => {
       questionnaires: [],
       onDeleteQuestionnaire
     });
-    expect(wrapper.find("#btn-create-questionnaire").length).toBe(1);
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("should render when there are no questionnaires", () => {
@@ -74,32 +72,5 @@ describe("containers/Questionnaires", () => {
     const wrapper = shallow(<Questionnaires {...props} />);
 
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should call delete handler when delete button is pressed", () => {
-    const wrapper = createWrapper({
-      questionnaires: [questionnaire],
-      onDeleteQuestionnaire
-    });
-
-    const deleteButton = wrapper.find("button").last();
-    deleteButton.simulate("click");
-
-    expect(onDeleteQuestionnaire).toHaveBeenCalledWith(questionnaire.id);
-  });
-
-  it("should construct a url that will navigate to the first section and first page", () => {
-    const wrapper = createWrapper({
-      questionnaires: [questionnaire],
-      onDeleteQuestionnaire
-    });
-
-    const linkToQuestionnaire = wrapper.find("a").last();
-    const expectedUrl = `#${getLink(
-      questionnaire.id,
-      questionnaire.sections[0].id,
-      questionnaire.sections[0].pages[0].id
-    )}`;
-    expect(linkToQuestionnaire.props().href).toEqual(expectedUrl);
   });
 });

@@ -33,11 +33,11 @@ exports[`QuestionnaireMeta should render 1`] = `
         rows={4}
       />
     </Field>
-    <Grid__Grid
+    <Grid
       align="top"
       fillHeight={true}
     >
-      <Column__Column
+      <Column
         cols={6}
       >
         <Field
@@ -52,13 +52,13 @@ exports[`QuestionnaireMeta should render 1`] = `
             required={true}
           />
         </Field>
-      </Column__Column>
-    </Grid__Grid>
-    <Grid__Grid
+      </Column>
+    </Grid>
+    <Grid
       align="top"
       fillHeight={true}
     >
-      <Column__Column
+      <Column
         cols={6}
       >
         <Field
@@ -79,8 +79,8 @@ exports[`QuestionnaireMeta should render 1`] = `
             }
           />
         </Field>
-      </Column__Column>
-      <Column__Column
+      </Column>
+      <Column
         cols={6}
       >
         <Field
@@ -101,8 +101,8 @@ exports[`QuestionnaireMeta should render 1`] = `
             }
           />
         </Field>
-      </Column__Column>
-    </Grid__Grid>
+      </Column>
+    </Grid>
     <Field
       id="navigation"
     >

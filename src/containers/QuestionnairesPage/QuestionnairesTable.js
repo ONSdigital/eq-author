@@ -10,7 +10,7 @@ import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton";
 
 const duration = 200;
 
-const Link = styled.a`
+export const QuestionnaireLink = styled.a`
   text-decoration: none;
   color: ${colors.blue};
   width: 100%;
@@ -123,13 +123,13 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
               <TR>
                 <TD>
                   <Collapsible first>
-                    <Link
+                    <QuestionnaireLink
                       href={url}
                       title={questionnaire.title}
                       aria-label={questionnaire.title}
                     >
                       {questionnaire.title}
-                    </Link>
+                    </QuestionnaireLink>
                   </Collapsible>
                 </TD>
                 <TD>

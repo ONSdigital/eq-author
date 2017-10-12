@@ -44,10 +44,12 @@ exports[`Question Page Editor should render 1`] = `
   >
     <SlideTransition
       duration={300}
+      key="BasicAnswer1"
     >
       <CanvasSection
         id="BasicAnswer1"
         isFocused={false}
+        key="BasicAnswer1"
         onFocus={[Function]}
       >
         <AnswerEditor
@@ -70,10 +72,12 @@ exports[`Question Page Editor should render 1`] = `
     </SlideTransition>
     <SlideTransition
       duration={300}
+      key="BasicAnswer2"
     >
       <CanvasSection
         id="BasicAnswer2"
         isFocused={false}
+        key="BasicAnswer2"
         onFocus={[Function]}
       >
         <AnswerEditor

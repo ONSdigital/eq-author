@@ -31,6 +31,7 @@ exports[`QuestionnairesTable should render 1`] = `
   >
     <CSSTransition
       classNames="row"
+      key="1"
       timeout={200}
     >
       <QuestionnairesTable__TR>
@@ -38,13 +39,13 @@ exports[`QuestionnairesTable should render 1`] = `
           <QuestionnairesTable__Collapsible
             first={true}
           >
-            <QuestionnairesTable__Link
+            <QuestionnairesTable__QuestionnaireLink
               aria-label="Foo"
               href="#/questionnaire/1/design/1/1"
               title="Foo"
             >
               Foo
-            </QuestionnairesTable__Link>
+            </QuestionnairesTable__QuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>
@@ -80,6 +81,7 @@ exports[`QuestionnairesTable should render 1`] = `
     </CSSTransition>
     <CSSTransition
       classNames="row"
+      key="2"
       timeout={200}
     >
       <QuestionnairesTable__TR>
@@ -87,13 +89,13 @@ exports[`QuestionnairesTable should render 1`] = `
           <QuestionnairesTable__Collapsible
             first={true}
           >
-            <QuestionnairesTable__Link
+            <QuestionnairesTable__QuestionnaireLink
               aria-label="Foo"
               href="#/questionnaire/2/design/2/2"
               title="Foo"
             >
               Foo
-            </QuestionnairesTable__Link>
+            </QuestionnairesTable__QuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>

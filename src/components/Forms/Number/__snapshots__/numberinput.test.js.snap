@@ -51,9 +51,9 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: space-between;
+  -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  -ms-flex-pack: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -149,6 +149,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
             <Input__StyledInput
               aria-live="assertive"
               className="c1"
+              defaultValue={undefined}
               id="number"
               max={10}
               min={-10}
@@ -163,6 +164,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
               <input
                 aria-live="assertive"
                 className="c1 c2"
+                defaultValue={undefined}
                 id="number"
                 max={10}
                 min={-10}
@@ -268,9 +270,9 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: space-between;
+  -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
-  -ms-flex-pack: space-between;
+  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
@@ -366,6 +368,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
             <Input__StyledInput
               aria-live="assertive"
               className="c1"
+              defaultValue={undefined}
               id="number"
               max={10}
               min={-10}
@@ -380,6 +383,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
               <input
                 aria-live="assertive"
                 className="c1 c2"
+                defaultValue={undefined}
                 id="number"
                 max={10}
                 min={-10}

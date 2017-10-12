@@ -5,7 +5,7 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
 >
-  <MainCanvas__MainCanvas>
+  <MainCanvas>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -25,16 +25,16 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
       </Button>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel />
-  </MainCanvas__MainCanvas>
+  </MainCanvas>
 </BaseLayout>
 `;
 
-exports[`containers/Questionnaires should render when there are no questionnaires 1`] = `
+exports[`containers/Questionnaires should render a 'Create Questionnaire' button 1`] = `
 <BaseLayout
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
 >
-  <MainCanvas__MainCanvas>
+  <MainCanvas>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -59,7 +59,41 @@ exports[`containers/Questionnaires should render when there are no questionnaire
         questionnaires={Array []}
       />
     </QuestionnairesPage__StyledCenteredPanel>
-  </MainCanvas__MainCanvas>
+  </MainCanvas>
+</BaseLayout>
+`;
+
+exports[`containers/Questionnaires should render when there are no questionnaires 1`] = `
+<BaseLayout
+  docTitle="Your Questionnaires"
+  title="Your Questionnaires"
+>
+  <MainCanvas>
+    <QuestionnairesPage__StyledButtonGroup
+      horizontal={true}
+    >
+      <withRouter(LB)
+        id="btn-create-questionnaire"
+        primary={true}
+        to="/questionnaire/create"
+      >
+        Create
+      </withRouter(LB)>
+      <Button
+        disabled={true}
+        id="btn-load-questionnaire"
+        secondary={true}
+      >
+        Upload
+      </Button>
+    </QuestionnairesPage__StyledButtonGroup>
+    <QuestionnairesPage__StyledCenteredPanel>
+      <QuestionnairesTable
+        onDeleteQuestionnaire={[Function]}
+        questionnaires={Array []}
+      />
+    </QuestionnairesPage__StyledCenteredPanel>
+  </MainCanvas>
 </BaseLayout>
 `;
 
@@ -68,7 +102,7 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
 >
-  <MainCanvas__MainCanvas>
+  <MainCanvas>
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
@@ -119,6 +153,6 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
         }
       />
     </QuestionnairesPage__StyledCenteredPanel>
-  </MainCanvas__MainCanvas>
+  </MainCanvas>
 </BaseLayout>
 `;
