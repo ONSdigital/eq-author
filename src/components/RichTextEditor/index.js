@@ -1,17 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import {
-  Editor,
-  EditorState,
-  RichUtils,
-  convertToRaw,
-  convertFromHTML,
-  ContentState,
-  Modifier
-} from "draft-js";
+import { Editor, EditorState, RichUtils, Modifier } from "draft-js";
 import "draft-js/dist/Draft.css";
-import draftToHtml from "draftjs-to-html";
+import { convertToHTML, convertFromHTML } from "draft-convert";
 
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
@@ -78,15 +70,8 @@ Wrapper.defaultProps = {
   size: "small"
 };
 
-const toHTML = editorState =>
-  draftToHtml(convertToRaw(editorState.getCurrentContent()));
-
-const fromHTML = html => {
-  const { contentBlocks, entityMap } = convertFromHTML(html);
-  const state = ContentState.createFromBlockArray(contentBlocks, entityMap);
-
-  return createWithContent(state);
-};
+const toHTML = editorState => convertToHTML(editorState.getCurrentContent());
+const fromHTML = html => createWithContent(convertFromHTML(html));
 
 class RichTextEditor extends React.Component {
   static defaultProps = {

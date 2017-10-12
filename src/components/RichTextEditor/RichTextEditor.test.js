@@ -84,7 +84,7 @@ describe("components/RichTextEditor", function() {
     wrapper.find(Editor).simulate("blur");
     expect(props.onUpdate).toHaveBeenCalledWith({
       name: "test",
-      value: `<p></p>\n`
+      value: "<p></p>"
     });
   });
 
