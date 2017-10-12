@@ -43,19 +43,19 @@ class Header extends React.Component {
     questionnaire: CustomPropTypes.questionnaire
   };
 
+  getPreviewUrl(questionnaireId) {
+    const timestamp = Date.now();
+    const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
+    const goLaunchASurveyQuickLaunchUrl =
+      process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
+    const urlEncodedParam = encodeURIComponent(
+      `${publisherUrl}/${questionnaireId}?r=${timestamp}`
+    );
+    return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
+  }
+
   render() {
     const { questionnaire } = this.props;
-    let previewUrl;
-    if (questionnaire) {
-      const timestamp = Date.now();
-      const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
-      const goLaunchASurveyQuickLaunchUrl =
-        process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
-      const urlEncodedParam = encodeURIComponent(
-        `${publisherUrl}/${questionnaire.id}?r=${timestamp}`
-      );
-      previewUrl = `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
-    }
     return (
       <StyledHeader>
         <Grid align="center">
@@ -73,7 +73,7 @@ class Header extends React.Component {
             {questionnaire && (
               <UtilityBtns horizontal>
                 <IconLink
-                  href={previewUrl}
+                  href={this.getPreviewUrl(questionnaire.id)}
                   icon={previewIcon}
                   title="Preview"
                   target="_blank"

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/IconButton will render an icon 1`] = `
+exports[`components/IconLink will render an icon 1`] = `
 .c2 {
   background-color: rgba(97,97,97,0.9) !important;
   font-size: 0.625rem !important;

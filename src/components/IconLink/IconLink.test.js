@@ -4,27 +4,27 @@ import { mount } from "enzyme";
 import IconLink, { StyledLink } from "components/IconLink";
 import iconTest from "./icon-test.svg";
 
-const mockFn = jest.fn();
-let iconLink;
+const handleClick = jest.fn();
+let wrapper;
 
-describe("components/IconButton", function() {
+describe("components/IconLink", function() {
   beforeEach(() => {
-    iconLink = mount(
+    wrapper = mount(
       <IconLink
         href="http://localhost"
         icon={iconTest}
         title="Test"
-        handleClick={mockFn}
+        handleClick={handleClick}
       />
     );
   });
 
   it("will render an icon", function() {
-    expect(iconLink).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it("will handleClick", function() {
-    iconLink.find(StyledLink).simulate("click");
-    expect(mockFn).toHaveBeenCalled();
+    wrapper.find(StyledLink).simulate("click");
+    expect(handleClick).toHaveBeenCalled();
   });
 });

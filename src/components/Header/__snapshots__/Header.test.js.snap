@@ -32,7 +32,7 @@ exports[`components/Header renders correctly  1`] = `
         horizontal={true}
       >
         <IconLink
-          href="undefined?url=undefined%2Fundefined%3Fr%3D1507732964886"
+          href="http://go-launch-a-survey/quick-launch?url=http%3A%2F%2Feq-publisher%2Fpublish%2Fundefined%3Fr%3D1507793425522"
           icon="icon-preview.svg"
           target="_blank"
           title="Preview"
