@@ -115,4 +115,56 @@ describe("components/RichTextEditor", function() {
   it("should disable enter key", () => {
     expect(wrapper.instance().handleReturn()).toBe("handled");
   });
+
+  it("should set focus to true when Editor is focussed", () => {
+    wrapper.find(Editor).simulate("focus");
+    expect(wrapper.state("focused")).toBe(true);
+  });
+
+  it("should set focus to true when Toolbar is focused", () => {
+    wrapper.find(Toolbar).simulate("focus");
+    expect(wrapper.state("focused")).toBe(true);
+  });
+
+  it("should set focus to false when Toolbar is blurred", () => {
+    wrapper.setState({ focused: true });
+    wrapper.find(Toolbar).simulate("blur");
+    expect(wrapper.state("focused")).toBe(false);
+  });
+
+  it("should be able to determine current block style", () => {
+    const selection = {
+      getStartKey: jest.fn(() => "selection")
+    };
+    const block = {
+      getType: () => "block-type"
+    };
+    const currentContent = {
+      getBlockForKey: jest.fn(() => block)
+    };
+    const editorState = {
+      getCurrentContent: () => currentContent,
+      getSelection: () => selection
+    };
+
+    let result = wrapper.instance().hasBlockStyle(editorState, "block-type");
+    expect(result).toBe(true);
+    expect(selection.getStartKey).toHaveBeenCalled();
+    expect(currentContent.getBlockForKey).toHaveBeenCalledWith("selection");
+
+    result = wrapper.instance().hasBlockStyle(editorState, "blah");
+    expect(result).toBe(false);
+  });
+
+  it("should be able to determine current inline style", () => {
+    const currentStyle = {
+      has: jest.fn()
+    };
+    const editorState = {
+      getCurrentInlineStyle: () => currentStyle
+    };
+
+    wrapper.instance().hasInlineStyle(editorState, "foo");
+    expect(currentStyle.has).toHaveBeenCalledWith("foo");
+  });
 });
