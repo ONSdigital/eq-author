@@ -91,6 +91,7 @@ class RichTextEditor extends React.Component {
     onUpdate: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     id: PropTypes.string,
+    className: PropTypes.string,
     multiline: PropTypes.bool,
     size: PropTypes.oneOf(Object.keys(sizes))
   };
@@ -190,7 +191,14 @@ class RichTextEditor extends React.Component {
   render() {
     const { editorState, focused } = this.state;
     const contentState = editorState.getCurrentContent();
-    const { placeholder, label, multiline, size, ...otherProps } = this.props;
+    const {
+      placeholder,
+      label,
+      multiline,
+      size,
+      className,
+      ...otherProps
+    } = this.props;
 
     return (
       <Wrapper
@@ -199,6 +207,7 @@ class RichTextEditor extends React.Component {
           .getBlockMap()
           .first()
           .getType()}
+        className={className}
       >
         <Toolbar
           editorState={editorState}

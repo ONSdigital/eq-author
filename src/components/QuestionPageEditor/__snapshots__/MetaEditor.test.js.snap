@@ -39,7 +39,7 @@ exports[`MetaEditor should render 1`] = `
   <Field
     id="guidance"
   >
-    <RichTextEditor
+    <MetaEditor__GuidanceRichTextEditor
       controls={
         Object {
           "bold": true,

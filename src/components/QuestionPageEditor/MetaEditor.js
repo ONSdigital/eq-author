@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
+import styled from "styled-components";
 
 import { flip, partial } from "lodash";
 
@@ -21,6 +22,12 @@ const guidanceControls = {
   emphasis: false,
   list: true
 };
+
+const GuidanceRichTextEditor = styled(RichTextEditor)`
+  background-color: #f9f9f9;
+  border-left: 4px solid #dcdcdc;
+  padding: 1em;
+`;
 
 export class StatelessMetaEditor extends React.Component {
   render() {
@@ -51,7 +58,7 @@ export class StatelessMetaEditor extends React.Component {
           />
         </Field>
         <Field id="guidance">
-          <RichTextEditor
+          <GuidanceRichTextEditor
             placeholder="Guidance text (optional)…"
             value={page.guidance}
             onUpdate={handleUpdate}
