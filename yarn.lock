@@ -2920,6 +2920,13 @@ dotenv@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
 
+draft-convert@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/draft-convert/-/draft-convert-2.0.0.tgz#e7afbc8054bfb2f53464e6dd47e50125403879d8"
+  dependencies:
+    immutable "~3.7.4"
+    invariant "^2.2.1"
+
 draft-js@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.1.tgz#6f1219d8095729691429ca6fd7a58d2a8be5cb67"
@@ -2927,10 +2934,6 @@ draft-js@^0.10.1:
     fbjs "^0.8.7"
     immutable "~3.7.4"
     object-assign "^4.1.0"
-
-draftjs-to-html@^0.7.5:
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.7.5.tgz#50b2d1d813fb499966de8106fbeea9ea52c76951"
 
 duplexer2@^0.1.4:
   version "0.1.4"
@@ -3063,7 +3066,6 @@ eq-author-mock-api@ONSdigital/eq-author-mock-api#4342f6a:
   version "1.0.0"
   resolved "https://codeload.github.com/ONSdigital/eq-author-mock-api/tar.gz/4342f6a13f02d804be4577a0304592786c3e43b7"
   dependencies:
-    eq-author-graphql-schema ONSDigital/eq-author-graphql-schema#16132f5
     graphql "^0.10.5"
     graphql-tag "^2.4.2"
     graphql-tools "^1.1.0"

@@ -30,7 +30,7 @@ exports[`MetaEditor should render 1`] = `
         }
       }
       label="guidance"
-      multiline={false}
+      multiline={true}
       onUpdate={[Function]}
       placeholder="Question text (optional)…"
       value="Page description"
@@ -39,11 +39,11 @@ exports[`MetaEditor should render 1`] = `
   <Field
     id="guidance"
   >
-    <RichTextEditor
+    <MetaEditor__GuidanceRichTextEditor
       controls={
         Object {
           "bold": true,
-          "emphasis": true,
+          "emphasis": false,
           "heading": true,
           "list": true,
         }

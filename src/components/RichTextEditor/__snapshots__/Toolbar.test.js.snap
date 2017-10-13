@@ -304,11 +304,8 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
     in={false}
   >
     <Toolbar__ToolbarPanel
-      controls={Object {}}
-      isActiveControl={[Function]}
+      onBlur={[Function]}
       onFocus={[Function]}
-      onToggle={[Function]}
-      visible={true}
     >
       <Toolbar__ButtonGroup>
         <Toolbar__Button

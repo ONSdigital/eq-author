@@ -31,7 +31,7 @@ exports[`SectionEditor should render 1`] = `
         }
       }
       label="description"
-      multiline={false}
+      multiline={true}
       onUpdate={[Function]}
       placeholder="Enter a description (optional)…"
     />

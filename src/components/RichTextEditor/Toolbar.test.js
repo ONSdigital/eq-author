@@ -21,6 +21,7 @@ describe("components/RichTextEditor/Toolbar", () => {
     props = {
       onToggle: jest.fn(),
       onFocus: jest.fn(),
+      onBlur: jest.fn(),
       isActiveControl: jest.fn()
     };
     wrapper = shallow(<Toolbar {...props} visible />);
@@ -41,6 +42,11 @@ describe("components/RichTextEditor/Toolbar", () => {
   it("should maintain visibility following a focus event", () => {
     wrapper.find(ToolbarPanel).simulate("focus");
     expect(props.onFocus).toHaveBeenCalled();
+  });
+
+  it("should handle blur", () => {
+    wrapper.find(ToolbarPanel).simulate("blur");
+    expect(props.onBlur).toHaveBeenCalled();
   });
 
   it("should render Buttons as disabled according to props provided", () => {

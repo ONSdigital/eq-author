@@ -42,6 +42,7 @@ export class StatelessSectionEditor extends React.Component {
             onUpdate={handleUpdate}
             label="description"
             controls={descriptionControls}
+            multiline
           />
         </Field>
       </div>

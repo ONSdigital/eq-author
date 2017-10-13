@@ -1,17 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import {
-  Editor,
-  EditorState,
-  RichUtils,
-  convertToRaw,
-  convertFromHTML,
-  ContentState,
-  Modifier
-} from "draft-js";
+import { Editor, EditorState, RichUtils, Modifier } from "draft-js";
 import "draft-js/dist/Draft.css";
-import draftToHtml from "draftjs-to-html";
+import { convertToHTML, convertFromHTML } from "draft-convert";
 
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
 
@@ -47,27 +39,32 @@ const sizes = {
 
 const Wrapper = styled.div`
   position: relative;
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  ul,
-  ol {
-    margin: 0 0 0.5em 0;
+
+  .header-two,
+  .unstyled,
+  .unordered-list-item {
+    line-height: 1.5;
+    margin: 0;
   }
 
-  h2 {
+  .header-two {
     ${heading};
+    margin-bottom: 0.5rem;
   }
 
-  li {
+  .unstyled {
+    margin-bottom: 1rem;
+  }
+
+  .unordered-list-item {
     ${list};
+    margin-bottom: 0.25rem;
   }
 
   ${props => sizes[props.size]};
 
   .public-DraftEditorPlaceholder-root {
+    /* style placeholder based on prospective style */
     ${props => props.placeholderStyle === "header-two" && heading};
     ${props => props.placeholderStyle === "unordered-list-item" && list};
     color: #a3a3a3;
@@ -78,15 +75,9 @@ Wrapper.defaultProps = {
   size: "small"
 };
 
-const toHTML = editorState =>
-  draftToHtml(convertToRaw(editorState.getCurrentContent()));
-
-const fromHTML = html => {
-  const { contentBlocks, entityMap } = convertFromHTML(html);
-  const state = ContentState.createFromBlockArray(contentBlocks, entityMap);
-
-  return createWithContent(state);
-};
+const toHTML = editorState => convertToHTML(editorState.getCurrentContent());
+const fromHTML = html => createWithContent(convertFromHTML(html));
+const getBlockStyle = block => block.getType();
 
 class RichTextEditor extends React.Component {
   static defaultProps = {
@@ -100,6 +91,7 @@ class RichTextEditor extends React.Component {
     onUpdate: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     id: PropTypes.string,
+    className: PropTypes.string,
     multiline: PropTypes.bool,
     size: PropTypes.oneOf(Object.keys(sizes))
   };
@@ -155,23 +147,26 @@ class RichTextEditor extends React.Component {
     this.setState({ focused: true });
   };
 
-  getBlockType = editorState => {
+  hasBlockStyle = (editorState, style) => {
     const selection = editorState.getSelection();
 
-    return editorState
+    const blockStyle = editorState
       .getCurrentContent()
-      .getBlockForKey(selection.getStartKey());
+      .getBlockForKey(selection.getStartKey())
+      .getType();
+
+    return blockStyle === style;
   };
 
-  hasCurrentStyle = (editorState, style) =>
+  hasInlineStyle = (editorState, style) =>
     editorState.getCurrentInlineStyle().has(style);
 
   isActiveControl = ({ style, type }) => {
     const { editorState } = this.state;
 
     return type === STYLE_BLOCK
-      ? style === this.getBlockType(editorState)
-      : this.hasCurrentStyle(editorState, style);
+      ? this.hasBlockStyle(editorState, style)
+      : this.hasInlineStyle(editorState, style);
   };
 
   handlePaste = text => {
@@ -196,8 +191,14 @@ class RichTextEditor extends React.Component {
   render() {
     const { editorState, focused } = this.state;
     const contentState = editorState.getCurrentContent();
-
-    let { placeholder, label, multiline, size, ...otherProps } = this.props;
+    const {
+      placeholder,
+      label,
+      multiline,
+      size,
+      className,
+      ...otherProps
+    } = this.props;
 
     return (
       <Wrapper
@@ -206,11 +207,13 @@ class RichTextEditor extends React.Component {
           .getBlockMap()
           .first()
           .getType()}
+        className={className}
       >
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
           onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
           isActiveControl={this.isActiveControl}
           visible={focused}
           {...otherProps}
@@ -225,6 +228,7 @@ class RichTextEditor extends React.Component {
             onFocus={this.handleFocus}
             ref={this.setEditorNode}
             customStyleMap={styleMap}
+            blockStyleFn={getBlockStyle}
             handleReturn={multiline ? undefined : this.handleReturn}
             handlePastedText={multiline ? undefined : this.handlePaste}
             spellCheck
