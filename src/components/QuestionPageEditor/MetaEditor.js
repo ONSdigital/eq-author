@@ -47,6 +47,7 @@ export class StatelessMetaEditor extends React.Component {
             onUpdate={handleUpdate}
             label="guidance"
             controls={descriptionControls}
+            multiline
           />
         </Field>
         <Field id="guidance">
