@@ -29,16 +29,18 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   width: 4em;
 }
 
-.c1[type=number]::-webkit-inner-spin-button,
-.c1[type=number]::-webkit-outer-spin-button {
+.c1[type="number"]::-webkit-inner-spin-button,
+.c1[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
 }
 
-.c1[type=number] {
+.c1[type="number"] {
+  -webkit-appearance: textfield;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .c3 {
@@ -70,8 +72,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 
 .c4:hover {
   opacity: 1;
-  -webkit-transition: opacity .2s ease-in-out;
-  transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .c5 {
@@ -89,8 +91,8 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 
 .c5:hover {
   opacity: 1;
-  -webkit-transition: opacity .2s ease-in-out;
-  transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 <Number
@@ -244,16 +246,18 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   width: 4em;
 }
 
-.c1[type=number]::-webkit-inner-spin-button,
-.c1[type=number]::-webkit-outer-spin-button {
+.c1[type="number"]::-webkit-inner-spin-button,
+.c1[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   margin: 0;
 }
 
-.c1[type=number] {
+.c1[type="number"] {
+  -webkit-appearance: textfield;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .c3 {
@@ -285,8 +289,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 
 .c4:hover {
   opacity: 1;
-  -webkit-transition: opacity .2s ease-in-out;
-  transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .c5 {
@@ -304,8 +308,8 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 
 .c5:hover {
   opacity: 1;
-  -webkit-transition: opacity .2s ease-in-out;
-  transition: opacity .2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 <Number

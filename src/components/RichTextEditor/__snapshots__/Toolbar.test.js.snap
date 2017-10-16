@@ -38,7 +38,6 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
   align-items: center;
   padding: 0.5em;
   cursor: pointer;
-  background: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -179,7 +178,6 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
   align-items: center;
   padding: 0.5em;
   cursor: pointer;
-  background: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
