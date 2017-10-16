@@ -8,9 +8,7 @@ const PropertyPane = styled.div`
   flex-direction: column;
   background-color: ${colors.white};
   padding: 1em;
-  /* stylelint-disable */
-  box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px;
-  /* stylelint-enable */
+  box-shadow: rgba(0, 0, 0, 0.14) 0 4px 5px 0;
 `;
 
 export default PropertyPane;
