@@ -70,11 +70,10 @@ const StyledButton = styled.button`
     opacity: 0.6;
   }
 
-  /* stylelint-disable */
-  ${props => props.primary && PrimaryButton} ${props =>
-      props.secondary && SecondaryButton} ${props =>
-      props.tertiary && TertiaryButton} ${props => props.clear && ClearButton};
-  /* stylelint-enable */
+  ${props => props.primary && PrimaryButton};
+  ${props => props.secondary && SecondaryButton};
+  ${props => props.tertiary && TertiaryButton};
+  ${props => props.clear && ClearButton};
 `;
 
 const Button = ({ children, type, ...otherProps }) => (
