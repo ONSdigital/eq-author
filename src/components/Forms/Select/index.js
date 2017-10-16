@@ -11,20 +11,22 @@ const StyledSelect = styled.select`
   ${sharedStyles};
   background: white url('${Icon}') no-repeat right 1em center;
   appearance: none;
+
   &:focus {
     outline: none;
     border: 1px solid ${colors.lightBlue};
   }
 `;
 
-const Select = ({ options, defaultValue, id, ...otherProps }) =>
+const Select = ({ options, defaultValue, id, ...otherProps }) => (
   <StyledSelect id={id} name={id} defaultValue={defaultValue} {...otherProps}>
-    {options.map(opt =>
+    {options.map(opt => (
       <option key={opt} value={opt}>
         {opt}
       </option>
-    )}
-  </StyledSelect>;
+    ))}
+  </StyledSelect>
+);
 
 Select.defaultProps = {
   options: []

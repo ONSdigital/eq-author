@@ -16,9 +16,10 @@ const PrimaryButton = css`
   color: white;
   position: relative;
   border: none;
+
   &:focus,
   &:hover {
-    background-color: ${darken10(colors.blue)}
+    background-color: ${darken10(colors.blue)};
   }
 `;
 
@@ -26,6 +27,7 @@ const SecondaryButton = css`
   background-color: white;
   color: ${colors.text};
   border: 1px ${colors.borders} solid;
+
   &:focus,
   &:hover {
     background-color: ${colors.borders};
@@ -40,7 +42,7 @@ const TertiaryButton = css`
 
   &:focus,
   &:hover {
-    background-color: ${darken10(colors.red)}
+    background-color: ${darken10(colors.red)};
   }
 `;
 
@@ -68,15 +70,18 @@ const StyledButton = styled.button`
     opacity: 0.6;
   }
 
+  /* stylelint-disable */
   ${props => props.primary && PrimaryButton} ${props =>
       props.secondary && SecondaryButton} ${props =>
       props.tertiary && TertiaryButton} ${props => props.clear && ClearButton};
+  /* stylelint-enable */
 `;
 
-const Button = ({ children, type, ...otherProps }) =>
+const Button = ({ children, type, ...otherProps }) => (
   <StyledButton {...otherProps} type={type}>
     {children}
-  </StyledButton>;
+  </StyledButton>
+);
 
 Button.propTypes = {
   primary: PropTypes.bool,

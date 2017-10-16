@@ -8,9 +8,13 @@ injectGlobal`
   html {
     box-sizing: border-box;
   }
-  *, *:before, *:after {
+
+  *,
+  *::before,
+  *::after {
     box-sizing: inherit;
   }
+
   html,
   body {
     height: 100%;
@@ -20,12 +24,17 @@ injectGlobal`
     padding: 0;
     -webkit-font-smoothing: antialiased;
   }
+
   body {
     font-family: 'Lato', sans-serif;
     overflow: hidden;
     color: ${colors.text};
   }
-  input, select, textarea, button {
+
+  input,
+  select,
+  textarea,
+  button {
     font-family: inherit;
   }
 `;

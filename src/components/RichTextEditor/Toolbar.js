@@ -25,6 +25,7 @@ const activeState = css`
 export const Button = styled(IconButton)`
   display: block;
   opacity: 0.7;
+
   &:hover,
   &:focus {
     background-color: ${colors.lighterGrey};

@@ -36,11 +36,12 @@ const UnreadCommentsNotifier = styled.span`
   right: -4px;
 `;
 
-const CommentsButton = ({ hasUnread }) =>
+const CommentsButton = ({ hasUnread }) => (
   <StyledSpan>
     <StyledButton title={"Click to see comments"} onClick={handleClick} />
     {hasUnread && <UnreadCommentsNotifier title={"You have unread comments"} />}
-  </StyledSpan>;
+  </StyledSpan>
+);
 
 CommentsButton.propTypes = {
   hasUnread: PropTypes.bool.isRequired

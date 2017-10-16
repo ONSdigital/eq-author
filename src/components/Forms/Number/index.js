@@ -13,13 +13,14 @@ const StyledDiv = styled.div`
 `;
 
 const StyledInput = styled(Input)`
-  &[type=number]::-webkit-inner-spin-button,
-  &[type=number]::-webkit-outer-spin-button {
-      appearance: none;
-      margin: 0;
+  &[type="number"]::-webkit-inner-spin-button,
+  &[type="number"]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
   }
-   &[type=number] {
-    -moz-appearance: textfield;
+
+  &[type="number"] {
+    appearance: textfield;
   }
 
   width: 4em;
@@ -39,9 +40,10 @@ export const SpinnerButton = styled.button`
   background-size: contain;
   cursor: pointer;
   opacity: 0.6;
+
   &:hover {
     opacity: 1;
-    transition: opacity .2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
   }
 
   transform: scaleY(${props => (props.inverted ? -1 : 1)});
@@ -85,7 +87,7 @@ class Number extends React.Component {
           aria-live="assertive"
           role="alert"
         />
-        {this.props.showSpinner &&
+        {this.props.showSpinner && (
           <SpinnerButtonWrapper>
             <SpinnerButton
               type="button"
@@ -100,7 +102,8 @@ class Number extends React.Component {
               onClick={this.handleDown}
               aria-controls={this.props.id}
             />
-          </SpinnerButtonWrapper>}
+          </SpinnerButtonWrapper>
+        )}
       </StyledDiv>
     );
   }

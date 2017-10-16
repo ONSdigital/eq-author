@@ -10,7 +10,8 @@ import LinkButton from "components/LinkButton";
 import QuestionnairesTable from "./QuestionnairesTable";
 import MainCanvas from "components/MainCanvas";
 
-const StyledButtonGroup = styled(ButtonGroup)`margin: 0 0 1em 0;`;
+const StyledButtonGroup = styled(ButtonGroup)`margin: 0 0 1em;`;
+
 const StyledCenteredPanel = styled(CenteredPanel)`padding: 0;`;
 
 const Questionnaires = props => {

@@ -6,7 +6,7 @@ const PropertyPaneTitle = styled.h3`
   text-transform: uppercase;
   font-weight: 900;
   line-height: 1.5;
-  margin: 0 0 3em 0;
+  margin: 0 0 3em;
 `;
 
 export default PropertyPaneTitle;

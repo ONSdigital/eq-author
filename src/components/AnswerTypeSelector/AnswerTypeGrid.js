@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const Menu = styled.div`
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0;
   width: 340px;
 `;
 

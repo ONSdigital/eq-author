@@ -63,9 +63,7 @@ class ScaleTransition extends React.Component {
     const { duration, children, ...otherProps } = this.props;
     return (
       <CSSTransition timeout={duration} {...otherProps} classNames="scale">
-        <Animated duration={duration}>
-          {children}
-        </Animated>
+        <Animated duration={duration}>{children}</Animated>
       </CSSTransition>
     );
   }

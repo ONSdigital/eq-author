@@ -8,6 +8,7 @@ export const sharedStyles = css`
   border-radius: ${radius};
   border: 1px solid ${colors.borders};
   font-size: 0.9em;
+
   &:focus {
     outline: none;
     border: 1px solid ${colors.lightBlue};

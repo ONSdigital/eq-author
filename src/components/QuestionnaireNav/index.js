@@ -51,6 +51,7 @@ export const AddSectionBtn = styled.button`
     content: url(${plusIcon});
     margin-right: 0.6em;
   }
+
   &:hover {
     color: black;
   }

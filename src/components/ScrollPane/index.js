@@ -6,7 +6,7 @@ const ScrollPane = styled.div`
   overflow-y: auto;
   position: relative;
   background-color: rgba(0, 0, 0, 0);
-  -webkit-background-clip: text;
+  background-clip: text;
   transition: background-color 0.2s;
 
   ::-webkit-scrollbar-thumb {
@@ -17,6 +17,7 @@ const ScrollPane = styled.div`
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.18);
+
     & ::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.4);
     }

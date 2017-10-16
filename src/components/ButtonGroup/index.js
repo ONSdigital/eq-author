@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 
 const VerticalGroup = css`
   flex-direction: column;
+
   *:not(:last-child) {
     margin-bottom: 1.5em;
   }
@@ -11,6 +12,7 @@ const VerticalGroup = css`
 
 const HorizontalGroup = css`
   flex-direction: row;
+
   *:not(:last-child) {
     margin-right: 1em;
   }
@@ -19,12 +21,13 @@ const HorizontalGroup = css`
 const StyledButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
-  ${props => props.vertical && VerticalGroup}
-  ${props => props.horizontal && HorizontalGroup}
+  ${props => props.vertical && VerticalGroup};
+  ${props => props.horizontal && HorizontalGroup};
 `;
 
-const ButtonGroup = ({ children, ...otherProps }) =>
-  <StyledButtonGroup {...otherProps}>{children}</StyledButtonGroup>;
+const ButtonGroup = ({ children, ...otherProps }) => (
+  <StyledButtonGroup {...otherProps}>{children}</StyledButtonGroup>
+);
 
 ButtonGroup.propTypes = {
   children: PropTypes.node

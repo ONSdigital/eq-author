@@ -25,10 +25,12 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   border-color: rgba(5, 108, 153, 0);
   border-style: solid;
-  border-width: 0 0 2px 0;
+  border-width: 0 0 2px;
+
   &:hover {
     color: ${colors.blue};
   }
+
   &.selected {
     color: ${colors.blue};
     border-color: rgba(5, 108, 153, 1);

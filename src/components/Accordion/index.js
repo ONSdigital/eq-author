@@ -14,24 +14,20 @@ const StyledPanelTitle = styled(PanelTitle)`
   position: relative;
   padding: 3px;
   height: 3em;
+
   & button {
     font-size: 0.6em;
     text-transform: uppercase;
     font-weight: 900;
-
     background: none;
     border: none;
-
     width: 100%;
     height: 100%;
-
     padding: 1em;
-
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     outline: none;
 
     &:focus {
@@ -47,6 +43,7 @@ const StyledPanelTitle = styled(PanelTitle)`
       transform: rotate(0deg);
       transition: transform 150ms ease-out;
     }
+
     &[aria-expanded="true"]::after {
       transform: rotate(-180deg);
       transition: transform 150ms ease-in;

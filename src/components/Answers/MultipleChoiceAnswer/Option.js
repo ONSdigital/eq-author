@@ -31,13 +31,12 @@ const DummyInput = styled.div`
   display: inline-block;
   margin: 0 1em 0 0;
   vertical-align: top;
-
   border-radius: ${props => get(borderRadii, props.type, "initial")};
 `;
 
 export const StyledOption = styled.div`
   border: 1px solid ${colors.borders};
-  padding: 1em 1em 0 1em;
+  padding: 1em 1em 0;
   border-radius: 3px;
   position: relative;
 

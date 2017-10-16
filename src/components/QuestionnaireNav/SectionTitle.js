@@ -12,6 +12,7 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import CustomPropTypes from "custom-prop-types";
 const Link = styled(NavLink)`
   text-decoration: none;
+
   &:link,
   &:visited {
     color: ${colors.text};
@@ -23,7 +24,6 @@ const Title = styled.h3`
   font-size: 0.75em;
   margin: 0;
   font-weight: 900;
-  display: flex;
   position: relative;
   width: 100%;
   display: inline-block;
@@ -31,7 +31,7 @@ const Title = styled.h3`
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &:before {
+  &::before {
     content: url(${sectionIcon});
     margin-right: 0.5em;
   }
