@@ -19,6 +19,7 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
 .c2 {
   position: absolute;
   overflow: hidden;
+  -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
   height: 1px;
   width: 1px;
@@ -94,21 +95,25 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
         >
           <IconButton__Button
             className="c0"
+            disabled={undefined}
             icon="foo.svg"
+            onClick={undefined}
             type="button"
           >
             <button
               className="c0 c1"
+              disabled={undefined}
               icon="foo.svg"
+              onClick={undefined}
               type="button"
             >
-              <VisuallyHidden__VisuallyHidden>
+              <VisuallyHidden>
                 <span
                   className="c2"
                 >
                   foo
                 </span>
-              </VisuallyHidden__VisuallyHidden>
+              </VisuallyHidden>
             </button>
           </IconButton__Button>
         </div>
@@ -159,6 +164,7 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
 .c2 {
   position: absolute;
   overflow: hidden;
+  -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
   height: 1px;
   width: 1px;
@@ -239,21 +245,25 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
           <IconButton__Button
             active={true}
             className="c0"
+            disabled={undefined}
             icon="foo.svg"
+            onClick={undefined}
             type="button"
           >
             <button
               className="c0 c1"
+              disabled={undefined}
               icon="foo.svg"
+              onClick={undefined}
               type="button"
             >
-              <VisuallyHidden__VisuallyHidden>
+              <VisuallyHidden>
                 <span
                   className="c2"
                 >
                   foo
                 </span>
-              </VisuallyHidden__VisuallyHidden>
+              </VisuallyHidden>
             </button>
           </IconButton__Button>
         </div>
@@ -309,6 +319,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         <Toolbar__Button
           disabled={true}
           icon="icon-heading.svg"
+          key="Heading"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
@@ -317,6 +328,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         <Toolbar__Button
           disabled={true}
           icon="icon-bold.svg"
+          key="Bold"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
@@ -325,6 +337,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         <Toolbar__Button
           disabled={true}
           icon="icon-emphasis.svg"
+          key="Emphasis"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
@@ -333,6 +346,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         <Toolbar__Button
           disabled={true}
           icon="icon-list.svg"
+          key="List"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}

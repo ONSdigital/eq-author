@@ -9,19 +9,9 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
     controls={Object {}}
     editorState={
       EditorState {
-        "_immutable": Object {
+        "_immutable": Immutable.Record {
           "allowUndo": true,
-          "currentContent": Object {
-            "blockMap": Object {
-              "123": Object {
-                "characterList": Array [],
-                "data": Object {},
-                "depth": 0,
-                "key": "123",
-                "text": "",
-                "type": "unstyled",
-              },
-            },
+          "currentContent": Immutable.Record {
             "entityMap": Object {
               "__add": [Function],
               "__create": [Function],
@@ -36,25 +26,35 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
               "mergeData": [Function],
               "replaceData": [Function],
             },
-            "selectionAfter": Object {
-              "anchorKey": "123",
-              "anchorOffset": 0,
-              "focusKey": "123",
-              "focusOffset": 0,
-              "hasFocus": false,
-              "isBackward": false,
+            "blockMap": Immutable.OrderedMap {
+              "123": Immutable.Record {
+                "key": "123",
+                "type": "unstyled",
+                "text": "",
+                "characterList": Immutable.List [],
+                "depth": 0,
+                "data": Immutable.Map {},
+              },
             },
-            "selectionBefore": Object {
+            "selectionBefore": Immutable.Record {
               "anchorKey": "123",
               "anchorOffset": 0,
               "focusKey": "123",
               "focusOffset": 0,
-              "hasFocus": false,
               "isBackward": false,
+              "hasFocus": false,
+            },
+            "selectionAfter": Immutable.Record {
+              "anchorKey": "123",
+              "anchorOffset": 0,
+              "focusKey": "123",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false,
             },
           },
           "decorator": null,
-          "directionMap": Object {
+          "directionMap": Immutable.OrderedMap {
             "123": "LTR",
           },
           "forceSelection": false,
@@ -62,31 +62,31 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
           "inlineStyleOverride": null,
           "lastChangeType": null,
           "nativelyRenderedContent": null,
-          "redoStack": Array [],
-          "selection": Object {
+          "redoStack": Immutable.Stack [],
+          "selection": Immutable.Record {
             "anchorKey": "123",
             "anchorOffset": 0,
             "focusKey": "123",
             "focusOffset": 0,
-            "hasFocus": false,
             "isBackward": false,
+            "hasFocus": false,
           },
-          "treeMap": Object {
-            "123": Array [
-              Object {
-                "decoratorKey": null,
+          "treeMap": Immutable.OrderedMap {
+            "123": Immutable.List [
+              Immutable.Record {
+                "start": 0,
                 "end": 0,
-                "leaves": Array [
-                  Object {
-                    "end": 0,
+                "decoratorKey": null,
+                "leaves": Immutable.List [
+                  Immutable.Record {
                     "start": 0,
+                    "end": 0,
                   },
                 ],
-                "start": 0,
               },
             ],
           },
-          "undoStack": Array [],
+          "undoStack": Immutable.Stack [],
         },
       }
     }
@@ -106,52 +106,52 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
       ariaLabel="I am a label"
       blockRenderMap={
         Immutable.Map {
-          ordered-list-item: Object {
+          "ordered-list-item": Object {
             "element": "li",
             "wrapper": <ol
               className="public-DraftStyleDefault-ol"
-          />,
+            />,
           },
-          header-six: Object {
+          "header-six": Object {
             "element": "h6",
           },
-          header-four: Object {
+          "header-four": Object {
             "element": "h4",
           },
-          header-one: Object {
+          "header-one": Object {
             "element": "h1",
           },
-          unordered-list-item: Object {
+          "unordered-list-item": Object {
             "element": "li",
             "wrapper": <ul
               className="public-DraftStyleDefault-ul"
-          />,
+            />,
           },
-          atomic: Object {
+          "atomic": Object {
             "element": "figure",
           },
-          unstyled: Object {
+          "unstyled": Object {
             "aliasedElements": Array [
               "p",
             ],
             "element": "div",
           },
-          header-two: Object {
+          "header-two": Object {
             "element": "h2",
           },
-          code-block: Object {
+          "code-block": Object {
             "element": "pre",
             "wrapper": <pre
               className="public-DraftStyleDefault-pre"
-          />,
+            />,
           },
-          blockquote: Object {
+          "blockquote": Object {
             "element": "blockquote",
           },
-          header-five: Object {
+          "header-five": Object {
             "element": "h5",
           },
-          header-three: Object {
+          "header-three": Object {
             "element": "h3",
           },
         }
@@ -167,19 +167,9 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
       }
       editorState={
         EditorState {
-          "_immutable": Object {
+          "_immutable": Immutable.Record {
             "allowUndo": true,
-            "currentContent": Object {
-              "blockMap": Object {
-                "123": Object {
-                  "characterList": Array [],
-                  "data": Object {},
-                  "depth": 0,
-                  "key": "123",
-                  "text": "",
-                  "type": "unstyled",
-                },
-              },
+            "currentContent": Immutable.Record {
               "entityMap": Object {
                 "__add": [Function],
                 "__create": [Function],
@@ -194,25 +184,35 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
                 "mergeData": [Function],
                 "replaceData": [Function],
               },
-              "selectionAfter": Object {
-                "anchorKey": "123",
-                "anchorOffset": 0,
-                "focusKey": "123",
-                "focusOffset": 0,
-                "hasFocus": false,
-                "isBackward": false,
+              "blockMap": Immutable.OrderedMap {
+                "123": Immutable.Record {
+                  "key": "123",
+                  "type": "unstyled",
+                  "text": "",
+                  "characterList": Immutable.List [],
+                  "depth": 0,
+                  "data": Immutable.Map {},
+                },
               },
-              "selectionBefore": Object {
+              "selectionBefore": Immutable.Record {
                 "anchorKey": "123",
                 "anchorOffset": 0,
                 "focusKey": "123",
                 "focusOffset": 0,
-                "hasFocus": false,
                 "isBackward": false,
+                "hasFocus": false,
+              },
+              "selectionAfter": Immutable.Record {
+                "anchorKey": "123",
+                "anchorOffset": 0,
+                "focusKey": "123",
+                "focusOffset": 0,
+                "isBackward": false,
+                "hasFocus": false,
               },
             },
             "decorator": null,
-            "directionMap": Object {
+            "directionMap": Immutable.OrderedMap {
               "123": "LTR",
             },
             "forceSelection": false,
@@ -220,31 +220,31 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
             "inlineStyleOverride": null,
             "lastChangeType": null,
             "nativelyRenderedContent": null,
-            "redoStack": Array [],
-            "selection": Object {
+            "redoStack": Immutable.Stack [],
+            "selection": Immutable.Record {
               "anchorKey": "123",
               "anchorOffset": 0,
               "focusKey": "123",
               "focusOffset": 0,
-              "hasFocus": false,
               "isBackward": false,
+              "hasFocus": false,
             },
-            "treeMap": Object {
-              "123": Array [
-                Object {
-                  "decoratorKey": null,
+            "treeMap": Immutable.OrderedMap {
+              "123": Immutable.List [
+                Immutable.Record {
+                  "start": 0,
                   "end": 0,
-                  "leaves": Array [
-                    Object {
-                      "end": 0,
+                  "decoratorKey": null,
+                  "leaves": Immutable.List [
+                    Immutable.Record {
                       "start": 0,
+                      "end": 0,
                     },
                   ],
-                  "start": 0,
                 },
               ],
             },
-            "undoStack": Array [],
+            "undoStack": Immutable.Stack [],
           },
         }
       }
@@ -270,19 +270,9 @@ exports[`components/RichTextEditor should render 1`] = `
     controls={Object {}}
     editorState={
       EditorState {
-        "_immutable": Object {
+        "_immutable": Immutable.Record {
           "allowUndo": true,
-          "currentContent": Object {
-            "blockMap": Object {
-              "123": Object {
-                "characterList": Array [],
-                "data": Object {},
-                "depth": 0,
-                "key": "123",
-                "text": "",
-                "type": "unstyled",
-              },
-            },
+          "currentContent": Immutable.Record {
             "entityMap": Object {
               "__add": [Function],
               "__create": [Function],
@@ -297,25 +287,35 @@ exports[`components/RichTextEditor should render 1`] = `
               "mergeData": [Function],
               "replaceData": [Function],
             },
-            "selectionAfter": Object {
-              "anchorKey": "123",
-              "anchorOffset": 0,
-              "focusKey": "123",
-              "focusOffset": 0,
-              "hasFocus": false,
-              "isBackward": false,
+            "blockMap": Immutable.OrderedMap {
+              "123": Immutable.Record {
+                "key": "123",
+                "type": "unstyled",
+                "text": "",
+                "characterList": Immutable.List [],
+                "depth": 0,
+                "data": Immutable.Map {},
+              },
             },
-            "selectionBefore": Object {
+            "selectionBefore": Immutable.Record {
               "anchorKey": "123",
               "anchorOffset": 0,
               "focusKey": "123",
               "focusOffset": 0,
-              "hasFocus": false,
               "isBackward": false,
+              "hasFocus": false,
+            },
+            "selectionAfter": Immutable.Record {
+              "anchorKey": "123",
+              "anchorOffset": 0,
+              "focusKey": "123",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false,
             },
           },
           "decorator": null,
-          "directionMap": Object {
+          "directionMap": Immutable.OrderedMap {
             "123": "LTR",
           },
           "forceSelection": false,
@@ -323,31 +323,31 @@ exports[`components/RichTextEditor should render 1`] = `
           "inlineStyleOverride": null,
           "lastChangeType": null,
           "nativelyRenderedContent": null,
-          "redoStack": Array [],
-          "selection": Object {
+          "redoStack": Immutable.Stack [],
+          "selection": Immutable.Record {
             "anchorKey": "123",
             "anchorOffset": 0,
             "focusKey": "123",
             "focusOffset": 0,
-            "hasFocus": false,
             "isBackward": false,
+            "hasFocus": false,
           },
-          "treeMap": Object {
-            "123": Array [
-              Object {
-                "decoratorKey": null,
+          "treeMap": Immutable.OrderedMap {
+            "123": Immutable.List [
+              Immutable.Record {
+                "start": 0,
                 "end": 0,
-                "leaves": Array [
-                  Object {
-                    "end": 0,
+                "decoratorKey": null,
+                "leaves": Immutable.List [
+                  Immutable.Record {
                     "start": 0,
+                    "end": 0,
                   },
                 ],
-                "start": 0,
               },
             ],
           },
-          "undoStack": Array [],
+          "undoStack": Immutable.Stack [],
         },
       }
     }
@@ -367,52 +367,52 @@ exports[`components/RichTextEditor should render 1`] = `
       ariaLabel="I am a label"
       blockRenderMap={
         Immutable.Map {
-          ordered-list-item: Object {
+          "ordered-list-item": Object {
             "element": "li",
             "wrapper": <ol
               className="public-DraftStyleDefault-ol"
-          />,
+            />,
           },
-          header-six: Object {
+          "header-six": Object {
             "element": "h6",
           },
-          header-four: Object {
+          "header-four": Object {
             "element": "h4",
           },
-          header-one: Object {
+          "header-one": Object {
             "element": "h1",
           },
-          unordered-list-item: Object {
+          "unordered-list-item": Object {
             "element": "li",
             "wrapper": <ul
               className="public-DraftStyleDefault-ul"
-          />,
+            />,
           },
-          atomic: Object {
+          "atomic": Object {
             "element": "figure",
           },
-          unstyled: Object {
+          "unstyled": Object {
             "aliasedElements": Array [
               "p",
             ],
             "element": "div",
           },
-          header-two: Object {
+          "header-two": Object {
             "element": "h2",
           },
-          code-block: Object {
+          "code-block": Object {
             "element": "pre",
             "wrapper": <pre
               className="public-DraftStyleDefault-pre"
-          />,
+            />,
           },
-          blockquote: Object {
+          "blockquote": Object {
             "element": "blockquote",
           },
-          header-five: Object {
+          "header-five": Object {
             "element": "h5",
           },
-          header-three: Object {
+          "header-three": Object {
             "element": "h3",
           },
         }
@@ -428,19 +428,9 @@ exports[`components/RichTextEditor should render 1`] = `
       }
       editorState={
         EditorState {
-          "_immutable": Object {
+          "_immutable": Immutable.Record {
             "allowUndo": true,
-            "currentContent": Object {
-              "blockMap": Object {
-                "123": Object {
-                  "characterList": Array [],
-                  "data": Object {},
-                  "depth": 0,
-                  "key": "123",
-                  "text": "",
-                  "type": "unstyled",
-                },
-              },
+            "currentContent": Immutable.Record {
               "entityMap": Object {
                 "__add": [Function],
                 "__create": [Function],
@@ -455,25 +445,35 @@ exports[`components/RichTextEditor should render 1`] = `
                 "mergeData": [Function],
                 "replaceData": [Function],
               },
-              "selectionAfter": Object {
-                "anchorKey": "123",
-                "anchorOffset": 0,
-                "focusKey": "123",
-                "focusOffset": 0,
-                "hasFocus": false,
-                "isBackward": false,
+              "blockMap": Immutable.OrderedMap {
+                "123": Immutable.Record {
+                  "key": "123",
+                  "type": "unstyled",
+                  "text": "",
+                  "characterList": Immutable.List [],
+                  "depth": 0,
+                  "data": Immutable.Map {},
+                },
               },
-              "selectionBefore": Object {
+              "selectionBefore": Immutable.Record {
                 "anchorKey": "123",
                 "anchorOffset": 0,
                 "focusKey": "123",
                 "focusOffset": 0,
-                "hasFocus": false,
                 "isBackward": false,
+                "hasFocus": false,
+              },
+              "selectionAfter": Immutable.Record {
+                "anchorKey": "123",
+                "anchorOffset": 0,
+                "focusKey": "123",
+                "focusOffset": 0,
+                "isBackward": false,
+                "hasFocus": false,
               },
             },
             "decorator": null,
-            "directionMap": Object {
+            "directionMap": Immutable.OrderedMap {
               "123": "LTR",
             },
             "forceSelection": false,
@@ -481,31 +481,31 @@ exports[`components/RichTextEditor should render 1`] = `
             "inlineStyleOverride": null,
             "lastChangeType": null,
             "nativelyRenderedContent": null,
-            "redoStack": Array [],
-            "selection": Object {
+            "redoStack": Immutable.Stack [],
+            "selection": Immutable.Record {
               "anchorKey": "123",
               "anchorOffset": 0,
               "focusKey": "123",
               "focusOffset": 0,
-              "hasFocus": false,
               "isBackward": false,
+              "hasFocus": false,
             },
-            "treeMap": Object {
-              "123": Array [
-                Object {
-                  "decoratorKey": null,
+            "treeMap": Immutable.OrderedMap {
+              "123": Immutable.List [
+                Immutable.Record {
+                  "start": 0,
                   "end": 0,
-                  "leaves": Array [
-                    Object {
-                      "end": 0,
+                  "decoratorKey": null,
+                  "leaves": Immutable.List [
+                    Immutable.Record {
                       "start": 0,
+                      "end": 0,
                     },
                   ],
-                  "start": 0,
                 },
               ],
             },
-            "undoStack": Array [],
+            "undoStack": Immutable.Stack [],
           },
         }
       }
@@ -533,68 +533,9 @@ exports[`components/RichTextEditor should render existing content 1`] = `
     controls={Object {}}
     editorState={
       EditorState {
-        "_immutable": Object {
+        "_immutable": Immutable.Record {
           "allowUndo": true,
-          "currentContent": Object {
-            "blockMap": Object {
-              "123": Object {
-                "characterList": Array [
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                  Object {
-                    "entity": null,
-                    "style": Array [
-                      "ITALIC",
-                    ],
-                  },
-                ],
-                "data": Object {},
-                "depth": 0,
-                "key": "123",
-                "text": "Emphasis",
-                "type": "unordered-list-item",
-              },
-            },
+          "currentContent": Immutable.Record {
             "entityMap": Object {
               "__add": [Function],
               "__create": [Function],
@@ -609,25 +550,84 @@ exports[`components/RichTextEditor should render existing content 1`] = `
               "mergeData": [Function],
               "replaceData": [Function],
             },
-            "selectionAfter": Object {
-              "anchorKey": "123",
-              "anchorOffset": 0,
-              "focusKey": "123",
-              "focusOffset": 0,
-              "hasFocus": false,
-              "isBackward": false,
+            "blockMap": Immutable.OrderedMap {
+              "123": Immutable.Record {
+                "key": "123",
+                "type": "unordered-list-item",
+                "text": "Emphasis",
+                "characterList": Immutable.List [
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                  Immutable.Record {
+                    "style": Immutable.OrderedSet [
+                      "ITALIC",
+                    ],
+                    "entity": null,
+                  },
+                ],
+                "depth": 0,
+                "data": Immutable.Map {},
+              },
             },
-            "selectionBefore": Object {
+            "selectionBefore": Immutable.Record {
               "anchorKey": "123",
               "anchorOffset": 0,
               "focusKey": "123",
               "focusOffset": 0,
-              "hasFocus": false,
               "isBackward": false,
+              "hasFocus": false,
+            },
+            "selectionAfter": Immutable.Record {
+              "anchorKey": "123",
+              "anchorOffset": 0,
+              "focusKey": "123",
+              "focusOffset": 0,
+              "isBackward": false,
+              "hasFocus": false,
             },
           },
           "decorator": null,
-          "directionMap": Object {
+          "directionMap": Immutable.OrderedMap {
             "123": "LTR",
           },
           "forceSelection": false,
@@ -635,31 +635,31 @@ exports[`components/RichTextEditor should render existing content 1`] = `
           "inlineStyleOverride": null,
           "lastChangeType": null,
           "nativelyRenderedContent": null,
-          "redoStack": Array [],
-          "selection": Object {
+          "redoStack": Immutable.Stack [],
+          "selection": Immutable.Record {
             "anchorKey": "123",
             "anchorOffset": 0,
             "focusKey": "123",
             "focusOffset": 0,
-            "hasFocus": false,
             "isBackward": false,
+            "hasFocus": false,
           },
-          "treeMap": Object {
-            "123": Array [
-              Object {
-                "decoratorKey": null,
+          "treeMap": Immutable.OrderedMap {
+            "123": Immutable.List [
+              Immutable.Record {
+                "start": 0,
                 "end": 8,
-                "leaves": Array [
-                  Object {
-                    "end": 8,
+                "decoratorKey": null,
+                "leaves": Immutable.List [
+                  Immutable.Record {
                     "start": 0,
+                    "end": 8,
                   },
                 ],
-                "start": 0,
               },
             ],
           },
-          "undoStack": Array [],
+          "undoStack": Immutable.Stack [],
         },
       }
     }
@@ -670,13 +670,13 @@ exports[`components/RichTextEditor should render existing content 1`] = `
     onToggle={[Function]}
     onUpdate={[Function]}
     value="
-    <h2>List of styles:</h2>
-    <ul>
-      <li>Regular</li>
-      <li><strong>Bold</strong></li>
-      <li><em>Emphasis</em></li>
-    </ul>
-  "
+  <h2>List of styles:</h2>
+  <ul>
+    <li>Regular</li>
+    <li><strong>Bold</strong></li>
+    <li><em>Emphasis</em></li>
+  </ul>
+"
     visible={false}
   />
   <div
@@ -687,52 +687,52 @@ exports[`components/RichTextEditor should render existing content 1`] = `
       ariaLabel="I am a label"
       blockRenderMap={
         Immutable.Map {
-          ordered-list-item: Object {
+          "ordered-list-item": Object {
             "element": "li",
             "wrapper": <ol
               className="public-DraftStyleDefault-ol"
-          />,
+            />,
           },
-          header-six: Object {
+          "header-six": Object {
             "element": "h6",
           },
-          header-four: Object {
+          "header-four": Object {
             "element": "h4",
           },
-          header-one: Object {
+          "header-one": Object {
             "element": "h1",
           },
-          unordered-list-item: Object {
+          "unordered-list-item": Object {
             "element": "li",
             "wrapper": <ul
               className="public-DraftStyleDefault-ul"
-          />,
+            />,
           },
-          atomic: Object {
+          "atomic": Object {
             "element": "figure",
           },
-          unstyled: Object {
+          "unstyled": Object {
             "aliasedElements": Array [
               "p",
             ],
             "element": "div",
           },
-          header-two: Object {
+          "header-two": Object {
             "element": "h2",
           },
-          code-block: Object {
+          "code-block": Object {
             "element": "pre",
             "wrapper": <pre
               className="public-DraftStyleDefault-pre"
-          />,
+            />,
           },
-          blockquote: Object {
+          "blockquote": Object {
             "element": "blockquote",
           },
-          header-five: Object {
+          "header-five": Object {
             "element": "h5",
           },
-          header-three: Object {
+          "header-three": Object {
             "element": "h3",
           },
         }
@@ -748,68 +748,9 @@ exports[`components/RichTextEditor should render existing content 1`] = `
       }
       editorState={
         EditorState {
-          "_immutable": Object {
+          "_immutable": Immutable.Record {
             "allowUndo": true,
-            "currentContent": Object {
-              "blockMap": Object {
-                "123": Object {
-                  "characterList": Array [
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                    Object {
-                      "entity": null,
-                      "style": Array [
-                        "ITALIC",
-                      ],
-                    },
-                  ],
-                  "data": Object {},
-                  "depth": 0,
-                  "key": "123",
-                  "text": "Emphasis",
-                  "type": "unordered-list-item",
-                },
-              },
+            "currentContent": Immutable.Record {
               "entityMap": Object {
                 "__add": [Function],
                 "__create": [Function],
@@ -824,25 +765,84 @@ exports[`components/RichTextEditor should render existing content 1`] = `
                 "mergeData": [Function],
                 "replaceData": [Function],
               },
-              "selectionAfter": Object {
-                "anchorKey": "123",
-                "anchorOffset": 0,
-                "focusKey": "123",
-                "focusOffset": 0,
-                "hasFocus": false,
-                "isBackward": false,
+              "blockMap": Immutable.OrderedMap {
+                "123": Immutable.Record {
+                  "key": "123",
+                  "type": "unordered-list-item",
+                  "text": "Emphasis",
+                  "characterList": Immutable.List [
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                    Immutable.Record {
+                      "style": Immutable.OrderedSet [
+                        "ITALIC",
+                      ],
+                      "entity": null,
+                    },
+                  ],
+                  "depth": 0,
+                  "data": Immutable.Map {},
+                },
               },
-              "selectionBefore": Object {
+              "selectionBefore": Immutable.Record {
                 "anchorKey": "123",
                 "anchorOffset": 0,
                 "focusKey": "123",
                 "focusOffset": 0,
-                "hasFocus": false,
                 "isBackward": false,
+                "hasFocus": false,
+              },
+              "selectionAfter": Immutable.Record {
+                "anchorKey": "123",
+                "anchorOffset": 0,
+                "focusKey": "123",
+                "focusOffset": 0,
+                "isBackward": false,
+                "hasFocus": false,
               },
             },
             "decorator": null,
-            "directionMap": Object {
+            "directionMap": Immutable.OrderedMap {
               "123": "LTR",
             },
             "forceSelection": false,
@@ -850,31 +850,31 @@ exports[`components/RichTextEditor should render existing content 1`] = `
             "inlineStyleOverride": null,
             "lastChangeType": null,
             "nativelyRenderedContent": null,
-            "redoStack": Array [],
-            "selection": Object {
+            "redoStack": Immutable.Stack [],
+            "selection": Immutable.Record {
               "anchorKey": "123",
               "anchorOffset": 0,
               "focusKey": "123",
               "focusOffset": 0,
-              "hasFocus": false,
               "isBackward": false,
+              "hasFocus": false,
             },
-            "treeMap": Object {
-              "123": Array [
-                Object {
-                  "decoratorKey": null,
+            "treeMap": Immutable.OrderedMap {
+              "123": Immutable.List [
+                Immutable.Record {
+                  "start": 0,
                   "end": 8,
-                  "leaves": Array [
-                    Object {
-                      "end": 8,
+                  "decoratorKey": null,
+                  "leaves": Immutable.List [
+                    Immutable.Record {
                       "start": 0,
+                      "end": 8,
                     },
                   ],
-                  "start": 0,
                 },
               ],
             },
-            "undoStack": Array [],
+            "undoStack": Immutable.Stack [],
           },
         }
       }

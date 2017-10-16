@@ -20,8 +20,7 @@ describe("components/Forms/Field", () => {
   });
 
   it("should pass on `id` prop to children", () => {
-    wrapper.children().forEach(node => {
-      expect(node.prop("id")).toEqual("name");
-    });
+    expect(wrapper.find(Input).props().id).toBe("name");
+    expect(wrapper.find(Label).props().id).toBe("name");
   });
 });

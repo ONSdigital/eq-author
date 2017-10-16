@@ -21,11 +21,13 @@ describe("components/Forms/Input", () => {
     });
 
     it("should render a text input by default", () => {
-      expect(wrapper.find("input").node.type).toEqual("text");
+      expect(wrapper.find("input").getElement().props.type).toEqual("text");
     });
 
     it("should pass `defaultValue` prop to component when type=text", () => {
-      expect(wrapper.find("input").node.value).toEqual(defaultValue);
+      expect(wrapper.find("input").getElement().props.defaultValue).toEqual(
+        defaultValue
+      );
     });
 
     it("should call onChange with appropriate args", () => {
@@ -52,14 +54,18 @@ describe("components/Forms/Input", () => {
     });
 
     it("should render a checkbox", () => {
-      expect(wrapper.find("input").node.type).toEqual("checkbox");
+      expect(wrapper.find("input").getElement().props.type).toEqual("checkbox");
     });
 
     it("should pass `defaultChecked` prop to component", () => {
       wrapper = mount(<Input type="checkbox" defaultChecked />);
-      expect(wrapper.find("input").node.checked).toEqual(true);
+      expect(wrapper.find("input").getElement().props.defaultChecked).toEqual(
+        true
+      );
       wrapper = mount(<Input type="checkbox" defaultChecked={false} />);
-      expect(wrapper.find("input").node.checked).toEqual(false);
+      expect(wrapper.find("input").getElement().props.defaultChecked).toEqual(
+        false
+      );
     });
 
     it("should call onChange with appropriate args", () => {

@@ -3,11 +3,14 @@
 exports[`Option should match snapshot 1`] = `
 <Option__StyledOption
   duration={200}
+  key="1"
 >
   <Option__LabelField
     id="label"
   >
-    <Option__DummyInput />
+    <Option__DummyInput
+      type="Radio"
+    />
     <Option__SeamlessLabel
       data-qa="optionLabel"
       onBlur={[Function]}
@@ -43,14 +46,529 @@ exports[`Option should match snapshot 1`] = `
 </Option__StyledOption>
 `;
 
+exports[`Option should render a checkbox 1`] = `
+.c6 {
+  resize: none;
+}
+
+.c5 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  font-size: 1.125em;
+  font-weight: 700;
+}
+
+.c5:focus {
+  outline: none;
+}
+
+.c5::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c5::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c5:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c5::placeholder {
+  color: #a3a3a3;
+}
+
+.c7 {
+  border: none;
+  padding: 0;
+  color: #35414D;
+  outline: none;
+  display: block;
+  width: 100%;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  font-size: 0.875em;
+}
+
+.c7:focus {
+  outline: none;
+}
+
+.c7::-webkit-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c7::-moz-placeholder {
+  color: #a3a3a3;
+}
+
+.c7:-ms-input-placeholder {
+  color: #a3a3a3;
+}
+
+.c7::placeholder {
+  color: #a3a3a3;
+}
+
+.c2 {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.c9 {
+  color: #c3c3c3;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  -webkit-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
+  font-size: 1.25em;
+  padding: 0 auto;
+}
+
+.c9:hover {
+  color: #35414D;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+
+.c10 {
+  background-color: rgba(97,97,97,0.9) !important;
+  font-size: 0.625rem !important;
+  line-height: 2.2em !important;
+  padding: 0 0.6em !important;
+  border-radius: 2px !important;
+  white-space: pre;
+}
+
+.c10::before,
+.c10::after {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.c8 {
+  padding: 0.2em;
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+}
+
+.c3 {
+  border: 2px solid #EAEAEA;
+  height: 1.4em;
+  width: 1.4em;
+  display: inline-block;
+  margin: 0 1em 0 0;
+  vertical-align: top;
+  border-radius: 3px;
+}
+
+.c0 {
+  border: 1px solid #EAEAEA;
+  padding: 1em 1em 0;
+  border-radius: 3px;
+  position: relative;
+}
+
+.c0:not(:first-child) {
+  margin-top: 0.5em;
+}
+
+.c0.option-enter {
+  opacity: 0;
+  height: 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.c0.option-enter-active {
+  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,-webkit-transform 100ms ease-out 100ms;
+  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
+  transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
+  opacity: 1;
+  height: 5.625em;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.c0.option-exit {
+  opacity: 1;
+  height: 5.625em;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.c0.option-exit-active {
+  -webkit-transition: opacity 100ms ease-out,-webkit-transform 100ms ease-out,height 100ms ease-out 100ms;
+  -webkit-transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
+  transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
+  opacity: 0;
+  height: 0;
+  -webkit-transform: translateX(-20px);
+  -ms-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.c4 {
+  display: inline-block !important;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 1.5em;
+  -webkit-flex: 1 1 0%;
+  -ms-flex: 1 1 0%;
+  flex: 1 1 0%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+<StatelessOption
+  hasDeleteButton={true}
+  onChange={[Function]}
+  onDelete={[Function]}
+  onFocus={[Function]}
+  onUpdate={[Function]}
+  option={
+    Object {
+      "description": "",
+      "id": "1",
+      "label": "",
+    }
+  }
+  type="Checkbox"
+>
+  <Option__StyledOption
+    duration={200}
+    key="1"
+  >
+    <div
+      className="c0"
+    >
+      <Option__LabelField
+        id="label"
+      >
+        <Field
+          className="c1"
+          id="label"
+        >
+          <Field__StyledField
+            className="c1"
+            last={undefined}
+          >
+            <div
+              className="c1 c2"
+            >
+              <Option__DummyInput
+                id="label"
+                key=".0"
+                type="Checkbox"
+              >
+                <div
+                  className="c3"
+                  id="label"
+                  type="Checkbox"
+                />
+              </Option__DummyInput>
+              <Option__SeamlessLabel
+                data-qa="optionLabel"
+                id="label"
+                key=".1"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Label"
+                size="medium"
+                value=""
+              >
+                <withSeamlessness(withChangeHandler(WrappingTextArea))
+                  className="c4"
+                  data-qa="optionLabel"
+                  id="label"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  placeholder="Label"
+                  size="medium"
+                  value=""
+                >
+                  <withSeamlessness__StyledSeamless
+                    className="c4"
+                    data-qa="optionLabel"
+                    id="label"
+                    name="label"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    placeholder="Label"
+                    size="medium"
+                    value=""
+                  >
+                    <withChangeHandler(WrappingTextArea)
+                      className="c4 c5"
+                      data-qa="optionLabel"
+                      id="label"
+                      name="label"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      placeholder="Label"
+                      size="medium"
+                      value=""
+                    >
+                      <WrappingTextArea
+                        className="c4 c5"
+                        data-qa="optionLabel"
+                        id="label"
+                        name="label"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        placeholder="Label"
+                        size="medium"
+                        value=""
+                      >
+                        <SeamlessTextArea__TextArea
+                          className="c4 c5"
+                          data-qa="optionLabel"
+                          id="label"
+                          name="label"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          placeholder="Label"
+                          size="medium"
+                          value=""
+                        >
+                          <TextareaAutosize
+                            className="c4 c5 c6"
+                            data-qa="optionLabel"
+                            id="label"
+                            name="label"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onHeightChange={[Function]}
+                            onKeyDown={[Function]}
+                            placeholder="Label"
+                            size="medium"
+                            useCacheForDOMMeasurements={false}
+                            value=""
+                          >
+                            <textarea
+                              className="c4 c5 c6"
+                              data-qa="optionLabel"
+                              id="label"
+                              name="label"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="Label"
+                              size="medium"
+                              style={
+                                Object {
+                                  "height": 0,
+                                }
+                              }
+                              value=""
+                            />
+                          </TextareaAutosize>
+                        </SeamlessTextArea__TextArea>
+                      </WrappingTextArea>
+                    </withChangeHandler(WrappingTextArea)>
+                  </withSeamlessness__StyledSeamless>
+                </withSeamlessness(withChangeHandler(WrappingTextArea))>
+              </Option__SeamlessLabel>
+            </div>
+          </Field__StyledField>
+        </Field>
+      </Option__LabelField>
+      <Field
+        id="description"
+      >
+        <Field__StyledField
+          className={undefined}
+          last={undefined}
+        >
+          <div
+            className="c2"
+          >
+            <withSeamlessness(withChangeHandler(WrappingTextArea))
+              id="description"
+              key=".0"
+              onBlur={[Function]}
+              onChange={[Function]}
+              placeholder="Optional description"
+              size="small"
+              value=""
+            >
+              <withSeamlessness__StyledSeamless
+                className={undefined}
+                id="description"
+                name="description"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Optional description"
+                size="small"
+                value=""
+              >
+                <withChangeHandler(WrappingTextArea)
+                  className="c7"
+                  id="description"
+                  name="description"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  placeholder="Optional description"
+                  size="small"
+                  value=""
+                >
+                  <WrappingTextArea
+                    className="c7"
+                    id="description"
+                    name="description"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    placeholder="Optional description"
+                    size="small"
+                    value=""
+                  >
+                    <SeamlessTextArea__TextArea
+                      className="c7"
+                      id="description"
+                      name="description"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onKeyDown={[Function]}
+                      placeholder="Optional description"
+                      size="small"
+                      value=""
+                    >
+                      <TextareaAutosize
+                        className="c7 c6"
+                        id="description"
+                        name="description"
+                        onBlur={[Function]}
+                        onChange={[Function]}
+                        onHeightChange={[Function]}
+                        onKeyDown={[Function]}
+                        placeholder="Optional description"
+                        size="small"
+                        useCacheForDOMMeasurements={false}
+                        value=""
+                      >
+                        <textarea
+                          className="c7 c6"
+                          id="description"
+                          name="description"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          placeholder="Optional description"
+                          size="small"
+                          style={
+                            Object {
+                              "height": 0,
+                            }
+                          }
+                          value=""
+                        />
+                      </TextareaAutosize>
+                    </SeamlessTextArea__TextArea>
+                  </WrappingTextArea>
+                </withChangeHandler(WrappingTextArea)>
+              </withSeamlessness__StyledSeamless>
+            </withSeamlessness(withChangeHandler(WrappingTextArea))>
+          </div>
+        </Field__StyledField>
+      </Field>
+      <Option__DeleteContainer>
+        <div
+          className="c8"
+        >
+          <Tooltip
+            content="Delete option"
+          >
+            <div>
+              <DeleteButton
+                aria-label="Delete option"
+                data-for="tooltip-1"
+                data-tip={true}
+                onClick={[Function]}
+                size="small"
+                type="button"
+              >
+                <DeleteButton__StyledDeleteButton
+                  aria-label="Delete option"
+                  data-for="tooltip-1"
+                  data-tip={true}
+                  onClick={[Function]}
+                  size="small"
+                  type="button"
+                >
+                  <button
+                    aria-label="Delete option"
+                    className="c9"
+                    data-for="tooltip-1"
+                    data-tip={true}
+                    onClick={[Function]}
+                    size="small"
+                    type="button"
+                  >
+                    ×
+                  </button>
+                </DeleteButton__StyledDeleteButton>
+              </DeleteButton>
+              <Tooltip__StyledTooltip
+                delayShow={200}
+                effect="solid"
+                id="tooltip-1"
+                place="bottom"
+              >
+                <ReactTooltip
+                  className="c10"
+                  delayShow={200}
+                  effect="solid"
+                  id="tooltip-1"
+                  insecure={true}
+                  place="bottom"
+                  resizeHide={true}
+                  wrapper="div"
+                >
+                  <div
+                    className="__react_component_tooltip place-top type-dark "
+                    data-id="tooltip"
+                  />
+                </ReactTooltip>
+              </Tooltip__StyledTooltip>
+            </div>
+          </Tooltip>
+        </div>
+      </Option__DeleteContainer>
+    </div>
+  </Option__StyledOption>
+</StatelessOption>
+`;
+
 exports[`Option shouldn't render delete button if not applicable 1`] = `
 <Option__StyledOption
   duration={200}
+  key="1"
 >
   <Option__LabelField
     id="label"
   >
-    <Option__DummyInput />
+    <Option__DummyInput
+      type="Radio"
+    />
     <Option__SeamlessLabel
       data-qa="optionLabel"
       onBlur={[Function]}

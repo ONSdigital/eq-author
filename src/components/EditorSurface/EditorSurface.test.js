@@ -33,7 +33,7 @@ const section = {
 describe("EditorSurface", () => {
   let wrapper, mockMutations;
 
-  const createWrapper = (props = {}, render = shallow) => {
+  const createWrapper = (props = {}, render = shallow, renderOpts = {}) => {
     return render(
       <EditorSurface
         section={section}
@@ -41,7 +41,8 @@ describe("EditorSurface", () => {
         {...mockMutations}
         focused={"Section3"}
         {...props}
-      />
+      />,
+      renderOpts
     );
   };
 
@@ -55,7 +56,9 @@ describe("EditorSurface", () => {
   });
 
   it("should render", () => {
-    wrapper = createWrapper();
+    wrapper = createWrapper({}, shallow, {
+      disableLifecycleMethods: true
+    });
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -83,14 +86,15 @@ describe("EditorSurface", () => {
             answers: []
           }
         },
-        shallow
+        shallow,
+        { disableLifecycleMethods: true, lifecycleExperimental: false }
       );
     }
 
     describe("when section title is empty", () => {
       describe("and page title is populated", () => {
         it("should focus on section title", () => {
-          wrapper = createWrapperWithTitles({ page: "a page title" });
+          wrapper = createWrapperWithTitles({ page: "a page title" }, mount);
 
           wrapper.instance().setSectionTitle(sectionSpy);
           wrapper.instance().setPageTitle(pageSpy);

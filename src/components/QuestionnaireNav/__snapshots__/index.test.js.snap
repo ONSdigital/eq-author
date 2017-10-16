@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireNav should render 1`] = `
-.c8 {
+.c7 {
   color: #4A4A4A;
   border: none;
   background: transparent;
@@ -20,7 +20,7 @@ exports[`QuestionnaireNav should render 1`] = `
   transition: transform 0.1s ease-in,opacity 0.1s ease-in;
 }
 
-.c9 {
+.c8 {
   background-color: rgba(97,97,97,0.9) !important;
   font-size: 0.625rem !important;
   line-height: 2.2em !important;
@@ -29,13 +29,13 @@ exports[`QuestionnaireNav should render 1`] = `
   white-space: pre;
 }
 
-.c9::before,
-.c9::after {
+.c8::before,
+.c8::after {
   border-bottom: none !important;
   border-top: none !important;
 }
 
-.c12 {
+.c11 {
   padding: 0;
   margin: 0;
   font-weight: 500;
@@ -51,8 +51,8 @@ exports[`QuestionnaireNav should render 1`] = `
   position: relative;
 }
 
-.c12.page-enter,
-.c12.page-exit.page-exit-active {
+.c11.page-enter,
+.c11.page-exit.page-exit-active {
   opacity: 0;
   height: 0;
   -webkit-transform: translateX(-20px);
@@ -60,8 +60,8 @@ exports[`QuestionnaireNav should render 1`] = `
   transform: translateX(-20px);
 }
 
-.c12.page-exit,
-.c12.page-enter.page-enter-active {
+.c11.page-exit,
+.c11.page-enter.page-enter-active {
   opacity: 1;
   height: 2em;
   -webkit-transform: translateX(0);
@@ -69,19 +69,19 @@ exports[`QuestionnaireNav should render 1`] = `
   transform: translateX(0);
 }
 
-.c12.page-enter-active {
+.c11.page-enter-active {
   -webkit-transition: height 150ms ease-out,opacity 150ms ease-out 150ms,-webkit-transform 150ms ease-out 150ms;
   -webkit-transition: height 150ms ease-out,opacity 150ms ease-out 150ms,transform 150ms ease-out 150ms;
   transition: height 150ms ease-out,opacity 150ms ease-out 150ms,transform 150ms ease-out 150ms;
 }
 
-.c12.page-exit-active {
+.c11.page-exit-active {
   -webkit-transition: opacity 150ms ease-out,-webkit-transform 150ms ease-out,height 150ms ease-out 150ms;
   -webkit-transition: opacity 150ms ease-out,transform 150ms ease-out,height 150ms ease-out 150ms;
   transition: opacity 150ms ease-out,transform 150ms ease-out,height 150ms ease-out 150ms;
 }
 
-.c14 {
+.c13 {
   text-decoration: none;
   color: #4A4A4A;
   font-size: 0.75em;
@@ -97,7 +97,7 @@ exports[`QuestionnaireNav should render 1`] = `
   transition: opacity 100ms ease-out;
 }
 
-.c14::before {
+.c13::before {
   opacity: 0;
   content: "";
   position: absolute;
@@ -112,22 +112,22 @@ exports[`QuestionnaireNav should render 1`] = `
   z-index: 1;
 }
 
-.c11:hover .c14::before {
+.c10:hover .c13::before {
   opacity: 0.5;
   width: 100%;
 }
 
-.c14.selected::before {
+.c13.selected::before {
   opacity: 1 !important;
   width: 100%;
 }
 
-.c14[aria-disabled="true"] {
+.c13[aria-disabled="true"] {
   pointer-events: none;
   opacity: 0.5;
 }
 
-.c15 {
+.c14 {
   display: inline-block;
   width: 100%;
   position: relative;
@@ -138,35 +138,35 @@ exports[`QuestionnaireNav should render 1`] = `
   opacity: 1;
 }
 
-.c10 {
+.c9 {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.c16 {
+.c15 {
   top: 0.1em;
 }
 
-.c11:hover .c16,
-.c13:focus + .c16,
-.c16:focus {
+.c10:hover .c15,
+.c12:focus + .c15,
+.c15:focus {
   opacity: 1;
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);
   transform: translateX(0);
 }
 
-.c5 {
+.c4 {
   text-decoration: none;
 }
 
-.c5:link,
-.c5:visited {
+.c4:link,
+.c4:visited {
   color: #4A4A4A;
 }
 
-.c6 {
+.c5 {
   padding: 0.5em 2.5em 0.5em 0;
   font-size: 0.75em;
   margin: 0;
@@ -179,12 +179,12 @@ exports[`QuestionnaireNav should render 1`] = `
   text-overflow: ellipsis;
 }
 
-.c6::before {
+.c5::before {
   content: url(icon-section.svg);
   margin-right: 0.5em;
 }
 
-.c17 {
+.c16 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -195,17 +195,17 @@ exports[`QuestionnaireNav should render 1`] = `
   color: #4A4A4A;
 }
 
-.c17:hover {
+.c16:hover {
   color: black;
 }
 
-.c7 {
+.c6 {
   top: 0.5em;
 }
 
-.c4:hover .c7,
-.c4:focus + .c7,
-.c7:focus {
+.section-title-wrapper:hover .c6,
+.section-title-wrapper:focus + .c6,
+.c6:focus {
   opacity: 1;
   -webkit-transform: translateX(0);
   -ms-transform: translateX(0);
@@ -277,9 +277,10 @@ exports[`QuestionnaireNav should render 1`] = `
   position: relative;
 }
 
-.c18 {
+.c17 {
   border-top: 1px solid #c3c3c3;
   padding: 1em 0;
+  position: -webkit-sticky;
   position: sticky;
   z-index: 99999;
   bottom: 0;
@@ -287,7 +288,7 @@ exports[`QuestionnaireNav should render 1`] = `
   background: #f5f5f5;
 }
 
-.c19 {
+.c18 {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -300,14 +301,14 @@ exports[`QuestionnaireNav should render 1`] = `
   font-size: 0.75em;
 }
 
-.c19::before {
+.c18::before {
   vertical-align: middle;
   display: inline-block;
   content: url(icon-plus.svg);
   margin-right: 0.6em;
 }
 
-.c19:hover {
+.c18:hover {
   color: black;
 }
 
@@ -382,8 +383,12 @@ exports[`QuestionnaireNav should render 1`] = `
               className="c2"
             >
               <CSSTransition
+                appear={undefined}
                 classNames="section"
+                enter={undefined}
+                exit={undefined}
                 in={true}
+                key=".$3"
                 onExited={[Function]}
                 timeout={200}
               >
@@ -450,7 +455,7 @@ exports[`QuestionnaireNav should render 1`] = `
                         style={Object {}}
                       >
                         <div
-                          className="c4"
+                          className="section-title-wrapper"
                         >
                           <SectionTitle
                             questionnaire={
@@ -491,25 +496,33 @@ exports[`QuestionnaireNav should render 1`] = `
                             >
                               <NavLink
                                 activeClassName="selected"
-                                className="c5"
+                                ariaCurrent="true"
+                                className="c4"
                                 to="/questionnaire/1/design/3/2"
                               >
                                 <Route
+                                  exact={undefined}
+                                  location={undefined}
                                   path="/questionnaire/1/design/3/2"
+                                  strict={undefined}
                                 >
                                   <Link
-                                    className="c5"
+                                    aria-current={false}
+                                    className="c4"
                                     replace={false}
+                                    style={undefined}
                                     to="/questionnaire/1/design/3/2"
                                   >
                                     <a
-                                      className="c5"
+                                      aria-current={false}
+                                      className="c4"
                                       href="/questionnaire/1/design/3/2"
                                       onClick={[Function]}
+                                      style={undefined}
                                     >
                                       <SectionTitle__Title>
                                         <h3
-                                          className="c6"
+                                          className="c5"
                                         >
                                           Section
                                         </h3>
@@ -536,17 +549,18 @@ exports[`QuestionnaireNav should render 1`] = `
                                 onClick={[Function]}
                                 type="button"
                               >
-                                <HoverDeleteButton__HoverDeleteButton
+                                <HoverDeleteButton
                                   aria-label="Delete section"
-                                  className="c7"
+                                  className="c6"
                                   data-for="tooltip-1"
                                   data-tip={true}
+                                  innerRef={undefined}
                                   onClick={[Function]}
                                   type="button"
                                 >
                                   <button
                                     aria-label="Delete section"
-                                    className="c7 c8"
+                                    className="c6 c7"
                                     data-for="tooltip-1"
                                     data-tip={true}
                                     onClick={[Function]}
@@ -554,7 +568,7 @@ exports[`QuestionnaireNav should render 1`] = `
                                   >
                                     ×
                                   </button>
-                                </HoverDeleteButton__HoverDeleteButton>
+                                </HoverDeleteButton>
                               </SectionNavItem__SectionDeleteButton>
                               <Tooltip__StyledTooltip
                                 delayShow={200}
@@ -568,7 +582,7 @@ exports[`QuestionnaireNav should render 1`] = `
                                 place="bottom"
                               >
                                 <ReactTooltip
-                                  className="c9"
+                                  className="c8"
                                   delayShow={200}
                                   effect="solid"
                                   id="tooltip-1"
@@ -631,11 +645,15 @@ exports[`QuestionnaireNav should render 1`] = `
                           >
                             <PageNav__NavList>
                               <ol
-                                className="c10"
+                                className="c9"
                               >
                                 <CSSTransition
+                                  appear={undefined}
                                   classNames="page"
+                                  enter={undefined}
+                                  exit={undefined}
                                   in={true}
+                                  key=".$2"
                                   onExited={[Function]}
                                   timeout={300}
                                 >
@@ -667,7 +685,7 @@ exports[`QuestionnaireNav should render 1`] = `
                                         index={1}
                                       >
                                         <li
-                                          className="c11 c12"
+                                          className="c10 c11"
                                         >
                                           <PageNav__Link
                                             activeClassName="selected"
@@ -677,29 +695,37 @@ exports[`QuestionnaireNav should render 1`] = `
                                             <NavLink
                                               activeClassName="selected"
                                               aria-disabled={false}
-                                              className="c13 c14"
+                                              ariaCurrent="true"
+                                              className="c12 c13"
                                               to="/questionnaire/1/design/3/2"
                                             >
                                               <Route
+                                                exact={undefined}
+                                                location={undefined}
                                                 path="/questionnaire/1/design/3/2"
+                                                strict={undefined}
                                               >
                                                 <Link
+                                                  aria-current={false}
                                                   aria-disabled={false}
-                                                  className="c13 c14"
+                                                  className="c12 c13"
                                                   replace={false}
+                                                  style={undefined}
                                                   to="/questionnaire/1/design/3/2"
                                                 >
                                                   <a
+                                                    aria-current={false}
                                                     aria-disabled={false}
-                                                    className="c13 c14"
+                                                    className="c12 c13"
                                                     href="/questionnaire/1/design/3/2"
                                                     onClick={[Function]}
+                                                    style={undefined}
                                                   >
                                                     <PageNav__LinkText
                                                       fade={false}
                                                     >
                                                       <span
-                                                        className="c15"
+                                                        className="c14"
                                                       >
                                                         1.1
                                                          
@@ -722,17 +748,18 @@ exports[`QuestionnaireNav should render 1`] = `
                                                 onClick={[Function]}
                                                 type="button"
                                               >
-                                                <HoverDeleteButton__HoverDeleteButton
+                                                <HoverDeleteButton
                                                   aria-label="Delete page"
-                                                  className="c16"
+                                                  className="c15"
                                                   data-for="tooltip-2"
                                                   data-tip={true}
+                                                  innerRef={undefined}
                                                   onClick={[Function]}
                                                   type="button"
                                                 >
                                                   <button
                                                     aria-label="Delete page"
-                                                    className="c16 c8"
+                                                    className="c15 c7"
                                                     data-for="tooltip-2"
                                                     data-tip={true}
                                                     onClick={[Function]}
@@ -740,7 +767,7 @@ exports[`QuestionnaireNav should render 1`] = `
                                                   >
                                                     ×
                                                   </button>
-                                                </HoverDeleteButton__HoverDeleteButton>
+                                                </HoverDeleteButton>
                                               </PageNav__DeleteButton>
                                               <Tooltip__StyledTooltip
                                                 delayShow={200}
@@ -749,7 +776,7 @@ exports[`QuestionnaireNav should render 1`] = `
                                                 place="bottom"
                                               >
                                                 <ReactTooltip
-                                                  className="c9"
+                                                  className="c8"
                                                   delayShow={200}
                                                   effect="solid"
                                                   id="tooltip-2"
@@ -780,7 +807,7 @@ exports[`QuestionnaireNav should render 1`] = `
                           onClick={[Function]}
                         >
                           <button
-                            className="c17"
+                            className="c16"
                             id="btn-add-page"
                             onClick={[Function]}
                           >
@@ -798,14 +825,14 @@ exports[`QuestionnaireNav should render 1`] = `
       </SectionNav>
       <QuestionnaireNav__AddSection>
         <div
-          className="c18"
+          className="c17"
         >
           <QuestionnaireNav__AddSectionBtn
             onClick={[Function]}
             primary={true}
           >
             <button
-              className="c19"
+              className="c18"
               onClick={[Function]}
             >
               Create new section

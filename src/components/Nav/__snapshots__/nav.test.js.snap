@@ -29,7 +29,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
   color: #056C99;
 }
 
-.c1.c2 {
+.c1.selected {
   color: #056C99;
   border-color: rgba(5,108,153,1);
 }
@@ -67,26 +67,34 @@ exports[`components/Nav should display active link when route matches 1`] = `
       className="c0"
     >
       <Nav__StyledNavLink
-        activeClassName="c2"
+        activeClassName="selected"
         to="/questionnaire/1/meta"
       >
         <NavLink
-          activeClassName="c2"
+          activeClassName="selected"
+          ariaCurrent="true"
           className="c1"
           to="/questionnaire/1/meta"
         >
           <Route
+            exact={undefined}
+            location={undefined}
             path="/questionnaire/1/meta"
+            strict={undefined}
           >
             <Link
+              aria-current={false}
               className="c1"
               replace={false}
+              style={undefined}
               to="/questionnaire/1/meta"
             >
               <a
+                aria-current={false}
                 className="c1"
                 href="/questionnaire/1/meta"
                 onClick={[Function]}
+                style={undefined}
               >
                 Questionnaire meta
               </a>
@@ -95,27 +103,33 @@ exports[`components/Nav should display active link when route matches 1`] = `
         </NavLink>
       </Nav__StyledNavLink>
       <Nav__StyledNavLink
-        activeClassName="c2"
+        activeClassName="selected"
         isActive={[Function]}
         to="/questionnaire/1/design/2/3"
       >
         <NavLink
-          activeClassName="c2"
+          activeClassName="selected"
+          ariaCurrent="true"
           className="c1"
           isActive={[Function]}
           to="/questionnaire/1/design/2/3"
         >
           <Route
+            exact={undefined}
+            location={undefined}
             path="/questionnaire/1/design/2/3"
+            strict={undefined}
           >
             <Link
-              className="c2 c1"
+              aria-current="true"
+              className="c1 selected"
               replace={false}
               style={Object {}}
               to="/questionnaire/1/design/2/3"
             >
               <a
-                className="c2 c1"
+                aria-current="true"
+                className="c1 selected"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
                 style={Object {}}
@@ -201,21 +215,29 @@ exports[`components/Nav should render Nav 1`] = `
       >
         <NavLink
           activeClassName="selected"
+          ariaCurrent="true"
           className="c1"
           to="/questionnaire/1/meta"
         >
           <Route
+            exact={undefined}
+            location={undefined}
             path="/questionnaire/1/meta"
+            strict={undefined}
           >
             <Link
+              aria-current={false}
               className="c1"
               replace={false}
+              style={undefined}
               to="/questionnaire/1/meta"
             >
               <a
+                aria-current={false}
                 className="c1"
                 href="/questionnaire/1/meta"
                 onClick={[Function]}
+                style={undefined}
               >
                 Questionnaire meta
               </a>
@@ -230,22 +252,30 @@ exports[`components/Nav should render Nav 1`] = `
       >
         <NavLink
           activeClassName="selected"
+          ariaCurrent="true"
           className="c1"
           isActive={[Function]}
           to="/questionnaire/1/design/2/3"
         >
           <Route
+            exact={undefined}
+            location={undefined}
             path="/questionnaire/1/design/2/3"
+            strict={undefined}
           >
             <Link
+              aria-current={false}
               className="c1"
               replace={false}
+              style={undefined}
               to="/questionnaire/1/design/2/3"
             >
               <a
+                aria-current={false}
                 className="c1"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
+                style={undefined}
               >
                 Builder
               </a>

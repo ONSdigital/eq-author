@@ -56,8 +56,12 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should focus upon click", () => {
+    wrapper = shallow(<RichTextEditor {...props} />, {
+      disableLifecycleMethods: true
+    });
     wrapper.instance().setEditorNode(editorNode);
     wrapper.find("#rte-click-context").simulate("click");
+
     expect(editorNode.focus).toHaveBeenCalled();
   });
 

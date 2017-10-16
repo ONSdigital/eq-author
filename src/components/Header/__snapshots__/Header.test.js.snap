@@ -2,11 +2,11 @@
 
 exports[`components/Header renders correctly  1`] = `
 <Header__StyledHeader>
-  <Grid__Grid
+  <Grid
     align="center"
     fillHeight={true}
   >
-    <Column__Column
+    <Column
       cols={2}
     >
       <Header__Logo
@@ -17,15 +17,15 @@ exports[`components/Header renders correctly  1`] = `
           src="logo.svg"
         />
       </Header__Logo>
-    </Column__Column>
-    <Column__Column
+    </Column>
+    <Column
       cols={12}
     >
       <Breadcrumb
         title="Questionnaire"
       />
-    </Column__Column>
-    <Column__Column
+    </Column>
+    <Column
       cols={12}
     >
       <Header__UtilityBtns
@@ -42,18 +42,18 @@ exports[`components/Header renders correctly  1`] = `
           title="Export"
         />
       </Header__UtilityBtns>
-    </Column__Column>
-  </Grid__Grid>
+    </Column>
+  </Grid>
 </Header__StyledHeader>
 `;
 
 exports[`components/Header should conditionally render Breadcrumb 1`] = `
 <Header__StyledHeader>
-  <Grid__Grid
+  <Grid
     align="center"
     fillHeight={true}
   >
-    <Column__Column
+    <Column
       cols={2}
     >
       <Header__Logo
@@ -64,24 +64,24 @@ exports[`components/Header should conditionally render Breadcrumb 1`] = `
           src="logo.svg"
         />
       </Header__Logo>
-    </Column__Column>
-    <Column__Column
+    </Column>
+    <Column
       cols={12}
     />
-    <Column__Column
+    <Column
       cols={12}
     />
-  </Grid__Grid>
+  </Grid>
 </Header__StyledHeader>
 `;
 
 exports[`components/Header should conditionally render UtilityBtns 1`] = `
 <Header__StyledHeader>
-  <Grid__Grid
+  <Grid
     align="center"
     fillHeight={true}
   >
-    <Column__Column
+    <Column
       cols={2}
     >
       <Header__Logo
@@ -92,13 +92,13 @@ exports[`components/Header should conditionally render UtilityBtns 1`] = `
           src="logo.svg"
         />
       </Header__Logo>
-    </Column__Column>
-    <Column__Column
+    </Column>
+    <Column
       cols={12}
     />
-    <Column__Column
+    <Column
       cols={12}
     />
-  </Grid__Grid>
+  </Grid>
 </Header__StyledHeader>
 `;

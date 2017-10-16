@@ -8,6 +8,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
   >
     <CSSTransition
       classNames="option"
+      key="1"
       timeout={200}
     >
       <withEntityEditor(StatelessOption)

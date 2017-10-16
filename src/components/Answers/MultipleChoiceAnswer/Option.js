@@ -94,7 +94,9 @@ export const SeamlessLabel = styled(SeamlessTextArea)`
   flex: 1 1 0%;
 `;
 
-const LabelField = styled(Field)`display: flex;`;
+const LabelField = styled(Field)`
+  display: flex;
+`;
 
 export class StatelessOption extends Component {
   static propTypes = {
@@ -103,7 +105,7 @@ export class StatelessOption extends Component {
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf([RADIO, CHECKBOX])
+    type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired
   };
 
   handleDeleteClick = e => {

@@ -29,11 +29,11 @@ exports[`components/BaseLayout should render a Nav 1`] = `
         }
       />
       <BaseLayout__NavWrapper>
-        <Grid__Grid
+        <Grid
           align="top"
           fillHeight={false}
         >
-          <Column__Column
+          <Column
             cols={12}
             offset={2}
           >
@@ -44,8 +44,8 @@ exports[`components/BaseLayout should render a Nav 1`] = `
                 }
               }
             />
-          </Column__Column>
-        </Grid__Grid>
+          </Column>
+        </Grid>
       </BaseLayout__NavWrapper>
       <BaseLayout__Main>
         Children
@@ -63,12 +63,12 @@ exports[`components/BaseLayout should render a title 1`] = `
     <BaseLayout__Wrapper>
       <Header />
       <BaseLayout__Main>
-        <ScrollPane__ScrollPane>
+        <ScrollPane>
           <BaseLayout__Title>
             Title
           </BaseLayout__Title>
           Children
-        </ScrollPane__ScrollPane>
+        </ScrollPane>
       </BaseLayout__Main>
     </BaseLayout__Wrapper>
   </App>

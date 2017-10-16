@@ -19,6 +19,7 @@ exports[`components/IconButton will render an icon 1`] = `
 .c1 {
   position: absolute;
   overflow: hidden;
+  -webkit-clip: rect(0 0 0 0);
   clip: rect(0 0 0 0);
   height: 1px;
   width: 1px;
@@ -72,23 +73,25 @@ exports[`components/IconButton will render an icon 1`] = `
         data-tip={true}
       >
         <IconButton__Button
+          disabled={undefined}
           icon="icon-test.svg"
           onClick={[Function]}
           type="button"
         >
           <button
             className="c0"
+            disabled={undefined}
             icon="icon-test.svg"
             onClick={[Function]}
             type="button"
           >
-            <VisuallyHidden__VisuallyHidden>
+            <VisuallyHidden>
               <span
                 className="c1"
               >
                 Test
               </span>
-            </VisuallyHidden__VisuallyHidden>
+            </VisuallyHidden>
           </button>
         </IconButton__Button>
       </div>

@@ -40,9 +40,11 @@ exports[`SeamlessInput should render 1`] = `
   value="123"
 >
   <withSeamlessness__StyledSeamless
+    className={undefined}
     id="foo"
     name="foo"
     onChange={[Function]}
+    placeholder={undefined}
     size="small"
     value="123"
   >
@@ -51,6 +53,7 @@ exports[`SeamlessInput should render 1`] = `
       id="foo"
       name="foo"
       onChange={[Function]}
+      placeholder={undefined}
       size="small"
       value="123"
     >
@@ -59,6 +62,7 @@ exports[`SeamlessInput should render 1`] = `
         id="foo"
         name="foo"
         onChange={[Function]}
+        placeholder={undefined}
         size="small"
         value="123"
       >
@@ -67,6 +71,7 @@ exports[`SeamlessInput should render 1`] = `
           id="foo"
           name="foo"
           onChange={[Function]}
+          placeholder={undefined}
           size="small"
           type="text"
           value="123"

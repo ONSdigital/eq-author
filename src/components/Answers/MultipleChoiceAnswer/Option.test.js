@@ -3,8 +3,9 @@ import React from "react";
 import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
 import { StatelessOption, SeamlessLabel } from "./Option";
 import DeleteButton from "components/DeleteButton";
+import { CHECKBOX, RADIO } from "constants/answer-types";
 
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 
 describe("Option", () => {
   let mockMutations;
@@ -15,6 +16,20 @@ describe("Option", () => {
     id: "1",
     label: "",
     description: ""
+  };
+
+  const render = (method = shallow, otherProps) => {
+    wrapper = method(
+      <StatelessOption
+        {...mockMutations}
+        option={option}
+        hasDeleteButton
+        type={RADIO}
+        {...otherProps}
+      />
+    );
+
+    return wrapper;
   };
 
   beforeEach(() => {
@@ -30,12 +45,15 @@ describe("Option", () => {
       onDelete: jest.fn()
     };
 
-    wrapper = shallow(
-      <StatelessOption {...mockMutations} option={option} hasDeleteButton />
-    );
+    render();
   });
 
   it("should match snapshot", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render a checkbox", () => {
+    render(mount, { type: CHECKBOX });
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -45,20 +63,32 @@ describe("Option", () => {
   });
 
   it("should call onChange on input", () => {
-    wrapper.find(SeamlessLabel).first().simulate("change");
-    wrapper.find(SeamlessLabel).first().simulate("change");
+    wrapper
+      .find(SeamlessLabel)
+      .first()
+      .simulate("change");
+    wrapper
+      .find(SeamlessLabel)
+      .first()
+      .simulate("change");
 
     expect(mockMutations.onChange).toHaveBeenCalledTimes(2);
   });
 
   it("should update label on blur", () => {
-    wrapper.find(SeamlessLabel).first().simulate("blur", mockEvent);
+    wrapper
+      .find(SeamlessLabel)
+      .first()
+      .simulate("blur", mockEvent);
 
     expect(mockMutations.onUpdate).toHaveBeenCalled();
   });
 
   it("should update description on blur", () => {
-    wrapper.find(SeamlessTextArea).first().simulate("blur", mockEvent);
+    wrapper
+      .find(SeamlessTextArea)
+      .first()
+      .simulate("blur", mockEvent);
 
     expect(mockMutations.onUpdate).toHaveBeenCalled();
   });
