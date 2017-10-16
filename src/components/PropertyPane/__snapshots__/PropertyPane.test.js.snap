@@ -12,7 +12,7 @@ exports[`PropertyPane should render 1`] = `
   flex-direction: column;
   background-color: #FFFFFF;
   padding: 1em;
-  box-shadow: rgba(0,0,0,0.14) 0px 4px 5px 0px;
+  box-shadow: rgba(0,0,0,0.14) 0 4px 5px 0;
 }
 
 <div

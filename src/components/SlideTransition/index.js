@@ -13,7 +13,6 @@ const AnimatedSection = styled.div`
     z-index: 200;
   }
 
-  /* stylelint-disable */
   &.fade-enter.fade-enter-active {
     opacity: 1;
     z-index: 200;
@@ -22,7 +21,6 @@ const AnimatedSection = styled.div`
       transform ${props => props.duration}ms
         cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  /* stylelint-enable */
 `;
 
 const SlideTransition = ({ children, duration, ...otherProps }) => (

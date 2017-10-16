@@ -6,7 +6,7 @@ const ScrollPane = styled.div`
   overflow-y: auto;
   position: relative;
   background-color: rgba(0, 0, 0, 0);
-  background-clip: text;
+  -webkit-background-clip: text;
   transition: background-color 0.2s;
 
   ::-webkit-scrollbar-thumb {
