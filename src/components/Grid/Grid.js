@@ -6,7 +6,7 @@ const Grid = styled.div`
   width: 100%;
   flex: ${({ fillHeight }) => (fillHeight ? 1 : 0)} 1 auto;
   flex-direction: row;
-  align-items: ${({ align }) => alignOptions[align]}
+  align-items: ${({ align }) => alignOptions[align]};
 `;
 
 const alignOptions = {

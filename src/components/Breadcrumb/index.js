@@ -14,8 +14,9 @@ const BreadcrumbList = styled.ol`
 
 const BreadcrumbItem = styled.li`
   margin: 0;
+
   &:last-child:not(:only-child) {
-    &:before {
+    &::before {
       margin: 0 0.5em;
       content: url('${iconChevron}');
     }
@@ -28,6 +29,7 @@ export const BreadcrumbLink = styled(Link)`
   text-decoration: none;
   color: ${colors.white};
   padding: 0;
+
   &:hover {
     text-decoration: underline;
   }
@@ -40,9 +42,7 @@ const Breadcrumb = ({ title }) => {
         <BreadcrumbItem>
           <BreadcrumbLink to={"/"}>Home</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbItem>
-          {title}
-        </BreadcrumbItem>
+        <BreadcrumbItem>{title}</BreadcrumbItem>
       </BreadcrumbList>
     </BreadcrumbNav>
   );

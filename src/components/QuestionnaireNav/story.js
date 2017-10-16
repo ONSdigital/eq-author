@@ -89,11 +89,7 @@ class QuestionnaireNavWithState extends Component {
 }
 
 storiesOf("QuestionnaireNav", module)
-  .addDecorator(story =>
-    <Wrapper>
-      {story()}
-    </Wrapper>
-  )
+  .addDecorator(story => <Wrapper>{story()}</Wrapper>)
   .add("Default", () => {
     return <QuestionnaireNavWithState questionnaire={questionnaire} />;
   });

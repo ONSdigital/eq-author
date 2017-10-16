@@ -171,10 +171,6 @@ exports[`QuestionnaireNav should render 1`] = `
   font-size: 0.75em;
   margin: 0;
   font-weight: 900;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   position: relative;
   width: 100%;
   display: inline-block;
@@ -183,7 +179,7 @@ exports[`QuestionnaireNav should render 1`] = `
   text-overflow: ellipsis;
 }
 
-.c6:before {
+.c6::before {
   content: url(icon-section.svg);
   margin-right: 0.5em;
 }

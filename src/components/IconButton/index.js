@@ -9,7 +9,6 @@ export const Button = styled.button`
   align-items: center;
   padding: 0.5em;
   cursor: pointer;
-  background: transparent;
   appearance: none;
   border: none;
   opacity: 0.9;
@@ -17,9 +16,11 @@ export const Button = styled.button`
   background: transparent url(${props => props.icon}) no-repeat center;
   width: 3.5em;
   height: 3.5em;
+
   &:hover {
     opacity: 1;
   }
+
   &[disabled] {
     opacity: 0.5;
   }

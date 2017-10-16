@@ -11,12 +11,12 @@ const sizes = {
 
   medium: css`
     font-size: 2em;
-    padding: .3em;
+    padding: 0.3em;
   `,
 
   large: css`
     font-size: 3em;
-    padding: .3em;
+    padding: 0.3em;
   `
 };
 
@@ -25,19 +25,19 @@ const StyledDeleteButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
-
-  transition: color .2s ease-in;
+  transition: color 0.2s ease-in;
 
   &:hover {
     color: ${colors.darkGrey};
-    transition: color .2s ease-out;
+    transition: color 0.2s ease-out;
   }
 
   ${props => sizes[props.size]};
 `;
 
-const DeleteButton = props =>
-  <StyledDeleteButton {...props}>&times;</StyledDeleteButton>;
+const DeleteButton = props => (
+  <StyledDeleteButton {...props}>&times;</StyledDeleteButton>
+);
 
 DeleteButton.defaultProps = {
   size: "medium",

@@ -9,9 +9,11 @@ const Column = styled.div`
   padding: ${({ gutters }) => (gutters !== false ? "0 0.5em" : "0")};
   max-width: ${({ cols }) => colWidth(cols)};
   margin-left: ${({ offset }) => (offset ? colWidth(offset) : "0")};
+
   &:first-child {
     padding-left: 0;
   }
+
   &:last-child:not(:only-child) {
     padding-right: 0;
   }

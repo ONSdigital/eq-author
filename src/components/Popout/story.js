@@ -38,7 +38,7 @@ const CloseButton = styled.button`
 const Menu = styled.div`
   background-color: white;
   padding: 2em;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0;
   width: 340px;
 `;
 
@@ -49,15 +49,12 @@ const CenterXY = styled.div`
   transform: translateY(-50%) translateX(-50%);
 `;
 
-const CenterDecorator = storyFn =>
-  <CenterXY>
-    {storyFn()}
-  </CenterXY>;
+const CenterDecorator = storyFn => <CenterXY>{storyFn()}</CenterXY>;
 
 const trigger = <Trigger>Click me</Trigger>;
 const Content = (
   { onClose } // eslint-disable-line react/prop-types
-) =>
+) => (
   <Menu>
     <CloseButton onClick={onClose}>×</CloseButton>
     <h2>Hello world</h2>
@@ -66,12 +63,13 @@ const Content = (
       impedit, culpa cupiditate atque distinctio placeat. Beatae nam voluptas
       magnam, repellendus alias in officia nemo, voluptatum est velit vitae
     </p>
-  </Menu>;
+  </Menu>
+);
 
 storiesOf("Popout", module)
   .addDecorator(CenterDecorator)
   .addDecorator(withKnobs)
-  .add("Stateless", () =>
+  .add("Stateless", () => (
     <Popout
       open={boolean("open", false)}
       trigger={trigger}
@@ -79,14 +77,14 @@ storiesOf("Popout", module)
     >
       <Content />
     </Popout>
-  )
-  .add("Stateful", () =>
+  ))
+  .add("Stateful", () => (
     <UncontrolledPopout trigger={trigger}>
       <Content />
     </UncontrolledPopout>
-  )
-  .add("Animated", () =>
+  ))
+  .add("Animated", () => (
     <UncontrolledPopout trigger={trigger} transition={ScaleTransition}>
       <Content />
     </UncontrolledPopout>
-  );
+  ));

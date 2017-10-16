@@ -19,9 +19,7 @@ const sizes = {
     font-weight: 700;
   `,
 
-  small: css`
-    font-size: 0.875em;
-  `
+  small: css`font-size: 0.875em;`
 };
 
 const styles = css`
@@ -32,8 +30,7 @@ const styles = css`
   display: block;
   width: 100%;
   transition: opacity 200ms ease-out;
-
-  ${props => sizes[props.size]}
+  ${props => sizes[props.size]};
 
   &:focus {
     outline: none;
@@ -42,13 +39,10 @@ const styles = css`
   &::placeholder {
     color: #a3a3a3;
   }
-
 `;
 
 const withSeamlessness = WrappedComponent => {
-  const StyledSeamless = styled(WrappedComponent)`
-    ${styles}
-  `;
+  const StyledSeamless = styled(WrappedComponent)`${styles};`;
 
   return class extends React.Component {
     static defaultProps = {

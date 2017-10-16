@@ -74,12 +74,14 @@ const Link = styled(NavLink)`
     z-index: 1;
   }
 
+  /* stylelint-disable */
   ${StyledPageItem}:hover & {
     &::before {
       opacity: 0.5;
       width: 100%;
     }
   }
+  /* stylelint-enable */
 
   &.selected {
     &::before {
@@ -113,13 +115,14 @@ const NavList = styled.ol`
 
 export const DeleteButton = styled(HoverDeleteButton)`
   top: 0.1em;
-
+  /* stylelint-disable */
   ${StyledPageItem}:hover &,
   ${Link}:focus + &,
   &:focus {
     opacity: 1;
     transform: translateX(0);
   }
+  /* stylelint-enable */
 `;
 
 export class PageNavItem extends React.Component {

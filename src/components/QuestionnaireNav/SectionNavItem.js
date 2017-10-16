@@ -16,6 +16,7 @@ export const AddPageBtn = styled.button`
   border: none;
   padding: 1em;
   color: ${colors.text};
+
   &:hover {
     color: black;
   }

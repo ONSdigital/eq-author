@@ -13,7 +13,7 @@ const AnswerWrapper = styled.div`
   margin: 0;
 `;
 
-const Options = styled.div`margin: 0 0 1em 0;`;
+const Options = styled.div`margin: 0 0 1em;`;
 
 export const AddOtherLink = styled.button`
   color: #48a6f6;
@@ -29,11 +29,9 @@ export const DeleteButton = styled.button`
   border: 0;
   background: none;
   font-size: 1em;
-
   position: absolute;
   top: 0.5em;
   right: 1em;
-
   transition: color 0.2s ease-in-out;
 
   &:hover {

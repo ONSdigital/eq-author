@@ -6,16 +6,16 @@ exports[`large 1`] = `
   border: none;
   background: transparent;
   cursor: pointer;
-  -webkit-transition: color .2s ease-in;
-  transition: color .2s ease-in;
+  -webkit-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
   font-size: 3em;
-  padding: .3em;
+  padding: 0.3em;
 }
 
 .c0:hover {
   color: #35414D;
-  -webkit-transition: color .2s ease-out;
-  transition: color .2s ease-out;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
 }
 
 <DeleteButton
@@ -46,16 +46,16 @@ exports[`medium 1`] = `
   border: none;
   background: transparent;
   cursor: pointer;
-  -webkit-transition: color .2s ease-in;
-  transition: color .2s ease-in;
+  -webkit-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
   font-size: 2em;
-  padding: .3em;
+  padding: 0.3em;
 }
 
 .c0:hover {
   color: #35414D;
-  -webkit-transition: color .2s ease-out;
-  transition: color .2s ease-out;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
 }
 
 <DeleteButton
@@ -86,16 +86,16 @@ exports[`small 1`] = `
   border: none;
   background: transparent;
   cursor: pointer;
-  -webkit-transition: color .2s ease-in;
-  transition: color .2s ease-in;
+  -webkit-transition: color 0.2s ease-in;
+  transition: color 0.2s ease-in;
   font-size: 1.25em;
   padding: 0 auto;
 }
 
 .c0:hover {
   color: #35414D;
-  -webkit-transition: color .2s ease-out;
-  transition: color .2s ease-out;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
 }
 
 <DeleteButton

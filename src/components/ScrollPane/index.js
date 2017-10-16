@@ -17,6 +17,7 @@ const ScrollPane = styled.div`
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.18);
+
     & ::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.4);
     }

@@ -24,6 +24,7 @@ before_script:
 
 script:
   - yarn lint -- --max-warnings=0
+  - yarn lint:css
   - yarn test
   - yarn coverage
   - ./scripts/run_smoketests_author.sh

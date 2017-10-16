@@ -19,10 +19,11 @@ const Link = styled.a`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: capitalize;
+
   &:hover {
     text-decoration: underline;
   }
-  text-transform: capitalize;
 `;
 
 const Table = styled.table`
@@ -48,6 +49,7 @@ const TR = styled.tr`
   opacity: 1;
   transition: opacity ${duration / 2}ms ease-out,
     border-color ${duration / 10}ms ease-in ${duration / 10 * 9}ms;
+
   &.row-exit {
     opacity: 0.01;
     border-color: white;
@@ -55,7 +57,6 @@ const TR = styled.tr`
 `;
 
 const TD = styled.td`
-  text-align: center;
   line-height: 2;
   text-align: ${props => (props.centerAligned ? "center" : "left")};
 `;

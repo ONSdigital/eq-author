@@ -11,7 +11,6 @@ const HoverDeleteButton = styled.button`
   right: 0;
   z-index: 3;
   cursor: pointer;
-
   transform: translateX(50%);
   opacity: 0;
   transition: transform 0.1s ease-in, opacity 0.1s ease-in;
