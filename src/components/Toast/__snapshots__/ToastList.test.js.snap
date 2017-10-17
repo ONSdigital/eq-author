@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastList should allow configurable transitions 1`] = `
+<TransitionGroup
+  childFactory={[Function]}
+  component={[Function]}
+>
+  <Transition__ToastTransition
+    in={false}
+    key=".0"
+    timeout={250}
+  >
+    <ToastList__ToastItem>
+      <p>
+        hello
+      </p>
+    </ToastList__ToastItem>
+  </Transition__ToastTransition>
+  <Transition__ToastTransition
+    in={false}
+    key=".1"
+    timeout={250}
+  >
+    <ToastList__ToastItem>
+      <p>
+        world
+      </p>
+    </ToastList__ToastItem>
+  </Transition__ToastTransition>
+</TransitionGroup>
+`;
+
+exports[`ToastList should render 1`] = `
+<TransitionGroup
+  childFactory={[Function]}
+  component={[Function]}
+>
+  <DefaultTransition
+    key=".0"
+  >
+    <ToastList__ToastItem>
+      <p>
+        hello
+      </p>
+    </ToastList__ToastItem>
+  </DefaultTransition>
+  <DefaultTransition
+    key=".1"
+  >
+    <ToastList__ToastItem>
+      <p>
+        world
+      </p>
+    </ToastList__ToastItem>
+  </DefaultTransition>
+</TransitionGroup>
+`;
