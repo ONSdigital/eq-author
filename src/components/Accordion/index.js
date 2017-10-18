@@ -137,7 +137,9 @@ export class AccordionPanel extends React.Component {
   }
 }
 
-const StyledDiv = styled.div`width: 100%;`;
+const StyledDiv = styled.div`
+  width: 100%;
+`;
 
 const StatelessAccordion = ({ children }) => (
   <StyledDiv role="tablist" aria-multiselectable="true">

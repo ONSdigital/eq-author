@@ -38,7 +38,7 @@ const Title = styled.h1`
 `;
 
 const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
-  <DocumentTitle title={`${docTitle} - Dahl`}>
+  <DocumentTitle title={`${docTitle} - Author`}>
     <App>
       <Wrapper>
         <Header questionnaire={questionnaire} />
