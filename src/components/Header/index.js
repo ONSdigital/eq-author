@@ -33,14 +33,16 @@ export const Logo = styled(Link)`
   text-decoration: none;
 `;
 
-export const UtilityBtns = styled(ButtonGroup)`justify-content: flex-end;`;
+export const UtilityBtns = styled(ButtonGroup)`
+  justify-content: flex-end;
+`;
 
 const Header = ({ questionnaire }) => (
   <StyledHeader>
     <Grid align="center">
       <Column cols={2}>
         <Logo to="/">
-          <img src={logo} alt="Dahl" />
+          <img src={logo} alt="Author" />
         </Logo>
       </Column>
 

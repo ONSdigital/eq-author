@@ -2,7 +2,7 @@
 
 exports[`components/BaseLayout should render 1`] = `
 <SideEffect(DocumentTitle)
-  title="BaseLayout Test - Dahl"
+  title="BaseLayout Test - Author"
 >
   <App>
     <BaseLayout__Wrapper>
@@ -17,7 +17,7 @@ exports[`components/BaseLayout should render 1`] = `
 
 exports[`components/BaseLayout should render a Nav 1`] = `
 <SideEffect(DocumentTitle)
-  title="BaseLayout Test - Dahl"
+  title="BaseLayout Test - Author"
 >
   <App>
     <BaseLayout__Wrapper>
@@ -57,7 +57,7 @@ exports[`components/BaseLayout should render a Nav 1`] = `
 
 exports[`components/BaseLayout should render a title 1`] = `
 <SideEffect(DocumentTitle)
-  title="BaseLayout Test - Dahl"
+  title="BaseLayout Test - Author"
 >
   <App>
     <BaseLayout__Wrapper>

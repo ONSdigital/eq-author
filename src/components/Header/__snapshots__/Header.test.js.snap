@@ -13,7 +13,7 @@ exports[`components/Header renders correctly  1`] = `
         to="/"
       >
         <img
-          alt="Dahl"
+          alt="Author"
           src="logo.svg"
         />
       </Header__Logo>
@@ -60,7 +60,7 @@ exports[`components/Header should conditionally render Breadcrumb 1`] = `
         to="/"
       >
         <img
-          alt="Dahl"
+          alt="Author"
           src="logo.svg"
         />
       </Header__Logo>
@@ -88,7 +88,7 @@ exports[`components/Header should conditionally render UtilityBtns 1`] = `
         to="/"
       >
         <img
-          alt="Dahl"
+          alt="Author"
           src="logo.svg"
         />
       </Header__Logo>
