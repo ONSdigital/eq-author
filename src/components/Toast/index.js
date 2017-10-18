@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "constants/theme";
 import { transparentize } from "polished";
+import timer from "utils/timer";
+import { invoke } from "lodash";
 
 const bgColor = transparentize(0.1, colors.darkGrey);
 
@@ -30,16 +32,25 @@ export default class Toast extends React.Component {
     super(props);
 
     if (props.timeout) {
-      this.timer = setTimeout(this.handleClose, props.timeout);
+      this.timer = timer(this.handleClose, props.timeout);
+      this.timer.start();
     }
   }
 
   componentWillUnmount() {
-    clearTimeout(this.timer);
+    invoke(this.timer, "stop");
   }
 
   handleClose = () => {
     this.props.onClose(this.props.id);
+  };
+
+  handlePause = e => {
+    invoke(this.timer, "pause");
+  };
+
+  handleResume = e => {
+    invoke(this.timer, "resume");
   };
 
   render() {
@@ -47,7 +58,13 @@ export default class Toast extends React.Component {
     const child = React.Children.only(children);
 
     return (
-      <StyledToast {...otherProps}>
+      <StyledToast
+        {...otherProps}
+        onMouseEnter={this.handlePause}
+        onMouseLeave={this.handleResume}
+        onFocus={this.handlePause}
+        onBlur={this.handleResume}
+      >
         {React.cloneElement(child, { onClose: this.handleClose })}
       </StyledToast>
     );

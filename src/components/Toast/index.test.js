@@ -30,4 +30,62 @@ describe("Toast", () => {
 
     expect(handleClose).toHaveBeenCalled();
   });
+
+  describe("auto-dismiss", () => {
+    let wrapper, handleClose;
+    const TIMEOUT = 1000;
+
+    beforeEach(() => {
+      handleClose = jest.fn();
+
+      wrapper = render({
+        timeout: TIMEOUT,
+        onClose: handleClose
+      });
+    });
+
+    it("should start timer if timeout supplied", () => {
+      jest.runTimersToTime(TIMEOUT);
+      expect(handleClose).toHaveBeenCalled();
+    });
+
+    it("should pass id to onClose handler", () => {
+      jest.runTimersToTime(TIMEOUT);
+      expect(handleClose).toHaveBeenCalledWith("1");
+    });
+
+    it("should pause on mouse enter", () => {
+      wrapper.simulate("mouseEnter");
+      jest.runTimersToTime(TIMEOUT);
+
+      expect(handleClose).not.toHaveBeenCalled();
+    });
+
+    it("should resume on mouse leave", () => {
+      wrapper.simulate("mouseEnter");
+      jest.runTimersToTime(TIMEOUT);
+
+      wrapper.simulate("mouseLeave");
+      jest.runTimersToTime(TIMEOUT);
+
+      expect(handleClose).toHaveBeenCalled();
+    });
+
+    it("should pause on focus", () => {
+      wrapper.simulate("focus");
+      jest.runTimersToTime(TIMEOUT);
+
+      expect(handleClose).not.toHaveBeenCalled();
+    });
+
+    it("should resume on blur", () => {
+      wrapper.simulate("focus");
+      jest.runTimersToTime(TIMEOUT);
+
+      wrapper.simulate("blur");
+      jest.runTimersToTime(TIMEOUT);
+
+      expect(handleClose).toHaveBeenCalled();
+    });
+  });
 });
