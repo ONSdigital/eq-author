@@ -18,6 +18,7 @@ const styleMap = {
 
 const heading = css`
   font-size: 1.3em;
+  line-height: 1.4;
   font-weight: bold;
 `;
 
@@ -29,6 +30,7 @@ const sizes = {
   large: css`
     font-size: 1.75em;
     font-weight: 700;
+    line-height: 1.3;
   `,
 
   medium: css`
@@ -43,11 +45,11 @@ const sizes = {
 
 const Wrapper = styled.div`
   position: relative;
+  line-height: 1.5;
 
   .header-two,
   .unstyled,
   .unordered-list-item {
-    line-height: 1.5;
     margin: 0;
   }
 

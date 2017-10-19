@@ -98,6 +98,7 @@ const Link = styled(NavLink)`
 
 export const LinkText = styled.span`
   display: inline-block;
+  vertical-align: middle;
   width: 100%;
   position: relative;
   z-index: 2;

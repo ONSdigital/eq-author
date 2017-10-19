@@ -129,6 +129,7 @@ exports[`QuestionnaireNav should render 1`] = `
 
 .c14 {
   display: inline-block;
+  vertical-align: middle;
   width: 100%;
   position: relative;
   z-index: 2;
@@ -174,12 +175,16 @@ exports[`QuestionnaireNav should render 1`] = `
   position: relative;
   width: 100%;
   display: inline-block;
+  vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .c5::before {
+  height: 1rem;
+  vertical-align: sub;
+  display: inline-block;
   content: url(icon-section.svg);
   margin-right: 0.5em;
 }
