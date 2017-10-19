@@ -3,6 +3,8 @@
 exports[`components/IconLink will render an icon 1`] = `
 <IconDecorated
   component={[Function]}
+  handleClick={[Function]}
+  href="http://localhost"
   icon="icon-test.svg"
   title="Test"
 />

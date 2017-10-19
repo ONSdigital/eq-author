@@ -25,14 +25,7 @@ export const StyledLink = styled.a`
   }
 `;
 
-const IconLink = ({
-  href,
-  icon,
-  title,
-  disabled,
-  handleClick,
-  ...otherProps
-}) => <IconDecorated icon={icon} title={title} component={StyledLink} />;
+const IconLink = props => <IconDecorated {...props} component={StyledLink} />;
 
 IconLink.propTypes = {
   icon: PropTypes.string.isRequired,
