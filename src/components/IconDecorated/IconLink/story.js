@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import IconButton from "components/IconButton";
+import IconLink from "components/IconDecorated/IconLink/index";
 import { colors } from "constants/theme";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const Background = styled.span`
   display: inline-block;
 `;
 
-storiesOf("IconButton", module)
+storiesOf("IconLink", module)
   .addDecorator(story => <Background>{story()}</Background>)
-  .add("Preview", () => <IconButton icon="preview" title="Preview" disabled />)
-  .add("Export", () => <IconButton icon="export" title="Export" disabled />);
+  .add("Preview", () => <IconLink icon="preview" title="Preview" disabled />)
+  .add("Export", () => <IconLink icon="export" title="Export" disabled />);

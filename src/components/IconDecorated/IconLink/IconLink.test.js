@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import "styled-components-test-utils/lib/jest";
 
-import IconLink, { StyledLink } from "components/IconLink";
+import IconLink, { StyledLink } from "components/IconDecorated/IconLink/index";
 import iconTest from "./icon-test.svg";
 
 const handleClick = jest.fn();
@@ -23,11 +23,6 @@ describe("components/IconLink", function() {
   it("will render an icon", function() {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("will handleClick", function() {
-    wrapper.find(StyledLink).simulate("click");
-    expect(handleClick).toHaveBeenCalled();
-  });
 });
 
 describe("components/IconLink/StyledLink", () => {
@@ -37,12 +32,5 @@ describe("components/IconLink/StyledLink", () => {
 
   it("will render StyledLink", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should have an icon", () => {
-    expect(wrapper).toHaveStyleRule(
-      "background",
-      "transparent url(icon-test.svg) no-repeat center"
-    );
   });
 });

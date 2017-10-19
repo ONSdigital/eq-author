@@ -85,62 +85,71 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
     icon="foo.svg"
     title="foo"
   >
-    <Tooltip
-      content="foo"
+    <IconDecorated
+      className="c0"
+      component={[Function]}
+      disabled={undefined}
+      icon="foo.svg"
+      title="foo"
+      type="button"
     >
-      <div>
-        <div
-          data-for="tooltip-1"
-          data-tip={true}
-        >
-          <IconButton__Button
-            className="c0"
-            disabled={undefined}
-            icon="foo.svg"
-            onClick={undefined}
-            type="button"
+      <Tooltip
+        content="foo"
+      >
+        <div>
+          <div
+            data-for="tooltip-1"
+            data-tip={true}
           >
-            <button
-              className="c0 c1"
+            <IconButton__Button
+              className="c0"
               disabled={undefined}
               icon="foo.svg"
               onClick={undefined}
               type="button"
             >
-              <VisuallyHidden>
-                <span
-                  className="c2"
-                >
-                  foo
-                </span>
-              </VisuallyHidden>
-            </button>
-          </IconButton__Button>
-        </div>
-        <Tooltip__StyledTooltip
-          delayShow={200}
-          effect="solid"
-          id="tooltip-1"
-          place="bottom"
-        >
-          <ReactTooltip
-            className="c3"
+              <button
+                className="c0 c1"
+                disabled={undefined}
+                icon="foo.svg"
+                onClick={undefined}
+                type="button"
+              >
+                <VisuallyHidden>
+                  <span
+                    className="c2"
+                  >
+                    foo
+                  </span>
+                </VisuallyHidden>
+              </button>
+            </IconButton__Button>
+          </div>
+          <Tooltip__StyledTooltip
             delayShow={200}
             effect="solid"
             id="tooltip-1"
-            insecure={true}
             place="bottom"
-            resizeHide={true}
-            wrapper="div"
           >
-            <div
-              className="__react_component_tooltip place-top type-dark "
-              data-id="tooltip"
-            />
-          </ReactTooltip>
-        </Tooltip__StyledTooltip>
-      </div>
-    </Tooltip>
+            <ReactTooltip
+              className="c3"
+              delayShow={200}
+              effect="solid"
+              id="tooltip-1"
+              insecure={true}
+              place="bottom"
+              resizeHide={true}
+              wrapper="div"
+            >
+              <div
+                className="__react_component_tooltip place-top type-dark "
+                data-id="tooltip"
+              />
+            </ReactTooltip>
+          </Tooltip__StyledTooltip>
+        </div>
+      </Tooltip>
+    </IconDecorated>
   </IconButton>
 </Toolbar__Button>
 `;
@@ -234,63 +243,73 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
     icon="foo.svg"
     title="foo"
   >
-    <Tooltip
-      content="foo"
+    <IconDecorated
+      active={true}
+      className="c0"
+      component={[Function]}
+      disabled={undefined}
+      icon="foo.svg"
+      title="foo"
+      type="button"
     >
-      <div>
-        <div
-          data-for="tooltip-2"
-          data-tip={true}
-        >
-          <IconButton__Button
-            active={true}
-            className="c0"
-            disabled={undefined}
-            icon="foo.svg"
-            onClick={undefined}
-            type="button"
+      <Tooltip
+        content="foo"
+      >
+        <div>
+          <div
+            data-for="tooltip-2"
+            data-tip={true}
           >
-            <button
-              className="c0 c1"
+            <IconButton__Button
+              active={true}
+              className="c0"
               disabled={undefined}
               icon="foo.svg"
               onClick={undefined}
               type="button"
             >
-              <VisuallyHidden>
-                <span
-                  className="c2"
-                >
-                  foo
-                </span>
-              </VisuallyHidden>
-            </button>
-          </IconButton__Button>
-        </div>
-        <Tooltip__StyledTooltip
-          delayShow={200}
-          effect="solid"
-          id="tooltip-2"
-          place="bottom"
-        >
-          <ReactTooltip
-            className="c3"
+              <button
+                className="c0 c1"
+                disabled={undefined}
+                icon="foo.svg"
+                onClick={undefined}
+                type="button"
+              >
+                <VisuallyHidden>
+                  <span
+                    className="c2"
+                  >
+                    foo
+                  </span>
+                </VisuallyHidden>
+              </button>
+            </IconButton__Button>
+          </div>
+          <Tooltip__StyledTooltip
             delayShow={200}
             effect="solid"
             id="tooltip-2"
-            insecure={true}
             place="bottom"
-            resizeHide={true}
-            wrapper="div"
           >
-            <div
-              className="__react_component_tooltip place-top type-dark "
-              data-id="tooltip"
-            />
-          </ReactTooltip>
-        </Tooltip__StyledTooltip>
-      </div>
-    </Tooltip>
+            <ReactTooltip
+              className="c3"
+              delayShow={200}
+              effect="solid"
+              id="tooltip-2"
+              insecure={true}
+              place="bottom"
+              resizeHide={true}
+              wrapper="div"
+            >
+              <div
+                className="__react_component_tooltip place-top type-dark "
+                data-id="tooltip"
+              />
+            </ReactTooltip>
+          </Tooltip__StyledTooltip>
+        </div>
+      </Tooltip>
+    </IconDecorated>
   </IconButton>
 </Toolbar__Button>
 `;

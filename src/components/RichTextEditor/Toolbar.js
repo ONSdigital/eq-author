@@ -10,7 +10,7 @@ import iconBold from "./icon-bold.svg";
 import iconEmphasis from "./icon-emphasis.svg";
 import iconHeading from "./icon-heading.svg";
 import iconList from "./icon-list.svg";
-import IconButton from "components/IconButton";
+import IconButton from "components/IconDecorated/IconButton";
 
 const ButtonGroup = styled.div`
   display: flex;

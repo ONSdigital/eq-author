@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 
 import CustomPropTypes from "custom-prop-types";
-import IconButton from "components/IconButton";
-import IconLink from "components/IconLink";
+import IconButton from "components/IconDecorated/IconButton";
+import IconLink from "components/IconDecorated/IconLink";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
 
@@ -36,6 +36,7 @@ export const Logo = styled(Link)`
 
 export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
+  align-items: center;
 `;
 
 class Header extends React.Component {
@@ -61,7 +62,7 @@ class Header extends React.Component {
         <Grid align="center">
           <Column cols={2}>
             <Logo to="/">
-              <img src={logo} alt="Dahl" />
+              <img src={logo} alt="Author" />
             </Logo>
           </Column>
 

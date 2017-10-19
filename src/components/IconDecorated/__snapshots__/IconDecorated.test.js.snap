@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconDecorated should render a button 1`] = `
+<Tooltip
+  content="Title"
+>
+  <div>
+    <IconButton__Button
+      icon="icon-test.svg"
+      onClick={[Function]}
+      type="button"
+    >
+      <VisuallyHidden>
+        Title
+      </VisuallyHidden>
+    </IconButton__Button>
+  </div>
+</Tooltip>
+`;

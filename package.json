@@ -16,14 +16,16 @@
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build && gh-pages -d build",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9001",
-    "storybook-build":
-      "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
+    "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test --coverage -u"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.12",
@@ -82,16 +84,16 @@
     "react-router-test-context": "^0.1.0",
     "react-test-renderer": "^16.0.0",
     "recursive-readdir": "^2.2.1",
-    "stylelint": "^8.2.0",
-    "stylelint-config-standard": "^17.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.0.0",
     "serve": "^6.2.0",
     "storybook-router": "^0.3.0",
     "strip-ansi": "^4.0.0",
     "style-loader": "^0.19.0",
-    "svg-url-loader": "^2.2.0",
     "styled-components-test-utils": "^0.3.0",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.0.0",
+    "svg-url-loader": "^2.2.0",
     "svgo-loader": "^1.2.1",
     "sw-precache-webpack-plugin": "^0.11.4",
     "url-loader": "^0.6.2",
@@ -150,9 +152,10 @@
       "<rootDir>/config/polyfills.js",
       "<rootDir>/src/tests/setup/throwOnConsole.js"
     ],
-    "setupTestFrameworkScriptFile":
-      "<rootDir>/src/tests/setup/JestTestSetup.js",
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup/JestTestSetup.js",
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -163,14 +166,22 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["<rootDir>/src/"]
+    "modulePaths": [
+      "<rootDir>/src/"
+    ]
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
-  "moduleRoots": ["./src"]
+  "moduleRoots": [
+    "./src"
+  ]
 }
