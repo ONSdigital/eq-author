@@ -20,7 +20,9 @@ describe("components/Header", function() {
     now = Date.now;
     Date.now = () => 1507793425522;
 
-    wrapper = shallow(<Header questionnaire={{ title: "Questionnaire" }} />);
+    wrapper = shallow(
+      <Header questionnaire={{ id: "1", title: "Questionnaire" }} />
+    );
   });
 
   afterEach(() => {
