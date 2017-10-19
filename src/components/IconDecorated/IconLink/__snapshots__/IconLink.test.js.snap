@@ -20,7 +20,6 @@ exports[`components/IconLink/StyledLink will render StyledLink 1`] = `
   align-items: center;
   padding: 0.5em;
   cursor: pointer;
-  background: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -52,7 +51,6 @@ exports[`components/IconLink/StyledLink will render StyledLink 1`] = `
   align-items: center;
   padding: 0.5em;
   cursor: pointer;
-  background: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
