@@ -1,5 +1,4 @@
 import render from "utils/render";
-import registerServiceWorker from "utils/registerServiceWorker";
 import createHistory from "history/createHashHistory";
 import configureStore from "store/configureStore";
 import createClient from "apollo/createClient";
@@ -31,8 +30,6 @@ const renderApp = render(document.getElementById("root"), {
 });
 
 renderApp(App);
-
-registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept("containers/App", () => {
