@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Tooltip from "components/Tooltip";
-import VisuallyHidden from "components/VisuallyHidden";
+import IconDecorated from "components/IconDecorated";
 
 export const Button = styled.button`
   display: flex;
@@ -27,19 +26,14 @@ export const Button = styled.button`
 `;
 
 const IconButton = ({ icon, title, disabled, handleClick, ...otherProps }) => (
-  <Tooltip content={title}>
-    <div>
-      <Button
-        onClick={handleClick}
-        disabled={disabled}
-        icon={icon}
-        type="button"
-        {...otherProps}
-      >
-        <VisuallyHidden>{title}</VisuallyHidden>
-      </Button>
-    </div>
-  </Tooltip>
+  <IconDecorated
+    icon={icon}
+    title={title}
+    component={Button}
+    type="button"
+    disabled={disabled}
+    {...otherProps}
+  />
 );
 
 IconButton.propTypes = {

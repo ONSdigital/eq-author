@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 
 import CustomPropTypes from "custom-prop-types";
-import IconButton from "components/IconButton";
+import IconButton from "components/IconDecorated/IconButton";
+import IconLink from "components/IconDecorated/IconLink";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
 
@@ -35,35 +36,57 @@ export const Logo = styled(Link)`
 
 export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
+  align-items: center;
 `;
 
-const Header = ({ questionnaire }) => (
-  <StyledHeader>
-    <Grid align="center">
-      <Column cols={2}>
-        <Logo to="/">
-          <img src={logo} alt="Author" />
-        </Logo>
-      </Column>
+class Header extends React.Component {
+  static propTypes = {
+    questionnaire: CustomPropTypes.questionnaire
+  };
 
-      <Column>
-        {questionnaire && <Breadcrumb title={questionnaire.title} />}
-      </Column>
+  getPreviewUrl(questionnaireId) {
+    const timestamp = Date.now();
+    const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
+    const goLaunchASurveyQuickLaunchUrl =
+      process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
+    const urlEncodedParam = encodeURIComponent(
+      `${publisherUrl}/${questionnaireId}?r=${timestamp}`
+    );
+    return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
+  }
 
-      <Column>
-        {questionnaire && (
-          <UtilityBtns horizontal>
-            <IconButton icon={previewIcon} title="Preview" disabled />
-            <IconButton icon={exportIcon} title="Export" disabled />
-          </UtilityBtns>
-        )}
-      </Column>
-    </Grid>
-  </StyledHeader>
-);
+  render() {
+    const { questionnaire } = this.props;
+    return (
+      <StyledHeader>
+        <Grid align="center">
+          <Column cols={2}>
+            <Logo to="/">
+              <img src={logo} alt="Author" />
+            </Logo>
+          </Column>
 
-Header.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire
-};
+          <Column>
+            {questionnaire && <Breadcrumb title={questionnaire.title} />}
+          </Column>
+
+          <Column>
+            {questionnaire && (
+              <UtilityBtns horizontal>
+                <IconLink
+                  href={this.getPreviewUrl(questionnaire.id)}
+                  icon={previewIcon}
+                  title="Preview"
+                  target="_blank"
+                />
+                <IconButton icon={exportIcon} title="Export" disabled />
+              </UtilityBtns>
+            )}
+          </Column>
+        </Grid>
+      </StyledHeader>
+    );
+  }
+}
 
 export default Header;

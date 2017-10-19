@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/IconLink will render an icon 1`] = `
+<IconDecorated
+  component={[Function]}
+  icon="icon-test.svg"
+  title="Test"
+/>
+`;
+
+exports[`components/IconLink/StyledLink will render StyledLink 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  opacity: 0.9;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  background: transparent url(icon-test.svg) no-repeat center;
+  width: 3.5em;
+  height: 3.5em;
+}
+
+.c0:hover {
+  opacity: 1;
+}
+
+.c0[disabled] {
+  opacity: 0.5;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  opacity: 0.9;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  background: transparent url(icon-test.svg) no-repeat center;
+  width: 3.5em;
+  height: 3.5em;
+}
+
+.c0:hover {
+  opacity: 1;
+}
+
+.c0[disabled] {
+  opacity: 0.5;
+}
+
+<a
+  className="c0"
+  icon="icon-test.svg"
+/>
+`;

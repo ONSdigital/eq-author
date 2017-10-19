@@ -31,9 +31,10 @@ exports[`components/Header renders correctly  1`] = `
       <Header__UtilityBtns
         horizontal={true}
       >
-        <IconButton
-          disabled={true}
+        <IconLink
+          href="http://go-launch-a-survey/quick-launch?url=http%3A%2F%2Feq-publisher%2Fpublish%2F1%3Fr%3D1507793425522"
           icon="icon-preview.svg"
+          target="_blank"
           title="Preview"
         />
         <IconButton
