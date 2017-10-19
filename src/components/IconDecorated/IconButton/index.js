@@ -25,15 +25,8 @@ export const Button = styled.button`
   }
 `;
 
-const IconButton = ({ icon, title, disabled, handleClick, ...otherProps }) => (
-  <IconDecorated
-    icon={icon}
-    title={title}
-    component={Button}
-    type="button"
-    disabled={disabled}
-    {...otherProps}
-  />
+const IconButton = props => (
+  <IconDecorated {...props} type="button" component={Button} />
 );
 
 IconButton.propTypes = {

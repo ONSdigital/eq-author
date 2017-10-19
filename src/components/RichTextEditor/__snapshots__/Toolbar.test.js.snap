@@ -88,7 +88,6 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
     <IconDecorated
       className="c0"
       component={[Function]}
-      disabled={undefined}
       icon="foo.svg"
       title="foo"
       type="button"
@@ -247,7 +246,6 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
       active={true}
       className="c0"
       component={[Function]}
-      disabled={undefined}
       icon="foo.svg"
       title="foo"
       type="button"
