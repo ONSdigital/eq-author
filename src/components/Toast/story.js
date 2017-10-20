@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { colors } from "constants/theme";
 import Transition from "./Transition";
 import { without } from "lodash";
+import PropTypes from "prop-types";
 
 const UndoButton = styled.button`
   background: none;
@@ -16,11 +17,16 @@ const UndoButton = styled.button`
   font-size: inherit;
 `;
 
-const DeletionInfo = props => (
+const DeletionInfo = ({ id, onClose }) => (
   <div>
-    Page deleted <UndoButton onClick={action("Deleted!")}>Undo</UndoButton>
+    <strong>Page {id}</strong> deleted{" "}
+    <UndoButton onClick={onClose}>Undo</UndoButton>
   </div>
 );
+DeletionInfo.propTypes = {
+  id: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired
+};
 
 const StoryContainer = styled.div`
   position: absolute;
@@ -35,7 +41,33 @@ const StoryInner = styled.div`
   text-align: initial;
 `;
 
-class Story extends React.Component {
+const Basic = ({ toast, onClose }) => (
+  <Toast id={toast} onClose={onClose} timeout={10000}>
+    <div>
+      Toast added at: <strong>{new Date(toast).toLocaleTimeString()}</strong>
+    </div>
+  </Toast>
+);
+Basic.propTypes = {
+  toast: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired
+};
+
+const Dismissble = ({ toast, onClose }) => (
+  <Toast id={toast} onClose={onClose} timeout={10000}>
+    <DeletionInfo id={toast} />
+  </Toast>
+);
+Dismissble.propTypes = {
+  toast: PropTypes.number.isRequired,
+  onClose: PropTypes.func.isRequired
+};
+
+class StatefulStory extends React.Component {
+  static propTypes = {
+    children: PropTypes.func.isRequired
+  };
+
   state = {
     toasts: [Date.now()]
   };
@@ -50,19 +82,10 @@ class Story extends React.Component {
     this.setState({ toasts });
   };
 
-  renderToast = (toast, i) => {
-    const date = new Date(toast);
-
-    return (
-      <Toast key={toast} id={toast} onClose={this.handleRemove} timeout={5000}>
-        <div>
-          Toast added at: <strong>{date.toLocaleTimeString()}</strong>
-        </div>
-      </Toast>
-    );
-  };
-
   render() {
+    const { toasts } = this.state;
+    const { children } = this.props;
+
     return (
       <div>
         <div>
@@ -73,7 +96,9 @@ class Story extends React.Component {
         <StoryContainer>
           <StoryInner>
             <ToastList transition={Transition}>
-              {this.state.toasts.map(this.renderToast)}
+              {toasts.map(toast =>
+                children({ toast, onClose: this.handleRemove })
+              )}
             </ToastList>
           </StoryInner>
         </StoryContainer>
@@ -86,7 +111,7 @@ storiesOf("Toast", module)
   .add("Default", () => (
     <StoryContainer hasMargin>
       <StoryInner>
-        <Toast>
+        <Toast id="foo">
           <span>Hello world!</span>
         </Toast>
       </StoryInner>
@@ -104,8 +129,8 @@ storiesOf("Toast", module)
   .add("Arbitrary content", () => (
     <StoryContainer hasMargin>
       <StoryInner>
-        <Toast id="foo" timeout={2000} onClose={action("Auto-closed")}>
-          <DeletionInfo />
+        <Toast id="foo-bar" timeout={2000} onClose={action("Closed")}>
+          <DeletionInfo id={123} />
         </Toast>
       </StoryInner>
     </StoryContainer>
@@ -124,4 +149,17 @@ storiesOf("Toast", module)
       </StoryInner>
     </StoryContainer>
   ))
-  .add("Interactive", () => <Story />);
+  .add("Interactive", () => (
+    <StatefulStory>
+      {({ toast, onClose }) => (
+        <Basic key={toast} toast={toast} onClose={onClose} />
+      )}
+    </StatefulStory>
+  ))
+  .add("Dismissible", () => (
+    <StatefulStory>
+      {({ toast, onClose }) => (
+        <Dismissble key={toast} toast={toast} onClose={onClose} />
+      )}
+    </StatefulStory>
+  ));
