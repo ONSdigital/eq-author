@@ -18,12 +18,13 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
   -ms-user-select: none;
   user-select: none;
   position: relative;
-  padding: 3px;
-  height: 3em;
+  padding: 0.65em 4px;
+  font-size: 0.6em;
 }
 
 .c1 button {
-  font-size: 0.6em;
+  color: #4A4A4A;
+  font-size: 1em;
   text-transform: uppercase;
   font-weight: 900;
   background: none;

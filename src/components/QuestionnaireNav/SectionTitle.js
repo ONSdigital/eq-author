@@ -27,11 +27,15 @@ const Title = styled.h3`
   position: relative;
   width: 100%;
   display: inline-block;
+  vertical-align: middle;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
   &::before {
+    height: 1rem;
+    vertical-align: sub;
+    display: inline-block;
     content: url(${sectionIcon});
     margin-right: 0.5em;
   }
