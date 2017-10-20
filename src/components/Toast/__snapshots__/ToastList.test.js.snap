@@ -8,7 +8,7 @@ exports[`ToastList should allow configurable transitions 1`] = `
   <Transition__ToastTransition
     in={false}
     key=".0"
-    timeout={250}
+    timeout={500}
   >
     <ToastList__ToastItem>
       <p>
@@ -19,7 +19,7 @@ exports[`ToastList should allow configurable transitions 1`] = `
   <Transition__ToastTransition
     in={false}
     key=".1"
-    timeout={250}
+    timeout={500}
   >
     <ToastList__ToastItem>
       <p>

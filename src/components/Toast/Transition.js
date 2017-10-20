@@ -5,13 +5,14 @@ import PropTypes from "prop-types";
 const ToastTransition = styled(CSSTransition).attrs({
   classNames: "toast"
 })`
-  transition: transform ${props => props.timeout}ms ease-out,
-    opacity ${props => props.timeout}ms ease-out;
-  transform: translateY(0);
+  transition-property: transform, opacity;
+  transition-duration: ${props => props.timeout * 0.66}ms;
 
   &.toast-enter {
     opacity: 0;
     transform: translateY(50%);
+    transition-timing-function: cubic-bezier(0.73, 0.02, 0.32, 1.49);
+    transition-delay: ${props => props.timeout * 0.33}ms;
   }
 
   &.toast-enter.toast-enter-active {
@@ -22,6 +23,7 @@ const ToastTransition = styled(CSSTransition).attrs({
   &.toast-exit {
     opacity: 1;
     transform: translateY(0);
+    transition-timing-function: cubic-bezier(0.75, -0.44, 0.24, 1);
   }
 
   &.toast-exit.toast-exit-active {
@@ -32,7 +34,7 @@ const ToastTransition = styled(CSSTransition).attrs({
 
 ToastTransition.defaultProps = {
   in: false,
-  timeout: 250
+  timeout: 500
 };
 
 ToastTransition.propTypes = {
