@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast should render 1`] = `
+<Toast__StyledToast
+  id="1"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  timeout={0}
+>
+  <span
+    onClose={[Function]}
+  >
+    hello
+  </span>
+</Toast__StyledToast>
+`;
