@@ -67,6 +67,35 @@ exports[`Answer Editor should render Currency 1`] = `
 </div>
 `;
 
+exports[`Answer Editor should render DateRange 1`] = `
+<div>
+  <DateRange
+    answer={
+      Object {
+        "description": "",
+        "id": "1",
+        "title": "",
+        "type": "DateRange",
+      }
+    }
+    onAddOption={[Function]}
+    onChange={[Function]}
+    onDeleteAnswer={[Function]}
+    onDeleteOption={[Function]}
+    onUpdate={[Function]}
+    onUpdateOption={[Function]}
+  />
+  <Tooltip
+    content="Delete answer"
+  >
+    <AnswerEditor__AnswerDeleteButton
+      aria-label="Delete answer"
+      onClick={[Function]}
+    />
+  </Tooltip>
+</div>
+`;
+
 exports[`Answer Editor should render Number 1`] = `
 <div>
   <NumberAnswer

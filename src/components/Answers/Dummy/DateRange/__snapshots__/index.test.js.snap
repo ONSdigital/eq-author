@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dummy/DateRange should render 1`] = `
+<DateRange__StyledDateRange>
+  <DateRange__Fieldset>
+    <DateRange__Legend>
+      Period from
+    </DateRange__Legend>
+    <DatePicker />
+  </DateRange__Fieldset>
+  <DateRange__Fieldset>
+    <DateRange__Legend>
+      Period to
+    </DateRange__Legend>
+    <DatePicker />
+  </DateRange__Fieldset>
+</DateRange__StyledDateRange>
+`;
+
+exports[`Dummy/DateRange should render dummy DatePicker 1`] = `
+<div>
+  <DateRange__Field
+    colWidth="25%"
+  >
+    <DateRange__Label>
+      Day
+    </DateRange__Label>
+    <DateRange__Input>
+      DD
+    </DateRange__Input>
+  </DateRange__Field>
+  <DateRange__Field
+    colWidth="50%"
+  >
+    <DateRange__Label>
+      Month
+    </DateRange__Label>
+    <DateRange__Select>
+      Select month
+    </DateRange__Select>
+  </DateRange__Field>
+  <DateRange__Field
+    colWidth="25%"
+  >
+    <DateRange__Label>
+      Year
+    </DateRange__Label>
+    <DateRange__Input>
+      YYYY
+    </DateRange__Input>
+  </DateRange__Field>
+</div>
+`;
