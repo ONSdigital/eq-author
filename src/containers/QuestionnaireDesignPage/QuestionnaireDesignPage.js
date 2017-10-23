@@ -9,7 +9,6 @@ import ScrollPane from "components/ScrollPane";
 import EditorSurface from "components/EditorSurface";
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 import getTextFromHTML from "utils/getTextFromHTML";
-import PropertiesPanel from "../../components/PropertiesPanel/index";
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -100,9 +99,7 @@ export class QuestionnaireDesignPage extends Component {
               </MainCanvas>
             </ScrollPane>
           </Column>
-          <Column cols={2} gutters={false}>
-            <PropertiesPanel page={page} orderMin={1} orderMax={10} />
-          </Column>
+          <Column cols={2} gutters={false} />
         </Grid>
       </BaseLayout>
     );
