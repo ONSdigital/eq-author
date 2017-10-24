@@ -3,8 +3,15 @@ import createHistory from "history/createHashHistory";
 import configureStore from "store/configureStore";
 import createClient from "apollo/createClient";
 import App from "containers/App";
+import Raven from "raven-js";
 
 let networkInterface;
+
+if (process.env.REACT_APP_USE_SENTRY === "true") {
+  Raven.config(
+    "https://b72ac0e6b36344fca4698290bf9a191d@sentry.io/233989"
+  ).install();
+}
 
 if (process.env.REACT_APP_USE_MOCK_API === "true") {
   const mockNetworkInterface = require("./apollo/createMockNetworkInterface")
