@@ -1,0 +1,113 @@
+{
+  "type": "object",
+  "properties": {
+    "questionnaire": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "chance": "guid"
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "$ref": "#/definitions/section"
+          }
+        }
+      },
+      "required": ["id", "sections"]
+    }
+  },
+  "required": ["questionnaire"],
+  "definitions": {
+    "section": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "chance": "guid"
+        },
+        "title": {
+          "type": "string",
+          "faker": {
+            "lorem.sentences": [1, false]
+          }
+        },
+        "pages": {
+          "type": "array",
+          "minItems": 10,
+          "items": {
+            "$ref": "#/definitions/page"
+          }
+        }
+      },
+      "required": ["id", "title", "pages"]
+    },
+    "page": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "chance": "guid"
+        },
+        "title": {
+          "type": "string",
+          "faker": {
+            "lorem.sentence": [3, false, 4]
+          }
+        },
+        "pageType": {
+          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["QuestionPage", "InterstitialPage"]
+            }
+          ]
+        },
+        "answers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/answer"
+          }
+        }
+      },
+      "required": ["id", "title", "pageType", "answers"]
+    },
+    "answer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "chance": "guid"
+        },
+        "title": {
+          "type": "string",
+          "faker": {
+            "lorem.sentences": [1, false]
+          }
+        },
+        "type": {
+          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Checkbox",
+                "Currency",
+                "Date",
+                "Number",
+                "Radio",
+                "TextArea",
+                "TextField"
+              ]
+            }
+          ]
+        }
+      },
+      "required": ["id", "title", "type"]
+    }
+  }
+}
