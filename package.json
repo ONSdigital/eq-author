@@ -20,7 +20,7 @@
       "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
-    "coverage": "yarn test --coverage"
+    "coverage": "yarn test -- --coverage"
   },
   "lint-staged": {
     "*.js": ["prettier --write", "git add"]
