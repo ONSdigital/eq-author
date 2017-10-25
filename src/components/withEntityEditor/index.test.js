@@ -2,6 +2,7 @@ import React from "react";
 import withEntityEditor from "./";
 import { shallow } from "enzyme";
 import { gql } from "react-apollo";
+import { filter } from "graphql-anywhere";
 
 const Component = props => <div {...props} />;
 
@@ -16,35 +17,30 @@ describe("withEntityEditor", () => {
   let wrapper, entity, handleUpdate, handleSubmit;
   const ComponentWithEntity = withEntityEditor("entity", fragment)(Component);
 
+  const render = (props = {}) =>
+    shallow(
+      <ComponentWithEntity
+        entity={entity}
+        onUpdate={handleUpdate}
+        onSubmit={handleSubmit}
+        {...props}
+      />
+    );
+
   beforeEach(() => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
     entity = {
       id: "1",
-      title: "foo"
+      title: "foo",
+      __typename: "Foo"
     };
 
-    wrapper = shallow(
-      <ComponentWithEntity
-        entity={entity}
-        onUpdate={handleUpdate}
-        onSubmit={handleSubmit}
-      />
-    );
+    wrapper = render();
   });
 
   it("should have an appropriate displayName", () => {
     expect(ComponentWithEntity.displayName).toBe("withEntityEditor(Component)");
-  });
-
-  it("should filter out unknown fields", () => {
-    wrapper.setProps({
-      entity: {
-        ...entity,
-        extraProp: false
-      }
-    });
-    expect(wrapper.state("entity").extraProp).toBeUndefined();
   });
 
   it("should put entity into state", () => {
@@ -64,18 +60,18 @@ describe("withEntityEditor", () => {
     );
   });
 
-  it("should pass entity to callback onUpdate", () => {
+  it("should pass filtered entity to callback onUpdate", () => {
     wrapper.simulate("update");
 
-    expect(handleUpdate).toHaveBeenCalledWith(expect.objectContaining(entity));
+    expect(handleUpdate).toHaveBeenCalledWith(filter(fragment, entity));
   });
 
-  it("should pass entity to callback onSubmit", () => {
+  it("should pass filtered entity to callback onSubmit", () => {
     const preventDefault = jest.fn();
     wrapper.simulate("submit", { preventDefault });
 
     expect(preventDefault).toHaveBeenCalled();
-    expect(handleSubmit).toHaveBeenCalledWith(expect.objectContaining(entity));
+    expect(handleSubmit).toHaveBeenCalledWith(filter(fragment, entity));
   });
 
   it("should update state when new entity passed via props", () => {

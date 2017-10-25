@@ -256,10 +256,12 @@ exports[`Option should render a checkbox 1`] = `
 >
   <Option__StyledOption
     duration={200}
+    id={undefined}
     key="1"
   >
     <div
       className="c0"
+      id={undefined}
     >
       <Option__LabelField
         id="label"

@@ -21,8 +21,13 @@ describe("MultipleChoiceAnswer", () => {
     ]
   };
 
+  const option = {
+    id: "123",
+    __typename: "Option"
+  };
+
   let mockHandlers = {
-    onAddOption: jest.fn(() => Promise.resolve()),
+    onAddOption: jest.fn(() => Promise.resolve(option)),
     onUpdateOption: jest.fn(),
     onDeleteOption: jest.fn(),
     onChange: jest.fn()

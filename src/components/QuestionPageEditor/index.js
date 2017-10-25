@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
+import focusOnEntity from "utils/focusOnEntity";
 
 import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -39,14 +40,7 @@ export class QPE extends React.Component {
   };
 
   handleAddAnswer = answerType => {
-    this.props.onAddAnswer(answerType).then(answerId => {
-      const node = document.querySelector(
-        `#answer-${answerId} [data-autofocus]`
-      );
-      if (node) {
-        node.focus();
-      }
-    });
+    return this.props.onAddAnswer(answerType).then(focusOnEntity);
   };
 
   isFocused(entity) {

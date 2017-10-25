@@ -10,9 +10,10 @@ export const StatelessBasicAnswer = ({
   answer,
   onChange,
   onUpdate,
-  children
+  children,
+  id
 }) => (
-  <div id={`answer-${answer.id}`}>
+  <div id={id}>
     <Field id="label">
       <SeamlessTextArea
         placeholder="Label"
@@ -41,7 +42,8 @@ StatelessBasicAnswer.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  id: PropTypes.string
 };
 
 export default withEntityEditor("answer", answerFragment)(StatelessBasicAnswer);
