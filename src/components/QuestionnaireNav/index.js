@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-
 import styled from "styled-components";
-
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-
 import { colors } from "constants/theme";
-
 import SectionNav from "components/QuestionnaireNav/SectionNav";
-
 import plusIcon from "./icon-plus.svg";
 
 const Container = styled.div`

@@ -1,8 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import PropTypes from "prop-types";
-
 import EditorSurface from "./";
+import PropTypes from "prop-types";
 
 const option = {
   __typename: "Option",
@@ -36,6 +35,18 @@ describe("EditorSurface", () => {
   let wrapper, mockMutations;
 
   const createWrapper = (props = {}, render = shallow, renderOpts = {}) => {
+    const defaultOptions = {
+      context: {
+        client: { query: jest.fn(), readQuery: jest.fn() },
+        store: {
+          subscribe: jest.fn(),
+          dispatch: jest.fn(),
+          getState: jest.fn()
+        }
+      },
+      childContextTypes: { client: PropTypes.object, store: PropTypes.object }
+    };
+
     return render(
       <EditorSurface
         section={section}
@@ -45,14 +56,7 @@ describe("EditorSurface", () => {
         {...props}
       />,
       {
-        context: {
-          store: {
-            subscribe: jest.fn(),
-            dispatch: jest.fn(),
-            getState: jest.fn()
-          }
-        },
-        childContextTypes: { store: PropTypes.object },
+        ...defaultOptions,
         ...renderOpts
       }
     );
@@ -74,7 +78,6 @@ describe("EditorSurface", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
   describe("focus behaviour", () => {
     let sectionSpy, pageSpy;
 

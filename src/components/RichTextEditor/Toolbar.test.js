@@ -3,7 +3,7 @@ import Toolbar, {
   ToolbarPanel,
   Button
 } from "components/RichTextEditor/Toolbar";
-
+import PipingMenu from "./PipingMenu";
 import { shallow, mount } from "enzyme";
 
 let wrapper, props, buttons;
@@ -22,7 +22,9 @@ describe("components/RichTextEditor/Toolbar", () => {
       onToggle: jest.fn(),
       onFocus: jest.fn(),
       onBlur: jest.fn(),
-      isActiveControl: jest.fn()
+      onPiping: jest.fn(),
+      isActiveControl: jest.fn(),
+      selectionIsCollapsed: true
     };
     wrapper = shallow(<Toolbar {...props} visible />);
     buttons = wrapper.find(Button);
@@ -59,6 +61,33 @@ describe("components/RichTextEditor/Toolbar", () => {
     wrapper = shallow(<Toolbar {...props} controls={controls} visible />);
     wrapper.find(Button).forEach(node => {
       expect(node.props().disabled).toBe(true);
+    });
+  });
+
+  describe("PipingMenu", () => {
+    it("should disable PipingMenu if selection is not collapsed", () => {
+      wrapper = shallow(
+        <Toolbar
+          {...props}
+          visible
+          controls={{ piping: true }}
+          selectionIsCollapsed={false}
+        />
+      );
+      expect(wrapper.find(PipingMenu).prop("disabled")).toBe(true);
+    });
+
+    it("should enable PipingMenu if selection is collapsed", () => {
+      wrapper = shallow(
+        <Toolbar
+          {...props}
+          visible
+          controls={{ piping: true }}
+          selectionIsCollapsed
+        />
+      );
+
+      expect(wrapper.find(PipingMenu).prop("disabled")).toBe(false);
     });
   });
 

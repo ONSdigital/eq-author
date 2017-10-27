@@ -9,32 +9,42 @@ import {
   MenuScrollPane
 } from "components/Menu";
 
-let handleItemChosen, wrapper;
+let handleItemChosen, wrapper, item;
 
 describe("components/Menu", () => {
   beforeEach(() => {
     handleItemChosen = jest.fn();
+    item = { id: "123" };
+
     wrapper = mount(
       <Dropdown>
         <MenuScrollPane>
           <MenuList>
-            <MenuItem id="item-1" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-1" item={item} onItemChosen={handleItemChosen}>
               1. Fusce Egestas Tristique Porta Sollicitudin
             </MenuItem>
-            <MenuItem id="item-2" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-2" item={item} onItemChosen={handleItemChosen}>
               2. Fusce Egestas Tristique Porta Sollicitudin
             </MenuItem>
-            <MenuItem id="item-3" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-3" item={item} onItemChosen={handleItemChosen}>
               3. Fusce Egestas Tristique Porta Sollicitudin
             </MenuItem>
             <SubMenuItem
               menu={
                 <Dropdown>
                   <MenuList>
-                    <MenuItem id="item-4.1" onItemChosen={handleItemChosen}>
+                    <MenuItem
+                      id="item-4.1"
+                      item={item}
+                      onItemChosen={handleItemChosen}
+                    >
                       4.1. Fusce Egestas Tristique Porta Sollicitudin
                     </MenuItem>
-                    <MenuItem id="item-4.2" onItemChosen={handleItemChosen}>
+                    <MenuItem
+                      id="item-4.2"
+                      item={item}
+                      onItemChosen={handleItemChosen}
+                    >
                       4.2. Ligula Consectetur Ullamcorper Cursus Ligula
                       Consectetur Ullamcorper Cursus
                     </MenuItem>
@@ -57,6 +67,6 @@ describe("components/Menu", () => {
   it("should handle items being chosen by calling onItemChosen with id prop", () => {
     const menuItem = wrapper.find(MenuItem).first();
     menuItem.simulate("click");
-    expect(handleItemChosen).toHaveBeenCalledWith(menuItem.props().id);
+    expect(handleItemChosen).toHaveBeenCalledWith(item);
   });
 });

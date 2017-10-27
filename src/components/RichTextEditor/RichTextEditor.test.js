@@ -7,7 +7,10 @@ import Toolbar, {
 } from "components/RichTextEditor/Toolbar";
 import { shallow } from "enzyme";
 import findById from "utils/findById";
-import { RichUtils, Editor, EditorState } from "draft-js";
+import { RichUtils, Editor, EditorState, convertToRaw } from "draft-js";
+import Raw from "draft-js-raw-content-state";
+import { createPipedEntity } from "./entities/PipedValue";
+import { SynchronousPromise } from "synchronous-promise";
 
 // https://github.com/facebook/draft-js/issues/702
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
@@ -67,8 +70,7 @@ describe("components/RichTextEditor", function() {
 
   it("should store editorState in local state upon change event", () => {
     const editorState = EditorState.createEmpty();
-    const handleChange = wrapper.find(Editor).prop("onChange");
-    handleChange(editorState);
+    wrapper.find(Editor).simulate("change", editorState);
     expect(wrapper.state("editorState")).toBe(editorState);
   });
 
@@ -109,7 +111,8 @@ describe("components/RichTextEditor", function() {
 
   it("should remove carriage returns on paste", () => {
     const text = "hello\nworld";
-    const handled = wrapper.instance().handlePaste(text);
+
+    const handled = wrapper.find(Editor).prop("handlePastedText")(text);
     const html = wrapper.instance().getHTML();
 
     expect(handled).toBe("handled");
@@ -117,7 +120,8 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should disable enter key", () => {
-    expect(wrapper.instance().handleReturn()).toBe("handled");
+    var result = wrapper.find(Editor).prop("handleReturn")();
+    expect(result).toBe("handled");
   });
 
   it("should set focus to true when Editor is focussed", () => {
@@ -170,5 +174,86 @@ describe("components/RichTextEditor", function() {
 
     wrapper.instance().hasInlineStyle(editorState, "foo");
     expect(currentStyle.has).toHaveBeenCalledWith("foo");
+  });
+
+  describe("piping", () => {
+    const toRaw = wrapper =>
+      convertToRaw(wrapper.state("editorState").getCurrentContent());
+
+    const createEntity = (type, mutability, data) => ({
+      type,
+      mutability,
+      data
+    });
+
+    describe("existing piped values", () => {
+      const answers = [
+        { id: "1", label: "answer 1", type: "TextField" },
+        { id: "2", label: "answer 2", type: "TextField" },
+        { id: "3", label: "answer 3", type: "TextField" }
+      ];
+
+      let fetch;
+
+      beforeEach(() => {
+        fetch = jest.fn(() => SynchronousPromise.resolve(answers));
+      });
+
+      it("should load labels for piped answers when mounted", () => {
+        const html = `<p><span data-piped="answers" data-id="1" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="3" data-type="TextField">[Piped Value]</span></p>`;
+
+        wrapper = shallow(
+          <RichTextEditor {...props} fetchAnswers={fetch} value={html} />
+        );
+
+        const expected = new Raw()
+          .addBlock("[answer 1] [answer 2] [answer 3]")
+          .addEntity(createPipedEntity(createEntity, answers[0]), 0, 10)
+          .addEntity(createPipedEntity(createEntity, answers[1]), 11, 10)
+          .addEntity(createPipedEntity(createEntity, answers[2]), 22, 10)
+          .toRawContentState();
+
+        expect(toRaw(wrapper)).toEqual(expected);
+      });
+
+      it("should not replace text for piped values that no longer exist", () => {
+        const answer4 = { id: "4", type: "TextField" };
+        const html = `<p><span data-piped="answers" data-id="4" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span></p>`;
+
+        wrapper = shallow(
+          <RichTextEditor {...props} fetchAnswers={fetch} value={html} />
+        );
+
+        const expected = new Raw()
+          .addBlock("[Piped Value] [answer 2]")
+          .addEntity(createPipedEntity(createEntity, answer4), 0, 13)
+          .addEntity(createPipedEntity(createEntity, answers[1]), 14, 10)
+          .toRawContentState();
+
+        expect(toRaw(wrapper)).toEqual(expected);
+      });
+
+      it("should do nothing if no entities are found", () => {
+        wrapper = shallow(<RichTextEditor {...props} fetchAnswers={fetch} />);
+        expect(fetch).not.toHaveBeenCalled();
+      });
+    });
+
+    it("should allow for new piped values to be added", () => {
+      const answer = {
+        id: "123",
+        label: "pipe",
+        type: "TextField"
+      };
+
+      wrapper.find(Toolbar).simulate("piping", answer);
+
+      const expected = new Raw()
+        .addBlock("[pipe]")
+        .addEntity(createPipedEntity(createEntity, answer), 0, 6)
+        .toRawContentState();
+
+      expect(toRaw(wrapper)).toEqual(expected);
+    });
   });
 });

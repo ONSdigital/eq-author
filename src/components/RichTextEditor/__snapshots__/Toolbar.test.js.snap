@@ -333,6 +333,11 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
       onFocus={[Function]}
     >
       <Toolbar__ButtonGroup>
+        <withApollo(withRouter(Menu))
+          disabled={true}
+          onItemChosen={[Function]}
+        />
+        <Toolbar__Separator />
         <Toolbar__Button
           disabled={true}
           icon="icon-heading.svg"

@@ -26,7 +26,7 @@ export default {
   }),
   answer: PropTypes.shape({
     id: PropTypes.string,
-    title: PropTypes.string,
+    label: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.oneOf(Object.values(answerTypes))
   }),
@@ -56,5 +56,9 @@ export default {
         count: PropTypes.number.isRequired
       }).isRequired
     }).isRequired
-  )
+  ),
+  apolloClient: PropTypes.shape({
+    query: PropTypes.func.isRequired,
+    readQuery: PropTypes.func.isRequired
+  })
 };

@@ -163,17 +163,24 @@ exports[`components/Menu should render a Menu 1`] = `
                     >
                       <MenuItem
                         id="item-1"
+                        item={
+                          Object {
+                            "id": "123",
+                          }
+                        }
                         lines={1}
                         onItemChosen={[Function]}
                       >
                         <MenuItem__StyledMenuItem
                           highlightedClassName="is-highlighted"
+                          id="item-1"
                           lines={1}
                           onItemChosen={[Function]}
                         >
                           <MenuItem
                             className="c3"
                             highlightedClassName="is-highlighted"
+                            id="item-1"
                             lines={1}
                             onItemChosen={[Function]}
                           >
@@ -200,17 +207,24 @@ exports[`components/Menu should render a Menu 1`] = `
                       </MenuItem>
                       <MenuItem
                         id="item-2"
+                        item={
+                          Object {
+                            "id": "123",
+                          }
+                        }
                         lines={1}
                         onItemChosen={[Function]}
                       >
                         <MenuItem__StyledMenuItem
                           highlightedClassName="is-highlighted"
+                          id="item-2"
                           lines={1}
                           onItemChosen={[Function]}
                         >
                           <MenuItem
                             className="c3"
                             highlightedClassName="is-highlighted"
+                            id="item-2"
                             lines={1}
                             onItemChosen={[Function]}
                           >
@@ -237,17 +251,24 @@ exports[`components/Menu should render a Menu 1`] = `
                       </MenuItem>
                       <MenuItem
                         id="item-3"
+                        item={
+                          Object {
+                            "id": "123",
+                          }
+                        }
                         lines={1}
                         onItemChosen={[Function]}
                       >
                         <MenuItem__StyledMenuItem
                           highlightedClassName="is-highlighted"
+                          id="item-3"
                           lines={1}
                           onItemChosen={[Function]}
                         >
                           <MenuItem
                             className="c3"
                             highlightedClassName="is-highlighted"
+                            id="item-3"
                             lines={1}
                             onItemChosen={[Function]}
                           >
@@ -279,6 +300,11 @@ exports[`components/Menu should render a Menu 1`] = `
                             <MenuList>
                               <MenuItem
                                 id="item-4.1"
+                                item={
+                                  Object {
+                                    "id": "123",
+                                  }
+                                }
                                 lines={1}
                                 onItemChosen={[Function]}
                               >
@@ -286,6 +312,11 @@ exports[`components/Menu should render a Menu 1`] = `
                               </MenuItem>
                               <MenuItem
                                 id="item-4.2"
+                                item={
+                                  Object {
+                                    "id": "123",
+                                  }
+                                }
                                 lines={1}
                                 onItemChosen={[Function]}
                               >
@@ -303,6 +334,11 @@ exports[`components/Menu should render a Menu 1`] = `
                               <MenuList>
                                 <MenuItem
                                   id="item-4.1"
+                                  item={
+                                    Object {
+                                      "id": "123",
+                                    }
+                                  }
                                   lines={1}
                                   onItemChosen={[Function]}
                                 >
@@ -310,6 +346,11 @@ exports[`components/Menu should render a Menu 1`] = `
                                 </MenuItem>
                                 <MenuItem
                                   id="item-4.2"
+                                  item={
+                                    Object {
+                                      "id": "123",
+                                    }
+                                  }
                                   lines={1}
                                   onItemChosen={[Function]}
                                 >
@@ -343,6 +384,11 @@ exports[`components/Menu should render a Menu 1`] = `
                                 <MenuList>
                                   <MenuItem
                                     id="item-4.1"
+                                    item={
+                                      Object {
+                                        "id": "123",
+                                      }
+                                    }
                                     lines={1}
                                     onItemChosen={[Function]}
                                   >
@@ -350,6 +396,11 @@ exports[`components/Menu should render a Menu 1`] = `
                                   </MenuItem>
                                   <MenuItem
                                     id="item-4.2"
+                                    item={
+                                      Object {
+                                        "id": "123",
+                                      }
+                                    }
                                     lines={1}
                                     onItemChosen={[Function]}
                                   >

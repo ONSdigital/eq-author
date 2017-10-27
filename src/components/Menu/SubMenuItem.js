@@ -41,7 +41,27 @@ const StyledSubMenuItem = styled(RMLSubMenuItem)`
   }
 `;
 
-const SubMenuItem = ({ children, ...otherProps }) => {
+const DisabledSubMenuItem = StyledSubMenuItem.withComponent("div").extend`
+  cursor: default;
+
+  &::after {
+    background: none;
+  }
+
+  & ${MenuItemInner} { /* stylelint-disable-line */
+    opacity: 0.5;
+  }
+`;
+
+const SubMenuItem = ({ children, disabled, ...otherProps }) => {
+  if (disabled) {
+    return (
+      <DisabledSubMenuItem>
+        <MenuItemInner>{children}</MenuItemInner>
+      </DisabledSubMenuItem>
+    );
+  }
+
   return (
     <StyledSubMenuItem
       {...otherProps}
@@ -59,7 +79,8 @@ const SubMenuItem = ({ children, ...otherProps }) => {
 
 SubMenuItem.propTypes = {
   children: PropTypes.node.isRequired,
-  lines: PropTypes.number.isRequired
+  lines: PropTypes.number.isRequired,
+  disabled: PropTypes.bool
 };
 
 SubMenuItem.defaultProps = {

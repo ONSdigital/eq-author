@@ -83,7 +83,7 @@
           "type": "string",
           "chance": "guid"
         },
-        "title": {
+        "label": {
           "type": "string",
           "faker": {
             "lorem.sentences": [1, false]
@@ -107,7 +107,7 @@
           ]
         }
       },
-      "required": ["id", "title", "type"]
+      "required": ["id", "label", "type"]
     }
   }
 }

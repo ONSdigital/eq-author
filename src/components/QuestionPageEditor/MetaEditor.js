@@ -6,21 +6,24 @@ import CustomPropTypes from "custom-prop-types";
 import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
 import styled from "styled-components";
-
+import { compose, withApollo } from "react-apollo";
 import { flip, partial } from "lodash";
+import getAnswersQuery from "graphql/getAnswers.graphql";
 
 const titleControls = {
-  emphasis: true
+  emphasis: true,
+  piping: true
 };
 const descriptionControls = {
   bold: true,
-  emphasis: true
+  emphasis: true,
+  piping: true
 };
 const guidanceControls = {
   heading: true,
   bold: true,
-  emphasis: false,
-  list: true
+  list: true,
+  piping: true
 };
 
 const GuidanceRichTextEditor = styled(RichTextEditor)`
@@ -31,8 +34,17 @@ const GuidanceRichTextEditor = styled(RichTextEditor)`
 
 export class StatelessMetaEditor extends React.Component {
   render() {
-    const { page, onChange, onUpdate } = this.props;
+    const { page, onChange, onUpdate, client } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
+
+    const fetchAnswers = ids => {
+      return client
+        .query({
+          query: getAnswersQuery,
+          variables: { ids }
+        })
+        .then(result => result.data.answers);
+    };
 
     return (
       <div>
@@ -45,6 +57,7 @@ export class StatelessMetaEditor extends React.Component {
             label="title"
             controls={titleControls}
             size="large"
+            fetchAnswers={fetchAnswers}
           />
         </Field>
         <Field id="description">
@@ -55,6 +68,7 @@ export class StatelessMetaEditor extends React.Component {
             label="guidance"
             controls={descriptionControls}
             multiline
+            fetchAnswers={fetchAnswers}
           />
         </Field>
         <Field id="guidance">
@@ -65,6 +79,7 @@ export class StatelessMetaEditor extends React.Component {
             label="guidance"
             controls={guidanceControls}
             multiline
+            fetchAnswers={fetchAnswers}
           />
         </Field>
       </div>
@@ -76,7 +91,10 @@ StatelessMetaEditor.propTypes = {
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   page: CustomPropTypes.page,
-  titleRef: PropTypes.func
+  titleRef: PropTypes.func,
+  client: CustomPropTypes.apolloClient.isRequired
 };
 
-export default withEntityEditor("page", pageFragment)(StatelessMetaEditor);
+export default compose(withApollo, withEntityEditor("page", pageFragment))(
+  StatelessMetaEditor
+);
