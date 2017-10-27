@@ -3494,9 +3494,9 @@ enzyme@^3.1.0:
     raf "^3.3.2"
     rst-selector-parser "^2.2.2"
 
-eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#e5caa74:
-  version "1.0.0"
-  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/e5caa744b1fe0962c21b19448531e64a42174b01"
+eq-author-graphql-schema@ONSdigital/eq-author-graphql-schema#a3c5b69:
+  version "0.1.1"
+  resolved "https://codeload.github.com/ONSdigital/eq-author-graphql-schema/tar.gz/a3c5b6982d2ec4c57f1ea6311bae7f8e35f12c8e"
 
 eq-author-mock-api@ONSdigital/eq-author-mock-api#4342f6a:
   version "1.0.0"

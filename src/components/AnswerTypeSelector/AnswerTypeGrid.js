@@ -5,6 +5,17 @@ import PropTypes from "prop-types";
 import { IconGrid } from "components/IconGrid";
 import AnswerTypeButton from "./AnswerTypeButton";
 import styled from "styled-components";
+import {
+  TEXTFIELD,
+  NUMBER,
+  CURRENCY,
+  TEXTAREA,
+  CHECKBOX,
+  RADIO,
+  DATE_RANGE,
+  TIME,
+  SELECT
+} from "constants/answer-types";
 
 const Menu = styled.div`
   background-color: white;
@@ -71,50 +82,49 @@ class AnswerTypeGrid extends React.Component {
         </Header>
         <IconGrid aria-labelledby={labelledby}>
           <AnswerTypeButton
-            type="Checkbox"
+            type={CHECKBOX}
             title="Checkbox"
             onClick={this.handleSelect}
             ref={this.saveButtonRef}
           />
           <AnswerTypeButton
-            type="Radio"
+            type={RADIO}
             title="Radio"
             onClick={this.handleSelect}
           />
           <AnswerTypeButton
-            type="TextField"
+            type={TEXTFIELD}
             title="Text"
             onClick={this.handleSelect}
           />
           <AnswerTypeButton
-            type="TextArea"
+            type={TEXTAREA}
             title="Textarea"
             onClick={this.handleSelect}
           />
           <AnswerTypeButton
-            type="Currency"
+            type={CURRENCY}
             title="Currency"
             onClick={this.handleSelect}
           />
           <AnswerTypeButton
-            type="Number"
+            type={NUMBER}
             title="Number"
             onClick={this.handleSelect}
           />
           <AnswerTypeButton
-            type="Date"
-            title="Date"
+            type={DATE_RANGE}
+            title="Date range"
             onClick={this.handleSelect}
-            disabled
           />
           <AnswerTypeButton
-            type="Time"
+            type={TIME}
             title="Time"
             onClick={this.handleSelect}
             disabled
           />
           <AnswerTypeButton
-            type="Select"
+            type={SELECT}
             title="Select list"
             onClick={this.handleSelect}
             disabled

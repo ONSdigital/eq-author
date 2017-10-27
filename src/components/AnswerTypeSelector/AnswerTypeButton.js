@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { IconGridButton } from "components/IconGrid";
 import { keys } from "lodash";
+import * as AnswerTypes from "constants/answer-types";
 
 import checkboxIcon from "./icons/checkbox.svg";
 import currencyIcon from "./icons/currency.svg";
@@ -14,15 +15,16 @@ import textfieldIcon from "./icons/textfield.svg";
 import timeIcon from "./icons/time.svg";
 
 export const icons = {
-  Checkbox: checkboxIcon,
-  Currency: currencyIcon,
-  Date: dateIcon,
-  Number: numberIcon,
-  Radio: radioIcon,
-  Select: selectIcon,
-  TextArea: textareaIcon,
-  TextField: textfieldIcon,
-  Time: timeIcon
+  [AnswerTypes.CHECKBOX]: checkboxIcon,
+  [AnswerTypes.CURRENCY]: currencyIcon,
+  [AnswerTypes.DATE]: dateIcon,
+  [AnswerTypes.DATE_RANGE]: dateIcon,
+  [AnswerTypes.NUMBER]: numberIcon,
+  [AnswerTypes.RADIO]: radioIcon,
+  [AnswerTypes.SELECT]: selectIcon,
+  [AnswerTypes.TEXTAREA]: textareaIcon,
+  [AnswerTypes.TEXTFIELD]: textfieldIcon,
+  [AnswerTypes.TIME]: timeIcon
 };
 export default class AnswerTypeButton extends React.Component {
   static propTypes = {

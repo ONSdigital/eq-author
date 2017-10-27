@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateRange should render 1`] = `
+<DateRange__Wrapper>
+  <DateRange />
+</DateRange__Wrapper>
+`;

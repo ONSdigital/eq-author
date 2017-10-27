@@ -9,7 +9,8 @@ import {
   TEXTAREA,
   CHECKBOX,
   RADIO,
-  TIME
+  TIME,
+  DATE_RANGE
 } from "constants/answer-types";
 
 describe("Answer Editor", () => {
@@ -96,6 +97,17 @@ describe("Answer Editor", () => {
       answer: {
         ...mockMultipleChoiceAnswer,
         type: RADIO
+      },
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render DateRange", () => {
+    const wrapper = createWrapper({
+      answer: {
+        ...mockAnswer,
+        type: DATE_RANGE
       },
       ...mockMutations
     });
