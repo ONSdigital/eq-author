@@ -4,8 +4,11 @@ import BaseLayout from "components/BaseLayout";
 
 let wrapper;
 
+const element = document.createElement("div");
+
 describe("components/BaseLayout", () => {
   beforeEach(() => {
+    jest.spyOn(document, "getElementById").mockImplementation(() => element);
     wrapper = shallow(
       <BaseLayout docTitle="BaseLayout Test">Children</BaseLayout>
     );
@@ -23,5 +26,9 @@ describe("components/BaseLayout", () => {
   it("should render a title", function() {
     wrapper.setProps({ title: "Title" });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 });

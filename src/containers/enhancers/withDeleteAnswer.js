@@ -16,15 +16,26 @@ export const deleteUpdater = (pageId, answerId) => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate }) => ({
+export const displayToast = (ownProps, pageId, answerId) => {
+  ownProps.raiseToast(`Answer${answerId}`, "Answer deleted", "undeleteAnswer", {
+    pageId,
+    answerId
+  });
+};
+
+export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteAnswer(pageId, answerId) {
     const answer = { id: answerId };
     const update = deleteUpdater(pageId, answerId);
 
-    return mutate({
+    const mutation = mutate({
       variables: { input: answer },
       update
     });
+
+    return mutation
+      .then(res => displayToast(ownProps, pageId, answerId))
+      .then(() => mutation);
   }
 });
 

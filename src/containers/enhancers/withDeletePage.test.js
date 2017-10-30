@@ -6,7 +6,7 @@ import {
 import fragment from "graphql/sectionFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
-  let history, mutate, result, ownProps, onAddPage;
+  let history, mutate, result, ownProps, onAddPage, raiseToast;
   let deletedPage, currentPage, currentSection, targetSection, questionnaire;
 
   beforeEach(() => {
@@ -47,6 +47,7 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
     };
 
     onAddPage = jest.fn(() => Promise.resolve());
+    raiseToast = jest.fn(() => Promise.resolve());
 
     ownProps = {
       questionnaire,
@@ -54,7 +55,8 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       sectionId: currentSection.id,
       pageId: currentPage.id,
       history,
-      onAddPage
+      onAddPage,
+      raiseToast
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -109,6 +111,22 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
         return expect(
           props.onDeletePage(deletedPage.sectionId, deletedPage.id)
         ).resolves.toBe(result);
+      });
+
+      it("should raise a toast message upon deletion of page", () => {
+        return props
+          .onDeletePage(deletedPage.sectionId, deletedPage.id)
+          .then(() => {
+            expect(raiseToast).toHaveBeenCalledWith(
+              `Page${deletedPage.id}`,
+              expect.stringContaining("Page"),
+              "undeletePage",
+              expect.objectContaining({
+                sectionId: deletedPage.sectionId,
+                pageId: deletedPage.id
+              })
+            );
+          });
       });
     });
   });

@@ -5,7 +5,7 @@ import {
 import fragment from "graphql/pageFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
-  let mutate, result;
+  let mutate, result, raiseToast, ownProps;
   let deletedAnswer, currentPage;
 
   beforeEach(() => {
@@ -24,6 +24,12 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
       data: {
         deleteAnswer: deletedAnswer
       }
+    };
+
+    raiseToast = jest.fn(() => Promise.resolve());
+
+    ownProps = {
+      raiseToast
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -52,7 +58,7 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
     let props;
 
     beforeEach(() => {
-      props = mapMutateToProps({ mutate });
+      props = mapMutateToProps({ ownProps, mutate });
     });
 
     it("should have a onDeleteAnswer prop", () => {
@@ -66,6 +72,20 @@ describe("containers/QuestionnaireDesignPage/withDeleteAnswer", () => {
             variables: {
               input: { id: deletedAnswer.id }
             }
+          })
+        );
+      });
+    });
+
+    it("should raise a toast after onDeleteAnswer is invoked", () => {
+      return props.onDeleteAnswer(currentPage.id, deletedAnswer.id).then(() => {
+        expect(raiseToast).toHaveBeenCalledWith(
+          `Answer${deletedAnswer.id}`,
+          expect.stringContaining("Answer"),
+          "undeleteAnswer",
+          expect.objectContaining({
+            pageId: currentPage.id,
+            answerId: deletedAnswer.id
           })
         );
       });

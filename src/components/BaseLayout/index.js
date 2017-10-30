@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import App from "components/App";
@@ -10,6 +11,8 @@ import DocumentTitle from "react-document-title";
 import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { colors } from "constants/theme";
+
+import ToastContainer from "containers/ToastContainer";
 
 const Wrapper = styled.div`
   background-color: ${colors.lighterGrey};
@@ -61,6 +64,10 @@ const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
             children
           )}
         </Main>
+        {ReactDOM.createPortal(
+          <ToastContainer />,
+          document.getElementById("toast")
+        )}
       </Wrapper>
     </App>
   </DocumentTitle>

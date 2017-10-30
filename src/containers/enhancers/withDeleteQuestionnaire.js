@@ -5,7 +5,7 @@ import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteQuestionnaire(questionnaireId) {
-    return mutate({
+    const mutation = mutate({
       variables: {
         input: { id: questionnaireId }
       },
@@ -16,8 +16,21 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
         }
       }
     });
+
+    return mutation
+      .then(() => displayToast(ownProps, questionnaireId))
+      .then(() => mutation);
   }
 });
+
+export const displayToast = (ownProps, questionnaireId) => {
+  ownProps.raiseToast(
+    `Questionnaire${questionnaireId}`,
+    "Questionnaire deleted",
+    "undeleteQuestionnaire",
+    { questionnaireId }
+  );
+};
 
 export const handleUpdate = (proxy, { data: { deleteQuestionnaire } }) => {
   const data = proxy.readQuery({ query: getQuestionnaireList });

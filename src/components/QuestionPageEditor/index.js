@@ -20,6 +20,9 @@ import withCreateOption from "containers/enhancers/withCreateOption";
 import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
 
+import * as ToastActionCreators from "actionCreators/toast";
+import { connect } from "react-redux";
+
 export class QPE extends React.Component {
   static propTypes = {
     onUpdateAnswer: PropTypes.func.isRequired,
@@ -101,6 +104,7 @@ export class QPE extends React.Component {
 }
 
 export default compose(
+  connect(null, ToastActionCreators),
   withCreateAnswer,
   withUpdateAnswer,
   withDeleteAnswer,

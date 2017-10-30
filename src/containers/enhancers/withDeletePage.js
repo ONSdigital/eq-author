@@ -24,6 +24,13 @@ export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
   return Promise.resolve();
 };
 
+export const displayToast = (ownProps, sectionId, pageId) => {
+  ownProps.raiseToast(`Page${pageId}`, "Page deleted", "undeletePage", {
+    sectionId,
+    pageId
+  });
+};
+
 export const createUpdater = (sectionId, pageId) => (proxy, result) => {
   const id = `Section${sectionId}`;
   const section = proxy.readFragment({ id, fragment });
@@ -42,10 +49,15 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     const page = { id: pageId };
     const update = createUpdater(sectionId, pageId);
 
-    return mutate({
+    const mutation = mutate({
       variables: { input: page },
       update
-    }).then(res => handleDeletion(ownProps, sectionId, pageId).then(() => res));
+    });
+
+    return mutation
+      .then(() => handleDeletion(ownProps, sectionId, pageId))
+      .then(() => displayToast(ownProps, sectionId, pageId))
+      .then(() => mutation);
   }
 });
 

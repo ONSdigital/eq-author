@@ -35,23 +35,27 @@ exports[`ToastList should render 1`] = `
   childFactory={[Function]}
   component={[Function]}
 >
-  <DefaultTransition
+  <Transition__ToastTransition
+    in={false}
     key=".0"
+    timeout={500}
   >
     <ToastList__ToastItem>
       <p>
         hello
       </p>
     </ToastList__ToastItem>
-  </DefaultTransition>
-  <DefaultTransition
+  </Transition__ToastTransition>
+  <Transition__ToastTransition
+    in={false}
     key=".1"
+    timeout={500}
   >
     <ToastList__ToastItem>
       <p>
         world
       </p>
     </ToastList__ToastItem>
-  </DefaultTransition>
+  </Transition__ToastTransition>
 </TransitionGroup>
 `;
