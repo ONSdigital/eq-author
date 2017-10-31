@@ -21,8 +21,13 @@ describe("MultipleChoiceAnswer", () => {
     ]
   };
 
+  const option = {
+    id: "123",
+    __typename: "Option"
+  };
+
   let mockHandlers = {
-    onAddOption: jest.fn(),
+    onAddOption: jest.fn(() => Promise.resolve(option)),
     onUpdateOption: jest.fn(),
     onDeleteOption: jest.fn(),
     onChange: jest.fn()
@@ -45,7 +50,11 @@ describe("MultipleChoiceAnswer", () => {
 
   it("should add a new option when add button is clicked", () => {
     const preventDefault = jest.fn();
-    wrapper.find(Button).first().simulate("click", { preventDefault });
+    wrapper
+      .find(Button)
+      .first()
+      .simulate("click", { preventDefault });
+
     expect(mockHandlers.onAddOption).toHaveBeenCalledWith(answer.id);
   });
 
@@ -85,7 +94,10 @@ describe("MultipleChoiceAnswer", () => {
 
     it("should handle deleting an option", () => {
       const optionId = answer.options[0].id;
-      wrapper.find(Option).first().simulate("delete", optionId);
+      wrapper
+        .find(Option)
+        .first()
+        .simulate("delete", optionId);
 
       expect(mockHandlers.onDeleteOption).toHaveBeenCalledWith(
         optionId,

@@ -75,5 +75,9 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
         })
       );
     });
+
+    it("should unwrap the entity from the apollo result", () => {
+      expect(props.onAddAnswer("Checkbox")).resolves.toBe(answer);
+    });
   });
 });

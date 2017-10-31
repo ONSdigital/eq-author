@@ -64,5 +64,9 @@ describe("containers/QuestionnaireDesignPage/withCreateOption", () => {
         );
       });
     });
+
+    it("should unwrap the entity from the apollo result", () => {
+      expect(props.onAddOption(answer.id)).resolves.toBe(newOption);
+    });
   });
 });

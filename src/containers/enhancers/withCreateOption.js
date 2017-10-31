@@ -24,7 +24,7 @@ export const mapMutateToProps = ({ mutate }) => ({
     return mutate({
       variables: { input: option },
       update
-    });
+    }).then(res => res.data.createOption);
   }
 });
 

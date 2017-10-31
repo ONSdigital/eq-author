@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { filter } from "graphql-anywhere";
+import getIdForObject from "utils/getIdForObject";
 
 const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
   return class EntityEditor extends React.Component {
@@ -18,7 +19,7 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       const entity = props[entityPropName];
 
       this.state = {
-        [entityPropName]: filter(fragment, entity)
+        [entityPropName]: entity
       };
     }
 
@@ -30,9 +31,17 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       }
     }
 
+    getEntity() {
+      return this.state[entityPropName];
+    }
+
+    getFilteredEntity() {
+      return filter(fragment, this.getEntity());
+    }
+
     handleChange = ({ name, value }, cb) => {
       const entity = {
-        ...this.state[entityPropName],
+        ...this.getEntity(),
         [name]: value
       };
 
@@ -40,16 +49,20 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
     };
 
     handleUpdate = () => {
-      this.props.onUpdate(this.state[entityPropName]);
+      this.props.onUpdate(this.getFilteredEntity());
     };
 
     handleSubmit = e => {
       e.preventDefault();
-      this.props.onSubmit(this.state[entityPropName]);
+      this.props.onSubmit(this.getFilteredEntity());
     };
 
     render() {
-      const props = { [entityPropName]: this.state[entityPropName] };
+      const entity = this.getEntity();
+      const props = {
+        [entityPropName]: entity,
+        id: getIdForObject(entity)
+      };
 
       return (
         <WrappedComponent

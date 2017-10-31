@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { compose } from "react-apollo";
 import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
+import focusOnEntity from "utils/focusOnEntity";
 
 import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -38,6 +39,10 @@ export class QPE extends React.Component {
     this.props.onDeleteAnswer(this.props.page.id, answerId);
   };
 
+  handleAddAnswer = answerType => {
+    return this.props.onAddAnswer(answerType).then(focusOnEntity);
+  };
+
   isFocused(entity) {
     return this.props.focused === getIdForObject(entity);
   }
@@ -47,7 +52,6 @@ export class QPE extends React.Component {
       page,
       onUpdatePage,
       onUpdateAnswer,
-      onAddAnswer,
       onAddOption,
       onUpdateOption,
       onDeleteOption,
@@ -68,7 +72,7 @@ export class QPE extends React.Component {
           />
         </CanvasSection>
         <TransitionGroup>
-          {page.answers.map(answer =>
+          {page.answers.map(answer => (
             <SlideTransition key={getIdForObject(answer)}>
               <CanvasSection
                 id={getIdForObject(answer)}
@@ -86,10 +90,10 @@ export class QPE extends React.Component {
                 />
               </CanvasSection>
             </SlideTransition>
-          )}
+          ))}
         </TransitionGroup>
         <BasicSection>
-          <AnswerTypeSelector onSelect={onAddAnswer} />
+          <AnswerTypeSelector onSelect={this.handleAddAnswer} />
         </BasicSection>
       </div>
     );

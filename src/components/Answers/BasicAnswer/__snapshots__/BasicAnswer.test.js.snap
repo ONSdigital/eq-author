@@ -6,6 +6,7 @@ exports[`BasicAnswer should render 1`] = `
     id="label"
   >
     <withSeamlessness(withChangeHandler(WrappingTextArea))
+      data-autofocus={true}
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"

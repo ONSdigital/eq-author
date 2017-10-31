@@ -10,11 +10,16 @@ describe("Question Page Editor", () => {
   let mockMutations;
   let page;
 
+  const answer = {
+    id: "123",
+    __typename: "Answer"
+  };
+
   beforeEach(() => {
     mockMutations = {
       onUpdateAnswer: jest.fn(),
       onUpdatePage: jest.fn(),
-      onAddAnswer: jest.fn(),
+      onAddAnswer: jest.fn(() => Promise.resolve(answer)),
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onDeleteAnswer: jest.fn(),
@@ -54,7 +59,11 @@ describe("Question Page Editor", () => {
   });
 
   it("should delete the correct answer", () => {
-    wrapper.find(AnswerEditor).first().simulate("deleteAnswer", "2");
+    wrapper
+      .find(AnswerEditor)
+      .first()
+      .simulate("deleteAnswer", "2");
+
     expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(
       page.id,
       page.answers[1].id
