@@ -107,7 +107,7 @@
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
     "draftjs-to-html": "^0.7.6",
-    "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#e5caa74",
+    "eq-author-graphql-schema": "ONSdigital/eq-author-graphql-schema#a3c5b69",
     "eq-author-mock-api": "ONSdigital/eq-author-mock-api#4342f6a",
     "eslint-config-eq-author": "^1.1.0",
     "graphql-anywhere": "^3.1.0",

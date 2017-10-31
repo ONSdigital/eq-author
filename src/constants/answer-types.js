@@ -5,5 +5,6 @@ export const TEXTAREA = "TextArea";
 export const CURRENCY = "Currency";
 export const NUMBER = "Number";
 export const DATE = "Date";
+export const DATE_RANGE = "DateRange";
 export const TIME = "Time";
 export const SELECT = "Select";

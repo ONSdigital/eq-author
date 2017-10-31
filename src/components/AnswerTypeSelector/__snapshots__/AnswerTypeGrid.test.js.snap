@@ -48,10 +48,9 @@ exports[`components/AnswerTypeGrid should render 1`] = `
       type="Number"
     />
     <AnswerTypeButton
-      disabled={true}
       onClick={[Function]}
-      title="Date"
-      type="Date"
+      title="Date range"
+      type="DateRange"
     />
     <AnswerTypeButton
       disabled={true}

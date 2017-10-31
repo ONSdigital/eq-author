@@ -7,13 +7,15 @@ import DeleteButton from "components/DeleteButton";
 import TextAnswer from "components/Answers/TextAnswer";
 import NumberAnswer from "components/Answers/NumberAnswer";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
+import DateRange from "components/Answers/DateRange";
 import {
   TEXTFIELD,
   NUMBER,
   CURRENCY,
   TEXTAREA,
   CHECKBOX,
-  RADIO
+  RADIO,
+  DATE_RANGE
 } from "constants/answer-types";
 import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 import Tooltip from "components/Tooltip";
@@ -51,6 +53,8 @@ class AnswerEditor extends React.Component {
             {...this.props}
           />
         );
+      case DATE_RANGE:
+        return <DateRange {...this.props} />;
       default:
         throw new TypeError(`Unknown answer type: ${answer.type}`);
     }
