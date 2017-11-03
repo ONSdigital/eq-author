@@ -13,12 +13,11 @@ const StyledPanelTitle = styled(PanelTitle)`
   user-select: none;
   position: relative;
   padding: 0.65em 4px;
-  font-size: 0.6em;
+  font-size: 0.7em;
 
   & button {
     color: ${colors.text};
     font-size: 1em;
-    text-transform: uppercase;
     font-weight: 900;
     background: none;
     border: none;
