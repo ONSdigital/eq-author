@@ -5,12 +5,12 @@ import styled from "styled-components";
 import { Accordion, AccordionPanel } from "components/Accordion";
 import { colors } from "constants/theme";
 import PageProperties from "../PageProperties/index";
-import AnswerProperties from "../AnswerProperties/index";
 import ScrollPane from "components/ScrollPane";
 import { noop } from "lodash";
 import getIdForObject from "utils/getIdForObject";
+import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
 
-const OuterDiv = styled.div`
+const PropertiesPane = styled.div`
   background: ${colors.white};
   display: flex;
   flex-direction: column;
@@ -19,20 +19,21 @@ const OuterDiv = styled.div`
   padding: 0;
   margin: 0;
   border-left: 2px solid #eee;
-
-  h2 {
-    font-size: 0.6em;
-    text-transform: uppercase;
-    font-weight: 900;
-    margin: 0;
-    line-height: 1;
-    position: relative;
-    padding: 1.2em 1.5em;
-    border-bottom: 1px solid ${colors.borders};
-  }
+  font-size: 1em;
 `;
 
-const InnerDiv = styled.div`
+const PropertiesPanelTitle = styled.h2`
+  font-size: 0.6em;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1.5em;
+  position: relative;
+  padding: 1.7em 1.4em 1.2em;
+  border-bottom: 1px solid ${colors.borders};
+`;
+
+const PropertiesPaneBody = styled.div`
   background: ${colors.white};
   display: flex;
   width: 100%;
@@ -56,9 +57,9 @@ class PropertiesPanel extends React.Component {
 
   render() {
     return (
-      <OuterDiv>
-        <h2>Properties</h2>
-        <InnerDiv>
+      <PropertiesPane>
+        <PropertiesPanelTitle>Properties</PropertiesPanelTitle>
+        <PropertiesPaneBody>
           <ScrollPane>
             <Accordion>
               <AccordionPanel id={getIdForObject(this.props.page)} title="Page">
@@ -77,17 +78,16 @@ class PropertiesPanel extends React.Component {
                   id={getIdForObject(answer)}
                   title={`Answer ${index + 1}`}
                 >
-                  <AnswerProperties
+                  <AnswerPropertiesContainer
                     answer={answer}
-                    onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
                   />
                 </AccordionPanel>
               ))}
             </Accordion>
           </ScrollPane>
-        </InnerDiv>
-      </OuterDiv>
+        </PropertiesPaneBody>
+      </PropertiesPane>
     );
   }
 }

@@ -1,57 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Properties should render 1`] = `
-<Form
-  onSubmit={[Function]}
+<AnswerProperties__FlexField
+  id="answer1-required"
+  last={true}
 >
-  <AnswerProperties__FlexField
-    id="answer.required"
-  >
-    <Label
-      inline={true}
-      small={true}
-    >
-      Required
-    </Label>
-    <AnswerProperties__StyledCheckboxInput
-      answer={
-        Object {
-          "description": "answer-description",
-          "title": "answer-title",
-          "type": "TextField",
-        }
+  <AnswerProperties__StyledLabel>
+    Answer required
+  </AnswerProperties__StyledLabel>
+  <AnswerProperties__StyledCheckboxInput
+    answer={
+      Object {
+        "description": "answer-description",
+        "id": "1",
+        "mandatory": false,
+        "title": "answer-title",
+        "type": "TextField",
       }
-      loading={false}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onSubmit={[Function]}
-      onUpdate={[Function]}
-      type="checkbox"
-    />
-  </AnswerProperties__FlexField>
-  <Field
-    id="answer.validation.message"
-  >
-    <Label
-      small={true}
-    >
-      Custom validation message
-    </Label>
-    <withChangeHandler(TextArea)
-      answer={
-        Object {
-          "description": "answer-description",
-          "title": "answer-title",
-          "type": "TextField",
-        }
-      }
-      loading={false}
-      onBlur={[Function]}
-      onChange={[Function]}
-      onSubmit={[Function]}
-      onUpdate={[Function]}
-      placeholder="Optional"
-    />
-  </Field>
-</Form>
+    }
+    defaultChecked={false}
+    loading={false}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onSubmit={[Function]}
+    onUpdate={[Function]}
+    onUpdateAnswer={[Function]}
+    type="checkbox"
+  />
+</AnswerProperties__FlexField>
 `;

@@ -1,5 +1,4 @@
 import React from "react";
-import Form from "components/Forms/Form";
 import Input from "components/Forms/Input";
 
 import { TEXTFIELD } from "constants/answer-types";
@@ -17,9 +16,11 @@ let handleBlur;
 let answerProperties;
 
 const answer = {
+  id: "1",
   title: "answer-title",
   description: "answer-description",
-  type: TEXTFIELD
+  type: TEXTFIELD,
+  mandatory: false
 };
 
 describe("Answer Properties", () => {
@@ -29,15 +30,16 @@ describe("Answer Properties", () => {
     handleChange = jest.fn();
     handleBlur = jest.fn();
 
-    answerProperties = () =>
+    answerProperties = () => (
       <AnswerProperties
         answer={answer}
         onUpdate={handleUpdate}
         loading={false}
         onSubmit={handleSubmit}
-        onChange={handleChange}
+        onUpdateAnswer={handleChange}
         onBlur={handleBlur}
-      />;
+      />
+    );
 
     wrapper = shallow(answerProperties());
   });
@@ -51,28 +53,18 @@ describe("Answer Properties", () => {
       wrapper = mount(answerProperties());
     });
 
-    it("should handle submit event", () => {
-      wrapper.find(Form).simulate("submit");
-      expect(handleSubmit).toHaveBeenCalled();
-    });
-
-    it("should handle change event for checkbox", () => {
-      wrapper.find(Input).simulate("change");
-      expect(handleChange).toHaveBeenCalled();
+    it("should handle change event for mandatory checkbox", () => {
+      wrapper
+        .find(Input)
+        .simulate("change", { target: { type: "checkbox", checked: true } });
+      expect(handleChange).toHaveBeenCalledWith({
+        id: "1",
+        mandatory: true
+      });
     });
 
     it("should handle blur event for checkbox", () => {
       wrapper.find(Input).simulate("blur");
-      expect(handleBlur).toHaveBeenCalled();
-    });
-
-    it("should handle change event for text area", () => {
-      wrapper.find("textarea").simulate("change");
-      expect(handleChange).toHaveBeenCalled();
-    });
-
-    it("should handle blur event for text area", () => {
-      wrapper.find("textarea").simulate("blur");
       expect(handleBlur).toHaveBeenCalled();
     });
   });
