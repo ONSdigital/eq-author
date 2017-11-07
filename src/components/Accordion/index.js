@@ -12,18 +12,18 @@ const StyledPanelTitle = styled(PanelTitle)`
   margin: 0;
   user-select: none;
   position: relative;
-  padding: 0.65em 4px;
-  font-size: 0.7em;
+  padding: 0.25em;
+  font-size: 1em;
 
   & button {
     color: ${colors.text};
-    font-size: 1em;
+    font-size: 0.75em;
     font-weight: 900;
     background: none;
     border: none;
     width: 100%;
     height: 100%;
-    padding: 1em;
+    padding: 0.6em 1em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -52,8 +52,21 @@ const StyledPanelTitle = styled(PanelTitle)`
 `;
 
 const StyledPanelBody = styled(PanelBody)`
-  padding: 1em;
+  padding: 0.6em 1em;
   position: relative;
+  font-size: 1em;
+
+  label,
+  input,
+  select,
+  textarea {
+    font-size: 0.75em;
+    font-weight: 500;
+  }
+
+  form {
+    margin-bottom: 0;
+  }
 
   &[aria-hidden="true"] {
     display: none;
