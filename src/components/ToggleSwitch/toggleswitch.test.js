@@ -1,4 +1,6 @@
+/* eslint-disable react/no-find-dom-node */
 import React from "react";
+import ReactDOM from "react-dom";
 import { shallow, mount } from "enzyme";
 import ToggleSwitch, {
   HiddenInput,
@@ -13,16 +15,20 @@ describe("ToggleSwitch", () => {
   let handleChange;
   let wrapper;
   let props;
+  let focus;
 
   beforeEach(() => {
     handleChange = jest.fn();
 
     props = {
+      id: "test",
       label: "Test switch",
       name: "test",
       onChange: handleChange,
       checked: false
     };
+
+    focus = jest.fn();
 
     wrapper = createWrapper(props);
   });
@@ -93,10 +99,26 @@ describe("ToggleSwitch", () => {
   });
 
   it("should invoke onChange prop when clicked", () => {
+    wrapper = createWrapper(props, mount);
     wrapper.find(ToggleSwitchBackground).simulate("click");
     expect(handleChange).toHaveBeenCalledWith({
       name: props.name,
       value: true
     });
+  });
+
+  it("should focus on checkbox when clicking on the toggle button", () => {
+    wrapper = createWrapper(props, mount);
+    const HiddenCheckboxInput = wrapper.find(HiddenInput).instance();
+
+    const domElement = ReactDOM.findDOMNode(HiddenCheckboxInput);
+    domElement.focus = focus;
+
+    wrapper.find(ToggleSwitchBackground).simulate("click");
+    expect(domElement.focus).toHaveBeenCalled();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 });

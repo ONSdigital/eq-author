@@ -11,7 +11,6 @@ let wrapper;
 let handleUpdate;
 let handleSubmit;
 let handleChange;
-let handleBlur;
 
 let answerProperties;
 
@@ -28,7 +27,6 @@ describe("Answer Properties", () => {
     handleUpdate = jest.fn();
     handleSubmit = jest.fn();
     handleChange = jest.fn();
-    handleBlur = jest.fn();
 
     answerProperties = () => (
       <AnswerProperties
@@ -37,7 +35,6 @@ describe("Answer Properties", () => {
         loading={false}
         onSubmit={handleSubmit}
         onUpdateAnswer={handleChange}
-        onBlur={handleBlur}
       />
     );
 
@@ -61,11 +58,6 @@ describe("Answer Properties", () => {
         id: "1",
         mandatory: true
       });
-    });
-
-    it("should handle blur event for checkbox", () => {
-      wrapper.find(Input).simulate("blur");
-      expect(handleBlur).toHaveBeenCalled();
     });
   });
 });

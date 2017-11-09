@@ -1,31 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Properties should render 1`] = `
-<AnswerProperties__FlexField
-  id="answer1-required"
-  last={true}
+<AnswerProperties__InlineField
+  id="mandatory"
 >
-  <AnswerProperties__StyledLabel>
+  <Label
+    inline={true}
+    small={true}
+  >
     Answer required
-  </AnswerProperties__StyledLabel>
-  <AnswerProperties__StyledCheckboxInput
-    answer={
-      Object {
-        "description": "answer-description",
-        "id": "1",
-        "mandatory": false,
-        "title": "answer-title",
-        "type": "TextField",
-      }
-    }
-    defaultChecked={false}
-    loading={false}
-    onBlur={[Function]}
+  </Label>
+  <ToggleSwitch
+    checked={false}
+    name="mandatory"
     onChange={[Function]}
-    onSubmit={[Function]}
-    onUpdate={[Function]}
-    onUpdateAnswer={[Function]}
-    type="checkbox"
   />
-</AnswerProperties__FlexField>
+</AnswerProperties__InlineField>
 `;

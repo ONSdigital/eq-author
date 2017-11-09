@@ -6,6 +6,16 @@ import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
 import { CenteredPanel } from "components/Panel";
 import withEntityEditor from "components/withEntityEditor";
 import questionnaireFragment from "graphql/fragments/questionnaire.graphql";
+import ToggleSwitch from "components/ToggleSwitch";
+import styled from "styled-components";
+
+const InlineField = styled(Field)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2em 0;
+`;
 
 export const StatelessQuestionnaireMeta = ({
   questionnaire,
@@ -34,22 +44,8 @@ export const StatelessQuestionnaireMeta = ({
             rows={4}
             onChange={onChange}
             onBlur={onUpdate}
-            required
           />
         </Field>
-        <Grid>
-          <Column cols={6}>
-            <Field id="surveyId">
-              <Label>Survey ID</Label>
-              <Input
-                defaultValue={questionnaire.surveyId}
-                onChange={onChange}
-                onBlur={onUpdate}
-                required
-              />
-            </Field>
-          </Column>
-        </Grid>
         <Grid>
           <Column cols={6}>
             <Field id="theme">
@@ -74,15 +70,32 @@ export const StatelessQuestionnaireMeta = ({
             </Field>
           </Column>
         </Grid>
-        <Field id="navigation">
-          <Input
-            type="checkbox"
-            defaultChecked={questionnaire.navigation}
-            onChange={onChange}
-            onBlur={onUpdate}
-          />
-          <Label inline>Navigation</Label>
-        </Field>
+        <Grid>
+          <Column cols={6}>
+            <InlineField id="navigation">
+              <Label inline>Navigation</Label>
+              <ToggleSwitch
+                name="navigation"
+                onChange={onChange}
+                onBlur={onUpdate}
+                checked={questionnaire.navigation}
+              />
+            </InlineField>
+          </Column>
+        </Grid>
+        <Grid>
+          <Column cols={6}>
+            <InlineField id="summary">
+              <Label inline>Summary on confirmation page</Label>
+              <ToggleSwitch
+                name="summary"
+                onChange={onChange}
+                onBlur={onUpdate}
+                checked={questionnaire.summary}
+              />
+            </InlineField>
+          </Column>
+        </Grid>
         {children}
       </Form>
     </CenteredPanel>

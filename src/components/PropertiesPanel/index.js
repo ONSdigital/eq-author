@@ -9,6 +9,7 @@ import ScrollPane from "components/ScrollPane";
 import { noop } from "lodash";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
+import QuestionnairePropertiesContainer from "containers/QuestionnairePropertiesContainer";
 
 const PropertiesPane = styled.div`
   background: ${colors.white};
@@ -44,6 +45,7 @@ const PropertiesPaneBody = styled.div`
 
 class PropertiesPanel extends React.Component {
   static propTypes = {
+    questionnaire: CustomPropTypes.questionnaire,
     page: CustomPropTypes.page,
     orderMin: PropTypes.number.isRequired,
     orderMax: PropTypes.number.isRequired
@@ -62,6 +64,14 @@ class PropertiesPanel extends React.Component {
         <PropertiesPaneBody>
           <ScrollPane>
             <Accordion>
+              <AccordionPanel
+                id={getIdForObject(this.props.questionnaire)}
+                title="Questionnaire"
+              >
+                <QuestionnairePropertiesContainer
+                  questionnaire={this.props.questionnaire}
+                />
+              </AccordionPanel>
               <AccordionPanel id={getIdForObject(this.props.page)} title="Page">
                 <PageProperties
                   page={this.props.page}

@@ -101,7 +101,12 @@ export class QuestionnaireDesignPage extends Component {
             </ScrollPane>
           </Column>
           <Column cols={2} gutters={false}>
-            <PropertiesPanel page={page} orderMin={1} orderMax={10} />
+            <PropertiesPanel
+              questionnaire={questionnaire}
+              page={page}
+              orderMin={1}
+              orderMax={10}
+            />
           </Column>
         </Grid>
       </BaseLayout>

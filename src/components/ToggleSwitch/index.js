@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { uniqueId } from "lodash";
@@ -56,9 +57,11 @@ const ToggleSwitchKnob = styled.div`
   content: "";
   position: relative;
   top: ${props => -((props.size - props.height) / 2)}em;
-  left: ${props => (props.checked ? props.width - props.size : 0)}em;
+  transform: translateX(
+    ${props => (props.checked ? props.width - props.size : 0)}em
+  );
   border-radius: 50%;
-  transition: left 100ms ease-in-out;
+  transition: transform 100ms ease-in-out;
   /* stylelint-disable */
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
   /* stylelint-enable */
@@ -71,7 +74,9 @@ const ToggleSwitchKnob = styled.div`
     height: ${props => props.size * glowScale}em;
     position: relative;
     top: ${props => -((props.size * glowScale - props.size) / 2)}em;
-    left: ${props => -((props.size * glowScale - props.size) / 2)}em;
+    transform: translateX(
+      ${props => -((props.size * glowScale - props.size) / 2)}em
+    );
     border-radius: 50%;
     opacity: 0;
     transition: opacity 100ms ease-in-out;
@@ -132,10 +137,16 @@ class ToggleSwitch extends React.Component {
   };
 
   handleToggle = () => {
+    // eslint-disable-next-line react/no-find-dom-node
+    ReactDOM.findDOMNode(this.hiddenInput).focus();
     this.props.onChange({
-      name: this.props.name,
+      name: this.id,
       value: !this.props.checked
     });
+  };
+
+  inputRef = input => {
+    this.hiddenInput = input;
   };
 
   render() {
@@ -147,6 +158,7 @@ class ToggleSwitch extends React.Component {
           type="checkbox"
           onChange={onChange}
           checked={checked}
+          ref={this.inputRef}
         />
         <ToggleSwitchBackground
           checked={checked}

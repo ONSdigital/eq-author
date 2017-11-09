@@ -8,7 +8,6 @@ import { ApolloProvider } from "react-apollo";
 
 import QuestionnairesPage from "containers/QuestionnairesPage";
 import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage";
-import QuestionnaireMetaPage from "containers/QuestionnaireMetaPage";
 import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
 import NotFoundPage from "containers/NotFoundPage";
 
@@ -21,10 +20,6 @@ const App = ({ store, client, history }) => (
           <Route
             path="/questionnaire/create"
             component={QuestionnaireCreatePage}
-          />
-          <Route
-            path="/questionnaire/:questionnaireId/meta"
-            component={QuestionnaireMetaPage}
           />
           <Route
             path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"

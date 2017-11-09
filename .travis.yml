@@ -23,8 +23,7 @@ before_script:
  - set -e
 
 script:
-  - yarn lint -- --max-warnings=0
-  - yarn lint:css
+  - yarn lint
   - yarn coverage
   - ./scripts/run_smoketests_author.sh
   - ./scripts/run_smoketests_storybook.sh

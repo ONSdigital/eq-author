@@ -7,6 +7,11 @@ const createWrapper = (props, render = shallow) => {
   return render(<PropertiesPanel {...props} />);
 };
 
+const questionnaire = {
+  id: "1",
+  __typename: "Questionnaire"
+};
+
 const page = {
   id: "1",
   __typename: "Page",
@@ -17,7 +22,8 @@ const page = {
 const props = {
   orderMin: 1,
   orderMax: 10,
-  page
+  page,
+  questionnaire
 };
 
 describe("PropertiesPanel", () => {

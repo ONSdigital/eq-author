@@ -7,7 +7,7 @@ exports[`ToggleSwitch should render 1`] = `
 >
   <ToggleSwitch__HiddenInput
     checked={false}
-    id="toggle-1"
+    id="test"
     onChange={[Function]}
     type="checkbox"
   />
@@ -105,7 +105,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   position: relative;
 }
 
-.c1:focus + .c4 .bpfMaN::before {
+.c1:focus + .c4 .crOzYl::before {
   opacity: 0.12;
 }
 
@@ -117,10 +117,13 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   content: "";
   position: relative;
   top: 0em;
-  left: 0em;
+  -webkit-transform: translateX( 0em );
+  -ms-transform: translateX( 0em );
+  transform: translateX( 0em );
   border-radius: 50%;
-  -webkit-transition: left 100ms ease-in-out;
-  transition: left 100ms ease-in-out;
+  -webkit-transition: -webkit-transform 100ms ease-in-out;
+  -webkit-transition: transform 100ms ease-in-out;
+  transition: transform 100ms ease-in-out;
   box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
 }
 
@@ -132,7 +135,9 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   height: 3em;
   position: relative;
   top: -0.5em;
-  left: -0.5em;
+  -webkit-transform: translateX( -0.5em );
+  -ms-transform: translateX( -0.5em );
+  transform: translateX( -0.5em );
   border-radius: 50%;
   opacity: 0;
   -webkit-transition: opacity 100ms ease-in-out;
@@ -343,10 +348,13 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   content: "";
   position: relative;
   top: -0.19999999999999996em;
-  left: 1.2000000000000002em;
+  -webkit-transform: translateX( 1.2000000000000002em );
+  -ms-transform: translateX( 1.2000000000000002em );
+  transform: translateX( 1.2000000000000002em );
   border-radius: 50%;
-  -webkit-transition: left 100ms ease-in-out;
-  transition: left 100ms ease-in-out;
+  -webkit-transition: -webkit-transform 100ms ease-in-out;
+  -webkit-transition: transform 100ms ease-in-out;
+  transition: transform 100ms ease-in-out;
   box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
 }
 
@@ -358,7 +366,9 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   height: 2.0999999999999996em;
   position: relative;
   top: -0.34999999999999987em;
-  left: -0.34999999999999987em;
+  -webkit-transform: translateX( -0.34999999999999987em );
+  -ms-transform: translateX( -0.34999999999999987em );
+  transform: translateX( -0.34999999999999987em );
   border-radius: 50%;
   opacity: 0;
   -webkit-transition: opacity 100ms ease-in-out;
@@ -539,10 +549,13 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   content: "";
   position: relative;
   top: -0.19999999999999996em;
-  left: 1.2000000000000002em;
+  -webkit-transform: translateX( 1.2000000000000002em );
+  -ms-transform: translateX( 1.2000000000000002em );
+  transform: translateX( 1.2000000000000002em );
   border-radius: 50%;
-  -webkit-transition: left 100ms ease-in-out;
-  transition: left 100ms ease-in-out;
+  -webkit-transition: -webkit-transform 100ms ease-in-out;
+  -webkit-transition: transform 100ms ease-in-out;
+  transition: transform 100ms ease-in-out;
   box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
 }
 
@@ -554,7 +567,9 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   height: 2.0999999999999996em;
   position: relative;
   top: -0.34999999999999987em;
-  left: -0.34999999999999987em;
+  -webkit-transform: translateX( -0.34999999999999987em );
+  -ms-transform: translateX( -0.34999999999999987em );
+  transform: translateX( -0.34999999999999987em );
   border-radius: 50%;
   opacity: 0;
   -webkit-transition: opacity 100ms ease-in-out;
