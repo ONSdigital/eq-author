@@ -11,10 +11,10 @@ const PageProperties = ({
   onChange,
   onSubmit,
   onBlur
-}) =>
+}) => (
   <Form onSubmit={onSubmit}>
     <Field id="page.type">
-      <Label>Page type</Label>
+      <Label small>Page type</Label>
       <Select
         options={["Question", "Interstitial"]}
         defaultValue={page.type}
@@ -23,7 +23,7 @@ const PageProperties = ({
       />
     </Field>
     <Field id="page.order">
-      <Label>Order</Label>
+      <Label small>Order</Label>
       <Number
         value={page.order || "0"}
         onChange={onChange}
@@ -32,7 +32,8 @@ const PageProperties = ({
         max={orderMax}
       />
     </Field>
-  </Form>;
+  </Form>
+);
 
 PageProperties.propTypes = {
   page: CustomPropTypes.page.isRequired,

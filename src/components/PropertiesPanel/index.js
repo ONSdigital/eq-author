@@ -19,16 +19,16 @@ const OuterDiv = styled.div`
   padding: 0;
   margin: 0;
   border-left: 2px solid #eee;
-  font-size: 1em;
 
   h2 {
     font-size: 0.6em;
     text-transform: uppercase;
     font-weight: 900;
     margin: 0;
-    line-height: 1.5em;
+    line-height: 1;
     position: relative;
-    padding: 1.7em 1.4em 1.2em;
+    padding: 1.2em 1.5em;
+    border-bottom: 1px solid ${colors.borders};
   }
 `;
 

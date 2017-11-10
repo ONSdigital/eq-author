@@ -7,17 +7,16 @@ import chevronIcon from "components/Accordion/chevron.svg";
 import { colors } from "constants/theme";
 const KEY_CODE_ESCAPE = 27;
 
-const StyledPanelTitle = styled(PanelTitle)`
+const AccordionTitle = styled(PanelTitle)`
   cursor: pointer;
   margin: 0;
   user-select: none;
   position: relative;
   padding: 0.25em;
-  font-size: 1em;
 
   & button {
     color: ${colors.text};
-    font-size: 0.75em;
+    font-size: 0.7em;
     font-weight: 900;
     background: none;
     border: none;
@@ -51,22 +50,9 @@ const StyledPanelTitle = styled(PanelTitle)`
   }
 `;
 
-const StyledPanelBody = styled(PanelBody)`
+const AccordionBody = styled(PanelBody)`
   padding: 0.6em 1em;
   position: relative;
-  font-size: 1em;
-
-  label,
-  input,
-  select,
-  textarea {
-    font-size: 0.75em;
-    font-weight: 500;
-  }
-
-  form {
-    margin-bottom: 0;
-  }
 
   &[aria-hidden="true"] {
     display: none;
@@ -129,7 +115,7 @@ export class AccordionPanel extends React.Component {
 
     return (
       <AccordionInner onKeyUp={this.handleKeyUp}>
-        <StyledPanelTitle
+        <AccordionTitle
           id={"panel-title-" + id}
           controls={"panel-body-" + id}
           open={this.state.open}
@@ -137,14 +123,14 @@ export class AccordionPanel extends React.Component {
           innerRef={this.saveRef}
         >
           {title}
-        </StyledPanelTitle>
-        <StyledPanelBody
+        </AccordionTitle>
+        <AccordionBody
           id={"panel-body-" + id}
           labelledBy={"panel-title-" + id}
           open={open}
         >
           {children}
-        </StyledPanelBody>
+        </AccordionBody>
       </AccordionInner>
     );
   }

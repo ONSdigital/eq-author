@@ -23,11 +23,13 @@ const AnswerProperties = props => {
   return (
     <Form onSubmit={props.onSubmit}>
       <FlexField id="answer.required">
-        <Label>Required</Label>
+        <Label small inline>
+          Required
+        </Label>
         <StyledCheckboxInput type="checkbox" {...props} />
       </FlexField>
       <Field id="answer.validation.message">
-        <Label>Custom validation message</Label>
+        <Label small>Custom validation message</Label>
         <TextArea placeholder="Optional" {...props} />
       </Field>
     </Form>
