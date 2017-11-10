@@ -8,7 +8,9 @@ exports[`QuestionnaireMeta should render 1`] = `
     <Field
       id="title"
     >
-      <Label>
+      <Label
+        small={false}
+      >
         Questionnaire Title
       </Label>
       <withChangeHandler(Input)
@@ -22,7 +24,9 @@ exports[`QuestionnaireMeta should render 1`] = `
     <Field
       id="description"
     >
-      <Label>
+      <Label
+        small={false}
+      >
         Description
       </Label>
       <withChangeHandler(TextArea)
@@ -43,7 +47,9 @@ exports[`QuestionnaireMeta should render 1`] = `
         <Field
           id="surveyId"
         >
-          <Label>
+          <Label
+            small={false}
+          >
             Survey ID
           </Label>
           <withChangeHandler(Input)
@@ -64,7 +70,9 @@ exports[`QuestionnaireMeta should render 1`] = `
         <Field
           id="theme"
         >
-          <Label>
+          <Label
+            small={false}
+          >
             Theme
           </Label>
           <withChangeHandler(Select)
@@ -86,7 +94,9 @@ exports[`QuestionnaireMeta should render 1`] = `
         <Field
           id="legalBasis"
         >
-          <Label>
+          <Label
+            small={false}
+          >
             Legal Basis
           </Label>
           <withChangeHandler(Select)
@@ -113,6 +123,7 @@ exports[`QuestionnaireMeta should render 1`] = `
       />
       <Label
         inline={true}
+        small={false}
       >
         Navigation
       </Label>
