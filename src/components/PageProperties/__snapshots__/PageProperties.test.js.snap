@@ -7,7 +7,9 @@ exports[`Page Properties should render 1`] = `
   <Field
     id="page.type"
   >
-    <Label>
+    <Label
+      small={true}
+    >
       Page type
     </Label>
     <withChangeHandler(Select)
@@ -25,7 +27,9 @@ exports[`Page Properties should render 1`] = `
   <Field
     id="page.order"
   >
-    <Label>
+    <Label
+      small={true}
+    >
       Order
     </Label>
     <Number

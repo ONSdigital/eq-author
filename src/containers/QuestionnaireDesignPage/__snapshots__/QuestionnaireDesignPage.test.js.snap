@@ -148,7 +148,32 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     <Column
       cols={2}
       gutters={false}
-    />
+    >
+      <PropertiesPanel
+        orderMax={10}
+        orderMin={1}
+        page={
+          Object {
+            "answers": Array [
+              Object {
+                "id": "1",
+                "label": "",
+                "options": Array [
+                  Object {
+                    "id": "1",
+                  },
+                ],
+              },
+            ],
+            "description": "",
+            "guidance": "",
+            "id": "1",
+            "title": "",
+            "type": "General",
+          }
+        }
+      />
+    </Column>
   </Grid>
 </BaseLayout>
 `;

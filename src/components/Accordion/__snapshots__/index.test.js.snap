@@ -18,20 +18,18 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
   -ms-user-select: none;
   user-select: none;
   position: relative;
-  padding: 0.65em 4px;
-  font-size: 0.6em;
+  padding: 0.25em;
 }
 
 .c1 button {
   color: #4A4A4A;
-  font-size: 1em;
-  text-transform: uppercase;
+  font-size: 0.7em;
   font-weight: 900;
   background: none;
   border: none;
   width: 100%;
   height: 100%;
-  padding: 1em;
+  padding: 0.6em 1em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -78,7 +76,7 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
 }
 
 .c2 {
-  padding: 1em;
+  padding: 0.6em 1em;
   position: relative;
 }
 
@@ -106,7 +104,7 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
       className="c0"
       onKeyUp={[Function]}
     >
-      <Accordion__StyledPanelTitle
+      <Accordion__AccordionTitle
         controls="panel-body-accordion-panel-Answer-1"
         id="panel-title-accordion-panel-Answer-1"
         innerRef={[Function]}
@@ -135,8 +133,8 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
             </button>
           </h3>
         </PanelTitle>
-      </Accordion__StyledPanelTitle>
-      <Accordion__StyledPanelBody
+      </Accordion__AccordionTitle>
+      <Accordion__AccordionBody
         id="panel-body-accordion-panel-Answer-1"
         labelledBy="panel-title-accordion-panel-Answer-1"
         open={false}
@@ -159,7 +157,7 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
             </div>
           </div>
         </PanelBody>
-      </Accordion__StyledPanelBody>
+      </Accordion__AccordionBody>
     </div>
   </Accordion__AccordionInner>
 </AccordionPanel>
@@ -169,7 +167,7 @@ exports[`AccordionPanel should render 1`] = `
 <Accordion__AccordionInner
   onKeyUp={[Function]}
 >
-  <Accordion__StyledPanelTitle
+  <Accordion__AccordionTitle
     controls="panel-body-accordion-panel-Answer-1"
     id="panel-title-accordion-panel-Answer-1"
     innerRef={[Function]}
@@ -177,8 +175,8 @@ exports[`AccordionPanel should render 1`] = `
     open={false}
   >
     Answer properties
-  </Accordion__StyledPanelTitle>
-  <Accordion__StyledPanelBody
+  </Accordion__AccordionTitle>
+  <Accordion__AccordionBody
     id="panel-body-accordion-panel-Answer-1"
     labelledBy="panel-title-accordion-panel-Answer-1"
     open={false}
@@ -186,6 +184,6 @@ exports[`AccordionPanel should render 1`] = `
     <div>
       Content
     </div>
-  </Accordion__StyledPanelBody>
+  </Accordion__AccordionBody>
 </Accordion__AccordionInner>
 `;

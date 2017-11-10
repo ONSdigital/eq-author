@@ -43,9 +43,11 @@ exports[`components/Forms/Field should render correctly 1`] = `
       <Label
         id="name"
         key=".0"
+        small={false}
       >
         <Label__StyledLabel
           htmlFor="name"
+          small={false}
         >
           <label
             className="c1"

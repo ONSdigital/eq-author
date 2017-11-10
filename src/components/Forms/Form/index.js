@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 const StyledForm = styled.form`
   width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 0;
 `;
 
-const Form = ({ action, children, onSubmit, ...otherProps }) =>
+const Form = ({ action, children, onSubmit, ...otherProps }) => (
   <StyledForm
     action={action}
     method="POST"
@@ -16,7 +16,8 @@ const Form = ({ action, children, onSubmit, ...otherProps }) =>
     {...otherProps}
   >
     {children}
-  </StyledForm>;
+  </StyledForm>
+);
 
 Form.propTypes = {
   action: PropTypes.string,

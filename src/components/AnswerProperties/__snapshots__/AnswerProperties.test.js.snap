@@ -7,7 +7,10 @@ exports[`Answer Properties should render 1`] = `
   <AnswerProperties__FlexField
     id="answer.required"
   >
-    <Label>
+    <Label
+      inline={true}
+      small={true}
+    >
       Required
     </Label>
     <AnswerProperties__StyledCheckboxInput
@@ -29,7 +32,9 @@ exports[`Answer Properties should render 1`] = `
   <Field
     id="answer.validation.message"
   >
-    <Label>
+    <Label
+      small={true}
+    >
       Custom validation message
     </Label>
     <withChangeHandler(TextArea)
