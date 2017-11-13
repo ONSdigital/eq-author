@@ -24,4 +24,8 @@ jsconfig.json
 
 graphql.config.json
 public/status.json
+<<<<<<< HEAD
+=======
+
+>>>>>>> move all rules inside panel
 .env.local

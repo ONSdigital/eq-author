@@ -6,6 +6,7 @@ import Tooltip from "components/Tooltip";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
+import { withRouter } from "react-router";
 import { colors } from "constants/theme";
 import getTextFromHTML from "utils/getTextFromHTML";
 import HoverDeleteButton from "./HoverDeleteButton";
@@ -158,13 +159,19 @@ export class PageNavItem extends React.Component {
       pageId,
       title,
       pageNumber,
-      index
+      index,
+      location
     } = this.props;
 
     return (
       <StyledPageItem index={index}>
         <Link
-          to={getLink(questionnaireId, sectionId, pageId)}
+          to={getLink(
+            questionnaireId,
+            sectionId,
+            pageId,
+            location.pathname.indexOf("routing") > -1 ? "routing" : "design"
+          )}
           aria-disabled={parseInt(pageId, 10) < 0}
           activeClassName="selected"
         >
@@ -186,13 +193,15 @@ export class PageNavItem extends React.Component {
   }
 }
 
+const PageNavItemWithRouter = withRouter(PageNavItem);
+
 const PageNav = ({ section, questionnaire, onDelete }) => (
   <TransitionGroup component={NavList}>
     {section.pages.map((page, i, pages) => {
       const pageNumber = `${section.number}.${i + 1}`;
       return (
         <CSSTransition key={page.id} timeout={duration} classNames="page">
-          <PageNavItem
+          <PageNavItemWithRouter
             title={page.title}
             pageNumber={pageNumber}
             pageId={page.id}

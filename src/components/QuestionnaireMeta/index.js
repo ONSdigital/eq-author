@@ -73,7 +73,12 @@ export const StatelessQuestionnaireMeta = ({
         <Grid>
           <Column cols={6}>
             <InlineField id="navigation">
-              <Label inline>Navigation</Label>
+              <Label inline>
+                Site Navigation{" "}
+                <span style={{ color: "#676767" }}>
+                  (Questionnaire content list)
+                </span>
+              </Label>
               <ToggleSwitch
                 name="navigation"
                 onChange={onChange}

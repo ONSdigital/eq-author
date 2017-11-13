@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_close_black_24px</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Scratch" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.540704257">
+        <g id="Group-8" transform="translate(-604.000000, -75.000000)">
+            <g id="Group">
+                <g id="IF" transform="translate(25.000000, 61.000000)">
+                    <g id="ic_close_black_24px" transform="translate(576.000000, 11.000000)" >
+                        <polygon id="Shape" fill="#000000" fill-rule="nonzero" points="14.25 4.8075 13.1925 3.75 9 7.9425 4.8075 3.75 3.75 4.8075 7.9425 9 3.75 13.1925 4.8075 14.25 9 10.0575 13.1925 14.25 14.25 13.1925 10.0575 9"></polygon>
+                        <polygon id="Shape" points="0 0 18 0 18 18 0 18"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

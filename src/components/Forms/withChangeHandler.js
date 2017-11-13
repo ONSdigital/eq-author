@@ -18,7 +18,7 @@ const withChangeHandler = WrappedComponent => {
       const value =
         e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
-      this.props.onChange({ name, value });
+      this.props.onChange({ name, value, event: e });
     };
 
     render() {
