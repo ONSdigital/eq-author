@@ -57,7 +57,7 @@ exports[`EditorSurface should render 1`] = `
       duration={300}
       key="Page2"
     >
-      <Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE))))))
+      <Connect(Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE)))))))
         focused="Section3"
         onFocus={[Function]}
         onUpdatePage={[Function]}

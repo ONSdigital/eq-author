@@ -6,7 +6,7 @@ import {
 import fragment from "graphql/questionnaireFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
-  let history, mutate, result, ownProps, onAddSection;
+  let history, mutate, result, ownProps, onAddSection, raiseToast;
   let deletedPage, currentPage, currentSection, targetSection, questionnaire;
 
   beforeEach(() => {
@@ -47,6 +47,7 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
     };
 
     onAddSection = jest.fn(() => Promise.resolve());
+    raiseToast = jest.fn(() => Promise.resolve());
 
     ownProps = {
       questionnaire,
@@ -54,7 +55,8 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       sectionId: currentSection.id,
       pageId: currentPage.id,
       history,
-      onAddSection
+      onAddSection,
+      raiseToast
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -98,6 +100,53 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
               variables: {
                 input: { id: targetSection.id }
               }
+            })
+          );
+        });
+      });
+
+      it("should raise a toast after invoking onDeleteSection", () => {
+        return props.onDeleteSection(targetSection.id).then(() => {
+          expect(raiseToast).toHaveBeenCalledWith(
+            `Section${targetSection.id}`,
+            expect.stringContaining("Section"),
+            "undeleteSection",
+            expect.objectContaining({
+              questionnaireId: ownProps.questionnaireId,
+              sectionId: targetSection.id
+            })
+          );
+        });
+      });
+
+      it("should display number of deleted pages in toast", () => {
+        return props.onDeleteSection(targetSection.id).then(() => {
+          expect(raiseToast).toHaveBeenCalledWith(
+            `Section${targetSection.id}`,
+            expect.stringContaining("1 page"),
+            "undeleteSection",
+            expect.objectContaining({
+              questionnaireId: ownProps.questionnaireId,
+              sectionId: targetSection.id
+            })
+          );
+        });
+      });
+
+      it("should pluralize the number of deleted pages in toast", () => {
+        targetSection.pages.push({
+          id: "3",
+          sectionId: "2"
+        });
+
+        return props.onDeleteSection(targetSection.id).then(() => {
+          expect(raiseToast).toHaveBeenCalledWith(
+            `Section${targetSection.id}`,
+            expect.stringContaining("2 pages"),
+            "undeleteSection",
+            expect.objectContaining({
+              questionnaireId: ownProps.questionnaireId,
+              sectionId: targetSection.id
             })
           );
         });

@@ -1,5 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
+import PropTypes from "prop-types";
+
 import EditorSurface from "./";
 
 const option = {
@@ -42,7 +44,17 @@ describe("EditorSurface", () => {
         focused={"Section3"}
         {...props}
       />,
-      renderOpts
+      {
+        context: {
+          store: {
+            subscribe: jest.fn(),
+            dispatch: jest.fn(),
+            getState: jest.fn()
+          }
+        },
+        childContextTypes: { store: PropTypes.object },
+        ...renderOpts
+      }
     );
   };
 
