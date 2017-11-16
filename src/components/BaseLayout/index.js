@@ -38,6 +38,7 @@ const Title = styled.h1`
   font-weight: 700;
   margin: 2em 0;
   text-align: center;
+  position: relative;
 `;
 
 const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
