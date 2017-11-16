@@ -1,0 +1,677 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleSwitch should render 1`] = `
+<ToggleSwitch__FlexInline
+  height={1}
+  width={2.6}
+>
+  <ToggleSwitch__HiddenInput
+    checked={false}
+    id="toggle-1"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <ToggleSwitch__ToggleSwitchBackground
+    checked={false}
+    height={1}
+    onClick={[Function]}
+    width={2.6}
+  >
+    <ToggleSwitch__ToggleSwitchKnob
+      checked={false}
+      height={1}
+      size={1.4}
+      width={2.6}
+    />
+  </ToggleSwitch__ToggleSwitchBackground>
+</ToggleSwitch__FlexInline>
+`;
+
+exports[`ToggleSwitch should render a large toggle button 1`] = `
+<ToggleSwitch__FlexInline
+  height={1}
+  width={5}
+>
+  <ToggleSwitch__HiddenInput
+    checked={false}
+    id="toggle-3"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <ToggleSwitch__ToggleSwitchBackground
+    checked={false}
+    height={2}
+    onClick={[Function]}
+    width={5}
+  >
+    <ToggleSwitch__ToggleSwitchKnob
+      checked={false}
+      height={2}
+      size={2}
+      width={5}
+    />
+  </ToggleSwitch__ToggleSwitchBackground>
+</ToggleSwitch__FlexInline>
+`;
+
+exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
+.c3 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  padding: 0;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1em;
+}
+
+.c3:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
+.c3:checked {
+  background: url(icon-checkbox.svg) no-repeat center;
+  background-size: 0.8em auto;
+}
+
+.c2 {
+  opacity: 0;
+  position: absolute;
+}
+
+.c2:focus {
+  border: none;
+}
+
+.c5 {
+  cursor: pointer;
+  height: 2em;
+  width: 5em;
+  background: #E8E8E8;
+  border-radius: 1em;
+  content: "";
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
+  position: relative;
+}
+
+.c1:focus + .c4 .bpfMaN::before {
+  opacity: 0.12;
+}
+
+.c6 {
+  display: inline-block;
+  height: 2em;
+  width: 2em;
+  background: #008AD2;
+  content: "";
+  position: relative;
+  top: 0em;
+  left: 0em;
+  border-radius: 50%;
+  -webkit-transition: left 100ms ease-in-out;
+  transition: left 100ms ease-in-out;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
+}
+
+.c6::before {
+  background: #008AD2;
+  display: inline-block;
+  content: "";
+  width: 3em;
+  height: 3em;
+  position: relative;
+  top: -0.5em;
+  left: -0.5em;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transition: opacity 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out;
+}
+
+.c1:focus + .c4 .c6::before {
+  opacity: 0.12;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 5em;
+  position: relative;
+}
+
+<ToggleSwitch
+  checked={false}
+  height={2}
+  id="toggle-3"
+  label="Test switch"
+  name="test"
+  onChange={[Function]}
+  size={2}
+  width={5}
+>
+  <ToggleSwitch__FlexInline
+    height={1}
+    width={5}
+  >
+    <div
+      className="c0"
+      height={1}
+      width={5}
+    >
+      <ToggleSwitch__HiddenInput
+        checked={false}
+        id="toggle-3"
+        onChange={[Function]}
+        type="checkbox"
+      >
+        <withChangeHandler(Input)
+          checked={false}
+          className="c1 c2"
+          id="toggle-3"
+          onChange={[Function]}
+          type="checkbox"
+        >
+          <Input
+            checked={false}
+            className="c1 c2"
+            id="toggle-3"
+            onChange={[Function]}
+            type="checkbox"
+            value={undefined}
+          >
+            <Input__StyledInput
+              checked={false}
+              className="c1 c2"
+              defaultValue={undefined}
+              id="toggle-3"
+              name="toggle-3"
+              onChange={[Function]}
+              type="checkbox"
+              value={undefined}
+            >
+              <input
+                checked={false}
+                className="c1 c2 c3"
+                defaultValue={undefined}
+                id="toggle-3"
+                name="toggle-3"
+                onChange={[Function]}
+                type="checkbox"
+                value={undefined}
+              />
+            </Input__StyledInput>
+          </Input>
+        </withChangeHandler(Input)>
+      </ToggleSwitch__HiddenInput>
+      <ToggleSwitch__ToggleSwitchBackground
+        checked={false}
+        height={2}
+        onClick={[Function]}
+        width={5}
+      >
+        <div
+          checked={false}
+          className="c4 c5"
+          height={2}
+          onClick={[Function]}
+          width={5}
+        >
+          <ToggleSwitch__ToggleSwitchKnob
+            checked={false}
+            height={2}
+            size={2}
+            width={5}
+          >
+            <div
+              checked={false}
+              className="c6"
+              height={2}
+              size={2}
+              width={5}
+            />
+          </ToggleSwitch__ToggleSwitchKnob>
+        </div>
+      </ToggleSwitch__ToggleSwitchBackground>
+    </div>
+  </ToggleSwitch__FlexInline>
+</ToggleSwitch>
+`;
+
+exports[`ToggleSwitch should render checked 1`] = `
+<ToggleSwitch__FlexInline
+  height={1}
+  width={2.6}
+>
+  <ToggleSwitch__HiddenInput
+    checked={true}
+    id="toggle-2"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <ToggleSwitch__ToggleSwitchBackground
+    checked={true}
+    height={1}
+    onClick={[Function]}
+    width={2.6}
+  >
+    <ToggleSwitch__ToggleSwitchKnob
+      checked={true}
+      height={1}
+      size={1.4}
+      width={2.6}
+    />
+  </ToggleSwitch__ToggleSwitchBackground>
+</ToggleSwitch__FlexInline>
+`;
+
+exports[`ToggleSwitch should render when checked and mounted 1`] = `
+.c3 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  padding: 0;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1em;
+}
+
+.c3:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
+.c3:checked {
+  background: url(icon-checkbox.svg) no-repeat center;
+  background-size: 0.8em auto;
+}
+
+.c2 {
+  opacity: 0;
+  position: absolute;
+}
+
+.c2:focus {
+  border: none;
+}
+
+.c5 {
+  cursor: pointer;
+  height: 1em;
+  width: 2.6em;
+  background: #78C3E9;
+  border-radius: 1em;
+  content: "";
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
+  position: relative;
+}
+
+.c6 {
+  display: inline-block;
+  height: 1.4em;
+  width: 1.4em;
+  background: #008AD2;
+  content: "";
+  position: relative;
+  top: -0.19999999999999996em;
+  left: 1.2000000000000002em;
+  border-radius: 50%;
+  -webkit-transition: left 100ms ease-in-out;
+  transition: left 100ms ease-in-out;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
+}
+
+.c6::before {
+  background: #008AD2;
+  display: inline-block;
+  content: "";
+  width: 2.0999999999999996em;
+  height: 2.0999999999999996em;
+  position: relative;
+  top: -0.34999999999999987em;
+  left: -0.34999999999999987em;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transition: opacity 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out;
+}
+
+.c1:focus + .c4 .c6::before {
+  opacity: 0.12;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 2.6em;
+  position: relative;
+}
+
+<ToggleSwitch
+  checked={true}
+  id="toggle-2"
+  label="Test switch"
+  name="test"
+  onChange={[Function]}
+>
+  <ToggleSwitch__FlexInline
+    height={1}
+    width={2.6}
+  >
+    <div
+      className="c0"
+      height={1}
+      width={2.6}
+    >
+      <ToggleSwitch__HiddenInput
+        checked={true}
+        id="toggle-2"
+        onChange={[Function]}
+        type="checkbox"
+      >
+        <withChangeHandler(Input)
+          checked={true}
+          className="c1 c2"
+          id="toggle-2"
+          onChange={[Function]}
+          type="checkbox"
+        >
+          <Input
+            checked={true}
+            className="c1 c2"
+            id="toggle-2"
+            onChange={[Function]}
+            type="checkbox"
+            value={undefined}
+          >
+            <Input__StyledInput
+              checked={true}
+              className="c1 c2"
+              defaultValue={undefined}
+              id="toggle-2"
+              name="toggle-2"
+              onChange={[Function]}
+              type="checkbox"
+              value={undefined}
+            >
+              <input
+                checked={true}
+                className="c1 c2 c3"
+                defaultValue={undefined}
+                id="toggle-2"
+                name="toggle-2"
+                onChange={[Function]}
+                type="checkbox"
+                value={undefined}
+              />
+            </Input__StyledInput>
+          </Input>
+        </withChangeHandler(Input)>
+      </ToggleSwitch__HiddenInput>
+      <ToggleSwitch__ToggleSwitchBackground
+        checked={true}
+        height={1}
+        onClick={[Function]}
+        width={2.6}
+      >
+        <div
+          checked={true}
+          className="c4 c5"
+          height={1}
+          onClick={[Function]}
+          width={2.6}
+        >
+          <ToggleSwitch__ToggleSwitchKnob
+            checked={true}
+            height={1}
+            size={1.4}
+            width={2.6}
+          >
+            <div
+              checked={true}
+              className="c6"
+              height={1}
+              size={1.4}
+              width={2.6}
+            />
+          </ToggleSwitch__ToggleSwitchKnob>
+        </div>
+      </ToggleSwitch__ToggleSwitchBackground>
+    </div>
+  </ToggleSwitch__FlexInline>
+</ToggleSwitch>
+`;
+
+exports[`ToggleSwitch should render when mounted 1`] = `
+.c3 {
+  padding: 0.7em;
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  font-size: 0.9em;
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  padding: 0;
+  margin: 0 1em 0 0;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1em;
+}
+
+.c3:focus {
+  outline: none;
+  border: 1px solid #61BDE0;
+}
+
+.c3:checked {
+  background: url(icon-checkbox.svg) no-repeat center;
+  background-size: 0.8em auto;
+}
+
+.c2 {
+  opacity: 0;
+  position: absolute;
+}
+
+.c2:focus {
+  border: none;
+}
+
+.c5 {
+  cursor: pointer;
+  height: 1em;
+  width: 2.6em;
+  background: #78C3E9;
+  border-radius: 1em;
+  content: "";
+  -webkit-transition: background 100ms ease-in-out;
+  transition: background 100ms ease-in-out;
+  position: relative;
+}
+
+.c6 {
+  display: inline-block;
+  height: 1.4em;
+  width: 1.4em;
+  background: #008AD2;
+  content: "";
+  position: relative;
+  top: -0.19999999999999996em;
+  left: 1.2000000000000002em;
+  border-radius: 50%;
+  -webkit-transition: left 100ms ease-in-out;
+  transition: left 100ms ease-in-out;
+  box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
+}
+
+.c6::before {
+  background: #008AD2;
+  display: inline-block;
+  content: "";
+  width: 2.0999999999999996em;
+  height: 2.0999999999999996em;
+  position: relative;
+  top: -0.34999999999999987em;
+  left: -0.34999999999999987em;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transition: opacity 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out;
+}
+
+.c1:focus + .c4 .c6::before {
+  opacity: 0.12;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 2.6em;
+  position: relative;
+}
+
+<ToggleSwitch
+  checked={true}
+  id="toggle-2"
+  label="Test switch"
+  name="test"
+  onChange={[Function]}
+>
+  <ToggleSwitch__FlexInline
+    height={1}
+    width={2.6}
+  >
+    <div
+      className="c0"
+      height={1}
+      width={2.6}
+    >
+      <ToggleSwitch__HiddenInput
+        checked={true}
+        id="toggle-2"
+        onChange={[Function]}
+        type="checkbox"
+      >
+        <withChangeHandler(Input)
+          checked={true}
+          className="c1 c2"
+          id="toggle-2"
+          onChange={[Function]}
+          type="checkbox"
+        >
+          <Input
+            checked={true}
+            className="c1 c2"
+            id="toggle-2"
+            onChange={[Function]}
+            type="checkbox"
+            value={undefined}
+          >
+            <Input__StyledInput
+              checked={true}
+              className="c1 c2"
+              defaultValue={undefined}
+              id="toggle-2"
+              name="toggle-2"
+              onChange={[Function]}
+              type="checkbox"
+              value={undefined}
+            >
+              <input
+                checked={true}
+                className="c1 c2 c3"
+                defaultValue={undefined}
+                id="toggle-2"
+                name="toggle-2"
+                onChange={[Function]}
+                type="checkbox"
+                value={undefined}
+              />
+            </Input__StyledInput>
+          </Input>
+        </withChangeHandler(Input)>
+      </ToggleSwitch__HiddenInput>
+      <ToggleSwitch__ToggleSwitchBackground
+        checked={true}
+        height={1}
+        onClick={[Function]}
+        width={2.6}
+      >
+        <div
+          checked={true}
+          className="c4 c5"
+          height={1}
+          onClick={[Function]}
+          width={2.6}
+        >
+          <ToggleSwitch__ToggleSwitchKnob
+            checked={true}
+            height={1}
+            size={1.4}
+            width={2.6}
+          >
+            <div
+              checked={true}
+              className="c6"
+              height={1}
+              size={1.4}
+              width={2.6}
+            />
+          </ToggleSwitch__ToggleSwitchKnob>
+        </div>
+      </ToggleSwitch__ToggleSwitchBackground>
+    </div>
+  </ToggleSwitch__FlexInline>
+</ToggleSwitch>
+`;
