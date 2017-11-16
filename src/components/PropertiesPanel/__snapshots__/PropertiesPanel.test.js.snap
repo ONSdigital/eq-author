@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PropertiesPanel should render when there are answers 1`] = `
-<PropertiesPanel__OuterDiv>
-  <h2>
+<PropertiesPanel__PropertiesPane>
+  <PropertiesPanel__PropertiesPanelTitle>
     Properties
-  </h2>
-  <PropertiesPanel__InnerDiv>
+  </PropertiesPanel__PropertiesPanelTitle>
+  <PropertiesPanel__PropertiesPaneBody>
     <ScrollPane>
       <StatelessAccordion>
         <AccordionPanel
@@ -44,14 +44,13 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
           open={false}
           title="Answer 1"
         >
-          <AnswerProperties
+          <Apollo(AnswerProperties)
             answer={
               Object {
                 "__typename": "Answer",
                 "id": "1",
               }
             }
-            onChange={[Function]}
             onSubmit={[Function]}
           />
         </AccordionPanel>
@@ -61,29 +60,28 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
           open={false}
           title="Answer 2"
         >
-          <AnswerProperties
+          <Apollo(AnswerProperties)
             answer={
               Object {
                 "__typename": "Answer",
                 "id": "2",
               }
             }
-            onChange={[Function]}
             onSubmit={[Function]}
           />
         </AccordionPanel>
       </StatelessAccordion>
     </ScrollPane>
-  </PropertiesPanel__InnerDiv>
-</PropertiesPanel__OuterDiv>
+  </PropertiesPanel__PropertiesPaneBody>
+</PropertiesPanel__PropertiesPane>
 `;
 
 exports[`PropertiesPanel should render when there are no answers 1`] = `
-<PropertiesPanel__OuterDiv>
-  <h2>
+<PropertiesPanel__PropertiesPane>
+  <PropertiesPanel__PropertiesPanelTitle>
     Properties
-  </h2>
-  <PropertiesPanel__InnerDiv>
+  </PropertiesPanel__PropertiesPanelTitle>
+  <PropertiesPanel__PropertiesPaneBody>
     <ScrollPane>
       <StatelessAccordion>
         <AccordionPanel
@@ -109,6 +107,6 @@ exports[`PropertiesPanel should render when there are no answers 1`] = `
         </AccordionPanel>
       </StatelessAccordion>
     </ScrollPane>
-  </PropertiesPanel__InnerDiv>
-</PropertiesPanel__OuterDiv>
+  </PropertiesPanel__PropertiesPaneBody>
+</PropertiesPanel__PropertiesPane>
 `;

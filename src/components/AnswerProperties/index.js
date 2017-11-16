@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import CustomPropTypes from "custom-prop-types";
-import { Form, Field, Label, TextArea, Input } from "components/Forms";
+import { Field, Label, Input } from "components/Forms";
 import styled from "styled-components";
 import { colors } from "constants/theme";
 
@@ -19,28 +19,41 @@ const StyledCheckboxInput = styled(Input)`
   margin-right: 0;
 `;
 
-const AnswerProperties = props => {
-  return (
-    <Form onSubmit={props.onSubmit}>
-      <FlexField id="answer.required">
-        <Label small inline>
-          Required
-        </Label>
-        <StyledCheckboxInput type="checkbox" {...props} />
-      </FlexField>
-      <Field id="answer.validation.message">
-        <Label small>Custom validation message</Label>
-        <TextArea placeholder="Optional" {...props} />
-      </Field>
-    </Form>
-  );
-};
+const StyledLabel = styled(Label)`
+  font-weight: normal;
+`;
 
-AnswerProperties.propTypes = {
-  answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onBlur: PropTypes.func,
-  onSubmit: PropTypes.func
-};
+class AnswerProperties extends React.Component {
+  static propTypes = {
+    answer: CustomPropTypes.answer.isRequired,
+    onBlur: PropTypes.func,
+    onSubmit: PropTypes.func,
+    onUpdateAnswer: PropTypes.func.isRequired
+  };
+
+  handleChange = ({ value: mandatory }) => {
+    const { id } = this.props.answer;
+    this.props.onUpdateAnswer({
+      id,
+      mandatory
+    });
+  };
+
+  render() {
+    const { answer } = this.props;
+
+    return (
+      <FlexField id={`answer${answer.id}-required`} last>
+        <StyledLabel>Answer required</StyledLabel>
+        <StyledCheckboxInput
+          type="checkbox"
+          onChange={this.handleChange}
+          defaultChecked={answer.mandatory}
+          {...this.props}
+        />
+      </FlexField>
+    );
+  }
+}
 
 export default AnswerProperties;
