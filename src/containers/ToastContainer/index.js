@@ -38,7 +38,7 @@ const ToastOuterContainer = styled.div`
   text-align: center;
   min-width: 10em;
   margin-bottom: ${props => (props.hasMargin ? "0.5em" : "0")};
-  z-index: 9999;
+  z-index: 999;
 `;
 
 const ToastInnerContainer = styled.div`

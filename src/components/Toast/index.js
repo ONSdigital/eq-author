@@ -2,14 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors } from "constants/theme";
-import { transparentize } from "polished";
 import timer from "utils/timer";
 import { invoke } from "lodash";
 
-const bgColor = transparentize(0.1, colors.darkGrey);
-
 const StyledToast = styled.div`
-  background-color: ${bgColor};
+  background-color: ${colors.darkGrey};
   padding: 1em;
   color: ${colors.white};
   font-size: 0.875rem;
