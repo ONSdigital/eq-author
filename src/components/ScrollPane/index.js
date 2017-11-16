@@ -33,6 +33,10 @@ const ScrollPane = styled.div`
   ::-webkit-scrollbar {
     width: 10px;
   }
+
+  > :first-child {
+    backface-visibility: hidden !important;
+  }
 `;
 
 export default ScrollPane;

@@ -36,8 +36,9 @@ const ToastOuterContainer = styled.div`
   position: absolute;
   bottom: 0;
   text-align: center;
-  width: 100%;
+  min-width: 10em;
   margin-bottom: ${props => (props.hasMargin ? "0.5em" : "0")};
+  z-index: 999;
 `;
 
 const ToastInnerContainer = styled.div`
@@ -45,28 +46,41 @@ const ToastInnerContainer = styled.div`
   text-align: initial;
 `;
 
+const ToastWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 const ToastArea = ({ toasts, dismissToast, undoToast, ...otherProps }) => {
   return (
-    <ToastOuterContainer>
-      <ToastInnerContainer>
-        <ToastList>
-          {map(toasts, (toast, id) => (
-            <Toast key={id} id={id} timeout={5000} onClose={dismissToast}>
-              <StyledDiv>
-                {toast.message}
-                <UndoButton
-                  onClick={function() {
-                    undoToast(id, otherProps[toast.undoAction], toast.context);
-                  }}
-                >
-                  Undo
-                </UndoButton>
-              </StyledDiv>
-            </Toast>
-          ))}
-        </ToastList>
-      </ToastInnerContainer>
-    </ToastOuterContainer>
+    <ToastWrapper>
+      <ToastOuterContainer>
+        <ToastInnerContainer>
+          <ToastList>
+            {map(toasts, (toast, id) => (
+              <Toast key={id} id={id} timeout={5000} onClose={dismissToast}>
+                <StyledDiv>
+                  {toast.message}
+                  <UndoButton
+                    onClick={function() {
+                      undoToast(
+                        id,
+                        otherProps[toast.undoAction],
+                        toast.context
+                      );
+                    }}
+                  >
+                    Undo
+                  </UndoButton>
+                </StyledDiv>
+              </Toast>
+            ))}
+          </ToastList>
+        </ToastInnerContainer>
+      </ToastOuterContainer>
+    </ToastWrapper>
   );
 };
 
