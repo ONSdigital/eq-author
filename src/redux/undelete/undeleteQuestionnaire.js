@@ -49,7 +49,7 @@ export const createUndelete = mutate => (id, context) =>
   );
 
 export const undeleteQuestionnaire = (id, context) => {
-  return (dispatch, getState, client) => {
+  return (dispatch, getState, { client }) => {
     const undelete = createUndelete(createMutate(client, query));
     dispatch(undeleteRequest());
     return undelete(context.questionnaireId, context)

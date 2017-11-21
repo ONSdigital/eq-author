@@ -51,7 +51,7 @@ describe("undeleteQuestionnaire", () => {
 
   it("should call dispatch asynchronously when thunk is invoked", () => {
     const thunk = undeleteQuestionnaire(id, context);
-    thunk(dispatch, getState, client).then(() => {
+    thunk(dispatch, getState, { client }).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
     });
   });
@@ -91,7 +91,7 @@ describe("undeleteQuestionnaire", () => {
     let store;
 
     beforeEach(() => {
-      middleware = [thunk.withExtraArgument(client)];
+      middleware = [thunk.withExtraArgument({ client })];
       mockStore = configureStore(middleware);
       store = mockStore({});
     });

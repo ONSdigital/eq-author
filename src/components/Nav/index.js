@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
 import { getLink } from "utils/UrlUtils";
 
-import CustomPropsTypes from "custom-prop-types";
+import CustomPropTypes from "custom-prop-types";
 
 export const StyledNav = styled.nav`
   margin: 1.25em 0;
@@ -66,12 +65,10 @@ export const NavWithoutRouter = ({ questionnaire, section, page, match }) => {
 };
 
 NavWithoutRouter.propTypes = {
-  questionnaire: CustomPropsTypes.questionnaire,
-  section: CustomPropsTypes.section,
-  page: CustomPropsTypes.page,
-  match: PropTypes.shape({
-    params: PropTypes.object.isRequired
-  })
+  questionnaire: CustomPropTypes.questionnaire,
+  section: CustomPropTypes.section,
+  page: CustomPropTypes.page,
+  match: CustomPropTypes.match
 };
 
 export default withRouter(NavWithoutRouter);

@@ -7,6 +7,8 @@ import {
 } from "react-router-redux";
 import uiState from "redux/uiState/reducer";
 import toasts from "redux/toast/reducer";
+import authReducer from "redux/auth/reducer";
+import { auth } from "auth";
 
 const configureStore = (history, client, preloadedState) =>
   createStore(
@@ -14,13 +16,14 @@ const configureStore = (history, client, preloadedState) =>
       router,
       uiState,
       toasts,
+      auth: authReducer,
       apollo: client.reducer()
     }),
     preloadedState,
     composeWithDevTools(
       applyMiddleware(
         createRouterMiddleware(history),
-        thunk.withExtraArgument(client),
+        thunk.withExtraArgument({ client, auth }),
         client.middleware()
       )
     )

@@ -1,4 +1,5 @@
 import { TOAST_DISMISS, TOAST_RAISE } from "redux/toast/actions";
+import { omit } from "lodash";
 
 export default (state = {}, action) => {
   switch (action.type) {
@@ -13,9 +14,7 @@ export default (state = {}, action) => {
       };
     }
     case TOAST_DISMISS: {
-      const newState = Object.assign({}, state);
-      delete newState[action.payload.id];
-      return newState;
+      return omit(state, action.payload.id);
     }
     default:
       return state;

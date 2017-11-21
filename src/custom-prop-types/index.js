@@ -60,5 +60,19 @@ export default {
   apolloClient: PropTypes.shape({
     query: PropTypes.func.isRequired,
     readQuery: PropTypes.func.isRequired
+  }),
+  store: PropTypes.shape({
+    getState: PropTypes.func.isRequired
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }),
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired
+  }),
+  user: PropTypes.shape({
+    photoURL: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired
   })
 };

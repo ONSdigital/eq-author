@@ -130,6 +130,30 @@ REACT_APP_SECRET_CODE=abcdef
 These variables will act as the defaults if the machine does not explicitly set them.<br>
 Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
 
+## Authentication
+
+We currently use firebase for basic authentication requirements. The following environment variables are required for firebase:
+
+* `REACT_APP_FIREBASE_PROJECT_ID`
+* `REACT_APP_FIREBASE_API_KEY`
+* `REACT_APP_FIREBASE_MESSAGING_SENDER_ID`
+
+These can either be passed on command line:
+
+```bash
+REACT_APP_FIREBASE_PROJECT_ID=ABC REACT_APP_FIREBASE_API_KEY=DEF REACT_APP_FIREBASE_MESSAGING_SENDER_ID=GHI yarn start
+```
+
+Or they can be added to an `.env.local` file in the root of the repo:
+
+```
+REACT_APP_FIREBASE_PROJECT_ID="ABC"
+REACT_APP_FIREBASE_API_KEY="DEF"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID="GHI"
+```
+
+Note: CLI env vars taken precedence over `.env.local` vars.
+
 ## Testing
 
 ### Filename Conventions

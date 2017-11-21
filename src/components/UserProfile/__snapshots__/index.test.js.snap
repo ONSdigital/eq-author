@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfile should render 1`] = `
+<Tooltip
+  content="Sign Out"
+>
+  <UserProfile__LogoutButton
+    clear={true}
+    onClick={[Function]}
+  >
+    <UserProfile__UserAvatar
+      alt=""
+      role="presentation"
+      src="http://foo.b.ar/photo.jpg"
+    />
+  </UserProfile__LogoutButton>
+</Tooltip>
+`;

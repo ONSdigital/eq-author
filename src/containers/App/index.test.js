@@ -1,6 +1,6 @@
 import React from "react";
 
-import App from "./index";
+import App, { Routes } from "./index";
 import { shallow } from "enzyme";
 
 import createHistory from "history/createHashHistory";
@@ -15,7 +15,10 @@ const store = {
   dispatch: jest.fn()
 };
 
-const client = {};
+const client = {
+  query: jest.fn(),
+  readQuery: jest.fn()
+};
 
 describe("containers/App", () => {
   it("should render", () => {
@@ -24,5 +27,12 @@ describe("containers/App", () => {
     );
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe("Routes", () => {
+    it("should render ", () => {
+      const wrapper = shallow(<Routes isSignedIn history={history} />);
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });
