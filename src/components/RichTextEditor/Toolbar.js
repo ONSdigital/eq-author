@@ -11,10 +11,17 @@ import iconEmphasis from "./icon-emphasis.svg";
 import iconHeading from "./icon-heading.svg";
 import iconList from "./icon-list.svg";
 import IconButton from "components/IconDecorated/IconButton";
+import PipingMenu from "./PipingMenu";
 
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const Separator = styled.div`
+  width: 1px;
+  border-left: 1px solid ${colors.borders};
+  margin: 0.25rem;
 `;
 
 const activeState = css`
@@ -99,15 +106,18 @@ class ToolBar extends React.Component {
 
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
+    onPiping: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     isActiveControl: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired,
+    selectionIsCollapsed: PropTypes.bool.isRequired,
     controls: PropTypes.shape({
       bold: PropTypes.bool,
       emphasis: PropTypes.bool,
       heading: PropTypes.bool,
-      list: PropTypes.bool
+      list: PropTypes.bool,
+      piping: PropTypes.bool
     })
   };
 
@@ -139,14 +149,30 @@ class ToolBar extends React.Component {
   };
 
   render() {
-    const { onFocus, onBlur } = this.props;
+    const {
+      visible,
+      onFocus,
+      onBlur,
+      onPiping,
+      selectionIsCollapsed,
+      controls: { piping }
+    } = this.props;
+
+    const isPipingDisabled = !(piping && selectionIsCollapsed);
 
     return (
       <TransitionGroup component={Layer}>
-        {this.props.visible && (
+        {visible && (
           <PopupTransition duration={200}>
             <ToolbarPanel onFocus={onFocus} onBlur={onBlur}>
-              <ButtonGroup>{buttons.map(this.renderButton)}</ButtonGroup>
+              <ButtonGroup>
+                <PipingMenu
+                  disabled={isPipingDisabled}
+                  onItemChosen={onPiping}
+                />
+                <Separator />
+                {buttons.map(this.renderButton)}
+              </ButtonGroup>
             </ToolbarPanel>
           </PopupTransition>
         )}

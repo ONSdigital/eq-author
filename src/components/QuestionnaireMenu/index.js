@@ -3,35 +3,44 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { Dropdown, MenuItem, MenuList, SubMenuItem } from "components/Menu";
 import { map } from "lodash";
+import getTextFromHTML from "utils/getTextFromHTML";
 
-const PageMenu = ({ pages, ...otherProps }) => {
-  const NUM_LINES = 2;
-  const ITEM_HEIGHT = 0.8; //em
-  const MAX_VISIBLE_ITEMS = 6;
+const NUM_LINES = 2;
+const ITEM_HEIGHT = 0.8; //em
+const MAX_VISIBLE_ITEMS = 6;
+const MAX_HEIGHT = MAX_VISIBLE_ITEMS * (ITEM_HEIGHT + NUM_LINES);
 
-  const height = MAX_VISIBLE_ITEMS * (ITEM_HEIGHT + NUM_LINES);
+const PageMenu = ({ pages, sectionNumber, menuZIndex, ...otherProps }) => (
+  <Dropdown maxWidth={"25em"}>
+    <MenuList maxHeight={`${MAX_HEIGHT}em`}>
+      {map(pages, (page, i) => {
+        const title = getTextFromHTML(page.title);
+        const menu = page.answers.length ? (
+          <AnswerMenu answers={page.answers} {...otherProps} />
+        ) : (
+          undefined
+        );
 
-  return (
-    <Dropdown maxWidth={"25em"}>
-      <MenuList maxHeight={`${height}em`}>
-        {map(pages, (page, i) => {
-          return (
-            <SubMenuItem
-              key={`page-${i}`}
-              menu={<AnswerMenu answers={page.answers} {...otherProps} />}
-              lines={NUM_LINES}
-            >
-              {page.title}
-            </SubMenuItem>
-          );
-        })}
-      </MenuList>
-    </Dropdown>
-  );
-};
+        return (
+          <SubMenuItem
+            key={`page-${i}`}
+            menu={menu}
+            lines={NUM_LINES}
+            menuZIndex={menuZIndex}
+            disabled={!menu}
+          >
+            {sectionNumber}.{i + 1} {title || "Page Title"}
+          </SubMenuItem>
+        );
+      })}
+    </MenuList>
+  </Dropdown>
+);
 
 PageMenu.propTypes = {
-  pages: PropTypes.arrayOf(CustomPropTypes.page)
+  pages: PropTypes.arrayOf(CustomPropTypes.page),
+  sectionNumber: PropTypes.number.isRequired,
+  menuZIndex: PropTypes.number
 };
 
 const AnswerMenu = ({ answers, ...otherProps }) => (
@@ -39,8 +48,8 @@ const AnswerMenu = ({ answers, ...otherProps }) => (
     <MenuList>
       {map(answers, (answer, i) => {
         return (
-          <MenuItem key={`answer-${i}`} id={answer.id} {...otherProps}>
-            {answer.title}
+          <MenuItem key={`answer-${i}`} item={answer} {...otherProps}>
+            {answer.label || "Answer Label"}
           </MenuItem>
         );
       })}
@@ -52,25 +61,31 @@ AnswerMenu.propTypes = {
   answers: PropTypes.arrayOf(CustomPropTypes.answer)
 };
 
-const SectionMenu = ({ sections, ...otherProps }) => (
+const SectionMenu = ({ sections, menuZIndex, ...otherProps }) => (
   <Dropdown maxWidth={"10em"}>
     <MenuList>
       {map(sections, (section, i) => {
-        return section.pages.length > 0 ? (
+        const title = getTextFromHTML(section.title);
+        const menu = section.pages.length ? (
+          <PageMenu
+            pages={section.pages}
+            menuZIndex={menuZIndex}
+            sectionNumber={i + 1}
+            {...otherProps}
+          />
+        ) : (
+          undefined
+        );
+
+        return (
           <SubMenuItem
             key={`page-${i}`}
-            menu={<PageMenu pages={section.pages} {...otherProps} />}
+            menuZIndex={menuZIndex}
+            menu={menu}
+            disabled={!menu}
           >
-            {section.title}
+            {i + 1}. {title}
           </SubMenuItem>
-        ) : (
-          <MenuItem
-            key={`section-${section.id}`}
-            id={section.id}
-            {...otherProps}
-          >
-            {section.title}
-          </MenuItem>
         );
       })}
     </MenuList>
@@ -78,7 +93,8 @@ const SectionMenu = ({ sections, ...otherProps }) => (
 );
 
 SectionMenu.propTypes = {
-  sections: PropTypes.arrayOf(CustomPropTypes.section)
+  sections: PropTypes.arrayOf(CustomPropTypes.section),
+  menuZIndex: PropTypes.number
 };
 
 const QuestionnaireMenu = ({ questionnaire, ...otherProps }) => (
@@ -86,7 +102,8 @@ const QuestionnaireMenu = ({ questionnaire, ...otherProps }) => (
 );
 
 QuestionnaireMenu.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire
+  questionnaire: CustomPropTypes.questionnaire,
+  menuZIndex: PropTypes.number
 };
 
 export default QuestionnaireMenu;

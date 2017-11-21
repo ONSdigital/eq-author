@@ -9,7 +9,7 @@ exports[`Question Page Editor should render 1`] = `
     isFocused={false}
     onFocus={[Function]}
   >
-    <withEntityEditor(StatelessMetaEditor)
+    <withApollo(withEntityEditor(StatelessMetaEditor))
       onUpdate={[Function]}
       page={
         Object {

@@ -9,8 +9,10 @@ exports[`MetaEditor should render 1`] = `
       controls={
         Object {
           "emphasis": true,
+          "piping": true,
         }
       }
+      fetchAnswers={[Function]}
       label="title"
       multiline={false}
       onUpdate={[Function]}
@@ -27,8 +29,10 @@ exports[`MetaEditor should render 1`] = `
         Object {
           "bold": true,
           "emphasis": true,
+          "piping": true,
         }
       }
+      fetchAnswers={[Function]}
       label="guidance"
       multiline={true}
       onUpdate={[Function]}
@@ -43,11 +47,12 @@ exports[`MetaEditor should render 1`] = `
       controls={
         Object {
           "bold": true,
-          "emphasis": false,
           "heading": true,
           "list": true,
+          "piping": true,
         }
       }
+      fetchAnswers={[Function]}
       label="guidance"
       multiline={true}
       onUpdate={[Function]}

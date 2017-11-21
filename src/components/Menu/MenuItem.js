@@ -33,8 +33,8 @@ const StyledMenuItem = styled(RMLMenuItem)`
   ${menuItemStyles};
 `;
 
-const MenuItem = ({ children, onItemChosen, id, ...otherProps }) => {
-  const handleItemChosen = e => onItemChosen(id);
+const MenuItem = ({ children, onItemChosen, item, ...otherProps }) => {
+  const handleItemChosen = e => onItemChosen(item);
   return (
     <StyledMenuItem
       {...otherProps}
@@ -49,7 +49,7 @@ const MenuItem = ({ children, onItemChosen, id, ...otherProps }) => {
 MenuItem.propTypes = {
   children: PropTypes.node.isRequired,
   lines: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
+  item: PropTypes.any.isRequired, // eslint-disable-line
   onItemChosen: PropTypes.func.isRequired
 };
 

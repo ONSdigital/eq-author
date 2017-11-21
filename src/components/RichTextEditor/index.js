@@ -1,14 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { Editor, EditorState, RichUtils, Modifier } from "draft-js";
+import {
+  Editor,
+  EditorState,
+  RichUtils,
+  Modifier,
+  CompositeDecorator
+} from "draft-js";
 import "draft-js/dist/Draft.css";
-import { convertToHTML, convertFromHTML } from "draft-convert";
-
+import { toHTML, fromHTML } from "./utils/convert";
 import Toolbar, { STYLE_BLOCK } from "./Toolbar";
+import PipedValueDecorator, {
+  entityToHTML as pipedEntityToHTML,
+  htmlToEntity as htmlToPipedEntity,
+  createPipedEntity,
+  findPipedEntities
+} from "./entities/PipedValue";
 
-const { toggleBlockType, toggleInlineStyle } = RichUtils;
-const { createWithContent } = EditorState;
+import replaceEntityText from "./utils/replaceEntityText";
+import { flow, uniq, map, keyBy, mapValues, bindKey } from "lodash/fp";
 
 const styleMap = {
   ITALIC: {
@@ -81,8 +92,9 @@ Wrapper.defaultProps = {
   size: "small"
 };
 
-const toHTML = editorState => convertToHTML(editorState.getCurrentContent());
-const fromHTML = html => createWithContent(convertFromHTML(html));
+const convertToHTML = toHTML(pipedEntityToHTML);
+const convertFromHTML = fromHTML(htmlToPipedEntity);
+
 const getBlockStyle = block => block.getType();
 
 class RichTextEditor extends React.Component {
@@ -99,19 +111,64 @@ class RichTextEditor extends React.Component {
     id: PropTypes.string,
     className: PropTypes.string,
     multiline: PropTypes.bool,
-    size: PropTypes.oneOf(Object.keys(sizes))
+    size: PropTypes.oneOf(Object.keys(sizes)),
+    fetchAnswers: PropTypes.func
   };
 
   constructor(props) {
     super(props);
 
-    const editorState = props.value
-      ? fromHTML(props.value)
-      : EditorState.createEmpty();
+    const decorator = new CompositeDecorator([PipedValueDecorator]);
 
-    this.state = {
-      editorState
+    const editorState = props.value
+      ? convertFromHTML(props.value, decorator)
+      : EditorState.createEmpty(decorator);
+
+    this.state = { editorState };
+  }
+
+  componentDidMount() {
+    if (this.props.fetchAnswers) {
+      this.updatePipedValues(this.state.editorState);
+    }
+  }
+
+  updatePipedValues() {
+    const { editorState } = this.state;
+    const contentState = editorState.getCurrentContent();
+    const entities = findPipedEntities(contentState);
+    const fetchAnswers = this.props.fetchAnswers;
+
+    if (!entities.length) {
+      return;
+    }
+
+    const createAnswerMap = flow(keyBy("id"), mapValues("label"));
+    const fetchAnswersForEntities = flow(
+      map("entity.data.id"),
+      uniq,
+      fetchAnswers
+    );
+
+    const replaceEntitiesWithLabels = labels => {
+      return entities.reduce(
+        (contentState, { entityKey, blockKey, entity }) => {
+          const text = labels[entity.data.id];
+          return text
+            ? replaceEntityText(contentState, entityKey, blockKey, `[${text}]`)
+            : contentState;
+        },
+        contentState
+      );
     };
+
+    fetchAnswersForEntities(entities)
+      .then(createAnswerMap)
+      .then(replaceEntitiesWithLabels)
+      .then(contentState =>
+        EditorState.push(editorState, contentState, "apply-entity")
+      )
+      .then(this.handleChange);
   }
 
   focus() {
@@ -121,7 +178,7 @@ class RichTextEditor extends React.Component {
   }
 
   getHTML() {
-    return toHTML(this.state.editorState);
+    return convertToHTML(this.state.editorState);
   }
 
   setEditorNode = editor => {
@@ -132,12 +189,42 @@ class RichTextEditor extends React.Component {
     this.focus();
   };
 
-  handleChange = editorState => {
-    return this.setState({ editorState });
+  handleChange = (editorState, callback) => {
+    return this.setState({ editorState }, callback);
   };
 
-  handleToggle = ({ type, style }) => {
-    const toggle = type === STYLE_BLOCK ? toggleBlockType : toggleInlineStyle;
+  handlePiping = answer => {
+    const editorState = this.state.editorState;
+    const currentContent = editorState.getCurrentContent();
+    const selection = editorState.getSelection();
+
+    const newContentState = createPipedEntity(
+      bindKey(currentContent, "createEntity"),
+      answer
+    );
+
+    const entityKey = newContentState.getLastCreatedEntityKey();
+
+    const textWithEntity = Modifier.insertText(
+      newContentState,
+      selection,
+      `[${answer.label}]`,
+      null,
+      entityKey
+    );
+
+    this.handleChange(
+      EditorState.push(editorState, textWithEntity, "insert-characters"),
+      () => this.focus()
+    );
+  };
+
+  handleToggle = ({ id, type, style }) => {
+    const toggle =
+      type === STYLE_BLOCK
+        ? RichUtils.toggleBlockType
+        : RichUtils.toggleInlineStyle;
+
     const editorState = toggle(this.state.editorState, style);
     this.handleChange(editorState);
   };
@@ -199,6 +286,7 @@ class RichTextEditor extends React.Component {
   render() {
     const { editorState, focused } = this.state;
     const contentState = editorState.getCurrentContent();
+    const selection = editorState.getSelection();
     const {
       placeholder,
       label,
@@ -220,9 +308,11 @@ class RichTextEditor extends React.Component {
         <Toolbar
           editorState={editorState}
           onToggle={this.handleToggle}
+          onPiping={this.handlePiping}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           isActiveControl={this.isActiveControl}
+          selectionIsCollapsed={selection.isCollapsed()}
           visible={focused}
           {...otherProps}
         />

@@ -53,7 +53,14 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
               "hasFocus": false,
             },
           },
-          "decorator": null,
+          "decorator": CompositeDraftDecorator {
+            "_decorators": Array [
+              Object {
+                "component": [Function],
+                "strategy": [Function],
+              },
+            ],
+          },
           "directionMap": Immutable.OrderedMap {
             "123": "LTR",
           },
@@ -94,8 +101,10 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
     isActiveControl={[Function]}
     onBlur={[Function]}
     onFocus={[Function]}
+    onPiping={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
+    selectionIsCollapsed={true}
     visible={false}
   />
   <div
@@ -211,7 +220,14 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
                 "hasFocus": false,
               },
             },
-            "decorator": null,
+            "decorator": CompositeDraftDecorator {
+              "_decorators": Array [
+                Object {
+                  "component": [Function],
+                  "strategy": [Function],
+                },
+              ],
+            },
             "directionMap": Immutable.OrderedMap {
               "123": "LTR",
             },
@@ -314,7 +330,14 @@ exports[`components/RichTextEditor should render 1`] = `
               "hasFocus": false,
             },
           },
-          "decorator": null,
+          "decorator": CompositeDraftDecorator {
+            "_decorators": Array [
+              Object {
+                "component": [Function],
+                "strategy": [Function],
+              },
+            ],
+          },
           "directionMap": Immutable.OrderedMap {
             "123": "LTR",
           },
@@ -355,8 +378,10 @@ exports[`components/RichTextEditor should render 1`] = `
     isActiveControl={[Function]}
     onBlur={[Function]}
     onFocus={[Function]}
+    onPiping={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
+    selectionIsCollapsed={true}
     visible={false}
   />
   <div
@@ -472,7 +497,14 @@ exports[`components/RichTextEditor should render 1`] = `
                 "hasFocus": false,
               },
             },
-            "decorator": null,
+            "decorator": CompositeDraftDecorator {
+              "_decorators": Array [
+                Object {
+                  "component": [Function],
+                  "strategy": [Function],
+                },
+              ],
+            },
             "directionMap": Immutable.OrderedMap {
               "123": "LTR",
             },
@@ -626,7 +658,14 @@ exports[`components/RichTextEditor should render existing content 1`] = `
               "hasFocus": false,
             },
           },
-          "decorator": null,
+          "decorator": CompositeDraftDecorator {
+            "_decorators": Array [
+              Object {
+                "component": [Function],
+                "strategy": [Function],
+              },
+            ],
+          },
           "directionMap": Immutable.OrderedMap {
             "123": "LTR",
           },
@@ -667,8 +706,10 @@ exports[`components/RichTextEditor should render existing content 1`] = `
     isActiveControl={[Function]}
     onBlur={[Function]}
     onFocus={[Function]}
+    onPiping={[Function]}
     onToggle={[Function]}
     onUpdate={[Function]}
+    selectionIsCollapsed={true}
     value="
   <h2>List of styles:</h2>
   <ul>
@@ -841,7 +882,14 @@ exports[`components/RichTextEditor should render existing content 1`] = `
                 "hasFocus": false,
               },
             },
-            "decorator": null,
+            "decorator": CompositeDraftDecorator {
+              "_decorators": Array [
+                Object {
+                  "component": [Function],
+                  "strategy": [Function],
+                },
+              ],
+            },
             "directionMap": Immutable.OrderedMap {
               "123": "LTR",
             },

@@ -1,0 +1,19 @@
+query GetQuestionnaire_Piping($id: ID!) {
+  questionnaire(id: $id) {
+    sections {
+      id
+      title
+      pages {
+        ... on QuestionPage {
+          id
+          title
+          answers {
+            id
+            label
+            type
+          }
+        }
+      }
+    }
+  }
+}

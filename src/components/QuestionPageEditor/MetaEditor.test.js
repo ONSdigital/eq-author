@@ -4,7 +4,7 @@ import { shallow, mount } from "enzyme";
 import RichTextEditor from "components/RichTextEditor";
 
 describe("MetaEditor", () => {
-  let wrapper, handleUpdate, handleChange, handleTitleRef, page;
+  let wrapper, handleUpdate, handleChange, handleTitleRef, page, client;
 
   const render = (renderer = shallow) =>
     renderer(
@@ -13,6 +13,7 @@ describe("MetaEditor", () => {
         onUpdate={handleUpdate}
         titleRef={handleTitleRef}
         page={page}
+        client={client}
       />
     );
 
@@ -25,6 +26,7 @@ describe("MetaEditor", () => {
       description: "Page description",
       guidance: "Page guidance"
     };
+    client = { readQuery: jest.fn(), query: jest.fn() };
 
     wrapper = render();
   });

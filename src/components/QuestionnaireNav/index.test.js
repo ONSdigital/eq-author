@@ -1,6 +1,8 @@
 import React from "react";
-import mountWithRouter from "tests/utils/mountWithRouter";
+import { shallow } from "enzyme";
 import QuestionnaireNav, { AddSectionBtn } from "components/QuestionnaireNav";
+import { SynchronousPromise } from "synchronous-promise";
+import SectionNav from "components/QuestionnaireNav/SectionNav";
 
 describe("QuestionnaireNav", () => {
   let wrapper,
@@ -19,24 +21,13 @@ describe("QuestionnaireNav", () => {
   };
 
   beforeEach(() => {
-    const fakeResolvedPromise = args => {
-      return {
-        then(fn) {
-          fn(args);
-          return fakeResolvedPromise();
-        },
-        catch() {
-          return fakeResolvedPromise();
-        }
-      };
-    };
-    handleAddSection = jest.fn(() => fakeResolvedPromise(questionnaire));
-    handleAddPage = jest.fn(() => fakeResolvedPromise({ section }));
+    handleAddSection = jest.fn(() => SynchronousPromise.resolve(questionnaire));
+    handleAddPage = jest.fn(() => SynchronousPromise.resolve({ section }));
     handleDeleteSection = jest.fn();
     handleDeletePage = jest.fn();
     sectionNav = { scrollSectionIntoView: jest.fn() };
 
-    wrapper = mountWithRouter(
+    wrapper = shallow(
       <QuestionnaireNav
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
@@ -57,7 +48,7 @@ describe("QuestionnaireNav", () => {
     expect(wrapper.instance().sectionNav).toEqual(sectionNav);
   });
 
-  it("should handle clicks on `create a new section`", () => {
+  it("should allow sections to be added", () => {
     wrapper.find(AddSectionBtn).simulate("click");
     expect(handleAddSection).toHaveBeenCalledWith(questionnaire.id);
     expect(sectionNav.scrollSectionIntoView).toHaveBeenCalledWith(
@@ -65,9 +56,19 @@ describe("QuestionnaireNav", () => {
     );
   });
 
-  it("should ", () => {
-    wrapper.instance().handleAddPage(section.id);
+  it("should allow pages to be added", () => {
+    wrapper.find(SectionNav).simulate("addPage", section.id);
     expect(handleAddPage).toHaveBeenCalledWith(section.id);
     expect(sectionNav.scrollSectionIntoView).toHaveBeenCalledWith(section.id);
+  });
+
+  it("should allow pages to be deleted", () => {
+    wrapper.find(SectionNav).simulate("deletePage");
+    expect(handleDeletePage).toHaveBeenCalled();
+  });
+
+  it("should allow sections to be deleted", () => {
+    wrapper.find(SectionNav).simulate("deleteSection");
+    expect(handleDeleteSection).toHaveBeenCalled();
   });
 });

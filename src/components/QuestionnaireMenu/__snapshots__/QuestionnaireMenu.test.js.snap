@@ -12,7 +12,7 @@ exports[`components/QuestionnaireMenu should render a QuestionnaireMenu 1`] = `
             "answers": Array [
               Object {
                 "id": "4",
-                "title": "Answer",
+                "label": "Answer",
               },
             ],
             "id": "2",
