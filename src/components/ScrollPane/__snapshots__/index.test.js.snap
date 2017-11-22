@@ -37,6 +37,11 @@ exports[`ScrollPane should render 1`] = `
   width: 10px;
 }
 
+.c0 >:first-child {
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+}
+
 <div
   className="c0"
 >

@@ -116,6 +116,11 @@ exports[`components/Menu should render a Menu 1`] = `
   width: 10px;
 }
 
+.c2 >:first-child {
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+}
+
 .c1 {
   overflow-y: auto;
   overflow-x: hidden;
