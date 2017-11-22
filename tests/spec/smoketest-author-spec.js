@@ -44,7 +44,6 @@ describe("eQ Author Smoketest", () => {
       enterQuestionnaireDetails(
         "title",
         "description",
-        "surveyId",
         "default",
         "StatisticsOfTradeAct",
         true
@@ -61,7 +60,6 @@ describe("eQ Author Smoketest", () => {
       enterQuestionnaireDetails(
         "title",
         "description",
-        "surveyId",
         "default",
         "StatisticsOfTradeAct",
         true
@@ -86,8 +84,8 @@ describe("eQ Author Smoketest", () => {
 
       browser.waitUntil(
         () => prevUrl !== browser.getUrl(),
-        1000,
-        "expected navigation to new page after 1s"
+        5000,
+        "expected navigation to new page within 5s"
       );
     });
   });

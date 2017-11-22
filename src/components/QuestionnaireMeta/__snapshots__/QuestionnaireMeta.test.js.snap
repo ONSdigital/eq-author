@@ -33,33 +33,9 @@ exports[`QuestionnaireMeta should render 1`] = `
         defaultValue="I am the description"
         onBlur={[Function]}
         onChange={[Function]}
-        required={true}
         rows={4}
       />
     </Field>
-    <Grid
-      align="top"
-      fillHeight={true}
-    >
-      <Column
-        cols={6}
-      >
-        <Field
-          id="surveyId"
-        >
-          <Label
-            small={false}
-          >
-            Survey ID
-          </Label>
-          <withChangeHandler(Input)
-            onBlur={[Function]}
-            onChange={[Function]}
-            required={true}
-          />
-        </Field>
-      </Column>
-    </Grid>
     <Grid
       align="top"
       fillHeight={true}
@@ -113,21 +89,56 @@ exports[`QuestionnaireMeta should render 1`] = `
         </Field>
       </Column>
     </Grid>
-    <Field
-      id="navigation"
+    <Grid
+      align="top"
+      fillHeight={true}
     >
-      <withChangeHandler(Input)
-        onBlur={[Function]}
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <Label
-        inline={true}
-        small={false}
+      <Column
+        cols={6}
       >
-        Navigation
-      </Label>
-    </Field>
+        <QuestionnaireMeta__InlineField
+          id="navigation"
+        >
+          <Label
+            inline={true}
+            small={false}
+          >
+            Navigation
+          </Label>
+          <ToggleSwitch
+            checked={false}
+            name="navigation"
+            onBlur={[Function]}
+            onChange={[Function]}
+          />
+        </QuestionnaireMeta__InlineField>
+      </Column>
+    </Grid>
+    <Grid
+      align="top"
+      fillHeight={true}
+    >
+      <Column
+        cols={6}
+      >
+        <QuestionnaireMeta__InlineField
+          id="summary"
+        >
+          <Label
+            inline={true}
+            small={false}
+          >
+            Summary on confirmation page
+          </Label>
+          <ToggleSwitch
+            checked={false}
+            name="summary"
+            onBlur={[Function]}
+            onChange={[Function]}
+          />
+        </QuestionnaireMeta__InlineField>
+      </Column>
+    </Grid>
     Children
   </Form>
 </Panel__CenteredPanel>

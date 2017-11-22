@@ -46,10 +46,6 @@ exports[`containers/App should render 1`] = `
         />
         <Route
           component={[Function]}
-          path="/questionnaire/:questionnaireId/meta"
-        />
-        <Route
-          component={[Function]}
           exact={false}
           path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
         />

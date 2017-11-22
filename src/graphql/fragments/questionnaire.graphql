@@ -6,4 +6,5 @@ fragment Questionnaire on Questionnaire {
   theme
   legalBasis
   navigation
+  summary
 }

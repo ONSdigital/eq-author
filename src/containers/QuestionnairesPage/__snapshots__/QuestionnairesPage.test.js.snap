@@ -16,13 +16,6 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
       >
         Create
       </withRouter(LB)>
-      <Button
-        disabled={true}
-        id="btn-load-questionnaire"
-        secondary={true}
-      >
-        Upload
-      </Button>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel />
   </MainCanvas>
@@ -45,13 +38,6 @@ exports[`containers/Questionnaires should render a 'Create Questionnaire' button
       >
         Create
       </withRouter(LB)>
-      <Button
-        disabled={true}
-        id="btn-load-questionnaire"
-        secondary={true}
-      >
-        Upload
-      </Button>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
@@ -79,13 +65,6 @@ exports[`containers/Questionnaires should render when there are no questionnaire
       >
         Create
       </withRouter(LB)>
-      <Button
-        disabled={true}
-        id="btn-load-questionnaire"
-        secondary={true}
-      >
-        Upload
-      </Button>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
@@ -113,13 +92,6 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
       >
         Create
       </withRouter(LB)>
-      <Button
-        disabled={true}
-        id="btn-load-questionnaire"
-        secondary={true}
-      >
-        Upload
-      </Button>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable

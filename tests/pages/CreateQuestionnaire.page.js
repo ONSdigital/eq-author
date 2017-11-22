@@ -5,32 +5,30 @@ export const onCreateQuestionnairePage = () => {
 
 const questionnaireTitle = "#title";
 const questionnaireDescription = "#description";
-const questionnaireSurveyId = "#surveyId";
 const questionnaireTheme = "#theme";
 const questionnaireLegalBasis = "#legalBasis";
-const questionnaireNavigation = "#navigation";
+const navigationToggle = "label[for='navigation']";
+const navigationCheckbox = "#navigation";
 const createButton = 'button[type="submit"]';
 
 export const enterQuestionnaireDetails = (
   title,
   description,
-  surveyId,
   theme,
   legalBasis,
   navigationDesired
 ) => {
   browser.setValue(questionnaireTitle, title);
   browser.setValue(questionnaireDescription, description);
-  browser.setValue(questionnaireSurveyId, surveyId);
   browser.selectByVisibleText(questionnaireTheme, theme);
   browser.selectByVisibleText(questionnaireLegalBasis, legalBasis);
 
-  const isNavigationChecked = browser.isSelected(questionnaireNavigation);
+  const isNavigationChecked = browser.isSelected(navigationCheckbox);
   if (
     (isNavigationChecked && !navigationDesired) ||
     (!isNavigationChecked && navigationDesired)
   ) {
-    browser.click(questionnaireNavigation);
+    browser.click(navigationToggle);
   }
 };
 

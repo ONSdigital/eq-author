@@ -9,6 +9,20 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
     <ScrollPane>
       <StatelessAccordion>
         <AccordionPanel
+          id="Questionnaire1"
+          open={false}
+          title="Questionnaire"
+        >
+          <Apollo(withEntityEditor(QuestionnaireProperties))
+            questionnaire={
+              Object {
+                "__typename": "Questionnaire",
+                "id": "1",
+              }
+            }
+          />
+        </AccordionPanel>
+        <AccordionPanel
           id="Page1"
           open={false}
           title="Page"
@@ -84,6 +98,20 @@ exports[`PropertiesPanel should render when there are no answers 1`] = `
   <PropertiesPanel__PropertiesPaneBody>
     <ScrollPane>
       <StatelessAccordion>
+        <AccordionPanel
+          id="Questionnaire1"
+          open={false}
+          title="Questionnaire"
+        >
+          <Apollo(withEntityEditor(QuestionnaireProperties))
+            questionnaire={
+              Object {
+                "__typename": "Questionnaire",
+                "id": "1",
+              }
+            }
+          />
+        </AccordionPanel>
         <AccordionPanel
           id="Page1"
           open={false}
