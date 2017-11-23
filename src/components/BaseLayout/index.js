@@ -13,6 +13,7 @@ import { Grid, Column } from "components/Grid";
 import { colors } from "constants/theme";
 
 import ToastContainer from "containers/ToastContainer";
+import SlackFeedbackContainer from "containers/SlackFeedbackContainer";
 
 const Wrapper = styled.div`
   background-color: ${colors.lighterGrey};
@@ -67,6 +68,10 @@ const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
         {ReactDOM.createPortal(
           <ToastContainer />,
           document.getElementById("toast")
+        )}
+        {ReactDOM.createPortal(
+          <SlackFeedbackContainer />,
+          document.getElementById("slack-feedback")
         )}
       </Wrapper>
     </App>
