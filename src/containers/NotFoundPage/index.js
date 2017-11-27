@@ -20,6 +20,11 @@ const Pencil = styled.div`
   height: 135px;
 `;
 
+const Title = styled.h1`
+  font-size: 1em;
+  font-weight: 600;
+`;
+
 const pageTitle = "Page not found";
 
 const NotFound = props => {
@@ -29,7 +34,9 @@ const NotFound = props => {
         <Column cols={6} offset={3}>
           <CenteredPane>
             <Pencil />
-            <p>404 - Sorry, the page you were looking for was not found</p>
+            <Title>
+              404 – Sorry, the page you were looking for was not found.
+            </Title>
             <Link href="/">Back to home</Link>
           </CenteredPane>
         </Column>

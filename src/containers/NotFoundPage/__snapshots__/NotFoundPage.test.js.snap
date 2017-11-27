@@ -15,9 +15,9 @@ exports[`CanvasSection should render 1`] = `
     >
       <NotFoundPage__CenteredPane>
         <NotFoundPage__Pencil />
-        <p>
-          404 - Sorry, the page you were looking for was not found
-        </p>
+        <NotFoundPage__Title>
+          404 – Sorry, the page you were looking for was not found.
+        </NotFoundPage__Title>
         <Link__StyledLink
           href="/"
         >
