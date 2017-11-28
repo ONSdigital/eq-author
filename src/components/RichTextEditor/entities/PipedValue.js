@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { colors } from "constants/theme";
 import findEntitiesByType from "../utils/findEntitiesByType";
 import getEntities from "../utils/getEntities";
+import replaceEntityText from "../utils/replaceEntityText";
+import { Modifier } from "draft-js";
+import { bindKey } from "lodash";
 
 export const ENTITY_TYPE = "PIPED-DATA";
 
@@ -48,6 +51,37 @@ export const htmlToEntity = (nodeName, node, createEntity) => {
 
 export const entityToHTML = {
   [ENTITY_TYPE]: PipedValueSerialized
+};
+
+export const replacePipedValues = labels => (
+  contentState,
+  { entityKey, blockKey, entity }
+) => {
+  const text = labels.hasOwnProperty(entity.data.id)
+    ? labels[entity.data.id]
+    : "Deleted Piped Value";
+
+  return text
+    ? replaceEntityText(contentState, entityKey, blockKey, `[${text}]`)
+    : contentState;
+};
+
+export const insertPipedValue = (answer, contentState, selection) => {
+  const newContent = createPipedEntity(
+    bindKey(contentState, "createEntity"),
+    answer
+  );
+
+  const entityKey = newContent.getLastCreatedEntityKey();
+  const text = answer.label || "Piped Value";
+
+  return Modifier.insertText(
+    newContent,
+    selection,
+    `[${text}]`,
+    null,
+    entityKey
+  );
 };
 
 export default {
