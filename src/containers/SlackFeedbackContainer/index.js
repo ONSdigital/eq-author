@@ -5,6 +5,10 @@ import "whatwg-fetch";
 import SlackFeedback from "react-slack-feedback";
 // import SlackFeedback from "./copied-component/SlackFeedback";
 
+let slackUrl = process.env.NODE_ENV === "production"
+    ? "https://eq-author-server2.herokuapp.com/api/slack"
+    : "http://localhost:8050/api/slack";
+
 class SlackFeedbackContainer extends React.Component {
   render() {
     return (
@@ -29,7 +33,7 @@ class SlackFeedbackContainer extends React.Component {
       ""
     );
 
-    fetch("http://localhost:8050/api/slack", {
+    fetch(slackUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
