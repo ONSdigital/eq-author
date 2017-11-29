@@ -9,18 +9,11 @@ import iconPiping from "./icon-piping.svg";
 import { Button } from "components/IconDecorated/IconButton";
 import { take, findIndex } from "lodash";
 import query from "graphql/getQuestionnairePiping.graphql";
-import {
-  TEXTAREA,
-  TEXTFIELD,
-  DATE_RANGE,
-  NUMBER,
-  CURRENCY
-} from "constants/answer-types";
+import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
 
 const validAnswerTypes = {
   [TEXTAREA]: true,
   [TEXTFIELD]: true,
-  [DATE_RANGE]: true,
   [NUMBER]: true,
   [CURRENCY]: true
 };

@@ -216,8 +216,8 @@ describe("components/RichTextEditor", function() {
         expect(toRaw(wrapper)).toEqual(expected);
       });
 
-      it("should not replace text for piped values that no longer exist", () => {
-        const answer4 = { id: "4", type: "TextField" };
+      it("should handle piped values for answers that no longer exist", () => {
+        const nonExistentAnswer = { id: "4", type: "TextField" };
         const html = `<p><span data-piped="answers" data-id="4" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span></p>`;
 
         wrapper = shallow(
@@ -225,9 +225,9 @@ describe("components/RichTextEditor", function() {
         );
 
         const expected = new Raw()
-          .addBlock("[Piped Value] [answer 2]")
-          .addEntity(createPipedEntity(createEntity, answer4), 0, 13)
-          .addEntity(createPipedEntity(createEntity, answers[1]), 14, 10)
+          .addBlock("[Deleted Piped Value] [answer 2]")
+          .addEntity(createPipedEntity(createEntity, nonExistentAnswer), 0, 21)
+          .addEntity(createPipedEntity(createEntity, answers[1]), 22, 10)
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
@@ -237,23 +237,58 @@ describe("components/RichTextEditor", function() {
         wrapper = shallow(<RichTextEditor {...props} fetchAnswers={fetch} />);
         expect(fetch).not.toHaveBeenCalled();
       });
+
+      it("should not update piped value text if answer doesn't have label", () => {
+        const html = `<p><span data-piped="answers" data-id="123" data-type="TextField">[Piped Value]</span></p>`;
+        const answer = { id: "123", type: "TextField" };
+        fetch = jest.fn(() => SynchronousPromise.resolve([answer]));
+
+        wrapper = shallow(
+          <RichTextEditor {...props} fetchAnswers={fetch} value={html} />
+        );
+
+        const expected = new Raw()
+          .addBlock("[Piped Value]")
+          .addEntity(createPipedEntity(createEntity, answer), 0, 13)
+          .toRawContentState();
+
+        expect(toRaw(wrapper)).toEqual(expected);
+      });
     });
 
-    it("should allow for new piped values to be added", () => {
-      const answer = {
-        id: "123",
-        label: "pipe",
-        type: "TextField"
-      };
+    describe("inserting piped values", () => {
+      it("should allow for new piped values to be added", () => {
+        const answer = {
+          id: "123",
+          label: "pipe",
+          type: "TextField"
+        };
 
-      wrapper.find(Toolbar).simulate("piping", answer);
+        wrapper.find(Toolbar).simulate("piping", answer);
 
-      const expected = new Raw()
-        .addBlock("[pipe]")
-        .addEntity(createPipedEntity(createEntity, answer), 0, 6)
-        .toRawContentState();
+        const expected = new Raw()
+          .addBlock("[pipe]")
+          .addEntity(createPipedEntity(createEntity, answer), 0, 6)
+          .toRawContentState();
 
-      expect(toRaw(wrapper)).toEqual(expected);
+        expect(toRaw(wrapper)).toEqual(expected);
+      });
+
+      it("should use generic label if answer doesn't have label", () => {
+        const answer = {
+          id: "123",
+          type: "TextField"
+        };
+
+        wrapper.find(Toolbar).simulate("piping", answer);
+
+        const expected = new Raw()
+          .addBlock("[Piped Value]")
+          .addEntity(createPipedEntity(createEntity, answer), 0, 13)
+          .toRawContentState();
+
+        expect(toRaw(wrapper)).toEqual(expected);
+      });
     });
   });
 });

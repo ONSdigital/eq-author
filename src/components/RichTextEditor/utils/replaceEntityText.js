@@ -19,7 +19,7 @@ const getEntityRange = (block, entityKey) => {
   });
 };
 
-const replaceText = (contentState, entityKey, blockKey, text, length) => {
+const replaceText = (contentState, entityKey, blockKey, text, inlineStyles) => {
   const block = contentState.getBlockForKey(blockKey);
   const entitySelection = getEntityRange(block, entityKey);
 
@@ -28,7 +28,7 @@ const replaceText = (contentState, entityKey, blockKey, text, length) => {
     contentState,
     entitySelection,
     text,
-    null,
+    inlineStyles,
     entityKey
   );
 
