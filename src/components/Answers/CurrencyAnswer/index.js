@@ -14,15 +14,17 @@ const StyledSpan = styled.span`
   width: 2.5em;
   font-weight: 700;
   font-size: 1em;
+  line-height: 1.1;
   text-align: center;
   position: absolute;
   left: 0;
   top: 0;
+  color: ${colors.lightGrey};
 `;
 
 const FieldWrapper = styled.div`
   display: block;
-  width: 100%;
+  width: 50%;
   margin-bottom: 1em;
   position: relative;
   overflow: hidden;

@@ -11,7 +11,7 @@ import Button from "components/Button";
 import Option from "./Option";
 
 const AnswerWrapper = styled.div`
-  width: 25em;
+  width: 50%;
   margin: 0;
 `;
 

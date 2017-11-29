@@ -18,36 +18,30 @@ exports[`Dummy/DateRange should render 1`] = `
 `;
 
 exports[`Dummy/DateRange should render dummy DatePicker 1`] = `
-<div>
-  <DateRange__Field
-    colWidth="25%"
-  >
+<DateRange__Flex>
+  <DateRange__Field>
     <DateRange__Label>
       Day
     </DateRange__Label>
-    <DateRange__Input>
-      DD
-    </DateRange__Input>
+    <DateRange__Input
+      placeholder="DD"
+    />
   </DateRange__Field>
-  <DateRange__Field
-    colWidth="50%"
-  >
+  <DateRange__SelectField>
     <DateRange__Label>
       Month
     </DateRange__Label>
-    <DateRange__Select>
-      Select month
-    </DateRange__Select>
-  </DateRange__Field>
-  <DateRange__Field
-    colWidth="25%"
-  >
+    <DateRange__Select
+      placeholder="Select month"
+    />
+  </DateRange__SelectField>
+  <DateRange__Field>
     <DateRange__Label>
       Year
     </DateRange__Label>
-    <DateRange__Input>
-      YYYY
-    </DateRange__Input>
+    <DateRange__Input
+      placeholder="YYYY"
+    />
   </DateRange__Field>
-</div>
+</DateRange__Flex>
 `;

@@ -7,6 +7,7 @@ const DummyTextArea = styled.div`
   padding: 1.2em 1.2em 1.2em 2em;
   position: relative;
   background-color: transparent;
+  width: 50%;
   height: ${props => props.rows + 2}em;
 `;
 
