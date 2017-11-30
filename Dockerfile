@@ -4,6 +4,9 @@ WORKDIR /app
 
 RUN npm install -g serve
 
+ARG APPLICATION_VERSION
+ENV EQ_AUTHOR_VERSION $APPLICATION_VERSION
+
 ENTRYPOINT ["sh", "docker-entrypoint.sh"]
 
 # Install
