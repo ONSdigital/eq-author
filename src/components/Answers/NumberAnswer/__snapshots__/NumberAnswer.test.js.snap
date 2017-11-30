@@ -11,8 +11,10 @@ exports[`NumberAnswer should render 1`] = `
   onChange={[Function]}
   onUpdate={[Function]}
 >
-  <div>
-    <TextInput__DummyTextInput />
-  </div>
+  <NumberAnswer__Width>
+    <DummyTextInput
+      placeholder="eg. 123"
+    />
+  </NumberAnswer__Width>
 </withEntityEditor(StatelessBasicAnswer)>
 `;

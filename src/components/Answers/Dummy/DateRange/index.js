@@ -1,32 +1,29 @@
 import React from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import DummyTextInput from "../TextInput";
 import { colors } from "constants/theme";
 import chevronIcon from "components/Accordion/chevron.svg";
 
-const GUTTER = "0.625em";
-
 const Field = styled.div`
   display: inline-block;
-  width: calc(${props => props.colWidth} - ${GUTTER});
-  margin-left: ${GUTTER};
+  margin-left: 1em;
+  flex: 1 1 auto;
 
   &:first-of-type {
     margin-left: 0;
   }
 `;
 
-Field.propTypes = {
-  colWidth: PropTypes.string.isRequired
-};
+const SelectField = styled(Field)`
+  flex: 3 3 auto;
+`;
 
 const Input = styled(DummyTextInput)`
-  width: auto;
-  border-radius: 3px;
-  padding: 0.875em 1em;
-  border-color: #bfbfbf;
-  color: #bfbfbf;
+  width: 100%;
+`;
+
+const Flex = styled.div`
+  display: flex;
 `;
 
 const Select = styled(Input)`
@@ -34,7 +31,10 @@ const Select = styled(Input)`
     content: url(${chevronIcon});
     position: absolute;
     right: 0.75em;
-    top: 0.75em;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 1em;
   }
 `;
 
@@ -43,7 +43,7 @@ const Label = styled.p`
   font-size: 0.875em;
   font-weight: bold;
   margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Fieldset = styled.div`
@@ -63,20 +63,20 @@ const Legend = styled.p`
 `;
 
 export const DatePicker = () => (
-  <div>
-    <Field colWidth="25%">
+  <Flex>
+    <Field>
       <Label>Day</Label>
-      <Input>DD</Input>
+      <Input placeholder="DD" />
     </Field>
-    <Field colWidth="50%">
+    <SelectField>
       <Label>Month</Label>
-      <Select>Select month</Select>
-    </Field>
-    <Field colWidth="25%">
+      <Select placeholder="Select month" />
+    </SelectField>
+    <Field>
       <Label>Year</Label>
-      <Input>YYYY</Input>
+      <Input placeholder="YYYY" />
     </Field>
-  </div>
+  </Flex>
 );
 
 const StyledDateRange = styled.div.attrs({
