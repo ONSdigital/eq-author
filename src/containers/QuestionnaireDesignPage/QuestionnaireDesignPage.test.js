@@ -1,6 +1,5 @@
 import React from "react";
 import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
-import EditorSurface from "components/EditorSurface";
 import { shallow } from "enzyme";
 
 describe("QuestionnaireDesignPage", () => {
@@ -61,10 +60,5 @@ describe("QuestionnaireDesignPage", () => {
 
   it("should render form when loaded", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should track focused item", () => {
-    wrapper.find(EditorSurface).simulate("focus", "option");
-    expect(wrapper.state("focused")).toBe("option");
   });
 });

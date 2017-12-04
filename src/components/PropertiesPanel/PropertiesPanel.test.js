@@ -1,5 +1,5 @@
 import React from "react";
-import PropertiesPanel from "components/PropertiesPanel";
+import { PropertiesPanel } from "components/PropertiesPanel";
 import { shallow } from "enzyme";
 import { merge } from "lodash";
 
@@ -23,7 +23,9 @@ const props = {
   orderMin: 1,
   orderMax: 10,
   page,
-  questionnaire
+  questionnaire,
+  focusOnSection: jest.fn(),
+  selectedSection: ""
 };
 
 describe("PropertiesPanel", () => {

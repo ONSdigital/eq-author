@@ -1,4 +1,4 @@
-import { TOAST_DISMISS, TOAST_RAISE } from "actions/toast";
+import { TOAST_DISMISS, TOAST_RAISE } from "redux/toast/actions";
 
 export default (state = {}, action) => {
   switch (action.type) {

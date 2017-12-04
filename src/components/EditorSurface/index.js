@@ -1,7 +1,7 @@
 /* eslint-disable react/no-find-dom-node */
 import React from "react";
 import PropTypes from "prop-types";
-import CanvasSection from "./CanvasSection";
+import ConnectedCanvasSection from "./CanvasSection";
 
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
@@ -18,9 +18,7 @@ class EditorSurface extends React.Component {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
     onUpdatePage: PropTypes.func.isRequired,
-    onUpdateSection: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
-    focused: PropTypes.string.isRequired
+    onUpdateSection: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -50,47 +48,33 @@ class EditorSurface extends React.Component {
     const sectionTitle = getTextFromHTML(get(section, "title"));
     const pageTitle = getTextFromHTML(get(page, "title"));
 
-    if (!sectionTitle) {
+    if (!sectionTitle && this.sectionTitle) {
       this.sectionTitle.focus();
-    } else if (!pageTitle) {
+    } else if (!pageTitle && this.pageTitle) {
       this.pageTitle.focus();
     }
   };
 
   render() {
-    const {
-      section,
-      page,
-      onFocus,
-      focused,
-      onUpdatePage,
-      onUpdateSection
-    } = this.props;
-
+    const { section, page, onUpdatePage, onUpdateSection } = this.props;
     const sectionId = getIdForObject(section);
 
     return (
       <Form onChange={noop} onSubmit={noop}>
         <TransitionGroup>
           <SlideTransition key={sectionId}>
-            <CanvasSection
-              id={sectionId}
-              onFocus={onFocus}
-              isFocused={focused === sectionId}
-            >
+            <ConnectedCanvasSection id={sectionId}>
               <SectionEditor
                 onUpdate={onUpdateSection}
                 section={section}
                 titleRef={this.setSectionTitle}
               />
-            </CanvasSection>
+            </ConnectedCanvasSection>
           </SlideTransition>
           <SlideTransition key={getIdForObject(page)}>
             <QuestionPageEditor
               onUpdatePage={onUpdatePage}
               page={page}
-              onFocus={onFocus}
-              focused={focused}
               titleRef={this.setPageTitle}
             />
           </SlideTransition>

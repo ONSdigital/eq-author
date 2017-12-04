@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { shallow } from "enzyme";
 import EditorSurface from "./";
 import PropTypes from "prop-types";
 
@@ -109,7 +109,7 @@ describe("EditorSurface", () => {
     describe("when section title is empty", () => {
       describe("and page title is populated", () => {
         it("should focus on section title", () => {
-          wrapper = createWrapperWithTitles({ page: "a page title" }, mount);
+          wrapper = createWrapperWithTitles({ page: "a page title" });
 
           wrapper.instance().setSectionTitle(sectionSpy);
           wrapper.instance().setPageTitle(pageSpy);
@@ -167,8 +167,9 @@ describe("EditorSurface", () => {
 
     describe("when navigating to new page", () => {
       it("should attempt to move focus", () => {
-        wrapper = createWrapper({}, mount);
-        const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
+        wrapper = createWrapper();
+        const spy = jest.fn();
+        wrapper.instance().sectionTitle = { focus: spy };
 
         wrapper.setProps({
           page: {
@@ -185,8 +186,9 @@ describe("EditorSurface", () => {
 
     describe("when navigating to same page", () => {
       it("should not attempt to move focus", () => {
-        const wrapper = createWrapper({}, mount);
-        const spy = jest.spyOn(wrapper.instance(), "setFocusOnTitle");
+        const wrapper = createWrapper();
+        const spy = jest.fn();
+        wrapper.instance().sectionTitle = { focus: spy };
         wrapper.setProps({ page });
 
         expect(spy).not.toHaveBeenCalled();

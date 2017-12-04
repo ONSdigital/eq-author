@@ -13,10 +13,8 @@ exports[`EditorSurface should render 1`] = `
       duration={300}
       key="Section3"
     >
-      <CanvasSection
+      <Connect(CanvasSection)
         id="Section3"
-        isFocused={true}
-        onFocus={[Function]}
       >
         <withEntityEditor(StatelessSectionEditor)
           onUpdate={[Function]}
@@ -51,15 +49,13 @@ exports[`EditorSurface should render 1`] = `
           }
           titleRef={[Function]}
         />
-      </CanvasSection>
+      </Connect(CanvasSection)>
     </SlideTransition>
     <SlideTransition
       duration={300}
       key="Page2"
     >
       <Connect(Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE)))))))
-        focused="Section3"
-        onFocus={[Function]}
         onUpdatePage={[Function]}
         page={
           Object {

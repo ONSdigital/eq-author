@@ -2,89 +2,60 @@
 
 exports[`PropertiesPanel should render when there are answers 1`] = `
 <PropertiesPanel__PropertiesPane>
-  <PropertiesPanel__PropertiesPanelTitle>
-    Properties
-  </PropertiesPanel__PropertiesPanelTitle>
   <PropertiesPanel__PropertiesPaneBody>
     <ScrollPane>
-      <StatelessAccordion>
-        <AccordionPanel
-          id="Questionnaire1"
-          open={false}
-          title="Questionnaire"
-        >
-          <Apollo(withEntityEditor(QuestionnaireProperties))
-            questionnaire={
-              Object {
-                "__typename": "Questionnaire",
-                "id": "1",
-              }
+      <PropertiesPanel__PropertiesPanelTitle>
+        Questionnaire properties
+      </PropertiesPanel__PropertiesPanelTitle>
+      <PropertiesPanel__PropertiesGroup>
+        <Apollo(withEntityEditor(QuestionnaireProperties))
+          questionnaire={
+            Object {
+              "__typename": "Questionnaire",
+              "id": "1",
             }
-          />
-        </AccordionPanel>
-        <AccordionPanel
-          id="Page1"
-          open={false}
-          title="Page"
-        >
-          <PageProperties
-            onBlur={[Function]}
-            onChange={[Function]}
-            onSubmit={[Function]}
-            orderMax={10}
-            orderMin={1}
-            page={
-              Object {
-                "__typename": "Page",
-                "answers": Array [
-                  Object {
-                    "__typename": "Answer",
-                    "id": "1",
-                  },
-                  Object {
-                    "__typename": "Answer",
-                    "id": "2",
-                  },
-                ],
-                "id": "1",
-                "type": "Questionnaire",
+          }
+        />
+      </PropertiesPanel__PropertiesGroup>
+      <div>
+        <PropertiesPanel__PropertiesPanelTitle>
+          Answer properties
+        </PropertiesPanel__PropertiesPanelTitle>
+        <PropertiesPanel__PropertiesGroup>
+          <div
+            key="0"
+          >
+            <Apollo(AnswerProperties)
+              answer={
+                Object {
+                  "__typename": "Answer",
+                  "id": "1",
+                  "index": 0,
+                }
               }
-            }
-          />
-        </AccordionPanel>
-        <AccordionPanel
-          id="Answer1"
-          key="1"
-          open={false}
-          title="Answer 1"
-        >
-          <Apollo(AnswerProperties)
-            answer={
-              Object {
-                "__typename": "Answer",
-                "id": "1",
+              id="Answer1"
+              key="1"
+              onSubmit={[Function]}
+            />
+          </div>
+          <div
+            key="1"
+          >
+            <Apollo(AnswerProperties)
+              answer={
+                Object {
+                  "__typename": "Answer",
+                  "id": "2",
+                  "index": 1,
+                }
               }
-            }
-            onSubmit={[Function]}
-          />
-        </AccordionPanel>
-        <AccordionPanel
-          id="Answer2"
-          key="2"
-          open={false}
-          title="Answer 2"
-        >
-          <Apollo(AnswerProperties)
-            answer={
-              Object {
-                "__typename": "Answer",
-                "id": "2",
-              }
-            }
-            onSubmit={[Function]}
-          />
-        </AccordionPanel>
-      </StatelessAccordion>
+              id="Answer2"
+              key="2"
+              onSubmit={[Function]}
+            />
+          </div>
+        </PropertiesPanel__PropertiesGroup>
+      </div>
     </ScrollPane>
   </PropertiesPanel__PropertiesPaneBody>
 </PropertiesPanel__PropertiesPane>
@@ -92,48 +63,21 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
 
 exports[`PropertiesPanel should render when there are no answers 1`] = `
 <PropertiesPanel__PropertiesPane>
-  <PropertiesPanel__PropertiesPanelTitle>
-    Properties
-  </PropertiesPanel__PropertiesPanelTitle>
   <PropertiesPanel__PropertiesPaneBody>
     <ScrollPane>
-      <StatelessAccordion>
-        <AccordionPanel
-          id="Questionnaire1"
-          open={false}
-          title="Questionnaire"
-        >
-          <Apollo(withEntityEditor(QuestionnaireProperties))
-            questionnaire={
-              Object {
-                "__typename": "Questionnaire",
-                "id": "1",
-              }
+      <PropertiesPanel__PropertiesPanelTitle>
+        Questionnaire properties
+      </PropertiesPanel__PropertiesPanelTitle>
+      <PropertiesPanel__PropertiesGroup>
+        <Apollo(withEntityEditor(QuestionnaireProperties))
+          questionnaire={
+            Object {
+              "__typename": "Questionnaire",
+              "id": "1",
             }
-          />
-        </AccordionPanel>
-        <AccordionPanel
-          id="Page1"
-          open={false}
-          title="Page"
-        >
-          <PageProperties
-            onBlur={[Function]}
-            onChange={[Function]}
-            onSubmit={[Function]}
-            orderMax={10}
-            orderMin={1}
-            page={
-              Object {
-                "__typename": "Page",
-                "answers": Array [],
-                "id": "1",
-                "type": "Questionnaire",
-              }
-            }
-          />
-        </AccordionPanel>
-      </StatelessAccordion>
+          }
+        />
+      </PropertiesPanel__PropertiesGroup>
     </ScrollPane>
   </PropertiesPanel__PropertiesPaneBody>
 </PropertiesPanel__PropertiesPane>

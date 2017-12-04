@@ -1,5 +1,5 @@
-import { TOAST_DISMISS, TOAST_RAISE } from "actions/toast";
-import toastReducer from "reducers/toastReducer";
+import { TOAST_DISMISS, TOAST_RAISE } from "redux/toast/actions";
+import toastReducer from "redux/toast/reducer";
 
 const createAction = (type, payload = {}) => {
   return {

@@ -7,7 +7,7 @@ import withDeletePage from "containers/enhancers/withDeletePage";
 
 import QuestionnaireNav from "components/QuestionnaireNav";
 import withCreateSection from "containers/enhancers/withCreateSection";
-import * as ToastActionCreators from "actionCreators/toast";
+import * as ToastActionCreators from "redux/toast/actions";
 
 import { connect } from "react-redux";
 

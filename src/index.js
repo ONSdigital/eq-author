@@ -1,6 +1,6 @@
 import render from "utils/render";
 import createHistory from "history/createHashHistory";
-import configureStore from "store/configureStore";
+import configureStore from "redux/configureStore";
 import createClient from "apollo/createClient";
 import App from "containers/App";
 import Raven from "raven-js";
@@ -42,10 +42,5 @@ if (module.hot) {
   module.hot.accept("containers/App", () => {
     const NextApp = require("containers/App").default;
     renderApp(NextApp);
-  });
-
-  module.hot.accept("reducers", () => {
-    const nextReducer = require("reducers").default;
-    store.replaceReducer(nextReducer);
   });
 }

@@ -3,11 +3,9 @@ import GetQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 import { findUndeleteIndex } from "utils/findUndeleteIndex";
 import createMutate from "utils/createMutate";
 
-import {
-  UNDELETE_QUESTIONNAIRE_REQUEST,
-  UNDELETE_QUESTIONNAIRE_SUCCESS,
-  UNDELETE_QUESTIONNAIRE_FAILURE
-} from "actions/undelete";
+export const UNDELETE_QUESTIONNAIRE_REQUEST = "UNDELETE_QUESTIONNAIRE_REQUEST";
+export const UNDELETE_QUESTIONNAIRE_SUCCESS = "UNDELETE_QUESTIONNAIRE_SUCCESS";
+export const UNDELETE_QUESTIONNAIRE_FAILURE = "UNDELETE_QUESTIONNAIRE_FAILURE";
 
 const undeleteRequest = () => {
   return {

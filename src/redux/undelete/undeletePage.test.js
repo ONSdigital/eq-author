@@ -1,23 +1,23 @@
 import {
-  undeleteAnswer,
+  undeletePage,
   createUndelete,
   createUpdate
-} from "actionCreators/undelete/undeleteAnswer";
-import fragment from "graphql/pageFragment.graphql";
+} from "redux/undelete/undeletePage";
+import fragment from "graphql/sectionFragment.graphql";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-describe("undeleteAnswer", () => {
+describe("undeletePage", () => {
   let id;
   let context;
 
   let dispatch, getState, client, mutate, proxy, result;
 
   beforeEach(() => {
-    id = "Answer1";
+    id = "Page1";
     context = {
-      pageId: 1,
-      answerId: 1
+      sectionId: 1,
+      pageId: 1
     };
 
     dispatch = jest.fn();
@@ -30,7 +30,7 @@ describe("undeleteAnswer", () => {
 
     result = {
       data: {
-        undeleteAnswer: {
+        undeleteQuestionPage: {
           id: 1
         }
       }
@@ -39,7 +39,7 @@ describe("undeleteAnswer", () => {
     proxy = {
       readFragment: jest.fn(() => {
         return {
-          answers: []
+          pages: []
         };
       }),
       writeFragment: jest.fn()
@@ -47,11 +47,11 @@ describe("undeleteAnswer", () => {
   });
 
   it("should return a thunk function", () => {
-    expect(undeleteAnswer(id, context)).toEqual(expect.any(Function));
+    expect(undeletePage(id, context)).toEqual(expect.any(Function));
   });
 
   it("should call dispatch asynchronously when thunk is invoked", () => {
-    const thunk = undeleteAnswer(id, context);
+    const thunk = undeletePage(id, context);
     thunk(dispatch, getState, client).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
     });
@@ -71,7 +71,7 @@ describe("undeleteAnswer", () => {
     it("should call the correct query on the proxy", () => {
       createUpdate(context)(proxy, result);
       expect(proxy.readFragment).toHaveBeenCalledWith({
-        id: "QuestionPage1",
+        id: "Section1",
         fragment
       });
     });
@@ -79,16 +79,16 @@ describe("undeleteAnswer", () => {
     it("should write data back to the proxy", () => {
       createUpdate(context)(proxy, result);
       expect(proxy.writeFragment).toHaveBeenCalledWith({
-        id: "QuestionPage1",
+        id: "Section1",
         fragment,
         data: {
-          answers: [{ id: 1 }]
+          pages: [{ id: 1 }]
         }
       });
     });
   });
 
-  describe("undeleteAnswer integration tests", () => {
+  describe("undeletePage integration tests", () => {
     let middleware;
     let mockStore;
     let store;
@@ -100,13 +100,13 @@ describe("undeleteAnswer", () => {
     });
 
     it("should send a request then a success action", () => {
-      return store.dispatch(undeleteAnswer(id, context)).then(() => {
+      return store.dispatch(undeletePage(id, context)).then(() => {
         expect(store.getActions()).toEqual([
           {
-            type: "UNDELETE_ANSWER_REQUEST"
+            type: "UNDELETE_PAGE_REQUEST"
           },
           {
-            type: "UNDELETE_ANSWER_SUCCESS"
+            type: "UNDELETE_PAGE_SUCCESS"
           }
         ]);
       });
@@ -114,13 +114,13 @@ describe("undeleteAnswer", () => {
 
     it("should send a request then an error action", () => {
       client.mutate = jest.fn(() => Promise.reject());
-      return store.dispatch(undeleteAnswer(id, context)).then(() => {
+      return store.dispatch(undeletePage(id, context)).then(() => {
         expect(store.getActions()).toEqual([
           {
-            type: "UNDELETE_ANSWER_REQUEST"
+            type: "UNDELETE_PAGE_REQUEST"
           },
           {
-            type: "UNDELETE_ANSWER_FAILURE"
+            type: "UNDELETE_PAGE_FAILURE"
           }
         ]);
       });

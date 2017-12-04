@@ -2,17 +2,17 @@
 
 exports[`Answer Properties should render 1`] = `
 <AnswerProperties__InlineField
-  id="mandatory"
+  id="answer-1-mandatory"
 >
   <Label
     inline={true}
     small={true}
   >
-    Answer required
+    Answer NaN required
   </Label>
   <ToggleSwitch
     checked={false}
-    name="mandatory"
+    name="answer-1-mandatory"
     onChange={[Function]}
   />
 </AnswerProperties__InlineField>

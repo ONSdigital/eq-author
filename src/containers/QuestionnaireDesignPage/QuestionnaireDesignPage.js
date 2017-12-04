@@ -9,7 +9,7 @@ import ScrollPane from "components/ScrollPane";
 import EditorSurface from "components/EditorSurface";
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 import getTextFromHTML from "utils/getTextFromHTML";
-import PropertiesPanel from "components/PropertiesPanel";
+import ConnectedPropertiesPanel from "components/PropertiesPanel";
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -25,22 +25,9 @@ export class QuestionnaireDesignPage extends Component {
     loading: PropTypes.bool.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      focused: "section"
-    };
-  }
-
   shouldComponentUpdate(nextProps) {
     return !isNil(nextProps.section) && !isNil(nextProps.page);
   }
-
-  handleFocus = focused => {
-    if (focused !== this.state.focused) {
-      this.setState({ focused });
-    }
-  };
 
   getMetaTitle = () => {
     const { questionnaire, page } = this.props;
@@ -94,18 +81,14 @@ export class QuestionnaireDesignPage extends Component {
                   page={page}
                   onUpdatePage={onUpdatePage}
                   onUpdateSection={onUpdateSection}
-                  focused={this.state.focused}
-                  onFocus={this.handleFocus}
                 />
               </MainCanvas>
             </ScrollPane>
           </Column>
           <Column cols={2} gutters={false}>
-            <PropertiesPanel
+            <ConnectedPropertiesPanel
               questionnaire={questionnaire}
               page={page}
-              orderMin={1}
-              orderMax={10}
             />
           </Column>
         </Grid>

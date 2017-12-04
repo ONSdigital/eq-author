@@ -3,11 +3,9 @@ import fragment from "graphql/questionnaireFragment.graphql";
 import { findUndeleteIndex } from "utils/findUndeleteIndex";
 import createMutate from "utils/createMutate";
 
-import {
-  UNDELETE_SECTION_REQUEST,
-  UNDELETE_SECTION_SUCCESS,
-  UNDELETE_SECTION_FAILURE
-} from "actions/undelete";
+export const UNDELETE_SECTION_REQUEST = "UNDELETE_SECTION_REQUEST";
+export const UNDELETE_SECTION_SUCCESS = "UNDELETE_SECTION_SUCCESS";
+export const UNDELETE_SECTION_FAILURE = "UNDELETE_SECTION_FAILURE";
 
 const undeleteRequest = () => {
   return {

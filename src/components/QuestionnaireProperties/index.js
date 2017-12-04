@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
-import { Field, Input, Label, Select, TextArea } from "components/Forms";
+import { Field, Input, Label, Select } from "components/Forms";
 import ToggleSwitch from "components/ToggleSwitch";
 import styled from "styled-components";
 import { partial, flip } from "lodash";
@@ -29,7 +29,7 @@ export const QuestionnaireProperties = ({
   return (
     <QuestionnairePropertiesPanel>
       <Field id="title">
-        <Label small>Questionnaire Title</Label>
+        <Label small>Title</Label>
         <Input
           autoFocus
           defaultValue={questionnaire.title}
@@ -38,15 +38,7 @@ export const QuestionnaireProperties = ({
           required
         />
       </Field>
-      <Field id="description">
-        <Label small>Description</Label>
-        <TextArea
-          defaultValue={questionnaire.description}
-          rows={4}
-          onChange={onChange}
-          onBlur={onUpdate}
-        />
-      </Field>
+
       <Grid>
         <Column cols={12}>
           <Field id="theme">
@@ -77,7 +69,7 @@ export const QuestionnaireProperties = ({
         <Column cols={12}>
           <InlineField id="navigation">
             <Label small inline>
-              Navigation
+              Display navigation
             </Label>
             <ToggleSwitch
               name="navigation"
