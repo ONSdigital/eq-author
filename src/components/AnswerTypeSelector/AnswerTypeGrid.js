@@ -12,9 +12,9 @@ import {
   TEXTAREA,
   CHECKBOX,
   RADIO,
-  DATE_RANGE,
   TIME,
-  SELECT
+  DATE_RANGE,
+  DATE
 } from "constants/answer-types";
 
 const Menu = styled.div`
@@ -32,7 +32,7 @@ const Header = styled.div`
 const Title = styled.div`
   color: #444;
   font-size: 0.6em;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: uppercase;
 `;
 
@@ -112,6 +112,12 @@ class AnswerTypeGrid extends React.Component {
             title="Number"
             onClick={this.handleSelect}
           />
+
+          <AnswerTypeButton
+            type={DATE}
+            title="Date"
+            onClick={this.handleSelect}
+          />
           <AnswerTypeButton
             type={DATE_RANGE}
             title="Date range"
@@ -120,12 +126,6 @@ class AnswerTypeGrid extends React.Component {
           <AnswerTypeButton
             type={TIME}
             title="Time"
-            onClick={this.handleSelect}
-            disabled
-          />
-          <AnswerTypeButton
-            type={SELECT}
-            title="Select list"
             onClick={this.handleSelect}
             disabled
           />

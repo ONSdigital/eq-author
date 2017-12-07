@@ -8,6 +8,7 @@ const Menu = styled.div`
   flex-wrap: wrap;
   max-width: 21em;
   margin: auto;
+  padding: 0.5em;
 `;
 
 const IconGrid = ({ children, "aria-labelledby": labelledby }) => {

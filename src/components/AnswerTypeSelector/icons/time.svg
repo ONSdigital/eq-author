@@ -1,22 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="13px" height="13px" viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 5</title>
+
+<svg width="15px" height="15px" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48 (47235) - http://www.bohemiancoding.com/sketch -->
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Answer-selector" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="selector-04" transform="translate(-317.000000, -351.000000)">
-            <g id="menu" transform="translate(153.000000, 175.000000)">
-                <g id="Time" transform="translate(143.577713, 177.000000)">
-                    <g id="Group-19" transform="translate(0.558651, 0.000000)">
-                        <g id="Group-5" transform="translate(20.938416, 0.000000)">
-                            <ellipse id="Oval-50" stroke="#979797" cx="5.48387097" cy="5.5" rx="5.48387097" ry="5.5"></ellipse>
-                            <rect id="Rectangle-675" fill="#9B9B9B" x="4.98533724" y="3" width="1" height="4" rx="0.5"></rect>
-                            <rect id="Rectangle-675" fill="#9B9B9B" transform="translate(6.480938, 6.500000) rotate(-270.000000) translate(-6.480938, -6.500000) " x="5.98240469" y="5" width="1" height="3" rx="0.5"></rect>
-                        </g>
-                    </g>
-                </g>
-            </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="time" transform="translate(1.000000, 1.000000)">
+            <circle id="Oval-50" stroke="#979797" cx="6.5" cy="6.5" r="6.5"></circle>
+            <rect id="Rectangle-675" fill="#9B9B9B" fill-rule="nonzero" x="6" y="3" width="1" height="4" rx="0.5"></rect>
+            <rect id="Rectangle-675" fill="#9B9B9B" fill-rule="nonzero" transform="translate(7.500000, 6.500000) rotate(90.000000) translate(-7.500000, -6.500000) " x="7" y="5" width="1" height="3" rx="0.5"></rect>
         </g>
     </g>
 </svg>

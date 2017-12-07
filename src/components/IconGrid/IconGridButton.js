@@ -5,25 +5,29 @@ import { colors } from "constants/theme";
 
 const Button = styled.button`
   width: 8em;
-  height: 5em;
-  margin: 1em;
+  height: 6em;
+  margin: 0.5em;
   padding: 0;
   cursor: pointer;
   background: transparent;
-  border: none;
+  border: 2px solid transparent;
   opacity: 1;
   transition: all 200ms ease-in-out;
   outline: none;
 
-  &:hover,
+  &:hover {
+    border-color: ${colors.borders};
+  }
+
   &:focus {
-    background-color: ${colors.borders};
+    border-color: ${colors.lightBlue};
   }
 
   &[disabled] {
     opacity: 0.5;
     background-color: transparent;
     cursor: default;
+    pointer-events: none;
   }
 `;
 
@@ -43,9 +47,7 @@ const IconGridButton = ({ iconSrc, title, disabled, onClick }) => {
       type="button"
     >
       <img src={iconSrc} alt={title} />
-      <Title>
-        {title}
-      </Title>
+      <Title>{title}</Title>
     </Button>
   );
 };

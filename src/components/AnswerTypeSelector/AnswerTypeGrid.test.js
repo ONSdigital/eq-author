@@ -3,14 +3,14 @@ import { shallow } from "enzyme";
 import AnswerTypeGrid, { CloseButton } from "./AnswerTypeGrid";
 import AnswerTypeButton from "./AnswerTypeButton";
 
-let component, handleClose, handleSelect;
+let wrapper, handleClose, handleSelect;
 
 describe("components/AnswerTypeGrid", () => {
   beforeEach(() => {
     handleClose = jest.fn();
     handleSelect = jest.fn();
 
-    component = shallow(
+    wrapper = shallow(
       <AnswerTypeGrid
         onClose={handleClose}
         aria-labelledby="foo"
@@ -20,12 +20,12 @@ describe("components/AnswerTypeGrid", () => {
   });
 
   it("should render", () => {
-    expect(component).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   describe("when close button clicked", () => {
     it("should invoke `onClose` callback", () => {
-      component.find(CloseButton).simulate("click");
+      wrapper.find(CloseButton).simulate("click");
       expect(handleClose).toHaveBeenCalled();
     });
   });
@@ -33,10 +33,20 @@ describe("components/AnswerTypeGrid", () => {
   describe("when answer type button clicked", () => {
     it("should invoke `onSelect` callback", () => {
       const answerType = "TextField";
-      component.find(AnswerTypeButton).first().simulate("click", answerType);
+      wrapper
+        .find(AnswerTypeButton)
+        .first()
+        .simulate("click", answerType);
 
       expect(handleClose).toHaveBeenCalled();
       expect(handleSelect).toHaveBeenCalledWith(answerType);
     });
+  });
+
+  it("should focus on the underlying button element when focusMenuItem is called", () => {
+    const btn = document.createElement("button");
+    wrapper.instance().saveButtonRef(btn);
+    wrapper.instance().focusMenuItem();
+    expect(document.activeElement).toBe(btn);
   });
 });

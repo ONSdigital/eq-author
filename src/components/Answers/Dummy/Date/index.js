@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import DummyTextInput from "../TextInput";
+
+import DummyTextInput from "components/Answers/Dummy/TextInput";
 import { colors } from "constants/theme";
 import chevronIcon from "components/Accordion/chevron.svg";
 
@@ -22,8 +23,9 @@ const Input = styled(DummyTextInput)`
   width: 100%;
 `;
 
-const Flex = styled.div`
+const Wrapper = styled.div`
   display: flex;
+  width: 50%;
 `;
 
 const Select = styled(Input)`
@@ -40,30 +42,14 @@ const Select = styled(Input)`
 
 const Label = styled.p`
   color: ${colors.text};
-  font-size: 0.875em;
+  font-size: 0.9em;
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 0.5rem;
 `;
 
-const Fieldset = styled.div`
-  margin-bottom: 1.125em;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-`;
-
-const Legend = styled.p`
-  font-size: 1.125em;
-  font-weight: bold;
-  color: ${colors.text};
-  margin-top: 0;
-  margin-bottom: 0.875rem;
-`;
-
-export const DatePicker = () => (
-  <Flex>
+const Date = () => (
+  <Wrapper>
     <Field>
       <Label>Day</Label>
       <Input placeholder="DD" />
@@ -76,27 +62,7 @@ export const DatePicker = () => (
       <Label>Year</Label>
       <Input placeholder="YYYY" />
     </Field>
-  </Flex>
+  </Wrapper>
 );
 
-const StyledDateRange = styled.div.attrs({
-  role: "presentation"
-})`
-  cursor: default;
-  user-select: none;
-`;
-
-const DateRange = () => (
-  <StyledDateRange>
-    <Fieldset>
-      <Legend>Period from</Legend>
-      <DatePicker />
-    </Fieldset>
-    <Fieldset>
-      <Legend>Period to</Legend>
-      <DatePicker />
-    </Fieldset>
-  </StyledDateRange>
-);
-
-export default DateRange;
+export default Date;

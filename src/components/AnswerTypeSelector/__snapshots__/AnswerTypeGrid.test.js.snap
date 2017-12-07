@@ -49,6 +49,11 @@ exports[`components/AnswerTypeGrid should render 1`] = `
     />
     <AnswerTypeButton
       onClick={[Function]}
+      title="Date"
+      type="Date"
+    />
+    <AnswerTypeButton
+      onClick={[Function]}
       title="Date range"
       type="DateRange"
     />
@@ -57,12 +62,6 @@ exports[`components/AnswerTypeGrid should render 1`] = `
       onClick={[Function]}
       title="Time"
       type="Time"
-    />
-    <AnswerTypeButton
-      disabled={true}
-      onClick={[Function]}
-      title="Select list"
-      type="Select"
     />
   </IconGrid>
 </AnswerTypeGrid__Menu>

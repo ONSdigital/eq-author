@@ -78,6 +78,8 @@ exports[`Answer Editor should render DateRange 1`] = `
         "type": "DateRange",
       }
     }
+    legendFrom="Period from"
+    legendTo="Period to"
     onAddOption={[Function]}
     onChange={[Function]}
     onDeleteAnswer={[Function]}
