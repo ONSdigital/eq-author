@@ -1,16 +1,7 @@
 import { TOAST_DISMISS, TOAST_RAISE } from "redux/toast/actions";
 import toastReducer from "redux/toast/reducer";
-
-const createAction = (type, payload = {}) => {
-  return {
-    type: type,
-    payload
-  };
-};
-
-const createState = (intialState = {}) => {
-  return Object.assign({}, ...intialState);
-};
+import createAction from "tests/utils/createAction";
+import createState from "tests/utils/createState";
 
 describe("toastReducer", () => {
   it("should initially return an empty list of toasts", () => {

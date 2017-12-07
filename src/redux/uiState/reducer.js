@@ -1,8 +1,8 @@
-import { SECTION_FOCUS } from "redux/uiState/actions";
+import { CANVAS_SECTION_FOCUS } from "redux/uiState/actions";
 
 export default (state = { selectedSection: "" }, action) => {
   switch (action.type) {
-    case SECTION_FOCUS: {
+    case CANVAS_SECTION_FOCUS: {
       return {
         ...state,
         selectedSection: action.payload.id
