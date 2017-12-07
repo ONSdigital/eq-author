@@ -1,5 +1,5 @@
 import { CANVAS_SECTION_FOCUS } from "redux/uiState/actions";
-import reducer from "redux/uiState/reducer";
+import reducer, { getSelectedSection } from "redux/uiState/reducer";
 import createAction from "tests/utils/createAction";
 
 describe("uiState reducer", () => {
@@ -18,5 +18,15 @@ describe("uiState reducer", () => {
         })
       )
     ).toEqual({ selectedSection: "Section1" });
+  });
+});
+
+describe("uiState selectors", () => {
+  describe("getSelectedSection", () => {
+    it("should select selectedSection from state", () => {
+      expect(getSelectedSection({ selectedSection: "Section1" })).toEqual(
+        "Section1"
+      );
+    });
   });
 });

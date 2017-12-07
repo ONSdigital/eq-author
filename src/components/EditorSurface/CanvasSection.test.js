@@ -15,7 +15,7 @@ describe("CanvasSection", () => {
       <CanvasSection
         id="foo"
         onBlur={handleBlur}
-        selectedSection={""}
+        isFocused
         focusOnSection={focusOnSection}
       >
         <Child />

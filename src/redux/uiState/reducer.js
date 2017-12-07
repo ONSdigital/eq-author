@@ -13,3 +13,5 @@ export default (state = { selectedSection: "" }, action) => {
       return state;
   }
 };
+
+export const getSelectedSection = state => state.selectedSection;

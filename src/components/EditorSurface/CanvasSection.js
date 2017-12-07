@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+
 import { colors, shadow } from "constants/theme";
-import withUIState from "containers/enhancers/withUIState";
+import * as ActionCreators from "redux/uiState/actions";
+import { getSelectedSection } from "redux/uiState/reducer";
 
 const focusedStyle = css`
   box-shadow: none;
@@ -27,22 +30,19 @@ export class CanvasSection extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     focusOnSection: PropTypes.func.isRequired,
-    selectedSection: PropTypes.string.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired
   };
 
   handleFocus = () => this.props.focusOnSection(this.props.id);
 
   render() {
-    const { selectedSection, id } = this.props;
-    return (
-      <FocusableSection
-        {...this.props}
-        onFocus={this.handleFocus}
-        isFocused={selectedSection === id}
-      />
-    );
+    return <FocusableSection {...this.props} onFocus={this.handleFocus} />;
   }
 }
 
-export default withUIState(CanvasSection);
+const mapStateToProps = ({ uiState }, { id }) => ({
+  isFocused: getSelectedSection(uiState) === id
+});
+
+export default connect(mapStateToProps, ActionCreators)(CanvasSection);

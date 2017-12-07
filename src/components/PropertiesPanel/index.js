@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import { colors } from "constants/theme";
@@ -8,7 +7,6 @@ import { noop } from "lodash";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
 import QuestionnairePropertiesContainer from "containers/QuestionnairePropertiesContainer";
-import withUIState from "containers/enhancers/withUIState";
 
 const PropertiesPane = styled.div`
   background: ${colors.white};
@@ -49,9 +47,7 @@ const PropertiesGroup = styled.div`
 export class PropertiesPanel extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
-    page: CustomPropTypes.page,
-    focusOnSection: PropTypes.func.isRequired,
-    selectedSection: PropTypes.string.isRequired
+    page: CustomPropTypes.page
   };
 
   handleSubmit = noop;
@@ -94,4 +90,4 @@ export class PropertiesPanel extends React.Component {
   }
 }
 
-export default withUIState(PropertiesPanel);
+export default PropertiesPanel;

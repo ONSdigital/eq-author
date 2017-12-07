@@ -20,12 +20,8 @@ const page = {
 };
 
 const props = {
-  orderMin: 1,
-  orderMax: 10,
   page,
-  questionnaire,
-  focusOnSection: jest.fn(),
-  selectedSection: ""
+  questionnaire
 };
 
 describe("PropertiesPanel", () => {
@@ -45,10 +41,12 @@ describe("PropertiesPanel", () => {
         answers: [
           {
             id: "1",
+            index: 0,
             __typename: "Answer"
           },
           {
             id: "2",
+            index: 1,
             __typename: "Answer"
           }
         ]
