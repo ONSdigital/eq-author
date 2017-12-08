@@ -7,4 +7,9 @@ describe("DateRange", () => {
     const wrapper = shallow(<DateRange />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it("should render legendTo/legendFrom props", () => {
+    const wrapper = shallow(<DateRange legendTo="Foo" legendBar="Bar" />);
+    expect(wrapper).toMatchSnapshot();
+  });
 });

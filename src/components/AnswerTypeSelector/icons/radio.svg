@@ -1,21 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="13px" height="12px" viewBox="0 0 13 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
-    <title>Group 7</title>
+
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48 (47235) - http://www.bohemiancoding.com/sketch -->
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Answer-selector" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="selector-04" transform="translate(-318.000000, -231.000000)" stroke="#9B9B9B">
-            <g id="menu" transform="translate(153.000000, 175.000000)">
-                <g id="Radio" transform="translate(124.636364, 48.000000)">
-                    <g id="Group" transform="translate(19.000000, 8.000000)">
-                        <g id="Group-7" transform="translate(21.879765, 0.000000)">
-                            <ellipse id="Oval-44" cx="5.98240469" cy="6" rx="5.48240469" ry="5.5"></ellipse>
-                            <ellipse id="Oval-44" cx="5.98240469" cy="6" rx="3.48826979" ry="3.5"></ellipse>
-                        </g>
-                    </g>
-                </g>
-            </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="radio" transform="translate(1.000000, 1.000000)" stroke="#9B9B9B">
+            <circle id="Oval-44" cx="6" cy="6" r="6"></circle>
+            <circle id="Oval-44" fill="#9B9B9B" cx="6" cy="6" r="3"></circle>
         </g>
     </g>
 </svg>

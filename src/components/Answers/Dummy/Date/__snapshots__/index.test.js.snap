@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dummy/Date should render 1`] = `
+<Date__Wrapper>
+  <Date__Field>
+    <Date__Label>
+      Day
+    </Date__Label>
+    <Date__Input
+      placeholder="DD"
+    />
+  </Date__Field>
+  <Date__SelectField>
+    <Date__Label>
+      Month
+    </Date__Label>
+    <Date__Select
+      placeholder="Select month"
+    />
+  </Date__SelectField>
+  <Date__Field>
+    <Date__Label>
+      Year
+    </Date__Label>
+    <Date__Input
+      placeholder="YYYY"
+    />
+  </Date__Field>
+</Date__Wrapper>
+`;
