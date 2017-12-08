@@ -8,7 +8,7 @@ exports[`Answer Properties should render 1`] = `
     inline={true}
     small={true}
   >
-    Answer NaN required
+    Answer 01 required
   </Label>
   <ToggleSwitch
     checked={false}

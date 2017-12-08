@@ -16,6 +16,7 @@ let answerProperties;
 
 const answer = {
   id: "1",
+  index: "0",
   title: "answer-title",
   description: "answer-description",
   type: TEXTFIELD,
