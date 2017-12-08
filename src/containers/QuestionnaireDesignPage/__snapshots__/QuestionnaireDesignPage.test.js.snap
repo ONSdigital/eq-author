@@ -91,8 +91,6 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
       <ScrollPane>
         <MainCanvas>
           <EditorSurface
-            focused="section"
-            onFocus={[Function]}
             onUpdatePage={[Function]}
             onUpdateSection={[Function]}
             page={
@@ -150,8 +148,6 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
       gutters={false}
     >
       <PropertiesPanel
-        orderMax={10}
-        orderMin={1}
         page={
           Object {
             "answers": Array [

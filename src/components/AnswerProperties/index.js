@@ -31,13 +31,14 @@ class AnswerProperties extends React.Component {
 
   render() {
     const { answer } = this.props;
+    const id = `answer-${answer.id}-mandatory`;
     return (
-      <InlineField id="mandatory">
+      <InlineField id={id}>
         <Label small inline>
-          Answer required
+          {`Answer ${answer.index + 1} required`}
         </Label>
         <ToggleSwitch
-          name="mandatory"
+          name={id}
           onChange={this.handleChange}
           checked={answer.mandatory}
         />

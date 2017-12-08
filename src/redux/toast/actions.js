@@ -1,4 +1,5 @@
-import { TOAST_RAISE, TOAST_DISMISS } from "actions/toast";
+export const TOAST_RAISE = "TOAST_RAISE";
+export const TOAST_DISMISS = "TOAST_DISMISS";
 
 export const raiseToast = (id, message, undoAction, context) => {
   return {

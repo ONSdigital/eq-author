@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { map } from "lodash";
-import * as ToastActionCreators from "actionCreators/toast";
-import * as UndeleteQuestionnaireActions from "actionCreators/undelete/undeleteQuestionnaire";
-import * as UndeleteSectionActions from "actionCreators/undelete/undeleteSection";
-import * as UndeletePageActions from "actionCreators/undelete/undeletePage";
-import * as UndeleteAnswerActions from "actionCreators/undelete/undeleteAnswer";
+import * as ToastActionCreators from "redux/toast/actions";
+import * as UndeleteQuestionnaireActions from "redux/undelete/undeleteQuestionnaire";
+import * as UndeleteSectionActions from "redux/undelete/undeleteSection";
+import * as UndeletePageActions from "redux/undelete/undeletePage";
+import * as UndeleteAnswerActions from "redux/undelete/undeleteAnswer";
 import Toast from "components/Toast";
 import ToastList from "components/Toast/ToastList";
 import styled from "styled-components";

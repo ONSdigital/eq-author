@@ -2,7 +2,7 @@ import {
   undeleteQuestionnaire,
   createUndelete,
   createUpdate
-} from "actionCreators/undelete/undeleteQuestionnaire";
+} from "redux/undelete/undeleteQuestionnaire";
 import GetQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";

@@ -4,10 +4,8 @@ exports[`Question Page Editor should render 1`] = `
 <div
   id="question-page-editor"
 >
-  <CanvasSection
+  <Connect(CanvasSection)
     id="Page1"
-    isFocused={false}
-    onFocus={[Function]}
   >
     <withApollo(withEntityEditor(StatelessMetaEditor))
       onUpdate={[Function]}
@@ -37,7 +35,7 @@ exports[`Question Page Editor should render 1`] = `
         }
       }
     />
-  </CanvasSection>
+  </Connect(CanvasSection)>
   <TransitionGroup
     childFactory={[Function]}
     component="div"
@@ -46,11 +44,9 @@ exports[`Question Page Editor should render 1`] = `
       duration={300}
       key="BasicAnswer1"
     >
-      <CanvasSection
+      <Connect(CanvasSection)
         id="BasicAnswer1"
-        isFocused={false}
         key="BasicAnswer1"
-        onFocus={[Function]}
       >
         <AnswerEditor
           answer={
@@ -68,17 +64,15 @@ exports[`Question Page Editor should render 1`] = `
           onUpdate={[Function]}
           onUpdateOption={[Function]}
         />
-      </CanvasSection>
+      </Connect(CanvasSection)>
     </SlideTransition>
     <SlideTransition
       duration={300}
       key="BasicAnswer2"
     >
-      <CanvasSection
+      <Connect(CanvasSection)
         id="BasicAnswer2"
-        isFocused={false}
         key="BasicAnswer2"
-        onFocus={[Function]}
       >
         <AnswerEditor
           answer={
@@ -96,7 +90,7 @@ exports[`Question Page Editor should render 1`] = `
           onUpdate={[Function]}
           onUpdateOption={[Function]}
         />
-      </CanvasSection>
+      </Connect(CanvasSection)>
     </SlideTransition>
   </TransitionGroup>
   <CanvasSection__BasicSection>

@@ -1,5 +1,5 @@
 import React from "react";
-import PropertiesPanel from "components/PropertiesPanel";
+import { PropertiesPanel } from "components/PropertiesPanel";
 import { shallow } from "enzyme";
 import { merge } from "lodash";
 
@@ -20,8 +20,6 @@ const page = {
 };
 
 const props = {
-  orderMin: 1,
-  orderMax: 10,
   page,
   questionnaire
 };
@@ -43,10 +41,12 @@ describe("PropertiesPanel", () => {
         answers: [
           {
             id: "1",
+            index: 0,
             __typename: "Answer"
           },
           {
             id: "2",
+            index: 1,
             __typename: "Answer"
           }
         ]

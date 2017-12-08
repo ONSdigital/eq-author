@@ -2,7 +2,7 @@ import React from "react";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
-import CanvasSection, {
+import ConnectedCanvasSection, {
   BasicSection
 } from "components/EditorSurface/CanvasSection";
 import SlideTransition from "components/SlideTransition";
@@ -20,7 +20,7 @@ import withCreateOption from "containers/enhancers/withCreateOption";
 import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
 
-import * as ToastActionCreators from "actionCreators/toast";
+import * as ToastActionCreators from "redux/toast/actions";
 import { connect } from "react-redux";
 
 export class QPE extends React.Component {
@@ -32,10 +32,8 @@ export class QPE extends React.Component {
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
     titleRef: PropTypes.func,
-    page: CustomPropTypes.page,
-    focused: PropTypes.string
+    page: CustomPropTypes.page
   };
 
   handleDeleteAnswer = answerId => {
@@ -46,10 +44,6 @@ export class QPE extends React.Component {
     return this.props.onAddAnswer(answerType).then(focusOnEntity);
   };
 
-  isFocused(entity) {
-    return this.props.focused === getIdForObject(entity);
-  }
-
   render() {
     const {
       page,
@@ -57,31 +51,24 @@ export class QPE extends React.Component {
       onUpdateAnswer,
       onAddOption,
       onUpdateOption,
-      onDeleteOption,
-      onFocus
+      onDeleteOption
     } = this.props;
 
     return (
       <div id="question-page-editor">
-        <CanvasSection
-          id={getIdForObject(page)}
-          onFocus={onFocus}
-          isFocused={this.isFocused(page)}
-        >
+        <ConnectedCanvasSection id={getIdForObject(page)}>
           <MetaEditor
             onUpdate={onUpdatePage}
             page={page}
             titleRef={this.props.titleRef}
           />
-        </CanvasSection>
+        </ConnectedCanvasSection>
         <TransitionGroup>
           {page.answers.map(answer => (
             <SlideTransition key={getIdForObject(answer)}>
-              <CanvasSection
+              <ConnectedCanvasSection
                 id={getIdForObject(answer)}
                 key={getIdForObject(answer)}
-                onFocus={onFocus}
-                isFocused={this.isFocused(answer)}
               >
                 <AnswerEditor
                   answer={answer}
@@ -91,7 +78,7 @@ export class QPE extends React.Component {
                   onDeleteOption={onDeleteOption}
                   onDeleteAnswer={this.handleDeleteAnswer}
                 />
-              </CanvasSection>
+              </ConnectedCanvasSection>
             </SlideTransition>
           ))}
         </TransitionGroup>

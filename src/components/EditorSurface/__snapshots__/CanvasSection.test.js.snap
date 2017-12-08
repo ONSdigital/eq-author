@@ -2,10 +2,10 @@
 
 exports[`CanvasSection should render 1`] = `
 <CanvasSection__FocusableSection
+  focusOnSection={[Function]}
   id="foo"
   isFocused={true}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
 >
   <Child />

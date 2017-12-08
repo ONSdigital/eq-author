@@ -1,10 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
-import { Accordion, AccordionPanel } from "components/Accordion";
 import { colors } from "constants/theme";
-import PageProperties from "../PageProperties/index";
 import ScrollPane from "components/ScrollPane";
 import { noop } from "lodash";
 import getIdForObject from "utils/getIdForObject";
@@ -30,8 +27,7 @@ const PropertiesPanelTitle = styled.h2`
   margin: 0;
   line-height: 1.5em;
   position: relative;
-  padding: 1.7em 1.4em 1.2em;
-  border-bottom: 1px solid ${colors.borders};
+  padding: 1.7em 1.4em 0;
 `;
 
 const PropertiesPaneBody = styled.div`
@@ -43,58 +39,50 @@ const PropertiesPaneBody = styled.div`
   margin: 0;
 `;
 
-class PropertiesPanel extends React.Component {
+const PropertiesGroup = styled.div`
+  border-bottom: 1px solid ${colors.borders};
+  padding: 1em 1em 0;
+`;
+
+export class PropertiesPanel extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
-    page: CustomPropTypes.page,
-    orderMin: PropTypes.number.isRequired,
-    orderMax: PropTypes.number.isRequired
+    page: CustomPropTypes.page
   };
-
-  handleChange = noop;
-
-  handleBlur = noop;
 
   handleSubmit = noop;
 
   render() {
+    const { page } = this.props;
     return (
       <PropertiesPane>
-        <PropertiesPanelTitle>Properties</PropertiesPanelTitle>
         <PropertiesPaneBody>
           <ScrollPane>
-            <Accordion>
-              <AccordionPanel
-                id={getIdForObject(this.props.questionnaire)}
-                title="Questionnaire"
-              >
-                <QuestionnairePropertiesContainer
-                  questionnaire={this.props.questionnaire}
-                />
-              </AccordionPanel>
-              <AccordionPanel id={getIdForObject(this.props.page)} title="Page">
-                <PageProperties
-                  page={this.props.page}
-                  onChange={this.handleChange}
-                  onBlur={this.handleBlur}
-                  onSubmit={this.handleSubmit}
-                  orderMin={this.props.orderMin}
-                  orderMax={this.props.orderMax}
-                />
-              </AccordionPanel>
-              {this.props.page.answers.map((answer, index) => (
-                <AccordionPanel
-                  key={answer.id}
-                  id={getIdForObject(answer)}
-                  title={`Answer ${index + 1}`}
-                >
-                  <AnswerPropertiesContainer
-                    answer={answer}
-                    onSubmit={this.handleSubmit}
-                  />
-                </AccordionPanel>
-              ))}
-            </Accordion>
+            <PropertiesPanelTitle>
+              Questionnaire properties
+            </PropertiesPanelTitle>
+            <PropertiesGroup>
+              <QuestionnairePropertiesContainer
+                questionnaire={this.props.questionnaire}
+              />
+            </PropertiesGroup>
+            {page.answers.length > 0 && (
+              <div>
+                <PropertiesPanelTitle>Answer properties</PropertiesPanelTitle>
+                <PropertiesGroup>
+                  {page.answers.map((answer, index) => (
+                    <div key={index}>
+                      <AnswerPropertiesContainer
+                        id={getIdForObject(answer)}
+                        key={answer.id}
+                        answer={{ ...answer, index }}
+                        onSubmit={this.handleSubmit}
+                      />
+                    </div>
+                  ))}
+                </PropertiesGroup>
+              </div>
+            )}
           </ScrollPane>
         </PropertiesPaneBody>
       </PropertiesPane>

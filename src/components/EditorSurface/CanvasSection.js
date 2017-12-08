@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+
 import { colors, shadow } from "constants/theme";
-import { transparentize } from "polished";
+import * as ActionCreators from "redux/uiState/actions";
+import { getSelectedSection } from "redux/uiState/reducer";
 
 const focusedStyle = css`
   box-shadow: none;
@@ -21,35 +24,25 @@ const FocusableSection = styled(BasicSection)`
   margin-bottom: 1px;
   outline: 1px solid transparent;
   ${props => props.isFocused && focusedStyle};
-
-  &:hover {
-    outline-color: ${transparentize(0.6, colors.lightBlue)};
-  }
 `;
 
-export default class CanvasSection extends React.Component {
+export class CanvasSection extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    onFocus: PropTypes.func.isRequired,
-    isFocused: PropTypes.bool,
+    focusOnSection: PropTypes.func.isRequired,
+    isFocused: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired
   };
 
-  static defaultProps = {
-    isFocused: false
-  };
-
-  handleFocus = () => {
-    this.props.onFocus(this.props.id);
-  };
+  handleFocus = () => this.props.focusOnSection(this.props.id);
 
   render() {
-    return (
-      <FocusableSection
-        {...this.props}
-        onClick={this.handleFocus}
-        onFocus={this.handleFocus}
-      />
-    );
+    return <FocusableSection {...this.props} onFocus={this.handleFocus} />;
   }
 }
+
+const mapStateToProps = ({ uiState }, { id }) => ({
+  isFocused: getSelectedSection(uiState) === id
+});
+
+export default connect(mapStateToProps, ActionCreators)(CanvasSection);
