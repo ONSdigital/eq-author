@@ -11,15 +11,22 @@ const UserAvatar = styled.img`
   border-radius: 50%;
 `;
 
+const UserName = styled.span`
+  color: white;
+  font-size: 0.875rem;
+`;
+
 export const LogoutButton = styled(Button)`
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
 `;
 
 const UserProfile = ({ user, onSignOut }) => (
   <Tooltip content="Sign Out">
     <LogoutButton clear onClick={onSignOut}>
       <UserAvatar src={user.photoURL} alt="" role="presentation" />
+      <UserName>{user.displayName}</UserName>
     </LogoutButton>
   </Tooltip>
 );
