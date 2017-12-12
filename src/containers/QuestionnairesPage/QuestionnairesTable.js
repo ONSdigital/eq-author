@@ -99,6 +99,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
           <TH>Theme</TH>
           <TH>Status</TH>
           <TH centerAligned>Comments</TH>
+          <TH>Created by</TH>
           <TH />
         </tr>
       </thead>
@@ -149,6 +150,9 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
                       />
                     )}
                   </Collapsible>
+                </TD>
+                <TD>
+                  <Collapsible>{questionnaire.createdBy.name}</Collapsible>
                 </TD>
                 <TD>
                   <Collapsible last>

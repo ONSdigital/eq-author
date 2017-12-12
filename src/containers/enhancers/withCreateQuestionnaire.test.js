@@ -2,25 +2,17 @@ import {
   redirectToDesigner,
   mapMutateToProps,
   updateQuestionnaireList
-} from "./index";
+} from "./withCreateQuestionnaire";
 import { getLink } from "utils/UrlUtils";
 import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
-let history, mutate, results;
+describe("withCreateQuestionnaire", () => {
+  let history, mutate, results, user;
 
-const page = {
-  id: "3"
-};
-const section = {
-  id: "2",
-  pages: [page]
-};
-const questionnaire = {
-  id: "1",
-  sections: [section]
-};
+  const page = { id: "3" };
+  const section = { id: "2", pages: [page] };
+  const questionnaire = { id: "1", sections: [section] };
 
-describe("containers/QuestionnaireCreatePage", () => {
   beforeEach(() => {
     results = {
       data: { createQuestionnaire: questionnaire }
@@ -28,6 +20,10 @@ describe("containers/QuestionnaireCreatePage", () => {
 
     history = {
       push: jest.fn()
+    };
+
+    user = {
+      displayName: "Dave McDave"
     };
 
     mutate = jest.fn(() => Promise.resolve(results));
@@ -44,20 +40,26 @@ describe("containers/QuestionnaireCreatePage", () => {
   });
 
   describe("mapMutateToProps", () => {
-    it("should have a createQuestionnaire prop", () => {
-      const ownProps = { history };
-      const props = mapMutateToProps({ ownProps, mutate });
+    let ownProps, props;
 
+    beforeEach(() => {
+      ownProps = { history, user };
+      props = mapMutateToProps({ ownProps, mutate });
+    });
+
+    it("should have a createQuestionnaire prop", () => {
       expect(props.createQuestionnaire).toBeInstanceOf(Function);
     });
 
     it("should redirect after mutation", () => {
-      const ownProps = { history };
-      const props = mapMutateToProps({ ownProps, mutate });
+      const input = {
+        ...questionnaire,
+        createdBy: user.displayName
+      };
 
       return props.createQuestionnaire(questionnaire).then(() => {
         expect(mutate).toHaveBeenCalledWith({
-          variables: { input: questionnaire }
+          variables: { input }
         });
         expect(history.push).toHaveBeenCalled();
       });
@@ -65,25 +67,14 @@ describe("containers/QuestionnaireCreatePage", () => {
   });
 
   describe("updateQuestionnaireList", () => {
-    let proxy;
-    let readQuery;
-    let writeQuery;
-    let data;
+    let proxy, readQuery, writeQuery, data;
 
     beforeEach(() => {
       data = {
-        questionnaires: [
-          {
-            id: "1"
-          },
-          {
-            id: "2"
-          }
-        ]
+        questionnaires: [{ id: "1" }, { id: "2" }]
       };
 
       readQuery = jest.fn(() => data);
-
       writeQuery = jest.fn();
 
       proxy = {
@@ -94,6 +85,7 @@ describe("containers/QuestionnaireCreatePage", () => {
 
     it("should update the getQuestionnaireList query with new questionnaire.", () => {
       const newQuestionnaire = { id: "3" };
+
       updateQuestionnaireList(proxy, {
         data: { createQuestionnaire: newQuestionnaire }
       });
@@ -104,15 +96,7 @@ describe("containers/QuestionnaireCreatePage", () => {
       expect(writeQuery).toHaveBeenCalledWith({
         query: getQuestionnaireList,
         data: {
-          questionnaires: [
-            {
-              id: "1"
-            },
-            {
-              id: "2"
-            },
-            newQuestionnaire
-          ]
+          questionnaires: [{ id: "1" }, { id: "2" }, newQuestionnaire]
         }
       });
     });
