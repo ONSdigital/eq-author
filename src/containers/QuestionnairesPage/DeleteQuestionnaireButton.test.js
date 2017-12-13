@@ -1,8 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import DeleteQuestionnaireButton, {
-  StyledButton
-} from "./DeleteQuestionnaireButton";
+import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton";
 
 describe("DeleteQuestionnaireButton", () => {
   let wrapper;
@@ -18,9 +16,7 @@ describe("DeleteQuestionnaireButton", () => {
   });
 
   it("should invoke onClick prop when delete button clicked", () => {
-    const deleteButton = wrapper.find(StyledButton);
-    deleteButton.simulate("click");
-
+    wrapper.simulate("click");
     expect(handleClick).toHaveBeenCalled();
   });
 });

@@ -49,11 +49,8 @@ export default {
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       createdAt: PropTypes.string.isRequired,
-      theme: PropTypes.string.isRequired,
-      status: PropTypes.string,
-      comments: PropTypes.shape({
-        unread: PropTypes.bool.isRequired,
-        count: PropTypes.number.isRequired
+      createdBy: PropTypes.shape({
+        name: PropTypes.string
       }).isRequired
     }).isRequired
   ),

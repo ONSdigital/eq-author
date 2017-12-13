@@ -11,15 +11,7 @@ exports[`QuestionnairesTable should render 1`] = `
         Date
       </QuestionnairesTable__TH>
       <QuestionnairesTable__TH>
-        Theme
-      </QuestionnairesTable__TH>
-      <QuestionnairesTable__TH>
-        Status
-      </QuestionnairesTable__TH>
-      <QuestionnairesTable__TH
-        centerAligned={true}
-      >
-        Comments
+        Created by
       </QuestionnairesTable__TH>
       <QuestionnairesTable__TH />
     </tr>
@@ -29,110 +21,118 @@ exports[`QuestionnairesTable should render 1`] = `
     component={[Function]}
     enter={false}
   >
-    <CSSTransition
-      classNames="row"
+    <QuestionnairesTable__RowTransition
       key="1"
       timeout={200}
     >
       <QuestionnairesTable__TR>
         <QuestionnairesTable__TD>
-          <QuestionnairesTable__Collapsible
-            first={true}
-          >
-            <QuestionnairesTable__QuestionnaireLink
+          <QuestionnairesTable__Collapsible>
+            <QuestionnaireLink
               aria-label="Foo"
-              href="#/questionnaire/1/design/1/1"
+              questionnaire={
+                Object {
+                  "createdAt": "2017/01/02",
+                  "createdBy": Object {
+                    "name": "Alan",
+                  },
+                  "id": "1",
+                  "sections": Array [
+                    Object {
+                      "id": "1",
+                      "pages": Array [
+                        Object {
+                          "id": "1",
+                        },
+                      ],
+                    },
+                  ],
+                  "title": "Foo",
+                }
+              }
               title="Foo"
             >
               Foo
-            </QuestionnairesTable__QuestionnaireLink>
+            </QuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>
           <QuestionnairesTable__Collapsible>
-            2/1/2017
+            <FormattedDate
+              date="2017/01/02"
+            />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>
           <QuestionnairesTable__Collapsible>
-            default
+            Alan
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>
           <QuestionnairesTable__Collapsible>
-            Unpublished
-          </QuestionnairesTable__Collapsible>
-        </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD
-          centerAligned={true}
-        >
-          <QuestionnairesTable__Collapsible />
-        </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
-          <QuestionnairesTable__Collapsible
-            last={true}
-          >
             <DeleteQuestionnaireButton
               onClick={[Function]}
             />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
       </QuestionnairesTable__TR>
-    </CSSTransition>
-    <CSSTransition
-      classNames="row"
+    </QuestionnairesTable__RowTransition>
+    <QuestionnairesTable__RowTransition
       key="2"
       timeout={200}
     >
       <QuestionnairesTable__TR>
         <QuestionnairesTable__TD>
-          <QuestionnairesTable__Collapsible
-            first={true}
-          >
-            <QuestionnairesTable__QuestionnaireLink
-              aria-label="Foo"
-              href="#/questionnaire/2/design/2/2"
-              title="Foo"
+          <QuestionnairesTable__Collapsible>
+            <QuestionnaireLink
+              aria-label="Bar"
+              questionnaire={
+                Object {
+                  "createdAt": "2017/03/04",
+                  "createdBy": Object {
+                    "name": "Lynn",
+                  },
+                  "id": "2",
+                  "sections": Array [
+                    Object {
+                      "id": "2",
+                      "pages": Array [
+                        Object {
+                          "id": "2",
+                        },
+                      ],
+                    },
+                  ],
+                  "title": "Bar",
+                }
+              }
+              title="Bar"
             >
-              Foo
-            </QuestionnairesTable__QuestionnaireLink>
+              Bar
+            </QuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>
           <QuestionnairesTable__Collapsible>
-            4/3/2017
-          </QuestionnairesTable__Collapsible>
-        </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
-          <QuestionnairesTable__Collapsible>
-            default
-          </QuestionnairesTable__Collapsible>
-        </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
-          <QuestionnairesTable__Collapsible>
-            Unpublished
-          </QuestionnairesTable__Collapsible>
-        </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD
-          centerAligned={true}
-        >
-          <QuestionnairesTable__Collapsible>
-            <CommentsButton
-              hasUnread={true}
+            <FormattedDate
+              date="2017/03/04"
             />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD>
-          <QuestionnairesTable__Collapsible
-            last={true}
-          >
+          <QuestionnairesTable__Collapsible>
+            Lynn
+          </QuestionnairesTable__Collapsible>
+        </QuestionnairesTable__TD>
+        <QuestionnairesTable__TD>
+          <QuestionnairesTable__Collapsible>
             <DeleteQuestionnaireButton
               onClick={[Function]}
             />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
       </QuestionnairesTable__TR>
-    </CSSTransition>
+    </QuestionnairesTable__RowTransition>
   </TransitionGroup>
 </QuestionnairesTable__Table>
 `;

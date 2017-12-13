@@ -99,14 +99,10 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
         questionnaires={
           Array [
             Object {
-              "actions": Object {
-                "delete": true,
-              },
-              "comments": Object {
-                "count": 0,
-                "unread": false,
-              },
               "createdAt": "01/01/1970",
+              "createdBy": Object {
+                "name": "Mike",
+              },
               "id": "1",
               "sections": Array [
                 Object {
@@ -118,7 +114,6 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
                   ],
                 },
               ],
-              "theme": "default",
               "title": "Test questionnaire",
             },
           ]

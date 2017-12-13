@@ -13,13 +13,8 @@ describe("containers/Questionnaires", () => {
     id: "1",
     title: "Test questionnaire",
     createdAt: "01/01/1970",
-    theme: "default",
-    comments: {
-      count: 0,
-      unread: false
-    },
-    actions: {
-      delete: true
+    createdBy: {
+      name: "Mike"
     },
     sections: [
       {

@@ -22,13 +22,13 @@ describe("withQuestionnaireList", () => {
         }
       });
 
-      expect(result).toMatchObject({
+      expect(result).toEqual({
         loading: false,
         questionnaires: []
       });
     });
 
-    it("should return a single questionnaire", () => {
+    it("should return questionnaires", () => {
       const result = mapResultsToProps({
         data: {
           loading: false,
@@ -40,16 +40,11 @@ describe("withQuestionnaireList", () => {
         }
       });
 
-      expect(result).toMatchObject({
+      expect(result).toEqual({
         loading: false,
         questionnaires: [
           {
-            id: "1",
-            status: "Unpublished",
-            comments: {
-              unread: true,
-              count: 1
-            }
+            id: "1"
           }
         ]
       });
