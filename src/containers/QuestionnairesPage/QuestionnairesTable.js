@@ -102,7 +102,9 @@ const QuestionnairesTable = ({
                 </Collapsible>
               </TD>
               <TD>
-                <Collapsible>{questionnaire.createdBy.name}</Collapsible>
+                <Collapsible>
+                  {questionnaire.createdBy.name || "Unknown"}
+                </Collapsible>
               </TD>
               <TD>
                 <Collapsible>
