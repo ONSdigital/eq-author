@@ -1,4 +1,4 @@
-describe("My first test", () => {
+describe("eq-author", () => {
   it("can create a questionnaire", () => {
     cy.visit("http://localhost:3000");
     cy.get("#btn-create-questionnaire").click();
