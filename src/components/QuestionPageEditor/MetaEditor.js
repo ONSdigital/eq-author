@@ -65,7 +65,7 @@ export class StatelessMetaEditor extends React.Component {
             placeholder="Question text (optional)…"
             value={page.description}
             onUpdate={handleUpdate}
-            label="guidance"
+            label="description"
             controls={descriptionControls}
             multiline
             fetchAnswers={fetchAnswers}
