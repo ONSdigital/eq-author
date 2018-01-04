@@ -50,11 +50,11 @@ export class StatelessMetaEditor extends React.Component {
       <div>
         <Field id="title">
           <RichTextEditor
-            placeholder="Question title"
+            placeholder="Question"
             value={page.title}
             ref={this.props.titleRef}
             onUpdate={handleUpdate}
-            label="title"
+            label="Question"
             controls={titleControls}
             size="large"
             fetchAnswers={fetchAnswers}
@@ -62,10 +62,10 @@ export class StatelessMetaEditor extends React.Component {
         </Field>
         <Field id="description">
           <RichTextEditor
-            placeholder="Question text (optional)…"
+            placeholder="Question guidance (optional)…"
             value={page.description}
             onUpdate={handleUpdate}
-            label="guidance"
+            label="Question guidance"
             controls={descriptionControls}
             multiline
             fetchAnswers={fetchAnswers}
@@ -73,10 +73,10 @@ export class StatelessMetaEditor extends React.Component {
         </Field>
         <Field id="guidance">
           <GuidanceRichTextEditor
-            placeholder="Guidance text (optional)…"
+            placeholder="Include / exclude guidance (optional)…"
             value={page.guidance}
             onUpdate={handleUpdate}
-            label="guidance"
+            label="Include/exclude guidance"
             controls={guidanceControls}
             multiline
             fetchAnswers={fetchAnswers}
