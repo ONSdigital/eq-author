@@ -11,7 +11,11 @@ const questionnaire = {
     {
       id: "2",
       title: "Section 1",
-      pages: [{ id: "3" }]
+      pages: [
+        {
+          id: "3"
+        }
+      ]
     }
   ]
 };
@@ -21,7 +25,12 @@ const match = { params: {}, path: "", url: "" };
 describe("components/Nav", () => {
   beforeEach(() => {
     wrapper = mountWithRouter(
-      <NavWithoutRouter questionnaire={questionnaire} match={match} />
+      <NavWithoutRouter
+        questionnaire={questionnaire}
+        section={questionnaire.sections[0]}
+        page={questionnaire.sections[0].pages[0]}
+        match={match}
+      />
     );
   });
 

@@ -28,25 +28,6 @@ exports[`components/BaseLayout should render a Nav 1`] = `
           }
         }
       />
-      <BaseLayout__NavWrapper>
-        <Grid
-          align="top"
-          fillHeight={false}
-        >
-          <Column
-            cols={12}
-            offset={2}
-          >
-            <withRouter(NavWithoutRouter)
-              questionnaire={
-                Object {
-                  "title": "Questionnaire",
-                }
-              }
-            />
-          </Column>
-        </Grid>
-      </BaseLayout__NavWrapper>
       <BaseLayout__Main>
         Children
       </BaseLayout__Main>

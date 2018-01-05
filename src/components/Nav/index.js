@@ -3,18 +3,16 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
-import { get } from "lodash";
 import { getLink } from "utils/UrlUtils";
 
 import CustomPropsTypes from "custom-prop-types";
 
 export const StyledNav = styled.nav`
-  margin: 0;
-  display: block;
+  margin: 1.25em 0;
 `;
 
 const StyledNavLink = styled(NavLink)`
-  padding: 1em 1.5em;
+  padding-bottom: 0.25em;
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
@@ -26,6 +24,7 @@ const StyledNavLink = styled(NavLink)`
   border-color: rgba(5, 108, 153, 0);
   border-style: solid;
   border-width: 0 0 2px;
+  margin-right: 2em;
 
   &:hover {
     color: ${colors.blue};
@@ -37,15 +36,17 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+const DisabledNavLink = StyledNavLink.withComponent("span").extend`
+  color: ${colors.blue};
+  cursor: default;
+  opacity: 0.5;
+`;
+
 // TODO: find out why route matching doesn't work automatically
 // Given a route /foo/:bar/blah
 // I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
 // But this is not the case. Unsure if bug or implementation issue
-export const NavWithoutRouter = ({ questionnaire, match }) => {
-  const { id } = questionnaire;
-  const section = get(questionnaire, "sections[0]", {});
-  const page = get(section, "pages[0]", {});
-
+export const NavWithoutRouter = ({ questionnaire, section, page, match }) => {
   const navIsActive = () => {
     return match.params.sectionId;
   };
@@ -53,18 +54,21 @@ export const NavWithoutRouter = ({ questionnaire, match }) => {
   return (
     <StyledNav>
       <StyledNavLink
-        to={getLink(id, section.id, page.id)}
+        to={getLink(questionnaire.id, section.id, page.id)}
         activeClassName="selected"
         isActive={navIsActive}
       >
         Builder
       </StyledNavLink>
+      <DisabledNavLink>Routing</DisabledNavLink>
     </StyledNav>
   );
 };
 
 NavWithoutRouter.propTypes = {
   questionnaire: CustomPropsTypes.questionnaire,
+  section: CustomPropsTypes.section,
+  page: CustomPropsTypes.page,
   match: PropTypes.shape({
     params: PropTypes.object.isRequired
   })

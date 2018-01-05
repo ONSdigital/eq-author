@@ -90,6 +90,86 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     >
       <ScrollPane>
         <MainCanvas>
+          <withRouter(NavWithoutRouter)
+            page={
+              Object {
+                "answers": Array [
+                  Object {
+                    "id": "1",
+                    "label": "",
+                    "options": Array [
+                      Object {
+                        "id": "1",
+                      },
+                    ],
+                  },
+                ],
+                "description": "",
+                "guidance": "",
+                "id": "1",
+                "title": "",
+                "type": "General",
+              }
+            }
+            questionnaire={
+              Object {
+                "id": "3",
+                "sections": Array [
+                  Object {
+                    "id": "2",
+                    "pages": Array [
+                      Object {
+                        "answers": Array [
+                          Object {
+                            "id": "1",
+                            "label": "",
+                            "options": Array [
+                              Object {
+                                "id": "1",
+                              },
+                            ],
+                          },
+                        ],
+                        "description": "",
+                        "guidance": "",
+                        "id": "1",
+                        "title": "",
+                        "type": "General",
+                      },
+                    ],
+                    "title": "",
+                  },
+                ],
+                "title": "hello world",
+              }
+            }
+            section={
+              Object {
+                "id": "2",
+                "pages": Array [
+                  Object {
+                    "answers": Array [
+                      Object {
+                        "id": "1",
+                        "label": "",
+                        "options": Array [
+                          Object {
+                            "id": "1",
+                          },
+                        ],
+                      },
+                    ],
+                    "description": "",
+                    "guidance": "",
+                    "id": "1",
+                    "title": "",
+                    "type": "General",
+                  },
+                ],
+                "title": "",
+              }
+            }
+          />
           <EditorSurface
             onUpdatePage={[Function]}
             onUpdateSection={[Function]}
