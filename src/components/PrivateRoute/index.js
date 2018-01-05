@@ -10,12 +10,12 @@ const createRedirect = ({ location }) => ({
 });
 
 const PrivateRoute = ({ component: Component, isSignedIn, ...rest }) => {
-  const render = props => {
-    if (isSignedIn || process.env.REACT_APP_ENABLE_AUTH === "false") {
-      return <Component {...props} />;
-    }
-    return <Redirect to={createRedirect(props)} />;
-  };
+  const render = props =>
+    isSignedIn ? (
+      <Component {...props} />
+    ) : (
+      <Redirect to={createRedirect(props)} />
+    );
 
   return <Route {...rest} render={render} />;
 };

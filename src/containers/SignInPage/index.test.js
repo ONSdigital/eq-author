@@ -83,6 +83,41 @@ describe("SignInPage", () => {
         expect(unsubscribe).toHaveBeenCalled();
       });
     });
+
+    describe("ENV vars", () => {
+      const SIGN_IN_FORM = "SignInForm";
+      const SIGN_IN_DUMMY_BUTTON = "SignInPage__DummySignInButton";
+
+      let prevValue;
+
+      beforeEach(() => {
+        prevValue = process.env.REACT_APP_ENABLE_AUTH;
+      });
+
+      afterEach(() => {
+        process.env.REACT_APP_ENABLE_AUTH = prevValue;
+      });
+
+      describe("when REACT_APP_ENABLE_AUTH is `false`", () => {
+        it("should render button for signing-in anonymously", () => {
+          process.env.REACT_APP_ENABLE_AUTH = "false";
+          const wrapper = render({ verifiedAuthStatus: true });
+
+          expect(wrapper.find(SIGN_IN_FORM).exists()).toBe(false);
+          expect(wrapper.find(SIGN_IN_DUMMY_BUTTON).exists()).toEqual(true);
+        });
+      });
+
+      describe("when REACT_APP_ENABLE_AUTH is `true`", () => {
+        it("should render sign-in form", () => {
+          process.env.REACT_APP_ENABLE_AUTH = "true";
+          const wrapper = render({ verifiedAuthStatus: true });
+
+          expect(wrapper.find(SIGN_IN_FORM).exists()).toBe(true);
+          expect(wrapper.find(SIGN_IN_DUMMY_BUTTON).exists()).toEqual(false);
+        });
+      });
+    });
   });
 
   describe("mapStateToProps", () => {
