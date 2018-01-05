@@ -13,10 +13,10 @@ exports[`MetaEditor should render 1`] = `
         }
       }
       fetchAnswers={[Function]}
-      label="title"
+      label="Question"
       multiline={false}
       onUpdate={[Function]}
-      placeholder="Question title"
+      placeholder="Question"
       size="large"
       value="Page title"
     />
@@ -33,10 +33,10 @@ exports[`MetaEditor should render 1`] = `
         }
       }
       fetchAnswers={[Function]}
-      label="guidance"
+      label="Question guidance"
       multiline={true}
       onUpdate={[Function]}
-      placeholder="Question text (optional)…"
+      placeholder="Question guidance (optional)…"
       value="Page description"
     />
   </Field>
@@ -53,10 +53,10 @@ exports[`MetaEditor should render 1`] = `
         }
       }
       fetchAnswers={[Function]}
-      label="guidance"
+      label="Include/exclude guidance"
       multiline={true}
       onUpdate={[Function]}
-      placeholder="Guidance text (optional)…"
+      placeholder="Include / exclude guidance (optional)…"
       value="Page guidance"
     />
   </Field>
