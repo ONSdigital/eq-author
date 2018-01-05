@@ -7,8 +7,7 @@
     "start": "yarn && node scripts/start.js",
     "start:mockAPI": "REACT_APP_USE_MOCK_API=true node scripts/start.js",
     "build": "yarn build:status && node scripts/build.js",
-    "build:mockAPI":
-      "yarn build:status && REACT_APP_USE_MOCK_API=true node scripts/build.js",
+    "build:mockAPI": "yarn build:status && REACT_APP_USE_MOCK_API=true node scripts/build.js",
     "build:status": "node scripts/build-status-page.js",
     "test": "node scripts/test.js",
     "smoketest:author": "chimp config/chimp.author.js",
@@ -19,14 +18,17 @@
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build && gh-pages -d build",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9001",
-    "storybook-build":
-      "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
+    "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
-    "coverage": "yarn test -- --coverage"
+    "coverage": "yarn test -- --coverage",
+    "nightwatch": "nightwatch"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.12",
@@ -107,6 +109,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "dependencies": {
+    "chromedriver": "^2.34.1",
     "connected-react-router": "^4.2.1",
     "draft-convert": "^2.0.0",
     "draft-js": "0.10.4",
@@ -120,6 +123,7 @@
     "graphql-tag": "^2.4.2",
     "graphql-tools": "^2.4.0",
     "lodash": "^4.17.4",
+    "nightwatch": "^0.9.19",
     "normalize.css": "^7.0.0",
     "normalizr": "^3.2.4",
     "polished": "^1.8.0",
@@ -142,6 +146,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "selenium-server": "^3.8.1",
     "styled-components": "^2.2.1",
     "synchronous-promise": "^2.0.3",
     "uncontrollable": "^4.1.0"
@@ -159,9 +164,10 @@
       "<rootDir>/config/polyfills.js",
       "<rootDir>/src/tests/setup/throwOnConsole.js"
     ],
-    "setupTestFrameworkScriptFile":
-      "<rootDir>/src/tests/setup/JestTestSetup.js",
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup/JestTestSetup.js",
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -172,14 +178,22 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["<rootDir>/src/"]
+    "modulePaths": [
+      "<rootDir>/src/"
+    ]
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
-  "moduleRoots": ["./src"]
+  "moduleRoots": [
+    "./src"
+  ]
 }
