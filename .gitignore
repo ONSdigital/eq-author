@@ -24,3 +24,7 @@ jsconfig.json
 
 graphql.config.json
 public/status.json
+
+# e2e stuff
+reports
+selenium-debug.log

@@ -1,80 +1,69 @@
-/* eslint-disable import/unambiguous */
-
 module.exports = {
   "visit create form": browser => {
-    browser
-      .url("http://localhost:3000")
-      .waitForElementVisible("body", 1000)
-      .click("#btn-create-questionnaire")
-      .waitForElementVisible("form")
-      .assert.urlContains("");
+    browser.url("http://localhost:3000").waitForElementVisible("body", 1000);
+    browser.page.ListPage().clickCreate();
   },
 
   "create questionnaire": browser => {
-    browser
-      .setValue("#title", "a title")
-      .setValue("#description", "a description of some kind")
-      .click("label[for='navigation']")
-      .click("button[type='submit']");
+    const create = browser.page.CreatePage();
+    const design = browser.page.DesignPage();
 
-    browser.assert
-      .containsText("header", "a title")
-      .assert.urlContains("questionnaire/1/design/1/1");
+    create.section.form
+      .fill({
+        title: "a title",
+        description: "a description of some kind"
+      })
+      .submit();
+
+    design
+      .titleContains("a title")
+      .assertUrl({ questionnaireId: 1, sectionId: 1, pageId: 1 });
   },
 
   "add a page": browser => {
-    browser
-      .click("#btn-add-page")
-      .pause(1000)
-      .assert.urlContains("questionnaire/1/design/1/2");
+    const design = browser.page.DesignPage();
+    const sidebar = design.section.sidebar;
+
+    sidebar.createPage();
+    design.assertUrl({ sectionId: 1, pageId: 2 });
   },
 
   "delete a page": browser => {
-    const SELECTOR = "[aria-label='Delete page']";
+    const design = browser.page.DesignPage();
+    const sidebar = design.section.sidebar;
 
-    browser.elements("css selector", SELECTOR, buttons => {
-      browser
-        .elementIdClick(buttons.value[0].ELEMENT)
-        .pause(500)
-        .elements("css selector", SELECTOR, buttons => {
-          browser.assert.equal(buttons.value.length, 1);
-        });
-    });
+    sidebar.deletePage(0).assertNumberPages(1);
   },
 
   "add a section": browser => {
-    browser
-      .click("button[class*='AddSectionBtn']")
-      .pause(500)
-      .assert.urlContains("questionnaire/1/design/2/3");
+    const design = browser.page.DesignPage();
+    const sidebar = design.section.sidebar;
+
+    sidebar.createSection();
+    design.assertUrl({ sectionId: 2, pageId: 3 });
   },
 
   "delete a section": browser => {
-    const SELECTOR = "[aria-label='Delete section']";
+    const design = browser.page.DesignPage();
+    const sidebar = design.section.sidebar;
 
-    browser.elements("css selector", SELECTOR, buttons => {
-      browser
-        .elementIdClick(buttons.value[0].ELEMENT)
-        .pause(500)
-        .elements("css selector", SELECTOR, buttons => {
-          browser.assert.equal(buttons.value.length, 1);
-        });
-    });
+    sidebar.deleteSection(0).assertNumberSections(1);
   },
 
   "deleting the last page of a section": browser => {
-    const SELECTOR = "[aria-label='Delete page']";
+    const design = browser.page.DesignPage();
+    const sidebar = design.section.sidebar;
 
-    browser.click(SELECTOR).assert.urlContains("questionnaire/1/design/2/4");
+    sidebar.deletePage(0);
+    design.assertUrl({ sectionId: 2, pageId: 4 });
   },
 
   "deleting the last section of a questionnaire": browser => {
-    const SELECTOR = "[aria-label='Delete section']";
+    const design = browser.page.DesignPage();
+    const sidebar = design.section.sidebar;
 
-    browser
-      .click(SELECTOR)
-      .pause(500)
-      .assert.urlContains("questionnaire/1/design/3/5");
+    sidebar.deleteSection(0);
+    design.assertUrl({ sectionId: 3, pageId: 5 });
   },
 
   finished: browser => browser.end()
