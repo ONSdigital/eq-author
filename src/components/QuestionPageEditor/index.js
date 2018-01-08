@@ -23,6 +23,11 @@ import withDeleteOption from "containers/enhancers/withDeleteOption";
 import * as ToastActionCreators from "redux/toast/actions";
 import { connect } from "react-redux";
 
+const AddAnswerSection = BasicSection.extend`
+  text-align: center;
+  padding: 1em;
+`;
+
 export class QPE extends React.Component {
   static propTypes = {
     onUpdateAnswer: PropTypes.func.isRequired,
@@ -82,9 +87,12 @@ export class QPE extends React.Component {
             </SlideTransition>
           ))}
         </TransitionGroup>
-        <BasicSection>
-          <AnswerTypeSelector onSelect={this.handleAddAnswer} />
-        </BasicSection>
+        <AddAnswerSection>
+          <AnswerTypeSelector
+            onSelect={this.handleAddAnswer}
+            answers={page.answers}
+          />
+        </AddAnswerSection>
       </div>
     );
   }

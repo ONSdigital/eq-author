@@ -21,6 +21,7 @@ const Menu = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0;
   width: 340px;
+  text-align: initial;
 `;
 
 const Header = styled.div`

@@ -9,10 +9,17 @@ let component, handleSelect;
 describe("components/AnswerTypeSelector", () => {
   beforeEach(() => {
     handleSelect = jest.fn();
-    component = shallow(<AnswerTypeSelector onSelect={handleSelect} />);
+    component = shallow(
+      <AnswerTypeSelector onSelect={handleSelect} answers={[]} />
+    );
   });
 
   it("shouldn't render content when closed", () => {
+    expect(component).toMatchSnapshot();
+  });
+
+  it("should say to add 'another' answer if > 0 answers currently", () => {
+    component.setProps({ answers: [{}] });
     expect(component).toMatchSnapshot();
   });
 

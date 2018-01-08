@@ -95,6 +95,24 @@ exports[`Question Page Editor should render 1`] = `
   </TransitionGroup>
   <CanvasSection__BasicSection>
     <AnswerTypeSelector
+      answers={
+        Array [
+          Object {
+            "__typename": "BasicAnswer",
+            "description": "",
+            "id": "1",
+            "title": "First name",
+            "type": "TextField",
+          },
+          Object {
+            "__typename": "BasicAnswer",
+            "description": "",
+            "id": "2",
+            "title": "Last name",
+            "type": "TextField",
+          },
+        ]
+      }
       onSelect={[Function]}
     />
   </CanvasSection__BasicSection>

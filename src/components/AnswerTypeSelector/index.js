@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { colors } from "constants/theme";
 import AnswerTypeGrid from "./AnswerTypeGrid";
 import addIcon from "./icon-add.svg";
+import CustomPropTypes from "../../custom-prop-types";
 
 export const AddAnswerBtn = styled.button`
   appearance: none;
@@ -30,7 +31,8 @@ export const AddAnswerBtn = styled.button`
 
 export default class AnswerTypeSelector extends React.Component {
   static propTypes = {
-    onSelect: PropTypes.func.isRequired
+    onSelect: PropTypes.func.isRequired,
+    answers: PropTypes.arrayOf(CustomPropTypes.answer).isRequired
   };
 
   state = {
@@ -56,7 +58,7 @@ export default class AnswerTypeSelector extends React.Component {
   render() {
     const trigger = (
       <AddAnswerBtn type="button" id="add-answer-btn">
-        Add an answer
+        Add {this.props.answers.length === 0 ? "an" : "another"} answer
       </AddAnswerBtn>
     );
 
