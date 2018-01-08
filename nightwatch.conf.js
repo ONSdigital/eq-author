@@ -4,11 +4,11 @@ const chromeDriver = require("chromedriver");
 
 console.log(chromeDriver.path);
 module.exports = {
-  src_folders: ["tests/nightwatch"],
+  src_folders: ["tests/nightwatch/specs"],
   output_folder: "reports",
-  custom_commands_path: "",
-  custom_assertions_path: "",
-  page_objects_path: "",
+  custom_commands_path: "tests/nightwatch/commands",
+  custom_assertions_path: "tests/nightwatch/assertions",
+  page_objects_path: "tests/nightwatch/pages",
   globals_path: "",
 
   selenium: {
@@ -17,7 +17,6 @@ module.exports = {
     log_path: "",
     port: 4444,
     cli_args: {
-      // "webdriver.chrome.driver": "./node_modules/.bin/chromedriver"
       "webdriver.chrome.driver": chromeDriver.path
     }
   },
