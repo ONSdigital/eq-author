@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Dialog/Icon should render a delete icon 1`] = `
+.c0 {
+  background: url(delete.min.svg) no-repeat center;
+  width: 3em;
+  height: 3em;
+}
+
+<div
+  className="c0"
+  icon="delete"
+/>
+`;
+
+exports[`components/Dialog/Icon should render a move icon 1`] = `
+.c0 {
+  background: url(move.min.svg) no-repeat center;
+  width: 3em;
+  height: 3em;
+}
+
+<div
+  className="c0"
+  icon="move"
+/>
+`;

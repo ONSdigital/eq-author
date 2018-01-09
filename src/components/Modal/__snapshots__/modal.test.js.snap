@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Modal should render its children 1`] = `
+<Modal__StyledModal
+  isOpen={true}
+  onRequestClose={[Function]}
+  shouldCloseOnOverlayClick={true}
+  style={
+    Object {
+      "overlay": Object {
+        "backgroundColor": "rgba(0, 0, 0, 0.5)",
+      },
+    }
+  }
+>
+  <p>
+    Modal content
+  </p>
+</Modal__StyledModal>
+`;

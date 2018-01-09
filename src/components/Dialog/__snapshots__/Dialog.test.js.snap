@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Dialog Dialog actions should render multiple actions 1`] = `
+<Dialog__StyledDialog
+  onClick={[Function]}
+>
+  <Header>
+    <Header__Message>
+      <Header__Heading>
+        Dialog title
+      </Header__Heading>
+      <Header__Subheading>
+        Dialog subheading
+      </Header__Subheading>
+      <Header__Description>
+        Dialog description
+      </Header__Description>
+    </Header__Message>
+    <Header__Icon
+      icon="move"
+    />
+  </Header>
+  <Dialog__StyledButtonGroup>
+    <Dialog__Action
+      autoFocus={true}
+      onClick={[Function]}
+      primary={true}
+    >
+      Primary action
+    </Dialog__Action>
+    <Dialog__Action
+      onClick={[Function]}
+      secondary={true}
+    >
+      Secondary Action
+    </Dialog__Action>
+    <Dialog__Action
+      onClick={[Function]}
+      tertiary={true}
+    >
+      Tertiary Action
+    </Dialog__Action>
+  </Dialog__StyledButtonGroup>
+  <Dialog__CloseButton
+    aria-label="Close"
+    clear={true}
+    onClick={[Function]}
+  >
+    ×
+  </Dialog__CloseButton>
+</Dialog__StyledDialog>
+`;
+
+exports[`components/Dialog should render a dialog 1`] = `
+<Dialog__StyledDialog
+  onClick={[Function]}
+>
+  <Header>
+    <Header__Message>
+      <Header__Heading>
+        Dialog title
+      </Header__Heading>
+      <Header__Subheading>
+        Dialog subheading
+      </Header__Subheading>
+      <Header__Description>
+        Dialog description
+      </Header__Description>
+    </Header__Message>
+    <Header__Icon
+      icon="move"
+    />
+  </Header>
+  <Dialog__StyledButtonGroup>
+    <Dialog__Action
+      autoFocus={true}
+      onClick={[Function]}
+      primary={true}
+    >
+      Primary action
+    </Dialog__Action>
+  </Dialog__StyledButtonGroup>
+  <Dialog__CloseButton
+    aria-label="Close"
+    clear={true}
+    onClick={[Function]}
+  >
+    ×
+  </Dialog__CloseButton>
+</Dialog__StyledDialog>
+`;
+
+exports[`components/Dialog should render children 1`] = `
+<Dialog__StyledDialog
+  onClick={[Function]}
+>
+  <p>
+    This is the modal dialog content
+  </p>
+  <Dialog__StyledButtonGroup>
+    <Dialog__Action
+      autoFocus={true}
+      onClick={[Function]}
+      primary={true}
+    >
+      Primary action
+    </Dialog__Action>
+  </Dialog__StyledButtonGroup>
+  <Dialog__CloseButton
+    aria-label="Close"
+    clear={true}
+    onClick={[Function]}
+  >
+    ×
+  </Dialog__CloseButton>
+</Dialog__StyledDialog>
+`;
