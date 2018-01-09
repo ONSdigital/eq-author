@@ -15,9 +15,8 @@ module.exports = {
       })
       .submit();
 
-    design
-      .titleContains("a title")
-      .assertUrl({ questionnaireId: 1, sectionId: 1, pageId: 1 });
+    design.assert.containsText("@header", "a title");
+    browser.assert.urlMatches({ questionnaireId: 1, sectionId: 1, pageId: 1 });
   },
 
   "add a page": browser => {
@@ -25,7 +24,7 @@ module.exports = {
     const sidebar = design.section.sidebar;
 
     sidebar.createPage();
-    design.assertUrl({ sectionId: 1, pageId: 2 });
+    browser.assert.urlMatches({ sectionId: 1, pageId: 2 });
   },
 
   "delete a page": browser => {
@@ -40,7 +39,7 @@ module.exports = {
     const sidebar = design.section.sidebar;
 
     sidebar.createSection();
-    design.assertUrl({ sectionId: 2, pageId: 3 });
+    browser.assert.urlMatches({ sectionId: 2, pageId: 3 });
   },
 
   "delete a section": browser => {
@@ -55,7 +54,7 @@ module.exports = {
     const sidebar = design.section.sidebar;
 
     sidebar.deletePage(0);
-    design.assertUrl({ sectionId: 2, pageId: 4 });
+    browser.assert.urlMatches({ sectionId: 2, pageId: 4 });
   },
 
   "deleting the last section of a questionnaire": browser => {
@@ -63,7 +62,7 @@ module.exports = {
     const sidebar = design.section.sidebar;
 
     sidebar.deleteSection(0);
-    design.assertUrl({ sectionId: 3, pageId: 5 });
+    browser.assert.urlMatches({ sectionId: 3, pageId: 5 });
   },
 
   finished: browser => browser.end()
