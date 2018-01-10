@@ -11,7 +11,32 @@ exports[`components/AnswerTypeSelector should render content when open 1`] = `
       id="add-answer-btn"
       type="button"
     >
-      Add an answer
+      Add 
+      an
+       answer
+    </AnswerTypeSelector__AddAnswerBtn>
+  }
+>
+  <AnswerTypeGrid
+    onSelect={[Function]}
+  />
+</Popout>
+`;
+
+exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0 answers currently 1`] = `
+<Popout
+  onEntered={[Function]}
+  onToggleOpen={[Function]}
+  open={false}
+  transition={[Function]}
+  trigger={
+    <AnswerTypeSelector__AddAnswerBtn
+      id="add-answer-btn"
+      type="button"
+    >
+      Add 
+      another
+       answer
     </AnswerTypeSelector__AddAnswerBtn>
   }
 >
@@ -32,7 +57,9 @@ exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] 
       id="add-answer-btn"
       type="button"
     >
-      Add an answer
+      Add 
+      an
+       answer
     </AnswerTypeSelector__AddAnswerBtn>
   }
 >

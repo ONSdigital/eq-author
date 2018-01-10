@@ -17,6 +17,7 @@ export const BasicSection = styled.div`
   background-color: white;
   position: relative;
   box-shadow: ${shadow};
+  margin-bottom: 1em !important;
 `;
 
 const FocusableSection = styled(BasicSection)`
