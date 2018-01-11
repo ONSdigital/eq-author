@@ -153,7 +153,7 @@ class ToggleSwitch extends React.Component {
   render() {
     const { checked, onChange, width, height, size } = this.props;
     return (
-      <FlexInline width={width}>
+      <FlexInline role="switch" aria-checked={checked} width={width}>
         <HiddenInput
           id={this.id}
           type="checkbox"
@@ -162,6 +162,7 @@ class ToggleSwitch extends React.Component {
           ref={this.inputRef}
         />
         <ToggleSwitchBackground
+          role="presentation"
           checked={checked}
           onClick={this.handleToggle}
           width={width}
