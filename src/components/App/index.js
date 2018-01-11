@@ -37,6 +37,43 @@ injectGlobal`
   button {
     font-family: inherit;
   }
+  
+  /**
+   * TODO - remove/refactor
+   * Slack feedback component override for testing.
+   */
+  #slack-feedback {
+    #SlackFeedback {
+      bottom : 0;
+      margin : 3px;
+      margin-right : 246px;
+      
+      .SlackFeedback--tabs,
+      .SlackFeedback--checkbox-label,
+      .SlackFeedback--label,
+      .SlackFeedback--checkbox {
+        display : none !important;
+      }
+      
+      button.submit {
+        background: #056C99 !important;
+        border-radius : 2px;
+      }
+      
+      .SlackFeedback--header {
+        background-color : #35414D;
+      }
+      
+      .SlackFeedback--trigger {
+        border-radius : 2px;
+        background-color : #056C99;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        color : #fff;
+        // color : #e2e2e2;
+        border : none;
+      }
+    }
+  }
 `;
 
 const App = ({ children }) => (
