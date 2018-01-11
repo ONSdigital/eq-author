@@ -97,7 +97,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   cursor: pointer;
   height: 2em;
   width: 5em;
-  background: #E8E8E8;
+  background: #c3c3c3;
   border-radius: 1em;
   content: "";
   -webkit-transition: background 100ms ease-in-out;
@@ -105,7 +105,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   position: relative;
 }
 
-.c1:focus + .c4 .crOzYl::before {
+.c1:focus + .c4 .lpcWhZ::before {
   opacity: 0.12;
 }
 
@@ -113,7 +113,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   display: inline-block;
   height: 2em;
   width: 2em;
-  background: #008AD2;
+  background: #E8E8E8;
   content: "";
   position: relative;
   top: 0em;

@@ -6,12 +6,13 @@ import { uniqueId } from "lodash";
 import { Input } from "components/Forms";
 
 const knobColors = {
+  off: "#E8E8E8",
   on: "#008AD2"
 };
 
 const backgroundColors = {
   on: "#78C3E9",
-  off: "#E8E8E8"
+  off: "#c3c3c3"
 };
 
 const SharedDefaultProps = {
@@ -53,7 +54,7 @@ const ToggleSwitchKnob = styled.div`
   display: inline-block;
   height: ${props => props.size}em;
   width: ${props => props.size}em;
-  background: ${knobColors.on};
+  background: ${props => (props.checked ? knobColors.on : knobColors.off)};
   content: "";
   position: relative;
   top: ${props => -((props.size - props.height) / 2)}em;
