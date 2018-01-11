@@ -2,12 +2,11 @@
 
 exports[`components/Nav should display active link when route matches 1`] = `
 .c0 {
-  margin: 0;
-  display: block;
+  margin: 1.25em 0;
 }
 
 .c1 {
-  padding: 1em 1.5em;
+  padding-bottom: 0.25em;
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
@@ -23,6 +22,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
   border-color: rgba(5,108,153,0);
   border-style: solid;
   border-width: 0 0 2px;
+  margin-right: 2em;
 }
 
 .c1:hover {
@@ -30,6 +30,38 @@ exports[`components/Nav should display active link when route matches 1`] = `
 }
 
 .c1.selected {
+  color: #056C99;
+  border-color: rgba(5,108,153,1);
+}
+
+.c2 {
+  padding-bottom: 0.25em;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.875em;
+  font-weight: 400;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #4A4A4A;
+  -webkit-transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+  text-decoration: none;
+  border-color: rgba(5,108,153,0);
+  border-style: solid;
+  border-width: 0 0 2px;
+  margin-right: 2em;
+  color: #056C99;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.c2:hover {
+  color: #056C99;
+}
+
+.c2.selected {
   color: #056C99;
   border-color: rgba(5,108,153,1);
 }
@@ -42,6 +74,11 @@ exports[`components/Nav should display active link when route matches 1`] = `
       },
       "path": "",
       "url": "",
+    }
+  }
+  page={
+    Object {
+      "id": "3",
     }
   }
   questionnaire={
@@ -59,6 +96,17 @@ exports[`components/Nav should display active link when route matches 1`] = `
         },
       ],
       "title": "Questionnaire",
+    }
+  }
+  section={
+    Object {
+      "id": "2",
+      "pages": Array [
+        Object {
+          "id": "3",
+        },
+      ],
+      "title": "Section 1",
     }
   }
 >
@@ -104,6 +152,13 @@ exports[`components/Nav should display active link when route matches 1`] = `
           </Route>
         </NavLink>
       </Nav__StyledNavLink>
+      <Nav__StyledNavLink>
+        <span
+          className="c2"
+        >
+          Routing
+        </span>
+      </Nav__StyledNavLink>
     </nav>
   </Nav__StyledNav>
 </NavWithoutRouter>
@@ -111,12 +166,11 @@ exports[`components/Nav should display active link when route matches 1`] = `
 
 exports[`components/Nav should render Nav 1`] = `
 .c0 {
-  margin: 0;
-  display: block;
+  margin: 1.25em 0;
 }
 
 .c1 {
-  padding: 1em 1.5em;
+  padding-bottom: 0.25em;
   display: inline-block;
   cursor: pointer;
   font-size: 0.875em;
@@ -132,6 +186,7 @@ exports[`components/Nav should render Nav 1`] = `
   border-color: rgba(5,108,153,0);
   border-style: solid;
   border-width: 0 0 2px;
+  margin-right: 2em;
 }
 
 .c1:hover {
@@ -143,12 +198,49 @@ exports[`components/Nav should render Nav 1`] = `
   border-color: rgba(5,108,153,1);
 }
 
+.c2 {
+  padding-bottom: 0.25em;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 0.875em;
+  font-weight: 400;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #4A4A4A;
+  -webkit-transition: color 200ms ease-in-out;
+  transition: color 200ms ease-in-out;
+  text-decoration: none;
+  border-color: rgba(5,108,153,0);
+  border-style: solid;
+  border-width: 0 0 2px;
+  margin-right: 2em;
+  color: #056C99;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.c2:hover {
+  color: #056C99;
+}
+
+.c2.selected {
+  color: #056C99;
+  border-color: rgba(5,108,153,1);
+}
+
 <NavWithoutRouter
   match={
     Object {
       "params": Object {},
       "path": "",
       "url": "",
+    }
+  }
+  page={
+    Object {
+      "id": "3",
     }
   }
   questionnaire={
@@ -166,6 +258,17 @@ exports[`components/Nav should render Nav 1`] = `
         },
       ],
       "title": "Questionnaire",
+    }
+  }
+  section={
+    Object {
+      "id": "2",
+      "pages": Array [
+        Object {
+          "id": "3",
+        },
+      ],
+      "title": "Section 1",
     }
   }
 >
@@ -210,6 +313,13 @@ exports[`components/Nav should render Nav 1`] = `
             </Link>
           </Route>
         </NavLink>
+      </Nav__StyledNavLink>
+      <Nav__StyledNavLink>
+        <span
+          className="c2"
+        >
+          Routing
+        </span>
       </Nav__StyledNavLink>
     </nav>
   </Nav__StyledNav>

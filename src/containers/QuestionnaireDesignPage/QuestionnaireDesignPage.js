@@ -10,6 +10,7 @@ import EditorSurface from "components/EditorSurface";
 import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 import getTextFromHTML from "utils/getTextFromHTML";
 import ConnectedPropertiesPanel from "components/PropertiesPanel";
+import Nav from "components/Nav";
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -76,6 +77,11 @@ export class QuestionnaireDesignPage extends Component {
           <Column gutters={false}>
             <ScrollPane>
               <MainCanvas>
+                <Nav
+                  questionnaire={questionnaire}
+                  section={section}
+                  page={page}
+                />
                 <EditorSurface
                   section={section}
                   page={page}
