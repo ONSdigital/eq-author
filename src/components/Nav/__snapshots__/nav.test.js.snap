@@ -70,10 +70,10 @@ exports[`components/Nav should display active link when route matches 1`] = `
   match={
     Object {
       "params": Object {
+        "pageId": "",
+        "questionnaireId": "",
         "sectionId": "888",
       },
-      "path": "",
-      "url": "",
     }
   }
   page={
@@ -233,9 +233,11 @@ exports[`components/Nav should render Nav 1`] = `
 <NavWithoutRouter
   match={
     Object {
-      "params": Object {},
-      "path": "",
-      "url": "",
+      "params": Object {
+        "pageId": "",
+        "questionnaireId": "",
+        "sectionId": "",
+      },
     }
   }
   page={

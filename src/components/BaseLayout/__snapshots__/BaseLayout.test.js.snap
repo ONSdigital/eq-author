@@ -6,7 +6,7 @@ exports[`components/BaseLayout should render 1`] = `
 >
   <App>
     <BaseLayout__Wrapper>
-      <Header />
+      <Connect(UnconnectedHeader) />
       <BaseLayout__Main>
         Children
       </BaseLayout__Main>
@@ -21,7 +21,7 @@ exports[`components/BaseLayout should render a Nav 1`] = `
 >
   <App>
     <BaseLayout__Wrapper>
-      <Header
+      <Connect(UnconnectedHeader)
         questionnaire={
           Object {
             "title": "Questionnaire",
@@ -42,7 +42,7 @@ exports[`components/BaseLayout should render a title 1`] = `
 >
   <App>
     <BaseLayout__Wrapper>
-      <Header />
+      <Connect(UnconnectedHeader) />
       <BaseLayout__Main>
         <ScrollPane>
           <BaseLayout__Title>

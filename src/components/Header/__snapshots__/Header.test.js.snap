@@ -20,86 +20,50 @@ exports[`components/Header renders correctly  1`] = `
     </Column>
     <Column
       cols={12}
-    >
-      <Breadcrumb
-        title="Questionnaire"
-      />
-    </Column>
+    />
     <Column
       cols={12}
     >
       <Header__UtilityBtns
         horizontal={true}
-      >
-        <IconLink
-          href="http://go-launch-a-survey/quick-launch?url=http%3A%2F%2Feq-publisher%2Fpublish%2F1%3Fr%3D1507793425522"
-          icon="icon-preview.svg"
-          target="_blank"
-          title="Preview"
-        />
-        <IconButton
-          disabled={true}
-          icon="icon-export.svg"
-          title="Export"
-        />
-      </Header__UtilityBtns>
+      />
     </Column>
   </Grid>
 </Header__StyledHeader>
 `;
 
-exports[`components/Header should conditionally render Breadcrumb 1`] = `
-<Header__StyledHeader>
-  <Grid
-    align="center"
-    fillHeight={true}
-  >
-    <Column
-      cols={2}
-    >
-      <Header__Logo
-        to="/"
-      >
-        <img
-          alt="Author"
-          src="logo.svg"
-        />
-      </Header__Logo>
-    </Column>
-    <Column
-      cols={12}
-    />
-    <Column
-      cols={12}
-    />
-  </Grid>
-</Header__StyledHeader>
+exports[`components/Header when the user is signed in should render user's profile 1`] = `
+<UserProfile
+  onSignOut={[Function]}
+  user={
+    Object {
+      "displayName": "Foo Bar",
+      "email": "foo@b.ar",
+      "photoURL": "http://foo.b.ar/photo.jpg",
+    }
+  }
+/>
 `;
 
-exports[`components/Header should conditionally render UtilityBtns 1`] = `
-<Header__StyledHeader>
-  <Grid
-    align="center"
-    fillHeight={true}
-  >
-    <Column
-      cols={2}
-    >
-      <Header__Logo
-        to="/"
-      >
-        <img
-          alt="Author"
-          src="logo.svg"
-        />
-      </Header__Logo>
-    </Column>
-    <Column
-      cols={12}
-    />
-    <Column
-      cols={12}
-    />
-  </Grid>
-</Header__StyledHeader>
+exports[`components/Header when there is a questionnaire should render a preview button 1`] = `
+<IconLink
+  href="http://go-launch-a-survey/quick-launch?url=http%3A%2F%2Feq-publisher%2Fpublish%2F1%3Fr%3D1507793425522"
+  icon="icon-preview.svg"
+  target="_blank"
+  title="Preview"
+/>
+`;
+
+exports[`components/Header when there is a questionnaire should render an export button 1`] = `
+<IconButton
+  disabled={true}
+  icon="icon-export.svg"
+  title="Export"
+/>
+`;
+
+exports[`components/Header when there is a questionnaire should render breadcrumbs 1`] = `
+<Breadcrumb
+  title="Questionnaire"
+/>
 `;

@@ -20,6 +20,12 @@ describe("eQ Author Smoketest", () => {
     startAtHomepage();
   });
 
+  afterEach(() => {
+    if (process.env.DEBUG) {
+      console.log(browser.log("browser"));
+    }
+  });
+
   it("should load the eQ author page", () => {
     expect(getPageTitle()).toEqual("Your Questionnaires - Author");
   });

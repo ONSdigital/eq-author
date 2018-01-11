@@ -1,9 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`containers/App Routes should render  1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 2,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/sign-in"
+    />
+    <PrivateRoute
+      component={[Function]}
+      exact={true}
+      isSignedIn={true}
+      path="/"
+    />
+    <PrivateRoute
+      component={[Function]}
+      isSignedIn={true}
+      path="/questionnaire/create"
+    />
+    <PrivateRoute
+      component={[Function]}
+      exact={false}
+      isSignedIn={true}
+      path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="*"
+    />
+  </Switch>
+</Router>
+`;
+
 exports[`containers/App should render 1`] = `
 <AppContainer>
   <ApolloProvider
-    client={Object {}}
+    client={
+      Object {
+        "query": [Function],
+        "readQuery": [Function],
+      }
+    }
     store={
       Object {
         "dispatch": [Function],
@@ -12,7 +72,7 @@ exports[`containers/App should render 1`] = `
       }
     }
   >
-    <Router
+    <Connect(Routes)
       history={
         Object {
           "action": "POP",
@@ -33,29 +93,7 @@ exports[`containers/App should render 1`] = `
           "replace": [Function],
         }
       }
-    >
-      <Switch>
-        <Route
-          component={[Function]}
-          exact={true}
-          path="/"
-        />
-        <Route
-          component={[Function]}
-          path="/questionnaire/create"
-        />
-        <Route
-          component={[Function]}
-          exact={false}
-          path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
-        />
-        <Route
-          component={[Function]}
-          exact={true}
-          path="*"
-        />
-      </Switch>
-    </Router>
+    />
   </ApolloProvider>
 </AppContainer>
 `;

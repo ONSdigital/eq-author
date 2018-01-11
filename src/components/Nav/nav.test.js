@@ -20,7 +20,9 @@ const questionnaire = {
   ]
 };
 
-const match = { params: {}, path: "", url: "" };
+const match = {
+  params: { questionnaireId: "", sectionId: "", pageId: "" }
+};
 
 describe("components/Nav", () => {
   beforeEach(() => {
@@ -38,12 +40,16 @@ describe("components/Nav", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should contain links", () => {
-    expect(wrapper.find("a")).toBeTruthy();
-  });
-
   it("should display active link when route matches", () => {
-    wrapper.setProps({ match: { ...match, params: { sectionId: "888" } } });
+    const params = { questionnaireId: "", sectionId: "888", pageId: "" };
+
+    wrapper.setProps({
+      match: {
+        ...match,
+        params
+      }
+    });
+
     expect(wrapper).toMatchSnapshot();
   });
 });

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignInForm should render 1`] = `
+.c0 .firebaseui-card-content {
+  padding: 0;
+}
+
+.c0 .firebaseui-idp-button {
+  border-radius: 2px;
+  border: 1px solid #EAEAEA;
+  box-shadow: none;
+}
+
+.c0 .firebaseui-id-page-callback {
+  display: none;
+}
+
+<FirebaseAuth
+  className="c0"
+  firebaseAuth={
+    Object {
+      "apiKey": "FAKE_API_KEY",
+      "appName": "[DEFAULT]",
+      "authDomain": "FAKE_PROJECT_ID.firebaseapp.com",
+      "currentUser": null,
+    }
+  }
+  uiConfig={
+    Object {
+      "callbacks": Object {
+        "signInSuccess": [Function],
+      },
+      "signInFlow": "popup",
+      "signInOptions": Array [
+        "google.com",
+      ],
+    }
+  }
+/>
+`;

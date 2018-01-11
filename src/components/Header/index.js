@@ -1,16 +1,20 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "constants/theme";
 
+import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import IconButton from "components/IconDecorated/IconButton";
 import IconLink from "components/IconDecorated/IconLink";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
+import UserProfile from "components/UserProfile";
 
 import { Grid, Column } from "components/Grid";
+import { getUser } from "redux/auth/reducer";
+import { signOutUser } from "redux/auth/actions";
 
 import logo from "./logo.svg";
 import exportIcon from "./icon-export.svg";
@@ -39,9 +43,13 @@ export const UtilityBtns = styled(ButtonGroup)`
   align-items: center;
 `;
 
-class Header extends React.Component {
+const Fragment = props => props.children;
+
+export class UnconnectedHeader extends React.Component {
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire
+    questionnaire: CustomPropTypes.questionnaire,
+    user: CustomPropTypes.user,
+    signOutUser: PropTypes.func.isRequired
   };
 
   getPreviewUrl(questionnaireId) {
@@ -54,6 +62,10 @@ class Header extends React.Component {
     );
     return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
   }
+
+  handleSignOut = () => {
+    this.props.signOutUser();
+  };
 
   render() {
     const { questionnaire } = this.props;
@@ -71,17 +83,25 @@ class Header extends React.Component {
           </Column>
 
           <Column>
-            {questionnaire && (
-              <UtilityBtns horizontal>
-                <IconLink
-                  href={this.getPreviewUrl(questionnaire.id)}
-                  icon={previewIcon}
-                  title="Preview"
-                  target="_blank"
+            <UtilityBtns horizontal>
+              {questionnaire && (
+                <Fragment>
+                  <IconLink
+                    href={this.getPreviewUrl(questionnaire.id)}
+                    icon={previewIcon}
+                    title="Preview"
+                    target="_blank"
+                  />
+                  <IconButton icon={exportIcon} title="Export" disabled />
+                </Fragment>
+              )}
+              {this.props.user && (
+                <UserProfile
+                  user={this.props.user}
+                  onSignOut={this.handleSignOut}
                 />
-                <IconButton icon={exportIcon} title="Export" disabled />
-              </UtilityBtns>
-            )}
+              )}
+            </UtilityBtns>
           </Column>
         </Grid>
       </StyledHeader>
@@ -89,4 +109,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  user: getUser(state)
+});
+
+export default connect(mapStateToProps, { signOutUser })(UnconnectedHeader);

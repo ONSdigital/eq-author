@@ -2,8 +2,11 @@
 
 set -evuf -o pipefail
 
+# Read test env vars
+export $(egrep -v '^#' .env.test | xargs)
+
 # Build a version of the app which runs with the mockAPI
-yarn build:mockAPI
+REACT_APP_ENABLE_AUTH=false yarn build:mockAPI
 
 # Serve the app
 ./node_modules/.bin/serve -S -p 3000 build/ &

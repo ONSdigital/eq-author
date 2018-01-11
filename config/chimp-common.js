@@ -1,3 +1,4 @@
+/* eslint-disable import/unambiguous */
 module.exports = {
   path: "tests/spec",
   jasmine: true,
