@@ -2,7 +2,9 @@
 
 exports[`ToggleSwitch should render 1`] = `
 <ToggleSwitch__FlexInline
+  aria-checked={false}
   height={1}
+  role="switch"
   width={2.6}
 >
   <ToggleSwitch__HiddenInput
@@ -15,6 +17,7 @@ exports[`ToggleSwitch should render 1`] = `
     checked={false}
     height={1}
     onClick={[Function]}
+    role="presentation"
     width={2.6}
   >
     <ToggleSwitch__ToggleSwitchKnob
@@ -29,7 +32,9 @@ exports[`ToggleSwitch should render 1`] = `
 
 exports[`ToggleSwitch should render a large toggle button 1`] = `
 <ToggleSwitch__FlexInline
+  aria-checked={false}
   height={1}
+  role="switch"
   width={5}
 >
   <ToggleSwitch__HiddenInput
@@ -42,6 +47,7 @@ exports[`ToggleSwitch should render a large toggle button 1`] = `
     checked={false}
     height={2}
     onClick={[Function]}
+    role="presentation"
     width={5}
   >
     <ToggleSwitch__ToggleSwitchKnob
@@ -97,7 +103,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   cursor: pointer;
   height: 2em;
   width: 5em;
-  background: #E8E8E8;
+  background: #c3c3c3;
   border-radius: 1em;
   content: "";
   -webkit-transition: background 100ms ease-in-out;
@@ -105,7 +111,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   position: relative;
 }
 
-.c1:focus + .c4 .crOzYl::before {
+.c1:focus + .c4 .huVGMY::before {
   opacity: 0.12;
 }
 
@@ -113,7 +119,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   display: inline-block;
   height: 2em;
   width: 2em;
-  background: #008AD2;
+  background: #E8E8E8;
   content: "";
   position: relative;
   top: 0em;
@@ -175,12 +181,16 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   width={5}
 >
   <ToggleSwitch__FlexInline
+    aria-checked={false}
     height={1}
+    role="switch"
     width={5}
   >
     <div
+      aria-checked={false}
       className="c0"
       height={1}
+      role="switch"
       width={5}
     >
       <ToggleSwitch__HiddenInput
@@ -232,6 +242,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
         checked={false}
         height={2}
         onClick={[Function]}
+        role="presentation"
         width={5}
       >
         <div
@@ -239,6 +250,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
           className="c4 c5"
           height={2}
           onClick={[Function]}
+          role="presentation"
           width={5}
         >
           <ToggleSwitch__ToggleSwitchKnob
@@ -264,7 +276,9 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 
 exports[`ToggleSwitch should render checked 1`] = `
 <ToggleSwitch__FlexInline
+  aria-checked={true}
   height={1}
+  role="switch"
   width={2.6}
 >
   <ToggleSwitch__HiddenInput
@@ -277,6 +291,7 @@ exports[`ToggleSwitch should render checked 1`] = `
     checked={true}
     height={1}
     onClick={[Function]}
+    role="presentation"
     width={2.6}
   >
     <ToggleSwitch__ToggleSwitchKnob
@@ -403,12 +418,16 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   onChange={[Function]}
 >
   <ToggleSwitch__FlexInline
+    aria-checked={true}
     height={1}
+    role="switch"
     width={2.6}
   >
     <div
+      aria-checked={true}
       className="c0"
       height={1}
+      role="switch"
       width={2.6}
     >
       <ToggleSwitch__HiddenInput
@@ -460,6 +479,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
         checked={true}
         height={1}
         onClick={[Function]}
+        role="presentation"
         width={2.6}
       >
         <div
@@ -467,6 +487,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
           className="c4 c5"
           height={1}
           onClick={[Function]}
+          role="presentation"
           width={2.6}
         >
           <ToggleSwitch__ToggleSwitchKnob
@@ -604,12 +625,16 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   onChange={[Function]}
 >
   <ToggleSwitch__FlexInline
+    aria-checked={true}
     height={1}
+    role="switch"
     width={2.6}
   >
     <div
+      aria-checked={true}
       className="c0"
       height={1}
+      role="switch"
       width={2.6}
     >
       <ToggleSwitch__HiddenInput
@@ -661,6 +686,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
         checked={true}
         height={1}
         onClick={[Function]}
+        role="presentation"
         width={2.6}
       >
         <div
@@ -668,6 +694,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
           className="c4 c5"
           height={1}
           onClick={[Function]}
+          role="presentation"
           width={2.6}
         >
           <ToggleSwitch__ToggleSwitchKnob
