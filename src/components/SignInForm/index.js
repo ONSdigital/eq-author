@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { colors, radius } from "constants/theme";
-import { auth, providers } from "auth";
+import auth, { providers } from "auth";
 import { FirebaseAuth } from "react-firebaseui";
 
 const SignInForm = styled(FirebaseAuth)`

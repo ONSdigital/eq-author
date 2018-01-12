@@ -6,12 +6,18 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 import Panel from "components/Panel";
-import SignInForm from "components/SignInForm";
-import Button from "components/Button";
-import dummyUserIcon from "./dummy-user-avatar.svg";
 
 import { isSignedIn, verifiedAuthStatus } from "redux/auth/reducer";
 import { signInUser, verifyAuthStatus } from "redux/auth/actions";
+
+let SignInForm;
+
+/* istanbul ignore next */
+if (process.env.REACT_APP_ENABLE_AUTH === "true") {
+  SignInForm = require("components/SignInForm").default;
+} else {
+  SignInForm = require("components/SignInForm/GuestSignInForm").default;
+}
 
 const Centered = styled.div`
   margin: 0 auto;
@@ -31,16 +37,6 @@ const SignInPanel = styled(Panel)`
   padding: 2em 5em;
   width: 22em;
   height: 13em;
-`;
-
-const DUMMY_USER = {
-  displayName: "Dummy User",
-  email: "dummy@example.org",
-  photoURL: dummyUserIcon
-};
-
-const DummySignInButton = styled(Button)`
-  margin-top: 1em;
 `;
 
 export class UnconnectedSignInPage extends React.Component {
@@ -70,21 +66,9 @@ export class UnconnectedSignInPage extends React.Component {
     }
   }
 
-  handleAnonymousSignIn = () => {
-    this.props.signInUser(DUMMY_USER);
+  handleSignIn = user => {
+    this.props.signInUser(user);
   };
-
-  renderDummySignIn() {
-    return (
-      <DummySignInButton primary onClick={this.handleAnonymousSignIn}>
-        Sign-in anonymously
-      </DummySignInButton>
-    );
-  }
-
-  renderSignInForm() {
-    return <SignInForm />;
-  }
 
   render() {
     const { verifiedAuthStatus, isSignedIn, returnURL } = this.props;
@@ -103,9 +87,7 @@ export class UnconnectedSignInPage extends React.Component {
           <Title>Sign in</Title>
           <SignInPanel>
             <Text>You must be signed in to access this service.</Text>
-            {process.env.REACT_APP_ENABLE_AUTH === "true"
-              ? this.renderSignInForm()
-              : this.renderDummySignIn()}
+            <SignInForm onSignIn={this.handleSignIn} />
           </SignInPanel>
         </Centered>
       </BaseLayout>

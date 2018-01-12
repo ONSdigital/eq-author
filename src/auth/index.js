@@ -14,5 +14,7 @@ firebase.initializeApp({
   messagingSenderId: MESSAGING_SENDER_ID
 });
 
-export const auth = firebase.auth();
+const auth = firebase.auth();
+
+export default auth;
 export const providers = [firebase.auth.GoogleAuthProvider.PROVIDER_ID];
