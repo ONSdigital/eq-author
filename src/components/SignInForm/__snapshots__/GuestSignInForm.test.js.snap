@@ -5,6 +5,6 @@ exports[`GuestSignInForm should render 1`] = `
   onClick={[Function]}
   primary={true}
 >
-  Sign-in anonymously
+  Sign in as Guest
 </GuestSignInForm__GuestSignInButton>
 `;

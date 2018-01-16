@@ -1,5 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import firebaseui from "firebaseui";
 
 const PROJECT_ID = process.env.REACT_APP_FIREBASE_PROJECT_ID;
 const API_KEY = process.env.REACT_APP_FIREBASE_API_KEY;
@@ -17,4 +18,11 @@ firebase.initializeApp({
 const auth = firebase.auth();
 
 export default auth;
-export const providers = [firebase.auth.GoogleAuthProvider.PROVIDER_ID];
+export const providers = [
+  {
+    provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    requireDisplayName: true
+  }
+];
+
+export const credentialHelper = firebaseui.auth.CredentialHelper.NONE;

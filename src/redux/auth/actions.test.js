@@ -79,13 +79,13 @@ describe("auth actions", () => {
       expect(auth.onAuthStateChanged).toHaveBeenCalledTimes(1);
     });
 
-    it("should sign-in user if determined to be authenticated", () => {
+    it("should sign in user if determined to be authenticated", () => {
       changeHandler(user);
 
       expect(store.getActions()).toEqual([signInUser(user)]);
     });
 
-    it("should not sign-in user if determined to be unauthenticated", () => {
+    it("should not sign in user if determined to be unauthenticated", () => {
       changeHandler();
 
       expect(store.getActions()).toEqual([signedOutUser()]);

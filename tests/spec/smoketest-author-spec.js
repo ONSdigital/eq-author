@@ -19,7 +19,7 @@ describe("eQ Author Smoketest", () => {
   const login = () => {
     browser.pause(100);
     expect(browser.getUrl()).toContain("/sign-in");
-    browser.click("button*=Sign-in");
+    browser.click("button*=Sign in");
     browser.pause(100);
   };
 

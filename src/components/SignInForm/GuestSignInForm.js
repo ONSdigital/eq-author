@@ -3,12 +3,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Button from "components/Button";
 import { partial } from "lodash";
-import guestUserIcon from "./guest-user-avatar.svg";
 
 const GUEST_USER = {
   displayName: "Guest",
-  email: "guest@example.org",
-  photoURL: guestUserIcon
+  email: "guest@example.org"
 };
 
 const GuestSignInButton = styled(Button)`
@@ -17,7 +15,7 @@ const GuestSignInButton = styled(Button)`
 
 const GuestSignInForm = ({ onSignIn }) => (
   <GuestSignInButton primary onClick={partial(onSignIn, GUEST_USER)}>
-    Sign-in anonymously
+    Sign in as Guest
   </GuestSignInButton>
 );
 

@@ -30,13 +30,11 @@ const Title = styled.h1`
 `;
 
 const Text = styled.p`
-  margin-bottom: 0.75em;
+  margin-top: 0;
 `;
 
 const SignInPanel = styled(Panel)`
-  padding: 2em 5em;
-  width: 22em;
-  height: 13em;
+  padding: 2em 3em;
 `;
 
 export class UnconnectedSignInPage extends React.Component {

@@ -1,19 +1,19 @@
-import { pick } from "lodash";
-
 export const SIGN_IN_USER = "SIGN_IN_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";
 export const SIGN_IN_ERROR = "SIGN_IN_ERROR";
 
-export const signInUser = user => {
+export const signInUser = ({ displayName, email, photoURL }) => {
   if (process.env.REACT_APP_USE_FULLSTORY === "true") {
-    window.FS.identify(user.email, {
-      displayName: user.displayName
-    });
+    window.FS.identify(email, { displayName });
   }
 
   return {
     type: SIGN_IN_USER,
-    payload: pick(user, "displayName", "email", "photoURL")
+    payload: {
+      displayName,
+      email,
+      photoURL
+    }
   };
 };
 

@@ -1,21 +1,38 @@
 import styled from "styled-components";
-import { colors, radius } from "constants/theme";
-import auth, { providers } from "auth";
+import { colors } from "constants/theme";
+import auth, { providers, credentialHelper } from "auth";
 import { FirebaseAuth } from "react-firebaseui";
+import { darken } from "polished";
+
+const darkBlue = darken(0.1, colors.blue);
 
 const SignInForm = styled(FirebaseAuth)`
+  .firebaseui-card-actions,
+  .firebaseui-card-header,
   .firebaseui-card-content {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .firebaseui-idp-button {
-    border-radius: ${radius};
-    border: 1px solid ${colors.borders};
+  .firebaseui-card-actions {
+    padding-bottom: 0;
+  }
+
+  .firebaseui-form-actions .firebaseui-id-submit {
+    background-color: ${colors.blue};
+
+    &:focus,
+    &:hover {
+      background-color: ${darkBlue};
+    }
+  }
+
+  .firebaseui-textfield.mdl-textfield .firebaseui-label::after {
+    background-color: ${colors.blue};
+  }
+
+  .firebaseui-container {
     box-shadow: none;
-  }
-
-  .firebaseui-id-page-callback {
-    display: none;
   }
 `;
 
@@ -24,6 +41,7 @@ SignInForm.defaultProps = {
   uiConfig: {
     signInFlow: "popup",
     signInOptions: providers,
+    credentialHelper,
     callbacks: {
       signInSuccess: () => false // Avoid redirects after sign-in.
     }

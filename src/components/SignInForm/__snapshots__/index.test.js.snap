@@ -1,18 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignInForm should render 1`] = `
+.c0 .firebaseui-card-actions,
+.c0 .firebaseui-card-header,
 .c0 .firebaseui-card-content {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.c0 .firebaseui-idp-button {
-  border-radius: 2px;
-  border: 1px solid #EAEAEA;
+.c0 .firebaseui-card-actions {
+  padding-bottom: 0;
+}
+
+.c0 .firebaseui-form-actions .firebaseui-id-submit {
+  background-color: #056C99;
+}
+
+.c0 .firebaseui-form-actions .firebaseui-id-submit:focus,
+.c0 .firebaseui-form-actions .firebaseui-id-submit:hover {
+  background-color: #034968;
+}
+
+.c0 .firebaseui-textfield.mdl-textfield .firebaseui-label::after {
+  background-color: #056C99;
+}
+
+.c0 .firebaseui-container {
   box-shadow: none;
-}
-
-.c0 .firebaseui-id-page-callback {
-  display: none;
 }
 
 <FirebaseAuth
@@ -30,9 +44,13 @@ exports[`SignInForm should render 1`] = `
       "callbacks": Object {
         "signInSuccess": [Function],
       },
+      "credentialHelper": "none",
       "signInFlow": "popup",
       "signInOptions": Array [
-        "google.com",
+        Object {
+          "provider": "password",
+          "requireDisplayName": true,
+        },
       ],
     }
   }

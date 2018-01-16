@@ -68,7 +68,7 @@ export default {
     pathname: PropTypes.string.isRequired
   }),
   user: PropTypes.shape({
-    photoURL: PropTypes.string.isRequired,
+    photoURL: PropTypes.string,
     displayName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired
   })
