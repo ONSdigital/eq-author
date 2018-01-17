@@ -282,8 +282,19 @@ const conditionsReducer = (state = {}, action) => {
             ...condition.selectedOptions,
             [id]: {
               type: "Date",
-              comparison: "completion"
+              comparison: "completion",
+              id
             }
+          };
+        }
+      } else {
+        const completionDateOption = find(condition.selectedOptions, {
+          type: "Date",
+          comparison: "completion"
+        });
+        if (completionDateOption) {
+          condition.selectedOptions = {
+            ...omit(condition.selectedOptions, completionDateOption.id)
           };
         }
       }

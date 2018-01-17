@@ -139,7 +139,7 @@ class DateRangeSelector extends React.Component {
     elem && (this.rect = elem.getBoundingClientRect());
 
   render() {
-    const { selectedOptions, removeOption } = this.props;
+    const { selectedOptions, removeOption, conditionId } = this.props;
     let position = { top: 0, left: 0 };
     if (this.state.rect) {
       position = {
@@ -171,6 +171,7 @@ class DateRangeSelector extends React.Component {
                 title={`<strong>${from}</strong> and <strong>${to}</strong>`}
                 onRemove={removeOption}
                 optionId={id}
+                conditionId={conditionId}
                 onClick={this.handleChipClick}
                 isEditing={
                   this.state.showAnswerPopup && id === this.state.comparison.id

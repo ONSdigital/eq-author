@@ -141,6 +141,7 @@ class DateSelector extends React.Component {
       selectedOptions,
       removeOption,
       completionOption,
+      conditionId,
       multiselect
     } = this.props;
     let position = { top: 0, left: 0 };
@@ -165,6 +166,9 @@ class DateSelector extends React.Component {
 
             if (option.comparison === "completion") {
               date = "Completion date";
+              if (!completionOption) {
+                return null;
+              }
             } else {
               date = getFormattedDate(new Date(option.comparison));
             }
@@ -176,6 +180,7 @@ class DateSelector extends React.Component {
                 id={id}
                 title={date}
                 optionId={id}
+                conditionId={conditionId}
                 onClick={this.handleChipClick}
                 onRemove={removeOption}
                 isEditing={
