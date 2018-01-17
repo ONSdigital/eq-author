@@ -2,6 +2,7 @@
 
 exports[`components/Modal should render its children 1`] = `
 <Modal__StyledModal
+  closeTimeoutMS={200}
   isOpen={true}
   onRequestClose={[Function]}
   shouldCloseOnOverlayClick={true}
