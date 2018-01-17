@@ -189,7 +189,7 @@ class DateRangeSelector extends React.Component {
             valid={valid}
             validationError={"Please enter valid dates"}
           >
-            <div>
+            <div className="blah">
               <DateFields
                 value={this.state.comparison.from}
                 valid={valid || this.state.comparison.from.valid}
