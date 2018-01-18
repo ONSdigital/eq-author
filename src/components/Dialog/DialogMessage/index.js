@@ -1,16 +1,11 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
 import { lighten } from "polished";
-import DialogIcon from "components/Dialog/Icon";
+import PropTypes from "prop-types";
 
 const textStyle = lighten(0.1, colors.darkBlue);
 const codeStyle = lighten(0.1, colors.blue);
-
-export const Header = styled.header`
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-`;
 
 const collapsed = css`
   padding: 0;
@@ -41,7 +36,22 @@ export const Description = styled.p`
   color: ${textStyle};
 `;
 
-export const Icon = styled(DialogIcon)`
-  flex-grow: 0;
-  margin-right: 1em;
-`;
+const DialogMessage = props => {
+  const { heading, subheading, description } = props;
+
+  return (
+    <Message>
+      <Heading>{heading}</Heading>
+      <Subheading>{subheading}</Subheading>
+      <Description>{description}</Description>
+    </Message>
+  );
+};
+
+DialogMessage.propTypes = {
+  heading: PropTypes.string.isRequired,
+  subheading: PropTypes.string,
+  description: PropTypes.string
+};
+
+export default DialogMessage;

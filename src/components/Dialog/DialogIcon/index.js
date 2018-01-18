@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import moveIcon from "./icons/move.min.svg";
-import deleteIcon from "./icons/delete.min.svg";
+import moveIcon from "./icons/icon-dialog-move.svg";
+import deleteIcon from "./icons/icon-dialog-delete.svg";
 
 const icons = {
   move: moveIcon,
@@ -19,4 +19,7 @@ DialogIcon.propTypes = {
   icon: PropTypes.oneOf(Object.keys(icons))
 };
 
-export default DialogIcon;
+export default styled(DialogIcon)`
+  flex-grow: 0;
+  margin-right: 1em;
+`;

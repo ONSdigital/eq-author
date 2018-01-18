@@ -2,12 +2,13 @@
 
 exports[`components/Dialog/Icon should render a delete icon 1`] = `
 .c0 {
-  background: url(delete.min.svg) no-repeat center;
-  width: 3em;
-  height: 3em;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+  margin-right: 1em;
 }
 
-<div
+<DialogIcon
   className="c0"
   icon="delete"
 />
@@ -15,12 +16,13 @@ exports[`components/Dialog/Icon should render a delete icon 1`] = `
 
 exports[`components/Dialog/Icon should render a move icon 1`] = `
 .c0 {
-  background: url(move.min.svg) no-repeat center;
-  width: 3em;
-  height: 3em;
+  -webkit-flex-grow: 0;
+  -ms-flex-grow: 0;
+  flex-grow: 0;
+  margin-right: 1em;
 }
 
-<div
+<DialogIcon
   className="c0"
   icon="move"
 />

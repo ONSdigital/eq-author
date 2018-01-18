@@ -16,7 +16,10 @@ injectGlobal`
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-  transition: opacity 200ms;
+  transition: opacity 200ms ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &--after-open {
     opacity: 1;
@@ -28,28 +31,25 @@ injectGlobal`
 }
 
 .ReactModalPortal .ReactModal__Content {
-  transform: translateX(-50%) translateY(-50%) scale(0.8);
+  transform: scale(0.8);
   transform-origin: center center;
   transition: all 200ms ease-in 200ms;
   opacity: 0;
 
   &--after-open {
-    transform: translateX(-50%) translateY(-50%) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 
   &--before-close {
-    transform: translateX(-50%) translateY(-50%) scale(0.8);
+    transform: scale(0.8);
     opacity: 0;
   }
 }
 `;
 
 const StyledModal = styled(ReactModal)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  position: relative;
 `;
 
 class Modal extends React.Component {

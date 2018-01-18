@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Modal/Alert should render an alert 1`] = `
+exports[`components/Modal/DialogAlert should render an alert 1`] = `
 .c0 {
   margin: 0;
 }
@@ -8,11 +8,11 @@ exports[`components/Modal/Alert should render an alert 1`] = `
 <ul
   className="c0"
 >
-  <Alert>
+  <DialogAlert>
     This is an alert
-  </Alert>
-  <Alert>
+  </DialogAlert>
+  <DialogAlert>
     This is another alert
-  </Alert>
+  </DialogAlert>
 </ul>
 `;
