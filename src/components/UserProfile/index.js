@@ -4,7 +4,7 @@ import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import Tooltip from "components/Tooltip";
 import Button from "components/Button";
-import guestAvatar from "./guest-user-avatar.svg";
+import guestAvatar from "./icon-guest-avatar.svg";
 
 const UserAvatar = styled.img`
   width: 2.5em;
