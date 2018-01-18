@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add question page button should render correctly 1`] = `
+<IconButton
+  clear={true}
+  onClick={[Function]}
+>
+  <AddPageIcon />
+  Add question page
+</IconButton>
+`;

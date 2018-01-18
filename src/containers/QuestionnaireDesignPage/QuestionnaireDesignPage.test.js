@@ -36,6 +36,7 @@ describe("QuestionnaireDesignPage", () => {
   beforeEach(() => {
     mockHandlers = {
       onUpdateSection: jest.fn(),
+      onAddPage: jest.fn(),
       onUpdatePage: jest.fn()
     };
 
@@ -60,5 +61,10 @@ describe("QuestionnaireDesignPage", () => {
 
   it("should render form when loaded", () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should call onAddPage when add question page button clicked", () => {
+    wrapper.find("AddQuestionPageButton").simulate("click");
+    expect(mockHandlers.onAddPage).toHaveBeenCalledWith(section.id);
   });
 });

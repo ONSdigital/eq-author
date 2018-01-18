@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withQuestionnaire from "containers/enhancers/withQuestionnaire";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
+import withCreatePage from "containers/enhancers/withCreatePage";
 import withUpdatePage from "containers/enhancers/withUpdatePage";
 import { getUrlParams } from "utils/UrlUtils";
 
@@ -13,5 +14,6 @@ export default compose(
   connect(mapStateToProps),
   withQuestionnaire,
   withUpdateSection,
+  withCreatePage,
   withUpdatePage
 )(QuestionnaireDesign);

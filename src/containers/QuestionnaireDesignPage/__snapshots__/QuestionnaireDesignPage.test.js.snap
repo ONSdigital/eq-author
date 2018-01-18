@@ -221,6 +221,11 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
             }
           />
         </MainCanvas>
+        <QuestionnaireDesignPage__Centered>
+          <AddQuestionPageButton
+            onClick={[Function]}
+          />
+        </QuestionnaireDesignPage__Centered>
       </ScrollPane>
     </Column>
     <Column

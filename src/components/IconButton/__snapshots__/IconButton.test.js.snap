@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconButton should render correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 svg {
+  margin-right: 1em;
+}
+
+.c0:hover,
+.c0:focus {
+  color: #008ad2;
+}
+
+.c0:hover svg path,
+.c0:focus svg path {
+  fill: #008ad2;
+}
+
+<Button
+  className="c0"
+  onClick={[Function]}
+  type="button"
+>
+  <div>
+    Icon button children
+  </div>
+</Button>
+`;

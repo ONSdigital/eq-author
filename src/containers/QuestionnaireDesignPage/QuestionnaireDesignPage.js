@@ -11,10 +11,19 @@ import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
 import getTextFromHTML from "utils/getTextFromHTML";
 import ConnectedPropertiesPanel from "components/PropertiesPanel";
 import Nav from "components/Nav";
+import styled from "styled-components";
+import AddQuestionPageButton from "components/IconButtons/AddQuestionPageButton";
+
+const Centered = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+`;
 
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     onUpdateSection: PropTypes.func.isRequired,
+    onAddPage: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
@@ -37,6 +46,10 @@ export class QuestionnaireDesignPage extends Component {
     return pageTitle
       ? `${pageTitle} - ${questionnaire.title}`
       : `${questionnaire.title}`;
+  };
+
+  handleAddPageClick = e => {
+    this.props.onAddPage(this.props.section.id);
   };
 
   render() {
@@ -89,6 +102,9 @@ export class QuestionnaireDesignPage extends Component {
                   onUpdateSection={onUpdateSection}
                 />
               </MainCanvas>
+              <Centered>
+                <AddQuestionPageButton onClick={this.handleAddPageClick} />
+              </Centered>
             </ScrollPane>
           </Column>
           <Column cols={2} gutters={false}>
