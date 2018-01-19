@@ -28,26 +28,8 @@ exports[`SignInPage Component when unauthenticated should render the sign in for
       <SignInPage__Text>
         You must be signed in to access this service.
       </SignInPage__Text>
-      <SignInForm
-        firebaseAuth={
-          Object {
-            "apiKey": "FAKE_API_KEY",
-            "appName": "[DEFAULT]",
-            "authDomain": "FAKE_PROJECT_ID.firebaseapp.com",
-            "currentUser": null,
-          }
-        }
-        uiConfig={
-          Object {
-            "callbacks": Object {
-              "signInSuccess": [Function],
-            },
-            "signInFlow": "popup",
-            "signInOptions": Array [
-              "google.com",
-            ],
-          }
-        }
+      <GuestSignInForm
+        onSignIn={[Function]}
       />
     </SignInPage__SignInPanel>
   </SignInPage__Centered>

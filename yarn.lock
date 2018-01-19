@@ -3514,9 +3514,9 @@ enzyme@^3.1.0:
     raf "^3.3.2"
     rst-selector-parser "^2.2.2"
 
-eq-author-graphql-schema@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/eq-author-graphql-schema/-/eq-author-graphql-schema-0.4.0.tgz#db8cafa4720579059f24c210fae75613f7dfc436"
+eq-author-graphql-schema@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/eq-author-graphql-schema/-/eq-author-graphql-schema-0.5.0.tgz#d5938ce997761f61a9941a7fa3609212950a12aa"
 
 eq-author-mock-api@ONSdigital/eq-author-mock-api#4342f6a:
   version "1.0.0"
@@ -4252,7 +4252,7 @@ firebase@^4.3.1, firebase@^4.6.2:
     dom-storage "^2.0.2"
     xmlhttprequest "^1.8.0"
 
-firebaseui@^2.3:
+firebaseui@2.4.1, firebaseui@^2.3:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-2.4.1.tgz#5e4a9a8a70921431eae01a9c8832a57e50c2911b"
   dependencies:
@@ -8111,9 +8111,9 @@ react-error-overlay@^2.0.2:
     settle-promise "1.0.0"
     source-map "0.5.6"
 
-react-firebaseui@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/react-firebaseui/-/react-firebaseui-1.0.6.tgz#363c744f7835bfa5db3e7c2a90911cc7268808e6"
+react-firebaseui@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-firebaseui/-/react-firebaseui-1.0.10.tgz#68876d1b33fc2ec05a2000ed975bf94a24a57d84"
   dependencies:
     firebaseui "^2.3"
     react "^15"

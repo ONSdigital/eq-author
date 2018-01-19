@@ -6,10 +6,18 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 import Panel from "components/Panel";
-import SignInForm from "components/SignInForm";
 
 import { isSignedIn, verifiedAuthStatus } from "redux/auth/reducer";
 import { signInUser, verifyAuthStatus } from "redux/auth/actions";
+
+let SignInForm;
+
+/* istanbul ignore next */
+if (process.env.REACT_APP_ENABLE_AUTH === "true") {
+  SignInForm = require("components/SignInForm").default;
+} else {
+  SignInForm = require("components/SignInForm/GuestSignInForm").default;
+}
 
 const Centered = styled.div`
   margin: 0 auto;
@@ -22,13 +30,11 @@ const Title = styled.h1`
 `;
 
 const Text = styled.p`
-  margin-bottom: 0.75em;
+  margin-top: 0;
 `;
 
 const SignInPanel = styled(Panel)`
-  padding: 2em 5em;
-  width: 22em;
-  height: 13em;
+  padding: 2em 3em;
 `;
 
 export class UnconnectedSignInPage extends React.Component {
@@ -58,6 +64,10 @@ export class UnconnectedSignInPage extends React.Component {
     }
   }
 
+  handleSignIn = user => {
+    this.props.signInUser(user);
+  };
+
   render() {
     const { verifiedAuthStatus, isSignedIn, returnURL } = this.props;
 
@@ -75,7 +85,7 @@ export class UnconnectedSignInPage extends React.Component {
           <Title>Sign in</Title>
           <SignInPanel>
             <Text>You must be signed in to access this service.</Text>
-            <SignInForm />
+            <SignInForm onSignIn={this.handleSignIn} />
           </SignInPanel>
         </Centered>
       </BaseLayout>

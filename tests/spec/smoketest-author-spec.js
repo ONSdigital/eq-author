@@ -16,14 +16,16 @@ import {
 } from "../pages/DesignQuestionnaire.page";
 
 describe("eQ Author Smoketest", () => {
+  const login = () => {
+    browser.pause(100);
+    expect(browser.getUrl()).toContain("/sign-in");
+    browser.click("button*=Sign in");
+    browser.pause(100);
+  };
+
   beforeAll(() => {
     startAtHomepage();
-  });
-
-  afterEach(() => {
-    if (process.env.DEBUG) {
-      console.log(browser.log("browser"));
-    }
+    login();
   });
 
   it("should load the eQ author page", () => {
@@ -43,6 +45,7 @@ describe("eQ Author Smoketest", () => {
   describe("creating a new questionnaire", () => {
     beforeAll(() => {
       startAtHomepage();
+      login();
       clickCreateQuestionnaire();
     });
 
@@ -62,6 +65,7 @@ describe("eQ Author Smoketest", () => {
   describe("designing the questionnaire", () => {
     beforeAll(() => {
       startAtHomepage();
+      login();
       clickCreateQuestionnaire();
       enterQuestionnaireDetails(
         "title",

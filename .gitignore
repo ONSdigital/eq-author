@@ -24,4 +24,4 @@ jsconfig.json
 
 graphql.config.json
 public/status.json
-.env.local
+.env.*local

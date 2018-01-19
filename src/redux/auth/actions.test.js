@@ -9,11 +9,14 @@ import {
 import { SynchronousPromise } from "synchronous-promise";
 
 describe("auth actions", () => {
+  const user = {
+    displayName: "foo",
+    email: "foo@bar.com",
+    photoURL: "http://foo.org/bar.jpg"
+  };
   let store, auth;
 
   beforeEach(() => {
-    const user = { displayName: "foo" };
-
     auth = {
       signOut: jest.fn(() => SynchronousPromise.resolve()),
       onAuthStateChanged: jest.fn()
@@ -31,6 +34,27 @@ describe("auth actions", () => {
       return store.dispatch(signOutUser()).then(() => {
         expect(auth.signOut).toHaveBeenCalled();
         expect(store.getActions()).toEqual([signedOutUser()]);
+      });
+    });
+
+    describe("fullstory", () => {
+      let FS;
+
+      beforeEach(() => {
+        process.env.REACT_APP_USE_FULLSTORY = "true";
+
+        window.FS = FS = { identify: jest.fn() };
+      });
+
+      afterEach(() => {
+        delete process.env.REACT_APP_USE_FULLSTORY;
+        delete window.FS;
+      });
+
+      it("should anonymise user", () => {
+        return store.dispatch(signOutUser()).then(() => {
+          expect(FS.identify).toHaveBeenCalledWith(false);
+        });
       });
     });
   });
@@ -55,17 +79,39 @@ describe("auth actions", () => {
       expect(auth.onAuthStateChanged).toHaveBeenCalledTimes(1);
     });
 
-    it("should sign-in user if determined to be authenticated", () => {
-      const user = { displayName: "foo" };
+    it("should sign in user if determined to be authenticated", () => {
       changeHandler(user);
 
       expect(store.getActions()).toEqual([signInUser(user)]);
     });
 
-    it("should not sign-in user if determined to be unauthenticated", () => {
+    it("should not sign in user if determined to be unauthenticated", () => {
       changeHandler();
 
       expect(store.getActions()).toEqual([signedOutUser()]);
+    });
+
+    describe("fullstory", () => {
+      let FS;
+
+      beforeEach(() => {
+        process.env.REACT_APP_USE_FULLSTORY = "true";
+
+        window.FS = FS = { identify: jest.fn() };
+      });
+
+      afterEach(() => {
+        delete process.env.REACT_APP_USE_FULLSTORY;
+        delete window.FS;
+      });
+
+      it("should identify user with full story", () => {
+        changeHandler(user);
+
+        expect(FS.identify).toHaveBeenCalledWith(user.email, {
+          displayName: user.displayName
+        });
+      });
     });
   });
 });

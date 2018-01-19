@@ -11,7 +11,9 @@ import ButtonGroup from "components/ButtonGroup";
 import MainCanvas from "components/MainCanvas";
 import ScrollPane from "components/ScrollPane";
 
-const ActionButtonGroup = styled(ButtonGroup)`align-self: flex-start;`;
+const ActionButtonGroup = styled(ButtonGroup)`
+  align-self: flex-start;
+`;
 
 const defaultQuestionnaire = {
   title: "",

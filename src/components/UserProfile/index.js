@@ -4,6 +4,7 @@ import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import Tooltip from "components/Tooltip";
 import Button from "components/Button";
+import guestAvatar from "./icon-guest-avatar.svg";
 
 const UserAvatar = styled.img`
   width: 2.5em;
@@ -11,15 +12,26 @@ const UserAvatar = styled.img`
   border-radius: 50%;
 `;
 
+const UserName = styled.span`
+  color: white;
+  font-size: 0.875rem;
+`;
+
 export const LogoutButton = styled(Button)`
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
 `;
 
 const UserProfile = ({ user, onSignOut }) => (
   <Tooltip content="Sign Out">
     <LogoutButton clear onClick={onSignOut}>
-      <UserAvatar src={user.photoURL} alt="" role="presentation" />
+      <UserAvatar
+        src={user.photoURL || guestAvatar}
+        alt=""
+        role="presentation"
+      />
+      <UserName>{user.displayName}</UserName>
     </LogoutButton>
   </Tooltip>
 );

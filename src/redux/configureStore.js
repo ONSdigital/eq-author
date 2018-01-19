@@ -8,7 +8,15 @@ import {
 import uiState from "redux/uiState/reducer";
 import toasts from "redux/toast/reducer";
 import authReducer from "redux/auth/reducer";
-import { auth } from "auth";
+
+let auth;
+
+/* istanbul ignore next */
+if (process.env.REACT_APP_ENABLE_AUTH === "true") {
+  auth = require("auth").default;
+} else {
+  auth = require("auth/fakeAuth").default;
+}
 
 const configureStore = (history, client, preloadedState) =>
   createStore(

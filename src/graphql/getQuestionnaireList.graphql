@@ -3,6 +3,9 @@ query GetQuestionnaireList {
     id
     title
     createdAt
+    createdBy {
+      name
+    }
     theme
     sections {
       id

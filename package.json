@@ -18,14 +18,16 @@
     "serve": "npm install -g serve && serve -p 3000 build/",
     "deploy": "npm run build && gh-pages -d build",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9001",
-    "storybook-build":
-      "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
+    "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test -- --coverage"
   },
   "lint-staged": {
-    "*.js": ["prettier --write", "git add"]
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.12",
@@ -111,10 +113,11 @@
     "draft-js": "0.10.4",
     "draft-js-raw-content-state": "^1.2.5",
     "draftjs-to-html": "^0.7.6",
-    "eq-author-graphql-schema": "^0.4.0",
+    "eq-author-graphql-schema": "^0.5.0",
     "eq-author-mock-api": "ONSdigital/eq-author-mock-api#4342f6a",
     "eslint-config-eq-author": "^1.1.0",
     "firebase": "^4.6.2",
+    "firebaseui": "2.4.1",
     "graphql-anywhere": "^3.1.0",
     "graphql-iso-date": "^3.3.0",
     "graphql-tag": "^2.4.2",
@@ -130,7 +133,7 @@
     "react-document-title": "^2.0.3",
     "react-dom": "^16.0.0",
     "react-error-overlay": "^2.0.2",
-    "react-firebaseui": "^1.0.6",
+    "react-firebaseui": "^1.0.10",
     "react-hot-loader": "^3.0.0",
     "react-menu-list": "^5.0.0",
     "react-redux": "^5.0.6",
@@ -160,9 +163,10 @@
       "<rootDir>/config/polyfills.js",
       "<rootDir>/src/tests/setup/throwOnConsole.js"
     ],
-    "setupTestFrameworkScriptFile":
-      "<rootDir>/src/tests/setup/JestTestSetup.js",
-    "snapshotSerializers": ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/tests/setup/JestTestSetup.js",
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
@@ -173,14 +177,22 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["<rootDir>/src/"]
+    "modulePaths": [
+      "<rootDir>/src/"
+    ]
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
-  "moduleRoots": ["./src"]
+  "moduleRoots": [
+    "./src"
+  ]
 }

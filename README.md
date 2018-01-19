@@ -144,7 +144,7 @@ These can either be passed on command line:
 REACT_APP_FIREBASE_PROJECT_ID=ABC REACT_APP_FIREBASE_API_KEY=DEF REACT_APP_FIREBASE_MESSAGING_SENDER_ID=GHI yarn start
 ```
 
-Or they can be added to an `.env.local` file in the root of the repo:
+Or they can be added to an `.env.development.local` file in the root of the repo:
 
 ```
 REACT_APP_FIREBASE_PROJECT_ID="ABC"
@@ -152,7 +152,11 @@ REACT_APP_FIREBASE_API_KEY="DEF"
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID="GHI"
 ```
 
-Note: CLI env vars taken precedence over `.env.local` vars.
+Note: CLI env vars taken precedence over `.env.development.local` vars. For more information about precedence of config files, see: https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
+
+### Enabling / disabling authentication
+
+Firebase authentication can be disabled by setting the env var `REACT_APP_ENABLE_AUTH=false`. Disabling firebase authentication allows users to login as a guest.
 
 ## Testing
 

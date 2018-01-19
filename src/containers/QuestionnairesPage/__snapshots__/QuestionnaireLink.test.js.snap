@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionnaireLink should render 1`] = `
+.c0 {
+  text-decoration: none;
+  color: #056C99;
+  width: 100%;
+  max-width: 33em;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.c0:hover {
+  text-decoration: underline;
+}
+
+<NavLink
+  activeClassName="active"
+  ariaCurrent="true"
+  className="c0"
+  questionnaire={
+    Object {
+      "createdAt": "2017/01/02",
+      "createdBy": Object {
+        "name": "Alan",
+      },
+      "id": "1",
+      "sections": Array [
+        Object {
+          "id": "1",
+          "pages": Array [
+            Object {
+              "id": "1",
+            },
+          ],
+        },
+      ],
+      "title": "Foo",
+    }
+  }
+  to="/questionnaire/1/design/1/1"
+/>
+`;
