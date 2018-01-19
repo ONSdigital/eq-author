@@ -33,7 +33,7 @@ injectGlobal`
 .ReactModalPortal .ReactModal__Content {
   transform: scale(0.8);
   transform-origin: center center;
-  transition: all 200ms ease-in 200ms;
+  transition: all 100ms ease-in 200ms;
   opacity: 0;
 
   &--after-open {
@@ -71,7 +71,7 @@ class Modal extends React.Component {
         onRequestClose={onClose}
         shouldCloseOnOverlayClick
         style={reactModalStyleOverride}
-        closeTimeoutMS={400}
+        closeTimeoutMS={300}
       >
         {children}
       </StyledModal>
