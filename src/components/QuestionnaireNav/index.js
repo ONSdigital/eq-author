@@ -38,7 +38,7 @@ export const AddSectionBtn = styled(IconButton)`
   padding: 0;
   color: ${colors.text};
   font-weight: 600;
-  font-size: 0.75em;
+  font-size: 0.75rem;
 
   &:hover {
     color: black;

@@ -1,5 +1,166 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IconButton should highlight on hover 1`] = `
+.c1 {
+  padding: 0.8em 3em;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  -webkit-letter-spacing: -0.2px;
+  -moz-letter-spacing: -0.2px;
+  -ms-letter-spacing: -0.2px;
+  letter-spacing: -0.2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.c1:focus,
+.c1:active {
+  outline: none;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.c2 {
+  background-color: rgba(97,97,97,0.9) !important;
+  font-size: 0.625rem !important;
+  line-height: 2.2em !important;
+  padding: 0 0.6em !important;
+  border-radius: 2px !important;
+  white-space: pre;
+}
+
+.c2::before,
+.c2::after {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.875em;
+  color: #4A4A4A;
+}
+
+.c0 svg {
+  margin-right: 0.6em;
+}
+
+.c0:hover,
+.c0:focus {
+  color: #008ad2;
+}
+
+.c0:hover svg path,
+.c0:focus svg path {
+  fill: #008ad2;
+}
+
+<IconButton
+  highlightOnHover={true}
+  icon="icon-add-page.svg"
+  iconOnly={false}
+  onClick={[Function]}
+  title="Icon button text"
+  uniqueHash="Fixed random hash for snapshot test"
+>
+  <Tooltip
+    content="Icon button text"
+  >
+    <div>
+      <div
+        data-for="tooltip-2"
+        data-tip={true}
+      >
+        <IconButton__StyledButton
+          highlightOnHover={true}
+          onClick={[Function]}
+          uniqueHash="Fixed random hash for snapshot test"
+        >
+          <Button
+            className="c0"
+            highlightOnHover={true}
+            onClick={[Function]}
+            type="button"
+            uniqueHash="Fixed random hash for snapshot test"
+          >
+            <Button__StyledButton
+              className="c0"
+              highlightOnHover={true}
+              onClick={[Function]}
+              type="button"
+              uniqueHash="Fixed random hash for snapshot test"
+            >
+              <button
+                className="c0 c1"
+                onClick={[Function]}
+                type="button"
+              >
+                <InlineSVG
+                  cacheGetRequests={false}
+                  onLoad={[Function]}
+                  src="icon-add-page.svg"
+                  supportTest={[Function]}
+                  uniqueHash="Fixed random hash for snapshot test"
+                  uniquifyIDs={true}
+                  wrapper={[Function]}
+                >
+                  <span
+                    className="isvg loading"
+                    dangerouslySetInnerHTML={undefined}
+                    style={undefined}
+                  />
+                </InlineSVG>
+                Icon button text
+              </button>
+            </Button__StyledButton>
+          </Button>
+        </IconButton__StyledButton>
+      </div>
+      <Tooltip__StyledTooltip
+        delayShow={200}
+        effect="solid"
+        id="tooltip-2"
+        place="bottom"
+      >
+        <ReactTooltip
+          className="c2"
+          delayShow={200}
+          effect="solid"
+          id="tooltip-2"
+          insecure={true}
+          place="bottom"
+          resizeHide={true}
+          wrapper="div"
+        >
+          <div
+            className="__react_component_tooltip place-top type-dark "
+            data-id="tooltip"
+          />
+        </ReactTooltip>
+      </Tooltip__StyledTooltip>
+    </div>
+  </Tooltip>
+</IconButton>
+`;
+
 exports[`IconButton should render correctly 1`] = `
 <Tooltip
   content="Icon button text"
@@ -26,28 +187,180 @@ exports[`IconButton should render correctly 1`] = `
 `;
 
 exports[`IconButton should render icon only 1`] = `
-<Tooltip
-  content="Icon button text"
+.c1 {
+  padding: 0.8em 3em;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  -webkit-letter-spacing: -0.2px;
+  -moz-letter-spacing: -0.2px;
+  -ms-letter-spacing: -0.2px;
+  letter-spacing: -0.2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.c1:focus,
+.c1:active {
+  outline: none;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.c3 {
+  background-color: rgba(97,97,97,0.9) !important;
+  font-size: 0.625rem !important;
+  line-height: 2.2em !important;
+  padding: 0 0.6em !important;
+  border-radius: 2px !important;
+  white-space: pre;
+}
+
+.c3::before,
+.c3::after {
+  border-bottom: none !important;
+  border-top: none !important;
+}
+
+.c2 {
+  position: absolute;
+  overflow: hidden;
+  -webkit-clip: rect(0 0 0 0);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.875em;
+  color: #4A4A4A;
+}
+
+.c0 svg {
+  margin-right: 0.6em;
+}
+
+.c0:hover,
+.c0:focus {
+  color: #008ad2;
+}
+
+.c0:hover svg path,
+.c0:focus svg path {
+  fill: #008ad2;
+}
+
+<IconButton
+  highlightOnHover={true}
+  icon="icon-add-page.svg"
+  iconOnly={true}
+  onClick={[Function]}
+  title="Icon button text"
+  uniqueHash="Fixed random hash for snapshot test"
 >
-  <div>
-    <IconButton__StyledButton
-      highlightOnHover={true}
-      onClick={[Function]}
-      uniqueHash="Fixed random hash for snapshot test"
-    >
-      <InlineSVG
-        cacheGetRequests={false}
-        onLoad={[Function]}
-        src="icon-add-page.svg"
-        supportTest={[Function]}
-        uniqueHash="Fixed random hash for snapshot test"
-        uniquifyIDs={true}
-        wrapper={[Function]}
-      />
-      <VisuallyHidden>
-        Icon button text
-      </VisuallyHidden>
-    </IconButton__StyledButton>
-  </div>
-</Tooltip>
+  <Tooltip
+    content="Icon button text"
+  >
+    <div>
+      <div
+        data-for="tooltip-1"
+        data-tip={true}
+      >
+        <IconButton__StyledButton
+          highlightOnHover={true}
+          onClick={[Function]}
+          uniqueHash="Fixed random hash for snapshot test"
+        >
+          <Button
+            className="c0"
+            highlightOnHover={true}
+            onClick={[Function]}
+            type="button"
+            uniqueHash="Fixed random hash for snapshot test"
+          >
+            <Button__StyledButton
+              className="c0"
+              highlightOnHover={true}
+              onClick={[Function]}
+              type="button"
+              uniqueHash="Fixed random hash for snapshot test"
+            >
+              <button
+                className="c0 c1"
+                onClick={[Function]}
+                type="button"
+              >
+                <InlineSVG
+                  cacheGetRequests={false}
+                  onLoad={[Function]}
+                  src="icon-add-page.svg"
+                  supportTest={[Function]}
+                  uniqueHash="Fixed random hash for snapshot test"
+                  uniquifyIDs={true}
+                  wrapper={[Function]}
+                >
+                  <span
+                    className="isvg loading"
+                    dangerouslySetInnerHTML={undefined}
+                    style={undefined}
+                  />
+                </InlineSVG>
+                <VisuallyHidden>
+                  <span
+                    className="c2"
+                  >
+                    Icon button text
+                  </span>
+                </VisuallyHidden>
+              </button>
+            </Button__StyledButton>
+          </Button>
+        </IconButton__StyledButton>
+      </div>
+      <Tooltip__StyledTooltip
+        delayShow={200}
+        effect="solid"
+        id="tooltip-1"
+        place="bottom"
+      >
+        <ReactTooltip
+          className="c3"
+          delayShow={200}
+          effect="solid"
+          id="tooltip-1"
+          insecure={true}
+          place="bottom"
+          resizeHide={true}
+          wrapper="div"
+        >
+          <div
+            className="__react_component_tooltip place-top type-dark "
+            data-id="tooltip"
+          />
+        </ReactTooltip>
+      </Tooltip__StyledTooltip>
+    </div>
+  </Tooltip>
+</IconButton>
 `;

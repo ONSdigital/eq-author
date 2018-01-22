@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import IconButton from "components/IconButton";
 import addPageIcon from "containers/QuestionnaireDesignPage/icon-add-page.svg";
 
@@ -26,7 +26,12 @@ describe("IconButton", () => {
   });
 
   it("should render icon only", () => {
-    wrapper = createWrapper({ ...props, iconOnly: true });
+    wrapper = createWrapper({ ...props, iconOnly: true }, mount);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should highlight on hover", () => {
+    wrapper = createWrapper({ ...props, highlightOnHover: true }, mount);
     expect(wrapper).toMatchSnapshot();
   });
 

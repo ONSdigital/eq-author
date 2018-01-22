@@ -31,6 +31,8 @@ const StyledButton = styled(Button).attrs({
   display: flex;
   align-items: center;
   cursor: pointer;
+  font-size: 0.875em;
+  color: ${colors.text};
   ${props => !props.iconOnly && separateIconFromText};
   ${props => props.highlightOnHover && highlightOnHover};
 `;
