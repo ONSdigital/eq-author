@@ -96,10 +96,8 @@ Wrapper.defaultProps = {
 
 export const ClickContext = styled.div`
   transition: outline-color 100ms ease-in;
-  outline-width: 1px;
-  outline-style: solid;
-  outline-color: ${props =>
-    props.focused ? `${colors.blue} !important` : "transparent"};
+  outline: 1px solid
+    ${props => (props.focused ? `${colors.blue} !important` : "transparent")};
   outline-offset: 0.25rem;
 
   &:hover {

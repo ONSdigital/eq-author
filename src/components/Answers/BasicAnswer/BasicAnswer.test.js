@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { StatelessBasicAnswer } from "components/Answers/BasicAnswer";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import WrappingInput from "components/WrappingInput";
 
 describe("BasicAnswer", () => {
   let answer;
@@ -47,13 +47,13 @@ describe("BasicAnswer", () => {
     });
 
     it("should invoke update callback onBlur", () => {
-      wrapper.find(SeamlessTextArea).forEach(input => input.simulate("blur"));
+      wrapper.find(WrappingInput).forEach(input => input.simulate("blur"));
 
       expect(onUpdate).toHaveBeenCalledTimes(2);
     });
 
     it("should invoke change callback onChange", () => {
-      wrapper.find(SeamlessTextArea).forEach(input => input.simulate("change"));
+      wrapper.find(WrappingInput).forEach(input => input.simulate("change"));
 
       expect(onChange).toHaveBeenCalledTimes(2);
     });

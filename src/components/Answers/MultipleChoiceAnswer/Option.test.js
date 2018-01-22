@@ -1,6 +1,6 @@
 import React from "react";
 
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import WrappingInput from "components/WrappingInput";
 import { StatelessOption, SeamlessLabel } from "./Option";
 import DeleteButton from "components/DeleteButton";
 import { CHECKBOX, RADIO } from "constants/answer-types";
@@ -86,7 +86,7 @@ describe("Option", () => {
 
   it("should update description on blur", () => {
     wrapper
-      .find(SeamlessTextArea)
+      .find(WrappingInput)
       .first()
       .simulate("blur", mockEvent);
 

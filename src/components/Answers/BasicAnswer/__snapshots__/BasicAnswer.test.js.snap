@@ -5,7 +5,7 @@ exports[`BasicAnswer should render 1`] = `
   <Field
     id="label"
   >
-    <withSeamlessness(withChangeHandler(WrappingTextArea))
+    <withChangeHandler(WrappingTextArea)
       data-autofocus={true}
       onBlur={[Function]}
       onChange={[Function]}
@@ -17,13 +17,12 @@ exports[`BasicAnswer should render 1`] = `
   <Field
     id="description"
   >
-    <withSeamlessness(withChangeHandler(WrappingTextArea))
+    <withChangeHandler(WrappingTextArea)
       cols="30"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Enter a description (optional)…"
       rows="5"
-      size="small"
       value="Answer description"
     />
   </Field>

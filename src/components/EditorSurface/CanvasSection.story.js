@@ -4,7 +4,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
 import { CanvasSection } from "./CanvasSection";
-import SeamlessInput from "components/SeamlessInput/SeamlessInput";
+import WrappingInput from "components/WrappingInput";
 
 storiesOf("CanvasSection", module)
   .addDecorator(withKnobs)
@@ -15,6 +15,6 @@ storiesOf("CanvasSection", module)
       focusOnSection={action("focused")}
       onBlur={action("blurred")}
     >
-      <SeamlessInput id="foo" value="Hello World" onChange={action("change")} />
+      <WrappingInput id="foo" value="Hello World" onChange={action("change")} />
     </CanvasSection>
   ));
