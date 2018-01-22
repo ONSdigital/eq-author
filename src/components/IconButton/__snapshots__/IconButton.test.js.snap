@@ -1,38 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButton should render correctly 1`] = `
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c0 svg {
-  margin-right: 1em;
-}
-
-.c0:hover,
-.c0:focus {
-  color: #008ad2;
-}
-
-.c0:hover svg path,
-.c0:focus svg path {
-  fill: #008ad2;
-}
-
-<Button
-  className="c0"
-  onClick={[Function]}
-  type="button"
+<Tooltip
+  content="Icon button text"
 >
   <div>
-    Icon button children
+    <IconButton__StyledButton
+      highlightOnHover={true}
+      onClick={[Function]}
+      uniqueHash="Fixed random hash for snapshot test"
+    >
+      <InlineSVG
+        cacheGetRequests={false}
+        onLoad={[Function]}
+        src="icon-add-page.svg"
+        supportTest={[Function]}
+        uniqueHash="Fixed random hash for snapshot test"
+        uniquifyIDs={true}
+        wrapper={[Function]}
+      />
+      Icon button text
+    </IconButton__StyledButton>
   </div>
-</Button>
+</Tooltip>
+`;
+
+exports[`IconButton should render icon only 1`] = `
+<Tooltip
+  content="Icon button text"
+>
+  <div>
+    <IconButton__StyledButton
+      highlightOnHover={true}
+      onClick={[Function]}
+      uniqueHash="Fixed random hash for snapshot test"
+    >
+      <InlineSVG
+        cacheGetRequests={false}
+        onLoad={[Function]}
+        src="icon-add-page.svg"
+        supportTest={[Function]}
+        uniqueHash="Fixed random hash for snapshot test"
+        uniquifyIDs={true}
+        wrapper={[Function]}
+      />
+      <VisuallyHidden>
+        Icon button text
+      </VisuallyHidden>
+    </IconButton__StyledButton>
+  </div>
+</Tooltip>
 `;

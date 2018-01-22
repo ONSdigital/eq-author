@@ -222,8 +222,13 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
           />
         </MainCanvas>
         <QuestionnaireDesignPage__Centered>
-          <AddQuestionPageButton
+          <IconButton
+            clear={true}
+            highlightOnHover={true}
+            icon="icon-add-page.svg"
+            iconOnly={false}
             onClick={[Function]}
+            title="Add question page"
           />
         </QuestionnaireDesignPage__Centered>
       </ScrollPane>

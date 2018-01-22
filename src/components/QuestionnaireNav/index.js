@@ -5,6 +5,7 @@ import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
 import SectionNav from "components/QuestionnaireNav/SectionNav";
 import plusIcon from "./icon-plus.svg";
+import IconButton from "components/IconButton";
 
 const Container = styled.div`
   padding: 1em;
@@ -30,8 +31,7 @@ const AddSection = styled.div`
   background: ${colors.lighterGrey};
 `;
 
-export const AddSectionBtn = styled.button`
-  appearance: none;
+export const AddSectionBtn = styled(IconButton)`
   cursor: pointer;
   background: none;
   border: none;
@@ -39,13 +39,6 @@ export const AddSectionBtn = styled.button`
   color: ${colors.text};
   font-weight: 600;
   font-size: 0.75em;
-
-  &::before {
-    vertical-align: middle;
-    display: inline-block;
-    content: url(${plusIcon});
-    margin-right: 0.6em;
-  }
 
   &:hover {
     color: black;
@@ -94,9 +87,13 @@ class QuestionnaireNav extends Component {
           ref={this.saveSectionNavRef}
         />
         <AddSection>
-          <AddSectionBtn primary onClick={this.handleAddSectionClick}>
-            Create new section
-          </AddSectionBtn>
+          <AddSectionBtn
+            title="Create new section"
+            icon={plusIcon}
+            clear
+            onClick={this.handleAddSectionClick}
+            highlightOnHover={false}
+          />
         </AddSection>
       </Container>
     );
