@@ -30,9 +30,11 @@ const AddAnswerSection = BasicSection.extend`
   text-align: center;
   padding: 1em;
 `;
-
 const QuestionCanvasSection = styled(ConnectedCanvasSection)`
   padding: 0 2em 2em;
+`;
+const AnswerSection = styled(ConnectedCanvasSection)`
+  padding-top: 3em;
 `;
 
 export class QPE extends React.Component {
@@ -63,15 +65,32 @@ export class QPE extends React.Component {
     onDeletePage(section.id, page.id);
   };
 
-  render() {
+  renderAnswerEditor = answer => {
     const {
-      page,
-      onUpdatePage,
       onUpdateAnswer,
       onAddOption,
       onUpdateOption,
       onDeleteOption
     } = this.props;
+
+    return (
+      <SlideTransition key={getIdForObject(answer)}>
+        <AnswerSection id={getIdForObject(answer)} key={getIdForObject(answer)}>
+          <AnswerEditor
+            answer={answer}
+            onUpdate={onUpdateAnswer}
+            onAddOption={onAddOption}
+            onUpdateOption={onUpdateOption}
+            onDeleteOption={onDeleteOption}
+            onDeleteAnswer={this.handleDeleteAnswer}
+          />
+        </AnswerSection>
+      </SlideTransition>
+    );
+  };
+
+  render() {
+    const { page, onUpdatePage } = this.props;
 
     return (
       <div id="question-page-editor">
@@ -87,23 +106,7 @@ export class QPE extends React.Component {
           />
         </QuestionCanvasSection>
         <TransitionGroup>
-          {page.answers.map(answer => (
-            <SlideTransition key={getIdForObject(answer)}>
-              <ConnectedCanvasSection
-                id={getIdForObject(answer)}
-                key={getIdForObject(answer)}
-              >
-                <AnswerEditor
-                  answer={answer}
-                  onUpdate={onUpdateAnswer}
-                  onAddOption={onAddOption}
-                  onUpdateOption={onUpdateOption}
-                  onDeleteOption={onDeleteOption}
-                  onDeleteAnswer={this.handleDeleteAnswer}
-                />
-              </ConnectedCanvasSection>
-            </SlideTransition>
-          ))}
+          {page.answers.map(this.renderAnswerEditor)}
         </TransitionGroup>
         <AddAnswerSection>
           <AnswerTypeSelector

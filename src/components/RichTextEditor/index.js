@@ -18,6 +18,8 @@ import PipedValueDecorator, {
   replacePipedValues,
   insertPipedValue
 } from "./entities/PipedValue";
+import { colors } from "constants/theme";
+import { transparentize } from "polished";
 
 import { flow, uniq, map, keyBy, mapValues } from "lodash/fp";
 
@@ -90,6 +92,26 @@ const Wrapper = styled.div`
 
 Wrapper.defaultProps = {
   size: "small"
+};
+
+export const ClickContext = styled.div`
+  transition: outline-color 100ms ease-in;
+  outline-width: 1px;
+  outline-style: solid;
+  outline-color: ${props =>
+    props.focused ? `${colors.blue} !important` : "transparent"};
+  outline-offset: 0.25rem;
+
+  &:hover {
+    outline-color: ${transparentize(0.5, colors.blue)};
+  }
+`;
+ClickContext.propTypes = {
+  focused: PropTypes.bool
+};
+
+ClickContext.defaultProps = {
+  focused: false
 };
 
 const convertToHTML = toHTML(pipedEntityToHTML);
@@ -297,7 +319,7 @@ class RichTextEditor extends React.Component {
           visible={focused}
           {...otherProps}
         />
-        <div onClick={this.handleClick} id="rte-click-context">
+        <ClickContext onClick={this.handleClick} focused={focused}>
           <Editor
             ariaLabel={label}
             placeholder={placeholder}
@@ -312,7 +334,7 @@ class RichTextEditor extends React.Component {
             handlePastedText={multiline ? undefined : this.handlePaste}
             spellCheck
           />
-        </div>
+        </ClickContext>
       </Wrapper>
     );
   }

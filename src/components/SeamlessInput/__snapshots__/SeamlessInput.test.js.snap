@@ -8,13 +8,19 @@ exports[`SeamlessInput should render 1`] = `
   outline: none;
   display: block;
   width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
+  -webkit-transition: outline-color 100ms ease-in;
+  transition: outline-color 100ms ease-in;
   font-size: 0.875em;
+  outline: 1px solid transparent;
+  outline-offset: 0.25rem;
+}
+
+.c0:hover {
+  outline-color: rgba(0,138,210,0.5);
 }
 
 .c0:focus {
-  outline: none;
+  outline-color: #008AD2;
 }
 
 .c0::-webkit-input-placeholder {

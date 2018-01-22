@@ -111,7 +111,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   position: relative;
 }
 
-.c1:focus + .c4 .huVGMY::before {
+.c1:focus + .c4 .coFSiS::before {
   opacity: 0.12;
 }
 

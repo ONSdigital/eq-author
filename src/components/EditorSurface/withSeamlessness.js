@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import React from "react";
 import PropTypes from "prop-types";
 import { colors } from "constants/theme";
+import { transparentize } from "polished";
 
 /**
  * 1.75em  = 28px/16px
@@ -19,7 +20,9 @@ const sizes = {
     font-weight: 700;
   `,
 
-  small: css`font-size: 0.875em;`
+  small: css`
+    font-size: 0.875em;
+  `
 };
 
 const styles = css`
@@ -29,11 +32,18 @@ const styles = css`
   outline: none;
   display: block;
   width: 100%;
-  transition: opacity 200ms ease-out;
+  transition: outline-color 100ms ease-in;
   ${props => sizes[props.size]};
 
+  outline: 1px solid transparent;
+  outline-offset: 0.25rem;
+
+  &:hover {
+    outline-color: ${transparentize(0.5, colors.blue)};
+  }
+
   &:focus {
-    outline: none;
+    outline-color: ${colors.blue};
   }
 
   &::placeholder {
@@ -42,7 +52,9 @@ const styles = css`
 `;
 
 const withSeamlessness = WrappedComponent => {
-  const StyledSeamless = styled(WrappedComponent)`${styles};`;
+  const StyledSeamless = styled(WrappedComponent)`
+    ${styles};
+  `;
 
   return class extends React.Component {
     static defaultProps = {

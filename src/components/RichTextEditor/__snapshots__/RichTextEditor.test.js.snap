@@ -107,8 +107,8 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
     selectionIsCollapsed={true}
     visible={false}
   />
-  <div
-    id="rte-click-context"
+  <RichTextEditor__ClickContext
+    focused={false}
     onClick={[Function]}
   >
     <DraftEditor
@@ -273,7 +273,7 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
       spellCheck={true}
       stripPastedStyles={false}
     />
-  </div>
+  </RichTextEditor__ClickContext>
 </RichTextEditor__Wrapper>
 `;
 
@@ -384,8 +384,8 @@ exports[`components/RichTextEditor should render 1`] = `
     selectionIsCollapsed={true}
     visible={false}
   />
-  <div
-    id="rte-click-context"
+  <RichTextEditor__ClickContext
+    focused={false}
     onClick={[Function]}
   >
     <DraftEditor
@@ -552,7 +552,7 @@ exports[`components/RichTextEditor should render 1`] = `
       spellCheck={true}
       stripPastedStyles={false}
     />
-  </div>
+  </RichTextEditor__ClickContext>
 </RichTextEditor__Wrapper>
 `;
 
@@ -720,8 +720,8 @@ exports[`components/RichTextEditor should render existing content 1`] = `
 "
     visible={false}
   />
-  <div
-    id="rte-click-context"
+  <RichTextEditor__ClickContext
+    focused={false}
     onClick={[Function]}
   >
     <DraftEditor
@@ -937,6 +937,6 @@ exports[`components/RichTextEditor should render existing content 1`] = `
       spellCheck={true}
       stripPastedStyles={false}
     />
-  </div>
+  </RichTextEditor__ClickContext>
 </RichTextEditor__Wrapper>
 `;

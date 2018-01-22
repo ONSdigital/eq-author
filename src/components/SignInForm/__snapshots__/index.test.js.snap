@@ -13,16 +13,16 @@ exports[`SignInForm should render 1`] = `
 }
 
 .c0 .firebaseui-form-actions .firebaseui-id-submit {
-  background-color: #056C99;
+  background-color: #008AD2;
 }
 
 .c0 .firebaseui-form-actions .firebaseui-id-submit:focus,
 .c0 .firebaseui-form-actions .firebaseui-id-submit:hover {
-  background-color: #034968;
+  background-color: #00689f;
 }
 
 .c0 .firebaseui-textfield.mdl-textfield .firebaseui-label::after {
-  background-color: #056C99;
+  background-color: #008AD2;
 }
 
 .c0 .firebaseui-container {

@@ -4,10 +4,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { uniqueId } from "lodash";
 import { Input } from "components/Forms";
+import { colors } from "constants/theme";
 
 const knobColors = {
   off: "#E8E8E8",
-  on: "#008AD2"
+  on: colors.blue
 };
 
 const backgroundColors = {

@@ -1,5 +1,5 @@
 import React from "react";
-import RichTextEditor from "components/RichTextEditor";
+import RichTextEditor, { ClickContext } from "components/RichTextEditor";
 import Toolbar, {
   STYLE_BLOCK,
   STYLE_INLINE,
@@ -63,7 +63,7 @@ describe("components/RichTextEditor", function() {
       disableLifecycleMethods: true
     });
     wrapper.instance().setEditorNode(editorNode);
-    wrapper.find("#rte-click-context").simulate("click");
+    wrapper.find(ClickContext).simulate("click");
 
     expect(editorNode.focus).toHaveBeenCalled();
   });
