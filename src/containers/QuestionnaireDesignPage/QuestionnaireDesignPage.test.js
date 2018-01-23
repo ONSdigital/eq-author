@@ -37,7 +37,8 @@ describe("QuestionnaireDesignPage", () => {
     mockHandlers = {
       onUpdateSection: jest.fn(),
       onAddPage: jest.fn(),
-      onUpdatePage: jest.fn()
+      onUpdatePage: jest.fn(),
+      onDeletePage: jest.fn()
     };
 
     wrapper = shallow(

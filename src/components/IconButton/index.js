@@ -41,13 +41,11 @@ const StyledButton = styled(Button).attrs({
   }
 `;
 
-const withTooltip = (text, Component) => {
-  return (
-    <Tooltip content={text}>
-      <div>{Component}</div>
-    </Tooltip>
-  );
-};
+const withTooltip = (text, Component) => (
+  <Tooltip content={text}>
+    <div>{Component}</div>
+  </Tooltip>
+);
 
 class IconButton extends React.Component {
   static propTypes = {
@@ -70,7 +68,7 @@ class IconButton extends React.Component {
       <span>{children}</span>
     );
     const button = (
-      <StyledButton {...otherProps}>
+      <StyledButton iconOnly={iconOnly} {...otherProps}>
         <SVG src={icon} uniqueHash={otherProps.uniqueHash} />
         {text}
       </StyledButton>

@@ -56,6 +56,7 @@ exports[`EditorSurface should render 1`] = `
       key="Page2"
     >
       <Connect(Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE)))))))
+        onDeletePage={[Function]}
         onUpdatePage={[Function]}
         page={
           Object {
@@ -76,6 +77,35 @@ exports[`EditorSurface should render 1`] = `
               },
             ],
             "id": "2",
+            "title": "",
+          }
+        }
+        section={
+          Object {
+            "__typename": "Section",
+            "id": "3",
+            "pages": Array [
+              Object {
+                "__typename": "Page",
+                "answers": Array [
+                  Object {
+                    "__typename": "MultipleChoiceAnswer",
+                    "id": "1",
+                    "options": Array [
+                      Object {
+                        "__typename": "Option",
+                        "description": "",
+                        "id": "0",
+                        "label": "",
+                      },
+                    ],
+                    "type": "Checkbox",
+                  },
+                ],
+                "id": "2",
+                "title": "",
+              },
+            ],
             "title": "",
           }
         }

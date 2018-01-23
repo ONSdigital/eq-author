@@ -1,4 +1,7 @@
 import React from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
+
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
@@ -21,11 +24,15 @@ import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
 
 import * as ToastActionCreators from "redux/toast/actions";
-import { connect } from "react-redux";
+import QuestionPageToolbar from "./QuestionPageToolbar";
 
 const AddAnswerSection = BasicSection.extend`
   text-align: center;
   padding: 1em;
+`;
+
+const QuestionCanvasSection = styled(ConnectedCanvasSection)`
+  padding: 0 2em 2em;
 `;
 
 export class QPE extends React.Component {
@@ -36,9 +43,11 @@ export class QPE extends React.Component {
     onAddOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     titleRef: PropTypes.func,
-    page: CustomPropTypes.page
+    page: CustomPropTypes.page,
+    section: CustomPropTypes.section
   };
 
   handleDeleteAnswer = answerId => {
@@ -47,6 +56,11 @@ export class QPE extends React.Component {
 
   handleAddAnswer = answerType => {
     return this.props.onAddAnswer(answerType).then(focusOnEntity);
+  };
+
+  handleDeletePage = () => {
+    const { onDeletePage, section, page } = this.props;
+    onDeletePage(section.id, page.id);
   };
 
   render() {
@@ -61,13 +75,17 @@ export class QPE extends React.Component {
 
     return (
       <div id="question-page-editor">
-        <ConnectedCanvasSection id={getIdForObject(page)}>
+        <QuestionCanvasSection id={getIdForObject(page)}>
+          <QuestionPageToolbar
+            onDeletePage={this.handleDeletePage}
+            page={page}
+          />
           <MetaEditor
             onUpdate={onUpdatePage}
             page={page}
             titleRef={this.props.titleRef}
           />
-        </ConnectedCanvasSection>
+        </QuestionCanvasSection>
         <TransitionGroup>
           {page.answers.map(answer => (
             <SlideTransition key={getIdForObject(answer)}>

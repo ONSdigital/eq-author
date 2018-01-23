@@ -171,6 +171,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
             }
           />
           <EditorSurface
+            onDeletePage={[Function]}
             onUpdatePage={[Function]}
             onUpdateSection={[Function]}
             page={

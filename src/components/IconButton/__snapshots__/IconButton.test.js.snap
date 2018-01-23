@@ -71,12 +71,14 @@ exports[`IconButton should highlight on hover 1`] = `
 >
   <IconButton__StyledButton
     highlightOnHover={true}
+    iconOnly={false}
     onClick={[Function]}
     uniqueHash="Fixed random hash for snapshot test"
   >
     <Button
       className="c0"
       highlightOnHover={true}
+      iconOnly={false}
       onClick={[Function]}
       type="button"
       uniqueHash="Fixed random hash for snapshot test"
@@ -84,6 +86,7 @@ exports[`IconButton should highlight on hover 1`] = `
       <Button__StyledButton
         className="c0"
         highlightOnHover={true}
+        iconOnly={false}
         onClick={[Function]}
         type="button"
         uniqueHash="Fixed random hash for snapshot test"
@@ -121,6 +124,7 @@ exports[`IconButton should highlight on hover 1`] = `
 exports[`IconButton should render correctly 1`] = `
 <IconButton__StyledButton
   highlightOnHover={true}
+  iconOnly={false}
   onClick={[Function]}
   uniqueHash="Fixed random hash for snapshot test"
 >
@@ -210,10 +214,6 @@ exports[`IconButton should render icon only 1`] = `
   color: #4A4A4A;
 }
 
-.c0 svg {
-  margin-right: 0.6em;
-}
-
 .c0:hover,
 .c0:focus {
   color: #008ad2;
@@ -245,12 +245,14 @@ exports[`IconButton should render icon only 1`] = `
       >
         <IconButton__StyledButton
           highlightOnHover={true}
+          iconOnly={true}
           onClick={[Function]}
           uniqueHash="Fixed random hash for snapshot test"
         >
           <Button
             className="c0"
             highlightOnHover={true}
+            iconOnly={true}
             onClick={[Function]}
             type="button"
             uniqueHash="Fixed random hash for snapshot test"
@@ -258,6 +260,7 @@ exports[`IconButton should render icon only 1`] = `
             <Button__StyledButton
               className="c0"
               highlightOnHover={true}
+              iconOnly={true}
               onClick={[Function]}
               type="button"
               uniqueHash="Fixed random hash for snapshot test"

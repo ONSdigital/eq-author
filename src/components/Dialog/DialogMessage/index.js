@@ -1,16 +1,11 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { colors } from "constants/theme";
 import { lighten } from "polished";
 import PropTypes from "prop-types";
 
 const textStyle = lighten(0.1, colors.darkBlue);
 const codeStyle = lighten(0.1, colors.blue);
-
-const collapsed = css`
-  padding: 0;
-  margin: 0;
-`;
 
 export const Message = styled.div`
   display: flex;
@@ -21,14 +16,14 @@ export const Message = styled.div`
 export const Heading = styled.h2`
   font-size: 1.2em;
   color: ${textStyle};
-  ${collapsed};
+  margin: 0 0 0.3em;
 `;
 
 export const Subheading = styled.h3`
   color: ${codeStyle};
-  ${collapsed};
   font-size: 1em;
   font-weight: normal;
+  margin: 0;
 `;
 
 export const Description = styled.p`
@@ -37,10 +32,10 @@ export const Description = styled.p`
 `;
 
 const DialogMessage = props => {
-  const { heading, subheading, description } = props;
+  const { heading, subheading, description, ...otherProps } = props;
 
   return (
-    <Message>
+    <Message {...otherProps}>
       <Heading>{heading}</Heading>
       <Subheading>{subheading}</Subheading>
       <Description>{description}</Description>

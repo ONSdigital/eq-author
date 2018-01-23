@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const StyledButtonGroup = styled(ButtonGroup)`
   display: flex;
   flex-direction: row-reverse;
-  padding-top: 3em;
+  padding-top: 2em;
 `;
 
 const ActionButton = styled(Button)`

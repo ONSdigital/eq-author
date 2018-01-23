@@ -26,6 +26,7 @@ export class QuestionnaireDesignPage extends Component {
     onUpdateSection: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     questionnaireId: PropTypes.string.isRequired,
@@ -64,6 +65,7 @@ export class QuestionnaireDesignPage extends Component {
       sectionId,
       pageId,
       onUpdatePage,
+      onDeletePage,
       onUpdateSection
     } = this.props;
 
@@ -100,6 +102,7 @@ export class QuestionnaireDesignPage extends Component {
                   section={section}
                   page={page}
                   onUpdatePage={onUpdatePage}
+                  onDeletePage={onDeletePage}
                   onUpdateSection={onUpdateSection}
                 />
               </MainCanvas>

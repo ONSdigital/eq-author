@@ -1,19 +1,23 @@
 import { compose } from "react-apollo";
 import { connect } from "react-redux";
 
+import { raiseToast } from "redux/toast/actions";
+
 import QuestionnaireDesign from "./QuestionnaireDesignPage";
 import withQuestionnaire from "containers/enhancers/withQuestionnaire";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
-import withCreatePage from "containers/enhancers/withCreatePage";
 import withUpdatePage from "containers/enhancers/withUpdatePage";
+import withCreatePage from "containers/enhancers/withCreatePage";
+import withDeletePage from "containers/enhancers/withDeletePage";
 import { getUrlParams } from "utils/UrlUtils";
 
 export const mapStateToProps = (state, { match }) => getUrlParams(match.params);
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, { raiseToast }),
   withQuestionnaire,
   withUpdateSection,
   withCreatePage,
-  withUpdatePage
+  withUpdatePage,
+  withDeletePage
 )(QuestionnaireDesign);

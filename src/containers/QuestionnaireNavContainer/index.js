@@ -7,15 +7,15 @@ import withDeletePage from "containers/enhancers/withDeletePage";
 
 import QuestionnaireNav from "components/QuestionnaireNav";
 import withCreateSection from "containers/enhancers/withCreateSection";
-import * as ToastActionCreators from "redux/toast/actions";
+import { raiseToast } from "redux/toast/actions";
 
 import { connect } from "react-redux";
 
 export default compose(
-  connect(null, ToastActionCreators),
+  connect(null, { raiseToast }),
   withRouter,
   withCreatePage,
-  withDeletePage,
+  withDeletePage, // relies on raiseToast
   withCreateSection,
   withDeleteSection // withDeleteSection depends on withCreateSection appearing first.
 )(QuestionnaireNav);

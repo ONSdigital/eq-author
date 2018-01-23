@@ -5,7 +5,7 @@ exports[`components/Dialog/Icon should render a delete icon 1`] = `
   -webkit-flex-grow: 0;
   -ms-flex-grow: 0;
   flex-grow: 0;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 
 <DialogIcon
@@ -19,7 +19,7 @@ exports[`components/Dialog/Icon should render a move icon 1`] = `
   -webkit-flex-grow: 0;
   -ms-flex-grow: 0;
   flex-grow: 0;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 
 <DialogIcon
