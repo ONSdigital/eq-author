@@ -5,8 +5,10 @@ import {
   routerMiddleware as createRouterMiddleware,
   routerReducer as router
 } from "react-router-redux";
+import persistState from "redux-localstorage";
 import uiState from "redux/uiState/reducer";
 import toasts from "redux/toast/reducer";
+
 import authReducer from "redux/auth/reducer";
 
 let auth;
@@ -18,6 +20,8 @@ if (process.env.REACT_APP_ENABLE_AUTH === "true") {
   auth = require("auth/fakeAuth").default;
 }
 
+import routing from "redux/routing/reducer";
+
 const configureStore = (history, client, preloadedState) =>
   createStore(
     combineReducers({
@@ -25,10 +29,12 @@ const configureStore = (history, client, preloadedState) =>
       uiState,
       toasts,
       auth: authReducer,
+      routing,
       apollo: client.reducer()
     }),
     preloadedState,
     composeWithDevTools(
+      persistState("routing"),
       applyMiddleware(
         createRouterMiddleware(history),
         thunk.withExtraArgument({ client, auth }),

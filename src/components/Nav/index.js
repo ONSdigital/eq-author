@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors } from "constants/theme";
 import { getLink } from "utils/UrlUtils";
+import findById from "../../utils/findById";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -45,8 +46,12 @@ const DisabledNavLink = StyledNavLink.withComponent("span").extend`
 // Given a route /foo/:bar/blah
 // I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
 // But this is not the case. Unsure if bug or implementation issue
+
 export const NavWithoutRouter = ({ questionnaire, section, page, match }) => {
   const navIsActive = () => {
+    if (match.path.indexOf("routing") > -1) {
+      return false;
+    }
     return match.params.sectionId;
   };
 
@@ -59,7 +64,15 @@ export const NavWithoutRouter = ({ questionnaire, section, page, match }) => {
       >
         Builder
       </StyledNavLink>
-      <DisabledNavLink>Routing</DisabledNavLink>
+      <StyledNavLink
+        to={`${getLink(questionnaire.id, section.id, page.id, "routing")}`}
+        activeClassName="selected"
+        isActive={function(_, location) {
+          return match.path.indexOf("routing") > -1;
+        }}
+      >
+        Routing
+      </StyledNavLink>
     </StyledNav>
   );
 };

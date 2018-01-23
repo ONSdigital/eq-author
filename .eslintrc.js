@@ -10,6 +10,7 @@ module.exports = {
     }
   },
   rules: {
+    "react/prop-types": 0,
     "graphql/template-strings": [
       "error",
       {

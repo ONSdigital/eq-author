@@ -1,5 +1,3 @@
-"use strict";
-
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
@@ -32,6 +30,9 @@ module.exports = {
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
   // The first two entry points enable "hot" CSS and auto-refreshes for JS.
+  stats: {
+    warnings: false
+  },
   entry: [
     require.resolve("react-hot-loader/patch"),
     // Include an alternative client for WebpackDevServer. A client's job is to
@@ -42,9 +43,9 @@ module.exports = {
     // Note: instead of the default WebpackDevServer client, we use a custom one
     // to bring better experience for Create React App users. You can replace
     // the line below with these two lines if you prefer the stock client:
-    // require.resolve('webpack-dev-server/client') + '?/',
-    // require.resolve('webpack/hot/dev-server'),
-    require.resolve("react-dev-utils/webpackHotDevClient"),
+    require.resolve("webpack-dev-server/client") + "?/",
+    require.resolve("webpack/hot/dev-server"),
+    // require.resolve("react-dev-utils/webpackHotDevClient"),
     // We ship a few polyfills by default:
     require.resolve("./polyfills"),
     // Errors should be considered fatal in development

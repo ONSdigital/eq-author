@@ -80,8 +80,12 @@ class QuestionnaireNav extends Component {
   };
 
   render() {
-    const { questionnaire, onDeletePage, onDeleteSection } = this.props;
-
+    const {
+      questionnaire,
+      onDeletePage,
+      onDeleteSection,
+      location
+    } = this.props;
     return (
       <Container id="questionnaire-nav">
         <Title>Questionnaire structure</Title>
@@ -92,6 +96,7 @@ class QuestionnaireNav extends Component {
           onDeletePage={onDeletePage}
           onDeleteSection={onDeleteSection}
           ref={this.saveSectionNavRef}
+          routing={location.pathname.indexOf("routing" > -1)}
         />
         <AddSection>
           <AddSectionBtn primary onClick={this.handleAddSectionClick}>
