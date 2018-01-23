@@ -17,7 +17,7 @@ exports[`components/Answers/Dummy/TextArea shoulder render 1`] = `
 
 .c0:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 <div

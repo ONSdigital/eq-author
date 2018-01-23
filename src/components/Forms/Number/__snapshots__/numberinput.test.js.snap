@@ -12,7 +12,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 
 .c2:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 .c0 {
@@ -231,7 +231,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 
 .c2:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 .c0 {

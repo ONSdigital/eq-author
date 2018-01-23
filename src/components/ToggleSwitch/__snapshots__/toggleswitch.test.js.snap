@@ -82,7 +82,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 
 .c3:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 .c3:checked {
@@ -326,7 +326,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
 
 .c3:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 .c3:checked {
@@ -533,7 +533,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
 
 .c3:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 .c3:checked {
