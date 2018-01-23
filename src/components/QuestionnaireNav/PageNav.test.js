@@ -83,4 +83,42 @@ describe("PageNav", () => {
       expect(wrapper).toHaveStyleRule("z-index", "123");
     });
   });
+
+  describe("Fix keyboard focus scrolling", () => {
+    let querySelector;
+    let wrapper;
+    let props;
+    let mockScrollPane;
+
+    beforeEach(() => {
+      querySelector = jest.spyOn(document, "querySelector");
+
+      props = {
+        sectionId: section.id,
+        questionnaireId: questionnaire.id,
+        pageId: page.id,
+        pageNumber: page.id,
+        title: "Title",
+        onDelete: handleDelete,
+        index: 0
+      };
+
+      mockScrollPane = document.createElement("div");
+
+      wrapper = shallow(<PageNavItem {...props} />);
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it("should set the scrollLeft to 0", () => {
+      querySelector.mockReturnValue(mockScrollPane);
+      wrapper.instance().handleFocus();
+      expect(querySelector).toHaveBeenCalledWith(
+        '[class*="NavigationScrollPane"]'
+      );
+      expect(mockScrollPane.scrollLeft).toEqual(0);
+    });
+  });
 });

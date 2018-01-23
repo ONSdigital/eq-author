@@ -71,4 +71,27 @@ describe("SectionNavItem", () => {
     wrapper.instance().saveRef(elem);
     expect(saveSectionItemRef).toHaveBeenCalledWith(section.id, elem);
   });
+
+  describe("Fix keyboard focus scrolling", () => {
+    let querySelector;
+    let mockScrollPane;
+
+    beforeEach(() => {
+      querySelector = jest.spyOn(document, "querySelector");
+      mockScrollPane = document.createElement("div");
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it("should set the scrollLeft to 0", () => {
+      querySelector.mockReturnValue(mockScrollPane);
+      wrapper.instance().handleDeleteFocus();
+      expect(querySelector).toHaveBeenCalledWith(
+        '[class*="NavigationScrollPane"]'
+      );
+      expect(mockScrollPane.scrollLeft).toEqual(0);
+    });
+  });
 });

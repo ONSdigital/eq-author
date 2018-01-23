@@ -4,22 +4,25 @@ import styled from "styled-components";
 import { getLink } from "utils/UrlUtils";
 import Tooltip from "components/Tooltip";
 import CustomPropTypes from "custom-prop-types";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
-import { colors } from "constants/theme";
 import getTextFromHTML from "utils/getTextFromHTML";
 import HoverDeleteButton from "./HoverDeleteButton";
-
+import pageIcon from "./icon-questionpage.svg";
+import { transparentize } from "polished";
 const duration = 300;
+
+const textInverted = "#E1E1E1";
+const navHighlighted = "#008DD0";
 
 export const StyledPageItem = styled.li`
   padding: 0;
   margin: 0;
   font-weight: 500;
-  display: flex;
-  align-items: center;
   z-index: ${props => props.index};
   position: relative;
+  display: flex;
+  align-items: center;
 
   &.page-enter,
   &.page-exit.page-exit-active {
@@ -50,44 +53,36 @@ export const StyledPageItem = styled.li`
 
 const Link = styled(NavLink)`
   text-decoration: none;
-  color: ${colors.text};
-  font-size: 0.75em;
-  padding: 0.7em 2.5em 0.7em 0.9em;
-  display: block;
+  color: ${textInverted};
+  padding: 0.4em 2.5em 0.4em 1em;
   flex: 1 1 auto;
   height: 100%;
   position: relative;
   overflow: hidden;
   transition: opacity 100ms ease-out;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 
   &::before {
-    opacity: 0;
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 0;
+    flex: 0;
+    margin-right: 0.6em;
+    opacity: 1;
+    content: url(${pageIcon});
     transition: all 200ms ease-out;
-    background: ${colors.borders};
     z-index: 1;
   }
 
   /* stylelint-disable */
-  ${StyledPageItem}:hover & {
-    &::before {
-      opacity: 0.5;
-      width: 100%;
-    }
+
+  ${StyledPageItem}:hover &:not(.selected) {
+    background: ${transparentize(0.5, navHighlighted)};
   }
   /* stylelint-enable */
 
   &.selected {
-    &::before {
-      opacity: 1 !important;
-      width: 100%;
-    }
+    background: ${navHighlighted};
+    color: white;
   }
 
   &[aria-disabled="true"] {
@@ -106,6 +101,7 @@ export const LinkText = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   opacity: ${({ fade }) => (fade ? 0.5 : 1)};
+  font-size: 0.75em;
 `;
 
 const NavList = styled.ol`
@@ -115,7 +111,7 @@ const NavList = styled.ol`
 `;
 
 export const DeleteButton = styled(HoverDeleteButton)`
-  top: 0.1em;
+  top: 0;
   /* stylelint-disable */
   ${StyledPageItem}:hover &,
   ${Link}:focus + &,
@@ -151,15 +147,12 @@ export class PageNavItem extends React.Component {
     });
   };
 
+  handleFocus = _ => {
+    document.querySelector('[class*="NavigationScrollPane"]').scrollLeft = 0;
+  };
+
   render() {
-    const {
-      sectionId,
-      questionnaireId,
-      pageId,
-      title,
-      pageNumber,
-      index
-    } = this.props;
+    const { sectionId, questionnaireId, pageId, title, index } = this.props;
 
     return (
       <StyledPageItem index={index}>
@@ -169,7 +162,7 @@ export class PageNavItem extends React.Component {
           activeClassName="selected"
         >
           <LinkText fade={this.state.isDeleting}>
-            {pageNumber} {getTextFromHTML(title) || "Page Title"}
+            {getTextFromHTML(title) || "Page Title"}
           </LinkText>
         </Link>
         <Tooltip content="Delete page">
@@ -177,6 +170,7 @@ export class PageNavItem extends React.Component {
             type="button"
             aria-label="Delete page"
             onClick={this.handleDelete}
+            onFocus={this.handleFocus}
           >
             ×
           </DeleteButton>

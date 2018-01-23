@@ -4,9 +4,39 @@ exports[`QuestionnaireNav should render 1`] = `
 <QuestionnaireNav__Container
   id="questionnaire-nav"
 >
-  <QuestionnaireNav__Title>
-    Questionnaire structure
-  </QuestionnaireNav__Title>
+  <QuestionnaireNav__NavTopBarIconList>
+    <li>
+      <a
+        href="/"
+      >
+        <InlineSVG
+          cacheGetRequests={false}
+          onLoad={[Function]}
+          src="icon-home.svg"
+          supportTest={[Function]}
+          uniqueHash="83u4nxx9"
+          uniquifyIDs={true}
+          wrapper={[Function]}
+        />
+      </a>
+    </li>
+    <li>
+      <QuestionnaireNav__SettingsLink
+        href="/"
+      >
+        Settings
+        <InlineSVG
+          cacheGetRequests={false}
+          onLoad={[Function]}
+          src="icon-cog.svg"
+          supportTest={[Function]}
+          uniqueHash="83u4nxx9"
+          uniquifyIDs={true}
+          wrapper={[Function]}
+        />
+      </QuestionnaireNav__SettingsLink>
+    </li>
+  </QuestionnaireNav__NavTopBarIconList>
   <SectionNav
     onAddPage={[Function]}
     onDeletePage={[Function]}

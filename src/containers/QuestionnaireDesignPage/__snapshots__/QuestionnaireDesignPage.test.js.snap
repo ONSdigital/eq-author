@@ -44,7 +44,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
       cols={2}
       gutters={false}
     >
-      <ScrollPane>
+      <QuestionnaireDesignPage__NavigationScrollPane>
         <Connect(withRouter(Apollo(Apollo(Apollo(Apollo(QuestionnaireNav))))))
           pageId="1"
           questionnaire={
@@ -82,7 +82,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
           questionnaireId="3"
           sectionId="2"
         />
-      </ScrollPane>
+      </QuestionnaireDesignPage__NavigationScrollPane>
     </Column>
     <Column
       cols={12}

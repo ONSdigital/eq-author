@@ -6,7 +6,7 @@ exports[`SectionNavItem should render 1`] = `
   innerRef={[Function]}
   style={Object {}}
 >
-  <div
+  <SectionNavItem__SectionTitleWrapper
     className="section-title-wrapper"
   >
     <SectionTitle
@@ -52,12 +52,13 @@ exports[`SectionNavItem should render 1`] = `
       <SectionNavItem__SectionDeleteButton
         aria-label="Delete section"
         onClick={[Function]}
+        onFocus={[Function]}
         type="button"
       >
         ×
       </SectionNavItem__SectionDeleteButton>
     </Tooltip>
-  </div>
+  </SectionNavItem__SectionTitleWrapper>
   <PageNav
     onDelete={[Function]}
     questionnaire={
@@ -95,7 +96,7 @@ exports[`SectionNavItem should render 1`] = `
     id="btn-add-page"
     onClick={[Function]}
   >
-    + Add page
+    Add question
   </SectionNavItem__AddPageBtn>
 </SectionNavItem__StyledSectionNavItem>
 `;

@@ -12,13 +12,20 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import ConnectedPropertiesPanel from "components/PropertiesPanel";
 import Nav from "components/Nav";
 import styled from "styled-components";
-import IconButton from "../../components/IconButton";
+import IconButton from "components/IconButton";
 import addPage from "./icon-add-page.svg";
 
 const Centered = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 4em;
+`;
+
+const NavigationScrollPane = styled(ScrollPane)`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-x: hidden;
 `;
 
 export class QuestionnaireDesignPage extends Component {
@@ -81,14 +88,14 @@ export class QuestionnaireDesignPage extends Component {
       >
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            <ScrollPane>
+            <NavigationScrollPane>
               <QuestionnaireNavContainer
                 questionnaire={questionnaire}
                 questionnaireId={questionnaireId}
                 sectionId={sectionId}
                 pageId={pageId}
               />
-            </ScrollPane>
+            </NavigationScrollPane>
           </Column>
           <Column gutters={false}>
             <ScrollPane>

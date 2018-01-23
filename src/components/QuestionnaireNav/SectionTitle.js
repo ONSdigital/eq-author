@@ -10,8 +10,12 @@ import sectionIcon from "./icon-section.svg";
 import getTextFromHTML from "utils/getTextFromHTML";
 
 import CustomPropTypes from "custom-prop-types";
+
+const textInverted = "#E1E1E1";
+
 const Link = styled(NavLink)`
   text-decoration: none;
+  color: ${textInverted};
 
   &:link,
   &:visited {
@@ -31,6 +35,7 @@ const Title = styled.h3`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${textInverted};
 
   &::before {
     height: 1rem;

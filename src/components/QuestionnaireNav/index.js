@@ -6,42 +6,94 @@ import { colors } from "constants/theme";
 import SectionNav from "components/QuestionnaireNav/SectionNav";
 import plusIcon from "./icon-plus.svg";
 import IconButton from "components/IconButton";
+import homeIcon from "./icon-home.svg";
+import settingsIcon from "./icon-cog.svg";
+import SVG from "react-inlinesvg";
+
+const navBackground = "#4A4A4A";
+const textInverted = "#E1E1E1";
 
 const Container = styled.div`
-  padding: 1em;
-  margin: 0;
-`;
-
-const Title = styled.h2`
-  font-size: 0.6em;
-  text-transform: uppercase;
-  font-weight: 900;
-  margin: 0;
-  line-height: 1.5;
-  position: relative;
+  background: ${navBackground};
+  color: ${textInverted};
+  flex: 1;
 `;
 
 const AddSection = styled.div`
+  background: ${navBackground};
   border-top: 1px solid #c3c3c3;
-  padding: 1em 0;
+  padding: 0;
   position: sticky;
   z-index: 99999;
   bottom: 0;
   left: 0;
-  background: ${colors.lighterGrey};
 `;
 
 export const AddSectionBtn = styled(IconButton)`
   cursor: pointer;
   background: none;
   border: none;
-  padding: 0;
-  color: ${colors.text};
+  padding: 1em 0.6em;
   font-weight: 600;
   font-size: 0.75rem;
+  color: ${textInverted};
 
   &:hover {
-    color: black;
+    color: ${colors.white};
+  }
+`;
+
+const NavTopBarIconList = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  margin: 0;
+  background: ${navBackground};
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  border-bottom: 1px solid #c3c3c3;
+
+  & > li {
+    list-style: none;
+  }
+
+  & a,
+  & a:link,
+  & a:visited {
+    color: ${textInverted};
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  & a:hover {
+    color: ${colors.white};
+  }
+
+  & li:nth-child(2) a svg {
+    margin-left: 0.5em;
+  }
+`;
+
+const SettingsLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  line-height: 1em;
+  height: 1em;
+
+  &:link,
+  &:visited {
+    color: ${textInverted};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${colors.white};
   }
 `;
 
@@ -77,7 +129,19 @@ class QuestionnaireNav extends Component {
 
     return (
       <Container id="questionnaire-nav">
-        <Title>Questionnaire structure</Title>
+        <NavTopBarIconList>
+          <li>
+            <a href="/">
+              <SVG src={homeIcon} />
+            </a>
+          </li>
+          <li>
+            <SettingsLink href="/">
+              Settings
+              <SVG src={settingsIcon} />
+            </SettingsLink>
+          </li>
+        </NavTopBarIconList>
         <SectionNav
           transitionDuration={200}
           questionnaire={questionnaire}

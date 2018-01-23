@@ -12,8 +12,6 @@ exports[`PageNav PageNavItem should render 1`] = `
     <PageNav__LinkText
       fade={false}
     >
-      1.1
-       
       Page
     </PageNav__LinkText>
   </PageNav__Link>
@@ -23,6 +21,7 @@ exports[`PageNav PageNavItem should render 1`] = `
     <PageNav__DeleteButton
       aria-label="Delete page"
       onClick={[Function]}
+      onFocus={[Function]}
       type="button"
     >
       ×
