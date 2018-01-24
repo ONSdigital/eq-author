@@ -18,7 +18,7 @@ import addPage from "./icon-add-page.svg";
 const Centered = styled.div`
   display: flex;
   justify-content: center;
-  padding: 1em;
+  margin-bottom: 4em;
 `;
 
 export class QuestionnaireDesignPage extends Component {

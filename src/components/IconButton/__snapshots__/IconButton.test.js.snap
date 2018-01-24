@@ -58,6 +58,10 @@ exports[`IconButton should highlight on hover 1`] = `
   fill: #008ad2;
 }
 
+.c0 svg {
+  vertical-align: middle;
+}
+
 <IconButton
   highlightOnHover={true}
   icon="icon-add-page.svg"
@@ -104,7 +108,9 @@ exports[`IconButton should highlight on hover 1`] = `
               style={undefined}
             />
           </InlineSVG>
-          Icon button text
+          <span>
+            Icon button text
+          </span>
         </button>
       </Button__StyledButton>
     </Button>
@@ -127,7 +133,9 @@ exports[`IconButton should render correctly 1`] = `
     uniquifyIDs={true}
     wrapper={[Function]}
   />
-  Icon button text
+  <span>
+    Icon button text
+  </span>
 </IconButton__StyledButton>
 `;
 
@@ -214,6 +222,10 @@ exports[`IconButton should render icon only 1`] = `
 .c0:hover svg path,
 .c0:focus svg path {
   fill: #008ad2;
+}
+
+.c0 svg {
+  vertical-align: middle;
 }
 
 <IconButton

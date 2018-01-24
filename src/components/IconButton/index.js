@@ -35,6 +35,10 @@ const StyledButton = styled(Button).attrs({
   color: ${colors.text};
   ${props => !props.iconOnly && separateIconFromText};
   ${props => props.highlightOnHover && highlightOnHover};
+
+  & svg {
+    vertical-align: middle;
+  }
 `;
 
 const withTooltip = (text, Component) => {
@@ -63,7 +67,7 @@ class IconButton extends React.Component {
     const text = iconOnly ? (
       <VisuallyHidden>{children}</VisuallyHidden>
     ) : (
-      children
+      <span>{children}</span>
     );
     const button = (
       <StyledButton {...otherProps}>
