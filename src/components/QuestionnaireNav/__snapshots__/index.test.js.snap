@@ -37,8 +37,9 @@ exports[`QuestionnaireNav should render 1`] = `
       highlightOnHover={false}
       icon="icon-plus.svg"
       onClick={[Function]}
-      title="Create new section"
-    />
+    >
+      Create new section
+    </QuestionnaireNav__AddSectionBtn>
   </QuestionnaireNav__AddSection>
 </QuestionnaireNav__Container>
 `;

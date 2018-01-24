@@ -78,7 +78,6 @@ exports[`IconButton should highlight on hover 1`] = `
   icon="icon-add-page.svg"
   iconOnly={false}
   onClick={[Function]}
-  title="Icon button text"
   uniqueHash="Fixed random hash for snapshot test"
 >
   <Tooltip
@@ -276,7 +275,6 @@ exports[`IconButton should render icon only 1`] = `
   icon="icon-add-page.svg"
   iconOnly={true}
   onClick={[Function]}
-  title="Icon button text"
   uniqueHash="Fixed random hash for snapshot test"
 >
   <Tooltip

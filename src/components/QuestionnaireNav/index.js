@@ -88,12 +88,13 @@ class QuestionnaireNav extends Component {
         />
         <AddSection>
           <AddSectionBtn
-            title="Create new section"
             icon={plusIcon}
             clear
             onClick={this.handleAddSectionClick}
             highlightOnHover={false}
-          />
+          >
+            Create new section
+          </AddSectionBtn>
         </AddSection>
       </Container>
     );

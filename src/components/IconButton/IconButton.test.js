@@ -4,7 +4,7 @@ import IconButton from "components/IconButton";
 import addPageIcon from "containers/QuestionnaireDesignPage/icon-add-page.svg";
 
 const createWrapper = (props, render = shallow) => {
-  return render(<IconButton {...props} />);
+  return render(<IconButton {...props}>Icon button text</IconButton>);
 };
 
 describe("IconButton", () => {
@@ -15,7 +15,6 @@ describe("IconButton", () => {
     props = {
       onClick: jest.fn(),
       icon: addPageIcon,
-      title: "Icon button text",
       uniqueHash: "Fixed random hash for snapshot test"
     };
     wrapper = createWrapper(props);

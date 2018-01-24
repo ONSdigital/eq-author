@@ -40,7 +40,6 @@ const StyledButton = styled(Button).attrs({
 class IconButton extends React.Component {
   static propTypes = {
     icon: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
     iconOnly: PropTypes.bool,
     highlightOnHover: PropTypes.bool
   };
@@ -51,14 +50,18 @@ class IconButton extends React.Component {
   };
 
   render() {
-    const { icon, title, iconOnly, ...otherProps } = this.props;
-    const Text = iconOnly ? <VisuallyHidden>{title}</VisuallyHidden> : title;
+    const { icon, children, iconOnly, ...otherProps } = this.props;
+    const text = iconOnly ? (
+      <VisuallyHidden>{children}</VisuallyHidden>
+    ) : (
+      children
+    );
     return (
-      <Tooltip content={title}>
+      <Tooltip content={children}>
         <div>
           <StyledButton {...otherProps}>
             <SVG src={icon} uniqueHash={otherProps.uniqueHash} />
-            {Text}
+            {text}
           </StyledButton>
         </div>
       </Tooltip>

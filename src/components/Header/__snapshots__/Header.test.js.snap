@@ -60,8 +60,9 @@ exports[`components/Header when there is a questionnaire should render an export
   disabled={true}
   icon="icon-export.svg"
   iconOnly={true}
-  title="Export"
-/>
+>
+  Export
+</Header__ExportButton>
 `;
 
 exports[`components/Header when there is a questionnaire should render breadcrumbs 1`] = `

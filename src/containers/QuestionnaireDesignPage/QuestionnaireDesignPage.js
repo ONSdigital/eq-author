@@ -105,11 +105,12 @@ export class QuestionnaireDesignPage extends Component {
               </MainCanvas>
               <Centered>
                 <IconButton
-                  title="Add question page"
                   clear
                   onClick={this.handleAddPageClick}
                   icon={addPage}
-                />
+                >
+                  Add question page
+                </IconButton>
               </Centered>
             </ScrollPane>
           </Column>

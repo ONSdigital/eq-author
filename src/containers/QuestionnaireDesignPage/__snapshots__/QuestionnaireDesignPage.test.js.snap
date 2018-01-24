@@ -228,8 +228,9 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
             icon="icon-add-page.svg"
             iconOnly={false}
             onClick={[Function]}
-            title="Add question page"
-          />
+          >
+            Add question page
+          </IconButton>
         </QuestionnaireDesignPage__Centered>
       </ScrollPane>
     </Column>

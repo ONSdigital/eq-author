@@ -97,13 +97,9 @@ export class UnconnectedHeader extends React.Component {
                     title="Preview"
                     target="_blank"
                   />
-                  <ExportButton
-                    title="Export"
-                    icon={exportIcon}
-                    iconOnly
-                    clear
-                    disabled
-                  />
+                  <ExportButton icon={exportIcon} iconOnly clear disabled>
+                    Export
+                  </ExportButton>
                 </Fragment>
               )}
               {this.props.user && (
