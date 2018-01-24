@@ -37,11 +37,20 @@ const StyledButton = styled(Button).attrs({
   ${props => props.highlightOnHover && highlightOnHover};
 `;
 
+const withTooltip = (text, Component) => {
+  return (
+    <Tooltip content={text}>
+      <div>{Component}</div>
+    </Tooltip>
+  );
+};
+
 class IconButton extends React.Component {
   static propTypes = {
     icon: PropTypes.string.isRequired,
     iconOnly: PropTypes.bool,
-    highlightOnHover: PropTypes.bool
+    highlightOnHover: PropTypes.bool,
+    children: PropTypes.node
   };
 
   static defaultProps = {
@@ -56,16 +65,14 @@ class IconButton extends React.Component {
     ) : (
       children
     );
-    return (
-      <Tooltip content={children}>
-        <div>
-          <StyledButton {...otherProps}>
-            <SVG src={icon} uniqueHash={otherProps.uniqueHash} />
-            {text}
-          </StyledButton>
-        </div>
-      </Tooltip>
+    const button = (
+      <StyledButton {...otherProps}>
+        <SVG src={icon} uniqueHash={otherProps.uniqueHash} />
+        {text}
+      </StyledButton>
     );
+
+    return iconOnly ? withTooltip(children, button) : button;
   }
 }
 

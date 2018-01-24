@@ -30,21 +30,6 @@ exports[`IconButton should highlight on hover 1`] = `
   opacity: 0.6;
 }
 
-.c2 {
-  background-color: rgba(97,97,97,0.9) !important;
-  font-size: 0.625rem !important;
-  line-height: 2.2em !important;
-  padding: 0 0.6em !important;
-  border-radius: 2px !important;
-  white-space: pre;
-}
-
-.c2::before,
-.c2::after {
-  border-bottom: none !important;
-  border-top: none !important;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -80,109 +65,70 @@ exports[`IconButton should highlight on hover 1`] = `
   onClick={[Function]}
   uniqueHash="Fixed random hash for snapshot test"
 >
-  <Tooltip
-    content="Icon button text"
+  <IconButton__StyledButton
+    highlightOnHover={true}
+    onClick={[Function]}
+    uniqueHash="Fixed random hash for snapshot test"
   >
-    <div>
-      <div
-        data-for="tooltip-2"
-        data-tip={true}
+    <Button
+      className="c0"
+      highlightOnHover={true}
+      onClick={[Function]}
+      type="button"
+      uniqueHash="Fixed random hash for snapshot test"
+    >
+      <Button__StyledButton
+        className="c0"
+        highlightOnHover={true}
+        onClick={[Function]}
+        type="button"
+        uniqueHash="Fixed random hash for snapshot test"
       >
-        <IconButton__StyledButton
-          highlightOnHover={true}
+        <button
+          className="c0 c1"
           onClick={[Function]}
-          uniqueHash="Fixed random hash for snapshot test"
+          type="button"
         >
-          <Button
-            className="c0"
-            highlightOnHover={true}
-            onClick={[Function]}
-            type="button"
+          <InlineSVG
+            cacheGetRequests={false}
+            onLoad={[Function]}
+            src="icon-add-page.svg"
+            supportTest={[Function]}
             uniqueHash="Fixed random hash for snapshot test"
+            uniquifyIDs={true}
+            wrapper={[Function]}
           >
-            <Button__StyledButton
-              className="c0"
-              highlightOnHover={true}
-              onClick={[Function]}
-              type="button"
-              uniqueHash="Fixed random hash for snapshot test"
-            >
-              <button
-                className="c0 c1"
-                onClick={[Function]}
-                type="button"
-              >
-                <InlineSVG
-                  cacheGetRequests={false}
-                  onLoad={[Function]}
-                  src="icon-add-page.svg"
-                  supportTest={[Function]}
-                  uniqueHash="Fixed random hash for snapshot test"
-                  uniquifyIDs={true}
-                  wrapper={[Function]}
-                >
-                  <span
-                    className="isvg loading"
-                    dangerouslySetInnerHTML={undefined}
-                    style={undefined}
-                  />
-                </InlineSVG>
-                Icon button text
-              </button>
-            </Button__StyledButton>
-          </Button>
-        </IconButton__StyledButton>
-      </div>
-      <Tooltip__StyledTooltip
-        delayShow={200}
-        effect="solid"
-        id="tooltip-2"
-        place="bottom"
-      >
-        <ReactTooltip
-          className="c2"
-          delayShow={200}
-          effect="solid"
-          id="tooltip-2"
-          insecure={true}
-          place="bottom"
-          resizeHide={true}
-          wrapper="div"
-        >
-          <div
-            className="__react_component_tooltip place-top type-dark "
-            data-id="tooltip"
-          />
-        </ReactTooltip>
-      </Tooltip__StyledTooltip>
-    </div>
-  </Tooltip>
+            <span
+              className="isvg loading"
+              dangerouslySetInnerHTML={undefined}
+              style={undefined}
+            />
+          </InlineSVG>
+          Icon button text
+        </button>
+      </Button__StyledButton>
+    </Button>
+  </IconButton__StyledButton>
 </IconButton>
 `;
 
 exports[`IconButton should render correctly 1`] = `
-<Tooltip
-  content="Icon button text"
+<IconButton__StyledButton
+  highlightOnHover={true}
+  onClick={[Function]}
+  uniqueHash="Fixed random hash for snapshot test"
 >
-  <div>
-    <IconButton__StyledButton
-      highlightOnHover={true}
-      onClick={[Function]}
-      uniqueHash="Fixed random hash for snapshot test"
-    >
-      <InlineSVG
-        cacheGetRequests={false}
-        onLoad={[Function]}
-        src="icon-add-page.svg"
-        supportTest={[Function]}
-        uniqueHash="Fixed random hash for snapshot test"
-        uniquifyIDs={true}
-        wrapper={[Function]}
-      />
-      Icon button text
-    </IconButton__StyledButton>
-  </div>
-</Tooltip>
+  <InlineSVG
+    cacheGetRequests={false}
+    onLoad={[Function]}
+    src="icon-add-page.svg"
+    supportTest={[Function]}
+    uniqueHash="Fixed random hash for snapshot test"
+    uniquifyIDs={true}
+    wrapper={[Function]}
+  />
+  Icon button text
+</IconButton__StyledButton>
 `;
 
 exports[`IconButton should render icon only 1`] = `
