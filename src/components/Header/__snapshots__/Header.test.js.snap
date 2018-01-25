@@ -55,11 +55,14 @@ exports[`components/Header when there is a questionnaire should render a preview
 `;
 
 exports[`components/Header when there is a questionnaire should render an export button 1`] = `
-<IconButton
+<Header__ExportButton
+  clear={true}
   disabled={true}
   icon="icon-export.svg"
-  title="Export"
-/>
+  iconOnly={true}
+>
+  Export
+</Header__ExportButton>
 `;
 
 exports[`components/Header when there is a questionnaire should render breadcrumbs 1`] = `

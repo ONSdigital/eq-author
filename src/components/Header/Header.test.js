@@ -56,7 +56,7 @@ describe("components/Header", () => {
     });
 
     it("should render an export button", () => {
-      const exportButton = wrapper.find({ title: "Export" });
+      const exportButton = wrapper.find("Header__ExportButton");
 
       expect(exportButton).toHaveLength(1);
       expect(exportButton).toMatchSnapshot();

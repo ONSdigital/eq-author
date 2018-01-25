@@ -2,32 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popout from "components/Popout";
 import ScaleTransition from "components/Popout/ScaleTransition";
-import styled from "styled-components";
-import { colors } from "constants/theme";
 import AnswerTypeGrid from "./AnswerTypeGrid";
 import addIcon from "./icon-add.svg";
-import CustomPropTypes from "../../custom-prop-types";
-
-export const AddAnswerBtn = styled.button`
-  appearance: none;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  color: ${colors.text};
-  font-size: 0.75em;
-
-  &::before {
-    vertical-align: middle;
-    display: inline-block;
-    content: url(${addIcon});
-    margin-right: 0.6em;
-  }
-
-  &:hover {
-    color: black;
-  }
-`;
+import CustomPropTypes from "custom-prop-types";
+import IconButton from "components/IconButton";
 
 export default class AnswerTypeSelector extends React.Component {
   static propTypes = {
@@ -57,9 +35,9 @@ export default class AnswerTypeSelector extends React.Component {
 
   render() {
     const trigger = (
-      <AddAnswerBtn type="button" id="add-answer-btn">
+      <IconButton id="add-answer-button" icon={addIcon} clear>
         Add {this.props.answers.length === 0 ? "an" : "another"} answer
-      </AddAnswerBtn>
+      </IconButton>
     );
 
     return (

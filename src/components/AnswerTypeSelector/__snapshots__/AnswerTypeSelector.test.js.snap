@@ -7,14 +7,17 @@ exports[`components/AnswerTypeSelector should render content when open 1`] = `
   open={true}
   transition={[Function]}
   trigger={
-    <AnswerTypeSelector__AddAnswerBtn
-      id="add-answer-btn"
-      type="button"
+    <IconButton
+      clear={true}
+      highlightOnHover={true}
+      icon="icon-add.svg"
+      iconOnly={false}
+      id="add-answer-button"
     >
       Add 
       an
        answer
-    </AnswerTypeSelector__AddAnswerBtn>
+    </IconButton>
   }
 >
   <AnswerTypeGrid
@@ -30,14 +33,17 @@ exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0
   open={false}
   transition={[Function]}
   trigger={
-    <AnswerTypeSelector__AddAnswerBtn
-      id="add-answer-btn"
-      type="button"
+    <IconButton
+      clear={true}
+      highlightOnHover={true}
+      icon="icon-add.svg"
+      iconOnly={false}
+      id="add-answer-button"
     >
       Add 
       another
        answer
-    </AnswerTypeSelector__AddAnswerBtn>
+    </IconButton>
   }
 >
   <AnswerTypeGrid
@@ -53,14 +59,17 @@ exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] 
   open={false}
   transition={[Function]}
   trigger={
-    <AnswerTypeSelector__AddAnswerBtn
-      id="add-answer-btn"
-      type="button"
+    <IconButton
+      clear={true}
+      highlightOnHover={true}
+      icon="icon-add.svg"
+      iconOnly={false}
+      id="add-answer-button"
     >
       Add 
       an
        answer
-    </AnswerTypeSelector__AddAnswerBtn>
+    </IconButton>
   }
 >
   <AnswerTypeGrid

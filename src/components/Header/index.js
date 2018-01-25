@@ -6,7 +6,7 @@ import { colors } from "constants/theme";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import IconButton from "components/IconDecorated/IconButton";
+import IconButton from "components/IconButton";
 import IconLink from "components/IconDecorated/IconLink";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
@@ -41,6 +41,11 @@ export const Logo = styled(Link)`
 export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
   align-items: center;
+`;
+
+const ExportButton = styled(IconButton)`
+  padding: 0;
+  width: 3.5em;
 `;
 
 const Fragment = props => props.children;
@@ -92,7 +97,9 @@ export class UnconnectedHeader extends React.Component {
                     title="Preview"
                     target="_blank"
                   />
-                  <IconButton icon={exportIcon} title="Export" disabled />
+                  <ExportButton icon={exportIcon} iconOnly clear disabled>
+                    Export
+                  </ExportButton>
                 </Fragment>
               )}
               {this.props.user && (

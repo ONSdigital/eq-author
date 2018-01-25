@@ -33,8 +33,10 @@ exports[`QuestionnaireNav should render 1`] = `
   />
   <QuestionnaireNav__AddSection>
     <QuestionnaireNav__AddSectionBtn
+      clear={true}
+      highlightOnHover={false}
+      icon="icon-plus.svg"
       onClick={[Function]}
-      primary={true}
     >
       Create new section
     </QuestionnaireNav__AddSectionBtn>

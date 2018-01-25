@@ -9,7 +9,8 @@ export const colors = {
   text: "#4A4A4A",
   orange: "#F5A623",
   borders: "#EAEAEA",
-  white: "#FFFFFF"
+  white: "#FFFFFF",
+  highlight: "#008ad2"
 };
 
 export const radius = "2px";
