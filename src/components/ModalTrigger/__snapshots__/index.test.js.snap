@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalTrigger should render 1`] = `
+<ModalTrigger>
+  <button
+    id="open"
+    onClick={[Function]}
+  >
+    Open
+  </button>
+  <button
+    id="close"
+    onClick={[Function]}
+  >
+    Close
+  </button>
+  <input
+    checked={false}
+    type="checkbox"
+  />
+</ModalTrigger>
+`;

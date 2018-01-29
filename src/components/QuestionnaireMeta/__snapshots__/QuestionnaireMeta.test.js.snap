@@ -1,145 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuestionnaireMeta should render 1`] = `
-<Panel__CenteredPanel>
-  <Form
-    onSubmit={[Function]}
+<Form
+  onSubmit={[Function]}
+>
+  <Field
+    id="title"
   >
-    <Field
-      id="title"
+    <Label
+      small={false}
     >
-      <Label
-        small={false}
-      >
-        Questionnaire Title
-      </Label>
-      <withChangeHandler(Input)
-        autoFocus={true}
-        defaultValue="I am the title"
-        onBlur={[Function]}
-        onChange={[Function]}
-        required={true}
-      />
-    </Field>
-    <Field
-      id="description"
+      Questionnaire Title
+    </Label>
+    <withChangeHandler(Input)
+      autoFocus={true}
+      defaultValue="I am the title"
+      onChange={[Function]}
+      required={true}
+    />
+  </Field>
+  <Grid
+    align="top"
+    fillHeight={true}
+  >
+    <Column
+      cols={12}
     >
-      <Label
-        small={false}
+      <QuestionnaireMeta__InlineField
+        id="navigation"
       >
-        Description
-      </Label>
-      <withChangeHandler(TextArea)
-        defaultValue="I am the description"
-        onBlur={[Function]}
-        onChange={[Function]}
-        rows={4}
-      />
-    </Field>
-    <Grid
-      align="top"
-      fillHeight={true}
-    >
-      <Column
-        cols={6}
-      >
-        <Field
-          id="theme"
+        <Label
+          inline={true}
+          small={false}
         >
-          <Label
-            small={false}
-          >
-            Theme
-          </Label>
-          <withChangeHandler(Select)
-            defaultValue="default"
-            onBlur={[Function]}
-            onChange={[Function]}
-            options={
-              Array [
-                "default",
-                "census",
-              ]
-            }
-          />
-        </Field>
-      </Column>
-      <Column
-        cols={6}
-      >
-        <Field
-          id="legalBasis"
-        >
-          <Label
-            small={false}
-          >
-            Legal Basis
-          </Label>
-          <withChangeHandler(Select)
-            defaultValue="StatisticsOfTradeAct"
-            onBlur={[Function]}
-            onChange={[Function]}
-            options={
-              Array [
-                "StatisticsOfTradeAct",
-                "Voluntary",
-              ]
-            }
-          />
-        </Field>
-      </Column>
-    </Grid>
-    <Grid
-      align="top"
-      fillHeight={true}
+          Navigation
+        </Label>
+        <ToggleSwitch
+          checked={false}
+          name="navigation"
+          onChange={[Function]}
+        />
+      </QuestionnaireMeta__InlineField>
+    </Column>
+  </Grid>
+  <Grid
+    align="top"
+    fillHeight={true}
+  >
+    <Column
+      cols={12}
     >
-      <Column
-        cols={6}
+      <QuestionnaireMeta__InlineField
+        id="summary"
       >
-        <QuestionnaireMeta__InlineField
-          id="navigation"
+        <Label
+          inline={true}
+          small={false}
         >
-          <Label
-            inline={true}
-            small={false}
-          >
-            Navigation
-          </Label>
-          <ToggleSwitch
-            checked={false}
-            name="navigation"
-            onBlur={[Function]}
-            onChange={[Function]}
-          />
-        </QuestionnaireMeta__InlineField>
-      </Column>
-    </Grid>
-    <Grid
-      align="top"
-      fillHeight={true}
-    >
-      <Column
-        cols={6}
-      >
-        <QuestionnaireMeta__InlineField
-          id="summary"
-        >
-          <Label
-            inline={true}
-            small={false}
-          >
-            Summary on confirmation page
-          </Label>
-          <ToggleSwitch
-            checked={false}
-            name="summary"
-            onBlur={[Function]}
-            onChange={[Function]}
-          />
-        </QuestionnaireMeta__InlineField>
-      </Column>
-    </Grid>
-    Children
-  </Form>
-</Panel__CenteredPanel>
+          Summary on confirmation page
+        </Label>
+        <ToggleSwitch
+          checked={false}
+          name="summary"
+          onChange={[Function]}
+        />
+      </QuestionnaireMeta__InlineField>
+    </Column>
+  </Grid>
+  Children
+</Form>
 `;

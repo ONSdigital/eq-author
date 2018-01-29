@@ -6,17 +6,7 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
   title="Your Questionnaires"
 >
   <MainCanvas>
-    <QuestionnairesPage__StyledButtonGroup
-      horizontal={true}
-    >
-      <withRouter(LB)
-        id="btn-create-questionnaire"
-        primary={true}
-        to="/questionnaire/create"
-      >
-        Create
-      </withRouter(LB)>
-    </QuestionnairesPage__StyledButtonGroup>
+    <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel />
   </MainCanvas>
 </BaseLayout>
@@ -28,17 +18,7 @@ exports[`containers/Questionnaires should render a 'Create Questionnaire' button
   title="Your Questionnaires"
 >
   <MainCanvas>
-    <QuestionnairesPage__StyledButtonGroup
-      horizontal={true}
-    >
-      <withRouter(LB)
-        id="btn-create-questionnaire"
-        primary={true}
-        to="/questionnaire/create"
-      >
-        Create
-      </withRouter(LB)>
-    </QuestionnairesPage__StyledButtonGroup>
+    <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
         onDeleteQuestionnaire={[Function]}
@@ -55,17 +35,7 @@ exports[`containers/Questionnaires should render when there are no questionnaire
   title="Your Questionnaires"
 >
   <MainCanvas>
-    <QuestionnairesPage__StyledButtonGroup
-      horizontal={true}
-    >
-      <withRouter(LB)
-        id="btn-create-questionnaire"
-        primary={true}
-        to="/questionnaire/create"
-      >
-        Create
-      </withRouter(LB)>
-    </QuestionnairesPage__StyledButtonGroup>
+    <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
         onDeleteQuestionnaire={[Function]}
@@ -82,17 +52,7 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
   title="Your Questionnaires"
 >
   <MainCanvas>
-    <QuestionnairesPage__StyledButtonGroup
-      horizontal={true}
-    >
-      <withRouter(LB)
-        id="btn-create-questionnaire"
-        primary={true}
-        to="/questionnaire/create"
-      >
-        Create
-      </withRouter(LB)>
-    </QuestionnairesPage__StyledButtonGroup>
+    <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
         onDeleteQuestionnaire={[Function]}

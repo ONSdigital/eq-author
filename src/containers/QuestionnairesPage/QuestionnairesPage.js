@@ -5,9 +5,11 @@ import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import { CenteredPanel } from "components/Panel";
 import ButtonGroup from "components/ButtonGroup";
-import LinkButton from "components/LinkButton";
+import Button from "components/Button";
 import QuestionnairesTable from "./QuestionnairesTable";
 import MainCanvas from "components/MainCanvas";
+import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
+import ModalTrigger from "components/ModalTrigger";
 
 const StyledButtonGroup = styled(ButtonGroup)`
   margin: 0 0 1em;
@@ -19,18 +21,25 @@ const StyledCenteredPanel = styled(CenteredPanel)`
 
 const Questionnaires = props => {
   const title = "Your Questionnaires";
+  const onCreateQuestionnaire = props.createQuestionnaire;
+
   return (
     <BaseLayout title={title} docTitle={title}>
       <MainCanvas>
-        <StyledButtonGroup horizontal>
-          <LinkButton
-            to="/questionnaire/create"
-            id="btn-create-questionnaire"
-            primary
-          >
-            Create
-          </LinkButton>
-        </StyledButtonGroup>
+        <ModalTrigger>
+          {({ isOpen, onClose, onOpen }) => (
+            <StyledButtonGroup horizontal>
+              <Button onClick={onOpen} id="btn-create-questionnaire" primary>
+                Create
+              </Button>
+              <QuestionnaireSettingsModal
+                isOpen={isOpen}
+                onClose={onClose}
+                onSubmit={onCreateQuestionnaire}
+              />
+            </StyledButtonGroup>
+          )}
+        </ModalTrigger>
         <StyledCenteredPanel>
           {!props.loading && <QuestionnairesTable {...props} />}
         </StyledCenteredPanel>
@@ -41,7 +50,8 @@ const Questionnaires = props => {
 
 Questionnaires.propTypes = {
   loading: PropTypes.bool,
-  questionnaires: CustomPropTypes.questionnaireList
+  questionnaires: CustomPropTypes.questionnaireList,
+  createQuestionnaire: PropTypes.func.isRequired
 };
 
 export default Questionnaires;

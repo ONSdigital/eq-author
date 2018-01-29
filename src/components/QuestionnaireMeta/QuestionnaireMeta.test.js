@@ -49,12 +49,4 @@ describe("QuestionnaireMeta", () => {
     expect(inputs.length).toBeGreaterThan(0);
     expect(handleChange).toHaveBeenCalledTimes(inputs.length);
   });
-
-  it("should handle blur event on child inputs", () => {
-    const inputs = wrapper.find("[onBlur]");
-    inputs.forEach(input => input.simulate("blur"));
-
-    expect(inputs.length).toBeGreaterThan(0);
-    expect(handleUpdate).toHaveBeenCalledTimes(inputs.length);
-  });
 });

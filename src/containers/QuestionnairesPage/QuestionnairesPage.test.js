@@ -1,7 +1,10 @@
 import React from "react";
 import Questionnaires from "./QuestionnairesPage";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import shallowWithRouter from "tests/utils/shallowWithRouter";
+import PropTypes from "prop-types";
+import createRouterContext from "react-router-test-context";
+import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 
 describe("containers/Questionnaires", () => {
   const createWrapper = props =>
@@ -67,5 +70,62 @@ describe("containers/Questionnaires", () => {
     const wrapper = shallow(<Questionnaires {...props} />);
 
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe("behaviour", () => {
+    let context;
+
+    beforeEach(() => {
+      context = {
+        context: {
+          store: {
+            subscribe: jest.fn(),
+            getState: jest.fn(() => ({
+              toasts: {}
+            })),
+            dispatch: jest.fn()
+          },
+          router: createRouterContext().router
+        },
+        childContextTypes: {
+          router: PropTypes.object,
+          store: PropTypes.object
+        }
+      };
+
+      const container = document.createElement("div");
+      container.id = "toast";
+      document.body.appendChild(container);
+    });
+
+    it("opens settings modal when clicking Create button", () => {
+      const props = {
+        onDeleteQuestionnaire: jest.fn(),
+        onCreateQuestionnaire: jest.fn()
+      };
+
+      const wrapper = mount(<Questionnaires {...props} />, context);
+
+      expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(
+        false
+      );
+      wrapper.find("Button").simulate("click");
+      expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(
+        true
+      );
+    });
+
+    it("creates questionnaire on submit", () => {
+      const props = {
+        onDeleteQuestionnaire: jest.fn(),
+        createQuestionnaire: jest.fn()
+      };
+
+      const wrapper = mount(<Questionnaires {...props} />, context);
+
+      wrapper.find("Button").simulate("click");
+      wrapper.find("form").simulate("submit");
+      expect(props.createQuestionnaire).toHaveBeenCalled();
+    });
   });
 });

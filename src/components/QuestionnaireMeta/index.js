@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
-import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
-import { CenteredPanel } from "components/Panel";
+import { Form, Field, Input, Label } from "components/Forms";
 import withEntityEditor from "components/withEntityEditor";
 import questionnaireFragment from "graphql/fragments/questionnaire.graphql";
 import ToggleSwitch from "components/ToggleSwitch";
@@ -20,92 +19,52 @@ const InlineField = styled(Field)`
 export const StatelessQuestionnaireMeta = ({
   questionnaire,
   onSubmit,
-  onUpdate,
   onChange,
   children
 }) => {
   return (
-    <CenteredPanel>
-      <Form onSubmit={onSubmit}>
-        <Field id="title">
-          <Label>Questionnaire Title</Label>
-          <Input
-            autoFocus
-            defaultValue={questionnaire.title}
-            onChange={onChange}
-            onBlur={onUpdate}
-            required
-          />
-        </Field>
-        <Field id="description">
-          <Label>Description</Label>
-          <TextArea
-            defaultValue={questionnaire.description}
-            rows={4}
-            onChange={onChange}
-            onBlur={onUpdate}
-          />
-        </Field>
-        <Grid>
-          <Column cols={6}>
-            <Field id="theme">
-              <Label>Theme</Label>
-              <Select
-                options={["default", "census"]}
-                defaultValue={questionnaire.theme}
-                onChange={onChange}
-                onBlur={onUpdate}
-              />
-            </Field>
-          </Column>
-          <Column cols={6}>
-            <Field id="legalBasis">
-              <Label>Legal Basis</Label>
-              <Select
-                options={["StatisticsOfTradeAct", "Voluntary"]}
-                defaultValue={questionnaire.legalBasis}
-                onChange={onChange}
-                onBlur={onUpdate}
-              />
-            </Field>
-          </Column>
-        </Grid>
-        <Grid>
-          <Column cols={6}>
-            <InlineField id="navigation">
-              <Label inline>Navigation</Label>
-              <ToggleSwitch
-                name="navigation"
-                onChange={onChange}
-                onBlur={onUpdate}
-                checked={questionnaire.navigation}
-              />
-            </InlineField>
-          </Column>
-        </Grid>
-        <Grid>
-          <Column cols={6}>
-            <InlineField id="summary">
-              <Label inline>Summary on confirmation page</Label>
-              <ToggleSwitch
-                name="summary"
-                onChange={onChange}
-                onBlur={onUpdate}
-                checked={questionnaire.summary}
-              />
-            </InlineField>
-          </Column>
-        </Grid>
-        {children}
-      </Form>
-    </CenteredPanel>
+    <Form onSubmit={onSubmit}>
+      <Field id="title">
+        <Label>Questionnaire Title</Label>
+        <Input
+          autoFocus
+          defaultValue={questionnaire.title}
+          onChange={onChange}
+          required
+        />
+      </Field>
+      <Grid>
+        <Column cols={12}>
+          <InlineField id="navigation">
+            <Label inline>Navigation</Label>
+            <ToggleSwitch
+              name="navigation"
+              onChange={onChange}
+              checked={questionnaire.navigation}
+            />
+          </InlineField>
+        </Column>
+      </Grid>
+      <Grid>
+        <Column cols={12}>
+          <InlineField id="summary">
+            <Label inline>Summary on confirmation page</Label>
+            <ToggleSwitch
+              name="summary"
+              onChange={onChange}
+              checked={questionnaire.summary}
+            />
+          </InlineField>
+        </Column>
+      </Grid>
+      {children}
+    </Form>
   );
 };
 
 StatelessQuestionnaireMeta.propTypes = {
   children: PropTypes.node,
   onChange: PropTypes.func,
-  onUpdate: PropTypes.func,
   onSubmit: PropTypes.func,
   questionnaire: CustomPropTypes.questionnaire
 };
