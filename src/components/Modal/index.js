@@ -16,10 +16,11 @@ injectGlobal`
 }
 
 .ReactModalPortal .ReactModal__Overlay {
-  transition: opacity 200ms ease-out;
+  transition: opacity 100ms ease-out;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 9999999;
 
   &--after-open {
     opacity: 1;
@@ -33,7 +34,7 @@ injectGlobal`
 .ReactModalPortal .ReactModal__Content {
   transform: scale(0.8);
   transform-origin: center center;
-  transition: all 100ms ease-in 200ms;
+  transition: all 100ms ease-in 50ms;
   opacity: 0;
 
   &--after-open {
@@ -63,8 +64,16 @@ class Modal extends React.Component {
     ReactModal.setAppElement("body");
   }
 
+  componentDidMount() {
+    document.addEventListener("hashchange", this.props.onClose);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("hashchange", this.props.onClose);
+  }
+
   render() {
-    const { children, isOpen, onClose } = this.props;
+    const { children, isOpen, onClose, ...otherProps } = this.props;
     return (
       <StyledModal
         isOpen={isOpen}
@@ -72,6 +81,7 @@ class Modal extends React.Component {
         shouldCloseOnOverlayClick
         style={reactModalStyleOverride}
         closeTimeoutMS={300}
+        {...otherProps}
       >
         {children}
       </StyledModal>

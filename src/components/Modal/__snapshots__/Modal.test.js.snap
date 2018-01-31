@@ -2,7 +2,10 @@
 
 exports[`components/Modal should render its children 1`] = `
 <Modal__StyledModal
+  alias="Subheading"
   closeTimeoutMS={300}
+  description="Description"
+  icon="move"
   isOpen={true}
   onRequestClose={[Function]}
   shouldCloseOnOverlayClick={true}
@@ -13,6 +16,7 @@ exports[`components/Modal should render its children 1`] = `
       },
     }
   }
+  title="Modal title"
 >
   <p>
     Modal content

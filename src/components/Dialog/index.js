@@ -11,7 +11,8 @@ const StyledDialog = styled.div`
   position: relative;
   background: ${colors.white};
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
-  min-width: 500px;
+  min-width: 25em;
+  top: -10em;
 `;
 
 const CloseButton = styled(Button)`

@@ -53,5 +53,16 @@ describe("components/Modal", () => {
       wrapper.find(".ReactModal__Content").simulate("keyDown", { keyCode: 28 });
       expect(props.onClose).not.toHaveBeenCalled();
     });
+
+    it("should close if browser URL changes", () => {
+      document.dispatchEvent(new HashChangeEvent("hashchange"));
+      expect(props.onClose).toHaveBeenCalled();
+    });
+
+    it("should stop listening for URL changes when unmounted", () => {
+      wrapper.unmount();
+      document.dispatchEvent(new HashChangeEvent("hashchange"));
+      expect(props.onClose).toHaveBeenCalledTimes(0);
+    });
   });
 });

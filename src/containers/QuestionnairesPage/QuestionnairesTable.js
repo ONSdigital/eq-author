@@ -4,9 +4,13 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { partial } from "lodash";
-import DeleteQuestionnaireButton from "./DeleteQuestionnaireButton";
+import IconButtonDelete from "components/IconButtonDelete";
 import QuestionnaireLink from "./QuestionnaireLink";
 import FormattedDate from "./FormattedDate";
+
+export const DeleteButton = styled(IconButtonDelete)`
+  padding: 0;
+`;
 
 const Table = styled.table`
   width: 100%;
@@ -108,9 +112,11 @@ const QuestionnairesTable = ({
               </TD>
               <TD>
                 <Collapsible>
-                  <DeleteQuestionnaireButton
+                  <DeleteButton
                     onClick={partial(handleDelete, questionnaire.id)}
-                  />
+                  >
+                    Delete {questionnaire.title}
+                  </DeleteButton>
                 </Collapsible>
               </TD>
             </TR>

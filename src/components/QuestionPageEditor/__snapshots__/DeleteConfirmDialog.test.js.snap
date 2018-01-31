@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question Page Editor should render 1`] = `
+<DeleteConfirmDialog__DeleteConfirmModalDialog
+  onClose={[Function]}
+  page={
+    Object {
+      "__typename": "Page",
+      "description": "",
+      "guidance": "",
+      "id": "1",
+      "title": "",
+    }
+  }
+>
+  <DialogHeader___default>
+    <DialogMessage__Message>
+      <DialogMessage__Heading>
+        Delete
+      </DialogMessage__Heading>
+      <DialogMessage__Subheading />
+      <DialogMessage__Description>
+        <DeleteConfirmDialog__Alert>
+          All edits, properties and routing settings will also be removed.
+        </DeleteConfirmDialog__Alert>
+      </DialogMessage__Description>
+    </DialogMessage__Message>
+    <DialogIcon___default
+      icon="icon-dialog-page.svg"
+    />
+  </DialogHeader___default>
+  <ButtonGroup
+    align="right"
+    horizontal={true}
+  >
+    <Button
+      data-test="btn-cancel"
+      onClick={[Function]}
+      secondary={true}
+    >
+      Cancel
+    </Button>
+    <Button
+      autoFocus={true}
+      data-test="btn-delete"
+      onClick={[Function]}
+      tertiary={true}
+    >
+      Delete
+    </Button>
+  </ButtonGroup>
+</DeleteConfirmDialog__DeleteConfirmModalDialog>
+`;

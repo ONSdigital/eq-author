@@ -18,11 +18,16 @@ const HorizontalGroup = css`
   }
 `;
 
+const AlignRight = css`
+  justify-content: flex-end;
+`;
+
 const StyledButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
   ${props => props.vertical && VerticalGroup};
   ${props => props.horizontal && HorizontalGroup};
+  ${props => props.align === "right" && AlignRight};
 `;
 
 const ButtonGroup = ({ children, ...otherProps }) => (

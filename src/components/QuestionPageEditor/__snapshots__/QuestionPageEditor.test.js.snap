@@ -4,9 +4,37 @@ exports[`Question Page Editor should render 1`] = `
 <div
   id="question-page-editor"
 >
-  <Connect(CanvasSection)
+  <QuestionPageEditor__QuestionCanvasSection
     id="Page1"
   >
+    <QuestionPageToolbar
+      onDeletePage={[Function]}
+      page={
+        Object {
+          "__typename": "Page",
+          "answers": Array [
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": "1",
+              "title": "First name",
+              "type": "TextField",
+            },
+            Object {
+              "__typename": "BasicAnswer",
+              "description": "",
+              "id": "2",
+              "title": "Last name",
+              "type": "TextField",
+            },
+          ],
+          "description": "",
+          "guidance": "",
+          "id": "1",
+          "title": "",
+        }
+      }
+    />
     <withApollo(withEntityEditor(StatelessMetaEditor))
       onUpdate={[Function]}
       page={
@@ -35,7 +63,7 @@ exports[`Question Page Editor should render 1`] = `
         }
       }
     />
-  </Connect(CanvasSection)>
+  </QuestionPageEditor__QuestionCanvasSection>
   <TransitionGroup
     childFactory={[Function]}
     component="div"

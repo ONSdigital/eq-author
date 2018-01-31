@@ -66,6 +66,7 @@ describe("EditorSurface", () => {
     mockMutations = {
       onUpdateSection: jest.fn(),
       onUpdatePage: jest.fn(),
+      onDeletePage: jest.fn(),
       onFocus: jest.fn(),
       onBlur: jest.fn()
     };

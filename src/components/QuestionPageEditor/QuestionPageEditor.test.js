@@ -1,6 +1,7 @@
 import { QPE } from "components/QuestionPageEditor";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
+import QuestionPageToolbar from "./QuestionPageToolbar";
 import React from "react";
 import { shallow } from "enzyme";
 
@@ -9,6 +10,7 @@ describe("Question Page Editor", () => {
 
   let mockMutations;
   let page;
+  let section;
 
   const answer = {
     id: "123",
@@ -19,6 +21,7 @@ describe("Question Page Editor", () => {
     mockMutations = {
       onUpdateAnswer: jest.fn(),
       onUpdatePage: jest.fn(),
+      onDeletePage: jest.fn(),
       onAddAnswer: jest.fn(() => Promise.resolve(answer)),
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
@@ -51,7 +54,12 @@ describe("Question Page Editor", () => {
       ]
     };
 
-    wrapper = shallow(<QPE {...mockMutations} page={page} />);
+    section = {
+      id: "2",
+      pages: [page]
+    };
+
+    wrapper = shallow(<QPE {...mockMutations} page={page} section={section} />);
   });
 
   it("should render", () => {
@@ -73,5 +81,14 @@ describe("Question Page Editor", () => {
   it("should add an answer with a type", () => {
     wrapper.find(AnswerTypeSelector).simulate("select", "Textfield");
     expect(mockMutations.onAddAnswer).toHaveBeenCalledWith("Textfield");
+  });
+
+  it("should handle deleting pages from a section", () => {
+    const toolbar = wrapper.find(QuestionPageToolbar);
+    toolbar.simulate("deletePage");
+    expect(mockMutations.onDeletePage).toHaveBeenCalledWith(
+      section.id,
+      page.id
+    );
   });
 });

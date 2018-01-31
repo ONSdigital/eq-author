@@ -18,6 +18,7 @@ class EditorSurface extends React.Component {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
     onUpdatePage: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func.isRequired,
     onUpdateSection: PropTypes.func.isRequired
   };
 
@@ -56,7 +57,13 @@ class EditorSurface extends React.Component {
   };
 
   render() {
-    const { section, page, onUpdatePage, onUpdateSection } = this.props;
+    const {
+      section,
+      page,
+      onUpdatePage,
+      onDeletePage,
+      onUpdateSection
+    } = this.props;
     const sectionId = getIdForObject(section);
 
     return (
@@ -74,7 +81,9 @@ class EditorSurface extends React.Component {
           <SlideTransition key={getIdForObject(page)}>
             <QuestionPageEditor
               onUpdatePage={onUpdatePage}
+              onDeletePage={onDeletePage}
               page={page}
+              section={section}
               titleRef={this.setPageTitle}
             />
           </SlideTransition>

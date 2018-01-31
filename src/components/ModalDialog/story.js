@@ -12,6 +12,9 @@ import DialogActionButtons from "components/Dialog/DialogButtons";
 import { DialogAlertList, DialogAlert } from "components/Dialog/DialogAlert";
 import PropTypes from "prop-types";
 
+import moveIcon from "./icon-dialog-move.svg";
+import deleteIcon from "./icon-dialog-delete.svg";
+
 const Background = styled.div`
   padding: 1em;
 `;
@@ -60,7 +63,7 @@ storiesOf("ModalDialog", module)
           subheading="Section 2 > Question 3"
           description="Move question 3 to section 1?"
         />
-        <DialogIcon icon="move" />
+        <DialogIcon icon={moveIcon} />
       </DialogHeader>
       <DialogActionButtons
         primaryAction={action("Primary action")}
@@ -78,7 +81,7 @@ storiesOf("ModalDialog", module)
           subheading="Section 2 > Question 3"
           description="Move question 3 to section 1?"
         />
-        <DialogIcon icon="move" />
+        <DialogIcon icon={moveIcon} />
       </DialogHeader>
       <DialogActionButtons
         primaryAction={action("Primary action")}
@@ -96,7 +99,7 @@ storiesOf("ModalDialog", module)
           subheading="Question 3"
           description="Delete question 3?"
         />
-        <DialogIcon icon="delete" />
+        <DialogIcon icon={deleteIcon} />
       </DialogHeader>
       <DialogAlertList>
         <DialogAlert>
