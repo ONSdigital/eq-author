@@ -89,7 +89,7 @@ class NavigationSidebar extends Component {
             onClick={this.handleAddSectionClick}
             highlightOnHover={false}
           >
-            Create new section
+            Add section
           </AddSectionBtn>
         </AddSection>
       </Container>

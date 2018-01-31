@@ -36,7 +36,7 @@ exports[`NavigationSidebar should render 1`] = `
       icon="icon-plus.svg"
       onClick={[Function]}
     >
-      Create new section
+      Add section
     </NavigationSidebar__AddSectionBtn>
   </NavigationSidebar__AddSection>
 </NavigationSidebar__Container>
