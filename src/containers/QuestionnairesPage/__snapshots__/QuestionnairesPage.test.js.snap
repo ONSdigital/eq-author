@@ -21,6 +21,7 @@ exports[`containers/Questionnaires should render a 'Create Questionnaire' button
     <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
+        createQuestionnaire={[Function]}
         onDeleteQuestionnaire={[Function]}
         questionnaires={Array []}
       />
@@ -38,6 +39,7 @@ exports[`containers/Questionnaires should render when there are no questionnaire
     <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
+        createQuestionnaire={[Function]}
         onDeleteQuestionnaire={[Function]}
         questionnaires={Array []}
       />
@@ -55,6 +57,7 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
     <ModalTrigger />
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
+        createQuestionnaire={[Function]}
         onDeleteQuestionnaire={[Function]}
         questionnaires={
           Array [

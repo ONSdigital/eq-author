@@ -5,7 +5,10 @@ import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 
 storiesOf("QuestionnaireSettingsModal", module).add("Default", () => (
   <QuestionnaireSettingsModal
-    questionnaire={{}}
+    questionnaire={{
+      title: "Lorem ipsum dolor sit, amet consectetur adipisicing elit",
+      navigation: true
+    }}
     isOpen
     onSubmit={action("submit")}
     onClose={action("close")}

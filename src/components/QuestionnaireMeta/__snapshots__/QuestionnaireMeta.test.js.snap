@@ -19,54 +19,48 @@ exports[`QuestionnaireMeta should render 1`] = `
       required={true}
     />
   </Field>
-  <Grid
-    align="top"
-    fillHeight={true}
-  >
-    <Column
-      cols={12}
+  <QuestionnaireMeta__ToggleWrapper>
+    <QuestionnaireMeta__InlineField
+      id="navigation"
     >
-      <QuestionnaireMeta__InlineField
-        id="navigation"
+      <Label
+        inline={true}
+        small={false}
       >
-        <Label
-          inline={true}
-          small={false}
-        >
-          Navigation
-        </Label>
-        <ToggleSwitch
-          checked={false}
-          name="navigation"
-          onChange={[Function]}
+        <QuestionnaireMeta__Icon
+          alt=""
+          fade={true}
+          src="icon-show-nav.svg"
         />
-      </QuestionnaireMeta__InlineField>
-    </Column>
-  </Grid>
-  <Grid
-    align="top"
-    fillHeight={true}
-  >
-    <Column
-      cols={12}
+        Show section navigation
+      </Label>
+      <ToggleSwitch
+        checked={false}
+        name="navigation"
+        onChange={[Function]}
+      />
+    </QuestionnaireMeta__InlineField>
+    <QuestionnaireMeta__InlineField
+      id="summary"
     >
-      <QuestionnaireMeta__InlineField
-        id="summary"
+      <Label
+        inline={true}
+        small={false}
       >
-        <Label
-          inline={true}
-          small={false}
-        >
-          Summary on confirmation page
-        </Label>
-        <ToggleSwitch
-          checked={false}
-          name="summary"
-          onChange={[Function]}
+        <QuestionnaireMeta__Icon
+          alt=""
+          fade={true}
+          src="icon-show-confirmation.svg"
         />
-      </QuestionnaireMeta__InlineField>
-    </Column>
-  </Grid>
+        Show summary on confirmation page
+      </Label>
+      <ToggleSwitch
+        checked={false}
+        name="summary"
+        onChange={[Function]}
+      />
+    </QuestionnaireMeta__InlineField>
+  </QuestionnaireMeta__ToggleWrapper>
   Children
 </Form>
 `;

@@ -38,7 +38,8 @@ describe("containers/Questionnaires", () => {
   it("should render a 'Create Questionnaire' button", () => {
     const wrapper = createWrapper({
       questionnaires: [],
-      onDeleteQuestionnaire
+      onDeleteQuestionnaire,
+      createQuestionnaire: jest.fn()
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -46,7 +47,8 @@ describe("containers/Questionnaires", () => {
   it("should render when there are no questionnaires", () => {
     const props = {
       questionnaires: [],
-      onDeleteQuestionnaire
+      onDeleteQuestionnaire,
+      createQuestionnaire: jest.fn()
     };
     const wrapper = shallow(<Questionnaires {...props} />);
 
@@ -56,7 +58,8 @@ describe("containers/Questionnaires", () => {
   it("should render when there are questionnaires", () => {
     const props = {
       questionnaires: [questionnaire],
-      onDeleteQuestionnaire
+      onDeleteQuestionnaire,
+      createQuestionnaire: jest.fn()
     };
     const wrapper = shallow(<Questionnaires {...props} />);
 
@@ -65,7 +68,8 @@ describe("containers/Questionnaires", () => {
 
   it("should not render table whilst data is loading", () => {
     const props = {
-      loading: true
+      loading: true,
+      createQuestionnaire: jest.fn()
     };
     const wrapper = shallow(<Questionnaires {...props} />);
 
@@ -101,7 +105,7 @@ describe("containers/Questionnaires", () => {
     it("opens settings modal when clicking Create button", () => {
       const props = {
         onDeleteQuestionnaire: jest.fn(),
-        onCreateQuestionnaire: jest.fn()
+        createQuestionnaire: jest.fn()
       };
 
       const wrapper = mount(<Questionnaires {...props} />, context);

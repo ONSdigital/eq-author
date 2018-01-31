@@ -44,6 +44,7 @@ const DialogMessage = props => {
 };
 
 DialogMessage.propTypes = {
+  className: PropTypes.string,
   heading: PropTypes.string.isRequired,
   subheading: PropTypes.string,
   description: PropTypes.string

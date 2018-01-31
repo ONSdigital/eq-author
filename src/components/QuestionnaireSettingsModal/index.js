@@ -10,7 +10,7 @@ import QuestionnaireMeta from "components/QuestionnaireMeta";
 import CustomPropTypes from "custom-prop-types";
 
 const ActionButtonGroup = styled(ButtonGroup)`
-  align-self: flex-end;
+  justify-content: flex-end;
 `;
 
 const noop = () => {};
@@ -24,6 +24,10 @@ const defaultQuestionnaire = {
   navigation: false
 };
 
+const CenteredDialogMessage = styled(DialogMessage)`
+  text-align: center;
+`;
+
 const QuestionnaireSettingsModal = ({
   questionnaire,
   isOpen,
@@ -32,7 +36,7 @@ const QuestionnaireSettingsModal = ({
 }) => (
   <ModalDialog isOpen={isOpen} onClose={onClose}>
     <DialogHeader>
-      <DialogMessage heading="Questionnaire settings" />
+      <CenteredDialogMessage heading="Questionnaire settings" />
     </DialogHeader>
 
     <QuestionnaireMeta
@@ -41,11 +45,11 @@ const QuestionnaireSettingsModal = ({
       onUpdate={noop}
     >
       <ActionButtonGroup horizontal>
-        <Button type="submit" primary>
-          Create
-        </Button>
         <Button onClick={onClose} secondary type="button">
           Cancel
+        </Button>
+        <Button type="submit" primary>
+          Create
         </Button>
       </ActionButtonGroup>
     </QuestionnaireMeta>
