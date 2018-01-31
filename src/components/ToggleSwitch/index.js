@@ -58,6 +58,7 @@ const ToggleSwitchKnob = styled.div`
   background: ${props => (props.checked ? knobColors.on : knobColors.off)};
   content: "";
   position: relative;
+  will-change: transform;
   top: ${props => -((props.size - props.height) / 2)}em;
   transform: translateX(
     ${props => (props.checked ? props.width - props.size : 0)}em
@@ -76,6 +77,7 @@ const ToggleSwitchKnob = styled.div`
     height: ${props => props.size * glowScale}em;
     position: relative;
     top: ${props => -((props.size * glowScale - props.size) / 2)}em;
+    will-change: transform;
     transform: translateX(
       ${props => -((props.size * glowScale - props.size) / 2)}em
     );

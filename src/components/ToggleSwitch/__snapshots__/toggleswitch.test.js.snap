@@ -111,7 +111,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   position: relative;
 }
 
-.c1:focus + .c4 .coFSiS::before {
+.c1:focus + .c4 .kXUudr::before {
   opacity: 0.12;
 }
 
@@ -122,6 +122,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   background: #E8E8E8;
   content: "";
   position: relative;
+  will-change: transform;
   top: 0em;
   -webkit-transform: translateX( 0em );
   -ms-transform: translateX( 0em );
@@ -141,6 +142,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   height: 3em;
   position: relative;
   top: -0.5em;
+  will-change: transform;
   -webkit-transform: translateX( -0.5em );
   -ms-transform: translateX( -0.5em );
   transform: translateX( -0.5em );
@@ -362,6 +364,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   background: #008AD2;
   content: "";
   position: relative;
+  will-change: transform;
   top: -0.19999999999999996em;
   -webkit-transform: translateX( 1.2000000000000002em );
   -ms-transform: translateX( 1.2000000000000002em );
@@ -381,6 +384,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   height: 2.0999999999999996em;
   position: relative;
   top: -0.34999999999999987em;
+  will-change: transform;
   -webkit-transform: translateX( -0.34999999999999987em );
   -ms-transform: translateX( -0.34999999999999987em );
   transform: translateX( -0.34999999999999987em );
@@ -569,6 +573,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   background: #008AD2;
   content: "";
   position: relative;
+  will-change: transform;
   top: -0.19999999999999996em;
   -webkit-transform: translateX( 1.2000000000000002em );
   -ms-transform: translateX( 1.2000000000000002em );
@@ -588,6 +593,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   height: 2.0999999999999996em;
   position: relative;
   top: -0.34999999999999987em;
+  will-change: transform;
   -webkit-transform: translateX( -0.34999999999999987em );
   -ms-transform: translateX( -0.34999999999999987em );
   transform: translateX( -0.34999999999999987em );
