@@ -5,7 +5,7 @@ import withCreatePage from "containers/enhancers/withCreatePage";
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withDeletePage from "containers/enhancers/withDeletePage";
 
-import QuestionnaireNav from "components/QuestionnaireNav";
+import NavigationSidebar from "components/NavigationSidebar";
 import withCreateSection from "containers/enhancers/withCreateSection";
 import { raiseToast } from "redux/toast/actions";
 
@@ -18,4 +18,4 @@ export default compose(
   withDeletePage, // relies on raiseToast
   withCreateSection,
   withDeleteSection // withDeleteSection depends on withCreateSection appearing first.
-)(QuestionnaireNav);
+)(NavigationSidebar);

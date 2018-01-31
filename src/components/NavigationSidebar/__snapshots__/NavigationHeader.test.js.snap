@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationHeader should render 1`] = `
+<NavigationHeader__IconList>
+  <li>
+    <NavigationHeader__StyledLink
+      href="/"
+    >
+      <InlineSVG
+        cacheGetRequests={false}
+        onLoad={[Function]}
+        src="icon-home.svg"
+        supportTest={[Function]}
+        uniqueHash="home-icon"
+        uniquifyIDs={true}
+        wrapper={[Function]}
+      />
+    </NavigationHeader__StyledLink>
+  </li>
+  <li>
+    <NavigationHeader__SettingsLink
+      href="/"
+    >
+      Settings
+      <NavigationHeader__SettingsIcon
+        src="icon-cog.svg"
+        uniqueHash="settings-icon"
+      />
+    </NavigationHeader__SettingsLink>
+  </li>
+</NavigationHeader__IconList>
+`;

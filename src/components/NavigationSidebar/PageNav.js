@@ -54,7 +54,7 @@ export const StyledPageItem = styled.li`
 const Link = styled(NavLink)`
   text-decoration: none;
   color: ${textInverted};
-  padding: 0.4em 2.5em 0.4em 1em;
+  padding: 0.4em 2.5em 0.4em 0.75em;
   flex: 1 1 auto;
   height: 100%;
   position: relative;
@@ -66,7 +66,7 @@ const Link = styled(NavLink)`
 
   &::before {
     flex: 0;
-    margin-right: 0.6em;
+    margin-right: 0.3em;
     opacity: 1;
     content: url(${pageIcon});
     transition: all 200ms ease-out;

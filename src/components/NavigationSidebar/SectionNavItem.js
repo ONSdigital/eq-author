@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { colors } from "constants/theme";
-import HoverDeleteButton from "components/QuestionnaireNav/HoverDeleteButton";
-import PageNav from "components/QuestionnaireNav/PageNav";
-import SectionTitle from "components/QuestionnaireNav/SectionTitle";
+import HoverDeleteButton from "components/NavigationSidebar/HoverDeleteButton";
+import PageNav from "components/NavigationSidebar/PageNav";
+import SectionTitle from "components/NavigationSidebar/SectionTitle";
 import Tooltip from "components/Tooltip";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -25,7 +25,7 @@ export const AddPageBtn = styled.button`
 
   &::before {
     font-size: 1.25em;
-    margin-right: 0.5em;
+    margin-right: 0.6em;
     content: "+";
   }
 

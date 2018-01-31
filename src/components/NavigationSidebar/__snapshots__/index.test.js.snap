@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationSidebar should render 1`] = `
+<NavigationSidebar__Container
+  id="questionnaire-nav"
+>
+  <NavigationHeader />
+  <SectionNav
+    onAddPage={[Function]}
+    onDeletePage={[Function]}
+    onDeleteSection={[Function]}
+    questionnaire={
+      Object {
+        "id": "1",
+        "sections": Array [
+          Object {
+            "id": "3",
+            "pages": Array [
+              Object {
+                "id": "2",
+                "title": "Page",
+              },
+            ],
+            "title": "Section",
+          },
+        ],
+        "title": "Questionnaire",
+      }
+    }
+    transitionDuration={200}
+  />
+  <NavigationSidebar__AddSection>
+    <NavigationSidebar__AddSectionBtn
+      clear={true}
+      highlightOnHover={false}
+      icon="icon-plus.svg"
+      onClick={[Function]}
+    >
+      Create new section
+    </NavigationSidebar__AddSectionBtn>
+  </NavigationSidebar__AddSection>
+</NavigationSidebar__Container>
+`;

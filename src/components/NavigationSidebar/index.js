@@ -3,12 +3,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
-import SectionNav from "components/QuestionnaireNav/SectionNav";
-import plusIcon from "./icon-plus.svg";
+import SectionNav from "components/NavigationSidebar/SectionNav";
+import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import IconButton from "components/IconButton";
-import homeIcon from "./icon-home.svg";
-import settingsIcon from "./icon-cog.svg";
-import SVG from "react-inlinesvg";
+import plusIcon from "./icon-plus.svg";
 
 const navBackground = "#4A4A4A";
 const textInverted = "#E1E1E1";
@@ -43,61 +41,7 @@ export const AddSectionBtn = styled(IconButton)`
   }
 `;
 
-const NavTopBarIconList = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1em;
-  margin: 0;
-  background: ${navBackground};
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  border-bottom: 1px solid #c3c3c3;
-
-  & > li {
-    list-style: none;
-  }
-
-  & a,
-  & a:link,
-  & a:visited {
-    color: ${textInverted};
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-  }
-
-  & a:hover {
-    color: ${colors.white};
-  }
-
-  & li:nth-child(2) a svg {
-    margin-left: 0.5em;
-  }
-`;
-
-const SettingsLink = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75em;
-  line-height: 1em;
-  height: 1em;
-
-  &:link,
-  &:visited {
-    color: ${textInverted};
-  }
-
-  &:hover,
-  &:focus {
-    color: ${colors.white};
-  }
-`;
-
-class QuestionnaireNav extends Component {
+class NavigationSidebar extends Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     onAddPage: PropTypes.func.isRequired,
@@ -129,19 +73,7 @@ class QuestionnaireNav extends Component {
 
     return (
       <Container id="questionnaire-nav">
-        <NavTopBarIconList>
-          <li>
-            <a href="/">
-              <SVG src={homeIcon} />
-            </a>
-          </li>
-          <li>
-            <SettingsLink href="/">
-              Settings
-              <SVG src={settingsIcon} />
-            </SettingsLink>
-          </li>
-        </NavTopBarIconList>
+        <NavigationHeader />
         <SectionNav
           transitionDuration={200}
           questionnaire={questionnaire}
@@ -165,4 +97,4 @@ class QuestionnaireNav extends Component {
   }
 }
 
-export default QuestionnaireNav;
+export default NavigationSidebar;

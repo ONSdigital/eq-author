@@ -7,7 +7,7 @@ import { Grid, Column } from "components/Grid";
 import MainCanvas from "components/MainCanvas";
 import ScrollPane from "components/ScrollPane";
 import EditorSurface from "components/EditorSurface";
-import QuestionnaireNavContainer from "containers/QuestionnaireNavContainer";
+import NavigationSidebarContainer from "containers/NavigationSidebarContainer";
 import getTextFromHTML from "utils/getTextFromHTML";
 import ConnectedPropertiesPanel from "components/PropertiesPanel";
 import Nav from "components/Nav";
@@ -89,7 +89,7 @@ export class QuestionnaireDesignPage extends Component {
         <Grid align="top">
           <Column cols={2} gutters={false}>
             <NavigationScrollPane>
-              <QuestionnaireNavContainer
+              <NavigationSidebarContainer
                 questionnaire={questionnaire}
                 questionnaireId={questionnaireId}
                 sectionId={sectionId}

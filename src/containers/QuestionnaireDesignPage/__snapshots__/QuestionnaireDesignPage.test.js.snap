@@ -45,7 +45,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
       gutters={false}
     >
       <QuestionnaireDesignPage__NavigationScrollPane>
-        <Connect(withRouter(Apollo(Apollo(Apollo(Apollo(QuestionnaireNav))))))
+        <Connect(withRouter(Apollo(Apollo(Apollo(Apollo(NavigationSidebar))))))
           pageId="1"
           questionnaire={
             Object {

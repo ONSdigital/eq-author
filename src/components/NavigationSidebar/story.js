@@ -5,9 +5,11 @@ import { random, find, remove } from "lodash";
 
 import styled from "styled-components";
 
-import QuestionnaireNav from "components/QuestionnaireNav";
+import QuestionnaireNav from "components/NavigationSidebar";
 
-const Wrapper = styled.div`width: 20em;`;
+const Wrapper = styled.div`
+  width: 20em;
+`;
 
 const questionnaire = {
   id: "1",

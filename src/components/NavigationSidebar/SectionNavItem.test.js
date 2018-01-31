@@ -87,7 +87,7 @@ describe("SectionNavItem", () => {
 
     it("should set the scrollLeft to 0", () => {
       querySelector.mockReturnValue(mockScrollPane);
-      wrapper.instance().handleDeleteFocus();
+      wrapper.find(SectionDeleteButton).simulate("focus");
       expect(querySelector).toHaveBeenCalledWith(
         '[class*="NavigationScrollPane"]'
       );

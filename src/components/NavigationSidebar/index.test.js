@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnaireNav, { AddSectionBtn } from "components/QuestionnaireNav";
+import NavigationSidebar, { AddSectionBtn } from "components/NavigationSidebar";
 import { SynchronousPromise } from "synchronous-promise";
-import SectionNav from "components/QuestionnaireNav/SectionNav";
+import SectionNav from "components/NavigationSidebar/SectionNav";
 
-describe("QuestionnaireNav", () => {
+describe("NavigationSidebar", () => {
   let wrapper,
     handleAddSection,
     handleAddPage,
@@ -28,7 +28,7 @@ describe("QuestionnaireNav", () => {
     sectionNav = { scrollSectionIntoView: jest.fn() };
 
     wrapper = shallow(
-      <QuestionnaireNav
+      <NavigationSidebar
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
