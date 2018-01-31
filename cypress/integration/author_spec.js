@@ -1,3 +1,9 @@
+import {
+  createQuestionnaire,
+  addAnswerType,
+  assertHash
+} from "../utils/index.js";
+
 describe("eq-author", () => {
   it("Should redirect to the sign-in page", () => {
     cy.visit("/");
@@ -10,51 +16,85 @@ describe("eq-author", () => {
   });
 
   it("can create a questionnaire", () => {
-    cy.get("#btn-create-questionnaire").click();
-
-    cy.get("#title").type("title");
-    cy.get("#description").type("description");
-    cy.get("#theme").select("default");
-    cy.get("#legalBasis").select("StatisticsOfTradeAct");
-    cy.get("label[for='navigation']").click();
-    cy
-      .get("button")
-      .contains("Create")
-      .click();
-
-    cy.hash().should("match", /questionnaire\/\d+\/design\/\d+\/\d+/);
+    createQuestionnaire("Title");
+    cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
   });
 
   it("can create a new page", () => {
-    cy.get("#btn-add-page").click();
-
-    cy.hash().should("match", /questionnaire\/\d+\/design\/\d+\/\d+/);
+    let prevHash;
+    let currentHash;
     cy
-      .get("#questionnaire-nav [aria-label='Delete page']")
-      .should("have.length", 2);
+      .hash()
+      .then(hash => {
+        prevHash = hash;
+        cy.get("#btn-add-page").click();
+      })
+      .then(() => {
+        cy.hash().then(hash => {
+          currentHash = hash;
+        });
+      });
+    cy
+      .get('[class *="PageNav__Link-"]')
+      .should("have.length", 2)
+      .then(() => {
+        assertHash(prevHash, currentHash, {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
+        });
+      });
   });
 
   it("can delete a page", () => {
-    cy.get("#questionnaire-nav").within(() => {
+    cy.get('[id*="QuestionPage"]').within(() => {
       cy
-        .get("[aria-label='Delete page']")
+        .get('[class*="IconButtonDelete"]')
         .first()
         .click();
-
-      cy.get("[aria-label='Delete page']").should("have.length", 1);
     });
+    cy.get('[class*="Dialog__StyledDialog"]').within(() => {
+      cy
+        .get('[class*="Button__StyledButton"]')
+        .contains("Delete")
+        .click();
+    });
+    cy.get('[class *="PageNav__Link-"]').should("have.length", 1);
+  });
+
+  it("can change the questionaire title", () => {
+    cy
+      .get("#title")
+      .clear()
+      .type("Test Questionnaire");
+    cy.get("#root").click("bottomRight");
+    cy.get("[aria-label='breadcrumb']").should("contain", "Test Questionnaire");
   });
 
   it("can create a new section", () => {
-    cy.get("#questionnaire-nav").within(() => {
-      cy
-        .get("button")
-        .contains("Create new section")
-        .click();
-
-      cy.hash().should("match", /questionnaire\/\d+\/design\/\d+\/\d+/);
-      cy.get("[aria-label='Delete section']").should("have.length", 2);
-    });
+    let prevHash;
+    let currentHash;
+    cy
+      .hash()
+      .then(hash => {
+        prevHash = hash;
+        cy
+          .get("button")
+          .contains("Add section")
+          .click();
+      })
+      .then(() => {
+        cy.hash().then(hash => {
+          currentHash = hash;
+        });
+      })
+      .then(() => {
+        assertHash(prevHash, currentHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
+        });
+      });
   });
 
   it("can delete a section", () => {
@@ -68,18 +108,114 @@ describe("eq-author", () => {
     });
   });
 
+  it("Can create checkboxes", () => {
+    addAnswerType("Checkbox");
+    cy.get('[id *="MultipleChoiceAnswer"]').within(() => {
+      cy
+        .get("button")
+        .contains("Add another option")
+        .click();
+    });
+    cy.get('[class *="MultipleChoiceAnswer__Options"]').within(() => {
+      cy.get('[class *="Option__StyledOption"]').should("have.length", 2);
+    });
+    cy
+      .get('[id *="Option"]')
+      .first()
+      .within(() => {
+        cy.get("textarea#label").type("Checkbox label");
+        cy.get("#description").type("Checkbox description");
+      });
+  });
+
+  it("Can delete checkboxes", () => {
+    cy
+      .get('[id *="Option"]')
+      .last()
+      .within(() => {
+        cy.get('[aria-label="Delete option"]').click();
+      });
+
+    cy.get('[class *="MultipleChoiceAnswer__Options"]').within(() => {
+      cy.get('[class *="Option__StyledOption"]').should("have.length", 1);
+    });
+    cy.get("[aria-label='Delete answer']").click();
+    cy.get('[id *="MultipleChoiceAnswer"]').should("not.exist");
+  });
+
+  it("Can create radio buttons", () => {
+    addAnswerType("Radio");
+    cy.get('[id *="MultipleChoiceAnswer"]').within(() => {
+      cy
+        .get("button")
+        .contains("Add another option")
+        .click();
+    });
+    cy.get('[class *="MultipleChoiceAnswer__Options"]').within(() => {
+      cy.get('[class *="Option__StyledOption"]').should("have.length", 3);
+    });
+    cy
+      .get('[id *="Option"]')
+      .first()
+      .within(() => {
+        cy.get("textarea#label").type("Radio label");
+        cy.get("#description").type("Radio description");
+      });
+  });
+
+  it("Can delete radio buttons", () => {
+    cy
+      .get('[id *="Option"]')
+      .first()
+      .within(() => {
+        cy.get('[aria-label="Delete option"]').click();
+      });
+
+    cy.get('[class *="MultipleChoiceAnswer__Options"]').within(() => {
+      cy.get('[class *="Option__StyledOption"]').should("have.length", 2);
+    });
+    cy.get("[aria-label='Delete answer']").click();
+    cy.get('[id *="MultipleChoiceAnswer"]').should("not.exist");
+  });
+
+  it("Can create and delete the different types of textbox", () => {
+    const answerTypes = ["Text", "Textarea", "Currency", "Number"];
+
+    answerTypes.forEach(answerType => {
+      addAnswerType(answerType);
+      cy.get('[id *="BasicAnswer"]');
+      cy.get("#label").type(answerType + " label");
+      cy.get("#description").type(answerType + " description");
+      cy.get("[aria-label='Delete answer']").click();
+      cy.get('[id *="BasicAnswer"]').should("not.exist");
+    });
+  });
+
+  it("Can create and delete dates", () => {
+    addAnswerType("Date");
+    cy.get('[id *="BasicAnswer"]');
+    cy.get("[aria-label='Delete answer']").click();
+    cy.get('[id *="BasicAnswer"]').should("not.exist");
+  });
+
+  it("Can create and delete date ranges", () => {
+    addAnswerType("Date range");
+    cy.get('[id *="BasicAnswer"]');
+    cy.get("[aria-label='Delete answer']").click();
+    cy.get('[id *="BasicAnswer"]').should("not.exist");
+  });
+
   it("can edit section title", () => {
     cy.get("#section-editor").within(() => {
       cy
         .get("[aria-label='title']")
         .click()
-        .type("s")
+        .type("S")
         .click();
-
       cy.get("[aria-label='description']").click();
     });
 
-    cy.get("#questionnaire-nav").contains("s");
+    cy.get("#questionnaire-nav").should("contain", "S");
   });
 
   it("can edit page title", () => {
@@ -87,27 +223,65 @@ describe("eq-author", () => {
       cy
         .get("[aria-label='Question']")
         .click()
-        .type("p")
+        .type("P")
         .click();
 
       cy.get("[aria-label='Question guidance']").click();
     });
 
-    cy.get("#questionnaire-nav").contains("p");
+    cy.get("#questionnaire-nav").should("contain", "P");
   });
 
   it("should create a new page when deleting only page in section", () => {
-    cy.hash().then(prevHash => {
-      cy.get("#questionnaire-nav [aria-label='Delete page']").click();
-      cy.hash().should("not.equal", prevHash);
-    });
+    let prevHash;
+    let currentHash;
+    cy
+      .hash()
+      .then(hash => {
+        prevHash = hash;
+        cy.get('[class*="IconButtonDelete"]').click();
+        cy.get('[class*="Dialog__StyledDialog"]').within(() => {
+          cy
+            .get('[class*="Button__StyledButton"]')
+            .contains("Delete")
+            .click();
+        });
+      })
+      .then(() => {
+        cy.hash().then(hash => {
+          currentHash = hash;
+        });
+      })
+      .then(() => {
+        assertHash(prevHash, currentHash, {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
+        });
+      });
   });
 
   it("should create a new section when deleting only section", () => {
-    cy.hash().then(prevHash => {
-      cy.get("#questionnaire-nav [aria-label='Delete section']").click();
-      cy.hash().should("not.equal", prevHash);
-    });
+    let prevHash;
+    let currentHash;
+    cy
+      .hash()
+      .then(hash => {
+        prevHash = hash;
+        cy.get("#questionnaire-nav [aria-label='Delete section']").click();
+      })
+      .then(() => {
+        cy.hash().then(hash => {
+          currentHash = hash;
+        });
+      })
+      .then(() => {
+        assertHash(prevHash, currentHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
+        });
+      });
   });
 });
 

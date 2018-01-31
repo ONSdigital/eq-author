@@ -9,7 +9,7 @@ export $(egrep -v '^#' .env.test | xargs)
 REACT_APP_ENABLE_AUTH=false yarn build:mockAPI
 
 # Serve the app
-./node_modules/.bin/serve -S -p 3000 build/ &
+yarn serve &
 pid=$!
 
 function finish {
