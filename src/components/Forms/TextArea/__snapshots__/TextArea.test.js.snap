@@ -13,7 +13,7 @@ exports[`components/Forms/TextArea should render correctly 1`] = `
 
 .c0:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 <withChangeHandler(TextArea)

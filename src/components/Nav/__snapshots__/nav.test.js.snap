@@ -26,12 +26,12 @@ exports[`components/Nav should display active link when route matches 1`] = `
 }
 
 .c1:hover {
-  color: #056C99;
+  color: #008AD2;
 }
 
 .c1.selected {
-  color: #056C99;
-  border-color: rgba(5,108,153,1);
+  color: #008AD2;
+  border-color: #008AD2;
 }
 
 .c2 {
@@ -52,18 +52,18 @@ exports[`components/Nav should display active link when route matches 1`] = `
   border-style: solid;
   border-width: 0 0 2px;
   margin-right: 2em;
-  color: #056C99;
+  color: #008AD2;
   cursor: default;
   opacity: 0.5;
 }
 
 .c2:hover {
-  color: #056C99;
+  color: #008AD2;
 }
 
 .c2.selected {
-  color: #056C99;
-  border-color: rgba(5,108,153,1);
+  color: #008AD2;
+  border-color: #008AD2;
 }
 
 <NavWithoutRouter
@@ -190,12 +190,12 @@ exports[`components/Nav should render Nav 1`] = `
 }
 
 .c1:hover {
-  color: #056C99;
+  color: #008AD2;
 }
 
 .c1.selected {
-  color: #056C99;
-  border-color: rgba(5,108,153,1);
+  color: #008AD2;
+  border-color: #008AD2;
 }
 
 .c2 {
@@ -216,18 +216,18 @@ exports[`components/Nav should render Nav 1`] = `
   border-style: solid;
   border-width: 0 0 2px;
   margin-right: 2em;
-  color: #056C99;
+  color: #008AD2;
   cursor: default;
   opacity: 0.5;
 }
 
 .c2:hover {
-  color: #056C99;
+  color: #008AD2;
 }
 
 .c2.selected {
-  color: #056C99;
-  border-color: rgba(5,108,153,1);
+  color: #008AD2;
+  border-color: #008AD2;
 }
 
 <NavWithoutRouter

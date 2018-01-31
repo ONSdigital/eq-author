@@ -2,7 +2,7 @@ import React from "react";
 import { Field } from "components/Forms";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
 
@@ -15,7 +15,7 @@ export const StatelessBasicAnswer = ({
 }) => (
   <div id={id}>
     <Field id="label">
-      <SeamlessTextArea
+      <WrappingInput
         placeholder="Label"
         size="medium"
         onChange={onChange}
@@ -25,7 +25,7 @@ export const StatelessBasicAnswer = ({
       />
     </Field>
     <Field id="description">
-      <SeamlessTextArea
+      <WrappingInput
         cols="30"
         rows="5"
         placeholder="Enter a description (optional)…"

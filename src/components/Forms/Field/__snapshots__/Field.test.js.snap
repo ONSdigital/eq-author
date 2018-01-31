@@ -27,7 +27,7 @@ exports[`components/Forms/Field should render correctly 1`] = `
 
 .c2:focus {
   outline: none;
-  border: 1px solid #61BDE0;
+  border: 1px solid #008AD2;
 }
 
 <Field

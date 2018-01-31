@@ -11,6 +11,6 @@ export const sharedStyles = css`
 
   &:focus {
     outline: none;
-    border: 1px solid ${colors.lightBlue};
+    border: 1px solid ${colors.blue};
   }
 `;

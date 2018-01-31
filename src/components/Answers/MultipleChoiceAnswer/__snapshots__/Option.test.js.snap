@@ -24,11 +24,10 @@ exports[`Option should match snapshot 1`] = `
   <Field
     id="description"
   >
-    <withSeamlessness(withChangeHandler(WrappingTextArea))
+    <withChangeHandler(WrappingTextArea)
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Optional description"
-      size="small"
       value=""
     />
   </Field>
@@ -48,25 +47,27 @@ exports[`Option should match snapshot 1`] = `
 `;
 
 exports[`Option should render a checkbox 1`] = `
-.c6 {
-  resize: none;
-}
-
 .c5 {
+  resize: none;
   border: none;
   padding: 0;
   color: #35414D;
-  outline: none;
   display: block;
   width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
   font-size: 1.125em;
   font-weight: 700;
+  -webkit-transition: outline-color 100ms ease-in;
+  transition: outline-color 100ms ease-in;
+  outline: 1px solid transparent;
+  outline-offset: 0.25rem;
+}
+
+.c5:hover {
+  outline-color: rgba(0,138,210,0.5);
 }
 
 .c5:focus {
-  outline: none;
+  outline-color: #008AD2;
 }
 
 .c5::-webkit-input-placeholder {
@@ -85,35 +86,41 @@ exports[`Option should render a checkbox 1`] = `
   color: #a3a3a3;
 }
 
-.c7 {
+.c6 {
+  resize: none;
   border: none;
   padding: 0;
   color: #35414D;
-  outline: none;
   display: block;
   width: 100%;
-  -webkit-transition: opacity 200ms ease-out;
-  transition: opacity 200ms ease-out;
   font-size: 0.875em;
+  -webkit-transition: outline-color 100ms ease-in;
+  transition: outline-color 100ms ease-in;
+  outline: 1px solid transparent;
+  outline-offset: 0.25rem;
 }
 
-.c7:focus {
-  outline: none;
+.c6:hover {
+  outline-color: rgba(0,138,210,0.5);
 }
 
-.c7::-webkit-input-placeholder {
+.c6:focus {
+  outline-color: #008AD2;
+}
+
+.c6::-webkit-input-placeholder {
   color: #a3a3a3;
 }
 
-.c7::-moz-placeholder {
+.c6::-moz-placeholder {
   color: #a3a3a3;
 }
 
-.c7:-ms-input-placeholder {
+.c6:-ms-input-placeholder {
   color: #a3a3a3;
 }
 
-.c7::placeholder {
+.c6::placeholder {
   color: #a3a3a3;
 }
 
@@ -124,7 +131,7 @@ exports[`Option should render a checkbox 1`] = `
   position: relative;
 }
 
-.c9 {
+.c8 {
   color: #c3c3c3;
   border: none;
   background: transparent;
@@ -135,13 +142,13 @@ exports[`Option should render a checkbox 1`] = `
   padding: 0 auto;
 }
 
-.c9:hover {
+.c8:hover {
   color: #35414D;
   -webkit-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
 }
 
-.c10 {
+.c9 {
   background-color: rgba(97,97,97,0.9) !important;
   font-size: 0.625rem !important;
   line-height: 2.2em !important;
@@ -150,13 +157,13 @@ exports[`Option should render a checkbox 1`] = `
   white-space: pre;
 }
 
-.c10::before,
-.c10::after {
+.c9::before,
+.c9::after {
   border-bottom: none !important;
   border-top: none !important;
 }
 
-.c8 {
+.c7 {
   padding: 0.2em;
   position: absolute;
   top: 0.5em;
@@ -299,7 +306,7 @@ exports[`Option should render a checkbox 1`] = `
                 size="medium"
                 value=""
               >
-                <withSeamlessness(withChangeHandler(WrappingTextArea))
+                <withChangeHandler(WrappingTextArea)
                   className="c4"
                   data-autofocus={true}
                   data-qa="optionLabel"
@@ -310,94 +317,64 @@ exports[`Option should render a checkbox 1`] = `
                   size="medium"
                   value=""
                 >
-                  <withSeamlessness__StyledSeamless
+                  <WrappingTextArea
                     className="c4"
                     data-autofocus={true}
                     data-qa="optionLabel"
                     id="label"
-                    name="label"
                     onBlur={[Function]}
                     onChange={[Function]}
                     placeholder="Label"
                     size="medium"
                     value=""
                   >
-                    <withChangeHandler(WrappingTextArea)
-                      className="c4 c5"
+                    <WrappingInput__TextArea
+                      className="c4"
                       data-autofocus={true}
                       data-qa="optionLabel"
                       id="label"
-                      name="label"
                       onBlur={[Function]}
                       onChange={[Function]}
+                      onKeyDown={[Function]}
                       placeholder="Label"
                       size="medium"
                       value=""
                     >
-                      <WrappingTextArea
+                      <TextareaAutosize
                         className="c4 c5"
                         data-autofocus={true}
                         data-qa="optionLabel"
                         id="label"
-                        name="label"
                         onBlur={[Function]}
                         onChange={[Function]}
+                        onHeightChange={[Function]}
+                        onKeyDown={[Function]}
                         placeholder="Label"
                         size="medium"
+                        useCacheForDOMMeasurements={false}
                         value=""
                       >
-                        <SeamlessTextArea__TextArea
+                        <textarea
                           className="c4 c5"
                           data-autofocus={true}
                           data-qa="optionLabel"
                           id="label"
-                          name="label"
                           onBlur={[Function]}
                           onChange={[Function]}
                           onKeyDown={[Function]}
                           placeholder="Label"
                           size="medium"
+                          style={
+                            Object {
+                              "height": 0,
+                            }
+                          }
                           value=""
-                        >
-                          <TextareaAutosize
-                            className="c4 c5 c6"
-                            data-autofocus={true}
-                            data-qa="optionLabel"
-                            id="label"
-                            name="label"
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onHeightChange={[Function]}
-                            onKeyDown={[Function]}
-                            placeholder="Label"
-                            size="medium"
-                            useCacheForDOMMeasurements={false}
-                            value=""
-                          >
-                            <textarea
-                              className="c4 c5 c6"
-                              data-autofocus={true}
-                              data-qa="optionLabel"
-                              id="label"
-                              name="label"
-                              onBlur={[Function]}
-                              onChange={[Function]}
-                              onKeyDown={[Function]}
-                              placeholder="Label"
-                              size="medium"
-                              style={
-                                Object {
-                                  "height": 0,
-                                }
-                              }
-                              value=""
-                            />
-                          </TextareaAutosize>
-                        </SeamlessTextArea__TextArea>
-                      </WrappingTextArea>
-                    </withChangeHandler(WrappingTextArea)>
-                  </withSeamlessness__StyledSeamless>
-                </withSeamlessness(withChangeHandler(WrappingTextArea))>
+                        />
+                      </TextareaAutosize>
+                    </WrappingInput__TextArea>
+                  </WrappingTextArea>
+                </withChangeHandler(WrappingTextArea)>
               </Option__SeamlessLabel>
             </div>
           </Field__StyledField>
@@ -413,97 +390,70 @@ exports[`Option should render a checkbox 1`] = `
           <div
             className="c2"
           >
-            <withSeamlessness(withChangeHandler(WrappingTextArea))
+            <withChangeHandler(WrappingTextArea)
               id="description"
               key=".0"
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Optional description"
-              size="small"
               value=""
             >
-              <withSeamlessness__StyledSeamless
+              <WrappingTextArea
                 className={undefined}
                 id="description"
-                name="description"
                 onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Optional description"
                 size="small"
                 value=""
               >
-                <withChangeHandler(WrappingTextArea)
-                  className="c7"
+                <WrappingInput__TextArea
+                  className={undefined}
                   id="description"
-                  name="description"
                   onBlur={[Function]}
                   onChange={[Function]}
+                  onKeyDown={[Function]}
                   placeholder="Optional description"
                   size="small"
                   value=""
                 >
-                  <WrappingTextArea
-                    className="c7"
+                  <TextareaAutosize
+                    className="c6"
                     id="description"
-                    name="description"
                     onBlur={[Function]}
                     onChange={[Function]}
+                    onHeightChange={[Function]}
+                    onKeyDown={[Function]}
                     placeholder="Optional description"
                     size="small"
+                    useCacheForDOMMeasurements={false}
                     value=""
                   >
-                    <SeamlessTextArea__TextArea
-                      className="c7"
+                    <textarea
+                      className="c6"
                       id="description"
-                      name="description"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onKeyDown={[Function]}
                       placeholder="Optional description"
                       size="small"
+                      style={
+                        Object {
+                          "height": 0,
+                        }
+                      }
                       value=""
-                    >
-                      <TextareaAutosize
-                        className="c7 c6"
-                        id="description"
-                        name="description"
-                        onBlur={[Function]}
-                        onChange={[Function]}
-                        onHeightChange={[Function]}
-                        onKeyDown={[Function]}
-                        placeholder="Optional description"
-                        size="small"
-                        useCacheForDOMMeasurements={false}
-                        value=""
-                      >
-                        <textarea
-                          className="c7 c6"
-                          id="description"
-                          name="description"
-                          onBlur={[Function]}
-                          onChange={[Function]}
-                          onKeyDown={[Function]}
-                          placeholder="Optional description"
-                          size="small"
-                          style={
-                            Object {
-                              "height": 0,
-                            }
-                          }
-                          value=""
-                        />
-                      </TextareaAutosize>
-                    </SeamlessTextArea__TextArea>
-                  </WrappingTextArea>
-                </withChangeHandler(WrappingTextArea)>
-              </withSeamlessness__StyledSeamless>
-            </withSeamlessness(withChangeHandler(WrappingTextArea))>
+                    />
+                  </TextareaAutosize>
+                </WrappingInput__TextArea>
+              </WrappingTextArea>
+            </withChangeHandler(WrappingTextArea)>
           </div>
         </Field__StyledField>
       </Field>
       <Option__DeleteContainer>
         <div
-          className="c8"
+          className="c7"
         >
           <Tooltip
             content="Delete option"
@@ -527,7 +477,7 @@ exports[`Option should render a checkbox 1`] = `
                 >
                   <button
                     aria-label="Delete option"
-                    className="c9"
+                    className="c8"
                     data-for="tooltip-1"
                     data-tip={true}
                     onClick={[Function]}
@@ -545,7 +495,7 @@ exports[`Option should render a checkbox 1`] = `
                 place="bottom"
               >
                 <ReactTooltip
-                  className="c10"
+                  className="c9"
                   delayShow={200}
                   effect="solid"
                   id="tooltip-1"
@@ -593,11 +543,10 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
   <Field
     id="description"
   >
-    <withSeamlessness(withChangeHandler(WrappingTextArea))
+    <withChangeHandler(WrappingTextArea)
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Optional description"
-      size="small"
       value=""
     />
   </Field>

@@ -31,7 +31,7 @@ const StyledNavLink = styled(NavLink)`
 
   &.selected {
     color: ${colors.blue};
-    border-color: rgba(5, 108, 153, 1);
+    border-color: ${colors.blue};
   }
 `;
 

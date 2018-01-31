@@ -25,8 +25,11 @@ import TextAreaAnswer from "components/Answers/TextAreaAnswer";
 
 export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
-  right: 0.8em;
-  top: 0.7em;
+  right: 0.33em;
+  top: 0.33em;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
   padding: 0;
 `;
 

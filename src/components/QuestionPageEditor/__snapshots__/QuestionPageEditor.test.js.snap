@@ -72,7 +72,7 @@ exports[`Question Page Editor should render 1`] = `
       duration={300}
       key="BasicAnswer1"
     >
-      <Connect(CanvasSection)
+      <QuestionPageEditor__AnswerSection
         id="BasicAnswer1"
         key="BasicAnswer1"
       >
@@ -92,13 +92,13 @@ exports[`Question Page Editor should render 1`] = `
           onUpdate={[Function]}
           onUpdateOption={[Function]}
         />
-      </Connect(CanvasSection)>
+      </QuestionPageEditor__AnswerSection>
     </SlideTransition>
     <SlideTransition
       duration={300}
       key="BasicAnswer2"
     >
-      <Connect(CanvasSection)
+      <QuestionPageEditor__AnswerSection
         id="BasicAnswer2"
         key="BasicAnswer2"
       >
@@ -118,7 +118,7 @@ exports[`Question Page Editor should render 1`] = `
           onUpdate={[Function]}
           onUpdateOption={[Function]}
         />
-      </Connect(CanvasSection)>
+      </QuestionPageEditor__AnswerSection>
     </SlideTransition>
   </TransitionGroup>
   <CanvasSection__BasicSection>

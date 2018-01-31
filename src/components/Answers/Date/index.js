@@ -6,7 +6,7 @@ import DummyDate from "components/Answers/Dummy/Date";
 import styled from "styled-components";
 
 import { Field } from "components/Forms";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
 
@@ -25,7 +25,7 @@ const Wrapper = styled.div.attrs({
 const Date = ({ answer, onChange, onUpdate, id }) => (
   <Wrapper id={id}>
     <Field id="label">
-      <SeamlessTextArea
+      <WrappingInput
         placeholder="Label"
         size="medium"
         onChange={onChange}

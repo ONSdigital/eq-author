@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import { transparentize } from "polished";
 
 import { colors, shadow } from "constants/theme";
 import * as ActionCreators from "redux/uiState/actions";
@@ -9,7 +10,7 @@ import { getSelectedSection } from "redux/uiState/reducer";
 
 const focusedStyle = css`
   box-shadow: none;
-  outline-color: ${colors.lightBlue} !important;
+  outline-color: ${colors.blue} !important;
 `;
 
 export const BasicSection = styled.div`
@@ -25,6 +26,10 @@ const FocusableSection = styled(BasicSection)`
   margin-bottom: 1px;
   outline: 1px solid transparent;
   ${props => props.isFocused && focusedStyle};
+
+  &:hover {
+    outline-color: ${transparentize(0.5, colors.blue)};
+  }
 `;
 
 export class CanvasSection extends React.Component {
@@ -35,7 +40,7 @@ export class CanvasSection extends React.Component {
     id: PropTypes.string.isRequired
   };
 
-  handleFocus = () => this.props.focusOnSection(this.props.id);
+  handleFocus = e => this.props.focusOnSection(this.props.id);
 
   render() {
     return <FocusableSection {...this.props} onFocus={this.handleFocus} />;

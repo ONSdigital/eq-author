@@ -3,7 +3,7 @@
 exports[`QuestionnaireLink should render 1`] = `
 .c0 {
   text-decoration: none;
-  color: #056C99;
+  color: #008AD2;
   width: 100%;
   max-width: 33em;
   display: block;

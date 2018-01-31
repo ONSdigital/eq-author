@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { colors, radius } from "constants/theme";
 import { Field } from "components/Forms";
-import SeamlessTextArea from "components/SeamlessTextArea/SeamlessTextArea";
+import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -86,7 +86,7 @@ StyledOption.propTypes = {
   duration: PropTypes.number
 };
 
-export const SeamlessLabel = styled(SeamlessTextArea)`
+export const SeamlessLabel = styled(WrappingInput)`
   display: inline-block !important;
   width: auto;
   vertical-align: middle;
@@ -152,7 +152,7 @@ export class StatelessOption extends Component {
           />
         </LabelField>
         <Field id="description">
-          <SeamlessTextArea
+          <WrappingInput
             placeholder="Optional description"
             onChange={onChange}
             value={option.description}
