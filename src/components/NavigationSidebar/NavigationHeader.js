@@ -4,6 +4,7 @@ import { colors } from "constants/theme";
 import homeIcon from "./icon-home.svg";
 import settingsIcon from "./icon-cog.svg";
 import SVG from "react-inlinesvg";
+import { Link } from "react-router-dom";
 
 const textInverted = "#E1E1E1";
 const navBackground = "#4A4A4A";
@@ -27,7 +28,7 @@ const IconList = styled.ul`
   }
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   color: ${textInverted};
   text-decoration: none;
 
@@ -58,12 +59,12 @@ const NavigationHeader = () => {
   return (
     <IconList>
       <li>
-        <StyledLink href="/">
+        <StyledLink to="/">
           <SVG uniqueHash="home-icon" src={homeIcon} />
         </StyledLink>
       </li>
       <li>
-        <SettingsLink href="/">
+        <SettingsLink to="/">
           Settings
           <SettingsIcon uniqueHash="settings-icon" src={settingsIcon} />
         </SettingsLink>
