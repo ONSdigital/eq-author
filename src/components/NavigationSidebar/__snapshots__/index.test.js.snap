@@ -5,9 +5,7 @@ exports[`NavigationSidebar should render 1`] = `
   id="questionnaire-nav"
 >
   <NavigationHeader />
-  <NavigationSidebar__NavigationScrollPane
-    data-scroll="navigation"
-  >
+  <NavigationSidebar__NavigationScrollPane>
     <SectionNav
       onAddPage={[Function]}
       onDeleteSection={[Function]}

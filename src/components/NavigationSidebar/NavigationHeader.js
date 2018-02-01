@@ -16,9 +16,6 @@ const IconList = styled.ul`
   padding: 0.75em;
   margin: 0;
   background: ${navBackground};
-  position: sticky;
-  top: 0;
-  left: 0;
   z-index: 9999;
   border-bottom: 1px solid #c3c3c3;
   flex: 0 0 auto;

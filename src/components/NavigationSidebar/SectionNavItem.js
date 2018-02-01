@@ -123,7 +123,7 @@ class SectionNavItem extends React.Component {
   };
 
   handleDeleteFocus = _ => {
-    document.querySelector('[data-scroll="navigation"]').scrollLeft = 0;
+    this.elem.scrollLeft = 0;
   };
 
   render() {

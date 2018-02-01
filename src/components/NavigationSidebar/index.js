@@ -93,7 +93,7 @@ class NavigationSidebar extends Component {
     return (
       <Container id="questionnaire-nav">
         <NavigationHeader />
-        <NavigationScrollPane data-scroll="navigation">
+        <NavigationScrollPane>
           <SectionNav
             transitionDuration={200}
             questionnaire={questionnaire}

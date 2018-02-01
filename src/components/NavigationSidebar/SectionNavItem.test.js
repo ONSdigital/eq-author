@@ -61,23 +61,11 @@ describe("SectionNavItem", () => {
   });
 
   describe("Fix keyboard focus scrolling", () => {
-    let querySelector;
-    let mockScrollPane;
-
-    beforeEach(() => {
-      querySelector = jest.spyOn(document, "querySelector");
-      mockScrollPane = document.createElement("div");
-    });
-
-    afterEach(() => {
-      jest.restoreAllMocks();
-    });
-
     it("should set the scrollLeft to 0", () => {
-      querySelector.mockReturnValue(mockScrollPane);
+      const elem = shallow(<div />);
+      wrapper.instance().saveRef(elem);
       wrapper.find(SectionDeleteButton).simulate("focus");
-      expect(querySelector).toHaveBeenCalledWith('[data-scroll="navigation"]');
-      expect(mockScrollPane.scrollLeft).toEqual(0);
+      expect(wrapper.instance().elem.scrollLeft).toEqual(0);
     });
   });
 });
