@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { getLink } from "utils/UrlUtils";
-import Tooltip from "components/Tooltip";
 import CustomPropTypes from "custom-prop-types";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import getTextFromHTML from "utils/getTextFromHTML";
-import HoverDeleteButton from "./HoverDeleteButton";
 import pageIcon from "./icon-questionpage.svg";
 import { transparentize } from "polished";
 const duration = 300;
@@ -19,7 +17,6 @@ export const StyledPageItem = styled.li`
   padding: 0;
   margin: 0;
   font-weight: 500;
-  z-index: ${props => props.index};
   position: relative;
   display: flex;
   align-items: center;
@@ -110,18 +107,6 @@ const NavList = styled.ol`
   list-style: none;
 `;
 
-export const DeleteButton = styled(HoverDeleteButton)`
-  top: 0;
-  /* stylelint-disable */
-  ${StyledPageItem}:hover &,
-  ${Link}:focus + &,
-  &:focus {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  /* stylelint-enable */
-`;
-
 export class PageNavItem extends React.Component {
   state = {
     isDeleting: false
@@ -131,31 +116,14 @@ export class PageNavItem extends React.Component {
     sectionId: PropTypes.string.isRequired,
     questionnaireId: PropTypes.string.isRequired,
     pageId: PropTypes.string.isRequired,
-    pageNumber: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired
-  };
-
-  handleDelete = () => {
-    const { sectionId, pageId, onDelete } = this.props;
-
-    this.setState({ isDeleting: true });
-
-    onDelete(sectionId, pageId).catch(() => {
-      this.setState({ isDeleting: false });
-    });
-  };
-
-  handleFocus = _ => {
-    document.querySelector('[class*="NavigationScrollPane"]').scrollLeft = 0;
+    title: PropTypes.string.isRequired
   };
 
   render() {
-    const { sectionId, questionnaireId, pageId, title, index } = this.props;
+    const { sectionId, questionnaireId, pageId, title } = this.props;
 
     return (
-      <StyledPageItem index={index}>
+      <StyledPageItem>
         <Link
           to={getLink(questionnaireId, sectionId, pageId)}
           aria-disabled={parseInt(pageId, 10) < 0}
@@ -165,35 +133,21 @@ export class PageNavItem extends React.Component {
             {getTextFromHTML(title) || "Page Title"}
           </LinkText>
         </Link>
-        <Tooltip content="Delete page">
-          <DeleteButton
-            type="button"
-            aria-label="Delete page"
-            onClick={this.handleDelete}
-            onFocus={this.handleFocus}
-          >
-            ×
-          </DeleteButton>
-        </Tooltip>
       </StyledPageItem>
     );
   }
 }
 
-const PageNav = ({ section, questionnaire, onDelete }) => (
+const PageNav = ({ section, questionnaire }) => (
   <TransitionGroup component={NavList}>
-    {section.pages.map((page, i, pages) => {
-      const pageNumber = `${section.number}.${i + 1}`;
+    {section.pages.map(page => {
       return (
         <CSSTransition key={page.id} timeout={duration} classNames="page">
           <PageNavItem
             title={page.title}
-            pageNumber={pageNumber}
             pageId={page.id}
             sectionId={section.id}
             questionnaireId={questionnaire.id}
-            onDelete={onDelete}
-            index={pages.length - i}
           />
         </CSSTransition>
       );
@@ -203,8 +157,7 @@ const PageNav = ({ section, questionnaire, onDelete }) => (
 
 PageNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,
-  section: CustomPropTypes.section.isRequired,
-  onDelete: PropTypes.func.isRequired
+  section: CustomPropTypes.section.isRequired
 };
 
 export default PageNav;

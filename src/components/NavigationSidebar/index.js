@@ -45,7 +45,6 @@ class NavigationSidebar extends Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     onAddPage: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
     onDeleteSection: PropTypes.func.isRequired
   };
@@ -69,7 +68,7 @@ class NavigationSidebar extends Component {
   };
 
   render() {
-    const { questionnaire, onDeletePage, onDeleteSection } = this.props;
+    const { questionnaire, onDeleteSection } = this.props;
 
     return (
       <Container id="questionnaire-nav">
@@ -78,7 +77,6 @@ class NavigationSidebar extends Component {
           transitionDuration={200}
           questionnaire={questionnaire}
           onAddPage={this.handleAddPage}
-          onDeletePage={onDeletePage}
           onDeleteSection={onDeleteSection}
           ref={this.saveSectionNavRef}
         />

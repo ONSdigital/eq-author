@@ -7,7 +7,6 @@ exports[`NavigationSidebar should render 1`] = `
   <NavigationHeader />
   <SectionNav
     onAddPage={[Function]}
-    onDeletePage={[Function]}
     onDeleteSection={[Function]}
     questionnaire={
       Object {

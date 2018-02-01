@@ -1,4 +1,5 @@
 import { getPageTitle, startAtHomepage } from "../helper";
+import { last } from "lodash";
 
 import {
   hasCreateQuestionnaireButton,
@@ -90,7 +91,11 @@ describe("eQ Author Smoketest", () => {
 
     it("should create a new page when deleting only page in section", () => {
       const prevUrl = browser.getUrl();
-      browser.click("[aria-label='Delete page']");
+      browser.click("[data-test='btn-delete']");
+
+      // Find the delete button from the confirmation dialog.
+      const deleteButtons = browser.elements("[data-test='btn-delete']").value;
+      browser.elementIdClick(last(deleteButtons).ELEMENT);
 
       browser.waitUntil(
         () => prevUrl !== browser.getUrl(),

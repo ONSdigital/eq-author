@@ -88,7 +88,7 @@ export class QuestionnaireDesignPage extends Component {
       >
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            <NavigationScrollPane>
+            <NavigationScrollPane data-scroll="navigation">
               <NavigationSidebarContainer
                 questionnaire={questionnaire}
                 questionnaireId={questionnaireId}

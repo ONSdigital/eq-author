@@ -5,12 +5,7 @@ import { SynchronousPromise } from "synchronous-promise";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 
 describe("NavigationSidebar", () => {
-  let wrapper,
-    handleAddSection,
-    handleAddPage,
-    handleDeleteSection,
-    handleDeletePage,
-    sectionNav;
+  let wrapper, handleAddSection, handleAddPage, handleDeleteSection, sectionNav;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -24,7 +19,6 @@ describe("NavigationSidebar", () => {
     handleAddSection = jest.fn(() => SynchronousPromise.resolve(questionnaire));
     handleAddPage = jest.fn(() => SynchronousPromise.resolve({ section }));
     handleDeleteSection = jest.fn();
-    handleDeletePage = jest.fn();
     sectionNav = { scrollSectionIntoView: jest.fn() };
 
     wrapper = shallow(
@@ -33,7 +27,6 @@ describe("NavigationSidebar", () => {
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
         onDeleteSection={handleDeleteSection}
-        onDeletePage={handleDeletePage}
       />
     );
 
@@ -60,11 +53,6 @@ describe("NavigationSidebar", () => {
     wrapper.find(SectionNav).simulate("addPage", section.id);
     expect(handleAddPage).toHaveBeenCalledWith(section.id);
     expect(sectionNav.scrollSectionIntoView).toHaveBeenCalledWith(section.id);
-  });
-
-  it("should allow pages to be deleted", () => {
-    wrapper.find(SectionNav).simulate("deletePage");
-    expect(handleDeletePage).toHaveBeenCalled();
   });
 
   it("should allow sections to be deleted", () => {

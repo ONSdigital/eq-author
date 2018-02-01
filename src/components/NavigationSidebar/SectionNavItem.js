@@ -35,7 +35,7 @@ export const AddPageBtn = styled.button`
 `;
 
 export const SectionDeleteButton = styled(HoverDeleteButton)`
-  top: 0.3em;
+  top: 0.2em;
 
   .section-title-wrapper:hover &,
   .section-title-wrapper:focus + &,
@@ -83,7 +83,7 @@ StyledSectionNavItem.propTypes = {
 
 const SectionTitleWrapper = styled.div`
   background: ${navSectionBackground};
-  padding: 0.5em;
+  padding: 0.35em;
   display: flex;
   align-items: center;
 `;
@@ -93,7 +93,6 @@ class SectionNavItem extends React.Component {
     questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
     onDeleteSection: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
     section: CustomPropTypes.section.isRequired,
     duration: PropTypes.number.isRequired,
     saveSectionItemRef: PropTypes.func.isRequired
@@ -123,11 +122,11 @@ class SectionNavItem extends React.Component {
   };
 
   handleDeleteFocus = _ => {
-    document.querySelector('[class*="NavigationScrollPane"]').scrollLeft = 0;
+    document.querySelector('[data-scroll="navigation"]').scrollLeft = 0;
   };
 
   render() {
-    const { questionnaire, section, onDeletePage, duration } = this.props;
+    const { questionnaire, section, duration } = this.props;
 
     return (
       <StyledSectionNavItem
@@ -148,11 +147,7 @@ class SectionNavItem extends React.Component {
             </SectionDeleteButton>
           </Tooltip>
         </SectionTitleWrapper>
-        <PageNav
-          section={section}
-          questionnaire={questionnaire}
-          onDelete={onDeletePage}
-        />
+        <PageNav section={section} questionnaire={questionnaire} />
         <AddPageBtn onClick={this.handleAddPage} id="btn-add-page">
           Add question
         </AddPageBtn>

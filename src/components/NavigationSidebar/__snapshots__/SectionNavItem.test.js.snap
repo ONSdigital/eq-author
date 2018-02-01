@@ -60,7 +60,6 @@ exports[`SectionNavItem should render 1`] = `
     </Tooltip>
   </SectionNavItem__SectionTitleWrapper>
   <PageNav
-    onDelete={[Function]}
     questionnaire={
       Object {
         "id": "1",
