@@ -21,13 +21,6 @@ const Centered = styled.div`
   margin-bottom: 4em;
 `;
 
-const NavigationScrollPane = styled(ScrollPane)`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow-x: hidden;
-`;
-
 export class QuestionnaireDesignPage extends Component {
   static propTypes = {
     onUpdateSection: PropTypes.func.isRequired,
@@ -88,14 +81,12 @@ export class QuestionnaireDesignPage extends Component {
       >
         <Grid align="top">
           <Column cols={2} gutters={false}>
-            <NavigationScrollPane data-scroll="navigation">
-              <NavigationSidebarContainer
-                questionnaire={questionnaire}
-                questionnaireId={questionnaireId}
-                sectionId={sectionId}
-                pageId={pageId}
-              />
-            </NavigationScrollPane>
+            <NavigationSidebarContainer
+              questionnaire={questionnaire}
+              questionnaireId={questionnaireId}
+              sectionId={sectionId}
+              pageId={pageId}
+            />
           </Column>
           <Column gutters={false}>
             <ScrollPane>

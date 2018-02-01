@@ -5,29 +5,33 @@ exports[`NavigationSidebar should render 1`] = `
   id="questionnaire-nav"
 >
   <NavigationHeader />
-  <SectionNav
-    onAddPage={[Function]}
-    onDeleteSection={[Function]}
-    questionnaire={
-      Object {
-        "id": "1",
-        "sections": Array [
-          Object {
-            "id": "3",
-            "pages": Array [
-              Object {
-                "id": "2",
-                "title": "Page",
-              },
-            ],
-            "title": "Section",
-          },
-        ],
-        "title": "Questionnaire",
+  <NavigationSidebar__NavigationScrollPane
+    data-scroll="navigation"
+  >
+    <SectionNav
+      onAddPage={[Function]}
+      onDeleteSection={[Function]}
+      questionnaire={
+        Object {
+          "id": "1",
+          "sections": Array [
+            Object {
+              "id": "3",
+              "pages": Array [
+                Object {
+                  "id": "2",
+                  "title": "Page",
+                },
+              ],
+              "title": "Section",
+            },
+          ],
+          "title": "Questionnaire",
+        }
       }
-    }
-    transitionDuration={200}
-  />
+      transitionDuration={200}
+    />
+  </NavigationSidebar__NavigationScrollPane>
   <NavigationSidebar__AddSection>
     <NavigationSidebar__AddSectionBtn
       clear={true}

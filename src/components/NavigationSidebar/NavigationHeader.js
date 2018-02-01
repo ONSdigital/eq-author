@@ -21,6 +21,7 @@ const IconList = styled.ul`
   left: 0;
   z-index: 9999;
   border-bottom: 1px solid #c3c3c3;
+  flex: 0 0 auto;
 
   & > li {
     display: flex;

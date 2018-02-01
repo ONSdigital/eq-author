@@ -50,6 +50,7 @@ const duration = props => props.duration;
 
 const StyledSectionNavItem = styled.li`
   position: relative;
+  overflow-x: hidden;
 
   &.section-enter {
     opacity: 0;

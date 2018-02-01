@@ -51,7 +51,7 @@ export const StyledPageItem = styled.li`
 const Link = styled(NavLink)`
   text-decoration: none;
   color: ${textInverted};
-  padding: 0.4em 2.5em 0.4em 0.75em;
+  padding: 0.4em 2.5em 0.4em 0.6em;
   flex: 1 1 auto;
   height: 100%;
   position: relative;

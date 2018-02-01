@@ -7,6 +7,7 @@ import SectionNav from "components/NavigationSidebar/SectionNav";
 import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import IconButton from "components/IconButton";
 import plusIcon from "./icon-plus.svg";
+import ScrollPane from "components/ScrollPane";
 
 const navBackground = "#4A4A4A";
 const textInverted = "#E1E1E1";
@@ -14,7 +15,9 @@ const textInverted = "#E1E1E1";
 const Container = styled.div`
   background: ${navBackground};
   color: ${textInverted};
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `;
 
 const AddSection = styled.div`
@@ -25,6 +28,7 @@ const AddSection = styled.div`
   z-index: 99999;
   bottom: 0;
   left: 0;
+  flex: 0;
 `;
 
 export const AddSectionBtn = styled(IconButton)`
@@ -38,6 +42,22 @@ export const AddSectionBtn = styled(IconButton)`
 
   &:hover {
     color: ${colors.white};
+  }
+`;
+
+const NavigationScrollPane = styled(ScrollPane)`
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.5em;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: ${colors.lightGrey};
+    }
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 0.5em;
   }
 `;
 
@@ -73,13 +93,15 @@ class NavigationSidebar extends Component {
     return (
       <Container id="questionnaire-nav">
         <NavigationHeader />
-        <SectionNav
-          transitionDuration={200}
-          questionnaire={questionnaire}
-          onAddPage={this.handleAddPage}
-          onDeleteSection={onDeleteSection}
-          ref={this.saveSectionNavRef}
-        />
+        <NavigationScrollPane data-scroll="navigation">
+          <SectionNav
+            transitionDuration={200}
+            questionnaire={questionnaire}
+            onAddPage={this.handleAddPage}
+            onDeleteSection={onDeleteSection}
+            ref={this.saveSectionNavRef}
+          />
+        </NavigationScrollPane>
         <AddSection>
           <AddSectionBtn
             icon={plusIcon}
