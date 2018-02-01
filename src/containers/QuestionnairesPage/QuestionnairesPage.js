@@ -21,7 +21,6 @@ const StyledCenteredPanel = styled(CenteredPanel)`
 
 const Questionnaires = props => {
   const title = "Your Questionnaires";
-  const onCreateQuestionnaire = props.createQuestionnaire;
 
   return (
     <BaseLayout title={title} docTitle={title}>
@@ -35,7 +34,7 @@ const Questionnaires = props => {
               <QuestionnaireSettingsModal
                 isOpen={isOpen}
                 onClose={onClose}
-                onSubmit={onCreateQuestionnaire}
+                onSubmit={props.onCreateQuestionnaire}
               />
             </StyledButtonGroup>
           )}
@@ -51,7 +50,7 @@ const Questionnaires = props => {
 Questionnaires.propTypes = {
   loading: PropTypes.bool,
   questionnaires: CustomPropTypes.questionnaireList,
-  createQuestionnaire: PropTypes.func.isRequired
+  onCreateQuestionnaire: PropTypes.func.isRequired
 };
 
 export default Questionnaires;

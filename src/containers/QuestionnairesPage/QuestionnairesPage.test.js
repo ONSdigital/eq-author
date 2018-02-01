@@ -39,7 +39,7 @@ describe("containers/Questionnaires", () => {
     const wrapper = createWrapper({
       questionnaires: [],
       onDeleteQuestionnaire,
-      createQuestionnaire: jest.fn()
+      onCreateQuestionnaire: jest.fn()
     });
     expect(wrapper).toMatchSnapshot();
   });
@@ -48,7 +48,7 @@ describe("containers/Questionnaires", () => {
     const props = {
       questionnaires: [],
       onDeleteQuestionnaire,
-      createQuestionnaire: jest.fn()
+      onCreateQuestionnaire: jest.fn()
     };
     const wrapper = shallow(<Questionnaires {...props} />);
 
@@ -59,7 +59,7 @@ describe("containers/Questionnaires", () => {
     const props = {
       questionnaires: [questionnaire],
       onDeleteQuestionnaire,
-      createQuestionnaire: jest.fn()
+      onCreateQuestionnaire: jest.fn()
     };
     const wrapper = shallow(<Questionnaires {...props} />);
 
@@ -69,7 +69,7 @@ describe("containers/Questionnaires", () => {
   it("should not render table whilst data is loading", () => {
     const props = {
       loading: true,
-      createQuestionnaire: jest.fn()
+      onCreateQuestionnaire: jest.fn()
     };
     const wrapper = shallow(<Questionnaires {...props} />);
 
@@ -105,7 +105,7 @@ describe("containers/Questionnaires", () => {
     it("opens settings modal when clicking Create button", () => {
       const props = {
         onDeleteQuestionnaire: jest.fn(),
-        createQuestionnaire: jest.fn()
+        onCreateQuestionnaire: jest.fn()
       };
 
       const wrapper = mount(<Questionnaires {...props} />, context);
@@ -122,14 +122,14 @@ describe("containers/Questionnaires", () => {
     it("creates questionnaire on submit", () => {
       const props = {
         onDeleteQuestionnaire: jest.fn(),
-        createQuestionnaire: jest.fn()
+        onCreateQuestionnaire: jest.fn()
       };
 
       const wrapper = mount(<Questionnaires {...props} />, context);
 
       wrapper.find("Button").simulate("click");
       wrapper.find("form").simulate("submit");
-      expect(props.createQuestionnaire).toHaveBeenCalled();
+      expect(props.onCreateQuestionnaire).toHaveBeenCalled();
     });
   });
 });

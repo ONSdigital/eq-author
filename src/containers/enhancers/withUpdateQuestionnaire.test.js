@@ -13,11 +13,11 @@ describe("enhancers > withUpdateQuestionnaire", () => {
     });
 
     it("should have an onUpdate prop", () => {
-      expect(props.onUpdate).toBeInstanceOf(Function);
+      expect(props.onUpdateQuestionnaire).toBeInstanceOf(Function);
     });
 
     it("should call mutate", () => {
-      props.onUpdate(questionnaire);
+      props.onUpdateQuestionnaire(questionnaire);
       expect(mutate).toHaveBeenCalledWith({
         variables: { input: questionnaire }
       });
