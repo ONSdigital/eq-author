@@ -2,6 +2,8 @@ import React from "react";
 import ReactModal from "react-modal";
 import styled, { injectGlobal } from "styled-components";
 import PropTypes from "prop-types";
+import { colors } from "constants/theme";
+import Button from "components/Button";
 
 const reactModalStyleOverride = {
   overlay: {
@@ -49,8 +51,36 @@ injectGlobal`
 }
 `;
 
+const CloseButton = styled(Button).attrs({
+  clear: true,
+  "aria-label": "Close"
+})`
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+  font-size: 2em;
+  padding: 0.25em 0.5em;
+  color: ${colors.lightGrey};
+  opacity: 0.7;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: -webkit-focus-ring-color auto 4px;
+  }
+`;
+
 const StyledModal = styled(ReactModal)`
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
   position: relative;
+  background: ${colors.white};
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+  min-width: 25em;
 `;
 
 class Modal extends React.Component {
@@ -83,6 +113,7 @@ class Modal extends React.Component {
         closeTimeoutMS={300}
         {...otherProps}
       >
+        <CloseButton onClick={onClose}>&times;</CloseButton>
         {children}
       </StyledModal>
     );

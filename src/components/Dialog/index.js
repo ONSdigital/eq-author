@@ -47,9 +47,6 @@ class Dialog extends Component {
     return (
       <StyledDialog onClick={keepOpen} {...otherProps}>
         {children}
-        <CloseButton clear aria-label="Close" onClick={onClose}>
-          &times;
-        </CloseButton>
       </StyledDialog>
     );
   }
