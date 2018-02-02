@@ -20,8 +20,7 @@ class SectionNav extends Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
-    onDeleteSection: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired
+    onDeleteSection: PropTypes.func.isRequired
   };
 
   scrollSectionIntoView = id =>
@@ -36,12 +35,7 @@ class SectionNav extends Component {
   };
 
   render() {
-    const {
-      questionnaire,
-      onAddPage,
-      onDeletePage,
-      onDeleteSection
-    } = this.props;
+    const { questionnaire, onAddPage, onDeleteSection } = this.props;
     return (
       <TransitionGroup component={NavList}>
         {questionnaire.sections
@@ -59,7 +53,6 @@ class SectionNav extends Component {
                 questionnaire={questionnaire}
                 section={section}
                 duration={duration}
-                onDeletePage={onDeletePage}
                 onDeleteSection={onDeleteSection}
                 onAddPage={onAddPage}
                 saveSectionItemRef={this.saveSectionItemRef}

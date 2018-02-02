@@ -1,4 +1,6 @@
-FROM node:7
+FROM node:8
+MAINTAINER eq.team@ons.gov.uk
+
 EXPOSE 3000
 WORKDIR /app
 

@@ -2,7 +2,7 @@
 
 exports[`HoverDeleteButton should render 1`] = `
 .c0 {
-  color: #4A4A4A;
+  color: #e1e1e1;
   border: none;
   background: transparent;
   font-size: 1.25em;

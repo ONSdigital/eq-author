@@ -1,11 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PageNav, {
-  DeleteButton,
-  PageNavItem,
-  LinkText,
-  StyledPageItem
-} from "./PageNav";
+import PageNav, { PageNavItem, LinkText } from "./PageNav";
 
 describe("PageNav", () => {
   let component, handleDelete;
@@ -40,29 +35,6 @@ describe("PageNav", () => {
     it("should render", () => {
       expect(pageNavComponent).toMatchSnapshot();
     });
-
-    describe("when delete button clicked", () => {
-      it("should invoke callback when delete button clicked", () => {
-        pageNavComponent.find(DeleteButton).simulate("click");
-        expect(handleDelete).toHaveBeenCalledWith("3", "2");
-      });
-
-      it("should set isDeleting state to true", () => {
-        pageNavComponent.find(DeleteButton).simulate("click");
-        expect(pageNavComponent.state().isDeleting).toBe(true);
-      });
-
-      it("should set isDeleting state false in event of failure", () => {
-        const handleCatch = jest.fn(arg => arg());
-        const handleDelete = () => ({ catch: handleCatch });
-
-        pageNavComponent.setProps({ onDelete: handleDelete });
-        pageNavComponent.find(DeleteButton).simulate("click");
-
-        expect(handleCatch).toHaveBeenCalled();
-        expect(pageNavComponent.state().isDeleting).toBe(false);
-      });
-    });
   });
 
   describe("LinkText", () => {
@@ -74,13 +46,6 @@ describe("PageNav", () => {
     it("should be partially transparent if fade prop passed", () => {
       const wrapper = shallow(<LinkText fade />);
       expect(wrapper).toHaveStyleRule("opacity", "0.5");
-    });
-  });
-
-  describe("StyledPageItem", () => {
-    it("should have configurable z-index", () => {
-      const wrapper = shallow(<StyledPageItem index={123} />);
-      expect(wrapper).toHaveStyleRule("z-index", "123");
     });
   });
 });

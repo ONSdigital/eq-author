@@ -1,5 +1,4 @@
 import { shallow } from "enzyme";
-import PageNav from "./PageNav";
 import SectionNavItem, {
   AddPageBtn,
   SectionDeleteButton
@@ -7,11 +6,7 @@ import SectionNavItem, {
 import React from "react";
 
 describe("SectionNavItem", () => {
-  let wrapper,
-    handleAddPage,
-    handleDeleteSection,
-    handleDeletePage,
-    saveSectionItemRef;
+  let wrapper, handleAddPage, handleDeleteSection, saveSectionItemRef;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -24,7 +19,6 @@ describe("SectionNavItem", () => {
   beforeEach(() => {
     handleAddPage = jest.fn(() => Promise.resolve);
     handleDeleteSection = jest.fn();
-    handleDeletePage = jest.fn();
     saveSectionItemRef = jest.fn();
 
     wrapper = shallow(
@@ -33,7 +27,6 @@ describe("SectionNavItem", () => {
         section={section}
         onAddPage={handleAddPage}
         onDeleteSection={handleDeleteSection}
-        onDeletePage={handleDeletePage}
         saveSectionItemRef={saveSectionItemRef}
         duration={123}
       />
@@ -61,14 +54,18 @@ describe("SectionNavItem", () => {
     expect(handleDeleteSection).toHaveBeenCalledWith(section.id);
   });
 
-  it("should allow pages to be deleted", () => {
-    wrapper.find(PageNav).simulate("delete");
-    expect(handleDeletePage).toHaveBeenCalled();
-  });
-
   it("saveSectionItemRef", () => {
     const elem = shallow(<div />);
     wrapper.instance().saveRef(elem);
     expect(saveSectionItemRef).toHaveBeenCalledWith(section.id, elem);
+  });
+
+  describe("Fix keyboard focus scrolling", () => {
+    it("should set the scrollLeft to 0", () => {
+      const elem = shallow(<div />);
+      wrapper.instance().saveRef(elem);
+      wrapper.find(SectionDeleteButton).simulate("focus");
+      expect(wrapper.instance().elem.scrollLeft).toEqual(0);
+    });
   });
 });

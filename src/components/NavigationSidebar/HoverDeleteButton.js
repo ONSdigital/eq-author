@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { colors } from "constants/theme";
 
 const HoverDeleteButton = styled.button`
-  color: ${colors.text};
+  color: #e1e1e1;
   border: none;
   background: transparent;
   font-size: 1.25em;

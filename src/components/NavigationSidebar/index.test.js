@@ -1,16 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnaireNav, { AddSectionBtn } from "components/QuestionnaireNav";
+import NavigationSidebar, { AddSectionBtn } from "components/NavigationSidebar";
 import { SynchronousPromise } from "synchronous-promise";
-import SectionNav from "components/QuestionnaireNav/SectionNav";
+import SectionNav from "components/NavigationSidebar/SectionNav";
 
-describe("QuestionnaireNav", () => {
-  let wrapper,
-    handleAddSection,
-    handleAddPage,
-    handleDeleteSection,
-    handleDeletePage,
-    sectionNav;
+describe("NavigationSidebar", () => {
+  let wrapper, handleAddSection, handleAddPage, handleDeleteSection, sectionNav;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -24,16 +19,14 @@ describe("QuestionnaireNav", () => {
     handleAddSection = jest.fn(() => SynchronousPromise.resolve(questionnaire));
     handleAddPage = jest.fn(() => SynchronousPromise.resolve({ section }));
     handleDeleteSection = jest.fn();
-    handleDeletePage = jest.fn();
     sectionNav = { scrollSectionIntoView: jest.fn() };
 
     wrapper = shallow(
-      <QuestionnaireNav
+      <NavigationSidebar
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
         onDeleteSection={handleDeleteSection}
-        onDeletePage={handleDeletePage}
       />
     );
 
@@ -60,11 +53,6 @@ describe("QuestionnaireNav", () => {
     wrapper.find(SectionNav).simulate("addPage", section.id);
     expect(handleAddPage).toHaveBeenCalledWith(section.id);
     expect(sectionNav.scrollSectionIntoView).toHaveBeenCalledWith(section.id);
-  });
-
-  it("should allow pages to be deleted", () => {
-    wrapper.find(SectionNav).simulate("deletePage");
-    expect(handleDeletePage).toHaveBeenCalled();
   });
 
   it("should allow sections to be deleted", () => {

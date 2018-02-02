@@ -4,7 +4,7 @@ import SectionNav from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
-  let handleAddPage, handleDeleteSection, handleDeletePage;
+  let handleAddPage, handleDeleteSection;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -17,13 +17,11 @@ describe("SectionNav", () => {
   beforeEach(() => {
     handleAddPage = jest.fn();
     handleDeleteSection = jest.fn();
-    handleDeletePage = jest.fn();
     wrapper = shallow(
       <SectionNav
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
         onDeleteSection={handleDeleteSection}
-        onDeletePage={handleDeletePage}
       />
     );
   });
