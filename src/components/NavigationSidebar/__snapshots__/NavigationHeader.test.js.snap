@@ -6,6 +6,9 @@ exports[`NavigationHeader should render 1`] = `
     <NavigationHeader__StyledLink
       to="/"
     >
+      <VisuallyHidden>
+        Home
+      </VisuallyHidden>
       <InlineSVG
         cacheGetRequests={false}
         onLoad={[Function]}

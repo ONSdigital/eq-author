@@ -5,6 +5,7 @@ import homeIcon from "./icon-home.svg";
 import settingsIcon from "./icon-cog.svg";
 import SVG from "react-inlinesvg";
 import { Link } from "react-router-dom";
+import VisuallyHidden from "components/VisuallyHidden";
 
 const textInverted = "#E1E1E1";
 const navBackground = "#4A4A4A";
@@ -58,6 +59,7 @@ const NavigationHeader = () => {
     <IconList>
       <li>
         <StyledLink to="/">
+          <VisuallyHidden>Home</VisuallyHidden>
           <SVG uniqueHash="home-icon" src={homeIcon} />
         </StyledLink>
       </li>
