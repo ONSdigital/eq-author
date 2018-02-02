@@ -46,18 +46,10 @@ export const AddSectionBtn = styled(IconButton)`
 `;
 
 const NavigationScrollPane = styled(ScrollPane)`
-  ::-webkit-scrollbar-thumb {
-    border-radius: 0.5em;
-  }
-
   &:hover {
     &::-webkit-scrollbar-thumb {
       background: ${colors.lightGrey};
     }
-  }
-
-  ::-webkit-scrollbar-track {
-    border-radius: 0.5em;
   }
 `;
 
