@@ -2,13 +2,28 @@ import QuestionPageToolbar from "./QuestionPageToolbar";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
 
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 
-describe("Question Page Editor", () => {
+describe("QuestionPageToolbar", () => {
   let wrapper;
 
   let mockMutations;
   let page;
+
+  const createWrapper = (props, render = shallow) =>
+    render(<QuestionPageToolbar {...props} />);
+
+  const openModal = wrapper =>
+    wrapper
+      .find("IconButton__StyledButton")
+      .first()
+      .simulate("click");
+
+  const confirmDelete = wrapper =>
+    wrapper
+      .find("[data-test='confirm-delete-dialog'] [data-test='btn-delete']")
+      .first()
+      .simulate("click");
 
   beforeEach(() => {
     mockMutations = {
@@ -23,7 +38,7 @@ describe("Question Page Editor", () => {
       guidance: ""
     };
 
-    wrapper = shallow(<QuestionPageToolbar {...mockMutations} page={page} />);
+    wrapper = createWrapper({ page, ...mockMutations });
   });
 
   it("should render", () => {
@@ -31,21 +46,19 @@ describe("Question Page Editor", () => {
   });
 
   it("should display Modal when delete button is clicked", () => {
-    const deleteBtn = wrapper.find("[data-test='btn-delete']");
-    const deleteConfirmDialog = wrapper.find(DeleteConfirmDialog);
-    deleteBtn.simulate("click");
-    expect(deleteConfirmDialog.props().isOpen).toBe(false);
+    wrapper = createWrapper({ page, ...mockMutations }, mount);
+
+    expect(wrapper.find(DeleteConfirmDialog).prop("isOpen")).toBe(false);
+    openModal(wrapper);
+    expect(wrapper.find(DeleteConfirmDialog).prop("isOpen")).toBe(true);
   });
 
-  it("should offload closing of Modal to the Dialog itself", () => {
-    const deleteConfirmDialog = wrapper.find(DeleteConfirmDialog);
-    deleteConfirmDialog.simulate("close");
-    expect(deleteConfirmDialog.props().isOpen).toBe(false);
-  });
+  it("should delete page after confirmation", () => {
+    wrapper = createWrapper({ page, ...mockMutations }, mount);
 
-  it("should offload deleting of page to Dialog", () => {
-    const deleteConfirmDialog = wrapper.find(DeleteConfirmDialog);
-    deleteConfirmDialog.simulate("deletePage");
+    openModal(wrapper);
+    confirmDelete(wrapper);
+
     expect(mockMutations.onDeletePage).toHaveBeenCalled();
   });
 });

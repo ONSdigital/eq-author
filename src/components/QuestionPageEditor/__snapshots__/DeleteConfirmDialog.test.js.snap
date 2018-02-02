@@ -2,6 +2,7 @@
 
 exports[`Question Page Editor should render 1`] = `
 <DeleteConfirmDialog__DeleteConfirmModalDialog
+  data-test="confirm-delete-dialog"
   onClose={[Function]}
   page={
     Object {

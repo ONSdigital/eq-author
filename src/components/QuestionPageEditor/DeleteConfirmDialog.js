@@ -42,7 +42,11 @@ const DeleteConfirmDialog = ({
   onClose,
   ...otherProps
 }) => (
-  <DeleteConfirmModalDialog onClose={onClose} {...otherProps}>
+  <DeleteConfirmModalDialog
+    onClose={onClose}
+    {...otherProps}
+    data-test="confirm-delete-dialog"
+  >
     <DialogHeader>
       <Message>
         <Heading>Delete</Heading>

@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { colors } from "constants/theme";
 
 import IconButtonDelete from "components/IconButtonDelete";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
+import ModalTrigger from "components/ModalTrigger";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -18,36 +19,25 @@ export const Toolbar = styled.div`
   margin: 0 -1em 1em;
 `;
 
-class QuestionPageToolbar extends Component {
-  state = {
-    showDeleteConfirmDialog: false
-  };
-
-  handleOpenDeleteConfirmDialog = () =>
-    this.setState({ showDeleteConfirmDialog: true });
-
-  handleCloseDeleteConfirmDialog = () =>
-    this.setState({ showDeleteConfirmDialog: false });
-
-  render() {
-    return (
-      <Toolbar>
-        <IconButtonDelete
-          onClick={this.handleOpenDeleteConfirmDialog}
-          data-test="btn-delete"
-        >
-          Delete
-        </IconButtonDelete>
-        <DeleteConfirmDialog
-          isOpen={this.state.showDeleteConfirmDialog}
-          onClose={this.handleCloseDeleteConfirmDialog}
-          onDeletePage={this.props.onDeletePage}
-          title={getTextFromHTML(this.props.page.title) || "Untitled page"}
-        />
-      </Toolbar>
-    );
-  }
-}
+const QuestionPageToolbar = ({ onDeletePage, page }) => (
+  <Toolbar>
+    <ModalTrigger>
+      {({ isOpen, onClose, onOpen }) => (
+        <React.Fragment>
+          <IconButtonDelete onClick={onOpen} data-test="btn-delete">
+            Delete
+          </IconButtonDelete>
+          <DeleteConfirmDialog
+            isOpen={isOpen}
+            onClose={onClose}
+            onDeletePage={onDeletePage}
+            title={getTextFromHTML(page.title) || "Untitled page"}
+          />
+        </React.Fragment>
+      )}
+    </ModalTrigger>
+  </Toolbar>
+);
 
 QuestionPageToolbar.propTypes = {
   page: CustomPropTypes.page,
