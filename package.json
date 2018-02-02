@@ -125,6 +125,7 @@
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "normalizr": "^3.2.4",
+    "p-pipe": "^1.2.0",
     "polished": "^1.8.0",
     "raven-js": "^3.19.1",
     "react": "^16.2.0",

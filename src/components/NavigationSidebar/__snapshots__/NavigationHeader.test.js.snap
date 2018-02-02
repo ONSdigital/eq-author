@@ -3,7 +3,8 @@
 exports[`NavigationHeader should render 1`] = `
 <NavigationHeader__IconList>
   <li>
-    <NavigationHeader__StyledLink
+    <Link
+      replace={false}
       to="/"
     >
       <VisuallyHidden>
@@ -18,18 +19,10 @@ exports[`NavigationHeader should render 1`] = `
         uniquifyIDs={true}
         wrapper={[Function]}
       />
-    </NavigationHeader__StyledLink>
+    </Link>
   </li>
   <li>
-    <NavigationHeader__SettingsLink
-      to="/"
-    >
-      Settings
-      <NavigationHeader__SettingsIcon
-        src="icon-cog.svg"
-        uniqueHash="settings-icon"
-      />
-    </NavigationHeader__SettingsLink>
+    <ModalTrigger />
   </li>
 </NavigationHeader__IconList>
 `;

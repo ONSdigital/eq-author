@@ -20,7 +20,6 @@ injectGlobal`
 .ReactModalPortal .ReactModal__Overlay {
   transition: opacity 100ms ease-out;
   display: flex;
-  align-items: center;
   justify-content: center;
   z-index: 9999999;
 
@@ -74,13 +73,11 @@ const CloseButton = styled(Button).attrs({
 `;
 
 const StyledModal = styled(ReactModal)`
-  display: flex;
-  flex-direction: column;
   padding: 2em;
-  position: relative;
+  position: absolute;
   background: ${colors.white};
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
-  min-width: 25em;
+  top: 10em;
 `;
 
 class Modal extends React.Component {

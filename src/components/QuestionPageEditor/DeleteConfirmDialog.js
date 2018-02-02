@@ -20,7 +20,6 @@ import iconAlert from "./icon-alert.svg";
 import iconPage from "./icon-dialog-page.svg";
 
 const DeleteConfirmModalDialog = styled(Modal)`
-  top: -10em;
   width: 30em;
 `;
 

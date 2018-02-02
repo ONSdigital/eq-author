@@ -3,11 +3,12 @@ import { withRouter } from "react-router";
 
 import withCreatePage from "containers/enhancers/withCreatePage";
 import withDeleteSection from "containers/enhancers/withDeleteSection";
+import withUpdateQuestionnaire from "containers/enhancers/withUpdateQuestionnaire";
+import withCreateSection from "containers/enhancers/withCreateSection";
 
 import NavigationSidebar from "components/NavigationSidebar";
-import withCreateSection from "containers/enhancers/withCreateSection";
-import { raiseToast } from "redux/toast/actions";
 
+import { raiseToast } from "redux/toast/actions";
 import { connect } from "react-redux";
 
 export default compose(
@@ -15,5 +16,6 @@ export default compose(
   withRouter,
   withCreatePage,
   withCreateSection,
-  withDeleteSection // withDeleteSection depends on withCreateSection appearing first.
+  withDeleteSection, // withDeleteSection depends on withCreateSection appearing first.
+  withUpdateQuestionnaire
 )(NavigationSidebar);

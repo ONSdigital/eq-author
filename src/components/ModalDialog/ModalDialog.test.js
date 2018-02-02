@@ -3,21 +3,18 @@ import { shallow } from "enzyme";
 import ModalDialog from "components/ModalDialog";
 
 const createWrapper = (props, render = shallow) => {
-  return render(<ModalDialog {...props} />);
+  return render(
+    <ModalDialog onClose={jest.fn()} isOpen={false} {...props}>
+      <div>Modal dialog content</div>
+    </ModalDialog>
+  );
 };
 
 describe("ModalDialog", () => {
   let wrapper;
-  let props;
 
   beforeEach(() => {
-    props = {
-      onClose: jest.fn(),
-      isOpen: false,
-      children: <div>Modal dialog content</div>
-    };
-
-    wrapper = createWrapper(props);
+    wrapper = createWrapper();
   });
 
   it("should render when closed", () => {
@@ -26,15 +23,9 @@ describe("ModalDialog", () => {
 
   it("should render when open", () => {
     wrapper = createWrapper({
-      ...props,
       isOpen: true
     });
 
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should call close handler when closed", () => {
-    wrapper.simulate("close");
-    expect(props.onClose).toHaveBeenCalled();
   });
 });

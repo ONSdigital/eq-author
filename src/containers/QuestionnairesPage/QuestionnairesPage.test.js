@@ -107,12 +107,12 @@ describe("containers/Questionnaires", () => {
         onDeleteQuestionnaire: jest.fn(),
         onCreateQuestionnaire: jest.fn()
       };
-
       const wrapper = mount(<Questionnaires {...props} />, context);
 
       expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(
         false
       );
+
       wrapper.find("Button").simulate("click");
       expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(
         true
@@ -124,11 +124,11 @@ describe("containers/Questionnaires", () => {
         onDeleteQuestionnaire: jest.fn(),
         onCreateQuestionnaire: jest.fn()
       };
-
       const wrapper = mount(<Questionnaires {...props} />, context);
 
       wrapper.find("Button").simulate("click");
       wrapper.find("form").simulate("submit");
+
       expect(props.onCreateQuestionnaire).toHaveBeenCalled();
     });
   });

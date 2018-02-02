@@ -1,35 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Dialog should render a dialog 1`] = `
-<Dialog__StyledDialog
-  onClick={[Function]}
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 2em;
+  position: relative;
+  background: #FFFFFF;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.3);
+  min-width: 25em;
+}
+
+<div
+  className="c0"
 >
   <div>
     Dialog content
   </div>
-  <Dialog__CloseButton
-    aria-label="Close"
-    clear={true}
-    onClick={[Function]}
-  >
-    ×
-  </Dialog__CloseButton>
-</Dialog__StyledDialog>
-`;
-
-exports[`components/Dialog should render children 1`] = `
-<Dialog__StyledDialog
-  onClick={[Function]}
->
-  <p>
-    This is the modal dialog content
-  </p>
-  <Dialog__CloseButton
-    aria-label="Close"
-    clear={true}
-    onClick={[Function]}
-  >
-    ×
-  </Dialog__CloseButton>
-</Dialog__StyledDialog>
+</div>
 `;

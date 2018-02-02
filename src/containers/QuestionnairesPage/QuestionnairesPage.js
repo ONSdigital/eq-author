@@ -35,6 +35,7 @@ const Questionnaires = props => {
                 isOpen={isOpen}
                 onClose={onClose}
                 onSubmit={props.onCreateQuestionnaire}
+                confirmText="Create"
               />
             </StyledButtonGroup>
           )}

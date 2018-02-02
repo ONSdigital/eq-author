@@ -61,6 +61,22 @@ exports[`QuestionnaireMeta should render 1`] = `
       />
     </QuestionnaireMeta__InlineField>
   </QuestionnaireMeta__ToggleWrapper>
-  Children
+  <ButtonGroup
+    align="right"
+    horizontal={true}
+  >
+    <Button
+      secondary={true}
+      type="button"
+    >
+      Cancel
+    </Button>
+    <Button
+      primary={true}
+      type="submit"
+    >
+      Create
+    </Button>
+  </ButtonGroup>
 </Form>
 `;

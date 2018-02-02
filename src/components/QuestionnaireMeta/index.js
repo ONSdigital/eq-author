@@ -8,6 +8,8 @@ import ToggleSwitch from "components/ToggleSwitch";
 import styled from "styled-components";
 import showNavIcon from "./icon-show-nav.svg";
 import showConfirmationIcon from "./icon-show-confirmation.svg";
+import ButtonGroup from "components/ButtonGroup";
+import Button from "components/Button";
 
 const Icon = styled.img`
   height: 3em;
@@ -39,8 +41,9 @@ const ToggleWrapper = styled.div`
 export const StatelessQuestionnaireMeta = ({
   questionnaire,
   onSubmit,
+  onCancel,
   onChange,
-  children
+  confirmText
 }) => {
   return (
     <Form onSubmit={onSubmit}>
@@ -81,16 +84,24 @@ export const StatelessQuestionnaireMeta = ({
           />
         </InlineField>
       </ToggleWrapper>
-      {children}
+      <ButtonGroup horizontal align="right">
+        <Button onClick={onCancel} secondary type="button">
+          Cancel
+        </Button>
+        <Button type="submit" primary>
+          {confirmText}
+        </Button>
+      </ButtonGroup>
     </Form>
   );
 };
 
 StatelessQuestionnaireMeta.propTypes = {
-  children: PropTypes.node,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
-  questionnaire: CustomPropTypes.questionnaire
+  onCancel: PropTypes.func,
+  questionnaire: CustomPropTypes.questionnaire.isRequired,
+  confirmText: PropTypes.string.isRequired
 };
 
 export default withEntityEditor("questionnaire", questionnaireFragment)(

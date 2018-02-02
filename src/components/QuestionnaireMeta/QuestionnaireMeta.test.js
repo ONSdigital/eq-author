@@ -27,9 +27,8 @@ describe("QuestionnaireMeta", () => {
         onUpdate={handleUpdate}
         onSubmit={handleSubmit}
         onBlur={handleBlur}
-      >
-        Children
-      </StatelessQuestionnaireMeta>
+        confirmText="Create"
+      />
     );
   });
 

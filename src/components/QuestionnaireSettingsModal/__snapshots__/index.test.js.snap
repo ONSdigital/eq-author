@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuestionnaireSettingsModal should render 1`] = `
+<QuestionnaireSettingsModal__StyledModal
+  isOpen={false}
+  onClose={[Function]}
+>
+  <DialogHeader___default>
+    <QuestionnaireSettingsModal__CenteredDialogMessage
+      heading="Questionnaire settings"
+    />
+  </DialogHeader___default>
+  <withEntityEditor(StatelessQuestionnaireMeta)
+    confirmText="Create"
+    onCancel={[Function]}
+    onSubmit={[Function]}
+    onUpdate={[Function]}
+    questionnaire={Object {}}
+  />
+</QuestionnaireSettingsModal__StyledModal>
+`;
