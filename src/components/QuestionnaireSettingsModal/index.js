@@ -6,7 +6,7 @@ import { Message, Heading } from "components/Dialog/DialogMessage";
 import PropTypes from "prop-types";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import CustomPropTypes from "custom-prop-types";
-import pipeP from "p-pipe";
+import pipeP from "promise.pipe";
 
 const noop = () => {};
 
