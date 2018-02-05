@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "components/Modal";
 import styled from "styled-components";
 import DialogHeader from "components/Dialog/DialogHeader";
-import DialogMessage from "components/Dialog/DialogMessage";
+import { Message, Heading } from "components/Dialog/DialogMessage";
 import PropTypes from "prop-types";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import CustomPropTypes from "custom-prop-types";
@@ -19,8 +19,9 @@ const defaultQuestionnaire = {
   navigation: false
 };
 
-const CenteredDialogMessage = styled(DialogMessage)`
+const CenteredHeading = styled(Heading)`
   text-align: center;
+  margin-bottom: 2.5rem;
 `;
 
 const StyledModal = styled(Modal)`
@@ -36,7 +37,9 @@ const QuestionnaireSettingsModal = ({
 }) => (
   <StyledModal isOpen={isOpen} onClose={onClose}>
     <DialogHeader>
-      <CenteredDialogMessage heading="Questionnaire settings" />
+      <Message>
+        <CenteredHeading>Questionnaire settings</CenteredHeading>
+      </Message>
     </DialogHeader>
     <QuestionnaireMeta
       questionnaire={questionnaire}
