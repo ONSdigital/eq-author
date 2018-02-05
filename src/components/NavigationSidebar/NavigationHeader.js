@@ -9,6 +9,7 @@ import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 import IconButton from "components/IconButton";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
+import withModal, { ModalPropTypes } from "components/withModal";
 
 const IconList = styled.ul`
   display: flex;
@@ -26,7 +27,7 @@ const IconList = styled.ul`
   }
 `;
 
-export const SettingsButton = styled(IconButton)`
+const SettingsButton = styled(IconButton)`
   padding: 0;
   flex-direction: row-reverse;
 
@@ -35,50 +36,45 @@ export const SettingsButton = styled(IconButton)`
   }
 `;
 
-class NavigationHeader extends React.Component {
-  state = {
-    isModalOpen: false
-  };
+export const UnwrappedNavigationHeader = ({
+  onUpdateQuestionnaire,
+  questionnaire,
+  isModalOpen,
+  onModalOpen,
+  onModalClose
+}) => (
+  <IconList>
+    <li>
+      <Link to="/">
+        <VisuallyHidden>Home</VisuallyHidden>
+        <SVG uniqueHash="home-icon" src={homeIcon} />
+      </Link>
+    </li>
+    <li>
+      <SettingsButton
+        data-test="settings-btn"
+        clear
+        onClick={onModalOpen}
+        highlightOnHover={false}
+        icon={settingsIcon}
+      >
+        Settings
+      </SettingsButton>
+      <QuestionnaireSettingsModal
+        isOpen={isModalOpen}
+        onClose={onModalClose}
+        questionnaire={questionnaire}
+        onSubmit={onUpdateQuestionnaire}
+        confirmText="Apply"
+      />
+    </li>
+  </IconList>
+);
 
-  handleModalOpen = () => this.setState({ isModalOpen: true });
-  handleModalClose = () => this.setState({ isModalOpen: false });
-
-  render() {
-    const { onUpdateQuestionnaire, questionnaire } = this.props;
-
-    return (
-      <IconList>
-        <li>
-          <Link to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <SVG uniqueHash="home-icon" src={homeIcon} />
-          </Link>
-        </li>
-        <li>
-          <SettingsButton
-            clear
-            onClick={this.handleModalOpen}
-            highlightOnHover={false}
-            icon={settingsIcon}
-          >
-            Settings
-          </SettingsButton>
-          <QuestionnaireSettingsModal
-            isOpen={this.state.isModalOpen}
-            onClose={this.handleModalClose}
-            questionnaire={questionnaire}
-            onSubmit={onUpdateQuestionnaire}
-            confirmText="Apply"
-          />
-        </li>
-      </IconList>
-    );
-  }
-}
-
-NavigationHeader.propTypes = {
+UnwrappedNavigationHeader.propTypes = {
   onUpdateQuestionnaire: PropTypes.func.isRequired,
-  questionnaire: CustomPropTypes.questionnaire.isRequired
+  questionnaire: CustomPropTypes.questionnaire.isRequired,
+  ...ModalPropTypes
 };
 
-export default NavigationHeader;
+export default withModal(UnwrappedNavigationHeader);

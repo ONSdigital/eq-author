@@ -1,63 +1,57 @@
-import QuestionPageToolbar from "./QuestionPageToolbar";
+import { UnwrappedQuestionPageToolbar } from "./QuestionPageToolbar";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
 
 import React from "react";
 import { shallow } from "enzyme";
 
 describe("QuestionPageToolbar", () => {
-  let wrapper;
-
-  let mockMutations;
-  let page;
-
-  const createWrapper = (props, render = shallow) =>
-    render(<QuestionPageToolbar {...props} />);
-
-  const isModalOpen = wrapper =>
-    wrapper.find(DeleteConfirmDialog).prop("isOpen");
-  const openModal = wrapper =>
-    wrapper.find(`[data-test="btn-delete"]`).simulate("click");
-
-  beforeEach(() => {
-    mockMutations = {
-      onDeletePage: jest.fn()
-    };
-
-    page = {
-      __typename: "Page",
-      id: "1",
-      title: "",
-      description: "",
-      guidance: ""
-    };
-
-    wrapper = createWrapper({ page, ...mockMutations });
-  });
+  const createWrapper = (props = {}) =>
+    shallow(
+      <UnwrappedQuestionPageToolbar
+        onDeletePage={jest.fn()}
+        onModalClose={jest.fn()}
+        onModalOpen={jest.fn()}
+        isModalOpen={false}
+        page={{
+          __typename: "Page",
+          id: "1",
+          title: "",
+          description: "",
+          guidance: ""
+        }}
+        {...props}
+      />
+    );
 
   it("should render", () => {
+    const wrapper = createWrapper();
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should display Modal when delete button is clicked", () => {
-    wrapper = createWrapper({ page, ...mockMutations }, shallow);
+  it("should invoke onModalOpen prop when delete button is clicked", () => {
+    const onModalOpen = jest.fn();
+    const wrapper = createWrapper({ onModalOpen });
 
-    expect(isModalOpen(wrapper)).toBe(false);
-    openModal(wrapper);
-    expect(isModalOpen(wrapper)).toBe(true);
+    wrapper.find(`[data-test="btn-delete"]`).simulate("click");
+
+    expect(onModalOpen).toHaveBeenCalled();
   });
 
-  it("allows DeleteConfirmDialog to be closed", () => {
-    wrapper = createWrapper({ page, ...mockMutations }, shallow);
+  it("should invoke onModalClose when Dialog closed", () => {
+    const onModalClose = jest.fn();
+    const wrapper = createWrapper({ onModalClose });
 
-    openModal(wrapper);
     wrapper.find(DeleteConfirmDialog).simulate("close");
 
-    expect(isModalOpen(wrapper)).toBe(false);
+    expect(onModalClose).toHaveBeenCalled();
   });
 
   it("should delete page after confirmation", () => {
-    wrapper = createWrapper({ page, ...mockMutations }, shallow);
+    const onDeletePage = jest.fn();
+    const wrapper = createWrapper({ onDeletePage });
+
     wrapper.find(DeleteConfirmDialog).simulate("deletePage");
-    expect(mockMutations.onDeletePage).toHaveBeenCalled();
+
+    expect(onDeletePage).toHaveBeenCalled();
   });
 });

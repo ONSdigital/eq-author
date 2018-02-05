@@ -26,7 +26,6 @@ const InlineField = styled(Field)`
   align-items: center;
   padding: 1em 0;
   margin-bottom: 0;
-
   border-top: 1px solid #ebebeb;
 
   &:last-child {
@@ -35,7 +34,7 @@ const InlineField = styled(Field)`
 `;
 
 const ToggleWrapper = styled.div`
-  margin: 2em 0 3em 0;
+  margin: 2em 0 3em;
 `;
 
 export const StatelessQuestionnaireMeta = ({

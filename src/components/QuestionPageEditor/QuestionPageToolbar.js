@@ -1,15 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-
 import { colors } from "constants/theme";
-
 import IconButtonDelete from "components/IconButtonDelete";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
-
-import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-
 import getTextFromHTML from "utils/getTextFromHTML";
+import withModal, { ModalPropTypes } from "components/withModal";
 
 export const Toolbar = styled.div`
   display: flex;
@@ -18,36 +15,30 @@ export const Toolbar = styled.div`
   margin: 0 -1em 1em;
 `;
 
-class QuestionPageToolbar extends React.Component {
-  state = {
-    isModalOpen: false
-  };
+export const UnwrappedQuestionPageToolbar = ({
+  onDeletePage,
+  page,
+  onModalOpen,
+  isModalOpen,
+  onModalClose
+}) => (
+  <Toolbar>
+    <IconButtonDelete onClick={onModalOpen} data-test="btn-delete">
+      Delete
+    </IconButtonDelete>
+    <DeleteConfirmDialog
+      isOpen={isModalOpen}
+      onClose={onModalClose}
+      onDeletePage={onDeletePage}
+      title={getTextFromHTML(page.title) || "Untitled page"}
+    />
+  </Toolbar>
+);
 
-  handleModalOpen = () => this.setState({ isModalOpen: true });
-  handleModalClose = () => this.setState({ isModalOpen: false });
-
-  render() {
-    const { onDeletePage, page } = this.props;
-
-    return (
-      <Toolbar>
-        <IconButtonDelete onClick={this.handleModalOpen} data-test="btn-delete">
-          Delete
-        </IconButtonDelete>
-        <DeleteConfirmDialog
-          isOpen={this.state.isModalOpen}
-          onClose={this.handleModalClose}
-          onDeletePage={onDeletePage}
-          title={getTextFromHTML(page.title) || "Untitled page"}
-        />
-      </Toolbar>
-    );
-  }
-}
-
-QuestionPageToolbar.propTypes = {
+UnwrappedQuestionPageToolbar.propTypes = {
   page: CustomPropTypes.page,
-  onDeletePage: PropTypes.func.isRequired
+  onDeletePage: PropTypes.func.isRequired,
+  ...ModalPropTypes
 };
 
-export default QuestionPageToolbar;
+export default withModal(UnwrappedQuestionPageToolbar);

@@ -24,6 +24,7 @@ exports[`NavigationHeader should render 1`] = `
   <li>
     <NavigationHeader__SettingsButton
       clear={true}
+      data-test="settings-btn"
       highlightOnHover={false}
       icon="icon-cog.svg"
       onClick={[Function]}

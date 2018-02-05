@@ -1,5 +1,5 @@
 import { compose } from "react-apollo";
-import Questionnaires from "./QuestionnairesPage";
+import QuestionnairesPage from "./QuestionnairesPage";
 import withQuestionnaireList from "../enhancers/withQuestionnaireList";
 import withDeleteQuestionnaire from "../enhancers/withDeleteQuestionnaire";
 import { raiseToast } from "redux/toast/actions";
@@ -11,4 +11,4 @@ export default compose(
   withQuestionnaireList,
   withDeleteQuestionnaire, // relies on raiseToast to display undo
   withCreateQuestionnaire
-)(Questionnaires);
+)(QuestionnairesPage);

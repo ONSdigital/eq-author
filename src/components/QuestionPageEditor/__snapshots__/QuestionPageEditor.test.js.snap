@@ -7,7 +7,7 @@ exports[`Question Page Editor should render 1`] = `
   <QuestionPageEditor__QuestionCanvasSection
     id="Page1"
   >
-    <QuestionPageToolbar
+    <withModal(UnwrappedQuestionPageToolbar)
       onDeletePage={[Function]}
       page={
         Object {

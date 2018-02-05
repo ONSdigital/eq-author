@@ -9,6 +9,7 @@ import Button from "components/Button";
 import QuestionnairesTable from "./QuestionnairesTable";
 import MainCanvas from "components/MainCanvas";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
+import withModal, { ModalPropTypes } from "components/withModal";
 
 const StyledButtonGroup = styled(ButtonGroup)`
   margin: 0 0 1em;
@@ -18,48 +19,39 @@ const StyledCenteredPanel = styled(CenteredPanel)`
   padding: 0;
 `;
 
-class Questionnaires extends React.Component {
-  state = {
-    isModalOpen: false
-  };
+export const UnwrappedQuestionnairesPage = ({
+  isModalOpen,
+  onModalClose,
+  onModalOpen,
+  onCreateQuestionnaire,
+  loading,
+  ...props
+}) => (
+  <BaseLayout title={"Your Questionnaires"} docTitle={"Your Questionnaires"}>
+    <MainCanvas>
+      <StyledButtonGroup horizontal>
+        <Button onClick={onModalOpen} id="btn-create-questionnaire" primary>
+          Create
+        </Button>
+        <QuestionnaireSettingsModal
+          isOpen={isModalOpen}
+          onClose={onModalClose}
+          onSubmit={onCreateQuestionnaire}
+          confirmText="Create"
+        />
+      </StyledButtonGroup>
+      <StyledCenteredPanel>
+        {!loading && <QuestionnairesTable {...props} />}
+      </StyledCenteredPanel>
+    </MainCanvas>
+  </BaseLayout>
+);
 
-  handleModalOpen = () => this.setState({ isModalOpen: true });
-  handleModalClose = () => this.setState({ isModalOpen: false });
-
-  render() {
-    const title = "Your Questionnaires";
-
-    return (
-      <BaseLayout title={title} docTitle={title}>
-        <MainCanvas>
-          <StyledButtonGroup horizontal>
-            <Button
-              onClick={this.handleModalOpen}
-              id="btn-create-questionnaire"
-              primary
-            >
-              Create
-            </Button>
-            <QuestionnaireSettingsModal
-              isOpen={this.state.isModalOpen}
-              onClose={this.handleModalClose}
-              onSubmit={this.props.onCreateQuestionnaire}
-              confirmText="Create"
-            />
-          </StyledButtonGroup>
-          <StyledCenteredPanel>
-            {!this.props.loading && <QuestionnairesTable {...this.props} />}
-          </StyledCenteredPanel>
-        </MainCanvas>
-      </BaseLayout>
-    );
-  }
-}
-
-Questionnaires.propTypes = {
+UnwrappedQuestionnairesPage.propTypes = {
   loading: PropTypes.bool,
   questionnaires: CustomPropTypes.questionnaireList,
-  onCreateQuestionnaire: PropTypes.func.isRequired
+  onCreateQuestionnaire: PropTypes.func.isRequired,
+  ...ModalPropTypes
 };
 
-export default Questionnaires;
+export default withModal(UnwrappedQuestionnairesPage);

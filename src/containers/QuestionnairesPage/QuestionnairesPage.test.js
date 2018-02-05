@@ -1,93 +1,75 @@
 import React from "react";
-import Questionnaires from "./QuestionnairesPage";
+import { UnwrappedQuestionnairesPage } from "./QuestionnairesPage";
 import { shallow } from "enzyme";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
-import QuestionnairesTable from "./QuestionnairesTable";
 
-describe("containers/Questionnaires", () => {
-  let onDeleteQuestionnaire, questionnaire;
-
-  beforeEach(() => {
-    questionnaire = {
-      id: "1",
-      title: "Test questionnaire",
-      createdAt: "01/01/1970",
-      createdBy: {
-        name: "Mike"
-      },
-      sections: [
-        {
-          id: "5",
-          pages: [{ id: "10" }]
-        }
-      ]
-    };
-
-    onDeleteQuestionnaire = jest.fn();
-  });
+describe("containers/QuestionnairesPage", () => {
+  const createWrapper = props =>
+    shallow(
+      <UnwrappedQuestionnairesPage
+        isModalOpen={false}
+        onModalClose={jest.fn()}
+        onModalOpen={jest.fn()}
+        onDeleteQuestionnaire={jest.fn()}
+        onCreateQuestionnaire={jest.fn()}
+        {...props}
+      />
+    );
 
   it("should not render table whilst data is loading", () => {
-    const props = {
-      loading: true,
-      onCreateQuestionnaire: jest.fn()
-    };
-    const wrapper = shallow(<Questionnaires {...props} />);
-
+    const wrapper = createWrapper({ loading: true });
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should render when there are no questionnaires", () => {
-    const props = {
-      questionnaires: [],
-      onDeleteQuestionnaire,
-      onCreateQuestionnaire: jest.fn()
-    };
-    const wrapper = shallow(<Questionnaires {...props} />);
-
+    const wrapper = createWrapper({ questionnaires: [] });
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should render table when there are questionnaires", () => {
-    const props = {
-      questionnaires: [questionnaire],
-      onDeleteQuestionnaire,
-      onCreateQuestionnaire: jest.fn()
-    };
-    const wrapper = shallow(<Questionnaires {...props} />);
+    const questionnaires = [
+      {
+        id: "1",
+        title: "Test questionnaire",
+        createdAt: "01/01/1970",
+        createdBy: { name: "Mike" },
+        sections: [
+          {
+            id: "5",
+            pages: [{ id: "10" }]
+          }
+        ]
+      }
+    ];
+    const wrapper = createWrapper({ questionnaires });
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe("behaviour", () => {
-    const openModal = wrapper =>
-      wrapper.find("#btn-create-questionnaire").simulate("click");
-    const submitForm = wrapper =>
-      wrapper.find(QuestionnaireSettingsModal).simulate("submit");
-    const isModalOpen = wrapper =>
-      wrapper.find(QuestionnaireSettingsModal).prop("isOpen");
+  it("should invoke onModalOpen prop when delete button is clicked", () => {
+    const onModalOpen = jest.fn();
+    const wrapper = createWrapper({ onModalOpen });
 
-    let wrapper, props;
+    wrapper.find("#btn-create-questionnaire").simulate("click");
 
-    beforeEach(() => {
-      props = {
-        onDeleteQuestionnaire: jest.fn(),
-        onCreateQuestionnaire: jest.fn()
-      };
+    expect(onModalOpen).toHaveBeenCalled();
+  });
 
-      wrapper = shallow(<Questionnaires {...props} />);
-    });
+  it("should invoke onModalClose when modal closed", () => {
+    const onModalClose = jest.fn();
+    const wrapper = createWrapper({ onModalClose });
 
-    it("opens settings modal when clicking Create button", () => {
-      expect(isModalOpen(wrapper)).toBe(false);
-      openModal(wrapper);
-      expect(isModalOpen(wrapper)).toBe(true);
-    });
+    wrapper.find(QuestionnaireSettingsModal).simulate("close");
 
-    it("creates questionnaire on submit", () => {
-      openModal(wrapper);
-      submitForm(wrapper);
+    expect(onModalClose).toHaveBeenCalled();
+  });
 
-      expect(props.onCreateQuestionnaire).toHaveBeenCalled();
-    });
+  it("should created questionnaire after submission", () => {
+    const onCreateQuestionnaire = jest.fn();
+    const wrapper = createWrapper({ onCreateQuestionnaire });
+
+    wrapper.find(QuestionnaireSettingsModal).simulate("submit");
+
+    expect(onCreateQuestionnaire).toHaveBeenCalled();
   });
 });

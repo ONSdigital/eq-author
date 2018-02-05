@@ -1,15 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
-import mountWithRouter from "tests/utils/mountWithRouter";
-import NavigationHeader, {
-  SettingsButton
-} from "components/NavigationSidebar/NavigationHeader";
+import { UnwrappedNavigationHeader } from "components/NavigationSidebar/NavigationHeader";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 
 describe("NavigationHeader", () => {
-  const createWrapper = (props, render = shallow) =>
-    render(
-      <NavigationHeader
+  const createWrapper = (props = {}) =>
+    shallow(
+      <UnwrappedNavigationHeader
+        isModalOpen={false}
+        onModalOpen={jest.fn()}
+        onModalClose={jest.fn()}
         onUpdateQuestionnaire={jest.fn()}
         questionnaire={{}}
         {...props}
@@ -21,20 +21,30 @@ describe("NavigationHeader", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should show Modal when Settings is clicked", () => {
-    const wrapper = createWrapper({}, mountWithRouter);
-    wrapper.find(SettingsButton).simulate("click");
+  it("shows Modal when Settings is clicked", () => {
+    const onModalOpen = jest.fn();
+    const wrapper = createWrapper({ onModalOpen });
 
-    expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(true);
+    wrapper.find(`[data-test="settings-btn"]`).simulate("click");
+
+    expect(onModalOpen).toHaveBeenCalled();
+  });
+
+  it("allows modal to be closed", () => {
+    const onModalClose = jest.fn();
+    const wrapper = createWrapper({ onModalClose });
+
+    wrapper.find(QuestionnaireSettingsModal).simulate("close");
+
+    expect(onModalClose).toHaveBeenCalled();
   });
 
   it("should update the questionnaire when form is submitted", () => {
-    const props = { onUpdateQuestionnaire: jest.fn() };
-    const wrapper = createWrapper(props, mountWithRouter);
+    const onUpdateQuestionnaire = jest.fn();
+    const wrapper = createWrapper({ onUpdateQuestionnaire });
 
-    wrapper.find(SettingsButton).simulate("click");
-    wrapper.find("form").simulate("submit");
+    wrapper.find(QuestionnaireSettingsModal).simulate("submit");
 
-    expect(props.onUpdateQuestionnaire).toHaveBeenCalled();
+    expect(onUpdateQuestionnaire).toHaveBeenCalled();
   });
 });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/Questionnaires should not render table whilst data is loading 1`] = `
+exports[`containers/QuestionnairesPage should not render table whilst data is loading 1`] = `
 <BaseLayout
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
@@ -38,7 +38,7 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
 </BaseLayout>
 `;
 
-exports[`containers/Questionnaires should render table when there are questionnaires 1`] = `
+exports[`containers/QuestionnairesPage should render table when there are questionnaires 1`] = `
 <BaseLayout
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
@@ -73,7 +73,6 @@ exports[`containers/Questionnaires should render table when there are questionna
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
-        onCreateQuestionnaire={[Function]}
         onDeleteQuestionnaire={[Function]}
         questionnaires={
           Array [
@@ -103,7 +102,7 @@ exports[`containers/Questionnaires should render table when there are questionna
 </BaseLayout>
 `;
 
-exports[`containers/Questionnaires should render when there are no questionnaires 1`] = `
+exports[`containers/QuestionnairesPage should render when there are no questionnaires 1`] = `
 <BaseLayout
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
@@ -138,7 +137,6 @@ exports[`containers/Questionnaires should render when there are no questionnaire
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
-        onCreateQuestionnaire={[Function]}
         onDeleteQuestionnaire={[Function]}
         questionnaires={Array []}
       />
