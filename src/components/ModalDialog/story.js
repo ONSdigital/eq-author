@@ -4,7 +4,6 @@ import { action } from "@storybook/addon-actions";
 import ModalDialog from "components/ModalDialog";
 import Button from "components/Button";
 import styled from "styled-components";
-import QP from "components/QuestionnaireProperties/index";
 import DialogHeader from "components/Dialog/DialogHeader";
 import DialogMessage from "components/Dialog/DialogMessage";
 import DialogIcon from "components/Dialog/DialogIcon";
@@ -123,13 +122,7 @@ storiesOf("ModalDialog", module)
           description="The modal should change size based on its content."
         />
       </DialogHeader>
-      <LargeContent>
-        <QP
-          onChange={action("change")}
-          onUpdate={action("update")}
-          questionnaire={{}}
-        />
-      </LargeContent>
+      <LargeContent />
       <DialogActionButtons
         primaryAction={action("Primary action")}
         primaryActionText="Save"

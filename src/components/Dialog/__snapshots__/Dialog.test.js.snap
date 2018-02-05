@@ -9,10 +9,7 @@ exports[`components/Dialog should render a dialog 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 2em;
   position: relative;
-  background: #FFFFFF;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.3);
   min-width: 25em;
 }
 
