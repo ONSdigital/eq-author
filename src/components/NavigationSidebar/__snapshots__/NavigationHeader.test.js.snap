@@ -22,7 +22,21 @@ exports[`NavigationHeader should render 1`] = `
     </Link>
   </li>
   <li>
-    <ModalTrigger />
+    <NavigationHeader__SettingsButton
+      clear={true}
+      highlightOnHover={false}
+      icon="icon-cog.svg"
+      onClick={[Function]}
+    >
+      Settings
+    </NavigationHeader__SettingsButton>
+    <QuestionnaireSettingsModal
+      confirmText="Apply"
+      isOpen={false}
+      onClose={[Function]}
+      onSubmit={[Function]}
+      questionnaire={Object {}}
+    />
   </li>
 </NavigationHeader__IconList>
 `;

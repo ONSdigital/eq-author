@@ -9,7 +9,6 @@ import Button from "components/Button";
 import QuestionnairesTable from "./QuestionnairesTable";
 import MainCanvas from "components/MainCanvas";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
-import ModalTrigger from "components/ModalTrigger";
 
 const StyledButtonGroup = styled(ButtonGroup)`
   margin: 0 0 1em;
@@ -19,34 +18,43 @@ const StyledCenteredPanel = styled(CenteredPanel)`
   padding: 0;
 `;
 
-const Questionnaires = props => {
-  const title = "Your Questionnaires";
+class Questionnaires extends React.Component {
+  state = {
+    isModalOpen: false
+  };
 
-  return (
-    <BaseLayout title={title} docTitle={title}>
-      <MainCanvas>
-        <ModalTrigger>
-          {({ isOpen, onClose, onOpen }) => (
-            <StyledButtonGroup horizontal>
-              <Button onClick={onOpen} id="btn-create-questionnaire" primary>
-                Create
-              </Button>
-              <QuestionnaireSettingsModal
-                isOpen={isOpen}
-                onClose={onClose}
-                onSubmit={props.onCreateQuestionnaire}
-                confirmText="Create"
-              />
-            </StyledButtonGroup>
-          )}
-        </ModalTrigger>
-        <StyledCenteredPanel>
-          {!props.loading && <QuestionnairesTable {...props} />}
-        </StyledCenteredPanel>
-      </MainCanvas>
-    </BaseLayout>
-  );
-};
+  handleModalOpen = () => this.setState({ isModalOpen: true });
+  handleModalClose = () => this.setState({ isModalOpen: false });
+
+  render() {
+    const title = "Your Questionnaires";
+
+    return (
+      <BaseLayout title={title} docTitle={title}>
+        <MainCanvas>
+          <StyledButtonGroup horizontal>
+            <Button
+              onClick={this.handleModalOpen}
+              id="btn-create-questionnaire"
+              primary
+            >
+              Create
+            </Button>
+            <QuestionnaireSettingsModal
+              isOpen={this.state.isModalOpen}
+              onClose={this.handleModalClose}
+              onSubmit={this.props.onCreateQuestionnaire}
+              confirmText="Create"
+            />
+          </StyledButtonGroup>
+          <StyledCenteredPanel>
+            {!this.props.loading && <QuestionnairesTable {...this.props} />}
+          </StyledCenteredPanel>
+        </MainCanvas>
+      </BaseLayout>
+    );
+  }
+}
 
 Questionnaires.propTypes = {
   loading: PropTypes.bool,

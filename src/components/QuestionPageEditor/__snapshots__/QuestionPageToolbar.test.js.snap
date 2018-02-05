@@ -2,6 +2,17 @@
 
 exports[`QuestionPageToolbar should render 1`] = `
 <QuestionPageToolbar__Toolbar>
-  <ModalTrigger />
+  <IconButtonDelete
+    data-test="btn-delete"
+    onClick={[Function]}
+  >
+    Delete
+  </IconButtonDelete>
+  <DeleteConfirmDialog
+    isOpen={false}
+    onClose={[Function]}
+    onDeletePage={[Function]}
+    title="Untitled page"
+  />
 </QuestionPageToolbar__Toolbar>
 `;

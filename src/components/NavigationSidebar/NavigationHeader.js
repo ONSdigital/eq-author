@@ -6,7 +6,6 @@ import SVG from "react-inlinesvg";
 import { Link } from "react-router-dom";
 import VisuallyHidden from "components/VisuallyHidden";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
-import ModalTrigger from "components/ModalTrigger";
 import IconButton from "components/IconButton";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -36,41 +35,46 @@ export const SettingsButton = styled(IconButton)`
   }
 `;
 
-const NavigationHeader = ({ onUpdateQuestionnaire, questionnaire }) => {
-  return (
-    <IconList>
-      <li>
-        <Link to="/">
-          <VisuallyHidden>Home</VisuallyHidden>
-          <SVG uniqueHash="home-icon" src={homeIcon} />
-        </Link>
-      </li>
-      <li>
-        <ModalTrigger>
-          {({ isOpen, onClose, onOpen }) => (
-            <React.Fragment>
-              <SettingsButton
-                clear
-                onClick={onOpen}
-                highlightOnHover={false}
-                icon={settingsIcon}
-              >
-                Settings
-              </SettingsButton>
-              <QuestionnaireSettingsModal
-                isOpen={isOpen}
-                onClose={onClose}
-                questionnaire={questionnaire}
-                onSubmit={onUpdateQuestionnaire}
-                confirmText="Apply"
-              />
-            </React.Fragment>
-          )}
-        </ModalTrigger>
-      </li>
-    </IconList>
-  );
-};
+class NavigationHeader extends React.Component {
+  state = {
+    isModalOpen: false
+  };
+
+  handleModalOpen = () => this.setState({ isModalOpen: true });
+  handleModalClose = () => this.setState({ isModalOpen: false });
+
+  render() {
+    const { onUpdateQuestionnaire, questionnaire } = this.props;
+
+    return (
+      <IconList>
+        <li>
+          <Link to="/">
+            <VisuallyHidden>Home</VisuallyHidden>
+            <SVG uniqueHash="home-icon" src={homeIcon} />
+          </Link>
+        </li>
+        <li>
+          <SettingsButton
+            clear
+            onClick={this.handleModalOpen}
+            highlightOnHover={false}
+            icon={settingsIcon}
+          >
+            Settings
+          </SettingsButton>
+          <QuestionnaireSettingsModal
+            isOpen={this.state.isModalOpen}
+            onClose={this.handleModalClose}
+            questionnaire={questionnaire}
+            onSubmit={onUpdateQuestionnaire}
+            confirmText="Apply"
+          />
+        </li>
+      </IconList>
+    );
+  }
+}
 
 NavigationHeader.propTypes = {
   onUpdateQuestionnaire: PropTypes.func.isRequired,
