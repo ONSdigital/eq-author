@@ -22,6 +22,8 @@ export const AddPageBtn = styled.button`
   color: ${textInverted};
   font-weight: bold;
   font-size: 0.75em;
+  margin-bottom: 0.35em;
+  width: 100%;
 
   &::before {
     font-size: 1.25em;
