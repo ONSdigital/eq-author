@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { isNil } from "lodash";
+import { isNil, some } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
@@ -14,6 +14,7 @@ import Nav from "components/Nav";
 import styled from "styled-components";
 import IconButton from "components/IconButton";
 import addPage from "./icon-add-page.svg";
+import { Redirect } from "react-router-dom";
 
 const Centered = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const Centered = styled.div`
   margin-bottom: 4em;
 `;
 
-export class QuestionnaireDesignPage extends Component {
+class QuestionnaireDesignPage extends Component {
   static propTypes = {
     onUpdateSection: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
@@ -38,7 +39,7 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    return !isNil(nextProps.section) && !isNil(nextProps.page);
+    return (nextProps.section && nextProps.page) || !nextProps.loading;
   }
 
   getMetaTitle = () => {
@@ -71,6 +72,10 @@ export class QuestionnaireDesignPage extends Component {
 
     if (loading) {
       return null;
+    }
+
+    if (some([questionnaire, section, page], isNil)) {
+      return <Redirect to="/404" />;
     }
 
     return (
