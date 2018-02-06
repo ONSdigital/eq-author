@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`closed 1`] = `
+<Component
+  isModalOpen={false}
+  onModalClose={[Function]}
+  onModalOpen={[Function]}
+/>
+`;
+
+exports[`opened 1`] = `
+<Component
+  isModalOpen={true}
+  onModalClose={[Function]}
+  onModalOpen={[Function]}
+/>
+`;
+
+exports[`withModal should pass on props 1`] = `
+<Component
+  foo="bar"
+  isModalOpen={false}
+  onModalClose={[Function]}
+  onModalOpen={[Function]}
+/>
+`;

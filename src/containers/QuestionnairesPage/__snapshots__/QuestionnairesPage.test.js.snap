@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`containers/Questionnaires should not render table whilst data is loading 1`] = `
+exports[`containers/QuestionnairesPage should not render table whilst data is loading 1`] = `
 <BaseLayout
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
@@ -9,20 +9,36 @@ exports[`containers/Questionnaires should not render table whilst data is loadin
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
-      <withRouter(LB)
+      <Button
         id="btn-create-questionnaire"
+        onClick={[Function]}
         primary={true}
-        to="/questionnaire/create"
       >
         Create
-      </withRouter(LB)>
+      </Button>
+      <QuestionnaireSettingsModal
+        confirmText="Create"
+        isOpen={false}
+        onClose={[Function]}
+        onSubmit={[Function]}
+        questionnaire={
+          Object {
+            "description": "",
+            "legalBasis": "StatisticsOfTradeAct",
+            "navigation": false,
+            "surveyId": "",
+            "theme": "default",
+            "title": "",
+          }
+        }
+      />
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel />
   </MainCanvas>
 </BaseLayout>
 `;
 
-exports[`containers/Questionnaires should render a 'Create Questionnaire' button 1`] = `
+exports[`containers/QuestionnairesPage should render table when there are questionnaires 1`] = `
 <BaseLayout
   docTitle="Your Questionnaires"
   title="Your Questionnaires"
@@ -31,67 +47,29 @@ exports[`containers/Questionnaires should render a 'Create Questionnaire' button
     <QuestionnairesPage__StyledButtonGroup
       horizontal={true}
     >
-      <withRouter(LB)
+      <Button
         id="btn-create-questionnaire"
+        onClick={[Function]}
         primary={true}
-        to="/questionnaire/create"
       >
         Create
-      </withRouter(LB)>
-    </QuestionnairesPage__StyledButtonGroup>
-    <QuestionnairesPage__StyledCenteredPanel>
-      <QuestionnairesTable
-        onDeleteQuestionnaire={[Function]}
-        questionnaires={Array []}
+      </Button>
+      <QuestionnaireSettingsModal
+        confirmText="Create"
+        isOpen={false}
+        onClose={[Function]}
+        onSubmit={[Function]}
+        questionnaire={
+          Object {
+            "description": "",
+            "legalBasis": "StatisticsOfTradeAct",
+            "navigation": false,
+            "surveyId": "",
+            "theme": "default",
+            "title": "",
+          }
+        }
       />
-    </QuestionnairesPage__StyledCenteredPanel>
-  </MainCanvas>
-</BaseLayout>
-`;
-
-exports[`containers/Questionnaires should render when there are no questionnaires 1`] = `
-<BaseLayout
-  docTitle="Your Questionnaires"
-  title="Your Questionnaires"
->
-  <MainCanvas>
-    <QuestionnairesPage__StyledButtonGroup
-      horizontal={true}
-    >
-      <withRouter(LB)
-        id="btn-create-questionnaire"
-        primary={true}
-        to="/questionnaire/create"
-      >
-        Create
-      </withRouter(LB)>
-    </QuestionnairesPage__StyledButtonGroup>
-    <QuestionnairesPage__StyledCenteredPanel>
-      <QuestionnairesTable
-        onDeleteQuestionnaire={[Function]}
-        questionnaires={Array []}
-      />
-    </QuestionnairesPage__StyledCenteredPanel>
-  </MainCanvas>
-</BaseLayout>
-`;
-
-exports[`containers/Questionnaires should render when there are questionnaires 1`] = `
-<BaseLayout
-  docTitle="Your Questionnaires"
-  title="Your Questionnaires"
->
-  <MainCanvas>
-    <QuestionnairesPage__StyledButtonGroup
-      horizontal={true}
-    >
-      <withRouter(LB)
-        id="btn-create-questionnaire"
-        primary={true}
-        to="/questionnaire/create"
-      >
-        Create
-      </withRouter(LB)>
     </QuestionnairesPage__StyledButtonGroup>
     <QuestionnairesPage__StyledCenteredPanel>
       <QuestionnairesTable
@@ -118,6 +96,49 @@ exports[`containers/Questionnaires should render when there are questionnaires 1
             },
           ]
         }
+      />
+    </QuestionnairesPage__StyledCenteredPanel>
+  </MainCanvas>
+</BaseLayout>
+`;
+
+exports[`containers/QuestionnairesPage should render when there are no questionnaires 1`] = `
+<BaseLayout
+  docTitle="Your Questionnaires"
+  title="Your Questionnaires"
+>
+  <MainCanvas>
+    <QuestionnairesPage__StyledButtonGroup
+      horizontal={true}
+    >
+      <Button
+        id="btn-create-questionnaire"
+        onClick={[Function]}
+        primary={true}
+      >
+        Create
+      </Button>
+      <QuestionnaireSettingsModal
+        confirmText="Create"
+        isOpen={false}
+        onClose={[Function]}
+        onSubmit={[Function]}
+        questionnaire={
+          Object {
+            "description": "",
+            "legalBasis": "StatisticsOfTradeAct",
+            "navigation": false,
+            "surveyId": "",
+            "theme": "default",
+            "title": "",
+          }
+        }
+      />
+    </QuestionnairesPage__StyledButtonGroup>
+    <QuestionnairesPage__StyledCenteredPanel>
+      <QuestionnairesTable
+        onDeleteQuestionnaire={[Function]}
+        questionnaires={Array []}
       />
     </QuestionnairesPage__StyledCenteredPanel>
   </MainCanvas>

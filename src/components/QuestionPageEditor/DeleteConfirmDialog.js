@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-import ModalDialog from "components/ModalDialog";
+import Modal from "components/Modal";
 import DialogHeader from "components/Dialog/DialogHeader";
 import DialogIcon from "components/Dialog/DialogIcon";
 import {
@@ -19,7 +19,7 @@ import PropTypes from "prop-types";
 import iconAlert from "./icon-alert.svg";
 import iconPage from "./icon-dialog-page.svg";
 
-const DeleteConfirmModalDialog = styled(ModalDialog)`
+const DeleteConfirmModalDialog = styled(Modal)`
   width: 30em;
 `;
 
@@ -42,7 +42,11 @@ const DeleteConfirmDialog = ({
   onClose,
   ...otherProps
 }) => (
-  <DeleteConfirmModalDialog onClose={onClose} {...otherProps}>
+  <DeleteConfirmModalDialog
+    onClose={onClose}
+    {...otherProps}
+    data-test="confirm-delete-dialog"
+  >
     <DialogHeader>
       <Message>
         <Heading>Delete</Heading>

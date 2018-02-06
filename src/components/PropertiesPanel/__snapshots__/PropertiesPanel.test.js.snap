@@ -4,19 +4,6 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
 <PropertiesPanel__PropertiesPane>
   <PropertiesPanel__PropertiesPaneBody>
     <ScrollPane>
-      <PropertiesPanel__PropertiesPanelTitle>
-        Questionnaire properties
-      </PropertiesPanel__PropertiesPanelTitle>
-      <PropertiesPanel__PropertiesGroup>
-        <Apollo(withEntityEditor(QuestionnaireProperties))
-          questionnaire={
-            Object {
-              "__typename": "Questionnaire",
-              "id": "1",
-            }
-          }
-        />
-      </PropertiesPanel__PropertiesGroup>
       <div>
         <PropertiesPanel__PropertiesPanelTitle>
           Answer properties
@@ -64,21 +51,7 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
 exports[`PropertiesPanel should render when there are no answers 1`] = `
 <PropertiesPanel__PropertiesPane>
   <PropertiesPanel__PropertiesPaneBody>
-    <ScrollPane>
-      <PropertiesPanel__PropertiesPanelTitle>
-        Questionnaire properties
-      </PropertiesPanel__PropertiesPanelTitle>
-      <PropertiesPanel__PropertiesGroup>
-        <Apollo(withEntityEditor(QuestionnaireProperties))
-          questionnaire={
-            Object {
-              "__typename": "Questionnaire",
-              "id": "1",
-            }
-          }
-        />
-      </PropertiesPanel__PropertiesGroup>
-    </ScrollPane>
+    <ScrollPane />
   </PropertiesPanel__PropertiesPaneBody>
 </PropertiesPanel__PropertiesPane>
 `;

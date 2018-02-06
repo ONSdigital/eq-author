@@ -22,17 +22,4 @@ describe("components/Dialog", () => {
   it("should render a dialog", () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("should render children", () => {
-    const wrapper = createWrapper({
-      ...props,
-      children: <p>This is the modal dialog content</p>
-    });
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should handle close when close button is clicked", () => {
-    wrapper.find("Dialog__CloseButton").simulate("click");
-    expect(props.onClose).toHaveBeenCalled();
-  });
 });

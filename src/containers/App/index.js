@@ -12,7 +12,6 @@ import PrivateRoute from "components/PrivateRoute";
 
 import QuestionnairesPage from "containers/QuestionnairesPage";
 import SignInPage from "containers/SignInPage";
-import QuestionnaireCreatePage from "containers/QuestionnaireCreatePage";
 import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
 import NotFoundPage from "containers/NotFoundPage";
 import { connect } from "react-redux";
@@ -27,11 +26,6 @@ export const Routes = ({ isSignedIn, ...otherProps }) => (
         component={QuestionnairesPage}
         isSignedIn={isSignedIn}
         exact
-      />
-      <PrivateRoute
-        path="/questionnaire/create"
-        component={QuestionnaireCreatePage}
-        isSignedIn={isSignedIn}
       />
       <PrivateRoute
         path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"

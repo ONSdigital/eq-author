@@ -48,8 +48,6 @@ const ExportButton = styled(IconButton)`
   width: 3.5em;
 `;
 
-const Fragment = props => props.children;
-
 export class UnconnectedHeader extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
@@ -90,7 +88,7 @@ export class UnconnectedHeader extends React.Component {
           <Column>
             <UtilityBtns horizontal>
               {questionnaire && (
-                <Fragment>
+                <React.Fragment>
                   <IconLink
                     href={this.getPreviewUrl(questionnaire.id)}
                     icon={previewIcon}
@@ -100,7 +98,7 @@ export class UnconnectedHeader extends React.Component {
                   <ExportButton icon={exportIcon} iconOnly clear disabled>
                     Export
                   </ExportButton>
-                </Fragment>
+                </React.Fragment>
               )}
               {this.props.user && (
                 <UserProfile

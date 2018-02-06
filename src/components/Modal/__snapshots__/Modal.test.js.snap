@@ -18,6 +18,11 @@ exports[`components/Modal should render its children 1`] = `
   }
   title="Modal title"
 >
+  <Modal__CloseButton
+    onClick={[Function]}
+  >
+    ×
+  </Modal__CloseButton>
   <p>
     Modal content
   </p>

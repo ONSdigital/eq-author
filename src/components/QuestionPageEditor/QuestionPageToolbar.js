@@ -1,15 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-
 import { colors } from "constants/theme";
-
 import IconButtonDelete from "components/IconButtonDelete";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
-
-import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-
 import getTextFromHTML from "utils/getTextFromHTML";
+import withModal, { ModalPropTypes } from "components/withModal";
 
 export const Toolbar = styled.div`
   display: flex;
@@ -18,40 +15,30 @@ export const Toolbar = styled.div`
   margin: 0 -1em 1em;
 `;
 
-class QuestionPageToolbar extends Component {
-  state = {
-    showDeleteConfirmDialog: false
-  };
+export const UnwrappedQuestionPageToolbar = ({
+  onDeletePage,
+  page,
+  onModalOpen,
+  isModalOpen,
+  onModalClose
+}) => (
+  <Toolbar>
+    <IconButtonDelete onClick={onModalOpen} data-test="btn-delete">
+      Delete
+    </IconButtonDelete>
+    <DeleteConfirmDialog
+      isOpen={isModalOpen}
+      onClose={onModalClose}
+      onDeletePage={onDeletePage}
+      title={getTextFromHTML(page.title) || "Untitled page"}
+    />
+  </Toolbar>
+);
 
-  handleOpenDeleteConfirmDialog = () =>
-    this.setState({ showDeleteConfirmDialog: true });
-
-  handleCloseDeleteConfirmDialog = () =>
-    this.setState({ showDeleteConfirmDialog: false });
-
-  render() {
-    return (
-      <Toolbar>
-        <IconButtonDelete
-          onClick={this.handleOpenDeleteConfirmDialog}
-          data-test="btn-delete"
-        >
-          Delete
-        </IconButtonDelete>
-        <DeleteConfirmDialog
-          isOpen={this.state.showDeleteConfirmDialog}
-          onClose={this.handleCloseDeleteConfirmDialog}
-          onDeletePage={this.props.onDeletePage}
-          title={getTextFromHTML(this.props.page.title) || "Untitled page"}
-        />
-      </Toolbar>
-    );
-  }
-}
-
-QuestionPageToolbar.propTypes = {
+UnwrappedQuestionPageToolbar.propTypes = {
   page: CustomPropTypes.page,
-  onDeletePage: PropTypes.func.isRequired
+  onDeletePage: PropTypes.func.isRequired,
+  ...ModalPropTypes
 };
 
-export default QuestionPageToolbar;
+export default withModal(UnwrappedQuestionPageToolbar);

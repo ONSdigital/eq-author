@@ -1,113 +1,106 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import { Grid, Column } from "components/Grid";
-import { Form, Field, Input, Label, Select, TextArea } from "components/Forms";
-import { CenteredPanel } from "components/Panel";
+import { Form, Field, Input, Label } from "components/Forms";
 import withEntityEditor from "components/withEntityEditor";
 import questionnaireFragment from "graphql/fragments/questionnaire.graphql";
 import ToggleSwitch from "components/ToggleSwitch";
 import styled from "styled-components";
+import showNavIcon from "./icon-show-nav.svg";
+import showConfirmationIcon from "./icon-show-confirmation.svg";
+import ButtonGroup from "components/ButtonGroup";
+import Button from "components/Button";
+
+const Icon = styled.img`
+  height: 3em;
+  vertical-align: middle;
+  margin-right: 1em;
+  transition: opacity 100ms linear;
+  opacity: ${props => (props.fade ? 0.5 : 1)};
+`;
 
 const InlineField = styled(Field)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.2em 0;
+  padding: 1em 0;
+  margin-bottom: 0;
+  border-top: 1px solid #ebebeb;
+
+  &:last-child {
+    border-bottom: 1px solid #ebebeb;
+  }
+`;
+
+const ToggleWrapper = styled.div`
+  margin: 2em 0 3em;
 `;
 
 export const StatelessQuestionnaireMeta = ({
   questionnaire,
   onSubmit,
-  onUpdate,
+  onCancel,
   onChange,
-  children
+  confirmText
 }) => {
   return (
-    <CenteredPanel>
-      <Form onSubmit={onSubmit}>
-        <Field id="title">
-          <Label>Questionnaire Title</Label>
-          <Input
-            autoFocus
-            defaultValue={questionnaire.title}
+    <Form onSubmit={onSubmit}>
+      <Field id="title">
+        <Label>Questionnaire Title</Label>
+        <Input
+          autoFocus
+          defaultValue={questionnaire.title}
+          onChange={onChange}
+          required
+        />
+      </Field>
+      <ToggleWrapper>
+        <InlineField id="navigation">
+          <Label inline>
+            <Icon src={showNavIcon} alt="" fade={!questionnaire.navigation} />
+            Show section navigation
+          </Label>
+          <ToggleSwitch
+            name="navigation"
             onChange={onChange}
-            onBlur={onUpdate}
-            required
+            checked={questionnaire.navigation}
           />
-        </Field>
-        <Field id="description">
-          <Label>Description</Label>
-          <TextArea
-            defaultValue={questionnaire.description}
-            rows={4}
+        </InlineField>
+        <InlineField id="summary">
+          <Label inline>
+            <Icon
+              src={showConfirmationIcon}
+              alt=""
+              fade={!questionnaire.summary}
+            />
+            Show summary on confirmation page
+          </Label>
+          <ToggleSwitch
+            name="summary"
             onChange={onChange}
-            onBlur={onUpdate}
+            checked={questionnaire.summary}
           />
-        </Field>
-        <Grid>
-          <Column cols={6}>
-            <Field id="theme">
-              <Label>Theme</Label>
-              <Select
-                options={["default", "census"]}
-                defaultValue={questionnaire.theme}
-                onChange={onChange}
-                onBlur={onUpdate}
-              />
-            </Field>
-          </Column>
-          <Column cols={6}>
-            <Field id="legalBasis">
-              <Label>Legal Basis</Label>
-              <Select
-                options={["StatisticsOfTradeAct", "Voluntary"]}
-                defaultValue={questionnaire.legalBasis}
-                onChange={onChange}
-                onBlur={onUpdate}
-              />
-            </Field>
-          </Column>
-        </Grid>
-        <Grid>
-          <Column cols={6}>
-            <InlineField id="navigation">
-              <Label inline>Navigation</Label>
-              <ToggleSwitch
-                name="navigation"
-                onChange={onChange}
-                onBlur={onUpdate}
-                checked={questionnaire.navigation}
-              />
-            </InlineField>
-          </Column>
-        </Grid>
-        <Grid>
-          <Column cols={6}>
-            <InlineField id="summary">
-              <Label inline>Summary on confirmation page</Label>
-              <ToggleSwitch
-                name="summary"
-                onChange={onChange}
-                onBlur={onUpdate}
-                checked={questionnaire.summary}
-              />
-            </InlineField>
-          </Column>
-        </Grid>
-        {children}
-      </Form>
-    </CenteredPanel>
+        </InlineField>
+      </ToggleWrapper>
+      <ButtonGroup horizontal align="right">
+        <Button onClick={onCancel} secondary type="button">
+          Cancel
+        </Button>
+        <Button type="submit" primary>
+          {confirmText}
+        </Button>
+      </ButtonGroup>
+    </Form>
   );
 };
 
 StatelessQuestionnaireMeta.propTypes = {
-  children: PropTypes.node,
   onChange: PropTypes.func,
-  onUpdate: PropTypes.func,
   onSubmit: PropTypes.func,
-  questionnaire: CustomPropTypes.questionnaire
+  onCancel: PropTypes.func,
+  questionnaire: CustomPropTypes.questionnaire.isRequired,
+  confirmText: PropTypes.string.isRequired
 };
 
 export default withEntityEditor("questionnaire", questionnaireFragment)(

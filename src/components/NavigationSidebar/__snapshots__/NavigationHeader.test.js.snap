@@ -3,7 +3,8 @@
 exports[`NavigationHeader should render 1`] = `
 <NavigationHeader__IconList>
   <li>
-    <NavigationHeader__StyledLink
+    <Link
+      replace={false}
       to="/"
     >
       <VisuallyHidden>
@@ -18,18 +19,25 @@ exports[`NavigationHeader should render 1`] = `
         uniquifyIDs={true}
         wrapper={[Function]}
       />
-    </NavigationHeader__StyledLink>
+    </Link>
   </li>
   <li>
-    <NavigationHeader__SettingsLink
-      to="/"
+    <NavigationHeader__SettingsButton
+      clear={true}
+      data-test="settings-btn"
+      highlightOnHover={false}
+      icon="icon-cog.svg"
+      onClick={[Function]}
     >
       Settings
-      <NavigationHeader__SettingsIcon
-        src="icon-cog.svg"
-        uniqueHash="settings-icon"
-      />
-    </NavigationHeader__SettingsLink>
+    </NavigationHeader__SettingsButton>
+    <QuestionnaireSettingsModal
+      confirmText="Apply"
+      isOpen={false}
+      onClose={[Function]}
+      onSubmit={[Function]}
+      questionnaire={Object {}}
+    />
   </li>
 </NavigationHeader__IconList>
 `;

@@ -5,7 +5,12 @@ import { SynchronousPromise } from "synchronous-promise";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 
 describe("NavigationSidebar", () => {
-  let wrapper, handleAddSection, handleAddPage, handleDeleteSection, sectionNav;
+  let wrapper,
+    handleAddSection,
+    handleAddPage,
+    handleDeleteSection,
+    sectionNav,
+    handleUpdateQuestionnaire;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -19,6 +24,7 @@ describe("NavigationSidebar", () => {
     handleAddSection = jest.fn(() => SynchronousPromise.resolve(questionnaire));
     handleAddPage = jest.fn(() => SynchronousPromise.resolve({ section }));
     handleDeleteSection = jest.fn();
+    handleUpdateQuestionnaire = jest.fn();
     sectionNav = { scrollSectionIntoView: jest.fn() };
 
     wrapper = shallow(
@@ -27,6 +33,7 @@ describe("NavigationSidebar", () => {
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
         onDeleteSection={handleDeleteSection}
+        onUpdateQuestionnaire={handleUpdateQuestionnaire}
       />
     );
 

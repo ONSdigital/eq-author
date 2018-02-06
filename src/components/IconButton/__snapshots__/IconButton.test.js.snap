@@ -22,7 +22,7 @@ exports[`IconButton should highlight on hover 1`] = `
 
 .c1:focus,
 .c1:active {
-  outline: none;
+  outline-width: 0;
 }
 
 .c1[disabled] {
@@ -41,7 +41,7 @@ exports[`IconButton should highlight on hover 1`] = `
   align-items: center;
   cursor: pointer;
   font-size: 0.875em;
-  color: #4A4A4A;
+  color: inherit;
 }
 
 .c0 svg {
@@ -165,7 +165,7 @@ exports[`IconButton should render icon only 1`] = `
 
 .c1:focus,
 .c1:active {
-  outline: none;
+  outline-width: 0;
 }
 
 .c1[disabled] {
@@ -211,7 +211,7 @@ exports[`IconButton should render icon only 1`] = `
   align-items: center;
   cursor: pointer;
   font-size: 0.875em;
-  color: #4A4A4A;
+  color: inherit;
 }
 
 .c0:hover,
