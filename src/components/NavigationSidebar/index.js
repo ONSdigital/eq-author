@@ -58,7 +58,8 @@ class NavigationSidebar extends Component {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     onAddPage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
-    onDeleteSection: PropTypes.func.isRequired
+    onDeleteSection: PropTypes.func.isRequired,
+    onUpdate: PropTypes.func.isRequired
   };
 
   saveSectionNavRef = sectionNav => {
@@ -80,11 +81,14 @@ class NavigationSidebar extends Component {
   };
 
   render() {
-    const { questionnaire, onDeleteSection } = this.props;
+    const { questionnaire, onDeleteSection, onUpdate } = this.props;
 
     return (
       <Container id="questionnaire-nav">
-        <NavigationHeader />
+        <NavigationHeader
+          questionnaire={questionnaire}
+          onUpdateQuestionnaire={onUpdate}
+        />
         <NavigationScrollPane>
           <SectionNav
             transitionDuration={200}

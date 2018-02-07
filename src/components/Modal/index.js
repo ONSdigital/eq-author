@@ -68,7 +68,7 @@ const CloseButton = styled(Button).attrs({
   }
 
   &:focus {
-    outline: -webkit-focus-ring-color auto 4px;
+    outline-width: initial;
   }
 `;
 

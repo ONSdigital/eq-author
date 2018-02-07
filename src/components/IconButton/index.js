@@ -32,7 +32,7 @@ const StyledButton = styled(Button).attrs({
   align-items: center;
   cursor: pointer;
   font-size: 0.875em;
-  color: ${colors.text};
+  color: inherit;
   ${props => !props.iconOnly && separateIconFromText};
   ${props => props.highlightOnHover && highlightOnHover};
 

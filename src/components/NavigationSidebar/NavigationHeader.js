@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "constants/theme";
 import homeIcon from "./icon-home.svg";
 import settingsIcon from "./icon-cog.svg";
 import SVG from "react-inlinesvg";
 import { Link } from "react-router-dom";
 import VisuallyHidden from "components/VisuallyHidden";
-
-const textInverted = "#E1E1E1";
-const navBackground = "#4A4A4A";
+import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
+import IconButton from "components/IconButton";
+import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
+import { colors } from "constants/theme";
+import pipeP from "utils/pipeP";
 
 const IconList = styled.ul`
   display: flex;
@@ -16,7 +18,6 @@ const IconList = styled.ul`
   align-items: center;
   padding: 0.75em;
   margin: 0;
-  background: ${navBackground};
   z-index: 9999;
   border-bottom: 1px solid #c3c3c3;
   flex: 0 0 auto;
@@ -27,50 +28,72 @@ const IconList = styled.ul`
   }
 `;
 
-const StyledLink = styled(Link)`
-  color: ${textInverted};
-  text-decoration: none;
+const SettingsButton = styled(IconButton)`
+  padding: 0;
+  flex-direction: row-reverse;
+  font-size: 0.75em;
+  font-weight: bold;
 
-  &:link,
-  &:visited {
-    color: ${textInverted};
+  &:focus {
+    outline-width: initial;
   }
 
+  &:focus,
   &:hover {
     color: ${colors.white};
   }
-`;
-
-const SettingsLink = styled(StyledLink)`
-  font-size: 0.75em;
-  font-weight: bold;
-`;
-
-const SettingsIcon = styled(SVG)`
-  margin-left: 0.25em;
 
   & svg {
-    vertical-align: middle;
+    margin-left: 0.25em;
+    margin-right: 0;
   }
 `;
 
-const NavigationHeader = () => {
-  return (
-    <IconList>
-      <li>
-        <StyledLink to="/">
-          <VisuallyHidden>Home</VisuallyHidden>
-          <SVG uniqueHash="home-icon" src={homeIcon} />
-        </StyledLink>
-      </li>
-      <li>
-        <SettingsLink to="/">
-          Settings
-          <SettingsIcon uniqueHash="settings-icon" src={settingsIcon} />
-        </SettingsLink>
-      </li>
-    </IconList>
-  );
-};
+class NavigationHeader extends React.Component {
+  static propTypes = {
+    onUpdateQuestionnaire: PropTypes.func.isRequired,
+    questionnaire: CustomPropTypes.questionnaire.isRequired
+  };
+
+  state = {
+    isModalOpen: false
+  };
+
+  handleModalOpen = () => this.setState({ isModalOpen: true });
+  handleModalClose = () => this.setState({ isModalOpen: false });
+
+  render() {
+    const { questionnaire, onUpdateQuestionnaire } = this.props;
+
+    return (
+      <IconList>
+        <li>
+          <Link to="/">
+            <VisuallyHidden>Home</VisuallyHidden>
+            <SVG uniqueHash="home-icon" src={homeIcon} />
+          </Link>
+        </li>
+        <li>
+          <SettingsButton
+            data-test="settings-btn"
+            clear
+            onClick={this.handleModalOpen}
+            highlightOnHover={false}
+            icon={settingsIcon}
+          >
+            Settings
+          </SettingsButton>
+          <QuestionnaireSettingsModal
+            isOpen={this.state.isModalOpen}
+            onClose={this.handleModalClose}
+            questionnaire={questionnaire}
+            onSubmit={pipeP(onUpdateQuestionnaire, this.handleModalClose)}
+            confirmText="Apply"
+          />
+        </li>
+      </IconList>
+    );
+  }
+}
 
 export default NavigationHeader;

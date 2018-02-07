@@ -62,7 +62,7 @@ const StyledButton = styled.button`
 
   &:focus,
   &:active {
-    outline: none;
+    outline-width: 0;
   }
 
   &[disabled] {
