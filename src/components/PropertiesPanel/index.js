@@ -6,7 +6,6 @@ import ScrollPane from "components/ScrollPane";
 import { noop } from "lodash";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
-import QuestionnairePropertiesContainer from "containers/QuestionnairePropertiesContainer";
 
 const PropertiesPane = styled.div`
   background: ${colors.white};
@@ -58,14 +57,6 @@ export class PropertiesPanel extends React.Component {
       <PropertiesPane>
         <PropertiesPaneBody>
           <ScrollPane>
-            <PropertiesPanelTitle>
-              Questionnaire properties
-            </PropertiesPanelTitle>
-            <PropertiesGroup>
-              <QuestionnairePropertiesContainer
-                questionnaire={this.props.questionnaire}
-              />
-            </PropertiesGroup>
             {page.answers.length > 0 && (
               <div>
                 <PropertiesPanelTitle>Answer properties</PropertiesPanelTitle>
