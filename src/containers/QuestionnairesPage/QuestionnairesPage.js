@@ -27,7 +27,7 @@ class QuestionnairesPage extends React.Component {
   handleModalClose = () => this.setState({ isModalOpen: false });
 
   render() {
-    const { createQuestionnaire, loading, ...props } = this.props;
+    const { onCreateQuestionnaire, loading, ...props } = this.props;
 
     return (
       <BaseLayout
@@ -46,7 +46,7 @@ class QuestionnairesPage extends React.Component {
             <QuestionnaireSettingsModal
               isOpen={this.state.isModalOpen}
               onClose={this.handleModalClose}
-              onSubmit={createQuestionnaire}
+              onSubmit={onCreateQuestionnaire}
               confirmText="Create"
             />
           </StyledButtonGroup>
@@ -62,7 +62,7 @@ class QuestionnairesPage extends React.Component {
 QuestionnairesPage.propTypes = {
   loading: PropTypes.bool,
   questionnaires: CustomPropTypes.questionnaireList,
-  createQuestionnaire: PropTypes.func.isRequired,
+  onCreateQuestionnaire: PropTypes.func.isRequired,
   onDeleteQuestionnaire: PropTypes.func.isRequired
 };
 

@@ -8,7 +8,7 @@ describe("containers/QuestionnairesPage", () => {
     shallow(
       <QuestionnairesPage
         onDeleteQuestionnaire={jest.fn()}
-        createQuestionnaire={jest.fn()}
+        onCreateQuestionnaire={jest.fn()}
         {...props}
       />
     );
@@ -54,11 +54,11 @@ describe("containers/QuestionnairesPage", () => {
   });
 
   it("creates questionnaire after submission", () => {
-    const createQuestionnaire = jest.fn();
-    const wrapper = createWrapper({ createQuestionnaire });
+    const onCreateQuestionnaire = jest.fn();
+    const wrapper = createWrapper({ onCreateQuestionnaire });
 
     wrapper.find(QuestionnaireSettingsModal).simulate("submit");
 
-    expect(createQuestionnaire).toHaveBeenCalled();
+    expect(onCreateQuestionnaire).toHaveBeenCalled();
   });
 });

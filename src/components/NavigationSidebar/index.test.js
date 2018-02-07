@@ -33,7 +33,7 @@ describe("NavigationSidebar", () => {
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
         onDeleteSection={handleDeleteSection}
-        onUpdate={handleUpdateQuestionnaire}
+        onUpdateQuestionnaire={handleUpdateQuestionnaire}
       />
     );
 
