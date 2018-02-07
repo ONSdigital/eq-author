@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Question Page Editor should render 1`] = `
+exports[`QuestionPageToolbar should render 1`] = `
 <QuestionPageToolbar__Toolbar>
   <IconButtonDelete
     data-test="btn-delete"
