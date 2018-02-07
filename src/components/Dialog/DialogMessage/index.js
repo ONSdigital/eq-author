@@ -26,8 +26,9 @@ export const Subheading = styled.h3`
   margin: 0;
 `;
 
-export const Description = styled.p`
+export const Description = styled.div`
   font-size: 0.9em;
+  margin: 1em 0;
   color: ${textStyle};
 `;
 
