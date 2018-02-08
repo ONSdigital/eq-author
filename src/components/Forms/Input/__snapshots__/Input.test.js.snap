@@ -21,21 +21,17 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
   onChange={[Function]}
 >
   <Input
-    className={undefined}
     defaultValue="I am some text"
     id="text"
     onChange={[Function]}
     type="text"
-    value={undefined}
   >
     <Input__StyledInput
-      className={undefined}
       defaultValue="I am some text"
       id="text"
       name="text"
       onChange={[Function]}
       type="text"
-      value={undefined}
     >
       <input
         className="c0"
@@ -44,7 +40,6 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
         name="text"
         onChange={[Function]}
         type="text"
-        value={undefined}
       />
     </Input__StyledInput>
   </Input>

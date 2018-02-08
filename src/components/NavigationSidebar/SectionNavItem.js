@@ -145,13 +145,14 @@ class SectionNavItem extends React.Component {
               aria-label="Delete section"
               onClick={this.handleDeleteSection}
               onFocus={this.handleDeleteFocus}
+              data-test="btn-delete-section"
             >
               &times;
             </SectionDeleteButton>
           </Tooltip>
         </SectionTitleWrapper>
         <PageNav section={section} questionnaire={questionnaire} />
-        <AddPageBtn onClick={this.handleAddPage} id="btn-add-page">
+        <AddPageBtn onClick={this.handleAddPage} data-test="btn-add-page">
           Add question
         </AddPageBtn>
       </StyledSectionNavItem>

@@ -45,14 +45,12 @@ exports[`WrappingInput should render 1`] = `
   value="123"
 >
   <WrappingTextArea
-    className={undefined}
     id="foo"
     onChange={[Function]}
     size="small"
     value="123"
   >
     <WrappingInput__TextArea
-      className={undefined}
       id="foo"
       onChange={[Function]}
       onKeyDown={[Function]}

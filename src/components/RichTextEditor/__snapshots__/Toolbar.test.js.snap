@@ -102,16 +102,12 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
           >
             <IconButton__Button
               className="c0"
-              disabled={undefined}
               icon="foo.svg"
-              onClick={undefined}
               type="button"
             >
               <button
                 className="c0 c1"
-                disabled={undefined}
                 icon="foo.svg"
-                onClick={undefined}
                 type="button"
               >
                 <VisuallyHidden>
@@ -261,16 +257,12 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
             <IconButton__Button
               active={true}
               className="c0"
-              disabled={undefined}
               icon="foo.svg"
-              onClick={undefined}
               type="button"
             >
               <button
                 className="c0 c1"
-                disabled={undefined}
                 icon="foo.svg"
-                onClick={undefined}
                 type="button"
               >
                 <VisuallyHidden>

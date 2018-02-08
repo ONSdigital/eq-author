@@ -46,7 +46,7 @@ describe("containers/QuestionnairesPage", () => {
   it("allows modal to be open and closed", () => {
     const wrapper = createWrapper();
 
-    wrapper.find("#btn-create-questionnaire").simulate("click");
+    wrapper.find("[data-test='create-questionnaire']").simulate("click");
     expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(true);
 
     wrapper.find(QuestionnaireSettingsModal).simulate("close");

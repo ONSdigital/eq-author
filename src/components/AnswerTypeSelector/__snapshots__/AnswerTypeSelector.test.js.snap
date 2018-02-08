@@ -9,10 +9,10 @@ exports[`components/AnswerTypeSelector should render content when open 1`] = `
   trigger={
     <IconButton
       clear={true}
+      data-test="btn-add-answer"
       highlightOnHover={true}
       icon="icon-add.svg"
       iconOnly={false}
-      id="add-answer-button"
     >
       Add 
       an
@@ -35,10 +35,10 @@ exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0
   trigger={
     <IconButton
       clear={true}
+      data-test="btn-add-answer"
       highlightOnHover={true}
       icon="icon-add.svg"
       iconOnly={false}
-      id="add-answer-button"
     >
       Add 
       another
@@ -61,10 +61,10 @@ exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] 
   trigger={
     <IconButton
       clear={true}
+      data-test="btn-add-answer"
       highlightOnHover={true}
       icon="icon-add.svg"
       iconOnly={false}
-      id="add-answer-button"
     >
       Add 
       an

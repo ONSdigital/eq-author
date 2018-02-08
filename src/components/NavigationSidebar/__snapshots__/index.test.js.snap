@@ -2,7 +2,7 @@
 
 exports[`NavigationSidebar should render 1`] = `
 <NavigationSidebar__Container
-  id="questionnaire-nav"
+  data-test="side-nav"
 >
   <NavigationHeader
     onUpdateQuestionnaire={[Function]}
@@ -53,6 +53,7 @@ exports[`NavigationSidebar should render 1`] = `
   <NavigationSidebar__AddSection>
     <NavigationSidebar__AddSectionBtn
       clear={true}
+      data-test="btn-add-section"
       highlightOnHover={false}
       icon="icon-plus.svg"
       onClick={[Function]}

@@ -132,7 +132,8 @@ class RichTextEditor extends React.Component {
     className: PropTypes.string,
     multiline: PropTypes.bool,
     size: PropTypes.oneOf(Object.keys(sizes)),
-    fetchAnswers: PropTypes.func
+    fetchAnswers: PropTypes.func,
+    testSelector: PropTypes.string
   };
 
   constructor(props) {
@@ -294,6 +295,7 @@ class RichTextEditor extends React.Component {
       multiline,
       size,
       className,
+      testSelector,
       ...otherProps
     } = this.props;
 
@@ -331,6 +333,7 @@ class RichTextEditor extends React.Component {
             handleReturn={multiline ? undefined : this.handleReturn}
             handlePastedText={multiline ? undefined : this.handlePaste}
             spellCheck
+            webDriverTestID={testSelector}
           />
         </ClickContext>
       </Wrapper>

@@ -145,19 +145,14 @@ exports[`components/Menu should render a Menu 1`] = `
     <MenuScrollPane>
       <ScrollPane
         className="c1"
-        innerRef={undefined}
       >
         <div
           className="c1 c2"
         >
           <MenuList>
-            <MenuScrollPane
-              maxHeight={undefined}
-            >
+            <MenuScrollPane>
               <ScrollPane
                 className="c1"
-                innerRef={undefined}
-                maxHeight={undefined}
               >
                 <div
                   className="c1 c2"
@@ -190,14 +185,11 @@ exports[`components/Menu should render a Menu 1`] = `
                             onItemChosen={[Function]}
                           >
                             <div
-                              aria-expanded={undefined}
-                              aria-haspopup={undefined}
                               className="c3"
                               onClick={[Function]}
                               onMouseEnter={[Function]}
                               onMouseLeave={[Function]}
                               role="menuitem"
-                              style={undefined}
                             >
                               <MenuItem__MenuItemInner>
                                 <div
@@ -234,14 +226,11 @@ exports[`components/Menu should render a Menu 1`] = `
                             onItemChosen={[Function]}
                           >
                             <div
-                              aria-expanded={undefined}
-                              aria-haspopup={undefined}
                               className="c3"
                               onClick={[Function]}
                               onMouseEnter={[Function]}
                               onMouseLeave={[Function]}
                               role="menuitem"
-                              style={undefined}
                             >
                               <MenuItem__MenuItemInner>
                                 <div
@@ -278,14 +267,11 @@ exports[`components/Menu should render a Menu 1`] = `
                             onItemChosen={[Function]}
                           >
                             <div
-                              aria-expanded={undefined}
-                              aria-haspopup={undefined}
                               className="c3"
                               onClick={[Function]}
                               onMouseEnter={[Function]}
                               onMouseLeave={[Function]}
                               role="menuitem"
-                              style={undefined}
                             >
                               <MenuItem__MenuItemInner>
                                 <div
@@ -466,20 +452,16 @@ exports[`components/Menu should render a Menu 1`] = `
                                   ],
                                 }
                               }
-                              zIndex={undefined}
                             >
                               <MenuItem
                                 aria-expanded={false}
                                 aria-haspopup={true}
                                 className="c5"
                                 highlightedClassName="is-highlighted"
-                                highlightedStyle={undefined}
-                                index={undefined}
                                 onHighlightChange={[Function]}
                                 onItemChosen={[Function]}
                                 onMouseLeave={[Function]}
                                 onRightPushed={[Function]}
-                                style={undefined}
                               >
                                 <div
                                   aria-expanded={false}
@@ -489,7 +471,6 @@ exports[`components/Menu should render a Menu 1`] = `
                                   onMouseEnter={[Function]}
                                   onMouseLeave={[Function]}
                                   role="menuitem"
-                                  style={undefined}
                                 >
                                   <MenuItem__MenuItemInner>
                                     <div

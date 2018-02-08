@@ -15,6 +15,7 @@ exports[`QuestionnaireMeta should render 1`] = `
     </Label>
     <withChangeHandler(Input)
       autoFocus={true}
+      data-test="txt-questionnaire-title"
       defaultValue="I am the title"
       onChange={[Function]}
       required={true}

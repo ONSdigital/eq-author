@@ -75,6 +75,7 @@ class AnswerEditor extends React.Component {
           <AnswerDeleteButton
             onClick={this.handleDeleteAnswer}
             aria-label="Delete answer"
+            data-test="btn-delete-answer"
           />
         </Tooltip>
       </div>

@@ -30,7 +30,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
   </TransitionGroup>
   <div>
     <Button
-      data-qa="addAnotherOption"
+      data-test="btn-add-option"
       onClick={[Function]}
       secondary={true}
       type="button"

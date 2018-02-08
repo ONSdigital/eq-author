@@ -52,6 +52,7 @@ export const StatelessQuestionnaireMeta = ({
         defaultValue={questionnaire.title}
         onChange={onChange}
         required
+        data-test="txt-questionnaire-title"
       />
     </Field>
     <ToggleWrapper>

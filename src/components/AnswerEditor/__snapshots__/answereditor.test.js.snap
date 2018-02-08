@@ -32,6 +32,7 @@ exports[`Answer Editor should render Checkbox 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>
@@ -61,6 +62,7 @@ exports[`Answer Editor should render Currency 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>
@@ -92,6 +94,7 @@ exports[`Answer Editor should render DateRange 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>
@@ -121,6 +124,7 @@ exports[`Answer Editor should render Number 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>
@@ -159,6 +163,7 @@ exports[`Answer Editor should render Radio 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>
@@ -188,6 +193,7 @@ exports[`Answer Editor should render TextArea 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>
@@ -217,6 +223,7 @@ exports[`Answer Editor should render TextField 1`] = `
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
+      data-test="btn-delete-answer"
       onClick={[Function]}
     />
   </Tooltip>

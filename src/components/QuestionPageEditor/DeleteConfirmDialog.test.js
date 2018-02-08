@@ -31,13 +31,13 @@ describe("Question Page Editor", () => {
   });
 
   it("should call deletePage handler when delete button is clicked", () => {
-    const deleteBtn = wrapper.find("[data-test='btn-delete']");
+    const deleteBtn = wrapper.find("[data-test='btn-delete-modal']");
     deleteBtn.simulate("click");
     expect(mockMutations.onDeletePage).toHaveBeenCalled();
   });
 
   it("should call close handler when cancel button is clicked", () => {
-    const cancelBtn = wrapper.find("[data-test='btn-cancel']");
+    const cancelBtn = wrapper.find("[data-test='btn-cancel-modal']");
     cancelBtn.simulate("click");
     expect(mockMutations.onClose).toHaveBeenCalled();
   });
