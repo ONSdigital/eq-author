@@ -20,10 +20,9 @@ export const mapResultsToProps = ({ data, ownProps }) => {
     };
   }
 
-  if (questionnaire !== undefined) {
-    section = findById(questionnaire.sections, sectionId);
-    page = findById(get(section, "pages"), pageId);
-  }
+  section = findById(get(questionnaire, "sections"), sectionId);
+  page = findById(get(section, "pages"), pageId);
+
   return {
     loading,
     questionnaire,
