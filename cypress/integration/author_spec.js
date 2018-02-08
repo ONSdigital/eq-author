@@ -30,20 +30,16 @@ describe("eq-author", () => {
         cy.get("#btn-add-page").click();
       })
       .then(() => {
-        cy.hash().then(hash => {
+        cy.hash().should(hash => {
           currentHash = hash;
+          assertHash(prevHash, currentHash, {
+            questionnaireId: true,
+            sectionId: true,
+            pageId: false
+          });
         });
       });
-    cy
-      .get('[class *="PageNav__Link-"]')
-      .should("have.length", 2)
-      .then(() => {
-        assertHash(prevHash, currentHash, {
-          questionnaireId: true,
-          sectionId: true,
-          pageId: false
-        });
-      });
+    cy.get('[class *="PageNav__Link-"]').should("have.length", 2);
   });
 
   it("can delete a page", () => {
@@ -84,15 +80,13 @@ describe("eq-author", () => {
           .click();
       })
       .then(() => {
-        cy.hash().then(hash => {
+        cy.hash().should(hash => {
           currentHash = hash;
-        });
-      })
-      .then(() => {
-        assertHash(prevHash, currentHash, {
-          questionnaireId: true,
-          sectionId: false,
-          pageId: false
+          assertHash(prevHash, currentHash, {
+            questionnaireId: true,
+            sectionId: false,
+            pageId: false
+          });
         });
       });
   });
@@ -248,15 +242,13 @@ describe("eq-author", () => {
         });
       })
       .then(() => {
-        cy.hash().then(hash => {
+        cy.hash().should(hash => {
           currentHash = hash;
-        });
-      })
-      .then(() => {
-        assertHash(prevHash, currentHash, {
-          questionnaireId: true,
-          sectionId: true,
-          pageId: false
+          assertHash(prevHash, currentHash, {
+            questionnaireId: true,
+            sectionId: true,
+            pageId: false
+          });
         });
       });
   });
@@ -271,15 +263,13 @@ describe("eq-author", () => {
         cy.get("#questionnaire-nav [aria-label='Delete section']").click();
       })
       .then(() => {
-        cy.hash().then(hash => {
+        cy.hash().should(hash => {
           currentHash = hash;
-        });
-      })
-      .then(() => {
-        assertHash(prevHash, currentHash, {
-          questionnaireId: true,
-          sectionId: false,
-          pageId: false
+          assertHash(prevHash, currentHash, {
+            questionnaireId: true,
+            sectionId: false,
+            pageId: false
+          });
         });
       });
   });
