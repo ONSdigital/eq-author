@@ -19,7 +19,7 @@ describe("eq-author", () => {
 
   it("can create a new page", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -27,15 +27,13 @@ describe("eq-author", () => {
         cy.get("#btn-add-page").click();
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: true,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
         });
       });
+
     cy.get('[class *="PageNav__Link-"]').should("have.length", 2);
   });
 
@@ -63,7 +61,7 @@ describe("eq-author", () => {
 
   it("can create a new section", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -74,13 +72,10 @@ describe("eq-author", () => {
           .click();
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: false,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
         });
       });
   });
@@ -222,7 +217,7 @@ describe("eq-author", () => {
 
   it("should create a new page when deleting only page in section", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -236,20 +231,17 @@ describe("eq-author", () => {
         });
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: true,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
         });
       });
   });
 
   it("should create a new section when deleting only section", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -257,13 +249,10 @@ describe("eq-author", () => {
         cy.get("#questionnaire-nav [aria-label='Delete section']").click();
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: false,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
         });
       });
   });

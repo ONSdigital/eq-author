@@ -11,33 +11,24 @@ export function addAnswerType(answerType) {
   cy.contains(answerType).click();
 }
 
-export function assertHash(prevHash, currentHash, equality) {
-  const basicQuestionnaireRegex = /questionnaire\/(\d+)\/design\/(\d+)\/(\d+)/;
+const extractUrlVars = hash => {
+  const URL_REGEX = /questionnaire\/(\d+)\/design\/(\d+)\/(\d+)/;
+  const [, questionnaireId, sectionId, pageId] = hash.match(URL_REGEX) || [];
 
-  const prevRegexCapture = prevHash.match(basicQuestionnaireRegex);
-  const currentRegexCapture = currentHash.match(basicQuestionnaireRegex);
+  return { questionnaireId, sectionId, pageId };
+};
 
-  if (equality.questionnaireId) {
-    expect(prevRegexCapture[1], "questionnaireId").to.equal(
-      currentRegexCapture[1]
-    );
-  } else {
-    expect(prevRegexCapture[1], "questionnaireId").not.to.equal(
-      currentRegexCapture[1]
-    );
-  }
+export function assertHash(previousHash, equality) {
+  cy.hash().should(currentHash => {
+    const previousVars = extractUrlVars(previousHash);
+    const currentVars = extractUrlVars(currentHash);
 
-  if (equality.sectionId) {
-    expect(prevRegexCapture[2], "sectionId").to.equal(currentRegexCapture[2]);
-  } else {
-    expect(prevRegexCapture[2], "sectionId").not.to.equal(
-      currentRegexCapture[2]
-    );
-  }
-
-  if (equality.pageId) {
-    expect(prevRegexCapture[3], "pageId").to.equal(currentRegexCapture[3]);
-  } else {
-    expect(prevRegexCapture[3], "pageId").not.to.equal(currentRegexCapture[3]);
-  }
+    Object.keys(previousVars).forEach(key => {
+      if (equality[key]) {
+        expect(previousVars[key], key).to.equal(currentVars[key]);
+      } else {
+        expect(previousVars[key], key).not.to.equal(currentVars[key]);
+      }
+    });
+  });
 }
