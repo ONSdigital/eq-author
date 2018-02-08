@@ -1,14 +1,9 @@
-export function createQuestionnaire(name) {
-  cy.get("#btn-create-questionnaire").click();
-  cy.get("#title").type(name);
-  cy.get("#description").type("description");
-  cy.get("#theme").select("default");
-  cy.get("#legalBasis").select("StatisticsOfTradeAct");
-  cy.get("label[for='navigation']").click();
-  cy
-    .get("button")
-    .contains("Create")
-    .click();
+export function setQuestionnaireSettings(name) {
+  cy.get(`[data-test="questionnaire-settings-form"]`).within(() => {
+    cy.get("#title").type(name);
+    cy.get("label[for='navigation']").click();
+    cy.get(`button[type='submit']`).click();
+  });
 }
 
 export function addAnswerType(answerType) {

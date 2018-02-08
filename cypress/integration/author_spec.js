@@ -1,8 +1,4 @@
-import {
-  createQuestionnaire,
-  addAnswerType,
-  assertHash
-} from "../utils/index.js";
+import { setQuestionnaireSettings, addAnswerType, assertHash } from "../utils";
 
 describe("eq-author", () => {
   it("Should redirect to the sign-in page", () => {
@@ -16,7 +12,8 @@ describe("eq-author", () => {
   });
 
   it("can create a questionnaire", () => {
-    createQuestionnaire("Title");
+    cy.get("#btn-create-questionnaire").click();
+    setQuestionnaireSettings("Title");
     cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
   });
 
@@ -49,7 +46,7 @@ describe("eq-author", () => {
         .first()
         .click();
     });
-    cy.get('[class*="Dialog__StyledDialog"]').within(() => {
+    cy.get('[class*="DeleteConfirmModalDialog"]').within(() => {
       cy
         .get('[class*="Button__StyledButton"]')
         .contains("Delete")
@@ -58,12 +55,9 @@ describe("eq-author", () => {
     cy.get('[class *="PageNav__Link-"]').should("have.length", 1);
   });
 
-  it("can change the questionaire title", () => {
-    cy
-      .get("#title")
-      .clear()
-      .type("Test Questionnaire");
-    cy.get("#root").click("bottomRight");
+  it("can change the questionnaire title", () => {
+    cy.get(`[data-test="settings-btn"]`).click();
+    setQuestionnaireSettings("Test Questionnaire");
     cy.get("[aria-label='breadcrumb']").should("contain", "Test Questionnaire");
   });
 
@@ -234,7 +228,7 @@ describe("eq-author", () => {
       .then(hash => {
         prevHash = hash;
         cy.get('[class*="IconButtonDelete"]').click();
-        cy.get('[class*="Dialog__StyledDialog"]').within(() => {
+        cy.get('[class*="DeleteConfirmModalDialog"]').within(() => {
           cy
             .get('[class*="Button__StyledButton"]')
             .contains("Delete")
