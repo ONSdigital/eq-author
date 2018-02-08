@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`QuestionnaireDesignPage redirect behaviour should redirect to a 404 page if questionnaire is undefined 1`] = `
+<Redirect
+  push={false}
+  to="/404"
+/>
+`;
+
+exports[`QuestionnaireDesignPage redirect behaviour should redirect to a 404 page if questionnaire, section and page is undefined 1`] = `
+<Redirect
+  push={false}
+  to="/404"
+/>
+`;
+
+exports[`QuestionnaireDesignPage redirect behaviour should redirect to a 404 page if questionnaire, section is undefined 1`] = `
+<Redirect
+  push={false}
+  to="/404"
+/>
+`;
+
 exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
 <BaseLayout
   docTitle="hello world"

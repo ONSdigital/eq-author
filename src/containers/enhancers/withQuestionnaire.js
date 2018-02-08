@@ -6,6 +6,8 @@ import { get } from "lodash";
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;
   const { sectionId, pageId } = ownProps;
+  let section;
+  let page;
 
   if (loading) {
     return { loading };
@@ -18,8 +20,8 @@ export const mapResultsToProps = ({ data, ownProps }) => {
     };
   }
 
-  const section = findById(questionnaire.sections, sectionId);
-  const page = findById(get(section, "pages"), pageId);
+  section = findById(get(questionnaire, "sections"), sectionId);
+  page = findById(get(section, "pages"), pageId);
 
   return {
     loading,
