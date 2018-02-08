@@ -18,15 +18,12 @@ install:
  - yarn upgrade eq-author-graphql-schema
 
 before_script:
- - yarn global add chimp
- - yarn global add serve
  - set -e
 
 script:
   - yarn lint
   - yarn coverage
   - ./scripts/run_smoketests_author.sh
-  - ./scripts/run_smoketests_storybook.sh
 
 after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD

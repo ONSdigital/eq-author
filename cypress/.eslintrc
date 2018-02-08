@@ -1,0 +1,8 @@
+{
+  "globals": {
+    "cy": false
+  },
+  "rules": {
+    "jest/valid-expect": 0
+  }
+}

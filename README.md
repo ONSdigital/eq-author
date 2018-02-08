@@ -160,6 +160,18 @@ Firebase authentication can be disabled by setting the env var `REACT_APP_ENABLE
 
 ## Testing
 
+### Author Smoketests
+
+Author's e2e testing is run using the Cypress framework and can be run using the following commands provided author is already running with AUTH disabled using the `REACT_APP_ENABLE_AUTH=false` env variable:
+
+* `CYPRESS_base_Url=http://localhost:3000/ yarn smoketest:author` 
+
+Launches Cypress on Chrome and automatically runs the default test suite. 
+
+* `CYPRESS_baseUrl=http://localhost:3000/ yarn cypress:open`
+
+Launches Cypress using the Electron framework and allows for choosing which test to run and a more interactive and detailed testing enviroment. 
+
 ### Filename Conventions
 
 Tests are colocated next to the code they are testing. For example, a test for `/src/components/Button/index.js` could be in a file `/src/components/Button/test.js`.

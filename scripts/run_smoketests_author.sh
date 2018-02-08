@@ -9,7 +9,7 @@ export $(egrep -v '^#' .env.test | xargs)
 REACT_APP_ENABLE_AUTH=false yarn build:mockAPI
 
 # Serve the app
-./node_modules/.bin/serve -S -p 3000 build/ &
+yarn serve &
 pid=$!
 
 function finish {
@@ -19,7 +19,7 @@ function finish {
 trap finish INT KILL TERM EXIT
 
 # Wait for server to start listening
-./node_modules/.bin/wait-on http://localhost:3000 -t 10000
+./node_modules/.bin/wait-on $CYPRESS_baseUrl -t 10000
 
 # Run the tests
 yarn smoketest:author
