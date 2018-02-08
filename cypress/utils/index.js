@@ -1,6 +1,9 @@
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-test="questionnaire-settings-form"]`).within(() => {
-    cy.get("#title").type(name);
+    cy
+      .get("#title")
+      .clear()
+      .type(name);
     cy.get("label[for='navigation']").click();
     cy.get(`button[type='submit']`).click();
   });
