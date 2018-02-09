@@ -18,7 +18,7 @@ const Label = ({ id, children, ...otherProps }) => (
 
 Label.propTypes = {
   id: PropTypes.string,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   small: PropTypes.bool
 };
 

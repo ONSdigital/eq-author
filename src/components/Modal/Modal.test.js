@@ -54,6 +54,12 @@ describe("components/Modal", () => {
       expect(props.onClose).not.toHaveBeenCalled();
     });
 
+    it("should close when the close button is clicked", () => {
+      wrapper = createWrapper(props, shallow, children);
+      wrapper.find("Modal__CloseButton").simulate("click");
+      expect(props.onClose).toHaveBeenCalled();
+    });
+
     it("should close if browser URL changes", () => {
       document.dispatchEvent(new HashChangeEvent("hashchange"));
       expect(props.onClose).toHaveBeenCalled();

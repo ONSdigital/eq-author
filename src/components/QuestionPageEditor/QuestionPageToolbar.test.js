@@ -4,7 +4,7 @@ import DeleteConfirmDialog from "./DeleteConfirmDialog";
 import React from "react";
 import { shallow } from "enzyme";
 
-describe("Question Page Editor", () => {
+describe("QuestionPageToolbar", () => {
   let wrapper;
 
   let mockMutations;

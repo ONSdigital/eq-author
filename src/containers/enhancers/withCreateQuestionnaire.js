@@ -13,7 +13,7 @@ export const redirectToDesigner = history => ({ data }) => {
 };
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
-  createQuestionnaire: questionnaire => {
+  onCreateQuestionnaire: questionnaire => {
     const input = {
       ...questionnaire
     };

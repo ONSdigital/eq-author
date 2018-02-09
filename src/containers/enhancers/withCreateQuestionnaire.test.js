@@ -47,8 +47,8 @@ describe("withCreateQuestionnaire", () => {
       props = mapMutateToProps({ ownProps, mutate });
     });
 
-    it("should have a createQuestionnaire prop", () => {
-      expect(props.createQuestionnaire).toBeInstanceOf(Function);
+    it("should have a onCreateQuestionnaire prop", () => {
+      expect(props.onCreateQuestionnaire).toBeInstanceOf(Function);
     });
 
     it("should redirect after mutation", () => {
@@ -57,7 +57,7 @@ describe("withCreateQuestionnaire", () => {
         createdBy: user.displayName
       };
 
-      return props.createQuestionnaire(questionnaire).then(() => {
+      return props.onCreateQuestionnaire(questionnaire).then(() => {
         expect(mutate).toHaveBeenCalledWith({
           variables: { input }
         });

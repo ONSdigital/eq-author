@@ -1,8 +1,4 @@
-import {
-  createQuestionnaire,
-  addAnswerType,
-  assertHash
-} from "../utils/index.js";
+import { setQuestionnaireSettings, addAnswerType, assertHash } from "../utils";
 
 describe("eq-author", () => {
   it("Should redirect to the sign-in page", () => {
@@ -16,13 +12,14 @@ describe("eq-author", () => {
   });
 
   it("can create a questionnaire", () => {
-    createQuestionnaire("Title");
+    cy.get("#btn-create-questionnaire").click();
+    setQuestionnaireSettings("Title");
     cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
   });
 
   it("can create a new page", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -30,15 +27,13 @@ describe("eq-author", () => {
         cy.get("#btn-add-page").click();
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: true,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
         });
       });
+
     cy.get('[class *="PageNav__Link-"]').should("have.length", 2);
   });
 
@@ -49,7 +44,7 @@ describe("eq-author", () => {
         .first()
         .click();
     });
-    cy.get('[class*="Dialog__StyledDialog"]').within(() => {
+    cy.get('[class*="DeleteConfirmModalDialog"]').within(() => {
       cy
         .get('[class*="Button__StyledButton"]')
         .contains("Delete")
@@ -58,18 +53,15 @@ describe("eq-author", () => {
     cy.get('[class *="PageNav__Link-"]').should("have.length", 1);
   });
 
-  it("can change the questionaire title", () => {
-    cy
-      .get("#title")
-      .clear()
-      .type("Test Questionnaire");
-    cy.get("#root").click("bottomRight");
+  it("can change the questionnaire title", () => {
+    cy.get(`[data-test="settings-btn"]`).click();
+    setQuestionnaireSettings("Test Questionnaire");
     cy.get("[aria-label='breadcrumb']").should("contain", "Test Questionnaire");
   });
 
   it("can create a new section", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -80,13 +72,10 @@ describe("eq-author", () => {
           .click();
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: false,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
         });
       });
   });
@@ -228,13 +217,13 @@ describe("eq-author", () => {
 
   it("should create a new page when deleting only page in section", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
         prevHash = hash;
         cy.get('[class*="IconButtonDelete"]').click();
-        cy.get('[class*="Dialog__StyledDialog"]').within(() => {
+        cy.get('[class*="DeleteConfirmModalDialog"]').within(() => {
           cy
             .get('[class*="Button__StyledButton"]')
             .contains("Delete")
@@ -242,20 +231,17 @@ describe("eq-author", () => {
         });
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: true,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
         });
       });
   });
 
   it("should create a new section when deleting only section", () => {
     let prevHash;
-    let currentHash;
+
     cy
       .hash()
       .then(hash => {
@@ -263,13 +249,10 @@ describe("eq-author", () => {
         cy.get("#questionnaire-nav [aria-label='Delete section']").click();
       })
       .then(() => {
-        cy.hash().should(hash => {
-          currentHash = hash;
-          assertHash(prevHash, currentHash, {
-            questionnaireId: true,
-            sectionId: false,
-            pageId: false
-          });
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
         });
       });
   });
