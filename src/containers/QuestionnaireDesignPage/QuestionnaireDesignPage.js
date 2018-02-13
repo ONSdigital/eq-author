@@ -13,7 +13,7 @@ import ConnectedPropertiesPanel from "components/PropertiesPanel";
 import Nav from "components/Nav";
 import styled from "styled-components";
 import IconButton from "components/IconButton";
-import addPage from "./icon-add-page.svg";
+import AddPage from "./icon-add-page.svg?inline";
 
 const Centered = styled.div`
   display: flex;
@@ -108,7 +108,7 @@ export class QuestionnaireDesignPage extends Component {
                 <IconButton
                   clear
                   onClick={this.handleAddPageClick}
-                  icon={addPage}
+                  icon={AddPage}
                 >
                   Add question page
                 </IconButton>

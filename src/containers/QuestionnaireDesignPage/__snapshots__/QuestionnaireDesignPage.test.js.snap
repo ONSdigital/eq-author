@@ -224,7 +224,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
           <IconButton
             clear={true}
             highlightOnHover={true}
-            icon="icon-add-page.svg"
+            icon={[Function]}
             iconOnly={false}
             onClick={[Function]}
           >

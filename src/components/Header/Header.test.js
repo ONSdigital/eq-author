@@ -54,13 +54,6 @@ describe("components/Header", () => {
       expect(previewButton).toHaveLength(1);
       expect(previewButton).toMatchSnapshot();
     });
-
-    it("should render an export button", () => {
-      const exportButton = wrapper.find("Header__ExportButton");
-
-      expect(exportButton).toHaveLength(1);
-      expect(exportButton).toMatchSnapshot();
-    });
   });
 
   describe("when the user is signed in", () => {

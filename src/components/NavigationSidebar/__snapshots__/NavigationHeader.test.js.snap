@@ -10,15 +10,7 @@ exports[`NavigationHeader should render 1`] = `
       <VisuallyHidden>
         Home
       </VisuallyHidden>
-      <InlineSVG
-        cacheGetRequests={false}
-        onLoad={[Function]}
-        src="icon-home.svg"
-        supportTest={[Function]}
-        uniqueHash="home-icon"
-        uniquifyIDs={true}
-        wrapper={[Function]}
-      />
+      <NavigationHeader__HomeIconLink />
     </Link>
   </li>
   <li>
@@ -26,7 +18,7 @@ exports[`NavigationHeader should render 1`] = `
       clear={true}
       data-test="settings-btn"
       highlightOnHover={false}
-      icon="icon-cog.svg"
+      icon={[Function]}
       onClick={[Function]}
     >
       Settings

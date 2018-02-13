@@ -1,11 +1,12 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import IconButton from "components/IconButton";
-import addPageIcon from "containers/QuestionnaireDesignPage/icon-add-page.svg";
 
 const createWrapper = (props, render = shallow) => {
   return render(<IconButton {...props}>Icon button text</IconButton>);
 };
+
+const Icon = () => <svg />;
 
 describe("IconButton", () => {
   let wrapper;
@@ -14,8 +15,7 @@ describe("IconButton", () => {
   beforeEach(() => {
     props = {
       onClick: jest.fn(),
-      icon: addPageIcon,
-      uniqueHash: "Fixed random hash for snapshot test"
+      icon: Icon
     };
     wrapper = createWrapper(props);
   });

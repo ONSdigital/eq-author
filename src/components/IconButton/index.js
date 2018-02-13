@@ -1,17 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import Button from "components/Button";
+
 import { colors } from "constants/theme";
 import PropTypes from "prop-types";
-import Tooltip from "../Tooltip";
-import VisuallyHidden from "../VisuallyHidden";
-import SVG from "react-inlinesvg";
-
-const separateIconFromText = css`
-  & svg {
-    margin-right: 0.6em;
-  }
-`;
+import Tooltip from "components/Tooltip";
+import VisuallyHidden from "components/VisuallyHidden";
 
 const highlightOnHover = css`
   &:hover,
@@ -25,20 +18,27 @@ const highlightOnHover = css`
   }
 `;
 
-const StyledButton = styled(Button).attrs({
+const StyledButton = styled.button.attrs({
   type: "button"
 })`
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
   cursor: pointer;
   font-size: 0.875em;
   color: inherit;
-  ${props => !props.iconOnly && separateIconFromText};
+  padding: 0;
+  margin: 0;
   ${props => props.highlightOnHover && highlightOnHover};
 
   & svg {
     vertical-align: middle;
   }
+`;
+
+const Text = styled.span`
+  margin-left: 0.6em;
 `;
 
 const withTooltip = (text, Component) => (
@@ -49,7 +49,7 @@ const withTooltip = (text, Component) => (
 
 class IconButton extends React.Component {
   static propTypes = {
-    icon: PropTypes.string.isRequired,
+    icon: PropTypes.func.isRequired,
     iconOnly: PropTypes.bool,
     highlightOnHover: PropTypes.bool,
     children: PropTypes.node
@@ -61,15 +61,17 @@ class IconButton extends React.Component {
   };
 
   render() {
-    const { icon, children, iconOnly, ...otherProps } = this.props;
+    const { icon: Icon, children, iconOnly, ...otherProps } = this.props;
+
     const text = iconOnly ? (
       <VisuallyHidden>{children}</VisuallyHidden>
     ) : (
-      <span>{children}</span>
+      <Text>{children}</Text>
     );
+
     const button = (
       <StyledButton iconOnly={iconOnly} {...otherProps}>
-        <SVG src={icon} uniqueHash={otherProps.uniqueHash} />
+        <Icon />
         {text}
       </StyledButton>
     );

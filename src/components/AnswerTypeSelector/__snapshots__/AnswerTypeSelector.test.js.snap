@@ -11,7 +11,7 @@ exports[`components/AnswerTypeSelector should render content when open 1`] = `
       clear={true}
       data-test="btn-add-answer"
       highlightOnHover={true}
-      icon="icon-add.svg"
+      icon={[Function]}
       iconOnly={false}
     >
       Add 
@@ -37,7 +37,7 @@ exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0
       clear={true}
       data-test="btn-add-answer"
       highlightOnHover={true}
-      icon="icon-add.svg"
+      icon={[Function]}
       iconOnly={false}
     >
       Add 
@@ -63,7 +63,7 @@ exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] 
       clear={true}
       data-test="btn-add-answer"
       highlightOnHover={true}
-      icon="icon-add.svg"
+      icon={[Function]}
       iconOnly={false}
     >
       Add 
