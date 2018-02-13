@@ -1,4 +1,4 @@
-import { compose } from "react-apollo";
+import { flowRight } from "lodash";
 import { connect } from "react-redux";
 
 import { raiseToast } from "redux/toast/actions";
@@ -13,7 +13,7 @@ import { getUrlParams } from "utils/UrlUtils";
 
 export const mapStateToProps = (state, { match }) => getUrlParams(match.params);
 
-export default compose(
+export default flowRight(
   connect(mapStateToProps, { raiseToast }),
   withQuestionnaire,
   withUpdateSection,

@@ -24,15 +24,13 @@ const configureStore = (history, client, preloadedState) =>
       router,
       uiState,
       toasts,
-      auth: authReducer,
-      apollo: client.reducer()
+      auth: authReducer
     }),
     preloadedState,
     composeWithDevTools(
       applyMiddleware(
         createRouterMiddleware(history),
-        thunk.withExtraArgument({ client, auth }),
-        client.middleware()
+        thunk.withExtraArgument({ auth, client })
       )
     )
   );

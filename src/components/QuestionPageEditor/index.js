@@ -11,7 +11,7 @@ import ConnectedCanvasSection, {
 import SlideTransition from "components/SlideTransition";
 import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
-import { compose } from "react-apollo";
+import { flowRight } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
 import focusOnEntity from "utils/focusOnEntity";
@@ -119,7 +119,7 @@ export class QPE extends React.Component {
   }
 }
 
-export default compose(
+export default flowRight(
   connect(null, ToastActionCreators),
   withCreateAnswer,
   withUpdateAnswer,

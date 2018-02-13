@@ -14,7 +14,7 @@ import QuestionnairesPage from "containers/QuestionnairesPage";
 import SignInPage from "containers/SignInPage";
 import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
 import NotFoundPage from "containers/NotFoundPage";
-import { connect } from "react-redux";
+import { Provider, connect } from "react-redux";
 import { isSignedIn } from "redux/auth/reducer";
 
 export const Routes = ({ isSignedIn, ...otherProps }) => (
@@ -50,8 +50,10 @@ const ConnectedRoutes = connect(mapStateToProps)(Routes);
 const App = ({ store, client, history }) => {
   return (
     <AppContainer>
-      <ApolloProvider client={client} store={store}>
-        <ConnectedRoutes history={history} />
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <ConnectedRoutes history={history} />
+        </Provider>
       </ApolloProvider>
     </AppContainer>
   );

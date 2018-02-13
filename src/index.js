@@ -1,9 +1,12 @@
 import render from "utils/render";
 import createHistory from "history/createHashHistory";
 import configureStore from "redux/configureStore";
-import createClient from "apollo/createClient";
 import App from "containers/App";
 import Raven from "raven-js";
+import getIdForObject from "utils/getIdForObject";
+import fragmentMatcher from "apollo/fragmentMatcher";
+import createApolloClient from "apollo/createApolloClient";
+import createApolloCache from "apollo/createApolloCache";
 
 if (process.env.REACT_APP_USE_SENTRY === "true") {
   Raven.config(
@@ -11,18 +14,23 @@ if (process.env.REACT_APP_USE_SENTRY === "true") {
   ).install();
 }
 
-let networkInterface;
+let link;
 
 if (process.env.REACT_APP_USE_MOCK_API === "true") {
-  const mockNetworkInterface = require("./apollo/createMockNetworkInterface")
-    .default;
-  const mockResolvers = require("./tests/utils/MockResolvers").default;
-  networkInterface = mockNetworkInterface(mockResolvers);
+  const createSchemaLink = require("./apollo/createSchemaLink").default;
+  link = createSchemaLink();
 } else {
-  networkInterface = require("./apollo/createRealNetworkInterface").default;
+  const createHttpLink = require("./apollo/createHttpLink").default;
+  link = createHttpLink(process.env.REACT_APP_API_URL);
 }
 
-const client = createClient(networkInterface);
+const cache = createApolloCache({
+  addTypename: true,
+  dataIdFromObject: getIdForObject,
+  fragmentMatcher
+});
+
+const client = createApolloClient(link, cache);
 
 const history = createHistory({
   basename: process.env.REACT_APP_BASE_NAME

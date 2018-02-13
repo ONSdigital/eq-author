@@ -1,7 +1,6 @@
 import { merge } from "lodash";
-import MockDataStore from "./MockDataStore";
-
 import { GraphQLDate } from "graphql-iso-date";
+import MockDataStore from "./MockDataStore";
 
 const localStorageKey = "mockDataStore";
 
@@ -24,6 +23,7 @@ const persistMutation = result => {
 };
 
 export default {
+  Date: () => GraphQLDate,
   String: () => "",
   Query: () => ({
     questionnaires: (root, args, ctx) => {
