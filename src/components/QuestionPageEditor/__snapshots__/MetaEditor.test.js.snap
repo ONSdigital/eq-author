@@ -2,7 +2,9 @@
 
 exports[`MetaEditor should render 1`] = `
 <div>
-  <Field>
+  <Field
+    id="title"
+  >
     <RichTextEditor
       controls={
         Object {
@@ -20,7 +22,9 @@ exports[`MetaEditor should render 1`] = `
       value="Page title"
     />
   </Field>
-  <Field>
+  <Field
+    id="description"
+  >
     <RichTextEditor
       controls={
         Object {

@@ -2,7 +2,9 @@
 
 exports[`SectionEditor should render 1`] = `
 <div>
-  <Field>
+  <Field
+    id="title"
+  >
     <RichTextEditor
       controls={
         Object {
@@ -17,7 +19,9 @@ exports[`SectionEditor should render 1`] = `
       testSelector="txt-section-title"
     />
   </Field>
-  <Field>
+  <Field
+    id="description"
+  >
     <RichTextEditor
       controls={
         Object {

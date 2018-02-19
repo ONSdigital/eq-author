@@ -48,7 +48,7 @@ export class StatelessMetaEditor extends React.Component {
 
     return (
       <div>
-        <Field>
+        <Field id="title">
           <RichTextEditor
             placeholder="Question"
             value={page.title}
@@ -61,7 +61,7 @@ export class StatelessMetaEditor extends React.Component {
             testSelector="txt-question-title"
           />
         </Field>
-        <Field>
+        <Field id="description">
           <RichTextEditor
             placeholder="Question guidance (optional)…"
             value={page.description}
