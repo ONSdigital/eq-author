@@ -23,7 +23,9 @@ const BreadcrumbItem = styled.li`
   }
 `;
 
-const BreadcrumbNav = styled.nav`display: block;`;
+const BreadcrumbNav = styled.nav`
+  display: block;
+`;
 
 export const BreadcrumbLink = styled(Link)`
   text-decoration: none;
@@ -37,7 +39,7 @@ export const BreadcrumbLink = styled(Link)`
 
 const Breadcrumb = ({ title }) => {
   return (
-    <BreadcrumbNav aria-label="breadcrumb">
+    <BreadcrumbNav aria-label="breadcrumb" data-test="breadcrumb">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink to={"/"}>Home</BreadcrumbLink>

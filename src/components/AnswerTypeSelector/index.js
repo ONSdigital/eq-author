@@ -35,7 +35,7 @@ export default class AnswerTypeSelector extends React.Component {
 
   render() {
     const trigger = (
-      <IconButton id="add-answer-button" icon={addIcon} clear>
+      <IconButton icon={addIcon} clear data-test="btn-add-answer">
         Add {this.props.answers.length === 0 ? "an" : "another"} answer
       </IconButton>
     );

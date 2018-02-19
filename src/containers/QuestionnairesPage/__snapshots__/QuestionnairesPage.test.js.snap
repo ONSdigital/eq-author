@@ -10,7 +10,7 @@ exports[`containers/QuestionnairesPage should not render table whilst data is lo
       horizontal={true}
     >
       <Button
-        id="btn-create-questionnaire"
+        data-test="create-questionnaire"
         onClick={[Function]}
         primary={true}
       >
@@ -48,7 +48,7 @@ exports[`containers/QuestionnairesPage should render table when there are questi
       horizontal={true}
     >
       <Button
-        id="btn-create-questionnaire"
+        data-test="create-questionnaire"
         onClick={[Function]}
         primary={true}
       >
@@ -112,7 +112,7 @@ exports[`containers/QuestionnairesPage should render when there are no questionn
       horizontal={true}
     >
       <Button
-        id="btn-create-questionnaire"
+        data-test="create-questionnaire"
         onClick={[Function]}
         primary={true}
       >

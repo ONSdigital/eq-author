@@ -123,7 +123,7 @@ export class PageNavItem extends React.Component {
     const { sectionId, questionnaireId, pageId, title } = this.props;
 
     return (
-      <StyledPageItem>
+      <StyledPageItem data-test="page-item">
         <Link
           to={getLink(questionnaireId, sectionId, pageId)}
           aria-disabled={parseInt(pageId, 10) < 0}

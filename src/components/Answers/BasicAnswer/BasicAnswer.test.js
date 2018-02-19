@@ -27,6 +27,7 @@ describe("BasicAnswer", () => {
     onUpdate = jest.fn();
 
     props = {
+      id: "1",
       answer,
       onChange,
       onUpdate

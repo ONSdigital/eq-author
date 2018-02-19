@@ -93,7 +93,7 @@ export class QPE extends React.Component {
     const { page, onUpdatePage } = this.props;
 
     return (
-      <div id="question-page-editor">
+      <div>
         <QuestionCanvasSection id={getIdForObject(page)}>
           <QuestionPageToolbar
             onDeletePage={this.handleDeletePage}

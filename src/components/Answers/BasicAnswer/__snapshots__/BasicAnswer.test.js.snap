@@ -2,11 +2,11 @@
 
 exports[`BasicAnswer should render 1`] = `
 <div>
-  <Field
-    id="label"
-  >
+  <Field>
     <withChangeHandler(WrappingTextArea)
       data-autofocus={true}
+      data-test="txt-answer-label"
+      name="label"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"
@@ -14,11 +14,11 @@ exports[`BasicAnswer should render 1`] = `
       value=""
     />
   </Field>
-  <Field
-    id="description"
-  >
+  <Field>
     <withChangeHandler(WrappingTextArea)
       cols="30"
+      data-test="txt-answer-description"
+      name="description"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Enter a description (optional)…"

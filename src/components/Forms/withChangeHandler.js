@@ -23,7 +23,6 @@ const withChangeHandler = WrappedComponent => {
 
     render() {
       const { value, className, ...otherProps } = this.props;
-
       return (
         <WrappedComponent
           {...otherProps}

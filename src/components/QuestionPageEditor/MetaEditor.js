@@ -48,7 +48,7 @@ export class StatelessMetaEditor extends React.Component {
 
     return (
       <div>
-        <Field id="title">
+        <Field>
           <RichTextEditor
             placeholder="Question"
             value={page.title}
@@ -58,9 +58,10 @@ export class StatelessMetaEditor extends React.Component {
             controls={titleControls}
             size="large"
             fetchAnswers={fetchAnswers}
+            testSelector="txt-question-title"
           />
         </Field>
-        <Field id="description">
+        <Field>
           <RichTextEditor
             placeholder="Question guidance (optional)…"
             value={page.description}
@@ -69,9 +70,10 @@ export class StatelessMetaEditor extends React.Component {
             controls={descriptionControls}
             multiline
             fetchAnswers={fetchAnswers}
+            testSelector="txt-question-description"
           />
         </Field>
-        <Field id="guidance">
+        <Field>
           <GuidanceRichTextEditor
             placeholder="Include / exclude guidance (optional)…"
             value={page.guidance}
@@ -80,6 +82,7 @@ export class StatelessMetaEditor extends React.Component {
             controls={guidanceControls}
             multiline
             fetchAnswers={fetchAnswers}
+            testSelector="txt-question-guidance"
           />
         </Field>
       </div>

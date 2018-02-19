@@ -38,8 +38,8 @@ class QuestionnairesPage extends React.Component {
           <StyledButtonGroup horizontal>
             <Button
               onClick={this.handleModalOpen}
-              id="btn-create-questionnaire"
               primary
+              data-test="create-questionnaire"
             >
               Create
             </Button>

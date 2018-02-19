@@ -105,8 +105,7 @@ export class StatelessOption extends Component {
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     hasDeleteButton: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired,
-    id: PropTypes.string
+    type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired
   };
 
   handleDeleteClick = e => {
@@ -121,6 +120,7 @@ export class StatelessOption extends Component {
             size="small"
             aria-label="Delete option"
             onClick={this.handleDeleteClick}
+            data-test="btn-delete-option"
           />
         </Tooltip>
       </DeleteContainer>
@@ -128,35 +128,31 @@ export class StatelessOption extends Component {
   }
 
   render() {
-    const {
-      hasDeleteButton,
-      option,
-      onChange,
-      onUpdate,
-      type,
-      id
-    } = this.props;
+    const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
     return (
-      <StyledOption key={option.id} id={id}>
-        <LabelField id="label">
+      <StyledOption key={option.id}>
+        <LabelField>
           <DummyInput type={type} />
           <SeamlessLabel
+            name="label"
             placeholder="Label"
             size="medium"
             value={option.label}
             onChange={onChange}
             onBlur={onUpdate}
-            data-qa="optionLabel"
+            data-test="option-label"
             data-autofocus
           />
         </LabelField>
-        <Field id="description">
+        <Field>
           <WrappingInput
+            name="description"
             placeholder="Optional description"
             onChange={onChange}
             value={option.description}
             onBlur={onUpdate}
+            data-test="option-description"
           />
         </Field>
         {hasDeleteButton && this.renderDeleteButton()}

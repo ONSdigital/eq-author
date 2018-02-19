@@ -34,7 +34,7 @@ exports[`Question Page Editor should render 1`] = `
     horizontal={true}
   >
     <Button
-      data-test="btn-cancel"
+      data-test="btn-cancel-modal"
       onClick={[Function]}
       secondary={true}
     >
@@ -42,7 +42,7 @@ exports[`Question Page Editor should render 1`] = `
     </Button>
     <Button
       autoFocus={true}
-      data-test="btn-delete"
+      data-test="btn-delete-modal"
       onClick={[Function]}
       tertiary={true}
     >

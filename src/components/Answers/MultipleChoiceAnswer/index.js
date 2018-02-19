@@ -78,7 +78,7 @@ class MultipleChoiceAnswer extends Component {
     } = this.props;
 
     return (
-      <AnswerWrapper id={id}>
+      <AnswerWrapper>
         <TransitionGroup component={Options}>
           {answer.options.map((option, optionIndex, options) => (
             <CSSTransition timeout={200} classNames="option" key={option.id}>
@@ -97,7 +97,7 @@ class MultipleChoiceAnswer extends Component {
             type="button"
             secondary
             onClick={this.handleAddOptionClick}
-            data-qa="addAnotherOption"
+            data-test="btn-add-option"
           >
             Add another option
           </Button>

@@ -51,6 +51,7 @@ exports[`SectionNavItem should render 1`] = `
     >
       <SectionNavItem__SectionDeleteButton
         aria-label="Delete section"
+        data-test="btn-delete-section"
         onClick={[Function]}
         onFocus={[Function]}
         type="button"
@@ -92,7 +93,7 @@ exports[`SectionNavItem should render 1`] = `
     }
   />
   <SectionNavItem__AddPageBtn
-    id="btn-add-page"
+    data-test="btn-add-page"
     onClick={[Function]}
   >
     Add question

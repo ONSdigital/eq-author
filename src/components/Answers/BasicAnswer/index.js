@@ -13,25 +13,30 @@ export const StatelessBasicAnswer = ({
   children,
   id
 }) => (
-  <div id={id}>
-    <Field id="label">
+  <div>
+    <Field>
       <WrappingInput
+        name="label"
         placeholder="Label"
         size="medium"
         onChange={onChange}
         onBlur={onUpdate}
         value={answer.label}
         data-autofocus
+        data-test="txt-answer-label"
       />
     </Field>
-    <Field id="description">
+    <Field>
+
       <WrappingInput
+        name="description"
         cols="30"
         rows="5"
         placeholder="Enter a description (optional)…"
         onChange={onChange}
         onBlur={onUpdate}
         value={answer.description}
+        data-test="txt-answer-description"
       />
     </Field>
     {children}

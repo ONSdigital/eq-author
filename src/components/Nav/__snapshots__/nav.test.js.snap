@@ -127,10 +127,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
           to="/questionnaire/1/design/2/3"
         >
           <Route
-            exact={undefined}
-            location={undefined}
             path="/questionnaire/1/design/2/3"
-            strict={undefined}
           >
             <Link
               aria-current="true"
@@ -291,16 +288,12 @@ exports[`components/Nav should render Nav 1`] = `
           to="/questionnaire/1/design/2/3"
         >
           <Route
-            exact={undefined}
-            location={undefined}
             path="/questionnaire/1/design/2/3"
-            strict={undefined}
           >
             <Link
               aria-current={false}
               className="c1"
               replace={false}
-              style={undefined}
               to="/questionnaire/1/design/2/3"
             >
               <a
@@ -308,7 +301,6 @@ exports[`components/Nav should render Nav 1`] = `
                 className="c1"
                 href="/questionnaire/1/design/2/3"
                 onClick={[Function]}
-                style={undefined}
               >
                 Builder
               </a>

@@ -23,8 +23,8 @@ export class StatelessSectionEditor extends React.Component {
     const handleUpdate = partial(flip(onChange), onUpdate);
 
     return (
-      <div id="section-editor">
-        <Field id="title">
+      <div>
+        <Field>
           <RichTextEditor
             placeholder="Section title"
             value={section.title}
@@ -33,9 +33,10 @@ export class StatelessSectionEditor extends React.Component {
             label="title"
             controls={titleControls}
             size="medium"
+            testSelector="txt-section-title"
           />
         </Field>
-        <Field id="description">
+        <Field>
           <RichTextEditor
             placeholder="Enter a description (optional)…"
             value={section.description}
@@ -43,6 +44,7 @@ export class StatelessSectionEditor extends React.Component {
             label="description"
             controls={descriptionControls}
             multiline
+            testSelector="txt-section-description"
           />
         </Field>
       </div>

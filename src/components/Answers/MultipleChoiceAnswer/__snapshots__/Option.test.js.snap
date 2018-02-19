@@ -5,15 +5,14 @@ exports[`Option should match snapshot 1`] = `
   duration={200}
   key="1"
 >
-  <Option__LabelField
-    id="label"
-  >
+  <Option__LabelField>
     <Option__DummyInput
       type="Radio"
     />
     <Option__SeamlessLabel
       data-autofocus={true}
-      data-qa="optionLabel"
+      data-test="option-label"
+      name="label"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"
@@ -21,10 +20,10 @@ exports[`Option should match snapshot 1`] = `
       value=""
     />
   </Option__LabelField>
-  <Field
-    id="description"
-  >
+  <Field>
     <withChangeHandler(WrappingTextArea)
+      data-test="option-description"
+      name="description"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Optional description"
@@ -37,6 +36,7 @@ exports[`Option should match snapshot 1`] = `
     >
       <DeleteButton
         aria-label="Delete option"
+        data-test="btn-delete-option"
         onClick={[Function]}
         size="small"
         type="button"
@@ -263,43 +263,35 @@ exports[`Option should render a checkbox 1`] = `
 >
   <Option__StyledOption
     duration={200}
-    id={undefined}
     key="1"
   >
     <div
       className="c0"
-      id={undefined}
     >
-      <Option__LabelField
-        id="label"
-      >
+      <Option__LabelField>
         <Field
           className="c1"
-          id="label"
         >
           <Field__StyledField
             className="c1"
-            last={undefined}
           >
             <div
               className="c1 c2"
             >
               <Option__DummyInput
-                id="label"
                 key=".0"
                 type="Checkbox"
               >
                 <div
                   className="c3"
-                  id="label"
                   type="Checkbox"
                 />
               </Option__DummyInput>
               <Option__SeamlessLabel
                 data-autofocus={true}
-                data-qa="optionLabel"
-                id="label"
+                data-test="option-label"
                 key=".1"
+                name="label"
                 onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Label"
@@ -309,8 +301,8 @@ exports[`Option should render a checkbox 1`] = `
                 <withChangeHandler(WrappingTextArea)
                   className="c4"
                   data-autofocus={true}
-                  data-qa="optionLabel"
-                  id="label"
+                  data-test="option-label"
+                  name="label"
                   onBlur={[Function]}
                   onChange={[Function]}
                   placeholder="Label"
@@ -320,8 +312,8 @@ exports[`Option should render a checkbox 1`] = `
                   <WrappingTextArea
                     className="c4"
                     data-autofocus={true}
-                    data-qa="optionLabel"
-                    id="label"
+                    data-test="option-label"
+                    name="label"
                     onBlur={[Function]}
                     onChange={[Function]}
                     placeholder="Label"
@@ -331,8 +323,8 @@ exports[`Option should render a checkbox 1`] = `
                     <WrappingInput__TextArea
                       className="c4"
                       data-autofocus={true}
-                      data-qa="optionLabel"
-                      id="label"
+                      data-test="option-label"
+                      name="label"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onKeyDown={[Function]}
@@ -343,8 +335,8 @@ exports[`Option should render a checkbox 1`] = `
                       <TextareaAutosize
                         className="c4 c5"
                         data-autofocus={true}
-                        data-qa="optionLabel"
-                        id="label"
+                        data-test="option-label"
+                        name="label"
                         onBlur={[Function]}
                         onChange={[Function]}
                         onHeightChange={[Function]}
@@ -357,8 +349,8 @@ exports[`Option should render a checkbox 1`] = `
                         <textarea
                           className="c4 c5"
                           data-autofocus={true}
-                          data-qa="optionLabel"
-                          id="label"
+                          data-test="option-label"
+                          name="label"
                           onBlur={[Function]}
                           onChange={[Function]}
                           onKeyDown={[Function]}
@@ -380,27 +372,23 @@ exports[`Option should render a checkbox 1`] = `
           </Field__StyledField>
         </Field>
       </Option__LabelField>
-      <Field
-        id="description"
-      >
-        <Field__StyledField
-          className={undefined}
-          last={undefined}
-        >
+      <Field>
+        <Field__StyledField>
           <div
             className="c2"
           >
             <withChangeHandler(WrappingTextArea)
-              id="description"
+              data-test="option-description"
               key=".0"
+              name="description"
               onBlur={[Function]}
               onChange={[Function]}
               placeholder="Optional description"
               value=""
             >
               <WrappingTextArea
-                className={undefined}
-                id="description"
+                data-test="option-description"
+                name="description"
                 onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Optional description"
@@ -408,8 +396,8 @@ exports[`Option should render a checkbox 1`] = `
                 value=""
               >
                 <WrappingInput__TextArea
-                  className={undefined}
-                  id="description"
+                  data-test="option-description"
+                  name="description"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onKeyDown={[Function]}
@@ -419,7 +407,8 @@ exports[`Option should render a checkbox 1`] = `
                 >
                   <TextareaAutosize
                     className="c6"
-                    id="description"
+                    data-test="option-description"
+                    name="description"
                     onBlur={[Function]}
                     onChange={[Function]}
                     onHeightChange={[Function]}
@@ -431,7 +420,8 @@ exports[`Option should render a checkbox 1`] = `
                   >
                     <textarea
                       className="c6"
-                      id="description"
+                      data-test="option-description"
+                      name="description"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onKeyDown={[Function]}
@@ -462,6 +452,7 @@ exports[`Option should render a checkbox 1`] = `
               <DeleteButton
                 aria-label="Delete option"
                 data-for="tooltip-1"
+                data-test="btn-delete-option"
                 data-tip={true}
                 onClick={[Function]}
                 size="small"
@@ -470,6 +461,7 @@ exports[`Option should render a checkbox 1`] = `
                 <DeleteButton__StyledDeleteButton
                   aria-label="Delete option"
                   data-for="tooltip-1"
+                  data-test="btn-delete-option"
                   data-tip={true}
                   onClick={[Function]}
                   size="small"
@@ -479,6 +471,7 @@ exports[`Option should render a checkbox 1`] = `
                     aria-label="Delete option"
                     className="c8"
                     data-for="tooltip-1"
+                    data-test="btn-delete-option"
                     data-tip={true}
                     onClick={[Function]}
                     size="small"
@@ -524,15 +517,14 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
   duration={200}
   key="1"
 >
-  <Option__LabelField
-    id="label"
-  >
+  <Option__LabelField>
     <Option__DummyInput
       type="Radio"
     />
     <Option__SeamlessLabel
       data-autofocus={true}
-      data-qa="optionLabel"
+      data-test="option-label"
+      name="label"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Label"
@@ -540,10 +532,10 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
       value=""
     />
   </Option__LabelField>
-  <Field
-    id="description"
-  >
+  <Field>
     <withChangeHandler(WrappingTextArea)
+      data-test="option-description"
+      name="description"
       onBlur={[Function]}
       onChange={[Function]}
       placeholder="Optional description"

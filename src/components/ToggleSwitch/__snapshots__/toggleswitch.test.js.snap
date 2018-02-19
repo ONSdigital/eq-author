@@ -214,27 +214,22 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
             id="toggle-3"
             onChange={[Function]}
             type="checkbox"
-            value={undefined}
           >
             <Input__StyledInput
               checked={false}
               className="c1 c2"
-              defaultValue={undefined}
               id="toggle-3"
               name="toggle-3"
               onChange={[Function]}
               type="checkbox"
-              value={undefined}
             >
               <input
                 checked={false}
                 className="c1 c2 c3"
-                defaultValue={undefined}
                 id="toggle-3"
                 name="toggle-3"
                 onChange={[Function]}
                 type="checkbox"
-                value={undefined}
               />
             </Input__StyledInput>
           </Input>
@@ -453,27 +448,22 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
             id="toggle-2"
             onChange={[Function]}
             type="checkbox"
-            value={undefined}
           >
             <Input__StyledInput
               checked={true}
               className="c1 c2"
-              defaultValue={undefined}
               id="toggle-2"
               name="toggle-2"
               onChange={[Function]}
               type="checkbox"
-              value={undefined}
             >
               <input
                 checked={true}
                 className="c1 c2 c3"
-                defaultValue={undefined}
                 id="toggle-2"
                 name="toggle-2"
                 onChange={[Function]}
                 type="checkbox"
-                value={undefined}
               />
             </Input__StyledInput>
           </Input>
@@ -662,27 +652,22 @@ exports[`ToggleSwitch should render when mounted 1`] = `
             id="toggle-2"
             onChange={[Function]}
             type="checkbox"
-            value={undefined}
           >
             <Input__StyledInput
               checked={true}
               className="c1 c2"
-              defaultValue={undefined}
               id="toggle-2"
               name="toggle-2"
               onChange={[Function]}
               type="checkbox"
-              value={undefined}
             >
               <input
                 checked={true}
                 className="c1 c2 c3"
-                defaultValue={undefined}
                 id="toggle-2"
                 name="toggle-2"
                 onChange={[Function]}
                 type="checkbox"
-                value={undefined}
               />
             </Input__StyledInput>
           </Input>

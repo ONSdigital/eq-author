@@ -2,9 +2,7 @@
 
 exports[`MetaEditor should render 1`] = `
 <div>
-  <Field
-    id="title"
-  >
+  <Field>
     <RichTextEditor
       controls={
         Object {
@@ -18,12 +16,11 @@ exports[`MetaEditor should render 1`] = `
       onUpdate={[Function]}
       placeholder="Question"
       size="large"
+      testSelector="txt-question-title"
       value="Page title"
     />
   </Field>
-  <Field
-    id="description"
-  >
+  <Field>
     <RichTextEditor
       controls={
         Object {
@@ -37,12 +34,11 @@ exports[`MetaEditor should render 1`] = `
       multiline={true}
       onUpdate={[Function]}
       placeholder="Question guidance (optional)…"
+      testSelector="txt-question-description"
       value="Page description"
     />
   </Field>
-  <Field
-    id="guidance"
-  >
+  <Field>
     <MetaEditor__GuidanceRichTextEditor
       controls={
         Object {
@@ -57,6 +53,7 @@ exports[`MetaEditor should render 1`] = `
       multiline={true}
       onUpdate={[Function]}
       placeholder="Include / exclude guidance (optional)…"
+      testSelector="txt-question-guidance"
       value="Page guidance"
     />
   </Field>

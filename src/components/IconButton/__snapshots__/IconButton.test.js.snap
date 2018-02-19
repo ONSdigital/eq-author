@@ -107,8 +107,6 @@ exports[`IconButton should highlight on hover 1`] = `
           >
             <span
               className="isvg loading"
-              dangerouslySetInnerHTML={undefined}
-              style={undefined}
             />
           </InlineSVG>
           <span>
@@ -281,8 +279,6 @@ exports[`IconButton should render icon only 1`] = `
                 >
                   <span
                     className="isvg loading"
-                    dangerouslySetInnerHTML={undefined}
-                    style={undefined}
                   />
                 </InlineSVG>
                 <VisuallyHidden>

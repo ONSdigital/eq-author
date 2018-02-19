@@ -33,10 +33,7 @@ exports[`components/Forms/Field should render correctly 1`] = `
 <Field
   id="name"
 >
-  <Field__StyledField
-    className={undefined}
-    last={undefined}
-  >
+  <Field__StyledField>
     <div
       className="c0"
     >
@@ -62,29 +59,22 @@ exports[`components/Forms/Field should render correctly 1`] = `
         key=".1"
       >
         <Input
-          className={undefined}
           id="name"
           onChange={[Function]}
           type="text"
-          value={undefined}
         >
           <Input__StyledInput
-            className={undefined}
-            defaultValue={undefined}
             id="name"
             name="name"
             onChange={[Function]}
             type="text"
-            value={undefined}
           >
             <input
               className="c2"
-              defaultValue={undefined}
               id="name"
               name="name"
               onChange={[Function]}
               type="text"
-              value={undefined}
             />
           </Input__StyledInput>
         </Input>

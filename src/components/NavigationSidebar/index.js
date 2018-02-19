@@ -88,7 +88,7 @@ class NavigationSidebar extends Component {
     } = this.props;
 
     return (
-      <Container id="questionnaire-nav">
+      <Container data-test="side-nav">
         <NavigationHeader
           questionnaire={questionnaire}
           onUpdateQuestionnaire={onUpdateQuestionnaire}
@@ -108,6 +108,7 @@ class NavigationSidebar extends Component {
             clear
             onClick={this.handleAddSectionClick}
             highlightOnHover={false}
+            data-test="btn-add-section"
           >
             Add section
           </AddSectionBtn>

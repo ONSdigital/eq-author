@@ -9,16 +9,17 @@ const StyledField = styled.div`
   position: relative;
 `;
 
-const Field = ({ children, last, id, className, ...otherProps }) =>
+const Field = ({ children, last, id, className, ...otherProps }) => (
   <StyledField last={last} className={className}>
     {Children.map(children, child =>
       cloneElement(child, { id, ...otherProps })
     )}
-  </StyledField>;
+  </StyledField>
+);
 
 Field.propTypes = {
   children: PropTypes.node.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   last: PropTypes.bool,
   className: PropTypes.string
 };

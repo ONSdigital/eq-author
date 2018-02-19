@@ -23,15 +23,17 @@ const Wrapper = styled.div.attrs({
 `;
 
 const Date = ({ answer, onChange, onUpdate, id }) => (
-  <Wrapper id={id}>
-    <Field id="label">
+  <Wrapper>
+    <Field>
       <WrappingInput
+        name="label"
         placeholder="Label"
         size="medium"
         onChange={onChange}
         onBlur={onUpdate}
         value={answer.label}
         data-autofocus
+        data-test="date-answer-label"
       />
     </Field>
     <DummyDate />

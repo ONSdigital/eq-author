@@ -1,12 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SectionEditor should render 1`] = `
-<div
-  id="section-editor"
->
-  <Field
-    id="title"
-  >
+<div>
+  <Field>
     <RichTextEditor
       controls={
         Object {
@@ -18,11 +14,10 @@ exports[`SectionEditor should render 1`] = `
       onUpdate={[Function]}
       placeholder="Section title"
       size="medium"
+      testSelector="txt-section-title"
     />
   </Field>
-  <Field
-    id="description"
-  >
+  <Field>
     <RichTextEditor
       controls={
         Object {
@@ -34,6 +29,7 @@ exports[`SectionEditor should render 1`] = `
       multiline={true}
       onUpdate={[Function]}
       placeholder="Enter a description (optional)…"
+      testSelector="txt-section-description"
     />
   </Field>
 </div>
