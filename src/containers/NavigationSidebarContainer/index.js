@@ -1,4 +1,4 @@
-import { compose } from "react-apollo";
+import { flowRight } from "lodash";
 import { withRouter } from "react-router";
 
 import withCreatePage from "containers/enhancers/withCreatePage";
@@ -10,7 +10,7 @@ import { raiseToast } from "redux/toast/actions";
 import NavigationSidebar from "components/NavigationSidebar";
 import { connect } from "react-redux";
 
-export default compose(
+export default flowRight(
   connect(null, { raiseToast }),
   withRouter,
   withCreatePage,

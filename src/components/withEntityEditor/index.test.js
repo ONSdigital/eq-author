@@ -1,7 +1,7 @@
 import React from "react";
 import withEntityEditor from "./";
 import { shallow } from "enzyme";
-import { gql } from "react-apollo";
+import gql from "graphql-tag";
 import { filter } from "graphql-anywhere";
 
 const Component = props => <div {...props} />;

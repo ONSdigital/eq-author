@@ -59,36 +59,39 @@ exports[`containers/App should render 1`] = `
         "readQuery": [Function],
       }
     }
-    store={
-      Object {
-        "dispatch": [Function],
-        "getState": [Function],
-        "subscribe": [Function],
-      }
-    }
   >
-    <Connect(Routes)
-      history={
+    <Provider
+      store={
         Object {
-          "action": "POP",
-          "block": [Function],
-          "createHref": [Function],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "length": 2,
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "pathname": "/",
-            "search": "",
-            "state": undefined,
-          },
-          "push": [Function],
-          "replace": [Function],
+          "dispatch": [Function],
+          "getState": [Function],
+          "subscribe": [Function],
         }
       }
-    />
+    >
+      <Connect(Routes)
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 2,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
+      />
+    </Provider>
   </ApolloProvider>
 </AppContainer>
 `;

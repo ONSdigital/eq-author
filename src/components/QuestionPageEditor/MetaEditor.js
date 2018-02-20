@@ -6,8 +6,8 @@ import CustomPropTypes from "custom-prop-types";
 import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
 import styled from "styled-components";
-import { compose, withApollo } from "react-apollo";
-import { flip, partial } from "lodash";
+import { withApollo } from "react-apollo";
+import { flip, partial, flowRight } from "lodash";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
 const titleControls = {
@@ -98,6 +98,6 @@ StatelessMetaEditor.propTypes = {
   client: CustomPropTypes.apolloClient.isRequired
 };
 
-export default compose(withApollo, withEntityEditor("page", pageFragment))(
+export default flowRight(withApollo, withEntityEditor("page", pageFragment))(
   StatelessMetaEditor
 );
