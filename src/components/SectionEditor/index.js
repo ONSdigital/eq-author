@@ -24,7 +24,7 @@ export class StatelessSectionEditor extends React.Component {
 
     return (
       <div>
-        <Field>
+        <Field id="title">
           <RichTextEditor
             placeholder="Section title"
             value={section.title}
@@ -36,7 +36,7 @@ export class StatelessSectionEditor extends React.Component {
             testSelector="txt-section-title"
           />
         </Field>
-        <Field>
+        <Field id="description">
           <RichTextEditor
             placeholder="Enter a description (optional)…"
             value={section.description}

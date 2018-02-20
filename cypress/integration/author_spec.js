@@ -1,4 +1,9 @@
-import {setQuestionnaireSettings, addAnswerType, assertHash} from "../utils";
+import {
+  setQuestionnaireSettings,
+  addAnswerType,
+  assertHash,
+  typeIntoDraftEditor
+} from "../utils";
 
 describe("eq-author", () => {
   it("Should redirect to the sign-in page", () => {
@@ -15,6 +20,16 @@ describe("eq-author", () => {
     cy.get("[data-test='create-questionnaire']").click();
     setQuestionnaireSettings("Title");
     cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
+  });
+
+  it("can edit section title", () => {
+    typeIntoDraftEditor("[data-testid='txt-section-title']", "hello world");
+    cy.get("[data-test='side-nav']").should("contain", "hello world");
+  });
+
+  it("can edit page title", () => {
+    typeIntoDraftEditor("[data-testid='txt-question-title']", "goodbye world");
+    cy.get("[data-test='side-nav']").should("contain", "goodbye world");
   });
 
   it("can create a new page", () => {
@@ -155,18 +170,6 @@ describe("eq-author", () => {
     cy.get("[data-test='btn-delete-answer']").should("not.exist");
   });
 
-  it("can edit section title", () => {
-    cy.get("[data-testid='txt-section-title']").type("S");
-    cy.get("[data-testid='txt-section-description']").click();
-    cy.get("[data-testid='txt-section-title']").should("contain", "S");
-  });
-
-  it("can edit page title", () => {
-    cy.get("[data-testid='txt-question-title']").type("P");
-    cy.get("[data-testid='txt-question-description']").click();
-    cy.get("[data-testid='txt-question-title']").should("contain", "P");
-  });
-
   it("should create a new page when deleting only page in section", () => {
     let prevHash;
 
@@ -201,9 +204,6 @@ describe("eq-author", () => {
           sectionId: false,
           pageId: false
         });
-
       });
   });
 });
-
-export {};
