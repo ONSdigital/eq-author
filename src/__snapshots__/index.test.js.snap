@@ -5,7 +5,7 @@ Object {
   "questionnaires": Array [
     Object {
       "__typename": "Questionnaire",
-      "createdAt": "2018-02-20",
+      "createdAt": "2018-01-01",
       "createdBy": Object {
         "__typename": "User",
         "name": "",
