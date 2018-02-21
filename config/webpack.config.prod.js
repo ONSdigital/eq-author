@@ -1,17 +1,17 @@
+/* eslint-disable import/unambiguous */
 "use strict";
 
-const autoprefixer = require("autoprefixer");
+const { resolve, loaders } = require("./webpack.config.common");
 const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
-const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
-const eslintFormatter = require("react-dev-utils/eslintFormatter");
-const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
-const paths = require("./paths");
+const autoprefixer = require("autoprefixer");
 const getClientEnvironment = require("./env");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
+const paths = require("./paths");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -69,110 +69,21 @@ module.exports = {
     devtoolModuleFilenameTemplate: info =>
       path.relative(paths.appSrc, info.absoluteResourcePath)
   },
-  resolve: {
-    // This allows you to set a fallback for where Webpack should look for modules.
-    // We placed these paths second because we want `node_modules` to "win"
-    // if there are any conflicts. This matches Node resolution mechanism.
-    // https://github.com/facebookincubator/create-react-app/issues/253
-    modules: [paths.appSrc, "node_modules", paths.appNodeModules].concat(
-      // It is guaranteed to exist because we tweak it in `env.js`
-      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
-    ),
-    // These are the reasonable defaults supported by the Node ecosystem.
-    // We also include JSX as a common component filename extension to support
-    // some tools, although we do not recommend using it, see:
-    // https://github.com/facebookincubator/create-react-app/issues/290
-    extensions: [".js", ".json", ".jsx"],
-    alias: {
-      // Support React Native Web
-      // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      "react-native": "react-native-web"
-    },
-    plugins: [
-      // Prevents users from importing files from outside of src/ (or node_modules/).
-      // This often causes confusion because we only process files within src/ with babel.
-      // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
-      // please link the files into your node_modules/ and let module-resolution kick in.
-      // Make sure your source files are compiled, as they will not be processed in any way.
-      new ModuleScopePlugin(paths.appSrc)
-    ]
-  },
+  resolve,
   module: {
     strictExportPresence: true,
     rules: [
       // TODO: Disable require.ensure as it's not a standard language feature.
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
       // { parser: { requireEnsure: false } },
-
-      // First, run the linter.
-      // It's important to do this before Babel processes the JS.
-      {
-        test: /\.(js|jsx)$/,
-        enforce: "pre",
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter
-            },
-            loader: require.resolve("eslint-loader")
-          }
-        ],
-        include: paths.appSrc
-      },
-      // ** ADDING/UPDATING LOADERS **
-      // The "file" loader handles all assets unless explicitly excluded.
-      // The `exclude` list *must* be updated with every change to loader extensions.
-      // When adding a new loader, you must add its `test`
-      // as a new entry in the `exclude` list in the "file" loader.
-
-      // "file" loader makes sure those assets end up in the `build` folder.
-      // When you `import` an asset, you get its filename.
-      {
-        exclude: [
-          /\.html$/,
-          /\.(js|jsx)$/,
-          /\.css$/,
-          /\.svg$/,
-          /\.json$/,
-          /\.bmp$/,
-          /\.gif$/,
-          /\.jpe?g$/,
-          /\.png$/,
-          /\.(graphql|gql)$/
-        ],
-        loader: require.resolve("file-loader"),
-        options: {
-          name: "static/media/[name].[hash:8].[ext]"
-        }
-      },
-      // "url" loader works just like "file" loader but it also embeds
-      // assets smaller than specified size as data URLs to avoid requests.
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve("url-loader"),
-        options: {
-          limit: 10000,
-          name: "static/media/[name].[hash:8].[ext]"
-        }
-      },
-      // Process JS with Babel.
+      loaders.eslint,
+      loaders.fileExclusions,
+      loaders.url,
       {
         test: /\.(js|jsx)$/,
         include: paths.babelIncludes,
         loader: require.resolve("babel-loader")
       },
-      // The notation here is somewhat confusing.
-      // "postcss" loader applies autoprefixer to our CSS.
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader normally turns CSS into JS modules injecting <style>,
-      // but unlike in development configuration, we do something different.
-      // `ExtractTextPlugin` first applies the "postcss" and "css" loaders
-      // (second argument), then grabs the result CSS and puts it into a
-      // separate file in our build process. This way we actually ship
-      // a single CSS file in production instead of JS code injecting <style>
-      // tags. If you use code splitting, however, any async bundles will still
-      // use the "style" loader inside the async code so CSS from them won't be
-      // in the main CSS file.
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
@@ -213,29 +124,8 @@ module.exports = {
         )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: "file-loader"
-          },
-          {
-            loader: "svgo-loader",
-            options: {
-              plugins: [
-                { removeTitle: true },
-                { convertColors: { shorthex: false } },
-                { convertPathData: false }
-              ]
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(graphql|gql)$/,
-        exclude: /node_modules/,
-        loader: "graphql-tag/loader"
-      }
+      loaders.svg,
+      loaders.gql
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "file" loader exclusion list.
     ]
