@@ -17,6 +17,14 @@ describe("MockAPI integration test", () => {
       fragmentMatcher
     });
     client = createApolloClient(link, cache);
+
+    jest
+      .spyOn(Date.prototype, "toISOString")
+      .mockImplementation(() => "2018-01-01T00:00:00");
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it("should create a questionnaire", () => {
