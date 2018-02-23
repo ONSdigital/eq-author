@@ -8,7 +8,7 @@ Object {
       "createdAt": "2018-01-01",
       "createdBy": Object {
         "__typename": "User",
-        "name": "",
+        "name": "Integration test",
         Symbol(id): "$Questionnaire1.createdBy",
       },
       "id": "1",

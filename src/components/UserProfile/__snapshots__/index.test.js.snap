@@ -13,7 +13,9 @@ exports[`UserProfile should render 1`] = `
       role="presentation"
       src="http://foo.b.ar/photo.jpg"
     />
-    <UserProfile__UserName>
+    <UserProfile__UserName
+      data-test="username"
+    >
       Foo Bar
     </UserProfile__UserName>
   </UserProfile__LogoutButton>

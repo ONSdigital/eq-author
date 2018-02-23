@@ -10,6 +10,7 @@ exports[`components/Header renders correctly  1`] = `
       cols={2}
     >
       <Header__Logo
+        data-test="logo"
         to="/"
       >
         <img

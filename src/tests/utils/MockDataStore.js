@@ -55,7 +55,10 @@ class MockDataStore {
     this.questionnaires[id] = merge(questionnaire, {
       id,
       sections: [],
-      createdAt: dateWithoutTime
+      createdAt: dateWithoutTime,
+      createdBy: {
+        name: questionnaire.createdBy
+      }
     });
 
     const defaultSection = this.createSection({

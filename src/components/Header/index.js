@@ -70,7 +70,7 @@ export class UnconnectedHeader extends React.Component {
       <StyledHeader>
         <Grid align="center">
           <Column cols={2}>
-            <Logo to="/">
+            <Logo to="/" data-test="logo">
               <img src={logo} alt="Author" />
             </Logo>
           </Column>
