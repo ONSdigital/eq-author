@@ -31,7 +31,7 @@ const UserProfile = ({ user, onSignOut }) => (
         alt=""
         role="presentation"
       />
-      <UserName>{user.displayName}</UserName>
+      <UserName data-test="username">{user.displayName}</UserName>
     </LogoutButton>
   </Tooltip>
 );

@@ -18,8 +18,21 @@ describe("eq-author", () => {
 
   it("can create a questionnaire", () => {
     cy.get("[data-test='create-questionnaire']").click();
-    setQuestionnaireSettings("Title");
+    setQuestionnaireSettings("My Questionnaire Title");
     cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
+  });
+
+  it("should show questionnaire on listing page", () => {
+    cy.get(`[data-test="logo"]`).click();
+
+    cy.get(`[data-test="username"]`).then($name => {
+      cy
+        .get("tbody tr")
+        .should("contain", "My Questionnaire Title")
+        .and("contain", $name.text())
+        .find("a")
+        .click();
+    });
   });
 
   it("can edit section title", () => {
