@@ -10,13 +10,13 @@ const Wrapper = styled.div`
   left: 1em;
 `;
 
-const Decorator = storyFn =>
-  <Wrapper>
-    {storyFn()}
-  </Wrapper>;
+const Decorator = storyFn => <Wrapper>{storyFn()}</Wrapper>;
 
 storiesOf("AnswerTypeSelector", module)
   .addDecorator(Decorator)
-  .add("Default", () =>
-    <AnswerTypeSelector onSelect={action("Answer type selected")} />
-  );
+  .add("Default", () => (
+    <AnswerTypeSelector
+      answers={[]}
+      onSelect={action("Answer type selected")}
+    />
+  ));

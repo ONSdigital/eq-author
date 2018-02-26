@@ -6,11 +6,7 @@ import { setOptions } from "@storybook/addon-options";
 import App from "components/App";
 
 addDecorator(StoryRouter());
-addDecorator(story =>
-  <App>
-    {story()}
-  </App>
-);
+addDecorator(story => <App>{story()}</App>);
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);
