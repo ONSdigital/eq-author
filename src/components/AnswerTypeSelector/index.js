@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Popout from "components/Popout";
 import ScaleTransition from "components/Popout/ScaleTransition";
 import AnswerTypeGrid from "./AnswerTypeGrid";
-import addIcon from "./icon-add.svg";
+import AddIcon from "./icon-add.svg?inline";
 import CustomPropTypes from "custom-prop-types";
 import IconButton from "components/IconButton";
 
@@ -35,7 +35,7 @@ export default class AnswerTypeSelector extends React.Component {
 
   render() {
     const trigger = (
-      <IconButton icon={addIcon} clear data-test="btn-add-answer">
+      <IconButton icon={AddIcon} clear data-test="btn-add-answer">
         Add {this.props.answers.length === 0 ? "an" : "another"} answer
       </IconButton>
     );

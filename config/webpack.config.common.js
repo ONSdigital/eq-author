@@ -105,19 +105,34 @@ module.exports.loaders = {
 
   svg: {
     test: /\.svg$/,
-    use: [
+    oneOf: [
       {
-        loader: "file-loader"
+        resourceQuery: /inline/, // foo.svg?inline
+        use: [
+          {
+            loader: "babel-loader"
+          },
+          {
+            loader: "react-svg-loader"
+          }
+        ]
       },
       {
-        loader: "svgo-loader",
-        options: {
-          plugins: [
-            { removeTitle: true },
-            { convertColors: { shorthex: false } },
-            { convertPathData: false }
-          ]
-        }
+        use: [
+          {
+            loader: "file-loader"
+          },
+          {
+            loader: "svgo-loader",
+            options: {
+              plugins: [
+                { removeTitle: true },
+                { convertColors: { shorthex: false } },
+                { convertPathData: false }
+              ]
+            }
+          }
+        ]
       }
     ]
   }

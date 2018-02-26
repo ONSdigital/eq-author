@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import homeIcon from "./icon-home.svg";
-import settingsIcon from "./icon-cog.svg";
-import SVG from "react-inlinesvg";
+import HomeIcon from "./icon-home.svg?inline";
+import SettingsIcon from "./icon-cog.svg?inline";
+
 import { Link } from "react-router-dom";
-import VisuallyHidden from "components/VisuallyHidden";
+
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 import IconButton from "components/IconButton";
+import VisuallyHidden from "components/VisuallyHidden";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
@@ -49,6 +50,10 @@ const SettingsButton = styled(IconButton)`
   }
 `;
 
+const HomeIconLink = styled(HomeIcon)`
+  vertical-align: middle;
+`;
+
 class NavigationHeader extends React.Component {
   static propTypes = {
     onUpdateQuestionnaire: PropTypes.func.isRequired,
@@ -70,7 +75,7 @@ class NavigationHeader extends React.Component {
         <li>
           <Link to="/">
             <VisuallyHidden>Home</VisuallyHidden>
-            <SVG uniqueHash="home-icon" src={homeIcon} />
+            <HomeIconLink />
           </Link>
         </li>
         <li>
@@ -79,7 +84,7 @@ class NavigationHeader extends React.Component {
             clear
             onClick={this.handleModalOpen}
             highlightOnHover={false}
-            icon={settingsIcon}
+            icon={SettingsIcon}
           >
             Settings
           </SettingsButton>

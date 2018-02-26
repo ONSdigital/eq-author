@@ -6,7 +6,7 @@ import { colors } from "constants/theme";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import IconButton from "components/IconButton";
-import plusIcon from "./icon-plus.svg";
+import PlusIcon from "./icon-plus.svg?inline";
 import ScrollPane from "components/ScrollPane";
 
 const navBackground = "#4A4A4A";
@@ -104,7 +104,7 @@ class NavigationSidebar extends Component {
         </NavigationScrollPane>
         <AddSection>
           <AddSectionBtn
-            icon={plusIcon}
+            icon={PlusIcon}
             clear
             onClick={this.handleAddSectionClick}
             highlightOnHover={false}

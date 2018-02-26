@@ -1,36 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButton should highlight on hover 1`] = `
-.c1 {
-  padding: 0.8em 3em;
-  border-radius: 2px;
-  font-size: 0.8em;
-  font-weight: 400;
-  cursor: pointer;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-transition: background-color 200ms ease-out;
-  transition: background-color 200ms ease-out;
-  -webkit-letter-spacing: -0.2px;
-  -moz-letter-spacing: -0.2px;
-  -ms-letter-spacing: -0.2px;
-  letter-spacing: -0.2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.c1:focus,
-.c1:active {
-  outline-width: 0;
-}
-
-.c1[disabled] {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
 .c0 {
+  background: none;
+  border: none;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -42,10 +15,8 @@ exports[`IconButton should highlight on hover 1`] = `
   cursor: pointer;
   font-size: 0.875em;
   color: inherit;
-}
-
-.c0 svg {
-  margin-right: 0.6em;
+  padding: 0;
+  margin: 0;
 }
 
 .c0:hover,
@@ -62,59 +33,37 @@ exports[`IconButton should highlight on hover 1`] = `
   vertical-align: middle;
 }
 
+.c1 {
+  margin-left: 0.6em;
+}
+
 <IconButton
   highlightOnHover={true}
-  icon="icon-add-page.svg"
+  icon={[Function]}
   iconOnly={false}
   onClick={[Function]}
-  uniqueHash="Fixed random hash for snapshot test"
 >
   <IconButton__StyledButton
     highlightOnHover={true}
     iconOnly={false}
     onClick={[Function]}
-    uniqueHash="Fixed random hash for snapshot test"
   >
-    <Button
+    <button
       className="c0"
-      highlightOnHover={true}
-      iconOnly={false}
       onClick={[Function]}
       type="button"
-      uniqueHash="Fixed random hash for snapshot test"
     >
-      <Button__StyledButton
-        className="c0"
-        highlightOnHover={true}
-        iconOnly={false}
-        onClick={[Function]}
-        type="button"
-        uniqueHash="Fixed random hash for snapshot test"
-      >
-        <button
-          className="c0 c1"
-          onClick={[Function]}
-          type="button"
+      <Icon>
+        <svg />
+      </Icon>
+      <IconButton__Text>
+        <span
+          className="c1"
         >
-          <InlineSVG
-            cacheGetRequests={false}
-            onLoad={[Function]}
-            src="icon-add-page.svg"
-            supportTest={[Function]}
-            uniqueHash="Fixed random hash for snapshot test"
-            uniquifyIDs={true}
-            wrapper={[Function]}
-          >
-            <span
-              className="isvg loading"
-            />
-          </InlineSVG>
-          <span>
-            Icon button text
-          </span>
-        </button>
-      </Button__StyledButton>
-    </Button>
+          Icon button text
+        </span>
+      </IconButton__Text>
+    </button>
   </IconButton__StyledButton>
 </IconButton>
 `;
@@ -124,54 +73,16 @@ exports[`IconButton should render correctly 1`] = `
   highlightOnHover={true}
   iconOnly={false}
   onClick={[Function]}
-  uniqueHash="Fixed random hash for snapshot test"
 >
-  <InlineSVG
-    cacheGetRequests={false}
-    onLoad={[Function]}
-    src="icon-add-page.svg"
-    supportTest={[Function]}
-    uniqueHash="Fixed random hash for snapshot test"
-    uniquifyIDs={true}
-    wrapper={[Function]}
-  />
-  <span>
+  <Icon />
+  <IconButton__Text>
     Icon button text
-  </span>
+  </IconButton__Text>
 </IconButton__StyledButton>
 `;
 
 exports[`IconButton should render icon only 1`] = `
-.c1 {
-  padding: 0.8em 3em;
-  border-radius: 2px;
-  font-size: 0.8em;
-  font-weight: 400;
-  cursor: pointer;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-transition: background-color 200ms ease-out;
-  transition: background-color 200ms ease-out;
-  -webkit-letter-spacing: -0.2px;
-  -moz-letter-spacing: -0.2px;
-  -ms-letter-spacing: -0.2px;
-  letter-spacing: -0.2px;
-  position: relative;
-  overflow: hidden;
-}
-
-.c1:focus,
-.c1:active {
-  outline-width: 0;
-}
-
-.c1[disabled] {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.c3 {
+.c2 {
   background-color: rgba(97,97,97,0.9) !important;
   font-size: 0.625rem !important;
   line-height: 2.2em !important;
@@ -180,13 +91,13 @@ exports[`IconButton should render icon only 1`] = `
   white-space: pre;
 }
 
-.c3::before,
-.c3::after {
+.c2::before,
+.c2::after {
   border-bottom: none !important;
   border-top: none !important;
 }
 
-.c2 {
+.c1 {
   position: absolute;
   overflow: hidden;
   -webkit-clip: rect(0 0 0 0);
@@ -199,6 +110,8 @@ exports[`IconButton should render icon only 1`] = `
 }
 
 .c0 {
+  background: none;
+  border: none;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -210,6 +123,8 @@ exports[`IconButton should render icon only 1`] = `
   cursor: pointer;
   font-size: 0.875em;
   color: inherit;
+  padding: 0;
+  margin: 0;
 }
 
 .c0:hover,
@@ -228,10 +143,9 @@ exports[`IconButton should render icon only 1`] = `
 
 <IconButton
   highlightOnHover={true}
-  icon="icon-add-page.svg"
+  icon={[Function]}
   iconOnly={true}
   onClick={[Function]}
-  uniqueHash="Fixed random hash for snapshot test"
 >
   <Tooltip
     content="Icon button text"
@@ -245,52 +159,23 @@ exports[`IconButton should render icon only 1`] = `
           highlightOnHover={true}
           iconOnly={true}
           onClick={[Function]}
-          uniqueHash="Fixed random hash for snapshot test"
         >
-          <Button
+          <button
             className="c0"
-            highlightOnHover={true}
-            iconOnly={true}
             onClick={[Function]}
             type="button"
-            uniqueHash="Fixed random hash for snapshot test"
           >
-            <Button__StyledButton
-              className="c0"
-              highlightOnHover={true}
-              iconOnly={true}
-              onClick={[Function]}
-              type="button"
-              uniqueHash="Fixed random hash for snapshot test"
-            >
-              <button
-                className="c0 c1"
-                onClick={[Function]}
-                type="button"
+            <Icon>
+              <svg />
+            </Icon>
+            <VisuallyHidden>
+              <span
+                className="c1"
               >
-                <InlineSVG
-                  cacheGetRequests={false}
-                  onLoad={[Function]}
-                  src="icon-add-page.svg"
-                  supportTest={[Function]}
-                  uniqueHash="Fixed random hash for snapshot test"
-                  uniquifyIDs={true}
-                  wrapper={[Function]}
-                >
-                  <span
-                    className="isvg loading"
-                  />
-                </InlineSVG>
-                <VisuallyHidden>
-                  <span
-                    className="c2"
-                  >
-                    Icon button text
-                  </span>
-                </VisuallyHidden>
-              </button>
-            </Button__StyledButton>
-          </Button>
+                Icon button text
+              </span>
+            </VisuallyHidden>
+          </button>
         </IconButton__StyledButton>
       </div>
       <Tooltip__StyledTooltip
@@ -300,7 +185,7 @@ exports[`IconButton should render icon only 1`] = `
         place="bottom"
       >
         <ReactTooltip
-          className="c3"
+          className="c2"
           delayShow={200}
           effect="solid"
           id="tooltip-1"

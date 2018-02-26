@@ -6,7 +6,6 @@ import { colors } from "constants/theme";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import IconButton from "components/IconButton";
 import IconLink from "components/IconDecorated/IconLink";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
@@ -17,7 +16,7 @@ import { getUser } from "redux/auth/reducer";
 import { signOutUser } from "redux/auth/actions";
 
 import logo from "./logo.svg";
-import exportIcon from "./icon-export.svg";
+
 import previewIcon from "./icon-preview.svg";
 
 const StyledHeader = styled.header`
@@ -41,11 +40,6 @@ export const Logo = styled(Link)`
 export const UtilityBtns = styled(ButtonGroup)`
   justify-content: flex-end;
   align-items: center;
-`;
-
-const ExportButton = styled(IconButton)`
-  padding: 0;
-  width: 3.5em;
 `;
 
 export class UnconnectedHeader extends React.Component {
@@ -88,17 +82,12 @@ export class UnconnectedHeader extends React.Component {
           <Column>
             <UtilityBtns horizontal>
               {questionnaire && (
-                <React.Fragment>
-                  <IconLink
-                    href={this.getPreviewUrl(questionnaire.id)}
-                    icon={previewIcon}
-                    title="Preview"
-                    target="_blank"
-                  />
-                  <ExportButton icon={exportIcon} iconOnly clear disabled>
-                    Export
-                  </ExportButton>
-                </React.Fragment>
+                <IconLink
+                  href={this.getPreviewUrl(questionnaire.id)}
+                  icon={previewIcon}
+                  title="Preview"
+                  target="_blank"
+                />
               )}
               {this.props.user && (
                 <UserProfile

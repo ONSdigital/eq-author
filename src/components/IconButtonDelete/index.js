@@ -1,14 +1,12 @@
+import React from "react";
 import styled from "styled-components";
 
-import iconDelete from "./icon-delete.svg";
+import IconDelete from "./icon-delete.svg?inline";
 
 import IconButton from "components/IconButton";
 import { colors } from "constants/theme";
 
-const IconButtonDelete = styled(IconButton).attrs({
-  icon: iconDelete,
-  iconOnly: true
-})`
+const StyledIconButton = styled(IconButton)`
   background: none;
   border: none;
   padding: 0.25rem;
@@ -33,5 +31,11 @@ const IconButtonDelete = styled(IconButton).attrs({
     }
   }
 `;
+
+const IconButtonDelete = props => (
+  <StyledIconButton icon={IconDelete} iconOnly {...props}>
+    Delete
+  </StyledIconButton>
+);
 
 export default IconButtonDelete;
