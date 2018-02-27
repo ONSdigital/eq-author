@@ -28,6 +28,7 @@ describe("eq-author", () => {
     cy.get(`[data-test="username"]`).then($name => {
       cy
         .get("tbody tr")
+        .last()
         .should("contain", "My Questionnaire Title")
         .and("contain", $name.text())
         .find("a")
