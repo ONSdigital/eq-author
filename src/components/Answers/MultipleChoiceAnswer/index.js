@@ -15,6 +15,12 @@ const AnswerWrapper = styled.div`
   margin: 0;
 `;
 
+const AnswerHelper = styled.div`
+  margin-bottom: 1em;
+  font-weight: 600;
+  color: ${colors.text};
+`;
+
 const Options = styled.div`
   margin: 0 0 1em;
 `;
@@ -79,6 +85,10 @@ class MultipleChoiceAnswer extends Component {
 
     return (
       <AnswerWrapper>
+        {answer.type === "Checkbox" && (
+          <AnswerHelper>Select all that apply</AnswerHelper>
+        )}
+
         <TransitionGroup component={Options}>
           {answer.options.map((option, optionIndex, options) => (
             <CSSTransition timeout={200} classNames="option" key={option.id}>
