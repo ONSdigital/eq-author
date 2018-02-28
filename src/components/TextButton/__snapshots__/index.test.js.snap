@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/TextButton renders 1`] = `
+.c0 {
+  cursor: pointer;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-transition: border-color 200ms ease-out;
+  transition: border-color 200ms ease-out;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #008AD2;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 0.85em;
+  padding: 0.5em 0.75em;
+  -webkit-letter-spacing: 0.05em;
+  -moz-letter-spacing: 0.05em;
+  -ms-letter-spacing: 0.05em;
+  letter-spacing: 0.05em;
+}
+
+.c0:focus,
+.c0:active {
+  outline-width: 0;
+}
+
+.c0[disabled] {
+  pointer-events: none;
+  color: grey;
+}
+
+.c0:hover {
+  color: #00689f;
+}
+
+.c0:focus {
+  border-color: #008AD2;
+}
+
+<button
+  className="c0"
+>
+  TextButton
+</button>
+`;
