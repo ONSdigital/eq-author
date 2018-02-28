@@ -66,6 +66,23 @@ describe("eq-author", () => {
     cy.get("[data-test='page-item']").should("have.length", 2);
   });
 
+  it("can edit question guidance", () => {
+    const guidance = "this is some guidance";
+    typeIntoDraftEditor("[data-testid='txt-question-guidance']", guidance);
+
+    cy
+      .get(`[data-test="page-item"]`)
+      .first()
+      .click();
+
+    cy
+      .get(`[data-test="page-item"]`)
+      .last()
+      .click();
+
+    cy.get("[data-testid='txt-question-guidance']").should("contain", guidance);
+  });
+
   it("can delete a page", () => {
     cy.get("[data-test='btn-delete']").click();
     cy.get("[data-test='btn-delete-modal']").click();
