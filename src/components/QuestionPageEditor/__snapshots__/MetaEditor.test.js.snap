@@ -42,7 +42,9 @@ exports[`MetaEditor should render 1`] = `
       value="Page description"
     />
   </Field>
-  <Field>
+  <Field
+    id="guidance"
+  >
     <MetaEditor__GuidanceRichTextEditor
       controls={
         Object {

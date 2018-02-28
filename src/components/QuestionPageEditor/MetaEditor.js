@@ -73,7 +73,7 @@ export class StatelessMetaEditor extends React.Component {
             testSelector="txt-question-description"
           />
         </Field>
-        <Field>
+        <Field id="guidance">
           <GuidanceRichTextEditor
             placeholder="Include / exclude guidance (optional)…"
             value={page.guidance}
