@@ -3,7 +3,9 @@ import { storiesOf } from "@storybook/react";
 import RichTextEditor from "components/RichTextEditor";
 import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
+import { ApolloProvider } from "react-apollo";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
+import { MemoryRouter, Route } from "react-router";
 
 const content = `
 <h2>List of styles:</h2>
@@ -32,19 +34,67 @@ const Title = styled.div`
   font-weight: 700;
 `;
 
+const query = () => ({
+  questionnaire: {
+    sections: [
+      {
+        id: "1",
+        title: "",
+        pages: [
+          {
+            id: "1",
+            title: "",
+            answers: [
+              {
+                id: "1",
+                label: "",
+                type: "Currency"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+});
+const client = {
+  query: query,
+  readQuery: query
+};
+
 const props = {
   onUpdate: action("onUpdate"),
   label: "Enter some text",
-  placeholder: "Enter some text..."
+  placeholder: "Enter some text...",
+  client
 };
 
 storiesOf("RichTextEditor", module)
   .addDecorator(withKnobs)
-  .addDecorator(story => (
-    <Wrapper>
-      <RTE>{story()}</RTE>
-    </Wrapper>
-  ))
+  .addDecorator(story => {
+    const renderStory = () => <RTE>{story()}</RTE>;
+
+    return (
+      <Wrapper>
+        <ApolloProvider client={props.client}>
+          <MemoryRouter
+            initialEntries={[
+              {
+                pathname: "/questionnaire/1/design/1/1"
+              }
+            ]}
+            initialIndex={0}
+          >
+            <Route
+              path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+              exact={false}
+              render={renderStory}
+            />
+          </MemoryRouter>
+        </ApolloProvider>
+      </Wrapper>
+    );
+  })
   .add("Default", () => <RichTextEditor {...props} />)
   .add("Configurable controls", () => (
     <RichTextEditor
