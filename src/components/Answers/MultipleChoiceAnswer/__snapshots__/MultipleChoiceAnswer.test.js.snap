@@ -15,12 +15,8 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
     }
   }
   labelPlaceholder="Label (optional)"
-  minOptions={1}
-  onAddOption={[Function]}
   onChange={[Function]}
-  onDeleteOption={[Function]}
   onUpdate={[Function]}
-  onUpdateOption={[Function]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
     <TransitionGroup
@@ -35,7 +31,6 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
         <withEntityEditor(StatelessOption)
           hasDeleteButton={false}
           onAddOption={[Function]}
-          onChange={[Function]}
           onDelete={[Function]}
           onDeleteOption={[Function]}
           onUpdate={[Function]}

@@ -59,6 +59,7 @@ class MultipleChoiceAnswer extends Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
     onUpdate: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
@@ -84,13 +85,20 @@ class MultipleChoiceAnswer extends Component {
     const {
       answer,
       onUpdateOption,
+      onUpdate,
+      onChange,
       minOptions,
       id,
       ...otherProps
     } = this.props;
 
     return (
-      <BasicAnswer {...this.props} labelPlaceholder="Label (optional)">
+      <BasicAnswer
+        answer={answer}
+        onUpdate={onUpdate}
+        onChange={onChange}
+        labelPlaceholder="Label (optional)"
+      >
         <AnswerWrapper>
           {answer.type === CHECKBOX && (
             <AnswerHelper>Select all that apply</AnswerHelper>
