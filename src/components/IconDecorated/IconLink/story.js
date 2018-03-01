@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import IconLink from "components/IconDecorated/IconLink/index";
 import { colors } from "constants/theme";
 import styled from "styled-components";
+import testIcon from "./icon-test.svg";
 
 const Background = styled.span`
   background-color: ${colors.darkGrey};
@@ -12,5 +13,6 @@ const Background = styled.span`
 
 storiesOf("IconLink", module)
   .addDecorator(story => <Background>{story()}</Background>)
-  .add("Preview", () => <IconLink icon="preview" title="Preview" disabled />)
-  .add("Export", () => <IconLink icon="export" title="Export" disabled />);
+  .add("Preview", () => (
+    <IconLink href="" icon={testIcon} title="Preview" disabled />
+  ));

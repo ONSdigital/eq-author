@@ -1,11 +1,8 @@
 import React from "react";
 import { configure, addDecorator } from "@storybook/react";
-import StoryRouter from "storybook-router";
 import { setOptions } from "@storybook/addon-options";
-
 import App from "components/App";
 
-addDecorator(StoryRouter());
 addDecorator(story => <App>{story()}</App>);
 
 function requireAll(requireContext) {
@@ -13,7 +10,7 @@ function requireAll(requireContext) {
 }
 
 function loadStories() {
-  requireAll(require.context("components", true, /[/.]story\.js$/));
+  requireAll(require.context("../src/components", true, /[/.]story\.js$/));
 }
 
 setOptions({

@@ -25,7 +25,7 @@ const DeletionInfo = ({ id, onClose }) => (
 );
 DeletionInfo.propTypes = {
   id: PropTypes.number.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func
 };
 
 const StoryContainer = styled.div`

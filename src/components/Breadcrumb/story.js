@@ -8,14 +8,13 @@ import { colors } from "constants/theme";
 const Background = styled.div`
   background: ${colors.darkBlue};
   padding: 1em;
+  color: #fff;
 `;
 
 storiesOf("Breadcrumb", module)
-  .addDecorator(story =>
+  .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>
       <Background>{story()}</Background>
     </MemoryRouter>
-  )
-  .add("Default", () =>
-    <Breadcrumb breadcrumb={{ path: "", title: "Questionnaire" }} />
-  );
+  ))
+  .add("Default", () => <Breadcrumb title="Questionnaire" />);

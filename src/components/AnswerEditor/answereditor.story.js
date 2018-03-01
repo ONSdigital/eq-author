@@ -9,6 +9,7 @@ const CenterXY = styled.div`
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
+  width: 30em;
 `;
 
 class AnswerEditorWrapper extends React.Component {
@@ -34,6 +35,7 @@ class AnswerEditorWrapper extends React.Component {
   render() {
     return (
       <AnswerEditor
+        onChange={action("change")}
         answer={this.state.answer}
         onAddOption={action("addOption")}
         onUpdate={action("onUpdate")}
@@ -45,10 +47,7 @@ class AnswerEditorWrapper extends React.Component {
   }
 }
 
-const CenterDecorator = storyFn =>
-  <CenterXY>
-    {storyFn()}
-  </CenterXY>;
+const CenterDecorator = storyFn => <CenterXY>{storyFn()}</CenterXY>;
 
 storiesOf("Answer Editor", module)
   .addDecorator(CenterDecorator)

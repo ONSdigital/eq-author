@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 import { Grid, Column } from "components/Grid";
 import { colors } from "constants/theme";
+import { times } from "lodash";
 
 const StoryGridHelper = styled.div`
   background: ${colors.darkBlue};
@@ -24,35 +25,31 @@ const StoryMargin = styled.div`
 storiesOf("Grid", module)
   .addDecorator(story => <StoryMargin>{story()}</StoryMargin>)
   .add("Evenly distributed columns", () =>
-    [12, 10, 8, 6, 4, 3, 2].map((col, i) =>
+    [12, 10, 8, 6, 4, 3, 2].map((col, i) => (
       <StoryGridSeperator key={i}>
         <Grid>
-          {[...Array(col)].map(j =>
-            <Column key={j}>
+          {times(col, j => (
+            <Column key={`${j}`}>
               <StoryGridHelper />
             </Column>
-          )}
+          ))}
         </Grid>
       </StoryGridSeperator>
-    )
+    ))
   )
-  .add("Unevenly distributed columns", () =>
+  .add("Unevenly distributed columns", () => (
     <StoryGridSeperator>
       <Grid>
         <Column cols={4}>
-          <StoryGridHelper>
-            4 Columns
-          </StoryGridHelper>
+          <StoryGridHelper>4 Columns</StoryGridHelper>
         </Column>
         <Column>
-          <StoryGridHelper>
-            8 Columns
-          </StoryGridHelper>
+          <StoryGridHelper>8 Columns</StoryGridHelper>
         </Column>
       </Grid>
     </StoryGridSeperator>
-  )
-  .add("Align bottom", () =>
+  ))
+  .add("Align bottom", () => (
     <StoryGridSeperator>
       <Grid align="bottom">
         <Column cols={4}>
@@ -65,19 +62,18 @@ storiesOf("Grid", module)
             <p>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
               eget lacinia odio sem nec elit. Maecenas sed diam eget risus
-              varius
-              blandit sit amet non magna. Maecenas sed diam eget risus varius
-              blandit sit amet non magna. Aenean lacinia bibendum nulla sed
-              consectetur. Etiam porta sem malesuada magna mollis euismod.
-              Integer
-              posuere erat a ante venenatis dapibus posuere velit aliquet.
+              varius blandit sit amet non magna. Maecenas sed diam eget risus
+              varius blandit sit amet non magna. Aenean lacinia bibendum nulla
+              sed consectetur. Etiam porta sem malesuada magna mollis euismod.
+              Integer posuere erat a ante venenatis dapibus posuere velit
+              aliquet.
             </p>
           </StoryGridHelper>
         </Column>
       </Grid>
     </StoryGridSeperator>
-  )
-  .add("Align center", () =>
+  ))
+  .add("Align center", () => (
     <StoryGridSeperator>
       <Grid align="center">
         <Column cols={4}>
@@ -90,15 +86,14 @@ storiesOf("Grid", module)
             <p>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
               eget lacinia odio sem nec elit. Maecenas sed diam eget risus
-              varius
-              blandit sit amet non magna. Maecenas sed diam eget risus varius
-              blandit sit amet non magna. Aenean lacinia bibendum nulla sed
-              consectetur. Etiam porta sem malesuada magna mollis euismod.
-              Integer
-              posuere erat a ante venenatis dapibus posuere velit aliquet.
+              varius blandit sit amet non magna. Maecenas sed diam eget risus
+              varius blandit sit amet non magna. Aenean lacinia bibendum nulla
+              sed consectetur. Etiam porta sem malesuada magna mollis euismod.
+              Integer posuere erat a ante venenatis dapibus posuere velit
+              aliquet.
             </p>
           </StoryGridHelper>
         </Column>
       </Grid>
     </StoryGridSeperator>
-  );
+  ));

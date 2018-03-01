@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import AnswerProperties from "components/AnswerProperties";
 import styled from "styled-components";
 
@@ -11,8 +12,8 @@ const Background = styled.div`
 
 const answer = {};
 
-storiesOf("Properties/Answer", module).add("Default", () =>
+storiesOf("Properties/Answer", module).add("Default", () => (
   <Background>
-    <AnswerProperties answer={answer} />
+    <AnswerProperties answer={answer} onUpdateAnswer={action} />
   </Background>
-);
+));

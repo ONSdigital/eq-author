@@ -21,14 +21,14 @@ storiesOf("Menu", module)
       menu={
         <Dropdown>
           <MenuList>
-            <MenuItem id="item-1" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-1" onItemChosen={handleItemChosen} item="item-1">
               1. Fusce Egestas Tristique Porta Sollicitudin
             </MenuItem>
-            <MenuItem id="item-2" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-2" onItemChosen={handleItemChosen} item="item-2">
               2. Ligula Consectetur Ullamcorper Cursus Ligula Consectetur
               Ullamcorper Cursus
             </MenuItem>
-            <MenuItem id="item-3" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-3" onItemChosen={handleItemChosen} item="item-3">
               3. Donec ullamcorper nulla non metus auctor fringilla.
             </MenuItem>
           </MenuList>
@@ -43,14 +43,29 @@ storiesOf("Menu", module)
       menu={
         <Dropdown maxWidth="15em">
           <MenuList>
-            <MenuItem id="item-1" lines={2} onItemChosen={handleItemChosen}>
+            <MenuItem
+              id="item-1"
+              lines={2}
+              onItemChosen={handleItemChosen}
+              item="item-1"
+            >
               1. Fusce Egestas Tristique Porta Sollicitudin
             </MenuItem>
-            <MenuItem id="item-2" lines={2} onItemChosen={handleItemChosen}>
+            <MenuItem
+              id="item-2"
+              lines={2}
+              onItemChosen={handleItemChosen}
+              item="item-2"
+            >
               2. Ligula Consectetur Ullamcorper Cursus Ligula Consectetur
               Ullamcorper Cursus
             </MenuItem>
-            <MenuItem id="item-3" lines={2} onItemChosen={handleItemChosen}>
+            <MenuItem
+              id="item-3"
+              lines={2}
+              onItemChosen={handleItemChosen}
+              item="item-3"
+            >
               3. Donec ullamcorper nulla non metus auctor fringilla.
             </MenuItem>
           </MenuList>
@@ -65,23 +80,35 @@ storiesOf("Menu", module)
       menu={
         <Dropdown>
           <MenuList>
-            <MenuItem id="item-1" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-1" onItemChosen={handleItemChosen} item="item-1">
               1. Sem Adipiscing Lorem
             </MenuItem>
-            <MenuItem id="item-2" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-2" onItemChosen={handleItemChosen} item="item-2">
               2. Fermentum Vehicula Ridiculus
             </MenuItem>
             <SubMenuItem
               menu={
                 <Dropdown>
                   <MenuList>
-                    <MenuItem id="item-3.1" onItemChosen={handleItemChosen}>
+                    <MenuItem
+                      id="item-3.1"
+                      onItemChosen={handleItemChosen}
+                      item="item-3"
+                    >
                       3.1 Inceptos Etiam Vehicula Vestibulum
                     </MenuItem>
-                    <MenuItem id="item-3.2" onItemChosen={handleItemChosen}>
+                    <MenuItem
+                      id="item-3.2"
+                      onItemChosen={handleItemChosen}
+                      item="item-3"
+                    >
                       3.2 Fusce Tristique Commodo Vehicula
                     </MenuItem>
-                    <MenuItem id="item-3.3" onItemChosen={handleItemChosen}>
+                    <MenuItem
+                      id="item-3.3"
+                      onItemChosen={handleItemChosen}
+                      item="item-3"
+                    >
                       3.3 Justo Malesuada Parturient Mollis Fusce
                     </MenuItem>
                   </MenuList>
@@ -102,31 +129,31 @@ storiesOf("Menu", module)
       menu={
         <Dropdown>
           <MenuList maxHeight={"7.2em"}>
-            <MenuItem id="item-1" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-1" onItemChosen={handleItemChosen} item="item-1">
               1. Fusce Egestas Tristique Porta Sollicitudin
             </MenuItem>
-            <MenuItem id="item-2" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-2" onItemChosen={handleItemChosen} item="item-2">
               2. Magna Mollis Elit
             </MenuItem>
-            <MenuItem id="item-3" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-3" onItemChosen={handleItemChosen} item="item-3">
               3. Malesuada Sit Adipiscing Inceptos
             </MenuItem>
-            <MenuItem id="item-4" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-4" onItemChosen={handleItemChosen} item="item-4">
               4. Adipiscing Venenatis Ipsum
             </MenuItem>
-            <MenuItem id="item-5" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-5" onItemChosen={handleItemChosen} item="item-5">
               5. Pellentesque Egestas Mattis Fusce
             </MenuItem>
-            <MenuItem id="item-6" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-6" onItemChosen={handleItemChosen} item="item-6">
               6. Justo Quam Purus
             </MenuItem>
-            <MenuItem id="item-7" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-7" onItemChosen={handleItemChosen} item="item-7">
               7. Tellus Ligula
             </MenuItem>
-            <MenuItem id="item-8" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-8" onItemChosen={handleItemChosen} item="item-8">
               8. Fermentum Tellus Amet Egestas
             </MenuItem>
-            <MenuItem id="item-9" onItemChosen={handleItemChosen}>
+            <MenuItem id="item-9" onItemChosen={handleItemChosen} item="item-9">
               9. Ridiculus Tortor Cras
             </MenuItem>
           </MenuList>

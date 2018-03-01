@@ -22,9 +22,11 @@ before_script:
 
 script:
   - yarn lint
-  - yarn coverage
+  - yarn coverage  
+  - yarn test:storybook
   - ./scripts/run_smoketests_author.sh
   - yarn storybook-build
+
 
 after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
