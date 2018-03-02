@@ -57,18 +57,15 @@ const Field = styled.div`
   margin-bottom: 0.2em;
 `;
 
-const borderSize = 2;
-
 export const Label = styled.label`
   display: flex;
   align-items: center;
   user-select: none;
   border-radius: 2.75em;
   font-size: 0.8em;
-  padding: 0 0.8em 0 2.5em;
+  padding: 0.5em 0.8em 0.5em 2.5em;
   cursor: pointer;
-  border: ${borderSize}px solid;
-  height: calc(1.875rem + ${2 * borderSize}px);
+  border: 2px solid;
   ${props => (props.checked ? labelStyles.checked : labelStyles.unchecked)};
 `;
 
