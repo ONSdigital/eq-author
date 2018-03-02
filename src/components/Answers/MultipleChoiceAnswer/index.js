@@ -6,13 +6,24 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import focusOnEntity from "utils/focusOnEntity";
 
-import { colors } from "constants/theme";
 import Button from "components/Button";
+
 import Option from "./Option";
+import BasicAnswer from "components/Answers/BasicAnswer";
+
+import { colors } from "constants/theme";
+import { CHECKBOX } from "constants/answer-types";
 
 const AnswerWrapper = styled.div`
   width: 50%;
   margin: 0;
+`;
+
+const AnswerHelper = styled.div`
+  margin-bottom: 0.5em;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: ${colors.text};
 `;
 
 const Options = styled.div`
@@ -47,6 +58,8 @@ export const DeleteButton = styled.button`
 class MultipleChoiceAnswer extends Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
+    onUpdate: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
@@ -72,37 +85,49 @@ class MultipleChoiceAnswer extends Component {
     const {
       answer,
       onUpdateOption,
+      onUpdate,
+      onChange,
       minOptions,
       id,
       ...otherProps
     } = this.props;
 
     return (
-      <AnswerWrapper>
-        <TransitionGroup component={Options}>
-          {answer.options.map((option, optionIndex, options) => (
-            <CSSTransition timeout={200} classNames="option" key={option.id}>
-              <Option
-                {...otherProps}
-                option={option}
-                onDelete={this.handleOptionDelete}
-                onUpdate={onUpdateOption}
-                hasDeleteButton={options.length > minOptions}
-              />
-            </CSSTransition>
-          ))}
-        </TransitionGroup>
-        <div>
-          <Button
-            type="button"
-            secondary
-            onClick={this.handleAddOptionClick}
-            data-test="btn-add-option"
-          >
-            Add another option
-          </Button>
-        </div>
-      </AnswerWrapper>
+      <BasicAnswer
+        answer={answer}
+        onUpdate={onUpdate}
+        onChange={onChange}
+        labelPlaceholder="Label (optional)"
+      >
+        <AnswerWrapper>
+          {answer.type === CHECKBOX && (
+            <AnswerHelper>Select all that apply</AnswerHelper>
+          )}
+          <TransitionGroup component={Options}>
+            {answer.options.map((option, optionIndex, options) => (
+              <CSSTransition timeout={200} classNames="option" key={option.id}>
+                <Option
+                  {...otherProps}
+                  option={option}
+                  onDelete={this.handleOptionDelete}
+                  onUpdate={onUpdateOption}
+                  hasDeleteButton={options.length > minOptions}
+                />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
+          <div>
+            <Button
+              type="button"
+              secondary
+              onClick={this.handleAddOptionClick}
+              data-test="btn-add-option"
+            >
+              Add another option
+            </Button>
+          </div>
+        </AnswerWrapper>
+      </BasicAnswer>
     );
   }
 }

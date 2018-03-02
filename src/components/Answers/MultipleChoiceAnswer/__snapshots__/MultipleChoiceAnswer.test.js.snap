@@ -1,42 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MultipleChoiceAnswer should match snapshot 1`] = `
-<MultipleChoiceAnswer__AnswerWrapper>
-  <TransitionGroup
-    childFactory={[Function]}
-    component={[Function]}
-  >
-    <CSSTransition
-      classNames="option"
-      key="1"
-      timeout={200}
+<withEntityEditor(StatelessBasicAnswer)
+  answer={
+    Object {
+      "id": "0",
+      "options": Array [
+        Object {
+          "description": "",
+          "id": "1",
+          "label": "",
+        },
+      ],
+    }
+  }
+  labelPlaceholder="Label (optional)"
+  onChange={[Function]}
+  onUpdate={[Function]}
+>
+  <MultipleChoiceAnswer__AnswerWrapper>
+    <TransitionGroup
+      childFactory={[Function]}
+      component={[Function]}
     >
-      <withEntityEditor(StatelessOption)
-        hasDeleteButton={false}
-        onAddOption={[Function]}
-        onChange={[Function]}
-        onDelete={[Function]}
-        onDeleteOption={[Function]}
-        onUpdate={[Function]}
-        option={
-          Object {
-            "description": "",
-            "id": "1",
-            "label": "",
+      <CSSTransition
+        classNames="option"
+        key="1"
+        timeout={200}
+      >
+        <withEntityEditor(StatelessOption)
+          hasDeleteButton={false}
+          onAddOption={[Function]}
+          onDelete={[Function]}
+          onDeleteOption={[Function]}
+          onUpdate={[Function]}
+          option={
+            Object {
+              "description": "",
+              "id": "1",
+              "label": "",
+            }
           }
-        }
-      />
-    </CSSTransition>
-  </TransitionGroup>
-  <div>
-    <Button
-      data-test="btn-add-option"
-      onClick={[Function]}
-      secondary={true}
-      type="button"
-    >
-      Add another option
-    </Button>
-  </div>
-</MultipleChoiceAnswer__AnswerWrapper>
+        />
+      </CSSTransition>
+    </TransitionGroup>
+    <div>
+      <Button
+        data-test="btn-add-option"
+        onClick={[Function]}
+        secondary={true}
+        type="button"
+      >
+        Add another option
+      </Button>
+    </div>
+  </MultipleChoiceAnswer__AnswerWrapper>
+</withEntityEditor(StatelessBasicAnswer)>
 `;

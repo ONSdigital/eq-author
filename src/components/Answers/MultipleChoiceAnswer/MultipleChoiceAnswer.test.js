@@ -28,6 +28,7 @@ describe("MultipleChoiceAnswer", () => {
 
   let mockHandlers = {
     onAddOption: jest.fn(() => Promise.resolve(option)),
+    onUpdate: jest.fn(),
     onUpdateOption: jest.fn(),
     onDeleteOption: jest.fn(),
     onChange: jest.fn()
