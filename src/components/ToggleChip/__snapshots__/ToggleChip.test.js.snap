@@ -14,7 +14,7 @@ exports[`ToggleChip should render 1`] = `
     htmlFor="test"
   >
     <ToggleChip__Truncated
-      maxWidth={16}
+      maxWidth={30}
     />
   </ToggleChip__Label>
 </ToggleChip__Field>
@@ -34,7 +34,7 @@ exports[`ToggleChip should render checked 1`] = `
     htmlFor="chiptoggle-1"
   >
     <ToggleChip__Truncated
-      maxWidth={16}
+      maxWidth={30}
     />
   </ToggleChip__Label>
 </ToggleChip__Field>

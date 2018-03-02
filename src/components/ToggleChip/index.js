@@ -78,12 +78,12 @@ const Truncated = styled.span`
 `;
 
 Truncated.defaultProps = {
-  maxWidth: 16
+  maxWidth: 30
 };
 
 export const Input = styled.input`
-  width: 1.2em;
-  height: 1.2em;
+  width: 1.5em;
+  height: 1.5em;
   position: absolute;
   left: 0.8em;
   top: 0;
