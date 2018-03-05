@@ -65,9 +65,7 @@ const ToggleSwitchKnob = styled.div`
   );
   border-radius: 50%;
   transition: transform 100ms ease-in-out;
-  /* stylelint-disable */
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
-  /* stylelint-enable */
 
   &::before {
     background: ${knobColors.on};
@@ -85,12 +83,11 @@ const ToggleSwitchKnob = styled.div`
     opacity: 0;
     transition: opacity 100ms ease-in-out;
   }
-
-  /* stylelint-disable */
+  /* stylelint-disable declaration-block-semicolon-newline-after */
   ${HiddenInput}:focus + ${ToggleSwitchBackground} &::before {
-    /* stylelint-enable */
     opacity: 0.12;
   }
+  /* stylelint-enable */
 `;
 
 ToggleSwitchKnob.propTypes = {

@@ -101,9 +101,7 @@ export const Input = styled.input`
     outline: none;
   }
 
-  /* stylelint-disable */
   &:focus + ${Label} {
-    /* stylelint-enable */
     ${props => (props.checked ? focusStyles.checked : focusStyles.unchecked)};
   }
 `;

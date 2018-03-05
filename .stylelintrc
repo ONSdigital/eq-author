@@ -10,7 +10,14 @@
     "block-opening-brace-space-after": null,
     "declaration-colon-newline-after": null,
     "indentation": null,
-    "property-no-vendor-prefix": null
+    "property-no-vendor-prefix": null,
+    "selector-type-case": null,
+    "selector-type-no-unknown": null,
+    "no-eol-whitespace": null,
+    "rule-empty-line-before": ["always", {
+      "ignore": ["inside-block"]
+    }],
+    "declaration-empty-line-before": null
   },
   "syntax": "scss"
 }
