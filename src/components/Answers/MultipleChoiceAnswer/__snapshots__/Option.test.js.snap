@@ -460,8 +460,16 @@ exports[`Option should render a checkbox 1`] = `
           <Tooltip
             content="Delete option"
           >
-            <div>
-              <DeleteButton
+            <DeleteButton
+              aria-label="Delete option"
+              data-for="tooltip-1"
+              data-test="btn-delete-option"
+              data-tip={true}
+              onClick={[Function]}
+              size="small"
+              type="button"
+            >
+              <DeleteButton__StyledDeleteButton
                 aria-label="Delete option"
                 data-for="tooltip-1"
                 data-test="btn-delete-option"
@@ -470,8 +478,9 @@ exports[`Option should render a checkbox 1`] = `
                 size="small"
                 type="button"
               >
-                <DeleteButton__StyledDeleteButton
+                <button
                   aria-label="Delete option"
+                  className="c8"
                   data-for="tooltip-1"
                   data-test="btn-delete-option"
                   data-tip={true}
@@ -479,43 +488,32 @@ exports[`Option should render a checkbox 1`] = `
                   size="small"
                   type="button"
                 >
-                  <button
-                    aria-label="Delete option"
-                    className="c8"
-                    data-for="tooltip-1"
-                    data-test="btn-delete-option"
-                    data-tip={true}
-                    onClick={[Function]}
-                    size="small"
-                    type="button"
-                  >
-                    ×
-                  </button>
-                </DeleteButton__StyledDeleteButton>
-              </DeleteButton>
-              <Tooltip__StyledTooltip
+                  ×
+                </button>
+              </DeleteButton__StyledDeleteButton>
+            </DeleteButton>
+            <Tooltip__StyledTooltip
+              delayShow={200}
+              effect="solid"
+              id="tooltip-1"
+              place="bottom"
+            >
+              <ReactTooltip
+                className="c9"
                 delayShow={200}
                 effect="solid"
                 id="tooltip-1"
+                insecure={true}
                 place="bottom"
+                resizeHide={true}
+                wrapper="div"
               >
-                <ReactTooltip
-                  className="c9"
-                  delayShow={200}
-                  effect="solid"
-                  id="tooltip-1"
-                  insecure={true}
-                  place="bottom"
-                  resizeHide={true}
-                  wrapper="div"
-                >
-                  <div
-                    className="__react_component_tooltip place-top type-dark "
-                    data-id="tooltip"
-                  />
-                </ReactTooltip>
-              </Tooltip__StyledTooltip>
-            </div>
+                <div
+                  className="__react_component_tooltip place-top type-dark "
+                  data-id="tooltip"
+                />
+              </ReactTooltip>
+            </Tooltip__StyledTooltip>
           </Tooltip>
         </div>
       </Option__DeleteContainer>

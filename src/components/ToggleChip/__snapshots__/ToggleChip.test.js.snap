@@ -15,7 +15,10 @@ exports[`ToggleChip should render 1`] = `
   >
     <ToggleChip__Truncated
       maxWidth={30}
-    />
+      title="Test chip"
+    >
+      Test
+    </ToggleChip__Truncated>
   </ToggleChip__Label>
 </ToggleChip__Field>
 `;
@@ -35,7 +38,10 @@ exports[`ToggleChip should render checked 1`] = `
   >
     <ToggleChip__Truncated
       maxWidth={30}
-    />
+      title="Test chip"
+    >
+      Test
+    </ToggleChip__Truncated>
   </ToggleChip__Label>
 </ToggleChip__Field>
 `;

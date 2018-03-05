@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Select renders without crashing 1`] = `
-<Select
+<Select__SimpleSelect
   defaultValue="One"
   id="my-select"
   name="my-select"

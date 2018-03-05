@@ -150,57 +150,54 @@ exports[`IconButton should render icon only 1`] = `
   <Tooltip
     content="Icon button text"
   >
-    <div>
-      <div
+    <IconButton__StyledButton
+      data-for="tooltip-1"
+      data-tip={true}
+      highlightOnHover={true}
+      iconOnly={true}
+      onClick={[Function]}
+    >
+      <button
+        className="c0"
         data-for="tooltip-1"
         data-tip={true}
+        onClick={[Function]}
+        type="button"
       >
-        <IconButton__StyledButton
-          highlightOnHover={true}
-          iconOnly={true}
-          onClick={[Function]}
-        >
-          <button
-            className="c0"
-            onClick={[Function]}
-            type="button"
+        <Icon>
+          <svg />
+        </Icon>
+        <VisuallyHidden>
+          <span
+            className="c1"
           >
-            <Icon>
-              <svg />
-            </Icon>
-            <VisuallyHidden>
-              <span
-                className="c1"
-              >
-                Icon button text
-              </span>
-            </VisuallyHidden>
-          </button>
-        </IconButton__StyledButton>
-      </div>
-      <Tooltip__StyledTooltip
+            Icon button text
+          </span>
+        </VisuallyHidden>
+      </button>
+    </IconButton__StyledButton>
+    <Tooltip__StyledTooltip
+      delayShow={200}
+      effect="solid"
+      id="tooltip-1"
+      place="bottom"
+    >
+      <ReactTooltip
+        className="c2"
         delayShow={200}
         effect="solid"
         id="tooltip-1"
+        insecure={true}
         place="bottom"
+        resizeHide={true}
+        wrapper="div"
       >
-        <ReactTooltip
-          className="c2"
-          delayShow={200}
-          effect="solid"
-          id="tooltip-1"
-          insecure={true}
-          place="bottom"
-          resizeHide={true}
-          wrapper="div"
-        >
-          <div
-            className="__react_component_tooltip place-top type-dark "
-            data-id="tooltip"
-          />
-        </ReactTooltip>
-      </Tooltip__StyledTooltip>
-    </div>
+        <div
+          className="__react_component_tooltip place-top type-dark "
+          data-id="tooltip"
+        />
+      </ReactTooltip>
+    </Tooltip__StyledTooltip>
   </Tooltip>
 </IconButton>
 `;

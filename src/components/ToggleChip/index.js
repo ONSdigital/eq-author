@@ -53,8 +53,7 @@ const checkboxStyle = {
 const Field = styled.div`
   display: inline-block;
   position: relative;
-  margin-right: 0.2em;
-  margin-bottom: 0.2em;
+  margin: 0.25em 0.5em 0.25em 0;
 `;
 
 export const Label = styled.label`
@@ -82,8 +81,8 @@ Truncated.defaultProps = {
 };
 
 export const Input = styled.input`
-  width: 1.5em;
-  height: 1.5em;
+  width: 1rem;
+  height: 1rem;
   position: absolute;
   left: 0.8em;
   top: 0;
@@ -108,12 +107,12 @@ export const Input = styled.input`
 
 class ToggleChip extends React.Component {
   static propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string,
-    children: PropTypes.node,
+    children: PropTypes.node.isRequired,
     checked: PropTypes.bool.isRequired,
     maxWidth: PropTypes.number,
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
   };
 
   handleToggle = () => {
@@ -135,7 +134,7 @@ class ToggleChip extends React.Component {
           onChange={this.handleToggle}
         />
         <Label htmlFor={id} checked={checked}>
-          <Truncated title={title} maxWidth={maxWidth}>
+          <Truncated title={title || children} maxWidth={maxWidth}>
             {children}
           </Truncated>
         </Label>

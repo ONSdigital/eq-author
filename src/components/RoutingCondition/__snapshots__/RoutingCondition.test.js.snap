@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/RoutingCondition should render consistently 1`] = `
+<div>
+  <Grid
+    align="center"
+    fillHeight={true}
+  >
+    <Column
+      cols={1.5}
+      gutters={false}
+    >
+      <RoutingCondition__Label
+        htmlFor="test"
+      >
+        IF
+      </RoutingCondition__Label>
+    </Column>
+    <Column
+      cols={9}
+      gutters={false}
+    >
+      <RoutingCondition__PageSelect
+        defaultValue="2"
+        id="test"
+        onChange={[Function]}
+      >
+        <optgroup
+          key="1"
+          label="1. Integer posuere erat a ante"
+        >
+          <option
+            disabled={false}
+            key="2"
+            value="2"
+          >
+            1.1 Curabitur blandit tempus porttitor
+          </option>
+          <option
+            disabled={false}
+            key="9"
+            value="9"
+          >
+            1.2 Nulla vitae elit libero, a pharetra augue.
+          </option>
+        </optgroup>
+      </RoutingCondition__PageSelect>
+    </Column>
+    <Column
+      cols={1.5}
+      gutters={false}
+    >
+      <RoutingCondition__RemoveButton
+        icon={[Function]}
+        iconOnly={true}
+        onClick={[Function]}
+      >
+        Remove
+      </RoutingCondition__RemoveButton>
+    </Column>
+  </Grid>
+  <Grid
+    align="top"
+    fillHeight={true}
+  >
+    <Column
+      cols={1.5}
+      gutters={false}
+    >
+      <RoutingCondition__ConnectedPath
+        pathEnd={false}
+      />
+    </Column>
+    <Column
+      cols={9}
+      gutters={false}
+    >
+      <div>
+        I am a child
+      </div>
+    </Column>
+    <Column
+      cols={1.5}
+    />
+  </Grid>
+</div>
+`;

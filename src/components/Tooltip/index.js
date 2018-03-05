@@ -33,7 +33,7 @@ class Tooltip extends React.Component {
     const id = child.props.id || this.getGeneratedId();
 
     return (
-      <div>
+      <React.Fragment>
         {React.cloneElement(child, {
           "data-tip": true,
           "data-for": id
@@ -47,7 +47,7 @@ class Tooltip extends React.Component {
         >
           {content}
         </StyledTooltip>
-      </div>
+      </React.Fragment>
     );
   }
 }
