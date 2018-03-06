@@ -24,7 +24,7 @@ const StyledDiv = styled.div`
   justify-content: space-between;
 `;
 
-const UndoButton = styled.button`
+export const UndoButton = styled.button`
   background: none;
   border: none;
   color: ${colors.lightBlue};
@@ -53,7 +53,12 @@ const ToastWrapper = styled.div`
   justify-content: center;
 `;
 
-const ToastArea = ({ toasts, dismissToast, undoToast, ...otherProps }) => {
+export const ToastArea = ({
+  toasts,
+  dismissToast,
+  undoToast,
+  ...otherProps
+}) => {
   return (
     <ToastWrapper>
       <ToastOuterContainer>
@@ -63,17 +68,19 @@ const ToastArea = ({ toasts, dismissToast, undoToast, ...otherProps }) => {
               <Toast key={id} id={id} timeout={5000} onClose={dismissToast}>
                 <StyledDiv>
                   {toast.message}
-                  <UndoButton
-                    onClick={function() {
-                      undoToast(
-                        id,
-                        otherProps[toast.undoAction],
-                        toast.context
-                      );
-                    }}
-                  >
-                    Undo
-                  </UndoButton>
+                  {toast.undoAction && (
+                    <UndoButton
+                      onClick={function() {
+                        undoToast(
+                          id,
+                          otherProps[toast.undoAction],
+                          toast.context
+                        );
+                      }}
+                    >
+                      Undo
+                    </UndoButton>
+                  )}
                 </StyledDiv>
               </Toast>
             ))}
