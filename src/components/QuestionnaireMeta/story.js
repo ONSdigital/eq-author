@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
+import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 
 const Background = styled.span`
@@ -18,5 +19,19 @@ const questionnaire = {
 
 storiesOf("QuestionnaireMeta", module)
   .addDecorator(story => <Background>{story()}</Background>)
-  .add("Empty", () => <QuestionnaireMeta questionnaire={{}} />)
-  .add("Prefilled", () => <QuestionnaireMeta questionnaire={questionnaire} />);
+  .add("Empty", () => (
+    <QuestionnaireMeta
+      questionnaire={{}}
+      onUpdate={action("update")}
+      onSubmit={action("submit")}
+      confirmText="Confirm"
+    />
+  ))
+  .add("Prefilled", () => (
+    <QuestionnaireMeta
+      questionnaire={questionnaire}
+      onUpdate={action("update")}
+      onSubmit={action("submit")}
+      confirmText="Confirm"
+    />
+  ));

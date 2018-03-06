@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import CustomPropTypes from "custom-prop-types";
 import { storiesOf } from "@storybook/react";
 import { random, find, remove } from "lodash";
+import { MemoryRouter } from "react-router";
 
 import styled from "styled-components";
 
-import QuestionnaireNav from "components/NavigationSidebar";
+import NavigationSidebar from "components/NavigationSidebar";
 
 const Wrapper = styled.div`
   width: 20em;
 `;
 
 const questionnaire = {
+  title: "Questionnaire title",
   id: "1",
   sections: [
     {
@@ -53,10 +55,12 @@ class QuestionnaireNavWithState extends Component {
       sectionId,
       questionnaire.sections[sectionId].pages.length + 1
     );
-
-    questionnaire.sections[sectionId].pages.push(newPage);
+    const section = questionnaire.sections[sectionId];
+    section.pages.push(newPage);
 
     this.setState({ questionnaire });
+
+    return Promise.resolve({ section });
   };
 
   handleAddSection = () => {
@@ -69,6 +73,8 @@ class QuestionnaireNavWithState extends Component {
 
     questionnaire.sections.push(section);
     this.setState({ questionnaire });
+
+    return Promise.resolve(section);
   };
 
   handleDeletePage = (sectionId, pageId) => {
@@ -78,19 +84,34 @@ class QuestionnaireNavWithState extends Component {
     this.setState({ questionnaire });
   };
 
+  handleDeleteSection = sectionId => {
+    remove(questionnaire.sections, { id: sectionId });
+    this.setState({ questionnaire });
+  };
+
+  handleUpdateQuestionnaire = ({ title }) => {
+    questionnaire.title = title;
+    this.setState({ questionnaire });
+  };
+
   render() {
     return (
-      <QuestionnaireNav
+      <NavigationSidebar
         questionnaire={questionnaire}
         onAddPage={this.handleAddPage}
         onAddSection={this.handleAddSection}
         onDeletePage={this.handleDeletePage}
+        onDeleteSection={this.handleDeleteSection}
+        onUpdateQuestionnaire={this.handleUpdateQuestionnaire}
       />
     );
   }
 }
 
-storiesOf("QuestionnaireNav", module)
+storiesOf("NavigationSidebar", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
   .addDecorator(story => <Wrapper>{story()}</Wrapper>)
   .add("Default", () => {
     return <QuestionnaireNavWithState questionnaire={questionnaire} />;

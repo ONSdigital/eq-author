@@ -23,12 +23,6 @@ describe("components/AnswerTypeButton", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("will throw when a non-existent answer type is used", function() {
-    expect(() => {
-      component.setProps({ type: "not-an-answer-type" });
-    }).toThrow();
-  });
-
   describe("when clicked", () => {
     it("should invoke callback with answer type", () => {
       component.find(IconGridButton).simulate("click");

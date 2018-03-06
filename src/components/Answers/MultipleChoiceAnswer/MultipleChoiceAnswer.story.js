@@ -29,7 +29,9 @@ class MultipleChoiceAnswerWrapper extends React.Component {
   state = {
     answer: {
       id: "0",
-      options
+      options,
+      label: "test",
+      description: "test"
     }
   };
 
@@ -72,6 +74,7 @@ class MultipleChoiceAnswerWrapper extends React.Component {
         answer={this.state.answer}
         onUpdateOption={action("update option")}
         onUpdate={action("update")}
+        onChange={action("change")}
         onAddOption={this.handleAddOption}
         onDeleteOption={this.handleDeleteOption}
       />
