@@ -11,6 +11,9 @@ import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { get } from "lodash";
 import optionFragment from "graphql/fragments/option.graphql";
+import getIdForObject from "utils/getIdForObject";
+
+const ENTER_KEY = 13;
 
 export const DeleteContainer = styled.div`
   padding: 0.2em;
@@ -104,12 +107,19 @@ export class StatelessOption extends Component {
     onChange: PropTypes.func.isRequired,
     onUpdate: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onEnterKey: PropTypes.func,
     hasDeleteButton: PropTypes.bool.isRequired,
     type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired
   };
 
   handleDeleteClick = e => {
     this.props.onDelete(this.props.option.id);
+  };
+
+  handleKeyDown = e => {
+    if (e.keyCode === ENTER_KEY) {
+      this.props.onEnterKey(e);
+    }
   };
 
   renderDeleteButton() {
@@ -131,7 +141,7 @@ export class StatelessOption extends Component {
     const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
 
     return (
-      <StyledOption key={option.id}>
+      <StyledOption id={getIdForObject(option)} key={option.id}>
         <LabelField>
           <DummyInput type={type} />
           <SeamlessLabel
@@ -141,6 +151,7 @@ export class StatelessOption extends Component {
             value={option.label}
             onChange={onChange}
             onBlur={onUpdate}
+            onKeyDown={this.handleKeyDown}
             data-test="option-label"
             data-autofocus
           />
@@ -152,6 +163,7 @@ export class StatelessOption extends Component {
             onChange={onChange}
             value={option.description}
             onBlur={onUpdate}
+            onKeyDown={this.handleKeyDown}
             data-test="option-description"
           />
         </Field>

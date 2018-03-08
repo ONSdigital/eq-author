@@ -6,6 +6,7 @@ import DeleteButton from "components/DeleteButton";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 
 import { shallow, mount } from "enzyme";
+import { merge } from "lodash";
 
 describe("Option", () => {
   let mockMutations;
@@ -15,7 +16,8 @@ describe("Option", () => {
   const option = {
     id: "1",
     label: "",
-    description: ""
+    description: "",
+    __typename: "Option"
   };
 
   const render = (method = shallow, otherProps) => {
@@ -42,7 +44,8 @@ describe("Option", () => {
       onChange: jest.fn(),
       onUpdate: jest.fn(),
       onFocus: jest.fn(),
-      onDelete: jest.fn()
+      onDelete: jest.fn(),
+      onEnterKey: jest.fn()
     };
 
     render();
@@ -97,5 +100,23 @@ describe("Option", () => {
     wrapper.find(DeleteButton).simulate("click", mockEvent);
 
     expect(mockMutations.onDelete).toHaveBeenCalledWith(option.id);
+  });
+
+  it("should call onEnterKey when Enter key pressed", () => {
+    wrapper
+      .find(WrappingInput)
+      .first()
+      .simulate("keyDown", merge(mockEvent, { keyCode: 13 }));
+
+    expect(mockMutations.onEnterKey).toHaveBeenCalledWith(mockEvent);
+  });
+
+  it("should not call onEnterKey when other keys are pressed", () => {
+    wrapper
+      .find(WrappingInput)
+      .first()
+      .simulate("keyDown", merge(mockEvent, { keyCode: 27 }));
+
+    expect(mockMutations.onEnterKey).not.toHaveBeenCalled();
   });
 });

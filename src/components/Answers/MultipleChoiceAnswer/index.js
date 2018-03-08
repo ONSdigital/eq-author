@@ -75,9 +75,8 @@ class MultipleChoiceAnswer extends Component {
     this.props.onDeleteOption(optionId, this.props.answer.id);
   };
 
-  handleAddOptionClick = e => {
+  handleAddOption = e => {
     e.preventDefault();
-
     return this.props.onAddOption(this.props.answer.id).then(focusOnEntity);
   };
 
@@ -111,6 +110,7 @@ class MultipleChoiceAnswer extends Component {
                   option={option}
                   onDelete={this.handleOptionDelete}
                   onUpdate={onUpdateOption}
+                  onEnterKey={this.handleAddOption}
                   hasDeleteButton={options.length > minOptions}
                 />
               </CSSTransition>
@@ -120,7 +120,7 @@ class MultipleChoiceAnswer extends Component {
             <Button
               type="button"
               secondary
-              onClick={this.handleAddOptionClick}
+              onClick={this.handleAddOption}
               data-test="btn-add-option"
             >
               Add another option

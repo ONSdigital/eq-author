@@ -5,19 +5,27 @@ import { action } from "@storybook/addon-actions";
 import { reject } from "lodash";
 import MultipleChoiceAnswer from "./index";
 import { CHECKBOX, RADIO } from "constants/answer-types";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  padding: 1em;
+  width: 80%;
+`;
 
 const options = [
   {
     id: "0",
     label: "",
     value: "",
-    description: ""
+    description: "",
+    __typename: "Option"
   },
   {
     id: "1",
     label: "",
     value: "",
-    description: ""
+    description: "",
+    __typename: "Option"
   }
 ];
 
@@ -41,7 +49,8 @@ class MultipleChoiceAnswerWrapper extends React.Component {
     const { answer } = this.state;
     const newOption = {
       ...options[0],
-      id: (++this.nextId).toString()
+      id: (++this.nextId).toString(),
+      __typename: "Option"
     };
 
     const newState = {
@@ -52,6 +61,8 @@ class MultipleChoiceAnswerWrapper extends React.Component {
     };
 
     this.setState(newState);
+
+    return Promise.resolve(newOption);
   };
 
   handleDeleteOption = id => {
@@ -69,15 +80,17 @@ class MultipleChoiceAnswerWrapper extends React.Component {
 
   render() {
     return (
-      <MultipleChoiceAnswer
-        type={this.props.type}
-        answer={this.state.answer}
-        onUpdateOption={action("update option")}
-        onUpdate={action("update")}
-        onChange={action("change")}
-        onAddOption={this.handleAddOption}
-        onDeleteOption={this.handleDeleteOption}
-      />
+      <Wrapper>
+        <MultipleChoiceAnswer
+          type={this.props.type}
+          answer={this.state.answer}
+          onUpdateOption={action("update option")}
+          onUpdate={action("update")}
+          onChange={action("change")}
+          onAddOption={this.handleAddOption}
+          onDeleteOption={this.handleDeleteOption}
+        />
+      </Wrapper>
     );
   }
 }

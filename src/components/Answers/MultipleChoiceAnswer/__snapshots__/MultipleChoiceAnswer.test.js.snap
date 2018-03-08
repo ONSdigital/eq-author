@@ -7,6 +7,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       "id": "0",
       "options": Array [
         Object {
+          "__typename": "Option",
           "description": "",
           "id": "1",
           "label": "",
@@ -33,9 +34,11 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
           onAddOption={[Function]}
           onDelete={[Function]}
           onDeleteOption={[Function]}
+          onEnterKey={[Function]}
           onUpdate={[Function]}
           option={
             Object {
+              "__typename": "Option",
               "description": "",
               "id": "1",
               "label": "",
