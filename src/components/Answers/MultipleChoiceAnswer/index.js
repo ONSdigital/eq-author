@@ -59,7 +59,6 @@ class MultipleChoiceAnswer extends Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
     onUpdate: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
@@ -85,7 +84,6 @@ class MultipleChoiceAnswer extends Component {
       answer,
       onUpdateOption,
       onUpdate,
-      onChange,
       minOptions,
       id,
       ...otherProps
@@ -95,7 +93,6 @@ class MultipleChoiceAnswer extends Component {
       <BasicAnswer
         answer={answer}
         onUpdate={onUpdate}
-        onChange={onChange}
         labelPlaceholder="Label (optional)"
       >
         <AnswerWrapper>
