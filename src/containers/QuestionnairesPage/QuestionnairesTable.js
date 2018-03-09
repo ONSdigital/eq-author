@@ -51,14 +51,12 @@ const RowTransition = styled(CSSTransition).attrs({
     border-color: white;
   }
 
-  /* stylelint-disable */
   &.row-exit ${Collapsible} {
     height: 0;
     padding: 0;
     transition: height ${halfTimeout}ms ease-in ${halfTimeout}ms,
     padding ${halfTimeout}ms ease-in ${halfTimeout}ms;
   }
-  /* stylelint-enable */
 `;
 
 RowTransition.defaultProps = {

@@ -48,7 +48,7 @@ const DisabledSubMenuItem = StyledSubMenuItem.withComponent("div").extend`
     background: none;
   }
 
-  & ${MenuItemInner} { /* stylelint-disable-line */
+  & ${MenuItemInner} {
     opacity: 0.5;
   }
 `;

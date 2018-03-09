@@ -70,8 +70,7 @@ const Link = styled(NavLink)`
     z-index: 1;
   }
 
-  /* stylelint-disable */
-
+  /* stylelint-disable declaration-block-semicolon-newline-after */
   ${StyledPageItem}:hover &:not(.selected) {
     background: ${transparentize(0.5, navHighlighted)};
   }
