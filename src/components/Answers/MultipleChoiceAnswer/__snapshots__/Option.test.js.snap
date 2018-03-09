@@ -3,6 +3,7 @@
 exports[`Option should match snapshot 1`] = `
 <Option__StyledOption
   duration={200}
+  id="Option1"
   key="1"
 >
   <Option__LabelField>
@@ -15,6 +16,7 @@ exports[`Option should match snapshot 1`] = `
       name="label"
       onBlur={[Function]}
       onChange={[Function]}
+      onKeyDown={[Function]}
       placeholder="Label"
       size="medium"
       value=""
@@ -26,6 +28,7 @@ exports[`Option should match snapshot 1`] = `
       name="description"
       onBlur={[Function]}
       onChange={[Function]}
+      onKeyDown={[Function]}
       placeholder="Optional description"
       value=""
     />
@@ -250,10 +253,12 @@ exports[`Option should render a checkbox 1`] = `
   hasDeleteButton={true}
   onChange={[Function]}
   onDelete={[Function]}
+  onEnterKey={[Function]}
   onFocus={[Function]}
   onUpdate={[Function]}
   option={
     Object {
+      "__typename": "Option",
       "description": "",
       "id": "1",
       "label": "",
@@ -263,10 +268,12 @@ exports[`Option should render a checkbox 1`] = `
 >
   <Option__StyledOption
     duration={200}
+    id="Option1"
     key="1"
   >
     <div
       className="c0"
+      id="Option1"
     >
       <Option__LabelField>
         <Field
@@ -294,6 +301,7 @@ exports[`Option should render a checkbox 1`] = `
                 name="label"
                 onBlur={[Function]}
                 onChange={[Function]}
+                onKeyDown={[Function]}
                 placeholder="Label"
                 size="medium"
                 value=""
@@ -305,6 +313,7 @@ exports[`Option should render a checkbox 1`] = `
                   name="label"
                   onBlur={[Function]}
                   onChange={[Function]}
+                  onKeyDown={[Function]}
                   placeholder="Label"
                   size="medium"
                   value=""
@@ -316,6 +325,7 @@ exports[`Option should render a checkbox 1`] = `
                     name="label"
                     onBlur={[Function]}
                     onChange={[Function]}
+                    onKeyDown={[Function]}
                     placeholder="Label"
                     size="medium"
                     value=""
@@ -383,6 +393,7 @@ exports[`Option should render a checkbox 1`] = `
               name="description"
               onBlur={[Function]}
               onChange={[Function]}
+              onKeyDown={[Function]}
               placeholder="Optional description"
               value=""
             >
@@ -391,6 +402,7 @@ exports[`Option should render a checkbox 1`] = `
                 name="description"
                 onBlur={[Function]}
                 onChange={[Function]}
+                onKeyDown={[Function]}
                 placeholder="Optional description"
                 size="small"
                 value=""
@@ -515,6 +527,7 @@ exports[`Option should render a checkbox 1`] = `
 exports[`Option shouldn't render delete button if not applicable 1`] = `
 <Option__StyledOption
   duration={200}
+  id="Option1"
   key="1"
 >
   <Option__LabelField>
@@ -527,6 +540,7 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
       name="label"
       onBlur={[Function]}
       onChange={[Function]}
+      onKeyDown={[Function]}
       placeholder="Label"
       size="medium"
       value=""
@@ -538,6 +552,7 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
       name="description"
       onBlur={[Function]}
       onChange={[Function]}
+      onKeyDown={[Function]}
       placeholder="Optional description"
       value=""
     />

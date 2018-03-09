@@ -5,6 +5,7 @@ import AutoResizeTextArea from "react-textarea-autosize";
 import withChangeHandler from "components/Forms/withChangeHandler";
 import { colors } from "constants/theme";
 import { transparentize } from "polished";
+import { invoke } from "lodash";
 
 const ENTER_KEY = 13;
 
@@ -58,6 +59,7 @@ class WrappingTextArea extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    onKeyDown: PropTypes.func,
     size: PropTypes.oneOf(Object.keys(sizes))
   };
 
@@ -74,6 +76,8 @@ class WrappingTextArea extends React.Component {
     if (e.keyCode === ENTER_KEY) {
       e.preventDefault();
     }
+
+    invoke(this.props, "onKeyDown", e);
   };
 
   render() {

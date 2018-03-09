@@ -16,7 +16,8 @@ describe("MultipleChoiceAnswer", () => {
       {
         id: "1",
         label: "",
-        description: ""
+        description: "",
+        __typename: "Option"
       }
     ]
   };
@@ -26,18 +27,20 @@ describe("MultipleChoiceAnswer", () => {
     __typename: "Option"
   };
 
-  let mockHandlers = {
-    onAddOption: jest.fn(() => Promise.resolve(option)),
-    onUpdate: jest.fn(),
-    onUpdateOption: jest.fn(),
-    onDeleteOption: jest.fn(),
-    onChange: jest.fn()
-  };
+  let mockHandlers;
 
   const createWrapper = ({ answer }, render = shallow) =>
     render(<MultipleChoiceAnswer {...mockHandlers} answer={answer} />);
 
   beforeEach(() => {
+    mockHandlers = {
+      onAddOption: jest.fn(() => Promise.resolve(option)),
+      onUpdate: jest.fn(),
+      onUpdateOption: jest.fn(),
+      onDeleteOption: jest.fn(),
+      onChange: jest.fn()
+    };
+
     wrapper = createWrapper({ answer });
   });
 
@@ -104,6 +107,15 @@ describe("MultipleChoiceAnswer", () => {
         optionId,
         answer.id
       );
+    });
+
+    it("should add a new option onEnterKey", () => {
+      wrapper
+        .find(Option)
+        .first()
+        .simulate("enterKey", { preventDefault: jest.fn() });
+
+      expect(mockHandlers.onAddOption).toHaveBeenCalled();
     });
   });
 });
