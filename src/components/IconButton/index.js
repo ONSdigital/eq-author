@@ -42,7 +42,9 @@ const Text = styled.span`
 `;
 
 const withTooltip = (text, Component) => (
-  <Tooltip content={text}>{Component}</Tooltip>
+  <Tooltip content={text}>
+    <div>{Component}</div>
+  </Tooltip>
 );
 
 class IconButton extends React.Component {
@@ -50,7 +52,8 @@ class IconButton extends React.Component {
     icon: PropTypes.func.isRequired,
     iconOnly: PropTypes.bool,
     highlightOnHover: PropTypes.bool,
-    children: PropTypes.node
+    children: PropTypes.node,
+    title: PropTypes.string
   };
 
   static defaultProps = {
@@ -59,7 +62,7 @@ class IconButton extends React.Component {
   };
 
   render() {
-    const { icon: Icon, children, iconOnly, ...otherProps } = this.props;
+    const { icon: Icon, children, iconOnly, title, ...otherProps } = this.props;
 
     const text = iconOnly ? (
       <VisuallyHidden>{children}</VisuallyHidden>

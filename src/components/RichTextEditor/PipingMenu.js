@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import QuestionnaireMenu from "components/QuestionnaireMenu";
 import { withApollo } from "react-apollo";
 import { MenuButton as RMLMenuButton } from "react-menu-list";
 import { withRouter } from "react-router-dom";
 import iconPiping from "./icon-piping.svg";
-import { Button } from "components/IconDecorated/IconButton";
 import { take, findIndex } from "lodash";
 import query from "graphql/getQuestionnairePiping.graphql";
 import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
@@ -17,6 +17,28 @@ const validAnswerTypes = {
   [NUMBER]: true,
   [CURRENCY]: true
 };
+
+const Button = styled.button`
+  display: flex;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  opacity: 0.9;
+  transition: opacity 200ms ease-out;
+  background: transparent url(${props => props.icon}) no-repeat center;
+  width: 3.5em;
+  height: 3.5em;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+`;
 
 const MenuButton = Button.withComponent(RMLMenuButton).extend`
   &:disabled {
