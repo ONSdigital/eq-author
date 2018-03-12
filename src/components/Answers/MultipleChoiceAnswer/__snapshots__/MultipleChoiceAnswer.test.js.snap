@@ -16,7 +16,6 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
     }
   }
   labelPlaceholder="Label (optional)"
-  onChange={[Function]}
   onUpdate={[Function]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
@@ -32,6 +31,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
         <withEntityEditor(StatelessOption)
           hasDeleteButton={false}
           onAddOption={[Function]}
+          onChange={[Function]}
           onDelete={[Function]}
           onDeleteOption={[Function]}
           onEnterKey={[Function]}
