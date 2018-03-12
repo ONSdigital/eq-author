@@ -1,5 +1,6 @@
 import { css } from "styled-components";
 import { colors, radius } from "constants/theme";
+import { darken } from "polished";
 
 export const sharedStyles = css`
   padding: 0.7em;
@@ -8,6 +9,10 @@ export const sharedStyles = css`
   border-radius: ${radius};
   border: 1px solid ${colors.borders};
   font-size: 0.9em;
+
+  &:hover {
+    border-color: ${darken(0.1)(colors.borders)};
+  }
 
   &:focus {
     outline: none;

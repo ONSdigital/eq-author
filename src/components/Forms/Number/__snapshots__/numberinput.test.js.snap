@@ -10,6 +10,10 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   font-size: 0.9em;
 }
 
+.c2:hover {
+  border-color: #d1d1d1;
+}
+
 .c2:focus {
   outline: none;
   border: 1px solid #008AD2;
@@ -225,6 +229,10 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   border-radius: 2px;
   border: 1px solid #EAEAEA;
   font-size: 0.9em;
+}
+
+.c2:hover {
+  border-color: #d1d1d1;
 }
 
 .c2:focus {

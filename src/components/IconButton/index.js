@@ -30,10 +30,16 @@ const StyledButton = styled.button.attrs({
   color: inherit;
   padding: 0;
   margin: 0;
+
   ${props => props.highlightOnHover && highlightOnHover};
 
   & svg {
     vertical-align: middle;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
   }
 `;
 

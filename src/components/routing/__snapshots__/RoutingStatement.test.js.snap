@@ -10,7 +10,7 @@ exports[`components/RoutingStatement should render consistently 1`] = `
     fillHeight={true}
   >
     <RoutingStatement__CenteringColumn
-      cols={1.5}
+      cols={1}
       gutters={false}
     >
       <TextButton

@@ -7,7 +7,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
     fillHeight={true}
   >
     <Column
-      cols={1.5}
+      cols={1}
       gutters={false}
     >
       <RoutingCondition__Label
@@ -17,7 +17,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
       </RoutingCondition__Label>
     </Column>
     <Column
-      cols={9}
+      cols={10}
       gutters={false}
     >
       <RoutingCondition__PageSelect
@@ -47,10 +47,11 @@ exports[`components/RoutingCondition should render consistently 1`] = `
       </RoutingCondition__PageSelect>
     </Column>
     <Column
-      cols={1.5}
+      cols={1}
       gutters={false}
     >
       <RoutingCondition__RemoveButton
+        disabled={false}
         icon={[Function]}
         iconOnly={true}
         onClick={[Function]}
@@ -64,7 +65,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
     fillHeight={true}
   >
     <Column
-      cols={1.5}
+      cols={1}
       gutters={false}
     >
       <RoutingCondition__ConnectedPath
@@ -72,7 +73,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
       />
     </Column>
     <Column
-      cols={9}
+      cols={10}
       gutters={false}
     >
       <div>
@@ -80,7 +81,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
       </div>
     </Column>
     <Column
-      cols={1.5}
+      cols={1}
     />
   </Grid>
 </div>
