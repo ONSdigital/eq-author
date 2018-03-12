@@ -1,10 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RoutingCondition, {
-  RemoveButton,
-  PageSelect
-} from "components/RoutingCondition";
+import RoutingCondition, { RemoveButton, PageSelect } from "./RoutingCondition";
 
 import sections from "./mockstate";
 
@@ -33,7 +30,7 @@ describe("components/RoutingCondition", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should call onRemoveClick handler when remove button is clocked", () => {
+  it("should call onRemoveClick handler when remove button is clicked", () => {
     wrapper.find(RemoveButton).simulate("click");
     expect(mockHandlers.onRemoveClick).toHaveBeenCalled();
   });

@@ -15,7 +15,8 @@ import svgPathEnd from "./path-end.svg";
 const Label = styled.label`
   width: 100%;
   display: inline-block;
-  font-size: 0.9em;
+  font-size: 0.85em;
+  letter-spacing: 0.05em;
   font-weight: 600;
   text-align: center;
   align-self: center;
@@ -54,6 +55,7 @@ const RoutingCondition = ({
   value,
   selectedPage,
   id,
+  label,
   pathEnd,
   onPageChange,
   onRemoveClick,
@@ -62,7 +64,7 @@ const RoutingCondition = ({
   <div>
     <Grid align="center">
       <Column gutters={false} cols={1.5}>
-        <Label htmlFor={id}>IF</Label>
+        <Label htmlFor={id}>{label}</Label>
       </Column>
       <Column gutters={false} cols={9}>
         <PageSelect
@@ -108,11 +110,13 @@ RoutingCondition.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   onRemoveClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  label: PropTypes.string.isRequired,
   pathEnd: PropTypes.bool.isRequired
 };
 
 RoutingCondition.defaultProps = {
-  pathEnd: false
+  pathEnd: false,
+  label: "IF"
 };
 
 export default RoutingCondition;
