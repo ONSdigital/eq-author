@@ -38,19 +38,31 @@ class StatefulToggleChip extends React.Component {
 storiesOf("ToggleChip", module)
   .add("Single", () => (
     <Wrapper>
-      <StatefulToggleChip>Lorem ipsum dolor sit amet.</StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum dolor sit amet.">
+        Lorem ipsum dolor sit amet.
+      </StatefulToggleChip>
     </Wrapper>
   ))
   .add("Multiple", () => (
     <Wrapper>
-      <StatefulToggleChip>Lorem ipsum dolor.</StatefulToggleChip>
-      <StatefulToggleChip>Lorem ipsum dolor sit.</StatefulToggleChip>
-      <StatefulToggleChip>Lorem ipsum.</StatefulToggleChip>
-      <StatefulToggleChip>Lorem ipsum dolor sit amet.</StatefulToggleChip>
-      <StatefulToggleChip>Lorem ipsum dolor sit.</StatefulToggleChip>
-      <StatefulToggleChip>Lorem ipsum.</StatefulToggleChip>
-      <StatefulToggleChip>Lorem.</StatefulToggleChip>
-      <StatefulToggleChip title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quos saepe voluptatem. Ab consectetur dolore ea eaque excepturi praesentium voluptate.">
+      <StatefulToggleChip title="Lorem ipsum dolor.">
+        Lorem ipsum dolor.
+      </StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum dolor sit.">
+        Lorem ipsum dolor sit.
+      </StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum.">Lorem ipsum.</StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum dolor sit amet.">
+        Lorem ipsum dolor sit amet.
+      </StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum dolor sit.">
+        Lorem ipsum dolor sit.
+      </StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum.">Lorem ipsum.</StatefulToggleChip>
+      <StatefulToggleChip title="Lorem.">Lorem.</StatefulToggleChip>
+      <StatefulToggleChip title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quos
+      saepe voluptatem. Ab consectetur dolore ea eaque excepturi praesentium
+      voluptate.">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quos
         saepe voluptatem. Ab consectetur dolore ea eaque excepturi praesentium
         voluptate.

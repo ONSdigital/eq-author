@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
 import checkedIcon from "./checked.svg";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 const labelStyles = {
   checked: css`
@@ -108,7 +109,7 @@ export const Input = styled.input`
 class ToggleChip extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
     checked: PropTypes.bool.isRequired,
     maxWidth: PropTypes.number,
@@ -134,7 +135,7 @@ class ToggleChip extends React.Component {
           onChange={this.handleToggle}
         />
         <Label htmlFor={id} checked={checked}>
-          <Truncated title={title || children} maxWidth={maxWidth}>
+          <Truncated title={title} maxWidth={maxWidth}>
             {children}
           </Truncated>
         </Label>
