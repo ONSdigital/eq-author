@@ -50,8 +50,7 @@ class IconButton extends React.Component {
     icon: PropTypes.func.isRequired,
     iconOnly: PropTypes.bool,
     highlightOnHover: PropTypes.bool,
-    children: PropTypes.node,
-    wrapper: PropTypes.string
+    children: PropTypes.node
   };
 
   static defaultProps = {

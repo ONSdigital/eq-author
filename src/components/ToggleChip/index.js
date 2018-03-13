@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
 import checkedIcon from "./checked.svg";
-import getTextFromHTML from "utils/getTextFromHTML";
 
 const labelStyles = {
   checked: css`
