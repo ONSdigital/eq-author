@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import ToggleChip, { Input } from "components/ToggleChip";
 
 const createWrapper = (props, render = shallow) => {
-  return render(<ToggleChip {...props} />);
+  return render(<ToggleChip {...props}>Test</ToggleChip>);
 };
 
 describe("ToggleChip", () => {
@@ -17,6 +17,7 @@ describe("ToggleChip", () => {
     props = {
       id: "test",
       label: "Test chip",
+      title: "Test chip",
       name: "test",
       onChange: handleChange,
       checked: false

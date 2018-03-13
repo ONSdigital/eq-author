@@ -42,9 +42,7 @@ const Text = styled.span`
 `;
 
 const withTooltip = (text, Component) => (
-  <Tooltip content={text}>
-    <div>{Component}</div>
-  </Tooltip>
+  <Tooltip content={text}>{Component}</Tooltip>
 );
 
 class IconButton extends React.Component {

@@ -37,6 +37,14 @@ injectGlobal`
   button {
     font-family: inherit;
   }
+
+  a {
+    color: ${colors.blue};
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;
 
 const App = ({ children }) => (
