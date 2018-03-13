@@ -4,7 +4,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import { find, each } from "lodash";
+import { first } from "lodash";
 
 import RoutingCondition from "components/RoutingCondition";
 import MultipleChoiceAnswerOptionsSelector from "./MultipleChoiceAnswerOptionsSelector";
@@ -18,111 +18,60 @@ const Background = styled.span`
   max-width: 55em;
 `;
 
-const findPageById = id => {
-  let page;
-
-  each(sections, ({ pages }) => {
-    let result = find(pages, { id });
-    if (result) {
-      page = result;
-    }
-  });
-
-  return page;
-};
-
-class ControlledRoutingCondition extends React.Component {
-  state = {
-    selectedPage: sections[0].pages[0]
-  };
-
-  handlePageChange = e => {
-    this.setState({ selectedPage: findPageById(e.value) });
-  };
-
-  handleOptionSelectionChange = ({ name, value }) => {
-    const { selectedPage } = this.state;
-
-    find(selectedPage.options, { id: name }).selected = value;
-
-    this.setState({
-      selectedPage: {
-        ...selectedPage
-      }
-    });
-  };
-
-  handleSelectAll = e => {
-    const { selectedPage } = this.state;
-
-    this.setState({
-      selectedPage: {
-        ...selectedPage,
-        options: selectedPage.options.map(opt => ({
-          ...opt,
-          selected: true
-        }))
-      }
-    });
-  };
-
-  render() {
-    return (
-      <RoutingCondition
-        selectedPage={this.state.selectedPage}
-        onPageChange={this.handlePageChange}
-        onRemoveClick={action("Close")}
-        sections={sections}
-        {...this.props}
-      >
-        {this.props.children({
-          options: this.state.selectedPage.options,
-          onOptionSelectionChange: this.handleOptionSelectionChange,
-          onSelectAll: this.handleSelectAll
-        })}
-      </RoutingCondition>
-    );
-  }
-}
+const selectedPage = first(first(sections).pages);
 
 storiesOf("RoutingCondition", module)
   .addDecorator(story => <Background>{story()}</Background>)
   .add("Default", () => (
-    <ControlledRoutingCondition id="routing-condition">
-      {({ options, onOptionSelectionChange, onSelectAll }) => (
-        <MultipleChoiceAnswerOptionsSelector
-          options={options}
-          onOptionSelectionChange={onOptionSelectionChange}
-          onSelectAll={onSelectAll}
-        />
-      )}
-    </ControlledRoutingCondition>
+    <RoutingCondition
+      id="routing-condition"
+      selectedPage={selectedPage}
+      onPageChange={action("Page selected")}
+      onRemoveClick={action("Close")}
+      sections={sections}
+    >
+      <MultipleChoiceAnswerOptionsSelector
+        options={selectedPage.options}
+        onOptionSelectionChange={action("Option selected")}
+        onSelectAll={action("Select all")}
+      />
+    </RoutingCondition>
   ))
   .add("No answers", () => (
-    <ControlledRoutingCondition id="routing-condition" pathEnd>
-      {() => (
-        <Alert>
-          <AlertTitle>
-            No answers have been added to this question yet.
-          </AlertTitle>
-          <AlertText>
-            First, <a href="#">add an answer</a> to continue.
-          </AlertText>
-        </Alert>
-      )}
-    </ControlledRoutingCondition>
+    <RoutingCondition
+      id="routing-condition"
+      selectedPage={selectedPage}
+      onPageChange={action("Page selected")}
+      onRemoveClick={action("Close")}
+      sections={sections}
+      pathEnd
+    >
+      <Alert>
+        <AlertTitle>
+          No answers have been added to this question yet.
+        </AlertTitle>
+        <AlertText>
+          First, <a href="#">add an answer</a> to continue.
+        </AlertText>
+      </Alert>
+    </RoutingCondition>
   ))
   .add("Routing unsupported", () => (
-    <ControlledRoutingCondition id="routing-condition" pathEnd>
-      {() => (
-        <Alert>
-          <AlertTitle>
-            Routing is not available for this type of answer
-          </AlertTitle>
-          <AlertText>
-            You cannot route on &apos;date range&apos; answers
-          </AlertText>
-        </Alert>
-      )}
-    </ControlledRoutingCondition>
+    <RoutingCondition
+      id="routing-condition"
+      selectedPage={selectedPage}
+      onPageChange={action("Page selected")}
+      onRemoveClick={action("Close")}
+      sections={sections}
+      pathEnd
+    >
+      <Alert>
+        <AlertTitle>
+          Routing is not available for this type of answer
+        </AlertTitle>
+        <AlertText>
+          You cannot route on &apos;date range&apos; answers
+        </AlertText>
+      </Alert>
+    </RoutingCondition>
   ));
