@@ -6,10 +6,11 @@ import QuestionnaireMenu from "components/QuestionnaireMenu";
 import { withApollo } from "react-apollo";
 import { MenuButton as RMLMenuButton } from "react-menu-list";
 import { withRouter } from "react-router-dom";
-import iconPiping from "./icon-piping.svg";
+import IconPiping from "./icon-piping.svg?inline";
 import { take, findIndex } from "lodash";
 import query from "graphql/getQuestionnairePiping.graphql";
 import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
+import IconButton from "components/IconButton";
 
 const validAnswerTypes = {
   [TEXTAREA]: true,
@@ -18,29 +19,23 @@ const validAnswerTypes = {
   [CURRENCY]: true
 };
 
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  padding: 0.5em;
-  cursor: pointer;
-  appearance: none;
-  border: none;
-  opacity: 0.9;
-  transition: opacity 200ms ease-out;
-  background: transparent url(${props => props.icon}) no-repeat center;
-  width: 3.5em;
-  height: 3.5em;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &[disabled] {
-    opacity: 0.5;
-  }
+const StyledIconButton = styled(IconButton)`
+  outline: none;
 `;
 
-const MenuButton = Button.withComponent(RMLMenuButton).extend`
+const PipingIconButton = props => (
+  <StyledIconButton
+    icon={IconPiping}
+    iconOnly
+    highlightOnHover={false}
+    {...props}
+  >
+    Pipe value
+  </StyledIconButton>
+);
+
+const MenuButton = styled(RMLMenuButton)`
+  height: 100%;
   &:disabled {
     cursor: default;
     opacity: 0.2;
@@ -116,7 +111,7 @@ export class Menu extends React.Component {
         menuZIndex={10}
         menu={menu}
         disabled={disabled || !questionnaire}
-        icon={iconPiping}
+        ButtonComponent={PipingIconButton}
       />
     );
   }

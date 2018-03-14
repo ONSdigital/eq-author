@@ -26,7 +26,7 @@ const StyledButton = styled.button.attrs({
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: inherit;
   padding: 0;
   margin: 0;
@@ -42,9 +42,7 @@ const Text = styled.span`
 `;
 
 const withTooltip = (text, Component) => (
-  <Tooltip content={text}>
-    <div>{Component}</div>
-  </Tooltip>
+  <Tooltip content={text}>{Component}</Tooltip>
 );
 
 class IconButton extends React.Component {
@@ -52,8 +50,7 @@ class IconButton extends React.Component {
     icon: PropTypes.func.isRequired,
     iconOnly: PropTypes.bool,
     highlightOnHover: PropTypes.bool,
-    children: PropTypes.node,
-    title: PropTypes.string
+    children: PropTypes.node
   };
 
   static defaultProps = {
@@ -62,7 +59,7 @@ class IconButton extends React.Component {
   };
 
   render() {
-    const { icon: Icon, children, iconOnly, title, ...otherProps } = this.props;
+    const { icon: Icon, children, iconOnly, ...otherProps } = this.props;
 
     const text = iconOnly ? (
       <VisuallyHidden>{children}</VisuallyHidden>
@@ -71,7 +68,7 @@ class IconButton extends React.Component {
     );
 
     const button = (
-      <StyledButton iconOnly={iconOnly} {...otherProps}>
+      <StyledButton {...otherProps}>
         <Icon />
         {text}
       </StyledButton>

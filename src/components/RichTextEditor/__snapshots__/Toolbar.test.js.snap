@@ -13,7 +13,7 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: inherit;
   padding: 0;
   margin: 0;
@@ -68,62 +68,13 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
     <IconButton__StyledButton
       className="c0"
       highlightOnHover={true}
-      iconOnly={false}
+      title="foo"
     >
       <button
         className="c0 c1"
+        title="foo"
         type="button"
       >
-<<<<<<< HEAD
-        <div
-          data-for="tooltip-1"
-          data-tip={true}
-        >
-          <IconButton__Button
-            className="c0"
-            icon="foo.svg"
-            type="button"
-          >
-            <button
-              className="c0 c1"
-              icon="foo.svg"
-              type="button"
-            >
-              <VisuallyHidden>
-                <span
-                  className="c2"
-                >
-                  foo
-                </span>
-              </VisuallyHidden>
-            </button>
-          </IconButton__Button>
-        </div>
-        <Tooltip__StyledTooltip
-          delayShow={200}
-          effect="solid"
-          id="tooltip-1"
-          place="bottom"
-        >
-          <ReactTooltip
-            className="c3"
-            delayShow={200}
-            effect="solid"
-            id="tooltip-1"
-            insecure={true}
-            place="bottom"
-            resizeHide={true}
-            wrapper="div"
-          >
-            <div
-              className="__react_component_tooltip place-top type-dark "
-              data-id="tooltip"
-            />
-          </ReactTooltip>
-        </Tooltip__StyledTooltip>
-      </Tooltip>
-    </IconDecorated>
-=======
         <icon>
           <svg />
         </icon>
@@ -134,7 +85,6 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
         </IconButton__Text>
       </button>
     </IconButton__StyledButton>
->>>>>>> d10ac87... Consolidated the two seperate Icon Button components
   </IconButton>
 </Toolbar__Button>
 `;
@@ -152,7 +102,7 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: inherit;
   padding: 0;
   margin: 0;
@@ -212,63 +162,13 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
       active={true}
       className="c0"
       highlightOnHover={true}
-      iconOnly={false}
+      title="foo"
     >
       <button
         className="c0 c1"
+        title="foo"
         type="button"
       >
-<<<<<<< HEAD
-        <div
-          data-for="tooltip-2"
-          data-tip={true}
-        >
-          <IconButton__Button
-            active={true}
-            className="c0"
-            icon="foo.svg"
-            type="button"
-          >
-            <button
-              className="c0 c1"
-              icon="foo.svg"
-              type="button"
-            >
-              <VisuallyHidden>
-                <span
-                  className="c2"
-                >
-                  foo
-                </span>
-              </VisuallyHidden>
-            </button>
-          </IconButton__Button>
-        </div>
-        <Tooltip__StyledTooltip
-          delayShow={200}
-          effect="solid"
-          id="tooltip-2"
-          place="bottom"
-        >
-          <ReactTooltip
-            className="c3"
-            delayShow={200}
-            effect="solid"
-            id="tooltip-2"
-            insecure={true}
-            place="bottom"
-            resizeHide={true}
-            wrapper="div"
-          >
-            <div
-              className="__react_component_tooltip place-top type-dark "
-              data-id="tooltip"
-            />
-          </ReactTooltip>
-        </Tooltip__StyledTooltip>
-      </Tooltip>
-    </IconDecorated>
-=======
         <icon>
           <svg />
         </icon>
@@ -279,7 +179,6 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
         </IconButton__Text>
       </button>
     </IconButton__StyledButton>
->>>>>>> d10ac87... Consolidated the two seperate Icon Button components
   </IconButton>
 </Toolbar__Button>
 `;
@@ -312,6 +211,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         <Toolbar__Separator />
         <Toolbar__Button
           disabled={true}
+          highlightOnHover={false}
           icon={[Function]}
           iconOnly={true}
           key="Heading"
@@ -324,6 +224,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         </Toolbar__Button>
         <Toolbar__Button
           disabled={true}
+          highlightOnHover={false}
           icon={[Function]}
           iconOnly={true}
           key="Bold"
@@ -336,6 +237,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         </Toolbar__Button>
         <Toolbar__Button
           disabled={true}
+          highlightOnHover={false}
           icon={[Function]}
           iconOnly={true}
           key="Emphasis"
@@ -348,6 +250,7 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
         </Toolbar__Button>
         <Toolbar__Button
           disabled={true}
+          highlightOnHover={false}
           icon={[Function]}
           iconOnly={true}
           key="List"

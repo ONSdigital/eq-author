@@ -49,7 +49,7 @@ exports[`components/Header when the user is signed in should render user's profi
 exports[`components/Header when there is a questionnaire should render a preview button 1`] = `
 <IconLink
   href="http://go-launch-a-survey/quick-launch?url=http%3A%2F%2Feq-publisher%2Fpublish%2F1%3Fr%3D1507793425522"
-  icon="icon-preview.svg"
+  icon={[Function]}
   target="_blank"
   title="Preview"
 />

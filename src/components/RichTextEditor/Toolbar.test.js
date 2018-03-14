@@ -125,12 +125,12 @@ describe("components/RichTextEditor/Toolbar", () => {
 
   describe("Button", () => {
     it("matches snapshot", () => {
-      const wrapper = mount(<Button icon={() => <svg />} title="foo" />); // eslint-disable-line
+      const wrapper = mount(<Button icon={() => <svg />} title="foo" />); // eslint-disable-line react/jsx-no-bind
       expect(wrapper).toMatchSnapshot();
     });
 
     it("should style appropriately when active", () => {
-      const wrapper = mount(<Button active icon={() => <svg />} title="foo" />); // eslint-disable-line
+      const wrapper = mount(<Button active icon={() => <svg />} title="foo" />); // eslint-disable-line react/jsx-no-bind
       expect(wrapper).toMatchSnapshot();
     });
   });

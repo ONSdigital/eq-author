@@ -16,7 +16,6 @@ import PipingMenu from "./PipingMenu";
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
 `;
 
 const Separator = styled.div`
@@ -128,6 +127,7 @@ class ToolBar extends React.Component {
     return (
       <Button
         iconOnly
+        highlightOnHover={false}
         key={button.title}
         disabled={!controls[button.id]}
         active={isActiveControl(button)}
