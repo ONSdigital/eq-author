@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/RoutingStatement should render consistently 1`] = `
+<React.Fragment>
+  <div>
+    I am a child
+  </div>
+  <Grid
+    align="center"
+    fillHeight={true}
+  >
+    <RoutingStatement__CenteringColumn
+      cols={1.5}
+      gutters={false}
+    >
+      <TextButton
+        data-test="btn-add"
+        onClick={[Function]}
+      >
+        AND
+      </TextButton>
+    </RoutingStatement__CenteringColumn>
+  </Grid>
+</React.Fragment>
+`;
