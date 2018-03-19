@@ -39,7 +39,7 @@ const DummyInput = styled.div`
 
 export const StyledOption = styled.div`
   border: 1px solid ${colors.borders};
-  padding: 1em 1em 0;
+  padding: 1em 1.8em 0 1em;
   border-radius: 3px;
   position: relative;
 

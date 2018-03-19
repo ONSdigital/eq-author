@@ -185,7 +185,7 @@ exports[`Option should render a checkbox 1`] = `
 
 .c0 {
   border: 1px solid #EAEAEA;
-  padding: 1em 1em 0;
+  padding: 1em 1.8em 0 1em;
   border-radius: 3px;
   position: relative;
 }
