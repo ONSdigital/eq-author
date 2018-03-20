@@ -6,7 +6,7 @@ import { colors } from "constants/theme";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import IconLink from "components/IconDecorated/IconLink";
+import IconLink from "components/IconLink";
 import ButtonGroup from "components/ButtonGroup";
 import Breadcrumb from "components/Breadcrumb";
 import UserProfile from "components/UserProfile";
@@ -17,7 +17,7 @@ import { signOutUser } from "redux/auth/actions";
 
 import logo from "./logo.svg";
 
-import previewIcon from "./icon-preview.svg";
+import previewIcon from "./icon-preview.svg?inline";
 
 const StyledHeader = styled.header`
   height: 4em;

@@ -102,9 +102,9 @@ Object {
 `;
 
 exports[`PipingMenu should render 1`] = `
-<IconButton__Button
+<PipingMenu__MenuButton
+  ButtonComponent={[Function]}
   disabled={false}
-  icon="icon-piping.svg"
   menu={
     <QuestionnaireMenu
       client={

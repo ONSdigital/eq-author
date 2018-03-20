@@ -6,11 +6,11 @@ import { TransitionGroup } from "react-transition-group";
 import PopupTransition from "./PopupTransition";
 
 import { radius, colors, shadow } from "constants/theme";
-import iconBold from "./icon-bold.svg";
-import iconEmphasis from "./icon-emphasis.svg";
-import iconHeading from "./icon-heading.svg";
-import iconList from "./icon-list.svg";
-import IconButton from "components/IconDecorated/IconButton";
+import iconBold from "./icon-bold.svg?inline";
+import iconEmphasis from "./icon-emphasis.svg?inline";
+import iconHeading from "./icon-heading.svg?inline";
+import iconList from "./icon-list.svg?inline";
+import IconButton from "components/IconButton";
 import PipingMenu from "./PipingMenu";
 
 const ButtonGroup = styled.div`
@@ -126,6 +126,8 @@ class ToolBar extends React.Component {
 
     return (
       <Button
+        iconOnly
+        highlightOnHover={false}
         key={button.title}
         disabled={!controls[button.id]}
         active={isActiveControl(button)}
@@ -144,7 +146,9 @@ class ToolBar extends React.Component {
             onToggle(button);
           }
         }}
-      />
+      >
+        {button.title}
+      </Button>
     );
   };
 
