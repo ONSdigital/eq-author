@@ -13,7 +13,7 @@ exports[`IconButton should highlight on hover 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: inherit;
   padding: 0;
   margin: 0;
@@ -45,7 +45,6 @@ exports[`IconButton should highlight on hover 1`] = `
 >
   <IconButton__StyledButton
     highlightOnHover={true}
-    iconOnly={false}
     onClick={[Function]}
   >
     <button
@@ -71,7 +70,6 @@ exports[`IconButton should highlight on hover 1`] = `
 exports[`IconButton should render correctly 1`] = `
 <IconButton__StyledButton
   highlightOnHover={true}
-  iconOnly={false}
   onClick={[Function]}
 >
   <Icon />
@@ -121,7 +119,7 @@ exports[`IconButton should render icon only 1`] = `
   -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: inherit;
   padding: 0;
   margin: 0;
@@ -154,7 +152,6 @@ exports[`IconButton should render icon only 1`] = `
       data-for="tooltip-1"
       data-tip={true}
       highlightOnHover={true}
-      iconOnly={true}
       onClick={[Function]}
     >
       <button

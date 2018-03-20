@@ -11,7 +11,7 @@ let wrapper, props, buttons;
 const shape = expect.objectContaining({
   id: expect.any(String),
   title: expect.any(String),
-  icon: expect.any(String),
+  icon: expect.any(Function),
   type: expect.any(String),
   style: expect.any(String)
 });
@@ -125,12 +125,12 @@ describe("components/RichTextEditor/Toolbar", () => {
 
   describe("Button", () => {
     it("matches snapshot", () => {
-      const wrapper = mount(<Button icon="foo.svg" title="foo" />);
+      const wrapper = mount(<Button icon={() => <svg />} title="foo" />); // eslint-disable-line react/jsx-no-bind
       expect(wrapper).toMatchSnapshot();
     });
 
     it("should style appropriately when active", () => {
-      const wrapper = mount(<Button active icon="foo.svg" title="foo" />);
+      const wrapper = mount(<Button active icon={() => <svg />} title="foo" />); // eslint-disable-line react/jsx-no-bind
       expect(wrapper).toMatchSnapshot();
     });
   });

@@ -1,9 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import IconLink from "components/IconDecorated/IconLink/index";
+import IconLink from "components/IconLink";
 import { colors } from "constants/theme";
 import styled from "styled-components";
-import testIcon from "./icon-test.svg";
+import testIcon from "./icon-test.svg?inline";
 
 const Background = styled.span`
   background-color: ${colors.darkGrey};

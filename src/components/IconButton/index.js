@@ -26,7 +26,7 @@ const StyledButton = styled.button.attrs({
   display: flex;
   align-items: center;
   cursor: pointer;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: inherit;
   padding: 0;
   margin: 0;
@@ -68,7 +68,7 @@ class IconButton extends React.Component {
     );
 
     const button = (
-      <StyledButton iconOnly={iconOnly} {...otherProps}>
+      <StyledButton {...otherProps}>
         <Icon />
         {text}
       </StyledButton>
