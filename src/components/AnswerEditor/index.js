@@ -31,6 +31,7 @@ export const AnswerDeleteButton = styled(DeleteButton)`
   height: 1em;
   line-height: 1;
   padding: 0;
+  overflow: hidden;
 `;
 
 class AnswerEditor extends React.Component {
