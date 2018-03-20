@@ -218,7 +218,6 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          title="Heading"
         >
           Heading
         </Toolbar__Button>
@@ -231,7 +230,6 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          title="Bold"
         >
           Bold
         </Toolbar__Button>
@@ -244,7 +242,6 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          title="Emphasis"
         >
           Emphasis
         </Toolbar__Button>
@@ -257,7 +254,6 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          title="List"
         >
           List
         </Toolbar__Button>

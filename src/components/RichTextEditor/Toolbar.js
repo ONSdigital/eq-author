@@ -132,7 +132,6 @@ class ToolBar extends React.Component {
         disabled={!controls[button.id]}
         active={isActiveControl(button)}
         icon={button.icon}
-        title={button.title}
         onClick={noop} // don't use click due to focus
         onMouseDown={function(e) {
           e.preventDefault(); // prevents focus on the button
