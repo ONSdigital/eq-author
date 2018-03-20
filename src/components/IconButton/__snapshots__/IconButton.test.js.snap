@@ -33,6 +33,11 @@ exports[`IconButton should highlight on hover 1`] = `
   vertical-align: middle;
 }
 
+.c0[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .c1 {
   margin-left: 0.6em;
 }
@@ -137,6 +142,11 @@ exports[`IconButton should render icon only 1`] = `
 
 .c0 svg {
   vertical-align: middle;
+}
+
+.c0[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 <IconButton

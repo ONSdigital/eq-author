@@ -25,6 +25,10 @@ exports[`components/Forms/Field should render correctly 1`] = `
   font-size: 0.9em;
 }
 
+.c2:hover {
+  border-color: #d1d1d1;
+}
+
 .c2:focus {
   outline: none;
   border: 1px solid #008AD2;

@@ -8,116 +8,140 @@ import sections from "./mockstate";
 
 import RoutingCondition from "./RoutingCondition";
 import RoutingStatement from "./RoutingStatement";
-
+import RoutingRule from "./RoutingRule";
+import RoutingRuleset from "./RoutingRuleset";
 import MultipleChoiceAnswerOptionsSelector from "./MultipleChoiceAnswerOptionsSelector";
 import { Alert, AlertText, AlertTitle } from "./Alert";
+
+const selectedPage = sections[0].pages[0];
 
 const Background = styled.span`
   padding: 1em;
   display: block;
   max-width: 55em;
+  background-color: #f2f2f2;
 `;
 
-const selectedPage = sections[0].pages[0];
+const ruleSetProps = {
+  onAddRule: action("Add rule"),
+  onElseChange: action("Else changed"),
+  sections
+};
+
+const ruleProps = {
+  page: selectedPage,
+  sections: sections,
+  title: selectedPage.title,
+  onAddRule: action("Add rule"),
+  onDeleteRule: action("Delete rule"),
+  onThenChange: action("Then changed")
+};
+
+const statementProps = {
+  onAddCondition: action("Add condition")
+};
+
+const conditionProps = {
+  sections: sections,
+  selectedPage: selectedPage,
+  onPageChange: action("Page changed")
+};
+
+const multiChoiceAnswerProps = {
+  options: selectedPage.options,
+  onOptionSelectionChange: action("option selected"),
+  onSelectAll: action("selected all")
+};
 
 storiesOf("Routing", module)
   .addDecorator(story => <Background>{story()}</Background>)
-  .add("RoutingStatement w/ single RoutingCondition", () => (
-    <RoutingStatement
-      id="routing-statement"
-      onAddCondition={action("Add condition")}
-    >
-      <RoutingCondition
-        id="routing-condition"
-        sections={sections}
-        selectedPage={selectedPage}
-        onPageChange={action("Page changed")}
-        onRemoveClick={action("remove")}
-      >
-        <MultipleChoiceAnswerOptionsSelector
-          options={selectedPage.options}
-          onOptionSelectionChange={action("option selected")}
-          onSelectAll={action("selected all")}
-        />
-      </RoutingCondition>
-    </RoutingStatement>
+  .add("With single RoutingCondition", () => (
+    <RoutingRuleset {...ruleSetProps}>
+      <RoutingRule {...ruleProps}>
+        <RoutingStatement {...statementProps}>
+          <RoutingCondition id="routing-condition" {...conditionProps}>
+            <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
   ))
-  .add("RoutingStatement w/ multiple RoutingCondition", () => (
-    <RoutingStatement
-      id="routing-statement"
-      onAddCondition={action("Add condition")}
-    >
-      <RoutingCondition
-        id="routing-condition-0"
-        sections={sections}
-        selectedPage={selectedPage}
-        onPageChange={action("Page changed")}
-        onRemoveClick={action("remove")}
-      >
-        <MultipleChoiceAnswerOptionsSelector
-          options={selectedPage.options}
-          onOptionSelectionChange={action("option selected")}
-          onSelectAll={action("selected all")}
-        />
-      </RoutingCondition>
-      <RoutingCondition
-        id="routing-condition-1"
-        sections={sections}
-        selectedPage={selectedPage}
-        onPageChange={action("Page changed")}
-        onRemoveClick={action("remove")}
-      >
-        <MultipleChoiceAnswerOptionsSelector
-          options={sections[0].pages[1].options}
-          onOptionSelectionChange={action("Option selected")}
-          onSelectAll={action("selected all")}
-        />
-      </RoutingCondition>
-    </RoutingStatement>
+  .add("With multiple RoutingCondition", () => (
+    <RoutingRuleset {...ruleSetProps}>
+      <RoutingRule {...ruleProps}>
+        <RoutingStatement {...statementProps}>
+          <RoutingCondition id="routing-condition-0" {...conditionProps}>
+            <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
+          </RoutingCondition>
+          <RoutingCondition id="routing-condition-1" {...conditionProps}>
+            <MultipleChoiceAnswerOptionsSelector
+              {...multiChoiceAnswerProps}
+              options={sections[0].pages[1].options}
+            />
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
   ))
-  .add("RoutingStatement with 'no answers' error", () => (
-    <RoutingStatement
-      id="routing-statement"
-      onAddCondition={action("Add condition")}
-    >
-      <RoutingCondition
-        id="routing-condition"
-        sections={sections}
-        selectedPage={selectedPage}
-        onPageChange={action("Page changed")}
-        onRemoveClick={action("remove")}
-      >
-        <Alert>
-          <AlertTitle>
-            No answers have been added to this question yet.
-          </AlertTitle>
-          <AlertText>
-            First, <a href="#">add an answer</a> to continue.
-          </AlertText>
-        </Alert>
-      </RoutingCondition>
-    </RoutingStatement>
+  .add("With 'no answers' error", () => (
+    <RoutingRuleset {...ruleSetProps} canRoute={false}>
+      <RoutingRule {...ruleProps} canRoute={false}>
+        <RoutingStatement {...statementProps} onAddCondition={null}>
+          <RoutingCondition id="routing-condition" {...conditionProps} pathEnd>
+            <Alert>
+              <AlertTitle>
+                No answers have been added to this question yet.
+              </AlertTitle>
+              <AlertText>
+                First, <a href="#">add an answer</a> to continue.
+              </AlertText>
+            </Alert>
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
   ))
-  .add("RoutingStatement with 'unsupported answer type' error", () => (
-    <RoutingStatement
-      id="routing-statement"
-      onAddCondition={action("Add condition")}
-    >
-      <RoutingCondition
-        id="routing-condition"
-        sections={sections}
-        selectedPage={selectedPage}
-        onPageChange={action("Page changed")}
-        onRemoveClick={action("remove")}
-      >
-        <Alert>
-          <AlertTitle>
-            Routing is not available for this type of answer
-          </AlertTitle>
-          <AlertText>
-            You cannot route on &apos;date range&apos; answers
-          </AlertText>
-        </Alert>
-      </RoutingCondition>
-    </RoutingStatement>
-  ));
+  .add("With 'unsupported answer type' error", () => (
+    <RoutingRuleset {...ruleSetProps} canRoute={false}>
+      <RoutingRule {...ruleProps} canRoute={false}>
+        <RoutingStatement {...statementProps} onAddCondition={null}>
+          <RoutingCondition id="routing-condition" {...conditionProps} pathEnd>
+            <Alert>
+              <AlertTitle>
+                Routing is not available for this type of answer
+              </AlertTitle>
+              <AlertText>
+                You cannot route on &apos;date range&apos; answers
+              </AlertText>
+            </Alert>
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
+  ))
+  .add("Multiple Rules", () => (
+    <React.Fragment>
+      <RoutingRuleset {...ruleSetProps}>
+        <RoutingRule {...ruleProps}>
+          <RoutingStatement {...statementProps}>
+            <RoutingCondition id="routing-condition-0" {...conditionProps}>
+              <MultipleChoiceAnswerOptionsSelector
+                {...multiChoiceAnswerProps}
+              />
+            </RoutingCondition>
+          </RoutingStatement>
+        </RoutingRule>
+
+        <RoutingRule {...ruleProps} title="OR">
+          <RoutingStatement {...statementProps}>
+            <RoutingCondition id="routing-condition-1" {...conditionProps}>
+              <MultipleChoiceAnswerOptionsSelector
+                {...multiChoiceAnswerProps}
+              />
+            </RoutingCondition>
+          </RoutingStatement>
+        </RoutingRule>
+      </RoutingRuleset>
+    </React.Fragment>
+  ))
+  .add("Empty Rule", () => <RoutingRule {...ruleProps} />);

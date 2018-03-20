@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/RoutingRuleResultSelector should render 1`] = `
+<RoutingRuleResultSelector__RoutingRuleResult
+  disabled={false}
+>
+  <Grid
+    align="center"
+    fillHeight={true}
+  >
+    <Column
+      cols={5}
+      gutters={false}
+    >
+      <RoutingRuleResultSelector__Label
+        htmlFor="test-selec"
+      >
+        Test
+         
+        <RoutingRuleResultSelector__Goto>
+          Go to: 
+        </RoutingRuleResultSelector__Goto>
+      </RoutingRuleResultSelector__Label>
+    </Column>
+    <Column
+      cols={7}
+      gutters={false}
+    >
+      <withChangeHandler(Select__SimpleSelect)
+        disabled={false}
+        id="test-selec"
+        onChange={[Function]}
+      >
+        <optgroup
+          key="1"
+          label="1. Integer posuere erat a ante"
+        >
+          <option
+            disabled={false}
+            key="2"
+            value="2"
+          >
+            1.1 Curabitur blandit tempus porttitor
+          </option>
+          <option
+            disabled={false}
+            key="9"
+            value="9"
+          >
+            1.2 Nulla vitae elit libero, a pharetra augue.
+          </option>
+        </optgroup>
+      </withChangeHandler(Select__SimpleSelect)>
+    </Column>
+  </Grid>
+</RoutingRuleResultSelector__RoutingRuleResult>
+`;
+
+exports[`components/RoutingRuleResultSelector should render as disabled given the relevant prop 1`] = `
+<RoutingRuleResultSelector__RoutingRuleResult
+  disabled={true}
+>
+  <Grid
+    align="center"
+    fillHeight={true}
+  >
+    <Column
+      cols={5}
+      gutters={false}
+    >
+      <RoutingRuleResultSelector__Label
+        htmlFor="test-selec"
+      >
+        Test
+         
+        <RoutingRuleResultSelector__Goto>
+          Go to: 
+        </RoutingRuleResultSelector__Goto>
+      </RoutingRuleResultSelector__Label>
+    </Column>
+    <Column
+      cols={7}
+      gutters={false}
+    >
+      <withChangeHandler(Select__SimpleSelect)
+        disabled={true}
+        id="test-selec"
+        onChange={[Function]}
+      >
+        <optgroup
+          key="1"
+          label="1. Integer posuere erat a ante"
+        >
+          <option
+            disabled={false}
+            key="2"
+            value="2"
+          >
+            1.1 Curabitur blandit tempus porttitor
+          </option>
+          <option
+            disabled={false}
+            key="9"
+            value="9"
+          >
+            1.2 Nulla vitae elit libero, a pharetra augue.
+          </option>
+        </optgroup>
+      </withChangeHandler(Select__SimpleSelect)>
+    </Column>
+  </Grid>
+</RoutingRuleResultSelector__RoutingRuleResult>
+`;

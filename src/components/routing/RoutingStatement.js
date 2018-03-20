@@ -9,24 +9,27 @@ const CenteringColumn = styled(Column)`
   display: flex;
   justify-content: center;
   padding: 0.25em 0;
+  margin-bottom: 0.5em;
 `;
 
 const RoutingStatement = ({ children, onAddCondition }) => (
   <Fragment>
     {children}
-    <Grid align="center">
-      <CenteringColumn gutters={false} cols={1.5}>
-        <TextButton onClick={onAddCondition} data-test="btn-add">
-          AND
-        </TextButton>
-      </CenteringColumn>
-    </Grid>
+    {onAddCondition && (
+      <Grid align="center">
+        <CenteringColumn gutters={false} cols={1}>
+          <TextButton onClick={onAddCondition} data-test="btn-add">
+            AND
+          </TextButton>
+        </CenteringColumn>
+      </Grid>
+    )}
   </Fragment>
 );
 
 RoutingStatement.propTypes = {
   children: PropTypes.node.isRequired,
-  onAddCondition: PropTypes.func.isRequired
+  onAddCondition: PropTypes.func
 };
 
 export default RoutingStatement;

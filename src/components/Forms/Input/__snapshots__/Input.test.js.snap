@@ -10,6 +10,10 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
   font-size: 0.9em;
 }
 
+.c0:hover {
+  border-color: #d1d1d1;
+}
+
 .c0:focus {
   outline: none;
   border: 1px solid #008AD2;

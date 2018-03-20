@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/RoutingRuleEmptyMsg should render children 1`] = `
+<RoutingRuleEmptyMsg__Container>
+  <RoutingRuleEmptyMsg__Title>
+    Test
+  </RoutingRuleEmptyMsg__Title>
+  <RoutingRuleEmptyMsg__Paragraph>
+    Users completing this question will be taken to the next page.
+  </RoutingRuleEmptyMsg__Paragraph>
+  <RoutingRuleEmptyMsg__AddRuleButton
+    data-test="btn-add-rule"
+    icon={[Function]}
+    onClick={[Function]}
+  >
+    Add your first rule
+  </RoutingRuleEmptyMsg__AddRuleButton>
+</RoutingRuleEmptyMsg__Container>
+`;

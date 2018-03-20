@@ -11,7 +11,7 @@ describe("components/RoutingCondition", () => {
   beforeEach(() => {
     mockHandlers = {
       onPageChange: jest.fn(),
-      onRemoveClick: jest.fn()
+      onRemove: jest.fn()
     };
 
     wrapper = shallow(
@@ -30,9 +30,9 @@ describe("components/RoutingCondition", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should call onRemoveClick handler when remove button is clicked", () => {
+  it("should call onRemove handler when remove button is clicked", () => {
     wrapper.find(RemoveButton).simulate("click");
-    expect(mockHandlers.onRemoveClick).toHaveBeenCalled();
+    expect(mockHandlers.onRemove).toHaveBeenCalled();
   });
 
   it("should call onUpdate with value of selected page", () => {
