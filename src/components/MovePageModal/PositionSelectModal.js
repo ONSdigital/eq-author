@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import Button from "components/Button";
-import { Option, ItemSelect } from "./ItemSelect";
+import ItemSelect, { Option } from "./ItemSelect";
 import PlainModal, { Title, Body, Fieldset } from "./PlainModal";
 import ButtonGroup from "components/ButtonGroup";
 import getTextFromHTML from "utils/getTextFromHTML";
@@ -35,7 +35,7 @@ const PositionSelectModal = ({
         <Title>Position</Title>
         <Body>
           <ItemSelect
-            value={selectedPosition}
+            value={String(selectedPosition)}
             onChange={onChange}
             name="position"
           >

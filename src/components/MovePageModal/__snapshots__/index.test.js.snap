@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovePageModal/MovePageModal should render 1`] = `
+<MovePageModal__StyledModal
+  isOpen={true}
+  onClose={[Function]}
+>
+  <DialogHeader___default>
+    <DialogMessage__Message>
+      <MovePageModal__CenteredHeading>
+        Move question
+      </MovePageModal__CenteredHeading>
+    </DialogMessage__Message>
+  </DialogHeader___default>
+  <MovePageModal__Label>
+    Section
+  </MovePageModal__Label>
+  <MovePageModal__Trigger
+    onClick={[Function]}
+  >
+    Section 1
+  </MovePageModal__Trigger>
+  <SectionSelectModal
+    isOpen={false}
+    onChange={[Function]}
+    onClose={[Function]}
+    sections={
+      Array [
+        Object {
+          "id": "1",
+          "pages": Array [
+            Object {
+              "id": "1",
+              "position": 0,
+              "title": "Page 1.1",
+            },
+            Object {
+              "id": "2",
+              "position": 1,
+              "title": "Page 1.2",
+            },
+          ],
+          "title": "Section 1",
+        },
+        Object {
+          "id": "2",
+          "pages": Array [
+            Object {
+              "id": "1",
+              "position": 0,
+              "title": "Page 2.1",
+            },
+            Object {
+              "id": "2",
+              "position": 1,
+              "title": "Page 2.2",
+            },
+          ],
+          "title": "Section 2",
+        },
+      ]
+    }
+    selectedSection={
+      Object {
+        "id": "1",
+        "pages": Array [
+          Object {
+            "id": "1",
+            "position": 0,
+            "title": "Page 1.1",
+          },
+          Object {
+            "id": "2",
+            "position": 1,
+            "title": "Page 1.2",
+          },
+        ],
+        "title": "Section 1",
+      }
+    }
+  />
+  <MovePageModal__Label>
+    Position
+  </MovePageModal__Label>
+  <MovePageModal__Trigger
+    onClick={[Function]}
+  >
+    Select
+  </MovePageModal__Trigger>
+  <PositionSelectModal
+    isOpen={false}
+    onChange={[Function]}
+    onClose={[Function]}
+    onConfirm={[Function]}
+    pages={
+      Array [
+        Object {
+          "id": "1",
+          "position": 0,
+          "title": "Page 1.1",
+        },
+        Object {
+          "id": "2",
+          "position": 1,
+          "title": "Page 1.2",
+        },
+      ]
+    }
+    selectedPosition={0}
+  />
+</MovePageModal__StyledModal>
+`;
+
+exports[`MovePageModal/MovePageModal should update selected position on change 1`] = `
+Array [
+  Object {
+    "id": "1",
+    "position": 0,
+    "title": "Page 2.1",
+  },
+  Object {
+    "id": "1",
+    "position": 0,
+    "title": "Page 1.1",
+  },
+  Object {
+    "id": "2",
+    "position": 1,
+    "title": "Page 2.2",
+  },
+]
+`;

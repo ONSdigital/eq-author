@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovePageModal/PositionSelectModal should render 1`] = `
+<PlainModal
+  isOpen={true}
+  onClose={[Function]}
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <PlainModal__Fieldset>
+      <PlainModal__Title>
+        Position
+      </PlainModal__Title>
+      <Body>
+        <withChangeHandler(ItemSelect)
+          name="position"
+          onChange={[Function]}
+          value="0"
+        >
+          <Option
+            key="0"
+            value="0"
+          >
+            page 1
+          </Option>
+          <Option
+            key="1"
+            value="1"
+          >
+            page 2
+          </Option>
+        </withChangeHandler(ItemSelect)>
+      </Body>
+    </PlainModal__Fieldset>
+    <PositionSelectModal__StyledButtonGroup>
+      <PositionSelectModal__StyledButton
+        onClick={[Function]}
+        secondary={true}
+        type="button"
+      >
+        Cancel
+      </PositionSelectModal__StyledButton>
+      <PositionSelectModal__StyledButton
+        primary={true}
+        type="submit"
+      >
+        Move
+      </PositionSelectModal__StyledButton>
+    </PositionSelectModal__StyledButtonGroup>
+  </form>
+</PlainModal>
+`;

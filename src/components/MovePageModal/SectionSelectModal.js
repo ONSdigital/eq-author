@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import { Option, ItemSelect } from "./ItemSelect";
+import ItemSelect, { Option } from "./ItemSelect";
 import PlainModal, { Title, Fieldset, Body } from "./PlainModal";
 import getTextFromHTML from "utils/getTextFromHTML";
 

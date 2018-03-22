@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import VisuallyHidden from "components/VisuallyHidden";
 import iconMoveIndicator from "./icon-move-indicator.svg";
 import { uniqueId } from "lodash";
+import withChangeHandler from "../Forms/withChangeHandler";
 
 const Input = VisuallyHidden.withComponent("input");
 Input.defaultProps = {
@@ -96,13 +97,7 @@ Option.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export const ItemSelect = ({
-  children,
-  value,
-  name,
-  onChange,
-  ...otherProps
-}) => (
+const ItemSelect = ({ children, value, name, onChange, ...otherProps }) => (
   <div {...otherProps}>
     {React.Children.map(children, child =>
       React.cloneElement(child, {
@@ -120,3 +115,5 @@ ItemSelect.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 };
+
+export default withChangeHandler(ItemSelect);

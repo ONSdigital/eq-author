@@ -75,16 +75,16 @@ class MovePageModal extends React.Component {
     this.setState({ isPagePositionOpen: !this.state.isPagePositionOpen });
   };
 
-  handleSectionSelect = e => {
+  handleSectionSelect = ({ value }) => {
     this.setState({
-      selectedSectionId: e.target.value,
+      selectedSectionId: value,
       selectedPagePosition: 0,
       isSectionSelectOpen: false
     });
   };
 
-  handlePositionSelect = e => {
-    this.setState({ selectedPagePosition: parseInt(e.target.value) });
+  handlePositionSelect = ({ value }) => {
+    this.setState({ selectedPagePosition: parseInt(value) });
   };
 
   handlePageMove = e => {

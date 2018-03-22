@@ -2,8 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import { Option, ItemSelect } from "./ItemSelect";
-import withChangeHandler from "components/Forms/withChangeHandler";
+import ItemSelect, { Option } from "./ItemSelect";
 import ScrollPane from "../ScrollPane";
 import MovePageModal from ".";
 import CustomPropTypes from "custom-prop-types";
@@ -15,7 +14,7 @@ const Wrapper = styled.div`
   width: 18em;
 `;
 
-const Select = styled(withChangeHandler(ItemSelect))`
+const Select = styled(ItemSelect)`
   height: 200px;
 `;
 
