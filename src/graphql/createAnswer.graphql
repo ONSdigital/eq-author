@@ -4,6 +4,9 @@
 mutation createAnswer($input: CreateAnswerInput!) {
   createAnswer(input: $input) {
     ...Answer
+    ... on BasicAnswer {
+      secondaryLabel
+    }
     ... on MultipleChoiceAnswer {
       options {
         ...Option

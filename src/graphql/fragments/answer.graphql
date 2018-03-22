@@ -3,6 +3,9 @@ fragment Answer on Answer {
   description
   guidance
   label
+  ... on BasicAnswer {
+    secondaryLabel
+  }
   type
   mandatory
 }

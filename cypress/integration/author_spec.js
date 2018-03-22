@@ -197,6 +197,10 @@ describe("eq-author", () => {
 
   it("Can create and delete date ranges", () => {
     addAnswerType("Date range");
+    cy.get("[data-test='date-answer-label']").type("Date Range label");
+    cy
+      .get("[data-test='date-answer-secondary-label']")
+      .type("Date Range label 2");
     cy.get("[data-test='btn-delete-answer']").click();
     cy.get("[data-test='btn-delete-answer']").should("not.exist");
   });
