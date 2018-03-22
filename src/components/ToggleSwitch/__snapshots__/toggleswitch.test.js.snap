@@ -80,6 +80,10 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   font-size: 1em;
 }
 
+.c3:hover {
+  border-color: #d1d1d1;
+}
+
 .c3:focus {
   outline: none;
   border: 1px solid #008AD2;
@@ -321,6 +325,10 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   font-size: 1em;
 }
 
+.c3:hover {
+  border-color: #d1d1d1;
+}
+
 .c3:focus {
   outline: none;
   border: 1px solid #008AD2;
@@ -523,6 +531,10 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   -moz-appearance: none;
   appearance: none;
   font-size: 1em;
+}
+
+.c3:hover {
+  border-color: #d1d1d1;
 }
 
 .c3:focus {

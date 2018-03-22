@@ -58,15 +58,15 @@ const RoutingCondition = ({
   label,
   pathEnd,
   onPageChange,
-  onRemoveClick,
+  onRemove,
   children
 }) => (
   <div>
     <Grid align="center">
-      <Column gutters={false} cols={1.5}>
+      <Column gutters={false} cols={1}>
         <Label htmlFor={id}>{label}</Label>
       </Column>
-      <Column gutters={false} cols={9}>
+      <Column gutters={false} cols={10}>
         <PageSelect
           defaultValue={selectedPage.id}
           value={value}
@@ -84,20 +84,25 @@ const RoutingCondition = ({
           ))}
         </PageSelect>
       </Column>
-      <Column gutters={false} cols={1.5}>
-        <RemoveButton icon={IconClose} onClick={onRemoveClick} iconOnly>
+      <Column gutters={false} cols={1}>
+        <RemoveButton
+          icon={IconClose}
+          onClick={onRemove}
+          disabled={!onRemove}
+          iconOnly
+        >
           Remove
         </RemoveButton>
       </Column>
     </Grid>
     <Grid>
-      <Column gutters={false} cols={1.5}>
+      <Column gutters={false} cols={1}>
         <ConnectedPath pathEnd={pathEnd} />
       </Column>
-      <Column gutters={false} cols={9}>
+      <Column gutters={false} cols={10}>
         {children}
       </Column>
-      <Column cols={1.5} />
+      <Column cols={1} />
     </Grid>
   </div>
 );
@@ -108,7 +113,7 @@ RoutingCondition.propTypes = {
   selectedPage: CustomPropTypes.page.isRequired,
   id: PropTypes.string.isRequired,
   onPageChange: PropTypes.func.isRequired,
-  onRemoveClick: PropTypes.func.isRequired,
+  onRemove: PropTypes.func,
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
   pathEnd: PropTypes.bool.isRequired

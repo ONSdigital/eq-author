@@ -33,6 +33,11 @@ exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
   vertical-align: middle;
 }
 
+.c1[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .c2 {
   margin-left: 0.6em;
 }
@@ -120,6 +125,11 @@ exports[`components/RichTextEditor/Toolbar Button should style appropriately whe
 
 .c1 svg {
   vertical-align: middle;
+}
+
+.c1[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .c2 {

@@ -15,6 +15,10 @@ exports[`components/Answers/Dummy/TextArea shoulder render 1`] = `
   height: NaNem;
 }
 
+.c0:hover {
+  border-color: #d1d1d1;
+}
+
 .c0:focus {
   outline: none;
   border: 1px solid #008AD2;

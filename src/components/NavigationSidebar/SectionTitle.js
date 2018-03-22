@@ -16,6 +16,8 @@ const textInverted = "#E1E1E1";
 const Link = styled(NavLink)`
   text-decoration: none;
   color: ${textInverted};
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:link,
   &:visited {
@@ -52,7 +54,9 @@ const SectionTitle = ({ questionnaire, section }) => {
   }
 
   const sectionTitle = (
-    <Title>{getTextFromHTML(section.title) || "Section Title"}</Title>
+    <Title title={getTextFromHTML(section.title)}>
+      {getTextFromHTML(section.title) || "Section Title"}
+    </Title>
   );
 
   if (section.pages.length === 0) {

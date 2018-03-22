@@ -29,7 +29,7 @@ describe("components/RoutingStatement", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should call onRemoveClick handler when remove button is clicked", () => {
+  it("should call addCondition handler when 'add' button is clicked", () => {
     wrapper.find('[data-test="btn-add"]').simulate("click");
     expect(mockHandlers.onAddCondition).toHaveBeenCalled();
   });

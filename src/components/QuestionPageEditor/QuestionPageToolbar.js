@@ -1,22 +1,13 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
-import { colors } from "constants/theme";
 
 import IconButtonDelete from "components/IconButtonDelete";
+import { Toolbar, Buttons } from "components/EditorSurface/Toolbar";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
 import getTextFromHTML from "utils/getTextFromHTML";
-
-export const Toolbar = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  border-bottom: 1px solid ${colors.borders};
-  margin: 0 -1em 1em;
-`;
 
 class QuestionPageToolbar extends Component {
   state = {
@@ -32,12 +23,15 @@ class QuestionPageToolbar extends Component {
   render() {
     return (
       <Toolbar>
-        <IconButtonDelete
-          onClick={this.handleOpenDeleteConfirmDialog}
-          data-test="btn-delete"
-        >
-          Delete
-        </IconButtonDelete>
+        {this.props.children}
+        <Buttons>
+          <IconButtonDelete
+            onClick={this.handleOpenDeleteConfirmDialog}
+            data-test="btn-delete"
+          >
+            Delete
+          </IconButtonDelete>
+        </Buttons>
         <DeleteConfirmDialog
           isOpen={this.state.showDeleteConfirmDialog}
           onClose={this.handleCloseDeleteConfirmDialog}
@@ -51,7 +45,8 @@ class QuestionPageToolbar extends Component {
 
 QuestionPageToolbar.propTypes = {
   page: CustomPropTypes.page,
-  onDeletePage: PropTypes.func.isRequired
+  onDeletePage: PropTypes.func.isRequired,
+  children: PropTypes.node
 };
 
 export default QuestionPageToolbar;
