@@ -67,16 +67,18 @@ class NavigationSidebar extends Component {
 
   handleAddSectionClick = () => {
     const { questionnaire, onAddSection } = this.props;
-    onAddSection(questionnaire.id).then(({ id }) =>
-      this.sectionNav.scrollSectionIntoView(id)
-    );
+
+    onAddSection(questionnaire.id).then(({ id }) => {
+      return this.sectionNav.scrollSectionIntoView(id);
+    });
   };
 
-  handleAddPage = sectionId => {
+  handleAddPage = (sectionId, position) => {
     const { onAddPage } = this.props;
-    onAddPage(sectionId).then(({ section }) =>
-      this.sectionNav.scrollSectionIntoView(section.id)
-    );
+
+    onAddPage(sectionId, position).then(({ section }) => {
+      return this.sectionNav.scrollSectionIntoView(section.id);
+    });
   };
 
   render() {

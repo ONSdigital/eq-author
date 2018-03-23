@@ -9,6 +9,7 @@ describe("Question Page Editor", () => {
   let mockMutations;
   let page;
   let section;
+  let questionnaire;
 
   const answer = {
     id: "123",
@@ -25,7 +26,8 @@ describe("Question Page Editor", () => {
       onDeleteOption: jest.fn(),
       onDeleteAnswer: jest.fn(),
       onUpdateOption: jest.fn(),
-      onFocus: jest.fn()
+      onFocus: jest.fn(),
+      onMovePage: jest.fn()
     };
 
     page = {
@@ -57,7 +59,20 @@ describe("Question Page Editor", () => {
       pages: [page]
     };
 
-    wrapper = shallow(<QPE {...mockMutations} page={page} section={section} />);
+    questionnaire = {
+      id: "1",
+      __typename: "Questionnaire",
+      sections: [section]
+    };
+
+    wrapper = shallow(
+      <QPE
+        {...mockMutations}
+        questionnaire={questionnaire}
+        page={page}
+        section={section}
+      />
+    );
   });
 
   it("should delete the correct answer", () => {

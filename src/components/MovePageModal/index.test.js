@@ -110,7 +110,7 @@ describe("MovePageModal/MovePageModal", () => {
     expect(getPositionSelect(wrapper)).toMatchSnapshot();
   });
 
-  it("closes all modals and calls onMovePage when confirmed", () => {
+  it("calls onMovePage when confirmed", () => {
     const onMovePage = jest.fn();
     const onClose = jest.fn();
     const selectedSection = questionnaire.sections[1];
@@ -125,12 +125,18 @@ describe("MovePageModal/MovePageModal", () => {
     });
 
     expect(getPositionModal(wrapper).prop("isOpen")).toBe(false);
-    expect(onClose).toHaveBeenCalled();
 
     expect(onMovePage).toHaveBeenCalledWith({
-      id: currentPage.id,
-      sectionId: selectedSection.id,
-      position
+      from: {
+        id: currentPage.id,
+        sectionId: currentSection.id,
+        position: 0
+      },
+      to: {
+        id: currentPage.id,
+        sectionId: selectedSection.id,
+        position
+      }
     });
   });
 

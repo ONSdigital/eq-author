@@ -72,7 +72,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
   describe("redirectToNewPage", () => {
     it("should redirect to the correct url", () => {
-      redirectToNewPage(ownProps)(result);
+      redirectToNewPage(ownProps)(newPage);
 
       expect(history.push).toHaveBeenCalledWith(
         getLink(questionnaire.id, section.id, newPage.id)

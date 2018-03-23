@@ -54,8 +54,14 @@ describe("NavigationSidebar", () => {
   });
 
   it("should allow pages to be added", () => {
-    wrapper.find(SectionNav).simulate("addPage", section.id);
-    expect(handleAddPage).toHaveBeenCalledWith(section.id);
+    wrapper
+      .find(SectionNav)
+      .simulate("addPage", section.id, section.pages.length);
+
+    expect(handleAddPage).toHaveBeenCalledWith(
+      section.id,
+      section.pages.length
+    );
     expect(sectionNav.scrollSectionIntoView).toHaveBeenCalledWith(section.id);
   });
 });

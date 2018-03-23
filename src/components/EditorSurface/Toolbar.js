@@ -11,4 +11,5 @@ export const Toolbar = styled.div`
 
 export const Buttons = styled.div`
   margin: 0 -0.5em 0 auto;
+  display: inherit;
 `;

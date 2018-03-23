@@ -13,6 +13,7 @@ query GetQuestionnaire($id: ID!) {
         title
         description
         pageType
+        position
         ... on QuestionPage {
           guidance
           answers {

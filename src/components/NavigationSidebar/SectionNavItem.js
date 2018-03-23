@@ -87,7 +87,8 @@ class SectionNavItem extends React.Component {
   };
 
   handleAddPage = () => {
-    this.props.onAddPage(this.props.section.id);
+    const { section, onAddPage } = this.props;
+    onAddPage(section.id, section.pages.length);
   };
 
   saveRef = elem => {

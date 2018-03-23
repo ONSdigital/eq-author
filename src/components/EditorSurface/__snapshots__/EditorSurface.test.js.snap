@@ -13,7 +13,7 @@ exports[`EditorSurface should render 1`] = `
       duration={300}
       key="Page2"
     >
-      <Connect(Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE)))))))
+      <Connect(withRouter(Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(Apollo(QPE)))))))))
         onDeletePage={[Function]}
         onUpdatePage={[Function]}
         page={

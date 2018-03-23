@@ -3,6 +3,7 @@
 mutation createQuestionPage($input: CreateQuestionPageInput!) {
   createQuestionPage(input: $input) {
     ...Page
+    position
     pageType
     answers {
       id

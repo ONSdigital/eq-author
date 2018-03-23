@@ -99,6 +99,7 @@ export class QuestionnaireDesignPage extends Component {
                   page={page}
                 />
                 <EditorSurface
+                  questionnaire={questionnaire}
                   section={section}
                   page={page}
                   onUpdatePage={onUpdatePage}

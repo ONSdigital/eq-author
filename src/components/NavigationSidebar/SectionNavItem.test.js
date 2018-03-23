@@ -35,7 +35,10 @@ describe("SectionNavItem", () => {
 
   it("should handle 'add page' button clicks", () => {
     wrapper.find(AddPageBtn).simulate("click");
-    expect(handleAddPage).toHaveBeenCalledWith(section.id);
+    expect(handleAddPage).toHaveBeenCalledWith(
+      section.id,
+      section.pages.length
+    );
   });
 
   it("saveSectionItemRef", () => {
