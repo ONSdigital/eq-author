@@ -12,13 +12,18 @@ storiesOf("Header", module)
     <Header
       questionnaire={{ title: "My Questionnaire" }}
       signOutUser={action("sign out user")}
+      raiseToast={action("copied")}
     />
   ))
   .add("Without Utility Buttons", () => (
-    <Header signOutUser={action("sign out user")} />
+    <Header
+      signOutUser={action("sign out user")}
+      raiseToast={action("copied")}
+    />
   ))
   .add("With Breadcrumb", () => (
     <Header
+      raiseToast={action("copied")}
       questionnaire={{ title: "My Questionnaire" }}
       signOutUser={action("sign out user")}
     />

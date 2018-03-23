@@ -8,14 +8,11 @@ export const StyledLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5em;
   cursor: pointer;
   appearance: none;
   border: none;
   opacity: 0.9;
   transition: opacity 200ms ease-out;
-  width: 3.5em;
-  height: 3.5em;
 
   &:hover {
     opacity: 1;
@@ -23,10 +20,6 @@ export const StyledLink = styled.a`
 
   &[disabled] {
     opacity: 0.5;
-  }
-
-  svg {
-    margin: 0 !important;
   }
 `;
 
