@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { transparentize } from "polished";
+import { rgba } from "polished";
 
 import { colors, shadow } from "constants/theme";
 import * as ActionCreators from "redux/uiState/actions";
@@ -28,7 +28,7 @@ const FocusableSection = styled(BasicSection)`
   ${props => props.isFocused && focusedStyle};
 
   &:hover {
-    outline-color: ${transparentize(0.5, colors.blue)};
+    outline-color: ${rgba(colors.blue, 0.5)};
   }
 `;
 

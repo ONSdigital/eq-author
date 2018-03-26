@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import AutoResizeTextArea from "react-textarea-autosize";
 import withChangeHandler from "components/Forms/withChangeHandler";
 import { colors } from "constants/theme";
-import { transparentize } from "polished";
+import { rgba } from "polished";
 import { invoke } from "lodash";
 
 const ENTER_KEY = 13;
@@ -43,7 +43,7 @@ const TextArea = styled(AutoResizeTextArea)`
   outline-offset: 0.25rem;
 
   &:hover {
-    outline-color: ${transparentize(0.5, colors.blue)};
+    outline-color: ${rgba(colors.blue, 0.5)};
   }
 
   &:focus {

@@ -19,7 +19,7 @@ import PipedValueDecorator, {
   insertPipedValue
 } from "./entities/PipedValue";
 import { colors } from "constants/theme";
-import { transparentize } from "polished";
+import { rgba } from "polished";
 
 import { flow, uniq, map, keyBy, mapValues } from "lodash/fp";
 
@@ -101,7 +101,7 @@ export const ClickContext = styled.div`
   outline-offset: 0.25rem;
 
   &:hover {
-    outline-color: ${transparentize(0.5, colors.blue)};
+    outline-color: ${rgba(colors.blue, 0.5)};
   }
 `;
 ClickContext.propTypes = {
