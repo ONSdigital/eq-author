@@ -85,30 +85,23 @@ exports[`components/Menu should render a Menu 1`] = `
   height: 100%;
   overflow-y: auto;
   position: relative;
-  background-color: rgba(0,0,0,0);
   -webkit-background-clip: text;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
+  background-color: rgba(0,0,0,0.18);
 }
 
 .c2::-webkit-scrollbar-thumb {
   border-radius: 0;
   box-shadow: none;
-  background-color: inherit;
-}
-
-.c2:hover {
-  background-color: rgba(0,0,0,0.18);
-}
-
-.c2:hover::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.4);
+  background-color: #c3c3c3;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
 }
 
 .c2::-webkit-scrollbar-track {
   border-radius: 0;
   box-shadow: none;
-  background: transparent;
   display: none;
 }
 
@@ -119,6 +112,10 @@ exports[`components/Menu should render a Menu 1`] = `
 .c2 >:first-child {
   -webkit-backface-visibility: hidden !important;
   backface-visibility: hidden !important;
+}
+
+.c2:hover::-webkit-scrollbar-thumb {
+  background-color: #aaa;
 }
 
 .c1 {
