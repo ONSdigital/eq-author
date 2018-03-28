@@ -1,34 +1,23 @@
 import React from "react";
-import PositionSelectModal from "./PositionSelectModal";
+import ItemSelectModal from "./ItemSelectModal";
 import { shallow } from "enzyme";
-import ItemSelect from "./ItemSelect";
 
-describe("MovePageModal/PositionSelectModal", () => {
-  const pages = [{ id: "1", title: "page 1" }, { id: "2", title: "page 2" }];
-
+describe("MovePageModal/ItemSelectModal", () => {
   const createWrapper = (props = {}, render = shallow) =>
     render(
-      <PositionSelectModal
+      <ItemSelectModal
         isOpen
         onClose={jest.fn()}
-        pages={pages}
-        selectedPosition={0}
-        onChange={jest.fn()}
         onConfirm={jest.fn()}
+        title="Test title"
         {...props}
-      />
+      >
+        <input />
+      </ItemSelectModal>
     );
 
   it("should render", () => {
     expect(createWrapper()).toMatchSnapshot();
-  });
-
-  it("should call onChange when pages position is selected", () => {
-    const onChange = jest.fn();
-    const wrapper = createWrapper({ onChange });
-
-    wrapper.find(ItemSelect).simulate("change");
-    expect(onChange).toHaveBeenCalled();
   });
 
   it("should call onConfirm when submit button is clicked", () => {
@@ -43,7 +32,7 @@ describe("MovePageModal/PositionSelectModal", () => {
     const onClose = jest.fn();
     const wrapper = createWrapper({ onClose });
 
-    wrapper.find(`[type="button"]`).simulate("click");
+    wrapper.find(`[secondary]`).simulate("click");
     expect(onClose).toHaveBeenCalled();
   });
 });

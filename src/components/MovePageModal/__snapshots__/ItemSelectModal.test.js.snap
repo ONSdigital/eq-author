@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovePageModal/ItemSelectModal should render 1`] = `
+<PlainModal
+  isOpen={true}
+  onClose={[Function]}
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <ItemSelectModal__Fieldset>
+      <ItemSelectModal__Title>
+        Test title
+      </ItemSelectModal__Title>
+      <Body>
+        <input />
+      </Body>
+    </ItemSelectModal__Fieldset>
+    <ItemSelectModal__StyledButtonGroup>
+      <ItemSelectModal__StyledButton
+        onClick={[Function]}
+        secondary={true}
+        type="button"
+      >
+        Cancel
+      </ItemSelectModal__StyledButton>
+      <ItemSelectModal__StyledButton
+        primary={true}
+        type="submit"
+      >
+        Select
+      </ItemSelectModal__StyledButton>
+    </ItemSelectModal__StyledButtonGroup>
+  </form>
+</PlainModal>
+`;

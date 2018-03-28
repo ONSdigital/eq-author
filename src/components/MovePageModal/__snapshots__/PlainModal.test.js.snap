@@ -17,15 +17,8 @@ exports[`MovePageModal/PlainModal should render 1`] = `
   isOpen={true}
   onClose={[Function]}
 >
-  <Body>
-    <PlainModal__Fieldset>
-      <PlainModal__Title>
-        Test
-      </PlainModal__Title>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis dignissimos, ipsum laboriosam autem ipsa corrupti dicta tempore provident magnam saepe consectetur molestiae illo ad temporibus, quasi animi rem aliquid omnis.
-      </p>
-    </PlainModal__Fieldset>
-  </Body>
+  <p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis dignissimos, ipsum laboriosam autem ipsa corrupti dicta tempore provident magnam saepe consectetur molestiae illo ad temporibus, quasi animi rem aliquid omnis.
+  </p>
 </Modal>
 `;

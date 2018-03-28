@@ -2,12 +2,10 @@ import React from "react";
 import MovePageModal from ".";
 import { shallow } from "enzyme";
 import { times } from "lodash";
-import PositionSelectModal from "./PositionSelectModal";
-import SectionSelectModal from "./SectionSelectModal";
 
 const buildPages = (sectionNumber, count) =>
   times(count, i => ({
-    id: `${i + 1}`,
+    id: `${sectionNumber}.${i + 1}`,
     title: `Page ${sectionNumber}.${i + 1}`,
     position: i
   }));
@@ -23,6 +21,12 @@ const buildQuestionnaire = () => ({
   id: "1",
   sections: buildSections(2)
 });
+
+const sel = id => `[data-test="${id}"]`;
+const getSectionModal = wrapper => wrapper.find(sel("section-modal"));
+const getSectionSelect = wrapper => wrapper.find(sel("section-select"));
+const getPositionModal = wrapper => wrapper.find(sel("position-modal"));
+const getPositionSelect = wrapper => wrapper.find(sel("position-select"));
 
 describe("MovePageModal/MovePageModal", () => {
   const questionnaire = buildQuestionnaire();
@@ -55,7 +59,7 @@ describe("MovePageModal/MovePageModal", () => {
       .first()
       .simulate("click");
 
-    expect(wrapper.find(SectionSelectModal).prop("isOpen")).toBe(true);
+    expect(getSectionModal(wrapper).prop("isOpen")).toBe(true);
   });
 
   it("opens position select modal when correct button is clicked", () => {
@@ -66,10 +70,10 @@ describe("MovePageModal/MovePageModal", () => {
       .last()
       .simulate("click");
 
-    expect(wrapper.find("PositionSelectModal").prop("isOpen")).toBe(true);
+    expect(getPositionModal(wrapper).prop("isOpen")).toBe(true);
   });
 
-  it("should close section select modal on change", () => {
+  it("should close section select modal on confirm", () => {
     const wrapper = createWrapper();
 
     wrapper
@@ -77,34 +81,33 @@ describe("MovePageModal/MovePageModal", () => {
       .first()
       .simulate("click");
 
-    wrapper.find(SectionSelectModal).simulate("change", {
+    getSectionModal(wrapper).simulate("change", {
       value: questionnaire.sections[1].id
     });
 
-    expect(wrapper.find(SectionSelectModal).prop("isOpen")).toBe(false);
+    getSectionModal(wrapper).simulate("confirm", {
+      preventDefault: jest.fn()
+    });
+
+    expect(getSectionModal(wrapper).prop("isOpen")).toBe(false);
   });
 
   it("should update selected section on change", () => {
     const wrapper = createWrapper();
     const selectedSection = questionnaire.sections[1];
 
-    wrapper
-      .find(SectionSelectModal)
-      .simulate("change", { value: selectedSection.id });
+    getSectionSelect(wrapper).simulate("change", { value: selectedSection.id });
 
-    expect(wrapper.find(SectionSelectModal).prop("selectedSection")).toBe(
-      selectedSection
-    );
+    expect(getSectionSelect(wrapper).prop("value")).toBe(selectedSection.id);
   });
 
   it("should update selected position on change", () => {
     const wrapper = createWrapper();
 
-    wrapper.find(SectionSelectModal).simulate("change", { value: "2" });
-    wrapper.find(PositionSelectModal).simulate("change", { value: "1" });
+    getSectionSelect(wrapper).simulate("change", { value: "2" });
+    getPositionSelect(wrapper).simulate("change", { value: "1" });
 
-    expect(wrapper.find(PositionSelectModal).prop("selectedPosition")).toBe(1);
-    expect(wrapper.find(PositionSelectModal).prop("pages")).toMatchSnapshot();
+    expect(getPositionSelect(wrapper)).toMatchSnapshot();
   });
 
   it("closes all modals and calls onMovePage when confirmed", () => {
@@ -115,17 +118,13 @@ describe("MovePageModal/MovePageModal", () => {
 
     const wrapper = createWrapper({ onMovePage, onClose });
 
-    wrapper
-      .find(SectionSelectModal)
-      .simulate("change", { value: selectedSection.id });
-    wrapper
-      .find(PositionSelectModal)
-      .simulate("change", { value: String(position) });
-    wrapper
-      .find(PositionSelectModal)
-      .simulate("confirm", { preventDefault: jest.fn() });
+    getSectionSelect(wrapper).simulate("change", { value: selectedSection.id });
+    getPositionSelect(wrapper).simulate("change", { value: String(position) });
+    getPositionModal(wrapper).simulate("confirm", {
+      preventDefault: jest.fn()
+    });
 
-    expect(wrapper.find(PositionSelectModal).prop("isOpen")).toBe(false);
+    expect(getPositionModal(wrapper).prop("isOpen")).toBe(false);
     expect(onClose).toHaveBeenCalled();
 
     expect(onMovePage).toHaveBeenCalledWith({

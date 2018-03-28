@@ -5,11 +5,11 @@ import DialogHeader from "components/Dialog/DialogHeader";
 import { Message, Heading } from "components/Dialog/DialogMessage";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import SectionSelectModal from "./SectionSelectModal";
-import PositionSelectModal from "./PositionSelectModal";
+import ItemSelectModal from "./ItemSelectModal";
 import { find, reject, parseInt } from "lodash";
 import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
+import ItemSelect, { Option } from "./ItemSelect";
 
 const StyledModal = styled(Modal)`
   .Modal {
@@ -75,19 +75,23 @@ class MovePageModal extends React.Component {
     this.setState({ isPagePositionOpen: !this.state.isPagePositionOpen });
   };
 
-  handleSectionSelect = ({ value }) => {
+  handleSectionChange = ({ value }) => {
     this.setState({
       selectedSectionId: value,
-      selectedPagePosition: 0,
-      isSectionSelectOpen: false
+      selectedPagePosition: 0
     });
   };
 
-  handlePositionSelect = ({ value }) => {
+  handleSectionConfirm = e => {
+    e.preventDefault();
+    this.handleToggleSectionSelect();
+  };
+
+  handlePositionChange = ({ value }) => {
     this.setState({ selectedPagePosition: parseInt(value) });
   };
 
-  handlePageMove = e => {
+  handlePositionConfirm = e => {
     const { page, onMovePage, onClose } = this.props;
     const { selectedSectionId, selectedPagePosition } = this.state;
 
@@ -103,14 +107,14 @@ class MovePageModal extends React.Component {
     });
   };
 
-  getSection() {
+  getSelectedSection() {
     const { questionnaire } = this.props;
     const { selectedSectionId } = this.state;
 
     return find(questionnaire.sections, { id: selectedSectionId });
   }
 
-  getPages(section) {
+  getPagesForSection(section) {
     return moveTo(
       section.pages,
       this.props.page,
@@ -118,16 +122,66 @@ class MovePageModal extends React.Component {
     );
   }
 
-  render() {
-    const { isOpen, onClose, questionnaire } = this.props;
-    const {
-      isPagePositionOpen,
-      isSectionSelectOpen,
-      selectedPagePosition
-    } = this.state;
+  renderSectionSelect(section) {
+    const { questionnaire } = this.props;
+    const { isSectionSelectOpen } = this.state;
 
-    const section = this.getSection();
-    const pages = this.getPages(section);
+    return (
+      <ItemSelectModal
+        data-test="section-modal"
+        title="Section"
+        isOpen={isSectionSelectOpen}
+        onClose={this.handleToggleSectionSelect}
+        onConfirm={this.handleSectionConfirm}
+      >
+        <ItemSelect
+          data-test="section-select"
+          name="section"
+          value={section.id}
+          onChange={this.handleSectionChange}
+        >
+          {questionnaire.sections.map(section => (
+            <Option key={section.id} value={section.id}>
+              {getTextFromHTML(section.title)}
+            </Option>
+          ))}
+        </ItemSelect>
+      </ItemSelectModal>
+    );
+  }
+
+  renderPositionSelect(pages) {
+    const { isPagePositionOpen, selectedPagePosition } = this.state;
+
+    return (
+      <ItemSelectModal
+        data-test="position-modal"
+        title="Position"
+        primaryText="Move page"
+        isOpen={isPagePositionOpen}
+        onClose={this.handleTogglePagePosition}
+        onConfirm={this.handlePositionConfirm}
+      >
+        <ItemSelect
+          data-test="position-select"
+          name="position"
+          value={String(selectedPagePosition)}
+          onChange={this.handlePositionChange}
+        >
+          {pages.map((page, i) => (
+            <Option key={i} value={String(i)}>
+              {getTextFromHTML(page.title)}
+            </Option>
+          ))}
+        </ItemSelect>
+      </ItemSelectModal>
+    );
+  }
+
+  render() {
+    const { isOpen, onClose } = this.props;
+    const section = this.getSelectedSection();
+    const pages = this.getPagesForSection(section);
 
     return (
       <StyledModal isOpen={isOpen} onClose={onClose}>
@@ -136,27 +190,16 @@ class MovePageModal extends React.Component {
             <CenteredHeading>Move question</CenteredHeading>
           </Message>
         </DialogHeader>
+
         <Label>Section</Label>
         <Trigger onClick={this.handleToggleSectionSelect}>
           {getTextFromHTML(section.title)}
         </Trigger>
-        <SectionSelectModal
-          isOpen={isSectionSelectOpen}
-          onClose={this.handleToggleSectionSelect}
-          onChange={this.handleSectionSelect}
-          sections={questionnaire.sections}
-          selectedSection={section}
-        />
+        {this.renderSectionSelect(section)}
+
         <Label>Position</Label>
         <Trigger onClick={this.handleTogglePagePosition}>Select</Trigger>
-        <PositionSelectModal
-          isOpen={isPagePositionOpen}
-          onClose={this.handleTogglePagePosition}
-          onChange={this.handlePositionSelect}
-          onConfirm={this.handlePageMove}
-          pages={pages}
-          selectedPosition={selectedPagePosition}
-        />
+        {this.renderPositionSelect(pages)}
       </StyledModal>
     );
   }

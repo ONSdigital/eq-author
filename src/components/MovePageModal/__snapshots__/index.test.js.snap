@@ -20,65 +20,35 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
   >
     Section 1
   </MovePageModal__Trigger>
-  <SectionSelectModal
+  <ItemSelectModal
+    data-test="section-modal"
     isOpen={false}
-    onChange={[Function]}
     onClose={[Function]}
-    sections={
-      Array [
-        Object {
-          "id": "1",
-          "pages": Array [
-            Object {
-              "id": "1",
-              "position": 0,
-              "title": "Page 1.1",
-            },
-            Object {
-              "id": "2",
-              "position": 1,
-              "title": "Page 1.2",
-            },
-          ],
-          "title": "Section 1",
-        },
-        Object {
-          "id": "2",
-          "pages": Array [
-            Object {
-              "id": "1",
-              "position": 0,
-              "title": "Page 2.1",
-            },
-            Object {
-              "id": "2",
-              "position": 1,
-              "title": "Page 2.2",
-            },
-          ],
-          "title": "Section 2",
-        },
-      ]
-    }
-    selectedSection={
-      Object {
-        "id": "1",
-        "pages": Array [
-          Object {
-            "id": "1",
-            "position": 0,
-            "title": "Page 1.1",
-          },
-          Object {
-            "id": "2",
-            "position": 1,
-            "title": "Page 1.2",
-          },
-        ],
-        "title": "Section 1",
-      }
-    }
-  />
+    onConfirm={[Function]}
+    primaryText="Select"
+    secondaryText="Cancel"
+    title="Section"
+  >
+    <withChangeHandler(ItemSelect)
+      data-test="section-select"
+      name="section"
+      onChange={[Function]}
+      value="1"
+    >
+      <Option
+        key="1"
+        value="1"
+      >
+        Section 1
+      </Option>
+      <Option
+        key="2"
+        value="2"
+      >
+        Section 2
+      </Option>
+    </withChangeHandler(ItemSelect)>
+  </ItemSelectModal>
   <MovePageModal__Label>
     Position
   </MovePageModal__Label>
@@ -87,46 +57,62 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
   >
     Select
   </MovePageModal__Trigger>
-  <PositionSelectModal
+  <ItemSelectModal
+    data-test="position-modal"
     isOpen={false}
-    onChange={[Function]}
     onClose={[Function]}
     onConfirm={[Function]}
-    pages={
-      Array [
-        Object {
-          "id": "1",
-          "position": 0,
-          "title": "Page 1.1",
-        },
-        Object {
-          "id": "2",
-          "position": 1,
-          "title": "Page 1.2",
-        },
-      ]
-    }
-    selectedPosition={0}
-  />
+    primaryText="Move page"
+    secondaryText="Cancel"
+    title="Position"
+  >
+    <withChangeHandler(ItemSelect)
+      data-test="position-select"
+      name="position"
+      onChange={[Function]}
+      value="0"
+    >
+      <Option
+        key="0"
+        value="0"
+      >
+        Page 1.1
+      </Option>
+      <Option
+        key="1"
+        value="1"
+      >
+        Page 1.2
+      </Option>
+    </withChangeHandler(ItemSelect)>
+  </ItemSelectModal>
 </MovePageModal__StyledModal>
 `;
 
 exports[`MovePageModal/MovePageModal should update selected position on change 1`] = `
-Array [
-  Object {
-    "id": "1",
-    "position": 0,
-    "title": "Page 2.1",
-  },
-  Object {
-    "id": "1",
-    "position": 0,
-    "title": "Page 1.1",
-  },
-  Object {
-    "id": "2",
-    "position": 1,
-    "title": "Page 2.2",
-  },
-]
+<withChangeHandler(ItemSelect)
+  data-test="position-select"
+  name="position"
+  onChange={[Function]}
+  value="1"
+>
+  <Option
+    key="0"
+    value="0"
+  >
+    Page 2.1
+  </Option>
+  <Option
+    key="1"
+    value="1"
+  >
+    Page 1.1
+  </Option>
+  <Option
+    key="2"
+    value="2"
+  >
+    Page 2.2
+  </Option>
+</withChangeHandler(ItemSelect)>
 `;

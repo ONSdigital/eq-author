@@ -19,10 +19,6 @@ const Truncated = styled.span`
   text-overflow: ellipsis;
 `;
 
-Truncated.defaultProps = {
-  maxWidth: 23
-};
-
 const Label = styled.label`
   display: flex;
   align-items: center;

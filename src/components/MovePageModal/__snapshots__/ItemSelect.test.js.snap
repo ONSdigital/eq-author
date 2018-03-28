@@ -14,9 +14,7 @@ exports[`MovePageModal/ItemSelect Option should render 1`] = `
     htmlFor="test"
     selected={true}
   >
-    <ItemSelect__Truncated
-      maxWidth={23}
-    >
+    <ItemSelect__Truncated>
       bar
     </ItemSelect__Truncated>
   </ItemSelect__Label>
