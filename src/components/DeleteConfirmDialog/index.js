@@ -17,10 +17,11 @@ import ButtonGroup from "components/ButtonGroup/index";
 import PropTypes from "prop-types";
 
 import iconAlert from "./icon-alert.svg";
-import iconPage from "./icon-dialog-page.svg";
 
 const DeleteConfirmModalDialog = styled(Modal)`
-  width: 30em;
+  .Modal {
+    width: 28em;
+  }
 `;
 
 const Alert = styled.div`
@@ -38,8 +39,10 @@ const Alert = styled.div`
 
 const DeleteConfirmDialog = ({
   title,
-  onDeletePage,
+  onDelete,
   onClose,
+  alertText,
+  icon,
   ...otherProps
 }) => (
   <DeleteConfirmModalDialog onClose={onClose} {...otherProps}>
@@ -48,12 +51,10 @@ const DeleteConfirmDialog = ({
         <Heading>Delete</Heading>
         <Subheading>{title}</Subheading>
         <Description>
-          <Alert>
-            All edits, properties and routing settings will also be removed.
-          </Alert>
+          <Alert>{alertText}</Alert>
         </Description>
       </Message>
-      <DialogIcon icon={iconPage} />
+      <DialogIcon icon={icon} />
     </DialogHeader>
     <ButtonGroup horizontal align="right">
       <Button secondary onClick={onClose} data-test="btn-cancel-modal">
@@ -62,7 +63,7 @@ const DeleteConfirmDialog = ({
       <Button
         tertiary
         autoFocus
-        onClick={onDeletePage}
+        onClick={onDelete}
         data-test="btn-delete-modal"
       >
         Delete
@@ -73,8 +74,10 @@ const DeleteConfirmDialog = ({
 
 DeleteConfirmDialog.propTypes = {
   title: PropTypes.string,
-  onDeletePage: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  alertText: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired
 };
 
 export default DeleteConfirmDialog;

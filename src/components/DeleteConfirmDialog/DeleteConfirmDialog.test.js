@@ -1,4 +1,4 @@
-import DeleteConfirmDialog from "./DeleteConfirmDialog";
+import DeleteConfirmDialog from "components/DeleteConfirmDialog";
 
 import React from "react";
 import { shallow } from "enzyme";
@@ -11,7 +11,7 @@ describe("Question Page Editor", () => {
 
   beforeEach(() => {
     mockMutations = {
-      onDeletePage: jest.fn(),
+      onDelete: jest.fn(),
       onClose: jest.fn()
     };
 
@@ -23,7 +23,14 @@ describe("Question Page Editor", () => {
       guidance: ""
     };
 
-    wrapper = shallow(<DeleteConfirmDialog {...mockMutations} page={page} />);
+    wrapper = shallow(
+      <DeleteConfirmDialog
+        {...mockMutations}
+        page={page}
+        alertText="I am an alert"
+        icon={"icon.svg"}
+      />
+    );
   });
 
   it("should render", () => {
@@ -33,7 +40,7 @@ describe("Question Page Editor", () => {
   it("should call deletePage handler when delete button is clicked", () => {
     const deleteBtn = wrapper.find("[data-test='btn-delete-modal']");
     deleteBtn.simulate("click");
-    expect(mockMutations.onDeletePage).toHaveBeenCalled();
+    expect(mockMutations.onDelete).toHaveBeenCalled();
   });
 
   it("should call close handler when cancel button is clicked", () => {

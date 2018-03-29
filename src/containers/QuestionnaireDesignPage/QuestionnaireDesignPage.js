@@ -27,10 +27,11 @@ export class QuestionnaireDesignPage extends Component {
     onAddPage: PropTypes.func.isRequired,
     onUpdatePage: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
+    onDeleteSection: PropTypes.func.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     section: CustomPropTypes.section,
     questionnaireId: PropTypes.string.isRequired,
-    pageId: PropTypes.string.isRequired,
+    pageId: PropTypes.string,
     sectionId: PropTypes.string.isRequired,
     page: CustomPropTypes.page,
     breadcrumb: CustomPropTypes.breadcrumb,
@@ -38,12 +39,12 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    return !isNil(nextProps.section) && !isNil(nextProps.page);
+    return !isNil(nextProps.section) || !isNil(nextProps.page);
   }
 
   getMetaTitle = () => {
-    const { questionnaire, page } = this.props;
-    const pageTitle = getTextFromHTML(page.title);
+    const { questionnaire, page, section } = this.props;
+    const pageTitle = getTextFromHTML(page ? page.title : section.title);
 
     return pageTitle
       ? `${pageTitle} - ${questionnaire.title}`
@@ -66,7 +67,8 @@ export class QuestionnaireDesignPage extends Component {
       pageId,
       onUpdatePage,
       onDeletePage,
-      onUpdateSection
+      onUpdateSection,
+      onDeleteSection
     } = this.props;
 
     if (loading) {
@@ -102,6 +104,7 @@ export class QuestionnaireDesignPage extends Component {
                   onUpdatePage={onUpdatePage}
                   onDeletePage={onDeletePage}
                   onUpdateSection={onUpdateSection}
+                  onDeleteSection={onDeleteSection}
                 />
               </MainCanvas>
               <Centered>

@@ -120,7 +120,8 @@ const getBlockStyle = block => block.getType();
 class RichTextEditor extends React.Component {
   static defaultProps = {
     placeholder: "",
-    multiline: false
+    multiline: false,
+    autoFocus: false
   };
 
   static propTypes = {
@@ -133,7 +134,8 @@ class RichTextEditor extends React.Component {
     multiline: PropTypes.bool,
     size: PropTypes.oneOf(Object.keys(sizes)),
     fetchAnswers: PropTypes.func,
-    testSelector: PropTypes.string
+    testSelector: PropTypes.string,
+    autoFocus: PropTypes.bool
   };
 
   constructor(props) {
@@ -149,8 +151,20 @@ class RichTextEditor extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.fetchAnswers) {
+    const { fetchAnswers, autoFocus } = this.props;
+
+    if (fetchAnswers) {
       this.updatePipedValues(this.state.editorState);
+    }
+
+    if (autoFocus) {
+      this.focus();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.autoFocus && this.props.autoFocus) {
+      this.focus();
     }
   }
 

@@ -1,17 +1,15 @@
 /* eslint-disable react/no-find-dom-node */
 import React from "react";
 import PropTypes from "prop-types";
-import CanvasSection from "./CanvasSection";
 
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
-import { noop, get } from "lodash";
+import { noop } from "lodash";
 import { TransitionGroup } from "react-transition-group";
 import SectionEditor from "components/SectionEditor";
 import QuestionPageEditor from "components/QuestionPageEditor";
 import getIdForObject from "utils/getIdForObject";
 import SlideTransition from "components/SlideTransition";
-import getTextFromHTML from "utils/getTextFromHTML";
 
 class EditorSurface extends React.Component {
   static propTypes = {
@@ -19,41 +17,8 @@ class EditorSurface extends React.Component {
     page: CustomPropTypes.page,
     onUpdatePage: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
-    onUpdateSection: PropTypes.func.isRequired
-  };
-
-  componentDidMount() {
-    this.setFocusOnTitle();
-  }
-
-  componentDidUpdate({ page }) {
-    if (get(page, "id") !== get(this.props, "page.id")) {
-      this.setFocusOnTitle();
-    }
-  }
-
-  setSectionTitle = input => {
-    if (input) {
-      this.sectionTitle = input;
-    }
-  };
-
-  setPageTitle = input => {
-    if (input) {
-      this.pageTitle = input;
-    }
-  };
-
-  setFocusOnTitle = () => {
-    const { section, page } = this.props;
-    const sectionTitle = getTextFromHTML(get(section, "title"));
-    const pageTitle = getTextFromHTML(get(page, "title"));
-
-    if (!sectionTitle && this.sectionTitle) {
-      this.sectionTitle.focus();
-    } else if (!pageTitle && this.pageTitle) {
-      this.pageTitle.focus();
-    }
+    onUpdateSection: PropTypes.func.isRequired,
+    onDeleteSection: PropTypes.func.isRequired
   };
 
   render() {
@@ -62,31 +27,31 @@ class EditorSurface extends React.Component {
       page,
       onUpdatePage,
       onDeletePage,
-      onUpdateSection
+      onUpdateSection,
+      onDeleteSection
     } = this.props;
-    const sectionId = getIdForObject(section);
 
     return (
       <Form onChange={noop} onSubmit={noop}>
         <TransitionGroup>
-          <SlideTransition key={sectionId}>
-            <CanvasSection id={sectionId}>
+          {page ? (
+            <SlideTransition key={getIdForObject(page)}>
+              <QuestionPageEditor
+                onUpdatePage={onUpdatePage}
+                onDeletePage={onDeletePage}
+                page={page}
+                section={section}
+              />
+            </SlideTransition>
+          ) : (
+            <SlideTransition key={getIdForObject(section)}>
               <SectionEditor
+                onDeleteSection={onDeleteSection}
                 onUpdate={onUpdateSection}
                 section={section}
-                titleRef={this.setSectionTitle}
               />
-            </CanvasSection>
-          </SlideTransition>
-          <SlideTransition key={getIdForObject(page)}>
-            <QuestionPageEditor
-              onUpdatePage={onUpdatePage}
-              onDeletePage={onDeletePage}
-              page={page}
-              section={section}
-              titleRef={this.setPageTitle}
-            />
-          </SlideTransition>
+            </SlideTransition>
+          )}
         </TransitionGroup>
       </Form>
     );

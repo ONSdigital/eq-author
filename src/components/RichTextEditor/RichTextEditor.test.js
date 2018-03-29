@@ -68,6 +68,12 @@ describe("components/RichTextEditor", function() {
     expect(editorNode.focus).toHaveBeenCalled();
   });
 
+  it("should autoFocus", () => {
+    wrapper.instance().setEditorNode(editorNode);
+    wrapper.setProps({ autoFocus: true });
+    expect(editorNode.focus).toHaveBeenCalled();
+  });
+
   it("should store editorState in local state upon change event", () => {
     const editorState = EditorState.createEmpty();
     wrapper.find(Editor).simulate("change", editorState);

@@ -65,6 +65,7 @@ describe("EditorSurface", () => {
   beforeEach(() => {
     mockMutations = {
       onUpdateSection: jest.fn(),
+      onDeleteSection: jest.fn(),
       onUpdatePage: jest.fn(),
       onDeletePage: jest.fn(),
       onFocus: jest.fn(),
@@ -77,123 +78,5 @@ describe("EditorSurface", () => {
       disableLifecycleMethods: true
     });
     expect(wrapper).toMatchSnapshot();
-  });
-
-  describe("focus behaviour", () => {
-    let sectionSpy, pageSpy;
-
-    beforeEach(() => {
-      sectionSpy = { focus: jest.fn() };
-      pageSpy = { focus: jest.fn() };
-    });
-
-    function createWrapperWithTitles({ section = "", page = "" } = {}) {
-      return createWrapper(
-        {
-          section: {
-            __typename: "Section",
-            id: "2",
-            title: section
-          },
-          page: {
-            __typename: "QuestionPage",
-            id: "1",
-            title: page,
-            answers: []
-          }
-        },
-        shallow,
-        { disableLifecycleMethods: true, lifecycleExperimental: false }
-      );
-    }
-
-    describe("when section title is empty", () => {
-      describe("and page title is populated", () => {
-        it("should focus on section title", () => {
-          wrapper = createWrapperWithTitles({ page: "a page title" });
-
-          wrapper.instance().setSectionTitle(sectionSpy);
-          wrapper.instance().setPageTitle(pageSpy);
-          wrapper.instance().setFocusOnTitle();
-
-          expect(sectionSpy.focus).toHaveBeenCalled();
-          expect(pageSpy.focus).not.toHaveBeenCalled();
-        });
-      });
-
-      describe("and page title is empty", () => {
-        it("should focus on section title", () => {
-          wrapper = createWrapperWithTitles();
-
-          wrapper.instance().setSectionTitle(sectionSpy);
-          wrapper.instance().setPageTitle(pageSpy);
-          wrapper.instance().setFocusOnTitle();
-
-          expect(sectionSpy.focus).toHaveBeenCalled();
-          expect(pageSpy.focus).not.toHaveBeenCalled();
-        });
-      });
-    });
-
-    describe("when section title is populated", () => {
-      describe("and page title is empty", () => {
-        it("should focus on page title", () => {
-          wrapper = createWrapperWithTitles({ section: "a section title" });
-
-          wrapper.instance().setSectionTitle(sectionSpy);
-          wrapper.instance().setPageTitle(pageSpy);
-          wrapper.instance().setFocusOnTitle();
-
-          expect(pageSpy.focus).toHaveBeenCalled();
-          expect(sectionSpy.focus).not.toHaveBeenCalled();
-        });
-      });
-
-      describe("and page title is populated", () => {
-        it("should focus on neither", () => {
-          wrapper = createWrapperWithTitles({
-            section: "a section title",
-            page: "a page title"
-          });
-
-          wrapper.instance().setSectionTitle(sectionSpy);
-          wrapper.instance().setPageTitle(pageSpy);
-          wrapper.instance().setFocusOnTitle();
-
-          expect(pageSpy.focus).not.toHaveBeenCalled();
-          expect(sectionSpy.focus).not.toHaveBeenCalled();
-        });
-      });
-    });
-
-    describe("when navigating to new page", () => {
-      it("should attempt to move focus", () => {
-        wrapper = createWrapper();
-        const spy = jest.fn();
-        wrapper.instance().sectionTitle = { focus: spy };
-
-        wrapper.setProps({
-          page: {
-            id: "1",
-            title: "I have a title",
-            __typename: "QuestionPage",
-            answers: []
-          }
-        });
-
-        expect(spy).toHaveBeenCalled();
-      });
-    });
-
-    describe("when navigating to same page", () => {
-      it("should not attempt to move focus", () => {
-        const wrapper = createWrapper();
-        const spy = jest.fn();
-        wrapper.instance().sectionTitle = { focus: spy };
-        wrapper.setProps({ page });
-
-        expect(spy).not.toHaveBeenCalled();
-      });
-    });
   });
 });

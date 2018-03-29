@@ -6,6 +6,7 @@ exports[`MetaEditor should render 1`] = `
     id="title"
   >
     <RichTextEditor
+      autoFocus={false}
       controls={
         Object {
           "emphasis": true,
@@ -26,6 +27,7 @@ exports[`MetaEditor should render 1`] = `
     id="description"
   >
     <RichTextEditor
+      autoFocus={false}
       controls={
         Object {
           "bold": true,

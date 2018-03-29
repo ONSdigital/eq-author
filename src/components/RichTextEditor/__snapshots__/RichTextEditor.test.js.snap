@@ -6,6 +6,7 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
   size="small"
 >
   <ToolBar
+    autoFocus={false}
     controls={Object {}}
     editorState={
       EditorState {
@@ -283,6 +284,7 @@ exports[`components/RichTextEditor should render 1`] = `
   size="small"
 >
   <ToolBar
+    autoFocus={false}
     controls={Object {}}
     editorState={
       EditorState {
@@ -562,6 +564,7 @@ exports[`components/RichTextEditor should render existing content 1`] = `
   size="small"
 >
   <ToolBar
+    autoFocus={false}
     controls={Object {}}
     editorState={
       EditorState {

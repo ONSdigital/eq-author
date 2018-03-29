@@ -1,7 +1,5 @@
 import { QPE } from "components/QuestionPageEditor";
-import AnswerTypeSelector from "components/AnswerTypeSelector";
-import AnswerEditor from "components/AnswerEditor";
-import QuestionPageToolbar from "./QuestionPageToolbar";
+
 import React from "react";
 import { shallow } from "enzyme";
 
@@ -55,37 +53,34 @@ describe("Question Page Editor", () => {
     };
 
     section = {
-      id: "2",
+      id: "3",
       pages: [page]
     };
 
     wrapper = shallow(<QPE {...mockMutations} page={page} section={section} />);
   });
 
-  it("should render", () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it("should delete the correct answer", () => {
     wrapper
-      .find(AnswerEditor)
+      .find("[data-test='answer-editor']")
       .first()
-      .simulate("deleteAnswer", "2");
+      .simulate("deleteAnswer", page.answers[0].id);
 
     expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(
       page.id,
-      page.answers[1].id
+      page.answers[0].id
     );
   });
 
   it("should add an answer with a type", () => {
-    wrapper.find(AnswerTypeSelector).simulate("select", "Textfield");
+    wrapper.find("[data-test='add-answer']").simulate("select", "Textfield");
     expect(mockMutations.onAddAnswer).toHaveBeenCalledWith("Textfield");
   });
 
   it("should handle deleting pages from a section", () => {
-    const toolbar = wrapper.find(QuestionPageToolbar);
-    toolbar.simulate("deletePage");
+    const deletePage = wrapper.find("[data-test='delete-page']");
+    deletePage.simulate("delete");
+
     expect(mockMutations.onDeletePage).toHaveBeenCalledWith(
       section.id,
       page.id

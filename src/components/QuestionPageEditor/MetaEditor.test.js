@@ -1,6 +1,6 @@
 import React from "react";
 import { StatelessMetaEditor } from "./MetaEditor";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import RichTextEditor from "components/RichTextEditor";
 
 describe("MetaEditor", () => {
@@ -33,16 +33,6 @@ describe("MetaEditor", () => {
 
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should expose title input as ref", () => {
-    wrapper = render(mount);
-
-    const input = wrapper.find(RichTextEditor).first();
-    const ref = handleTitleRef.mock.calls[0][0];
-    // workaround as matchesElement no longer works in this case
-    // previous test: expect(input.matchesElement(ref)).toBe(true);
-    expect(input.props()).toEqual(ref.props);
   });
 
   it("should invoke change and update onUpdate", () => {

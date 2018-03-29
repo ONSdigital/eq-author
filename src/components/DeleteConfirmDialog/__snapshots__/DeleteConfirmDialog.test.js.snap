@@ -21,12 +21,12 @@ exports[`Question Page Editor should render 1`] = `
       <DialogMessage__Subheading />
       <DialogMessage__Description>
         <DeleteConfirmDialog__Alert>
-          All edits, properties and routing settings will also be removed.
+          I am an alert
         </DeleteConfirmDialog__Alert>
       </DialogMessage__Description>
     </DialogMessage__Message>
     <DialogIcon___default
-      icon="icon-dialog-page.svg"
+      icon="icon.svg"
     />
   </DialogHeader___default>
   <ButtonGroup

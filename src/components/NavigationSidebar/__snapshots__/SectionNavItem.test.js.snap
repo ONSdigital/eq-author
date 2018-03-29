@@ -4,12 +4,11 @@ exports[`SectionNavItem should render 1`] = `
 <SectionNavItem__StyledSectionNavItem
   duration={123}
   innerRef={[Function]}
-  style={Object {}}
+  onAddPage={[Function]}
+  saveSectionItemRef={[Function]}
 >
-  <SectionNavItem__SectionTitleWrapper
-    className="section-title-wrapper"
-  >
-    <SectionTitle
+  <SectionNavItem__SectionTitleWrapper>
+    <withRouter(UnwrappedSectionNavLink)
       questionnaire={
         Object {
           "id": "1",
@@ -41,24 +40,6 @@ exports[`SectionNavItem should render 1`] = `
         }
       }
     />
-    <Tooltip
-      content="Delete section"
-      offset={
-        Object {
-          "right": -5,
-        }
-      }
-    >
-      <SectionNavItem__SectionDeleteButton
-        aria-label="Delete section"
-        data-test="btn-delete-section"
-        onClick={[Function]}
-        onFocus={[Function]}
-        type="button"
-      >
-        ×
-      </SectionNavItem__SectionDeleteButton>
-    </Tooltip>
   </SectionNavItem__SectionTitleWrapper>
   <PageNav
     questionnaire={

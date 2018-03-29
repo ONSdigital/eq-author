@@ -28,7 +28,6 @@ exports[`NavigationSidebar should render 1`] = `
   <NavigationSidebar__NavigationScrollPane>
     <SectionNav
       onAddPage={[Function]}
-      onDeleteSection={[Function]}
       questionnaire={
         Object {
           "id": "1",

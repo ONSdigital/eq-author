@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { colors } from "constants/theme";
 
 const Button = styled.button`
-  width: 8em;
-  height: 6em;
+  font-size: 0.7em;
+  width: 7em;
+  height: 7em;
   margin: 0.5em;
   padding: 0;
   cursor: pointer;
@@ -14,6 +15,7 @@ const Button = styled.button`
   opacity: 1;
   transition: all 200ms ease-in-out;
   outline: none;
+  flex: 1 1 auto;
 
   &:hover {
     border-color: ${colors.borders};

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`QuestionPageToolbar should render 1`] = `
+exports[`EntityToolbar should render 1`] = `
 <Toolbar>
   <Toolbar__Buttons>
     <IconButtonDelete
@@ -10,11 +10,5 @@ exports[`QuestionPageToolbar should render 1`] = `
       Delete
     </IconButtonDelete>
   </Toolbar__Buttons>
-  <DeleteConfirmDialog
-    isOpen={false}
-    onClose={[Function]}
-    onDeletePage={[Function]}
-    title="Untitled page"
-  />
 </Toolbar>
 `;

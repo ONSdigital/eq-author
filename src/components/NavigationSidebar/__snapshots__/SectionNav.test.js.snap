@@ -8,12 +8,12 @@ exports[`SectionNav should render 1`] = `
   <CSSTransition
     classNames="section"
     key="3"
+    onExit={[Function]}
     timeout={200}
   >
     <SectionNavItem
       duration={200}
       onAddPage={[Function]}
-      onDeleteSection={[Function]}
       questionnaire={
         Object {
           "id": "1",

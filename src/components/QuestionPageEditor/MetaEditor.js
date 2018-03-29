@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { withApollo } from "react-apollo";
 import { flip, partial, flowRight } from "lodash";
 import getAnswersQuery from "graphql/getAnswers.graphql";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 const titleControls = {
   emphasis: true,
@@ -36,6 +37,7 @@ export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate, client } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
+    const pageTitleText = getTextFromHTML(page.title);
 
     const fetchAnswers = ids => {
       return client
@@ -52,13 +54,13 @@ export class StatelessMetaEditor extends React.Component {
           <RichTextEditor
             placeholder="Question"
             value={page.title}
-            ref={this.props.titleRef}
             onUpdate={handleUpdate}
             label="Question"
             controls={titleControls}
             size="large"
             fetchAnswers={fetchAnswers}
             testSelector="txt-question-title"
+            autoFocus={!pageTitleText}
           />
         </Field>
         <Field id="description">
@@ -94,7 +96,6 @@ StatelessMetaEditor.propTypes = {
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   page: CustomPropTypes.page,
-  titleRef: PropTypes.func,
   client: CustomPropTypes.apolloClient.isRequired
 };
 

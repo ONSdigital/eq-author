@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { StatelessSectionEditor } from "components/SectionEditor";
+import { UnwrappedSectionEditor } from "components/SectionEditor";
 import RichTextEditor from "components/RichTextEditor";
 
 describe("SectionEditor", () => {
@@ -8,13 +8,15 @@ describe("SectionEditor", () => {
   let wrapper;
   let handleChange = jest.fn();
   let handleUpdate = jest.fn();
+  let handleDeleteSection = jest.fn();
 
   beforeEach(() => {
     wrapper = shallow(
-      <StatelessSectionEditor
+      <UnwrappedSectionEditor
         section={section}
         onChange={handleChange}
         onUpdate={handleUpdate}
+        onDeleteSection={handleDeleteSection}
       />
     );
   });

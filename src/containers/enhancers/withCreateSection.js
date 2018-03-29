@@ -3,12 +3,11 @@ import createSectionMutation from "graphql/createSection.graphql";
 import fragment from "graphql/questionnaireFragment.graphql";
 import { getLink } from "utils/UrlUtils";
 
-export const redirectToNewPage = ownProps => ({ data }) => {
+export const redirectToNewSection = ownProps => ({ data }) => {
   const { history, questionnaireId } = ownProps;
   const section = data.createSection;
-  const page = section.pages[0];
 
-  history.push(getLink(questionnaireId, section.id, page.id));
+  history.push(getLink(questionnaireId, section.id));
 };
 
 export const createUpdater = questionnaireId => (proxy, result) => {
@@ -38,7 +37,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       variables: { input: section },
       update
     }).then(res => {
-      redirectToNewPage(ownProps)(res);
+      redirectToNewSection(ownProps)(res);
       return res.data.createSection;
     });
   }

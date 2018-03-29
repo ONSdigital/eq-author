@@ -15,6 +15,7 @@ import { flowRight } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
 import focusOnEntity from "utils/focusOnEntity";
+import iconPage from "./icon-dialog-page.svg";
 
 import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -24,17 +25,23 @@ import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
 
 import * as ToastActionCreators from "redux/toast/actions";
-import QuestionPageToolbar from "./QuestionPageToolbar";
+import EntityToolbar from "components/EntityToolbar";
+import DeleteConfirmDialog from "../DeleteConfirmDialog";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 const AddAnswerSection = BasicSection.extend`
   text-align: center;
   padding: 1em;
 `;
 const QuestionCanvasSection = styled(CanvasSection)`
-  padding: 0 2em 2em;
+  padding: 0;
 `;
 const AnswerSection = styled(CanvasSection)`
   padding-top: 3em;
+`;
+
+const Padding = styled.div`
+  padding: 0 2em 2em;
 `;
 
 export class QPE extends React.Component {
@@ -47,9 +54,23 @@ export class QPE extends React.Component {
     onDeleteAnswer: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    titleRef: PropTypes.func,
     page: CustomPropTypes.page,
     section: CustomPropTypes.section
+  };
+
+  state = {
+    showDeleteConfirmDialog: false
+  };
+
+  handleOpenDeleteConfirmDialog = () =>
+    this.setState({ showDeleteConfirmDialog: true });
+
+  handleCloseDeleteConfirmDialog = () =>
+    this.setState({ showDeleteConfirmDialog: false });
+
+  handleDeletePageConfirm = () => {
+    const { onDeletePage, section, page } = this.props;
+    onDeletePage(section.id, page.id);
   };
 
   handleDeleteAnswer = answerId => {
@@ -58,11 +79,6 @@ export class QPE extends React.Component {
 
   handleAddAnswer = answerType => {
     return this.props.onAddAnswer(answerType).then(focusOnEntity);
-  };
-
-  handleDeletePage = () => {
-    const { onDeletePage, section, page } = this.props;
-    onDeletePage(section.id, page.id);
   };
 
   renderAnswerEditor = answer => {
@@ -83,6 +99,7 @@ export class QPE extends React.Component {
             onUpdateOption={onUpdateOption}
             onDeleteOption={onDeleteOption}
             onDeleteAnswer={this.handleDeleteAnswer}
+            data-test="answer-editor"
           />
         </AnswerSection>
       </SlideTransition>
@@ -95,15 +112,22 @@ export class QPE extends React.Component {
     return (
       <div>
         <QuestionCanvasSection id={getIdForObject(page)}>
-          <QuestionPageToolbar
-            onDeletePage={this.handleDeletePage}
-            page={page}
+          <EntityToolbar
+            onDelete={this.handleOpenDeleteConfirmDialog}
+            entity={page}
           />
-          <MetaEditor
-            onUpdate={onUpdatePage}
-            page={page}
-            titleRef={this.props.titleRef}
+          <DeleteConfirmDialog
+            isOpen={this.state.showDeleteConfirmDialog}
+            onClose={this.handleCloseDeleteConfirmDialog}
+            onDelete={this.handleDeletePageConfirm}
+            title={getTextFromHTML(page.title) || "Untitled Page"}
+            alertText="All edits, properties and routing settings will also be removed."
+            icon={iconPage}
+            data-test="delete-page"
           />
+          <Padding>
+            <MetaEditor onUpdate={onUpdatePage} page={page} />
+          </Padding>
         </QuestionCanvasSection>
         <TransitionGroup>
           {page.answers.map(this.renderAnswerEditor)}
@@ -112,6 +136,7 @@ export class QPE extends React.Component {
           <AnswerTypeSelector
             onSelect={this.handleAddAnswer}
             answers={page.answers}
+            data-test="add-answer"
           />
         </AddAnswerSection>
       </div>
