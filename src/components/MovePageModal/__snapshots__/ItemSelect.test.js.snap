@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovePageModal/ItemSelect Option should render 1`] = `
+<div>
+  <VisuallyHidden
+    checked={true}
+    id="test"
+    name="bar"
+    onChange={[Function]}
+    type="radio"
+    value="foo"
+  />
+  <ItemSelect__Label
+    htmlFor="test"
+    selected={true}
+  >
+    <ItemSelect__Truncated>
+      bar
+    </ItemSelect__Truncated>
+  </ItemSelect__Label>
+</div>
+`;
+
+exports[`MovePageModal/ItemSelect should render 1`] = `
+<div>
+  <Option
+    key=".$0"
+    name="foo"
+    onChange={[Function]}
+    selected={true}
+    value="0"
+  >
+    0
+  </Option>
+  <Option
+    key=".$1"
+    name="foo"
+    onChange={[Function]}
+    selected={false}
+    value="1"
+  >
+    1
+  </Option>
+  <Option
+    key=".$2"
+    name="foo"
+    onChange={[Function]}
+    selected={false}
+    value="2"
+  >
+    2
+  </Option>
+  <Option
+    key=".$3"
+    name="foo"
+    onChange={[Function]}
+    selected={false}
+    value="3"
+  >
+    3
+  </Option>
+  <Option
+    key=".$4"
+    name="foo"
+    onChange={[Function]}
+    selected={false}
+    value="4"
+  >
+    4
+  </Option>
+</div>
+`;

@@ -38,19 +38,19 @@ describe("components/Modal", () => {
 
     it("should close if overlay is clicked", () => {
       wrapper = createWrapper(props, mount, children);
-      wrapper.find(".ReactModal__Overlay").simulate("click");
+      wrapper.find(".Overlay").simulate("click");
       expect(props.onClose).toHaveBeenCalled();
     });
 
     it("should close if ESC key is pressed", () => {
       wrapper = createWrapper(props, mount, children);
-      wrapper.find(".ReactModal__Content").simulate("keyDown", { keyCode: 27 });
+      wrapper.find(".Modal").simulate("keyDown", { keyCode: 27 });
       expect(props.onClose).toHaveBeenCalled();
     });
 
     it("should not close if any other key is pressed", () => {
       wrapper = createWrapper(props, mount, children);
-      wrapper.find(".ReactModal__Content").simulate("keyDown", { keyCode: 28 });
+      wrapper.find(".Modal").simulate("keyDown", { keyCode: 28 });
       expect(props.onClose).not.toHaveBeenCalled();
     });
 

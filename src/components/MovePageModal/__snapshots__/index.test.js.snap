@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovePageModal/MovePageModal should render 1`] = `
+<MovePageModal__StyledModal
+  isOpen={true}
+  onClose={[Function]}
+>
+  <DialogHeader___default>
+    <DialogMessage__Message>
+      <MovePageModal__CenteredHeading>
+        Move question
+      </MovePageModal__CenteredHeading>
+    </DialogMessage__Message>
+  </DialogHeader___default>
+  <MovePageModal__Label>
+    Section
+  </MovePageModal__Label>
+  <MovePageModal__Trigger
+    onClick={[Function]}
+  >
+    Section 1
+  </MovePageModal__Trigger>
+  <ItemSelectModal
+    data-test="section-modal"
+    isOpen={false}
+    onClose={[Function]}
+    onConfirm={[Function]}
+    primaryText="Select"
+    secondaryText="Cancel"
+    title="Section"
+  >
+    <withChangeHandler(ItemSelect)
+      data-test="section-select"
+      name="section"
+      onChange={[Function]}
+      value="1"
+    >
+      <Option
+        key="1"
+        value="1"
+      >
+        Section 1
+      </Option>
+      <Option
+        key="2"
+        value="2"
+      >
+        Section 2
+      </Option>
+    </withChangeHandler(ItemSelect)>
+  </ItemSelectModal>
+  <MovePageModal__Label>
+    Position
+  </MovePageModal__Label>
+  <MovePageModal__Trigger
+    onClick={[Function]}
+  >
+    Select
+  </MovePageModal__Trigger>
+  <ItemSelectModal
+    data-test="position-modal"
+    isOpen={false}
+    onClose={[Function]}
+    onConfirm={[Function]}
+    primaryText="Move page"
+    secondaryText="Cancel"
+    title="Position"
+  >
+    <withChangeHandler(ItemSelect)
+      data-test="position-select"
+      name="position"
+      onChange={[Function]}
+      value="0"
+    >
+      <Option
+        key="0"
+        value="0"
+      >
+        Page 1.1
+      </Option>
+      <Option
+        key="1"
+        value="1"
+      >
+        Page 1.2
+      </Option>
+    </withChangeHandler(ItemSelect)>
+  </ItemSelectModal>
+</MovePageModal__StyledModal>
+`;
+
+exports[`MovePageModal/MovePageModal should update selected position on change 1`] = `
+<withChangeHandler(ItemSelect)
+  data-test="position-select"
+  name="position"
+  onChange={[Function]}
+  value="1"
+>
+  <Option
+    key="0"
+    value="0"
+  >
+    Page 2.1
+  </Option>
+  <Option
+    key="1"
+    value="1"
+  >
+    Page 1.1
+  </Option>
+  <Option
+    key="2"
+    value="2"
+  >
+    Page 2.2
+  </Option>
+</withChangeHandler(ItemSelect)>
+`;

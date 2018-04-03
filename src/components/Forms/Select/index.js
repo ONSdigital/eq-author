@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Icon from "./icon.svg";
+import Icon from "assets/icon-select.svg";
 import { sharedStyles } from "components/Forms/css";
 import withChangeHandler from "components/Forms/withChangeHandler";
 

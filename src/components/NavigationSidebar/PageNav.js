@@ -7,7 +7,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { NavLink } from "react-router-dom";
 import getTextFromHTML from "utils/getTextFromHTML";
 import pageIcon from "./icon-questionpage.svg";
-import { transparentize } from "polished";
+import { rgba } from "polished";
 const duration = 300;
 
 const textInverted = "#E1E1E1";
@@ -72,7 +72,7 @@ const Link = styled(NavLink)`
 
   /* stylelint-disable declaration-block-semicolon-newline-after */
   ${StyledPageItem}:hover &:not(.selected) {
-    background: ${transparentize(0.5, navHighlighted)};
+    background: ${rgba(navHighlighted, 0.5)};
   }
   /* stylelint-enable */
 

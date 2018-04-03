@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import styled from "styled-components";
 import {
@@ -17,8 +18,6 @@ const Width = styled.div`
   padding: 2em;
 `;
 
-const options = ["Default", "UKIS", "Census"];
-
 class NumberWrapper extends React.Component {
   constructor(props) {
     super();
@@ -33,7 +32,7 @@ class NumberWrapper extends React.Component {
     });
   };
 
-  render = () =>
+  render = () => (
     <Field id="number.input">
       <Label>Name</Label>
       <Number
@@ -41,43 +40,44 @@ class NumberWrapper extends React.Component {
         onChange={this.handleChange}
         value={this.state["number.input"]}
       />
-    </Field>;
+    </Field>
+  );
 }
 
 storiesOf("Forms", module)
-  .addDecorator(story =>
-    <Width>
-      {story()}
-    </Width>
-  )
-  .add("Input/Text", props =>
+  .addDecorator(story => <Width>{story()}</Width>)
+  .add("Input/Text", props => (
     <Field id="name">
       <Label>Name</Label>
       <Input type="text" />
     </Field>
-  )
+  ))
   .add("Input/Number", props => <NumberWrapper min={0} max={100} />)
-  .add("Input/Number Without Spinner", props =>
+  .add("Input/Number Without Spinner", props => (
     <NumberWrapper showSpinner={false} min={0} max={100} />
-  )
-  .add("Input/Number Min=1 Max=100", props =>
+  ))
+  .add("Input/Number Min=1 Max=100", props => (
     <NumberWrapper min={1} max={100} />
-  )
-  .add("Input/Checkbox", props =>
+  ))
+  .add("Input/Checkbox", props => (
     <Field id="navigation">
       <Input type="checkbox" />
       <Label inline>Navigation</Label>
     </Field>
-  )
-  .add("Select", () =>
+  ))
+  .add("Select", () => (
     <Field id="options">
       <Label>Options</Label>
-      <Select defaultValue={options[0]} options={options} />
+      <Select value="UKIS" onChange={action("change")}>
+        <option value="Default">Default</option>
+        <option value="UKIS">UKIS</option>
+        <option value="Census">Census</option>
+      </Select>
     </Field>
-  )
-  .add("TextArea", () =>
+  ))
+  .add("TextArea", () => (
     <Field id="name">
       <Label>Description</Label>
       <TextArea />
     </Field>
-  );
+  ));
