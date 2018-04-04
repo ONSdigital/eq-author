@@ -27,7 +27,8 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       description: "",
       guidance: "",
       qCode: "",
-      label: ""
+      label: "",
+      secondaryLabel: ""
     };
 
     const update = createUpdater(ownProps.page.id);

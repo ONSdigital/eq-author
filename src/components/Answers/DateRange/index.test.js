@@ -2,14 +2,28 @@ import React from "react";
 import { shallow } from "enzyme";
 import DateRange from "./index";
 
+const answer = {
+  label: "Lorem ipsum",
+  secondaryLabel: "dolor sit amet"
+};
+
 describe("DateRange", () => {
-  it("should render", () => {
-    const wrapper = shallow(<DateRange />);
-    expect(wrapper).toMatchSnapshot();
+  let handleChange;
+  let handleUpdate;
+
+  beforeEach(() => {
+    handleChange = jest.fn();
+    handleUpdate = jest.fn();
   });
 
-  it("should render legendTo/legendFrom props", () => {
-    const wrapper = shallow(<DateRange legendTo="Foo" legendBar="Bar" />);
+  it("should render", () => {
+    const wrapper = shallow(
+      <DateRange
+        onChange={handleChange}
+        onUpdate={handleUpdate}
+        answer={answer}
+      />
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

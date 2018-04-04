@@ -1,35 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DateRange should render 1`] = `
-<DateRange__Wrapper>
-  <DateRange__Fieldset>
-    <DateRange__Legend>
-      Period from
-    </DateRange__Legend>
-    <Date />
-  </DateRange__Fieldset>
-  <DateRange__Fieldset>
-    <DateRange__Legend>
-      Period to
-    </DateRange__Legend>
-    <Date />
-  </DateRange__Fieldset>
-</DateRange__Wrapper>
-`;
-
-exports[`DateRange should render legendTo/legendFrom props 1`] = `
-<DateRange__Wrapper>
-  <DateRange__Fieldset>
-    <DateRange__Legend>
-      Period from
-    </DateRange__Legend>
-    <Date />
-  </DateRange__Fieldset>
-  <DateRange__Fieldset>
-    <DateRange__Legend>
-      Foo
-    </DateRange__Legend>
-    <Date />
-  </DateRange__Fieldset>
-</DateRange__Wrapper>
+<DateRange
+  answer={
+    Object {
+      "label": "Lorem ipsum",
+      "secondaryLabel": "dolor sit amet",
+    }
+  }
+  id={null}
+  onChange={[Function]}
+  onSubmit={[Function]}
+  onUpdate={[Function]}
+/>
 `;

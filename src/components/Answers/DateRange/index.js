@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
 import DummyDate from "components/Answers/Dummy/Date";
 import styled from "styled-components";
-
-import { colors } from "constants/theme";
+import { Field } from "components/Forms";
+import WrappingInput from "components/WrappingInput";
+import withEntityEditor from "components/withEntityEditor";
+import answerFragment from "graphql/fragments/answer.graphql";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,35 +20,45 @@ const Fieldset = styled.div`
   }
 `;
 
-const Legend = styled.p`
-  font-size: 1em;
-  font-weight: bold;
-  color: ${colors.text};
-  margin-top: 0;
-  margin-bottom: 0.8em;
-`;
-
-const DateRange = ({ legendFrom, legendTo, ...otherProps }) => (
+const DateRange = ({ answer, onChange, onUpdate, ...otherProps }) => (
   <Wrapper>
     <Fieldset>
-      <Legend>{legendFrom}</Legend>
+      <Field>
+        <WrappingInput
+          name="label"
+          placeholder="From"
+          size="medium"
+          onChange={onChange}
+          onBlur={onUpdate}
+          value={answer.label}
+          data-autofocus
+          data-test="date-answer-label"
+        />
+      </Field>
       <DummyDate />
     </Fieldset>
     <Fieldset>
-      <Legend>{legendTo}</Legend>
+      <Field>
+        <WrappingInput
+          name="secondaryLabel"
+          placeholder="To"
+          size="medium"
+          onChange={onChange}
+          onBlur={onUpdate}
+          value={answer.secondaryLabel}
+          data-autofocus
+          data-test="date-answer-secondary-label"
+        />
+      </Field>
       <DummyDate />
     </Fieldset>
   </Wrapper>
 );
 
 DateRange.propTypes = {
-  legendFrom: PropTypes.string.isRequired,
-  legendTo: PropTypes.string.isRequired
+  answer: CustomPropTypes.answer.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired
 };
 
-DateRange.defaultProps = {
-  legendFrom: "Period from",
-  legendTo: "Period to"
-};
-
-export default DateRange;
+export default withEntityEditor("answer", answerFragment)(DateRange);

@@ -71,7 +71,7 @@ exports[`Answer Editor should render Currency 1`] = `
 
 exports[`Answer Editor should render DateRange 1`] = `
 <div>
-  <DateRange
+  <withEntityEditor(DateRange)
     answer={
       Object {
         "description": "",
@@ -80,8 +80,6 @@ exports[`Answer Editor should render DateRange 1`] = `
         "type": "DateRange",
       }
     }
-    legendFrom="Period from"
-    legendTo="Period to"
     onAddOption={[Function]}
     onChange={[Function]}
     onDeleteAnswer={[Function]}

@@ -3386,9 +3386,9 @@ enzyme@^3.1.0:
     raf "^3.3.2"
     rst-selector-parser "^2.2.2"
 
-eq-author-graphql-schema@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/eq-author-graphql-schema/-/eq-author-graphql-schema-0.8.0.tgz#e6dd0efeaf708cdb326255f4b3231e4bc7f4450d"
+eq-author-graphql-schema@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/eq-author-graphql-schema/-/eq-author-graphql-schema-0.9.0.tgz#09908b0e4007ea58f98e969c1186462849fde935"
 
 eq-author-mock-api@ONSdigital/eq-author-mock-api#4342f6a:
   version "1.0.0"
