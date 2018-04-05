@@ -24,7 +24,7 @@ script:
   - yarn lint
   - yarn coverage  
   - yarn test:storybook
-  - ./scripts/run_smoketests_author.sh
+  - yarn smoketest:ci
   - yarn storybook-build
 
 

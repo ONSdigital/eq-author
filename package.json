@@ -11,7 +11,7 @@
     "build:status": "node scripts/build-status-page.js",
     "test": "node scripts/test.js",
     "test:storybook": "jest --testRegex ^.+\\.storytest\\.js$",
-    "smoketest:author": "cypress run -s cypress/integration/author_spec.js --browser chrome",
+    "smoketest:ci": "./scripts/run_smoketests_author.sh",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint src --ext .graphql --ext .js --max-warnings=0",
     "lint:css": "stylelint './src/**/*.js'",
@@ -22,7 +22,7 @@
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test -- --coverage",
-    "cypress:open": "cypress open"
+    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:3000/} cypress open"
   },
   "lint-staged": {
     "*.js": [
