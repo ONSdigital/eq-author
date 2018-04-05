@@ -133,4 +133,35 @@ describe("MovePageModal/MovePageModal", () => {
       position
     });
   });
+
+  it("resets the section selection if modal is closed", () => {
+    const wrapper = createWrapper();
+
+    wrapper
+      .find("MovePageModal__Trigger")
+      .first()
+      .simulate("click");
+
+    const selectedSection = questionnaire.sections[1];
+    getSectionSelect(wrapper).simulate("change", { value: selectedSection.id });
+    expect(getSectionSelect(wrapper).prop("value")).toBe(selectedSection.id);
+
+    getSectionModal(wrapper).simulate("close");
+    expect(getSectionSelect(wrapper).prop("value")).toBe(currentSection.id);
+  });
+
+  it("reset the position if modal is closed", () => {
+    const wrapper = createWrapper();
+
+    wrapper
+      .find("MovePageModal__Trigger")
+      .last()
+      .simulate("click");
+
+    getPositionSelect(wrapper).simulate("change", { value: 1 });
+    expect(getPositionSelect(wrapper).prop("value")).toBe("1");
+
+    getPositionModal(wrapper).simulate("close");
+    expect(getPositionSelect(wrapper).prop("value")).toBe("0");
+  });
 });

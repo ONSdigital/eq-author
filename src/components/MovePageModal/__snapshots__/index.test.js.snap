@@ -12,10 +12,13 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
       </MovePageModal__CenteredHeading>
     </DialogMessage__Message>
   </DialogHeader___default>
-  <MovePageModal__Label>
+  <MovePageModal__Label
+    htmlFor="MovePageModal1"
+  >
     Section
   </MovePageModal__Label>
   <MovePageModal__Trigger
+    id="MovePageModal1"
     onClick={[Function]}
   >
     Section 1
@@ -49,10 +52,13 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
       </Option>
     </withChangeHandler(ItemSelect)>
   </ItemSelectModal>
-  <MovePageModal__Label>
+  <MovePageModal__Label
+    htmlFor="MovePageModal2"
+  >
     Position
   </MovePageModal__Label>
   <MovePageModal__Trigger
+    id="MovePageModal2"
     onClick={[Function]}
   >
     Select

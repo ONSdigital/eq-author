@@ -6,7 +6,7 @@ import { Message, Heading } from "components/Dialog/DialogMessage";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import ItemSelectModal from "./ItemSelectModal";
-import { find, reject, parseInt } from "lodash";
+import { find, reject, parseInt, uniqueId } from "lodash";
 import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
 import ItemSelect, { Option } from "./ItemSelect";
@@ -29,7 +29,8 @@ const CenteredHeading = styled(Heading)`
   margin-bottom: 1rem;
 `;
 
-const Label = styled.p`
+const Label = styled.label`
+  display: block;
   font-size: 0.875em;
   font-weight: bold;
   margin-bottom: 0.25rem;
@@ -63,28 +64,53 @@ class MovePageModal extends React.Component {
       isSectionSelectOpen: false,
       isPagePositionOpen: false,
       selectedSectionId: props.section.id,
-      selectedPagePosition: props.page.position
+      selectedPagePosition: props.page.position,
+      previousSelectedSectionId: null,
+      previousSelectedPagePosition: null
     };
   }
 
-  handleToggleSectionSelect = () => {
-    this.setState({ isSectionSelectOpen: !this.state.isSectionSelectOpen });
+  handleCloseSectionSelect = () => {
+    this.setState({
+      isSectionSelectOpen: false,
+      selectedSectionId: this.state.previousSelectedSectionId
+    });
   };
 
-  handleTogglePagePosition = () => {
-    this.setState({ isPagePositionOpen: !this.state.isPagePositionOpen });
+  handleOpenSectionSelect = () => {
+    this.setState({
+      isSectionSelectOpen: true,
+      previousSelectedSectionId: this.state.selectedSectionId
+    });
+  };
+
+  handleClosePagePosition = () => {
+    this.setState({
+      isPagePositionOpen: false,
+      selectedPagePosition: this.state.previousSelectedPagePosition
+    });
+  };
+
+  handleOpenPagePosition = () => {
+    this.setState({
+      isPagePositionOpen: true,
+      previousSelectedPagePosition: this.state.selectedPagePosition
+    });
   };
 
   handleSectionChange = ({ value }) => {
     this.setState({
-      selectedSectionId: value,
-      selectedPagePosition: 0
+      selectedSectionId: value
     });
   };
 
   handleSectionConfirm = e => {
     e.preventDefault();
-    this.handleToggleSectionSelect();
+
+    this.setState({
+      isSectionSelectOpen: false,
+      selectedPagePosition: 0
+    });
   };
 
   handlePositionChange = ({ value }) => {
@@ -131,7 +157,7 @@ class MovePageModal extends React.Component {
         data-test="section-modal"
         title="Section"
         isOpen={isSectionSelectOpen}
-        onClose={this.handleToggleSectionSelect}
+        onClose={this.handleCloseSectionSelect}
         onConfirm={this.handleSectionConfirm}
       >
         <ItemSelect
@@ -159,7 +185,7 @@ class MovePageModal extends React.Component {
         title="Position"
         primaryText="Move page"
         isOpen={isPagePositionOpen}
-        onClose={this.handleTogglePagePosition}
+        onClose={this.handleClosePagePosition}
         onConfirm={this.handlePositionConfirm}
       >
         <ItemSelect
@@ -183,6 +209,9 @@ class MovePageModal extends React.Component {
     const section = this.getSelectedSection();
     const pages = this.getPagesForSection(section);
 
+    const sectionButtonId = uniqueId("MovePageModal");
+    const positionButtonId = uniqueId("MovePageModal");
+
     return (
       <StyledModal isOpen={isOpen} onClose={onClose}>
         <DialogHeader>
@@ -191,14 +220,16 @@ class MovePageModal extends React.Component {
           </Message>
         </DialogHeader>
 
-        <Label>Section</Label>
-        <Trigger onClick={this.handleToggleSectionSelect}>
+        <Label htmlFor={sectionButtonId}>Section</Label>
+        <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
           {getTextFromHTML(section.title)}
         </Trigger>
         {this.renderSectionSelect(section)}
 
-        <Label>Position</Label>
-        <Trigger onClick={this.handleTogglePagePosition}>Select</Trigger>
+        <Label htmlFor={positionButtonId}>Position</Label>
+        <Trigger id={positionButtonId} onClick={this.handleOpenPagePosition}>
+          Select
+        </Trigger>
         {this.renderPositionSelect(pages)}
       </StyledModal>
     );
