@@ -63,28 +63,53 @@ class MovePageModal extends React.Component {
       isSectionSelectOpen: false,
       isPagePositionOpen: false,
       selectedSectionId: props.section.id,
-      selectedPagePosition: props.page.position
+      selectedPagePosition: props.page.position,
+      previousSelectedSectionId: null,
+      previousSelectedPagePosition: null
     };
   }
 
-  handleToggleSectionSelect = () => {
-    this.setState({ isSectionSelectOpen: !this.state.isSectionSelectOpen });
+  handleCloseSectionSelect = () => {
+    this.setState({
+      isSectionSelectOpen: false,
+      selectedSectionId: this.state.previousSelectedSectionId
+    });
   };
 
-  handleTogglePagePosition = () => {
-    this.setState({ isPagePositionOpen: !this.state.isPagePositionOpen });
+  handleOpenSectionSelect = () => {
+    this.setState({
+      isSectionSelectOpen: true,
+      previousSelectedSectionId: this.state.selectedSectionId
+    });
+  };
+
+  handleClosePagePosition = () => {
+    this.setState({
+      isPagePositionOpen: false,
+      selectedPagePosition: this.state.previousSelectedPagePosition
+    });
+  };
+
+  handleOpenPagePosition = () => {
+    this.setState({
+      isPagePositionOpen: true,
+      previousSelectedPagePosition: this.state.selectedPagePosition
+    });
   };
 
   handleSectionChange = ({ value }) => {
     this.setState({
-      selectedSectionId: value,
-      selectedPagePosition: 0
+      selectedSectionId: value
     });
   };
 
   handleSectionConfirm = e => {
     e.preventDefault();
-    this.handleToggleSectionSelect();
+
+    this.setState({
+      isSectionSelectOpen: false,
+      selectedPagePosition: 0
+    });
   };
 
   handlePositionChange = ({ value }) => {
@@ -131,7 +156,7 @@ class MovePageModal extends React.Component {
         data-test="section-modal"
         title="Section"
         isOpen={isSectionSelectOpen}
-        onClose={this.handleToggleSectionSelect}
+        onClose={this.handleCloseSectionSelect}
         onConfirm={this.handleSectionConfirm}
       >
         <ItemSelect
@@ -159,7 +184,7 @@ class MovePageModal extends React.Component {
         title="Position"
         primaryText="Move page"
         isOpen={isPagePositionOpen}
-        onClose={this.handleTogglePagePosition}
+        onClose={this.handleClosePagePosition}
         onConfirm={this.handlePositionConfirm}
       >
         <ItemSelect
@@ -192,13 +217,13 @@ class MovePageModal extends React.Component {
         </DialogHeader>
 
         <Label>Section</Label>
-        <Trigger onClick={this.handleToggleSectionSelect}>
+        <Trigger onClick={this.handleOpenSectionSelect}>
           {getTextFromHTML(section.title)}
         </Trigger>
         {this.renderSectionSelect(section)}
 
         <Label>Position</Label>
-        <Trigger onClick={this.handleTogglePagePosition}>Select</Trigger>
+        <Trigger onClick={this.handleOpenPagePosition}>Select</Trigger>
         {this.renderPositionSelect(pages)}
       </StyledModal>
     );
