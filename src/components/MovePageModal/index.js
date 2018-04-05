@@ -6,7 +6,7 @@ import { Message, Heading } from "components/Dialog/DialogMessage";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import ItemSelectModal from "./ItemSelectModal";
-import { find, reject, parseInt } from "lodash";
+import { find, reject, parseInt, uniqueId } from "lodash";
 import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
 import ItemSelect, { Option } from "./ItemSelect";
@@ -29,7 +29,8 @@ const CenteredHeading = styled(Heading)`
   margin-bottom: 1rem;
 `;
 
-const Label = styled.p`
+const Label = styled.label`
+  display: block;
   font-size: 0.875em;
   font-weight: bold;
   margin-bottom: 0.25rem;
@@ -208,6 +209,9 @@ class MovePageModal extends React.Component {
     const section = this.getSelectedSection();
     const pages = this.getPagesForSection(section);
 
+    const sectionButtonId = uniqueId("MovePageModal");
+    const positionButtonId = uniqueId("MovePageModal");
+
     return (
       <StyledModal isOpen={isOpen} onClose={onClose}>
         <DialogHeader>
@@ -216,14 +220,16 @@ class MovePageModal extends React.Component {
           </Message>
         </DialogHeader>
 
-        <Label>Section</Label>
-        <Trigger onClick={this.handleOpenSectionSelect}>
+        <Label htmlFor={sectionButtonId}>Section</Label>
+        <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
           {getTextFromHTML(section.title)}
         </Trigger>
         {this.renderSectionSelect(section)}
 
-        <Label>Position</Label>
-        <Trigger onClick={this.handleOpenPagePosition}>Select</Trigger>
+        <Label htmlFor={positionButtonId}>Position</Label>
+        <Trigger id={positionButtonId} onClick={this.handleOpenPagePosition}>
+          Select
+        </Trigger>
         {this.renderPositionSelect(pages)}
       </StyledModal>
     );
