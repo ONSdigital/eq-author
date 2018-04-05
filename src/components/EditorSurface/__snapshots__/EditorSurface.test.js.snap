@@ -13,7 +13,7 @@ exports[`EditorSurface should render 1`] = `
       duration={300}
       key="Section3"
     >
-      <Connect(CanvasSection)
+      <CanvasSection
         id="Section3"
       >
         <withEntityEditor(StatelessSectionEditor)
@@ -49,7 +49,7 @@ exports[`EditorSurface should render 1`] = `
           }
           titleRef={[Function]}
         />
-      </Connect(CanvasSection)>
+      </CanvasSection>
     </SlideTransition>
     <SlideTransition
       duration={300}

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
-import ConnectedCanvasSection, {
+import CanvasSection, {
   BasicSection
 } from "components/EditorSurface/CanvasSection";
 import SlideTransition from "components/SlideTransition";
@@ -30,10 +30,10 @@ const AddAnswerSection = BasicSection.extend`
   text-align: center;
   padding: 1em;
 `;
-const QuestionCanvasSection = styled(ConnectedCanvasSection)`
+const QuestionCanvasSection = styled(CanvasSection)`
   padding: 0 2em 2em;
 `;
-const AnswerSection = styled(ConnectedCanvasSection)`
+const AnswerSection = styled(CanvasSection)`
   padding-top: 3em;
 `;
 

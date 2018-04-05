@@ -1,13 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CanvasSection should render 1`] = `
-<CanvasSection__FocusableSection
+exports[`BasicSection should render 1`] = `
+.c0:hover {
+  outline: 1px solid rgba(0,138,210,0.5);
+}
+
+.c0:focus-within {
+  box-shadow: none;
+  outline: 1px solid transparent;
+  outline-color: #008AD2;
+  -webkit-transition: outline-color 100ms ease-in;
+  transition: outline-color 100ms ease-in;
+}
+
+<CanvasSection__BasicSection
+  className="c0"
   focusOnSection={[Function]}
   id="foo"
   isFocused={true}
   onBlur={[Function]}
-  onFocus={[Function]}
 >
   <Child />
-</CanvasSection__FocusableSection>
+</CanvasSection__BasicSection>
 `;

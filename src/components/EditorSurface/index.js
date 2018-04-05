@@ -1,7 +1,7 @@
 /* eslint-disable react/no-find-dom-node */
 import React from "react";
 import PropTypes from "prop-types";
-import ConnectedCanvasSection from "./CanvasSection";
+import CanvasSection from "./CanvasSection";
 
 import Form from "components/Forms/Form";
 import CustomPropTypes from "custom-prop-types";
@@ -70,13 +70,13 @@ class EditorSurface extends React.Component {
       <Form onChange={noop} onSubmit={noop}>
         <TransitionGroup>
           <SlideTransition key={sectionId}>
-            <ConnectedCanvasSection id={sectionId}>
+            <CanvasSection id={sectionId}>
               <SectionEditor
                 onUpdate={onUpdateSection}
                 section={section}
                 titleRef={this.setSectionTitle}
               />
-            </ConnectedCanvasSection>
+            </CanvasSection>
           </SlideTransition>
           <SlideTransition key={getIdForObject(page)}>
             <QuestionPageEditor

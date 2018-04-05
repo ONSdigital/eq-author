@@ -1,12 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { CanvasSection } from "./CanvasSection";
+import CanvasSection from "./CanvasSection";
 
 let component, handleBlur, focusOnSection;
 
 const Child = () => <div />;
 
-describe("CanvasSection", () => {
+describe("BasicSection", () => {
   beforeEach(() => {
     handleBlur = jest.fn();
     focusOnSection = jest.fn();
@@ -25,11 +25,6 @@ describe("CanvasSection", () => {
 
   it("should render", () => {
     expect(component).toMatchSnapshot();
-  });
-
-  it("should handle focus event", () => {
-    component.simulate("focus");
-    expect(focusOnSection).toHaveBeenCalledWith("foo");
   });
 
   it("should handle blur", () => {
