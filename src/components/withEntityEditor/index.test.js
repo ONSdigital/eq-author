@@ -81,6 +81,17 @@ describe("withEntityEditor", () => {
     expect(wrapper.state("entity")).toEqual(newEntity);
   });
 
+  it("should not update state when new entity with same id passed via props", () => {
+    const newEntity = {
+      id: "1",
+      title: "bar",
+      __typename: "Bar"
+    };
+    wrapper.setProps({ entity: newEntity });
+
+    expect(wrapper.state("entity")).toEqual(entity);
+  });
+
   it("should pass on any other props to wrapped component", () => {
     const newProps = { lol: "cats" };
     wrapper.setProps(newProps);

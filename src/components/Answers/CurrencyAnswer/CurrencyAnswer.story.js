@@ -11,27 +11,24 @@ const Background = styled.div`
 `;
 
 const answer = {
+  id: "1",
   label: "Lorem ipsum",
   description: "Nullam id dolor id nibh ultricies."
 };
 
 storiesOf("AnswerTypes/CurrencyAnswer", module)
-  .addDecorator(story =>
-    <Background>
-      {story()}
-    </Background>
-  )
-  .add("Empty", () =>
+  .addDecorator(story => <Background>{story()}</Background>)
+  .add("Empty", () => (
     <CurrencyAnswer
-      answer={{ label: "", description: "" }}
+      answer={{ id: "", label: "", description: "" }}
       onChange={action("changed")}
       onUpdate={action("updated")}
     />
-  )
-  .add("Prefilled", () =>
+  ))
+  .add("Prefilled", () => (
     <CurrencyAnswer
       answer={answer}
       onChange={action("changed")}
       onUpdate={action("updated")}
     />
-  );
+  ));

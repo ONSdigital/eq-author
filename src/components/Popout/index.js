@@ -68,14 +68,14 @@ class Popout extends React.Component {
     document.removeEventListener("keyup", this.handleKeyUp);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.open) {
       this.bindRootCloseHandlers();
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.open) {
+  componentDidUpdate() {
+    if (this.props.open) {
       this.bindRootCloseHandlers();
     } else {
       this.unbindRootCloseHandlers();

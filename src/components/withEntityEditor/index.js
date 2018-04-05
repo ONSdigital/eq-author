@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { filter } from "graphql-anywhere";
-import getIdForObject from "utils/getIdForObject";
+import { get, isEmpty } from "lodash";
 
 const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
+  const getEntityId = entity => get(entity, [entityPropName, "id"]);
+
   return class EntityEditor extends React.Component {
     static propTypes = {
       [entityPropName]: PropTypes.object.isRequired, // eslint-disable-line
@@ -13,22 +15,18 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
 
     static displayName = `withEntityEditor(${WrappedComponent.displayName})`;
 
-    constructor(props) {
-      super(props);
+    state = {};
 
-      const entity = props[entityPropName];
-
-      this.state = {
-        [entityPropName]: entity
-      };
-    }
-
-    componentWillReceiveProps(nextProps) {
-      if (nextProps[entityPropName].id !== this.props[entityPropName].id) {
-        this.setState({
+    static getDerivedStateFromProps(nextProps, prevState) {
+      if (
+        isEmpty(prevState) ||
+        getEntityId(prevState) !== getEntityId(nextProps)
+      ) {
+        return {
           [entityPropName]: nextProps[entityPropName]
-        });
+        };
       }
+      return null;
     }
 
     getEntity() {
@@ -60,8 +58,7 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
     render() {
       const entity = this.getEntity();
       const props = {
-        [entityPropName]: entity,
-        id: getIdForObject(entity)
+        [entityPropName]: entity
       };
 
       return (

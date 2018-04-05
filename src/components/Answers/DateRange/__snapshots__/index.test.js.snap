@@ -4,11 +4,11 @@ exports[`DateRange should render 1`] = `
 <DateRange
   answer={
     Object {
+      "id": "1",
       "label": "Lorem ipsum",
       "secondaryLabel": "dolor sit amet",
     }
   }
-  id={null}
   onChange={[Function]}
   onSubmit={[Function]}
   onUpdate={[Function]}
