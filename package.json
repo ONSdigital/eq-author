@@ -11,7 +11,7 @@
     "build:status": "node scripts/build-status-page.js",
     "test": "node scripts/test.js",
     "test:storybook": "jest --testRegex ^.+\\.storytest\\.js$",
-    "smoketest:ci": "./scripts/run_smoketests_author.sh",
+    "test:e2e": "./scripts/run_e2e_tests_author.sh",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint src --ext .graphql --ext .js --max-warnings=0",
     "lint:css": "stylelint './src/**/*.js'",

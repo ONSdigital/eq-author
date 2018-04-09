@@ -24,7 +24,7 @@ script:
   - yarn lint
   - yarn coverage  
   - yarn test:storybook
-  - yarn smoketest:ci
+  - yarn test:e2e
   - yarn storybook-build
 
 
