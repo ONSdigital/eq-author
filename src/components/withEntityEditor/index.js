@@ -5,6 +5,9 @@ import { get, isEmpty } from "lodash";
 
 const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
   const getEntityId = entity => get(entity, [entityPropName, "id"]);
+  const entityIsUnset = state => isEmpty(state[entityPropName]);
+  const entityHasChanged = (nextProps, prevState) =>
+    getEntityId(prevState) !== getEntityId(nextProps);
 
   return class EntityEditor extends React.Component {
     static propTypes = {
@@ -18,10 +21,7 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
     state = {};
 
     static getDerivedStateFromProps(nextProps, prevState) {
-      if (
-        isEmpty(prevState) ||
-        getEntityId(prevState) !== getEntityId(nextProps)
-      ) {
+      if (entityIsUnset(prevState) || entityHasChanged(nextProps, prevState)) {
         return {
           [entityPropName]: nextProps[entityPropName]
         };

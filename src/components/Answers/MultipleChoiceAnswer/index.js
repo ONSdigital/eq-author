@@ -62,8 +62,7 @@ class MultipleChoiceAnswer extends Component {
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
-    minOptions: PropTypes.number.isRequired,
-    id: PropTypes.string
+    minOptions: PropTypes.number.isRequired
   };
 
   static defaultProps = {
@@ -85,7 +84,6 @@ class MultipleChoiceAnswer extends Component {
       onUpdateOption,
       onUpdate,
       minOptions,
-      id,
       ...otherProps
     } = this.props;
 

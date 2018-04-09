@@ -1,5 +1,4 @@
 import React from "react";
-import { set, merge } from "lodash";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
@@ -16,22 +15,18 @@ const CenterXY = styled.div`
   transform: translateY(-50%) translateX(-50%);
 `;
 
-const sectionQuery = {
-  sections: [
+const section = {
+  id: "1",
+  title: "",
+  pages: [
     {
       id: "1",
       title: "",
-      pages: [
+      answers: [
         {
           id: "1",
-          title: "",
-          answers: [
-            {
-              id: "1",
-              label: "",
-              type: "Currency"
-            }
-          ]
+          label: "",
+          type: "Currency"
         }
       ]
     }
@@ -40,25 +35,7 @@ const sectionQuery = {
 
 const query = () => ({
   questionnaire: {
-    sections: [
-      {
-        id: "1",
-        title: "",
-        pages: [
-          {
-            id: "1",
-            title: "",
-            answers: [
-              {
-                id: "1",
-                label: "",
-                type: "Currency"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    sections: [section]
   }
 });
 
@@ -67,57 +44,24 @@ const client = {
   readQuery: query
 };
 
-const props = {
-  onUpdate: action("onUpdate"),
-  client
-};
-
-class SectionEditorWrapper extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      "section.title": "Section title",
-      "section.description": "Section description"
-    };
-  }
-  handleChange = ({ name, value }) => {
-    const newState = set(merge({}, this.state), name, value);
-    this.setState(newState);
-  };
-
-  render() {
-    const renderStory = () => (
-      <SectionEditor
-        onChange={this.handleChange}
-        section={sectionQuery}
-        sectionTitle={this.state["section.title"]}
-        sectionDescription={this.state["section.description"]}
-        {...props}
-      />
-    );
-    return (
-      <ApolloProvider client={props.client}>
-        <MemoryRouter
-          initialEntries={[
-            {
-              pathname: "/questionnaire/1/design/1/1"
-            }
-          ]}
-          initialIndex={0}
-        >
-          <Route
-            path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
-            exact={false}
-            render={renderStory}
-          />
-        </MemoryRouter>
-      </ApolloProvider>
-    );
-  }
-}
-
 const CenterDecorator = storyFn => <CenterXY>{storyFn()}</CenterXY>;
 
 storiesOf("SectionEditor", module)
+  .addDecorator(story => (
+    <ApolloProvider client={client}>
+      <MemoryRouter
+        initialEntries={[{ pathname: "/questionnaire/1/design/1/1" }]}
+        initialIndex={0}
+      >
+        <Route
+          path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+          exact={false}
+          render={story}
+        />
+      </MemoryRouter>
+    </ApolloProvider>
+  ))
   .addDecorator(CenterDecorator)
-  .add("Default", () => <SectionEditorWrapper />);
+  .add("Default", () => (
+    <SectionEditor section={section} onUpdate={action("onUpdate")} />
+  ));

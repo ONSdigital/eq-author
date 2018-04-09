@@ -10,12 +10,6 @@ const Background = styled.div`
   max-width: 20em;
 `;
 
-const answer = {
-  id: "1",
-  label: "Lorem ipsum",
-  description: "Nullam id dolor id nibh ultricies."
-};
-
 storiesOf("AnswerTypes/CurrencyAnswer", module)
   .addDecorator(story => <Background>{story()}</Background>)
   .add("Empty", () => (
@@ -27,7 +21,11 @@ storiesOf("AnswerTypes/CurrencyAnswer", module)
   ))
   .add("Prefilled", () => (
     <CurrencyAnswer
-      answer={answer}
+      answer={{
+        id: "1",
+        label: "Lorem ipsum",
+        description: "Nullam id dolor id nibh ultricies."
+      }}
       onChange={action("changed")}
       onUpdate={action("updated")}
     />
