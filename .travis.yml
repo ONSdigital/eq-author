@@ -14,8 +14,7 @@ addons:
   chrome: stable
 
 install:
- - yarn install
- - yarn upgrade eq-author-graphql-schema
+ - yarn install --frozen-lockfile
 
 before_script:
  - set -e
