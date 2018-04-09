@@ -5,7 +5,6 @@ import {
   routerMiddleware as createRouterMiddleware,
   routerReducer as router
 } from "react-router-redux";
-import uiState from "redux/uiState/reducer";
 import toasts from "redux/toast/reducer";
 import authReducer from "redux/auth/reducer";
 
@@ -22,7 +21,6 @@ const configureStore = (history, client, preloadedState) =>
   createStore(
     combineReducers({
       router,
-      uiState,
       toasts,
       auth: authReducer
     }),

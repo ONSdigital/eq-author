@@ -4,7 +4,7 @@ import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
 
 import styled from "styled-components";
-import { CanvasSection } from "./CanvasSection";
+import CanvasSection from "./CanvasSection";
 import WrappingInput from "components/WrappingInput";
 
 const Background = styled.div`
@@ -12,7 +12,7 @@ const Background = styled.div`
   color: #fff;
 `;
 
-storiesOf("CanvasSection", module)
+storiesOf("BasicSection", module)
   .addDecorator(withKnobs)
   .addDecorator(story => <Background>{story()}</Background>)
   .add("Default", () => (
