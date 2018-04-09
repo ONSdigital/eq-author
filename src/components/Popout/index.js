@@ -15,10 +15,24 @@ const Container = styled.div`
 
 const Layer = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  ${props => `${props.horizontalAlignment}: ${props.offsetX}`};
+  ${props => `${props.verticalAlignment}: ${props.offsetY}`};
   z-index: 10;
 `;
+
+Layer.defaultProps = {
+  horizontalAlignment: "left",
+  verticalAlignment: "bottom",
+  offsetX: "0",
+  offsetY: "0"
+};
+
+Layer.propTypes = {
+  horizontalAlignment: PropTypes.oneOf(["left", "right"]),
+  verticalAlignment: PropTypes.oneOf(["top", "bottom"]),
+  offsetX: PropTypes.string,
+  offsetY: PropTypes.string
+};
 
 const DefaultTransition = props => (
   <CSSTransition {...props} timeout={0} classNames="" />
@@ -32,7 +46,11 @@ class Popout extends React.Component {
     onToggleOpen: PropTypes.func.isRequired,
     onEntered: PropTypes.func,
     onExited: PropTypes.func,
-    transition: PropTypes.any // eslint-disable-line react/forbid-prop-types
+    transition: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+    horizontalAlignment: Layer.propTypes.horizontalAlignment,
+    verticalAlignment: Layer.propTypes.verticalAlignment,
+    offsetX: Layer.propTypes.offsetX,
+    offsetY: Layer.propTypes.offsetY
   };
 
   static defaultProps = {
@@ -121,7 +139,13 @@ class Popout extends React.Component {
           ref: trigger => (this.trigger = trigger)
         })}
 
-        <TransitionGroup component={Layer}>
+        <TransitionGroup
+          component={Layer}
+          horizontalAlignment={this.props.horizontalAlignment}
+          verticalAlignment={this.props.verticalAlignment}
+          offsetX={this.props.offsetX}
+          offsetY={this.props.offsetY}
+        >
           {this.props.open ? this.renderContent() : null}
         </TransitionGroup>
       </Container>
