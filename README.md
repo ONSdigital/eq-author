@@ -76,7 +76,7 @@ You will also see any lint errors in the console.
 ### `yarn start:mockAPI`
 
 Runs the app against the Mock API implementation.
-This is primarily used for running smoketests using a suitable webdriver but it can be used as a means of running and testing the application without requiring the real API to be running.
+This is primarily used for running e2e tests using a suitable webdriver but it can be used as a means of running and testing the application without requiring the real API to be running.
 
 ### `yarn lint`
 
@@ -160,17 +160,21 @@ Firebase authentication can be disabled by setting the env var `REACT_APP_ENABLE
 
 ## Testing
 
-### Author Smoketests
+### End-to-end (e2e) tests
 
 Author's e2e testing is run using the Cypress framework and can be run using the following commands provided author is already running with AUTH disabled using the `REACT_APP_ENABLE_AUTH=false` env variable:
 
-* `CYPRESS_base_Url=http://localhost:3000/ yarn smoketest:author` 
+* `yarn test:e2e` 
 
 Launches Cypress on Chrome and automatically runs the default test suite. 
 
-* `CYPRESS_baseUrl=http://localhost:3000/ yarn cypress:open`
+* `yarn cypress:open`
 
-Launches Cypress using the Electron framework and allows for choosing which test to run and a more interactive and detailed testing enviroment. 
+Launches Cypress using the Electron framework and allows for choosing which test to run and a more interactive and detailed testing enviroment.
+
+By default the e2e tests will be run against `http://localhost:3000` as configured in the [.env configuration](.env.test). It is possible to point Cypress at another environment by overriding the `CYPRESS_baseUrl` environment variable.
+
+e.g. `CYPRESS_baseUrl=http://some-other-environment yarn cypress:open`
 
 ### Filename Conventions
 

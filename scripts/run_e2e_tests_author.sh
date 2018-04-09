@@ -22,4 +22,4 @@ trap finish INT KILL TERM EXIT
 ./node_modules/.bin/wait-on $CYPRESS_baseUrl -t 10000
 
 # Run the tests
-yarn smoketest:author
+node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser chrome
