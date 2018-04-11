@@ -4,10 +4,10 @@ exports[`Date should render 1`] = `
 <Date
   answer={
     Object {
+      "id": "1",
       "label": "Lorem ipsum",
     }
   }
-  id={null}
   onChange={[Function]}
   onSubmit={[Function]}
   onUpdate={[Function]}

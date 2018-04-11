@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import Date from "components/Answers/Date";
 
 const answer = {
+  id: "1",
   label: "Lorem ipsum"
 };
 

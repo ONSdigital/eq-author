@@ -11,7 +11,6 @@ export const StatelessBasicAnswer = ({
   onChange,
   onUpdate,
   children,
-  id,
   labelPlaceholder,
   descriptionPlaceholder
 }) => (
@@ -50,8 +49,7 @@ StatelessBasicAnswer.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
   labelPlaceholder: PropTypes.string,
-  descriptionPlaceholder: PropTypes.string,
-  id: PropTypes.string
+  descriptionPlaceholder: PropTypes.string
 };
 
 StatelessBasicAnswer.defaultProps = {

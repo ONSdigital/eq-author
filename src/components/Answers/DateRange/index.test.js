@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import DateRange from "./index";
 
 const answer = {
+  id: "1",
   label: "Lorem ipsum",
   secondaryLabel: "dolor sit amet"
 };

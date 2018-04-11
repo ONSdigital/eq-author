@@ -6,6 +6,7 @@ import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 storiesOf("QuestionnaireSettingsModal", module).add("Default", () => (
   <QuestionnaireSettingsModal
     questionnaire={{
+      id: "1",
       title: "Lorem ipsum dolor sit, amet consectetur adipisicing elit",
       navigation: true
     }}

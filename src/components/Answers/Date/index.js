@@ -22,7 +22,7 @@ const Wrapper = styled.div.attrs({
   }
 `;
 
-const Date = ({ answer, onChange, onUpdate, id }) => (
+const Date = ({ answer, onChange, onUpdate }) => (
   <Wrapper>
     <Field>
       <WrappingInput
@@ -43,8 +43,7 @@ const Date = ({ answer, onChange, onUpdate, id }) => (
 Date.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired,
-  id: PropTypes.string
+  onUpdate: PropTypes.func.isRequired
 };
 
 export default withEntityEditor("answer", answerFragment)(Date);

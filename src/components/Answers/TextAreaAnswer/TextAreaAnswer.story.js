@@ -10,28 +10,23 @@ const Background = styled.div`
   max-width: 20em;
 `;
 
-const answer = {
-  label: "Lorem ipsum",
-  description: "Nullam id dolor id nibh ultricies."
-};
-
 storiesOf("AnswerTypes/TextAreaAnswer", module)
-  .addDecorator(story =>
-    <Background>
-      {story()}
-    </Background>
-  )
-  .add("Empty", () =>
+  .addDecorator(story => <Background>{story()}</Background>)
+  .add("Empty", () => (
     <TextAreaAnswer
-      answer={{ label: "", description: "" }}
+      answer={{ id: "1", label: "", description: "" }}
       onChange={action("changed")}
       onUpdate={action("updated")}
     />
-  )
-  .add("Prefilled", () =>
+  ))
+  .add("Prefilled", () => (
     <TextAreaAnswer
-      answer={answer}
+      answer={{
+        id: "1",
+        label: "Lorem ipsum",
+        description: "Nullam id dolor id nibh ultricies."
+      }}
       onChange={action("changed")}
       onUpdate={action("updated")}
     />
-  );
+  ));

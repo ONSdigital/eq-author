@@ -41,6 +41,8 @@ ReactModalAdapter.propTypes = {
   overlayClassName: ReactModal.propTypes.overlayClassName
 };
 
+ReactModal.setAppElement("body");
+
 const StyledModal = styled(ReactModalAdapter).attrs({
   overlayClassName: {
     base: "Overlay",
@@ -109,10 +111,6 @@ class Modal extends React.Component {
   static defaultProps = {
     hasCloseButton: true
   };
-
-  componentWillMount() {
-    ReactModal.setAppElement("body");
-  }
 
   componentDidMount() {
     document.addEventListener("hashchange", this.props.onClose);
