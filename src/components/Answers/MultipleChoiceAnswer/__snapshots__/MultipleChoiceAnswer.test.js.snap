@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MultipleChoiceAnswer should match snapshot 1`] = `
-<withEntityEditor(StatelessBasicAnswer)
+<Connect(withEntityEditor(StatelessBasicAnswer))
   answer={
     Object {
       "id": "0",
@@ -28,7 +28,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
         key="1"
         timeout={200}
       >
-        <withEntityEditor(StatelessOption)
+        <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={false}
           onAddOption={[Function]}
           onChange={[Function]}
@@ -42,6 +42,13 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
               "description": "",
               "id": "1",
               "label": "",
+            }
+          }
+          store={
+            Object {
+              "dispatch": [Function],
+              "getState": [Function],
+              "subscribe": [Function],
             }
           }
         />
@@ -58,5 +65,5 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       </Button>
     </div>
   </MultipleChoiceAnswer__AnswerWrapper>
-</withEntityEditor(StatelessBasicAnswer)>
+</Connect(withEntityEditor(StatelessBasicAnswer))>
 `;

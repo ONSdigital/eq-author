@@ -11,10 +11,16 @@ const answer = {
 describe("DateRange", () => {
   let handleChange;
   let handleUpdate;
+  let store;
 
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
+    store = {
+      subscribe: jest.fn(),
+      dispatch: jest.fn(),
+      getState: jest.fn()
+    };
   });
 
   it("should render", () => {
@@ -23,6 +29,7 @@ describe("DateRange", () => {
         onChange={handleChange}
         onUpdate={handleUpdate}
         answer={answer}
+        store={store}
       />
     );
     expect(wrapper).toMatchSnapshot();

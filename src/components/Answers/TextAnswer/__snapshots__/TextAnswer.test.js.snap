@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextAnswer should render 1`] = `
-<withEntityEditor(StatelessBasicAnswer)
+<Connect(withEntityEditor(StatelessBasicAnswer))
   answer={
     Object {
       "description": "Nullam id dolor id nibh ultricies.",
@@ -10,7 +10,14 @@ exports[`TextAnswer should render 1`] = `
   }
   onChange={[Function]}
   onUpdate={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
   <DummyTextInput />
-</withEntityEditor(StatelessBasicAnswer)>
+</Connect(withEntityEditor(StatelessBasicAnswer))>
 `;

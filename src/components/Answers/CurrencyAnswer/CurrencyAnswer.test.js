@@ -11,16 +11,23 @@ describe("CurrencyAnswer", () => {
   let handleChange;
   let handleUpdate;
   let component;
+  let store;
 
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
+    store = {
+      subscribe: jest.fn(),
+      dispatch: jest.fn(),
+      getState: jest.fn()
+    };
 
     component = shallow(
       <CurrencyAnswer
         onChange={handleChange}
         onUpdate={handleUpdate}
         answer={answer}
+        store={store}
       />
     );
   });

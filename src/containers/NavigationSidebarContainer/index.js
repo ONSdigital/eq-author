@@ -9,9 +9,10 @@ import { raiseToast } from "redux/toast/actions";
 
 import NavigationSidebar from "components/NavigationSidebar";
 import { connect } from "react-redux";
+import { startRequest } from "redux/saving/actions";
 
 export default flowRight(
-  connect(null, { raiseToast }),
+  connect(null, { raiseToast, startRequest }),
   withRouter,
   withCreatePage,
   withCreateSection,

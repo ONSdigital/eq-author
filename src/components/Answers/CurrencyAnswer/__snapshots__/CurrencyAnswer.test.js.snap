@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CurrencyAnswer should render 1`] = `
-<withEntityEditor(StatelessBasicAnswer)
+<Connect(withEntityEditor(StatelessBasicAnswer))
   answer={
     Object {
       "description": "Nullam id dolor id nibh ultricies.",
@@ -10,6 +10,13 @@ exports[`CurrencyAnswer should render 1`] = `
   }
   onChange={[Function]}
   onUpdate={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
   <CurrencyAnswer__FieldWrapper>
     <CurrencyComponent
@@ -17,5 +24,5 @@ exports[`CurrencyAnswer should render 1`] = `
     />
     <DummyTextInput />
   </CurrencyAnswer__FieldWrapper>
-</withEntityEditor(StatelessBasicAnswer)>
+</Connect(withEntityEditor(StatelessBasicAnswer))>
 `;

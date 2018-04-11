@@ -29,7 +29,7 @@ import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
 import withMovePage from "containers/enhancers/withMovePage";
 
-import * as ToastActionCreators from "redux/toast/actions";
+import { raiseToast } from "redux/toast/actions";
 import EntityToolbar from "components/EntityToolbar";
 import DeleteConfirmDialog from "../DeleteConfirmDialog";
 import getTextFromHTML from "utils/getTextFromHTML";
@@ -189,7 +189,7 @@ export class QPE extends React.Component {
 }
 
 export default flowRight(
-  connect(null, ToastActionCreators),
+  connect(null, { raiseToast }),
   withRouter,
   withCreateAnswer,
   withUpdateAnswer,

@@ -22,6 +22,8 @@ describe("MultipleChoiceAnswer", () => {
     ]
   };
 
+  let store;
+
   const option = {
     id: "123",
     __typename: "Option"
@@ -30,9 +32,17 @@ describe("MultipleChoiceAnswer", () => {
   let mockHandlers;
 
   const createWrapper = ({ answer }, render = shallow) =>
-    render(<MultipleChoiceAnswer {...mockHandlers} answer={answer} />);
+    render(
+      <MultipleChoiceAnswer {...mockHandlers} answer={answer} store={store} />
+    );
 
   beforeEach(() => {
+    store = {
+      subscribe: jest.fn(),
+      dispatch: jest.fn(),
+      getState: jest.fn()
+    };
+
     mockHandlers = {
       onAddOption: jest.fn(() => Promise.resolve(option)),
       onUpdate: jest.fn(),

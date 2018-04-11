@@ -6,6 +6,8 @@ import { reject } from "lodash";
 import MultipleChoiceAnswer from "./index";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import styled from "styled-components";
+import { Provider } from "react-redux";
+import configureStore from "redux/configureStore";
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -79,18 +81,21 @@ class MultipleChoiceAnswerWrapper extends React.Component {
   };
 
   render() {
+    const store = configureStore();
     return (
-      <Wrapper>
-        <MultipleChoiceAnswer
-          type={this.props.type}
-          answer={this.state.answer}
-          onUpdateOption={action("update option")}
-          onUpdate={action("update")}
-          onChange={action("change")}
-          onAddOption={this.handleAddOption}
-          onDeleteOption={this.handleDeleteOption}
-        />
-      </Wrapper>
+      <Provider store={store}>
+        <Wrapper>
+          <MultipleChoiceAnswer
+            type={this.props.type}
+            answer={this.state.answer}
+            onUpdateOption={action("update option")}
+            onUpdate={action("update")}
+            onChange={action("change")}
+            onAddOption={this.handleAddOption}
+            onDeleteOption={this.handleDeleteOption}
+          />
+        </Wrapper>
+      </Provider>
     );
   }
 }

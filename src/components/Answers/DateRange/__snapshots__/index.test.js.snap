@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DateRange should render 1`] = `
-<DateRange
+<withEntityEditor(DateRange)
   answer={
     Object {
       "id": "1",
@@ -9,8 +9,16 @@ exports[`DateRange should render 1`] = `
       "secondaryLabel": "dolor sit amet",
     }
   }
+  endRequest={[Function]}
   onChange={[Function]}
-  onSubmit={[Function]}
   onUpdate={[Function]}
+  startRequest={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
 />
 `;

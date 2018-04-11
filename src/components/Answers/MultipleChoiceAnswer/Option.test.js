@@ -12,6 +12,7 @@ describe("Option", () => {
   let mockMutations;
   let mockEvent;
   let wrapper;
+  let store;
 
   const option = {
     id: "1",
@@ -27,6 +28,7 @@ describe("Option", () => {
         option={option}
         hasDeleteButton
         type={RADIO}
+        store={store}
         {...otherProps}
       />
     );
@@ -38,6 +40,12 @@ describe("Option", () => {
     mockEvent = {
       stopPropagation: jest.fn(),
       preventDefault: jest.fn()
+    };
+
+    store = {
+      subscribe: jest.fn(),
+      dispatch: jest.fn(),
+      getState: jest.fn()
     };
 
     mockMutations = {
