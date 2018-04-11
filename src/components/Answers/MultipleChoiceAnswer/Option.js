@@ -109,7 +109,13 @@ export class StatelessOption extends Component {
     onDelete: PropTypes.func.isRequired,
     onEnterKey: PropTypes.func,
     hasDeleteButton: PropTypes.bool.isRequired,
-    type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired
+    type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired,
+    children: PropTypes.node,
+    labelPlaceholder: PropTypes.string
+  };
+
+  static defaultProps = {
+    labelPlaceholder: "Label"
   };
 
   handleDeleteClick = e => {
@@ -138,7 +144,15 @@ export class StatelessOption extends Component {
   }
 
   render() {
-    const { hasDeleteButton, option, onChange, onUpdate, type } = this.props;
+    const {
+      hasDeleteButton,
+      option,
+      onChange,
+      onUpdate,
+      type,
+      children,
+      labelPlaceholder
+    } = this.props;
 
     return (
       <StyledOption id={getIdForObject(option)} key={option.id}>
@@ -146,7 +160,7 @@ export class StatelessOption extends Component {
           <DummyInput type={type} />
           <SeamlessLabel
             name="label"
-            placeholder="Label"
+            placeholder={labelPlaceholder}
             size="medium"
             value={option.label}
             onChange={onChange}
@@ -167,6 +181,7 @@ export class StatelessOption extends Component {
             data-test="option-description"
           />
         </Field>
+        {children}
         {hasDeleteButton && this.renderDeleteButton()}
       </StyledOption>
     );

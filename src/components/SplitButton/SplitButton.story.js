@@ -19,7 +19,7 @@ const UncontrolledSplitButton = uncontrollable(SplitButton, {
 storiesOf("SplitButton", module).add("Default", () => (
   <Wrapper>
     <UncontrolledSplitButton
-      primaryAction={action("Primary action")}
+      onPrimaryAction={action("Primary action")}
       primaryText="Add checkbox"
     >
       <Dropdown>

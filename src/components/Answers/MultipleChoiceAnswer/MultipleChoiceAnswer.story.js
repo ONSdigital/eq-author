@@ -89,6 +89,8 @@ class MultipleChoiceAnswerWrapper extends React.Component {
           onChange={action("change")}
           onAddOption={this.handleAddOption}
           onDeleteOption={this.handleDeleteOption}
+          onAddOther={action("addOther")}
+          onDeleteOther={action("deleteOther")}
         />
       </Wrapper>
     );

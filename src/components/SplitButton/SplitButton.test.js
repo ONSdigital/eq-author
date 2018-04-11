@@ -12,10 +12,11 @@ const createWrapper = (
 ) =>
   render(
     <SplitButton
-      primaryAction={primaryAction}
+      onPrimaryAction={primaryAction}
       primaryText={primaryText}
       onToggleOpen={onToggleOpen}
       open={open}
+      dataTest="splitbutton"
     >
       {children}
     </SplitButton>

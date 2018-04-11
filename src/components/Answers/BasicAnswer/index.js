@@ -12,14 +12,16 @@ export const StatelessBasicAnswer = ({
   onUpdate,
   children,
   labelPlaceholder,
-  descriptionPlaceholder
+  descriptionPlaceholder,
+  showDescription,
+  size
 }) => (
   <div>
     <Field>
       <WrappingInput
         name="label"
         placeholder={labelPlaceholder}
-        size="medium"
+        size={size}
         onChange={onChange}
         onBlur={onUpdate}
         value={answer.label}
@@ -27,18 +29,20 @@ export const StatelessBasicAnswer = ({
         data-test="txt-answer-label"
       />
     </Field>
-    <Field>
-      <WrappingInput
-        name="description"
-        cols="30"
-        rows="5"
-        placeholder={descriptionPlaceholder}
-        onChange={onChange}
-        onBlur={onUpdate}
-        value={answer.description}
-        data-test="txt-answer-description"
-      />
-    </Field>
+    {showDescription && (
+      <Field>
+        <WrappingInput
+          name="description"
+          cols="30"
+          rows="5"
+          placeholder={descriptionPlaceholder}
+          onChange={onChange}
+          onBlur={onUpdate}
+          value={answer.description}
+          data-test="txt-answer-description"
+        />
+      </Field>
+    )}
     {children}
   </div>
 );
@@ -49,12 +53,16 @@ StatelessBasicAnswer.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
   labelPlaceholder: PropTypes.string,
-  descriptionPlaceholder: PropTypes.string
+  descriptionPlaceholder: PropTypes.string,
+  showDescription: PropTypes.bool,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large"])
 };
 
 StatelessBasicAnswer.defaultProps = {
   labelPlaceholder: "Label",
-  descriptionPlaceholder: "Enter a description (optional)…"
+  descriptionPlaceholder: "Enter a description (optional)…",
+  showDescription: true,
+  size: "medium"
 };
 
 export default withEntityEditor("answer", answerFragment)(StatelessBasicAnswer);

@@ -1,4 +1,4 @@
-import { values, merge, forEach, remove, filter, includes } from "lodash";
+import { values, merge, forEach, remove, filter, includes, get } from "lodash";
 
 const orderCreatedAtDesc = (a, b) =>
   new Date(b.createdAt) - new Date(a.createdAt);
@@ -184,7 +184,7 @@ class MockDataStore {
     const id = (++this.counter.answer).toString();
     this.answers[id] = merge(
       answer,
-      { id, options: [] },
+      { id, options: [], other: null },
       {
         __typename: includes(["Checkbox", "Radio"], answer.type)
           ? "MultipleChoiceAnswer"
@@ -207,7 +207,9 @@ class MockDataStore {
       defaultOptions.forEach(it => this.createOption(merge({}, it)));
     }
 
-    this.getPage(answer.questionPageId).answers.push(this.answers[id]);
+    if (answer.questionPageId) {
+      this.getPage(answer.questionPageId).answers.push(this.answers[id]);
+    }
     return this.answers[id];
   }
 
@@ -254,6 +256,33 @@ class MockDataStore {
     return deletedOption;
   }
 
+  createOther({ parentAnswerId }) {
+    const multipleChoiceAnswer = this.answers[parentAnswerId];
+    if (multipleChoiceAnswer) {
+      const answer = this.createAnswer({ type: "TextField" });
+      const option = this.createOption({ answerId: answer.id });
+      const other = {
+        answer,
+        option
+      };
+
+      this.updateAnswer(merge(multipleChoiceAnswer, { other }));
+      return other;
+    }
+  }
+
+  deleteOther({ parentAnswerId }) {
+    const multipleChoiceAnswer = this.answers[parentAnswerId];
+    if (multipleChoiceAnswer && multipleChoiceAnswer.other) {
+      const other = merge({}, multipleChoiceAnswer.other);
+      delete this.answers[multipleChoiceAnswer.other.answer.id];
+      delete this.options[multipleChoiceAnswer.other.option.id];
+      delete multipleChoiceAnswer.other;
+      return other;
+    }
+    return null;
+  }
+
   getSections(questionnaireId) {
     return filter(values(this.sections), { questionnaireId: questionnaireId });
   }
@@ -268,6 +297,10 @@ class MockDataStore {
 
   getOptions(answerId) {
     return filter(values(this.options), { answerId: answerId });
+  }
+
+  getOther(answerId) {
+    return get(this.answers[answerId], "other", null);
   }
 }
 

@@ -28,6 +28,8 @@ import withCreateOption from "containers/enhancers/withCreateOption";
 import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
 import withMovePage from "containers/enhancers/withMovePage";
+import withCreateOther from "containers/enhancers/withCreateOther";
+import withDeleteOther from "containers/enhancers/withDeleteOther";
 
 import { raiseToast } from "redux/toast/actions";
 import EntityToolbar from "components/EntityToolbar";
@@ -61,6 +63,8 @@ export class QPE extends React.Component {
     onDeletePage: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onMovePage: PropTypes.func.isRequired,
+    onAddOther: PropTypes.func.isRequired,
+    onDeleteOther: PropTypes.func.isRequired,
     page: CustomPropTypes.page,
     section: CustomPropTypes.section,
     questionnaire: CustomPropTypes.questionnaire
@@ -110,7 +114,9 @@ export class QPE extends React.Component {
       onUpdateAnswer,
       onAddOption,
       onUpdateOption,
-      onDeleteOption
+      onDeleteOption,
+      onAddOther,
+      onDeleteOther
     } = this.props;
 
     return (
@@ -120,6 +126,8 @@ export class QPE extends React.Component {
             answer={answer}
             onUpdate={onUpdateAnswer}
             onAddOption={onAddOption}
+            onAddOther={onAddOther}
+            onDeleteOther={onDeleteOther}
             onUpdateOption={onUpdateOption}
             onDeleteOption={onDeleteOption}
             onDeleteAnswer={this.handleDeleteAnswer}
@@ -197,5 +205,7 @@ export default flowRight(
   withCreateOption,
   withUpdateOption,
   withDeleteOption,
-  withMovePage
+  withMovePage,
+  withCreateOther,
+  withDeleteOther
 )(QPE);

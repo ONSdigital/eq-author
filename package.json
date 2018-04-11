@@ -122,7 +122,7 @@
     "draft-js-raw-content-state": "^1.2.5",
     "draftjs-to-html": "^0.7.6",
     "enzyme-to-json": "^3.3.1",
-    "eq-author-graphql-schema": "0.9.0",
+    "eq-author-graphql-schema": "^0.12.0",
     "eq-author-mock-api": "ONSdigital/eq-author-mock-api#4342f6a",
     "eslint-config-eq-author": "^1.1.0",
     "firebase": "^4.6.2",

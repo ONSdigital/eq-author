@@ -1,6 +1,4 @@
 import React from "react";
-
-import Button from "components/Button";
 import MultipleChoiceAnswer from "./";
 import Option from "./Option";
 import { times } from "lodash";
@@ -30,11 +28,37 @@ describe("MultipleChoiceAnswer", () => {
     __typename: "Option"
   };
 
+  const optionWithAnswer = {
+    answer: {
+      ...answer,
+      id: "1",
+      type: "TextField"
+    },
+    option: {
+      ...option,
+      id: "2"
+    }
+  };
+
   let mockHandlers;
 
-  const createWrapper = ({ answer }, render = shallow) =>
+  const createAnswer = numberOptions => ({
+    ...answer,
+    options: times(numberOptions, id => ({
+      id: id,
+      label: "",
+      description: ""
+    }))
+  });
+
+  const createWrapper = ({ answer, minOptions }, render = shallow) =>
     render(
-      <MultipleChoiceAnswer {...mockHandlers} answer={answer} store={store} />
+      <MultipleChoiceAnswer
+        {...mockHandlers}
+        answer={answer}
+        minOptions={minOptions}
+        store={store}
+      />
     );
 
   beforeEach(() => {
@@ -44,6 +68,8 @@ describe("MultipleChoiceAnswer", () => {
       onUpdate: jest.fn(),
       onUpdateOption: jest.fn(),
       onDeleteOption: jest.fn(),
+      onAddOther: jest.fn(() => Promise.resolve(optionWithAnswer)),
+      onDeleteOther: jest.fn(() => Promise.resolve(optionWithAnswer)),
       onChange: jest.fn()
     };
 
@@ -61,24 +87,14 @@ describe("MultipleChoiceAnswer", () => {
   it("should add a new option when add button is clicked", () => {
     const preventDefault = jest.fn();
     wrapper
-      .find(Button)
-      .first()
-      .simulate("click", { preventDefault });
+      .find("[dataTest='btn-add-option']")
+      .simulate("primaryAction", { preventDefault });
 
     expect(mockHandlers.onAddOption).toHaveBeenCalledWith(answer.id);
   });
 
   describe("delete button", () => {
     const minOptions = 2;
-
-    const createAnswer = numberOptions => ({
-      ...answer,
-      options: times(numberOptions, id => ({
-        id: id,
-        label: "",
-        description: ""
-      }))
-    });
 
     beforeEach(() => {
       wrapper.setProps({ minOptions });
@@ -122,6 +138,66 @@ describe("MultipleChoiceAnswer", () => {
         .simulate("enterKey", { preventDefault: jest.fn() });
 
       expect(mockHandlers.onAddOption).toHaveBeenCalled();
+    });
+  });
+
+  describe("other option and answer", () => {
+    const minOptions = 2;
+
+    let answerWithOther;
+    let preventDefault;
+
+    beforeEach(() => {
+      answerWithOther = {
+        ...createAnswer(minOptions),
+        other: optionWithAnswer
+      };
+
+      preventDefault = jest.fn();
+
+      wrapper = createWrapper({ answer: answerWithOther });
+    });
+
+    it("should render other", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should add call create other on click of split button menu item", () => {
+      wrapper
+        .find("[data-test='btn-add-option-other']")
+        .first()
+        .simulate("click", { preventDefault });
+      expect(mockHandlers.onAddOther).toHaveBeenCalledWith(answerWithOther);
+    });
+
+    it('should call onDeleteOther when deleting the "other" option', () => {
+      wrapper
+        .find(Option)
+        .last()
+        .simulate("delete", { preventDefault });
+      expect(mockHandlers.onDeleteOther).toHaveBeenCalledWith(answerWithOther);
+    });
+
+    it("should show delete button when number options + other > minOptions", () => {
+      const moreThanTwoOptions = {
+        ...createAnswer(2),
+        other: optionWithAnswer
+      };
+      wrapper = createWrapper({ answer: moreThanTwoOptions, minOptions });
+      wrapper.find(Option).forEach(option => {
+        expect(option.prop("hasDeleteButton")).toBe(true);
+      });
+    });
+
+    it("should not show delete button when number options + other <= minOptions", () => {
+      const twoOptionsExactly = {
+        ...createAnswer(1),
+        other: optionWithAnswer
+      };
+      wrapper = createWrapper({ answer: twoOptionsExactly, minOptions });
+      wrapper.find(Option).forEach(option => {
+        expect(option.prop("hasDeleteButton")).toBe(false);
+      });
     });
   });
 });
