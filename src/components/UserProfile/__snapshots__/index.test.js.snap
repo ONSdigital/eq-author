@@ -5,8 +5,9 @@ exports[`UserProfile should render 1`] = `
   content="Sign Out"
 >
   <UserProfile__LogoutButton
-    clear={true}
     onClick={[Function]}
+    small={true}
+    variant="tertiary-light"
   >
     <UserProfile__UserAvatar
       alt=""

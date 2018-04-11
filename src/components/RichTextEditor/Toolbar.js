@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { noop } from "lodash";
 import { TransitionGroup } from "react-transition-group";
 import PopupTransition from "./PopupTransition";
@@ -10,8 +10,10 @@ import iconBold from "./icon-bold.svg?inline";
 import iconEmphasis from "./icon-emphasis.svg?inline";
 import iconHeading from "./icon-heading.svg?inline";
 import iconList from "./icon-list.svg?inline";
-import IconButton from "components/IconButton";
+
 import PipingMenu from "./PipingMenu";
+import ToolbarButton from "./ToolbarButton";
+import VisuallyHidden from "../VisuallyHidden";
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -24,30 +26,6 @@ const Separator = styled.div`
   margin: 0.25rem;
 `;
 
-const activeState = css`
-  opacity: 1 !important;
-  background-color: ${colors.lighterGrey};
-`;
-
-export const Button = styled(IconButton)`
-  display: block;
-  opacity: 0.7;
-
-  &:hover,
-  &:focus {
-    background-color: ${colors.lighterGrey};
-    outline: none;
-    opacity: 0.8;
-  }
-
-  &[disabled] {
-    opacity: 0.2;
-    pointer-events: none;
-  }
-
-  ${props => props.active && activeState};
-`;
-
 export const ToolbarPanel = styled.div`
   border-radius: ${radius};
   background-color: ${colors.white};
@@ -55,6 +33,7 @@ export const ToolbarPanel = styled.div`
   padding: 0 0.5rem;
   display: inline-block;
   pointer-events: auto;
+  font-size: 1rem;
 `;
 
 export const STYLE_BLOCK = "block";
@@ -122,16 +101,14 @@ class ToolBar extends React.Component {
   };
 
   renderButton = button => {
+    const { title, icon: Icon, id } = button;
     const { isActiveControl, onToggle, controls } = this.props;
 
     return (
-      <Button
-        iconOnly
-        highlightOnHover={false}
-        key={button.title}
-        disabled={!controls[button.id]}
+      <ToolbarButton
+        key={title}
+        disabled={!controls[id]}
         active={isActiveControl(button)}
-        icon={button.icon}
         onClick={noop} // don't use click due to focus
         onMouseDown={function(e) {
           e.preventDefault(); // prevents focus on the button
@@ -146,8 +123,9 @@ class ToolBar extends React.Component {
           }
         }}
       >
-        {button.title}
-      </Button>
+        <Icon />
+        <VisuallyHidden>{title}</VisuallyHidden>
+      </ToolbarButton>
     );
   };
 

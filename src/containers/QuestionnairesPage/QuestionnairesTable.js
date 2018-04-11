@@ -14,7 +14,7 @@ export const DeleteButton = styled(IconButtonDelete)`
 
 const Table = styled.table`
   width: 100%;
-  font-size: 0.8em;
+  font-size: 0.9em;
   border-collapse: collapse;
   text-align: left;
 `;

@@ -65,7 +65,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   padding: 0.7em;
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #EAEAEA;
   font-size: 0.9em;
   display: inline-block;
@@ -86,7 +86,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 
 .c3:focus {
   outline: none;
-  border: 1px solid #008AD2;
+  border: 1px solid #3B7A9E;
 }
 
 .c3:checked {
@@ -115,7 +115,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   position: relative;
 }
 
-.c1:focus + .c4 .kXPujJ::before {
+.c1:focus + .c4 .hIuoJh::before {
   opacity: 0.12;
 }
 
@@ -139,7 +139,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 }
 
 .c6::before {
-  background: #008AD2;
+  background: #3B7A9E;
   display: inline-block;
   content: "";
   width: 3em;
@@ -310,7 +310,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   padding: 0.7em;
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #EAEAEA;
   font-size: 0.9em;
   display: inline-block;
@@ -331,7 +331,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
 
 .c3:focus {
   outline: none;
-  border: 1px solid #008AD2;
+  border: 1px solid #3B7A9E;
 }
 
 .c3:checked {
@@ -364,7 +364,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   display: inline-block;
   height: 1.4em;
   width: 1.4em;
-  background: #008AD2;
+  background: #3B7A9E;
   content: "";
   position: relative;
   top: -0.19999999999999996em;
@@ -380,7 +380,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
 }
 
 .c6::before {
-  background: #008AD2;
+  background: #3B7A9E;
   display: inline-block;
   content: "";
   width: 2.0999999999999996em;
@@ -518,7 +518,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   padding: 0.7em;
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #EAEAEA;
   font-size: 0.9em;
   display: inline-block;
@@ -539,7 +539,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
 
 .c3:focus {
   outline: none;
-  border: 1px solid #008AD2;
+  border: 1px solid #3B7A9E;
 }
 
 .c3:checked {
@@ -572,7 +572,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   display: inline-block;
   height: 1.4em;
   width: 1.4em;
-  background: #008AD2;
+  background: #3B7A9E;
   content: "";
   position: relative;
   top: -0.19999999999999996em;
@@ -588,7 +588,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
 }
 
 .c6::before {
-  background: #008AD2;
+  background: #3B7A9E;
   display: inline-block;
   content: "";
   width: 2.0999999999999996em;

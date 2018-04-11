@@ -7,10 +7,11 @@ import { NavLink } from "react-router-dom";
 import getTextFromHTML from "utils/getTextFromHTML";
 import pageIcon from "./icon-questionpage.svg";
 import { transparentize } from "polished";
+import { colors } from "constants/theme";
+
 const duration = 300;
 
 const textInverted = "#E1E1E1";
-const navHighlighted = "#008DD0";
 
 export const StyledPageItem = styled.li`
   padding: 0;
@@ -71,12 +72,12 @@ const Link = styled(NavLink)`
 
   /* stylelint-disable declaration-block-semicolon-newline-after */
   ${StyledPageItem}:hover &:not(.selected) {
-    background: ${transparentize(0.5, navHighlighted)};
+    background: ${transparentize(0.5, colors.blue)};
   }
   /* stylelint-enable */
 
   &.selected {
-    background: ${navHighlighted};
+    background: ${colors.blue};
     color: white;
   }
 

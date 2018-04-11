@@ -8,10 +8,16 @@ exports[`components/RoutingRuleset should render children 1`] = `
   <RoutingRuleset__AddRuleButton
     data-test="btn-add-rule"
     disabled={false}
-    icon={[Function]}
+    naked={true}
     onClick={[Function]}
+    small={true}
   >
-    Add rule
+    <IconText
+      hideText={false}
+      icon={[Function]}
+    >
+      Add rule
+    </IconText>
   </RoutingRuleset__AddRuleButton>
   <RoutingRuleset__RoutingRuleCanvas>
     <RoutingRuleResultSelector

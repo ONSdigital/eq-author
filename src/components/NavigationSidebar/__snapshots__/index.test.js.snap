@@ -50,15 +50,20 @@ exports[`NavigationSidebar should render 1`] = `
     />
   </NavigationSidebar__NavigationScrollPane>
   <NavigationSidebar__AddSection>
-    <NavigationSidebar__AddSectionBtn
-      clear={true}
+    <Button
       data-test="btn-add-section"
-      highlightOnHover={false}
-      icon={[Function]}
       onClick={[Function]}
+      small={true}
+      type="button"
+      variant="tertiary-light"
     >
-      Add section
-    </NavigationSidebar__AddSectionBtn>
+      <IconText
+        hideText={false}
+        icon={[Function]}
+      >
+        Add section
+      </IconText>
+    </Button>
   </NavigationSidebar__AddSection>
 </NavigationSidebar__Container>
 `;

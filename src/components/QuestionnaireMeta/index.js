@@ -25,7 +25,7 @@ const InlineField = styled(Field)`
   justify-content: space-between;
   align-items: center;
   padding: 1em 0;
-  margin-bottom: 0;
+  margin: 0 1em 0 0;
   border-top: 1px solid #ebebeb;
 
   &:last-child {
@@ -84,10 +84,10 @@ export const StatelessQuestionnaireMeta = ({
       </InlineField>
     </ToggleWrapper>
     <ButtonGroup horizontal align="right">
-      <Button onClick={onCancel} secondary type="button">
+      <Button onClick={onCancel} variant="secondary" type="button">
         Cancel
       </Button>
-      <Button type="submit" primary>
+      <Button type="submit" variant="primary">
         {confirmText}
       </Button>
     </ButtonGroup>

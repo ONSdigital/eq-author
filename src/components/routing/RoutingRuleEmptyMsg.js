@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import IconButton from "components/IconButton";
+import Button from "components/Button";
 import IconAddRule from "./icon-add-rule.svg?inline";
 import iconRouting from "./icon-routing.svg";
+import IconText from "components/IconText";
 
 const Container = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const Paragraph = styled.p`
   margin: 0;
 `;
 
-const AddRuleButton = styled(IconButton)`
+const AddRuleButton = styled(Button)`
   margin: 2em auto;
 `;
 
@@ -39,12 +40,8 @@ const RoutingRuleEmpty = ({ title, onAddRule }) => (
     <Paragraph>
       Users completing this question will be taken to the next page.
     </Paragraph>
-    <AddRuleButton
-      icon={IconAddRule}
-      onClick={onAddRule}
-      data-test="btn-add-rule"
-    >
-      Add your first rule
+    <AddRuleButton small naked onClick={onAddRule} data-test="btn-add-rule">
+      <IconText icon={IconAddRule}>Add your first rule</IconText>
     </AddRuleButton>
   </Container>
 );

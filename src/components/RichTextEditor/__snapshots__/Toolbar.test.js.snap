@@ -1,198 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/RichTextEditor/Toolbar Button matches snapshot 1`] = `
-.c1 {
-  background: none;
-  border: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-}
-
-.c1:hover,
-.c1:focus {
-  color: #008ad2;
-}
-
-.c1:hover svg path,
-.c1:focus svg path {
-  fill: #008ad2;
-}
-
-.c1 svg {
-  vertical-align: middle;
-}
-
-.c1[disabled] {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.c2 {
-  margin-left: 0.6em;
-}
-
-.c0 {
-  display: block;
-  opacity: 0.7;
-}
-
-.c0:hover,
-.c0:focus {
-  background-color: #f5f5f5;
-  outline: none;
-  opacity: 0.8;
-}
-
-.c0[disabled] {
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-<Toolbar__Button
-  icon={[Function]}
-  title="foo"
->
-  <IconButton
-    className="c0"
-    highlightOnHover={true}
-    icon={[Function]}
-    iconOnly={false}
-    title="foo"
-  >
-    <IconButton__StyledButton
-      className="c0"
-      highlightOnHover={true}
-      title="foo"
-    >
-      <button
-        className="c0 c1"
-        title="foo"
-        type="button"
-      >
-        <icon>
-          <svg />
-        </icon>
-        <IconButton__Text>
-          <span
-            className="c2"
-          />
-        </IconButton__Text>
-      </button>
-    </IconButton__StyledButton>
-  </IconButton>
-</Toolbar__Button>
-`;
-
-exports[`components/RichTextEditor/Toolbar Button should style appropriately when active 1`] = `
-.c1 {
-  background: none;
-  border: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: inherit;
-  padding: 0;
-  margin: 0;
-}
-
-.c1:hover,
-.c1:focus {
-  color: #008ad2;
-}
-
-.c1:hover svg path,
-.c1:focus svg path {
-  fill: #008ad2;
-}
-
-.c1 svg {
-  vertical-align: middle;
-}
-
-.c1[disabled] {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.c2 {
-  margin-left: 0.6em;
-}
-
-.c0 {
-  display: block;
-  opacity: 0.7;
-  opacity: 1 !important;
-  background-color: #f5f5f5;
-}
-
-.c0:hover,
-.c0:focus {
-  background-color: #f5f5f5;
-  outline: none;
-  opacity: 0.8;
-}
-
-.c0[disabled] {
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-<Toolbar__Button
-  active={true}
-  icon={[Function]}
-  title="foo"
->
-  <IconButton
-    active={true}
-    className="c0"
-    highlightOnHover={true}
-    icon={[Function]}
-    iconOnly={false}
-    title="foo"
-  >
-    <IconButton__StyledButton
-      active={true}
-      className="c0"
-      highlightOnHover={true}
-      title="foo"
-    >
-      <button
-        className="c0 c1"
-        title="foo"
-        type="button"
-      >
-        <icon>
-          <svg />
-        </icon>
-        <IconButton__Text>
-          <span
-            className="c2"
-          />
-        </IconButton__Text>
-      </button>
-    </IconButton__StyledButton>
-  </IconButton>
-</Toolbar__Button>
-`;
-
 exports[`components/RichTextEditor/Toolbar should render as hidden by default 1`] = `
 <TransitionGroup
   childFactory={[Function]}
@@ -219,54 +26,54 @@ exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
           onItemChosen={[Function]}
         />
         <Toolbar__Separator />
-        <Toolbar__Button
+        <ToolbarButton
           disabled={true}
-          highlightOnHover={false}
-          icon={[Function]}
-          iconOnly={true}
           key="Heading"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
         >
-          Heading
-        </Toolbar__Button>
-        <Toolbar__Button
+          <Component />
+          <VisuallyHidden>
+            Heading
+          </VisuallyHidden>
+        </ToolbarButton>
+        <ToolbarButton
           disabled={true}
-          highlightOnHover={false}
-          icon={[Function]}
-          iconOnly={true}
           key="Bold"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
         >
-          Bold
-        </Toolbar__Button>
-        <Toolbar__Button
+          <Component />
+          <VisuallyHidden>
+            Bold
+          </VisuallyHidden>
+        </ToolbarButton>
+        <ToolbarButton
           disabled={true}
-          highlightOnHover={false}
-          icon={[Function]}
-          iconOnly={true}
           key="Emphasis"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
         >
-          Emphasis
-        </Toolbar__Button>
-        <Toolbar__Button
+          <Component />
+          <VisuallyHidden>
+            Emphasis
+          </VisuallyHidden>
+        </ToolbarButton>
+        <ToolbarButton
           disabled={true}
-          highlightOnHover={false}
-          icon={[Function]}
-          iconOnly={true}
           key="List"
           onClick={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
         >
-          List
-        </Toolbar__Button>
+          <Component />
+          <VisuallyHidden>
+            List
+          </VisuallyHidden>
+        </ToolbarButton>
       </Toolbar__ButtonGroup>
     </Toolbar__ToolbarPanel>
   </PopupTransition>

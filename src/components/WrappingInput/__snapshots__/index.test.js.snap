@@ -5,7 +5,7 @@ exports[`WrappingInput should render 1`] = `
   resize: none;
   border: none;
   padding: 0;
-  color: #35414D;
+  color: #333333;
   display: block;
   width: 100%;
   font-size: 0.875em;
@@ -16,11 +16,11 @@ exports[`WrappingInput should render 1`] = `
 }
 
 .c0:hover {
-  outline-color: rgba(0,138,210,0.5);
+  outline-color: rgba(59,122,158,0.5);
 }
 
 .c0:focus {
-  outline-color: #008AD2;
+  outline-color: #3B7A9E;
 }
 
 .c0::-webkit-input-placeholder {

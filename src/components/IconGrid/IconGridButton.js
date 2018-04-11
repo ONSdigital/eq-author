@@ -22,7 +22,7 @@ const Button = styled.button`
   }
 
   &:focus {
-    border-color: ${colors.lightBlue};
+    border-color: ${colors.blue};
   }
 
   &[disabled] {

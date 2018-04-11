@@ -51,8 +51,8 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       <Button
         data-test="btn-add-option"
         onClick={[Function]}
-        secondary={true}
         type="button"
+        variant="secondary"
       >
         Add another option
       </Button>

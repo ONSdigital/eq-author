@@ -52,11 +52,14 @@ exports[`components/RoutingCondition should render consistently 1`] = `
     >
       <RoutingCondition__RemoveButton
         disabled={false}
-        icon={[Function]}
-        iconOnly={true}
         onClick={[Function]}
       >
-        Remove
+        <IconText
+          hideText={true}
+          icon={[Function]}
+        >
+          Remove
+        </IconText>
       </RoutingCondition__RemoveButton>
     </Column>
   </Grid>

@@ -6,13 +6,13 @@ describe("components/Button", () => {
   let wrapper;
 
   it("renders according to variant", () => {
-    wrapper = shallow(<Button primary>Button</Button>);
+    wrapper = shallow(<Button variant="primary">Button</Button>);
     expect(wrapper).toMatchSnapshot();
-    wrapper = shallow(<Button secondary>Button</Button>);
+    wrapper = shallow(<Button variant="secondary">Button</Button>);
     expect(wrapper).toMatchSnapshot();
-    wrapper = shallow(<Button tertiary>Button</Button>);
+    wrapper = shallow(<Button variant="tertiary">Button</Button>);
     expect(wrapper).toMatchSnapshot();
-    wrapper = shallow(<Button clear>Button</Button>);
+    wrapper = shallow(<Button variant="tertiary-light">Button</Button>);
     expect(wrapper).toMatchSnapshot();
   });
 

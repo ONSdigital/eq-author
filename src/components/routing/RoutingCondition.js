@@ -2,7 +2,7 @@ import React from "react";
 import Select from "components/Forms/Select";
 import styled from "styled-components";
 
-import IconButton from "components/IconButton";
+import Button from "components/Button";
 import IconClose from "./icon-close.svg?inline";
 import { PropTypes } from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -11,6 +11,7 @@ import { Grid, Column } from "components/Grid";
 
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
+import IconText from "components/IconText";
 
 const Label = styled.label`
   width: 100%;
@@ -27,7 +28,7 @@ export const PageSelect = styled(Select)`
   align-self: center;
 `;
 
-export const RemoveButton = styled(IconButton)`
+export const RemoveButton = styled(Button)`
   margin: auto;
   align-self: center;
 `;
@@ -85,13 +86,10 @@ const RoutingCondition = ({
         </PageSelect>
       </Column>
       <Column gutters={false} cols={1}>
-        <RemoveButton
-          icon={IconClose}
-          onClick={onRemove}
-          disabled={!onRemove}
-          iconOnly
-        >
-          Remove
+        <RemoveButton onClick={onRemove} disabled={!onRemove}>
+          <IconText icon={IconClose} hideText>
+            Remove
+          </IconText>
         </RemoveButton>
       </Column>
     </Grid>

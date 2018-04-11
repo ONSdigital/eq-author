@@ -10,7 +10,8 @@ import CanvasSection, {
   BasicSection
 } from "components/EditorSurface/CanvasSection";
 import SlideTransition from "components/SlideTransition";
-import IconButton from "components/IconButton";
+import Button from "components/Button";
+import IconText from "components/IconText";
 import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import { flowRight, isFunction } from "lodash";
@@ -18,7 +19,7 @@ import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
 import focusOnEntity from "utils/focusOnEntity";
 import iconPage from "./icon-dialog-page.svg";
-import IconMovePage from "./icon-move-page.svg?inline";
+import IconMovePage from "./icon-move.svg?inline";
 
 import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -47,17 +48,6 @@ const AnswerSection = styled(CanvasSection)`
 
 const Padding = styled.div`
   padding: 0 2em 2em;
-`;
-
-const MovePageButton = styled(IconButton).attrs({
-  iconOnly: true
-})`
-  padding: 0.25rem;
-  margin: 0;
-
-  &:focus {
-    outline: none;
-  }
 `;
 
 export class QPE extends React.Component {
@@ -150,13 +140,16 @@ export class QPE extends React.Component {
             onDelete={this.handleOpenDeleteConfirmDialog}
             entity={page}
           >
-            <MovePageButton
-              icon={IconMovePage}
+            <Button
               onClick={this.handleOpenMovePageDialog}
               data-test="btn-move-page"
+              variant="tertiary"
+              small
             >
-              Move page
-            </MovePageButton>
+              <IconText icon={IconMovePage} hideText>
+                Move page
+              </IconText>
+            </Button>
           </EntityToolbar>
 
           <DeleteConfirmDialog

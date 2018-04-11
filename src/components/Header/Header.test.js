@@ -55,29 +55,29 @@ describe("components/Header", () => {
       document.execCommand = tempExecCommand;
     });
 
-    it("should render breadcrumbs", () => {
-      const breadcrumb = wrapper.find("Breadcrumb");
+    it("should render the title", () => {
+      const title = wrapper.find('[data-test="questionnaire-title"]');
 
-      expect(breadcrumb).toHaveLength(1);
-      expect(breadcrumb).toMatchSnapshot();
+      expect(title).toHaveLength(1);
+      expect(title).toMatchSnapshot();
     });
 
     it("should render a preview button", () => {
-      const previewButton = wrapper.find({ title: "Preview" });
+      const previewButton = wrapper.find('[data-test="btn-preview"]');
 
       expect(previewButton).toHaveLength(1);
       expect(previewButton).toMatchSnapshot();
     });
 
     it("should render a share button", () => {
-      const shareButton = wrapper.find({ title: "Share" });
+      const shareButton = wrapper.find('[data-test="btn-share"]');
 
       expect(shareButton).toHaveLength(1);
       expect(shareButton).toMatchSnapshot();
     });
 
     it("should let a user copy", () => {
-      wrapper.find({ test: "Share" }).simulate("click");
+      wrapper.find('[data-test="btn-share"]').simulate("click");
       expect(document.execCommand).toHaveBeenCalledWith("copy");
     });
   });

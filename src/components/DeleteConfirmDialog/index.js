@@ -61,11 +61,15 @@ const DeleteConfirmDialog = ({
       <DialogIcon icon={icon} />
     </DialogHeader>
     <ButtonGroup horizontal align="right">
-      <Button secondary onClick={onClose} data-test="btn-cancel-modal">
+      <Button
+        variant="secondary"
+        onClick={onClose}
+        data-test="btn-cancel-modal"
+      >
         Cancel
       </Button>
       <Button
-        tertiary
+        variant="primary"
         autoFocus
         onClick={onDelete}
         data-test="btn-delete-modal"

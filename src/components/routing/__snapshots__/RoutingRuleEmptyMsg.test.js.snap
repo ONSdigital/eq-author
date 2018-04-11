@@ -10,10 +10,16 @@ exports[`components/RoutingRuleEmptyMsg should render children 1`] = `
   </RoutingRuleEmptyMsg__Paragraph>
   <RoutingRuleEmptyMsg__AddRuleButton
     data-test="btn-add-rule"
-    icon={[Function]}
+    naked={true}
     onClick={[Function]}
+    small={true}
   >
-    Add your first rule
+    <IconText
+      hideText={false}
+      icon={[Function]}
+    >
+      Add your first rule
+    </IconText>
   </RoutingRuleEmptyMsg__AddRuleButton>
 </RoutingRuleEmptyMsg__Container>
 `;

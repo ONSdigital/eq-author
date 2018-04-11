@@ -67,14 +67,14 @@ exports[`QuestionnaireMeta should render 1`] = `
     horizontal={true}
   >
     <Button
-      secondary={true}
       type="button"
+      variant="secondary"
     >
       Cancel
     </Button>
     <Button
-      primary={true}
       type="submit"
+      variant="primary"
     >
       Create
     </Button>

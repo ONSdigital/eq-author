@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import NavigationSidebar, { AddSectionBtn } from "components/NavigationSidebar";
+import NavigationSidebar from "components/NavigationSidebar";
 import { SynchronousPromise } from "synchronous-promise";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 
@@ -35,7 +35,7 @@ describe("NavigationSidebar", () => {
   });
 
   it("should allow sections to be added", () => {
-    wrapper.find(AddSectionBtn).simulate("click");
+    wrapper.find('[data-test="btn-add-section"]').simulate("click");
     expect(handleAddSection).toHaveBeenCalledWith(questionnaire.id);
   });
 

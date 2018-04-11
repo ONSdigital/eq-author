@@ -5,9 +5,10 @@ import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
-import IconButton from "components/IconButton";
+import Button from "components/Button";
 import PlusIcon from "./icon-plus.svg?inline";
 import ScrollPane from "components/ScrollPane";
+import IconText from "components/IconText";
 
 const navBackground = "#4A4A4A";
 const textInverted = "#E1E1E1";
@@ -23,26 +24,12 @@ const Container = styled.div`
 const AddSection = styled.div`
   background: ${navBackground};
   border-top: 1px solid #c3c3c3;
-  padding: 0;
+  padding: 0.5em;
   position: sticky;
   z-index: 99999;
   bottom: 0;
   left: 0;
   flex: 0;
-`;
-
-export const AddSectionBtn = styled(IconButton)`
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 1em 0.6em;
-  font-weight: 600;
-  font-size: 0.75rem;
-  color: ${textInverted};
-
-  &:hover {
-    color: ${colors.white};
-  }
 `;
 
 const NavigationScrollPane = styled(ScrollPane)`
@@ -86,15 +73,14 @@ class NavigationSidebar extends Component {
           />
         </NavigationScrollPane>
         <AddSection>
-          <AddSectionBtn
-            icon={PlusIcon}
-            clear
+          <Button
+            variant="tertiary-light"
             onClick={this.handleAddSectionClick}
-            highlightOnHover={false}
             data-test="btn-add-section"
+            small
           >
-            Add section
-          </AddSectionBtn>
+            <IconText icon={PlusIcon}>Add section</IconText>
+          </Button>
         </AddSection>
       </Container>
     );

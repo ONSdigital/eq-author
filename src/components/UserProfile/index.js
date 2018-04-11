@@ -3,31 +3,53 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import Tooltip from "components/Tooltip";
-import Button from "components/Button";
 import guestAvatar from "./icon-guest-avatar.svg";
+import { colors } from "constants/theme";
+import Button from "components/Button";
 
 const UserAvatar = styled.img`
-  width: 2.5em;
-  height: 2.5em;
   border-radius: 50%;
-  margin-right: 1em;
+  margin-right: 0.5em;
+  width: 2em;
+  height: 2em;
 `;
 
 const UserName = styled.span`
-  color: white;
-  font-size: 0.875rem;
-  margin-right: 1em;
+  line-height: 1.3;
+  white-space: pre;
+  font-weight: 400;
 `;
 
 export const LogoutButton = styled(Button)`
-  padding: 0;
+  padding: 0 1em 0 1px;
+  border-radius: 2em;
   display: flex;
   align-items: center;
+  font-size: 1em;
+  border: none;
+  background: none;
+  color: white;
+  text-align: left;
+
+  &:hover {
+    background: ${colors.white};
+    color: ${colors.text};
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px ${colors.tertiary}, inset 0 0 0 2px ${colors.primary};
+    outline: none;
+  }
 `;
 
 const UserProfile = ({ user, onSignOut, ...otherProps }) => (
   <Tooltip content="Sign Out">
-    <LogoutButton clear onClick={onSignOut} {...otherProps}>
+    <LogoutButton
+      onClick={onSignOut}
+      variant="tertiary-light"
+      small
+      {...otherProps}
+    >
       <UserAvatar
         src={user.photoURL || guestAvatar}
         alt=""

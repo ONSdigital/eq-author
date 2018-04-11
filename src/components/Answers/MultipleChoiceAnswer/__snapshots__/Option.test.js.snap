@@ -54,7 +54,7 @@ exports[`Option should render a checkbox 1`] = `
   resize: none;
   border: none;
   padding: 0;
-  color: #35414D;
+  color: #333333;
   display: block;
   width: 100%;
   font-size: 1.125em;
@@ -66,11 +66,11 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c5:hover {
-  outline-color: rgba(0,138,210,0.5);
+  outline-color: rgba(59,122,158,0.5);
 }
 
 .c5:focus {
-  outline-color: #008AD2;
+  outline-color: #3B7A9E;
 }
 
 .c5::-webkit-input-placeholder {
@@ -93,7 +93,7 @@ exports[`Option should render a checkbox 1`] = `
   resize: none;
   border: none;
   padding: 0;
-  color: #35414D;
+  color: #333333;
   display: block;
   width: 100%;
   font-size: 0.875em;
@@ -104,11 +104,11 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c6:hover {
-  outline-color: rgba(0,138,210,0.5);
+  outline-color: rgba(59,122,158,0.5);
 }
 
 .c6:focus {
-  outline-color: #008AD2;
+  outline-color: #3B7A9E;
 }
 
 .c6::-webkit-input-placeholder {
@@ -146,17 +146,17 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c8:hover {
-  color: #35414D;
+  color: #333333;
   -webkit-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
 }
 
 .c9 {
-  background-color: rgba(97,97,97,0.9) !important;
+  background-color: rgba(10,10,10,0.9) !important;
   font-size: 0.625rem !important;
   line-height: 2.2em !important;
   padding: 0 0.6em !important;
-  border-radius: 2px !important;
+  border-radius: 4px !important;
   white-space: pre;
 }
 
@@ -174,7 +174,7 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c3 {
-  border: 2px solid #EAEAEA;
+  border: 4px solid #EAEAEA;
   height: 1.4em;
   width: 1.4em;
   display: inline-block;

@@ -1,10 +1,8 @@
 import React from "react";
-import Toolbar, {
-  ToolbarPanel,
-  Button
-} from "components/RichTextEditor/Toolbar";
+import Toolbar, { ToolbarPanel } from "components/RichTextEditor/Toolbar";
+import ToolbarButton from "components/RichTextEditor/ToolbarButton";
 import PipingMenu from "./PipingMenu";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 
 let wrapper, props, buttons;
 
@@ -27,13 +25,13 @@ describe("components/RichTextEditor/Toolbar", () => {
       selectionIsCollapsed: true
     };
     wrapper = shallow(<Toolbar {...props} visible />);
-    buttons = wrapper.find(Button);
+    buttons = wrapper.find(ToolbarButton);
   });
 
   it("should render as hidden by default", () => {
     wrapper = shallow(<Toolbar {...props} />);
     expect(wrapper).toMatchSnapshot();
-    expect(wrapper.find(Button).length).toBe(0);
+    expect(wrapper.find(ToolbarButton).length).toBe(0);
   });
 
   it("should render as visible", () => {
@@ -59,7 +57,7 @@ describe("components/RichTextEditor/Toolbar", () => {
       heading: false
     };
     wrapper = shallow(<Toolbar {...props} controls={controls} visible />);
-    wrapper.find(Button).forEach(node => {
+    wrapper.find(ToolbarButton).forEach(node => {
       expect(node.props().disabled).toBe(true);
     });
   });
@@ -120,18 +118,6 @@ describe("components/RichTextEditor/Toolbar", () => {
     buttons.forEach((node, i) => {
       node.simulate("KeyDown", { key: "ESC" });
       expect(props.onToggle).not.toHaveBeenLastCalledWith(shape);
-    });
-  });
-
-  describe("Button", () => {
-    it("matches snapshot", () => {
-      const wrapper = mount(<Button icon={() => <svg />} title="foo" />); // eslint-disable-line react/jsx-no-bind
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    it("should style appropriately when active", () => {
-      const wrapper = mount(<Button active icon={() => <svg />} title="foo" />); // eslint-disable-line react/jsx-no-bind
-      expect(wrapper).toMatchSnapshot();
     });
   });
 });

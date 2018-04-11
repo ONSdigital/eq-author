@@ -20,6 +20,8 @@ exports[`SplitButton should render when closed 1`] = `
       <Button
         onClick={[Function]}
         secondary={true}
+        type="button"
+        variant="primary"
       >
         Add other answer
       </Button>
@@ -48,6 +50,8 @@ exports[`SplitButton should render when open 1`] = `
       <Button
         onClick={[Function]}
         secondary={true}
+        type="button"
+        variant="primary"
       >
         Add other answer
       </Button>

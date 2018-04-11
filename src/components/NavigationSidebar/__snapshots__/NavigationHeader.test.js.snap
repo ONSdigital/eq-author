@@ -3,26 +3,35 @@
 exports[`NavigationHeader should render 1`] = `
 <NavigationHeader__IconList>
   <li>
-    <Link
-      replace={false}
+    <RouteButton
+      small={true}
       to="/"
+      variant="tertiary-light"
     >
-      <VisuallyHidden>
+      <IconText
+        hideText={true}
+        icon={[Function]}
+      >
         Home
-      </VisuallyHidden>
-      <NavigationHeader__HomeIconLink />
-    </Link>
+      </IconText>
+    </RouteButton>
   </li>
   <li>
-    <NavigationHeader__SettingsButton
-      clear={true}
+    <Button
       data-test="settings-btn"
       highlightOnHover={false}
-      icon={[Function]}
       onClick={[Function]}
+      small={true}
+      type="button"
+      variant="tertiary-light"
     >
-      Settings
-    </NavigationHeader__SettingsButton>
+      <IconText
+        hideText={false}
+        icon={[Function]}
+      >
+        Settings
+      </IconText>
+    </Button>
     <QuestionnaireSettingsModal
       confirmText="Apply"
       isOpen={false}
