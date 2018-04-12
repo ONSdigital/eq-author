@@ -10,7 +10,7 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
         </PropertiesPanel__PropertiesPanelTitle>
         <PropertiesPanel__PropertiesGroup>
           <div
-            key="0"
+            key="Answer1"
           >
             <Apollo(AnswerProperties)
               answer={
@@ -21,12 +21,11 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
                 }
               }
               id="Answer1"
-              key="1"
               onSubmit={[Function]}
             />
           </div>
           <div
-            key="1"
+            key="Answer2"
           >
             <Apollo(AnswerProperties)
               answer={
@@ -37,7 +36,6 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
                 }
               }
               id="Answer2"
-              key="2"
               onSubmit={[Function]}
             />
           </div>

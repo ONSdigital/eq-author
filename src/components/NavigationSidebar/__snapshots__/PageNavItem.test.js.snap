@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNavItem LinkText should be opaque 1`] = `
+.c0 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 1;
+  font-size: 0.75em;
+}
+
+<span
+  className="c0"
+/>
+`;
+
+exports[`PageNavItem LinkText should be partially transparent if fade prop passed 1`] = `
+.c0 {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.5;
+  font-size: 0.75em;
+}
+
+<span
+  className="c0"
+/>
+`;
+
+exports[`PageNavItem should render 1`] = `
+<PageNavItem__StyledPageItem
+  data-test="page-item"
+>
+  <PageNavItem__Link
+    activeClassName="selected"
+    aria-disabled={false}
+    to="/questionnaire/1/design/2/3"
+  >
+    <PageNavItem__LinkText
+      fade={false}
+    >
+      Title
+    </PageNavItem__LinkText>
+  </PageNavItem__Link>
+</PageNavItem__StyledPageItem>
+`;

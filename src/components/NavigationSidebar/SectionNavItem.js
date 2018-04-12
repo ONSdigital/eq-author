@@ -2,10 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { colors } from "constants/theme";
-import HoverDeleteButton from "components/NavigationSidebar/HoverDeleteButton";
 import PageNav from "components/NavigationSidebar/PageNav";
-import SectionTitle from "components/NavigationSidebar/SectionTitle";
-import Tooltip from "components/Tooltip";
+import SectionNavLink from "components/NavigationSidebar/SectionNavLink";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
@@ -33,17 +31,6 @@ export const AddPageBtn = styled.button`
 
   &:hover {
     color: ${colors.white};
-  }
-`;
-
-export const SectionDeleteButton = styled(HoverDeleteButton)`
-  top: 0.2em;
-
-  .section-title-wrapper:hover &,
-  .section-title-wrapper:focus + &,
-  &:focus {
-    opacity: 1;
-    transform: translateX(0);
   }
 `;
 
@@ -86,7 +73,6 @@ StyledSectionNavItem.propTypes = {
 
 const SectionTitleWrapper = styled.div`
   background: ${navSectionBackground};
-  padding: 0.35em;
   display: flex;
   align-items: center;
 `;
@@ -95,61 +81,31 @@ class SectionNavItem extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
-    onDeleteSection: PropTypes.func.isRequired,
     section: CustomPropTypes.section.isRequired,
     duration: PropTypes.number.isRequired,
     saveSectionItemRef: PropTypes.func.isRequired
-  };
-
-  state = {
-    style: {}
   };
 
   handleAddPage = () => {
     this.props.onAddPage(this.props.section.id);
   };
 
-  handleDeleteSection = () => {
-    const { height } = this.elem.getBoundingClientRect();
-    const style = { height };
-
-    this.setState({ style }, () =>
-      this.props.onDeleteSection(this.props.section.id)
-    );
-  };
-
   saveRef = elem => {
     const { section, saveSectionItemRef } = this.props;
-    this.elem = elem;
     saveSectionItemRef(section.id, elem);
   };
 
-  handleDeleteFocus = _ => {
-    this.elem.scrollLeft = 0;
-  };
-
   render() {
-    const { questionnaire, section, duration } = this.props;
+    const { questionnaire, section, duration, ...otherProps } = this.props;
 
     return (
       <StyledSectionNavItem
         innerRef={this.saveRef}
-        style={this.state.style}
         duration={duration}
+        {...otherProps}
       >
-        <SectionTitleWrapper className="section-title-wrapper">
-          <SectionTitle questionnaire={questionnaire} section={section} />
-          <Tooltip content="Delete section" offset={{ right: -5 }}>
-            <SectionDeleteButton
-              type="button"
-              aria-label="Delete section"
-              onClick={this.handleDeleteSection}
-              onFocus={this.handleDeleteFocus}
-              data-test="btn-delete-section"
-            >
-              &times;
-            </SectionDeleteButton>
-          </Tooltip>
+        <SectionTitleWrapper>
+          <SectionNavLink questionnaire={questionnaire} section={section} />
         </SectionTitleWrapper>
         <PageNav section={section} questionnaire={questionnaire} />
         <AddPageBtn onClick={this.handleAddPage} data-test="btn-add-page">

@@ -53,7 +53,7 @@ export const NavWithoutRouter = ({ questionnaire, section, page, match }) => {
   return (
     <StyledNav>
       <StyledNavLink
-        to={getLink(questionnaire.id, section.id, page.id)}
+        to={getLink(questionnaire.id, section.id, page && page.id)}
         activeClassName="selected"
         isActive={navIsActive}
       >

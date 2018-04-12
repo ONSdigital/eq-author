@@ -16,13 +16,13 @@ describe("eq-author", () => {
     cy.get("h1").should("contain", "Your Questionnaires");
   });
 
-  it("can create a questionnaire", () => {
+  it("Can create a questionnaire", () => {
     cy.get("[data-test='create-questionnaire']").click();
     setQuestionnaireSettings("My Questionnaire Title");
     cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
   });
 
-  it("should show questionnaire on listing page", () => {
+  it("Should show questionnaire on listing page", () => {
     cy.get(`[data-test="logo"]`).click();
 
     cy.get(`[data-test="username"]`).then($name => {
@@ -36,17 +36,12 @@ describe("eq-author", () => {
     });
   });
 
-  it("can edit section title", () => {
-    typeIntoDraftEditor("[data-testid='txt-section-title']", "hello world");
-    cy.get("[data-test='side-nav']").should("contain", "hello world");
-  });
-
-  it("can edit page title", () => {
+  it("Can edit page title", () => {
     typeIntoDraftEditor("[data-testid='txt-question-title']", "goodbye world");
     cy.get("[data-test='side-nav']").should("contain", "goodbye world");
   });
 
-  it("can create a new page", () => {
+  it("Can create a new page", () => {
     let prevHash;
 
     cy
@@ -66,7 +61,7 @@ describe("eq-author", () => {
     cy.get("[data-test='page-item']").should("have.length", 2);
   });
 
-  it("can edit question guidance", () => {
+  it("Can edit question guidance", () => {
     const guidance = "this is some guidance";
     typeIntoDraftEditor("[data-testid='txt-question-guidance']", guidance);
 
@@ -83,19 +78,19 @@ describe("eq-author", () => {
     cy.get("[data-testid='txt-question-guidance']").should("contain", guidance);
   });
 
-  it("can delete a page", () => {
+  it("Can delete a page", () => {
     cy.get("[data-test='btn-delete']").click();
     cy.get("[data-test='btn-delete-modal']").click();
     cy.get("[data-test='page-item']").should("have.length", 1);
   });
 
-  it("can change the questionnaire title", () => {
+  it("Can change the questionnaire title", () => {
     cy.get(`[data-test="settings-btn"]`).click();
     setQuestionnaireSettings("Test Questionnaire");
     cy.get("[data-test='breadcrumb']").should("contain", "Test Questionnaire");
   });
 
-  it("can create a new section", () => {
+  it("Can create a new section", () => {
     let prevHash;
 
     cy
@@ -113,17 +108,62 @@ describe("eq-author", () => {
       });
   });
 
-  it("can delete a section", () => {
-    cy.get("[data-test='side-nav']").within(() => {
-      cy.get("[data-test='btn-delete-section']").should("have.length", 2);
+  it("Can navigate to a section", () => {
+    let prevHash;
 
-      cy
-        .get("[data-test='btn-delete-section']")
-        .first()
-        .click();
-
-      cy.get("[data-test='btn-delete-section']").should("have.length", 1);
+    cy.hash().then(hash => {
+      prevHash = hash;
     });
+    cy
+      .get(`[data-test="nav-section-link"]`)
+      .first()
+      .click()
+      .then(() => {
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: true
+        });
+      });
+  });
+
+  it("Can edit section title and description", () => {
+    typeIntoDraftEditor("[data-testid='txt-section-title']", "my new section");
+    cy
+      .get("[data-test='nav-section-link']")
+      .should("contain", "my new section");
+
+    typeIntoDraftEditor(
+      "[data-testid='txt-section-description']",
+      "section description"
+    );
+
+    cy
+      .get("[data-testid='txt-section-description']")
+      .should("contain", "section description");
+  });
+
+  it("Can delete a section", () => {
+    let prevHash;
+
+    cy
+      .get("[data-test='btn-delete']")
+      .click()
+      .hash()
+      .then(hash => {
+        prevHash = hash;
+      });
+
+    cy
+      .get("[data-test='btn-delete-modal']")
+      .click()
+      .then(() => {
+        assertHash(prevHash, {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
+        });
+      });
   });
 
   it("Can create checkboxes", () => {
@@ -205,7 +245,7 @@ describe("eq-author", () => {
     cy.get("[data-test='btn-delete-answer']").should("not.exist");
   });
 
-  it("should create a new page when deleting only page in section", () => {
+  it("Should create a new page when deleting only page in section", () => {
     let prevHash;
 
     cy
@@ -224,20 +264,28 @@ describe("eq-author", () => {
       });
   });
 
-  it("should create a new section when deleting only section", () => {
+  it("Should create a new section when deleting only section", () => {
     let prevHash;
 
     cy
+      .get(`[data-test="nav-section-link"]`)
+      .first()
+      .click();
+    cy
+      .get("[data-test='btn-delete']")
+      .click()
       .hash()
       .then(hash => {
         prevHash = hash;
-        cy.get("[data-test='btn-delete-section']").click();
-      })
+      });
+    cy
+      .get("[data-test='btn-delete-modal']")
+      .click()
       .then(() => {
         assertHash(prevHash, {
           questionnaireId: true,
           sectionId: false,
-          pageId: false
+          pageId: true
         });
       });
   });

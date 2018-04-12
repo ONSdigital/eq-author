@@ -57,23 +57,23 @@ export class PropertiesPanel extends React.Component {
       <PropertiesPane>
         <PropertiesPaneBody>
           <ScrollPane>
-            {page.answers.length > 0 && (
-              <div>
-                <PropertiesPanelTitle>Answer properties</PropertiesPanelTitle>
-                <PropertiesGroup>
-                  {page.answers.map((answer, index) => (
-                    <div key={index}>
-                      <AnswerPropertiesContainer
-                        id={getIdForObject(answer)}
-                        key={answer.id}
-                        answer={{ ...answer, index }}
-                        onSubmit={this.handleSubmit}
-                      />
-                    </div>
-                  ))}
-                </PropertiesGroup>
-              </div>
-            )}
+            {page &&
+              page.answers.length > 0 && (
+                <div>
+                  <PropertiesPanelTitle>Answer properties</PropertiesPanelTitle>
+                  <PropertiesGroup>
+                    {page.answers.map((answer, index) => (
+                      <div key={getIdForObject(answer)}>
+                        <AnswerPropertiesContainer
+                          id={getIdForObject(answer)}
+                          answer={{ ...answer, index }}
+                          onSubmit={this.handleSubmit}
+                        />
+                      </div>
+                    ))}
+                  </PropertiesGroup>
+                </div>
+              )}
           </ScrollPane>
         </PropertiesPaneBody>
       </PropertiesPane>

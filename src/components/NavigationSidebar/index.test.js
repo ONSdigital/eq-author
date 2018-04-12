@@ -8,7 +8,6 @@ describe("NavigationSidebar", () => {
   let wrapper,
     handleAddSection,
     handleAddPage,
-    handleDeleteSection,
     sectionNav,
     handleUpdateQuestionnaire;
 
@@ -23,7 +22,6 @@ describe("NavigationSidebar", () => {
   beforeEach(() => {
     handleAddSection = jest.fn(() => SynchronousPromise.resolve(questionnaire));
     handleAddPage = jest.fn(() => SynchronousPromise.resolve({ section }));
-    handleDeleteSection = jest.fn();
     handleUpdateQuestionnaire = jest.fn();
     sectionNav = { scrollSectionIntoView: jest.fn() };
 
@@ -32,7 +30,6 @@ describe("NavigationSidebar", () => {
         questionnaire={questionnaire}
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
-        onDeleteSection={handleDeleteSection}
         onUpdateQuestionnaire={handleUpdateQuestionnaire}
       />
     );
@@ -60,10 +57,5 @@ describe("NavigationSidebar", () => {
     wrapper.find(SectionNav).simulate("addPage", section.id);
     expect(handleAddPage).toHaveBeenCalledWith(section.id);
     expect(sectionNav.scrollSectionIntoView).toHaveBeenCalledWith(section.id);
-  });
-
-  it("should allow sections to be deleted", () => {
-    wrapper.find(SectionNav).simulate("deleteSection");
-    expect(handleDeleteSection).toHaveBeenCalled();
   });
 });

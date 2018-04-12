@@ -38,7 +38,8 @@ describe("QuestionnaireDesignPage", () => {
       onUpdateSection: jest.fn(),
       onAddPage: jest.fn(),
       onUpdatePage: jest.fn(),
-      onDeletePage: jest.fn()
+      onDeletePage: jest.fn(),
+      onDeleteSection: jest.fn()
     };
 
     wrapper = shallow(

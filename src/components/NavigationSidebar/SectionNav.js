@@ -19,8 +19,7 @@ class SectionNav extends Component {
 
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
-    onAddPage: PropTypes.func.isRequired,
-    onDeleteSection: PropTypes.func.isRequired
+    onAddPage: PropTypes.func.isRequired
   };
 
   scrollSectionIntoView = id =>
@@ -34,8 +33,13 @@ class SectionNav extends Component {
     this.sectionItems[id] = node;
   };
 
+  handleSectionExit = node => {
+    const { height } = node.getBoundingClientRect();
+    node.style.height = `${height}px`;
+  };
+
   render() {
-    const { questionnaire, onAddPage, onDeleteSection } = this.props;
+    const { questionnaire, onAddPage } = this.props;
     return (
       <TransitionGroup component={NavList}>
         {questionnaire.sections
@@ -48,12 +52,12 @@ class SectionNav extends Component {
               key={section.id}
               timeout={duration}
               classNames="section"
+              onExit={this.handleSectionExit}
             >
               <SectionNavItem
                 questionnaire={questionnaire}
                 section={section}
                 duration={duration}
-                onDeleteSection={onDeleteSection}
                 onAddPage={onAddPage}
                 saveSectionItemRef={this.saveSectionItemRef}
               />

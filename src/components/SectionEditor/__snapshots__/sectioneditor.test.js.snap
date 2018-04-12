@@ -1,40 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SectionEditor should render 1`] = `
-<div>
-  <Field
-    id="title"
-  >
-    <RichTextEditor
-      controls={
-        Object {
-          "emphasis": true,
+<SectionEditor__SectionCanvas
+  id={null}
+>
+  <EntityToolbar
+    onDelete={[Function]}
+  />
+  <DeleteConfirmDialog
+    alertText="All questions in this section will also be removed. This may affect piping and routing rules elsewhere."
+    icon="icon-dialog-section.svg"
+    isOpen={false}
+    onClose={[Function]}
+    onDelete={[Function]}
+    title="undefined"
+  />
+  <SectionEditor__Padding>
+    <Field
+      id="title"
+    >
+      <RichTextEditor
+        autoFocus={false}
+        controls={
+          Object {
+            "emphasis": true,
+          }
         }
-      }
-      label="title"
-      multiline={false}
-      onUpdate={[Function]}
-      placeholder="Section title"
-      size="medium"
-      testSelector="txt-section-title"
-    />
-  </Field>
-  <Field
-    id="description"
-  >
-    <RichTextEditor
-      controls={
-        Object {
-          "bold": true,
-          "emphasis": true,
+        label="title"
+        multiline={false}
+        onUpdate={[Function]}
+        placeholder="Section title"
+        size="large"
+        testSelector="txt-section-title"
+      />
+    </Field>
+    <Field
+      id="description"
+    >
+      <RichTextEditor
+        autoFocus={false}
+        controls={
+          Object {
+            "bold": true,
+            "emphasis": true,
+          }
         }
-      }
-      label="description"
-      multiline={true}
-      onUpdate={[Function]}
-      placeholder="Enter a description (optional)…"
-      testSelector="txt-section-description"
-    />
-  </Field>
-</div>
+        label="description"
+        multiline={true}
+        onUpdate={[Function]}
+        placeholder="Enter a description (optional)…"
+        testSelector="txt-section-description"
+      />
+    </Field>
+  </SectionEditor__Padding>
+</SectionEditor__SectionCanvas>
 `;

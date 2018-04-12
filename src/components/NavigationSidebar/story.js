@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import CustomPropTypes from "custom-prop-types";
+import React from "react";
+
 import { storiesOf } from "@storybook/react";
-import { random, find, remove } from "lodash";
-import { MemoryRouter } from "react-router";
+import { action } from "@storybook/addon-actions";
+
+import { MemoryRouter, Route } from "react-router";
 
 import styled from "styled-components";
 
@@ -14,11 +15,11 @@ const Wrapper = styled.div`
 
 const questionnaire = {
   title: "Questionnaire title",
-  id: "1",
+  id: "0",
   sections: [
     {
       title: "Section 1",
-      id: "0",
+      id: "1",
       pages: [
         {
           title: "Question 1.1",
@@ -33,86 +34,57 @@ const questionnaire = {
   ]
 };
 
-class QuestionnaireNavWithState extends Component {
-  static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      questionnaire: props.questionnaire
-    };
-  }
-
-  getNewPage = (sectionId, pageId) => ({
-    id: random(100).toString(),
-    title: `Question ${sectionId + 1}.${pageId}`
-  });
-
-  handleAddPage = sectionId => {
-    const newPage = this.getNewPage(
-      sectionId,
-      questionnaire.sections[sectionId].pages.length + 1
-    );
-    const section = questionnaire.sections[sectionId];
-    section.pages.push(newPage);
-
-    this.setState({ questionnaire });
-
-    return Promise.resolve({ section });
-  };
-
-  handleAddSection = () => {
-    const id = questionnaire.sections.length.toString();
-    const section = {
-      id,
-      title: `Section ${id + 1}`,
-      pages: [this.getNewPage(id, 1)]
-    };
-
-    questionnaire.sections.push(section);
-    this.setState({ questionnaire });
-
-    return Promise.resolve(section);
-  };
-
-  handleDeletePage = (sectionId, pageId) => {
-    const section = find(questionnaire.sections, { id: sectionId });
-    remove(section.pages, { id: pageId });
-
-    this.setState({ questionnaire });
-  };
-
-  handleDeleteSection = sectionId => {
-    remove(questionnaire.sections, { id: sectionId });
-    this.setState({ questionnaire });
-  };
-
-  handleUpdateQuestionnaire = ({ title }) => {
-    questionnaire.title = title;
-    this.setState({ questionnaire });
-  };
-
-  render() {
-    return (
-      <NavigationSidebar
-        questionnaire={questionnaire}
-        onAddPage={this.handleAddPage}
-        onAddSection={this.handleAddSection}
-        onDeletePage={this.handleDeletePage}
-        onDeleteSection={this.handleDeleteSection}
-        onUpdateQuestionnaire={this.handleUpdateQuestionnaire}
-      />
-    );
-  }
-}
+const props = {
+  questionnaire,
+  onAddPage: action("Add Page"),
+  onAddSection: action("Add Section"),
+  onUpdateQuestionnaire: action("onUpdateQuestionnaire")
+};
 
 storiesOf("NavigationSidebar", module)
   .addDecorator(story => (
-    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    <MemoryRouter
+      initialEntries={["/questionnaire/0/design/1/2"]}
+      initialIndex={0}
+    >
+      <Route
+        path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+        exact={false}
+        render={story}
+      />
+    </MemoryRouter>
   ))
   .addDecorator(story => <Wrapper>{story()}</Wrapper>)
-  .add("Default", () => {
-    return <QuestionnaireNavWithState questionnaire={questionnaire} />;
+  .add("Single section", () => {
+    return <NavigationSidebar {...props} />;
+  })
+  .add("Multiple sections", () => {
+    const { questionniare, ...otherProps } = props;
+    const questionnaireWithMultipleSection = {
+      ...questionnaire,
+      sections: [
+        ...questionnaire.sections,
+        {
+          title: "Section 2",
+          id: "4",
+          pages: [
+            {
+              title: "Question 2.1",
+              id: "5"
+            },
+            {
+              title: "Question 2.2",
+              id: "6"
+            }
+          ]
+        }
+      ]
+    };
+
+    return (
+      <NavigationSidebar
+        questionnaire={questionnaireWithMultipleSection}
+        {...otherProps}
+      />
+    );
   });

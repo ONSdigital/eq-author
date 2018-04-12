@@ -15,7 +15,7 @@ export function addAnswerType(answerType) {
 }
 
 const extractUrlVars = hash => {
-  const URL_REGEX = /questionnaire\/(\d+)\/design\/(\d+)\/(\d+)/;
+  const URL_REGEX = /questionnaire\/(\d+)\/design\/(\d+)\/?(\d+)?/;
   const [, questionnaireId, sectionId, pageId] = hash.match(URL_REGEX) || [];
 
   return { questionnaireId, sectionId, pageId };

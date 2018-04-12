@@ -69,6 +69,7 @@ export class Menu extends React.Component {
     const currentSectionIndex = findIndex(questionnaire.sections, {
       id: sectionId
     });
+
     const currentSection = questionnaire.sections[currentSectionIndex];
     const currentPageIndex = findIndex(currentSection.pages, { id: pageId });
 

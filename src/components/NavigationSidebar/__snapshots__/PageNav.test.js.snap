@@ -1,23 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageNav PageNavItem should render 1`] = `
-<PageNav__StyledPageItem
-  data-test="page-item"
->
-  <PageNav__Link
-    activeClassName="selected"
-    aria-disabled={false}
-    to="/questionnaire/1/design/3/2"
-  >
-    <PageNav__LinkText
-      fade={false}
-    >
-      Page
-    </PageNav__LinkText>
-  </PageNav__Link>
-</PageNav__StyledPageItem>
-`;
-
 exports[`PageNav should render 1`] = `
 <TransitionGroup
   childFactory={[Function]}

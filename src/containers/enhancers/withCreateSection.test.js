@@ -1,7 +1,7 @@
 import {
   mapMutateToProps,
   createUpdater,
-  redirectToNewPage
+  redirectToNewSection
 } from "./withCreateSection";
 import fragment from "graphql/questionnaireFragment.graphql";
 import { getLink } from "utils/UrlUtils";
@@ -63,12 +63,12 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
     });
   });
 
-  describe("redirectToNewPage", () => {
+  describe("redirectToNewSection", () => {
     it("should redirect to the correct url", () => {
-      redirectToNewPage(ownProps)(result);
+      redirectToNewSection(ownProps)(result);
 
       expect(history.push).toHaveBeenCalledWith(
-        getLink(questionnaire.id, newSection.id, newPage.id)
+        getLink(questionnaire.id, newSection.id)
       );
     });
   });
