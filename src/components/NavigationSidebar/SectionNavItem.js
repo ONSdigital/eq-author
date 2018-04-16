@@ -104,6 +104,7 @@ class SectionNavItem extends React.Component {
         innerRef={this.saveRef}
         duration={duration}
         {...otherProps}
+        data-test="section-item"
       >
         <SectionTitleWrapper>
           <SectionNavLink questionnaire={questionnaire} section={section} />

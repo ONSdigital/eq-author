@@ -160,7 +160,7 @@ class MovePageModal extends React.Component {
 
     return (
       <ItemSelectModal
-        data-test="section-modal"
+        testId="section-modal"
         title="Section"
         isOpen={isSectionSelectOpen}
         onClose={this.handleCloseSectionSelect}
@@ -187,7 +187,7 @@ class MovePageModal extends React.Component {
 
     return (
       <ItemSelectModal
-        data-test="position-modal"
+        testId="position-modal"
         title="Position"
         primaryText="Move page"
         isOpen={isPagePositionOpen}
@@ -219,7 +219,7 @@ class MovePageModal extends React.Component {
     const positionButtonId = uniqueId("MovePageModal");
 
     return (
-      <StyledModal isOpen={isOpen} onClose={onClose}>
+      <StyledModal isOpen={isOpen} onClose={onClose} testId="move-page-modal">
         <DialogHeader>
           <Message>
             <CenteredHeading>Move question</CenteredHeading>
@@ -228,7 +228,7 @@ class MovePageModal extends React.Component {
 
         <Label htmlFor={sectionButtonId}>Section</Label>
         <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
-          {getTextFromHTML(section.title)}
+          {getTextFromHTML(section.title) || "Untitled Section"}
         </Trigger>
         {this.renderSectionSelect(section)}
 

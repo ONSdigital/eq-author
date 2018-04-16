@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Question Page Editor should render 1`] = `
+exports[`DeleteConfirmDialog should render 1`] = `
 <DeleteConfirmDialog__DeleteConfirmModalDialog
   onClose={[Function]}
   page={
@@ -12,6 +12,7 @@ exports[`Question Page Editor should render 1`] = `
       "title": "",
     }
   }
+  testId="delete-confirm-modal"
 >
   <DialogHeader___default>
     <DialogMessage__Message>

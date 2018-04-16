@@ -117,6 +117,9 @@ export default {
     deleteQuestionPage: (root, args, ctx) => {
       return persistMutation(DataStore.deletePage(merge({}, args.input)));
     },
+    movePage: (root, args, ctx) => {
+      return persistMutation(DataStore.movePage({ ...args.input }));
+    },
     createAnswer: (root, args, ctx) => {
       return persistMutation(DataStore.createAnswer(merge({}, args.input)));
     },

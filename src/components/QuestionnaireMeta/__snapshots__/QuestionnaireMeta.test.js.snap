@@ -2,7 +2,6 @@
 
 exports[`QuestionnaireMeta should render 1`] = `
 <Form
-  data-test="questionnaire-settings-form"
   onSubmit={[Function]}
 >
   <Field

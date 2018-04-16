@@ -50,9 +50,10 @@ const ItemSelectModal = ({
   title,
   secondaryText,
   primaryText,
-  children
+  children,
+  ...otherProps
 }) => (
-  <PlainModal isOpen={isOpen} onClose={onClose}>
+  <PlainModal isOpen={isOpen} onClose={onClose} {...otherProps}>
     <form onSubmit={onConfirm}>
       <Fieldset>
         <Title>{title}</Title>

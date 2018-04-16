@@ -153,6 +153,7 @@ export class QPE extends React.Component {
             <MovePageButton
               icon={IconMovePage}
               onClick={this.handleOpenMovePageDialog}
+              data-test="btn-move-page"
             >
               Move page
             </MovePageButton>

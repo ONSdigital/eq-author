@@ -3,7 +3,7 @@ import DeleteConfirmDialog from "components/DeleteConfirmDialog";
 import React from "react";
 import { shallow } from "enzyme";
 
-describe("Question Page Editor", () => {
+describe("DeleteConfirmDialog", () => {
   let wrapper;
 
   let mockMutations;

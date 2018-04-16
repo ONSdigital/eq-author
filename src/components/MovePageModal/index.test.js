@@ -22,11 +22,12 @@ const buildQuestionnaire = () => ({
   sections: buildSections(2)
 });
 
-const sel = id => `[data-test="${id}"]`;
-const getSectionModal = wrapper => wrapper.find(sel("section-modal"));
-const getSectionSelect = wrapper => wrapper.find(sel("section-select"));
-const getPositionModal = wrapper => wrapper.find(sel("position-modal"));
-const getPositionSelect = wrapper => wrapper.find(sel("position-select"));
+const byId = id => `[testId="${id}"]`;
+const byName = n => `[name="${n}"]`;
+const getSectionModal = wrapper => wrapper.find(byId("section-modal"));
+const getSectionSelect = wrapper => wrapper.find(byName("section"));
+const getPositionModal = wrapper => wrapper.find(byId("position-modal"));
+const getPositionSelect = wrapper => wrapper.find(byName("position"));
 
 describe("MovePageModal/MovePageModal", () => {
   const questionnaire = buildQuestionnaire();
