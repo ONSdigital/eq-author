@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`QuestionnaireLink should link to section if cannot link to page 1`] = `"/questionnaire/1/design/1"`;
+
 exports[`QuestionnaireLink should render 1`] = `
 .c0 {
   text-decoration: none;
