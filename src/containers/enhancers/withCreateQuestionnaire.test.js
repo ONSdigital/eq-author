@@ -71,7 +71,7 @@ describe("withCreateQuestionnaire", () => {
 
     beforeEach(() => {
       data = {
-        questionnaires: [{ id: "1" }, { id: "2" }]
+        questionnaires: [{ id: "2" }, { id: "1" }]
       };
 
       readQuery = jest.fn(() => data);
@@ -96,7 +96,7 @@ describe("withCreateQuestionnaire", () => {
       expect(writeQuery).toHaveBeenCalledWith({
         query: getQuestionnaireList,
         data: {
-          questionnaires: [{ id: "1" }, { id: "2" }, newQuestionnaire]
+          questionnaires: [newQuestionnaire, { id: "2" }, { id: "1" }]
         }
       });
     });

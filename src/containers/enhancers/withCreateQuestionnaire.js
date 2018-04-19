@@ -35,7 +35,7 @@ export const updateQuestionnaireList = (
   { data: { createQuestionnaire } }
 ) => {
   const data = proxy.readQuery({ query: getQuestionnaireList });
-  data.questionnaires.push(createQuestionnaire);
+  data.questionnaires.unshift(createQuestionnaire);
   proxy.writeQuery({ query: getQuestionnaireList, data });
 };
 
