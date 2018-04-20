@@ -5,16 +5,14 @@ exports[`SectionNav should render 1`] = `
   childFactory={[Function]}
   component={[Function]}
 >
-  <CSSTransition
-    classNames="section"
+  <NavItemTransition
+    in={false}
     key="3"
     onEntered={[Function]}
-    onExit={[Function]}
-    timeout={200}
+    timeout={300}
   >
     <SectionNavItem
-      duration={200}
-      onAddPage={[Function]}
+      isActive={[Function]}
       questionnaire={
         Object {
           "id": "1",
@@ -47,6 +45,6 @@ exports[`SectionNav should render 1`] = `
         }
       }
     />
-  </CSSTransition>
+  </NavItemTransition>
 </TransitionGroup>
 `;

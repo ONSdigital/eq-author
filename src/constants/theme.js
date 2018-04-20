@@ -11,7 +11,7 @@ export const colors = {
   borders: "#EAEAEA",
   black: "#333333",
   white: "#FFFFFF",
-  highlight: "#FDBD56"
+  highlight: "#008ad2"
 };
 
 colors.primary = colors.blue;

@@ -5,8 +5,8 @@ exports[`PageNav should render 1`] = `
   childFactory={[Function]}
   component={[Function]}
 >
-  <CSSTransition
-    classNames="page"
+  <NavItemTransition
+    in={false}
     key="2"
     onEntered={[Function]}
     timeout={300}
@@ -17,6 +17,6 @@ exports[`PageNav should render 1`] = `
       sectionId="3"
       title="Page"
     />
-  </CSSTransition>
+  </NavItemTransition>
 </TransitionGroup>
 `;

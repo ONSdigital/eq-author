@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddMenu should render 1`] = `
+<div
+  onAdd={[Function]}
+>
+  <Popout
+    horizontalAlignment="left"
+    offsetX="4.9em"
+    offsetY="-1.6em"
+    onToggleOpen={[Function]}
+    open={false}
+    transition={[Function]}
+    trigger={
+      <AddMenu__AddButton
+        data-test="btn-add"
+      >
+        <IconText
+          hideText={false}
+          icon={[Function]}
+        >
+          Add
+        </IconText>
+      </AddMenu__AddButton>
+    }
+    verticalAlignment="top"
+  >
+    <AddMenu__AddMenuWindow
+      data-test="addmenu-window"
+    >
+      <AddMenu__AddMenuButton
+        data-test="btn-add-question-page"
+        onClick={[Function]}
+        primary={true}
+      >
+        Question Page
+      </AddMenu__AddMenuButton>
+      <AddMenu__AddMenuButton
+        data-test="btn-add-section"
+        onClick={[Function]}
+        primary={true}
+      >
+        Section
+      </AddMenu__AddMenuButton>
+    </AddMenu__AddMenuWindow>
+  </Popout>
+</div>
+`;

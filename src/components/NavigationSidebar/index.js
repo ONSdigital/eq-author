@@ -5,31 +5,14 @@ import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
-import Button from "components/Button";
-import PlusIcon from "./icon-plus.svg?inline";
 import ScrollPane from "components/ScrollPane";
-import IconText from "components/IconText";
-
-const navBackground = "#4A4A4A";
-const textInverted = "#E1E1E1";
 
 const Container = styled.div`
-  background: ${navBackground};
-  color: ${textInverted};
+  background: ${colors.darkBlue};
+  color: ${colors.white};
   display: flex;
   flex-direction: column;
   height: 100%;
-`;
-
-const AddSection = styled.div`
-  background: ${navBackground};
-  border-top: 1px solid #c3c3c3;
-  padding: 0.5em;
-  position: sticky;
-  z-index: 99999;
-  bottom: 0;
-  left: 0;
-  flex: 0;
 `;
 
 const NavigationScrollPane = styled(ScrollPane)`
@@ -41,47 +24,55 @@ const NavigationScrollPane = styled(ScrollPane)`
 `;
 
 class NavigationSidebar extends Component {
+  state = {
+    addMenuOpen: false
+  };
+
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     onAddPage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
-    onUpdateQuestionnaire: PropTypes.func.isRequired
+    onUpdateQuestionnaire: PropTypes.func.isRequired,
+    currentPageId: PropTypes.string,
+    page: CustomPropTypes.page,
+    section: CustomPropTypes.section.isRequired
   };
 
-  handleAddSectionClick = () => {
-    this.props.onAddSection(this.props.questionnaire.id);
+  handleAddSection = () => {
+    const { questionnaire, onAddSection } = this.props;
+    onAddSection(questionnaire.id);
   };
 
-  handleAddPage = (sectionId, position) => {
-    this.props.onAddPage(sectionId, position);
+  handleAddPage = () => {
+    const { onAddPage, section, page } = this.props;
+    onAddPage(section.id, page ? page.position + 1 : 0);
   };
 
   render() {
-    const { questionnaire, onUpdateQuestionnaire } = this.props;
+    const {
+      questionnaire,
+      onUpdateQuestionnaire,
+      section,
+      currentPageId
+    } = this.props;
 
     return (
       <Container data-test="side-nav">
         <NavigationHeader
           questionnaire={questionnaire}
           onUpdateQuestionnaire={onUpdateQuestionnaire}
+          onAddSection={this.handleAddSection}
+          onAddPage={this.handleAddPage}
+          data-test="nav-section-header"
         />
         <NavigationScrollPane>
           <SectionNav
+            currentPageId={currentPageId}
+            currentSectionId={section.id}
             transitionDuration={200}
             questionnaire={questionnaire}
-            onAddPage={this.handleAddPage}
           />
         </NavigationScrollPane>
-        <AddSection>
-          <Button
-            variant="tertiary-light"
-            onClick={this.handleAddSectionClick}
-            data-test="btn-add-section"
-            small
-          >
-            <IconText icon={PlusIcon}>Add section</IconText>
-          </Button>
-        </AddSection>
       </Container>
     );
   }

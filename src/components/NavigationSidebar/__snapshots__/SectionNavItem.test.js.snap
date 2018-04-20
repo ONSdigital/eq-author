@@ -6,40 +6,15 @@ exports[`SectionNavItem should render 1`] = `
   duration={123}
   onAddPage={[Function]}
 >
-  <SectionNavItem__SectionTitleWrapper>
-    <withRouter(UnwrappedSectionNavLink)
-      questionnaire={
-        Object {
-          "id": "1",
-          "sections": Array [
-            Object {
-              "id": "3",
-              "pages": Array [
-                Object {
-                  "id": "2",
-                  "title": "Page",
-                },
-              ],
-              "title": "Section",
-            },
-          ],
-          "title": "Questionnaire",
-        }
-      }
-      section={
-        Object {
-          "id": "3",
-          "pages": Array [
-            Object {
-              "id": "2",
-              "title": "Page",
-            },
-          ],
-          "title": "Section",
-        }
-      }
-    />
-  </SectionNavItem__SectionTitleWrapper>
+  <NavLink
+    data-test="nav-section-link"
+    icon={[Function]}
+    isActive={[Function]}
+    title="Section"
+    to="/questionnaire/1/design/3"
+  >
+    Section
+  </NavLink>
   <PageNav
     questionnaire={
       Object {
@@ -72,11 +47,5 @@ exports[`SectionNavItem should render 1`] = `
       }
     }
   />
-  <SectionNavItem__AddPageBtn
-    data-test="btn-add-page"
-    onClick={[Function]}
-  >
-    Add question
-  </SectionNavItem__AddPageBtn>
 </SectionNavItem__StyledSectionNavItem>
 `;

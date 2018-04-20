@@ -18,6 +18,7 @@ describe("QuestionnaireDesignPage", () => {
     guidance: "",
     title: "",
     type: "General",
+    position: 0,
     answers: [answer]
   };
 
@@ -67,6 +68,9 @@ describe("QuestionnaireDesignPage", () => {
 
   it("should call onAddPage when add question page button clicked", () => {
     wrapper.find("[data-test='btn-add-page-2']").simulate("click");
-    expect(mockHandlers.onAddPage).toHaveBeenCalledWith(section.id);
+    expect(mockHandlers.onAddPage).toHaveBeenCalledWith(
+      section.id,
+      page.position + 1
+    );
   });
 });

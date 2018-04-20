@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
-    <title>icon-add-circle</title>
+    <title>icon-plus</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="icon-add-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M16,8.92011719 C12.0919047,8.92011719 8.92011719,12.0919047 8.92011719,16 C8.92011719,19.9080953 12.0919047,23.0798828 16,23.0798828 C19.9080953,23.0798828 23.0798828,19.9080953 23.0798828,16 C23.0798828,12.0919047 19.9080953,8.92011719 16,8.92011719 Z M19.5399414,16.7079883 L16.7079883,16.7079883 L16.7079883,19.5399414 L15.2920117,19.5399414 L15.2920117,16.7079883 L12.4600586,16.7079883 L12.4600586,15.2920117 L15.2920117,15.2920117 L15.2920117,12.4600586 L16.7079883,12.4600586 L16.7079883,15.2920117 L19.5399414,15.2920117 L19.5399414,16.7079883 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+    <g id="icon-plus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Icon" fill="#4A4A4A" points="17 17 17 22 15 22 15 17 10 17 10 15 15 15 15 10 17 10 17 15 22 15 22 17"></polygon>
     </g>
 </svg>

@@ -1,5 +1,5 @@
 import { shallow } from "enzyme";
-import SectionNavItem, { AddPageBtn } from "./SectionNavItem";
+import SectionNavItem from "./SectionNavItem";
 import React from "react";
 
 describe("SectionNavItem", () => {
@@ -22,19 +22,12 @@ describe("SectionNavItem", () => {
         section={section}
         onAddPage={handleAddPage}
         duration={123}
+        isActive={jest.fn()}
       />
     );
   });
 
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should handle 'add page' button clicks", () => {
-    wrapper.find(AddPageBtn).simulate("click");
-    expect(handleAddPage).toHaveBeenCalledWith(
-      section.id,
-      section.pages.length
-    );
   });
 });

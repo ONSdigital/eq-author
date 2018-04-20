@@ -1,44 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavigationHeader should render 1`] = `
-<NavigationHeader__IconList>
-  <li>
-    <RouteButton
-      small={true}
-      to="/"
-      variant="tertiary-light"
-    >
-      <IconText
-        hideText={true}
-        icon={[Function]}
-      >
-        Home
-      </IconText>
-    </RouteButton>
-  </li>
-  <li>
-    <Button
-      data-test="settings-btn"
-      highlightOnHover={false}
-      onClick={[Function]}
-      small={true}
-      type="button"
-      variant="tertiary-light"
-    >
-      <IconText
-        hideText={false}
-        icon={[Function]}
-      >
-        Settings
-      </IconText>
-    </Button>
-    <QuestionnaireSettingsModal
-      confirmText="Apply"
-      isOpen={false}
-      onClose={[Function]}
-      onSubmit={[Function]}
-      questionnaire={Object {}}
+<React.Fragment>
+  <NavigationHeader__NavigationHeaderRow>
+    <NavigationHeader__IconList>
+      <NavigationHeader__IconListItem>
+        <RouteButton
+          small={true}
+          to="/"
+          variant="tertiary-light"
+        >
+          <IconText
+            hideText={true}
+            icon={[Function]}
+          >
+            Home
+          </IconText>
+        </RouteButton>
+      </NavigationHeader__IconListItem>
+      <NavigationHeader__IconListItem>
+        <Button
+          data-test="settings-btn"
+          highlightOnHover={false}
+          onClick={[Function]}
+          small={true}
+          type="button"
+          variant="tertiary-light"
+        >
+          <IconText
+            hideText={false}
+            icon={[Function]}
+          >
+            Settings
+          </IconText>
+        </Button>
+        <QuestionnaireSettingsModal
+          confirmText="Apply"
+          isOpen={false}
+          onClose={[Function]}
+          onSubmit={[Function]}
+          questionnaire={Object {}}
+        />
+      </NavigationHeader__IconListItem>
+    </NavigationHeader__IconList>
+  </NavigationHeader__NavigationHeaderRow>
+  <NavigationHeader__NavigationHeaderRow>
+    <NavigationHeader__StyledAddMenu
+      addMenuOpen={false}
+      data-test="add-menu"
+      onAddMenuToggle={[Function]}
+      onAddPage={[Function]}
+      onAddSection={[Function]}
     />
-  </li>
-</NavigationHeader__IconList>
+  </NavigationHeader__NavigationHeaderRow>
+</React.Fragment>
 `;

@@ -4,7 +4,6 @@ import SectionNav from "./SectionNav";
 
 describe("SectionNav", () => {
   let wrapper;
-  let handleAddPage;
 
   const page = { id: "2", title: "Page" };
   const section = { id: "3", title: "Section", pages: [page] };
@@ -15,10 +14,12 @@ describe("SectionNav", () => {
   };
 
   beforeEach(() => {
-    handleAddPage = jest.fn();
-
     wrapper = shallow(
-      <SectionNav questionnaire={questionnaire} onAddPage={handleAddPage} />
+      <SectionNav
+        questionnaire={questionnaire}
+        currentSectionId={section.id}
+        currentPageId={page.id}
+      />
     );
   });
 

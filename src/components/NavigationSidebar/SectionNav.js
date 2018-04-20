@@ -3,31 +3,29 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
+import NavItemTransition from "./NavItemTransition";
 import SectionNavItem from "./SectionNavItem";
 import scrollIntoView from "utils/scrollIntoView";
 
 const NavList = styled.ol`
-  margin: 0;
+  margin: 0 0 1em;
   padding: 0;
   list-style: none;
+  font-weight: bold;
 `;
 
-const duration = 200;
-
 class SectionNav extends Component {
+  sectionItems = [];
+
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
-    onAddPage: PropTypes.func.isRequired
-  };
-
-  handleSectionExit = node => {
-    const { height } = node.getBoundingClientRect();
-    node.style.height = `${height}px`;
+    currentSectionId: PropTypes.string.isRequired,
+    currentPageId: PropTypes.string
   };
 
   render() {
-    const { questionnaire, onAddPage } = this.props;
+    const { questionnaire, currentSectionId, currentPageId } = this.props;
     return (
       <TransitionGroup component={NavList}>
         {questionnaire.sections
@@ -36,20 +34,15 @@ class SectionNav extends Component {
             number: i + 1
           }))
           .map((section, sectionNum) => (
-            <CSSTransition
-              key={section.id}
-              timeout={duration}
-              classNames="section"
-              onExit={this.handleSectionExit}
-              onEntered={scrollIntoView}
-            >
+            <NavItemTransition key={section.id} onEntered={scrollIntoView}>
               <SectionNavItem
                 questionnaire={questionnaire}
                 section={section}
-                duration={duration}
-                onAddPage={onAddPage}
+                isActive={function() {
+                  return currentSectionId === section.id && !currentPageId;
+                }}
               />
-            </CSSTransition>
+            </NavItemTransition>
           ))}
       </TransitionGroup>
     );

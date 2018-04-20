@@ -9,11 +9,11 @@ export const redirectToNewPage = ({ history, questionnaireId }) => page => {
   history.push(getLink(questionnaireId, section.id, id));
 };
 
-export const createUpdater = sectionId => (proxy, result) => {
+export const createUpdater = (sectionId, position) => (proxy, result) => {
   const id = `Section${sectionId}`;
   const section = proxy.readFragment({ id, fragment });
 
-  section.pages.push(result.data.createQuestionPage);
+  section.pages.splice(position, 0, result.data.createQuestionPage);
 
   proxy.writeFragment({
     id,
@@ -31,7 +31,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       position
     };
 
-    const update = createUpdater(sectionId);
+    const update = createUpdater(sectionId, position);
 
     return mutate({
       variables: { input: page },
