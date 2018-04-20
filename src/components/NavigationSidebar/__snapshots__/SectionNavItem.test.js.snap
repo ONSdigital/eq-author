@@ -4,9 +4,7 @@ exports[`SectionNavItem should render 1`] = `
 <SectionNavItem__StyledSectionNavItem
   data-test="section-item"
   duration={123}
-  innerRef={[Function]}
   onAddPage={[Function]}
-  saveSectionItemRef={[Function]}
 >
   <SectionNavItem__SectionTitleWrapper>
     <withRouter(UnwrappedSectionNavLink)

@@ -82,8 +82,7 @@ class SectionNavItem extends React.Component {
     questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
     section: CustomPropTypes.section.isRequired,
-    duration: PropTypes.number.isRequired,
-    saveSectionItemRef: PropTypes.func.isRequired
+    duration: PropTypes.number.isRequired
   };
 
   handleAddPage = () => {
@@ -91,17 +90,11 @@ class SectionNavItem extends React.Component {
     onAddPage(section.id, section.pages.length);
   };
 
-  saveRef = elem => {
-    const { section, saveSectionItemRef } = this.props;
-    saveSectionItemRef(section.id, elem);
-  };
-
   render() {
     const { questionnaire, section, duration, ...otherProps } = this.props;
 
     return (
       <StyledSectionNavItem
-        innerRef={this.saveRef}
         duration={duration}
         {...otherProps}
         data-test="section-item"

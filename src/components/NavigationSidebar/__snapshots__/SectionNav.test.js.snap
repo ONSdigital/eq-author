@@ -8,6 +8,7 @@ exports[`SectionNav should render 1`] = `
   <CSSTransition
     classNames="section"
     key="3"
+    onEntered={[Function]}
     onExit={[Function]}
     timeout={200}
   >
@@ -32,7 +33,6 @@ exports[`SectionNav should render 1`] = `
           "title": "Questionnaire",
         }
       }
-      saveSectionItemRef={[Function]}
       section={
         Object {
           "id": "3",
