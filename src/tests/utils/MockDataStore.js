@@ -1,5 +1,8 @@
 import { values, merge, forEach, remove, filter, includes } from "lodash";
 
+const orderCreatedAtDesc = (a, b) =>
+  new Date(b.createdAt) - new Date(a.createdAt);
+
 class MockDataStore {
   constructor(seedData = {}) {
     this.counter = {
@@ -20,7 +23,7 @@ class MockDataStore {
   }
 
   getQuestionnaires() {
-    return values(this.questionnaires);
+    return values(this.questionnaires).sort(orderCreatedAtDesc);
   }
 
   getQuestionnaire(id) {
