@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import { UnconnectedSavingIndicator } from "components/SavingIndicator";
 
 jest.useFakeTimers();
@@ -16,36 +16,42 @@ describe("SavingIndicator", () => {
     jest.runTimersToTime(currentTime);
   };
 
+  const findIndicator = wrapper =>
+    wrapper.find(`[data-test="saving-indicator"]`);
+
   it("should render when starting saving", () => {
     const wrapper = shallow(<UnconnectedSavingIndicator isSaving={false} />);
     wrapper.setProps({ isSaving: true });
-    expect(wrapper).toMatchSnapshot();
+
+    expect(findIndicator(wrapper).exists()).toBe(true);
   });
 
   it("should show spinner for at least one second", () => {
-    const wrapper = mount(<UnconnectedSavingIndicator isSaving={false} />);
+    const wrapper = shallow(<UnconnectedSavingIndicator isSaving={false} />);
 
     wrapper.setProps({ isSaving: true });
     advanceByTime(250);
-    expect(wrapper).toMatchSnapshot();
+    expect(findIndicator(wrapper).exists()).toBe(true);
 
     wrapper.setProps({ isSaving: false });
-    expect(wrapper).toMatchSnapshot();
+    expect(findIndicator(wrapper).exists()).toBe(true);
 
     advanceByTime(1000);
-    expect(wrapper).toMatchSnapshot();
+    wrapper.update();
+    expect(findIndicator(wrapper).exists()).toBe(false);
   });
 
   it("should hide immediately if saving for more than one second", () => {
     const wrapper = shallow(<UnconnectedSavingIndicator isSaving={false} />);
 
     wrapper.setProps({ isSaving: true });
-    expect(wrapper).toMatchSnapshot();
+    expect(findIndicator(wrapper).exists()).toBe(true);
+
     advanceByTime(1500);
+    wrapper.update();
+    expect(findIndicator(wrapper).exists()).toBe(true);
 
-    expect(wrapper).toMatchSnapshot();
     wrapper.setProps({ isSaving: false });
-
-    expect(wrapper).toMatchSnapshot();
+    expect(findIndicator(wrapper).exists()).toBe(false);
   });
 });

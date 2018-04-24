@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import DateRange from "./index";
+import createMockStore from "tests/utils/createMockStore";
 
 const answer = {
   id: "1",
@@ -16,11 +17,7 @@ describe("DateRange", () => {
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
-    store = {
-      subscribe: jest.fn(),
-      dispatch: jest.fn(),
-      getState: jest.fn()
-    };
+    store = createMockStore();
   });
 
   it("should render", () => {

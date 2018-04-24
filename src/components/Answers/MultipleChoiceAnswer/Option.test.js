@@ -7,6 +7,7 @@ import { CHECKBOX, RADIO } from "constants/answer-types";
 
 import { shallow, mount } from "enzyme";
 import { merge } from "lodash";
+import createMockStore from "tests/utils/createMockStore";
 
 describe("Option", () => {
   let mockMutations;
@@ -42,11 +43,7 @@ describe("Option", () => {
       preventDefault: jest.fn()
     };
 
-    store = {
-      subscribe: jest.fn(),
-      dispatch: jest.fn(),
-      getState: jest.fn()
-    };
+    store = createMockStore();
 
     mockMutations = {
       onChange: jest.fn(),

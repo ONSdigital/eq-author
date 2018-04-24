@@ -4,6 +4,7 @@ import { shallow } from "enzyme";
 import gql from "graphql-tag";
 import { filter } from "graphql-anywhere";
 import { SynchronousPromise } from "synchronous-promise";
+import createMockStore from "tests/utils/createMockStore";
 
 const Component = props => <div {...props} />;
 
@@ -40,11 +41,7 @@ describe("withEntityEditor", () => {
     handleSubmit = jest.fn(() => Promise.resolve());
     handleStartRequest = jest.fn();
     handleEndRequest = jest.fn();
-    store = {
-      subscribe: jest.fn(),
-      dispatch: jest.fn(),
-      getState: jest.fn()
-    };
+    store = createMockStore();
     entity = {
       id: "1",
       title: "foo",
@@ -79,6 +76,7 @@ describe("withEntityEditor", () => {
 
   it("should pass filtered entity to callback onUpdate", () => {
     const newValue = "foo1";
+
     wrapper.simulate("change", { name: "title", value: newValue });
     wrapper.simulate("update");
 
@@ -89,6 +87,7 @@ describe("withEntityEditor", () => {
 
   it("should pass filtered entity to callback onSubmit", () => {
     const preventDefault = jest.fn();
+
     wrapper.simulate("submit", { preventDefault });
 
     expect(preventDefault).toHaveBeenCalled();
@@ -97,6 +96,7 @@ describe("withEntityEditor", () => {
 
   it("should update state when new entity passed via props", () => {
     const newEntity = { id: "2", title: "blah" };
+
     wrapper.setProps({ entity: newEntity });
 
     expect(wrapper.state("entity")).toEqual(newEntity);
@@ -108,6 +108,7 @@ describe("withEntityEditor", () => {
       title: "bar",
       __typename: "Bar"
     };
+
     wrapper.setProps({ entity: newEntity });
 
     expect(wrapper.state("entity")).toEqual(entity);
@@ -115,23 +116,27 @@ describe("withEntityEditor", () => {
 
   it("should only update when state is dirty", () => {
     const newValue = "foo1";
+
     wrapper.simulate("update");
+
     expect(handleUpdate).not.toHaveBeenCalled();
 
     wrapper.simulate("change", { name: "title", value: newValue });
-
     wrapper.simulate("update");
+
     expect(handleUpdate).toHaveBeenCalled();
   });
 
   it("should call startRequest on Update and stopRequest Completion", () => {
     const newValue = "foo1";
+
     wrapper.setProps({
       startRequest: handleStartRequest,
       endRequest: handleEndRequest
     });
     wrapper.simulate("change", { name: "title", value: newValue });
     wrapper.simulate("update");
+
     expect(handleStartRequest).toHaveBeenCalled();
     expect(handleEndRequest).toHaveBeenCalled();
   });
@@ -146,14 +151,17 @@ describe("withEntityEditor", () => {
       startRequest: handleStartRequest,
       endRequest: handleEndRequest
     });
+
     failingWrapper.simulate("change", { name: "title", value: newValue });
     failingWrapper.simulate("update");
+
     expect(handleStartRequest).toHaveBeenCalled();
     expect(handleEndRequest).toHaveBeenCalled();
   });
 
   it("should pass on any other props to wrapped component", () => {
     const newProps = { lol: "cats" };
+
     wrapper.setProps(newProps);
 
     expect(wrapper.props()).toEqual(expect.objectContaining(newProps));

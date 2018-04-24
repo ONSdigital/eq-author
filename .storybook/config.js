@@ -2,8 +2,14 @@ import React from "react";
 import { configure, addDecorator } from "@storybook/react";
 import { setOptions } from "@storybook/addon-options";
 import App from "components/App";
+import { Provider } from "react-redux";
+import configureStore from "redux/configureStore";
 
 addDecorator(story => <App>{story()}</App>);
+
+addDecorator(story => (
+  <Provider store={configureStore(null, null, {})}>{story()}</Provider>
+));
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);

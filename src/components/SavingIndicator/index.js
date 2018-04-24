@@ -1,30 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { keyframes, css } from "styled-components";
-import { colors } from "constants/theme";
-import savingIcon from "./icon-saving.svg";
+import styled, { keyframes } from "styled-components";
+import SavingIcon from "./icon-saving.svg?inline";
 import timer from "utils/timer";
 import { connect } from "react-redux";
 import { isSaving } from "redux/saving/reducer";
+import FadeTransition from "components/FadeTransition";
+import { TransitionGroup } from "react-transition-group";
+import IconText from "components/IconText";
 
-const visible = css`
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0s;
-`;
-
-const AnimatedSection = styled.div`
-  color: ${colors.text};
-  display: flex;
-  visibility: hidden;
+const Container = styled.div`
   position: absolute;
-  right: 1em;
-  top: 1em;
-  align-items: center;
-  opacity: 0;
-  transition: visibility 0s linear 0.5s, opacity 250ms ease-in-out;
-
-  ${props => (props.isSaving || props.timerRunning) && visible};
+  right: 0;
+  top: 0;
 `;
 
 const rotate360 = keyframes`
@@ -37,9 +25,7 @@ const rotate360 = keyframes`
   }
 `;
 
-const Icon = styled.img`
-  margin-right: 0.5em;
-  display: inline-block;
+const Icon = styled(SavingIcon)`
   animation: ${rotate360} 3s linear infinite;
 `;
 
@@ -87,16 +73,25 @@ export class UnconnectedSavingIndicator extends React.Component {
     this.timer.stop();
   }
 
-  render() {
+  renderIndicator() {
     return (
-      <AnimatedSection
-        isSaving={this.props.isSaving}
-        timerRunning={this.state.timerRunning}
-        aria-hidden={!(this.props.isSaving || this.state.timerRunning)}
-      >
-        <Icon src={savingIcon} />
-        Saving...
-      </AnimatedSection>
+      <FadeTransition>
+        <Container>
+          <IconText icon={Icon} data-test="saving-indicator">
+            Saving&hellip;
+          </IconText>
+        </Container>
+      </FadeTransition>
+    );
+  }
+
+  render() {
+    const isVisible = this.props.isSaving || this.state.timerRunning;
+
+    return (
+      <TransitionGroup>
+        {isVisible ? this.renderIndicator() : null}
+      </TransitionGroup>
     );
   }
 }

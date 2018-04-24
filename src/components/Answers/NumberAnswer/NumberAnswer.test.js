@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import NumberAnswer from "components/Answers/NumberAnswer";
+import createMockStore from "tests/utils/createMockStore";
 
 const answer = {
   label: "Lorem ipsum",
@@ -16,11 +17,7 @@ describe("NumberAnswer", () => {
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
-    store = {
-      subscribe: jest.fn(),
-      dispatch: jest.fn(),
-      getState: jest.fn()
-    };
+    store = createMockStore();
 
     component = shallow(
       <NumberAnswer

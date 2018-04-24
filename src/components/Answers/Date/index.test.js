@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Date from "components/Answers/Date";
+import createMockStore from "tests/utils/createMockStore";
 
 const answer = {
   id: "1",
@@ -16,12 +17,7 @@ describe("Date", () => {
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
-    store = {
-      subscribe: jest.fn(),
-      dispatch: jest.fn(),
-      getState: jest.fn()
-    };
-
+    store = createMockStore();
     wrapper = shallow(
       <Date
         onChange={handleChange}

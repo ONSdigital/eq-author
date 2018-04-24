@@ -6,6 +6,7 @@ import Option from "./Option";
 import { times } from "lodash";
 
 import { shallow } from "enzyme";
+import createMockStore from "tests/utils/createMockStore";
 
 describe("MultipleChoiceAnswer", () => {
   let wrapper;
@@ -37,12 +38,7 @@ describe("MultipleChoiceAnswer", () => {
     );
 
   beforeEach(() => {
-    store = {
-      subscribe: jest.fn(),
-      dispatch: jest.fn(),
-      getState: jest.fn()
-    };
-
+    store = createMockStore();
     mockHandlers = {
       onAddOption: jest.fn(() => Promise.resolve(option)),
       onUpdate: jest.fn(),

@@ -3,8 +3,6 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 import AnswerEditor from "./index";
-import { Provider } from "react-redux";
-import configureStore from "redux/configureStore";
 
 const CenterXY = styled.div`
   position: absolute;
@@ -49,13 +47,7 @@ class AnswerEditorWrapper extends React.Component {
   }
 }
 
-const store = configureStore();
-
-const CenterDecorator = storyFn => (
-  <Provider store={store}>
-    <CenterXY>{storyFn()}</CenterXY>
-  </Provider>
-);
+const CenterDecorator = storyFn => <CenterXY>{storyFn()}</CenterXY>;
 
 storiesOf("Answer Editor", module)
   .addDecorator(CenterDecorator)

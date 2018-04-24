@@ -3,8 +3,6 @@ import { storiesOf } from "@storybook/react";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
-import configureStore from "redux/configureStore";
-import { Provider } from "react-redux";
 
 const Background = styled.span`
   padding: 1em;
@@ -12,14 +10,8 @@ const Background = styled.span`
   max-width: 40em;
 `;
 
-const store = configureStore();
-
 storiesOf("QuestionnaireMeta", module)
-  .addDecorator(story => (
-    <Provider store={store}>
-      <Background>{story()}</Background>
-    </Provider>
-  ))
+  .addDecorator(story => <Background>{story()}</Background>)
   .add("Empty", () => (
     <QuestionnaireMeta
       questionnaire={{
