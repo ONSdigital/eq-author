@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarButton matches snapshot 1`] = `
+.c0 {
+  display: block;
+  opacity: 0.7;
+  padding: 0;
+  border: none;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.c0 svg {
+  vertical-align: middle;
+}
+
+.c0:hover {
+  background-color: #3B7A9E;
+  outline: none;
+}
+
+.c0:hover svg * {
+  fill: #FFFFFF;
+}
+
+.c0:focus {
+  outline: 3px solid #FDBD56;
+  outline-offset: -3px;
+}
+
+.c0[disabled] {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+<ToolbarButton>
+  <button
+    className="c0"
+    type="button"
+  >
+    Button
+  </button>
+</ToolbarButton>
+`;
+
+exports[`ToolbarButton should style appropriately when active 1`] = `
+.c0 {
+  display: block;
+  opacity: 0.7;
+  padding: 0;
+  border: none;
+  font-size: 1rem;
+  margin: 0;
+  opacity: 1 !important;
+  background-color: #3B7A9E;
+}
+
+.c0 svg {
+  vertical-align: middle;
+}
+
+.c0:hover {
+  background-color: #3B7A9E;
+  outline: none;
+}
+
+.c0:hover svg * {
+  fill: #FFFFFF;
+}
+
+.c0:focus {
+  outline: 3px solid #FDBD56;
+  outline-offset: -3px;
+}
+
+.c0[disabled] {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.c0 svg * {
+  fill: #FFFFFF;
+}
+
+<ToolbarButton
+  active={true}
+>
+  <button
+    className="c0"
+    type="button"
+  >
+    Button
+  </button>
+</ToolbarButton>
+`;

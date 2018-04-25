@@ -13,7 +13,6 @@ import { rgba } from "polished";
 import CustomPropTypes from "custom-prop-types";
 
 const textInverted = "#E1E1E1";
-const navHighlighted = "#008DD0";
 
 const Link = styled(NavLink)`
   text-decoration: none;
@@ -30,11 +29,11 @@ const Link = styled(NavLink)`
   }
 
   &:hover {
-    background: ${rgba(navHighlighted, 0.5)};
+    background: ${rgba(colors.blue, 0.5)};
   }
 
   &.selected {
-    background: ${navHighlighted};
+    background: ${colors.blue};
     color: white;
   }
 

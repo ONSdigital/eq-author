@@ -10,9 +10,9 @@ exports[`components/TextButton renders 1`] = `
   transition: border-color 200ms ease-out;
   text-transform: uppercase;
   font-weight: 600;
-  color: #008AD2;
+  color: #3B7A9E;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 0.85em;
   padding: 0.5em 0.75em;
   -webkit-letter-spacing: 0.05em;
@@ -32,11 +32,11 @@ exports[`components/TextButton renders 1`] = `
 }
 
 .c0:hover {
-  color: #00689f;
+  color: #2d5d79;
 }
 
 .c0:focus {
-  border-color: #008AD2;
+  border-color: #3B7A9E;
 }
 
 <button

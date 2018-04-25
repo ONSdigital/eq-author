@@ -1,68 +1,97 @@
-import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+
+import { propTypes } from "./propTypes";
+
 import { radius, colors } from "constants/theme";
-import { darken } from "polished";
 
-const darken10 = darken(0.1);
+export const primaryButton = css`
+  --color-text: ${colors.white};
+  --color-bg: ${colors.primary};
 
-const ClearButton = css`
-  background: transparent;
-  border: none;
-`;
-
-const PrimaryButton = css`
-  background-color: ${colors.blue};
-  color: white;
   position: relative;
   border: none;
 
-  &:focus,
   &:hover {
-    background-color: ${darken10(colors.blue)};
+    --color-text: ${colors.white};
+    --color-bg: ${colors.secondary};
+    border-color: var(--color-bg);
   }
 `;
 
-const SecondaryButton = css`
-  background-color: white;
-  color: ${colors.text};
-  border: 1px ${colors.borders} solid;
+export const secondaryButton = css`
+  --color-text: ${colors.primary};
+  --color-bg: ${colors.white};
+  border: 1px solid var(--color-text);
 
-  &:focus,
   &:hover {
-    background-color: ${colors.borders};
+    --color-text: ${colors.white};
+    --color-bg: ${colors.secondary};
+    border-color: var(--color-bg);
   }
 `;
 
-const TertiaryButton = css`
-  background-color: ${colors.red};
-  color: white;
-  position: relative;
-  border: none;
+export const tertiaryButton = css`
+  --color-text: ${colors.primary};
+  --color-bg: transparent;
+  border: 1px solid transparent;
 
-  &:focus,
   &:hover {
-    background-color: ${darken10(colors.red)};
+    --color-text: ${colors.white};
+    --color-bg: ${colors.primary};
+  }
+
+  &:focus {
+    border-color: ${colors.primary};
+    box-shadow: 0 0 0 3px ${colors.tertiary}, inset 0 0 0 1px ${colors.primary};
+    outline: none;
   }
 `;
 
-const StyledButton = styled.button`
-  padding: 0.8em 3em;
+export const tertiaryLightButton = css`
+  ${tertiaryButton};
+
+  --color-text: ${colors.white};
+
+  &:hover {
+    --color-text: ${colors.black};
+    --color-bg: ${colors.white};
+  }
+`;
+
+export const smallButton = css`
+  padding: 0;
+`;
+
+const Button = styled.button`
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  padding: 0.75em 2em;
   border-radius: ${radius};
-  font-size: 0.8em;
-  font-weight: 400;
+  font-size: 1em;
+  font-weight: 600;
   cursor: pointer;
   line-height: 1;
+  justify-content: center;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  transition: background-color 200ms ease-out;
-  letter-spacing: -0.2px;
+  text-decoration: none;
+  transition: all 100ms ease-out;
+  letter-spacing: 0;
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--color-bg);
 
   &:focus,
   &:active {
     outline-width: 0;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px ${colors.tertiary};
+    outline: none;
   }
 
   &[disabled] {
@@ -70,25 +99,21 @@ const StyledButton = styled.button`
     opacity: 0.6;
   }
 
-  ${props => props.primary && PrimaryButton};
-  ${props => props.secondary && SecondaryButton};
-  ${props => props.tertiary && TertiaryButton};
-  ${props => props.clear && ClearButton};
+  ${props => props.variant === "primary" && primaryButton};
+  ${props => props.variant === "secondary" && secondaryButton};
+  ${props => props.variant === "tertiary" && tertiaryButton};
+  ${props => props.variant === "tertiary-light" && tertiaryLightButton};
+  ${props => props.small && smallButton};
 `;
 
-const Button = ({ children, type, ...otherProps }) => (
-  <StyledButton {...otherProps} type={type}>
-    {children}
-  </StyledButton>
-);
-
 Button.propTypes = {
-  primary: PropTypes.bool,
-  secondary: PropTypes.bool,
-  tertiary: PropTypes.bool,
-  type: PropTypes.oneOf(["button", "submit"]),
-  clear: PropTypes.bool,
-  children: PropTypes.node
+  ...propTypes,
+  type: PropTypes.oneOf(["button", "submit"])
+};
+
+Button.defaultProps = {
+  type: "button",
+  variant: "primary"
 };
 
 export default Button;

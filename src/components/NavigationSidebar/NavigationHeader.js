@@ -1,23 +1,23 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
+
 import HomeIcon from "./icon-home.svg?inline";
 import SettingsIcon from "./icon-cog.svg?inline";
 
-import { Link } from "react-router-dom";
-
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
-import IconButton from "components/IconButton";
-import VisuallyHidden from "components/VisuallyHidden";
-import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
-import { colors } from "constants/theme";
+import Button from "components/Button";
+import RouteButton from "components/Button/RouteButton";
+import IconText from "components/IconText";
+
 import pipeP from "utils/pipeP";
 
 const IconList = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75em;
+  padding: 0.2em;
   margin: 0;
   z-index: 9999;
   border-bottom: 1px solid #c3c3c3;
@@ -26,27 +26,6 @@ const IconList = styled.ul`
   & > li {
     display: flex;
     align-items: center;
-  }
-`;
-
-const SettingsButton = styled(IconButton)`
-  padding: 0;
-  flex-direction: row-reverse;
-  font-size: 0.75em;
-  font-weight: bold;
-
-  &:focus {
-    outline-width: initial;
-  }
-
-  &:focus,
-  &:hover {
-    color: ${colors.white};
-  }
-
-  & svg {
-    margin-left: 0.25em;
-    margin-right: 0;
   }
 `;
 
@@ -73,21 +52,22 @@ class NavigationHeader extends React.Component {
     return (
       <IconList>
         <li>
-          <Link to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <HomeIconLink />
-          </Link>
+          <RouteButton variant="tertiary-light" small to="/">
+            <IconText icon={HomeIconLink} hideText>
+              Home
+            </IconText>
+          </RouteButton>
         </li>
         <li>
-          <SettingsButton
+          <Button
             data-test="settings-btn"
-            clear
+            variant="tertiary-light"
+            small
             onClick={this.handleModalOpen}
             highlightOnHover={false}
-            icon={SettingsIcon}
           >
-            Settings
-          </SettingsButton>
+            <IconText icon={SettingsIcon}>Settings</IconText>
+          </Button>
           <QuestionnaireSettingsModal
             isOpen={this.state.isModalOpen}
             onClose={this.handleModalClose}

@@ -114,7 +114,7 @@ class MultipleChoiceAnswer extends Component {
           <div>
             <Button
               type="button"
-              secondary
+              variant="secondary"
               onClick={this.handleAddOption}
               data-test="btn-add-option"
             >

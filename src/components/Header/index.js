@@ -1,31 +1,29 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { colors } from "constants/theme";
 
 import { raiseToast } from "redux/toast/actions";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import IconLink from "components/IconLink";
-import ButtonGroup from "components/ButtonGroup";
-import Breadcrumb from "components/Breadcrumb";
-import UserProfile from "components/UserProfile";
-import IconButton from "components/IconButton";
+import { Link } from "react-router-dom";
 
-import { Grid, Column } from "components/Grid";
+import Button from "components/Button";
+import LinkButton from "components/Button/LinkButton";
+import UserProfile from "components/UserProfile";
+
 import { getUser } from "redux/auth/reducer";
 import { signOutUser } from "redux/auth/actions";
 
 import logo from "./logo.svg";
 
 import shareIcon from "./icon-share.svg?inline";
-
 import previewIcon from "./icon-preview.svg?inline";
 
+import IconText from "components/IconText";
+
 const StyledHeader = styled.header`
-  height: 4em;
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -33,42 +31,58 @@ const StyledHeader = styled.header`
   color: ${colors.white};
   font-weight: 400;
   padding: 1em 1.5em;
+  height: 4em;
 `;
 
-const buttonStyles = css`
-  height: 3.5rem;
-  width: 3.5rem;
-  padding: 0.5rem;
+const QuestionnaireTitle = styled.div`
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: pre;
 `;
 
-const PreviewLink = styled(IconLink)`
-  ${buttonStyles};
+const Title = styled.h1`
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0 2em;
+  width: 100%;
+  text-align: center;
+  line-height: 1;
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
 `;
 
-const ShareButton = styled(IconButton)`
-  justify-content: center;
-  ${buttonStyles};
-
-  opacity: 0.9;
-  &:hover {
-    opacity: 1;
-  }
+const ShareButton = styled(Button)`
+  margin-left: 0.5em;
 `;
 
 export const StyledUserProfile = styled(UserProfile)`
-  ${buttonStyles};
   width: auto;
+  margin-left: 0.5em;
+`;
+
+const LogoContainer = styled.div`
+  flex: 1 0 25%;
 `;
 
 export const Logo = styled(Link)`
-  color: white;
-  position: relative;
-  text-decoration: none;
+  padding: 0.5em;
+  width: 6.5em;
+  display: flex;
+  align-items: center;
 `;
 
-export const UtilityBtns = styled(ButtonGroup)`
+const LogoImg = styled.img`
+  display: inline-block;
+  width: 100%;
+  height: auto;
+`;
+
+export const UtilityBtns = styled.div`
+  display: flex;
+  flex: 1 0 25%;
   justify-content: flex-end;
-  align-items: center;
 `;
 
 export class UnconnectedHeader extends React.Component {
@@ -82,6 +96,7 @@ export class UnconnectedHeader extends React.Component {
   displayToast = () => {
     this.props.raiseToast("ShareToast", "Preview link copied to clipboard");
   };
+
   getPreviewUrl(questionnaireId) {
     const timestamp = Date.now();
     const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
@@ -109,50 +124,48 @@ export class UnconnectedHeader extends React.Component {
 
   render() {
     const { questionnaire } = this.props;
+
     return (
       <StyledHeader>
-        <Grid align="center">
-          <Column cols={2}>
-            <Logo to="/" data-test="logo">
-              <img src={logo} alt="Author" />
-            </Logo>
-          </Column>
+        <LogoContainer>
+          <Logo to="/" data-test="logo">
+            <LogoImg src={logo} alt="Author" width={20} />
+          </Logo>
+        </LogoContainer>
+        <QuestionnaireTitle>
+          {questionnaire && (
+            <Title data-test="questionnaire-title">{questionnaire.title}</Title>
+          )}
+        </QuestionnaireTitle>
 
-          <Column>
-            {questionnaire && <Breadcrumb title={questionnaire.title} />}
-          </Column>
-
-          <Column>
-            <UtilityBtns horizontal>
-              {questionnaire && (
-                <React.Fragment>
-                  <PreviewLink
-                    href={this.getPreviewUrl(questionnaire.id)}
-                    icon={previewIcon}
-                    title="Preview"
-                    target="_blank"
-                  />
-                  <ShareButton
-                    test="Share"
-                    icon={shareIcon}
-                    title="Share"
-                    iconOnly
-                    onClick={this.handleShare}
-                    highlightOnHover={false}
-                  >
-                    Create link for sharing
-                  </ShareButton>
-                </React.Fragment>
-              )}
-              {this.props.user && (
-                <StyledUserProfile
-                  user={this.props.user}
-                  onSignOut={this.handleSignOut}
-                />
-              )}
-            </UtilityBtns>
-          </Column>
-        </Grid>
+        <UtilityBtns>
+          {questionnaire && (
+            <React.Fragment>
+              <LinkButton
+                href={this.getPreviewUrl(questionnaire.id)}
+                variant="tertiary-light"
+                data-test="btn-preview"
+                small
+              >
+                <IconText icon={previewIcon}>Preview</IconText>
+              </LinkButton>
+              <ShareButton
+                variant="tertiary-light"
+                onClick={this.handleShare}
+                data-test="btn-share"
+                small
+              >
+                <IconText icon={shareIcon}>Share</IconText>
+              </ShareButton>
+            </React.Fragment>
+          )}
+          {this.props.user && (
+            <StyledUserProfile
+              user={this.props.user}
+              onSignOut={this.handleSignOut}
+            />
+          )}
+        </UtilityBtns>
       </StyledHeader>
     );
   }

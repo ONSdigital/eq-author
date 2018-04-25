@@ -5,7 +5,7 @@ exports[`QuestionnaireLink should link to section if cannot link to page 1`] = `
 exports[`QuestionnaireLink should render 1`] = `
 .c0 {
   text-decoration: none;
-  color: #008AD2;
+  color: #3B7A9E;
   width: 100%;
   max-width: 33em;
   display: block;

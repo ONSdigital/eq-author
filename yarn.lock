@@ -3303,6 +3303,14 @@ draft-js@0.10.4:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
+draft-js@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.5.tgz#bfa9beb018fe0533dbb08d6675c371a6b08fa742"
+  dependencies:
+    fbjs "^0.8.15"
+    immutable "~3.7.4"
+    object-assign "^4.1.0"
+
 draftjs-to-html@^0.7.6:
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.7.6.tgz#95bc55aeeca6c6a7abc242c5616946704c6685c9"

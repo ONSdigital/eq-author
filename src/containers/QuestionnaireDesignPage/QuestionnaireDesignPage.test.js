@@ -66,7 +66,7 @@ describe("QuestionnaireDesignPage", () => {
   });
 
   it("should call onAddPage when add question page button clicked", () => {
-    wrapper.find("IconButton").simulate("click");
+    wrapper.find("[data-test='btn-add-page-2']").simulate("click");
     expect(mockHandlers.onAddPage).toHaveBeenCalledWith(section.id);
   });
 });

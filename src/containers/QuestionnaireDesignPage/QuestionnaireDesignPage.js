@@ -12,8 +12,9 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import ConnectedPropertiesPanel from "components/PropertiesPanel";
 import Nav from "components/Nav";
 import styled from "styled-components";
-import IconButton from "components/IconButton";
+import Button from "components/Button";
 import AddPage from "./icon-add-page.svg?inline";
+import IconText from "components/IconText";
 
 const Centered = styled.div`
   display: flex;
@@ -109,13 +110,14 @@ export class QuestionnaireDesignPage extends Component {
                 />
               </MainCanvas>
               <Centered>
-                <IconButton
-                  clear
+                <Button
+                  variant="tertiary"
+                  small
                   onClick={this.handleAddPageClick}
-                  icon={AddPage}
+                  data-test="btn-add-page-2"
                 >
-                  Add question page
-                </IconButton>
+                  <IconText icon={AddPage}>Add question page</IconText>
+                </Button>
               </Centered>
             </ScrollPane>
           </Column>

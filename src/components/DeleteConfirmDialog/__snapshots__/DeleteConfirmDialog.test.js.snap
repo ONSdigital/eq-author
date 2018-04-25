@@ -37,7 +37,8 @@ exports[`DeleteConfirmDialog should render 1`] = `
     <Button
       data-test="btn-cancel-modal"
       onClick={[Function]}
-      secondary={true}
+      type="button"
+      variant="secondary"
     >
       Cancel
     </Button>
@@ -45,7 +46,8 @@ exports[`DeleteConfirmDialog should render 1`] = `
       autoFocus={true}
       data-test="btn-delete-modal"
       onClick={[Function]}
-      tertiary={true}
+      type="button"
+      variant="primary"
     >
       Delete
     </Button>

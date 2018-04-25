@@ -35,6 +35,10 @@ const Text = styled.p`
 
 const SignInPanel = styled(Panel)`
   padding: 2em 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export class UnconnectedSignInPage extends React.Component {

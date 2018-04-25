@@ -28,6 +28,10 @@ const RoutingStatement = styled.div`
   border-bottom: 1px solid ${colors.borders};
 `;
 
+const RoutingToolbar = styled(Toolbar)`
+  padding-left: 1em;
+`;
+
 const RoutingRule = ({
   children,
   page,
@@ -39,7 +43,7 @@ const RoutingRule = ({
   canRoute
 }) => (
   <RoutingRuleCanvas id={getIdForObject(page)}>
-    <Toolbar>
+    <RoutingToolbar>
       <Title>{title}</Title>
       <Buttons>
         <IconButtonDelete
@@ -50,7 +54,7 @@ const RoutingRule = ({
           Delete
         </IconButtonDelete>
       </Buttons>
-    </Toolbar>
+    </RoutingToolbar>
 
     {children ? (
       <React.Fragment>

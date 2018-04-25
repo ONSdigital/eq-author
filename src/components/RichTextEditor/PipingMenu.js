@@ -10,7 +10,8 @@ import IconPiping from "./icon-piping.svg?inline";
 import { take, findIndex } from "lodash";
 import query from "graphql/getQuestionnairePiping.graphql";
 import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
-import IconButton from "components/IconButton";
+import ToolbarButton from "./ToolbarButton";
+import VisuallyHidden from "../VisuallyHidden";
 
 const validAnswerTypes = {
   [TEXTAREA]: true,
@@ -19,19 +20,11 @@ const validAnswerTypes = {
   [CURRENCY]: true
 };
 
-const StyledIconButton = styled(IconButton)`
-  outline: none;
-`;
-
 const PipingIconButton = props => (
-  <StyledIconButton
-    icon={IconPiping}
-    iconOnly
-    highlightOnHover={false}
-    {...props}
-  >
-    Pipe value
-  </StyledIconButton>
+  <ToolbarButton {...props}>
+    <IconPiping />
+    <VisuallyHidden>Pipe value</VisuallyHidden>
+  </ToolbarButton>
 );
 
 const MenuButton = styled(RMLMenuButton)`

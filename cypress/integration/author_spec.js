@@ -96,8 +96,9 @@ describe("eq-author", () => {
   it("Can change the questionnaire title", () => {
     cy.get(`[data-test="settings-btn"]`).click();
     setQuestionnaireSettings("Test Questionnaire");
-
-    cy.get("[data-test='breadcrumb']").should("contain", "Test Questionnaire");
+    cy
+      .get("[data-test='questionnaire-title']")
+      .should("contain", "Test Questionnaire");
   });
 
   it("Can create a new section", () => {

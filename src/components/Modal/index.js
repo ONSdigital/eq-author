@@ -3,28 +3,16 @@ import ReactModal from "react-modal";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { colors } from "constants/theme";
-import Button from "components/Button";
+import DeleteButton from "components/DeleteButton";
 
-const CloseButton = styled(Button).attrs({
-  clear: true,
-  "aria-label": "Close"
+const CloseButton = styled(DeleteButton).attrs({
+  "aria-label": "Close",
+  size: "medium"
 })`
   position: absolute;
   top: 0.25em;
-  right: 0.25em;
-  font-size: 2em;
-  padding: 0.25em 0.5em;
-  color: ${colors.lightGrey};
-  opacity: 0.7;
-
-  &:hover,
-  &:focus {
-    opacity: 1;
-  }
-
-  &:focus {
-    outline-width: initial;
-  }
+  right: 0.5em;
+  padding: 0;
 `;
 
 const ReactModalAdapter = ({ className, modalClassName, ...props }) => (

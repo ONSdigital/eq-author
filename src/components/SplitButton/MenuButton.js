@@ -1,36 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import Chevron from "./chevron.svg?inline";
-import { colors } from "constants/theme";
-import IconButton from "components/IconButton";
+import Chevron from "./icon-dropdown.svg?inline";
+import Button from "components/Button";
+import IconText from "components/IconText";
 
-const StyledChevron = styled(Chevron)`
-  height: 1em;
-  path {
-    stroke: ${colors.blue};
-  }
-`;
-
-const StyledIconButton = styled(IconButton)`
-  background: ${colors.white};
-  border: 1px solid ${colors.blue};
-  color: ${colors.blue};
+const StyledButton = styled(Button).attrs({
+  variant: "secondary"
+})`
   border-radius: 0 4px 4px 0;
   flex: 0;
-  padding: 0.7em 1em;
+  padding: 0.3em;
+  position: relative;
 
   &:focus {
-    color: ${colors.white};
-    background-color: ${colors.blue};
-    outline: 0;
-  }
-
-  &:focus ${StyledChevron} path {
-    stroke: ${colors.white};
-  }
-
-  &:hover ${StyledChevron} path {
-    fill: none;
+    z-index: 3;
   }
 `;
 
@@ -39,9 +22,11 @@ const StyledIconButton = styled(IconButton)`
 class MenuButton extends React.Component {
   render() {
     return (
-      <StyledIconButton icon={StyledChevron} iconOnly {...this.props}>
-        Show additional options
-      </StyledIconButton>
+      <StyledButton {...this.props}>
+        <IconText hideText icon={Chevron}>
+          Show additional options
+        </IconText>
+      </StyledButton>
     );
   }
 }

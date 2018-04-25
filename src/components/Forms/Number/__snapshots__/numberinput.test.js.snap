@@ -5,7 +5,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
   padding: 0.7em;
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #EAEAEA;
   font-size: 0.9em;
 }
@@ -16,7 +16,7 @@ exports[`components/Forms/Input Number should render correctly with spinner butt
 
 .c2:focus {
   outline: none;
-  border: 1px solid #008AD2;
+  border: 1px solid #3B7A9E;
 }
 
 .c0 {
@@ -226,7 +226,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
   padding: 0.7em;
   width: 100%;
   display: block;
-  border-radius: 2px;
+  border-radius: 4px;
   border: 1px solid #EAEAEA;
   font-size: 0.9em;
 }
@@ -237,7 +237,7 @@ exports[`components/Forms/Input Number should render correctly without spinner b
 
 .c2:focus {
   outline: none;
-  border: 1px solid #008AD2;
+  border: 1px solid #3B7A9E;
 }
 
 .c0 {

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import IconButton from "components/IconButton";
+import Button from "components/Button";
 import { BasicSection } from "components/EditorSurface/CanvasSection";
 import IconAddRule from "./icon-add-rule.svg?inline";
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
@@ -9,8 +9,9 @@ import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 import { colors } from "constants/theme";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
+import IconText from "components/IconText";
 
-const AddRuleButton = styled(IconButton)`
+const AddRuleButton = styled(Button)`
   margin: 2em auto;
 `;
 
@@ -29,12 +30,13 @@ const RoutingRuleset = ({
   <React.Fragment>
     {children}
     <AddRuleButton
-      icon={IconAddRule}
+      small
+      naked
       onClick={onAddRule}
       data-test="btn-add-rule"
       disabled={!canRoute}
     >
-      Add rule
+      <IconText icon={IconAddRule}>Add rule</IconText>
     </AddRuleButton>
     <RoutingRuleCanvas>
       <RoutingRuleResultSelector

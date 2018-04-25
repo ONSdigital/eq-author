@@ -13,6 +13,8 @@ exports[`containers/QuestionnairesPage should not render table whilst data is lo
         data-test="create-questionnaire"
         onClick={[Function]}
         primary={true}
+        type="button"
+        variant="primary"
       >
         Create
       </Button>
@@ -51,6 +53,8 @@ exports[`containers/QuestionnairesPage should render table when there are questi
         data-test="create-questionnaire"
         onClick={[Function]}
         primary={true}
+        type="button"
+        variant="primary"
       >
         Create
       </Button>
@@ -115,6 +119,8 @@ exports[`containers/QuestionnairesPage should render when there are no questionn
         data-test="create-questionnaire"
         onClick={[Function]}
         primary={true}
+        type="button"
+        variant="primary"
       >
         Create
       </Button>

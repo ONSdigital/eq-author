@@ -4,13 +4,22 @@ import { action } from "@storybook/addon-actions";
 import { UnconnectedHeader as Header } from "components/Header";
 import { MemoryRouter } from "react-router";
 
+const user = {
+  photoURL: "",
+  displayName: "Angelina McLongmoniker",
+  email: "test@test.com"
+};
+
 storiesOf("Header", module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("With Utility Buttons", () => (
     <Header
-      questionnaire={{ title: "My Questionnaire" }}
+      user={user}
+      questionnaire={{
+        title: "Morbi leo risus porta ac consectetur ac vestibulum at eros"
+      }}
       signOutUser={action("sign out user")}
       raiseToast={action("copied")}
     />
@@ -19,12 +28,5 @@ storiesOf("Header", module)
     <Header
       signOutUser={action("sign out user")}
       raiseToast={action("copied")}
-    />
-  ))
-  .add("With Breadcrumb", () => (
-    <Header
-      raiseToast={action("copied")}
-      questionnaire={{ title: "My Questionnaire" }}
-      signOutUser={action("sign out user")}
     />
   ));

@@ -4,7 +4,7 @@ exports[`components/RoutingRule should render children 1`] = `
 <RoutingRule__RoutingRuleCanvas
   id={null}
 >
-  <Toolbar>
+  <RoutingRule__RoutingToolbar>
     <RoutingRule__Title>
       Test
     </RoutingRule__Title>
@@ -17,7 +17,7 @@ exports[`components/RoutingRule should render children 1`] = `
         Delete
       </IconButtonDelete>
     </Toolbar__Buttons>
-  </Toolbar>
+  </RoutingRule__RoutingToolbar>
   <React.Fragment>
     <RoutingRule__RoutingStatement>
       <div>
@@ -105,7 +105,7 @@ exports[`components/RoutingRule should render empty message if no children are p
 <RoutingRule__RoutingRuleCanvas
   id={null}
 >
-  <Toolbar>
+  <RoutingRule__RoutingToolbar>
     <RoutingRule__Title>
       Test
     </RoutingRule__Title>
@@ -118,7 +118,7 @@ exports[`components/RoutingRule should render empty message if no children are p
         Delete
       </IconButtonDelete>
     </Toolbar__Buttons>
-  </Toolbar>
+  </RoutingRule__RoutingToolbar>
   <RoutingRuleEmpty
     onAddRule={[Function]}
     title="No routing rules exist for this question"

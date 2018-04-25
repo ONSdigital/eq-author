@@ -40,7 +40,7 @@ injectGlobal`
 
   a {
     color: ${colors.blue};
-    
+
     &:hover {
       text-decoration: none;
     }
