@@ -5,6 +5,7 @@ import CustomPropTypes from "custom-prop-types";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import PageNavItem from "./PageNavItem";
+import scrollIntoView from "utils/scrollIntoView";
 
 const duration = 300;
 
@@ -17,7 +18,12 @@ const NavList = styled.ol`
 const PageNav = ({ section, questionnaire }) => (
   <TransitionGroup component={NavList}>
     {section.pages.map(page => (
-      <CSSTransition key={page.id} timeout={duration} classNames="page">
+      <CSSTransition
+        key={page.id}
+        classNames="page"
+        timeout={duration}
+        onEntered={scrollIntoView}
+      >
         <PageNavItem
           title={page.title}
           pageId={page.id}

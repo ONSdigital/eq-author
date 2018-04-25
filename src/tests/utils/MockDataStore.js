@@ -165,6 +165,21 @@ class MockDataStore {
     return pageToDelete;
   }
 
+  movePage({ id, sectionId, position }) {
+    const page = this.getPage(id);
+
+    // remove from current section
+    const fromSection = this.getSection(page.sectionId);
+    fromSection.pages.splice(position, 1);
+
+    // add to new section
+    const toSection = this.getSection(sectionId);
+    toSection.pages.splice(position, 0, page);
+
+    // update page details
+    return merge(page, { sectionId, position });
+  }
+
   createAnswer(answer) {
     const id = (++this.counter.answer).toString();
     this.answers[id] = merge(

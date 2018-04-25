@@ -2,8 +2,10 @@ import {
   setQuestionnaireSettings,
   addAnswerType,
   assertHash,
-  typeIntoDraftEditor
+  typeIntoDraftEditor,
+  findByLabel
 } from "../utils";
+import { times } from "lodash";
 
 describe("eq-author", () => {
   it("Should redirect to the sign-in page", () => {
@@ -80,13 +82,21 @@ describe("eq-author", () => {
 
   it("Can delete a page", () => {
     cy.get("[data-test='btn-delete']").click();
-    cy.get("[data-test='btn-delete-modal']").click();
+
+    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+      cy
+        .get("button")
+        .contains("Delete")
+        .click();
+    });
+
     cy.get("[data-test='page-item']").should("have.length", 1);
   });
 
   it("Can change the questionnaire title", () => {
     cy.get(`[data-test="settings-btn"]`).click();
     setQuestionnaireSettings("Test Questionnaire");
+
     cy.get("[data-test='breadcrumb']").should("contain", "Test Questionnaire");
   });
 
@@ -146,24 +156,25 @@ describe("eq-author", () => {
   it("Can delete a section", () => {
     let prevHash;
 
-    cy
-      .get("[data-test='btn-delete']")
-      .click()
-      .hash()
-      .then(hash => {
-        prevHash = hash;
-      });
+    cy.hash().then(hash => {
+      prevHash = hash;
+    });
 
-    cy
-      .get("[data-test='btn-delete-modal']")
-      .click()
-      .then(() => {
-        assertHash(prevHash, {
-          questionnaireId: true,
-          sectionId: false,
-          pageId: false
-        });
+    cy.get("[data-test='btn-delete']").click();
+    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+      cy
+        .get("button")
+        .contains("Delete")
+        .click();
+    });
+
+    cy.then(() => {
+      assertHash(prevHash, {
+        questionnaireId: true,
+        sectionId: false,
+        pageId: false
       });
+    });
   });
 
   it("Can create checkboxes", () => {
@@ -248,20 +259,25 @@ describe("eq-author", () => {
   it("Should create a new page when deleting only page in section", () => {
     let prevHash;
 
-    cy
-      .hash()
-      .then(hash => {
-        prevHash = hash;
-        cy.get("[data-test='btn-delete']").click();
-        cy.get("[data-test='btn-delete-modal']").click();
-      })
-      .then(() => {
-        assertHash(prevHash, {
-          questionnaireId: true,
-          sectionId: true,
-          pageId: false
-        });
+    cy.hash().then(hash => {
+      prevHash = hash;
+    });
+
+    cy.get("[data-test='btn-delete']").click();
+    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+      cy
+        .get("button")
+        .contains("Delete")
+        .click();
+    });
+
+    cy.then(() => {
+      assertHash(prevHash, {
+        questionnaireId: true,
+        sectionId: true,
+        pageId: false
       });
+    });
   });
 
   it("Should create a new section when deleting only section", () => {
@@ -271,22 +287,90 @@ describe("eq-author", () => {
       .get(`[data-test="nav-section-link"]`)
       .first()
       .click();
-    cy
-      .get("[data-test='btn-delete']")
-      .click()
-      .hash()
-      .then(hash => {
-        prevHash = hash;
+
+    cy.hash().then(hash => {
+      prevHash = hash;
+    });
+
+    cy.get("[data-test='btn-delete']").click();
+    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+      cy
+        .get("button")
+        .contains("Delete")
+        .click();
+    });
+
+    cy.then(() => {
+      assertHash(prevHash, {
+        questionnaireId: true,
+        sectionId: false,
+        pageId: true
       });
+    });
+  });
+
+  it("can move pages within a section", () => {
     cy
-      .get("[data-test='btn-delete-modal']")
-      .click()
-      .then(() => {
-        assertHash(prevHash, {
-          questionnaireId: true,
-          sectionId: false,
-          pageId: true
-        });
-      });
+      .get(`[data-test="page-item"]`)
+      .first()
+      .click();
+    typeIntoDraftEditor("[data-testid='txt-question-title']", `Page 0`);
+
+    times(2, i => {
+      cy
+        .get("[data-test='btn-add-page']")
+        .click()
+        .wait(100); // this is needed for real API for some reason
+
+      typeIntoDraftEditor(
+        "[data-testid='txt-question-title']",
+        `Page ${i + 1}`
+      );
+    });
+
+    cy.get(`[data-test="btn-move-page"]`).click();
+
+    findByLabel("Position").click();
+    cy.get(`[data-testid="position-modal"]`).within(() => {
+      findByLabel("Page 0").click();
+      cy.get("form").submit();
+    });
+
+    cy
+      .get(`[data-test="page-item"]`)
+      .first()
+      .should("contain", "Page 2");
+  });
+
+  it("can move pages between sections", () => {
+    cy.get("[data-test='btn-add-section']").click();
+
+    cy
+      .get(`[data-test="page-item"]`)
+      .contains("Page 2")
+      .click();
+
+    cy.get(`[data-test="btn-move-page"]`).click();
+
+    findByLabel("Section").click();
+    cy.get(`[data-testid="section-modal"]`).within(() => {
+      cy
+        .get("label")
+        .last()
+        .click();
+      cy.get("form").submit();
+    });
+
+    findByLabel("Position").click();
+    cy.get(`[data-testid="position-modal"]`).within(() => {
+      cy.get("form").submit();
+    });
+
+    cy
+      .get(`[data-test="section-item"]`)
+      .last()
+      .find(`[data-test="page-item"]`)
+      .first()
+      .should("contain", "Page 2");
   });
 });

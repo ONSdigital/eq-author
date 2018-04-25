@@ -118,19 +118,25 @@ class MovePageModal extends React.Component {
   };
 
   handlePositionConfirm = e => {
-    const { page, onMovePage, onClose } = this.props;
+    const { page, section, onMovePage } = this.props;
     const { selectedSectionId, selectedPagePosition } = this.state;
 
     e.preventDefault();
 
-    this.setState({ isPagePositionOpen: false }, () => {
+    this.setState({ isPagePositionOpen: false }, () =>
       onMovePage({
-        id: page.id,
-        sectionId: selectedSectionId,
-        position: selectedPagePosition
-      });
-      onClose();
-    });
+        from: {
+          id: page.id,
+          sectionId: section.id,
+          position: page.position
+        },
+        to: {
+          id: page.id,
+          sectionId: selectedSectionId,
+          position: selectedPagePosition
+        }
+      })
+    );
   };
 
   getSelectedSection() {
@@ -154,7 +160,7 @@ class MovePageModal extends React.Component {
 
     return (
       <ItemSelectModal
-        data-test="section-modal"
+        testId="section-modal"
         title="Section"
         isOpen={isSectionSelectOpen}
         onClose={this.handleCloseSectionSelect}
@@ -168,7 +174,7 @@ class MovePageModal extends React.Component {
         >
           {questionnaire.sections.map(section => (
             <Option key={section.id} value={section.id}>
-              {getTextFromHTML(section.title)}
+              {getTextFromHTML(section.title) || "Untitled Section"}
             </Option>
           ))}
         </ItemSelect>
@@ -181,7 +187,7 @@ class MovePageModal extends React.Component {
 
     return (
       <ItemSelectModal
-        data-test="position-modal"
+        testId="position-modal"
         title="Position"
         primaryText="Move page"
         isOpen={isPagePositionOpen}
@@ -196,7 +202,7 @@ class MovePageModal extends React.Component {
         >
           {pages.map((page, i) => (
             <Option key={i} value={String(i)}>
-              {getTextFromHTML(page.title)}
+              {getTextFromHTML(page.title) || "Untitled Page"}
             </Option>
           ))}
         </ItemSelect>
@@ -213,7 +219,7 @@ class MovePageModal extends React.Component {
     const positionButtonId = uniqueId("MovePageModal");
 
     return (
-      <StyledModal isOpen={isOpen} onClose={onClose}>
+      <StyledModal isOpen={isOpen} onClose={onClose} testId="move-page-modal">
         <DialogHeader>
           <Message>
             <CenteredHeading>Move question</CenteredHeading>
@@ -222,7 +228,7 @@ class MovePageModal extends React.Component {
 
         <Label htmlFor={sectionButtonId}>Section</Label>
         <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
-          {getTextFromHTML(section.title)}
+          {getTextFromHTML(section.title) || "Untitled Section"}
         </Trigger>
         {this.renderSectionSelect(section)}
 

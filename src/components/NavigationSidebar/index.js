@@ -61,22 +61,12 @@ class NavigationSidebar extends Component {
     onUpdateQuestionnaire: PropTypes.func.isRequired
   };
 
-  saveSectionNavRef = sectionNav => {
-    this.sectionNav = sectionNav;
-  };
-
   handleAddSectionClick = () => {
-    const { questionnaire, onAddSection } = this.props;
-    onAddSection(questionnaire.id).then(({ id }) =>
-      this.sectionNav.scrollSectionIntoView(id)
-    );
+    this.props.onAddSection(this.props.questionnaire.id);
   };
 
-  handleAddPage = sectionId => {
-    const { onAddPage } = this.props;
-    onAddPage(sectionId).then(({ section }) =>
-      this.sectionNav.scrollSectionIntoView(section.id)
-    );
+  handleAddPage = (sectionId, position) => {
+    this.props.onAddPage(sectionId, position);
   };
 
   render() {
@@ -93,7 +83,6 @@ class NavigationSidebar extends Component {
             transitionDuration={200}
             questionnaire={questionnaire}
             onAddPage={this.handleAddPage}
-            ref={this.saveSectionNavRef}
           />
         </NavigationScrollPane>
         <AddSection>

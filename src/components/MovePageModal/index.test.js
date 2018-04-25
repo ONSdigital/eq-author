@@ -22,11 +22,12 @@ const buildQuestionnaire = () => ({
   sections: buildSections(2)
 });
 
-const sel = id => `[data-test="${id}"]`;
-const getSectionModal = wrapper => wrapper.find(sel("section-modal"));
-const getSectionSelect = wrapper => wrapper.find(sel("section-select"));
-const getPositionModal = wrapper => wrapper.find(sel("position-modal"));
-const getPositionSelect = wrapper => wrapper.find(sel("position-select"));
+const byId = id => `[testId="${id}"]`;
+const byName = n => `[name="${n}"]`;
+const getSectionModal = wrapper => wrapper.find(byId("section-modal"));
+const getSectionSelect = wrapper => wrapper.find(byName("section"));
+const getPositionModal = wrapper => wrapper.find(byId("position-modal"));
+const getPositionSelect = wrapper => wrapper.find(byName("position"));
 
 describe("MovePageModal/MovePageModal", () => {
   const questionnaire = buildQuestionnaire();
@@ -110,7 +111,7 @@ describe("MovePageModal/MovePageModal", () => {
     expect(getPositionSelect(wrapper)).toMatchSnapshot();
   });
 
-  it("closes all modals and calls onMovePage when confirmed", () => {
+  it("calls onMovePage when confirmed", () => {
     const onMovePage = jest.fn();
     const onClose = jest.fn();
     const selectedSection = questionnaire.sections[1];
@@ -125,12 +126,18 @@ describe("MovePageModal/MovePageModal", () => {
     });
 
     expect(getPositionModal(wrapper).prop("isOpen")).toBe(false);
-    expect(onClose).toHaveBeenCalled();
 
     expect(onMovePage).toHaveBeenCalledWith({
-      id: currentPage.id,
-      sectionId: selectedSection.id,
-      position
+      from: {
+        id: currentPage.id,
+        sectionId: currentSection.id,
+        position: 0
+      },
+      to: {
+        id: currentPage.id,
+        sectionId: selectedSection.id,
+        position
+      }
     });
   });
 

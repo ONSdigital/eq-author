@@ -15,6 +15,7 @@ class EditorSurface extends React.Component {
   static propTypes = {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
+    questionnaire: CustomPropTypes.questionnaire,
     onUpdatePage: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
     onUpdateSection: PropTypes.func.isRequired,
@@ -28,7 +29,8 @@ class EditorSurface extends React.Component {
       onUpdatePage,
       onDeletePage,
       onUpdateSection,
-      onDeleteSection
+      onDeleteSection,
+      questionnaire
     } = this.props;
 
     return (
@@ -41,6 +43,7 @@ class EditorSurface extends React.Component {
                 onDeletePage={onDeletePage}
                 page={page}
                 section={section}
+                questionnaire={questionnaire}
               />
             </SlideTransition>
           ) : (

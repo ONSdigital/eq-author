@@ -4,6 +4,7 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
 <MovePageModal__StyledModal
   isOpen={true}
   onClose={[Function]}
+  testId="move-page-modal"
 >
   <DialogHeader___default>
     <DialogMessage__Message>
@@ -24,12 +25,12 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
     Section 1
   </MovePageModal__Trigger>
   <ItemSelectModal
-    data-test="section-modal"
     isOpen={false}
     onClose={[Function]}
     onConfirm={[Function]}
     primaryText="Select"
     secondaryText="Cancel"
+    testId="section-modal"
     title="Section"
   >
     <withChangeHandler(ItemSelect)
@@ -64,12 +65,12 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
     Select
   </MovePageModal__Trigger>
   <ItemSelectModal
-    data-test="position-modal"
     isOpen={false}
     onClose={[Function]}
     onConfirm={[Function]}
     primaryText="Move page"
     secondaryText="Cancel"
+    testId="position-modal"
     title="Position"
   >
     <withChangeHandler(ItemSelect)

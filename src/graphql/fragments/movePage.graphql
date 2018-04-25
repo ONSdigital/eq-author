@@ -1,0 +1,9 @@
+fragment MovePageFragment on Section {
+  id
+  __typename
+  pages {
+    __typename
+    id
+    position
+  }
+}

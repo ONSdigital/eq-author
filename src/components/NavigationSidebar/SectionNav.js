@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import SectionNavItem from "./SectionNavItem";
+import scrollIntoView from "utils/scrollIntoView";
 
 const NavList = styled.ol`
   margin: 0;
@@ -15,22 +16,9 @@ const NavList = styled.ol`
 const duration = 200;
 
 class SectionNav extends Component {
-  sectionItems = [];
-
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired
-  };
-
-  scrollSectionIntoView = id =>
-    this.sectionItems[id].scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "start"
-    });
-
-  saveSectionItemRef = (id, node) => {
-    this.sectionItems[id] = node;
   };
 
   handleSectionExit = node => {
@@ -53,13 +41,13 @@ class SectionNav extends Component {
               timeout={duration}
               classNames="section"
               onExit={this.handleSectionExit}
+              onEntered={scrollIntoView}
             >
               <SectionNavItem
                 questionnaire={questionnaire}
                 section={section}
                 duration={duration}
                 onAddPage={onAddPage}
-                saveSectionItemRef={this.saveSectionItemRef}
               />
             </CSSTransition>
           ))}

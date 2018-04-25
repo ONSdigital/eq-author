@@ -3,5 +3,6 @@
 mutation CreateQuestionPage($input: CreateQuestionPageInput!) {
   createQuestionPage(input: $input) {
     ...Page
+    position
   }
 }

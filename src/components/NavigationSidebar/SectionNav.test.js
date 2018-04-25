@@ -25,16 +25,4 @@ describe("SectionNav", () => {
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("should call after a delay scrollSectionIntoView", () => {
-    const scrollIntoView = jest.fn();
-
-    wrapper.instance().saveSectionItemRef(section.id, { scrollIntoView });
-    wrapper.instance().scrollSectionIntoView(section.id);
-    expect(scrollIntoView).toHaveBeenCalledWith({
-      behavior: "smooth",
-      block: "start",
-      inline: "start"
-    });
-  });
 });

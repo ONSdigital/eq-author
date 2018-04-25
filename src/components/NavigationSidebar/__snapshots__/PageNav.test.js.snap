@@ -8,6 +8,7 @@ exports[`PageNav should render 1`] = `
   <CSSTransition
     classNames="page"
     key="2"
+    onEntered={[Function]}
     timeout={300}
   >
     <PageNavItem

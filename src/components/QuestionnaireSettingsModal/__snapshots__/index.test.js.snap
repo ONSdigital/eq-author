@@ -4,6 +4,7 @@ exports[`QuestionnaireSettingsModal should render 1`] = `
 <QuestionnaireSettingsModal__StyledModal
   isOpen={false}
   onClose={[Function]}
+  testId="questionnaire-settings-modal"
 >
   <DialogHeader___default>
     <DialogMessage__Message>

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import scrollIntoView from "utils/scrollIntoView";
 
 class PanelTitle extends React.Component {
   static propTypes = {
@@ -12,11 +13,7 @@ class PanelTitle extends React.Component {
   };
 
   scrollIntoView() {
-    this.title.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "start"
-    });
+    scrollIntoView(this.title);
   }
 
   setTitleRef = title => {

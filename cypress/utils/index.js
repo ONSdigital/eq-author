@@ -1,11 +1,12 @@
 export function setQuestionnaireSettings(name) {
-  cy.get(`[data-test="questionnaire-settings-form"]`).within(() => {
+  cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
     cy
       .get("[data-test='txt-questionnaire-title']")
       .clear()
       .type(name);
     cy.get("label[for='navigation']").click();
-    cy.get(`button[type='submit']`).click();
+
+    cy.get("form").submit();
   });
 }
 
@@ -37,14 +38,23 @@ export function assertHash(previousHash, equality) {
 }
 
 export const typeIntoDraftEditor = (selector, text) => {
-  cy.get(selector).then(input => {
-    var textarea = input.get(0);
-    textarea.dispatchEvent(new Event("focus"));
+  cy
+    .log("Typing into RTE", text)
+    .get(selector)
+    .then(input => {
+      var textarea = input.get(0);
+      textarea.dispatchEvent(new Event("focus"));
 
-    var textEvent = document.createEvent("TextEvent");
-    textEvent.initTextEvent("textInput", true, true, null, text);
-    textarea.dispatchEvent(textEvent);
+      var textEvent = document.createEvent("TextEvent");
+      textEvent.initTextEvent("textInput", true, true, null, text);
+      textarea.dispatchEvent(textEvent);
 
-    textarea.dispatchEvent(new Event("blur"));
-  });
+      textarea.dispatchEvent(new Event("blur"));
+    });
 };
+
+export const findByLabel = text =>
+  cy
+    .get("label")
+    .contains(text)
+    .then($label => $label.prop("control"));

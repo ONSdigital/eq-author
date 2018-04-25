@@ -44,7 +44,7 @@ export const StatelessQuestionnaireMeta = ({
   onChange,
   confirmText
 }) => (
-  <Form onSubmit={onSubmit} data-test="questionnaire-settings-form">
+  <Form onSubmit={onSubmit}>
     <Field id="title">
       <Label>Questionnaire Title</Label>
       <Input

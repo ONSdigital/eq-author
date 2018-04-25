@@ -2,10 +2,10 @@ import { graphql } from "react-apollo";
 import fragment from "graphql/sectionFragment.graphql";
 import createQuestionPageMutation from "graphql/createQuestionPage.graphql";
 import { getLink } from "utils/UrlUtils";
+import { get } from "lodash/fp";
 
-export const redirectToNewPage = ownProps => ({ data }) => {
-  const { history, questionnaireId } = ownProps;
-  const { id, section } = data.createQuestionPage;
+export const redirectToNewPage = ({ history, questionnaireId }) => page => {
+  const { id, section } = page;
   history.push(getLink(questionnaireId, section.id, id));
 };
 
@@ -23,11 +23,12 @@ export const createUpdater = sectionId => (proxy, result) => {
 };
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
-  onAddPage(sectionId) {
+  onAddPage(sectionId, position) {
     const page = {
       title: "",
       description: "",
-      sectionId
+      sectionId,
+      position
     };
 
     const update = createUpdater(sectionId);
@@ -35,10 +36,12 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     return mutate({
       variables: { input: page },
       update
-    }).then(result => {
-      redirectToNewPage(ownProps)(result);
-      return result.data.createQuestionPage;
-    });
+    })
+      .then(get("data.createQuestionPage"))
+      .then(page => {
+        redirectToNewPage(ownProps)(page);
+        return page;
+      });
   }
 });
 

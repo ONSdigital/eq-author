@@ -33,7 +33,11 @@ const QuestionnaireSettingsModal = ({
   onSubmit,
   confirmText
 }) => (
-  <StyledModal isOpen={isOpen} onClose={onClose}>
+  <StyledModal
+    isOpen={isOpen}
+    onClose={onClose}
+    testId="questionnaire-settings-modal"
+  >
     <DialogHeader>
       <Message>
         <CenteredHeading>Questionnaire settings</CenteredHeading>

@@ -7,8 +7,8 @@ import PropTypes from "prop-types";
 
 const EntityToolbar = ({ children, onDelete }) => (
   <Toolbar>
-    {children}
     <Buttons>
+      {children}
       <IconButtonDelete onClick={onDelete} data-test="btn-delete">
         Delete
       </IconButtonDelete>
