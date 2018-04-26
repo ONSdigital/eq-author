@@ -3,45 +3,7 @@
 exports[`QuestionnaireLink should link to section if cannot link to page 1`] = `"/questionnaire/1/design/1"`;
 
 exports[`QuestionnaireLink should render 1`] = `
-.c0 {
-  text-decoration: none;
-  color: #3B7A9E;
-  width: 100%;
-  max-width: 33em;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.c0:hover {
-  text-decoration: underline;
-}
-
-<NavLink
-  activeClassName="active"
-  ariaCurrent="true"
-  className="c0"
-  questionnaire={
-    Object {
-      "createdAt": "2017/01/02",
-      "createdBy": Object {
-        "name": "Alan",
-      },
-      "id": "1",
-      "sections": Array [
-        Object {
-          "id": "1",
-          "pages": Array [
-            Object {
-              "id": "1",
-            },
-          ],
-        },
-      ],
-      "title": "Foo",
-    }
-  }
+<QuestionnaireLink__StyledLink
   to="/questionnaire/1/design/1/1"
 />
 `;
