@@ -4,8 +4,11 @@ import PropTypes from "prop-types";
 import Button from "components/Button";
 import { partial } from "lodash";
 
+const displayName =
+  process.env.NODE_ENV === "development" ? "Guesty McGuestFace" : "Guest";
+
 const GUEST_USER = {
-  displayName: "Guest",
+  displayName,
   email: "guest@example.org"
 };
 
