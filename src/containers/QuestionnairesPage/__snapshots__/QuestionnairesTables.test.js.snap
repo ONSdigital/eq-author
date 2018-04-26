@@ -4,16 +4,24 @@ exports[`QuestionnairesTable should render 1`] = `
 <QuestionnairesTable__Table>
   <thead>
     <tr>
-      <QuestionnairesTable__TH>
+      <QuestionnairesTable__TH
+        colWidth="50%"
+      >
         Questionnaire name
       </QuestionnairesTable__TH>
-      <QuestionnairesTable__TH>
+      <QuestionnairesTable__TH
+        colWidth="15%"
+      >
         Date
       </QuestionnairesTable__TH>
-      <QuestionnairesTable__TH>
+      <QuestionnairesTable__TH
+        colWidth="25%"
+      >
         Created by
       </QuestionnairesTable__TH>
-      <QuestionnairesTable__TH />
+      <QuestionnairesTable__TH
+        colWidth="10%"
+      />
     </tr>
   </thead>
   <TransitionGroup
@@ -26,7 +34,9 @@ exports[`QuestionnairesTable should render 1`] = `
       timeout={200}
     >
       <QuestionnairesTable__TR>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="left"
+        >
           <QuestionnairesTable__Collapsible>
             <QuestionnaireLink
               aria-label="Foo"
@@ -56,26 +66,29 @@ exports[`QuestionnairesTable should render 1`] = `
             </QuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="left"
+        >
           <QuestionnairesTable__Collapsible>
             <FormattedDate
               date="2017/01/02"
             />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="left"
+        >
           <QuestionnairesTable__Collapsible>
             Alan
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="center"
+        >
           <QuestionnairesTable__Collapsible>
-            <QuestionnairesTable__DeleteButton
+            <IconButtonDelete
               onClick={[Function]}
-            >
-              Delete 
-              Foo
-            </QuestionnairesTable__DeleteButton>
+            />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
       </QuestionnairesTable__TR>
@@ -85,7 +98,9 @@ exports[`QuestionnairesTable should render 1`] = `
       timeout={200}
     >
       <QuestionnairesTable__TR>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="left"
+        >
           <QuestionnairesTable__Collapsible>
             <QuestionnaireLink
               aria-label="Bar"
@@ -115,26 +130,29 @@ exports[`QuestionnairesTable should render 1`] = `
             </QuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="left"
+        >
           <QuestionnairesTable__Collapsible>
             <FormattedDate
               date="2017/03/04"
             />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="left"
+        >
           <QuestionnairesTable__Collapsible>
             Lynn
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
-        <QuestionnairesTable__TD>
+        <QuestionnairesTable__TD
+          textAlign="center"
+        >
           <QuestionnairesTable__Collapsible>
-            <QuestionnairesTable__DeleteButton
+            <IconButtonDelete
               onClick={[Function]}
-            >
-              Delete 
-              Bar
-            </QuestionnairesTable__DeleteButton>
+            />
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
       </QuestionnairesTable__TR>
