@@ -32,7 +32,7 @@ describe("MovePageModal/ItemSelectModal", () => {
     const onClose = jest.fn();
     const wrapper = createWrapper({ onClose });
 
-    wrapper.find(`[secondary]`).simulate("click");
+    wrapper.find(`[variant="secondary"]`).simulate("click");
     expect(onClose).toHaveBeenCalled();
   });
 });
