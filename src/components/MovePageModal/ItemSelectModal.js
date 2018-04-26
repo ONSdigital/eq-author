@@ -5,20 +5,23 @@ import Button from "components/Button";
 import PlainModal from "./PlainModal";
 import ButtonGroup from "components/ButtonGroup";
 import ScrollPane from "components/ScrollPane";
+import { colors } from "constants/theme";
 
 const Fieldset = styled.fieldset`
   border: none;
   padding: 0;
+  margin: 0;
   min-width: 0;
 `;
 
 const Title = styled.legend`
   margin: 0;
   padding: 0.75rem;
-  color: #858585;
+  color: #666;
   font-size: 1.25em;
   font-weight: bold;
   display: block;
+  text-align: center;
 `;
 
 const BodyWrapper = styled.div`
@@ -36,7 +39,7 @@ const StyledButtonGroup = styled(ButtonGroup).attrs({
 })`
   padding: 1em;
   justify-content: space-around;
-  border-top: 1px solid #aeaeae;
+  border-top: 1px solid ${colors.lightGrey};
 `;
 
 const StyledButton = styled(Button)`
@@ -60,12 +63,10 @@ const ItemSelectModal = ({
         <Body>{children}</Body>
       </Fieldset>
       <StyledButtonGroup>
-        <StyledButton onClick={onClose} secondary type="button">
+        <StyledButton onClick={onClose} variant="secondary">
           {secondaryText}
         </StyledButton>
-        <StyledButton type="submit" primary>
-          {primaryText}
-        </StyledButton>
+        <StyledButton type="submit">{primaryText}</StyledButton>
       </StyledButtonGroup>
     </form>
   </PlainModal>

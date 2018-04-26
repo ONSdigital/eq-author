@@ -11,6 +11,8 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
 import ItemSelect, { Option } from "./ItemSelect";
 
+import { colors } from "constants/theme";
+
 const StyledModal = styled(Modal)`
   .Modal {
     width: 25em;
@@ -27,11 +29,12 @@ const moveTo = (array, item, position) => {
 const CenteredHeading = styled(Heading)`
   text-align: center;
   margin-bottom: 1rem;
+  color: ${colors.text};
 `;
 
 const Label = styled.label`
   display: block;
-  font-size: 0.875em;
+  font-size: 1em;
   font-weight: bold;
   margin-bottom: 0.25rem;
   margin-top: 1.25rem;
@@ -39,12 +42,18 @@ const Label = styled.label`
 
 const Trigger = styled.button.attrs({ type: "button" })`
   width: 100%;
-  font-size: 0.875em;
+  font-size: 1em;
   padding: 0.5rem;
-  background: white url('${Icon}') no-repeat right 0.5em center;
+  background: white url('${Icon}') no-repeat right center;
   border: solid 1px #aeaeae;
   text-align: left;
   border-radius: 3px;
+  color: ${colors.black};
+
+  &:focus {
+    box-shadow: 0 0 0 3px ${colors.tertiary}, inset 0 0 0 1px ${colors.primary};
+    outline: none;
+  }
 `;
 
 class MovePageModal extends React.Component {

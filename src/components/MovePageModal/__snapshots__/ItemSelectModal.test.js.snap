@@ -19,13 +19,11 @@ exports[`MovePageModal/ItemSelectModal should render 1`] = `
     <ItemSelectModal__StyledButtonGroup>
       <ItemSelectModal__StyledButton
         onClick={[Function]}
-        secondary={true}
-        type="button"
+        variant="secondary"
       >
         Cancel
       </ItemSelectModal__StyledButton>
       <ItemSelectModal__StyledButton
-        primary={true}
         type="submit"
       >
         Select
