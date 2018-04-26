@@ -30,7 +30,8 @@ describe("undeleteQuestionnaire", () => {
     result = {
       data: {
         undeleteQuestionnaire: {
-          id: 1
+          id: 2,
+          createdAt: "2018-04-02"
         }
       }
     };
@@ -38,7 +39,16 @@ describe("undeleteQuestionnaire", () => {
     proxy = {
       readQuery: jest.fn(() => {
         return {
-          questionnaires: []
+          questionnaires: [
+            {
+              id: 3,
+              createdAt: "2018-04-03"
+            },
+            {
+              id: 1,
+              createdAt: "2018-04-01"
+            }
+          ]
         };
       }),
       writeQuery: jest.fn()
@@ -69,17 +79,32 @@ describe("undeleteQuestionnaire", () => {
   describe("createUpdate", () => {
     it("should call the correct query on the proxy", () => {
       createUpdate(context)(proxy, result);
+    });
+
+    it("should insert the questionnaire at the correct position", () => {
+      createUpdate(context)(proxy, result);
+
       expect(proxy.readQuery).toHaveBeenCalledWith({
         query: GetQuestionnaireList
       });
-    });
 
-    it("should write data back to the proxy", () => {
-      createUpdate(context)(proxy, result);
       expect(proxy.writeQuery).toHaveBeenCalledWith({
         query: GetQuestionnaireList,
         data: {
-          questionnaires: [{ id: 1 }]
+          questionnaires: [
+            {
+              id: 3,
+              createdAt: "2018-04-03"
+            },
+            {
+              id: 2,
+              createdAt: "2018-04-02"
+            },
+            {
+              id: 1,
+              createdAt: "2018-04-01"
+            }
+          ]
         }
       });
     });

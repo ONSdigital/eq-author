@@ -6,7 +6,6 @@ query GetQuestionnaireList {
     createdBy {
       name
     }
-    theme
     sections {
       id
       pages {
