@@ -18,8 +18,8 @@ const IconWithText = styled.span`
   }
 `;
 
-const IconText = ({ icon: Icon, hideText, children }) => (
-  <IconWithText hideText={hideText}>
+const IconText = ({ icon: Icon, hideText, children, ...otherProps }) => (
+  <IconWithText hideText={hideText} {...otherProps}>
     <Icon />
     {hideText ? <VisuallyHidden>{children}</VisuallyHidden> : children}
   </IconWithText>

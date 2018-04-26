@@ -22,6 +22,7 @@ import shareIcon from "./icon-share.svg?inline";
 import previewIcon from "./icon-preview.svg?inline";
 
 import IconText from "components/IconText";
+import Truncated from "../Truncated";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -41,16 +42,14 @@ const QuestionnaireTitle = styled.div`
   white-space: pre;
 `;
 
-const Title = styled.h1`
+const TruncatedTitle = Truncated.withComponent("h1");
+const Title = styled(TruncatedTitle)`
   font-size: 1em;
   font-weight: 600;
   margin: 0 2em;
   width: 100%;
   text-align: center;
   line-height: 1;
-  overflow: hidden;
-  white-space: pre;
-  text-overflow: ellipsis;
 `;
 
 const ShareButton = styled(Button)`

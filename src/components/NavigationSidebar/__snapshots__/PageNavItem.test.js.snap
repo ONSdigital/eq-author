@@ -7,14 +7,11 @@ exports[`PageNavItem LinkText should be opaque 1`] = `
   width: 100%;
   position: relative;
   z-index: 2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   opacity: 1;
   font-size: 0.75em;
 }
 
-<span
+<Truncated
   className="c0"
 />
 `;
@@ -26,15 +23,13 @@ exports[`PageNavItem LinkText should be partially transparent if fade prop passe
   width: 100%;
   position: relative;
   z-index: 2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   opacity: 0.5;
   font-size: 0.75em;
 }
 
-<span
+<Truncated
   className="c0"
+  fade={true}
 />
 `;
 

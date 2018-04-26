@@ -14,14 +14,13 @@ exports[`MovePageModal/ItemSelect Option should render 1`] = `
     htmlFor="test"
     selected={true}
   >
-    <IconText
-      hideText={false}
+    <ItemSelect__StyledIconText
       icon={[Function]}
     >
-      <ItemSelect__Truncated>
+      <Truncated>
         bar
-      </ItemSelect__Truncated>
-    </IconText>
+      </Truncated>
+    </ItemSelect__StyledIconText>
   </ItemSelect__Label>
 </div>
 `;

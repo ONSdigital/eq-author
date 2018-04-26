@@ -13,12 +13,12 @@ exports[`ToggleChip should render 1`] = `
     checked={false}
     htmlFor="test"
   >
-    <ToggleChip__Truncated
+    <ToggleChip__Text
       maxWidth={30}
       title="Test chip"
     >
       Test
-    </ToggleChip__Truncated>
+    </ToggleChip__Text>
   </ToggleChip__Label>
 </ToggleChip__Field>
 `;
@@ -36,12 +36,12 @@ exports[`ToggleChip should render checked 1`] = `
     checked={true}
     htmlFor="chiptoggle-1"
   >
-    <ToggleChip__Truncated
+    <ToggleChip__Text
       maxWidth={30}
       title="Test chip"
     >
       Test
-    </ToggleChip__Truncated>
+    </ToggleChip__Text>
   </ToggleChip__Label>
 </ToggleChip__Field>
 `;

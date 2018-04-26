@@ -38,8 +38,7 @@ exports[`QuestionnairesTable should render 1`] = `
           textAlign="left"
         >
           <QuestionnairesTable__Collapsible>
-            <QuestionnaireLink
-              aria-label="Foo"
+            <TruncatedQuestionnaireLink
               questionnaire={
                 Object {
                   "createdAt": "2017/01/02",
@@ -63,7 +62,7 @@ exports[`QuestionnairesTable should render 1`] = `
               title="Foo"
             >
               Foo
-            </QuestionnaireLink>
+            </TruncatedQuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD
@@ -79,7 +78,9 @@ exports[`QuestionnairesTable should render 1`] = `
           textAlign="left"
         >
           <QuestionnairesTable__Collapsible>
-            Alan
+            <Truncated>
+              Alan
+            </Truncated>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD
@@ -102,8 +103,7 @@ exports[`QuestionnairesTable should render 1`] = `
           textAlign="left"
         >
           <QuestionnairesTable__Collapsible>
-            <QuestionnaireLink
-              aria-label="Bar"
+            <TruncatedQuestionnaireLink
               questionnaire={
                 Object {
                   "createdAt": "2017/03/04",
@@ -127,7 +127,7 @@ exports[`QuestionnairesTable should render 1`] = `
               title="Bar"
             >
               Bar
-            </QuestionnaireLink>
+            </TruncatedQuestionnaireLink>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD
@@ -143,7 +143,9 @@ exports[`QuestionnairesTable should render 1`] = `
           textAlign="left"
         >
           <QuestionnairesTable__Collapsible>
-            Lynn
+            <Truncated>
+              Lynn
+            </Truncated>
           </QuestionnairesTable__Collapsible>
         </QuestionnairesTable__TD>
         <QuestionnairesTable__TD

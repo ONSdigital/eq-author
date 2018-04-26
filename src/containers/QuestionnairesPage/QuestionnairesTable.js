@@ -3,10 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { partial } from "lodash";
+import { partial, isEmpty } from "lodash";
 import IconButtonDelete from "components/IconButtonDelete";
 import QuestionnaireLink from "./QuestionnaireLink";
 import FormattedDate from "./FormattedDate";
+import Truncated from "components/Truncated";
 
 const Table = styled.table`
   width: 100%;
@@ -15,6 +16,9 @@ const Table = styled.table`
   table-layout: fixed;
   text-align: left;
 `;
+
+const TruncatedQuestionnaireLink = Truncated.withComponent(QuestionnaireLink);
+TruncatedQuestionnaireLink.displayName = "TruncatedQuestionnaireLink";
 
 const TH = styled.th`
   padding: 1.5em 1em;
@@ -80,7 +84,7 @@ const QuestionnairesTable = ({
   questionnaires,
   onDeleteQuestionnaire: handleDelete
 }) => {
-  if (!questionnaires || questionnaires.length === 0) {
+  if (isEmpty(questionnaires)) {
     return <p>You have no questionnaires</p>;
   }
 
@@ -100,13 +104,12 @@ const QuestionnairesTable = ({
             <TR>
               <TD>
                 <Collapsible>
-                  <QuestionnaireLink
+                  <TruncatedQuestionnaireLink
                     questionnaire={questionnaire}
                     title={questionnaire.title}
-                    aria-label={questionnaire.title}
                   >
                     {questionnaire.title}
-                  </QuestionnaireLink>
+                  </TruncatedQuestionnaireLink>
                 </Collapsible>
               </TD>
               <TD>
@@ -116,7 +119,9 @@ const QuestionnairesTable = ({
               </TD>
               <TD>
                 <Collapsible>
-                  {questionnaire.createdBy.name || "Unknown"}
+                  <Truncated>
+                    {questionnaire.createdBy.name || "Unknown"}
+                  </Truncated>
                 </Collapsible>
               </TD>
               <TD textAlign="center">

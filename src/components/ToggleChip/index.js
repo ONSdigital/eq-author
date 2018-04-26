@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
 import checkedIcon from "./checked.svg";
+import Truncated from "components/Truncated";
 
 const labelStyles = {
   checked: css`
@@ -68,15 +69,12 @@ export const Label = styled.label`
   ${props => (props.checked ? labelStyles.checked : labelStyles.unchecked)};
 `;
 
-const Truncated = styled.span`
+const Text = styled(Truncated)`
   display: inline-block;
   max-width: ${props => props.maxWidth}em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
-Truncated.defaultProps = {
+Text.defaultProps = {
   maxWidth: 30
 };
 
@@ -134,9 +132,9 @@ class ToggleChip extends React.Component {
           onChange={this.handleToggle}
         />
         <Label htmlFor={id} checked={checked}>
-          <Truncated title={title} maxWidth={maxWidth}>
+          <Text title={title} maxWidth={maxWidth}>
             {children}
-          </Truncated>
+          </Text>
         </Label>
       </Field>
     );
