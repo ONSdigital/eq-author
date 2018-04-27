@@ -12,6 +12,7 @@ exports[`components/RoutingRule should render children 1`] = `
       <IconButtonDelete
         data-test="btn-delete"
         disabled={false}
+        hideText={false}
         onClick={[Function]}
       >
         Delete
@@ -113,6 +114,7 @@ exports[`components/RoutingRule should render empty message if no children are p
       <IconButtonDelete
         data-test="btn-delete"
         disabled={true}
+        hideText={false}
         onClick={[Function]}
       >
         Delete

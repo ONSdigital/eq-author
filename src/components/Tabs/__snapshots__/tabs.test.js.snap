@@ -1,0 +1,329 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Nav should display active link when route matches 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  bottom: -1px;
+}
+
+.c1 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #c3c3c3;
+  padding: 0.3em 2em;
+  border: 1px solid #666;
+  border-bottom: none;
+  background-color: #666;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  margin: 0 0.25em 0 0;
+}
+
+.c1[aria-current="true"] {
+  background: #FFFFFF;
+  color: #5F7682;
+  border: 1px solid #999999;
+  border-bottom: none;
+}
+
+.c3 {
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  border-radius: 4px;
+}
+
+.c2 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #c3c3c3;
+  padding: 0.3em 2em;
+  border: 1px solid #666;
+  border-bottom: none;
+  background-color: #666;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  margin: 0 0.25em 0 0;
+}
+
+.c2[aria-current="true"] {
+  background: #FFFFFF;
+  color: #5F7682;
+  border: 1px solid #999999;
+  border-bottom: none;
+}
+
+<UnwrappedTabs
+  match={
+    Object {
+      "params": Object {
+        "pageId": "",
+        "questionnaireId": "",
+        "sectionId": "888",
+      },
+    }
+  }
+  page={
+    Object {
+      "id": "3",
+    }
+  }
+  questionnaire={
+    Object {
+      "id": "1",
+      "sections": Array [
+        Object {
+          "id": "2",
+          "pages": Array [
+            Object {
+              "id": "3",
+            },
+          ],
+          "title": "Section 1",
+        },
+      ],
+      "title": "Questionnaire",
+    }
+  }
+  section={
+    Object {
+      "id": "2",
+      "pages": Array [
+        Object {
+          "id": "3",
+        },
+      ],
+      "title": "Section 1",
+    }
+  }
+>
+  <div>
+    <Tabs__TabsContainer>
+      <nav
+        className="c0"
+      >
+        <Tabs__Tab
+          activeClassName="selected"
+          isActive={[Function]}
+          to="/questionnaire/1/design/2/3"
+        >
+          <NavLink
+            activeClassName="selected"
+            ariaCurrent="true"
+            className="c1"
+            isActive={[Function]}
+            to="/questionnaire/1/design/2/3"
+          >
+            <Route
+              path="/questionnaire/1/design/2/3"
+            >
+              <Link
+                aria-current="true"
+                className="c1 selected"
+                replace={false}
+                style={Object {}}
+                to="/questionnaire/1/design/2/3"
+              >
+                <a
+                  aria-current="true"
+                  className="c1 selected"
+                  href="/questionnaire/1/design/2/3"
+                  onClick={[Function]}
+                  style={Object {}}
+                >
+                  Builder
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
+        </Tabs__Tab>
+        <Tabs__Tab>
+          <span
+            className="-span c2"
+          >
+            Routing
+          </span>
+        </Tabs__Tab>
+      </nav>
+    </Tabs__TabsContainer>
+    <Tabs__TabsBody>
+      <div
+        className="c3"
+      >
+        Tab Content
+      </div>
+    </Tabs__TabsBody>
+  </div>
+</UnwrappedTabs>
+`;
+
+exports[`components/Nav should render Nav 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  bottom: -1px;
+}
+
+.c1 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #c3c3c3;
+  padding: 0.3em 2em;
+  border: 1px solid #666;
+  border-bottom: none;
+  background-color: #666;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  margin: 0 0.25em 0 0;
+}
+
+.c1[aria-current="true"] {
+  background: #FFFFFF;
+  color: #5F7682;
+  border: 1px solid #999999;
+  border-bottom: none;
+}
+
+.c3 {
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  border-radius: 4px;
+}
+
+.c2 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #c3c3c3;
+  padding: 0.3em 2em;
+  border: 1px solid #666;
+  border-bottom: none;
+  background-color: #666;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  margin: 0 0.25em 0 0;
+}
+
+.c2[aria-current="true"] {
+  background: #FFFFFF;
+  color: #5F7682;
+  border: 1px solid #999999;
+  border-bottom: none;
+}
+
+<UnwrappedTabs
+  match={
+    Object {
+      "params": Object {
+        "pageId": "",
+        "questionnaireId": "",
+        "sectionId": "",
+      },
+    }
+  }
+  page={
+    Object {
+      "id": "3",
+    }
+  }
+  questionnaire={
+    Object {
+      "id": "1",
+      "sections": Array [
+        Object {
+          "id": "2",
+          "pages": Array [
+            Object {
+              "id": "3",
+            },
+          ],
+          "title": "Section 1",
+        },
+      ],
+      "title": "Questionnaire",
+    }
+  }
+  section={
+    Object {
+      "id": "2",
+      "pages": Array [
+        Object {
+          "id": "3",
+        },
+      ],
+      "title": "Section 1",
+    }
+  }
+>
+  <div>
+    <Tabs__TabsContainer>
+      <nav
+        className="c0"
+      >
+        <Tabs__Tab
+          activeClassName="selected"
+          isActive={[Function]}
+          to="/questionnaire/1/design/2/3"
+        >
+          <NavLink
+            activeClassName="selected"
+            ariaCurrent="true"
+            className="c1"
+            isActive={[Function]}
+            to="/questionnaire/1/design/2/3"
+          >
+            <Route
+              path="/questionnaire/1/design/2/3"
+            >
+              <Link
+                aria-current={false}
+                className="c1"
+                replace={false}
+                to="/questionnaire/1/design/2/3"
+              >
+                <a
+                  aria-current={false}
+                  className="c1"
+                  href="/questionnaire/1/design/2/3"
+                  onClick={[Function]}
+                >
+                  Builder
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
+        </Tabs__Tab>
+        <Tabs__Tab>
+          <span
+            className="-span c2"
+          >
+            Routing
+          </span>
+        </Tabs__Tab>
+      </nav>
+    </Tabs__TabsContainer>
+    <Tabs__TabsBody>
+      <div
+        className="c3"
+      >
+        Tab Content
+      </div>
+    </Tabs__TabsBody>
+  </div>
+</UnwrappedTabs>
+`;

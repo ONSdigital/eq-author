@@ -1,34 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Editor should render Checkbox 1`] = `
-<div>
-  <MultipleChoiceAnswer
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "options": Array [
-          Object {
-            "description": "",
-            "id": "1",
-            "label": "",
-          },
-        ],
-        "title": "",
-        "type": "Checkbox",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    Checkbox
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <MultipleChoiceAnswer
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "options": Array [
+            Object {
+              "description": "",
+              "id": "1",
+              "label": "",
+            },
+          ],
+          "title": "",
+          "type": "Checkbox",
+        }
       }
-    }
-    minOptions={1}
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-    type="Checkbox"
-  />
+      minOptions={1}
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+      type="Checkbox"
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -36,31 +41,37 @@ exports[`Answer Editor should render Checkbox 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;
 
 exports[`Answer Editor should render Currency 1`] = `
-<div>
-  <CurrencyAnswer
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "title": "",
-        "type": "Currency",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    Currency
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <CurrencyAnswer
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "title": "",
+          "type": "Currency",
+        }
       }
-    }
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-  />
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -68,31 +79,37 @@ exports[`Answer Editor should render Currency 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;
 
 exports[`Answer Editor should render DateRange 1`] = `
-<div>
-  <Connect(withEntityEditor(DateRange))
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "title": "",
-        "type": "DateRange",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    DateRange
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <Connect(withEntityEditor(DateRange))
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "title": "",
+          "type": "DateRange",
+        }
       }
-    }
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-  />
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -100,31 +117,37 @@ exports[`Answer Editor should render DateRange 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;
 
 exports[`Answer Editor should render Number 1`] = `
-<div>
-  <NumberAnswer
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "title": "",
-        "type": "Number",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    Number
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <NumberAnswer
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "title": "",
+          "type": "Number",
+        }
       }
-    }
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-  />
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -132,40 +155,46 @@ exports[`Answer Editor should render Number 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;
 
 exports[`Answer Editor should render Radio 1`] = `
-<div>
-  <MultipleChoiceAnswer
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "options": Array [
-          Object {
-            "description": "",
-            "id": "1",
-            "label": "",
-          },
-        ],
-        "title": "",
-        "type": "Radio",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    Radio
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <MultipleChoiceAnswer
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "options": Array [
+            Object {
+              "description": "",
+              "id": "1",
+              "label": "",
+            },
+          ],
+          "title": "",
+          "type": "Radio",
+        }
       }
-    }
-    minOptions={2}
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-    type="Radio"
-  />
+      minOptions={2}
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+      type="Radio"
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -173,31 +202,37 @@ exports[`Answer Editor should render Radio 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;
 
 exports[`Answer Editor should render TextArea 1`] = `
-<div>
-  <TextAreaAnswer
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "title": "",
-        "type": "TextArea",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    TextArea
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <TextAreaAnswer
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "title": "",
+          "type": "TextArea",
+        }
       }
-    }
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-  />
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -205,31 +240,37 @@ exports[`Answer Editor should render TextArea 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;
 
 exports[`Answer Editor should render TextField 1`] = `
-<div>
-  <TextAnswer
-    answer={
-      Object {
-        "description": "",
-        "id": "1",
-        "title": "",
-        "type": "TextField",
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    TextField
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <TextAnswer
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "title": "",
+          "type": "TextField",
+        }
       }
-    }
-    onAddOption={[Function]}
-    onAddOther={[Function]}
-    onChange={[Function]}
-    onDeleteAnswer={[Function]}
-    onDeleteOption={[Function]}
-    onDeleteOther={[Function]}
-    onUpdate={[Function]}
-    onUpdateOption={[Function]}
-  />
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+    />
+  </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
   >
@@ -237,7 +278,8 @@ exports[`Answer Editor should render TextField 1`] = `
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
+      small={true}
     />
   </Tooltip>
-</div>
+</AnswerEditor__Answer>
 `;

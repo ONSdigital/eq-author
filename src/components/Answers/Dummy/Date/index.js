@@ -9,6 +9,7 @@ const Field = styled.div`
   display: inline-block;
   margin-left: 1em;
   flex: 1 1 auto;
+  pointer-events: none;
 
   &:first-of-type {
     margin-left: 0;
@@ -29,6 +30,7 @@ const Wrapper = styled.div`
 `;
 
 const Select = styled(Input)`
+  border-color: ${colors.lightGrey};
   &::after {
     content: url(${chevronIcon});
     position: absolute;

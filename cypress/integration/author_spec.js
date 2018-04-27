@@ -336,7 +336,7 @@ describe("eq-author", () => {
       );
     });
 
-    cy.get(`[data-test="btn-move-page"]`).click();
+    cy.get(`[data-test="btn-move"]`).click();
 
     findByLabel("Position").click();
     cy.get(`[data-testid="position-modal"]`).within(() => {
@@ -358,7 +358,7 @@ describe("eq-author", () => {
       .contains("Page 2")
       .click();
 
-    cy.get(`[data-test="btn-move-page"]`).click();
+    cy.get(`[data-test="btn-move"]`).click();
 
     findByLabel("Section").click();
     cy.get(`[data-testid="section-modal"]`).within(() => {

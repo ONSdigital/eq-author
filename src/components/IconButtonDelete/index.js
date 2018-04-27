@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import IconDelete from "./icon-delete.svg?inline";
 import Button from "components/Button";
@@ -23,12 +24,20 @@ const DeleteButton = styled(Button).attrs({
   }
 `;
 
-const IconButtonDelete = props => (
-  <DeleteButton {...props}>
-    <IconText icon={IconDelete} hideText>
+const IconButtonDelete = ({ hideText, ...otherProps }) => (
+  <DeleteButton {...otherProps}>
+    <IconText icon={IconDelete} hideText={hideText}>
       Delete
     </IconText>
   </DeleteButton>
 );
+
+IconButtonDelete.propTypes = {
+  hideText: PropTypes.bool
+};
+
+IconButtonDelete.defaultProps = {
+  hideText: false
+};
 
 export default IconButtonDelete;

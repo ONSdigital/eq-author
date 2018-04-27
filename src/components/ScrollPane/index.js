@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 import { darken } from "polished";
 
 const ScrollPane = styled.div`
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  overflow-y: ${props => (props.permanentScrollBar ? "scroll" : "auto")};
   position: relative;
 
   -webkit-background-clip: text;
@@ -39,5 +40,13 @@ const ScrollPane = styled.div`
     }
   }
 `;
+
+ScrollPane.propTypes = {
+  permanentScrollBar: PropTypes.bool
+};
+
+ScrollPane.defaultProps = {
+  permanentScrollBar: false
+};
 
 export default ScrollPane;

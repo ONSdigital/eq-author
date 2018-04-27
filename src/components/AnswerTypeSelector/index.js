@@ -1,12 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Popout from "components/Popout";
-import ScaleTransition from "components/Popout/ScaleTransition";
+import styled from "styled-components";
+
+import Popout, { Container, Layer } from "components/Popout";
+
 import AnswerTypeGrid from "./AnswerTypeGrid";
 import AddIcon from "./icon-add.svg?inline";
 import CustomPropTypes from "custom-prop-types";
 import IconText from "components/IconText";
 import Button from "components/Button";
+import PopupTransition from "./PopupTransition";
+
+const AddAnswerButton = styled(Button)`
+  width: 100%;
+  padding: 0.5em;
+`;
+
+const PopoutContainer = styled(Container)`
+  width: 100%;
+`;
+
+const PopoutLayer = styled(Layer)`
+  width: 22em;
+  right: 0;
+  left: 0;
+  bottom: 3.5em;
+  margin: 0 auto;
+`;
 
 export default class AnswerTypeSelector extends React.Component {
   static propTypes = {
@@ -36,18 +56,20 @@ export default class AnswerTypeSelector extends React.Component {
 
   render() {
     const trigger = (
-      <Button variant="tertiary" small data-test="btn-add-answer">
+      <AddAnswerButton variant="secondary" data-test="btn-add-answer">
         <IconText icon={AddIcon}>
           Add {this.props.answers.length === 0 ? "an" : "another"} answer
         </IconText>
-      </Button>
+      </AddAnswerButton>
     );
 
     return (
       <Popout
         open={this.state.open}
-        transition={ScaleTransition}
+        transition={PopupTransition}
         trigger={trigger}
+        container={PopoutContainer}
+        layer={PopoutLayer}
         onToggleOpen={this.handleOpenToggle}
         onEntered={this.handleEntered}
       >

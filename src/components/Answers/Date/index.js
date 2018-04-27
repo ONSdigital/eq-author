@@ -15,7 +15,7 @@ const Wrapper = styled.div.attrs({
 })`
   cursor: default;
   user-select: none;
-  margin-bottom: 1.5em;
+  margin-bottom: 0.5em;
 
   &:last-of-type {
     margin-bottom: 0;

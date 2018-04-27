@@ -8,12 +8,12 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const ESC_KEY_CODE = 27;
 
-const Container = styled.div`
+export const Container = styled.div`
   position: relative;
   display: inline-block;
 `;
 
-const Layer = styled.div`
+export const Layer = styled.div`
   position: absolute;
   ${props => `${props.horizontalAlignment}: ${props.offsetX}`};
   ${props => `${props.verticalAlignment}: ${props.offsetY}`};
@@ -41,6 +41,8 @@ const DefaultTransition = props => (
 class Popout extends React.Component {
   static propTypes = {
     trigger: PropTypes.element.isRequired,
+    container: PropTypes.func.isRequired,
+    layer: PropTypes.func.isRequired,
     children: PropTypes.element.isRequired,
     open: PropTypes.bool,
     onToggleOpen: PropTypes.func.isRequired,
@@ -55,7 +57,9 @@ class Popout extends React.Component {
 
   static defaultProps = {
     open: false,
-    transition: DefaultTransition
+    transition: DefaultTransition,
+    container: Container,
+    layer: Layer
   };
 
   bindRootCloseHandlers() {
@@ -130,8 +134,11 @@ class Popout extends React.Component {
   }
 
   render() {
+    const PopoutContainer = this.props.container;
+    const Layer = this.props.layer;
+
     return (
-      <Container>
+      <PopoutContainer>
         {React.cloneElement(this.props.trigger, {
           onClick: this.handleToggleOpen,
           "aria-haspopup": true,
@@ -148,7 +155,7 @@ class Popout extends React.Component {
         >
           {this.props.open ? this.renderContent() : null}
         </TransitionGroup>
-      </Container>
+      </PopoutContainer>
     );
   }
 }

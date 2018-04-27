@@ -127,6 +127,7 @@ const QuestionnairesTable = ({
               <TD textAlign="center">
                 <Collapsible>
                   <IconButtonDelete
+                    hideText
                     onClick={partial(handleDelete, questionnaire.id)}
                   />
                 </Collapsible>

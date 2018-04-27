@@ -10,7 +10,7 @@ import EditorSurface from "components/EditorSurface";
 import NavigationSidebarContainer from "containers/NavigationSidebarContainer";
 import getTextFromHTML from "utils/getTextFromHTML";
 import ConnectedPropertiesPanel from "components/PropertiesPanel";
-import Nav from "components/Nav";
+import Tabs from "components/Tabs";
 import styled from "styled-components";
 import Button from "components/Button";
 import AddPage from "./icon-add-page.svg?inline";
@@ -23,7 +23,11 @@ const Centered = styled.div`
   margin-bottom: 4em;
 `;
 
-export class QuestionnaireDesignPage extends Component {
+const Margin = styled.div`
+  margin-top: 2em;
+`;
+
+class QuestionnaireDesignPage extends Component {
   static propTypes = {
     onUpdateSection: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
@@ -55,8 +59,17 @@ export class QuestionnaireDesignPage extends Component {
 
   handleAddPageClick = e => {
     const { onAddPage, section, page } = this.props;
-
     onAddPage(section.id, page ? page.position + 1 : 0);
+  };
+
+  handleDeletePage = () => {
+    const { onDeletePage, section, page } = this.props;
+    return onDeletePage(section.id, page.id);
+  };
+
+  handleDeleteSection = () => {
+    const { onDeleteSection, section } = this.props;
+    return onDeleteSection(section.id);
   };
 
   render() {
@@ -69,9 +82,7 @@ export class QuestionnaireDesignPage extends Component {
       questionnaireId,
       pageId,
       onUpdatePage,
-      onDeletePage,
-      onUpdateSection,
-      onDeleteSection
+      onUpdateSection
     } = this.props;
 
     if (loading) {
@@ -95,24 +106,27 @@ export class QuestionnaireDesignPage extends Component {
             />
           </Column>
           <Column gutters={false}>
-            <ScrollPane>
-              <MainCanvas>
-                <Nav
-                  questionnaire={questionnaire}
-                  section={section}
-                  page={page}
-                />
-                <SavingIndicator />
-                <EditorSurface
-                  questionnaire={questionnaire}
-                  section={section}
-                  page={page}
-                  onUpdatePage={onUpdatePage}
-                  onDeletePage={onDeletePage}
-                  onUpdateSection={onUpdateSection}
-                  onDeleteSection={onDeleteSection}
-                />
-              </MainCanvas>
+            <ScrollPane permanentScrollBar>
+              <Margin>
+                <MainCanvas>
+                  <SavingIndicator />
+                  <Tabs
+                    questionnaire={questionnaire}
+                    section={section}
+                    page={page}
+                  >
+                    <EditorSurface
+                      questionnaire={questionnaire}
+                      section={section}
+                      page={page}
+                      onUpdatePage={onUpdatePage}
+                      onDeletePage={this.handleDeletePage}
+                      onUpdateSection={onUpdateSection}
+                      onDeleteSection={this.handleDeleteSection}
+                    />
+                  </Tabs>
+                </MainCanvas>
+              </Margin>
               <Centered>
                 <Button
                   variant="tertiary"

@@ -2,9 +2,12 @@
 import React from "react";
 import { findDOMNode } from "react-dom";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+import { radius } from "constants/theme";
 import { IconGrid } from "components/IconGrid";
 import AnswerTypeButton from "./AnswerTypeButton";
-import styled from "styled-components";
+
 import {
   TEXTFIELD,
   NUMBER,
@@ -18,37 +21,42 @@ import {
 } from "constants/answer-types";
 
 const Menu = styled.div`
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.16) 0 5px 20px 0;
-  width: 22em;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.16));
   text-align: initial;
+  position: relative;
+  &::before {
+    content: "";
+    background: white;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    transform: rotate(45deg);
+    bottom: -0.5em;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 1;
+  }
 `;
 
-const Header = styled.div`
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 1.5em;
+const MenuBackground = styled.div`
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  border-radius: ${radius};
 `;
 
-const Title = styled.div`
-  color: #444;
-  font-size: 0.6em;
-  font-weight: 900;
-  text-transform: uppercase;
-`;
-
-export const CloseButton = styled.button`
-  color: #444;
-  border: none;
-  background: none;
-  font-size: 1em;
-  position: absolute;
-  top: 1.5rem;
-  right: 1rem;
-  line-height: 0.6;
-  padding: 0;
-  cursor: pointer;
-`;
+const buttons = [
+  { type: CHECKBOX, title: "Checkbox" },
+  { type: RADIO, title: "Radio" },
+  { type: TEXTFIELD, title: "Text" },
+  { type: TEXTAREA, title: "Textarea" },
+  { type: CURRENCY, title: "Currency" },
+  { type: NUMBER, title: "Number" },
+  { type: DATE, title: "Date" },
+  { type: DATE_RANGE, title: "Date range" },
+  { type: TIME, title: "Time", disabled: true }
+];
 
 class AnswerTypeGrid extends React.Component {
   static propTypes = {
@@ -71,66 +79,26 @@ class AnswerTypeGrid extends React.Component {
   };
 
   render() {
-    const { onClose, "aria-labelledby": labelledby } = this.props;
+    const { "aria-labelledby": labelledby } = this.props;
 
     return (
       <Menu>
-        <Header>
-          <Title>Answer Type</Title>
-          <CloseButton onClick={onClose} aria-label="Close" type="button">
-            ×
-          </CloseButton>
-        </Header>
-        <IconGrid aria-labelledby={labelledby}>
-          <AnswerTypeButton
-            type={CHECKBOX}
-            title="Checkbox"
-            onClick={this.handleSelect}
-            ref={this.saveButtonRef}
-          />
-          <AnswerTypeButton
-            type={RADIO}
-            title="Radio"
-            onClick={this.handleSelect}
-          />
-          <AnswerTypeButton
-            type={TEXTFIELD}
-            title="Text"
-            onClick={this.handleSelect}
-          />
-          <AnswerTypeButton
-            type={TEXTAREA}
-            title="Textarea"
-            onClick={this.handleSelect}
-          />
-          <AnswerTypeButton
-            type={CURRENCY}
-            title="Currency"
-            onClick={this.handleSelect}
-          />
-          <AnswerTypeButton
-            type={NUMBER}
-            title="Number"
-            onClick={this.handleSelect}
-          />
+        <MenuBackground>
+          <IconGrid aria-labelledby={labelledby}>
+            {buttons.map((button, index) => {
+              const props = {
+                ...button,
+                onClick: this.handleSelect,
+                order: buttons.length - index
+              };
 
-          <AnswerTypeButton
-            type={DATE}
-            title="Date"
-            onClick={this.handleSelect}
-          />
-          <AnswerTypeButton
-            type={DATE_RANGE}
-            title="Date range"
-            onClick={this.handleSelect}
-          />
-          <AnswerTypeButton
-            type={TIME}
-            title="Time"
-            onClick={this.handleSelect}
-            disabled
-          />
-        </IconGrid>
+              if (index === 0) {
+                props.ref = this.saveButtonRef;
+              }
+              return <AnswerTypeButton key={button.type} {...props} />;
+            })}
+          </IconGrid>
+        </MenuBackground>
       </Menu>
     );
   }

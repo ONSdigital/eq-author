@@ -11,7 +11,7 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
 import ItemSelect, { Option } from "./ItemSelect";
 
-import { colors } from "constants/theme";
+import { colors, radius } from "constants/theme";
 import Truncated from "../Truncated";
 
 const StyledModal = styled(Modal)`
@@ -49,7 +49,7 @@ const Trigger = styled.button.attrs({ type: "button" })`
   background: white url('${Icon}') no-repeat right center;
   border: solid 1px #aeaeae;
   text-align: left;
-  border-radius: 3px;
+  border-radius: ${radius};
   color: ${colors.black};
 
   &:focus {

@@ -5,7 +5,9 @@ exports[`AddMenu should render 1`] = `
   onAdd={[Function]}
 >
   <Popout
+    container={[Function]}
     horizontalAlignment="left"
+    layer={[Function]}
     offsetX="4.9em"
     offsetY="-1.6em"
     onToggleOpen={[Function]}

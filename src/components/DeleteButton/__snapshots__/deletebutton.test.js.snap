@@ -8,14 +8,20 @@ exports[`large 1`] = `
   cursor: pointer;
   -webkit-transition: color 0.2s ease-in;
   transition: color 0.2s ease-in;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
   font-size: 3em;
-  padding: 0.3em;
 }
 
 .c0:hover {
   color: #333333;
   -webkit-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
+}
+
+.c0:focus {
+  outline: 3px solid #FDBD56;
 }
 
 <DeleteButton
@@ -48,14 +54,20 @@ exports[`medium 1`] = `
   cursor: pointer;
   -webkit-transition: color 0.2s ease-in;
   transition: color 0.2s ease-in;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
   font-size: 2em;
-  padding: 0.3em;
 }
 
 .c0:hover {
   color: #333333;
   -webkit-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
+}
+
+.c0:focus {
+  outline: 3px solid #FDBD56;
 }
 
 <DeleteButton
@@ -88,14 +100,20 @@ exports[`small 1`] = `
   cursor: pointer;
   -webkit-transition: color 0.2s ease-in;
   transition: color 0.2s ease-in;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
   font-size: 1.25em;
-  padding: 0 auto;
 }
 
 .c0:hover {
   color: #333333;
   -webkit-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
+}
+
+.c0:focus {
+  outline: 3px solid #FDBD56;
 }
 
 <DeleteButton
