@@ -9,9 +9,11 @@ const IconWithText = styled.span`
   padding-right: ${props => (props.hideText ? 0 : "0.5em")};
   line-height: 1.3;
   color: var(--color-text);
+  width: 100%;
 
   svg {
     pointer-events: none;
+    flex: 0 0 2em;
     path {
       fill: var(--color-text);
     }

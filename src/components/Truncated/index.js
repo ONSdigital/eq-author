@@ -5,6 +5,7 @@ const Truncated = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex: 1;
 `;
 
 export default Truncated;

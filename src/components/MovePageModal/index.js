@@ -12,6 +12,7 @@ import Icon from "assets/icon-select.svg";
 import ItemSelect, { Option } from "./ItemSelect";
 
 import { colors } from "constants/theme";
+import Truncated from "../Truncated";
 
 const StyledModal = styled(Modal)`
   .Modal {
@@ -44,6 +45,7 @@ const Trigger = styled.button.attrs({ type: "button" })`
   width: 100%;
   font-size: 1em;
   padding: 0.5rem;
+  padding-right: 2em;
   background: white url('${Icon}') no-repeat right center;
   border: solid 1px #aeaeae;
   text-align: left;
@@ -237,7 +239,9 @@ class MovePageModal extends React.Component {
 
         <Label htmlFor={sectionButtonId}>Section</Label>
         <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
-          {getTextFromHTML(section.title) || "Untitled Section"}
+          <Truncated>
+            {getTextFromHTML(section.title) || "Untitled Section"}
+          </Truncated>
         </Trigger>
         {this.renderSectionSelect(section)}
 
