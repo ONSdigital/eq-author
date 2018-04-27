@@ -1,6 +1,5 @@
 import query from "graphql/undeletePage.graphql";
 import fragment from "graphql/sectionFragment.graphql";
-import { findUndeleteIndex } from "utils/findUndeleteIndex";
 import createMutate from "utils/createMutate";
 
 export const UNDELETE_PAGE_REQUEST = "UNDELETE_PAGE_REQUEST";
@@ -26,11 +25,11 @@ const undeleteFailure = () => {
 };
 
 export const createUpdate = context => (proxy, result) => {
+  const page = result.data.undeleteQuestionPage;
   const id = `Section${context.sectionId}`;
   const section = proxy.readFragment({ id, fragment });
 
-  const index = findUndeleteIndex(section.pages, context.pageId);
-  section.pages.splice(index, 0, result.data.undeleteQuestionPage);
+  section.pages.splice(page.position, 0, page);
 
   proxy.writeFragment({
     id,

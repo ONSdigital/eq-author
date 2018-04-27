@@ -1,6 +1,11 @@
 mutation createQuestionnaire($input: CreateQuestionnaireInput!) {
   createQuestionnaire(input: $input) {
     id
+    title
+    createdAt
+    createdBy {
+      name
+    }
     sections {
       id
       pages {

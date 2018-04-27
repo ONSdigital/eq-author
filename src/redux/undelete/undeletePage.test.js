@@ -31,7 +31,8 @@ describe("undeletePage", () => {
     result = {
       data: {
         undeleteQuestionPage: {
-          id: 1
+          id: 1,
+          position: 1
         }
       }
     };
@@ -39,7 +40,7 @@ describe("undeletePage", () => {
     proxy = {
       readFragment: jest.fn(() => {
         return {
-          pages: []
+          pages: [{ id: 2, position: 0 }, { id: 3, position: 2 }]
         };
       }),
       writeFragment: jest.fn()
@@ -68,21 +69,23 @@ describe("undeletePage", () => {
   });
 
   describe("createUpdate", () => {
-    it("should call the correct query on the proxy", () => {
+    it("should insert the page at the correct position", () => {
       createUpdate(context)(proxy, result);
+
       expect(proxy.readFragment).toHaveBeenCalledWith({
         id: "Section1",
         fragment
       });
-    });
 
-    it("should write data back to the proxy", () => {
-      createUpdate(context)(proxy, result);
       expect(proxy.writeFragment).toHaveBeenCalledWith({
         id: "Section1",
         fragment,
         data: {
-          pages: [{ id: 1 }]
+          pages: [
+            { id: 2, position: 0 },
+            { id: 1, position: 1 },
+            { id: 3, position: 2 }
+          ]
         }
       });
     });

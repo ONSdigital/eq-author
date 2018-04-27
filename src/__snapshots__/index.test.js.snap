@@ -26,7 +26,6 @@ Object {
           Symbol(id): "Section1",
         },
       ],
-      "theme": "default",
       "title": "Integration test questionnaire",
       Symbol(id): "Questionnaire1",
     },
