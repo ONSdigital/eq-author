@@ -71,7 +71,7 @@ exports[`Answer Editor should render Currency 1`] = `
 
 exports[`Answer Editor should render DateRange 1`] = `
 <div>
-  <withEntityEditor(DateRange)
+  <Connect(withEntityEditor(DateRange))
     answer={
       Object {
         "description": "",

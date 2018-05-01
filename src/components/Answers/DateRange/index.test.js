@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import DateRange from "./index";
+import createMockStore from "tests/utils/createMockStore";
 
 const answer = {
   id: "1",
@@ -11,10 +12,12 @@ const answer = {
 describe("DateRange", () => {
   let handleChange;
   let handleUpdate;
+  let store;
 
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
+    store = createMockStore();
   });
 
   it("should render", () => {
@@ -23,6 +26,7 @@ describe("DateRange", () => {
         onChange={handleChange}
         onUpdate={handleUpdate}
         answer={answer}
+        store={store}
       />
     );
     expect(wrapper).toMatchSnapshot();

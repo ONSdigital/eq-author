@@ -13,7 +13,7 @@ exports[`QuestionnaireSettingsModal should render 1`] = `
       </QuestionnaireSettingsModal__CenteredHeading>
     </DialogMessage__Message>
   </DialogHeader___default>
-  <withEntityEditor(StatelessQuestionnaireMeta)
+  <Connect(withEntityEditor(StatelessQuestionnaireMeta))
     confirmText="Create"
     onCancel={[Function]}
     onSubmit={[Function]}

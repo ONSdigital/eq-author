@@ -1,15 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Date should render 1`] = `
-<Date
+<withEntityEditor(Date)
   answer={
     Object {
       "id": "1",
       "label": "Lorem ipsum",
     }
   }
+  endRequest={[Function]}
   onChange={[Function]}
-  onSubmit={[Function]}
   onUpdate={[Function]}
+  startRequest={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
 />
 `;

@@ -7,11 +7,13 @@ import { CHECKBOX, RADIO } from "constants/answer-types";
 
 import { shallow, mount } from "enzyme";
 import { merge } from "lodash";
+import createMockStore from "tests/utils/createMockStore";
 
 describe("Option", () => {
   let mockMutations;
   let mockEvent;
   let wrapper;
+  let store;
 
   const option = {
     id: "1",
@@ -27,6 +29,7 @@ describe("Option", () => {
         option={option}
         hasDeleteButton
         type={RADIO}
+        store={store}
         {...otherProps}
       />
     );
@@ -39,6 +42,8 @@ describe("Option", () => {
       stopPropagation: jest.fn(),
       preventDefault: jest.fn()
     };
+
+    store = createMockStore();
 
     mockMutations = {
       onChange: jest.fn(),

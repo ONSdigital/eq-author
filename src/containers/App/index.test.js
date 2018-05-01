@@ -4,16 +4,13 @@ import App, { Routes } from "./index";
 import { shallow } from "enzyme";
 
 import createHistory from "history/createHashHistory";
+import createMockStore from "tests/utils/createMockStore";
 
 const history = createHistory({
   basename: process.env.REACT_APP_BASE_NAME
 });
 
-const store = {
-  getState: jest.fn(),
-  subscribe: jest.fn(),
-  dispatch: jest.fn()
-};
+const store = createMockStore();
 
 const client = {
   query: jest.fn(),

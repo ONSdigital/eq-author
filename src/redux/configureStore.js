@@ -6,6 +6,7 @@ import {
   routerReducer as router
 } from "react-router-redux";
 import toasts from "redux/toast/reducer";
+import saving from "redux/saving/reducer";
 import authReducer from "redux/auth/reducer";
 
 let auth;
@@ -21,6 +22,7 @@ const configureStore = (history, client, preloadedState) =>
   createStore(
     combineReducers({
       router,
+      saving,
       toasts,
       auth: authReducer
     }),

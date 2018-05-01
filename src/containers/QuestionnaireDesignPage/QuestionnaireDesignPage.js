@@ -15,6 +15,7 @@ import styled from "styled-components";
 import Button from "components/Button";
 import AddPage from "./icon-add-page.svg?inline";
 import IconText from "components/IconText";
+import SavingIndicator from "components/SavingIndicator";
 
 const Centered = styled.div`
   display: flex;
@@ -99,6 +100,7 @@ export class QuestionnaireDesignPage extends Component {
                   section={section}
                   page={page}
                 />
+                <SavingIndicator />
                 <EditorSurface
                   questionnaire={questionnaire}
                   section={section}

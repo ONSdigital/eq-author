@@ -264,6 +264,13 @@ exports[`Option should render a checkbox 1`] = `
       "label": "",
     }
   }
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
   type="Checkbox"
 >
   <Option__StyledOption
