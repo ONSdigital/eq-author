@@ -251,6 +251,7 @@ exports[`Option should render a checkbox 1`] = `
 
 <StatelessOption
   hasDeleteButton={true}
+  labelPlaceholder="Label"
   onChange={[Function]}
   onDelete={[Function]}
   onEnterKey={[Function]}

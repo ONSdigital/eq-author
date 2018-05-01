@@ -3,6 +3,7 @@
 exports[`SplitButton should render when closed 1`] = `
 <SplitButton__FlexContainer>
   <PrimaryButton
+    data-test="splitbutton"
     onClick={[Function]}
   >
     Add checkbox
@@ -13,7 +14,11 @@ exports[`SplitButton should render when closed 1`] = `
     onToggleOpen={[Function]}
     open={false}
     transition={[Function]}
-    trigger={<MenuButton />}
+    trigger={
+      <MenuButton
+        data-test="splitbutton-menu"
+      />
+    }
     verticalAlignment="top"
   >
     <ButtonGroup>
@@ -33,6 +38,7 @@ exports[`SplitButton should render when closed 1`] = `
 exports[`SplitButton should render when open 1`] = `
 <SplitButton__FlexContainer>
   <PrimaryButton
+    data-test="splitbutton"
     onClick={[Function]}
   >
     Add checkbox
@@ -43,7 +49,11 @@ exports[`SplitButton should render when open 1`] = `
     onToggleOpen={[Function]}
     open={true}
     transition={[Function]}
-    trigger={<MenuButton />}
+    trigger={
+      <MenuButton
+        data-test="splitbutton-menu"
+      />
+    }
     verticalAlignment="top"
   >
     <ButtonGroup>

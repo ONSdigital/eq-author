@@ -27,7 +27,9 @@ describe("Question Page Editor", () => {
       onDeleteAnswer: jest.fn(),
       onUpdateOption: jest.fn(),
       onFocus: jest.fn(),
-      onMovePage: jest.fn()
+      onMovePage: jest.fn(),
+      onAddOther: jest.fn(),
+      onDeleteOther: jest.fn()
     };
 
     page = {

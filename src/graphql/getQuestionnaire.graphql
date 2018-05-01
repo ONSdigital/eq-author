@@ -22,6 +22,14 @@ query GetQuestionnaire($id: ID!) {
               options {
                 ...Option
               }
+              other {
+                option {
+                  ...Option
+                }
+                answer {
+                  ...Answer
+                }
+              }
             }
           }
         }

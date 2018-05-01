@@ -30,7 +30,7 @@ describe("eq-author", () => {
     cy.get(`[data-test="username"]`).then($name => {
       cy
         .get("tbody tr")
-        .last()
+        .first()
         .should("contain", "My Questionnaire Title")
         .and("contain", $name.text())
         .find("a")
@@ -373,5 +373,50 @@ describe("eq-author", () => {
       .find(`[data-test="page-item"]`)
       .first()
       .should("contain", "Page 2");
+  });
+
+  describe('Checkbox/Radio with "other" option', () => {
+    it("should goto questionnaire design page", () => {
+      cy.visit("/");
+      cy.contains("Sign in as Guest").click();
+      cy.get("[data-test='create-questionnaire']").click();
+      setQuestionnaireSettings("My Questionnaire Title");
+    });
+
+    it('should add an "other" answer', () => {
+      addAnswerType("Checkbox");
+      cy.get("[data-test='btn-add-option-menu']").click();
+      cy.get("[data-test='btn-add-option-other']").click();
+      cy.get("[data-test='option-label']").should("have.length", 2);
+      cy.get("[data-test='other-answer']").should("have.length", 1);
+    });
+
+    it("should update the other option and answer values", () => {
+      cy
+        .get("[data-test='option-label']")
+        .last()
+        .type("Other label");
+      cy
+        .get("[data-test='option-description']")
+        .last()
+        .type("Other description");
+      cy
+        .get("[data-test='txt-answer-label']")
+        .last()
+        .type("Text answer label");
+      cy
+        .get("[data-test='option-label']")
+        .first()
+        .click();
+    });
+
+    it('should remove the "other" option.', () => {
+      cy
+        .get("[data-test='btn-delete-option']")
+        .last()
+        .click();
+      cy.get("[data-test='option-label']").should("have.length", 1);
+      cy.get("[data-test='other-answer']").should("have.length", 0);
+    });
   });
 });

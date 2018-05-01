@@ -1,5 +1,192 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MultipleChoiceAnswer other option and answer should render other 1`] = `
+<Connect(withEntityEditor(StatelessBasicAnswer))
+  answer={
+    Object {
+      "id": "0",
+      "options": Array [
+        Object {
+          "description": "",
+          "id": 0,
+          "label": "",
+        },
+        Object {
+          "description": "",
+          "id": 1,
+          "label": "",
+        },
+      ],
+      "other": Object {
+        "answer": Object {
+          "id": "1",
+          "options": Array [
+            Object {
+              "__typename": "Option",
+              "description": "",
+              "id": "1",
+              "label": "",
+            },
+          ],
+          "type": "TextField",
+        },
+        "option": Object {
+          "__typename": "Option",
+          "id": "2",
+        },
+      },
+    }
+  }
+  labelPlaceholder="Label (optional)"
+  onUpdate={[Function]}
+>
+  <MultipleChoiceAnswer__AnswerWrapper>
+    <TransitionGroup
+      childFactory={[Function]}
+      component={[Function]}
+    >
+      <CSSTransition
+        classNames="option"
+        key="0"
+        timeout={200}
+      >
+        <Connect(withEntityEditor(StatelessOption))
+          hasDeleteButton={true}
+          onAddOption={[Function]}
+          onAddOther={[Function]}
+          onChange={[Function]}
+          onDelete={[Function]}
+          onDeleteOption={[Function]}
+          onDeleteOther={[Function]}
+          onEnterKey={[Function]}
+          onUpdate={[Function]}
+          option={
+            Object {
+              "description": "",
+              "id": 0,
+              "label": "",
+            }
+          }
+          store={
+            Object {
+              "dispatch": [Function],
+              "getState": [Function],
+              "subscribe": [Function],
+            }
+          }
+        />
+      </CSSTransition>
+      <CSSTransition
+        classNames="option"
+        key="1"
+        timeout={200}
+      >
+        <Connect(withEntityEditor(StatelessOption))
+          hasDeleteButton={true}
+          onAddOption={[Function]}
+          onAddOther={[Function]}
+          onChange={[Function]}
+          onDelete={[Function]}
+          onDeleteOption={[Function]}
+          onDeleteOther={[Function]}
+          onEnterKey={[Function]}
+          onUpdate={[Function]}
+          option={
+            Object {
+              "description": "",
+              "id": 1,
+              "label": "",
+            }
+          }
+          store={
+            Object {
+              "dispatch": [Function],
+              "getState": [Function],
+              "subscribe": [Function],
+            }
+          }
+        />
+      </CSSTransition>
+      <CSSTransition
+        classNames="option"
+        key="2"
+        timeout={200}
+      >
+        <Connect(withEntityEditor(StatelessOption))
+          hasDeleteButton={true}
+          labelPlaceholder="Other"
+          onAddOption={[Function]}
+          onAddOther={[Function]}
+          onChange={[Function]}
+          onDelete={[Function]}
+          onDeleteOption={[Function]}
+          onDeleteOther={[Function]}
+          onEnterKey={[Function]}
+          onUpdate={[Function]}
+          option={
+            Object {
+              "__typename": "Option",
+              "id": "2",
+            }
+          }
+          store={
+            Object {
+              "dispatch": [Function],
+              "getState": [Function],
+              "subscribe": [Function],
+            }
+          }
+        >
+          <MultipleChoiceAnswer__OtherAnswerWrapper
+            data-test="other-answer"
+          >
+            <TextAnswer
+              answer={
+                Object {
+                  "id": "1",
+                  "options": Array [
+                    Object {
+                      "__typename": "Option",
+                      "description": "",
+                      "id": "1",
+                      "label": "",
+                    },
+                  ],
+                  "type": "TextField",
+                }
+              }
+              labelPlaceholder="Please specify"
+              onUpdate={[Function]}
+              showDescription={false}
+              size="tiny"
+            />
+          </MultipleChoiceAnswer__OtherAnswerWrapper>
+        </Connect(withEntityEditor(StatelessOption))>
+      </CSSTransition>
+    </TransitionGroup>
+    <div>
+      <SplitButton
+        dataTest="btn-add-option"
+        onPrimaryAction={[Function]}
+        onToggleOpen={[Function]}
+        open={false}
+        primaryText="Add another option"
+      >
+        <Dropdown>
+          <MenuItem
+            data-test="btn-add-option-other"
+            disabled={true}
+            onClick={[Function]}
+          >
+            Add "other" option
+          </MenuItem>
+        </Dropdown>
+      </SplitButton>
+    </div>
+  </MultipleChoiceAnswer__AnswerWrapper>
+</Connect(withEntityEditor(StatelessBasicAnswer))>
+`;
+
 exports[`MultipleChoiceAnswer should match snapshot 1`] = `
 <Connect(withEntityEditor(StatelessBasicAnswer))
   answer={
@@ -31,9 +218,11 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={false}
           onAddOption={[Function]}
+          onAddOther={[Function]}
           onChange={[Function]}
           onDelete={[Function]}
           onDeleteOption={[Function]}
+          onDeleteOther={[Function]}
           onEnterKey={[Function]}
           onUpdate={[Function]}
           option={
@@ -55,14 +244,23 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       </CSSTransition>
     </TransitionGroup>
     <div>
-      <Button
-        data-test="btn-add-option"
-        onClick={[Function]}
-        type="button"
-        variant="secondary"
+      <SplitButton
+        dataTest="btn-add-option"
+        onPrimaryAction={[Function]}
+        onToggleOpen={[Function]}
+        open={false}
+        primaryText="Add another option"
       >
-        Add another option
-      </Button>
+        <Dropdown>
+          <MenuItem
+            data-test="btn-add-option-other"
+            disabled={true}
+            onClick={[Function]}
+          >
+            Add "other" option
+          </MenuItem>
+        </Dropdown>
+      </SplitButton>
     </div>
   </MultipleChoiceAnswer__AnswerWrapper>
 </Connect(withEntityEditor(StatelessBasicAnswer))>

@@ -137,6 +137,12 @@ export default {
     },
     deleteOption: (root, args, ctx) => {
       return persistMutation(DataStore.deleteOption(merge({}, args.input)));
+    },
+    createOther: (root, args, ctx) => {
+      return persistMutation(DataStore.createOther(merge({}, args.input)));
+    },
+    deleteOther: (root, args, ctx) => {
+      return persistMutation(DataStore.deleteOther(merge({}, args.input)));
     }
   }),
 
@@ -171,6 +177,7 @@ export default {
 
   MultipleChoiceAnswer: () => ({
     page: (answer, args, ctx) => DataStore.getPage(answer.questionPageId),
-    options: (answer, args, ctx) => DataStore.getOptions(answer.id)
+    options: (answer, args, ctx) => DataStore.getOptions(answer.id),
+    other: (answer, args, ctx) => DataStore.getOther(answer.id)
   })
 };

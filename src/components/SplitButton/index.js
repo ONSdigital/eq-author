@@ -12,11 +12,12 @@ const FlexContainer = styled.div`
 
 class SplitButton extends React.Component {
   static propTypes = {
-    primaryAction: PropTypes.func.isRequired,
+    onPrimaryAction: PropTypes.func.isRequired,
     primaryText: PropTypes.string.isRequired,
     onToggleOpen: PropTypes.func.isRequired,
     open: PropTypes.bool,
-    children: PropTypes.node
+    children: PropTypes.node,
+    dataTest: PropTypes.string
   };
 
   static defaultProps = {
@@ -28,11 +29,19 @@ class SplitButton extends React.Component {
   };
 
   render() {
-    const { primaryAction, primaryText, open, children } = this.props;
-    const trigger = <MenuButton />;
+    const {
+      onPrimaryAction,
+      primaryText,
+      open,
+      children,
+      dataTest
+    } = this.props;
+    const trigger = <MenuButton data-test={`${dataTest}-menu`} />;
     return (
       <FlexContainer>
-        <PrimaryButton onClick={primaryAction}>{primaryText}</PrimaryButton>
+        <PrimaryButton onClick={onPrimaryAction} data-test={dataTest}>
+          {primaryText}
+        </PrimaryButton>
         <Popout
           trigger={trigger}
           horizontalAlignment="right"

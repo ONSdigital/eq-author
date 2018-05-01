@@ -11,6 +11,14 @@ mutation createAnswer($input: CreateAnswerInput!) {
       options {
         ...Option
       }
+      other {
+        option {
+          ...Option
+        }
+        answer {
+          ...Answer
+        }
+      }
     }
   }
 }

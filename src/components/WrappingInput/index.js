@@ -27,6 +27,11 @@ const sizes = {
 
   small: css`
     font-size: 0.875em;
+  `,
+
+  tiny: css`
+    font-size: 0.75em;
+    font-weight: 700;
   `
 };
 

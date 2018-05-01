@@ -3,5 +3,13 @@ fragment MinimalAnswer on Answer {
     options {
       id
     }
+    other {
+      option {
+        id
+      }
+      answer {
+        id
+      }
+    }
   }
 }

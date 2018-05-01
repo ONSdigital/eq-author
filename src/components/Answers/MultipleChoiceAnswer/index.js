@@ -6,13 +6,17 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import focusOnEntity from "utils/focusOnEntity";
 
-import Button from "components/Button";
-
 import Option from "./Option";
 import BasicAnswer from "components/Answers/BasicAnswer";
 
 import { colors } from "constants/theme";
 import { CHECKBOX } from "constants/answer-types";
+import SplitButton from "components/SplitButton";
+import Dropdown from "components/SplitButton/Dropdown";
+import MenuItem from "components/SplitButton/MenuItem";
+import TextAnswer from "components/Answers/TextAnswer";
+
+import { last } from "lodash";
 
 const AnswerWrapper = styled.div`
   width: 50%;
@@ -55,6 +59,11 @@ export const DeleteButton = styled.button`
   }
 `;
 
+const OtherAnswerWrapper = styled.div`
+  padding-top: 0.25em;
+  margin-bottom: 1em;
+`;
+
 class MultipleChoiceAnswer extends Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
@@ -62,11 +71,17 @@ class MultipleChoiceAnswer extends Component {
     onAddOption: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
+    onAddOther: PropTypes.func.isRequired,
+    onDeleteOther: PropTypes.func.isRequired,
     minOptions: PropTypes.number.isRequired
   };
 
   static defaultProps = {
     minOptions: 1
+  };
+
+  state = {
+    open: false
   };
 
   handleOptionDelete = optionId => {
@@ -78,6 +93,31 @@ class MultipleChoiceAnswer extends Component {
     return this.props.onAddOption(this.props.answer.id).then(focusOnEntity);
   };
 
+  handleAddOther = e => {
+    e.preventDefault();
+    return this.props
+      .onAddOther(this.props.answer)
+      .then(res => {
+        this.handleToggleOpen(false);
+        return res;
+      })
+      .then(res => res.option)
+      .then(focusOnEntity);
+  };
+
+  handleDeleteOther = e => {
+    return this.props
+      .onDeleteOther(this.props.answer)
+      .then(() => last(this.props.answer.options))
+      .then(focusOnEntity);
+  };
+
+  handleToggleOpen = open => {
+    this.setState({
+      open
+    });
+  };
+
   render() {
     const {
       answer,
@@ -86,6 +126,9 @@ class MultipleChoiceAnswer extends Component {
       minOptions,
       ...otherProps
     } = this.props;
+
+    const numberOfOptions = answer.options.length + (answer.other ? 1 : 0);
+    const showDeleteOption = numberOfOptions > minOptions;
 
     return (
       <BasicAnswer
@@ -106,20 +149,56 @@ class MultipleChoiceAnswer extends Component {
                   onDelete={this.handleOptionDelete}
                   onUpdate={onUpdateOption}
                   onEnterKey={this.handleAddOption}
-                  hasDeleteButton={options.length > minOptions}
+                  hasDeleteButton={showDeleteOption}
                 />
               </CSSTransition>
             ))}
+            {answer.other && (
+              <CSSTransition
+                timeout={200}
+                classNames="option"
+                key={answer.other.option.id}
+              >
+                <Option
+                  {...otherProps}
+                  option={answer.other.option}
+                  onDelete={this.handleDeleteOther}
+                  onUpdate={onUpdateOption}
+                  onEnterKey={this.handleAddOption}
+                  labelPlaceholder="Other"
+                  hasDeleteButton={showDeleteOption}
+                >
+                  <OtherAnswerWrapper data-test="other-answer">
+                    <TextAnswer
+                      answer={answer.other.answer}
+                      onUpdate={onUpdate}
+                      labelPlaceholder="Please specify"
+                      showDescription={false}
+                      size="tiny"
+                    />
+                  </OtherAnswerWrapper>
+                </Option>
+              </CSSTransition>
+            )}
           </TransitionGroup>
           <div>
-            <Button
-              type="button"
-              variant="secondary"
-              onClick={this.handleAddOption}
-              data-test="btn-add-option"
+            <SplitButton
+              onPrimaryAction={this.handleAddOption}
+              primaryText="Add another option"
+              onToggleOpen={this.handleToggleOpen}
+              open={this.state.open}
+              dataTest="btn-add-option"
             >
-              Add another option
-            </Button>
+              <Dropdown>
+                <MenuItem
+                  onClick={this.handleAddOther}
+                  disabled={answer.other !== null}
+                  data-test="btn-add-option-other"
+                >
+                  Add &quot;other&quot; option
+                </MenuItem>
+              </Dropdown>
+            </SplitButton>
           </div>
         </AnswerWrapper>
       </BasicAnswer>
