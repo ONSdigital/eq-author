@@ -22,7 +22,9 @@ exports[`MovePageModal/MovePageModal should render 1`] = `
     id="MovePageModal1"
     onClick={[Function]}
   >
-    Section 1
+    <Truncated>
+      Section 1
+    </Truncated>
   </MovePageModal__Trigger>
   <ItemSelectModal
     isOpen={false}

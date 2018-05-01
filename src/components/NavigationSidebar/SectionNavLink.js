@@ -11,14 +11,13 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import { rgba } from "polished";
 
 import CustomPropTypes from "custom-prop-types";
+import Truncated from "../Truncated";
 
 const textInverted = "#E1E1E1";
 
 const Link = styled(NavLink)`
   text-decoration: none;
   color: ${textInverted};
-  overflow: hidden;
-  text-overflow: ellipsis;
   display: block;
   width: 100%;
   padding: 0.3em 0.5em;
@@ -43,17 +42,13 @@ const Link = styled(NavLink)`
   }
 `;
 
-const Title = styled.span`
+const Title = styled(Truncated)`
   padding: 0.5em 2.5em 0.5em 0;
   font-size: 0.75em;
   margin: 0;
   font-weight: 900;
   position: relative;
-  width: 100%;
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
   color: ${textInverted};
 
   &::before {

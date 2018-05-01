@@ -8,6 +8,7 @@ import getTextFromHTML from "utils/getTextFromHTML";
 import pageIcon from "./icon-questionpage.svg";
 import { transparentize } from "polished";
 import { colors } from "constants/theme";
+import Truncated from "../Truncated";
 
 const duration = 300;
 
@@ -87,15 +88,12 @@ const Link = styled(NavLink)`
   }
 `;
 
-export const LinkText = styled.span`
+export const LinkText = styled(Truncated)`
   display: inline-block;
   vertical-align: middle;
   width: 100%;
   position: relative;
   z-index: 2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   opacity: ${({ fade }) => (fade ? 0.5 : 1)};
   font-size: 0.75em;
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnairesTable, { DeleteButton } from "./QuestionnairesTable";
+import QuestionnairesTable from "./QuestionnairesTable";
+import IconButtonDelete from "components/IconButtonDelete";
 
 describe("QuestionnairesTable", () => {
   const questionnaires = [
@@ -53,7 +54,7 @@ describe("QuestionnairesTable", () => {
 
   it("should allow deletion of Questionnaire", () => {
     wrapper
-      .find(DeleteButton)
+      .find(IconButtonDelete)
       .first()
       .simulate("click");
 

@@ -18,9 +18,9 @@ exports[`MovePageModal/ItemSelect Option should render 1`] = `
       hideText={false}
       icon={[Function]}
     >
-      <ItemSelect__Truncated>
+      <Truncated>
         bar
-      </ItemSelect__Truncated>
+      </Truncated>
     </IconText>
   </ItemSelect__Label>
 </div>

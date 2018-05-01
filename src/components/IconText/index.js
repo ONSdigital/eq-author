@@ -9,17 +9,19 @@ const IconWithText = styled.span`
   padding-right: ${props => (props.hideText ? 0 : "0.5em")};
   line-height: 1.3;
   color: var(--color-text);
+  width: 100%;
 
   svg {
     pointer-events: none;
+    flex: 0 0 2em;
     path {
       fill: var(--color-text);
     }
   }
 `;
 
-const IconText = ({ icon: Icon, hideText, children }) => (
-  <IconWithText hideText={hideText}>
+const IconText = ({ icon: Icon, hideText, children, ...otherProps }) => (
+  <IconWithText hideText={hideText} {...otherProps}>
     <Icon />
     {hideText ? <VisuallyHidden>{children}</VisuallyHidden> : children}
   </IconWithText>

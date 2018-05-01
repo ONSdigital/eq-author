@@ -7,18 +7,12 @@ import IconMoveIndicator from "./icon-move-indicator.svg?inline";
 import { uniqueId } from "lodash";
 import withChangeHandler from "../Forms/withChangeHandler";
 import IconText from "../IconText";
+import Truncated from "components/Truncated";
 
 const Input = VisuallyHidden.withComponent("input");
 Input.defaultProps = {
   type: "radio"
 };
-
-const Truncated = styled.span`
-  display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
 
 const Label = styled.label`
   display: flex;
