@@ -15,10 +15,11 @@ const MenuItem = styled.button.attrs({
     margin: 0;
   }
 
-  &:focus,
-  &:hover {
+  &:focus:not(:disabled),
+  &:hover:not(:disabled) {
     background: ${colors.blue};
     color: ${colors.white};
+    cursor: pointer;
   }
 `;
 
