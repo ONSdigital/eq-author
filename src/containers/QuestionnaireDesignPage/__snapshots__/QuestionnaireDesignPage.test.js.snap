@@ -25,6 +25,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
               "description": "",
               "guidance": "",
               "id": "1",
+              "position": 0,
               "title": "",
               "type": "General",
             },
@@ -45,7 +46,28 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
       gutters={false}
     >
       <Connect(withRouter(Apollo(Apollo(Apollo(Apollo(NavigationSidebar))))))
-        pageId="1"
+        currentPageId="1"
+        page={
+          Object {
+            "answers": Array [
+              Object {
+                "id": "1",
+                "label": "",
+                "options": Array [
+                  Object {
+                    "id": "1",
+                  },
+                ],
+              },
+            ],
+            "description": "",
+            "guidance": "",
+            "id": "1",
+            "position": 0,
+            "title": "",
+            "type": "General",
+          }
+        }
         questionnaire={
           Object {
             "id": "3",
@@ -68,6 +90,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                     "description": "",
                     "guidance": "",
                     "id": "1",
+                    "position": 0,
                     "title": "",
                     "type": "General",
                   },
@@ -79,7 +102,33 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
           }
         }
         questionnaireId="3"
-        sectionId="2"
+        section={
+          Object {
+            "id": "2",
+            "pages": Array [
+              Object {
+                "answers": Array [
+                  Object {
+                    "id": "1",
+                    "label": "",
+                    "options": Array [
+                      Object {
+                        "id": "1",
+                      },
+                    ],
+                  },
+                ],
+                "description": "",
+                "guidance": "",
+                "id": "1",
+                "position": 0,
+                "title": "",
+                "type": "General",
+              },
+            ],
+            "title": "",
+          }
+        }
       />
     </Column>
     <Column
@@ -105,6 +154,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                 "description": "",
                 "guidance": "",
                 "id": "1",
+                "position": 0,
                 "title": "",
                 "type": "General",
               }
@@ -131,6 +181,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                         "description": "",
                         "guidance": "",
                         "id": "1",
+                        "position": 0,
                         "title": "",
                         "type": "General",
                       },
@@ -160,6 +211,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                     "description": "",
                     "guidance": "",
                     "id": "1",
+                    "position": 0,
                     "title": "",
                     "type": "General",
                   },
@@ -190,6 +242,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                 "description": "",
                 "guidance": "",
                 "id": "1",
+                "position": 0,
                 "title": "",
                 "type": "General",
               }
@@ -216,6 +269,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                         "description": "",
                         "guidance": "",
                         "id": "1",
+                        "position": 0,
                         "title": "",
                         "type": "General",
                       },
@@ -245,6 +299,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                     "description": "",
                     "guidance": "",
                     "id": "1",
+                    "position": 0,
                     "title": "",
                     "type": "General",
                   },
@@ -293,6 +348,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
             "description": "",
             "guidance": "",
             "id": "1",
+            "position": 0,
             "title": "",
             "type": "General",
           }
@@ -319,6 +375,7 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                     "description": "",
                     "guidance": "",
                     "id": "1",
+                    "position": 0,
                     "title": "",
                     "type": "General",
                   },

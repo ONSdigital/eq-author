@@ -74,11 +74,8 @@ export default {
 
       persistMutation(
         DataStore.createPage({
-          pageType: "QuestionPage",
-          title: "",
-          description: "",
-          type: "General",
-          sectionId: section.id
+          sectionId: section.id,
+          position: 0
         })
       );
 
@@ -100,7 +97,7 @@ export default {
       return persistMutation(DataStore.deleteSection(merge({}, args.input)));
     },
     createPage: (root, args, ctx) => {
-      return persistMutation(DataStore.createPage(merge({}, args.input)));
+      return persistMutation(DataStore.createPage({ ...args.input }));
     },
     updatePage: (root, args, ctx) => {
       return persistMutation(DataStore.updatePage(merge({}, args.input)));

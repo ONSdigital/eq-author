@@ -4,11 +4,17 @@ import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 
 describe("NavigationHeader", () => {
+  let mockHandlers = {
+    onAddPage: jest.fn(),
+    onAddSection: jest.fn()
+  };
+
   const createWrapper = props =>
     shallow(
       <NavigationHeader
         questionnaire={{}}
         onUpdateQuestionnaire={jest.fn()}
+        {...mockHandlers}
         {...props}
       />
     );
@@ -34,5 +40,19 @@ describe("NavigationHeader", () => {
     wrapper.find(QuestionnaireSettingsModal).simulate("submit");
 
     expect(onUpdateQuestionnaire).toHaveBeenCalled();
+  });
+
+  it("should allow a page to be added", () => {
+    const wrapper = createWrapper();
+    wrapper.find('[data-test="add-menu"]').simulate("addPage");
+
+    expect(mockHandlers.onAddPage).toHaveBeenCalled();
+  });
+
+  it("should allow a section to be added", () => {
+    const wrapper = createWrapper();
+    wrapper.find('[data-test="add-menu"]').simulate("addSection");
+
+    expect(mockHandlers.onAddSection).toHaveBeenCalled();
   });
 });

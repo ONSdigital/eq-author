@@ -71,10 +71,8 @@ class MockDataStore {
     });
 
     this.createPage({
-      pageType: "QuestionPage",
-      title: "",
-      description: "",
-      sectionId: defaultSection.id
+      sectionId: defaultSection.id,
+      position: 0
     });
 
     return this.questionnaires[id];
@@ -133,13 +131,19 @@ class MockDataStore {
 
   createPage(page) {
     const id = (++this.counter.page).toString();
-    this.pages[id] = merge(
-      page,
-      { id },
-      { answers: [], __typename: "QuestionPage" }
-    );
+    this.pages[id] = {
+      id,
+      answers: [],
+      pageType: "QuestionPage",
+      title: "",
+      description: "",
+      __typename: "QuestionPage",
+      ...page
+    };
 
-    this.getSection(page.sectionId).pages.push(this.pages[id]);
+    const section = this.getSection(page.sectionId);
+    section.pages.splice(page.position, 0, this.pages[id]);
+
     return this.pages[id];
   }
 

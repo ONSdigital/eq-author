@@ -10,6 +10,28 @@ export function setQuestionnaireSettings(name) {
   });
 }
 
+export const addSection = () =>
+  cy.get("[data-test='add-menu']").within(() => {
+    cy
+      .get("button")
+      .contains("Add")
+      .click()
+      .get("button")
+      .contains("Section")
+      .click();
+  });
+
+export const addQuestionPage = () =>
+  cy.get("[data-test='add-menu']").within(() => {
+    cy
+      .get("button")
+      .contains("Add")
+      .click()
+      .get("button")
+      .contains("Question Page")
+      .click();
+  });
+
 export function addAnswerType(answerType) {
   cy.get("[data-test='btn-add-answer']").click();
   cy.contains(answerType).click();

@@ -2,35 +2,30 @@ import React from "react";
 import styled from "styled-components";
 
 import CustomPropTypes from "custom-prop-types";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
+import NavItemTransition from "./NavItemTransition";
 
 import PageNavItem from "./PageNavItem";
 import scrollIntoView from "utils/scrollIntoView";
 
-const duration = 300;
-
 const NavList = styled.ol`
-  padding: 0;
+  padding: 0 0 1em;
   margin: 0;
   list-style: none;
+  font-weight: regular;
 `;
 
 const PageNav = ({ section, questionnaire }) => (
   <TransitionGroup component={NavList}>
     {section.pages.map(page => (
-      <CSSTransition
-        key={page.id}
-        classNames="page"
-        timeout={duration}
-        onEntered={scrollIntoView}
-      >
+      <NavItemTransition key={page.id} onEntered={scrollIntoView}>
         <PageNavItem
           title={page.title}
           pageId={page.id}
           sectionId={section.id}
           questionnaireId={questionnaire.id}
         />
-      </CSSTransition>
+      </NavItemTransition>
     ))}
   </TransitionGroup>
 );

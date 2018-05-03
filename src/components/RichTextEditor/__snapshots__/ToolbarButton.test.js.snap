@@ -24,7 +24,7 @@ exports[`ToolbarButton matches snapshot 1`] = `
 }
 
 .c0:focus {
-  outline: 3px solid #FDBD56;
+  outline: 3px solid #008ad2;
   outline-offset: -3px;
 }
 
@@ -69,7 +69,7 @@ exports[`ToolbarButton should style appropriately when active 1`] = `
 }
 
 .c0:focus {
-  outline: 3px solid #FDBD56;
+  outline: 3px solid #008ad2;
   outline-offset: -3px;
 }
 

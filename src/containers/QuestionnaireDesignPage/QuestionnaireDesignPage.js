@@ -54,7 +54,9 @@ export class QuestionnaireDesignPage extends Component {
   };
 
   handleAddPageClick = e => {
-    this.props.onAddPage(this.props.section.id);
+    const { onAddPage, section, page } = this.props;
+
+    onAddPage(section.id, page ? page.position + 1 : 0);
   };
 
   render() {
@@ -65,7 +67,6 @@ export class QuestionnaireDesignPage extends Component {
       section,
       page,
       questionnaireId,
-      sectionId,
       pageId,
       onUpdatePage,
       onDeletePage,
@@ -88,8 +89,9 @@ export class QuestionnaireDesignPage extends Component {
             <NavigationSidebarContainer
               questionnaire={questionnaire}
               questionnaireId={questionnaireId}
-              sectionId={sectionId}
-              pageId={pageId}
+              section={section}
+              page={page}
+              currentPageId={pageId}
             />
           </Column>
           <Column gutters={false}>

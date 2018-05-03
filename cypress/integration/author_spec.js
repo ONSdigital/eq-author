@@ -3,7 +3,9 @@ import {
   addAnswerType,
   assertHash,
   typeIntoDraftEditor,
-  findByLabel
+  findByLabel,
+  addSection,
+  addQuestionPage
 } from "../utils";
 import { times } from "lodash";
 
@@ -50,7 +52,7 @@ describe("eq-author", () => {
       .hash()
       .then(hash => {
         prevHash = hash;
-        cy.get("[data-test='btn-add-page']").click();
+        addQuestionPage();
       })
       .then(() => {
         assertHash(prevHash, {
@@ -108,7 +110,7 @@ describe("eq-author", () => {
       .hash()
       .then(hash => {
         prevHash = hash;
-        cy.get("[data-test='btn-add-section']").click();
+        addSection();
       })
       .then(() => {
         assertHash(prevHash, {
@@ -310,7 +312,7 @@ describe("eq-author", () => {
     });
   });
 
-  it("can move pages within a section", () => {
+  it("Can move pages within a section", () => {
     cy
       .get(`[data-test="page-item"]`)
       .first()
@@ -318,10 +320,8 @@ describe("eq-author", () => {
     typeIntoDraftEditor("[data-testid='txt-question-title']", `Page 0`);
 
     times(2, i => {
-      cy
-        .get("[data-test='btn-add-page']")
-        .click()
-        .wait(100); // this is needed for real API for some reason
+      addQuestionPage();
+      cy.wait(100); // this is needed for real API for some reason
 
       typeIntoDraftEditor(
         "[data-testid='txt-question-title']",
@@ -343,8 +343,8 @@ describe("eq-author", () => {
       .should("contain", "Page 2");
   });
 
-  it("can move pages between sections", () => {
-    cy.get("[data-test='btn-add-section']").click();
+  it("Can move pages between sections", () => {
+    addSection();
 
     cy
       .get(`[data-test="page-item"]`)
