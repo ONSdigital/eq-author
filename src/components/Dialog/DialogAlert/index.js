@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-
-const alertIcon = require("./alert.min.svg");
+import alertIcon from "./alert.min.svg";
 
 export const DialogAlertList = styled.ul`
   margin: 0;

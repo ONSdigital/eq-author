@@ -73,11 +73,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `yarn start:mockAPI`
-
-Runs the app against the Mock API implementation.
-This is primarily used for running e2e tests using a suitable webdriver but it can be used as a means of running and testing the application without requiring the real API to be running.
-
 ### `yarn lint`
 
 Lints the `src` directory using the rules defined in `.eslintrc`. Run `yarn lint -- --fix` if you want eslint to fix any issues it can.
