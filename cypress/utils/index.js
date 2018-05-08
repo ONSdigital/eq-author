@@ -77,6 +77,7 @@ export const typeIntoDraftEditor = (selector, text) => {
 
 export const findByLabel = text =>
   cy
+    .log("Find by label", text)
     .get("label")
     .contains(text)
     .then($label => $label.prop("control"));
