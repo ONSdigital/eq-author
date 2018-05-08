@@ -1,11 +1,25 @@
 #!/bin/bash
 
-set -evuf -o pipefail
+set -euf -o pipefail
 
-# Read test env vars
-export $(egrep -v '^#' .env.test | xargs)
+function read_vars {
+  if [ -f $1 ]; then
+    echo "reading env vars: $1"
+    export $(egrep -v '^#' $1 | xargs) > /dev/null
+  fi
+}
 
-# Build a version of the app which runs with the mockAPI
+function dotenv {
+  environment=${NODE_ENV:-test}
+
+  read_vars ".env.$environment"
+  read_vars ".env.$environment.local"
+}
+
+# Read env vars
+dotenv
+
+# Build the app
 yarn build
 
 # Serve the app
@@ -14,7 +28,11 @@ pid=$!
 
 function finish {
   echo "Shutting down the server..."
-  kill -s SIGKILL $pid
+
+  echo "killing $pid"
+  pgrep -P $pid | xargs kill # kills all child processes
+
+  echo "stopping docker containers"
   docker-compose -f ./scripts/e2e.yml down
 }
 trap finish INT KILL TERM EXIT
@@ -27,4 +45,8 @@ docker-compose -f ./scripts/e2e.yml up -d
 ./node_modules/.bin/wait-on tcp:4000
 
 # Run the tests
-./node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser chrome --record
+if [ -z "${CYPRESS_RECORD_KEY-}" ]; then
+  ./node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser chrome
+else
+  ./node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser chrome --record
+fi
