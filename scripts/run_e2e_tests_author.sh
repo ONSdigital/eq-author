@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euf -o pipefail
+set -evuf -o pipefail
 
 function read_vars {
   if [ -f $1 ]; then
@@ -41,6 +41,7 @@ trap finish INT KILL TERM EXIT
 ./node_modules/.bin/wait-on $CYPRESS_baseUrl -t 10000
 
 # start API/DB, and wait until running
+docker-compose -f ./scripts/e2e.yml pull
 docker-compose -f ./scripts/e2e.yml up -d
 ./node_modules/.bin/wait-on tcp:4000
 
