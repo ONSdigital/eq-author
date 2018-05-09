@@ -319,9 +319,16 @@ describe("eq-author", () => {
       .click();
     typeIntoDraftEditor("[data-testid='txt-question-title']", `Page 0`);
 
+    let pageCount = 1;
+
     times(2, i => {
       addQuestionPage();
-      cy.wait(100); // this is needed for real API for some reason
+
+      // this causes cypress to wait until the assertion is correct,
+      // which avoids a race condition where cypress will type into
+      // a matching text box on the prev page, while animation is underway
+      pageCount++;
+      cy.get(`[data-test="page-item"]`).should("have.length", pageCount);
 
       typeIntoDraftEditor(
         "[data-testid='txt-question-title']",

@@ -13,6 +13,5 @@ ignore:
   - "features"
   - "scripts/*.js"
   - "src/graphql/*.js"
-  - "src/tests/utils/MockResolvers.js"
   - "tests"
   - ".eslintrc.js"

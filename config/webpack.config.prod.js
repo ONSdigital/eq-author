@@ -81,7 +81,7 @@ module.exports = {
       loaders.url,
       {
         test: /\.(js|jsx)$/,
-        include: paths.babelIncludes,
+        include: paths.appSrc,
         loader: require.resolve("babel-loader")
       },
       {

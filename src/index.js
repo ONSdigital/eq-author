@@ -7,6 +7,7 @@ import getIdForObject from "utils/getIdForObject";
 import fragmentMatcher from "apollo/fragmentMatcher";
 import createApolloClient from "apollo/createApolloClient";
 import createApolloCache from "apollo/createApolloCache";
+import createHttpLink from "apollo/createHttpLink";
 
 if (process.env.REACT_APP_USE_SENTRY === "true") {
   Raven.config(
@@ -14,23 +15,14 @@ if (process.env.REACT_APP_USE_SENTRY === "true") {
   ).install();
 }
 
-let link;
-
-if (process.env.REACT_APP_USE_MOCK_API === "true") {
-  const createSchemaLink = require("./apollo/createSchemaLink").default;
-  link = createSchemaLink();
-} else {
-  const createHttpLink = require("./apollo/createHttpLink").default;
-  link = createHttpLink(process.env.REACT_APP_API_URL);
-}
-
-const cache = createApolloCache({
-  addTypename: true,
-  dataIdFromObject: getIdForObject,
-  fragmentMatcher
-});
-
-const client = createApolloClient(link, cache);
+const client = createApolloClient(
+  createHttpLink(process.env.REACT_APP_API_URL),
+  createApolloCache({
+    addTypename: true,
+    dataIdFromObject: getIdForObject,
+    fragmentMatcher
+  })
+);
 
 const history = createHistory({
   basename: process.env.REACT_APP_BASE_NAME
