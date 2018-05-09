@@ -111,11 +111,13 @@ export class StatelessOption extends Component {
     hasDeleteButton: PropTypes.bool.isRequired,
     type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired,
     children: PropTypes.node,
-    labelPlaceholder: PropTypes.string
+    labelPlaceholder: PropTypes.string,
+    autoFocus: PropTypes.bool
   };
 
   static defaultProps = {
-    labelPlaceholder: "Label"
+    labelPlaceholder: "Label",
+    autoFocus: true
   };
 
   handleDeleteClick = e => {
@@ -151,7 +153,8 @@ export class StatelessOption extends Component {
       onUpdate,
       type,
       children,
-      labelPlaceholder
+      labelPlaceholder,
+      autoFocus
     } = this.props;
 
     return (
@@ -167,7 +170,7 @@ export class StatelessOption extends Component {
             onBlur={onUpdate}
             onKeyDown={this.handleKeyDown}
             data-test="option-label"
-            data-autofocus
+            data-autofocus={autoFocus || null}
           />
         </LabelField>
         <Field>

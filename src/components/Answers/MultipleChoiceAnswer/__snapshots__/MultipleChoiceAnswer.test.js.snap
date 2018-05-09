@@ -37,6 +37,7 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
       },
     }
   }
+  autoFocus={false}
   labelPlaceholder="Label (optional)"
   onUpdate={[Function]}
 >
@@ -202,6 +203,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       ],
     }
   }
+  autoFocus={false}
   labelPlaceholder="Label (optional)"
   onUpdate={[Function]}
 >

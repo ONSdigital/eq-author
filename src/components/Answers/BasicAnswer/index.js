@@ -14,7 +14,8 @@ export const StatelessBasicAnswer = ({
   labelPlaceholder,
   descriptionPlaceholder,
   showDescription,
-  size
+  size,
+  autoFocus
 }) => (
   <div>
     <Field>
@@ -25,7 +26,7 @@ export const StatelessBasicAnswer = ({
         onChange={onChange}
         onBlur={onUpdate}
         value={answer.label}
-        data-autofocus
+        data-autofocus={autoFocus || null}
         data-test="txt-answer-label"
       />
     </Field>
@@ -55,14 +56,16 @@ StatelessBasicAnswer.propTypes = {
   labelPlaceholder: PropTypes.string,
   descriptionPlaceholder: PropTypes.string,
   showDescription: PropTypes.bool,
-  size: PropTypes.oneOf(["tiny", "small", "medium", "large"])
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large"]),
+  autoFocus: PropTypes.bool
 };
 
 StatelessBasicAnswer.defaultProps = {
   labelPlaceholder: "Label",
   descriptionPlaceholder: "Enter a description (optional)…",
   showDescription: true,
-  size: "medium"
+  size: "medium",
+  autoFocus: true
 };
 
 export default withEntityEditor("answer", answerFragment)(StatelessBasicAnswer);

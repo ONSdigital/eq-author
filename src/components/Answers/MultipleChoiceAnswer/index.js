@@ -135,6 +135,7 @@ class MultipleChoiceAnswer extends Component {
         answer={answer}
         onUpdate={onUpdate}
         labelPlaceholder="Label (optional)"
+        autoFocus={false}
       >
         <AnswerWrapper>
           {answer.type === CHECKBOX && (
