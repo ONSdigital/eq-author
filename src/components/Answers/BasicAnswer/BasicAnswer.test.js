@@ -10,10 +10,8 @@ describe("BasicAnswer", () => {
   let children;
   let props;
 
-  const createWrapper = (props, children, render = shallow) => {
-    return render(
-      <StatelessBasicAnswer {...props}>{children}</StatelessBasicAnswer>
-    );
+  const createWrapper = (props, render = shallow) => {
+    return render(<StatelessBasicAnswer {...props} />);
   };
 
   beforeEach(() => {
@@ -30,14 +28,23 @@ describe("BasicAnswer", () => {
       id: "1",
       answer,
       onChange,
-      onUpdate
+      onUpdate,
+      children: <div>This is the child component</div>
     };
-
-    children = <div>This is the child component</div>;
   });
 
   it("should render", () => {
     expect(createWrapper(props, children)).toMatchSnapshot();
+  });
+
+  it("can turn off auto-focus", () => {
+    let wrapper = createWrapper({ ...props, autoFocus: false }, mount);
+    const input = wrapper
+      .find(`[data-test="txt-answer-label"]`)
+      .first()
+      .getDOMNode();
+
+    expect(input.hasAttribute("data-autofocus")).toBe(false);
   });
 
   describe("event handling behaviour", () => {

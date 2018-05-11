@@ -124,4 +124,14 @@ describe("Option", () => {
 
     expect(mockMutations.onEnterKey).not.toHaveBeenCalled();
   });
+
+  it("can turn off auto-focus", () => {
+    wrapper = render(mount, { autoFocus: false });
+    const input = wrapper
+      .find(`[data-test="option-label"]`)
+      .first()
+      .getDOMNode();
+
+    expect(input.hasAttribute("data-autofocus")).toBe(false);
+  });
 });

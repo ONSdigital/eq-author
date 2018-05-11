@@ -250,6 +250,7 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 <StatelessOption
+  autoFocus={true}
   hasDeleteButton={true}
   labelPlaceholder="Label"
   onChange={[Function]}
