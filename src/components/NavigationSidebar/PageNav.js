@@ -12,7 +12,7 @@ const NavList = styled.ol`
   padding: 0 0 1em;
   margin: 0;
   list-style: none;
-  font-weight: regular;
+  font-weight: normal;
 `;
 
 const PageNav = ({ section, questionnaire }) => (

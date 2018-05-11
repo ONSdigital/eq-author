@@ -2,7 +2,6 @@
 
 exports[`components/Forms/Label should render correctly 1`] = `
 <Label__StyledLabel
-  htmlFor="name"
   small={false}
 >
   Name

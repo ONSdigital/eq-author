@@ -6,7 +6,7 @@ import { rgba } from "polished";
 import timer from "utils/timer";
 import { invoke } from "lodash";
 
-const bgColor = rgba(colors.darkGrey, 0.9);
+const bgColor = rgba(colors.black, 0.9);
 
 const StyledToast = styled.div`
   background-color: ${bgColor};

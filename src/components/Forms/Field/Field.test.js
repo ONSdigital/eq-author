@@ -8,19 +8,14 @@ let wrapper;
 describe("components/Forms/Field", () => {
   beforeEach(() => {
     wrapper = mount(
-      <Field id="name">
-        <Label>Name</Label>
-        <Input />
+      <Field>
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" />
       </Field>
     );
   });
 
   it("should render correctly", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should pass on `id` prop to children", () => {
-    expect(wrapper.find(Input).props().id).toBe("name");
-    expect(wrapper.find(Label).props().id).toBe("name");
   });
 });

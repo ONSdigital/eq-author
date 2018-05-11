@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/AnswerTypeGrid should render 1`] = `
-<AnswerTypeGrid__Menu>
+<AnswerTypeGrid__Menu
+  onClose={[Function]}
+  onSelect={[Function]}
+>
   <AnswerTypeGrid__MenuBackground>
     <IconGrid
       aria-labelledby="foo"

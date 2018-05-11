@@ -31,13 +31,13 @@ exports[`components/Nav should display active link when route matches 1`] = `
 .c1[aria-current="true"] {
   background: #FFFFFF;
   color: #5F7682;
-  border: 1px solid #999999;
+  border: 1px solid #c3c3c3;
   border-bottom: none;
 }
 
 .c3 {
   background: #FFFFFF;
-  border: 1px solid #999999;
+  border: 1px solid #c3c3c3;
   border-radius: 4px;
 }
 
@@ -57,7 +57,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
 .c2[aria-current="true"] {
   background: #FFFFFF;
   color: #5F7682;
-  border: 1px solid #999999;
+  border: 1px solid #c3c3c3;
   border-bottom: none;
 }
 
@@ -196,13 +196,13 @@ exports[`components/Nav should render Nav 1`] = `
 .c1[aria-current="true"] {
   background: #FFFFFF;
   color: #5F7682;
-  border: 1px solid #999999;
+  border: 1px solid #c3c3c3;
   border-bottom: none;
 }
 
 .c3 {
   background: #FFFFFF;
-  border: 1px solid #999999;
+  border: 1px solid #c3c3c3;
   border-radius: 4px;
 }
 
@@ -222,7 +222,7 @@ exports[`components/Nav should render Nav 1`] = `
 .c2[aria-current="true"] {
   background: #FFFFFF;
   color: #5F7682;
-  border: 1px solid #999999;
+  border: 1px solid #c3c3c3;
   border-bottom: none;
 }
 

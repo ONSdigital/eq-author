@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { noop, flowRight, isFunction } from "lodash";
+import styled from "styled-components";
 
 import { TransitionGroup } from "react-transition-group";
 import PageTransition from "components/PageTransition";
@@ -20,6 +21,10 @@ import withMovePage from "containers/enhancers/withMovePage";
 
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorSurface/Toolbar";
+
+const StyledToolbar = styled(Toolbar)`
+  margin: 1em 1em 0;
+`;
 
 export class UnwrappedEditorSurface extends React.Component {
   static propTypes = {
@@ -90,7 +95,7 @@ export class UnwrappedEditorSurface extends React.Component {
 
     return (
       <Form onChange={noop} onSubmit={noop}>
-        <Toolbar>
+        <StyledToolbar>
           <Buttons>
             <Button
               onClick={this.handleOpenMovePageDialog}
@@ -108,7 +113,8 @@ export class UnwrappedEditorSurface extends React.Component {
               Delete
             </IconButtonDelete>
           </Buttons>
-        </Toolbar>
+        </StyledToolbar>
+
         <TransitionGroup>
           {page ? (
             <PageTransition key="question-page-editor">

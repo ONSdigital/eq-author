@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { noop } from "lodash";
 import { TransitionGroup } from "react-transition-group";
-import PopupTransition from "./PopupTransition";
 
-import { radius, colors, shadow } from "constants/theme";
+import { colors } from "constants/theme";
 import iconBold from "./icon-bold.svg?inline";
 import iconEmphasis from "./icon-emphasis.svg?inline";
 import iconHeading from "./icon-heading.svg?inline";
@@ -13,33 +11,12 @@ import iconList from "./icon-list.svg?inline";
 
 import PipingMenu from "./PipingMenu";
 import ToolbarButton from "./ToolbarButton";
-import VisuallyHidden from "../VisuallyHidden";
-
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Separator = styled.div`
-  width: 1px;
-  border-left: 1px solid ${colors.borders};
-  margin: 0.25rem;
-`;
-
-export const ToolbarPanel = styled.div`
-  border-radius: ${radius};
-  background-color: ${colors.white};
-  box-shadow: ${shadow};
-  padding: 0 0.5rem;
-  display: inline-block;
-  pointer-events: auto;
-  font-size: 1rem;
-`;
+import FadeTransition from "../FadeTransition";
 
 export const STYLE_BLOCK = "block";
 export const STYLE_INLINE = "inline";
 
-export const buttons = [
+export const styleButtons = [
   {
     id: "heading",
     title: "Heading",
@@ -60,7 +37,10 @@ export const buttons = [
     icon: iconEmphasis,
     type: STYLE_INLINE,
     style: "ITALIC"
-  },
+  }
+];
+
+export const formattingButtons = [
   {
     id: "list",
     title: "List",
@@ -70,11 +50,26 @@ export const buttons = [
   }
 ];
 
-const Layer = styled.div`
-  position: absolute;
-  z-index: 999;
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Separator = styled.div`
+  width: 1px;
+  border-left: 1px solid ${colors.lightGrey};
+  margin: 0.4em 0.7rem;
+`;
+const ToolbarPanel = styled.div`
+  position: ${props => (props.visible ? "sticky" : "relative")};
   top: 0;
-  pointer-events: none;
+  z-index: 3;
+  background-color: ${colors.lighterGrey};
+  width: 100%;
+  border-bottom: 1px solid ${colors.bordersLight};
+  height: 2rem;
+  opacity: ${props => (props.visible ? "1" : "0.6")};
+  transition: opacity 100ms ease-out;
 `;
 
 class ToolBar extends React.Component {
@@ -86,8 +81,6 @@ class ToolBar extends React.Component {
   static propTypes = {
     onToggle: PropTypes.func.isRequired,
     onPiping: PropTypes.func.isRequired,
-    onFocus: PropTypes.func.isRequired,
-    onBlur: PropTypes.func.isRequired,
     isActiveControl: PropTypes.func.isRequired,
     visible: PropTypes.bool.isRequired,
     selectionIsCollapsed: PropTypes.bool.isRequired,
@@ -107,24 +100,14 @@ class ToolBar extends React.Component {
     return (
       <ToolbarButton
         key={title}
+        title={title}
         disabled={!controls[id]}
         active={isActiveControl(button)}
-        onClick={noop} // don't use click due to focus
-        onMouseDown={function(e) {
-          e.preventDefault(); // prevents focus on the button
-          if (e.button === 0) {
-            // left mouse button
-            onToggle(button);
-          }
-        }}
-        onKeyDown={function(e) {
-          if (e.key === "Enter" || e.key === "Space") {
-            onToggle(button);
-          }
+        onClick={function() {
+          onToggle(button);
         }}
       >
         <Icon />
-        <VisuallyHidden>{title}</VisuallyHidden>
       </ToolbarButton>
     );
   };
@@ -132,8 +115,6 @@ class ToolBar extends React.Component {
   render() {
     const {
       visible,
-      onFocus,
-      onBlur,
       onPiping,
       selectionIsCollapsed,
       controls: { piping }
@@ -142,22 +123,24 @@ class ToolBar extends React.Component {
     const isPipingDisabled = !(piping && selectionIsCollapsed);
 
     return (
-      <TransitionGroup component={Layer}>
-        {visible && (
-          <PopupTransition duration={200}>
-            <ToolbarPanel onFocus={onFocus} onBlur={onBlur}>
+      <ToolbarPanel visible={visible}>
+        <TransitionGroup>
+          {visible && (
+            <FadeTransition>
               <ButtonGroup>
+                {styleButtons.map(this.renderButton)}
+                <Separator />
+                {formattingButtons.map(this.renderButton)}
+                <Separator />
                 <PipingMenu
                   disabled={isPipingDisabled}
                   onItemChosen={onPiping}
                 />
-                <Separator />
-                {buttons.map(this.renderButton)}
               </ButtonGroup>
-            </ToolbarPanel>
-          </PopupTransition>
-        )}
-      </TransitionGroup>
+            </FadeTransition>
+          )}
+        </TransitionGroup>
+      </ToolbarPanel>
     );
   }
 }

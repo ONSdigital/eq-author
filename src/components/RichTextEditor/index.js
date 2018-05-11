@@ -18,10 +18,10 @@ import PipedValueDecorator, {
   replacePipedValues,
   insertPipedValue
 } from "./entities/PipedValue";
-import { colors } from "constants/theme";
-import { rgba } from "polished";
 
 import { flow, uniq, map, keyBy, mapValues } from "lodash/fp";
+import { sharedStyles } from "../Forms/css";
+import { Field, Label } from "../Forms";
 
 const styleMap = {
   ITALIC: {
@@ -41,24 +41,34 @@ const list = css`
 
 const sizes = {
   large: css`
-    font-size: 1.75em;
+    font-size: 1.3em;
     font-weight: 700;
     line-height: 1.3;
   `,
 
   medium: css`
-    font-size: 1.125em;
+    font-size: 1.1em;
     font-weight: 700;
   `,
 
   small: css`
-    font-size: 0.875em;
+    font-size: 1em;
   `
 };
 
 const Wrapper = styled.div`
   position: relative;
   line-height: 1.5;
+  margin-bottom: 2em;
+`;
+
+Wrapper.defaultProps = {
+  size: "small"
+};
+
+const Input = styled.div`
+  ${sharedStyles};
+  padding: 0;
 
   .header-two,
   .unstyled,
@@ -68,10 +78,6 @@ const Wrapper = styled.div`
 
   .header-two {
     ${heading};
-    margin-bottom: 0.5rem;
-  }
-
-  .unstyled {
     margin-bottom: 1rem;
   }
 
@@ -82,6 +88,10 @@ const Wrapper = styled.div`
 
   ${props => sizes[props.size]};
 
+  .DraftEditor-root {
+    padding: 1rem;
+  }
+
   .public-DraftEditorPlaceholder-root {
     /* style placeholder based on prospective style */
     ${props => props.placeholderStyle === "header-two" && heading};
@@ -89,28 +99,6 @@ const Wrapper = styled.div`
     color: #a3a3a3;
   }
 `;
-
-Wrapper.defaultProps = {
-  size: "small"
-};
-
-export const ClickContext = styled.div`
-  transition: outline-color 100ms ease-in;
-  outline: 1px solid
-    ${props => (props.focused ? `${colors.blue} !important` : "transparent")};
-  outline-offset: 0.25rem;
-
-  &:hover {
-    outline-color: ${rgba(colors.blue, 0.5)};
-  }
-`;
-ClickContext.propTypes = {
-  focused: PropTypes.bool
-};
-
-ClickContext.defaultProps = {
-  focused: false
-};
 
 const convertToHTML = toHTML(pipedEntityToHTML);
 const convertFromHTML = fromHTML(htmlToPipedEntity);
@@ -124,12 +112,16 @@ class RichTextEditor extends React.Component {
     autoFocus: false
   };
 
+  state = {
+    focused: false
+  };
+
   static propTypes = {
     value: PropTypes.string,
     placeholder: PropTypes.string,
     onUpdate: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
     className: PropTypes.string,
     multiline: PropTypes.bool,
     size: PropTypes.oneOf(Object.keys(sizes)),
@@ -214,8 +206,8 @@ class RichTextEditor extends React.Component {
   };
 
   focus() {
-    if (this.editor) {
-      this.editor.focus();
+    if (this.editorInstance) {
+      this.editorInstance.focus();
     }
   }
 
@@ -223,12 +215,21 @@ class RichTextEditor extends React.Component {
     return convertToHTML(this.state.editorState);
   }
 
-  setEditorNode = editor => {
-    this.editor = editor;
+  setEditorInstance = editorInstance => {
+    this.editorInstance = editorInstance;
   };
 
-  handleClick = () => {
-    this.focus();
+  handleClick = e => {
+    if (!this.state.focused) {
+      this.focus();
+    }
+  };
+
+  handleMouseDown = e => {
+    // prevent blur when mousedown on non-editor elements
+    if (!this.editorInstance.editor.contains(e.target)) {
+      e.preventDefault();
+    }
   };
 
   handleChange = (editorState, callback) => {
@@ -245,17 +246,25 @@ class RichTextEditor extends React.Component {
     this.handleChange(editorState);
   };
 
-  handleBlur = () => {
+  handleBlur = e => {
     this.props.onUpdate({
       name: this.props.id,
       value: this.getHTML()
     });
 
-    this.setState({ focused: false });
+    this.timeoutID = setTimeout(() => {
+      if (this.state.focused) {
+        this.setState({ focused: false });
+      }
+    }, 0);
   };
 
-  handleFocus = () => {
-    this.setState({ focused: true });
+  handleFocus = e => {
+    clearTimeout(this.timeoutID);
+
+    if (!this.state.focused) {
+      this.setState({ focused: true });
+    }
   };
 
   hasBlockStyle = (editorState, style) => {
@@ -310,46 +319,53 @@ class RichTextEditor extends React.Component {
       size,
       className,
       testSelector,
+      id,
       ...otherProps
     } = this.props;
 
     return (
-      <Wrapper
-        size={size}
-        placeholderStyle={contentState
-          .getBlockMap()
-          .first()
-          .getType()}
-        className={className}
-      >
-        <Toolbar
-          editorState={editorState}
-          onToggle={this.handleToggle}
-          onPiping={this.handlePiping}
-          onFocus={this.handleFocus}
+      <Wrapper>
+        <Field
+          onClick={this.handleClick}
+          onMouseDown={this.handleMouseDown}
           onBlur={this.handleBlur}
-          isActiveControl={this.isActiveControl}
-          selectionIsCollapsed={selection.isCollapsed()}
-          visible={focused}
-          {...otherProps}
-        />
-        <ClickContext onClick={this.handleClick} focused={focused}>
-          <Editor
-            ariaLabel={label}
-            placeholder={placeholder}
-            editorState={editorState}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onFocus={this.handleFocus}
-            ref={this.setEditorNode}
-            customStyleMap={styleMap}
-            blockStyleFn={getBlockStyle}
-            handleReturn={multiline ? undefined : this.handleReturn}
-            handlePastedText={multiline ? undefined : this.handlePaste}
-            spellCheck
-            webDriverTestID={testSelector}
-          />
-        </ClickContext>
+          onFocus={this.handleFocus}
+          data-test="rte-field"
+        >
+          <Label id={`label-${id}`}>{label}</Label>
+          <Input
+            className={className}
+            size={size}
+            placeholderStyle={contentState
+              .getBlockMap()
+              .first()
+              .getType()}
+          >
+            <Toolbar
+              editorState={editorState}
+              onToggle={this.handleToggle}
+              onPiping={this.handlePiping}
+              isActiveControl={this.isActiveControl}
+              selectionIsCollapsed={selection.isCollapsed()}
+              visible={focused}
+              {...otherProps}
+            />
+
+            <Editor
+              ariaLabel={label}
+              ariaLabelledBy={`label-${id}`}
+              editorState={editorState}
+              onChange={this.handleChange}
+              ref={this.setEditorInstance}
+              customStyleMap={styleMap}
+              blockStyleFn={getBlockStyle}
+              handleReturn={multiline ? undefined : this.handleReturn}
+              handlePastedText={multiline ? undefined : this.handlePaste}
+              spellCheck
+              webDriverTestID={testSelector}
+            />
+          </Input>
+        </Field>
       </Wrapper>
     );
   }

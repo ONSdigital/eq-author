@@ -86,10 +86,13 @@ describe("MultipleChoiceAnswer", () => {
 
   it("should add a new option when add button is clicked", () => {
     const preventDefault = jest.fn();
+    const stopPropagation = jest.fn();
     wrapper
       .find("[dataTest='btn-add-option']")
-      .simulate("primaryAction", { preventDefault });
+      .simulate("primaryAction", { preventDefault, stopPropagation });
 
+    expect(preventDefault).toHaveBeenCalled();
+    expect(stopPropagation).toHaveBeenCalled();
     expect(mockHandlers.onAddOption).toHaveBeenCalledWith(answer.id);
   });
 
@@ -132,12 +135,17 @@ describe("MultipleChoiceAnswer", () => {
     });
 
     it("should add a new option onEnterKey", () => {
+      const preventDefault = jest.fn();
+      const stopPropagation = jest.fn();
+
       wrapper
         .find(Option)
         .first()
-        .simulate("enterKey", { preventDefault: jest.fn() });
+        .simulate("enterKey", { preventDefault, stopPropagation });
 
-      expect(mockHandlers.onAddOption).toHaveBeenCalled();
+      expect(preventDefault).toHaveBeenCalled();
+      expect(stopPropagation).toHaveBeenCalled();
+      expect(mockHandlers.onAddOption).toHaveBeenCalledTimes(1);
     });
   });
 

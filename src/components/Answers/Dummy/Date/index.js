@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 import DummyTextInput from "components/Answers/Dummy/TextInput";
-import { colors } from "constants/theme";
-import chevronIcon from "components/Accordion/chevron.svg";
 
 const Field = styled.div`
   display: inline-block;
@@ -26,43 +24,27 @@ const Input = styled(DummyTextInput)`
 
 const Wrapper = styled.div`
   display: flex;
-  width: 50%;
-`;
-
-const Select = styled(Input)`
-  border-color: ${colors.lightGrey};
-  &::after {
-    content: url(${chevronIcon});
-    position: absolute;
-    right: 0.75em;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    height: 1em;
-  }
+  width: 100%;
 `;
 
 const Label = styled.p`
-  color: ${colors.text};
   font-size: 0.9em;
-  font-weight: bold;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem;
 `;
 
 const Date = () => (
   <Wrapper>
     <Field>
       <Label>Day</Label>
-      <Input placeholder="DD" />
+      <Input />
     </Field>
     <SelectField>
       <Label>Month</Label>
-      <Select placeholder="Select month" />
+      <Input />
     </SelectField>
     <Field>
       <Label>Year</Label>
-      <Input placeholder="YYYY" />
+      <Input />
     </Field>
   </Wrapper>
 );

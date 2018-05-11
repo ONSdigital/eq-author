@@ -26,6 +26,7 @@ const PopoutLayer = styled(Layer)`
   left: 0;
   bottom: 3.5em;
   margin: 0 auto;
+  z-index: 10;
 `;
 
 export default class AnswerTypeSelector extends React.Component {

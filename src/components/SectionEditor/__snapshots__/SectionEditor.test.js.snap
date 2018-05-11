@@ -25,43 +25,37 @@ exports[`SectionEditor should render 1`] = `
       timeout={300}
     >
       <SectionEditor__Padding>
-        <Field
+        <RichTextEditor
+          autoFocus={false}
+          controls={
+            Object {
+              "emphasis": true,
+            }
+          }
           id="title"
-        >
-          <RichTextEditor
-            autoFocus={false}
-            controls={
-              Object {
-                "emphasis": true,
-              }
+          label="Title"
+          multiline={false}
+          onUpdate={[Function]}
+          placeholder=""
+          size="large"
+          testSelector="txt-section-title"
+          value="Section 1"
+        />
+        <RichTextEditor
+          autoFocus={false}
+          controls={
+            Object {
+              "bold": true,
+              "emphasis": true,
             }
-            label="title"
-            multiline={false}
-            onUpdate={[Function]}
-            placeholder="Section title"
-            size="large"
-            testSelector="txt-section-title"
-            value="Section 1"
-          />
-        </Field>
-        <Field
+          }
           id="description"
-        >
-          <RichTextEditor
-            autoFocus={false}
-            controls={
-              Object {
-                "bold": true,
-                "emphasis": true,
-              }
-            }
-            label="description"
-            multiline={true}
-            onUpdate={[Function]}
-            placeholder="Enter a description (optional)…"
-            testSelector="txt-section-description"
-          />
-        </Field>
+          label="Description"
+          multiline={true}
+          onUpdate={[Function]}
+          placeholder=""
+          testSelector="txt-section-description"
+        />
       </SectionEditor__Padding>
     </PageTransition>
   </TransitionGroup>
@@ -93,43 +87,37 @@ exports[`SectionEditor should render 2`] = `
       timeout={300}
     >
       <SectionEditor__Padding>
-        <Field
+        <RichTextEditor
+          autoFocus={false}
+          controls={
+            Object {
+              "emphasis": true,
+            }
+          }
           id="title"
-        >
-          <RichTextEditor
-            autoFocus={false}
-            controls={
-              Object {
-                "emphasis": true,
-              }
+          label="Title"
+          multiline={false}
+          onUpdate={[Function]}
+          placeholder=""
+          size="large"
+          testSelector="txt-section-title"
+          value="Section 2"
+        />
+        <RichTextEditor
+          autoFocus={false}
+          controls={
+            Object {
+              "bold": true,
+              "emphasis": true,
             }
-            label="title"
-            multiline={false}
-            onUpdate={[Function]}
-            placeholder="Section title"
-            size="large"
-            testSelector="txt-section-title"
-            value="Section 2"
-          />
-        </Field>
-        <Field
+          }
           id="description"
-        >
-          <RichTextEditor
-            autoFocus={false}
-            controls={
-              Object {
-                "bold": true,
-                "emphasis": true,
-              }
-            }
-            label="description"
-            multiline={true}
-            onUpdate={[Function]}
-            placeholder="Enter a description (optional)…"
-            testSelector="txt-section-description"
-          />
-        </Field>
+          label="Description"
+          multiline={true}
+          onUpdate={[Function]}
+          placeholder=""
+          testSelector="txt-section-description"
+        />
       </SectionEditor__Padding>
     </PageTransition>
   </TransitionGroup>

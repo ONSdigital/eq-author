@@ -1,40 +1,44 @@
+import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 import { colors } from "constants/theme";
+import Tooltip from "../Tooltip";
+import VisuallyHidden from "../VisuallyHidden";
 
 const activeState = css`
-  opacity: 1 !important;
-  background-color: ${colors.blue};
-  svg * {
-    fill: ${colors.white};
-  }
+  color: ${colors.black};
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const ToolbarButton = styled.button.attrs({ type: "button" })`
+const StyledToolbarButton = styled.button.attrs({ type: "button" })`
   display: block;
-  opacity: 0.7;
   padding: 0;
   border: none;
   font-size: 1rem;
   margin: 0;
+  background: transparent;
+  color: ${colors.darkGrey};
+  transition: background-color 100ms ease-in;
+  cursor: pointer;
 
   svg {
     vertical-align: middle;
-  }
-
-  &:hover {
-    background-color: ${colors.blue};
-    outline: none;
-
-    svg * {
-      fill: ${colors.white};
+    pointer-events: none;
+    path {
+      fill: currentColor;
     }
   }
 
   &:focus {
-    outline: 3px solid ${colors.highlight};
-    outline-offset: -3px;
+    outline: 2px solid ${colors.orange};
+    outline-offset: -2px;
+  }
+
+  &:hover {
+    color: ${colors.black};
+    background-color: rgba(0, 0, 0, 0.1);
+    outline: none;
   }
 
   &[disabled] {
@@ -45,8 +49,19 @@ const ToolbarButton = styled.button.attrs({ type: "button" })`
   ${props => props.active && activeState};
 `;
 
+const ToolbarButton = ({ title, children, active, ...otherProps }) => (
+  <Tooltip content={title} place="top" offset={{ bottom: 8 }} key={title}>
+    <StyledToolbarButton active={active} {...otherProps}>
+      {children}
+      <VisuallyHidden>{title}</VisuallyHidden>
+    </StyledToolbarButton>
+  </Tooltip>
+);
+
 ToolbarButton.propTypes = {
-  active: PropTypes.bool
+  active: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default ToolbarButton;

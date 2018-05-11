@@ -5,8 +5,7 @@ import { colors, radius } from "constants/theme";
 
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
-import TextAnswer from "components/Answers/TextAnswer";
-import NumberAnswer from "components/Answers/NumberAnswer";
+
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import DateRange from "components/Answers/DateRange";
 import Date from "components/Answers/Date";
@@ -22,43 +21,39 @@ import {
 } from "constants/answer-types";
 import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 import Tooltip from "components/Tooltip";
-import TextAreaAnswer from "components/Answers/TextAreaAnswer";
+import BasicAnswer from "components/Answers/BasicAnswer";
 
 const Answer = styled.div`
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   position: relative;
   border-radius: ${radius};
 
   &:focus-within {
     border-color: ${colors.blue};
+    box-shadow: 0 0 0 1px ${colors.blue};
   }
 `;
 
 const AnswerType = styled.div`
-  float: right;
   background: #e4e8eb;
+  border-bottom: 1px solid ${colors.bordersLight};
   text-align: center;
-  padding: 0.3em 1em;
+  padding: 0.5em 1em;
   font-size: 0.8em;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-radius: 0 ${radius} 0 0;
+  border-radius: ${radius} ${radius} 0 0;
 `;
 
 const Padding = styled.div`
-  padding: 2em 3.5em 1.5em 1.5em;
+  padding: 2em 6em 1.5em 1.5em;
 `;
 
 export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
-  right: 0.33em;
-  top: 0.8em;
-  width: 1em;
-  height: 1em;
-  line-height: 1;
-  padding: 0;
-  overflow: hidden;
+  right: 0.2em;
+  top: 1em;
 `;
 
 class AnswerEditor extends React.Component {
@@ -69,13 +64,11 @@ class AnswerEditor extends React.Component {
   renderAnswer(answer) {
     switch (answer.type) {
       case TEXTFIELD:
-        return <TextAnswer {...this.props} />;
       case NUMBER:
-        return <NumberAnswer {...this.props} />;
+      case TEXTAREA:
+        return <BasicAnswer {...this.props} />;
       case CURRENCY:
         return <CurrencyAnswer {...this.props} />;
-      case TEXTAREA:
-        return <TextAreaAnswer {...this.props} />;
       case CHECKBOX:
         return <MultipleChoiceAnswer type={answer.type} {...this.props} />;
       case RADIO:
@@ -100,9 +93,13 @@ class AnswerEditor extends React.Component {
       <Answer>
         <AnswerType>{this.props.answer.type}</AnswerType>
         <Padding>{this.renderAnswer(this.props.answer)}</Padding>
-        <Tooltip content="Delete answer">
+        <Tooltip
+          content="Delete answer"
+          place="top"
+          offset={{ top: 0, bottom: 10 }}
+        >
           <AnswerDeleteButton
-            small
+            size="medium"
             onClick={this.handleDeleteAnswer}
             aria-label="Delete answer"
             data-test="btn-delete-answer"

@@ -5,7 +5,7 @@ exports[`EditorSurface Editing Question Page should render as expected 1`] = `
   onChange={[Function]}
   onSubmit={[Function]}
 >
-  <Toolbar>
+  <EditorSurface__StyledToolbar>
     <Toolbar__Buttons>
       <Button
         data-test="btn-move"
@@ -30,7 +30,7 @@ exports[`EditorSurface Editing Question Page should render as expected 1`] = `
         Delete
       </IconButtonDelete>
     </Toolbar__Buttons>
-  </Toolbar>
+  </EditorSurface__StyledToolbar>
   <TransitionGroup
     childFactory={[Function]}
     component="div"
@@ -115,7 +115,7 @@ exports[`EditorSurface Editing Section Should render as expected 1`] = `
   onChange={[Function]}
   onSubmit={[Function]}
 >
-  <Toolbar>
+  <EditorSurface__StyledToolbar>
     <Toolbar__Buttons>
       <Button
         data-test="btn-move"
@@ -140,7 +140,7 @@ exports[`EditorSurface Editing Section Should render as expected 1`] = `
         Delete
       </IconButtonDelete>
     </Toolbar__Buttons>
-  </Toolbar>
+  </EditorSurface__StyledToolbar>
   <TransitionGroup
     childFactory={[Function]}
     component="div"

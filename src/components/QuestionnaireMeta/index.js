@@ -45,9 +45,10 @@ export const StatelessQuestionnaireMeta = ({
   confirmText
 }) => (
   <Form onSubmit={onSubmit}>
-    <Field id="title">
-      <Label>Questionnaire Title</Label>
+    <Field>
+      <Label htmlFor="title">Questionnaire Title</Label>
       <Input
+        id="title"
         autoFocus
         defaultValue={questionnaire.title}
         onChange={onChange}
@@ -56,19 +57,20 @@ export const StatelessQuestionnaireMeta = ({
       />
     </Field>
     <ToggleWrapper>
-      <InlineField id="navigation">
-        <Label inline>
+      <InlineField>
+        <Label inline htmlFor="navigation">
           <Icon src={showNavIcon} alt="" fade={!questionnaire.navigation} />
           Show section navigation
         </Label>
         <ToggleSwitch
+          id="navigation"
           name="navigation"
           onChange={onChange}
           checked={questionnaire.navigation}
         />
       </InlineField>
-      <InlineField id="summary">
-        <Label inline>
+      <InlineField>
+        <Label inline htmlFor="summary">
           <Icon
             src={showConfirmationIcon}
             alt=""
@@ -77,6 +79,7 @@ export const StatelessQuestionnaireMeta = ({
           Show summary on confirmation page
         </Label>
         <ToggleSwitch
+          id="summary"
           name="summary"
           onChange={onChange}
           checked={questionnaire.summary}

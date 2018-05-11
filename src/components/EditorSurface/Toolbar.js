@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Toolbar = styled.div`
   display: flex;
-  margin: 1em;
   align-items: center;
 `;
 

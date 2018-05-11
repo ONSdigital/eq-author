@@ -2,87 +2,111 @@
 
 exports[`WrappingInput should render 1`] = `
 .c0 {
-  resize: none;
-  border: none;
-  padding: 0;
+  font-weight: regular;
+}
+
+.c1 {
+  font-size: 1em;
+  border: 1px solid #999999;
+  padding: 0.5em;
   color: #333333;
   display: block;
   width: 100%;
-  font-size: 0.875em;
-  -webkit-transition: outline-color 100ms ease-in;
-  transition: outline-color 100ms ease-in;
+  -webkit-transition: outline-color 100ms ease-in,border-color 100ms ease-in;
+  transition: outline-color 100ms ease-in,border-color 100ms ease-in;
   outline: 1px solid transparent;
-  outline-offset: 0.25rem;
+  font-weight: inherit;
+  resize: none;
   overflow: hidden;
 }
 
-.c0:hover {
-  outline-color: rgba(59,122,158,0.5);
-}
-
-.c0:focus {
+.c1:hover {
+  border-color: #3B7A9E;
   outline-color: #3B7A9E;
 }
 
-.c0::-webkit-input-placeholder {
+.c1:focus,
+.c1:focus-within {
+  border-color: #3B7A9E;
+  outline-color: #3B7A9E;
+  box-shadow: 0 0 0 3px #FDBD56;
+}
+
+.c1::-webkit-input-placeholder {
   color: #a3a3a3;
 }
 
-.c0::-moz-placeholder {
+.c1::-moz-placeholder {
   color: #a3a3a3;
 }
 
-.c0:-ms-input-placeholder {
+.c1:-ms-input-placeholder {
   color: #a3a3a3;
 }
 
-.c0::placeholder {
+.c1::placeholder {
   color: #a3a3a3;
 }
 
-<withChangeHandler(WrappingTextArea)
+.c1:focus {
+  outline: none;
+  border: 1px solid #3B7A9E;
+}
+
+.c1[disabled] {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+<withChangeHandler(WrappingInput)
   id="foo"
   onChange={[Function]}
   value="123"
 >
-  <WrappingTextArea
+  <WrappingInput
+    bold={false}
     id="foo"
     onChange={[Function]}
-    size="small"
     value="123"
   >
-    <WrappingInput__TextArea
-      id="foo"
+    <WrappingInput__StyleContext
+      bold={false}
       onChange={[Function]}
       onKeyDown={[Function]}
-      size="small"
-      value="123"
     >
-      <TextareaAutosize
+      <div
         className="c0"
-        id="foo"
         onChange={[Function]}
-        onHeightChange={[Function]}
         onKeyDown={[Function]}
-        size="small"
-        useCacheForDOMMeasurements={false}
-        value="123"
       >
-        <textarea
-          className="c0"
+        <WrappingInput__TextArea
           id="foo"
           onChange={[Function]}
-          onKeyDown={[Function]}
-          size="small"
-          style={
-            Object {
-              "height": 0,
-            }
-          }
           value="123"
-        />
-      </TextareaAutosize>
-    </WrappingInput__TextArea>
-  </WrappingTextArea>
-</withChangeHandler(WrappingTextArea)>
+        >
+          <TextareaAutosize
+            className="c1"
+            id="foo"
+            onChange={[Function]}
+            onHeightChange={[Function]}
+            useCacheForDOMMeasurements={false}
+            value="123"
+          >
+            <textarea
+              className="c1"
+              id="foo"
+              onChange={[Function]}
+              style={
+                Object {
+                  "height": 0,
+                }
+              }
+              value="123"
+            />
+          </TextareaAutosize>
+        </WrappingInput__TextArea>
+      </div>
+    </WrappingInput__StyleContext>
+  </WrappingInput>
+</withChangeHandler(WrappingInput)>
 `;

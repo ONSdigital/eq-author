@@ -6,8 +6,8 @@ import { colors } from "constants/theme";
 const Dropdown = styled.div`
   background: ${colors.white};
   border-top: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
-  border-radius: 0 2px 2px 0;
+
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
   max-width: ${props => props.maxWidth};
 `;
 

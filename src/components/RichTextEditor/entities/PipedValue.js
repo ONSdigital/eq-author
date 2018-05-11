@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { colors } from "constants/theme";
+import { radius } from "constants/theme";
 import findEntitiesByType from "../utils/findEntitiesByType";
 import getEntities from "../utils/getEntities";
 import replaceEntityText from "../utils/replaceEntityText";
@@ -11,9 +11,9 @@ import { bindKey } from "lodash";
 export const ENTITY_TYPE = "PIPED-DATA";
 
 const PipedValueDecorator = styled.span`
-  background-color: ${colors.borders};
+  background-color: #e0e0e0;
   padding: 0 0.125em;
-  border-radius: 3px;
+  border-radius: ${radius};
   white-space: pre;
 `;
 

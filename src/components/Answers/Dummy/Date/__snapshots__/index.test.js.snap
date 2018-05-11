@@ -6,25 +6,19 @@ exports[`Dummy/Date should render 1`] = `
     <Date__Label>
       Day
     </Date__Label>
-    <Date__Input
-      placeholder="DD"
-    />
+    <Date__Input />
   </Date__Field>
   <Date__SelectField>
     <Date__Label>
       Month
     </Date__Label>
-    <Date__Select
-      placeholder="Select month"
-    />
+    <Date__Input />
   </Date__SelectField>
   <Date__Field>
     <Date__Label>
       Year
     </Date__Label>
-    <Date__Input
-      placeholder="YYYY"
-    />
+    <Date__Input />
   </Date__Field>
 </Date__Wrapper>
 `;

@@ -2,68 +2,58 @@
 
 exports[`MetaEditor should render 1`] = `
 <div>
-  <Field
+  <RichTextEditor
+    autoFocus={false}
+    controls={
+      Object {
+        "emphasis": true,
+        "piping": true,
+      }
+    }
+    fetchAnswers={[Function]}
     id="title"
-  >
-    <RichTextEditor
-      autoFocus={false}
-      controls={
-        Object {
-          "emphasis": true,
-          "piping": true,
-        }
+    label="Question"
+    multiline={false}
+    onUpdate={[Function]}
+    placeholder=""
+    size="large"
+    testSelector="txt-question-title"
+    value="Page title"
+  />
+  <RichTextEditor
+    autoFocus={false}
+    controls={
+      Object {
+        "bold": true,
+        "emphasis": true,
+        "piping": true,
       }
-      fetchAnswers={[Function]}
-      label="Question"
-      multiline={false}
-      onUpdate={[Function]}
-      placeholder="Question"
-      size="large"
-      testSelector="txt-question-title"
-      value="Page title"
-    />
-  </Field>
-  <Field
+    }
+    fetchAnswers={[Function]}
     id="description"
-  >
-    <RichTextEditor
-      autoFocus={false}
-      controls={
-        Object {
-          "bold": true,
-          "emphasis": true,
-          "piping": true,
-        }
+    label="Question description (optional)…"
+    multiline={true}
+    onUpdate={[Function]}
+    placeholder=""
+    testSelector="txt-question-description"
+    value="Page description"
+  />
+  <MetaEditor__GuidanceEditor
+    controls={
+      Object {
+        "bold": true,
+        "heading": true,
+        "list": true,
+        "piping": true,
       }
-      fetchAnswers={[Function]}
-      label="Question guidance"
-      multiline={true}
-      onUpdate={[Function]}
-      placeholder="Question guidance (optional)…"
-      testSelector="txt-question-description"
-      value="Page description"
-    />
-  </Field>
-  <Field
+    }
+    fetchAnswers={[Function]}
     id="guidance"
-  >
-    <MetaEditor__GuidanceRichTextEditor
-      controls={
-        Object {
-          "bold": true,
-          "heading": true,
-          "list": true,
-          "piping": true,
-        }
-      }
-      fetchAnswers={[Function]}
-      label="Include/exclude guidance"
-      multiline={true}
-      onUpdate={[Function]}
-      placeholder="Include / exclude guidance (optional)…"
-      testSelector="txt-question-guidance"
-      value="Page guidance"
-    />
-  </Field>
+    label="Guidance"
+    multiline={true}
+    onUpdate={[Function]}
+    testSelector="txt-question-guidance"
+    value="Page guidance"
+  />
 </div>
 `;

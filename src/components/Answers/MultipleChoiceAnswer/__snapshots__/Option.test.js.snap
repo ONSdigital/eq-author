@@ -5,138 +5,162 @@ exports[`Option should match snapshot 1`] = `
   duration={200}
   id="Option1"
   key="1"
+  onDelete={[Function]}
+  onEnterKey={[Function]}
+  onFocus={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <Option__LabelField>
-    <Option__DummyInput
-      type="Radio"
-    />
-    <Option__SeamlessLabel
-      data-autofocus={true}
-      data-test="option-label"
-      name="label"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="Label"
-      size="medium"
-      value=""
-    />
-  </Option__LabelField>
-  <Field>
-    <withChangeHandler(WrappingTextArea)
-      data-test="option-description"
-      name="description"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="Optional description"
-      value=""
-    />
-  </Field>
-  <Option__DeleteContainer>
-    <Tooltip
-      content="Delete option"
-    >
-      <DeleteButton
-        aria-label="Delete option"
-        data-test="btn-delete-option"
-        onClick={[Function]}
-        size="small"
-        type="button"
+  <div>
+    <Option__Flex>
+      <MultipleChoice
+        type="Radio"
       />
-    </Tooltip>
-  </Option__DeleteContainer>
+      <Option__OptionField>
+        <Label
+          htmlFor="option-label-1"
+          small={false}
+        >
+          Label
+        </Label>
+        <withChangeHandler(WrappingInput)
+          bold={true}
+          data-autofocus={true}
+          data-test="option-label"
+          id="option-label-1"
+          name="label"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Label"
+          value=""
+        />
+      </Option__OptionField>
+    </Option__Flex>
+    <Option__OptionField>
+      <Label
+        htmlFor="option-description-1"
+        small={false}
+      >
+        Description (optional)
+      </Label>
+      <withChangeHandler(WrappingInput)
+        data-test="option-description"
+        id="option-description-1"
+        name="description"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        value=""
+      />
+    </Option__OptionField>
+    <Option__DeleteContainer>
+      <Tooltip
+        content="Delete option"
+        offset={
+          Object {
+            "bottom": 10,
+          }
+        }
+        place="top"
+      >
+        <DeleteButton
+          aria-label="Delete option"
+          data-test="btn-delete-option"
+          onClick={[Function]}
+          size="medium"
+          type="button"
+        />
+      </Tooltip>
+    </Option__DeleteContainer>
+  </div>
 </Option__StyledOption>
 `;
 
 exports[`Option should render a checkbox 1`] = `
-.c5 {
-  resize: none;
-  border: none;
-  padding: 0;
-  color: #333333;
-  display: block;
-  width: 100%;
-  font-size: 1.125em;
-  font-weight: 700;
-  -webkit-transition: outline-color 100ms ease-in;
-  transition: outline-color 100ms ease-in;
-  outline: 1px solid transparent;
-  outline-offset: 0.25rem;
-  overflow: hidden;
-}
-
-.c5:hover {
-  outline-color: rgba(59,122,158,0.5);
-}
-
-.c5:focus {
-  outline-color: #3B7A9E;
-}
-
-.c5::-webkit-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c5::-moz-placeholder {
-  color: #a3a3a3;
-}
-
-.c5:-ms-input-placeholder {
-  color: #a3a3a3;
-}
-
-.c5::placeholder {
-  color: #a3a3a3;
-}
-
 .c6 {
-  resize: none;
-  border: none;
-  padding: 0;
+  font-weight: bold;
+}
+
+.c8 {
+  font-weight: regular;
+}
+
+.c7 {
+  font-size: 1em;
+  border: 1px solid #999999;
+  padding: 0.5em;
   color: #333333;
   display: block;
   width: 100%;
-  font-size: 0.875em;
-  -webkit-transition: outline-color 100ms ease-in;
-  transition: outline-color 100ms ease-in;
+  -webkit-transition: outline-color 100ms ease-in,border-color 100ms ease-in;
+  transition: outline-color 100ms ease-in,border-color 100ms ease-in;
   outline: 1px solid transparent;
-  outline-offset: 0.25rem;
+  font-weight: inherit;
+  resize: none;
   overflow: hidden;
 }
 
-.c6:hover {
-  outline-color: rgba(59,122,158,0.5);
-}
-
-.c6:focus {
+.c7:hover {
+  border-color: #3B7A9E;
   outline-color: #3B7A9E;
 }
 
-.c6::-webkit-input-placeholder {
+.c7:focus,
+.c7:focus-within {
+  border-color: #3B7A9E;
+  outline-color: #3B7A9E;
+  box-shadow: 0 0 0 3px #FDBD56;
+}
+
+.c7::-webkit-input-placeholder {
   color: #a3a3a3;
 }
 
-.c6::-moz-placeholder {
+.c7::-moz-placeholder {
   color: #a3a3a3;
 }
 
-.c6:-ms-input-placeholder {
+.c7:-ms-input-placeholder {
   color: #a3a3a3;
 }
 
-.c6::placeholder {
+.c7::placeholder {
   color: #a3a3a3;
 }
 
-.c2 {
+.c7:focus {
+  outline: none;
+  border: 1px solid #3B7A9E;
+}
+
+.c7[disabled] {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.c5 {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 0.4em;
+  font-weight: bold;
+  vertical-align: middle;
+  color: #666666;
+}
+
+.c4 {
   display: block;
   width: 100%;
   margin-bottom: 1em;
   position: relative;
 }
 
-.c8 {
+.c10 {
   color: #5F7682;
   border: none;
   background: transparent;
@@ -146,117 +170,56 @@ exports[`Option should render a checkbox 1`] = `
   width: 1em;
   height: 1em;
   padding: 0;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
-.c8:hover {
+.c10:hover {
   color: #333333;
 }
 
-.c8:focus {
+.c10:focus {
   outline: 3px solid #FDBD56;
 }
 
-.c9 {
+.c11 {
   pointer-events: none;
   display: block;
   width: 1em;
   height: 1em;
 }
 
-.c9 path {
+.c11 path {
   fill: currentColor;
 }
 
-.c10 {
-  background-color: rgba(10,10,10,0.9) !important;
-  font-size: 0.625rem !important;
-  line-height: 2.2em !important;
-  padding: 0 0.6em !important;
+.c12 {
+  background-color: black !important;
+  opacity: 1 !important;
+  font-size: 0.8rem !important;
+  line-height: 1 !important;
+  padding: 0.4rem 0.6rem !important;
   border-radius: 4px !important;
   white-space: pre;
 }
 
-.c10::before,
-.c10::after {
-  border-bottom: none !important;
-  border-top: none !important;
-}
-
-.c7 {
-  padding: 0.2em;
-  position: absolute;
-  top: 0.5em;
-  right: 1em;
-}
-
-.c3 {
-  border: 4px solid #999999;
+.c2 {
+  background: transparent url(placeholder.svg) no-repeat center center;
+  background-size: cover;
   height: 1.4em;
   width: 1.4em;
   display: inline-block;
-  margin: 0 1em 0 0;
-  vertical-align: top;
-  border-radius: 3px;
+  margin: 2em 1em 0 0;
+  border-radius: 4px;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  border: 3px solid #c3c3c3;
 }
 
-.c0 {
-  border: 1px solid #999999;
-  padding: 1em 1.8em 0 1em;
-  border-radius: 3px;
-  position: relative;
-}
-
-.c0:not(:first-child) {
-  margin-top: 0.5em;
-}
-
-.c0.option-enter {
-  opacity: 0;
-  height: 0;
-  -webkit-transform: translateX(-20px);
-  -ms-transform: translateX(-20px);
-  transform: translateX(-20px);
-}
-
-.c0.option-enter-active {
-  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,-webkit-transform 100ms ease-out 100ms;
-  -webkit-transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
-  transition: height 100ms ease-out,opacity 100ms ease-out 100ms,transform 100ms ease-out 100ms;
-  opacity: 1;
-  height: 5.625em;
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-}
-
-.c0.option-exit {
-  opacity: 1;
-  height: 5.625em;
-  -webkit-transform: translateX(0);
-  -ms-transform: translateX(0);
-  transform: translateX(0);
-}
-
-.c0.option-exit-active {
-  -webkit-transition: opacity 100ms ease-out,-webkit-transform 100ms ease-out,height 100ms ease-out 100ms;
-  -webkit-transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
-  transition: opacity 100ms ease-out,transform 100ms ease-out,height 100ms ease-out 100ms;
-  opacity: 0;
-  height: 0;
-  -webkit-transform: translateX(-20px);
-  -ms-transform: translateX(-20px);
-  transform: translateX(-20px);
-}
-
-.c4 {
-  display: inline-block !important;
-  width: auto;
-  vertical-align: middle;
-  margin-right: 1.5em;
-  -webkit-flex: 1 1 0%;
-  -ms-flex: 1 1 0%;
-  flex: 1 1 0%;
+.c9 {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .c1 {
@@ -264,6 +227,22 @@ exports[`Option should render a checkbox 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+}
+
+.c3 {
+  margin-bottom: 1em;
+}
+
+.c0 {
+  border: 1px solid #c3c3c3;
+  padding: 1em 1em 0;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 1em;
 }
 
 <StatelessOption
@@ -296,259 +275,341 @@ exports[`Option should render a checkbox 1`] = `
     duration={200}
     id="Option1"
     key="1"
+    onDelete={[Function]}
+    onEnterKey={[Function]}
+    onFocus={[Function]}
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "subscribe": [Function],
+      }
+    }
   >
     <div
       className="c0"
       id="Option1"
+      onFocus={[Function]}
     >
-      <Option__LabelField>
-        <Field
-          className="c1"
-        >
-          <Field__StyledField
+      <div>
+        <Option__Flex>
+          <div
             className="c1"
           >
-            <div
-              className="c1 c2"
+            <MultipleChoice
+              type="Checkbox"
             >
-              <Option__DummyInput
-                key=".0"
+              <div
+                className="c2"
                 type="Checkbox"
+              />
+            </MultipleChoice>
+            <Option__OptionField>
+              <Field
+                className="c3"
+                last={false}
               >
-                <div
+                <Field__StyledField
                   className="c3"
-                  type="Checkbox"
-                />
-              </Option__DummyInput>
-              <Option__SeamlessLabel
-                data-autofocus={true}
-                data-test="option-label"
-                key=".1"
-                name="label"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Label"
-                size="medium"
-                value=""
-              >
-                <withChangeHandler(WrappingTextArea)
-                  className="c4"
-                  data-autofocus={true}
-                  data-test="option-label"
-                  name="label"
-                  onBlur={[Function]}
-                  onChange={[Function]}
-                  onKeyDown={[Function]}
-                  placeholder="Label"
-                  size="medium"
-                  value=""
+                  last={false}
                 >
-                  <WrappingTextArea
-                    className="c4"
-                    data-autofocus={true}
-                    data-test="option-label"
-                    name="label"
-                    onBlur={[Function]}
-                    onChange={[Function]}
-                    onKeyDown={[Function]}
-                    placeholder="Label"
-                    size="medium"
-                    value=""
+                  <div
+                    className="c3 c4"
                   >
-                    <WrappingInput__TextArea
-                      className="c4"
+                    <Label
+                      htmlFor="option-label-1"
+                      small={false}
+                    >
+                      <Label__StyledLabel
+                        htmlFor="option-label-1"
+                        small={false}
+                      >
+                        <label
+                          className="c5"
+                          htmlFor="option-label-1"
+                        >
+                          Label
+                        </label>
+                      </Label__StyledLabel>
+                    </Label>
+                    <withChangeHandler(WrappingInput)
+                      bold={true}
                       data-autofocus={true}
                       data-test="option-label"
+                      id="option-label-1"
                       name="label"
                       onBlur={[Function]}
                       onChange={[Function]}
                       onKeyDown={[Function]}
                       placeholder="Label"
-                      size="medium"
                       value=""
                     >
-                      <TextareaAutosize
-                        className="c4 c5"
+                      <WrappingInput
+                        bold={true}
                         data-autofocus={true}
                         data-test="option-label"
+                        id="option-label-1"
                         name="label"
                         onBlur={[Function]}
                         onChange={[Function]}
-                        onHeightChange={[Function]}
                         onKeyDown={[Function]}
                         placeholder="Label"
-                        size="medium"
-                        useCacheForDOMMeasurements={false}
                         value=""
                       >
-                        <textarea
-                          className="c4 c5"
-                          data-autofocus={true}
-                          data-test="option-label"
-                          name="label"
-                          onBlur={[Function]}
+                        <WrappingInput__StyleContext
+                          bold={true}
                           onChange={[Function]}
                           onKeyDown={[Function]}
-                          placeholder="Label"
-                          size="medium"
-                          style={
-                            Object {
-                              "height": 0,
-                            }
-                          }
-                          value=""
-                        />
-                      </TextareaAutosize>
-                    </WrappingInput__TextArea>
-                  </WrappingTextArea>
-                </withChangeHandler(WrappingTextArea)>
-              </Option__SeamlessLabel>
-            </div>
-          </Field__StyledField>
-        </Field>
-      </Option__LabelField>
-      <Field>
-        <Field__StyledField>
-          <div
-            className="c2"
+                        >
+                          <div
+                            className="c6"
+                            onChange={[Function]}
+                            onKeyDown={[Function]}
+                          >
+                            <WrappingInput__TextArea
+                              data-autofocus={true}
+                              data-test="option-label"
+                              id="option-label-1"
+                              name="label"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onKeyDown={[Function]}
+                              placeholder="Label"
+                              value=""
+                            >
+                              <TextareaAutosize
+                                className="c7"
+                                data-autofocus={true}
+                                data-test="option-label"
+                                id="option-label-1"
+                                name="label"
+                                onBlur={[Function]}
+                                onChange={[Function]}
+                                onHeightChange={[Function]}
+                                onKeyDown={[Function]}
+                                placeholder="Label"
+                                useCacheForDOMMeasurements={false}
+                                value=""
+                              >
+                                <textarea
+                                  className="c7"
+                                  data-autofocus={true}
+                                  data-test="option-label"
+                                  id="option-label-1"
+                                  name="label"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  onKeyDown={[Function]}
+                                  placeholder="Label"
+                                  style={
+                                    Object {
+                                      "height": 0,
+                                    }
+                                  }
+                                  value=""
+                                />
+                              </TextareaAutosize>
+                            </WrappingInput__TextArea>
+                          </div>
+                        </WrappingInput__StyleContext>
+                      </WrappingInput>
+                    </withChangeHandler(WrappingInput)>
+                  </div>
+                </Field__StyledField>
+              </Field>
+            </Option__OptionField>
+          </div>
+        </Option__Flex>
+        <Option__OptionField>
+          <Field
+            className="c3"
+            last={false}
           >
-            <withChangeHandler(WrappingTextArea)
-              data-test="option-description"
-              key=".0"
-              name="description"
-              onBlur={[Function]}
-              onChange={[Function]}
-              onKeyDown={[Function]}
-              placeholder="Optional description"
-              value=""
+            <Field__StyledField
+              className="c3"
+              last={false}
             >
-              <WrappingTextArea
-                data-test="option-description"
-                name="description"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Optional description"
-                size="small"
-                value=""
+              <div
+                className="c3 c4"
               >
-                <WrappingInput__TextArea
+                <Label
+                  htmlFor="option-description-1"
+                  small={false}
+                >
+                  <Label__StyledLabel
+                    htmlFor="option-description-1"
+                    small={false}
+                  >
+                    <label
+                      className="c5"
+                      htmlFor="option-description-1"
+                    >
+                      Description (optional)
+                    </label>
+                  </Label__StyledLabel>
+                </Label>
+                <withChangeHandler(WrappingInput)
                   data-test="option-description"
+                  id="option-description-1"
                   name="description"
                   onBlur={[Function]}
                   onChange={[Function]}
                   onKeyDown={[Function]}
-                  placeholder="Optional description"
-                  size="small"
                   value=""
                 >
-                  <TextareaAutosize
-                    className="c6"
+                  <WrappingInput
+                    bold={false}
                     data-test="option-description"
+                    id="option-description-1"
                     name="description"
                     onBlur={[Function]}
                     onChange={[Function]}
-                    onHeightChange={[Function]}
                     onKeyDown={[Function]}
-                    placeholder="Optional description"
-                    size="small"
-                    useCacheForDOMMeasurements={false}
                     value=""
                   >
-                    <textarea
-                      className="c6"
-                      data-test="option-description"
-                      name="description"
-                      onBlur={[Function]}
+                    <WrappingInput__StyleContext
+                      bold={false}
                       onChange={[Function]}
                       onKeyDown={[Function]}
-                      placeholder="Optional description"
-                      size="small"
-                      style={
-                        Object {
-                          "height": 0,
-                        }
-                      }
-                      value=""
-                    />
-                  </TextareaAutosize>
-                </WrappingInput__TextArea>
-              </WrappingTextArea>
-            </withChangeHandler(WrappingTextArea)>
-          </div>
-        </Field__StyledField>
-      </Field>
-      <Option__DeleteContainer>
-        <div
-          className="c7"
-        >
-          <Tooltip
-            content="Delete option"
+                    >
+                      <div
+                        className="c8"
+                        onChange={[Function]}
+                        onKeyDown={[Function]}
+                      >
+                        <WrappingInput__TextArea
+                          data-test="option-description"
+                          id="option-description-1"
+                          name="description"
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onKeyDown={[Function]}
+                          value=""
+                        >
+                          <TextareaAutosize
+                            className="c7"
+                            data-test="option-description"
+                            id="option-description-1"
+                            name="description"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            onHeightChange={[Function]}
+                            onKeyDown={[Function]}
+                            useCacheForDOMMeasurements={false}
+                            value=""
+                          >
+                            <textarea
+                              className="c7"
+                              data-test="option-description"
+                              id="option-description-1"
+                              name="description"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              onKeyDown={[Function]}
+                              style={
+                                Object {
+                                  "height": 0,
+                                }
+                              }
+                              value=""
+                            />
+                          </TextareaAutosize>
+                        </WrappingInput__TextArea>
+                      </div>
+                    </WrappingInput__StyleContext>
+                  </WrappingInput>
+                </withChangeHandler(WrappingInput)>
+              </div>
+            </Field__StyledField>
+          </Field>
+        </Option__OptionField>
+        <Option__DeleteContainer>
+          <div
+            className="c9"
           >
-            <DeleteButton
-              aria-label="Delete option"
-              data-for="tooltip-1"
-              data-test="btn-delete-option"
-              data-tip={true}
-              onClick={[Function]}
-              size="small"
-              type="button"
+            <Tooltip
+              content="Delete option"
+              offset={
+                Object {
+                  "bottom": 10,
+                }
+              }
+              place="top"
             >
-              <DeleteButton__StyledDeleteButton
+              <DeleteButton
                 aria-label="Delete option"
                 data-for="tooltip-1"
                 data-test="btn-delete-option"
                 data-tip={true}
                 onClick={[Function]}
-                size="small"
+                size="medium"
                 type="button"
               >
-                <button
+                <DeleteButton__StyledDeleteButton
                   aria-label="Delete option"
-                  className="c8"
                   data-for="tooltip-1"
                   data-test="btn-delete-option"
                   data-tip={true}
                   onClick={[Function]}
-                  size="small"
+                  size="medium"
                   type="button"
                 >
-                  <DeleteButton__CloseIcon>
-                    <Component
-                      className="c9"
-                    >
-                      <svg />
-                    </Component>
-                  </DeleteButton__CloseIcon>
-                </button>
-              </DeleteButton__StyledDeleteButton>
-            </DeleteButton>
-            <Tooltip__StyledTooltip
-              delayShow={200}
-              effect="solid"
-              id="tooltip-1"
-              place="bottom"
-            >
-              <ReactTooltip
-                className="c10"
+                  <button
+                    aria-label="Delete option"
+                    className="c10"
+                    data-for="tooltip-1"
+                    data-test="btn-delete-option"
+                    data-tip={true}
+                    onClick={[Function]}
+                    size="medium"
+                    type="button"
+                  >
+                    <DeleteButton__CloseIcon>
+                      <Component
+                        className="c11"
+                      >
+                        <svg />
+                      </Component>
+                    </DeleteButton__CloseIcon>
+                  </button>
+                </DeleteButton__StyledDeleteButton>
+              </DeleteButton>
+              <Tooltip__StyledTooltip
                 delayShow={200}
                 effect="solid"
                 id="tooltip-1"
-                insecure={true}
-                place="bottom"
-                resizeHide={true}
-                wrapper="div"
+                offset={
+                  Object {
+                    "bottom": 10,
+                  }
+                }
+                place="top"
               >
-                <div
-                  className="__react_component_tooltip place-top type-dark "
-                  data-id="tooltip"
-                />
-              </ReactTooltip>
-            </Tooltip__StyledTooltip>
-          </Tooltip>
-        </div>
-      </Option__DeleteContainer>
+                <ReactTooltip
+                  className="c12"
+                  delayShow={200}
+                  effect="solid"
+                  id="tooltip-1"
+                  insecure={true}
+                  offset={
+                    Object {
+                      "bottom": 10,
+                    }
+                  }
+                  place="top"
+                  resizeHide={true}
+                  wrapper="div"
+                >
+                  <div
+                    className="__react_component_tooltip place-top type-dark "
+                    data-id="tooltip"
+                  />
+                </ReactTooltip>
+              </Tooltip__StyledTooltip>
+            </Tooltip>
+          </div>
+        </Option__DeleteContainer>
+      </div>
     </div>
   </Option__StyledOption>
 </StatelessOption>
@@ -559,33 +620,60 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
   duration={200}
   id="Option1"
   key="1"
+  onDelete={[Function]}
+  onEnterKey={[Function]}
+  onFocus={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "subscribe": [Function],
+    }
+  }
 >
-  <Option__LabelField>
-    <Option__DummyInput
-      type="Radio"
-    />
-    <Option__SeamlessLabel
-      data-autofocus={true}
-      data-test="option-label"
-      name="label"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="Label"
-      size="medium"
-      value=""
-    />
-  </Option__LabelField>
-  <Field>
-    <withChangeHandler(WrappingTextArea)
-      data-test="option-description"
-      name="description"
-      onBlur={[Function]}
-      onChange={[Function]}
-      onKeyDown={[Function]}
-      placeholder="Optional description"
-      value=""
-    />
-  </Field>
+  <div>
+    <Option__Flex>
+      <MultipleChoice
+        type="Radio"
+      />
+      <Option__OptionField>
+        <Label
+          htmlFor="option-label-1"
+          small={false}
+        >
+          Label
+        </Label>
+        <withChangeHandler(WrappingInput)
+          bold={true}
+          data-autofocus={true}
+          data-test="option-label"
+          id="option-label-1"
+          name="label"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          placeholder="Label"
+          value=""
+        />
+      </Option__OptionField>
+    </Option__Flex>
+    <Option__OptionField>
+      <Label
+        htmlFor="option-description-1"
+        small={false}
+      >
+        Description (optional)
+      </Label>
+      <withChangeHandler(WrappingInput)
+        data-test="option-description"
+        id="option-description-1"
+        name="description"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        value=""
+      />
+    </Option__OptionField>
+  </div>
 </Option__StyledOption>
 `;

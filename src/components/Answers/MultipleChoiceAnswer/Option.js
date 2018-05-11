@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { colors, radius } from "constants/theme";
-import { Field } from "components/Forms";
+import { Field, Label } from "components/Forms";
 import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import PropTypes from "prop-types";
@@ -9,76 +9,35 @@ import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
-import { get } from "lodash";
+import DummyMultipleChoice from "components/Answers/Dummy/MultipleChoice";
+
 import optionFragment from "graphql/fragments/option.graphql";
 import getIdForObject from "utils/getIdForObject";
 
 const ENTER_KEY = 13;
 
 export const DeleteContainer = styled.div`
-  padding: 0.2em;
   position: absolute;
-  top: 0.5em;
-  right: 1em;
+  top: 0;
+  right: 0;
 `;
 
-const borderRadii = {
-  [CHECKBOX]: "3px",
-  [RADIO]: "100%"
-};
+const Flex = styled.div`
+  display: flex;
+  align-items: flex-start;
+`;
 
-const DummyInput = styled.div`
-  border: ${radius} solid ${colors.borders};
-  height: 1.4em;
-  width: 1.4em;
-  display: inline-block;
-  margin: 0 1em 0 0;
-  vertical-align: top;
-  border-radius: ${props => get(borderRadii, props.type, "initial")};
+const OptionField = styled(Field)`
+  margin-bottom: 1em;
 `;
 
 export const StyledOption = styled.div`
-  border: 1px solid ${colors.borders};
-  padding: 1em 1.8em 0 1em;
-  border-radius: 3px;
+  border: 1px solid ${colors.bordersLight};
+  padding: 1em 1em 0;
+  border-radius: ${radius};
   position: relative;
 
-  &:not(:first-child) {
-    margin-top: 0.5em;
-  }
-
-  &.option-enter {
-    opacity: 0;
-    height: 0;
-    transform: translateX(-20px);
-  }
-
-  &.option-enter-active {
-    transition: height ${props => props.duration / 2}ms ease-out,
-      opacity ${props => props.duration / 2}ms ease-out
-        ${props => props.duration / 2}ms,
-      transform ${props => props.duration / 2}ms ease-out
-        ${props => props.duration / 2}ms;
-    opacity: 1;
-    height: 5.625em;
-    transform: translateX(0);
-  }
-
-  &.option-exit {
-    opacity: 1;
-    height: 5.625em;
-    transform: translateX(0);
-  }
-
-  &.option-exit-active {
-    transition: opacity ${props => props.duration / 2}ms ease-out,
-      transform ${props => props.duration / 2}ms ease-out,
-      height ${props => props.duration / 2}ms ease-out
-        ${props => props.duration / 2}ms;
-    opacity: 0;
-    height: 0;
-    transform: translateX(-20px);
-  }
+  margin-bottom: 1em;
 `;
 
 StyledOption.defaultProps = {
@@ -88,18 +47,6 @@ StyledOption.defaultProps = {
 StyledOption.propTypes = {
   duration: PropTypes.number
 };
-
-export const SeamlessLabel = styled(WrappingInput)`
-  display: inline-block !important;
-  width: auto;
-  vertical-align: middle;
-  margin-right: 1.5em;
-  flex: 1 1 0%;
-`;
-
-const LabelField = styled(Field)`
-  display: flex;
-`;
 
 export class StatelessOption extends Component {
   static propTypes = {
@@ -112,6 +59,7 @@ export class StatelessOption extends Component {
     type: PropTypes.oneOf([RADIO, CHECKBOX]).isRequired,
     children: PropTypes.node,
     labelPlaceholder: PropTypes.string,
+    descriptionPlaceholder: PropTypes.string,
     autoFocus: PropTypes.bool
   };
 
@@ -133,9 +81,9 @@ export class StatelessOption extends Component {
   renderDeleteButton() {
     return (
       <DeleteContainer>
-        <Tooltip content="Delete option">
+        <Tooltip content="Delete option" place="top" offset={{ bottom: 10 }}>
           <DeleteButton
-            size="small"
+            size="medium"
             aria-label="Delete option"
             onClick={this.handleDeleteClick}
             data-test="btn-delete-option"
@@ -154,38 +102,50 @@ export class StatelessOption extends Component {
       type,
       children,
       labelPlaceholder,
-      autoFocus
+      descriptionPlaceholder,
+      autoFocus,
+      ...otherProps
     } = this.props;
 
     return (
-      <StyledOption id={getIdForObject(option)} key={option.id}>
-        <LabelField>
-          <DummyInput type={type} />
-          <SeamlessLabel
-            name="label"
-            placeholder={labelPlaceholder}
-            size="medium"
-            value={option.label}
-            onChange={onChange}
-            onBlur={onUpdate}
-            onKeyDown={this.handleKeyDown}
-            data-test="option-label"
-            data-autofocus={autoFocus || null}
-          />
-        </LabelField>
-        <Field>
-          <WrappingInput
-            name="description"
-            placeholder="Optional description"
-            onChange={onChange}
-            value={option.description}
-            onBlur={onUpdate}
-            onKeyDown={this.handleKeyDown}
-            data-test="option-description"
-          />
-        </Field>
-        {children}
-        {hasDeleteButton && this.renderDeleteButton()}
+      <StyledOption id={getIdForObject(option)} key={option.id} {...otherProps}>
+        <div>
+          <Flex>
+            <DummyMultipleChoice type={type} />
+            <OptionField>
+              <Label htmlFor={`option-label-${option.id}`}>Label</Label>
+              <WrappingInput
+                id={`option-label-${option.id}`}
+                name="label"
+                value={option.label}
+                placeholder={labelPlaceholder}
+                onChange={onChange}
+                onBlur={onUpdate}
+                onKeyDown={this.handleKeyDown}
+                data-test="option-label"
+                data-autofocus={autoFocus || null}
+                bold
+              />
+            </OptionField>
+          </Flex>
+          <OptionField>
+            <Label htmlFor={`option-description-${option.id}`}>
+              Description (optional)
+            </Label>
+            <WrappingInput
+              id={`option-description-${option.id}`}
+              name="description"
+              placeholder={descriptionPlaceholder}
+              onChange={onChange}
+              value={option.description}
+              onBlur={onUpdate}
+              onKeyDown={this.handleKeyDown}
+              data-test="option-description"
+            />
+          </OptionField>
+          {children}
+          {hasDeleteButton && this.renderDeleteButton()}
+        </div>
       </StyledOption>
     );
   }
