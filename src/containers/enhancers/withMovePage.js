@@ -2,14 +2,17 @@ import { graphql } from "react-apollo";
 import movePageMutation from "graphql/movePage.graphql";
 import fragment from "graphql/fragments/movePage.graphql";
 import { getLink } from "utils/UrlUtils";
+import { remove } from "lodash";
 
 export const createUpdater = ({ from, to }) => (proxy, result) => {
   result = result.data.movePage;
 
-  // remove page from previous section
   const fromSectionId = `Section${from.sectionId}`;
   const fromSection = proxy.readFragment({ id: fromSectionId, fragment });
-  const [page] = fromSection.pages.splice(from.position, 1);
+
+  // remove page from previous section and update position values
+  const [movedPage] = remove(fromSection.pages, { id: from.id });
+  fromSection.pages.forEach((page, i) => (page.position = i));
 
   proxy.writeFragment({
     id: fromSectionId,
@@ -17,11 +20,12 @@ export const createUpdater = ({ from, to }) => (proxy, result) => {
     data: fromSection
   });
 
-  // add page to new section
   const toSectionId = `Section${to.sectionId}`;
   const toSection = proxy.readFragment({ id: toSectionId, fragment });
 
-  toSection.pages.splice(result.position, 0, page);
+  // add page to new section and update position values
+  toSection.pages.splice(result.position, 0, movedPage);
+  toSection.pages.forEach((page, i) => (page.position = i));
 
   proxy.writeFragment({
     id: toSectionId,

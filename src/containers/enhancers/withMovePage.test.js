@@ -146,9 +146,9 @@ describe("withMovePage", () => {
         Section1: {
           id: args.from.sectionId,
           pages: [
-            { id: "1", position: 0 },
-            { id: "2", position: 1 },
-            { id: "3", position: 2 }
+            { id: "A", position: 0 },
+            { id: "B", position: 1 },
+            { id: "C", position: 2 }
           ]
         }
       };
@@ -164,21 +164,22 @@ describe("withMovePage", () => {
 
       let updater = createUpdater({
         from: {
-          id: "3",
+          id: "C",
           sectionId: "1",
           position: 2
         },
         to: {
-          id: "3",
+          id: "C",
           sectionId: "1",
           position: 1
         }
       });
 
+      // order: A, C, B
       updater(proxy, {
         data: {
           movePage: {
-            id: "1",
+            id: "C",
             position: 1,
             __typename: "QuestionPage",
             section: {
@@ -191,21 +192,22 @@ describe("withMovePage", () => {
 
       updater = createUpdater({
         from: {
-          id: "2",
+          id: "B",
           sectionId: "1",
-          position: 1
+          position: 2
         },
         to: {
-          id: "2",
+          id: "B",
           sectionId: "1",
           position: 0
         }
       });
 
+      // order: B, A, C
       updater(proxy, {
         data: {
           movePage: {
-            id: "2",
+            id: "B",
             position: 0,
             __typename: "QuestionPage",
             section: {
@@ -217,9 +219,9 @@ describe("withMovePage", () => {
       });
 
       expect(sections.Section1.pages).toEqual([
-        { id: "2", position: 0 },
-        { id: "1", position: 1 },
-        { id: "3", position: 2 }
+        { id: "B", position: 0 },
+        { id: "A", position: 1 },
+        { id: "C", position: 2 }
       ]);
     });
   });
