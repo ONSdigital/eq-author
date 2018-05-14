@@ -92,7 +92,7 @@ describe("withMovePage", () => {
     });
   });
 
-  describe("createUpdate", () => {
+  describe("createUpdater", () => {
     let proxy, fromSection, toSection, page;
 
     beforeEach(() => {
@@ -135,7 +135,92 @@ describe("withMovePage", () => {
       });
 
       expect(fromSection.pages).not.toContain(page);
-      expect(toSection.pages[args.to.position]).toBe(page);
+      expect(toSection.pages[args.to.position]).toMatchObject({
+        id: page.id,
+        position: args.to.position
+      });
+    });
+
+    it("should correctly update position values for all pages in a section", () => {
+      const sections = {
+        Section1: {
+          id: args.from.sectionId,
+          pages: [
+            { id: "1", position: 0 },
+            { id: "2", position: 1 },
+            { id: "3", position: 2 }
+          ]
+        }
+      };
+
+      proxy = {
+        writeFragment: jest.fn(({ id, data }) => {
+          sections[id] = data;
+        }),
+        readFragment: jest.fn(({ id }) => {
+          return sections[id];
+        })
+      };
+
+      let updater = createUpdater({
+        from: {
+          id: "3",
+          sectionId: "1",
+          position: 2
+        },
+        to: {
+          id: "3",
+          sectionId: "1",
+          position: 1
+        }
+      });
+
+      updater(proxy, {
+        data: {
+          movePage: {
+            id: "1",
+            position: 1,
+            __typename: "QuestionPage",
+            section: {
+              id: "1",
+              __typename: "Section"
+            }
+          }
+        }
+      });
+
+      updater = createUpdater({
+        from: {
+          id: "2",
+          sectionId: "1",
+          position: 1
+        },
+        to: {
+          id: "2",
+          sectionId: "1",
+          position: 0
+        }
+      });
+
+      updater(proxy, {
+        data: {
+          movePage: {
+            id: "2",
+            position: 0,
+            __typename: "QuestionPage",
+            section: {
+              id: "1",
+              __typename: "Section"
+            }
+          }
+        }
+      });
+
+      expect(sections.Section1.pages).toEqual([
+        { id: "2", position: 0 },
+        { id: "1", position: 1 },
+        { id: "3", position: 2 }
+      ]);
     });
   });
 });
