@@ -1,0 +1,1070 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UnconnectedRoutingEditor routing conditions multiple choice answer should render routing conditions - multiple choice answer 1`] = `
+<React.Fragment>
+  <UnconnectedRoutingEditor__Title />
+  <UnconnectedRoutingEditor__Padding>
+    <RoutingRuleset
+      canRoute={true}
+      onAddRule={[Function]}
+      onElseChange={[Function]}
+      sections={
+        Array [
+          Object {
+            "id": "1",
+            "pages": Array [],
+            "title": "Questions in this section",
+          },
+          Object {
+            "id": "2",
+            "pages": Array [],
+            "title": "Other sections",
+          },
+        ]
+      }
+    >
+      <RoutingRule
+        canRoute={true}
+        key="1"
+        onAddRule={[Function]}
+        onDeleteRule={[Function]}
+        onThenChange={[Function]}
+        page={
+          Object {
+            "answers": Array [
+              Object {
+                "id": "1",
+                "options": Array [
+                  Object {
+                    "id": "1",
+                    "label": "Option 1",
+                  },
+                  Object {
+                    "id": "2",
+                    "label": "Option 2",
+                  },
+                ],
+                "type": "Checkbox",
+              },
+            ],
+            "id": "1",
+            "routingRuleSet": Object {
+              "else": null,
+              "id": "1",
+              "questionPage": Object {
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [],
+                },
+              },
+              "routingRules": Array [
+                Object {
+                  "conditions": Array [
+                    Object {
+                      "answer": Object {
+                        "id": "1",
+                        "options": Array [
+                          Object {
+                            "id": "1",
+                            "label": "Option 1",
+                          },
+                          Object {
+                            "id": "2",
+                            "label": "Option 2",
+                          },
+                        ],
+                        "type": "Checkbox",
+                      },
+                      "comparator": "Equal",
+                      "id": "1",
+                      "questionPage": Object {
+                        "answers": Array [
+                          Object {
+                            "id": "1",
+                            "type": "Number",
+                          },
+                        ],
+                        "id": "1",
+                        "routingRuleSet": Object {
+                          "else": null,
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                            "routingRuleSet": Object {
+                              "else": null,
+                              "id": "1",
+                              "questionPage": Object {
+                                "id": "1",
+                                "routingRuleSet": Object {
+                                  "else": null,
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                  },
+                                  "routingRules": Array [],
+                                },
+                              },
+                              "routingRules": Array [],
+                            },
+                          },
+                          "routingRules": Array [
+                            Object {
+                              "conditions": Array [
+                                Object {
+                                  "answer": Object {
+                                    "id": "1",
+                                    "type": "Number",
+                                  },
+                                  "comparator": "Equal",
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                    "routingRuleSet": Object {
+                                      "else": null,
+                                      "id": "1",
+                                      "questionPage": Object {
+                                        "id": "1",
+                                        "routingRuleSet": Object {
+                                          "else": null,
+                                          "id": "1",
+                                          "questionPage": Object {
+                                            "id": "1",
+                                            "routingRuleSet": Object {
+                                              "else": null,
+                                              "id": "1",
+                                              "questionPage": Object {
+                                                "id": "1",
+                                              },
+                                              "routingRules": Array [],
+                                            },
+                                          },
+                                          "routingRules": Array [],
+                                        },
+                                      },
+                                      "routingRules": Array [
+                                        Object {
+                                          "conditions": Array [
+                                            Object {
+                                              "answer": null,
+                                              "comparator": "Equal",
+                                              "id": "1",
+                                              "questionPage": Object {
+                                                "id": "1",
+                                                "routingRuleSet": Object {
+                                                  "else": null,
+                                                  "id": "1",
+                                                  "questionPage": Object {
+                                                    "id": "1",
+                                                    "routingRuleSet": Object {
+                                                      "else": null,
+                                                      "id": "1",
+                                                      "questionPage": Object {
+                                                        "id": "1",
+                                                        "routingRuleSet": Object {
+                                                          "else": null,
+                                                          "id": "1",
+                                                          "questionPage": Object {
+                                                            "id": "1",
+                                                          },
+                                                          "routingRules": Array [],
+                                                        },
+                                                      },
+                                                      "routingRules": Array [],
+                                                    },
+                                                  },
+                                                  "routingRules": Array [
+                                                    Object {
+                                                      "conditions": Array [],
+                                                      "goto": null,
+                                                      "id": "1",
+                                                      "operation": "And",
+                                                    },
+                                                  ],
+                                                },
+                                              },
+                                              "routingValue": Object {
+                                                "value": Array [],
+                                              },
+                                            },
+                                          ],
+                                          "goto": null,
+                                          "id": "1",
+                                          "operation": "And",
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  "routingValue": Object {
+                                    "value": Array [],
+                                  },
+                                },
+                              ],
+                              "goto": null,
+                              "id": "1",
+                              "operation": "And",
+                            },
+                          ],
+                        },
+                      },
+                      "routingValue": Object {
+                        "value": Array [],
+                      },
+                    },
+                  ],
+                  "goto": null,
+                  "id": "1",
+                  "operation": "And",
+                },
+              ],
+            },
+          }
+        }
+        sections={
+          Array [
+            Object {
+              "id": "1",
+              "pages": Array [],
+              "title": "Questions in this section",
+            },
+            Object {
+              "id": "2",
+              "pages": Array [],
+              "title": "Other sections",
+            },
+          ]
+        }
+      >
+        <RoutingStatement
+          onAddCondition={[Function]}
+        >
+          <RoutingCondition
+            id="routing-condition"
+            key="1"
+            label="IF"
+            onPageChange={[Function]}
+            onRemove={[Function]}
+            pathEnd={false}
+            sections={Array []}
+            selectedPage={
+              Object {
+                "answers": Array [
+                  Object {
+                    "id": "1",
+                    "type": "Number",
+                  },
+                ],
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                        "routingRuleSet": Object {
+                          "else": null,
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                          },
+                          "routingRules": Array [],
+                        },
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [
+                    Object {
+                      "conditions": Array [
+                        Object {
+                          "answer": Object {
+                            "id": "1",
+                            "type": "Number",
+                          },
+                          "comparator": "Equal",
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                            "routingRuleSet": Object {
+                              "else": null,
+                              "id": "1",
+                              "questionPage": Object {
+                                "id": "1",
+                                "routingRuleSet": Object {
+                                  "else": null,
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                    "routingRuleSet": Object {
+                                      "else": null,
+                                      "id": "1",
+                                      "questionPage": Object {
+                                        "id": "1",
+                                      },
+                                      "routingRules": Array [],
+                                    },
+                                  },
+                                  "routingRules": Array [],
+                                },
+                              },
+                              "routingRules": Array [
+                                Object {
+                                  "conditions": Array [
+                                    Object {
+                                      "answer": null,
+                                      "comparator": "Equal",
+                                      "id": "1",
+                                      "questionPage": Object {
+                                        "id": "1",
+                                        "routingRuleSet": Object {
+                                          "else": null,
+                                          "id": "1",
+                                          "questionPage": Object {
+                                            "id": "1",
+                                            "routingRuleSet": Object {
+                                              "else": null,
+                                              "id": "1",
+                                              "questionPage": Object {
+                                                "id": "1",
+                                                "routingRuleSet": Object {
+                                                  "else": null,
+                                                  "id": "1",
+                                                  "questionPage": Object {
+                                                    "id": "1",
+                                                  },
+                                                  "routingRules": Array [],
+                                                },
+                                              },
+                                              "routingRules": Array [],
+                                            },
+                                          },
+                                          "routingRules": Array [
+                                            Object {
+                                              "conditions": Array [],
+                                              "goto": null,
+                                              "id": "1",
+                                              "operation": "And",
+                                            },
+                                          ],
+                                        },
+                                      },
+                                      "routingValue": Object {
+                                        "value": Array [],
+                                      },
+                                    },
+                                  ],
+                                  "goto": null,
+                                  "id": "1",
+                                  "operation": "And",
+                                },
+                              ],
+                            },
+                          },
+                          "routingValue": Object {
+                            "value": Array [],
+                          },
+                        },
+                      ],
+                      "goto": null,
+                      "id": "1",
+                      "operation": "And",
+                    },
+                  ],
+                },
+              }
+            }
+          >
+            <MultipleChoiceAnswerOptionsSelector
+              onOptionSelectionChange={[Function]}
+              options={
+                Array [
+                  Object {
+                    "id": "1_1",
+                    "label": "Option 1",
+                    "selected": false,
+                  },
+                  Object {
+                    "id": "1_2",
+                    "label": "Option 2",
+                    "selected": false,
+                  },
+                ]
+              }
+            />
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
+  </UnconnectedRoutingEditor__Padding>
+</React.Fragment>
+`;
+
+exports[`UnconnectedRoutingEditor routing conditions should render routing conditions - basic answer 1`] = `
+<React.Fragment>
+  <UnconnectedRoutingEditor__Title />
+  <UnconnectedRoutingEditor__Padding>
+    <RoutingRuleset
+      canRoute={true}
+      onAddRule={[Function]}
+      onElseChange={[Function]}
+      sections={
+        Array [
+          Object {
+            "id": "1",
+            "pages": Array [],
+            "title": "Questions in this section",
+          },
+          Object {
+            "id": "2",
+            "pages": Array [],
+            "title": "Other sections",
+          },
+        ]
+      }
+    >
+      <RoutingRule
+        canRoute={true}
+        key="1"
+        onAddRule={[Function]}
+        onDeleteRule={[Function]}
+        onThenChange={[Function]}
+        page={
+          Object {
+            "answers": Array [
+              Object {
+                "id": "1",
+                "type": "Number",
+              },
+            ],
+            "id": "1",
+            "routingRuleSet": Object {
+              "else": null,
+              "id": "1",
+              "questionPage": Object {
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [],
+                },
+              },
+              "routingRules": Array [
+                Object {
+                  "conditions": Array [
+                    Object {
+                      "answer": Object {
+                        "id": "1",
+                        "type": "Number",
+                      },
+                      "comparator": "Equal",
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                        "routingRuleSet": Object {
+                          "else": null,
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                            "routingRuleSet": Object {
+                              "else": null,
+                              "id": "1",
+                              "questionPage": Object {
+                                "id": "1",
+                                "routingRuleSet": Object {
+                                  "else": null,
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                  },
+                                  "routingRules": Array [],
+                                },
+                              },
+                              "routingRules": Array [],
+                            },
+                          },
+                          "routingRules": Array [
+                            Object {
+                              "conditions": Array [
+                                Object {
+                                  "answer": null,
+                                  "comparator": "Equal",
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                    "routingRuleSet": Object {
+                                      "else": null,
+                                      "id": "1",
+                                      "questionPage": Object {
+                                        "id": "1",
+                                        "routingRuleSet": Object {
+                                          "else": null,
+                                          "id": "1",
+                                          "questionPage": Object {
+                                            "id": "1",
+                                            "routingRuleSet": Object {
+                                              "else": null,
+                                              "id": "1",
+                                              "questionPage": Object {
+                                                "id": "1",
+                                              },
+                                              "routingRules": Array [],
+                                            },
+                                          },
+                                          "routingRules": Array [],
+                                        },
+                                      },
+                                      "routingRules": Array [
+                                        Object {
+                                          "conditions": Array [],
+                                          "goto": null,
+                                          "id": "1",
+                                          "operation": "And",
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  "routingValue": Object {
+                                    "value": Array [],
+                                  },
+                                },
+                              ],
+                              "goto": null,
+                              "id": "1",
+                              "operation": "And",
+                            },
+                          ],
+                        },
+                      },
+                      "routingValue": Object {
+                        "value": Array [],
+                      },
+                    },
+                  ],
+                  "goto": null,
+                  "id": "1",
+                  "operation": "And",
+                },
+              ],
+            },
+          }
+        }
+        sections={
+          Array [
+            Object {
+              "id": "1",
+              "pages": Array [],
+              "title": "Questions in this section",
+            },
+            Object {
+              "id": "2",
+              "pages": Array [],
+              "title": "Other sections",
+            },
+          ]
+        }
+      >
+        <RoutingStatement
+          onAddCondition={[Function]}
+        >
+          <RoutingCondition
+            id="routing-condition"
+            key="1"
+            label="IF"
+            onPageChange={[Function]}
+            onRemove={[Function]}
+            pathEnd={false}
+            sections={Array []}
+            selectedPage={
+              Object {
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                        "routingRuleSet": Object {
+                          "else": null,
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                          },
+                          "routingRules": Array [],
+                        },
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [
+                    Object {
+                      "conditions": Array [
+                        Object {
+                          "answer": null,
+                          "comparator": "Equal",
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                            "routingRuleSet": Object {
+                              "else": null,
+                              "id": "1",
+                              "questionPage": Object {
+                                "id": "1",
+                                "routingRuleSet": Object {
+                                  "else": null,
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                    "routingRuleSet": Object {
+                                      "else": null,
+                                      "id": "1",
+                                      "questionPage": Object {
+                                        "id": "1",
+                                      },
+                                      "routingRules": Array [],
+                                    },
+                                  },
+                                  "routingRules": Array [],
+                                },
+                              },
+                              "routingRules": Array [
+                                Object {
+                                  "conditions": Array [],
+                                  "goto": null,
+                                  "id": "1",
+                                  "operation": "And",
+                                },
+                              ],
+                            },
+                          },
+                          "routingValue": Object {
+                            "value": Array [],
+                          },
+                        },
+                      ],
+                      "goto": null,
+                      "id": "1",
+                      "operation": "And",
+                    },
+                  ],
+                },
+              }
+            }
+          >
+            <Alert>
+              <Alert__AlertTitle>
+                Routing is not available for this type of answer
+              </Alert__AlertTitle>
+              <Alert__AlertText>
+                You cannot route on '
+                number
+                ' answers
+              </Alert__AlertText>
+            </Alert>
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
+  </UnconnectedRoutingEditor__Padding>
+</React.Fragment>
+`;
+
+exports[`UnconnectedRoutingEditor routing conditions should render routing conditions - no answer provided 1`] = `
+<React.Fragment>
+  <UnconnectedRoutingEditor__Title />
+  <UnconnectedRoutingEditor__Padding>
+    <RoutingRuleset
+      canRoute={true}
+      onAddRule={[Function]}
+      onElseChange={[Function]}
+      sections={
+        Array [
+          Object {
+            "id": "1",
+            "pages": Array [],
+            "title": "Questions in this section",
+          },
+          Object {
+            "id": "2",
+            "pages": Array [],
+            "title": "Other sections",
+          },
+        ]
+      }
+    >
+      <RoutingRule
+        canRoute={true}
+        key="1"
+        onAddRule={[Function]}
+        onDeleteRule={[Function]}
+        onThenChange={[Function]}
+        page={
+          Object {
+            "id": "1",
+            "routingRuleSet": Object {
+              "else": null,
+              "id": "1",
+              "questionPage": Object {
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [],
+                },
+              },
+              "routingRules": Array [
+                Object {
+                  "conditions": Array [
+                    Object {
+                      "answer": null,
+                      "comparator": "Equal",
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                        "routingRuleSet": Object {
+                          "else": null,
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                            "routingRuleSet": Object {
+                              "else": null,
+                              "id": "1",
+                              "questionPage": Object {
+                                "id": "1",
+                                "routingRuleSet": Object {
+                                  "else": null,
+                                  "id": "1",
+                                  "questionPage": Object {
+                                    "id": "1",
+                                  },
+                                  "routingRules": Array [],
+                                },
+                              },
+                              "routingRules": Array [],
+                            },
+                          },
+                          "routingRules": Array [
+                            Object {
+                              "conditions": Array [],
+                              "goto": null,
+                              "id": "1",
+                              "operation": "And",
+                            },
+                          ],
+                        },
+                      },
+                      "routingValue": Object {
+                        "value": Array [],
+                      },
+                    },
+                  ],
+                  "goto": null,
+                  "id": "1",
+                  "operation": "And",
+                },
+              ],
+            },
+          }
+        }
+        sections={
+          Array [
+            Object {
+              "id": "1",
+              "pages": Array [],
+              "title": "Questions in this section",
+            },
+            Object {
+              "id": "2",
+              "pages": Array [],
+              "title": "Other sections",
+            },
+          ]
+        }
+      >
+        <RoutingStatement
+          onAddCondition={[Function]}
+        >
+          <RoutingCondition
+            id="routing-condition"
+            key="1"
+            label="IF"
+            onPageChange={[Function]}
+            onRemove={[Function]}
+            pathEnd={false}
+            sections={Array []}
+            selectedPage={
+              Object {
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                        "routingRuleSet": Object {
+                          "else": null,
+                          "id": "1",
+                          "questionPage": Object {
+                            "id": "1",
+                          },
+                          "routingRules": Array [],
+                        },
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [
+                    Object {
+                      "conditions": Array [],
+                      "goto": null,
+                      "id": "1",
+                      "operation": "And",
+                    },
+                  ],
+                },
+              }
+            }
+          >
+            <Alert>
+              <Alert__AlertTitle>
+                No answers have been added to this question yet.
+              </Alert__AlertTitle>
+              <Alert__AlertText>
+                First, 
+                <NavLink
+                  activeClassName="active"
+                  ariaCurrent="true"
+                  to="/questionnaire/1/design/1/1"
+                >
+                  add an answer
+                </NavLink>
+                 to continue.
+              </Alert__AlertText>
+            </Alert>
+          </RoutingCondition>
+        </RoutingStatement>
+      </RoutingRule>
+    </RoutingRuleset>
+  </UnconnectedRoutingEditor__Padding>
+</React.Fragment>
+`;
+
+exports[`UnconnectedRoutingEditor routing rule set should render routing rule set 1`] = `
+<React.Fragment>
+  <UnconnectedRoutingEditor__Title />
+  <UnconnectedRoutingEditor__Padding>
+    <RoutingRuleset
+      canRoute={true}
+      onAddRule={[Function]}
+      onElseChange={[Function]}
+      sections={
+        Array [
+          Object {
+            "id": "1",
+            "pages": Array [
+              Object {
+                "__typename": "QuestionPage",
+                "id": "QuestionPage_2",
+                "section": Object {
+                  "id": "1",
+                },
+              },
+              Object {
+                "__typename": "QuestionPage",
+                "id": "QuestionPage_3",
+                "section": Object {
+                  "id": "1",
+                },
+              },
+            ],
+            "title": "Questions in this section",
+          },
+          Object {
+            "id": "2",
+            "pages": Array [
+              Object {
+                "__typename": "Section",
+                "id": "Section_2",
+              },
+              Object {
+                "__typename": "Section",
+                "id": "Section_3",
+              },
+            ],
+            "title": "Other sections",
+          },
+        ]
+      }
+    />
+  </UnconnectedRoutingEditor__Padding>
+</React.Fragment>
+`;
+
+exports[`UnconnectedRoutingEditor routing rules should render routing rules 1`] = `
+<React.Fragment>
+  <UnconnectedRoutingEditor__Title />
+  <UnconnectedRoutingEditor__Padding>
+    <RoutingRuleset
+      canRoute={true}
+      onAddRule={[Function]}
+      onElseChange={[Function]}
+      sections={
+        Array [
+          Object {
+            "id": "1",
+            "pages": Array [],
+            "title": "Questions in this section",
+          },
+          Object {
+            "id": "2",
+            "pages": Array [],
+            "title": "Other sections",
+          },
+        ]
+      }
+    >
+      <RoutingRule
+        canRoute={true}
+        key="1"
+        onAddRule={[Function]}
+        onDeleteRule={[Function]}
+        onThenChange={[Function]}
+        page={
+          Object {
+            "id": "1",
+            "routingRuleSet": Object {
+              "else": null,
+              "id": "1",
+              "questionPage": Object {
+                "id": "1",
+                "routingRuleSet": Object {
+                  "else": null,
+                  "id": "1",
+                  "questionPage": Object {
+                    "id": "1",
+                    "routingRuleSet": Object {
+                      "else": null,
+                      "id": "1",
+                      "questionPage": Object {
+                        "id": "1",
+                      },
+                      "routingRules": Array [],
+                    },
+                  },
+                  "routingRules": Array [],
+                },
+              },
+              "routingRules": Array [
+                Object {
+                  "conditions": Array [],
+                  "goto": null,
+                  "id": "1",
+                  "operation": "And",
+                },
+              ],
+            },
+          }
+        }
+        sections={
+          Array [
+            Object {
+              "id": "1",
+              "pages": Array [],
+              "title": "Questions in this section",
+            },
+            Object {
+              "id": "2",
+              "pages": Array [],
+              "title": "Other sections",
+            },
+          ]
+        }
+      >
+        <RoutingStatement
+          onAddCondition={[Function]}
+        />
+      </RoutingRule>
+    </RoutingRuleset>
+  </UnconnectedRoutingEditor__Padding>
+</React.Fragment>
+`;
+
+exports[`UnconnectedRoutingEditor should render loading state 1`] = `""`;
+
+exports[`UnconnectedRoutingEditor should render when no routing rule set 1`] = `
+<React.Fragment>
+  <UnconnectedRoutingEditor__Title />
+  <UnconnectedRoutingEditor__Padding>
+    <RoutingRule
+      canRoute={true}
+      onAddRule={[Function]}
+      onDeleteRule={[Function]}
+      onThenChange={[Function]}
+      page={
+        Object {
+          "id": "1",
+        }
+      }
+      sections={
+        Array [
+          Object {
+            "id": "1",
+            "pages": Array [],
+            "title": "Questions in this section",
+          },
+          Object {
+            "id": "2",
+            "pages": Array [],
+            "title": "Other sections",
+          },
+        ]
+      }
+    />
+  </UnconnectedRoutingEditor__Padding>
+</React.Fragment>
+`;

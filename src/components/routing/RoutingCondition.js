@@ -12,6 +12,7 @@ import { Grid, Column } from "components/Grid";
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
+import { get } from "lodash";
 
 const Label = styled.label`
   width: 100%;
@@ -77,10 +78,13 @@ const RoutingCondition = ({
           id={id}
         >
           {sections.map(section => (
-            <optgroup label={section.title} key={section.id}>
+            <optgroup
+              label={get(section, "plaintextTitle", section.title)}
+              key={section.id}
+            >
               {section.pages.map(page => (
                 <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {page.title}
+                  {get(page, "plaintextTitle", page.title)}
                 </option>
               ))}
             </optgroup>

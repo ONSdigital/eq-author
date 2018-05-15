@@ -49,6 +49,12 @@ exports[`containers/App Routes should render  1`] = `
       isSignedIn={true}
       path="/questionnaire/:questionnaireId/:sectionId?/:pageId?/:tab?"
     />
+    <PrivateRoute
+      component={[Function]}
+      exact={false}
+      isSignedIn={true}
+      path="/questionnaire/:questionnaireId/routing/:sectionId/:pageId?"
+    />
     <Route
       component={[Function]}
       exact={true}

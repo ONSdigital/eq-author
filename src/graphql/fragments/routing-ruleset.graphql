@@ -1,0 +1,17 @@
+#import "./routing-rule.graphql"
+#import "./routing-destination.graphql"
+
+fragment RoutingRuleSet on RoutingRuleSet {
+  id
+  routingRules {
+    ...RoutingRule
+  }
+  questionPage {
+    id
+    plaintextTitle: title(format: Plaintext)
+  }
+  else {
+    ...RoutingDestinationQuestionPage
+    ...RoutingDestinationSection
+  }
+}

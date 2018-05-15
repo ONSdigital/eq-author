@@ -41,18 +41,51 @@ const TabsBody = styled.div`
   border-radius: ${radius};
 `;
 
+<<<<<<< HEAD
 const DisabledTab = Tab.withComponent("span");
 
 export const UnwrappedTabs = ({ match, children }) => {
   const url = match.params.pageId
     ? buildPagePath(match.params)
     : buildSectionPath(match.params);
+=======
+// TODO: find out why route matching doesn't work automatically
+// Given a route /foo/:bar/blah
+// I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
+// But this is not the case. Unsure if bug or implementation issue
+export const UnwrappedTabs = ({
+  questionnaire,
+  section,
+  page,
+  match,
+  children,
+  ...otherProps
+}) => {
+  const tabIsActive = view => () => match.url.includes(view);
+>>>>>>> Integrate routing components with the GraphQL API changes.
 
   return (
     <div>
       <TabsContainer>
+<<<<<<< HEAD
         <Tab to={url}>Builder</Tab>
         <DisabledTab>Routing</DisabledTab>
+=======
+        <Tab
+          to={getLink(questionnaire.id, section.id, page && page.id)}
+          activeClassName="selected"
+          isActive={tabIsActive}
+        >
+          Builder
+        </Tab>
+        <Tab
+          to={getLink(questionnaire.id, section.id, page && page.id, "routing")}
+          activeClassName="selected"
+          isActive={tabIsActive}
+        >
+          Routing
+        </Tab>
+>>>>>>> Integrate routing components with the GraphQL API changes.
       </TabsContainer>
       <TabsBody>{children}</TabsBody>
     </div>

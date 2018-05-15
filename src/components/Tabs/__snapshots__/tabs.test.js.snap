@@ -42,19 +42,6 @@ exports[`components/Nav when no pageId should render section link 1`] = `
 }
 
 .c2 {
-  font-size: 1em;
-  font-weight: bold;
-  color: #c3c3c3;
-  padding: 0.3em 2em;
-  border: 1px solid #666;
-  border-bottom: none;
-  background-color: #666;
-  text-decoration: none;
-  border-radius: 4px 4px 0 0;
-  margin: 0 0.25em 0 0;
-}
-
-.c2[aria-current="true"] {
   background: #FFFFFF;
   color: #5F7682;
   border: 1px solid #c3c3c3;
@@ -107,18 +94,46 @@ exports[`components/Nav when no pageId should render section link 1`] = `
             </Route>
           </NavLink>
         </Tabs__Tab>
-        <Tabs__Tab>
-          <span
-            className="-span c2"
+        <Tabs__Tab
+          activeClassName="selected"
+          isActive={[Function]}
+          to="/questionnaire/1/routing/2/3"
+        >
+          <NavLink
+            activeClassName="selected"
+            ariaCurrent="true"
+            className="c1"
+            isActive={[Function]}
+            to="/questionnaire/1/routing/2/3"
           >
-            Routing
-          </span>
+            <Route
+              path="/questionnaire/1/routing/2/3"
+            >
+              <Link
+                aria-current="true"
+                className="c1 selected"
+                replace={false}
+                style={Object {}}
+                to="/questionnaire/1/routing/2/3"
+              >
+                <a
+                  aria-current="true"
+                  className="c1 selected"
+                  href="/questionnaire/1/routing/2/3"
+                  onClick={[Function]}
+                  style={Object {}}
+                >
+                  Routing
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
         </Tabs__Tab>
       </nav>
     </Tabs__TabsContainer>
     <Tabs__TabsBody>
       <div
-        className="c3"
+        className="c2"
       >
         Tab Content
       </div>
@@ -169,19 +184,6 @@ exports[`components/Nav when pageId present should render page link 1`] = `
 }
 
 .c2 {
-  font-size: 1em;
-  font-weight: bold;
-  color: #c3c3c3;
-  padding: 0.3em 2em;
-  border: 1px solid #666;
-  border-bottom: none;
-  background-color: #666;
-  text-decoration: none;
-  border-radius: 4px 4px 0 0;
-  margin: 0 0.25em 0 0;
-}
-
-.c2[aria-current="true"] {
   background: #FFFFFF;
   color: #5F7682;
   border: 1px solid #c3c3c3;
@@ -217,16 +219,27 @@ exports[`components/Nav when pageId present should render page link 1`] = `
               path="/questionnaire/1/2/3/design"
             >
               <Link
-                aria-current={false}
-                className="c1"
+                aria-current="true"
+                className="c1 selected"
                 replace={false}
+<<<<<<< HEAD
                 to="/questionnaire/1/2/3/design"
               >
                 <a
                   aria-current={false}
                   className="c1"
                   href="/questionnaire/1/2/3/design"
+=======
+                style={Object {}}
+                to="/questionnaire/1/design/2/3"
+              >
+                <a
+                  aria-current="true"
+                  className="c1 selected"
+                  href="/questionnaire/1/design/2/3"
+>>>>>>> Integrate routing components with the GraphQL API changes.
                   onClick={[Function]}
+                  style={Object {}}
                 >
                   Builder
                 </a>
@@ -234,18 +247,46 @@ exports[`components/Nav when pageId present should render page link 1`] = `
             </Route>
           </NavLink>
         </Tabs__Tab>
-        <Tabs__Tab>
-          <span
-            className="-span c2"
+        <Tabs__Tab
+          activeClassName="selected"
+          isActive={[Function]}
+          to="/questionnaire/1/routing/2/3"
+        >
+          <NavLink
+            activeClassName="selected"
+            ariaCurrent="true"
+            className="c1"
+            isActive={[Function]}
+            to="/questionnaire/1/routing/2/3"
           >
-            Routing
-          </span>
+            <Route
+              path="/questionnaire/1/routing/2/3"
+            >
+              <Link
+                aria-current="true"
+                className="c1 selected"
+                replace={false}
+                style={Object {}}
+                to="/questionnaire/1/routing/2/3"
+              >
+                <a
+                  aria-current="true"
+                  className="c1 selected"
+                  href="/questionnaire/1/routing/2/3"
+                  onClick={[Function]}
+                  style={Object {}}
+                >
+                  Routing
+                </a>
+              </Link>
+            </Route>
+          </NavLink>
         </Tabs__Tab>
       </nav>
     </Tabs__TabsContainer>
     <Tabs__TabsBody>
       <div
-        className="c3"
+        className="c2"
       >
         Tab Content
       </div>

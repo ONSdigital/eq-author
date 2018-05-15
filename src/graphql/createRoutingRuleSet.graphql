@@ -1,0 +1,7 @@
+#import "./fragments/routing-ruleset.graphql"
+
+mutation CreateRoutingRuleSet($input: CreateRoutingRuleSetInput!) {
+  createRoutingRuleSet(input: $input) {
+    ...RoutingRuleSet
+  }
+}

@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/withRouting mapOptionsToProps should pass questionnaireId as a variable 1`] = `
+Object {
+  "variables": Object {
+    "id": "1",
+  },
+}
+`;
+
+exports[`containers/withRouting mapResultsToProps should handle loading 1`] = `
+Object {
+  "loading": true,
+}
+`;
+
+exports[`containers/withRouting mapResultsToProps should handle no section selected 1`] = `
+Object {
+  "loading": false,
+  "questionnaire": Object {
+    "id": "1",
+    "sections": Array [
+      Object {
+        "id": "2",
+        "pages": Array [
+          Object {
+            "id": "3",
+            "routingRuleSet": Object {
+              "else": null,
+              "id": "1",
+              "questionPage": [Circular],
+              "routingRules": Array [
+                Object {
+                  "conditions": Array [
+                    Object {
+                      "answer": null,
+                      "comparator": "Equal",
+                      "id": "1",
+                      "questionPage": [Circular],
+                      "routingValue": null,
+                    },
+                  ],
+                  "goto": null,
+                  "id": "1",
+                  "operation": "And",
+                },
+              ],
+            },
+            "title": "My Page",
+          },
+        ],
+        "title": "My Section",
+      },
+    ],
+    "title": "My Questionnaire",
+  },
+}
+`;
+
+exports[`containers/withRouting mapResultsToProps should handle questionnaire data 1`] = `
+Object {
+  "loading": false,
+  "page": Object {
+    "id": "3",
+    "routingRuleSet": Object {
+      "else": null,
+      "id": "1",
+      "questionPage": [Circular],
+      "routingRules": Array [
+        Object {
+          "conditions": Array [
+            Object {
+              "answer": null,
+              "comparator": "Equal",
+              "id": "1",
+              "questionPage": [Circular],
+              "routingValue": null,
+            },
+          ],
+          "goto": null,
+          "id": "1",
+          "operation": "And",
+        },
+      ],
+    },
+    "title": "My Page",
+  },
+  "questionnaire": Object {
+    "id": "1",
+    "sections": Array [
+      Object {
+        "id": "2",
+        "pages": Array [
+          Object {
+            "id": "3",
+            "routingRuleSet": Object {
+              "else": null,
+              "id": "1",
+              "questionPage": [Circular],
+              "routingRules": Array [
+                Object {
+                  "conditions": Array [
+                    Object {
+                      "answer": null,
+                      "comparator": "Equal",
+                      "id": "1",
+                      "questionPage": [Circular],
+                      "routingValue": null,
+                    },
+                  ],
+                  "goto": null,
+                  "id": "1",
+                  "operation": "And",
+                },
+              ],
+            },
+            "title": "My Page",
+          },
+        ],
+        "title": "My Section",
+      },
+    ],
+    "title": "My Questionnaire",
+  },
+  "section": Object {
+    "id": "2",
+    "pages": Array [
+      Object {
+        "id": "3",
+        "routingRuleSet": Object {
+          "else": null,
+          "id": "1",
+          "questionPage": [Circular],
+          "routingRules": Array [
+            Object {
+              "conditions": Array [
+                Object {
+                  "answer": null,
+                  "comparator": "Equal",
+                  "id": "1",
+                  "questionPage": [Circular],
+                  "routingValue": null,
+                },
+              ],
+              "goto": null,
+              "id": "1",
+              "operation": "And",
+            },
+          ],
+        },
+        "title": "My Page",
+      },
+    ],
+    "title": "My Section",
+  },
+}
+`;

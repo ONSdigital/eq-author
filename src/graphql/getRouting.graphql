@@ -1,18 +1,20 @@
 #import "./fragments/questionnaire.graphql"
+#import "./fragments/section.graphql"
+#import "./fragments/answer.graphql"
+#import "./fragments/option.graphql"
+#import "./fragments/routing-ruleset.graphql"
 
-query GetQuestionnaire($id: ID!) {
+query GetRouting($id: ID!) {
   questionnaire(id: $id) {
     ...Questionnaire
     sections {
-      id
-      title
+      ...Section
+      plaintextTitle: title(format: Plaintext)
       pages {
         id
         title
-        position
         ... on QuestionPage {
-          title
-          guidance
+          plaintextTitle: title(format: Plaintext)
           answers {
             ...Answer
             ... on MultipleChoiceAnswer {
@@ -28,6 +30,9 @@ query GetQuestionnaire($id: ID!) {
                 }
               }
             }
+          }
+          routingRuleSet {
+            ...RoutingRuleSet
           }
         }
       }
