@@ -1,7 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import EditorSurface from "./";
-import PropTypes from "prop-types";
+import { UnwrappedEditorSurface } from "./";
+
+import { SynchronousPromise } from "synchronous-promise";
 
 const option = {
   __typename: "Option",
@@ -32,51 +33,105 @@ const section = {
 };
 
 describe("EditorSurface", () => {
-  let wrapper, mockMutations;
+  let wrapper, mockHandlers;
 
-  const createWrapper = (props = {}, render = shallow, renderOpts = {}) => {
-    const defaultOptions = {
-      context: {
-        client: { query: jest.fn(), readQuery: jest.fn() },
-        store: {
-          subscribe: jest.fn(),
-          dispatch: jest.fn(),
-          getState: jest.fn()
-        }
-      },
-      childContextTypes: { client: PropTypes.object, store: PropTypes.object }
-    };
+  const render = (props = {}) =>
+    shallow(<UnwrappedEditorSurface {...mockHandlers} {...props} />);
 
-    return render(
-      <EditorSurface
-        section={section}
-        page={page}
-        {...mockMutations}
-        focused={"Section3"}
-        {...props}
-      />,
-      {
-        ...defaultOptions,
-        ...renderOpts
-      }
-    );
-  };
+  const btnDelete = () => wrapper.find("[data-test='btn-delete']");
+  const btnMove = () => wrapper.find("[data-test='btn-move']");
 
   beforeEach(() => {
-    mockMutations = {
+    mockHandlers = {
       onUpdateSection: jest.fn(),
-      onDeleteSection: jest.fn(),
+      onDeleteSection: jest.fn(() => SynchronousPromise.resolve()),
       onUpdatePage: jest.fn(),
-      onDeletePage: jest.fn(),
-      onFocus: jest.fn(),
-      onBlur: jest.fn()
+      onDeletePage: jest.fn(() => SynchronousPromise.resolve()),
+      onMovePage: jest.fn(),
+      onCloseMovePageDialog: jest.fn()
     };
   });
 
-  it("should render", () => {
-    wrapper = createWrapper({}, shallow, {
-      disableLifecycleMethods: true
+  describe("Editing Question Page", () => {
+    const questionPageEditor = () =>
+      wrapper.find('[data-test="question-page-editor"]');
+
+    beforeEach(() => {
+      wrapper = render({ page, section }, shallow);
     });
-    expect(wrapper).toMatchSnapshot();
+
+    it("should render as expected", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should allow updating page content", () => {
+      questionPageEditor().simulate("updatePage");
+      expect(mockHandlers.onUpdatePage).toHaveBeenCalled();
+    });
+
+    describe("Deleting pages", () => {
+      it("should show delete page dialog when delete button is clicked", () => {
+        btnDelete().simulate("click");
+        expect(questionPageEditor().prop("showDeleteConfirmDialog")).toBe(true);
+      });
+
+      it("Should delete page and close modal when deletion is confirmed ", () => {
+        btnDelete().simulate("click");
+        questionPageEditor().simulate("deletePageConfirm");
+        expect(mockHandlers.onDeletePage).toHaveBeenCalledWith(
+          section.id,
+          page.id
+        );
+        expect(questionPageEditor().prop("showDeleteConfirmDialog")).toBe(
+          false
+        );
+      });
+    });
+
+    describe("Moving pages", () => {
+      it("should show move page dialog when move button is clicked", () => {
+        btnMove().simulate("click");
+        expect(questionPageEditor().prop("showMovePageDialog")).toBe(true);
+      });
+
+      it("Should allow closing move page dialog without moving the page.", () => {
+        questionPageEditor().simulate("closeMovePageDialog");
+        expect(mockHandlers.onMovePage).toHaveBeenCalledTimes(0);
+        expect(questionPageEditor().prop("showDeleteConfirmDialog")).toBe(
+          false
+        );
+      });
+    });
+  });
+
+  describe("Editing Section", () => {
+    const sectionEditor = () => wrapper.find('[data-test="section-editor"]');
+
+    beforeEach(() => {
+      wrapper = render({ section });
+    });
+
+    it("Should render as expected", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("Should allow updating section content", () => {
+      sectionEditor().simulate("update");
+      expect(mockHandlers.onUpdateSection).toHaveBeenCalled();
+    });
+
+    describe("Deleting section", () => {
+      it("should show delete section dialog when delete button is clicked", () => {
+        btnDelete().simulate("click");
+        expect(sectionEditor().prop("showDeleteConfirmDialog")).toBe(true);
+      });
+
+      it("Should delete section and close modal when deletion is confirmed ", () => {
+        btnDelete().simulate("click");
+        sectionEditor().simulate("deleteSectionConfirm");
+        expect(mockHandlers.onDeleteSection).toHaveBeenCalledWith(section.id);
+        expect(sectionEditor().prop("showDeleteConfirmDialog")).toBe(false);
+      });
+    });
   });
 });

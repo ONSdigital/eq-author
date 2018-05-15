@@ -1,5 +1,5 @@
 import React from "react";
-import { QuestionnaireDesignPage } from "./QuestionnaireDesignPage";
+import QuestionnaireDesignPage from "components/QuestionnaireDesignPage";
 import { shallow } from "enzyme";
 
 describe("QuestionnaireDesignPage", () => {

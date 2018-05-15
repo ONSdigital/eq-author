@@ -142,6 +142,7 @@ exports[`components/Menu should render a Menu 1`] = `
     <MenuScrollPane>
       <ScrollPane
         className="c1"
+        permanentScrollBar={false}
       >
         <div
           className="c1 c2"
@@ -150,6 +151,7 @@ exports[`components/Menu should render a Menu 1`] = `
             <MenuScrollPane>
               <ScrollPane
                 className="c1"
+                permanentScrollBar={false}
               >
                 <div
                   className="c1 c2"

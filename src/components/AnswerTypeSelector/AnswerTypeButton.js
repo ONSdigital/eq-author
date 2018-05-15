@@ -30,7 +30,8 @@ export default class AnswerTypeButton extends React.Component {
     type: PropTypes.oneOf(keys(icons)).isRequired,
     title: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    order: PropTypes.number
   };
 
   handleClick = () => {
@@ -44,6 +45,7 @@ export default class AnswerTypeButton extends React.Component {
         iconSrc={icons[this.props.type]}
         onClick={this.handleClick}
         title={this.props.title}
+        order={this.props.order}
       />
     );
   }

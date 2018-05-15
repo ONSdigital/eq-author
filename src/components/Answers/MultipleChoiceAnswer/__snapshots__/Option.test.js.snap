@@ -141,14 +141,20 @@ exports[`Option should render a checkbox 1`] = `
   cursor: pointer;
   -webkit-transition: color 0.2s ease-in;
   transition: color 0.2s ease-in;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
   font-size: 1.25em;
-  padding: 0 auto;
 }
 
 .c8:hover {
   color: #333333;
   -webkit-transition: color 0.2s ease-out;
   transition: color 0.2s ease-out;
+}
+
+.c8:focus {
+  outline: 3px solid #FDBD56;
 }
 
 .c9 {
@@ -174,7 +180,7 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c3 {
-  border: 4px solid #EAEAEA;
+  border: 4px solid #999999;
   height: 1.4em;
   width: 1.4em;
   display: inline-block;
@@ -184,7 +190,7 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c0 {
-  border: 1px solid #EAEAEA;
+  border: 1px solid #999999;
   padding: 1em 1.8em 0 1em;
   border-radius: 3px;
   position: relative;

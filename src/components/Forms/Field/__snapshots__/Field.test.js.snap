@@ -21,12 +21,12 @@ exports[`components/Forms/Field should render correctly 1`] = `
   width: 100%;
   display: block;
   border-radius: 4px;
-  border: 1px solid #EAEAEA;
+  border: 1px solid #999999;
   font-size: 0.9em;
 }
 
 .c2:hover {
-  border-color: #d1d1d1;
+  border-color: #808080;
 }
 
 .c2:focus {

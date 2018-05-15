@@ -2,16 +2,16 @@
 
 exports[`components/AnswerTypeSelector should render content when open 1`] = `
 <Popout
+  container={[Function]}
+  layer={[Function]}
   onEntered={[Function]}
   onToggleOpen={[Function]}
   open={true}
   transition={[Function]}
   trigger={
-    <Button
+    <AnswerTypeSelector__AddAnswerButton
       data-test="btn-add-answer"
-      small={true}
-      type="button"
-      variant="tertiary"
+      variant="secondary"
     >
       <IconText
         hideText={false}
@@ -21,7 +21,7 @@ exports[`components/AnswerTypeSelector should render content when open 1`] = `
         an
          answer
       </IconText>
-    </Button>
+    </AnswerTypeSelector__AddAnswerButton>
   }
 >
   <AnswerTypeGrid
@@ -32,16 +32,16 @@ exports[`components/AnswerTypeSelector should render content when open 1`] = `
 
 exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0 answers currently 1`] = `
 <Popout
+  container={[Function]}
+  layer={[Function]}
   onEntered={[Function]}
   onToggleOpen={[Function]}
   open={false}
   transition={[Function]}
   trigger={
-    <Button
+    <AnswerTypeSelector__AddAnswerButton
       data-test="btn-add-answer"
-      small={true}
-      type="button"
-      variant="tertiary"
+      variant="secondary"
     >
       <IconText
         hideText={false}
@@ -51,7 +51,7 @@ exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0
         another
          answer
       </IconText>
-    </Button>
+    </AnswerTypeSelector__AddAnswerButton>
   }
 >
   <AnswerTypeGrid
@@ -62,16 +62,16 @@ exports[`components/AnswerTypeSelector should say to add 'another' answer if > 0
 
 exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] = `
 <Popout
+  container={[Function]}
+  layer={[Function]}
   onEntered={[Function]}
   onToggleOpen={[Function]}
   open={false}
   transition={[Function]}
   trigger={
-    <Button
+    <AnswerTypeSelector__AddAnswerButton
       data-test="btn-add-answer"
-      small={true}
-      type="button"
-      variant="tertiary"
+      variant="secondary"
     >
       <IconText
         hideText={false}
@@ -81,7 +81,7 @@ exports[`components/AnswerTypeSelector shouldn't render content when closed 1`] 
         an
          answer
       </IconText>
-    </Button>
+    </AnswerTypeSelector__AddAnswerButton>
   }
 >
   <AnswerTypeGrid

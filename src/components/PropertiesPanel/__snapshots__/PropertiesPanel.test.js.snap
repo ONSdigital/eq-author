@@ -3,7 +3,9 @@
 exports[`PropertiesPanel should render when there are answers 1`] = `
 <PropertiesPanel__PropertiesPane>
   <PropertiesPanel__PropertiesPaneBody>
-    <ScrollPane>
+    <ScrollPane
+      permanentScrollBar={false}
+    >
       <div>
         <PropertiesPanel__PropertiesPanelTitle>
           Answer properties
@@ -49,7 +51,9 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
 exports[`PropertiesPanel should render when there are no answers 1`] = `
 <PropertiesPanel__PropertiesPane>
   <PropertiesPanel__PropertiesPaneBody>
-    <ScrollPane />
+    <ScrollPane
+      permanentScrollBar={false}
+    />
   </PropertiesPanel__PropertiesPaneBody>
 </PropertiesPanel__PropertiesPane>
 `;

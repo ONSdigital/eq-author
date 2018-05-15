@@ -5,9 +5,12 @@ import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  position: absolute;
-  bottom: 1em;
-  left: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25em;
+  margin: auto;
+  height: 100vh;
 `;
 
 const Decorator = storyFn => <Wrapper>{storyFn()}</Wrapper>;

@@ -9,7 +9,7 @@ const CenterXY = styled.div`
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  width: 30em;
+  width: 40em;
 `;
 
 class AnswerEditorWrapper extends React.Component {

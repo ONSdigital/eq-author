@@ -88,6 +88,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__Collapsible>
             <IconButtonDelete
+              hideText={true}
               onClick={[Function]}
             />
           </QuestionnairesTable__Collapsible>
@@ -153,6 +154,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__Collapsible>
             <IconButtonDelete
+              hideText={true}
               onClick={[Function]}
             />
           </QuestionnairesTable__Collapsible>

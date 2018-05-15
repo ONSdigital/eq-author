@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionEditor should render 1`] = `
+<SectionEditor__SectionCanvas
+  id={null}
+>
+  <DeleteConfirmDialog
+    alertText="All questions in this section will also be removed. This may affect piping and routing rules elsewhere."
+    data-test="dialog-delete-confirm"
+    icon="icon-dialog-section.svg"
+    isOpen={false}
+    onClose={[Function]}
+    onDelete={[Function]}
+    title="Section 1"
+  />
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
+  >
+    <PageTransition
+      enter={true}
+      exit={false}
+      in={false}
+      key="null"
+      timeout={300}
+    >
+      <SectionEditor__Padding>
+        <Field
+          id="title"
+        >
+          <RichTextEditor
+            autoFocus={false}
+            controls={
+              Object {
+                "emphasis": true,
+              }
+            }
+            label="title"
+            multiline={false}
+            onUpdate={[Function]}
+            placeholder="Section title"
+            size="large"
+            testSelector="txt-section-title"
+            value="Section 1"
+          />
+        </Field>
+        <Field
+          id="description"
+        >
+          <RichTextEditor
+            autoFocus={false}
+            controls={
+              Object {
+                "bold": true,
+                "emphasis": true,
+              }
+            }
+            label="description"
+            multiline={true}
+            onUpdate={[Function]}
+            placeholder="Enter a description (optional)…"
+            testSelector="txt-section-description"
+          />
+        </Field>
+      </SectionEditor__Padding>
+    </PageTransition>
+  </TransitionGroup>
+</SectionEditor__SectionCanvas>
+`;
+
+exports[`SectionEditor should render 2`] = `
+<SectionEditor__SectionCanvas
+  id={null}
+>
+  <DeleteConfirmDialog
+    alertText="All questions in this section will also be removed. This may affect piping and routing rules elsewhere."
+    data-test="dialog-delete-confirm"
+    icon="icon-dialog-section.svg"
+    isOpen={false}
+    onClose={[Function]}
+    onDelete={[Function]}
+    title="Section 2"
+  />
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
+  >
+    <PageTransition
+      enter={true}
+      exit={false}
+      in={false}
+      key="null"
+      timeout={300}
+    >
+      <SectionEditor__Padding>
+        <Field
+          id="title"
+        >
+          <RichTextEditor
+            autoFocus={false}
+            controls={
+              Object {
+                "emphasis": true,
+              }
+            }
+            label="title"
+            multiline={false}
+            onUpdate={[Function]}
+            placeholder="Section title"
+            size="large"
+            testSelector="txt-section-title"
+            value="Section 2"
+          />
+        </Field>
+        <Field
+          id="description"
+        >
+          <RichTextEditor
+            autoFocus={false}
+            controls={
+              Object {
+                "bold": true,
+                "emphasis": true,
+              }
+            }
+            label="description"
+            multiline={true}
+            onUpdate={[Function]}
+            placeholder="Enter a description (optional)…"
+            testSelector="txt-section-description"
+          />
+        </Field>
+      </SectionEditor__Padding>
+    </PageTransition>
+  </TransitionGroup>
+</SectionEditor__SectionCanvas>
+`;

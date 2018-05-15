@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import AnswerTypeGrid, { CloseButton } from "./AnswerTypeGrid";
+import AnswerTypeGrid from "./AnswerTypeGrid";
 import AnswerTypeButton from "./AnswerTypeButton";
 
 let wrapper, handleClose, handleSelect;
@@ -21,13 +21,6 @@ describe("components/AnswerTypeGrid", () => {
 
   it("should render", () => {
     expect(wrapper).toMatchSnapshot();
-  });
-
-  describe("when close button clicked", () => {
-    it("should invoke `onClose` callback", () => {
-      wrapper.find(CloseButton).simulate("click");
-      expect(handleClose).toHaveBeenCalled();
-    });
   });
 
   describe("when answer type button clicked", () => {

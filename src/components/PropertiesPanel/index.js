@@ -39,7 +39,7 @@ const PropertiesPaneBody = styled.div`
 `;
 
 const PropertiesGroup = styled.div`
-  border-bottom: 1px solid ${colors.borders};
+  border-bottom: 1px solid ${colors.lightGrey};
   padding: 1em 1em 0;
 `;
 

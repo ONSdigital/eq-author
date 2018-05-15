@@ -89,7 +89,7 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
 }
 
 .c0 {
-  border-bottom: 1px solid #EAEAEA;
+  border-bottom: 1px solid #999999;
 }
 
 <AccordionPanel

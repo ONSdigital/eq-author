@@ -10,13 +10,15 @@ const Menu = styled.div`
   padding: 0.5em;
 `;
 
-const IconGrid = ({ children, "aria-labelledby": labelledby }) => {
-  return (
-    <Menu role="menu" aria-labelledby={labelledby}>
-      {children}
-    </Menu>
-  );
-};
+const IconGrid = ({
+  children,
+  "aria-labelledby": labelledby,
+  ...otherProps
+}) => (
+  <Menu role="menu" aria-labelledby={labelledby} {...otherProps}>
+    {children}
+  </Menu>
+);
 
 IconGrid.propTypes = {
   children: PropTypes.node.isRequired,

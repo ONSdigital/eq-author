@@ -9,7 +9,9 @@ exports[`SplitButton should render when closed 1`] = `
     Add checkbox
   </PrimaryButton>
   <Popout
+    container={[Function]}
     horizontalAlignment="right"
+    layer={[Function]}
     offsetY="100%"
     onToggleOpen={[Function]}
     open={false}
@@ -44,7 +46,9 @@ exports[`SplitButton should render when open 1`] = `
     Add checkbox
   </PrimaryButton>
   <Popout
+    container={[Function]}
     horizontalAlignment="right"
+    layer={[Function]}
     offsetY="100%"
     onToggleOpen={[Function]}
     open={true}

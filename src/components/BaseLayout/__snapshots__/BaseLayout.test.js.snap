@@ -44,7 +44,9 @@ exports[`components/BaseLayout should render a title 1`] = `
     <BaseLayout__Wrapper>
       <Connect(UnconnectedHeader) />
       <BaseLayout__Main>
-        <ScrollPane>
+        <ScrollPane
+          permanentScrollBar={false}
+        >
           <BaseLayout__Title>
             Title
           </BaseLayout__Title>

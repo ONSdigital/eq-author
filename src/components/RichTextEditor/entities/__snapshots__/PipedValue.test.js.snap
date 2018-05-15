@@ -2,7 +2,7 @@
 
 exports[`PipedValue decorator should render piped value entities 1`] = `
 .c0 {
-  background-color: #EAEAEA;
+  background-color: #999999;
   padding: 0 0.125em;
   border-radius: 3px;
   white-space: pre;

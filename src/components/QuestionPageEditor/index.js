@@ -3,53 +3,48 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import AnswerTypeSelector from "components/AnswerTypeSelector";
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
-import CanvasSection, {
-  BasicSection
-} from "components/EditorSurface/CanvasSection";
-import SlideTransition from "components/SlideTransition";
-import Button from "components/Button";
-import IconText from "components/IconText";
+
+import AnswerTransition from "./AnswerTransition";
+import PageTransition from "components/PageTransition";
+
 import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
-import { flowRight, isFunction } from "lodash";
+import { flowRight } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 import getIdForObject from "utils/getIdForObject";
-import focusOnEntity from "utils/focusOnEntity";
+
 import iconPage from "./icon-dialog-page.svg";
-import IconMovePage from "./icon-move.svg?inline";
 
 import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
-import withCreateAnswer from "containers/enhancers/withCreateAnswer";
 import withUpdateAnswer from "containers/enhancers/withUpdateAnswer";
+import withCreateAnswer from "containers/enhancers/withCreateAnswer";
 import withCreateOption from "containers/enhancers/withCreateOption";
 import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
-import withMovePage from "containers/enhancers/withMovePage";
 import withCreateOther from "containers/enhancers/withCreateOther";
 import withDeleteOther from "containers/enhancers/withDeleteOther";
 
 import { raiseToast } from "redux/toast/actions";
-import EntityToolbar from "components/EntityToolbar";
-import DeleteConfirmDialog from "../DeleteConfirmDialog";
+
+import DeleteConfirmDialog from "components/DeleteConfirmDialog";
 import getTextFromHTML from "utils/getTextFromHTML";
 import MovePageModal from "components/MovePageModal";
 
-const AddAnswerSection = BasicSection.extend`
-  text-align: center;
-  padding: 1em;
-`;
-const QuestionCanvasSection = styled(CanvasSection)`
-  padding: 0;
-`;
-const AnswerSection = styled(CanvasSection)`
-  padding-top: 3em;
+import focusOnEntity from "utils/focusOnEntity";
+import AnswerTypeSelector from "components/AnswerTypeSelector";
+
+const QuestionSegment = styled.div`
+  padding: 0 2em;
 `;
 
-const Padding = styled.div`
-  padding: 0 2em 2em;
+const AnswerSegment = styled.div`
+  padding: 1em 2em;
+`;
+
+const AddAnswerSegment = styled.div`
+  padding: 1em 2em 2em;
 `;
 
 export class QPE extends React.Component {
@@ -60,45 +55,18 @@ export class QPE extends React.Component {
     onAddOption: PropTypes.func.isRequired,
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
     onMovePage: PropTypes.func.isRequired,
+    showMovePageDialog: PropTypes.bool.isRequired,
     onAddOther: PropTypes.func.isRequired,
     onDeleteOther: PropTypes.func.isRequired,
+    onDeletePageConfirm: PropTypes.func.isRequired,
+    onCloseDeleteConfirmDialog: PropTypes.func.isRequired,
+    showDeleteConfirmDialog: PropTypes.bool.isRequired,
+    onCloseMovePageDialog: PropTypes.func.isRequired,
     page: CustomPropTypes.page,
     section: CustomPropTypes.section,
     questionnaire: CustomPropTypes.questionnaire
-  };
-
-  state = {
-    showDeleteConfirmDialog: false,
-    showMovePageDialog: false
-  };
-
-  handleOpenDeleteConfirmDialog = () =>
-    this.setState({ showDeleteConfirmDialog: true });
-
-  handleCloseDeleteConfirmDialog = () =>
-    this.setState({ showDeleteConfirmDialog: false });
-
-  handleDeletePageConfirm = () => {
-    const { onDeletePage, section, page } = this.props;
-    onDeletePage(section.id, page.id);
-  };
-
-  handleOpenMovePageDialog = () => {
-    this.setState({ showMovePageDialog: true });
-  };
-
-  handleCloseMovePageDialog = cb => {
-    this.setState(
-      { showMovePageDialog: false },
-      isFunction(cb) ? cb : undefined
-    );
-  };
-
-  handleMovePage = args => {
-    this.handleCloseMovePageDialog(() => this.props.onMovePage(args));
   };
 
   handleDeleteAnswer = answerId => {
@@ -120,8 +88,8 @@ export class QPE extends React.Component {
     } = this.props;
 
     return (
-      <SlideTransition key={getIdForObject(answer)}>
-        <AnswerSection id={getIdForObject(answer)} key={getIdForObject(answer)}>
+      <AnswerTransition key={getIdForObject(answer)}>
+        <AnswerSegment id={getIdForObject(answer)} key={getIdForObject(answer)}>
           <AnswerEditor
             answer={answer}
             onUpdate={onUpdateAnswer}
@@ -133,64 +101,61 @@ export class QPE extends React.Component {
             onDeleteAnswer={this.handleDeleteAnswer}
             data-test="answer-editor"
           />
-        </AnswerSection>
-      </SlideTransition>
+        </AnswerSegment>
+      </AnswerTransition>
     );
   };
 
   render() {
-    const { page, onUpdatePage, section, questionnaire } = this.props;
+    const {
+      page,
+      onUpdatePage,
+      showDeleteConfirmDialog,
+      onCloseDeleteConfirmDialog,
+      onDeletePageConfirm,
+      section,
+      questionnaire
+    } = this.props;
 
     return (
       <div>
-        <QuestionCanvasSection id={getIdForObject(page)}>
-          <EntityToolbar
-            onDelete={this.handleOpenDeleteConfirmDialog}
-            entity={page}
-          >
-            <Button
-              onClick={this.handleOpenMovePageDialog}
-              data-test="btn-move-page"
-              variant="tertiary"
-              small
-            >
-              <IconText icon={IconMovePage} hideText>
-                Move page
-              </IconText>
-            </Button>
-          </EntityToolbar>
-
-          <DeleteConfirmDialog
-            isOpen={this.state.showDeleteConfirmDialog}
-            onClose={this.handleCloseDeleteConfirmDialog}
-            onDelete={this.handleDeletePageConfirm}
-            title={getTextFromHTML(page.title) || "Untitled Page"}
-            alertText="All edits, properties and routing settings will also be removed."
-            icon={iconPage}
-            data-test="delete-page"
-          />
-          <MovePageModal
-            isOpen={this.state.showMovePageDialog}
-            onClose={this.handleCloseMovePageDialog}
-            onMovePage={this.handleMovePage}
-            questionnaire={questionnaire}
-            section={section}
-            page={page}
-          />
-          <Padding>
-            <MetaEditor onUpdate={onUpdatePage} page={page} />
-          </Padding>
-        </QuestionCanvasSection>
         <TransitionGroup>
-          {page.answers.map(this.renderAnswerEditor)}
+          <PageTransition key={getIdForObject(page)}>
+            <div>
+              <QuestionSegment id={getIdForObject(page)}>
+                <MetaEditor onUpdate={onUpdatePage} page={page} />
+                <DeleteConfirmDialog
+                  isOpen={showDeleteConfirmDialog}
+                  onClose={onCloseDeleteConfirmDialog}
+                  onDelete={onDeletePageConfirm}
+                  title={getTextFromHTML(page.title) || "Untitled Page"}
+                  alertText="All edits, properties and routing settings will also be removed."
+                  icon={iconPage}
+                  data-test="delete-page"
+                />
+                <MovePageModal
+                  isOpen={this.props.showMovePageDialog}
+                  onClose={this.props.onCloseMovePageDialog}
+                  onMovePage={this.props.onMovePage}
+                  questionnaire={questionnaire}
+                  section={section}
+                  page={page}
+                />
+              </QuestionSegment>
+
+              <TransitionGroup>
+                {page.answers.map(this.renderAnswerEditor)}
+              </TransitionGroup>
+            </div>
+          </PageTransition>
         </TransitionGroup>
-        <AddAnswerSection>
+        <AddAnswerSegment>
           <AnswerTypeSelector
             onSelect={this.handleAddAnswer}
             answers={page.answers}
             data-test="add-answer"
           />
-        </AddAnswerSection>
+        </AddAnswerSegment>
       </div>
     );
   }
@@ -199,13 +164,12 @@ export class QPE extends React.Component {
 export default flowRight(
   connect(null, { raiseToast }),
   withRouter,
-  withCreateAnswer,
   withUpdateAnswer,
+  withCreateAnswer,
   withDeleteAnswer,
   withCreateOption,
   withUpdateOption,
   withDeleteOption,
-  withMovePage,
   withCreateOther,
   withDeleteOther
 )(QPE);

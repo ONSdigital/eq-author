@@ -8,7 +8,7 @@ export const colors = {
   red: "#D0021B",
   text: "#4A4A4A",
   orange: "#FDBD56",
-  borders: "#EAEAEA",
+  borders: "#999999",
   black: "#333333",
   white: "#FFFFFF",
   highlight: "#008ad2"

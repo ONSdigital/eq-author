@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { raiseToast } from "redux/toast/actions";
 
-import QuestionnaireDesign from "./QuestionnaireDesignPage";
+import QuestionnaireDesignPage from "components/QuestionnaireDesignPage";
 import withQuestionnaire from "containers/enhancers/withQuestionnaire";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
 import withUpdatePage from "containers/enhancers/withUpdatePage";
@@ -24,4 +24,4 @@ export default flowRight(
   withCreatePage,
   withUpdatePage,
   withDeletePage
-)(QuestionnaireDesign);
+)(QuestionnaireDesignPage);

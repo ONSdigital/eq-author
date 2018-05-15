@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors, radius } from "constants/theme";
 
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
@@ -23,10 +24,36 @@ import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 import Tooltip from "components/Tooltip";
 import TextAreaAnswer from "components/Answers/TextAreaAnswer";
 
+const Answer = styled.div`
+  border: 1px solid ${colors.borders};
+  position: relative;
+  border-radius: ${radius};
+
+  &:focus-within {
+    border-color: ${colors.blue};
+  }
+`;
+
+const AnswerType = styled.div`
+  float: right;
+  background: #e4e8eb;
+  text-align: center;
+  padding: 0.3em 1em;
+  font-size: 0.8em;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0 ${radius} 0 0;
+`;
+
+const Padding = styled.div`
+  padding: 2em 3.5em 1.5em 1.5em;
+`;
+
 export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
   right: 0.33em;
-  top: 0.33em;
+  top: 0.8em;
   width: 1em;
   height: 1em;
   line-height: 1;
@@ -70,16 +97,18 @@ class AnswerEditor extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.renderAnswer(this.props.answer)}
+      <Answer>
+        <AnswerType>{this.props.answer.type}</AnswerType>
+        <Padding>{this.renderAnswer(this.props.answer)}</Padding>
         <Tooltip content="Delete answer">
           <AnswerDeleteButton
+            small
             onClick={this.handleDeleteAnswer}
             aria-label="Delete answer"
             data-test="btn-delete-answer"
           />
         </Tooltip>
-      </div>
+      </Answer>
     );
   }
 }

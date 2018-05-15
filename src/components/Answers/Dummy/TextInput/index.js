@@ -2,9 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { sharedStyles } from "components/Forms/css";
+import { colors } from "constants/theme";
 
 const TextInput = styled.div`
   ${sharedStyles};
+  border-color: ${colors.lightGrey};
+  pointer-events: none;
   padding: 1.2em 1.2em 1.2em 2em;
   position: relative;
   background-color: transparent;

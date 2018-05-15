@@ -15,11 +15,13 @@ const titleControls = {
   emphasis: true,
   piping: true
 };
+
 const descriptionControls = {
   bold: true,
   emphasis: true,
   piping: true
 };
+
 const guidanceControls = {
   heading: true,
   bold: true,

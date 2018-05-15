@@ -1,6 +1,6 @@
 import React from "react";
 import mountWithRouter from "tests/utils/mountWithRouter";
-import { NavWithoutRouter } from "components/Nav";
+import { UnwrappedTabs } from "components/Tabs";
 
 let wrapper;
 
@@ -27,12 +27,14 @@ const match = {
 describe("components/Nav", () => {
   beforeEach(() => {
     wrapper = mountWithRouter(
-      <NavWithoutRouter
+      <UnwrappedTabs
         questionnaire={questionnaire}
         section={questionnaire.sections[0]}
         page={questionnaire.sections[0].pages[0]}
         match={match}
-      />
+      >
+        Tab Content
+      </UnwrappedTabs>
     );
   });
 

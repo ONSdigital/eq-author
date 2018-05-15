@@ -17,6 +17,8 @@ const Button = styled.button`
   outline: none;
   flex: 1 1 auto;
 
+  order: ${props => props.order};
+
   &:hover {
     border-color: ${colors.borders};
   }
@@ -39,13 +41,14 @@ const Title = styled.h3`
   font-weight: 400;
 `;
 
-const IconGridButton = ({ iconSrc, title, disabled, onClick }) => {
+const IconGridButton = ({ iconSrc, title, disabled, order, onClick }) => {
   return (
     <Button
       role="menuitem"
       title={title}
       onClick={onClick}
       disabled={disabled}
+      order={order}
       type="button"
     >
       <img src={iconSrc} alt={title} />
@@ -58,6 +61,7 @@ IconGridButton.propTypes = {
   iconSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  order: PropTypes.number,
   onClick: PropTypes.func
 };
 

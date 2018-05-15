@@ -6,7 +6,7 @@ import { shallow } from "enzyme";
 describe("Question Page Editor", () => {
   let wrapper;
 
-  let mockMutations;
+  let mockHandlers;
   let page;
   let section;
   let questionnaire;
@@ -16,18 +16,33 @@ describe("Question Page Editor", () => {
     __typename: "Answer"
   };
 
+  const render = ({ ...props }) => {
+    return shallow(
+      <QPE
+        {...mockHandlers}
+        questionnaire={questionnaire}
+        page={page}
+        section={section}
+        showMovePageDialog={false}
+        showDeleteConfirmDialog={false}
+        {...props}
+      />
+    );
+  };
+
   beforeEach(() => {
-    mockMutations = {
+    mockHandlers = {
       onUpdateAnswer: jest.fn(),
       onUpdatePage: jest.fn(),
-      onDeletePage: jest.fn(),
+      onDeletePageConfirm: jest.fn(),
+      onCloseDeleteConfirmDialog: jest.fn(),
       onAddAnswer: jest.fn(() => Promise.resolve(answer)),
       onAddOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onDeleteAnswer: jest.fn(),
       onUpdateOption: jest.fn(),
-      onFocus: jest.fn(),
       onMovePage: jest.fn(),
+      onCloseMovePageDialog: jest.fn(),
       onAddOther: jest.fn(),
       onDeleteOther: jest.fn()
     };
@@ -67,14 +82,7 @@ describe("Question Page Editor", () => {
       sections: [section]
     };
 
-    wrapper = shallow(
-      <QPE
-        {...mockMutations}
-        questionnaire={questionnaire}
-        page={page}
-        section={section}
-      />
-    );
+    wrapper = render();
   });
 
   it("should delete the correct answer", () => {
@@ -83,7 +91,7 @@ describe("Question Page Editor", () => {
       .first()
       .simulate("deleteAnswer", page.answers[0].id);
 
-    expect(mockMutations.onDeleteAnswer).toHaveBeenCalledWith(
+    expect(mockHandlers.onDeleteAnswer).toHaveBeenCalledWith(
       page.id,
       page.answers[0].id
     );
@@ -91,16 +99,29 @@ describe("Question Page Editor", () => {
 
   it("should add an answer with a type", () => {
     wrapper.find("[data-test='add-answer']").simulate("select", "Textfield");
-    expect(mockMutations.onAddAnswer).toHaveBeenCalledWith("Textfield");
+    expect(mockHandlers.onAddAnswer).toHaveBeenCalledWith("Textfield");
   });
 
-  it("should handle deleting pages from a section", () => {
-    const deletePage = wrapper.find("[data-test='delete-page']");
-    deletePage.simulate("delete");
+  describe("DeleteConfirmDialog", () => {
+    let deleteConfirmDialog;
 
-    expect(mockMutations.onDeletePage).toHaveBeenCalledWith(
-      section.id,
-      page.id
-    );
+    beforeEach(() => {
+      wrapper = render({ showDeleteConfirmDialog: true });
+      deleteConfirmDialog = wrapper.find("DeleteConfirmDialog");
+    });
+
+    it("should display delete confirm dialog", () => {
+      expect(deleteConfirmDialog.props().isOpen).toBe(true);
+    });
+
+    it("should call handler when confirmed", () => {
+      deleteConfirmDialog.simulate("delete");
+      expect(mockHandlers.onDeletePageConfirm).toHaveBeenCalled();
+    });
+
+    it("should call handler when closed", () => {
+      deleteConfirmDialog.simulate("close");
+      expect(mockHandlers.onCloseDeleteConfirmDialog).toHaveBeenCalled();
+    });
   });
 });
