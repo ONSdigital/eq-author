@@ -1,0 +1,16 @@
+fragment RoutingDestinationQuestionPage on QuestionPage {
+  ... on QuestionPage {
+    id
+    plaintextTitle: title(format: Plaintext)
+    section {
+      id
+    }
+  }
+}
+
+fragment RoutingDestinationSection on Section {
+  ... on Section {
+    id
+    plaintextTitle: title(format: Plaintext)
+  }
+}

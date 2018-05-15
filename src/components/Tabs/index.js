@@ -3,7 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors, radius } from "constants/theme";
-import { buildPagePath, buildSectionPath } from "utils/UrlUtils";
+import {
+  buildPagePath,
+  buildSectionPath,
+  buildRoutingPath
+} from "utils/UrlUtils";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -18,11 +22,11 @@ export const TabsContainer = styled.nav`
 const Tab = styled(NavLink)`
   font-size: 1em;
   font-weight: bold;
-  color: ${colors.lightGrey};
+  color: ${colors.white};
   padding: 0.3em 2em;
-  border: 1px solid #666;
+  border: 1px solid ${colors.secondary};
   border-bottom: none;
-  background-color: #666;
+  background-color: ${colors.secondary};
   text-decoration: none;
   border-radius: ${radius} ${radius} 0 0;
   margin: 0 0.25em 0 0;
@@ -41,10 +45,15 @@ const TabsBody = styled.div`
   border-radius: ${radius};
 `;
 
-const DisabledTab = Tab.withComponent("span");
+const DisabledTab = styled(Tab.withComponent("span"))`
+  opacity: 0.5;
+  color: ${colors.lightGrey};
+`;
 
 export const UnwrappedTabs = ({ match, children }) => {
-  const url = match.params.pageId
+  const { pageId } = match.params;
+
+  const url = pageId
     ? buildPagePath(match.params)
     : buildSectionPath(match.params);
 
@@ -52,7 +61,13 @@ export const UnwrappedTabs = ({ match, children }) => {
     <div>
       <TabsContainer>
         <Tab to={url}>Builder</Tab>
-        <DisabledTab>Routing</DisabledTab>
+        {pageId ? (
+          <Tab activeClassName="selected" to={buildRoutingPath(match.params)}>
+            Routing
+          </Tab>
+        ) : (
+          <DisabledTab>Routing</DisabledTab>
+        )}
       </TabsContainer>
       <TabsBody>{children}</TabsBody>
     </div>

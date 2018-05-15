@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import styled from "styled-components";
-import { colors } from "constants/theme";
 import { rgba } from "polished";
-import IconText from "../IconText";
 
+import { colors } from "constants/theme";
+import IconText from "components/IconText";
 import Truncated from "components/Truncated";
 
 const Link = styled(RouterNavLink)`

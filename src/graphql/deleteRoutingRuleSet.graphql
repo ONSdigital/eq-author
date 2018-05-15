@@ -1,0 +1,7 @@
+#import "./fragments/routing-ruleset.graphql"
+
+mutation deleteRoutingRuleSet($input: DeleteRoutingRuleSetInput!) {
+  deleteRoutingRuleSet(input: $input) {
+    ...RoutingRuleSet
+  }
+}

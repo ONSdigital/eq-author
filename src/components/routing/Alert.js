@@ -4,7 +4,7 @@ import InfoIcon from "./icon-info.svg?inline";
 import { PropTypes } from "prop-types";
 
 export const AlertContainer = styled.div`
-  padding: 1.85em 0;
+  padding: 1em 0;
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -18,7 +18,7 @@ const AddRuleButton = styled(Button)`
 `;
 
 const Box = styled.div`
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
@@ -27,17 +27,21 @@ const RoutingRuleset = ({
   children,
   onAddRule,
   onElseChange,
-  sections,
+  routingOptions,
+  routingRuleSet,
+  elseValue,
   canRoute
 }) => (
   <React.Fragment>
     {children}
+
     <AddRuleButton
       variant="secondary"
       small
-      onClick={onAddRule}
+      onClick={function() {
+        onAddRule(routingRuleSet.id);
+      }}
       data-test="btn-add-rule"
-      disabled={!canRoute}
     >
       <IconText icon={IconAddRule}>Add rule</IconText>
     </AddRuleButton>
@@ -45,7 +49,8 @@ const RoutingRuleset = ({
       <RoutingRuleResultSelector
         id="else"
         label="ELSE"
-        sections={sections}
+        value={elseValue}
+        routingOptions={routingOptions}
         onChange={onElseChange}
         data-test="select-else"
         disabled={!canRoute}
@@ -58,7 +63,8 @@ RoutingRuleset.propTypes = {
   children: PropTypes.node.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
-  sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  routingOptions: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  elseValue: PropTypes.string,
   canRoute: PropTypes.bool.isRequired
 };
 

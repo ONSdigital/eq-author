@@ -1,0 +1,8 @@
+#import "./fragments/routing-destination.graphql"
+
+query GetAvailableRoutingDestinations($pageId: ID!) {
+  availableRoutingDestinations(pageId: $pageId) {
+    ...RoutingDestinationQuestionPage
+    ...RoutingDestinationSection
+  }
+}

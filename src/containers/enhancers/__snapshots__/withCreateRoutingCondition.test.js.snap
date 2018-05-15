@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/enhancers/withCreateRoutingRule mapMutateToProps should throw error if no answer on page 1`] = `"Cannot add routing condition without an answer"`;

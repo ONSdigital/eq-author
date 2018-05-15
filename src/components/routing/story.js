@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import styled from "styled-components";
 
-import sections from "./mockstate";
+import routingOptions from "./mockstate";
 
 import RoutingCondition from "./RoutingCondition";
 import RoutingStatement from "./RoutingStatement";
@@ -13,7 +13,7 @@ import RoutingRuleset from "./RoutingRuleset";
 import MultipleChoiceAnswerOptionsSelector from "./MultipleChoiceAnswerOptionsSelector";
 import { Alert, AlertText, AlertTitle } from "./Alert";
 
-const selectedPage = sections[0].pages[0];
+const selectedPage = routingOptions[0].pages[0];
 
 const Background = styled.span`
   padding: 1em;
@@ -24,12 +24,12 @@ const Background = styled.span`
 const ruleSetProps = {
   onAddRule: action("Add rule"),
   onElseChange: action("Else changed"),
-  sections
+  routingOptions
 };
 
 const ruleProps = {
   page: selectedPage,
-  sections: sections,
+  routingOptions,
   onAddRule: action("Add rule"),
   onDeleteRule: action("Delete rule"),
   onThenChange: action("Then changed")
@@ -40,7 +40,7 @@ const statementProps = {
 };
 
 const conditionProps = {
-  sections: sections,
+  routingOptions,
   selectedPage: selectedPage,
   onPageChange: action("Page changed")
 };
@@ -77,7 +77,7 @@ storiesOf("Routing", module)
           >
             <MultipleChoiceAnswerOptionsSelector
               {...multiChoiceAnswerProps}
-              options={sections[0].pages[1].options}
+              options={routingOptions[0].pages[1].options}
             />
           </RoutingCondition>
         </RoutingStatement>

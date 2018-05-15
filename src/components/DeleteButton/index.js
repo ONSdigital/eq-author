@@ -24,7 +24,7 @@ const StyledDeleteButton = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
-  transition: color 0.2s ease-in;
+  transition: color 200ms ease-in, opacity 300ms ease-in;
   width: 1em;
   height: 1em;
   padding: 0;
@@ -35,6 +35,11 @@ const StyledDeleteButton = styled.button`
 
   &:focus {
     outline: 3px solid ${colors.orange};
+  }
+
+  &[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
   }
 
   ${props => sizes[props.size]};

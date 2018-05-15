@@ -6,20 +6,19 @@ import CustomPropTypes from "custom-prop-types";
 import Button from "components/Button";
 import IconText from "components/IconText";
 
-import RoutingRuleEmpty from "./RoutingRuleEmptyMsg";
-
 import { colors, radius } from "constants/theme";
 
 import IconRoute from "./icon-route.svg?inline";
 
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
+import getIdForObject from "utils/getIdForObject";
 
 const RoutingStatement = styled.div`
   padding: 0;
 `;
 
 const Box = styled.div`
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
   margin-bottom: 2em;
   position: relative;
@@ -48,56 +47,59 @@ const RoutingRule = ({
   onThenChange,
   onAddRule,
   title,
-  sections,
-  canRoute
-}) => (
-  <div>
-    <Box>
-      {children ? (
-        <React.Fragment>
-          {title && <Title>{title}</Title>}
-          <Buttons>
-            <Button
-              onClick={onDeleteRule}
-              data-test="btn-delete"
-              disabled={!children}
-              variant="tertiary"
-              small
-            >
-              <IconText icon={IconRoute}>Remove rule</IconText>
-            </Button>
-          </Buttons>
+  routingOptions,
+  gotoValue,
+  canRoute,
+  rule,
+  className
+}) => {
+  const { conditions } = rule;
 
-          <RoutingStatement>{children}</RoutingStatement>
+  return (
+    <div className={className}>
+      <Box>
+        {title && <Title>{title}</Title>}
+        <Buttons>
+          <Button
+            onClick={onDeleteRule}
+            data-test="btn-delete"
+            disabled={!children}
+            variant="tertiary"
+            small
+          >
+            <IconText icon={IconRoute}>Remove rule</IconText>
+          </Button>
+        </Buttons>
 
-          <RoutingRuleResultSelector
-            id="then"
-            label="THEN"
-            sections={sections}
-            onChange={onThenChange}
-            data-test="select-then"
-            disabled={!canRoute}
-          />
-        </React.Fragment>
-      ) : (
-        <RoutingRuleEmpty
-          title="No routing rules exist for this question"
-          onAddRule={onAddRule}
+        <RoutingStatement>{children}</RoutingStatement>
+
+        <RoutingRuleResultSelector
+          id="then"
+          label="THEN"
+          routingOptions={routingOptions}
+          onChange={function({ value }) {
+            onThenChange(value, rule);
+          }}
+          value={getIdForObject(rule.goto)}
+          data-test="select-then"
+          disabled={!canRoute}
         />
-      )}
-    </Box>
-  </div>
-);
+      </Box>
+    </div>
+  );
+};
 
 RoutingRule.propTypes = {
+  rule: PropTypes.object.isRequired,
   children: PropTypes.node,
   page: CustomPropTypes.page.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onDeleteRule: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
-  sections: PropTypes.arrayOf(CustomPropTypes.section),
-  canRoute: PropTypes.bool.isRequired
+  routingOptions: PropTypes.arrayOf(CustomPropTypes.section),
+  canRoute: PropTypes.bool.isRequired,
+  gotoValue: PropTypes.string
 };
 
 RoutingRule.defaultProps = {

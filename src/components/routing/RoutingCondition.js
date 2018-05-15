@@ -12,6 +12,7 @@ import { Grid, Column } from "components/Grid";
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
+import { get } from "lodash";
 
 const Label = styled.label`
   width: 100%;
@@ -54,6 +55,8 @@ const RemoveButton = styled(DeleteButton)`
 `;
 
 const RoutingCondition = ({
+  routingCondition,
+  ruleId,
   sections,
   value,
   selectedPage,
@@ -62,6 +65,7 @@ const RoutingCondition = ({
   pathEnd,
   onPageChange,
   onRemove,
+  canRemove,
   children
 }) => (
   <div>
@@ -73,14 +77,24 @@ const RoutingCondition = ({
         <PageSelect
           defaultValue={selectedPage.id}
           value={value}
-          onChange={onPageChange}
+          onChange={function({ value }) {
+            onPageChange({
+              id: routingCondition.id,
+              questionPageId: value
+            });
+          }}
           id={id}
         >
           {sections.map(section => (
-            <optgroup label={section.title} key={section.id}>
+            <optgroup
+              label={
+                get(section, "plaintextTitle", section.title) || "Section Title"
+              }
+              key={section.id}
+            >
               {section.pages.map(page => (
                 <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {page.title}
+                  {get(page, "plaintextTitle", page.title) || "Page Title"}
                 </option>
               ))}
             </optgroup>
@@ -89,8 +103,10 @@ const RoutingCondition = ({
       </Column>
       <Column gutters={false} cols={1}>
         <RemoveButton
-          onClick={onRemove}
-          disabled={!onRemove}
+          onClick={function() {
+            onRemove(ruleId, routingCondition.id);
+          }}
+          disabled={!canRemove}
           data-test="btn-remove"
         >
           <IconText icon={IconClose} hideText>
