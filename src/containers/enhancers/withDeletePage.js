@@ -36,6 +36,7 @@ export const createUpdater = (sectionId, pageId) => (proxy, result) => {
   const section = proxy.readFragment({ id, fragment });
 
   remove(section.pages, { id: pageId });
+  section.pages.forEach((page, i) => (page.position = i));
 
   proxy.writeFragment({
     id,
