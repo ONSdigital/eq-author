@@ -43,29 +43,17 @@ const TabsBody = styled.div`
 
 const DisabledTab = Tab.withComponent("span");
 
-// TODO: find out why route matching doesn't work automatically
-// Given a route /foo/:bar/blah
-// I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
-// But this is not the case. Unsure if bug or implementation issue
-export const UnwrappedTabs = ({
-  questionnaire,
-  section,
-  page,
-  match,
-  children,
-  ...otherProps
-}) => {
-  const tabIsActive = () => {
-    return match.params.sectionId;
-  };
-
+export const UnwrappedTabs = ({ match, children }) => {
   return (
     <div>
       <TabsContainer>
         <Tab
-          to={getLink(questionnaire.id, section.id, page && page.id)}
+          to={getLink(
+            match.params.questionnaireId,
+            match.params.sectionId,
+            match.params.pageId
+          )}
           activeClassName="selected"
-          isActive={tabIsActive}
         >
           Builder
         </Tab>

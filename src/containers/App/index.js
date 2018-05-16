@@ -28,7 +28,7 @@ export const Routes = ({ isSignedIn, ...otherProps }) => (
         exact
       />
       <PrivateRoute
-        path="/questionnaire/:questionnaireId/design/:sectionId/:pageId?"
+        path="/questionnaire/:questionnaireId/design/:sectionId?/:pageId?"
         exact={false}
         component={QuestionnaireDesignPage}
         isSignedIn={isSignedIn}

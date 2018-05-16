@@ -36,13 +36,14 @@ export class Menu extends React.Component {
   constructor(props) {
     super(props);
 
-    const { questionnaire } = props.client.readQuery({
-      query,
-      variables: { id: props.match.params.questionnaireId }
-    });
+    // const { questionnaire } = props.client.readQuery({
+    //   query,
+    //   variables: { id: props.match.params.questionnaireId }
+    // });
 
     this.state = {
-      questionnaire: this.filterQuestionnaire(questionnaire)
+      // questionnaire: this.filterQuestionnaire(questionnaire)
+      questionnaire: {}
     };
   }
 

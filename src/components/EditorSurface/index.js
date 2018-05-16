@@ -1,9 +1,10 @@
-/* eslint-disable react/no-find-dom-node */
 import React from "react";
 import PropTypes from "prop-types";
 
 import { noop, flowRight, isFunction } from "lodash";
 import styled from "styled-components";
+import { Switch } from "react-router-dom";
+import { Route } from "react-router";
 
 import { TransitionGroup } from "react-transition-group";
 import PageTransition from "components/PageTransition";
@@ -31,11 +32,13 @@ export class UnwrappedEditorSurface extends React.Component {
     section: CustomPropTypes.section,
     page: CustomPropTypes.page,
     questionnaire: CustomPropTypes.questionnaire,
-    onUpdatePage: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
-    onMovePage: PropTypes.func.isRequired,
-    onUpdateSection: PropTypes.func.isRequired,
-    onDeleteSection: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    onMove: PropTypes.func.isRequired
+    // onUpdatePage: PropTypes.func.isRequired,
+    // onDeletePage: PropTypes.func.isRequired,
+    // onMovePage: PropTypes.func.isRequired,
+    // onUpdateSection: PropTypes.func.isRequired,
+    // onDeleteSection: PropTypes.func.isRequired
   };
 
   state = {
@@ -47,31 +50,23 @@ export class UnwrappedEditorSurface extends React.Component {
     this.setState({ showMovePageDialog: true });
   };
 
-  handleCloseMovePageDialog = cb => {
-    this.setState(
-      { showMovePageDialog: false },
-      isFunction(cb) ? cb : undefined
-    );
+  handleCloseMovePageDialog = (cb = noop) => {
+    this.setState({ showMovePageDialog: false }, cb);
   };
 
   handleMovePage = args => {
     this.handleCloseMovePageDialog(() => this.props.onMovePage(args));
   };
 
-  handleOpenDeleteConfirmDialog = cb =>
-    this.setState(
-      { showDeleteConfirmDialog: true },
-      isFunction(cb) ? cb : undefined
-    );
+  handleOpenDeleteConfirmDialog = (cb = noop) =>
+    this.setState({ showDeleteConfirmDialog: true }, cb);
 
-  handleCloseDeleteConfirmDialog = cb =>
-    this.setState(
-      { showDeleteConfirmDialog: false },
-      isFunction(cb) ? cb : undefined
-    );
+  handleCloseDeleteConfirmDialog = (cb = noop) =>
+    this.setState({ showDeleteConfirmDialog: false }, cb);
 
   handleDeletePageConfirm = () => {
     const { onDeletePage, section, page } = this.props;
+
     this.handleCloseDeleteConfirmDialog(() =>
       onDeletePage(section.id, page.id)
     );
@@ -82,17 +77,48 @@ export class UnwrappedEditorSurface extends React.Component {
     this.handleCloseDeleteConfirmDialog(() => onDeleteSection(section.id));
   };
 
-  render() {
-    const {
-      section,
-      page,
-      onUpdatePage,
-      onUpdateSection,
-      questionnaire
-    } = this.props;
+  renderQuestionPageEditor = props => {
+    const { section, page, onUpdatePage, questionnaire } = this.props;
 
     const { showDeleteConfirmDialog, showMovePageDialog } = this.state;
 
+    return (
+      <QuestionPageEditor
+        {...props}
+        onUpdatePage={onUpdatePage}
+        page={page}
+        section={section}
+        questionnaire={questionnaire}
+        showDeleteConfirmDialog={showDeleteConfirmDialog}
+        onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
+        showMovePageDialog={showMovePageDialog}
+        onMovePage={this.handleMovePage}
+        onCloseMovePageDialog={this.handleCloseMovePageDialog}
+        onDeletePageConfirm={this.handleDeletePageConfirm}
+        data-test="question-page-editor"
+      />
+    );
+  };
+
+  renderSectionEditor = props => {
+    const { section, onUpdateSection } = this.props;
+    const { showDeleteConfirmDialog } = this.state;
+
+    return (
+      <SectionEditor
+        {...props}
+        onUpdate={onUpdateSection}
+        section={section}
+        onDeleteSection={this.handleDeleteSection}
+        showDeleteConfirmDialog={showDeleteConfirmDialog}
+        onDeleteSectionConfirm={this.handleDeleteSectionConfirm}
+        onCloseDeleteConfirmDialog={this.handleDeleteSectionConfirm}
+        data-test="section-editor"
+      />
+    );
+  };
+
+  render() {
     return (
       <Form onChange={noop} onSubmit={noop}>
         <StyledToolbar>
@@ -102,7 +128,7 @@ export class UnwrappedEditorSurface extends React.Component {
               data-test="btn-move"
               variant="tertiary"
               small
-              disabled={!page}
+              disabled={!this.props.page}
             >
               <IconText icon={IconMove}>Move</IconText>
             </Button>
@@ -115,43 +141,7 @@ export class UnwrappedEditorSurface extends React.Component {
           </Buttons>
         </StyledToolbar>
 
-        <TransitionGroup>
-          {page ? (
-            <PageTransition key="question-page-editor">
-              <div>
-                <QuestionPageEditor
-                  onUpdatePage={onUpdatePage}
-                  page={page}
-                  section={section}
-                  questionnaire={questionnaire}
-                  showDeleteConfirmDialog={showDeleteConfirmDialog}
-                  onCloseDeleteConfirmDialog={
-                    this.handleCloseDeleteConfirmDialog
-                  }
-                  showMovePageDialog={showMovePageDialog}
-                  onMovePage={this.handleMovePage}
-                  onCloseMovePageDialog={this.handleCloseMovePageDialog}
-                  onDeletePageConfirm={this.handleDeletePageConfirm}
-                  data-test="question-page-editor"
-                />
-              </div>
-            </PageTransition>
-          ) : (
-            <PageTransition key="section-editor">
-              <div>
-                <SectionEditor
-                  onUpdate={onUpdateSection}
-                  section={section}
-                  onDeleteSection={this.handleDeleteSection}
-                  showDeleteConfirmDialog={showDeleteConfirmDialog}
-                  onDeleteSectionConfirm={this.handleDeleteSectionConfirm}
-                  onCloseDeleteConfirmDialog={this.handleDeleteSectionConfirm}
-                  data-test="section-editor"
-                />
-              </div>
-            </PageTransition>
-          )}
-        </TransitionGroup>
+        {this.props.children}
       </Form>
     );
   }

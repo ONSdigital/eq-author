@@ -1,33 +1,11 @@
 import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
-import findById from "utils/findById";
-import { get } from "lodash";
+import { get, pick, flow } from "lodash/fp";
 
-export const mapResultsToProps = ({ data, ownProps }) => {
-  const { questionnaire, loading } = data;
-  const { sectionId, pageId } = ownProps;
-
-  if (loading) {
-    return { loading };
-  }
-
-  if (!sectionId) {
-    return {
-      loading,
-      questionnaire
-    };
-  }
-
-  const section = findById(questionnaire.sections, sectionId);
-  const page = findById(get(section, "pages"), pageId);
-
-  return {
-    loading,
-    questionnaire,
-    section,
-    page
-  };
-};
+export const mapResultsToProps = flow(
+  get("data"),
+  pick(["loading", "questionnaire"])
+);
 
 export const mapPropToOptions = props => ({
   variables: { id: props.questionnaireId }

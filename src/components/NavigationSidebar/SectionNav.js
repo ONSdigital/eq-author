@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 
@@ -16,34 +15,19 @@ const NavList = styled.ol`
 `;
 
 class SectionNav extends Component {
-  sectionItems = [];
-
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire,
-    currentSectionId: PropTypes.string.isRequired,
-    currentPageId: PropTypes.string
+    questionnaire: CustomPropTypes.questionnaire
   };
 
   render() {
-    const { questionnaire, currentSectionId, currentPageId } = this.props;
+    const { questionnaire } = this.props;
     return (
       <TransitionGroup component={NavList}>
-        {questionnaire.sections
-          .map((section, i) => ({
-            ...section,
-            number: i + 1
-          }))
-          .map((section, sectionNum) => (
-            <NavItemTransition key={section.id} onEntered={scrollIntoView}>
-              <SectionNavItem
-                questionnaire={questionnaire}
-                section={section}
-                isActive={function() {
-                  return currentSectionId === section.id && !currentPageId;
-                }}
-              />
-            </NavItemTransition>
-          ))}
+        {questionnaire.sections.map(section => (
+          <NavItemTransition key={section.id} onEntered={scrollIntoView}>
+            <SectionNavItem questionnaire={questionnaire} section={section} />
+          </NavItemTransition>
+        ))}
       </TransitionGroup>
     );
   }

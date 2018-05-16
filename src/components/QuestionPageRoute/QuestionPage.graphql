@@ -1,0 +1,31 @@
+#import "graphql/fragments/answer.graphql"
+#import "graphql/fragments/option.graphql"
+
+query GetQuestionPage($id: ID!) {
+  questionPage(id: $id) {
+    id
+    title
+    description
+    pageType
+    position
+    ... on QuestionPage {
+      guidance
+      answers {
+        ...Answer
+        ... on MultipleChoiceAnswer {
+          options {
+            ...Option
+          }
+          other {
+            option {
+              ...Option
+            }
+            answer {
+              ...Answer
+            }
+          }
+        }
+      }
+    }
+  }
+}

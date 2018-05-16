@@ -1,38 +1,36 @@
 #import "./fragments/questionnaire.graphql"
-#import "./fragments/section.graphql"
-#import "./fragments/answer.graphql"
-#import "./fragments/option.graphql"
 
 query GetQuestionnaire($id: ID!) {
   questionnaire(id: $id) {
     ...Questionnaire
     sections {
-      ...Section
+      id
+      title
       pages {
         id
         title
-        description
-        pageType
+        # description
+        # pageType
         position
-        ... on QuestionPage {
-          guidance
-          answers {
-            ...Answer
-            ... on MultipleChoiceAnswer {
-              options {
-                ...Option
-              }
-              other {
-                option {
-                  ...Option
-                }
-                answer {
-                  ...Answer
-                }
-              }
-            }
-          }
-        }
+        # ... on QuestionPage {
+        #   guidance
+        #   answers {
+        #     ...Answer
+        #     ... on MultipleChoiceAnswer {
+        #       options {
+        #         ...Option
+        #       }
+        #       other {
+        #         option {
+        #           ...Option
+        #         }
+        #         answer {
+        #           ...Answer
+        #         }
+        #       }
+        #     }
+        #   }
+        # }
       }
     }
   }

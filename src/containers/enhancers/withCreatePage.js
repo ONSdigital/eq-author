@@ -2,7 +2,7 @@ import { graphql } from "react-apollo";
 import fragment from "graphql/sectionFragment.graphql";
 import createQuestionPageMutation from "graphql/createQuestionPage.graphql";
 import { getLink } from "utils/UrlUtils";
-import { get } from "lodash/fp";
+import { get, tap } from "lodash/fp";
 
 export const redirectToNewPage = ({ history, questionnaireId }) => page => {
   const { id, section } = page;
@@ -39,10 +39,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       update
     })
       .then(get("data.createQuestionPage"))
-      .then(page => {
-        redirectToNewPage(ownProps)(page);
-        return page;
-      });
+      .then(tap(redirectToNewPage(ownProps)));
   }
 });
 

@@ -1,0 +1,9 @@
+#import "graphql/fragments/movePage.graphql"
+
+query MovePage($id: ID!) {
+  questionnaire(id: $id) {
+    sections {
+      ...MovePageFragment
+    }
+  }
+}

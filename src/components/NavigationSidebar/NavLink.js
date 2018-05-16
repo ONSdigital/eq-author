@@ -48,16 +48,17 @@ const Title = styled(Truncated)`
   line-height: 1.3;
 `;
 
-const NavLink = ({ isActive, to, title, children, icon, ...otherProps }) => (
-  <Link to={to} isActive={isActive} title={title} {...otherProps}>
-    <IconText icon={icon}>
-      <Title>{children}</Title>
-    </IconText>
-  </Link>
-);
+const NavLink = ({ to, title, children, icon, ...otherProps }) => {
+  return (
+    <Link to={to} title={title} {...otherProps}>
+      <IconText icon={icon}>
+        <Title>{children}</Title>
+      </IconText>
+    </Link>
+  );
+};
 
 NavLink.propTypes = {
-  isActive: PropTypes.func,
   to: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,

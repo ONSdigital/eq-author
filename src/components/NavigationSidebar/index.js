@@ -24,37 +24,19 @@ const NavigationScrollPane = styled(ScrollPane)`
 `;
 
 class NavigationSidebar extends Component {
-  state = {
-    addMenuOpen: false
-  };
-
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     onAddPage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
-    onUpdateQuestionnaire: PropTypes.func.isRequired,
-    currentPageId: PropTypes.string,
-    page: CustomPropTypes.page,
-    section: CustomPropTypes.section.isRequired
+    onUpdateQuestionnaire: PropTypes.func.isRequired
   };
 
   handleAddSection = () => {
-    const { questionnaire, onAddSection } = this.props;
-    onAddSection(questionnaire.id);
-  };
-
-  handleAddPage = () => {
-    const { onAddPage, section, page } = this.props;
-    onAddPage(section.id, page ? page.position + 1 : 0);
+    this.props.onAddSection(this.props.questionnaire.id);
   };
 
   render() {
-    const {
-      questionnaire,
-      onUpdateQuestionnaire,
-      section,
-      currentPageId
-    } = this.props;
+    const { questionnaire, onUpdateQuestionnaire, onAddPage } = this.props;
 
     return (
       <Container data-test="side-nav">
@@ -62,16 +44,11 @@ class NavigationSidebar extends Component {
           questionnaire={questionnaire}
           onUpdateQuestionnaire={onUpdateQuestionnaire}
           onAddSection={this.handleAddSection}
-          onAddPage={this.handleAddPage}
+          onAddPage={onAddPage}
           data-test="nav-section-header"
         />
         <NavigationScrollPane>
-          <SectionNav
-            currentPageId={currentPageId}
-            currentSectionId={section.id}
-            transitionDuration={200}
-            questionnaire={questionnaire}
-          />
+          <SectionNav questionnaire={questionnaire} />
         </NavigationScrollPane>
       </Container>
     );

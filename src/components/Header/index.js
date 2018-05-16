@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import styled from "styled-components";
+import { flowRight } from "lodash";
 import { colors } from "constants/theme";
 
 import { raiseToast } from "redux/toast/actions";
@@ -122,7 +124,7 @@ export class UnconnectedHeader extends React.Component {
   };
 
   render() {
-    const { questionnaire } = this.props;
+    const { questionnaire, match } = this.props;
 
     return (
       <StyledHeader>
@@ -174,6 +176,7 @@ const mapStateToProps = state => ({
   user: getUser(state)
 });
 
-export default connect(mapStateToProps, { signOutUser, raiseToast })(
-  UnconnectedHeader
-);
+export default flowRight(
+  connect(mapStateToProps, { signOutUser, raiseToast }),
+  withRouter
+)(UnconnectedHeader);
