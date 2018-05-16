@@ -63,6 +63,7 @@ exports[`Option should render a checkbox 1`] = `
   transition: outline-color 100ms ease-in;
   outline: 1px solid transparent;
   outline-offset: 0.25rem;
+  overflow: hidden;
 }
 
 .c5:hover {
@@ -101,6 +102,7 @@ exports[`Option should render a checkbox 1`] = `
   transition: outline-color 100ms ease-in;
   outline: 1px solid transparent;
   outline-offset: 0.25rem;
+  overflow: hidden;
 }
 
 .c6:hover {
