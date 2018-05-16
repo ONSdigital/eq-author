@@ -47,6 +47,8 @@ const TextArea = styled(AutoResizeTextArea)`
   outline: 1px solid transparent;
   outline-offset: 0.25rem;
 
+  overflow: hidden; /* prevent scrollbars on Windows */
+
   &:hover {
     outline-color: ${rgba(colors.blue, 0.5)};
   }
