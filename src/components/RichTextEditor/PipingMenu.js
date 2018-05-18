@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 
 import CustomPropTypes from "custom-prop-types";
 import QuestionnaireMenu from "components/QuestionnaireMenu";
-import { withApollo } from "react-apollo";
-import { MenuButton } from "react-menu-list";
-import { withRouter } from "react-router-dom";
 import IconPiping from "./icon-link.svg?inline";
-import { take, findIndex } from "lodash";
-import query from "graphql/getQuestionnairePiping.graphql";
+import { Query } from "react-apollo";
+import { MenuButton as RMLMenuButton } from "react-menu-list";
+import { withRouter } from "react-router-dom";
+import { takeWhile, dropRightWhile, last, get, isEmpty } from "lodash";
+import query from "./Piping.graphql";
 import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
 import ToolbarButton from "./ToolbarButton";
+import styled from "styled-components";
 
 const validAnswerTypes = {
   [TEXTAREA]: true,
@@ -25,51 +26,60 @@ const PipingIconButton = props => (
   </ToolbarButton>
 );
 
+const MenuButton = styled(RMLMenuButton).attrs({
+  menuZIndex: 10,
+  title: "Pipe value",
+  ButtonComponent: () => PipingIconButton
+})`
+  height: 100%;
+  &:disabled {
+    cursor: default;
+    opacity: 0.2;
+  }
+`;
+
 export class Menu extends React.Component {
   static propTypes = {
-    client: CustomPropTypes.apolloClient.isRequired,
     onItemChosen: PropTypes.func.isRequired,
     match: CustomPropTypes.match,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool,
+    data: PropTypes.shape({
+      questionnaire: CustomPropTypes.questionnaire
+    })
   };
-
-  constructor(props) {
-    super(props);
-
-    // const { questionnaire } = props.client.readQuery({
-    //   query,
-    //   variables: { id: props.match.params.questionnaireId }
-    // });
-
-    this.state = {
-      // questionnaire: this.filterQuestionnaire(questionnaire)
-      questionnaire: {}
-    };
-  }
 
   filterQuestionnaire(questionnaire) {
     const { sectionId, pageId } = this.props.match.params;
 
-    const currentSectionIndex = findIndex(questionnaire.sections, {
-      id: sectionId
-    });
-
-    const currentSection = questionnaire.sections[currentSectionIndex];
-    const currentPageIndex = findIndex(currentSection.pages, { id: pageId });
-
-    // can't pipe anything on first page of first section
-    if (currentSectionIndex === 0 && currentPageIndex === 0) {
+    if (!questionnaire) {
       return;
     }
 
-    currentSection.pages = take(currentSection.pages, currentPageIndex);
-    questionnaire.sections = take(
+    // show nothing if first page of first section
+    if (get(questionnaire, "sections[0].pages[0].id") === pageId) {
+      return;
+    }
+
+    const sections = dropRightWhile(
       questionnaire.sections,
-      currentPageIndex === 0 ? currentSectionIndex : currentSectionIndex + 1 // if first page of section, no need to show section
+      section => section.id !== sectionId
     );
 
+    // only include pages up to the current
+    const currentSection = last(sections);
+    sections[sections.length - 1] = {
+      ...currentSection,
+      pages: takeWhile(currentSection.pages, page => page.id !== pageId)
+    };
+
+    // exclude current section if page is first in section
+    if (isEmpty(last(sections).pages)) {
+      sections.splice(sections.length - 1, 1);
+    }
+
     return {
-      sections: questionnaire.sections.map(section => ({
+      sections: sections.map(section => ({
         ...section,
         pages: section.pages.map(page => ({
           ...page,
@@ -80,28 +90,31 @@ export class Menu extends React.Component {
   }
 
   render() {
-    const { questionnaire } = this.state;
-    const { disabled } = this.props;
+    const { disabled, loading, data } = this.props;
 
+    if (loading || disabled) {
+      return <MenuButton disabled />;
+    }
+
+    const filteredQuestionnaire = this.filterQuestionnaire(data.questionnaire);
     const menu = (
       <QuestionnaireMenu
         {...this.props}
-        questionnaire={questionnaire}
+        questionnaire={filteredQuestionnaire}
         menuZIndex={10}
       />
     );
 
-    return (
-      <MenuButton
-        ref={this.saveMenuBtnRef}
-        menuZIndex={10}
-        menu={menu}
-        disabled={disabled || !questionnaire}
-        ButtonComponent={PipingIconButton}
-        title="Pipe value"
-      />
-    );
+    return <MenuButton menu={menu} disabled={!filteredQuestionnaire} />;
   }
 }
 
-export default withApollo(withRouter(Menu));
+export default withRouter(props => (
+  <Query
+    query={query}
+    variables={{ id: props.match.params.questionnaireId }}
+    skip={props.disabled}
+  >
+    {innerProps => <Menu {...innerProps} {...props} />}
+  </Query>
+));

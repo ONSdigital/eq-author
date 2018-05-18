@@ -2,13 +2,10 @@ import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
 import { get, pick, flow } from "lodash/fp";
 
-export const mapResultsToProps = flow(
-  get("data"),
-  pick(["loading", "questionnaire"])
-);
+export const mapResultsToProps = get("data");
 
 export const mapPropToOptions = props => ({
-  variables: { id: props.questionnaireId }
+  variables: { id: props.match.params.questionnaireId }
 });
 
 export default graphql(getQuestionnaireQuery, {

@@ -2,17 +2,16 @@ import React from "react";
 import { Menu as PipingMenu } from "./PipingMenu";
 import { shallow } from "enzyme";
 import { CHECKBOX, RADIO } from "constants/answer-types";
-import query from "graphql/getQuestionnairePiping.graphql";
 
 describe("PipingMenu", () => {
-  let client, match, handleItemChosen, questionnaire;
+  let match, handleItemChosen, questionnaire;
 
   const render = (props = {}) =>
     shallow(
       <PipingMenu
-        client={client}
         match={match}
         onItemChosen={handleItemChosen}
+        data={{ questionnaire }}
         {...props}
       />
     );
@@ -66,32 +65,20 @@ describe("PipingMenu", () => {
       ]
     };
 
-    client = {
-      readQuery: jest.fn(() => ({ questionnaire })),
-      query: jest.fn()
-    };
-
     const section = questionnaire.sections[0];
     const page = section.pages[1];
     match = createMatch(questionnaire.id, section.id, page.id);
   });
 
   it("should render", () => {
-    const wrapper = render();
+    const wrapper = render({ data: { questionnaire } });
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should readQuery when constructed", () => {
-    const wrapper = render();
-    expect(wrapper.state("questionnaire")).toBeDefined();
-    expect(client.readQuery).toHaveBeenCalledWith({
-      variables: { id: match.params.questionnaireId },
-      query
-    });
-  });
-
   it("should render as disabled if on first page of first section", () => {
-    match.params.pageId = "1";
+    const section = questionnaire.sections[0];
+    const page = section.pages[0];
+    match = createMatch(questionnaire.id, section.id, page.id);
     const wrapper = render();
 
     expect(wrapper.prop("disabled")).toBe(true);

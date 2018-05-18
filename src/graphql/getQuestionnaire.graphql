@@ -9,28 +9,7 @@ query GetQuestionnaire($id: ID!) {
       pages {
         id
         title
-        # description
-        # pageType
         position
-        # ... on QuestionPage {
-        #   guidance
-        #   answers {
-        #     ...Answer
-        #     ... on MultipleChoiceAnswer {
-        #       options {
-        #         ...Option
-        #       }
-        #       other {
-        #         option {
-        #           ...Option
-        #         }
-        #         answer {
-        #           ...Answer
-        #         }
-        #       }
-        #     }
-        #   }
-        # }
       }
     }
   }

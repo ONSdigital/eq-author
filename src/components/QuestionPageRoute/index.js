@@ -15,6 +15,13 @@ import IconMove from "../EditorSurface/icon-move.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
 
+import MainCanvas from "components/MainCanvas";
+import ScrollPane from "components/ScrollPane";
+import PropertiesPanel from "components/PropertiesPanel";
+import AddPage from "components/QuestionnaireDesignPage/icon-add-page.svg?inline";
+import SavingIndicator from "components/SavingIndicator";
+import { Grid, Column } from "components/Grid";
+
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
 import withUpdatePage from "containers/enhancers/withUpdatePage";
@@ -30,9 +37,21 @@ import withMovePage from "containers/enhancers/withMovePage";
 import focusOnEntity from "utils/focusOnEntity";
 import withDeletePage from "containers/enhancers/withDeletePage";
 import getTextFromHTML from "utils/getTextFromHTML";
+import Loading from "components/Loading";
+import Error from "components/Error";
 
 const AddAnswerSegment = styled.div`
   padding: 1em 2em 2em;
+`;
+
+const Centered = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4em;
+`;
+
+const Margin = styled.div`
+  margin-top: 2em;
 `;
 
 export class UnwrappedQuestionPageRoute extends React.Component {
@@ -40,7 +59,12 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     match: CustomPropTypes.match,
     onAddAnswer: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
-    onMovePage: PropTypes.func.isRequired
+    onMovePage: PropTypes.func.isRequired,
+    error: PropTypes.object, // eslint-disable-line
+    loading: PropTypes.bool.isRequired,
+    data: PropTypes.shape({
+      questionPage: CustomPropTypes.page
+    }).isRequired
   };
 
   state = {
@@ -82,44 +106,28 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     return onAddAnswer(match.params.pageId, answerType).then(focusOnEntity);
   };
 
-  getPageTitle(page) {
-    return getTextFromHTML(page.title) || "Untitled page";
-  }
+  getPageTitle = page => title => {
+    const pageTitle = getTextFromHTML(page.title) || "Untitled page";
+    return `${pageTitle} - ${title}`;
+  };
 
-  renderPageEditor = ({ loading, error, data }) => {
+  renderContent = () => {
+    const { loading, error, data } = this.props;
+
     if (loading) {
-      return "loading";
+      return <Loading height="21em">Page loading…</Loading>;
     }
-
-    if (error || isNil(data.questionPage)) {
-      return "Ooops";
+    if (error) {
+      return <Error>Something went wrong</Error>;
+    }
+    if (isNil(data.questionPage)) {
+      return <Error>Oops! Page could not be found</Error>;
     }
 
     const { showMovePageDialog, showDeleteConfirmDialog } = this.state;
 
     return (
-      <Titled
-        title={title => `${this.getPageTitle(data.questionPage)} - ${title}`}
-      >
-        <QuestionPageEditor
-          {...this.props}
-          page={data.questionPage}
-          showMovePageDialog={showMovePageDialog}
-          onCloseMovePageDialog={this.handleCloseMovePageDialog}
-          onMovePage={this.handleMovePage}
-          showDeleteConfirmDialog={showDeleteConfirmDialog}
-          onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
-          onDeletePageConfirm={this.handleDeletePageConfirm}
-        />
-      </Titled>
-    );
-  };
-
-  render() {
-    const { match } = this.props;
-
-    return (
-      <Tabs>
+      <Titled title={this.getPageTitle(data.questionPage)}>
         <Toolbar>
           <Buttons>
             <Button
@@ -138,21 +146,58 @@ export class UnwrappedQuestionPageRoute extends React.Component {
             </IconButtonDelete>
           </Buttons>
         </Toolbar>
-        <QuestionPageQuery id={match.params.pageId}>
-          {this.renderPageEditor}
-        </QuestionPageQuery>
+        <QuestionPageEditor
+          {...this.props}
+          page={data.questionPage}
+          showMovePageDialog={showMovePageDialog}
+          onCloseMovePageDialog={this.handleCloseMovePageDialog}
+          onMovePage={this.handleMovePage}
+          showDeleteConfirmDialog={showDeleteConfirmDialog}
+          onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
+          onDeletePageConfirm={this.handleDeletePageConfirm}
+        />
         <AddAnswerSegment>
           <AnswerTypeSelector
             onSelect={this.handleAddAnswer}
             data-test="add-answer"
           />
         </AddAnswerSegment>
-      </Tabs>
+      </Titled>
+    );
+  };
+
+  render() {
+    return (
+      <Grid>
+        <Column gutters={false}>
+          <ScrollPane permanentScrollBar>
+            <Margin>
+              <MainCanvas>
+                <SavingIndicator />
+                <Tabs>{this.renderContent()}</Tabs>
+              </MainCanvas>
+            </Margin>
+            <Centered>
+              <Button
+                variant="tertiary"
+                small
+                onClick={this.handleAddPage}
+                data-test="btn-add-page-2"
+              >
+                <IconText icon={AddPage}>Add question page</IconText>
+              </Button>
+            </Centered>
+          </ScrollPane>
+        </Column>
+        <Column cols={2} gutters={false}>
+          <PropertiesPanel page={this.props.data.questionPage} />
+        </Column>
+      </Grid>
     );
   }
 }
 
-export default flowRight(
+const withQuestionPageEditing = flowRight(
   connect(null, { raiseToast }),
   withMovePage,
   withUpdatePage,
@@ -165,4 +210,10 @@ export default flowRight(
   withDeleteOption,
   withCreateOther,
   withDeleteOther
-)(UnwrappedQuestionPageRoute);
+);
+
+export default withQuestionPageEditing(props => (
+  <QuestionPageQuery id={props.match.params.pageId}>
+    {innerProps => <UnwrappedQuestionPageRoute {...innerProps} {...props} />}
+  </QuestionPageQuery>
+));

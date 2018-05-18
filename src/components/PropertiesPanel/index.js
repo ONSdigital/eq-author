@@ -43,9 +43,8 @@ const PropertiesGroup = styled.div`
   padding: 1em 1em 0;
 `;
 
-export class PropertiesPanel extends React.Component {
+class PropertiesPanel extends React.Component {
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire,
     page: CustomPropTypes.page
   };
 

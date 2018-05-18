@@ -2,6 +2,7 @@
 
 query MovePage($id: ID!) {
   questionnaire(id: $id) {
+    id
     sections {
       ...MovePageFragment
     }

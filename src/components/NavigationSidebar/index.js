@@ -25,10 +25,11 @@ const NavigationScrollPane = styled(ScrollPane)`
 
 class NavigationSidebar extends Component {
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire.isRequired,
+    questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
-    onUpdateQuestionnaire: PropTypes.func.isRequired
+    onUpdateQuestionnaire: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
   };
 
   handleAddSection = () => {
@@ -36,20 +37,29 @@ class NavigationSidebar extends Component {
   };
 
   render() {
-    const { questionnaire, onUpdateQuestionnaire, onAddPage } = this.props;
+    const {
+      questionnaire,
+      onUpdateQuestionnaire,
+      onAddPage,
+      loading
+    } = this.props;
 
     return (
       <Container data-test="side-nav">
-        <NavigationHeader
-          questionnaire={questionnaire}
-          onUpdateQuestionnaire={onUpdateQuestionnaire}
-          onAddSection={this.handleAddSection}
-          onAddPage={onAddPage}
-          data-test="nav-section-header"
-        />
-        <NavigationScrollPane>
-          <SectionNav questionnaire={questionnaire} />
-        </NavigationScrollPane>
+        {loading ? null : (
+          <React.Fragment>
+            <NavigationHeader
+              questionnaire={questionnaire}
+              onUpdateQuestionnaire={onUpdateQuestionnaire}
+              onAddSection={this.handleAddSection}
+              onAddPage={onAddPage}
+              data-test="nav-section-header"
+            />
+            <NavigationScrollPane>
+              <SectionNav questionnaire={questionnaire} />
+            </NavigationScrollPane>
+          </React.Fragment>
+        )}
       </Container>
     );
   }

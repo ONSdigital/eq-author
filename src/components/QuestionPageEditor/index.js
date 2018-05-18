@@ -90,11 +90,8 @@ export default class QuestionPageEditor extends React.Component {
       page
     } = this.props;
 
-    if (loading) {
-      return "loading...";
-    }
-    if (error) {
-      return "oops...";
+    if (loading || error) {
+      return null;
     }
 
     return (
