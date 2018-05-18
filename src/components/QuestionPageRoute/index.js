@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { flowRight, isFunction, isNil } from "lodash";
+import { Titled } from "react-titled";
 
 import Tabs from "components/Tabs";
 import QuestionPageQuery from "./QuestionPageQuery";
@@ -28,6 +29,7 @@ import withDeleteOther from "containers/enhancers/withDeleteOther";
 import withMovePage from "containers/enhancers/withMovePage";
 import focusOnEntity from "utils/focusOnEntity";
 import withDeletePage from "containers/enhancers/withDeletePage";
+import getTextFromHTML from "utils/getTextFromHTML";
 
 const AddAnswerSegment = styled.div`
   padding: 1em 2em 2em;
@@ -80,6 +82,39 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     return onAddAnswer(match.params.pageId, answerType).then(focusOnEntity);
   };
 
+  getPageTitle(page) {
+    return getTextFromHTML(page.title) || "Untitled page";
+  }
+
+  renderPageEditor = ({ loading, error, data }) => {
+    if (loading) {
+      return "loading";
+    }
+
+    if (error || isNil(data.questionPage)) {
+      return "Ooops";
+    }
+
+    const { showMovePageDialog, showDeleteConfirmDialog } = this.state;
+
+    return (
+      <Titled
+        title={title => `${this.getPageTitle(data.questionPage)} - ${title}`}
+      >
+        <QuestionPageEditor
+          {...this.props}
+          page={data.questionPage}
+          showMovePageDialog={showMovePageDialog}
+          onCloseMovePageDialog={this.handleCloseMovePageDialog}
+          onMovePage={this.handleMovePage}
+          showDeleteConfirmDialog={showDeleteConfirmDialog}
+          onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
+          onDeletePageConfirm={this.handleDeletePageConfirm}
+        />
+      </Titled>
+    );
+  };
+
   render() {
     const { match } = this.props;
 
@@ -104,28 +139,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
           </Buttons>
         </Toolbar>
         <QuestionPageQuery id={match.params.pageId}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              return "loading";
-            }
-
-            if (error || isNil(data.questionPage)) {
-              return "Ooops";
-            }
-
-            return (
-              <QuestionPageEditor
-                {...this.props}
-                page={data.questionPage}
-                showMovePageDialog={this.state.showMovePageDialog}
-                onCloseMovePageDialog={this.handleCloseMovePageDialog}
-                onMovePage={this.handleMovePage}
-                showDeleteConfirmDialog={this.state.showDeleteConfirmDialog}
-                onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
-                onDeletePageConfirm={this.handleDeletePageConfirm}
-              />
-            );
-          }}
+          {this.renderPageEditor}
         </QuestionPageQuery>
         <AddAnswerSegment>
           <AnswerTypeSelector

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import App from "components/App";
 import Header from "components/Header";
 import ScrollPane from "components/ScrollPane";
-import DocumentTitle from "react-document-title";
+import { Titled } from "react-titled";
 
 import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
@@ -33,8 +33,8 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
-  <DocumentTitle title={`${docTitle} - Author`}>
+const BaseLayout = ({ children, title, questionnaire }) => (
+  <Titled title={() => `Author`}>
     <App>
       <Wrapper>
         <Header questionnaire={questionnaire} />
@@ -54,13 +54,12 @@ const BaseLayout = ({ children, title, questionnaire, docTitle }) => (
         )}
       </Wrapper>
     </App>
-  </DocumentTitle>
+  </Titled>
 );
 
 BaseLayout.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
-  docTitle: PropTypes.string.isRequired,
   questionnaire: CustomPropTypes.questionnaire
 };
 

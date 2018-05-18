@@ -6,7 +6,6 @@ import Popout, { Container, Layer } from "components/Popout";
 
 import AnswerTypeGrid from "./AnswerTypeGrid";
 import AddIcon from "./icon-add.svg?inline";
-import CustomPropTypes from "custom-prop-types";
 import IconText from "components/IconText";
 import Button from "components/Button";
 import PopupTransition from "./PopupTransition";

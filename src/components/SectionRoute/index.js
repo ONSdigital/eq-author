@@ -14,6 +14,8 @@ import IconText from "components/IconText";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
+import getTextFromHTML from "utils/getTextFromHTML";
+import { Titled } from "react-titled";
 
 export class UnwrappedSectionRoute extends React.Component {
   static propTypes = {
@@ -44,8 +46,38 @@ export class UnwrappedSectionRoute extends React.Component {
     );
   };
 
+  getSectionTitle(section) {
+    return getTextFromHTML(section.title) || "Untitled section";
+  }
+
+  renderSectionEditor = ({ loading, error, data }) => {
+    const { onUpdateSection } = this.props;
+
+    if (loading) {
+      return "loading";
+    }
+
+    if (error || isNil(data.section)) {
+      return "Ooops";
+    }
+
+    return (
+      <Titled
+        title={title => `${this.getSectionTitle(data.section)} - ${title}`}
+      >
+        <SectionEditor
+          section={data.section}
+          onUpdate={onUpdateSection}
+          showDeleteConfirmDialog={this.state.showDeleteConfirmDialog}
+          onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
+          onDeleteSectionConfirm={this.handleDeleteSectionConfirm}
+        />
+      </Titled>
+    );
+  };
+
   render() {
-    const { match, onUpdateSection } = this.props;
+    const { match } = this.props;
 
     return (
       <Tabs>
@@ -63,25 +95,7 @@ export class UnwrappedSectionRoute extends React.Component {
           </Buttons>
         </Toolbar>
         <SectionQuery id={match.params.sectionId}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              return "loading";
-            }
-
-            if (error || isNil(data.section)) {
-              return "Ooops";
-            }
-
-            return (
-              <SectionEditor
-                section={data.section}
-                onUpdate={onUpdateSection}
-                showDeleteConfirmDialog={this.state.showDeleteConfirmDialog}
-                onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
-                onDeleteSectionConfirm={this.handleDeleteSectionConfirm}
-              />
-            );
-          }}
+          {this.renderSectionEditor}
         </SectionQuery>
       </Tabs>
     );
