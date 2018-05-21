@@ -79,6 +79,32 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       });
       expect(targetSection.pages).not.toContain(deletedPage);
     });
+
+    it("should update position value of all pages", () => {
+      const cache = {
+        section: {
+          id: "1",
+          pages: [
+            { id: "1", position: 0 },
+            deletedPage,
+            { id: "3", position: 2 }
+          ]
+        }
+      };
+
+      const proxy = {
+        writeFragment: jest.fn(({ data }) => (cache.section = data)),
+        readFragment: jest.fn(() => cache.section)
+      };
+
+      const updater = createUpdater(cache.section.id, deletedPage.id);
+      updater(proxy, result);
+
+      expect(cache.section.pages).toEqual([
+        { id: "1", position: 0 },
+        { id: "3", position: 1 }
+      ]);
+    });
   });
 
   describe("mapMutateToProps", () => {

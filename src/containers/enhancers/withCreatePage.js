@@ -14,6 +14,7 @@ export const createUpdater = (sectionId, position) => (proxy, result) => {
   const section = proxy.readFragment({ id, fragment });
 
   section.pages.splice(position, 0, result.data.createQuestionPage);
+  section.pages.forEach((page, i) => (page.position = i));
 
   proxy.writeFragment({
     id,

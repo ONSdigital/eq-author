@@ -32,6 +32,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
     newPage = {
       id: "22",
       title: "New Page",
+      position: 1,
       section: {
         id: section.id
       }
@@ -57,7 +58,7 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
       const readFragment = jest.fn(() => section);
       const writeFragment = jest.fn();
 
-      const updater = createUpdater(section.id);
+      const updater = createUpdater(section.id, 0);
       updater({ readFragment, writeFragment }, result);
 
       expect(readFragment).toHaveBeenCalledWith({ id, fragment });
@@ -67,6 +68,35 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
         data: section
       });
       expect(section.pages).toContain(newPage);
+      expect(section.pages[0]).toBe(newPage);
+    });
+
+    it("should update position value of all pages", () => {
+      const cache = {
+        section: {
+          id: "1",
+          pages: [
+            { id: "A", position: 0 },
+            { id: "B", position: 1 },
+            { id: "C", position: 2 }
+          ]
+        }
+      };
+
+      const proxy = {
+        writeFragment: jest.fn(({ data }) => (cache.section = data)),
+        readFragment: jest.fn(() => cache.section)
+      };
+
+      const updater = createUpdater("1", newPage.position);
+      updater(proxy, result);
+
+      expect(cache.section.pages).toEqual([
+        { id: "A", position: 0 },
+        newPage,
+        { id: "B", position: 2 },
+        { id: "C", position: 3 }
+      ]);
     });
   });
 
