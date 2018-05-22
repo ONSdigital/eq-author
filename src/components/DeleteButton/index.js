@@ -3,9 +3,11 @@ import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 
+import Icon from "./icon-close.svg?inline";
+
 const sizes = {
   small: css`
-    font-size: 1.25em;
+    font-size: 1.5em;
   `,
 
   medium: css`
@@ -18,17 +20,17 @@ const sizes = {
 };
 
 const StyledDeleteButton = styled.button`
-  color: ${colors.lightGrey};
+  color: ${colors.secondary};
   border: none;
   background: transparent;
   cursor: pointer;
   transition: color 0.2s ease-in;
   width: 1em;
   height: 1em;
-  line-height: 1;
+  padding: 0;
+
   &:hover {
-    color: ${colors.darkGrey};
-    transition: color 0.2s ease-out;
+    color: ${colors.black};
   }
 
   &:focus {
@@ -38,8 +40,21 @@ const StyledDeleteButton = styled.button`
   ${props => sizes[props.size]};
 `;
 
+const CloseIcon = styled(Icon)`
+  pointer-events: none;
+  display: block;
+  width: 1em;
+  height: 1em;
+
+  path {
+    fill: currentColor;
+  }
+`;
+
 const DeleteButton = props => (
-  <StyledDeleteButton {...props}>&times;</StyledDeleteButton>
+  <StyledDeleteButton {...props}>
+    <CloseIcon />
+  </StyledDeleteButton>
 );
 
 DeleteButton.defaultProps = {

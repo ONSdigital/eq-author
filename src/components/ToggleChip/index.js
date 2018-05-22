@@ -6,48 +6,37 @@ import checkedIcon from "./checked.svg";
 import Truncated from "components/Truncated";
 
 const labelStyles = {
+  unchecked: css`
+    color: ${colors.text};
+    background: #e4e8eb;
+
+    &:hover {
+      color: white;
+      background: ${colors.secondary};
+    }
+  `,
   checked: css`
     color: ${colors.white};
     background: #008dd0;
-    border-color: #008dd0;
 
     &:hover {
       background: #007ab3;
     }
-  `,
-  unchecked: css`
-    color: ${colors.text};
-    background: #f8f8f8;
-    border-color: rgba(0, 141, 208, 0);
-
-    &:hover {
-      background: #eeeded;
-    }
-  `
-};
-
-const focusStyles = {
-  checked: css`
-    color: ${colors.white};
-    background: #008dd0;
-    border-color: #005e8b;
-  `,
-  unchecked: css`
-    color: ${colors.text};
-    background: #eeeded;
-    border-color: #008dd0;
   `
 };
 
 const checkboxStyle = {
+  unchecked: css`
+    border-color: ${colors.borders};
+
+    &:hover {
+      border-color: ${colors.white};
+    }
+  `,
   checked: css`
     border-color: white;
     background: white url(${checkedIcon}) no-repeat center;
     background-size: contain;
-  `,
-  unchecked: css`
-    background-color: rgba(255, 255, 255, 0);
-    border-color: #979797;
   `
 };
 
@@ -62,14 +51,18 @@ export const Label = styled.label`
   align-items: center;
   user-select: none;
   border-radius: 2.75em;
-  font-size: 0.8em;
-  padding: 0.5em 0.8em 0.5em 2.5em;
+  padding: 0 1em 0 0;
   cursor: pointer;
-  border: 2px solid;
+
   ${props => (props.checked ? labelStyles.checked : labelStyles.unchecked)};
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px ${colors.tertiary};
+  }
 `;
 
 const Text = styled(Truncated)`
+  line-height: 1.3;
   display: inline-block;
   max-width: ${props => props.maxWidth}em;
 `;
@@ -79,27 +72,21 @@ Text.defaultProps = {
 };
 
 export const Input = styled.input`
-  width: 1rem;
-  height: 1rem;
-  position: absolute;
-  left: 0.8em;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+  font-size: 1em;
+  width: 1em;
+  height: 1em;
+  margin: 0.5em;
   -webkit-appearance: none;
   pointer-events: none;
   z-index: 2;
-  border-radius: 50%;
+  border-radius: 1em;
   border: 2px solid;
+
   ${props => (props.checked ? checkboxStyle.checked : checkboxStyle.unchecked)};
 
   &:focus {
     opacity: 1;
     outline: none;
-  }
-
-  &:focus + ${Label} {
-    ${props => (props.checked ? focusStyles.checked : focusStyles.unchecked)};
   }
 `;
 
@@ -124,14 +111,14 @@ class ToggleChip extends React.Component {
     const { id, title, children, checked, maxWidth } = this.props;
     return (
       <Field>
-        <Input
-          id={id}
-          name={id}
-          type="checkbox"
-          checked={checked}
-          onChange={this.handleToggle}
-        />
         <Label htmlFor={id} checked={checked}>
+          <Input
+            id={id}
+            name={id}
+            type="checkbox"
+            checked={checked}
+            onChange={this.handleToggle}
+          />
           <Text title={title} maxWidth={maxWidth}>
             {children}
           </Text>

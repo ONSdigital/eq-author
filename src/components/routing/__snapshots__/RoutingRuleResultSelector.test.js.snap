@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/RoutingRuleResultSelector should render 1`] = `
-<RoutingRuleResultSelector__RoutingRuleResult
-  disabled={false}
->
+<RoutingRuleResultSelector__RoutingRuleResult>
   <Grid
     align="center"
     fillHeight={true}
@@ -13,7 +11,8 @@ exports[`components/RoutingRuleResultSelector should render 1`] = `
       gutters={false}
     >
       <RoutingRuleResultSelector__Label
-        htmlFor="test-selec"
+        disabled={false}
+        htmlFor="test-select"
       >
         Test
          
@@ -27,8 +26,9 @@ exports[`components/RoutingRuleResultSelector should render 1`] = `
       gutters={false}
     >
       <withChangeHandler(Select__SimpleSelect)
+        data-test="result-selector"
         disabled={false}
-        id="test-selec"
+        id="test-select"
         onChange={[Function]}
       >
         <optgroup
@@ -57,9 +57,7 @@ exports[`components/RoutingRuleResultSelector should render 1`] = `
 `;
 
 exports[`components/RoutingRuleResultSelector should render as disabled given the relevant prop 1`] = `
-<RoutingRuleResultSelector__RoutingRuleResult
-  disabled={true}
->
+<RoutingRuleResultSelector__RoutingRuleResult>
   <Grid
     align="center"
     fillHeight={true}
@@ -69,7 +67,8 @@ exports[`components/RoutingRuleResultSelector should render as disabled given th
       gutters={false}
     >
       <RoutingRuleResultSelector__Label
-        htmlFor="test-selec"
+        disabled={true}
+        htmlFor="test-select"
       >
         Test
          
@@ -83,8 +82,9 @@ exports[`components/RoutingRuleResultSelector should render as disabled given th
       gutters={false}
     >
       <withChangeHandler(Select__SimpleSelect)
+        data-test="result-selector"
         disabled={true}
-        id="test-selec"
+        id="test-select"
         onChange={[Function]}
       >
         <optgroup

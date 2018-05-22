@@ -1,27 +1,23 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import Select from "components/Forms/Select";
 import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
-const disabled = css`
-  opacity: 0.5;
-  pointer-events: none;
-  transition: opacity 500ms ease-in;
-`;
-
 const RoutingRuleResult = styled.div`
   padding: 1em;
-  ${props => props.disabled && disabled};
 `;
 
 const Label = styled.label`
   width: 100%;
   display: block;
-  font-size: 0.85em;
-  font-weight: 600;
+  font-size: 1em;
+  font-weight: bold;
+  &[disabled] {
+    opacity: 0.5;
+  }
 `;
 
 const Goto = styled.span`
@@ -36,15 +32,20 @@ const RoutingRuleResultSelector = ({
   id,
   disabled
 }) => (
-  <RoutingRuleResult disabled={disabled}>
+  <RoutingRuleResult>
     <Grid align="center">
       <Column gutters={false} cols={5}>
-        <Label htmlFor={id}>
+        <Label htmlFor={id} disabled={disabled}>
           {label} <Goto>Go to: </Goto>
         </Label>
       </Column>
       <Column gutters={false} cols={7}>
-        <Select id={id} onChange={onChange} disabled={disabled}>
+        <Select
+          id={id}
+          onChange={onChange}
+          disabled={disabled}
+          data-test="result-selector"
+        >
           {sections.map(section => (
             <optgroup label={section.title} key={section.id}>
               {section.pages.map(page => (

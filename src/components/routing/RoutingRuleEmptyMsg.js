@@ -31,7 +31,7 @@ const Paragraph = styled.p`
 `;
 
 const AddRuleButton = styled(Button)`
-  margin: 2em auto;
+  margin: 2em auto 1em;
 `;
 
 const RoutingRuleEmpty = ({ title, onAddRule }) => (
@@ -40,7 +40,13 @@ const RoutingRuleEmpty = ({ title, onAddRule }) => (
     <Paragraph>
       Users completing this question will be taken to the next page.
     </Paragraph>
-    <AddRuleButton small naked onClick={onAddRule} data-test="btn-add-rule">
+    <AddRuleButton
+      small
+      naked
+      variant="primary"
+      onClick={onAddRule}
+      data-test="btn-add-rule"
+    >
       <IconText icon={IconAddRule}>Add your first rule</IconText>
     </AddRuleButton>
   </Container>

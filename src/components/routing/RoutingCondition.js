@@ -2,7 +2,7 @@ import React from "react";
 import Select from "components/Forms/Select";
 import styled from "styled-components";
 
-import Button from "components/Button";
+import DeleteButton from "components/DeleteButton";
 import IconClose from "./icon-close.svg?inline";
 import { PropTypes } from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -16,20 +16,15 @@ import IconText from "components/IconText";
 const Label = styled.label`
   width: 100%;
   display: inline-block;
-  font-size: 0.85em;
+  font-size: 0.9em;
   letter-spacing: 0.05em;
-  font-weight: 600;
+  font-weight: bold;
   text-align: center;
   align-self: center;
 `;
 
 export const PageSelect = styled(Select)`
   margin: 0;
-  align-self: center;
-`;
-
-export const RemoveButton = styled(Button)`
-  margin: auto;
   align-self: center;
 `;
 
@@ -49,6 +44,13 @@ const ConnectedPath = styled.div`
     bottom: 0;
     margin: auto;
   }
+`;
+
+const RemoveButton = styled(DeleteButton)`
+  display: block;
+  margin: auto;
+  position: relative;
+  right: 2px;
 `;
 
 const RoutingCondition = ({
@@ -86,7 +88,11 @@ const RoutingCondition = ({
         </PageSelect>
       </Column>
       <Column gutters={false} cols={1}>
-        <RemoveButton onClick={onRemove} disabled={!onRemove}>
+        <RemoveButton
+          onClick={onRemove}
+          disabled={!onRemove}
+          data-test="btn-remove"
+        >
           <IconText icon={IconClose} hideText>
             Remove
           </IconText>
@@ -113,7 +119,7 @@ RoutingCondition.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
   children: PropTypes.node.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOf(["IF", "AND"]).isRequired,
   pathEnd: PropTypes.bool.isRequired
 };
 

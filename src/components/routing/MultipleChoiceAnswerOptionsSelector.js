@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ToggleChip from "components/ToggleChip";
-import TextButton from "components/TextButton";
+
 import { PropTypes } from "prop-types";
 
 const MultipleChoiceAnswerOptions = styled.div`
@@ -14,8 +14,7 @@ const MultipleChoiceAnswerOptions = styled.div`
 
 const MultipleChoiceAnswerOptionsSelector = ({
   options,
-  onOptionSelectionChange,
-  onSelectAll
+  onOptionSelectionChange
 }) => (
   <MultipleChoiceAnswerOptions>
     {options.map(option => (
@@ -29,9 +28,6 @@ const MultipleChoiceAnswerOptionsSelector = ({
         {option.label}
       </ToggleChip>
     ))}
-    <TextButton data-test="btn-select-all" onClick={onSelectAll}>
-      Select all
-    </TextButton>
   </MultipleChoiceAnswerOptions>
 );
 
@@ -43,8 +39,7 @@ MultipleChoiceAnswerOptionsSelector.propTypes = {
       label: PropTypes.string.isRequired
     })
   ).isRequired,
-  onOptionSelectionChange: PropTypes.func.isRequired,
-  onSelectAll: PropTypes.func.isRequired
+  onOptionSelectionChange: PropTypes.func.isRequired
 };
 
 export default MultipleChoiceAnswerOptionsSelector;

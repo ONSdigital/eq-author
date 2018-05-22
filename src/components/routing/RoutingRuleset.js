@@ -2,22 +2,25 @@ import React from "react";
 import styled from "styled-components";
 
 import Button from "components/Button";
-import { BasicSection } from "components/EditorSurface/CanvasSection";
+
 import IconAddRule from "./icon-add-rule.svg?inline";
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 
-import { colors } from "constants/theme";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import IconText from "components/IconText";
+import { colors, radius } from "constants/theme";
 
 const AddRuleButton = styled(Button)`
-  margin: 2em auto;
+  width: 100%;
+  margin-bottom: 2em;
+  padding: 0.5em;
 `;
 
-const RoutingRuleCanvas = styled(BasicSection)`
-  padding: 0;
-  border-top: 1px solid ${colors.lighterGrey};
+const Box = styled.div`
+  border: 1px solid ${colors.borders};
+  border-radius: ${radius};
+  opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
 const RoutingRuleset = ({
@@ -30,15 +33,15 @@ const RoutingRuleset = ({
   <React.Fragment>
     {children}
     <AddRuleButton
+      variant="secondary"
       small
-      naked
       onClick={onAddRule}
       data-test="btn-add-rule"
       disabled={!canRoute}
     >
       <IconText icon={IconAddRule}>Add rule</IconText>
     </AddRuleButton>
-    <RoutingRuleCanvas>
+    <Box>
       <RoutingRuleResultSelector
         id="else"
         label="ELSE"
@@ -47,7 +50,7 @@ const RoutingRuleset = ({
         data-test="select-else"
         disabled={!canRoute}
       />
-    </RoutingRuleCanvas>
+    </Box>
   </React.Fragment>
 );
 

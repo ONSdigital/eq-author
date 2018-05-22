@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CanvasSection should render 1`] = `
+exports[`NotFoundPage should render 1`] = `
 <BaseLayout
   docTitle="Page not found"
   hasNav={false}

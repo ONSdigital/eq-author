@@ -2,46 +2,20 @@
 
 exports[`components/TextButton renders 1`] = `
 .c0 {
-  cursor: pointer;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -webkit-transition: border-color 200ms ease-out;
-  transition: border-color 200ms ease-out;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #3B7A9E;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  font-size: 0.85em;
-  padding: 0.5em 0.75em;
+  padding: 0.25em 0.5em;
   -webkit-letter-spacing: 0.05em;
   -moz-letter-spacing: 0.05em;
   -ms-letter-spacing: 0.05em;
   letter-spacing: 0.05em;
+  font-size: 0.9em;
+  font-weight: bold;
 }
 
-.c0:focus,
-.c0:active {
-  outline-width: 0;
-}
-
-.c0[disabled] {
-  pointer-events: none;
-  color: grey;
-}
-
-.c0:hover {
-  color: #2d5d79;
-}
-
-.c0:focus {
-  border-color: #3B7A9E;
-}
-
-<button
+<Button
   className="c0"
+  type="button"
+  variant="tertiary"
 >
   TextButton
-</button>
+</Button>
 `;
