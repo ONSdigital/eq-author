@@ -193,12 +193,6 @@ exports[`components/Button renders according to variant 3`] = `
   --color-bg: #3B7A9E;
 }
 
-.c0:focus {
-  border-color: #3B7A9E;
-  box-shadow: 0 0 0 3px #FDBD56,inset 0 0 0 1px #3B7A9E;
-  outline: none;
-}
-
 <button
   className="c0"
   type="button"
@@ -264,12 +258,6 @@ exports[`components/Button renders according to variant 4`] = `
 .c0:hover {
   --color-text: #FFFFFF;
   --color-bg: #3B7A9E;
-}
-
-.c0:focus {
-  border-color: #3B7A9E;
-  box-shadow: 0 0 0 3px #FDBD56,inset 0 0 0 1px #3B7A9E;
-  outline: none;
 }
 
 .c0:hover {

@@ -37,7 +37,7 @@ export const LogoutButton = styled(Button)`
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px ${colors.tertiary}, inset 0 0 0 2px ${colors.primary};
+    box-shadow: 0 0 0 3px ${colors.tertiary};
     outline: none;
   }
 `;
