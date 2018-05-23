@@ -5,12 +5,13 @@ import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
 import NavigationSidebarContainer from "containers/NavigationSidebarContainer";
 import { Switch } from "react-router-dom";
-import { Route } from "react-router";
+import { Route, Redirect } from "react-router";
 import QuestionPageRoute from "components/QuestionPageRoute";
 import SectionRoute from "components/SectionRoute";
 import { find, flatMap } from "lodash";
 import { Titled } from "react-titled";
-import { Routes } from "utils/UrlUtils";
+import { Routes, buildSectionPath } from "utils/UrlUtils";
+import Loading from "components/Loading";
 
 class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -41,6 +42,29 @@ class QuestionnaireDesignPage extends Component {
     return loading ? title : `${questionnaire.title} - ${title}`;
   };
 
+  renderRedirect = () => {
+    const { questionnaire, loading } = this.props;
+
+    if (loading) {
+      return (
+        <Grid>
+          <Column cols={10}>
+            <Loading height="100%">Loading questionnaire…</Loading>
+          </Column>
+        </Grid>
+      );
+    }
+
+    return (
+      <Redirect
+        to={buildSectionPath({
+          questionnaireId: questionnaire.id,
+          sectionId: questionnaire.sections[0].id
+        })}
+      />
+    );
+  };
+
   render() {
     const { loading, questionnaire, location } = this.props;
 
@@ -59,6 +83,7 @@ class QuestionnaireDesignPage extends Component {
               <Switch location={location}>
                 <Route path={Routes.SECTION} component={SectionRoute} exact />
                 <Route path={Routes.PAGE} component={QuestionPageRoute} exact />
+                <Route path="*" render={this.renderRedirect} />
               </Switch>
             </Column>
           </Grid>

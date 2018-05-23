@@ -15,13 +15,25 @@ if (process.env.REACT_APP_USE_SENTRY === "true") {
   ).install();
 }
 
+const cache = createApolloCache({
+  addTypename: true,
+  dataIdFromObject: getIdForObject,
+  fragmentMatcher,
+  cacheRedirects: {
+    Query: {
+      questionnaire: (_, args, { getCacheKey }) => {
+        return getCacheKey({
+          __typename: "Questionnaire",
+          id: args.id
+        });
+      }
+    }
+  }
+});
+
 const client = createApolloClient(
   createHttpLink(process.env.REACT_APP_API_URL),
-  createApolloCache({
-    addTypename: true,
-    dataIdFromObject: getIdForObject,
-    fragmentMatcher
-  })
+  cache
 );
 
 const history = createHistory({

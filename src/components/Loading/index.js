@@ -81,7 +81,8 @@ Loading.propTypes = {
 };
 
 Loading.defaultProps = {
-  height: "auto"
+  height: "auto",
+  children: "Loading…"
 };
 
 export default Loading;

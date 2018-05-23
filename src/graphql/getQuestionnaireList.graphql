@@ -6,11 +6,5 @@ query GetQuestionnaireList {
     createdBy {
       name
     }
-    sections {
-      id
-      pages {
-        id
-      }
-    }
   }
 }
