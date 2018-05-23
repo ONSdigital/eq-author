@@ -22,7 +22,7 @@ exports[`components/Forms/Field should render correctly 1`] = `
   display: block;
   border-radius: 4px;
   border: 1px solid #999999;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 .c2:hover {

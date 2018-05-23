@@ -11,7 +11,7 @@ describe("components/RoutingRuleResultSelector", () => {
     props = {
       onChange: jest.fn(),
       label: "Test",
-      id: "test-selec",
+      id: "test-select",
       sections
     };
 
@@ -31,5 +31,11 @@ describe("components/RoutingRuleResultSelector", () => {
     const data = { name: "hello", value: "there" };
     wrapper.find(`#${props.id}`).simulate("change", data);
     expect(props.onChange).toHaveBeenLastCalledWith(data);
+  });
+
+  it("should pass disabled prop onto select field", () => {
+    wrapper.setProps({ disabled: true });
+    const select = wrapper.find('[data-test="result-selector"]');
+    expect(select.props().disabled).toBe(true);
   });
 });

@@ -8,7 +8,7 @@ export const sharedStyles = css`
   display: block;
   border-radius: ${radius};
   border: 1px solid ${colors.borders};
-  font-size: 0.9em;
+  font-size: 1em;
 
   &:hover {
     border-color: ${darken(0.1)(colors.borders)};
@@ -16,6 +16,6 @@ export const sharedStyles = css`
 
   &:focus {
     outline: none;
-    border: 1px solid ${colors.blue};
+    border: 1px solid ${colors.primary};
   }
 `;

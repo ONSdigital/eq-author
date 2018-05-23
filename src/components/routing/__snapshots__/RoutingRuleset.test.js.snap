@@ -8,9 +8,9 @@ exports[`components/RoutingRuleset should render children 1`] = `
   <RoutingRuleset__AddRuleButton
     data-test="btn-add-rule"
     disabled={false}
-    naked={true}
     onClick={[Function]}
     small={true}
+    variant="secondary"
   >
     <IconText
       hideText={false}
@@ -19,7 +19,7 @@ exports[`components/RoutingRuleset should render children 1`] = `
       Add rule
     </IconText>
   </RoutingRuleset__AddRuleButton>
-  <RoutingRuleset__RoutingRuleCanvas>
+  <RoutingRuleset__Box>
     <RoutingRuleResultSelector
       data-test="select-else"
       disabled={false}
@@ -93,6 +93,6 @@ exports[`components/RoutingRuleset should render children 1`] = `
         ]
       }
     />
-  </RoutingRuleset__RoutingRuleCanvas>
+  </RoutingRuleset__Box>
 </React.Fragment>
 `;

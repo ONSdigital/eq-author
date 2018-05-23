@@ -1,35 +1,44 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import CustomPropTypes from "custom-prop-types";
 
-import { BasicSection } from "components/EditorSurface/CanvasSection";
-import { Toolbar, Buttons } from "components/EditorSurface/Toolbar";
-import IconButtonDelete from "components/IconButtonDelete";
+import Button from "components/Button";
+import IconText from "components/IconText";
 
 import RoutingRuleEmpty from "./RoutingRuleEmptyMsg";
 
-import getIdForObject from "utils/getIdForObject";
-import { colors } from "constants/theme";
-import CustomPropTypes from "custom-prop-types";
+import { colors, radius } from "constants/theme";
+
+import IconRoute from "./icon-route.svg?inline";
+
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 
-const RoutingRuleCanvas = styled(BasicSection)`
+const RoutingStatement = styled.div`
   padding: 0;
-  border-top: 1px solid ${colors.lighterGrey};
+`;
+
+const Box = styled.div`
+  border: 1px solid ${colors.borders};
+  border-radius: ${radius};
+  margin-bottom: 2em;
+  position: relative;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em;
 `;
 
 const Title = styled.h2`
-  font-size: 0.9em;
-  font-weight: 600;
+  position: absolute;
   margin: 0;
-`;
-
-const RoutingStatement = styled.div`
-  border-bottom: 1px solid ${colors.borders};
-`;
-
-const RoutingToolbar = styled(Toolbar)`
-  padding-left: 1em;
+  top: 1.5em;
+  left: 1.7em;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+  font-weight: bold;
 `;
 
 const RoutingRule = ({
@@ -42,39 +51,42 @@ const RoutingRule = ({
   sections,
   canRoute
 }) => (
-  <RoutingRuleCanvas id={getIdForObject(page)}>
-    <RoutingToolbar>
-      <Title>{title}</Title>
-      <Buttons>
-        <IconButtonDelete
-          onClick={onDeleteRule}
-          data-test="btn-delete"
-          disabled={!children}
-        >
-          Delete
-        </IconButtonDelete>
-      </Buttons>
-    </RoutingToolbar>
+  <div>
+    <Box>
+      {children ? (
+        <React.Fragment>
+          {title && <Title>{title}</Title>}
+          <Buttons>
+            <Button
+              onClick={onDeleteRule}
+              data-test="btn-delete"
+              disabled={!children}
+              variant="tertiary"
+              small
+            >
+              <IconText icon={IconRoute}>Remove rule</IconText>
+            </Button>
+          </Buttons>
 
-    {children ? (
-      <React.Fragment>
-        <RoutingStatement>{children}</RoutingStatement>
-        <RoutingRuleResultSelector
-          id="then"
-          label="THEN"
-          sections={sections}
-          onChange={onThenChange}
-          data-test="select-then"
-          disabled={!canRoute}
+          <RoutingStatement>{children}</RoutingStatement>
+
+          <RoutingRuleResultSelector
+            id="then"
+            label="THEN"
+            sections={sections}
+            onChange={onThenChange}
+            data-test="select-then"
+            disabled={!canRoute}
+          />
+        </React.Fragment>
+      ) : (
+        <RoutingRuleEmpty
+          title="No routing rules exist for this question"
+          onAddRule={onAddRule}
         />
-      </React.Fragment>
-    ) : (
-      <RoutingRuleEmpty
-        title="No routing rules exist for this question"
-        onAddRule={onAddRule}
-      />
-    )}
-  </RoutingRuleCanvas>
+      )}
+    </Box>
+  </div>
 );
 
 RoutingRule.propTypes = {
@@ -83,7 +95,7 @@ RoutingRule.propTypes = {
   onAddRule: PropTypes.func.isRequired,
   onDeleteRule: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   sections: PropTypes.arrayOf(CustomPropTypes.section),
   canRoute: PropTypes.bool.isRequired
 };

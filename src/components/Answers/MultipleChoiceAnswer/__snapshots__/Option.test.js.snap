@@ -137,7 +137,7 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c8 {
-  color: #c3c3c3;
+  color: #5F7682;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -145,14 +145,12 @@ exports[`Option should render a checkbox 1`] = `
   transition: color 0.2s ease-in;
   width: 1em;
   height: 1em;
-  line-height: 1;
-  font-size: 1.25em;
+  padding: 0;
+  font-size: 1.5em;
 }
 
 .c8:hover {
   color: #333333;
-  -webkit-transition: color 0.2s ease-out;
-  transition: color 0.2s ease-out;
 }
 
 .c8:focus {
@@ -160,6 +158,17 @@ exports[`Option should render a checkbox 1`] = `
 }
 
 .c9 {
+  pointer-events: none;
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.c9 path {
+  fill: currentColor;
+}
+
+.c10 {
   background-color: rgba(10,10,10,0.9) !important;
   font-size: 0.625rem !important;
   line-height: 2.2em !important;
@@ -168,8 +177,8 @@ exports[`Option should render a checkbox 1`] = `
   white-space: pre;
 }
 
-.c9::before,
-.c9::after {
+.c10::before,
+.c10::after {
   border-bottom: none !important;
   border-top: none !important;
 }
@@ -505,7 +514,13 @@ exports[`Option should render a checkbox 1`] = `
                   size="small"
                   type="button"
                 >
-                  ×
+                  <DeleteButton__CloseIcon>
+                    <Component
+                      className="c9"
+                    >
+                      <svg />
+                    </Component>
+                  </DeleteButton__CloseIcon>
                 </button>
               </DeleteButton__StyledDeleteButton>
             </DeleteButton>
@@ -516,7 +531,7 @@ exports[`Option should render a checkbox 1`] = `
               place="bottom"
             >
               <ReactTooltip
-                className="c9"
+                className="c10"
                 delayShow={200}
                 effect="solid"
                 id="tooltip-1"

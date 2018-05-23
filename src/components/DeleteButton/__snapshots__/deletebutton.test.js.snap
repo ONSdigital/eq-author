@@ -2,7 +2,7 @@
 
 exports[`large 1`] = `
 .c0 {
-  color: #c3c3c3;
+  color: #5F7682;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -10,18 +10,27 @@ exports[`large 1`] = `
   transition: color 0.2s ease-in;
   width: 1em;
   height: 1em;
-  line-height: 1;
+  padding: 0;
   font-size: 3em;
 }
 
 .c0:hover {
   color: #333333;
-  -webkit-transition: color 0.2s ease-out;
-  transition: color 0.2s ease-out;
 }
 
 .c0:focus {
   outline: 3px solid #FDBD56;
+}
+
+.c1 {
+  pointer-events: none;
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.c1 path {
+  fill: currentColor;
 }
 
 <DeleteButton
@@ -40,7 +49,13 @@ exports[`large 1`] = `
       size="large"
       type="button"
     >
-      ×
+      <DeleteButton__CloseIcon>
+        <Component
+          className="c1"
+        >
+          <svg />
+        </Component>
+      </DeleteButton__CloseIcon>
     </button>
   </DeleteButton__StyledDeleteButton>
 </DeleteButton>
@@ -48,7 +63,7 @@ exports[`large 1`] = `
 
 exports[`medium 1`] = `
 .c0 {
-  color: #c3c3c3;
+  color: #5F7682;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -56,18 +71,27 @@ exports[`medium 1`] = `
   transition: color 0.2s ease-in;
   width: 1em;
   height: 1em;
-  line-height: 1;
+  padding: 0;
   font-size: 2em;
 }
 
 .c0:hover {
   color: #333333;
-  -webkit-transition: color 0.2s ease-out;
-  transition: color 0.2s ease-out;
 }
 
 .c0:focus {
   outline: 3px solid #FDBD56;
+}
+
+.c1 {
+  pointer-events: none;
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.c1 path {
+  fill: currentColor;
 }
 
 <DeleteButton
@@ -86,7 +110,13 @@ exports[`medium 1`] = `
       size="medium"
       type="button"
     >
-      ×
+      <DeleteButton__CloseIcon>
+        <Component
+          className="c1"
+        >
+          <svg />
+        </Component>
+      </DeleteButton__CloseIcon>
     </button>
   </DeleteButton__StyledDeleteButton>
 </DeleteButton>
@@ -94,7 +124,7 @@ exports[`medium 1`] = `
 
 exports[`small 1`] = `
 .c0 {
-  color: #c3c3c3;
+  color: #5F7682;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -102,18 +132,27 @@ exports[`small 1`] = `
   transition: color 0.2s ease-in;
   width: 1em;
   height: 1em;
-  line-height: 1;
-  font-size: 1.25em;
+  padding: 0;
+  font-size: 1.5em;
 }
 
 .c0:hover {
   color: #333333;
-  -webkit-transition: color 0.2s ease-out;
-  transition: color 0.2s ease-out;
 }
 
 .c0:focus {
   outline: 3px solid #FDBD56;
+}
+
+.c1 {
+  pointer-events: none;
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.c1 path {
+  fill: currentColor;
 }
 
 <DeleteButton
@@ -132,7 +171,13 @@ exports[`small 1`] = `
       size="small"
       type="button"
     >
-      ×
+      <DeleteButton__CloseIcon>
+        <Component
+          className="c1"
+        >
+          <svg />
+        </Component>
+      </DeleteButton__CloseIcon>
     </button>
   </DeleteButton__StyledDeleteButton>
 </DeleteButton>

@@ -19,7 +19,6 @@ const Background = styled.span`
   padding: 1em;
   display: block;
   max-width: 55em;
-  background-color: #f2f2f2;
 `;
 
 const ruleSetProps = {
@@ -31,7 +30,6 @@ const ruleSetProps = {
 const ruleProps = {
   page: selectedPage,
   sections: sections,
-  title: selectedPage.title,
   onAddRule: action("Add rule"),
   onDeleteRule: action("Delete rule"),
   onThenChange: action("Then changed")
@@ -49,8 +47,7 @@ const conditionProps = {
 
 const multiChoiceAnswerProps = {
   options: selectedPage.options,
-  onOptionSelectionChange: action("option selected"),
-  onSelectAll: action("selected all")
+  onOptionSelectionChange: action("option selected")
 };
 
 storiesOf("Routing", module)
@@ -73,7 +70,11 @@ storiesOf("Routing", module)
           <RoutingCondition id="routing-condition-0" {...conditionProps}>
             <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
           </RoutingCondition>
-          <RoutingCondition id="routing-condition-1" {...conditionProps}>
+          <RoutingCondition
+            id="routing-condition-1"
+            label="AND"
+            {...conditionProps}
+          >
             <MultipleChoiceAnswerOptionsSelector
               {...multiChoiceAnswerProps}
               options={sections[0].pages[1].options}

@@ -4,7 +4,7 @@ import NotFoundPage from "./";
 
 let component;
 
-describe("CanvasSection", () => {
+describe("NotFoundPage", () => {
   beforeEach(() => {
     component = shallow(<NotFoundPage />);
   });

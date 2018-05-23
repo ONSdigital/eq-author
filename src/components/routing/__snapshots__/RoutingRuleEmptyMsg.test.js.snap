@@ -13,6 +13,7 @@ exports[`components/RoutingRuleEmptyMsg should render children 1`] = `
     naked={true}
     onClick={[Function]}
     small={true}
+    variant="primary"
   >
     <IconText
       hideText={false}

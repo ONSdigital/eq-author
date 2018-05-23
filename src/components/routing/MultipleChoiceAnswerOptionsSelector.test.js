@@ -10,7 +10,6 @@ let wrapper, mockHandlers;
 describe("components/MultipleChoiceAnswerOptionsSelector", () => {
   beforeEach(() => {
     mockHandlers = {
-      onSelectAll: jest.fn(),
       onOptionSelectionChange: jest.fn()
     };
 
@@ -32,10 +31,5 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
       .first()
       .simulate("change");
     expect(mockHandlers.onOptionSelectionChange).toHaveBeenCalled();
-  });
-
-  it("should handle 'select all' button", () => {
-    wrapper.find("[data-test='btn-select-all']").simulate("click");
-    expect(mockHandlers.onSelectAll).toHaveBeenCalled();
   });
 });

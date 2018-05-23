@@ -56,11 +56,5 @@ exports[`components/MultipleChoiceAnswerOptionsSelector should render consistent
   >
     Consectetur Ultricies Purus Elit Fermentum
   </ToggleChip>
-  <TextButton
-    data-test="btn-select-all"
-    onClick={[Function]}
-  >
-    Select all
-  </TextButton>
 </MultipleChoiceAnswerOptionsSelector__MultipleChoiceAnswerOptions>
 `;

@@ -51,6 +51,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
       gutters={false}
     >
       <RoutingCondition__RemoveButton
+        data-test="btn-remove"
         disabled={false}
         onClick={[Function]}
       >
