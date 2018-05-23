@@ -40,12 +40,6 @@ export const tertiaryButton = css`
     --color-text: ${colors.white};
     --color-bg: ${colors.primary};
   }
-
-  &:focus {
-    border-color: ${colors.primary};
-    box-shadow: 0 0 0 3px ${colors.tertiary}, inset 0 0 0 1px ${colors.primary};
-    outline: none;
-  }
 `;
 
 export const tertiaryLightButton = css`
