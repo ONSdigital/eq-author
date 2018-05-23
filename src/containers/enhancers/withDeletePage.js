@@ -4,7 +4,7 @@ import { remove } from "lodash";
 import findById from "utils/findById";
 import fragment from "graphql/sectionFragment.graphql";
 import getNextPage from "utils/getNextOnDelete";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 
 export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
   const { questionnaire, history, onAddPage, pageId: currentPageId } = ownProps;
@@ -18,7 +18,13 @@ export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
   if (currentPageId === deletedPageId) {
     const page = getNextPage(section.pages, currentPageId);
 
-    history.push(getLink(questionnaire.id, sectionId, page.id));
+    history.push(
+      buildPagePath({
+        questionnaireId: questionnaire.id,
+        sectionId,
+        pageId: page.id
+      })
+    );
   }
 
   return Promise.resolve();

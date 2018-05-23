@@ -1,12 +1,14 @@
 import { graphql } from "react-apollo";
 import fragment from "graphql/sectionFragment.graphql";
 import createQuestionPageMutation from "graphql/createQuestionPage.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 import { get, tap } from "lodash/fp";
 
 export const redirectToNewPage = ({ history, questionnaireId }) => page => {
   const { id, section } = page;
-  history.push(getLink(questionnaireId, section.id, id));
+  history.push(
+    buildPagePath({ questionnaireId, sectionId: section.id, pageId: id })
+  );
 };
 
 export const createUpdater = (sectionId, position) => (proxy, result) => {

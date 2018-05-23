@@ -1,18 +1,19 @@
-import { pick, memoize, curry } from "lodash";
+import { memoize, curry } from "lodash";
 import pathToRegexp from "path-to-regexp";
 
-export const getLink = (questionnaireId, sectionId, pageId) =>
-  pageId
-    ? `/questionnaire/${questionnaireId}/design/${sectionId}/${pageId}`
-    : `/questionnaire/${questionnaireId}/design/${sectionId}`;
+// react-router will eventually offer this exact function.
+// at that point we can drop this component
+const compile = memoize(path => pathToRegexp.compile(path));
+export const generatePath = curry((path, params) => compile(path)(params));
 
-export const QUESTIONNAIRE_ROUTE = `/questionnaire/:questionnaireId`;
-export const SECTION_ROUTE = `${QUESTIONNAIRE_ROUTE}/:sectionId`;
-export const PAGE_ROUTE = `${SECTION_ROUTE}/:pageId`;
+export const Routes = {
+  HOME: "/",
+  SIGN_IN: "/sign-in",
+  QUESTIONNAIRE: `/questionnaire/:questionnaireId`,
+  SECTION: `/questionnaire/:questionnaireId/:sectionId(\\d+)/design`,
+  PAGE: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/design`
+};
 
-const compile = memoize(url => pathToRegexp.compile(url));
-
-export const bindParams = curry((url, params) => {
-  const compiled = compile(url);
-  return compiled(params);
-});
+export const buildSectionPath = generatePath(Routes.SECTION);
+export const buildPagePath = generatePath(Routes.PAGE);
+export const buildQuestionnairePath = generatePath(Routes.QUESTIONNAIRE);

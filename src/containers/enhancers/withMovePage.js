@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 import movePageMutation from "graphql/movePage.graphql";
 import fragment from "graphql/fragments/movePage.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 import { remove } from "lodash";
 
 export const createUpdater = ({ from, to }) => (proxy, result) => {
@@ -38,7 +38,13 @@ const redirect = ({ history, match }, { from, to }) => {
   const movedToDifferentSection = from.sectionId !== to.sectionId;
 
   if (movedToDifferentSection) {
-    history.replace(getLink(match.params.questionnaireId, to.sectionId, to.id));
+    history.replace(
+      buildPagePath({
+        questionnaireId: match.params.questionnaireId,
+        sectionId: to.sectionId,
+        pageId: to.id
+      })
+    );
   }
 };
 

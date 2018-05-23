@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors, radius } from "constants/theme";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath, buildSectionPath } from "utils/UrlUtils";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -44,19 +44,14 @@ const TabsBody = styled.div`
 const DisabledTab = Tab.withComponent("span");
 
 export const UnwrappedTabs = ({ match, children }) => {
+  const url = match.params.pageId
+    ? buildPagePath(match.params)
+    : buildSectionPath(match.params);
+
   return (
     <div>
       <TabsContainer>
-        <Tab
-          to={getLink(
-            match.params.questionnaireId,
-            match.params.sectionId,
-            match.params.pageId
-          )}
-          activeClassName="selected"
-        >
-          Builder
-        </Tab>
+        <Tab to={url}>Builder</Tab>
         <DisabledTab>Routing</DisabledTab>
       </TabsContainer>
       <TabsBody>{children}</TabsBody>

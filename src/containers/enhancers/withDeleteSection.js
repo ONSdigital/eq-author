@@ -3,7 +3,7 @@ import deleteSectionMutation from "graphql/deleteSection.graphql";
 import { remove, find } from "lodash";
 import fragment from "graphql/questionnaireFragment.graphql";
 import getNextSection from "utils/getNextOnDelete";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 
 const pluralize = (count, word, plural) => {
   if (!plural) {
@@ -28,7 +28,13 @@ export const handleDeletion = (ownProps, questionnaireId, deletedSectionId) => {
     const section = getNextSection(questionnaire.sections, currentSectionId);
     const firstPage = section.pages[0];
 
-    history.push(getLink(questionnaire.id, section.id, firstPage.id));
+    history.push(
+      buildPagePath({
+        questionnaireId: questionnaire.id,
+        sectionId: section.id,
+        pageId: firstPage.id
+      })
+    );
   }
 
   return Promise.resolve();

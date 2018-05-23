@@ -9,6 +9,8 @@ import { Switch } from "react-router-dom";
 import { Route, Router } from "react-router";
 import { ApolloProvider } from "react-apollo";
 import PrivateRoute from "components/PrivateRoute";
+import RedirectRoute from "components/RedirectRoute";
+import { Routes as RoutePaths } from "utils/UrlUtils";
 
 import QuestionnairesPage from "containers/QuestionnairesPage";
 import SignInPage from "containers/SignInPage";
@@ -20,15 +22,23 @@ import { isSignedIn } from "redux/auth/reducer";
 export const Routes = ({ isSignedIn, ...otherProps }) => (
   <Router {...otherProps}>
     <Switch>
-      <Route path="/sign-in" component={SignInPage} exact />
+      <Route path={RoutePaths.SIGN_IN} component={SignInPage} exact />
       <PrivateRoute
-        path="/"
+        path={RoutePaths.HOME}
         component={QuestionnairesPage}
         isSignedIn={isSignedIn}
         exact
       />
+      <RedirectRoute
+        from="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+        to={RoutePaths.PAGE}
+      />
+      <RedirectRoute
+        from="/questionnaire/:questionnaireId/design/:sectionId"
+        to={RoutePaths.SECTION}
+      />
       <PrivateRoute
-        path="/questionnaire/:questionnaireId/design/:sectionId?/:pageId?"
+        path={RoutePaths.QUESTIONNAIRE}
         exact={false}
         component={QuestionnaireDesignPage}
         isSignedIn={isSignedIn}

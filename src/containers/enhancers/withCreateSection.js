@@ -1,11 +1,16 @@
 import { graphql } from "react-apollo";
 import createSectionMutation from "graphql/createSection.graphql";
 import fragment from "graphql/questionnaireFragment.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildSectionPath } from "utils/UrlUtils";
 import { get, tap } from "lodash/fp";
 
 export const redirectToNewSection = ({ history, questionnaire }) => section => {
-  history.push(getLink(questionnaire.id, section.id));
+  history.push(
+    buildSectionPath({
+      questionnaireId: questionnaire.id,
+      sectionId: section.id
+    })
+  );
 };
 
 export const createUpdater = questionnaireId => (proxy, result) => {

@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { getLink } from "utils/UrlUtils";
-
+import { buildPagePath } from "utils/UrlUtils";
 import NavLink from "./NavLink";
 import getTextFromHTML from "utils/getTextFromHTML";
 import PageIcon from "./icon-questionpage.svg?inline";
@@ -24,7 +23,7 @@ const PageNavItem = ({
 }) => (
   <StyledPageItem data-test="page-item" {...otherProps}>
     <NavLink
-      to={getLink(questionnaireId, sectionId, pageId)}
+      to={buildPagePath({ questionnaireId, sectionId, pageId })}
       title={getTextFromHTML(title)}
       icon={PageIcon}
       data-test="nav-page-link"

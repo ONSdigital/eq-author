@@ -10,6 +10,7 @@ import QuestionPageRoute from "components/QuestionPageRoute";
 import SectionRoute from "components/SectionRoute";
 import { find, flatMap } from "lodash";
 import { Titled } from "react-titled";
+import { Routes } from "utils/UrlUtils";
 
 class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -56,16 +57,8 @@ class QuestionnaireDesignPage extends Component {
             </Column>
             <Column>
               <Switch location={location}>
-                <Route
-                  path="/questionnaire/:questionnaireId/design/:sectionId"
-                  component={SectionRoute}
-                  exact
-                />
-                <Route
-                  path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
-                  component={QuestionPageRoute}
-                  exact
-                />
+                <Route path={Routes.SECTION} component={SectionRoute} exact />
+                <Route path={Routes.PAGE} component={QuestionPageRoute} exact />
               </Switch>
             </Column>
           </Grid>
