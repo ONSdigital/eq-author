@@ -1,29 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/BaseLayout should render 1`] = `
-<SideEffect(DocumentTitle)
-  title="BaseLayout Test - Author"
+<GetContext
+  title={[Function]}
 >
   <App>
     <BaseLayout__Wrapper>
-      <Connect(UnconnectedHeader) />
-      <BaseLayout__Main>
-        Children
-      </BaseLayout__Main>
-    </BaseLayout__Wrapper>
-  </App>
-</SideEffect(DocumentTitle)>
-`;
-
-exports[`components/BaseLayout should render a Nav 1`] = `
-<SideEffect(DocumentTitle)
-  title="BaseLayout Test - Author"
->
-  <App>
-    <BaseLayout__Wrapper>
-      <Connect(UnconnectedHeader)
+      <Connect(withRouter(UnconnectedHeader))
         questionnaire={
           Object {
+            "id": "1",
             "title": "Questionnaire",
           }
         }
@@ -33,16 +19,23 @@ exports[`components/BaseLayout should render a Nav 1`] = `
       </BaseLayout__Main>
     </BaseLayout__Wrapper>
   </App>
-</SideEffect(DocumentTitle)>
+</GetContext>
 `;
 
 exports[`components/BaseLayout should render a title 1`] = `
-<SideEffect(DocumentTitle)
-  title="BaseLayout Test - Author"
+<GetContext
+  title={[Function]}
 >
   <App>
     <BaseLayout__Wrapper>
-      <Connect(UnconnectedHeader) />
+      <Connect(withRouter(UnconnectedHeader))
+        questionnaire={
+          Object {
+            "id": "1",
+            "title": "Questionnaire",
+          }
+        }
+      />
       <BaseLayout__Main>
         <ScrollPane
           permanentScrollBar={false}
@@ -55,5 +48,5 @@ exports[`components/BaseLayout should render a title 1`] = `
       </BaseLayout__Main>
     </BaseLayout__Wrapper>
   </App>
-</SideEffect(DocumentTitle)>
+</GetContext>
 `;

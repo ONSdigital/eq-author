@@ -40,7 +40,7 @@ export default {
   match: PropTypes.shape({
     params: PropTypes.shape({
       questionnaireId: PropTypes.string.isRequired,
-      sectionId: PropTypes.string.isRequired,
+      sectionId: PropTypes.string,
       pageId: PropTypes.string
     }).isRequired
   }).isRequired,

@@ -8,13 +8,7 @@ Object {
 }
 `;
 
-exports[`containers/withQuestionnaire mapResultsToProps should handle loading 1`] = `
-Object {
-  "loading": true,
-}
-`;
-
-exports[`containers/withQuestionnaire mapResultsToProps should handle no section selected 1`] = `
+exports[`containers/withQuestionnaire mapResultsToProps should select data 1`] = `
 Object {
   "loading": false,
   "questionnaire": Object {
@@ -32,42 +26,6 @@ Object {
       },
     ],
     "title": "My Questionnaire",
-  },
-}
-`;
-
-exports[`containers/withQuestionnaire mapResultsToProps should handle questionnaire data 1`] = `
-Object {
-  "loading": false,
-  "page": Object {
-    "id": "3",
-    "title": "My Page",
-  },
-  "questionnaire": Object {
-    "id": "1",
-    "sections": Array [
-      Object {
-        "id": "2",
-        "pages": Array [
-          Object {
-            "id": "3",
-            "title": "My Page",
-          },
-        ],
-        "title": "My Section",
-      },
-    ],
-    "title": "My Questionnaire",
-  },
-  "section": Object {
-    "id": "2",
-    "pages": Array [
-      Object {
-        "id": "3",
-        "title": "My Page",
-      },
-    ],
-    "title": "My Section",
   },
 }
 `;

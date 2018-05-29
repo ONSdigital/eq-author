@@ -1,30 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotFoundPage should render 1`] = `
-<BaseLayout
-  docTitle="Page not found"
-  hasNav={false}
->
-  <Grid
-    align="top"
-    fillHeight={true}
+<BaseLayout>
+  <GetContext
+    title={[Function]}
   >
-    <Column
-      cols={6}
-      offset={3}
+    <Grid
+      align="top"
+      fillHeight={true}
     >
-      <NotFoundPage__CenteredPane>
-        <NotFoundPage__Pencil />
-        <NotFoundPage__Title>
-          404 – Sorry, the page you were looking for was not found.
-        </NotFoundPage__Title>
-        <Link__StyledLink
-          href="/"
-        >
-          Back to home
-        </Link__StyledLink>
-      </NotFoundPage__CenteredPane>
-    </Column>
-  </Grid>
+      <Column
+        cols={6}
+        offset={3}
+      >
+        <NotFoundPage__CenteredPane>
+          <NotFoundPage__Pencil />
+          <NotFoundPage__Title>
+            404 – Sorry, the page you were looking for was not found.
+          </NotFoundPage__Title>
+          <Link__StyledLink
+            href="/"
+          >
+            Back to home
+          </Link__StyledLink>
+        </NotFoundPage__CenteredPane>
+      </Column>
+    </Grid>
+  </GetContext>
 </BaseLayout>
 `;

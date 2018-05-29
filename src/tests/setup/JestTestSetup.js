@@ -2,7 +2,7 @@ import "animation-frame-polyfill";
 import "jest-styled-components";
 
 import Enzyme from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import Adapter from "./ReactSixteenAdapter";
 
 Enzyme.configure({ adapter: new Adapter() });
 

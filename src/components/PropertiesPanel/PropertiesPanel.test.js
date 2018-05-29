@@ -1,5 +1,5 @@
 import React from "react";
-import { PropertiesPanel } from "components/PropertiesPanel";
+import PropertiesPanel from "components/PropertiesPanel";
 import { shallow } from "enzyme";
 import { merge } from "lodash";
 

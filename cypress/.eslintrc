@@ -1,6 +1,7 @@
 {
   "globals": {
-    "cy": false
+    "cy": false,
+    "Cypress": false
   },
   "rules": {
     "jest/valid-expect": 0

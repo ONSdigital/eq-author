@@ -2,6 +2,7 @@
 
 exports[`SectionEditor should render 1`] = `
 <SectionEditor__SectionCanvas
+  data-test="section-editor"
   id={null}
 >
   <DeleteConfirmDialog
@@ -64,6 +65,7 @@ exports[`SectionEditor should render 1`] = `
 
 exports[`SectionEditor should render 2`] = `
 <SectionEditor__SectionCanvas
+  data-test="section-editor"
   id={null}
 >
   <DeleteConfirmDialog

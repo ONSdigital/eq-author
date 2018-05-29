@@ -60,9 +60,6 @@ export const UnwrappedTabs = ({ match, children }) => {
 };
 
 UnwrappedTabs.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire,
-  section: CustomPropTypes.section,
-  page: CustomPropTypes.page,
   match: CustomPropTypes.match,
   children: PropTypes.node.isRequired
 };

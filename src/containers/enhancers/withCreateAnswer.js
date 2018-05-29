@@ -18,7 +18,7 @@ export const createUpdater = pageId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate, ownProps }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onAddAnswer(pageId, type) {
     const answer = {
       type,

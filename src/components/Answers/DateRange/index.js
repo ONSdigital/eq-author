@@ -21,7 +21,7 @@ const Fieldset = styled.div`
 `;
 
 const DateRange = ({ answer, onChange, onUpdate }) => (
-  <Wrapper>
+  <Wrapper data-test="date-range-editor">
     <Fieldset>
       <UnwrappedDate
         onChange={onChange}

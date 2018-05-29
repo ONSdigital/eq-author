@@ -1,6 +1,6 @@
 import getQuestionnaireQuery from "graphql/getQuestionnaire.graphql";
 import { graphql } from "react-apollo";
-import { get, pick, flow } from "lodash/fp";
+import { get } from "lodash/fp";
 
 export const mapResultsToProps = get("data");
 

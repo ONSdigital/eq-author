@@ -40,7 +40,7 @@ describe("MovePageModal/MovePageModal", () => {
         isOpen
         onClose={jest.fn()}
         questionnaire={questionnaire}
-        section={currentSection}
+        sectionId={currentSection.id}
         page={currentPage}
         selectedPosition={0}
         onMovePage={jest.fn()}

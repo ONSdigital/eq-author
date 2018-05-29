@@ -17,27 +17,9 @@ const questionnaire = {
 
 describe("containers/withQuestionnaire", () => {
   describe("mapResultsToProps", () => {
-    it("should handle loading", () => {
+    it("should select data", () => {
       const props = mapResultsToProps({
-        data: { loading: true, questionnaire: undefined },
-        ownProps: { sectionId: "1", pageId: "2" }
-      });
-      expect(props).toMatchSnapshot();
-    });
-
-    it("should handle questionnaire data", () => {
-      const props = mapResultsToProps({
-        data: { loading: false, questionnaire },
-        ownProps: { sectionId: section.id, pageId: page.id }
-      });
-
-      expect(props).toMatchSnapshot();
-    });
-
-    it("should handle no section selected", () => {
-      const props = mapResultsToProps({
-        data: { loading: false, questionnaire },
-        ownProps: {}
+        data: { loading: false, questionnaire }
       });
 
       expect(props).toMatchSnapshot();
@@ -46,7 +28,10 @@ describe("containers/withQuestionnaire", () => {
 
   describe("mapOptionsToProps", () => {
     it("should pass questionnaireId as a variable", () => {
-      const options = mapPropToOptions({ questionnaireId: "1" });
+      const match = {
+        params: { questionnaireId: "1" }
+      };
+      const options = mapPropToOptions({ match });
       expect(options).toMatchSnapshot();
     });
   });

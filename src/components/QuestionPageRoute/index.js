@@ -8,10 +8,9 @@ import { Titled } from "react-titled";
 import Tabs from "components/Tabs";
 import QuestionPageQuery from "./QuestionPageQuery";
 import QuestionPageEditor from "components/QuestionPageEditor";
-import AnswerTypeSelector from "components/AnswerTypeSelector";
 import IconButtonDelete from "components/IconButtonDelete";
-import { Toolbar, Buttons } from "components/EditorSurface/Toolbar";
-import IconMove from "../EditorSurface/icon-move.svg?inline";
+import { Toolbar, Buttons } from "components/EditorToolbar";
+import IconMove from "components/EditorToolbar/icon-move.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
 
@@ -39,10 +38,8 @@ import withDeletePage from "containers/enhancers/withDeletePage";
 import getTextFromHTML from "utils/getTextFromHTML";
 import Loading from "components/Loading";
 import Error from "components/Error";
-
-const AddAnswerSegment = styled.div`
-  padding: 1em 2em 2em;
-`;
+import withCreatePage from "containers/enhancers/withCreatePage";
+import { withApollo } from "react-apollo";
 
 const Centered = styled.div`
   display: flex;
@@ -59,12 +56,13 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     match: CustomPropTypes.match,
     onAddAnswer: PropTypes.func.isRequired,
     onDeletePage: PropTypes.func.isRequired,
+    onAddPage: PropTypes.func.isRequired,
     onMovePage: PropTypes.func.isRequired,
     error: PropTypes.object, // eslint-disable-line
     loading: PropTypes.bool.isRequired,
     data: PropTypes.shape({
       questionPage: CustomPropTypes.page
-    }).isRequired
+    })
   };
 
   state = {
@@ -98,6 +96,12 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     const { params: { pageId, sectionId } } = match;
 
     this.handleCloseDeleteConfirmDialog(() => onDeletePage(sectionId, pageId));
+  };
+
+  handleAddPage = () => {
+    const { match: { params }, data: { questionPage } } = this.props;
+
+    this.props.onAddPage(params.sectionId, questionPage.position + 1);
   };
 
   handleAddAnswer = answerType => {
@@ -155,13 +159,9 @@ export class UnwrappedQuestionPageRoute extends React.Component {
           showDeleteConfirmDialog={showDeleteConfirmDialog}
           onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
           onDeletePageConfirm={this.handleDeletePageConfirm}
+          onAddPage={this.handleAddPage}
+          onAddAnswer={this.handleAddAnswer}
         />
-        <AddAnswerSegment>
-          <AnswerTypeSelector
-            onSelect={this.handleAddAnswer}
-            data-test="add-answer"
-          />
-        </AddAnswerSegment>
       </Titled>
     );
   };
@@ -199,7 +199,9 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 
 const withQuestionPageEditing = flowRight(
   connect(null, { raiseToast }),
+  withApollo,
   withMovePage,
+  withCreatePage,
   withUpdatePage,
   withDeletePage,
   withUpdateAnswer,
@@ -214,6 +216,8 @@ const withQuestionPageEditing = flowRight(
 
 export default withQuestionPageEditing(props => (
   <QuestionPageQuery id={props.match.params.pageId}>
-    {innerProps => <UnwrappedQuestionPageRoute {...innerProps} {...props} />}
+    {innerProps => {
+      return <UnwrappedQuestionPageRoute {...innerProps} {...props} />;
+    }}
   </QuestionPageQuery>
 ));

@@ -4,9 +4,9 @@ import {
   redirectToNewSection
 } from "./withCreateSection";
 import fragment from "graphql/questionnaireFragment.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildSectionPath } from "utils/UrlUtils";
 
-describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
+describe("withCreateSection", () => {
   const questionnaire = {
     id: "1",
     title: "My Questionnaire",
@@ -37,8 +37,14 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
     };
 
     ownProps = {
+      questionnaire,
       questionnaireId: questionnaire.id,
-      history
+      history,
+      match: {
+        params: {
+          questionnaireId: questionnaire.id
+        }
+      }
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -65,10 +71,13 @@ describe("containers/QuestionnaireDesignPage/withCreateSection", () => {
 
   describe("redirectToNewSection", () => {
     it("should redirect to the correct url", () => {
-      redirectToNewSection(ownProps)(result);
+      redirectToNewSection(ownProps)(newSection);
 
       expect(history.push).toHaveBeenCalledWith(
-        getLink(questionnaire.id, newSection.id)
+        buildSectionPath({
+          questionnaireId: questionnaire.id,
+          sectionId: newSection.id
+        })
       );
     });
   });

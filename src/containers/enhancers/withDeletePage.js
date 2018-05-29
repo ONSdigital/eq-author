@@ -1,31 +1,29 @@
 import { graphql } from "react-apollo";
 import deletePageMutation from "graphql/deletePage.graphql";
 import { remove } from "lodash";
-import findById from "utils/findById";
 import fragment from "graphql/sectionFragment.graphql";
 import getNextPage from "utils/getNextOnDelete";
 import { buildPagePath } from "utils/UrlUtils";
 
-export const handleDeletion = (ownProps, sectionId, deletedPageId) => {
-  const { questionnaire, history, onAddPage, pageId: currentPageId } = ownProps;
-
-  const section = findById(questionnaire.sections, sectionId);
+export const handleDeletion = (
+  { history, onAddPage, match: { params } },
+  section
+) => {
+  const { pageId, sectionId, questionnaireId } = params;
 
   if (section.pages.length === 1) {
-    return onAddPage(sectionId);
+    return onAddPage(params.sectionId);
   }
 
-  if (currentPageId === deletedPageId) {
-    const page = getNextPage(section.pages, currentPageId);
+  const page = getNextPage(section.pages, pageId);
 
-    history.push(
-      buildPagePath({
-        questionnaireId: questionnaire.id,
-        sectionId,
-        pageId: page.id
-      })
-    );
-  }
+  history.push(
+    buildPagePath({
+      questionnaireId,
+      sectionId,
+      pageId: page.id
+    })
+  );
 
   return Promise.resolve();
 };
@@ -53,8 +51,14 @@ export const createUpdater = (sectionId, pageId) => (proxy, result) => {
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeletePage(sectionId, pageId) {
+    const { client } = ownProps;
     const page = { id: pageId };
     const update = createUpdater(sectionId, pageId);
+
+    const section = client.readFragment({
+      id: `Section${sectionId}`,
+      fragment
+    });
 
     const mutation = mutate({
       variables: { input: page },
@@ -62,7 +66,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     });
 
     return mutation
-      .then(() => handleDeletion(ownProps, sectionId, pageId))
+      .then(() => handleDeletion(ownProps, section))
       .then(() => displayToast(ownProps, sectionId, pageId))
       .then(() => mutation);
   }

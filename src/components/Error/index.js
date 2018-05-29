@@ -14,7 +14,7 @@ const Message = styled.p`
 `;
 
 const Error = ({ children }) => (
-  <Container>
+  <Container data-test="error">
     <Icon />
     <Message role="alert">{children}</Message>
   </Container>

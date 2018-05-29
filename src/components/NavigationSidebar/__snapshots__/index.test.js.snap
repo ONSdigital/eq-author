@@ -1,37 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NavigationSidebar should only render container if loading 1`] = `
+<NavigationSidebar__Container
+  data-test="side-nav"
+/>
+`;
+
 exports[`NavigationSidebar should render 1`] = `
 <NavigationSidebar__Container
   data-test="side-nav"
 >
-  <NavigationHeader
-    data-test="nav-section-header"
-    onAddPage={[Function]}
-    onAddSection={[Function]}
-    onUpdateQuestionnaire={[Function]}
-    questionnaire={
-      Object {
-        "id": "1",
-        "sections": Array [
-          Object {
-            "id": "3",
-            "pages": Array [
-              Object {
-                "id": "2",
-                "position": 0,
-                "title": "Page",
-              },
-            ],
-            "title": "Section",
-          },
-        ],
-        "title": "Questionnaire",
-      }
-    }
-  />
-  <NavigationSidebar__NavigationScrollPane>
-    <SectionNav
-      currentSectionId="3"
+  <React.Fragment>
+    <NavigationHeader
+      data-test="nav-section-header"
+      onAddPage={[Function]}
+      onAddSection={[Function]}
+      onUpdateQuestionnaire={[Function]}
       questionnaire={
         Object {
           "id": "1",
@@ -51,8 +35,30 @@ exports[`NavigationSidebar should render 1`] = `
           "title": "Questionnaire",
         }
       }
-      transitionDuration={200}
     />
-  </NavigationSidebar__NavigationScrollPane>
+    <NavigationSidebar__NavigationScrollPane>
+      <SectionNav
+        questionnaire={
+          Object {
+            "id": "1",
+            "sections": Array [
+              Object {
+                "id": "3",
+                "pages": Array [
+                  Object {
+                    "id": "2",
+                    "position": 0,
+                    "title": "Page",
+                  },
+                ],
+                "title": "Section",
+              },
+            ],
+            "title": "Questionnaire",
+          }
+        }
+      />
+    </NavigationSidebar__NavigationScrollPane>
+  </React.Fragment>
 </NavigationSidebar__Container>
 `;

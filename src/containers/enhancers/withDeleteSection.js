@@ -4,40 +4,43 @@ import { remove, find } from "lodash";
 import fragment from "graphql/questionnaireFragment.graphql";
 import getNextSection from "utils/getNextOnDelete";
 import { buildPagePath } from "utils/UrlUtils";
+import gql from "graphql-tag";
 
-const pluralize = (count, word, plural) => {
-  if (!plural) {
-    plural = word + "s";
+const questionnaireFragment = gql`
+  fragment DeleteSectionFragment on Questionnaire {
+    sections {
+      id
+      pages {
+        id
+      }
+    }
   }
+`;
+
+const pluralize = (count, word, plural = word + "s") => {
   return count === 1 ? word : plural;
 };
 
-export const handleDeletion = (ownProps, questionnaireId, deletedSectionId) => {
-  const {
-    questionnaire,
-    history,
-    onAddSection,
-    sectionId: currentSectionId
-  } = ownProps;
+export const handleDeletion = (
+  { history, onAddSection, match: { params }, client },
+  questionnaire
+) => {
+  const { sectionId, questionnaireId } = params;
 
   if (questionnaire.sections.length === 1) {
     return onAddSection();
   }
 
-  if (currentSectionId === deletedSectionId) {
-    const section = getNextSection(questionnaire.sections, currentSectionId);
-    const firstPage = section.pages[0];
+  const nextSection = getNextSection(questionnaire.sections, sectionId);
+  const nextPage = nextSection.pages[0];
 
-    history.push(
-      buildPagePath({
-        questionnaireId: questionnaire.id,
-        sectionId: section.id,
-        pageId: firstPage.id
-      })
-    );
-  }
-
-  return Promise.resolve();
+  history.push(
+    buildPagePath({
+      questionnaireId,
+      sectionId: nextSection.id,
+      pageId: nextPage.id
+    })
+  );
 };
 
 export const deleteUpdater = (questionnaireId, sectionId) => (
@@ -56,10 +59,14 @@ export const deleteUpdater = (questionnaireId, sectionId) => (
   });
 };
 
-export const displayToast = (ownProps, questionnaireId, sectionId) => {
-  const numberOfDeletedPages = find(ownProps.questionnaire.sections, {
-    id: sectionId
+export const displayToast = (ownProps, questionnaire) => {
+  const { match: { params } } = ownProps;
+  const { sectionId, questionnaireId } = params;
+
+  const numberOfDeletedPages = find(questionnaire.sections, {
+    id: params.sectionId
   }).pages.length;
+
   ownProps.raiseToast(
     `Section${sectionId}`,
     `Section + ${numberOfDeletedPages} ${pluralize(
@@ -68,7 +75,7 @@ export const displayToast = (ownProps, questionnaireId, sectionId) => {
     )} deleted`,
     "undeleteSection",
     {
-      questionnaireId: ownProps.questionnaireId,
+      questionnaireId,
       sectionId
     }
   );
@@ -76,8 +83,14 @@ export const displayToast = (ownProps, questionnaireId, sectionId) => {
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteSection(sectionId) {
+    const { match: { params }, client } = ownProps;
     const section = { id: sectionId };
-    const update = deleteUpdater(ownProps.questionnaireId, sectionId);
+    const update = deleteUpdater(params.questionnaireId, sectionId);
+
+    const questionnaire = client.readFragment({
+      id: `Questionnaire${params.questionnaireId}`,
+      fragment: questionnaireFragment
+    });
 
     const mutation = mutate({
       variables: { input: section },
@@ -85,8 +98,8 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     });
 
     return mutation
-      .then(() => handleDeletion(ownProps, ownProps.questionnaireId, sectionId))
-      .then(() => displayToast(ownProps, ownProps.questionnaireId, sectionId))
+      .then(() => handleDeletion(ownProps, questionnaire))
+      .then(() => displayToast(ownProps, questionnaire))
       .then(() => mutation);
   }
 });

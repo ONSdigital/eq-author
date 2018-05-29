@@ -124,7 +124,7 @@ export class UnconnectedHeader extends React.Component {
   };
 
   render() {
-    const { questionnaire, match } = this.props;
+    const { questionnaire } = this.props;
 
     return (
       <StyledHeader>

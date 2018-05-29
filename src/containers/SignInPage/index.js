@@ -73,6 +73,10 @@ export class UnconnectedSignInPage extends React.Component {
     this.props.signInUser(user);
   };
 
+  renderTitle(title) {
+    return `Sign In - ${title}`;
+  }
+
   render() {
     const { verifiedAuthStatus, isSignedIn, returnURL } = this.props;
 
@@ -86,7 +90,7 @@ export class UnconnectedSignInPage extends React.Component {
 
     return (
       <BaseLayout>
-        <Titled title={title => `Sign In - ${title}`}>
+        <Titled title={this.renderTitle}>
           <Centered>
             <Title>Sign in</Title>
             <SignInPanel>

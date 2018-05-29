@@ -9,7 +9,6 @@ import Button from "components/Button";
 import QuestionnairesTable from "./QuestionnairesTable";
 import MainCanvas from "components/MainCanvas";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
-import Header from "components/Header";
 
 const StyledButtonGroup = styled(ButtonGroup)`
   margin: 0 0 1em;

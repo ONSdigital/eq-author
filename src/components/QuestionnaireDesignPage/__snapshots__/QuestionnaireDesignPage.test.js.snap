@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
+exports[`QuestionnaireDesignPage getTitle should display existing title if loading 1`] = `"foo"`;
+
+exports[`QuestionnaireDesignPage getTitle should display questionnaire title if no longer loading 1`] = `"hello world - foo"`;
+
+exports[`QuestionnaireDesignPage should render 1`] = `
 <BaseLayout
-  docTitle="hello world"
   questionnaire={
     Object {
       "id": "3",
@@ -37,166 +40,25 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
     }
   }
 >
-  <Grid
-    align="top"
-    fillHeight={true}
+  <GetContext
+    title={[Function]}
   >
-    <Column
-      cols={2}
-      gutters={false}
+    <Grid
+      align="top"
+      fillHeight={true}
     >
-      <Connect(withRouter(Apollo(Apollo(Apollo(Apollo(NavigationSidebar))))))
-        currentPageId="1"
-        page={
-          Object {
-            "answers": Array [
-              Object {
-                "id": "1",
-                "label": "",
-                "options": Array [
-                  Object {
-                    "id": "1",
-                  },
-                ],
-              },
-            ],
-            "description": "",
-            "guidance": "",
-            "id": "1",
-            "position": 0,
-            "title": "",
-            "type": "General",
-          }
-        }
-        questionnaire={
-          Object {
-            "id": "3",
-            "sections": Array [
-              Object {
-                "id": "2",
-                "pages": Array [
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "1",
-                        "label": "",
-                        "options": Array [
-                          Object {
-                            "id": "1",
-                          },
-                        ],
-                      },
-                    ],
-                    "description": "",
-                    "guidance": "",
-                    "id": "1",
-                    "position": 0,
-                    "title": "",
-                    "type": "General",
-                  },
-                ],
-                "title": "",
-              },
-            ],
-            "title": "hello world",
-          }
-        }
-        questionnaireId="3"
-        section={
-          Object {
-            "id": "2",
-            "pages": Array [
-              Object {
-                "answers": Array [
-                  Object {
-                    "id": "1",
-                    "label": "",
-                    "options": Array [
-                      Object {
-                        "id": "1",
-                      },
-                    ],
-                  },
-                ],
-                "description": "",
-                "guidance": "",
-                "id": "1",
-                "position": 0,
-                "title": "",
-                "type": "General",
-              },
-            ],
-            "title": "",
-          }
-        }
-      />
-    </Column>
-    <Column
-      cols={12}
-      gutters={false}
-    >
-      <ScrollPane
-        permanentScrollBar={true}
+      <Column
+        cols={2}
+        gutters={false}
       >
-        <QuestionnaireDesignPage__Margin>
-          <MainCanvas>
-            <Connect(UnconnectedSavingIndicator) />
-            <withRouter(UnwrappedTabs)
-              page={
-                Object {
-                  "answers": Array [
-                    Object {
-                      "id": "1",
-                      "label": "",
-                      "options": Array [
-                        Object {
-                          "id": "1",
-                        },
-                      ],
-                    },
-                  ],
-                  "description": "",
-                  "guidance": "",
-                  "id": "1",
-                  "position": 0,
-                  "title": "",
-                  "type": "General",
-                }
-              }
-              questionnaire={
-                Object {
-                  "id": "3",
-                  "sections": Array [
-                    Object {
-                      "id": "2",
-                      "pages": Array [
-                        Object {
-                          "answers": Array [
-                            Object {
-                              "id": "1",
-                              "label": "",
-                              "options": Array [
-                                Object {
-                                  "id": "1",
-                                },
-                              ],
-                            },
-                          ],
-                          "description": "",
-                          "guidance": "",
-                          "id": "1",
-                          "position": 0,
-                          "title": "",
-                          "type": "General",
-                        },
-                      ],
-                      "title": "",
-                    },
-                  ],
-                  "title": "hello world",
-                }
-              }
-              section={
+        <withRouter(Apollo(Apollo(NavigationSidebar)))
+          data-test="side-nav"
+          loading={false}
+          onAddPage={[Function]}
+          questionnaire={
+            Object {
+              "id": "3",
+              "sections": Array [
                 Object {
                   "id": "2",
                   "pages": Array [
@@ -221,180 +83,58 @@ exports[`QuestionnaireDesignPage should render form when loaded 1`] = `
                     },
                   ],
                   "title": "",
-                }
-              }
-            >
-              <Apollo(UnwrappedEditorSurface)
-                onDeletePage={[Function]}
-                onDeleteSection={[Function]}
-                onUpdatePage={[Function]}
-                onUpdateSection={[Function]}
-                page={
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "1",
-                        "label": "",
-                        "options": Array [
-                          Object {
-                            "id": "1",
-                          },
-                        ],
-                      },
-                    ],
-                    "description": "",
-                    "guidance": "",
-                    "id": "1",
-                    "position": 0,
-                    "title": "",
-                    "type": "General",
-                  }
-                }
-                questionnaire={
-                  Object {
-                    "id": "3",
-                    "sections": Array [
-                      Object {
-                        "id": "2",
-                        "pages": Array [
-                          Object {
-                            "answers": Array [
-                              Object {
-                                "id": "1",
-                                "label": "",
-                                "options": Array [
-                                  Object {
-                                    "id": "1",
-                                  },
-                                ],
-                              },
-                            ],
-                            "description": "",
-                            "guidance": "",
-                            "id": "1",
-                            "position": 0,
-                            "title": "",
-                            "type": "General",
-                          },
-                        ],
-                        "title": "",
-                      },
-                    ],
-                    "title": "hello world",
-                  }
-                }
-                section={
-                  Object {
-                    "id": "2",
-                    "pages": Array [
-                      Object {
-                        "answers": Array [
-                          Object {
-                            "id": "1",
-                            "label": "",
-                            "options": Array [
-                              Object {
-                                "id": "1",
-                              },
-                            ],
-                          },
-                        ],
-                        "description": "",
-                        "guidance": "",
-                        "id": "1",
-                        "position": 0,
-                        "title": "",
-                        "type": "General",
-                      },
-                    ],
-                    "title": "",
-                  }
-                }
-              />
-            </withRouter(UnwrappedTabs)>
-          </MainCanvas>
-        </QuestionnaireDesignPage__Margin>
-        <QuestionnaireDesignPage__Centered>
-          <Button
-            data-test="btn-add-page-2"
-            onClick={[Function]}
-            small={true}
-            type="button"
-            variant="tertiary"
-          >
-            <IconText
-              hideText={false}
-              icon={[Function]}
-            >
-              Add question page
-            </IconText>
-          </Button>
-        </QuestionnaireDesignPage__Centered>
-      </ScrollPane>
-    </Column>
-    <Column
-      cols={2}
-      gutters={false}
-    >
-      <PropertiesPanel
-        page={
-          Object {
-            "answers": Array [
-              Object {
-                "id": "1",
-                "label": "",
-                "options": Array [
-                  Object {
-                    "id": "1",
-                  },
-                ],
-              },
-            ],
-            "description": "",
-            "guidance": "",
-            "id": "1",
-            "position": 0,
-            "title": "",
-            "type": "General",
+                },
+              ],
+              "title": "hello world",
+            }
           }
-        }
-        questionnaire={
-          Object {
-            "id": "3",
-            "sections": Array [
-              Object {
-                "id": "2",
-                "pages": Array [
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "1",
-                        "label": "",
-                        "options": Array [
-                          Object {
-                            "id": "1",
-                          },
-                        ],
-                      },
-                    ],
-                    "description": "",
-                    "guidance": "",
-                    "id": "1",
-                    "position": 0,
-                    "title": "",
-                    "type": "General",
-                  },
-                ],
-                "title": "",
-              },
-            ],
-            "title": "hello world",
-          }
-        }
-      />
-    </Column>
-  </Grid>
+        />
+      </Column>
+      <Column
+        cols={12}
+      >
+        <Switch>
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/questionnaire/:questionnaireId/:sectionId(\\\\d+)/design"
+          />
+          <Route
+            component={[Function]}
+            exact={true}
+            path="/questionnaire/:questionnaireId/:sectionId(\\\\d+)/:pageId(\\\\d+)/design"
+          />
+          <Route
+            path="*"
+            render={[Function]}
+          />
+        </Switch>
+      </Column>
+    </Grid>
+  </GetContext>
 </BaseLayout>
 `;
 
-exports[`QuestionnaireDesignPage should render nothing when loading 1`] = `""`;
+exports[`QuestionnaireDesignPage should render redirect when finished loading 1`] = `
+<Redirect
+  push={false}
+  to="/questionnaire/3/2/design"
+/>
+`;
+
+exports[`QuestionnaireDesignPage should render spinner while loading 1`] = `
+<Grid
+  align="top"
+  fillHeight={true}
+>
+  <Column
+    cols={10}
+  >
+    <Loading
+      height="100%"
+    >
+      Loading questionnaire…
+    </Loading>
+  </Column>
+</Grid>
+`;

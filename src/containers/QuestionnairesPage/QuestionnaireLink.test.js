@@ -24,23 +24,4 @@ describe("QuestionnaireLink", () => {
     );
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("should link to section if cannot link to page", () => {
-    const wrapper = shallow(
-      <QuestionnaireLink
-        questionnaire={{
-          id: "1",
-          title: "Foo",
-          sections: [
-            {
-              id: "1",
-              pages: []
-            }
-          ]
-        }}
-      />
-    );
-
-    expect(wrapper.prop("to")).toMatchSnapshot();
-  });
 });

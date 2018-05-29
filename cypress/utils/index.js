@@ -1,3 +1,5 @@
+import { matchPath } from "../../src/utils/UrlUtils";
+
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
     cy
@@ -37,26 +39,43 @@ export function addAnswerType(answerType) {
   cy.contains(answerType).click();
 }
 
-const extractUrlVars = hash => {
-  const URL_REGEX = /questionnaire\/(\d+)\/design\/(\d+)\/?(\d+)?/;
-  const [, questionnaireId, sectionId, pageId] = hash.match(URL_REGEX) || [];
+export function assertHash({
+  previousPath,
+  previousHash,
+  currentPath,
+  equality
+}) {
+  const match = (path, hash) => {
+    hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
 
-  return { questionnaireId, sectionId, pageId };
-};
-
-export function assertHash(previousHash, equality) {
-  cy.hash().should(currentHash => {
-    const previousVars = extractUrlVars(previousHash);
-    const currentVars = extractUrlVars(currentHash);
-
-    Object.keys(previousVars).forEach(key => {
-      if (equality[key]) {
-        expect(previousVars[key], key).to.equal(currentVars[key]);
-      } else {
-        expect(previousVars[key], key).not.to.equal(currentVars[key]);
-      }
+    return matchPath(hash, {
+      path,
+      exact: true,
+      strict: false
     });
-  });
+  };
+
+  cy
+    .log("comparing previous hash", previousHash)
+    .hash()
+    .should(currentHash => {
+      const previousMatch = match(previousPath, previousHash);
+      const currentMatch = match(currentPath, currentHash);
+
+      expect(previousMatch).not.to.equal(null);
+      expect(currentMatch).not.to.equal(null);
+
+      Object.keys(equality).forEach(key => {
+        const previousParam = previousMatch.params[key];
+        const currentParam = currentMatch.params[key];
+
+        if (equality[key]) {
+          expect(previousParam, key).to.equal(currentParam);
+        } else {
+          expect(previousParam, key).not.to.equal(currentParam);
+        }
+      });
+    });
 }
 
 export const typeIntoDraftEditor = (selector, text) => {

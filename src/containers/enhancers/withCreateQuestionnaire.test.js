@@ -3,7 +3,7 @@ import {
   mapMutateToProps,
   updateQuestionnaireList
 } from "./withCreateQuestionnaire";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
 
 describe("withCreateQuestionnaire", () => {
@@ -34,7 +34,11 @@ describe("withCreateQuestionnaire", () => {
       redirectToDesigner(history)(results);
 
       expect(history.push).toHaveBeenCalledWith(
-        getLink(questionnaire.id, section.id, page.id)
+        buildPagePath({
+          questionnaireId: questionnaire.id,
+          sectionId: section.id,
+          pageId: page.id
+        })
       );
     });
   });

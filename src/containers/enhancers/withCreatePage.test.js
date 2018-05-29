@@ -4,7 +4,7 @@ import {
   redirectToNewPage
 } from "./withCreatePage";
 import fragment from "graphql/sectionFragment.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
   const page = {
@@ -46,7 +46,11 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
     ownProps = {
       history,
-      questionnaireId: questionnaire.id
+      match: {
+        params: {
+          questionnaireId: questionnaire.id
+        }
+      }
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -98,34 +102,6 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
         { id: "C", position: 3 }
       ]);
     });
-
-    it("should update position value of all pages", () => {
-      const cache = {
-        section: {
-          id: "1",
-          pages: [
-            { id: "A", position: 0 },
-            { id: "B", position: 1 },
-            { id: "C", position: 2 }
-          ]
-        }
-      };
-
-      const proxy = {
-        writeFragment: jest.fn(({ data }) => (cache.section = data)),
-        readFragment: jest.fn(() => cache.section)
-      };
-
-      const updater = createUpdater("1", newPage.position);
-      updater(proxy, result);
-
-      expect(cache.section.pages).toEqual([
-        { id: "A", position: 0 },
-        newPage,
-        { id: "B", position: 2 },
-        { id: "C", position: 3 }
-      ]);
-    });
   });
 
   describe("redirectToNewPage", () => {
@@ -133,7 +109,11 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
       redirectToNewPage(ownProps)(newPage);
 
       expect(history.push).toHaveBeenCalledWith(
-        getLink(questionnaire.id, section.id, newPage.id)
+        buildPagePath({
+          questionnaireId: questionnaire.id,
+          sectionId: section.id,
+          pageId: newPage.id
+        })
       );
     });
   });

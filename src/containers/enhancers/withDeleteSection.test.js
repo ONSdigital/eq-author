@@ -5,9 +5,9 @@ import {
 } from "./withDeleteSection";
 import fragment from "graphql/questionnaireFragment.graphql";
 
-describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
+describe("withDeleteSection", () => {
   let history, mutate, result, ownProps, onAddSection, raiseToast;
-  let deletedPage, currentPage, currentSection, targetSection, questionnaire;
+  let deletedPage, currentPage, currentSection, questionnaire;
 
   beforeEach(() => {
     deletedPage = {
@@ -25,15 +25,16 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       pages: [currentPage, { id: "3" }]
     };
 
-    targetSection = {
-      id: "2",
-      pages: [deletedPage]
-    };
-
     questionnaire = {
       id: "1",
       title: "My Questionnaire",
-      sections: [currentSection, targetSection]
+      sections: [
+        currentSection,
+        {
+          id: "2",
+          pages: [deletedPage]
+        }
+      ]
     };
 
     history = {
@@ -46,17 +47,24 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       }
     };
 
-    onAddSection = jest.fn(() => Promise.resolve());
+    onAddSection = jest.fn();
     raiseToast = jest.fn(() => Promise.resolve());
 
     ownProps = {
       questionnaire,
-      questionnaireId: questionnaire.id,
-      sectionId: currentSection.id,
-      pageId: currentPage.id,
+      match: {
+        params: {
+          questionnaireId: questionnaire.id,
+          sectionId: currentSection.id,
+          pageId: currentPage.id
+        }
+      },
       history,
       onAddSection,
-      raiseToast
+      raiseToast,
+      client: {
+        readFragment: jest.fn(() => questionnaire)
+      }
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -68,7 +76,7 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       const readFragment = jest.fn(() => questionnaire);
       const writeFragment = jest.fn();
 
-      const updater = deleteUpdater(questionnaire.id, targetSection.id);
+      const updater = deleteUpdater(questionnaire.id, currentSection.id);
       updater({ readFragment, writeFragment }, result);
 
       expect(readFragment).toHaveBeenCalledWith({ id, fragment });
@@ -77,7 +85,7 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
         fragment,
         data: questionnaire
       });
-      expect(questionnaire.sections).not.toContain(targetSection);
+      expect(questionnaire.sections).not.toContain(currentSection);
     });
   });
 
@@ -94,11 +102,11 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
 
     describe("onDeleteSection", () => {
       it("should call mutate", () => {
-        return props.onDeleteSection(targetSection.id).then(() => {
+        return props.onDeleteSection(currentSection.id).then(() => {
           expect(mutate).toHaveBeenCalledWith(
             expect.objectContaining({
               variables: {
-                input: { id: targetSection.id }
+                input: { id: currentSection.id }
               }
             })
           );
@@ -106,54 +114,54 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       });
 
       it("should raise a toast after invoking onDeleteSection", () => {
-        return props.onDeleteSection(targetSection.id).then(() => {
+        return props.onDeleteSection(currentSection.id).then(() => {
           expect(raiseToast).toHaveBeenCalledWith(
-            `Section${targetSection.id}`,
+            `Section${currentSection.id}`,
             expect.stringContaining("Section"),
             "undeleteSection",
             expect.objectContaining({
-              questionnaireId: ownProps.questionnaireId,
-              sectionId: targetSection.id
+              questionnaireId: questionnaire.id,
+              sectionId: currentSection.id
             })
           );
         });
       });
 
       it("should display number of deleted pages in toast", () => {
-        return props.onDeleteSection(targetSection.id).then(() => {
+        const pages = currentSection.pages;
+        currentSection.pages = [currentPage];
+
+        return props.onDeleteSection(currentSection.id).then(() => {
           expect(raiseToast).toHaveBeenCalledWith(
-            `Section${targetSection.id}`,
+            `Section${currentSection.id}`,
             expect.stringContaining("1 page"),
             "undeleteSection",
             expect.objectContaining({
-              questionnaireId: ownProps.questionnaireId,
-              sectionId: targetSection.id
+              questionnaireId: questionnaire.id,
+              sectionId: currentSection.id
             })
           );
+
+          currentSection.pages = pages;
         });
       });
 
       it("should pluralize the number of deleted pages in toast", () => {
-        targetSection.pages.push({
-          id: "3",
-          sectionId: "2"
-        });
-
-        return props.onDeleteSection(targetSection.id).then(() => {
+        return props.onDeleteSection(currentSection.id).then(() => {
           expect(raiseToast).toHaveBeenCalledWith(
-            `Section${targetSection.id}`,
+            `Section${currentSection.id}`,
             expect.stringContaining("2 pages"),
             "undeleteSection",
             expect.objectContaining({
-              questionnaireId: ownProps.questionnaireId,
-              sectionId: targetSection.id
+              questionnaireId: questionnaire.id,
+              sectionId: currentSection.id
             })
           );
         });
       });
 
       it("should return promise that resolves to deleteSection result", () => {
-        return expect(props.onDeleteSection(targetSection.id)).resolves.toBe(
+        return expect(props.onDeleteSection(currentSection.id)).resolves.toBe(
           result
         );
       });
@@ -163,45 +171,19 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
   describe("handleDeletion", () => {
     describe("when only one section in questionnaire", () => {
       beforeEach(() => {
-        questionnaire.sections = [targetSection];
+        questionnaire.sections = [currentSection];
       });
 
       it("should add new section", () => {
-        return handleDeletion(
-          ownProps,
-          questionnaire.id,
-          targetSection.id
-        ).then(() => {
-          expect(onAddSection).toHaveBeenCalled();
-        });
+        handleDeletion(ownProps, questionnaire);
+        expect(onAddSection).toHaveBeenCalled();
       });
     });
 
     describe("when more than one section in questionnaire", () => {
-      describe("and deleting the current section", () => {
-        it("should redirect to another section", () => {
-          return handleDeletion(
-            ownProps,
-            questionnaire.id,
-            currentSection.id
-          ).then(() => {
-            expect(history.push).toHaveBeenCalled();
-          });
-        });
-      });
-
-      describe("and not deleting the current page", () => {
-        it("should do nothing", () => {
-          return handleDeletion(
-            ownProps,
-            questionnaire.id,
-            targetSection.id,
-            result
-          ).then(() => {
-            expect(history.push).not.toHaveBeenCalled();
-            expect(onAddSection).not.toHaveBeenCalled();
-          });
-        });
+      it("should redirect to another section", () => {
+        handleDeletion(ownProps, questionnaire);
+        expect(history.push).toHaveBeenCalled();
       });
     });
   });

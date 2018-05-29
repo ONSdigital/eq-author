@@ -74,6 +74,7 @@ class QuestionnaireDesignPage extends Component {
           <Grid>
             <Column cols={2} gutters={false}>
               <NavigationSidebarContainer
+                data-test="side-nav"
                 loading={loading}
                 onAddPage={this.handleAddPage}
                 questionnaire={questionnaire}

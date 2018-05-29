@@ -8,8 +8,8 @@ import Tabs from "components/Tabs";
 import SectionQuery from "./SectionQuery";
 import SectionEditor from "components/SectionEditor";
 import IconButtonDelete from "components/IconButtonDelete";
-import { Toolbar, Buttons } from "components/EditorSurface/Toolbar";
-import IconMove from "../EditorSurface/icon-move.svg?inline";
+import { Toolbar, Buttons } from "components/EditorToolbar";
+import IconMove from "components/EditorToolbar/icon-move.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
 
@@ -22,10 +22,15 @@ import { Grid, Column } from "components/Grid";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
+import withCreatePage from "containers/enhancers/withCreatePage";
+import withCreateSection from "containers/enhancers/withCreateSection";
 import getTextFromHTML from "utils/getTextFromHTML";
 import { Titled } from "react-titled";
 import Loading from "components/Loading";
 import Error from "components/Error";
+import { withApollo } from "react-apollo";
+import { connect } from "react-redux";
+import { raiseToast } from "redux/toast/actions";
 
 const Centered = styled.div`
   display: flex;
@@ -42,11 +47,12 @@ export class UnwrappedSectionRoute extends React.Component {
     match: CustomPropTypes.match,
     onUpdateSection: PropTypes.func.isRequired,
     onDeleteSection: PropTypes.func.isRequired,
+    onAddPage: PropTypes.func.isRequired,
     error: PropTypes.object, // eslint-disable-line
     loading: PropTypes.bool.isRequired,
     data: PropTypes.shape({
       section: CustomPropTypes.section
-    }).isRequired
+    })
   };
 
   state = {
@@ -64,11 +70,14 @@ export class UnwrappedSectionRoute extends React.Component {
 
   handleDeleteSectionConfirm = () => {
     const { onDeleteSection, match } = this.props;
-    const { params: { pageId, sectionId } } = match;
+    const { params: { sectionId } } = match;
 
-    this.handleCloseDeleteConfirmDialog(() =>
-      onDeleteSection(sectionId, pageId)
-    );
+    this.handleCloseDeleteConfirmDialog(() => onDeleteSection(sectionId));
+  };
+
+  handleAddPage = () => {
+    const { params: { sectionId } } = this.props.match;
+    this.props.onAddPage(sectionId, 0);
   };
 
   getSectionTitle = section => title => {
@@ -117,7 +126,7 @@ export class UnwrappedSectionRoute extends React.Component {
 
   render() {
     return (
-      <Grid>
+      <Grid data-test="section-route">
         <Column gutters={false}>
           <ScrollPane permanentScrollBar>
             <Margin>
@@ -146,7 +155,14 @@ export class UnwrappedSectionRoute extends React.Component {
   }
 }
 
-const withSectionEditing = flowRight(withUpdateSection, withDeleteSection);
+const withSectionEditing = flowRight(
+  connect(null, { raiseToast }),
+  withApollo,
+  withCreateSection,
+  withUpdateSection,
+  withDeleteSection,
+  withCreatePage
+);
 
 export default withSectionEditing(props => (
   <SectionQuery id={props.match.params.sectionId}>

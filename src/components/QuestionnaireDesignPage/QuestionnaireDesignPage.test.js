@@ -5,6 +5,7 @@ import { shallow } from "enzyme";
 describe("QuestionnaireDesignPage", () => {
   let mockHandlers;
   let wrapper;
+  let match;
 
   const answer = {
     id: "1",
@@ -43,34 +44,79 @@ describe("QuestionnaireDesignPage", () => {
       onDeleteSection: jest.fn()
     };
 
+    match = {
+      params: {
+        questionnaireId: questionnaire.id,
+        sectionId: section.id,
+        pageId: page.id
+      }
+    };
+
+    const modalRoot = global.document.createElement("div");
+    modalRoot.setAttribute("id", "toast");
+    global.document.body.appendChild(modalRoot);
+
     wrapper = shallow(
       <QuestionnaireDesignPage
         {...mockHandlers}
+        match={match}
         questionnaire={questionnaire}
-        questionnaireId={questionnaire.id}
-        section={section}
-        page={page}
-        pageId={page.id}
-        sectionId={section.id}
         loading={false}
       />
     );
   });
 
-  it("should render nothing when loading", () => {
+  it("should render", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render spinner while loading", () => {
     wrapper.setProps({ loading: true });
-    expect(wrapper).toMatchSnapshot();
+
+    expect(wrapper.instance().renderRedirect()).toMatchSnapshot();
   });
 
-  it("should render form when loaded", () => {
-    expect(wrapper).toMatchSnapshot();
+  it("should render redirect when finished loading", () => {
+    expect(wrapper.instance().renderRedirect()).toMatchSnapshot();
   });
 
-  it("should call onAddPage when add question page button clicked", () => {
-    wrapper.find("[data-test='btn-add-page-2']").simulate("click");
-    expect(mockHandlers.onAddPage).toHaveBeenCalledWith(
-      section.id,
-      page.position + 1
-    );
+  describe("onAddPage", () => {
+    it("should add new page below current page", () => {
+      wrapper.find(`[data-test="side-nav"]`).simulate("addPage");
+
+      expect(mockHandlers.onAddPage).toHaveBeenCalledWith(
+        section.id,
+        page.position + 1
+      );
+    });
+
+    it("should add page at start of section if page not found", () => {
+      wrapper.setProps({
+        questionnaire: {
+          ...questionnaire,
+          sections: [
+            {
+              ...section,
+              pages: []
+            }
+          ]
+        }
+      });
+
+      wrapper.find(`[data-test="side-nav"]`).simulate("addPage");
+
+      expect(mockHandlers.onAddPage).toHaveBeenCalledWith(section.id, 0);
+    });
+  });
+
+  describe("getTitle", () => {
+    it("should display existing title if loading", () => {
+      wrapper.setProps({ loading: true });
+      expect(wrapper.instance().getTitle("foo")).toMatchSnapshot();
+    });
+
+    it("should display questionnaire title if no longer loading", () => {
+      expect(wrapper.instance().getTitle("foo")).toMatchSnapshot();
+    });
   });
 });

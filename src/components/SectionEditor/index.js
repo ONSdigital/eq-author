@@ -55,7 +55,7 @@ export class UnwrappedSectionEditor extends React.Component {
     const sectionTitleText = getTextFromHTML(section.title);
 
     return (
-      <SectionCanvas id={getIdForObject(section)}>
+      <SectionCanvas data-test="section-editor" id={getIdForObject(section)}>
         <DeleteConfirmDialog
           isOpen={showDeleteConfirmDialog}
           onClose={onCloseDeleteConfirmDialog}

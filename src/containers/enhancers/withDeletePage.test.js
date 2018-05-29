@@ -5,9 +5,9 @@ import {
 } from "./withDeletePage";
 import fragment from "graphql/sectionFragment.graphql";
 
-describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
+describe("withDeletePage", () => {
   let history, mutate, result, ownProps, onAddPage, raiseToast;
-  let deletedPage, currentPage, currentSection, targetSection, questionnaire;
+  let deletedPage, currentPage, currentSection;
 
   beforeEach(() => {
     deletedPage = {
@@ -25,24 +25,13 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
       pages: [currentPage, { id: "3" }]
     };
 
-    targetSection = {
-      id: "2",
-      pages: [deletedPage]
-    };
-
-    questionnaire = {
-      id: "1",
-      title: "My Questionnaire",
-      sections: [currentSection, targetSection]
-    };
-
     history = {
       push: jest.fn()
     };
 
     result = {
       data: {
-        deletePage: deletedPage
+        deletePage: currentPage
       }
     };
 
@@ -50,10 +39,16 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
     raiseToast = jest.fn(() => Promise.resolve());
 
     ownProps = {
-      questionnaire,
-      questionnaireId: questionnaire.id,
-      sectionId: currentSection.id,
-      pageId: currentPage.id,
+      client: {
+        readFragment: jest.fn(() => currentSection)
+      },
+      match: {
+        params: {
+          questionnaireId: "1",
+          sectionId: currentSection.id,
+          pageId: currentPage.id
+        }
+      },
       history,
       onAddPage,
       raiseToast
@@ -64,20 +59,20 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
 
   describe("createUpdater", () => {
     it("should remove the page from the cache", () => {
-      const id = `Section${targetSection.id}`;
-      const readFragment = jest.fn(() => targetSection);
+      const id = `Section${currentSection.id}`;
+      const readFragment = jest.fn(() => currentSection);
       const writeFragment = jest.fn();
 
-      const updater = createUpdater(targetSection.id, deletedPage.id);
+      const updater = createUpdater(currentSection.id, deletedPage.id);
       updater({ readFragment, writeFragment }, result);
 
       expect(readFragment).toHaveBeenCalledWith({ id, fragment });
       expect(writeFragment).toHaveBeenCalledWith({
         id,
         fragment,
-        data: targetSection
+        data: currentSection
       });
-      expect(targetSection.pages).not.toContain(deletedPage);
+      expect(currentSection.pages).not.toContain(deletedPage);
     });
 
     it("should update position value of all pages", () => {
@@ -160,42 +155,21 @@ describe("containers/QuestionnaireDesignPage/withDeletePage", () => {
   describe("handleDeletion", () => {
     describe("when only one page in section", () => {
       it("should add new page", () => {
-        return handleDeletion(
-          ownProps,
-          targetSection.id,
-          deletedPage.id,
-          result
-        ).then(() => {
-          expect(onAddPage).toHaveBeenCalledWith(targetSection.id);
+        const section = {
+          ...currentSection,
+          pages: [currentPage]
+        };
+
+        return handleDeletion(ownProps, section).then(() => {
+          expect(onAddPage).toHaveBeenCalledWith(section.id);
         });
       });
     });
 
     describe("when more than one page in section", () => {
-      describe("and deleting the current page", () => {
-        it("should redirect to another page", () => {
-          return handleDeletion(
-            ownProps,
-            currentSection.id,
-            currentPage.id,
-            result
-          ).then(() => {
-            expect(history.push).toHaveBeenCalled();
-          });
-        });
-      });
-
-      describe("and not deleting the current page", () => {
-        it("should do nothing", () => {
-          return handleDeletion(
-            ownProps,
-            currentSection.id,
-            3,
-            result
-          ).then(() => {
-            expect(history.push).not.toHaveBeenCalled();
-            expect(onAddPage).not.toHaveBeenCalled();
-          });
+      it("should redirect to another page", () => {
+        return handleDeletion(ownProps, currentSection).then(() => {
+          expect(history.push).toHaveBeenCalled();
         });
       });
     });

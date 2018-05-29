@@ -1,4 +1,4 @@
-import { QPE } from "components/QuestionPageEditor";
+import QuestionPageEditor from "components/QuestionPageEditor";
 
 import React from "react";
 import { shallow } from "enzyme";
@@ -16,15 +16,24 @@ describe("Question Page Editor", () => {
     __typename: "Answer"
   };
 
+  const match = {
+    params: {
+      questionnaireId: "1",
+      sectionId: "2",
+      pageId: "3"
+    }
+  };
+
   const render = ({ ...props }) => {
     return shallow(
-      <QPE
+      <QuestionPageEditor
         {...mockHandlers}
         questionnaire={questionnaire}
         page={page}
         section={section}
         showMovePageDialog={false}
         showDeleteConfirmDialog={false}
+        match={match}
         {...props}
       />
     );

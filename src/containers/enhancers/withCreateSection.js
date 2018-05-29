@@ -4,10 +4,12 @@ import fragment from "graphql/questionnaireFragment.graphql";
 import { buildSectionPath } from "utils/UrlUtils";
 import { get, tap } from "lodash/fp";
 
-export const redirectToNewSection = ({ history, questionnaire }) => section => {
+export const redirectToNewSection = ownProps => section => {
+  const { history, match: { params } } = ownProps;
+
   history.push(
     buildSectionPath({
-      questionnaireId: questionnaire.id,
+      questionnaireId: params.questionnaireId,
       sectionId: section.id
     })
   );
@@ -28,13 +30,14 @@ export const createUpdater = questionnaireId => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddSection() {
+    const { match: { params } } = ownProps;
     const section = {
       title: "",
       description: "",
-      questionnaireId: ownProps.questionnaire.id
+      questionnaireId: params.questionnaireId
     };
 
-    const update = createUpdater(ownProps.questionnaire.id);
+    const update = createUpdater(params.questionnaireId);
 
     return mutate({
       variables: { input: section },

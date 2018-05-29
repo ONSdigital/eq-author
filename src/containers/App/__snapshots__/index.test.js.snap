@@ -35,11 +35,19 @@ exports[`containers/App Routes should render  1`] = `
       isSignedIn={true}
       path="/"
     />
+    <RedirectRoute
+      from="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+      to="/questionnaire/:questionnaireId/:sectionId(\\\\d+)/:pageId(\\\\d+)/design"
+    />
+    <RedirectRoute
+      from="/questionnaire/:questionnaireId/design/:sectionId"
+      to="/questionnaire/:questionnaireId/:sectionId(\\\\d+)/design"
+    />
     <PrivateRoute
       component={[Function]}
       exact={false}
       isSignedIn={true}
-      path="/questionnaire/:questionnaireId/design/:sectionId/:pageId?"
+      path="/questionnaire/:questionnaireId/:sectionId?/:pageId?"
     />
     <Route
       component={[Function]}

@@ -26,10 +26,12 @@ const Title = styled.h1`
   font-weight: 600;
 `;
 
+const getTitle = title => `Page not found - ${title}`;
+
 const NotFound = props => {
   return (
     <BaseLayout>
-      <Titled title={title => `Page not found - ${title}`}>
+      <Titled title={getTitle}>
         <Grid>
           <Column cols={6} offset={3}>
             <CenteredPane>

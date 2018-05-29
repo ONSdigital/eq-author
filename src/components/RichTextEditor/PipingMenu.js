@@ -109,7 +109,7 @@ export class Menu extends React.Component {
   }
 }
 
-export default withRouter(props => (
+const PipingMenu = props => (
   <Query
     query={query}
     variables={{ id: props.match.params.questionnaireId }}
@@ -117,4 +117,11 @@ export default withRouter(props => (
   >
     {innerProps => <Menu {...innerProps} {...props} />}
   </Query>
-));
+);
+
+PipingMenu.propTypes = {
+  match: CustomPropTypes.match,
+  disabled: PropTypes.bool
+};
+
+export default withRouter(PipingMenu);

@@ -4,54 +4,35 @@ import { UnwrappedTabs } from "components/Tabs";
 
 let wrapper;
 
-const questionnaire = {
-  id: "1",
-  title: "Questionnaire",
-  sections: [
-    {
-      id: "2",
-      title: "Section 1",
-      pages: [
-        {
-          id: "3"
-        }
-      ]
-    }
-  ]
-};
-
 const match = {
-  params: { questionnaireId: "", sectionId: "", pageId: "" }
+  params: { questionnaireId: "1", sectionId: "2", pageId: "3" }
 };
 
 describe("components/Nav", () => {
   beforeEach(() => {
     wrapper = mountWithRouter(
-      <UnwrappedTabs
-        questionnaire={questionnaire}
-        section={questionnaire.sections[0]}
-        page={questionnaire.sections[0].pages[0]}
-        match={match}
-      >
-        Tab Content
-      </UnwrappedTabs>
+      <UnwrappedTabs match={match}>Tab Content</UnwrappedTabs>
     );
   });
 
-  it("should render Nav", () => {
-    expect(wrapper).toMatchSnapshot();
+  describe("when no pageId", () => {
+    it("should render section link", () => {
+      const params = { questionnaireId: "123", sectionId: "888", pageId: "" };
+
+      wrapper.setProps({
+        match: {
+          ...match,
+          params
+        }
+      });
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 
-  it("should display active link when route matches", () => {
-    const params = { questionnaireId: "", sectionId: "888", pageId: "" };
-
-    wrapper.setProps({
-      match: {
-        ...match,
-        params
-      }
+  describe("when pageId present", () => {
+    it("should render page link", () => {
+      expect(wrapper).toMatchSnapshot();
     });
-
-    expect(wrapper).toMatchSnapshot();
   });
 });

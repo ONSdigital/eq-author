@@ -2,7 +2,7 @@ import { mapMutateToProps, createUpdater } from "./withCreateAnswer";
 import fragment from "graphql/pageFragment.graphql";
 
 describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
-  let mutate, result, page, answer, ownProps;
+  let mutate, result, page, answer;
 
   beforeEach(() => {
     page = {
@@ -22,11 +22,6 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
       data: {
         createAnswer: answer
       }
-    };
-
-    ownProps = {
-      page: page,
-      pageId: page.id
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -54,7 +49,7 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
   describe("mapMutateToProps", () => {
     let props;
     beforeEach(() => {
-      props = mapMutateToProps({ ownProps, mutate });
+      props = mapMutateToProps({ mutate });
     });
 
     it("should have a onAddAnswer prop", () => {
@@ -62,7 +57,7 @@ describe("containers/QuestionnaireDesignPage/withCreateAnswer", () => {
     });
 
     it("should call mutate", () => {
-      props.onAddAnswer("Checkbox");
+      props.onAddAnswer(page.id, "Checkbox");
 
       expect(mutate).toHaveBeenCalledWith(
         expect.objectContaining({

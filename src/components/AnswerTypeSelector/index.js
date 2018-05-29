@@ -30,7 +30,8 @@ const PopoutLayer = styled(Layer)`
 
 export default class AnswerTypeSelector extends React.Component {
   static propTypes = {
-    onSelect: PropTypes.func.isRequired
+    onSelect: PropTypes.func.isRequired,
+    answerCount: PropTypes.number.isRequired
   };
 
   state = {
@@ -56,7 +57,9 @@ export default class AnswerTypeSelector extends React.Component {
   render() {
     const trigger = (
       <AddAnswerButton variant="secondary" data-test="btn-add-answer">
-        <IconText icon={AddIcon}>Add an answer</IconText>
+        <IconText icon={AddIcon}>
+          Add {this.props.answerCount === 0 ? "an" : "another"} answer
+        </IconText>
       </AddAnswerButton>
     );
 

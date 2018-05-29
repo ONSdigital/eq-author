@@ -33,8 +33,10 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+const defaultTitle = () => "Author";
+
 const BaseLayout = ({ children, title, questionnaire }) => (
-  <Titled title={() => `Author`}>
+  <Titled title={defaultTitle}>
     <App>
       <Wrapper>
         <Header questionnaire={questionnaire} />

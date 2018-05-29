@@ -4,14 +4,15 @@ exports[`SectionNavItem should render 1`] = `
 <SectionNavItem__StyledSectionNavItem
   data-test="section-item"
   duration={123}
+  isActive={[Function]}
   onAddPage={[Function]}
 >
   <NavLink
     data-test="nav-section-link"
+    exact={true}
     icon={[Function]}
-    isActive={[Function]}
     title="Section"
-    to="/questionnaire/1/design/3"
+    to="/questionnaire/1/3/design"
   >
     Section
   </NavLink>

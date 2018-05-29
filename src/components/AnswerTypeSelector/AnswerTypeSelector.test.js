@@ -10,7 +10,7 @@ describe("components/AnswerTypeSelector", () => {
   beforeEach(() => {
     handleSelect = jest.fn();
     component = shallow(
-      <AnswerTypeSelector onSelect={handleSelect} answers={[]} />
+      <AnswerTypeSelector onSelect={handleSelect} answerCount={0} />
     );
   });
 
@@ -19,7 +19,7 @@ describe("components/AnswerTypeSelector", () => {
   });
 
   it("should say to add 'another' answer if > 0 answers currently", () => {
-    component.setProps({ answers: [{}] });
+    component.setProps({ answerCount: 1 });
     expect(component).toMatchSnapshot();
   });
 
