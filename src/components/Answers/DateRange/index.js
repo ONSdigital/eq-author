@@ -45,7 +45,7 @@ const DateRange = ({ answer, onChange, onUpdate, ...otherProps }) => (
           size="medium"
           onChange={onChange}
           onBlur={onUpdate}
-          value={answer.childAnswers[1].label}
+          value={answer.childAnswers[0].label}
           data-autofocus
           data-test="date-answer-secondary-label"
         />

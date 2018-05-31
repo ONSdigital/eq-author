@@ -7,9 +7,15 @@ import { withApollo } from "react-apollo";
 import { MenuButton as RMLMenuButton } from "react-menu-list";
 import { withRouter } from "react-router-dom";
 import IconPiping from "./icon-piping.svg?inline";
-import { take, findIndex } from "lodash";
+import { take, findIndex, flatten } from "lodash";
 import query from "graphql/getQuestionnairePiping.graphql";
-import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
+import {
+  TEXTAREA,
+  TEXTFIELD,
+  NUMBER,
+  CURRENCY,
+  DATE_RANGE
+} from "constants/answer-types";
 import ToolbarButton from "./ToolbarButton";
 import VisuallyHidden from "../VisuallyHidden";
 
@@ -17,7 +23,8 @@ const validAnswerTypes = {
   [TEXTAREA]: true,
   [TEXTFIELD]: true,
   [NUMBER]: true,
-  [CURRENCY]: true
+  [CURRENCY]: true,
+  [DATE_RANGE]: true
 };
 
 const PipingIconButton = props => (
@@ -82,10 +89,22 @@ export class Menu extends React.Component {
         ...section,
         pages: section.pages.map(page => ({
           ...page,
-          answers: page.answers.filter(answer => validAnswerTypes[answer.type])
+          answers: this.filterAnswers(page.answers)
         }))
       }))
     };
+  }
+
+  filterAnswers(answers) {
+    const answersSplit = flatten(
+      answers.map(answer => {
+        if (answer.__typename == "CompositeAnswer") {
+          return answer.childAnswers;
+        }
+        return answer;
+      })
+    );
+    return answersSplit.filter(answer => validAnswerTypes[answer.type]);
   }
 
   render() {

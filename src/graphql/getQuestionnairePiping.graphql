@@ -11,6 +11,13 @@ query GetQuestionnaire_Piping($id: ID!) {
             id
             label
             type
+            ... on CompositeAnswer {
+              childAnswers {
+                id
+                label
+                type
+              }
+            }
           }
         }
       }
