@@ -6,6 +6,13 @@ fragment Answer on Answer {
   ... on BasicAnswer {
     secondaryLabel
   }
+  ... on CompositeAnswer {
+    childAnswers {
+      id
+      type
+      label
+    }
+  }
   type
   mandatory
 }
