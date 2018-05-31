@@ -7,6 +7,7 @@ import { Field } from "components/Forms";
 import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
+import Date from "../Date";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,45 +21,14 @@ const Fieldset = styled.div`
   }
 `;
 
-const DateRange = ({ answer, onChange, onUpdate, ...otherProps }) => (
-  <Wrapper>
-    <Fieldset>
-      <Field>
-        <WrappingInput
-          name="label"
-          placeholder="From"
-          size="medium"
-          onChange={onChange}
-          onBlur={onUpdate}
-          value={answer.childAnswers[0].label}
-          data-autofocus
-          data-test="date-answer-label"
-        />
-      </Field>
-      <DummyDate />
-    </Fieldset>
-    <Fieldset>
-      <Field>
-        <WrappingInput
-          name="secondaryLabel"
-          placeholder="To"
-          size="medium"
-          onChange={onChange}
-          onBlur={onUpdate}
-          value={answer.childAnswers[0].label}
-          data-autofocus
-          data-test="date-answer-secondary-label"
-        />
-      </Field>
-      <DummyDate />
-    </Fieldset>
-  </Wrapper>
-);
+const DateRange = ({ answer, ...otherProps }) =>
+  answer.childAnswers.map(answer => (
+    <Date key={answer.id} answer={answer} {...otherProps} />
+  ));
 
 DateRange.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
-  onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
 };
 
-export default withEntityEditor("answer", answerFragment)(DateRange);
+export default DateRange;
