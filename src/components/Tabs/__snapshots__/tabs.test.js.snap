@@ -35,17 +35,10 @@ exports[`components/Nav when no pageId should render section link 1`] = `
   border-bottom: none;
 }
 
-.c3 {
+.c2 {
   background: #FFFFFF;
   border: 1px solid #c3c3c3;
   border-radius: 4px;
-}
-
-.c2 {
-  background: #FFFFFF;
-  color: #5F7682;
-  border: 1px solid #c3c3c3;
-  border-bottom: none;
 }
 
 <UnwrappedTabs
@@ -177,17 +170,10 @@ exports[`components/Nav when pageId present should render page link 1`] = `
   border-bottom: none;
 }
 
-.c3 {
+.c2 {
   background: #FFFFFF;
   border: 1px solid #c3c3c3;
   border-radius: 4px;
-}
-
-.c2 {
-  background: #FFFFFF;
-  color: #5F7682;
-  border: 1px solid #c3c3c3;
-  border-bottom: none;
 }
 
 <UnwrappedTabs
