@@ -1,24 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DateRange should render 1`] = `
-<withEntityEditor(DateRange)
-  answer={
-    Object {
-      "id": "1",
-      "label": "Lorem ipsum",
-      "secondaryLabel": "dolor sit amet",
+Array [
+  <Connect(withEntityEditor(Date))
+    answer={
+      Object {
+        "id": "1from",
+        "label": "Foo",
+        "type": "DateRange",
+      }
     }
-  }
-  endRequest={[Function]}
-  onChange={[Function]}
-  onUpdate={[Function]}
-  startRequest={[Function]}
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "subscribe": [Function],
+    key="1from"
+    onChange={[Function]}
+    onUpdate={[Function]}
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "subscribe": [Function],
+      }
     }
-  }
-/>
+  />,
+  <Connect(withEntityEditor(Date))
+    answer={
+      Object {
+        "id": "1to",
+        "label": "Bar",
+        "type": "DateRange",
+      }
+    }
+    key="1to"
+    onChange={[Function]}
+    onUpdate={[Function]}
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />,
+]
 `;

@@ -96,15 +96,14 @@ export class Menu extends React.Component {
   }
 
   filterAnswers(answers) {
-    const answersSplit = flatten(
+    return flatten(
       answers.map(answer => {
         if (answer.__typename === "CompositeAnswer") {
           return answer.childAnswers;
         }
         return answer;
       })
-    );
-    return answersSplit.filter(answer => validAnswerTypes[answer.type]);
+    ).filter(answer => validAnswerTypes[answer.type]);
   }
 
   render() {

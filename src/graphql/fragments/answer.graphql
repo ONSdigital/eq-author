@@ -3,9 +3,6 @@ fragment Answer on Answer {
   description
   guidance
   label
-  ... on BasicAnswer {
-    secondaryLabel
-  }
   ... on CompositeAnswer {
     childAnswers {
       id

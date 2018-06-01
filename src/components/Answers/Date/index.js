@@ -23,7 +23,7 @@ const Wrapper = styled.div.attrs({
 `;
 
 const Date = ({ answer, onChange, onUpdate }) => (
-  <Wrapper id={`data-${answer.id}`}>
+  <Wrapper>
     <Field>
       <WrappingInput
         name="label"
