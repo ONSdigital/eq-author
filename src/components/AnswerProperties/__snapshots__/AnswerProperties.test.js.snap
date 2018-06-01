@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Properties should render 1`] = `
-<AnswerProperties__InlineField
-  id="answer-1-mandatory"
->
+<AnswerProperties__InlineField>
   <Label
+    htmlFor="answer-1-mandatory"
     inline={true}
     small={true}
   >
@@ -12,6 +11,7 @@ exports[`Answer Properties should render 1`] = `
   </Label>
   <ToggleSwitch
     checked={false}
+    id="answer-1-mandatory"
     name="answer-1-mandatory"
     onChange={[Function]}
   />

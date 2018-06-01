@@ -4,8 +4,6 @@ import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import { TransitionGroup } from "react-transition-group";
 
-import Field from "components/Forms/Field";
-
 import RichTextEditor from "components/RichTextEditor";
 import DeleteConfirmDialog from "components/DeleteConfirmDialog";
 import iconSection from "./icon-dialog-section.svg";
@@ -70,29 +68,26 @@ export class UnwrappedSectionEditor extends React.Component {
         <TransitionGroup>
           <PageTransition key={getIdForObject(section)}>
             <Padding>
-              <Field id="title">
-                <RichTextEditor
-                  placeholder="Section title"
-                  value={section.title}
-                  onUpdate={handleUpdate}
-                  label="title"
-                  controls={titleControls}
-                  size="large"
-                  testSelector="txt-section-title"
-                  autoFocus={!sectionTitleText}
-                />
-              </Field>
-              <Field id="description">
-                <RichTextEditor
-                  placeholder="Enter a description (optional)…"
-                  value={section.description}
-                  onUpdate={handleUpdate}
-                  label="description"
-                  controls={descriptionControls}
-                  multiline
-                  testSelector="txt-section-description"
-                />
-              </Field>
+              <RichTextEditor
+                id="title"
+                label="Title"
+                value={section.title}
+                onUpdate={handleUpdate}
+                controls={titleControls}
+                size="large"
+                testSelector="txt-section-title"
+                autoFocus={!sectionTitleText}
+              />
+
+              <RichTextEditor
+                id="description"
+                value={section.description}
+                onUpdate={handleUpdate}
+                label="Description"
+                controls={descriptionControls}
+                multiline
+                testSelector="txt-section-description"
+              />
             </Padding>
           </PageTransition>
         </TransitionGroup>

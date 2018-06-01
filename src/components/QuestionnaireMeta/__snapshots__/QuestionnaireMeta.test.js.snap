@@ -5,9 +5,10 @@ exports[`QuestionnaireMeta should render 1`] = `
   onSubmit={[Function]}
 >
   <Field
-    id="title"
+    last={false}
   >
     <Label
+      htmlFor="title"
       small={false}
     >
       Questionnaire Title
@@ -16,15 +17,15 @@ exports[`QuestionnaireMeta should render 1`] = `
       autoFocus={true}
       data-test="txt-questionnaire-title"
       defaultValue="I am the title"
+      id="title"
       onChange={[Function]}
       required={true}
     />
   </Field>
   <QuestionnaireMeta__ToggleWrapper>
-    <QuestionnaireMeta__InlineField
-      id="navigation"
-    >
+    <QuestionnaireMeta__InlineField>
       <Label
+        htmlFor="navigation"
         inline={true}
         small={false}
       >
@@ -37,14 +38,14 @@ exports[`QuestionnaireMeta should render 1`] = `
       </Label>
       <ToggleSwitch
         checked={false}
+        id="navigation"
         name="navigation"
         onChange={[Function]}
       />
     </QuestionnaireMeta__InlineField>
-    <QuestionnaireMeta__InlineField
-      id="summary"
-    >
+    <QuestionnaireMeta__InlineField>
       <Label
+        htmlFor="summary"
         inline={true}
         small={false}
       >
@@ -57,6 +58,7 @@ exports[`QuestionnaireMeta should render 1`] = `
       </Label>
       <ToggleSwitch
         checked={false}
+        id="summary"
         name="summary"
         onChange={[Function]}
       />

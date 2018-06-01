@@ -22,7 +22,6 @@ exports[`CurrencyAnswer should render 1`] = `
     <CurrencyComponent
       currencyUnit="£"
     />
-    <DummyTextInput />
   </CurrencyAnswer__FieldWrapper>
 </Connect(withEntityEditor(StatelessBasicAnswer))>
 `;

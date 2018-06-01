@@ -1,7 +1,7 @@
 import React from "react";
 
 import WrappingInput from "components/WrappingInput";
-import { StatelessOption, SeamlessLabel } from "./Option";
+import { StatelessOption } from "./Option";
 import DeleteButton from "components/DeleteButton";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 
@@ -71,31 +71,21 @@ describe("Option", () => {
   });
 
   it("should call onChange on input", () => {
-    wrapper
-      .find(SeamlessLabel)
-      .first()
-      .simulate("change");
-    wrapper
-      .find(SeamlessLabel)
-      .first()
-      .simulate("change");
+    wrapper.find("[data-test='option-label']").simulate("change");
+    wrapper.find("[data-test='option-description']").simulate("change");
 
     expect(mockMutations.onChange).toHaveBeenCalledTimes(2);
   });
 
   it("should update label on blur", () => {
-    wrapper
-      .find(SeamlessLabel)
-      .first()
-      .simulate("blur", mockEvent);
+    wrapper.find("[data-test='option-label']").simulate("blur", mockEvent);
 
     expect(mockMutations.onUpdate).toHaveBeenCalled();
   });
 
   it("should update description on blur", () => {
     wrapper
-      .find(WrappingInput)
-      .first()
+      .find("[data-test='option-description']")
       .simulate("blur", mockEvent);
 
     expect(mockMutations.onUpdate).toHaveBeenCalled();

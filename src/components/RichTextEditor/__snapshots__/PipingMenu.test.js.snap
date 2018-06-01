@@ -102,7 +102,7 @@ Object {
 `;
 
 exports[`PipingMenu should render 1`] = `
-<PipingMenu__MenuButton
+<MenuButton
   ButtonComponent={[Function]}
   disabled={false}
   menu={
@@ -153,6 +153,13 @@ exports[`PipingMenu should render 1`] = `
     />
   }
   menuZIndex={10}
+  positionOptions={
+    Object {
+      "hAlign": "left",
+      "position": "bottom",
+    }
+  }
+  title="Pipe value"
 />
 `;
 

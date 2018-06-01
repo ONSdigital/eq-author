@@ -5,21 +5,14 @@ import PropTypes from "prop-types";
 import { uniqueId } from "lodash";
 import { radius } from "constants/theme";
 
-const FONT_SIZE = 10;
-
 const StyledTooltip = styled(ReactTooltip)`
-  background-color: rgba(10, 10, 10, 0.9) !important;
-  font-size: ${FONT_SIZE / 16}rem !important;
-  line-height: ${22 / FONT_SIZE}em !important;
-  padding: 0 ${6 / FONT_SIZE}em !important;
+  background-color: black !important;
+  opacity: 1 !important;
+  font-size: 0.8rem !important;
+  line-height: 1 !important;
+  padding: 0.4rem 0.6rem !important;
   border-radius: ${radius} !important;
   white-space: pre;
-
-  &::before,
-  &::after {
-    border-bottom: none !important;
-    border-top: none !important;
-  }
 `;
 
 class Tooltip extends React.Component {

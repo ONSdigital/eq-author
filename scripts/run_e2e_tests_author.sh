@@ -49,5 +49,5 @@ docker-compose -f ./scripts/e2e.yml up -d
 if [ -z "${CYPRESS_RECORD_KEY-}" ]; then
   ./node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser chrome
 else
-  ./node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser chrome --record
+  ./node_modules/.bin/cypress run -s cypress/integration/author_spec.js --browser electron --record
 fi

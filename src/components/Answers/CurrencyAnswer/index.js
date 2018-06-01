@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { colors, radius } from "constants/theme";
 import BasicAnswer from "components/Answers/BasicAnswer";
-import DummyTextInput from "components/Answers/Dummy/TextInput";
 
 const StyledSpan = styled.span`
   display: inline-block;
@@ -46,7 +45,6 @@ const CurrencyAnswer = props => (
   <BasicAnswer {...props}>
     <FieldWrapper>
       <CurrencyComponent />
-      <DummyTextInput />
     </FieldWrapper>
   </BasicAnswer>
 );

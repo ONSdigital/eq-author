@@ -47,9 +47,9 @@ class NumberWrapper extends React.Component {
 storiesOf("Forms", module)
   .addDecorator(story => <Width>{story()}</Width>)
   .add("Input/Text", props => (
-    <Field id="name">
-      <Label>Name</Label>
-      <Input type="text" />
+    <Field>
+      <Label htmlFor="name">Name</Label>
+      <Input id="name" type="text" />
     </Field>
   ))
   .add("Input/Number", props => <NumberWrapper min={0} max={100} />)
@@ -60,15 +60,17 @@ storiesOf("Forms", module)
     <NumberWrapper min={1} max={100} />
   ))
   .add("Input/Checkbox", props => (
-    <Field id="navigation">
-      <Input type="checkbox" />
-      <Label inline>Navigation</Label>
+    <Field>
+      <Input id="navigation" type="checkbox" />
+      <Label htmlFor="navigation" inline>
+        Navigation
+      </Label>
     </Field>
   ))
   .add("Select", () => (
-    <Field id="options">
-      <Label>Options</Label>
-      <Select value="UKIS" onChange={action("change")}>
+    <Field>
+      <Label htmlFor="options">Options</Label>
+      <Select value="UKIS" onChange={action("change")} id="options">
         <option value="Default">Default</option>
         <option value="UKIS">UKIS</option>
         <option value="Census">Census</option>
@@ -76,8 +78,8 @@ storiesOf("Forms", module)
     </Field>
   ))
   .add("TextArea", () => (
-    <Field id="name">
-      <Label>Description</Label>
-      <TextArea />
+    <Field>
+      <Label id="description">Description</Label>
+      <TextArea id="description" />
     </Field>
   ));

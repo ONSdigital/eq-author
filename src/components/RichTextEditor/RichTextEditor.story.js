@@ -66,6 +66,7 @@ const props = {
   onUpdate: action("onUpdate"),
   label: "Enter some text",
   placeholder: "Enter some text...",
+  id: "richtext",
   client
 };
 

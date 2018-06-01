@@ -28,7 +28,7 @@ const StyledHeader = styled.header`
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  background-color: ${colors.darkGrey};
+  background-color: ${colors.black};
   color: ${colors.white};
   font-weight: 400;
   padding: 1em 1.5em;
@@ -49,7 +49,7 @@ const Title = styled(TruncatedTitle)`
   margin: 0 2em;
   width: 100%;
   text-align: center;
-  line-height: 1;
+  line-height: 1.3;
 `;
 
 const ShareButton = styled(Button)`

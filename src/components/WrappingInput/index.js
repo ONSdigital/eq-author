@@ -1,77 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import AutoResizeTextArea from "react-textarea-autosize";
 import withChangeHandler from "components/Forms/withChangeHandler";
-import { colors } from "constants/theme";
-import { rgba } from "polished";
 import { invoke } from "lodash";
+import { sharedStyles } from "../Forms/css";
 
 const ENTER_KEY = 13;
 
-/**
- * 1.75em  = 28px/16px
- * 1.125em = 18px/16px
- * 0.875em = 14px/16px
- */
-const sizes = {
-  large: css`
-    font-size: 1.75em;
-    font-weight: 700;
-  `,
-
-  medium: css`
-    font-size: 1.125em;
-    font-weight: 700;
-  `,
-
-  small: css`
-    font-size: 0.875em;
-  `,
-
-  tiny: css`
-    font-size: 0.75em;
-    font-weight: 700;
-  `
-};
-
-const TextArea = styled(AutoResizeTextArea)`
-  resize: none;
-  border: none;
-  padding: 0;
-  color: ${colors.darkGrey};
-  display: block;
-  width: 100%;
-  ${props => sizes[props.size]};
-  transition: outline-color 100ms ease-in;
-  outline: 1px solid transparent;
-  outline-offset: 0.25rem;
-
-  overflow: hidden; /* prevent scrollbars on Windows */
-
-  &:hover {
-    outline-color: ${rgba(colors.blue, 0.5)};
-  }
-
-  &:focus {
-    outline-color: ${colors.blue};
-  }
-
-  &::placeholder {
-    color: #a3a3a3;
-  }
+const StyleContext = styled.div`
+  font-weight: ${props => (props.bold ? "bold" : "regular")};
 `;
 
-class WrappingTextArea extends React.Component {
+const TextArea = styled(AutoResizeTextArea)`
+  ${sharedStyles};
+  font-weight: inherit;
+  resize: none;
+  overflow: hidden; /* prevent scrollbars on Windows */
+`;
+
+class WrappingInput extends React.Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onKeyDown: PropTypes.func,
-    size: PropTypes.oneOf(Object.keys(sizes))
+    id: PropTypes.string.isRequired,
+    bold: PropTypes.bool,
+    placeholder: PropTypes.string
   };
 
   static defaultProps = {
-    size: "small"
+    bold: false
   };
 
   handleChange = e => {
@@ -88,14 +47,18 @@ class WrappingTextArea extends React.Component {
   };
 
   render() {
+    const { bold, placeholder, ...otherProps } = this.props;
+
     return (
-      <TextArea
-        {...this.props}
+      <StyleContext
+        bold={bold}
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
-      />
+      >
+        <TextArea {...otherProps} placeholder={placeholder} />
+      </StyleContext>
     );
   }
 }
 
-export default withChangeHandler(WrappingTextArea);
+export default withChangeHandler(WrappingInput);

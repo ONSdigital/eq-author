@@ -38,7 +38,7 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
     }
   }
   autoFocus={false}
-  labelPlaceholder="Label (optional)"
+  labelText="Label (optional)"
   onUpdate={[Function]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
@@ -46,8 +46,7 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
       childFactory={[Function]}
       component={[Function]}
     >
-      <CSSTransition
-        classNames="option"
+      <OptionTransition
         key="0"
         timeout={200}
       >
@@ -76,9 +75,8 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
             }
           }
         />
-      </CSSTransition>
-      <CSSTransition
-        classNames="option"
+      </OptionTransition>
+      <OptionTransition
         key="1"
         timeout={200}
       >
@@ -107,15 +105,14 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
             }
           }
         />
-      </CSSTransition>
-      <CSSTransition
-        classNames="option"
+      </OptionTransition>
+      <OptionTransition
         key="2"
         timeout={200}
       >
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={true}
-          labelPlaceholder="Other"
+          labelPlaceholder="eg. Other"
           onAddOption={[Function]}
           onAddOther={[Function]}
           onChange={[Function]}
@@ -141,7 +138,7 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
           <MultipleChoiceAnswer__OtherAnswerWrapper
             data-test="other-answer"
           >
-            <TextAnswer
+            <Connect(withEntityEditor(StatelessBasicAnswer))
               answer={
                 Object {
                   "id": "1",
@@ -156,14 +153,15 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
                   "type": "TextField",
                 }
               }
-              labelPlaceholder="Please specify"
+              bold={false}
+              labelPlaceholder="eg. Please specify"
+              labelText="Other label"
               onUpdate={[Function]}
               showDescription={false}
-              size="tiny"
             />
           </MultipleChoiceAnswer__OtherAnswerWrapper>
         </Connect(withEntityEditor(StatelessOption))>
-      </CSSTransition>
+      </OptionTransition>
     </TransitionGroup>
     <div>
       <SplitButton
@@ -204,7 +202,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
     }
   }
   autoFocus={false}
-  labelPlaceholder="Label (optional)"
+  labelText="Label (optional)"
   onUpdate={[Function]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
@@ -212,8 +210,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       childFactory={[Function]}
       component={[Function]}
     >
-      <CSSTransition
-        classNames="option"
+      <OptionTransition
         key="1"
         timeout={200}
       >
@@ -243,7 +240,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
             }
           }
         />
-      </CSSTransition>
+      </OptionTransition>
     </TransitionGroup>
     <div>
       <SplitButton

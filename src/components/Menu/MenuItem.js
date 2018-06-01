@@ -16,8 +16,9 @@ export const menuItemStyles = css`
   user-select: none;
   position: relative;
   line-height: 1.3;
-  font-size: 0.8em;
+  font-size: 0.9em;
   padding: 0 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 
   &.${highlightedClassName} {
     background: ${colors.lighterGrey};

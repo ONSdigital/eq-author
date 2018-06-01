@@ -36,12 +36,19 @@ exports[`Answer Editor should render Checkbox 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>
@@ -74,12 +81,19 @@ exports[`Answer Editor should render Currency 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>
@@ -112,12 +126,19 @@ exports[`Answer Editor should render DateRange 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>
@@ -129,7 +150,7 @@ exports[`Answer Editor should render Number 1`] = `
     Number
   </AnswerEditor__AnswerType>
   <AnswerEditor__Padding>
-    <NumberAnswer
+    <Connect(withEntityEditor(StatelessBasicAnswer))
       answer={
         Object {
           "description": "",
@@ -150,12 +171,19 @@ exports[`Answer Editor should render Number 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>
@@ -197,12 +225,19 @@ exports[`Answer Editor should render Radio 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>
@@ -214,7 +249,7 @@ exports[`Answer Editor should render TextArea 1`] = `
     TextArea
   </AnswerEditor__AnswerType>
   <AnswerEditor__Padding>
-    <TextAreaAnswer
+    <Connect(withEntityEditor(StatelessBasicAnswer))
       answer={
         Object {
           "description": "",
@@ -235,12 +270,19 @@ exports[`Answer Editor should render TextArea 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>
@@ -252,7 +294,7 @@ exports[`Answer Editor should render TextField 1`] = `
     TextField
   </AnswerEditor__AnswerType>
   <AnswerEditor__Padding>
-    <TextAnswer
+    <Connect(withEntityEditor(StatelessBasicAnswer))
       answer={
         Object {
           "description": "",
@@ -273,12 +315,19 @@ exports[`Answer Editor should render TextField 1`] = `
   </AnswerEditor__Padding>
   <Tooltip
     content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
   >
     <AnswerEditor__AnswerDeleteButton
       aria-label="Delete answer"
       data-test="btn-delete-answer"
       onClick={[Function]}
-      small={true}
+      size="medium"
     />
   </Tooltip>
 </AnswerEditor__Answer>

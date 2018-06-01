@@ -22,7 +22,7 @@ exports[`AccordionPanel Accordion panel behaviours should render title and body 
 }
 
 .c1 button {
-  color: #4A4A4A;
+  color: #333333;
   font-size: 0.7em;
   font-weight: 900;
   background: none;

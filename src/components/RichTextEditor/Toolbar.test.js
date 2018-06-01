@@ -1,5 +1,5 @@
 import React from "react";
-import Toolbar, { ToolbarPanel } from "components/RichTextEditor/Toolbar";
+import Toolbar from "components/RichTextEditor/Toolbar";
 import ToolbarButton from "components/RichTextEditor/ToolbarButton";
 import PipingMenu from "./PipingMenu";
 import { shallow } from "enzyme";
@@ -37,16 +37,6 @@ describe("components/RichTextEditor/Toolbar", () => {
   it("should render as visible", () => {
     expect(buttons.length).toBeGreaterThan(0);
     expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should maintain visibility following a focus event", () => {
-    wrapper.find(ToolbarPanel).simulate("focus");
-    expect(props.onFocus).toHaveBeenCalled();
-  });
-
-  it("should handle blur", () => {
-    wrapper.find(ToolbarPanel).simulate("blur");
-    expect(props.onBlur).toHaveBeenCalled();
   });
 
   it("should render Buttons as disabled according to props provided", () => {
@@ -90,26 +80,9 @@ describe("components/RichTextEditor/Toolbar", () => {
   });
 
   it("should call onToggle when clicked with appropriate button object", () => {
-    let preventDefault;
-
     buttons.forEach((node, i) => {
-      preventDefault = jest.fn();
-      node.simulate("MouseDown", { preventDefault, button: 0 });
-      expect(preventDefault).toHaveBeenCalled();
-      expect(props.onToggle).toHaveBeenLastCalledWith(shape);
-    });
-  });
+      node.simulate("click");
 
-  it("should call onToggle when 'Enter' key is pressed when focused on a button", () => {
-    buttons.forEach((node, i) => {
-      node.simulate("KeyDown", { key: "Enter" });
-      expect(props.onToggle).toHaveBeenLastCalledWith(shape);
-    });
-  });
-
-  it("should call onToggle when 'space' key is pressed when focused on a button", () => {
-    buttons.forEach((node, i) => {
-      node.simulate("KeyDown", { key: "Space" });
       expect(props.onToggle).toHaveBeenLastCalledWith(shape);
     });
   });

@@ -79,10 +79,10 @@ class AnswerTypeGrid extends React.Component {
   };
 
   render() {
-    const { "aria-labelledby": labelledby } = this.props;
+    const { "aria-labelledby": labelledby, ...otherProps } = this.props;
 
     return (
-      <Menu>
+      <Menu {...otherProps}>
         <MenuBackground>
           <IconGrid aria-labelledby={labelledby}>
             {buttons.map((button, index) => {

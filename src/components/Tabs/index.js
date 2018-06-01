@@ -30,14 +30,14 @@ const Tab = styled(NavLink)`
   &[aria-current="true"] {
     background: ${colors.white};
     color: ${colors.secondary};
-    border: 1px solid ${colors.borders};
+    border: 1px solid ${colors.bordersLight};
     border-bottom: none;
   }
 `;
 
 const TabsBody = styled.div`
   background: ${colors.white};
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
 `;
 

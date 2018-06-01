@@ -2,11 +2,12 @@ import React, { Component } from "react";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 import focusOnEntity from "utils/focusOnEntity";
 
 import Option from "./Option";
+import OptionTransition from "./OptionTransition";
 import BasicAnswer from "components/Answers/BasicAnswer";
 
 import { colors } from "constants/theme";
@@ -14,13 +15,12 @@ import { CHECKBOX } from "constants/answer-types";
 import SplitButton from "components/SplitButton";
 import Dropdown from "components/SplitButton/Dropdown";
 import MenuItem from "components/SplitButton/MenuItem";
-import TextAnswer from "components/Answers/TextAnswer";
 
 import { last } from "lodash";
 
 const AnswerWrapper = styled.div`
-  width: 50%;
-  margin: 0;
+  margin: 2em 0 0;
+  width: 75%;
 `;
 
 const AnswerHelper = styled.div`
@@ -39,24 +39,6 @@ export const AddOtherLink = styled.button`
   text-decoration: none;
   border: 0;
   background: none;
-`;
-
-export const DeleteButton = styled.button`
-  cursor: pointer;
-  color: ${colors.lightGrey};
-  padding: 0.2em;
-  border: 0;
-  background: none;
-  font-size: 1em;
-  position: absolute;
-  top: 0.5em;
-  right: 1em;
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: ${colors.darkGrey};
-    transition: color 0.2s ease-in-out;
-  }
 `;
 
 const OtherAnswerWrapper = styled.div`
@@ -90,6 +72,7 @@ class MultipleChoiceAnswer extends Component {
 
   handleAddOption = e => {
     e.preventDefault();
+    e.stopPropagation();
     return this.props.onAddOption(this.props.answer.id).then(focusOnEntity);
   };
 
@@ -134,8 +117,8 @@ class MultipleChoiceAnswer extends Component {
       <BasicAnswer
         answer={answer}
         onUpdate={onUpdate}
-        labelPlaceholder="Label (optional)"
         autoFocus={false}
+        labelText="Label (optional)"
       >
         <AnswerWrapper>
           {answer.type === CHECKBOX && (
@@ -143,7 +126,7 @@ class MultipleChoiceAnswer extends Component {
           )}
           <TransitionGroup component={Options}>
             {answer.options.map((option, optionIndex, options) => (
-              <CSSTransition timeout={200} classNames="option" key={option.id}>
+              <OptionTransition key={option.id}>
                 <Option
                   {...otherProps}
                   option={option}
@@ -152,34 +135,31 @@ class MultipleChoiceAnswer extends Component {
                   onEnterKey={this.handleAddOption}
                   hasDeleteButton={showDeleteOption}
                 />
-              </CSSTransition>
+              </OptionTransition>
             ))}
             {answer.other && (
-              <CSSTransition
-                timeout={200}
-                classNames="option"
-                key={answer.other.option.id}
-              >
+              <OptionTransition key={answer.other.option.id}>
                 <Option
                   {...otherProps}
                   option={answer.other.option}
                   onDelete={this.handleDeleteOther}
                   onUpdate={onUpdateOption}
                   onEnterKey={this.handleAddOption}
-                  labelPlaceholder="Other"
                   hasDeleteButton={showDeleteOption}
+                  labelPlaceholder="eg. Other"
                 >
                   <OtherAnswerWrapper data-test="other-answer">
-                    <TextAnswer
+                    <BasicAnswer
                       answer={answer.other.answer}
                       onUpdate={onUpdate}
-                      labelPlaceholder="Please specify"
                       showDescription={false}
-                      size="tiny"
+                      labelText="Other label"
+                      labelPlaceholder="eg. Please specify"
+                      bold={false}
                     />
                   </OtherAnswerWrapper>
                 </Option>
-              </CSSTransition>
+              </OptionTransition>
             )}
           </TransitionGroup>
           <div>

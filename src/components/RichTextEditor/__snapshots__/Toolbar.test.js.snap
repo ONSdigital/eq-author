@@ -1,81 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/RichTextEditor/Toolbar should render as hidden by default 1`] = `
-<TransitionGroup
-  childFactory={[Function]}
-  component={[Function]}
-/>
+<Toolbar__ToolbarPanel
+  visible={false}
+>
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
+  />
+</Toolbar__ToolbarPanel>
 `;
 
 exports[`components/RichTextEditor/Toolbar should render as visible 1`] = `
-<TransitionGroup
-  childFactory={[Function]}
-  component={[Function]}
+<Toolbar__ToolbarPanel
+  visible={true}
 >
-  <PopupTransition
-    duration={200}
-    in={false}
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
   >
-    <Toolbar__ToolbarPanel
-      onBlur={[Function]}
-      onFocus={[Function]}
+    <FadeTransition
+      in={false}
+      timeout={250}
     >
       <Toolbar__ButtonGroup>
-        <withApollo(withRouter(Menu))
-          disabled={true}
-          onItemChosen={[Function]}
-        />
-        <Toolbar__Separator />
         <ToolbarButton
           disabled={true}
           key="Heading"
           onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
+          title="Heading"
         >
           <Component />
-          <VisuallyHidden>
-            Heading
-          </VisuallyHidden>
         </ToolbarButton>
         <ToolbarButton
           disabled={true}
           key="Bold"
           onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
+          title="Bold"
         >
           <Component />
-          <VisuallyHidden>
-            Bold
-          </VisuallyHidden>
         </ToolbarButton>
         <ToolbarButton
           disabled={true}
           key="Emphasis"
           onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
+          title="Emphasis"
         >
           <Component />
-          <VisuallyHidden>
-            Emphasis
-          </VisuallyHidden>
         </ToolbarButton>
+        <Toolbar__Separator />
         <ToolbarButton
           disabled={true}
           key="List"
           onClick={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
+          title="List"
         >
           <Component />
-          <VisuallyHidden>
-            List
-          </VisuallyHidden>
         </ToolbarButton>
+        <Toolbar__Separator />
+        <withApollo(withRouter(Menu))
+          disabled={true}
+          onItemChosen={[Function]}
+        />
       </Toolbar__ButtonGroup>
-    </Toolbar__ToolbarPanel>
-  </PopupTransition>
-</TransitionGroup>
+    </FadeTransition>
+  </TransitionGroup>
+</Toolbar__ToolbarPanel>
 `;

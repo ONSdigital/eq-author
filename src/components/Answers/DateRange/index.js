@@ -1,56 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import DummyDate from "components/Answers/Dummy/Date";
+
 import styled from "styled-components";
-import { Field } from "components/Forms";
-import WrappingInput from "components/WrappingInput";
+
 import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
+import { UnwrappedDate } from "components/Answers/Date";
 
 const Wrapper = styled.div`
   width: 100%;
 `;
 
 const Fieldset = styled.div`
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 
   &:last-of-type {
     margin-bottom: 0;
   }
 `;
 
-const DateRange = ({ answer, onChange, onUpdate, ...otherProps }) => (
+const DateRange = ({ answer, onChange, onUpdate }) => (
   <Wrapper>
     <Fieldset>
-      <Field>
-        <WrappingInput
-          name="label"
-          placeholder="From"
-          size="medium"
-          onChange={onChange}
-          onBlur={onUpdate}
-          value={answer.label}
-          data-autofocus
-          data-test="date-answer-label"
-        />
-      </Field>
-      <DummyDate />
+      <UnwrappedDate
+        onChange={onChange}
+        onUpdate={onUpdate}
+        name="label"
+        label="Label from"
+        answer={answer}
+        placeholder="eg. From"
+      />
     </Fieldset>
     <Fieldset>
-      <Field>
-        <WrappingInput
-          name="secondaryLabel"
-          placeholder="To"
-          size="medium"
-          onChange={onChange}
-          onBlur={onUpdate}
-          value={answer.secondaryLabel}
-          data-autofocus
-          data-test="date-answer-secondary-label"
-        />
-      </Field>
-      <DummyDate />
+      <UnwrappedDate
+        onChange={onChange}
+        onUpdate={onUpdate}
+        name="secondaryLabel"
+        label="Label to"
+        answer={{ ...answer, label: answer.secondaryLabel }}
+        placeholder="eg. To"
+      />
     </Fieldset>
   </Wrapper>
 );

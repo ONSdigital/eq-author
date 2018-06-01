@@ -2,26 +2,42 @@
 
 exports[`BasicAnswer should render 1`] = `
 <div>
-  <Field>
-    <withChangeHandler(WrappingTextArea)
+  <Field
+    last={false}
+  >
+    <Label
+      htmlFor="answer-label-undefined"
+      small={false}
+    >
+      Label
+    </Label>
+    <withChangeHandler(WrappingInput)
+      bold={true}
       data-autofocus={true}
       data-test="txt-answer-label"
+      id="answer-label-undefined"
       name="label"
       onBlur={[Function]}
       onChange={[Function]}
-      placeholder="Label"
-      size="medium"
       value=""
     />
   </Field>
-  <Field>
-    <withChangeHandler(WrappingTextArea)
+  <Field
+    last={false}
+  >
+    <Label
+      htmlFor="answer-description-undefined"
+      small={false}
+    >
+      Description (optional)
+    </Label>
+    <withChangeHandler(WrappingInput)
       cols="30"
       data-test="txt-answer-description"
+      id="answer-description-undefined"
       name="description"
       onBlur={[Function]}
       onChange={[Function]}
-      placeholder="Enter a description (optional)…"
       rows="5"
       value="Answer description"
     />

@@ -1,4 +1,4 @@
-import React, { Children, cloneElement } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -9,19 +9,19 @@ const StyledField = styled.div`
   position: relative;
 `;
 
-const Field = ({ children, last, id, className, ...otherProps }) => (
-  <StyledField last={last} className={className}>
-    {Children.map(children, child =>
-      cloneElement(child, { id, ...otherProps })
-    )}
+const Field = ({ children, last, ...otherProps }) => (
+  <StyledField last={last} {...otherProps}>
+    {children}
   </StyledField>
 );
 
 Field.propTypes = {
   children: PropTypes.node.isRequired,
-  id: PropTypes.string,
-  last: PropTypes.bool,
-  className: PropTypes.string
+  last: PropTypes.bool
+};
+
+Field.defaultProps = {
+  last: false
 };
 
 export default Field;

@@ -9,7 +9,6 @@ const PopupTransition = styled(CSSTransition).attrs({
   classNames: "popup"
 })`
   transform-origin: center bottom;
-
   transition: opacity ${quarterTimeout}ms ease-in,
     transform ${timeout}ms cubic-bezier(0.175, 0.885, 0.32, 1.4);
   transform: scale(1) translateY(0);
@@ -39,7 +38,7 @@ const PopupTransition = styled(CSSTransition).attrs({
 
 PopupTransition.defaultProps = {
   in: false,
-  timeout: 300
+  timeout: 200
 };
 
 PopupTransition.propTypes = {

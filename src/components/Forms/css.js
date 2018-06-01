@@ -1,21 +1,43 @@
 import { css } from "styled-components";
-import { colors, radius } from "constants/theme";
-import { darken } from "polished";
+import { colors } from "constants/theme";
+
+export const focusStyle = css`
+  border-color: ${colors.blue};
+  outline-color: ${colors.blue};
+  box-shadow: 0 0 0 3px ${colors.tertiary};
+`;
 
 export const sharedStyles = css`
-  padding: 0.7em;
-  width: 100%;
-  display: block;
-  border-radius: ${radius};
-  border: 1px solid ${colors.borders};
   font-size: 1em;
+  border: 1px solid ${colors.borders};
+  padding: 0.5em;
+  color: ${colors.black};
+  display: block;
+  width: 100%;
+  transition: outline-color 100ms ease-in, border-color 100ms ease-in;
+  outline: 1px solid transparent;
 
   &:hover {
-    border-color: ${darken(0.1)(colors.borders)};
+    border-color: ${colors.blue};
+    outline-color: ${colors.blue};
+  }
+
+  &:focus,
+  &:focus-within {
+    ${focusStyle};
+  }
+
+  &::placeholder {
+    color: #a3a3a3;
   }
 
   &:focus {
     outline: none;
     border: 1px solid ${colors.primary};
+  }
+
+  &[disabled] {
+    opacity: 0.8;
+    pointer-events: none;
   }
 `;

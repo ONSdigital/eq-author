@@ -1,9 +1,9 @@
 import React from "react";
-import RichTextEditor, { ClickContext } from "components/RichTextEditor";
+import RichTextEditor from "components/RichTextEditor";
 import Toolbar, {
   STYLE_BLOCK,
   STYLE_INLINE,
-  buttons
+  styleButtons
 } from "components/RichTextEditor/Toolbar";
 import { shallow } from "enzyme";
 import findById from "utils/findById";
@@ -15,7 +15,7 @@ import { SynchronousPromise } from "synchronous-promise";
 // https://github.com/facebook/draft-js/issues/702
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
 
-let wrapper, props, editorNode;
+let wrapper, props, editorInstance;
 
 const content = `
   <h2>List of styles:</h2>
@@ -33,7 +33,7 @@ describe("components/RichTextEditor", function() {
       label: "I am a label",
       id: "test"
     };
-    editorNode = {
+    editorInstance = {
       focus: jest.fn()
     };
     wrapper = shallow(<RichTextEditor {...props} />);
@@ -54,24 +54,24 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should store a reference to the editor DOM node", () => {
-    wrapper.instance().setEditorNode(editorNode);
-    expect(wrapper.instance().editor).toEqual(editorNode);
+    wrapper.instance().setEditorInstance(editorInstance);
+    expect(wrapper.instance().editorInstance).toEqual(editorInstance);
   });
 
   it("should focus upon click", () => {
     wrapper = shallow(<RichTextEditor {...props} />, {
       disableLifecycleMethods: true
     });
-    wrapper.instance().setEditorNode(editorNode);
-    wrapper.find(ClickContext).simulate("click");
+    wrapper.instance().setEditorInstance(editorInstance);
+    wrapper.find("[data-test='rte-field']").simulate("click");
 
-    expect(editorNode.focus).toHaveBeenCalled();
+    expect(editorInstance.focus).toHaveBeenCalled();
   });
 
   it("should autoFocus", () => {
-    wrapper.instance().setEditorNode(editorNode);
+    wrapper.instance().setEditorInstance(editorInstance);
     wrapper.setProps({ autoFocus: true });
-    expect(editorNode.focus).toHaveBeenCalled();
+    expect(editorInstance.focus).toHaveBeenCalled();
   });
 
   it("should store editorState in local state upon change event", () => {
@@ -93,7 +93,7 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should call onUpdate with raw editor state onBlur", () => {
-    wrapper.find(Editor).simulate("blur");
+    wrapper.find("[data-test='rte-field']").simulate("blur");
     expect(props.onUpdate).toHaveBeenCalledWith({
       name: "test",
       value: "<p></p>"
@@ -101,8 +101,8 @@ describe("components/RichTextEditor", function() {
   });
 
   it("should call the relevant method to determine if the element is active", () => {
-    const inlineStyle = findById(buttons, "bold");
-    const blockElement = findById(buttons, "heading");
+    const inlineStyle = findById(styleButtons, "bold");
+    const blockElement = findById(styleButtons, "heading");
 
     const instance = wrapper.instance();
     instance.hasInlineStyle = jest.fn();
@@ -130,20 +130,9 @@ describe("components/RichTextEditor", function() {
     expect(result).toBe("handled");
   });
 
-  it("should set focus to true when Editor is focussed", () => {
-    wrapper.find(Editor).simulate("focus");
+  it("should set focus to true when Editor is focused", () => {
+    wrapper.find("[data-test='rte-field']").simulate("focus");
     expect(wrapper.state("focused")).toBe(true);
-  });
-
-  it("should set focus to true when Toolbar is focused", () => {
-    wrapper.find(Toolbar).simulate("focus");
-    expect(wrapper.state("focused")).toBe(true);
-  });
-
-  it("should set focus to false when Toolbar is blurred", () => {
-    wrapper.setState({ focused: true });
-    wrapper.find(Toolbar).simulate("blur");
-    expect(wrapper.state("focused")).toBe(false);
   });
 
   it("should be able to determine current block style", () => {
