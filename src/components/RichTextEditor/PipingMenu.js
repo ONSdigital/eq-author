@@ -98,7 +98,7 @@ export class Menu extends React.Component {
   filterAnswers(answers) {
     const answersSplit = flatten(
       answers.map(answer => {
-        if (answer.__typename == "CompositeAnswer") {
+        if (answer.__typename === "CompositeAnswer") {
           return answer.childAnswers;
         }
         return answer;
