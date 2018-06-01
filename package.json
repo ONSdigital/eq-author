@@ -13,7 +13,7 @@
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint src --ext .graphql --ext .js --max-warnings=0",
     "lint:css": "stylelint './src/**/*.js'",
-    "serve": "serve -S -p 3000 build/",
+    "serve": "serve -l 3000 build/",
     "deploy": "npm run build && gh-pages -d build",
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9001",
     "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
@@ -152,7 +152,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "serve": "^6.2.0",
+    "serve": "^7.2.0",
     "styled-components": "^2.2.1",
     "synchronous-promise": "^2.0.3",
     "uncontrollable": "^4.1.0"
