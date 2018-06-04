@@ -14,9 +14,7 @@ const colorChange = keyframes`
   }
 `;
 
-const Container = styled(({ height, "data-test": dataTest, ...props }) => (
-  <div {...props} />
-))`
+const Container = styled(({ height, ...props }) => <div {...props} />)`
   height: ${props => props.height};
   display: flex;
   align-items: center;

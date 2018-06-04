@@ -5,7 +5,7 @@ import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
 
 import AnswerTransition from "./AnswerTransition";
-import PageTransition from "components/PageTransition";
+
 import AnswerTypeSelector from "components/AnswerTypeSelector";
 
 import { TransitionGroup } from "react-transition-group";
@@ -126,30 +126,27 @@ export default class QuestionPageEditor extends React.Component {
 
     return (
       <div data-test="question-page-editor">
-        <TransitionGroup>
-          <PageTransition key={id}>
-            <div>
-              <QuestionSegment id={id}>
-                <MetaEditor onUpdate={onUpdatePage} page={page} />
-                <DeleteConfirmDialog
-                  isOpen={showDeleteConfirmDialog}
-                  onClose={onCloseDeleteConfirmDialog}
-                  onDelete={onDeletePageConfirm}
-                  title={getTextFromHTML(page.title) || "Untitled Page"}
-                  alertText="All edits, properties and routing settings will also be removed."
-                  icon={iconPage}
-                  data-test="delete-page"
-                />
-                <MovePageQuery questionnaireId={match.params.questionnaireId}>
-                  {this.renderMovePageModal}
-                </MovePageQuery>
-              </QuestionSegment>
-              <TransitionGroup>
-                {page.answers.map(this.renderAnswerEditor)}
-              </TransitionGroup>
-            </div>
-          </PageTransition>
-        </TransitionGroup>
+        <div key={id}>
+          <QuestionSegment id={id}>
+            <MetaEditor onUpdate={onUpdatePage} page={page} />
+            <DeleteConfirmDialog
+              isOpen={showDeleteConfirmDialog}
+              onClose={onCloseDeleteConfirmDialog}
+              onDelete={onDeletePageConfirm}
+              title={getTextFromHTML(page.title) || "Untitled Page"}
+              alertText="All edits, properties and routing settings will also be removed."
+              icon={iconPage}
+              data-test="delete-page"
+            />
+            <MovePageQuery questionnaireId={match.params.questionnaireId}>
+              {this.renderMovePageModal}
+            </MovePageQuery>
+          </QuestionSegment>
+          <TransitionGroup>
+            {page.answers.map(this.renderAnswerEditor)}
+          </TransitionGroup>
+        </div>
+
         <AddAnswerSegment>
           <AnswerTypeSelector
             answerCount={page.answers.length}

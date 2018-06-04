@@ -5,9 +5,7 @@ import PropTypes from "prop-types";
 
 const MovePageQuery = ({ questionnaireId, children }) => (
   <Query query={query} variables={{ id: questionnaireId }}>
-    {({ loading, data }) => {
-      return children({ loading, data });
-    }}
+    {({ loading, data }) => children({ loading, data })}
   </Query>
 );
 

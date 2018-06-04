@@ -5,7 +5,7 @@ import { matchPath } from "react-router";
 export { matchPath };
 
 // react-router will eventually offer this exact function.
-// at that point we can drop this component
+// at that point we can drop this
 const compile = memoize(path => pathToRegexp.compile(path));
 export const generatePath = curry((path, params) => compile(path)(params));
 

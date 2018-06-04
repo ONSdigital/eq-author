@@ -1,10 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { flowRight, isFunction, isNil } from "lodash";
 
-import Tabs from "components/Tabs";
 import SectionQuery from "./SectionQuery";
 import SectionEditor from "components/SectionEditor";
 import IconButtonDelete from "components/IconButtonDelete";
@@ -12,13 +10,6 @@ import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
-
-import MainCanvas from "components/MainCanvas";
-import ScrollPane from "components/ScrollPane";
-import PropertiesPanel from "components/PropertiesPanel";
-import AddPage from "components/QuestionnaireDesignPage/icon-add-page.svg?inline";
-import SavingIndicator from "components/SavingIndicator";
-import { Grid, Column } from "components/Grid";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
@@ -31,16 +22,7 @@ import Error from "components/Error";
 import { withApollo } from "react-apollo";
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
-
-const Centered = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4em;
-`;
-
-const Margin = styled.div`
-  margin-top: 2em;
-`;
+import EditorLayout from "components/EditorLayout";
 
 export class UnwrappedSectionRoute extends React.Component {
   static propTypes = {
@@ -89,7 +71,7 @@ export class UnwrappedSectionRoute extends React.Component {
     const { loading, error, data } = this.props;
 
     if (loading) {
-      return <Loading height="11.8125em">Section loading…</Loading>;
+      return <Loading height="24.25rem">Section loading…</Loading>;
     }
     if (error) {
       return <Error>Something went wrong</Error>;
@@ -126,31 +108,9 @@ export class UnwrappedSectionRoute extends React.Component {
 
   render() {
     return (
-      <Grid data-test="section-route">
-        <Column gutters={false}>
-          <ScrollPane permanentScrollBar>
-            <Margin>
-              <MainCanvas>
-                <SavingIndicator />
-                <Tabs>{this.renderContent()}</Tabs>
-              </MainCanvas>
-            </Margin>
-            <Centered>
-              <Button
-                variant="tertiary"
-                small
-                onClick={this.handleAddPage}
-                data-test="btn-add-page-2"
-              >
-                <IconText icon={AddPage}>Add question page</IconText>
-              </Button>
-            </Centered>
-          </ScrollPane>
-        </Column>
-        <Column cols={2} gutters={false}>
-          <PropertiesPanel />
-        </Column>
-      </Grid>
+      <EditorLayout onAddPage={this.handleAddPage} data-test="section-route">
+        {this.renderContent()}
+      </EditorLayout>
     );
   }
 }

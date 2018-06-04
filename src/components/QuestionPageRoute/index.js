@@ -1,11 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { flowRight, isFunction, isNil } from "lodash";
 import { Titled } from "react-titled";
 
-import Tabs from "components/Tabs";
 import QuestionPageQuery from "./QuestionPageQuery";
 import QuestionPageEditor from "components/QuestionPageEditor";
 import IconButtonDelete from "components/IconButtonDelete";
@@ -13,13 +11,6 @@ import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
-
-import MainCanvas from "components/MainCanvas";
-import ScrollPane from "components/ScrollPane";
-import PropertiesPanel from "components/PropertiesPanel";
-import AddPage from "components/QuestionnaireDesignPage/icon-add-page.svg?inline";
-import SavingIndicator from "components/SavingIndicator";
-import { Grid, Column } from "components/Grid";
 
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
@@ -40,16 +31,7 @@ import Loading from "components/Loading";
 import Error from "components/Error";
 import withCreatePage from "containers/enhancers/withCreatePage";
 import { withApollo } from "react-apollo";
-
-const Centered = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4em;
-`;
-
-const Margin = styled.div`
-  margin-top: 2em;
-`;
+import EditorLayout from "components/EditorLayout";
 
 export class UnwrappedQuestionPageRoute extends React.Component {
   static propTypes = {
@@ -119,7 +101,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     const { loading, error, data } = this.props;
 
     if (loading) {
-      return <Loading height="21em">Page loading…</Loading>;
+      return <Loading height="38rem">Page loading…</Loading>;
     }
     if (error) {
       return <Error>Something went wrong</Error>;
@@ -168,31 +150,12 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 
   render() {
     return (
-      <Grid>
-        <Column gutters={false}>
-          <ScrollPane permanentScrollBar>
-            <Margin>
-              <MainCanvas>
-                <SavingIndicator />
-                <Tabs>{this.renderContent()}</Tabs>
-              </MainCanvas>
-            </Margin>
-            <Centered>
-              <Button
-                variant="tertiary"
-                small
-                onClick={this.handleAddPage}
-                data-test="btn-add-page-2"
-              >
-                <IconText icon={AddPage}>Add question page</IconText>
-              </Button>
-            </Centered>
-          </ScrollPane>
-        </Column>
-        <Column cols={2} gutters={false}>
-          <PropertiesPanel page={this.props.data.questionPage} />
-        </Column>
-      </Grid>
+      <EditorLayout
+        onAddPage={this.handleAddPage}
+        page={this.props.data.questionPage}
+      >
+        {this.renderContent()}
+      </EditorLayout>
     );
   }
 }

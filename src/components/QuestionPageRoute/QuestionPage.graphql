@@ -6,23 +6,20 @@ query GetQuestionPage($id: ID!) {
     id
     title
     description
-    pageType
     position
-    ... on QuestionPage {
-      guidance
-      answers {
-        ...Answer
-        ... on MultipleChoiceAnswer {
-          options {
+    guidance
+    answers {
+      ...Answer
+      ... on MultipleChoiceAnswer {
+        options {
+          ...Option
+        }
+        other {
+          option {
             ...Option
           }
-          other {
-            option {
-              ...Option
-            }
-            answer {
-              ...Answer
-            }
+          answer {
+            ...Answer
           }
         }
       }

@@ -293,19 +293,20 @@ describe("QuestionPageRoute", () => {
           ...mockHandlers,
           onAddAnswer
         },
-        shallow
+        mount
       );
 
       wrapper
-        .dive()
-        .dive()
-        .dive()
-        .dive()
-        .find(`QuestionPageEditor`)
+        .find(`[data-test="btn-add-answer"]`)
         .first()
-        .simulate("addAnswer", "foo");
+        .simulate("click");
 
-      expect(onAddAnswer).toHaveBeenCalledWith("3", "foo");
+      wrapper
+        .find(`button[title="Radio"]`)
+        .first()
+        .simulate("click");
+
+      expect(onAddAnswer).toHaveBeenCalledWith("3", "Radio");
     });
   });
 });

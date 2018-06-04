@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import styled from "styled-components";
-import { flowRight } from "lodash";
 import { colors } from "constants/theme";
 
 import { raiseToast } from "redux/toast/actions";
@@ -176,7 +174,6 @@ const mapStateToProps = state => ({
   user: getUser(state)
 });
 
-export default flowRight(
-  connect(mapStateToProps, { signOutUser, raiseToast }),
-  withRouter
-)(UnconnectedHeader);
+export default connect(mapStateToProps, { signOutUser, raiseToast })(
+  UnconnectedHeader
+);

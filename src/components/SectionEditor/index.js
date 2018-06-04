@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
-import { TransitionGroup } from "react-transition-group";
 
 import RichTextEditor from "components/RichTextEditor";
 import DeleteConfirmDialog from "components/DeleteConfirmDialog";
@@ -13,7 +12,6 @@ import withEntityEditor from "components/withEntityEditor";
 import sectionFragment from "graphql/fragments/section.graphql";
 import { flip, partial } from "lodash";
 import getTextFromHTML from "utils/getTextFromHTML";
-import PageTransition from "components/PageTransition";
 
 const titleControls = {
   emphasis: true
@@ -65,32 +63,29 @@ export class UnwrappedSectionEditor extends React.Component {
           icon={iconSection}
           data-test="dialog-delete-confirm"
         />
-        <TransitionGroup>
-          <PageTransition key={getIdForObject(section)}>
-            <Padding>
-              <RichTextEditor
-                id="title"
-                label="Title"
-                value={section.title}
-                onUpdate={handleUpdate}
-                controls={titleControls}
-                size="large"
-                testSelector="txt-section-title"
-                autoFocus={!sectionTitleText}
-              />
 
-              <RichTextEditor
-                id="description"
-                value={section.description}
-                onUpdate={handleUpdate}
-                label="Description"
-                controls={descriptionControls}
-                multiline
-                testSelector="txt-section-description"
-              />
-            </Padding>
-          </PageTransition>
-        </TransitionGroup>
+        <Padding>
+          <RichTextEditor
+            id="title"
+            label="Title"
+            value={section.title}
+            onUpdate={handleUpdate}
+            controls={titleControls}
+            size="large"
+            testSelector="txt-section-title"
+            autoFocus={!sectionTitleText}
+          />
+
+          <RichTextEditor
+            id="description"
+            value={section.description}
+            onUpdate={handleUpdate}
+            label="Description"
+            controls={descriptionControls}
+            multiline
+            testSelector="txt-section-description"
+          />
+        </Padding>
       </SectionCanvas>
     );
   }

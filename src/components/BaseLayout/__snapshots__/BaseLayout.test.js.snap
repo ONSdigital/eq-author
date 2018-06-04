@@ -6,7 +6,7 @@ exports[`components/BaseLayout should render 1`] = `
 >
   <App>
     <BaseLayout__Wrapper>
-      <Connect(withRouter(UnconnectedHeader))
+      <Connect(UnconnectedHeader)
         questionnaire={
           Object {
             "id": "1",
@@ -28,7 +28,7 @@ exports[`components/BaseLayout should render a title 1`] = `
 >
   <App>
     <BaseLayout__Wrapper>
-      <Connect(withRouter(UnconnectedHeader))
+      <Connect(UnconnectedHeader)
         questionnaire={
           Object {
             "id": "1",
