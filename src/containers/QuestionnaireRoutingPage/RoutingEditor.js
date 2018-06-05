@@ -15,11 +15,13 @@ import withUpdateRoutingRule from "../enhancers/withUpdateRoutingRule";
 import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
 
 import UnconnectedRoutingEditor from "./UnconnectedRoutingEditor";
+import withAvailableRoutingDestinations from "containers/enhancers/withAvailableRoutingDestinations";
 
 export const mapStateToProps = (state, { match }) => getUrlParams(match.params);
 
 export default flowRight(
   connect(mapStateToProps, { raiseToast }),
+  withAvailableRoutingDestinations,
   withCreateRoutingRuleSet,
   withCreateRoutingCondition,
   withDeleteRoutingCondition,
