@@ -77,10 +77,7 @@ export class QuestionnaireRoutingPage extends Component {
           />
 
           <Column cols={2} gutters={false}>
-            <ConnectedPropertiesPanel
-              questionnaire={questionnaire}
-              page={page}
-            />
+            <ConnectedPropertiesPanel />
           </Column>
         </Grid>
       </BaseLayout>

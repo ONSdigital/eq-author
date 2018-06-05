@@ -34,7 +34,7 @@ const AddRuleButton = styled(Button)`
   margin: 2em auto 1em;
 `;
 
-const RoutingRuleEmpty = ({ title, onAddRule }) => (
+const RoutingRulesetEmptyMsg = ({ title, onAddRule }) => (
   <Container>
     <Title>{title}</Title>
     <Paragraph>
@@ -52,9 +52,9 @@ const RoutingRuleEmpty = ({ title, onAddRule }) => (
   </Container>
 );
 
-RoutingRuleEmpty.propTypes = {
+RoutingRulesetEmptyMsg.propTypes = {
   title: PropTypes.string.isRequired,
   onAddRule: PropTypes.func.isRequired
 };
 
-export default RoutingRuleEmpty;
+export default RoutingRulesetEmptyMsg;

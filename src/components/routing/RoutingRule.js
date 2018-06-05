@@ -6,8 +6,6 @@ import CustomPropTypes from "custom-prop-types";
 import Button from "components/Button";
 import IconText from "components/IconText";
 
-import RoutingRuleEmpty from "./RoutingRuleEmptyMsg";
-
 import { colors, radius } from "constants/theme";
 
 import IconRoute from "./icon-route.svg?inline";
@@ -53,38 +51,29 @@ const RoutingRule = ({
 }) => (
   <div>
     <Box>
-      {children ? (
-        <React.Fragment>
-          {title && <Title>{title}</Title>}
-          <Buttons>
-            <Button
-              onClick={onDeleteRule}
-              data-test="btn-delete"
-              disabled={!children}
-              variant="tertiary"
-              small
-            >
-              <IconText icon={IconRoute}>Remove rule</IconText>
-            </Button>
-          </Buttons>
+      {title && <Title>{title}</Title>}
+      <Buttons>
+        <Button
+          onClick={onDeleteRule}
+          data-test="btn-delete"
+          disabled={!children}
+          variant="tertiary"
+          small
+        >
+          <IconText icon={IconRoute}>Remove rule</IconText>
+        </Button>
+      </Buttons>
 
-          <RoutingStatement>{children}</RoutingStatement>
+      <RoutingStatement>{children}</RoutingStatement>
 
-          <RoutingRuleResultSelector
-            id="then"
-            label="THEN"
-            sections={sections}
-            onChange={onThenChange}
-            data-test="select-then"
-            disabled={!canRoute}
-          />
-        </React.Fragment>
-      ) : (
-        <RoutingRuleEmpty
-          title="No routing rules exist for this question"
-          onAddRule={onAddRule}
-        />
-      )}
+      <RoutingRuleResultSelector
+        id="then"
+        label="THEN"
+        sections={sections}
+        onChange={onThenChange}
+        data-test="select-then"
+        disabled={!canRoute}
+      />
     </Box>
   </div>
 );
