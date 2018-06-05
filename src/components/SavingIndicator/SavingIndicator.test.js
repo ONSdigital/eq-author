@@ -20,14 +20,18 @@ describe("SavingIndicator", () => {
     wrapper.find(`[data-test="saving-indicator"]`);
 
   it("should render when starting saving", () => {
-    const wrapper = shallow(<UnconnectedSavingIndicator isSaving={false} />);
+    const wrapper = shallow(
+      <UnconnectedSavingIndicator isSaving={false} isOnline />
+    );
     wrapper.setProps({ isSaving: true });
 
     expect(findIndicator(wrapper).exists()).toBe(true);
   });
 
   it("should show spinner for at least one second", () => {
-    const wrapper = shallow(<UnconnectedSavingIndicator isSaving={false} />);
+    const wrapper = shallow(
+      <UnconnectedSavingIndicator isSaving={false} isOnline />
+    );
 
     wrapper.setProps({ isSaving: true });
     advanceByTime(250);
@@ -42,7 +46,9 @@ describe("SavingIndicator", () => {
   });
 
   it("should hide immediately if saving for more than one second", () => {
-    const wrapper = shallow(<UnconnectedSavingIndicator isSaving={false} />);
+    const wrapper = shallow(
+      <UnconnectedSavingIndicator isSaving={false} isOnline />
+    );
 
     wrapper.setProps({ isSaving: true });
     expect(findIndicator(wrapper).exists()).toBe(true);
@@ -52,6 +58,15 @@ describe("SavingIndicator", () => {
     expect(findIndicator(wrapper).exists()).toBe(true);
 
     wrapper.setProps({ isSaving: false });
+    expect(findIndicator(wrapper).exists()).toBe(false);
+  });
+
+  it("should not show if client is offline", () => {
+    const wrapper = shallow(
+      <UnconnectedSavingIndicator isSaving={false} isOnline={false} />
+    );
+
+    wrapper.setProps({ isSaving: true });
     expect(findIndicator(wrapper).exists()).toBe(false);
   });
 });

@@ -9,4 +9,4 @@ const Padding = styled.div`
 
 storiesOf("Saving Indicator", module)
   .addDecorator(story => <Padding>{story()}</Padding>)
-  .add("Primary", () => <UnconnectedSavingIndicator isSaving />);
+  .add("Primary", () => <UnconnectedSavingIndicator isSaving isOnline />);
