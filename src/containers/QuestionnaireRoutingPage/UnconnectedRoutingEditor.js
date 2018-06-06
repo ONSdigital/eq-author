@@ -39,18 +39,37 @@ const Padding = styled.div`
   padding: 1em;
 `;
 
-const getRoutingOptions = destinations => [
-  {
+const getRoutingOptions = destinations => {
+  const routingOptions = [
+    {
+      id: "3",
+      title: "Questionnaire Summary",
+      pages: [{ title: "Summary" }]
+    }
+  ];
+
+  const questions = {
     id: "1",
     title: "Questions in this section",
     pages: filter(destinations, dest => dest.__typename === "QuestionPage")
-  },
-  {
+  };
+
+  const sections = {
     id: "2",
     title: "Other sections",
     pages: filter(destinations, dest => dest.__typename === "Section")
+  };
+
+  if (sections.pages.length) {
+    routingOptions.unshift(sections);
   }
-];
+
+  if (questions.pages.length) {
+    routingOptions.unshift(questions);
+  }
+
+  return routingOptions;
+};
 
 class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
@@ -191,6 +210,7 @@ class UnconnectedRoutingEditor extends React.Component {
         onAddRule={this.handleAddRule}
         onDeleteRule={this.handleDeleteRule}
         onThenChange={this.handleThenChange}
+        canRoute
       >
         <RoutingStatement
           onAddCondition={function() {
@@ -282,6 +302,7 @@ class UnconnectedRoutingEditor extends React.Component {
               sections={routingOptions}
               onAddRule={this.handleAddRule}
               onElseChange={this.handleElseChange}
+              canRoute
             >
               {routingRuleSet.routingRules.map(this.renderRoutingRule)}
             </RoutingRuleset>
