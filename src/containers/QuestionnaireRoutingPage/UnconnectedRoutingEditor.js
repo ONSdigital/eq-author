@@ -142,6 +142,7 @@ class UnconnectedRoutingEditor extends React.Component {
       value,
       section.id
     );
+
     onUpdateRoutingRuleSet({
       id: page.routingRuleSet.id,
       else: {

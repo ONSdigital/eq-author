@@ -32,25 +32,27 @@ const RoutingRuleset = ({
 }) => (
   <React.Fragment>
     {children}
-    <AddRuleButton
-      variant="secondary"
-      small
-      onClick={onAddRule}
-      data-test="btn-add-rule"
-      disabled={!canRoute}
-    >
-      <IconText icon={IconAddRule}>Add rule</IconText>
-    </AddRuleButton>
-    <Box>
-      <RoutingRuleResultSelector
-        id="else"
-        label="ELSE"
-        sections={sections}
-        onChange={onElseChange}
-        data-test="select-else"
-        disabled={!canRoute}
-      />
-    </Box>
+    {canRoute && (
+      <React.Fragment>
+        <AddRuleButton
+          variant="secondary"
+          small
+          onClick={onAddRule}
+          data-test="btn-add-rule"
+        >
+          <IconText icon={IconAddRule}>Add rule</IconText>
+        </AddRuleButton>
+        <Box>
+          <RoutingRuleResultSelector
+            id="else"
+            label="ELSE"
+            sections={sections}
+            onChange={onElseChange}
+            data-test="select-else"
+          />
+        </Box>
+      </React.Fragment>
+    )}
   </React.Fragment>
 );
 

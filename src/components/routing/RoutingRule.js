@@ -66,14 +66,15 @@ const RoutingRule = ({
 
       <RoutingStatement>{children}</RoutingStatement>
 
-      <RoutingRuleResultSelector
-        id="then"
-        label="THEN"
-        sections={sections}
-        onChange={onThenChange}
-        data-test="select-then"
-        disabled={!canRoute}
-      />
+      {canRoute && (
+        <RoutingRuleResultSelector
+          id="then"
+          label="THEN"
+          sections={sections}
+          onChange={onThenChange}
+          data-test="select-then"
+        />
+      )}
     </Box>
   </div>
 );
