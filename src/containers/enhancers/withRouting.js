@@ -1,7 +1,7 @@
 import getRoutingQuery from "graphql/getRouting.graphql";
 import { graphql } from "react-apollo";
 import findById from "utils/findById";
-import { get, filter, map } from "lodash";
+import { get } from "lodash";
 
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;

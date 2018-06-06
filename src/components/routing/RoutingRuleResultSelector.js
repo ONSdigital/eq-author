@@ -30,9 +30,10 @@ const RoutingRuleResultSelector = ({
   sections,
   label,
   id,
+  value,
   disabled
 }) => (
-  <RoutingRuleResult>
+  <RoutingRuleResult key={id}>
     <Grid align="center">
       <Column gutters={false} cols={5}>
         <Label htmlFor={id} disabled={disabled}>
@@ -41,6 +42,7 @@ const RoutingRuleResultSelector = ({
       </Column>
       <Column gutters={false} cols={7}>
         <Select
+          value={value}
           id={id}
           onChange={onChange}
           disabled={disabled}
@@ -48,12 +50,15 @@ const RoutingRuleResultSelector = ({
         >
           {sections.map(section => (
             <optgroup
-              label={get(section, "plaintextTitle", section.title)}
+              label={
+                get(section, "plaintextTitle", section.title) || "Section Title"
+              }
               key={section.id}
             >
               {section.pages.map(page => (
                 <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {get(page, "plaintextTitle", page.title)}
+                  {get(page, "plaintextTitle", page.title) || "Page Title"}{" "}
+                  {page.id}
                 </option>
               ))}
             </optgroup>
@@ -69,6 +74,7 @@ RoutingRuleResultSelector.propTypes = {
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  value: PropTypes.string,
   disabled: PropTypes.bool.isRequired
 };
 

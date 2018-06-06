@@ -36,7 +36,7 @@ const Title = styled.h2`
 `;
 
 const Padding = styled.div`
-  padding: 1em;
+  padding: 2em;
 `;
 
 const getRoutingOptions = availableRoutingDestinations => {
@@ -49,7 +49,7 @@ const getRoutingOptions = availableRoutingDestinations => {
     {
       id: "3",
       title: "Questionnaire Summary",
-      pages: [{ title: "Summary" }]
+      pages: [{ title: "Summary", id: "summary" }]
     }
   ];
 
@@ -181,8 +181,8 @@ class UnconnectedRoutingEditor extends React.Component {
     onDeleteRoutingRule(routingRuleSet.id, rule.id);
   };
 
-  handleThenChange = ({ value }) => {
-    const { section, onUpdateRoutingRule, rule } = this.props;
+  handleThenChange = (value, rule) => {
+    const { section, onUpdateRoutingRule } = this.props;
     const { sectionId, pageId } = getSectionAndPageFromSelect(
       value,
       section.id
@@ -196,7 +196,7 @@ class UnconnectedRoutingEditor extends React.Component {
     });
   };
 
-  renderRoutingConditions = (routingCondition, rule) => {
+  renderRoutingConditions = (routingCondition, ruleId) => {
     const {
       questionnaire,
       page: currentPage,
@@ -224,6 +224,7 @@ class UnconnectedRoutingEditor extends React.Component {
     }));
 
     const answer = get(routingCondition, "answer");
+    const canRoute = !isNil(answer);
 
     return (
       <RoutingCondition
@@ -232,7 +233,7 @@ class UnconnectedRoutingEditor extends React.Component {
         sections={pagesAfterCurrentDisabled}
         selectedPage={routingCondition.questionPage}
         onRemove={function() {
-          onDeleteRoutingCondition(rule.id, routingCondition.id);
+          onDeleteRoutingCondition(ruleId, routingCondition.id);
         }}
         onPageChange={function({ value }) {
           onUpdateRoutingCondition({
@@ -240,9 +241,11 @@ class UnconnectedRoutingEditor extends React.Component {
             questionPageId: value
           });
         }}
+        pathEnd={!canRoute}
       >
-        {!isNil(answer) && this.renderAnswer(routingCondition, answer)}
-        {isNil(answer) && this.renderNoAnswerAlert()}
+        {canRoute
+          ? this.renderAnswer(routingCondition, answer)
+          : this.renderNoAnswerAlert()}
       </RoutingCondition>
     );
   };
@@ -258,25 +261,34 @@ class UnconnectedRoutingEditor extends React.Component {
 
     const routingOptions = getRoutingOptions(availableRoutingDestinations);
 
-    const canRoute = true;
+    const canRoute = conditions.every(condition => condition.answer);
+
+    const handleThenChange = this.handleThenChange;
 
     return (
       <RoutingRule
         key={rule.id}
+        gotoValue={get(rule, "goto.id")}
         page={currentPage}
         sections={routingOptions}
         onAddRule={this.handleAddRule}
         onDeleteRule={this.handleDeleteRule}
-        onThenChange={this.handleThenChange}
+        onThenChange={function({ value }) {
+          handleThenChange(value, rule);
+        }}
         canRoute={canRoute}
       >
         <RoutingStatement
-          onAddCondition={function() {
-            onAddRoutingCondition(rule.id);
-          }}
+          onAddCondition={
+            canRoute
+              ? function() {
+                  onAddRoutingCondition(rule.id);
+                }
+              : null
+          }
         >
           {conditions.map(routingCondition =>
-            this.renderRoutingConditions(routingCondition, rule)
+            this.renderRoutingConditions(routingCondition, rule.id)
           )}
         </RoutingStatement>
       </RoutingRule>
@@ -309,7 +321,9 @@ class UnconnectedRoutingEditor extends React.Component {
               sections={routingOptions}
               onAddRule={this.handleAddRule}
               onElseChange={this.handleElseChange}
-              canRoute
+              canRoute={routingRuleSet.routingRules.every(rule =>
+                rule.conditions.every(condition => condition.answer)
+              )}
             >
               {routingRuleSet.routingRules.map(this.renderRoutingRule)}
             </RoutingRuleset>

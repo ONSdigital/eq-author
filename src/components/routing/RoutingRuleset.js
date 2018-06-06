@@ -18,7 +18,7 @@ const AddRuleButton = styled(Button)`
 `;
 
 const Box = styled.div`
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
@@ -28,6 +28,7 @@ const RoutingRuleset = ({
   onAddRule,
   onElseChange,
   sections,
+  elseValue,
   canRoute
 }) => (
   <React.Fragment>
@@ -46,6 +47,7 @@ const RoutingRuleset = ({
           <RoutingRuleResultSelector
             id="else"
             label="ELSE"
+            value={elseValue}
             sections={sections}
             onChange={onElseChange}
             data-test="select-else"
@@ -61,6 +63,7 @@ RoutingRuleset.propTypes = {
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  elseValue: PropTypes.string,
   canRoute: PropTypes.bool.isRequired
 };
 

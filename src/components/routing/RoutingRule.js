@@ -17,7 +17,7 @@ const RoutingStatement = styled.div`
 `;
 
 const Box = styled.div`
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
   margin-bottom: 2em;
   position: relative;
@@ -47,6 +47,7 @@ const RoutingRule = ({
   onAddRule,
   title,
   sections,
+  gotoValue,
   canRoute
 }) => (
   <div>
@@ -72,6 +73,7 @@ const RoutingRule = ({
           label="THEN"
           sections={sections}
           onChange={onThenChange}
+          value={gotoValue}
           data-test="select-then"
         />
       )}
@@ -87,7 +89,8 @@ RoutingRule.propTypes = {
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   sections: PropTypes.arrayOf(CustomPropTypes.section),
-  canRoute: PropTypes.bool.isRequired
+  canRoute: PropTypes.bool.isRequired,
+  gotoValue: PropTypes.string
 };
 
 RoutingRule.defaultProps = {

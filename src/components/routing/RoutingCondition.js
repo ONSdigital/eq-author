@@ -79,12 +79,14 @@ const RoutingCondition = ({
         >
           {sections.map(section => (
             <optgroup
-              label={get(section, "plaintextTitle", section.title)}
+              label={
+                get(section, "plaintextTitle", section.title) || "Section Title"
+              }
               key={section.id}
             >
               {section.pages.map(page => (
                 <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {get(page, "plaintextTitle", page.title)}
+                  {get(page, "plaintextTitle", page.title) || "Page Title"}
                 </option>
               ))}
             </optgroup>
