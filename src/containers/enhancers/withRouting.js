@@ -33,17 +33,7 @@ export const mapPropToOptions = props => ({
   variables: { id: props.questionnaireId }
 });
 
-export const mapDestinationsToRoutingOptions = props => {
-  const destinations = map(props.availableRoutingDestinations, destination => ({
-    ...destination,
-    id: destination.__typename + "_" + destination.id
-  }));
-
-  return destinations;
-};
-
 export default graphql(getRoutingQuery, {
   props: mapResultsToProps,
-  options: mapPropToOptions,
-  destinations: mapDestinationsToRoutingOptions
+  options: mapPropToOptions
 });

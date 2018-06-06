@@ -39,7 +39,12 @@ const Padding = styled.div`
   padding: 1em;
 `;
 
-const getRoutingOptions = destinations => {
+const getRoutingOptions = availableRoutingDestinations => {
+  const destinations = map(availableRoutingDestinations, destination => ({
+    ...destination,
+    id: destination.__typename + "_" + destination.id
+  }));
+
   const routingOptions = [
     {
       id: "3",
@@ -60,11 +65,11 @@ const getRoutingOptions = destinations => {
     pages: filter(destinations, dest => dest.__typename === "Section")
   };
 
-  if (sections.pages.length) {
+  if (sections.pages.length > 0) {
     routingOptions.unshift(sections);
   }
 
-  if (questions.pages.length) {
+  if (questions.pages.length > 0) {
     routingOptions.unshift(questions);
   }
 
@@ -191,40 +196,6 @@ class UnconnectedRoutingEditor extends React.Component {
     });
   };
 
-  renderRoutingRule = rule => {
-    const {
-      page: currentPage,
-      onAddRoutingCondition,
-      destinations
-    } = this.props;
-
-    const { conditions } = rule;
-
-    const routingOptions = getRoutingOptions(destinations);
-
-    return (
-      <RoutingRule
-        key={rule.id}
-        page={currentPage}
-        sections={routingOptions}
-        onAddRule={this.handleAddRule}
-        onDeleteRule={this.handleDeleteRule}
-        onThenChange={this.handleThenChange}
-        canRoute
-      >
-        <RoutingStatement
-          onAddCondition={function() {
-            onAddRoutingCondition(rule.id);
-          }}
-        >
-          {conditions.map(routingCondition =>
-            this.renderRoutingConditions(routingCondition, rule)
-          )}
-        </RoutingStatement>
-      </RoutingRule>
-    );
-  };
-
   renderRoutingConditions = (routingCondition, rule) => {
     const {
       questionnaire,
@@ -276,12 +247,48 @@ class UnconnectedRoutingEditor extends React.Component {
     );
   };
 
+  renderRoutingRule = rule => {
+    const {
+      page: currentPage,
+      onAddRoutingCondition,
+      availableRoutingDestinations
+    } = this.props;
+
+    const { conditions } = rule;
+
+    const routingOptions = getRoutingOptions(availableRoutingDestinations);
+
+    const canRoute = true;
+
+    return (
+      <RoutingRule
+        key={rule.id}
+        page={currentPage}
+        sections={routingOptions}
+        onAddRule={this.handleAddRule}
+        onDeleteRule={this.handleDeleteRule}
+        onThenChange={this.handleThenChange}
+        canRoute={canRoute}
+      >
+        <RoutingStatement
+          onAddCondition={function() {
+            onAddRoutingCondition(rule.id);
+          }}
+        >
+          {conditions.map(routingCondition =>
+            this.renderRoutingConditions(routingCondition, rule)
+          )}
+        </RoutingStatement>
+      </RoutingRule>
+    );
+  };
+
   render() {
     const {
       loading,
       page: currentPage,
       routingDestinationsLoading,
-      destinations,
+      availableRoutingDestinations,
       onAddRoutingRuleSet
     } = this.props;
 
@@ -291,7 +298,7 @@ class UnconnectedRoutingEditor extends React.Component {
 
     const { routingRuleSet } = currentPage;
 
-    const routingOptions = getRoutingOptions(destinations);
+    const routingOptions = getRoutingOptions(availableRoutingDestinations);
 
     return (
       <React.Fragment>
