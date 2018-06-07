@@ -26,6 +26,8 @@ import CustomPropTypes from "custom-prop-types";
 import getSectionAndPageFromSelect from "utils/getSectionAndPageFromSelect";
 
 import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
+import getIdForObject from "utils/getIdForObject";
+import findById from "utils/findById";
 
 const Title = styled.h2`
   padding: 0.5em 1em;
@@ -42,7 +44,7 @@ const Padding = styled.div`
 const getRoutingOptions = availableRoutingDestinations => {
   const destinations = map(availableRoutingDestinations, destination => ({
     ...destination,
-    id: destination.__typename + "_" + destination.id
+    id: getIdForObject(destination)
   }));
 
   const routingOptions = [
@@ -162,17 +164,10 @@ class UnconnectedRoutingEditor extends React.Component {
 
   handleElseChange = ({ value }) => {
     const { section, page, onUpdateRoutingRuleSet } = this.props;
-    const { sectionId, pageId } = getSectionAndPageFromSelect(
-      value,
-      section.id
-    );
 
     onUpdateRoutingRuleSet({
       id: page.routingRuleSet.id,
-      else: {
-        sectionId,
-        pageId
-      }
+      else: getSectionAndPageFromSelect(value, section.id)
     });
   };
 
@@ -265,10 +260,12 @@ class UnconnectedRoutingEditor extends React.Component {
 
     const handleThenChange = this.handleThenChange;
 
+    const gotoValue = getIdForObject(rule.goto);
+
     return (
       <RoutingRule
         key={rule.id}
-        gotoValue={get(rule, "goto.id")}
+        gotoValue={gotoValue}
         page={currentPage}
         sections={routingOptions}
         onAddRule={this.handleAddRule}
@@ -321,6 +318,7 @@ class UnconnectedRoutingEditor extends React.Component {
               sections={routingOptions}
               onAddRule={this.handleAddRule}
               onElseChange={this.handleElseChange}
+              elseValue={getIdForObject(routingRuleSet.else)}
               canRoute={routingRuleSet.routingRules.every(rule =>
                 rule.conditions.every(condition => condition.answer)
               )}

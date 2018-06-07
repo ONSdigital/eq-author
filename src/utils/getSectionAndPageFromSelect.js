@@ -1,11 +1,11 @@
 import { startsWith, replace } from "lodash";
 
 const getSectionAndPageFromSelect = (value, currentSectionId) => {
-  const sectionId = startsWith(value, "Section_")
-    ? replace(value, /^Section_/, "")
+  const sectionId = startsWith(value, "Section")
+    ? replace(value, /^Section/, "")
     : currentSectionId;
-  const pageId = startsWith(value, "QuestionPage_")
-    ? replace(value, /^QuestionPage_/, "")
+  const pageId = startsWith(value, "QuestionPage")
+    ? replace(value, /^QuestionPage/, "")
     : null;
   return {
     sectionId,
