@@ -12,10 +12,10 @@ const CenteringColumn = styled(Column)`
   margin-bottom: 0.5em;
 `;
 
-const RoutingStatement = ({ children, onAddCondition }) => (
+const RoutingStatement = ({ children, onAddCondition, canRoute }) => (
   <Fragment>
     {children}
-    {onAddCondition && (
+    {canRoute && (
       <Grid align="center">
         <CenteringColumn gutters={false} cols={1}>
           <TextButton onClick={onAddCondition} data-test="btn-add">
@@ -29,7 +29,8 @@ const RoutingStatement = ({ children, onAddCondition }) => (
 
 RoutingStatement.propTypes = {
   children: PropTypes.node.isRequired,
-  onAddCondition: PropTypes.func
+  onAddCondition: PropTypes.func.isRequired,
+  canRoute: PropTypes.bool.isRequired
 };
 
 export default RoutingStatement;

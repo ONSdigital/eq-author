@@ -27,7 +27,7 @@ const RoutingRuleset = ({
   children,
   onAddRule,
   onElseChange,
-  sections,
+  routingOptions,
   elseValue,
   canRoute
 }) => (
@@ -48,7 +48,7 @@ const RoutingRuleset = ({
             id="else"
             label="ELSE"
             value={elseValue}
-            sections={sections}
+            routingOptions={routingOptions}
             onChange={onElseChange}
             data-test="select-else"
           />

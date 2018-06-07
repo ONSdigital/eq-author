@@ -55,6 +55,8 @@ const RemoveButton = styled(DeleteButton)`
 `;
 
 const RoutingCondition = ({
+  routingCondition,
+  ruleId,
   sections,
   value,
   selectedPage,
@@ -74,7 +76,12 @@ const RoutingCondition = ({
         <PageSelect
           defaultValue={selectedPage.id}
           value={value}
-          onChange={onPageChange}
+          onChange={function({ value }) {
+            onPageChange({
+              id: routingCondition.id,
+              questionPageId: value
+            });
+          }}
           id={id}
         >
           {sections.map(section => (
@@ -95,7 +102,9 @@ const RoutingCondition = ({
       </Column>
       <Column gutters={false} cols={1}>
         <RemoveButton
-          onClick={onRemove}
+          onClick={function() {
+            onRemove(ruleId, routingCondition.id);
+          }}
           disabled={!onRemove}
           data-test="btn-remove"
         >

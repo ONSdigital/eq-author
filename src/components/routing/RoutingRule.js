@@ -11,6 +11,7 @@ import { colors, radius } from "constants/theme";
 import IconRoute from "./icon-route.svg?inline";
 
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
+import getIdForObject from "utils/getIdForObject";
 
 const RoutingStatement = styled.div`
   padding: 0;
@@ -46,49 +47,57 @@ const RoutingRule = ({
   onThenChange,
   onAddRule,
   title,
-  sections,
+  routingOptions,
   gotoValue,
-  canRoute
-}) => (
-  <div>
-    <Box>
-      {title && <Title>{title}</Title>}
-      <Buttons>
-        <Button
-          onClick={onDeleteRule}
-          data-test="btn-delete"
-          disabled={!children}
-          variant="tertiary"
-          small
-        >
-          <IconText icon={IconRoute}>Remove rule</IconText>
-        </Button>
-      </Buttons>
+  rule
+}) => {
+  const { conditions } = rule;
+  const canRoute = conditions.every(condition => condition.answer);
 
-      <RoutingStatement>{children}</RoutingStatement>
+  return (
+    <div>
+      <Box>
+        {title && <Title>{title}</Title>}
+        <Buttons>
+          <Button
+            onClick={onDeleteRule}
+            data-test="btn-delete"
+            disabled={!children}
+            variant="tertiary"
+            small
+          >
+            <IconText icon={IconRoute}>Remove rule</IconText>
+          </Button>
+        </Buttons>
 
-      {canRoute && (
-        <RoutingRuleResultSelector
-          id="then"
-          label="THEN"
-          sections={sections}
-          onChange={onThenChange}
-          value={gotoValue}
-          data-test="select-then"
-        />
-      )}
-    </Box>
-  </div>
-);
+        <RoutingStatement>{children}</RoutingStatement>
+
+        {canRoute && (
+          <RoutingRuleResultSelector
+            id="then"
+            label="THEN"
+            routingOptions={routingOptions}
+            onChange={function({ value }) {
+              onThenChange(value, rule);
+            }}
+            value={getIdForObject(rule.goto)}
+            data-test="select-then"
+          />
+        )}
+      </Box>
+    </div>
+  );
+};
 
 RoutingRule.propTypes = {
+  rule: PropTypes.object.isRequired,
   children: PropTypes.node,
   page: CustomPropTypes.page.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onDeleteRule: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
-  sections: PropTypes.arrayOf(CustomPropTypes.section),
+  routingOptions: PropTypes.arrayOf(CustomPropTypes.section),
   canRoute: PropTypes.bool.isRequired,
   gotoValue: PropTypes.string
 };

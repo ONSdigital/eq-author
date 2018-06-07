@@ -27,7 +27,7 @@ const Goto = styled.span`
 
 const RoutingRuleResultSelector = ({
   onChange,
-  sections,
+  routingOptions,
   label,
   id,
   value,
@@ -48,17 +48,17 @@ const RoutingRuleResultSelector = ({
           disabled={disabled}
           data-test="result-selector"
         >
-          {sections.map(section => (
+          {routingOptions.map(routingOption => (
             <optgroup
               label={
-                get(section, "plaintextTitle", section.title) || "Section Title"
+                get(routingOption, "plaintextTitle", routingOption.title) ||
+                "Section Title"
               }
-              key={section.id}
+              key={routingOption.id}
             >
-              {section.pages.map(page => (
+              {routingOption.pages.map(page => (
                 <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {get(page, "plaintextTitle", page.title) || "Page Title"}{" "}
-                  {page.id}
+                  {get(page, "plaintextTitle", page.title) || "Page Title"}
                 </option>
               ))}
             </optgroup>
@@ -71,7 +71,7 @@ const RoutingRuleResultSelector = ({
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  routingOptions: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
