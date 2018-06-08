@@ -6,6 +6,7 @@ import { action } from "@storybook/addon-actions";
 import { ApolloProvider } from "react-apollo";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { MemoryRouter, Route } from "react-router";
+import { noop } from "lodash";
 
 const content = `
 <h2>List of styles:</h2>
@@ -34,32 +35,37 @@ const Title = styled.div`
   font-weight: 700;
 `;
 
-const query = () => ({
-  questionnaire: {
-    sections: [
-      {
-        id: "1",
-        title: "",
-        pages: [
-          {
-            id: "1",
-            title: "",
-            answers: [
-              {
-                id: "1",
-                label: "",
-                type: "Currency"
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-});
+const questionnaire = {
+  sections: [
+    {
+      id: "1",
+      title: "",
+      pages: [
+        {
+          id: "1",
+          title: "",
+          answers: [{ id: "1", label: "", type: "Currency" }]
+        }
+      ]
+    }
+  ]
+};
+
 const client = {
-  query: query,
-  readQuery: query
+  query: () => ({ questionnaire }),
+  watchQuery: () => ({
+    refetch: noop,
+    fetchMore: noop,
+    updateQuery: noop,
+    startPolling: noop,
+    stopPolling: noop,
+    subscribeToMore: noop,
+    currentResult: () => questionnaire,
+    getLastResult: () => questionnaire,
+    resetLastResults: noop,
+    getLastErrro: noop,
+    setOptions: () => Promise.resolve()
+  })
 };
 
 const props = {
@@ -67,6 +73,7 @@ const props = {
   label: "Enter some text",
   placeholder: "Enter some text...",
   id: "richtext",
+  sectionId: "1",
   client
 };
 

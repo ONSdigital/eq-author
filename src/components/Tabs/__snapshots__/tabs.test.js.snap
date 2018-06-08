@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Nav should display active link when route matches 1`] = `
+exports[`components/Nav when no pageId should render section link 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -66,42 +66,9 @@ exports[`components/Nav should display active link when route matches 1`] = `
     Object {
       "params": Object {
         "pageId": "",
-        "questionnaireId": "",
+        "questionnaireId": "123",
         "sectionId": "888",
       },
-    }
-  }
-  page={
-    Object {
-      "id": "3",
-    }
-  }
-  questionnaire={
-    Object {
-      "id": "1",
-      "sections": Array [
-        Object {
-          "id": "2",
-          "pages": Array [
-            Object {
-              "id": "3",
-            },
-          ],
-          "title": "Section 1",
-        },
-      ],
-      "title": "Questionnaire",
-    }
-  }
-  section={
-    Object {
-      "id": "2",
-      "pages": Array [
-        Object {
-          "id": "3",
-        },
-      ],
-      "title": "Section 1",
     }
   }
 >
@@ -111,33 +78,28 @@ exports[`components/Nav should display active link when route matches 1`] = `
         className="c0"
       >
         <Tabs__Tab
-          activeClassName="selected"
-          isActive={[Function]}
-          to="/questionnaire/1/design/2/3"
+          to="/questionnaire/123/888/design"
         >
           <NavLink
-            activeClassName="selected"
+            activeClassName="active"
             ariaCurrent="true"
             className="c1"
-            isActive={[Function]}
-            to="/questionnaire/1/design/2/3"
+            to="/questionnaire/123/888/design"
           >
             <Route
-              path="/questionnaire/1/design/2/3"
+              path="/questionnaire/123/888/design"
             >
               <Link
-                aria-current="true"
-                className="c1 selected"
+                aria-current={false}
+                className="c1"
                 replace={false}
-                style={Object {}}
-                to="/questionnaire/1/design/2/3"
+                to="/questionnaire/123/888/design"
               >
                 <a
-                  aria-current="true"
-                  className="c1 selected"
-                  href="/questionnaire/1/design/2/3"
+                  aria-current={false}
+                  className="c1"
+                  href="/questionnaire/123/888/design"
                   onClick={[Function]}
-                  style={Object {}}
                 >
                   Builder
                 </a>
@@ -165,7 +127,7 @@ exports[`components/Nav should display active link when route matches 1`] = `
 </UnwrappedTabs>
 `;
 
-exports[`components/Nav should render Nav 1`] = `
+exports[`components/Nav when pageId present should render page link 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -230,43 +192,10 @@ exports[`components/Nav should render Nav 1`] = `
   match={
     Object {
       "params": Object {
-        "pageId": "",
-        "questionnaireId": "",
-        "sectionId": "",
+        "pageId": "3",
+        "questionnaireId": "1",
+        "sectionId": "2",
       },
-    }
-  }
-  page={
-    Object {
-      "id": "3",
-    }
-  }
-  questionnaire={
-    Object {
-      "id": "1",
-      "sections": Array [
-        Object {
-          "id": "2",
-          "pages": Array [
-            Object {
-              "id": "3",
-            },
-          ],
-          "title": "Section 1",
-        },
-      ],
-      "title": "Questionnaire",
-    }
-  }
-  section={
-    Object {
-      "id": "2",
-      "pages": Array [
-        Object {
-          "id": "3",
-        },
-      ],
-      "title": "Section 1",
     }
   }
 >
@@ -276,30 +205,27 @@ exports[`components/Nav should render Nav 1`] = `
         className="c0"
       >
         <Tabs__Tab
-          activeClassName="selected"
-          isActive={[Function]}
-          to="/questionnaire/1/design/2/3"
+          to="/questionnaire/1/2/3/design"
         >
           <NavLink
-            activeClassName="selected"
+            activeClassName="active"
             ariaCurrent="true"
             className="c1"
-            isActive={[Function]}
-            to="/questionnaire/1/design/2/3"
+            to="/questionnaire/1/2/3/design"
           >
             <Route
-              path="/questionnaire/1/design/2/3"
+              path="/questionnaire/1/2/3/design"
             >
               <Link
                 aria-current={false}
                 className="c1"
                 replace={false}
-                to="/questionnaire/1/design/2/3"
+                to="/questionnaire/1/2/3/design"
               >
                 <a
                   aria-current={false}
                   className="c1"
-                  href="/questionnaire/1/design/2/3"
+                  href="/questionnaire/1/2/3/design"
                   onClick={[Function]}
                 >
                   Builder

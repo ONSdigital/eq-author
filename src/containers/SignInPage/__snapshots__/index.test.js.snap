@@ -17,21 +17,23 @@ exports[`SignInPage Component when the user lands on the page and is already log
 `;
 
 exports[`SignInPage Component when unauthenticated should render the sign in form 1`] = `
-<BaseLayout
-  docTitle="Sign In"
->
-  <SignInPage__Centered>
-    <SignInPage__Title>
-      Sign in
-    </SignInPage__Title>
-    <SignInPage__SignInPanel>
-      <SignInPage__Text>
-        You must be signed in to access this service.
-      </SignInPage__Text>
-      <GuestSignInForm
-        onSignIn={[Function]}
-      />
-    </SignInPage__SignInPanel>
-  </SignInPage__Centered>
+<BaseLayout>
+  <GetContext
+    title={[Function]}
+  >
+    <SignInPage__Centered>
+      <SignInPage__Title>
+        Sign in
+      </SignInPage__Title>
+      <SignInPage__SignInPanel>
+        <SignInPage__Text>
+          You must be signed in to access this service.
+        </SignInPage__Text>
+        <GuestSignInForm
+          onSignIn={[Function]}
+        />
+      </SignInPage__SignInPanel>
+    </SignInPage__Centered>
+  </GetContext>
 </BaseLayout>
 `;

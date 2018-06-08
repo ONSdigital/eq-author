@@ -1,0 +1,7 @@
+#import "graphql/fragments/section.graphql"
+
+query GetSection($id: ID!) {
+  section(id: $id) {
+    ...Section
+  }
+}

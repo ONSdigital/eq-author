@@ -4,7 +4,7 @@ import {
   redirectToNewPage
 } from "./withCreatePage";
 import fragment from "graphql/sectionFragment.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 
 describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
   const page = {
@@ -46,7 +46,11 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
 
     ownProps = {
       history,
-      questionnaireId: questionnaire.id
+      match: {
+        params: {
+          questionnaireId: questionnaire.id
+        }
+      }
     };
 
     mutate = jest.fn(() => Promise.resolve(result));
@@ -105,7 +109,11 @@ describe("containers/QuestionnaireDesignPage/withCreatePage", () => {
       redirectToNewPage(ownProps)(newPage);
 
       expect(history.push).toHaveBeenCalledWith(
-        getLink(questionnaire.id, section.id, newPage.id)
+        buildPagePath({
+          questionnaireId: questionnaire.id,
+          sectionId: section.id,
+          pageId: newPage.id
+        })
       );
     });
   });

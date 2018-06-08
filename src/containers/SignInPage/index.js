@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import PropTypes from "prop-types";
 import Panel from "components/Panel";
+import { Titled } from "react-titled";
 
 import { isSignedIn, verifiedAuthStatus } from "redux/auth/reducer";
 import { signInUser, verifyAuthStatus } from "redux/auth/actions";
@@ -72,6 +73,10 @@ export class UnconnectedSignInPage extends React.Component {
     this.props.signInUser(user);
   };
 
+  renderTitle(title) {
+    return `Sign In - ${title}`;
+  }
+
   render() {
     const { verifiedAuthStatus, isSignedIn, returnURL } = this.props;
 
@@ -84,14 +89,16 @@ export class UnconnectedSignInPage extends React.Component {
     }
 
     return (
-      <BaseLayout docTitle="Sign In">
-        <Centered>
-          <Title>Sign in</Title>
-          <SignInPanel>
-            <Text>You must be signed in to access this service.</Text>
-            <SignInForm onSignIn={this.handleSignIn} />
-          </SignInPanel>
-        </Centered>
+      <BaseLayout>
+        <Titled title={this.renderTitle}>
+          <Centered>
+            <Title>Sign in</Title>
+            <SignInPanel>
+              <Text>You must be signed in to access this service.</Text>
+              <SignInForm onSignIn={this.handleSignIn} />
+            </SignInPanel>
+          </Centered>
+        </Titled>
       </BaseLayout>
     );
   }

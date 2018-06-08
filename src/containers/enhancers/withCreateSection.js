@@ -1,13 +1,18 @@
 import { graphql } from "react-apollo";
 import createSectionMutation from "graphql/createSection.graphql";
 import fragment from "graphql/questionnaireFragment.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildSectionPath } from "utils/UrlUtils";
+import { get, tap } from "lodash/fp";
 
-export const redirectToNewSection = ownProps => ({ data }) => {
-  const { history, questionnaireId } = ownProps;
-  const section = data.createSection;
+export const redirectToNewSection = ownProps => section => {
+  const { history, match: { params } } = ownProps;
 
-  history.push(getLink(questionnaireId, section.id));
+  history.push(
+    buildSectionPath({
+      questionnaireId: params.questionnaireId,
+      sectionId: section.id
+    })
+  );
 };
 
 export const createUpdater = questionnaireId => (proxy, result) => {
@@ -25,21 +30,21 @@ export const createUpdater = questionnaireId => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddSection() {
+    const { match: { params } } = ownProps;
     const section = {
       title: "",
       description: "",
-      questionnaireId: ownProps.questionnaireId
+      questionnaireId: params.questionnaireId
     };
 
-    const update = createUpdater(ownProps.questionnaireId);
+    const update = createUpdater(params.questionnaireId);
 
     return mutate({
       variables: { input: section },
       update
-    }).then(res => {
-      redirectToNewSection(ownProps)(res);
-      return res.data.createSection;
-    });
+    })
+      .then(get("data.createSection"))
+      .then(tap(redirectToNewSection(ownProps)));
   }
 });
 

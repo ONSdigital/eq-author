@@ -5,6 +5,7 @@ import { Grid, Column } from "components/Grid";
 import Link from "components/Link";
 import brokenPencil from "./broken-pencil.min.svg";
 import styled from "styled-components";
+import { Titled } from "react-titled";
 
 const CenteredPane = styled.div`
   display: flex;
@@ -25,22 +26,24 @@ const Title = styled.h1`
   font-weight: 600;
 `;
 
-const pageTitle = "Page not found";
+const getTitle = title => `Page not found - ${title}`;
 
 const NotFound = props => {
   return (
-    <BaseLayout docTitle={pageTitle} hasNav={false}>
-      <Grid>
-        <Column cols={6} offset={3}>
-          <CenteredPane>
-            <Pencil />
-            <Title>
-              404 – Sorry, the page you were looking for was not found.
-            </Title>
-            <Link href="/">Back to home</Link>
-          </CenteredPane>
-        </Column>
-      </Grid>
+    <BaseLayout>
+      <Titled title={getTitle}>
+        <Grid>
+          <Column cols={6} offset={3}>
+            <CenteredPane>
+              <Pencil />
+              <Title>
+                404 – Sorry, the page you were looking for was not found.
+              </Title>
+              <Link href="/">Back to home</Link>
+            </CenteredPane>
+          </Column>
+        </Grid>
+      </Titled>
     </BaseLayout>
   );
 };

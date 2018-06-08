@@ -2,6 +2,7 @@
 
 exports[`SectionEditor should render 1`] = `
 <SectionEditor__SectionCanvas
+  data-test="section-editor"
   id={null}
 >
   <DeleteConfirmDialog
@@ -13,57 +14,45 @@ exports[`SectionEditor should render 1`] = `
     onDelete={[Function]}
     title="Section 1"
   />
-  <TransitionGroup
-    childFactory={[Function]}
-    component="div"
-  >
-    <PageTransition
-      enter={true}
-      exit={false}
-      in={false}
-      key="null"
-      timeout={300}
-    >
-      <SectionEditor__Padding>
-        <RichTextEditor
-          autoFocus={false}
-          controls={
-            Object {
-              "emphasis": true,
-            }
-          }
-          id="title"
-          label="Title"
-          multiline={false}
-          onUpdate={[Function]}
-          placeholder=""
-          size="large"
-          testSelector="txt-section-title"
-          value="Section 1"
-        />
-        <RichTextEditor
-          autoFocus={false}
-          controls={
-            Object {
-              "bold": true,
-              "emphasis": true,
-            }
-          }
-          id="description"
-          label="Description"
-          multiline={true}
-          onUpdate={[Function]}
-          placeholder=""
-          testSelector="txt-section-description"
-        />
-      </SectionEditor__Padding>
-    </PageTransition>
-  </TransitionGroup>
+  <SectionEditor__Padding>
+    <RichTextEditor
+      autoFocus={false}
+      controls={
+        Object {
+          "emphasis": true,
+        }
+      }
+      id="title"
+      label="Title"
+      multiline={false}
+      onUpdate={[Function]}
+      placeholder=""
+      size="large"
+      testSelector="txt-section-title"
+      value="Section 1"
+    />
+    <RichTextEditor
+      autoFocus={false}
+      controls={
+        Object {
+          "bold": true,
+          "emphasis": true,
+        }
+      }
+      id="description"
+      label="Description"
+      multiline={true}
+      onUpdate={[Function]}
+      placeholder=""
+      testSelector="txt-section-description"
+    />
+  </SectionEditor__Padding>
 </SectionEditor__SectionCanvas>
 `;
 
 exports[`SectionEditor should render 2`] = `
 <SectionEditor__SectionCanvas
+  data-test="section-editor"
   id={null}
 >
   <DeleteConfirmDialog
@@ -75,51 +64,38 @@ exports[`SectionEditor should render 2`] = `
     onDelete={[Function]}
     title="Section 2"
   />
-  <TransitionGroup
-    childFactory={[Function]}
-    component="div"
-  >
-    <PageTransition
-      enter={true}
-      exit={false}
-      in={false}
-      key="null"
-      timeout={300}
-    >
-      <SectionEditor__Padding>
-        <RichTextEditor
-          autoFocus={false}
-          controls={
-            Object {
-              "emphasis": true,
-            }
-          }
-          id="title"
-          label="Title"
-          multiline={false}
-          onUpdate={[Function]}
-          placeholder=""
-          size="large"
-          testSelector="txt-section-title"
-          value="Section 2"
-        />
-        <RichTextEditor
-          autoFocus={false}
-          controls={
-            Object {
-              "bold": true,
-              "emphasis": true,
-            }
-          }
-          id="description"
-          label="Description"
-          multiline={true}
-          onUpdate={[Function]}
-          placeholder=""
-          testSelector="txt-section-description"
-        />
-      </SectionEditor__Padding>
-    </PageTransition>
-  </TransitionGroup>
+  <SectionEditor__Padding>
+    <RichTextEditor
+      autoFocus={false}
+      controls={
+        Object {
+          "emphasis": true,
+        }
+      }
+      id="title"
+      label="Title"
+      multiline={false}
+      onUpdate={[Function]}
+      placeholder=""
+      size="large"
+      testSelector="txt-section-title"
+      value="Section 2"
+    />
+    <RichTextEditor
+      autoFocus={false}
+      controls={
+        Object {
+          "bold": true,
+          "emphasis": true,
+        }
+      }
+      id="description"
+      label="Description"
+      multiline={true}
+      onUpdate={[Function]}
+      placeholder=""
+      testSelector="txt-section-description"
+    />
+  </SectionEditor__Padding>
 </SectionEditor__SectionCanvas>
 `;

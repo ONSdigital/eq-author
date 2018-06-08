@@ -19,7 +19,7 @@ storiesOf("AnswerTypeSelector", module)
   .addDecorator(Decorator)
   .add("Default", () => (
     <AnswerTypeSelector
-      answers={[]}
+      answerCount={1}
       onSelect={action("Answer type selected")}
     />
   ));

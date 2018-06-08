@@ -8,6 +8,7 @@ import {
   addQuestionPage
 } from "../utils";
 import { times } from "lodash";
+import { Routes } from "../../src/utils/UrlUtils";
 
 describe("eq-author", () => {
   it("Should redirect to the sign-in page", () => {
@@ -23,10 +24,13 @@ describe("eq-author", () => {
   it("Can create a questionnaire", () => {
     cy.get("[data-test='create-questionnaire']").click();
     setQuestionnaireSettings("My Questionnaire Title");
-    cy.hash().should("match", /questionnaire\/(\d+)\/design\//);
   });
 
   it("Should show questionnaire on listing page", () => {
+    cy
+      .get(`[data-test="questionnaire-title"]`)
+      .contains("My Questionnaire Title");
+
     cy.get(`[data-test="logo"]`).click();
 
     cy.get(`[data-test="username"]`).then($name => {
@@ -41,6 +45,7 @@ describe("eq-author", () => {
   });
 
   it("Can edit page title", () => {
+    cy.get(`[data-test="page-item"]`).click();
     typeIntoDraftEditor("[data-testid='txt-question-title']", "goodbye world");
     cy.get("[data-test='side-nav']").should("contain", "goodbye world");
   });
@@ -55,10 +60,15 @@ describe("eq-author", () => {
         addQuestionPage();
       })
       .then(() => {
-        assertHash(prevHash, {
-          questionnaireId: true,
-          sectionId: true,
-          pageId: false
+        assertHash({
+          previousPath: Routes.PAGE,
+          previousHash: prevHash,
+          currentPath: Routes.PAGE,
+          equality: {
+            questionnaireId: true,
+            sectionId: true,
+            pageId: false
+          }
         });
       });
 
@@ -113,10 +123,14 @@ describe("eq-author", () => {
         addSection();
       })
       .then(() => {
-        assertHash(prevHash, {
-          questionnaireId: true,
-          sectionId: false,
-          pageId: false
+        assertHash({
+          previousPath: Routes.PAGE,
+          previousHash: prevHash,
+          currentPath: Routes.SECTION,
+          equality: {
+            questionnaireId: true,
+            sectionId: false
+          }
         });
       });
   });
@@ -132,10 +146,14 @@ describe("eq-author", () => {
       .first()
       .click()
       .then(() => {
-        assertHash(prevHash, {
-          questionnaireId: true,
-          sectionId: false,
-          pageId: true
+        assertHash({
+          previousPath: Routes.SECTION,
+          previousHash: prevHash,
+          currentPath: Routes.SECTION,
+          equality: {
+            questionnaireId: true,
+            sectionId: false
+          }
         });
       });
   });
@@ -172,10 +190,15 @@ describe("eq-author", () => {
     });
 
     cy.then(() => {
-      assertHash(prevHash, {
-        questionnaireId: true,
-        sectionId: false,
-        pageId: false
+      assertHash({
+        previousPath: Routes.SECTION,
+        previousHash: prevHash,
+        currentPath: Routes.PAGE,
+        equality: {
+          questionnaireId: true,
+          sectionId: false,
+          pageId: false
+        }
       });
     });
   });
@@ -252,13 +275,15 @@ describe("eq-author", () => {
   it("Can create and delete date ranges", () => {
     addAnswerType("Date range");
 
-    findByLabel("Label from")
-      .click()
-      .type("Date Range label");
+    cy.get(`[data-test="date-range-editor"]`).within(() => {
+      findByLabel("Label from")
+        .click()
+        .type("Date Range label");
 
-    findByLabel("Label to")
-      .click()
-      .type("Date Range label 2");
+      findByLabel("Label to")
+        .click()
+        .type("Date Range label 2");
+    });
 
     cy.get("[data-test='btn-delete-answer']").click();
     cy.get("[data-test='btn-delete-answer']").should("not.exist");
@@ -280,10 +305,15 @@ describe("eq-author", () => {
     });
 
     cy.then(() => {
-      assertHash(prevHash, {
-        questionnaireId: true,
-        sectionId: true,
-        pageId: false
+      assertHash({
+        previousPath: Routes.PAGE,
+        previousHash: prevHash,
+        currentPath: Routes.PAGE,
+        equality: {
+          questionnaireId: true,
+          sectionId: true,
+          pageId: false
+        }
       });
     });
   });
@@ -309,10 +339,14 @@ describe("eq-author", () => {
     });
 
     cy.then(() => {
-      assertHash(prevHash, {
-        questionnaireId: true,
-        sectionId: false,
-        pageId: true
+      assertHash({
+        previousPath: Routes.SECTION,
+        previousHash: prevHash,
+        currentPath: Routes.SECTION,
+        equality: {
+          questionnaireId: true,
+          sectionId: false
+        }
       });
     });
   });

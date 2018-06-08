@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors, radius } from "constants/theme";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath, buildSectionPath } from "utils/UrlUtils";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -43,32 +43,15 @@ const TabsBody = styled.div`
 
 const DisabledTab = Tab.withComponent("span");
 
-// TODO: find out why route matching doesn't work automatically
-// Given a route /foo/:bar/blah
-// I would expect that /foo, /foo/1/blah, /foo/2/blah etc would all "match"
-// But this is not the case. Unsure if bug or implementation issue
-export const UnwrappedTabs = ({
-  questionnaire,
-  section,
-  page,
-  match,
-  children,
-  ...otherProps
-}) => {
-  const tabIsActive = () => {
-    return match.params.sectionId;
-  };
+export const UnwrappedTabs = ({ match, children }) => {
+  const url = match.params.pageId
+    ? buildPagePath(match.params)
+    : buildSectionPath(match.params);
 
   return (
     <div>
       <TabsContainer>
-        <Tab
-          to={getLink(questionnaire.id, section.id, page && page.id)}
-          activeClassName="selected"
-          isActive={tabIsActive}
-        >
-          Builder
-        </Tab>
+        <Tab to={url}>Builder</Tab>
         <DisabledTab>Routing</DisabledTab>
       </TabsContainer>
       <TabsBody>{children}</TabsBody>
@@ -77,9 +60,6 @@ export const UnwrappedTabs = ({
 };
 
 UnwrappedTabs.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire,
-  section: CustomPropTypes.section,
-  page: CustomPropTypes.page,
   match: CustomPropTypes.match,
   children: PropTypes.node.isRequired
 };

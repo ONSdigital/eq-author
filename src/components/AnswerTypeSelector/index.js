@@ -6,7 +6,6 @@ import Popout, { Container, Layer } from "components/Popout";
 
 import AnswerTypeGrid from "./AnswerTypeGrid";
 import AddIcon from "./icon-add.svg?inline";
-import CustomPropTypes from "custom-prop-types";
 import IconText from "components/IconText";
 import Button from "components/Button";
 import PopupTransition from "./PopupTransition";
@@ -32,7 +31,7 @@ const PopoutLayer = styled(Layer)`
 export default class AnswerTypeSelector extends React.Component {
   static propTypes = {
     onSelect: PropTypes.func.isRequired,
-    answers: PropTypes.arrayOf(CustomPropTypes.answer).isRequired
+    answerCount: PropTypes.number.isRequired
   };
 
   state = {
@@ -59,7 +58,7 @@ export default class AnswerTypeSelector extends React.Component {
     const trigger = (
       <AddAnswerButton variant="secondary" data-test="btn-add-answer">
         <IconText icon={AddIcon}>
-          Add {this.props.answers.length === 0 ? "an" : "another"} answer
+          Add {this.props.answerCount === 0 ? "an" : "another"} answer
         </IconText>
       </AddAnswerButton>
     );

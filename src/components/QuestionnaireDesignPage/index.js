@@ -1,151 +1,94 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { isNil } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 import BaseLayout from "components/BaseLayout";
 import { Grid, Column } from "components/Grid";
-import MainCanvas from "components/MainCanvas";
-import ScrollPane from "components/ScrollPane";
-import EditorSurface from "components/EditorSurface";
 import NavigationSidebarContainer from "containers/NavigationSidebarContainer";
-import getTextFromHTML from "utils/getTextFromHTML";
-import ConnectedPropertiesPanel from "components/PropertiesPanel";
-import Tabs from "components/Tabs";
-import styled from "styled-components";
-import Button from "components/Button";
-import AddPage from "./icon-add-page.svg?inline";
-import IconText from "components/IconText";
-import SavingIndicator from "components/SavingIndicator";
-
-const Centered = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4em;
-`;
-
-const Margin = styled.div`
-  margin-top: 2em;
-`;
+import { Switch } from "react-router-dom";
+import { Route, Redirect } from "react-router";
+import QuestionPageRoute from "components/QuestionPageRoute";
+import SectionRoute from "components/SectionRoute";
+import { find, flatMap } from "lodash";
+import { Titled } from "react-titled";
+import { Routes, buildSectionPath } from "utils/UrlUtils";
+import Loading from "components/Loading";
 
 class QuestionnaireDesignPage extends Component {
   static propTypes = {
-    onUpdateSection: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
-    onUpdatePage: PropTypes.func.isRequired,
-    onDeletePage: PropTypes.func.isRequired,
-    onDeleteSection: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    match: CustomPropTypes.match,
     questionnaire: CustomPropTypes.questionnaire,
-    section: CustomPropTypes.section,
-    questionnaireId: PropTypes.string.isRequired,
-    pageId: PropTypes.string,
-    sectionId: PropTypes.string.isRequired,
-    page: CustomPropTypes.page,
-    breadcrumb: CustomPropTypes.breadcrumb,
-    loading: PropTypes.bool.isRequired
+    location: PropTypes.object // eslint-disable-line
   };
 
-  shouldComponentUpdate(nextProps) {
-    return !isNil(nextProps.section) || !isNil(nextProps.page);
-  }
-
-  getMetaTitle = () => {
-    const { questionnaire, page, section } = this.props;
-    const pageTitle = getTextFromHTML(page ? page.title : section.title);
-
-    return pageTitle
-      ? `${pageTitle} - ${questionnaire.title}`
-      : `${questionnaire.title}`;
+  state = {
+    showDeleteConfirmDialog: false,
+    showMovePageDialog: false
   };
 
-  handleAddPageClick = e => {
-    const { onAddPage, section, page } = this.props;
-    onAddPage(section.id, page ? page.position + 1 : 0);
+  handleAddPage = e => {
+    const { onAddPage, match, questionnaire } = this.props;
+    const { pageId, sectionId } = match.params;
+
+    const pages = flatMap(questionnaire.sections, "pages");
+    const page = find(pages, { id: pageId });
+
+    onAddPage(sectionId, page ? page.position + 1 : 0);
   };
 
-  handleDeletePage = () => {
-    const { onDeletePage, section, page } = this.props;
-    return onDeletePage(section.id, page.id);
+  getTitle = title => {
+    const { loading, questionnaire } = this.props;
+    return loading ? title : `${questionnaire.title} - ${title}`;
   };
 
-  handleDeleteSection = () => {
-    const { onDeleteSection, section } = this.props;
-    return onDeleteSection(section.id);
-  };
-
-  render() {
-    const {
-      breadcrumb,
-      loading,
-      questionnaire,
-      section,
-      page,
-      questionnaireId,
-      pageId,
-      onUpdatePage,
-      onUpdateSection
-    } = this.props;
+  renderRedirect = () => {
+    const { questionnaire, loading } = this.props;
 
     if (loading) {
-      return null;
+      return (
+        <Grid>
+          <Column cols={10}>
+            <Loading height="100%">Loading questionnaire…</Loading>
+          </Column>
+        </Grid>
+      );
     }
 
     return (
-      <BaseLayout
-        breadcrumb={breadcrumb}
-        questionnaire={questionnaire}
-        docTitle={this.getMetaTitle()}
-      >
-        <Grid align="top">
-          <Column cols={2} gutters={false}>
-            <NavigationSidebarContainer
-              questionnaire={questionnaire}
-              questionnaireId={questionnaireId}
-              section={section}
-              page={page}
-              currentPageId={pageId}
-            />
-          </Column>
-          <Column gutters={false}>
-            <ScrollPane permanentScrollBar>
-              <Margin>
-                <MainCanvas>
-                  <SavingIndicator />
-                  <Tabs
-                    questionnaire={questionnaire}
-                    section={section}
-                    page={page}
-                  >
-                    <EditorSurface
-                      questionnaire={questionnaire}
-                      section={section}
-                      page={page}
-                      onUpdatePage={onUpdatePage}
-                      onDeletePage={this.handleDeletePage}
-                      onUpdateSection={onUpdateSection}
-                      onDeleteSection={this.handleDeleteSection}
-                    />
-                  </Tabs>
-                </MainCanvas>
-              </Margin>
-              <Centered>
-                <Button
-                  variant="tertiary"
-                  small
-                  onClick={this.handleAddPageClick}
-                  data-test="btn-add-page-2"
-                >
-                  <IconText icon={AddPage}>Add question page</IconText>
-                </Button>
-              </Centered>
-            </ScrollPane>
-          </Column>
-          <Column cols={2} gutters={false}>
-            <ConnectedPropertiesPanel
-              questionnaire={questionnaire}
-              page={page}
-            />
-          </Column>
-        </Grid>
+      <Redirect
+        to={buildSectionPath({
+          questionnaireId: questionnaire.id,
+          sectionId: questionnaire.sections[0].id
+        })}
+      />
+    );
+  };
+
+  render() {
+    const { loading, questionnaire, location } = this.props;
+
+    return (
+      <BaseLayout questionnaire={questionnaire}>
+        <Titled title={this.getTitle}>
+          <Grid>
+            <Column cols={2} gutters={false}>
+              <NavigationSidebarContainer
+                data-test="side-nav"
+                loading={loading}
+                onAddPage={this.handleAddPage}
+                questionnaire={questionnaire}
+              />
+            </Column>
+            <Column>
+              <Switch location={location}>
+                <Route path={Routes.SECTION} component={SectionRoute} exact />
+                <Route path={Routes.PAGE} component={QuestionPageRoute} exact />
+                <Route path="*" render={this.renderRedirect} />
+              </Switch>
+            </Column>
+          </Grid>
+        </Titled>
       </BaseLayout>
     );
   }

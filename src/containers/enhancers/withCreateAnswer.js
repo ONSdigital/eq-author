@@ -18,12 +18,12 @@ export const createUpdater = pageId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate, ownProps }) => ({
-  onAddAnswer(type) {
+export const mapMutateToProps = ({ mutate }) => ({
+  onAddAnswer(pageId, type) {
     const answer = {
       type,
       mandatory: false,
-      questionPageId: ownProps.page.id,
+      questionPageId: pageId,
       description: "",
       guidance: "",
       qCode: "",
@@ -31,7 +31,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
       secondaryLabel: ""
     };
 
-    const update = createUpdater(ownProps.page.id);
+    const update = createUpdater(pageId);
 
     return mutate({
       variables: { input: answer },

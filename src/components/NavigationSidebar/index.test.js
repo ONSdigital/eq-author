@@ -25,14 +25,17 @@ describe("NavigationSidebar", () => {
         onAddPage={handleAddPage}
         onAddSection={handleAddSection}
         onUpdateQuestionnaire={handleUpdateQuestionnaire}
-        pageId={page.id}
-        section={section}
-        page={page}
+        loading={false}
       />
     );
   });
 
   it("should render", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should only render container if loading", () => {
+    wrapper.setProps({ loading: true });
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -42,10 +45,8 @@ describe("NavigationSidebar", () => {
   });
 
   it("should allow pages to be added", () => {
-    wrapper
-      .find("[data-test='nav-section-header']")
-      .simulate("addPage", section.id);
+    wrapper.find("[data-test='nav-section-header']").simulate("addPage");
 
-    expect(handleAddPage).toHaveBeenCalledWith(section.id, page.position + 1);
+    expect(handleAddPage).toHaveBeenCalledWith();
   });
 });

@@ -1,5 +1,5 @@
 import { mapMutateToProps, createUpdater } from "./withMovePage";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 import fragment from "graphql/fragments/movePage.graphql";
 
 describe("withMovePage", () => {
@@ -79,11 +79,11 @@ describe("withMovePage", () => {
       });
 
       it("should redirect if the section id has changed", () => {
-        const expected = getLink(
-          match.params.questionnaireId,
-          args.to.sectionId,
-          args.to.id
-        );
+        const expected = buildPagePath({
+          questionnaireId: match.params.questionnaireId,
+          sectionId: args.to.sectionId,
+          pageId: args.to.id
+        });
 
         return props.onMovePage(args).then(() => {
           expect(history.replace).toHaveBeenCalledWith(expected);

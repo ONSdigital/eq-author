@@ -24,55 +24,42 @@ const NavigationScrollPane = styled(ScrollPane)`
 `;
 
 class NavigationSidebar extends Component {
-  state = {
-    addMenuOpen: false
-  };
-
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire.isRequired,
+    questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
     onAddSection: PropTypes.func.isRequired,
     onUpdateQuestionnaire: PropTypes.func.isRequired,
-    currentPageId: PropTypes.string,
-    page: CustomPropTypes.page,
-    section: CustomPropTypes.section.isRequired
+    loading: PropTypes.bool.isRequired
   };
 
   handleAddSection = () => {
-    const { questionnaire, onAddSection } = this.props;
-    onAddSection(questionnaire.id);
-  };
-
-  handleAddPage = () => {
-    const { onAddPage, section, page } = this.props;
-    onAddPage(section.id, page ? page.position + 1 : 0);
+    this.props.onAddSection(this.props.questionnaire.id);
   };
 
   render() {
     const {
       questionnaire,
       onUpdateQuestionnaire,
-      section,
-      currentPageId
+      onAddPage,
+      loading
     } = this.props;
 
     return (
       <Container data-test="side-nav">
-        <NavigationHeader
-          questionnaire={questionnaire}
-          onUpdateQuestionnaire={onUpdateQuestionnaire}
-          onAddSection={this.handleAddSection}
-          onAddPage={this.handleAddPage}
-          data-test="nav-section-header"
-        />
-        <NavigationScrollPane>
-          <SectionNav
-            currentPageId={currentPageId}
-            currentSectionId={section.id}
-            transitionDuration={200}
-            questionnaire={questionnaire}
-          />
-        </NavigationScrollPane>
+        {loading ? null : (
+          <React.Fragment>
+            <NavigationHeader
+              questionnaire={questionnaire}
+              onUpdateQuestionnaire={onUpdateQuestionnaire}
+              onAddSection={this.handleAddSection}
+              onAddPage={onAddPage}
+              data-test="nav-section-header"
+            />
+            <NavigationScrollPane>
+              <SectionNav questionnaire={questionnaire} />
+            </NavigationScrollPane>
+          </React.Fragment>
+        )}
       </Container>
     );
   }

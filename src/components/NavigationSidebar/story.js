@@ -56,7 +56,8 @@ const props = {
   currentPageId: section1.pages[0].id,
   onAddPage: action("Add Page"),
   onAddSection: action("Add Section"),
-  onUpdateQuestionnaire: action("onUpdateQuestionnaire")
+  onUpdateQuestionnaire: action("onUpdateQuestionnaire"),
+  loading: false
 };
 
 storiesOf("NavigationSidebar", module)

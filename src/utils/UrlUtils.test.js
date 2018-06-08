@@ -1,27 +1,52 @@
-import { getUrlParams, getLink } from "utils/UrlUtils";
+import {
+  buildQuestionnairePath,
+  buildSectionPath,
+  buildPagePath
+} from "utils/UrlUtils";
 
-describe("Utils > getUrlParams", () => {
-  it("should extract only url params", () => {
-    const params = {
-      questionnaireId: "1",
-      sectionId: "2",
-      pageId: "3",
-      foo: "bar"
-    };
+const questionnaireId = "1";
+const sectionId = "2";
+const pageId = "3";
 
-    const result = getUrlParams(params);
+describe("buildQuestionnairePath", () => {
+  it("builds a valid path", () => {
+    const path = buildQuestionnairePath({ questionnaireId });
+    expect(path).toEqual("/questionnaire/1");
+  });
 
-    expect(result).toEqual({
-      questionnaireId: "1",
-      sectionId: "2",
-      pageId: "3"
-    });
+  it("throws if questionnaireId not supplied", () => {
+    expect(() => buildQuestionnairePath({})).toThrow();
   });
 });
 
-describe("getLink", () => {
-  it("should produce link to a page", () => {
-    const result = getLink("1", "10", "5");
-    expect(result).toBe("/questionnaire/1/design/10/5");
+describe("buildSectionPath", () => {
+  it("builds a valid path", () => {
+    const path = buildSectionPath({ questionnaireId, sectionId });
+    expect(path).toEqual("/questionnaire/1/2/design");
+  });
+
+  it("throws if any param not supplied", () => {
+    expect(() => buildSectionPath({})).toThrow();
+    expect(() => buildSectionPath({ questionnaireId })).toThrow();
+    expect(() => buildSectionPath({ sectionId })).toThrow();
+  });
+});
+
+describe("buildPagePath", () => {
+  it("builds a valid path", () => {
+    const path = buildPagePath({
+      questionnaireId,
+      sectionId,
+      pageId
+    });
+    expect(path).toEqual("/questionnaire/1/2/3/design");
+  });
+
+  it("throws if any param not supplied", () => {
+    expect(() => buildPagePath({})).toThrow();
+    expect(() => buildPagePath({ questionnaireId })).toThrow();
+    expect(() => buildPagePath({ questionnaireId, sectionId })).toThrow();
+    expect(() => buildPagePath({ questionnaireId, pageId })).toThrow();
+    expect(() => buildPagePath({ sectionId, pageId })).toThrow();
   });
 });

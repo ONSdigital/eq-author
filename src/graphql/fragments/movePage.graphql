@@ -1,8 +1,8 @@
 fragment MovePageFragment on Section {
   id
-  __typename
+  title
   pages {
-    __typename
+    title
     id
     position
   }

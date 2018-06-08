@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 import createQuestionnaireQuery from "graphql/createQuestionnaire.graphql";
 import getQuestionnaireList from "graphql/getQuestionnaireList.graphql";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 import { get } from "lodash";
 
 export const redirectToDesigner = history => ({ data }) => {
@@ -9,7 +9,13 @@ export const redirectToDesigner = history => ({ data }) => {
   const section = questionnaire.sections[0];
   const page = section.pages[0];
 
-  history.push(getLink(questionnaire.id, section.id, page.id));
+  history.push(
+    buildPagePath({
+      questionnaireId: questionnaire.id,
+      sectionId: section.id,
+      pageId: page.id
+    })
+  );
 };
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({

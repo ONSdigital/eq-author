@@ -7,6 +7,7 @@ import ScrollPane from "../ScrollPane";
 import MovePageModal from ".";
 import CustomPropTypes from "custom-prop-types";
 import { times } from "lodash";
+import { ApolloProvider } from "react-apollo";
 
 const Wrapper = styled.div`
   margin: 1em;
@@ -94,7 +95,7 @@ class MovePageStory extends React.Component {
           isOpen={this.state.isModalOpen}
           onClose={this.handleToggleModal}
           questionnaire={questionnaire}
-          section={questionnaire.sections[0]}
+          sectionId={questionnaire.sections[0].id}
           page={questionnaire.sections[0].pages[0]}
           onMovePage={action("movePage")}
         />
@@ -103,6 +104,17 @@ class MovePageStory extends React.Component {
   }
 }
 
+const questionnaire = buildQuestionnaire();
+const client = {
+  query: () => ({
+    questionnaire
+  })
+};
+
 storiesOf("MovePageModal", module)
   .add("ItemList", () => <ItemSelectStory />)
-  .add("Modal", () => <MovePageStory questionnaire={buildQuestionnaire()} />);
+  .add("Modal", () => (
+    <ApolloProvider client={client}>
+      <MovePageStory questionnaire={buildQuestionnaire()} />
+    </ApolloProvider>
+  ));

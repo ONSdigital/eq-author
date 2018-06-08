@@ -21,7 +21,7 @@ const StyledModal = styled(Modal)`
 `;
 
 const moveTo = (array, item, position) => {
-  array = reject(array, item);
+  array = reject(array, { id: item.id });
   array.splice(position, 0, item);
 
   return array;
@@ -60,7 +60,7 @@ const Trigger = styled.button.attrs({ type: "button" })`
 
 class MovePageModal extends React.Component {
   static propTypes = {
-    section: CustomPropTypes.section,
+    sectionId: PropTypes.string.isRequired,
     page: CustomPropTypes.page,
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     isOpen: PropTypes.bool.isRequired,
@@ -74,7 +74,7 @@ class MovePageModal extends React.Component {
     this.state = {
       isSectionSelectOpen: false,
       isPagePositionOpen: false,
-      selectedSectionId: props.section.id,
+      selectedSectionId: props.sectionId,
       selectedPagePosition: props.page.position,
       previousSelectedSectionId: null,
       previousSelectedPagePosition: null
@@ -129,7 +129,7 @@ class MovePageModal extends React.Component {
   };
 
   handlePositionConfirm = e => {
-    const { page, section, onMovePage } = this.props;
+    const { page, sectionId, onMovePage } = this.props;
     const { selectedSectionId, selectedPagePosition } = this.state;
 
     e.preventDefault();
@@ -138,7 +138,7 @@ class MovePageModal extends React.Component {
       onMovePage({
         from: {
           id: page.id,
-          sectionId: section.id,
+          sectionId,
           position: page.position
         },
         to: {
