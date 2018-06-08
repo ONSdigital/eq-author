@@ -12,6 +12,7 @@ import { find, flatMap } from "lodash";
 import { Titled } from "react-titled";
 import { Routes, buildSectionPath } from "utils/UrlUtils";
 import Loading from "components/Loading";
+import RoutingPageRoute from "containers/QuestionnaireRoutingPage/RoutingPageRoute";
 
 class QuestionnaireDesignPage extends Component {
   static propTypes = {
@@ -84,6 +85,11 @@ class QuestionnaireDesignPage extends Component {
               <Switch location={location}>
                 <Route path={Routes.SECTION} component={SectionRoute} exact />
                 <Route path={Routes.PAGE} component={QuestionPageRoute} exact />
+                <Route
+                  path={Routes.ROUTING}
+                  component={RoutingPageRoute}
+                  exact
+                />
                 <Route path="*" render={this.renderRedirect} />
               </Switch>
             </Column>

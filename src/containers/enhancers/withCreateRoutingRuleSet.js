@@ -3,7 +3,7 @@ import createRoutingRuleSet from "graphql/createRoutingRuleSet.graphql";
 import fragment from "graphql/pageFragment.graphql";
 import getRouting from "graphql/getRouting.graphql";
 
-export const createUpdater = ({ pageId }) => (proxy, result) => {
+export const createUpdater = pageId => (proxy, result) => {
   const id = `QuestionPage${pageId}`;
 
   const questionPage = proxy.readFragment({
@@ -22,11 +22,12 @@ export const createUpdater = ({ pageId }) => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddRoutingRuleSet() {
+    const { pageId, questionnaireId } = ownProps.match.params;
     const input = {
-      questionPageId: ownProps.pageId
+      questionPageId: pageId
     };
 
-    const update = createUpdater(ownProps);
+    const update = createUpdater(pageId);
 
     return mutate({
       variables: { input },
@@ -35,7 +36,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
         {
           query: getRouting,
           variables: {
-            id: ownProps.questionnaireId
+            id: questionnaireId
           }
         }
       ]

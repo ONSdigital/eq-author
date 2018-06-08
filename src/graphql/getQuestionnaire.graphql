@@ -10,26 +10,6 @@ query GetQuestionnaire($id: ID!) {
         id
         title
         position
-        ... on QuestionPage {
-          title
-          guidance
-          answers {
-            ...Answer
-            ... on MultipleChoiceAnswer {
-              options {
-                ...Option
-              }
-              other {
-                option {
-                  ...Option
-                }
-                answer {
-                  ...Answer
-                }
-              }
-            }
-          }
-        }
       }
     }
   }

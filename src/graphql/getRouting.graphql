@@ -1,14 +1,12 @@
-#import "./fragments/questionnaire.graphql"
-#import "./fragments/section.graphql"
 #import "./fragments/answer.graphql"
 #import "./fragments/option.graphql"
 #import "./fragments/routing-ruleset.graphql"
 
 query GetRouting($id: ID!) {
   questionnaire(id: $id) {
-    ...Questionnaire
+    id
     sections {
-      ...Section
+      id
       plaintextTitle: title(format: Plaintext)
       pages {
         id

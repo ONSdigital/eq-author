@@ -33,16 +33,18 @@ const EditorLayout = ({ children, onAddPage, page, ...otherProps }) => (
             <Tabs>{children}</Tabs>
           </MainCanvas>
         </Margin>
-        <Centered>
-          <Button
-            variant="tertiary"
-            small
-            onClick={onAddPage}
-            data-test="btn-add-page-2"
-          >
-            <IconText icon={AddPage}>Add question page</IconText>
-          </Button>
-        </Centered>
+        {onAddPage && (
+          <Centered>
+            <Button
+              variant="tertiary"
+              small
+              onClick={onAddPage}
+              data-test="btn-add-page-2"
+            >
+              <IconText icon={AddPage}>Add question page</IconText>
+            </Button>
+          </Centered>
+        )}
       </ScrollPane>
     </Column>
     <Column cols={2} gutters={false}>
@@ -53,7 +55,7 @@ const EditorLayout = ({ children, onAddPage, page, ...otherProps }) => (
 
 EditorLayout.propTypes = {
   children: PropTypes.node.isRequired,
-  onAddPage: PropTypes.func.isRequired,
+  onAddPage: PropTypes.func,
   page: CustomPropTypes.page
 };
 

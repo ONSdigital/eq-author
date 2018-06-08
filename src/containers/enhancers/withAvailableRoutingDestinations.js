@@ -17,8 +17,8 @@ export const mapResultsToProps = ({ data, ownProps }) => {
   };
 };
 
-export const mapPropToOptions = ({ pageId }) => ({
-  variables: { pageId }
+export const mapPropToOptions = ({ match }) => ({
+  variables: { pageId: match.params.pageId }
 });
 
 export default graphql(getAvailableRoutingDestinations, {

@@ -5,7 +5,7 @@ import { get } from "lodash";
 
 export const mapResultsToProps = ({ data, ownProps }) => {
   const { questionnaire, loading } = data;
-  const { sectionId, pageId } = ownProps;
+  const { sectionId, pageId } = ownProps.match.params;
 
   if (loading) {
     return { loading };
@@ -30,7 +30,7 @@ export const mapResultsToProps = ({ data, ownProps }) => {
 };
 
 export const mapPropToOptions = props => ({
-  variables: { id: props.questionnaireId }
+  variables: { id: props.match.params.questionnaireId }
 });
 
 export default graphql(getRoutingQuery, {

@@ -19,7 +19,7 @@ import RoutingCondition from "components/routing/RoutingCondition";
 import RoutingStatement from "components/routing/RoutingStatement";
 import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
 import { Alert, AlertTitle, AlertText } from "components/routing/Alert";
-import { getLink } from "utils/UrlUtils";
+import { buildPagePath } from "utils/UrlUtils";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -86,9 +86,6 @@ class UnconnectedRoutingEditor extends React.Component {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     section: CustomPropTypes.section.isRequired,
     page: CustomPropTypes.page.isRequired,
-    sectionId: PropTypes.string.isRequired,
-    questionnaireId: PropTypes.string.isRequired,
-    pageId: PropTypes.string.isRequired,
     onAddRoutingRuleSet: PropTypes.func.isRequired,
     onAddRoutingCondition: PropTypes.func.isRequired,
     onDeleteRoutingCondition: PropTypes.func.isRequired,
@@ -98,14 +95,14 @@ class UnconnectedRoutingEditor extends React.Component {
     onUpdateRoutingCondition: PropTypes.func.isRequired,
     onUpdateRoutingRule: PropTypes.func.isRequired,
     onUpdateRoutingRuleSet: PropTypes.func.isRequired,
+    onDeleteRoutingRuleSet: PropTypes.func.isRequired,
     routingDestinationsLoading: PropTypes.bool,
     loading: PropTypes.bool,
     availableRoutingDestinations: PropTypes.arrayOf(PropTypes.any)
   };
 
   renderNoAnswerAlert = () => {
-    const { questionnaireId, sectionId, pageId } = this.props;
-    const link = getLink(questionnaireId, sectionId, pageId);
+    const link = buildPagePath(this.props.match.params);
     return (
       <Alert>
         <AlertTitle>

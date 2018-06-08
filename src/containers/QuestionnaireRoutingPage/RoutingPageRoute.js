@@ -5,8 +5,11 @@ import ScrollPane from "components/ScrollPane";
 import MainCanvas from "components/MainCanvas";
 import SavingIndicator from "components/SavingIndicator";
 import Tabs from "components/Tabs";
+import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import RoutingEditor from "./RoutingEditor";
+import withRouting from "../enhancers/withRouting";
+import EditorLayout from "components/EditorLayout";
 
 const Margin = styled.div`
   margin-top: 2em;
@@ -14,34 +17,33 @@ const Margin = styled.div`
 
 class RoutingPageRoute extends React.Component {
   static propTypes = {
-    questionnaire: CustomPropTypes.questionnaire.isRequired,
-    section: CustomPropTypes.section.isRequired,
-    page: CustomPropTypes.page.isRequired,
-    match: CustomPropTypes.match
+    questionnaire: CustomPropTypes.questionnaire,
+    section: CustomPropTypes.section,
+    page: CustomPropTypes.page,
+    match: CustomPropTypes.match,
+    loading: PropTypes.bool.isRequired
   };
 
-  render() {
-    const { questionnaire, section, page, match } = this.props;
+  renderContent() {
+    const { questionnaire, section, page, match, loading } = this.props;
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
     return (
-      <Column gutters={false}>
-        <ScrollPane>
-          <Margin>
-            <MainCanvas>
-              <SavingIndicator />
-              <Tabs questionnaire={questionnaire} section={section} page={page}>
-                <RoutingEditor
-                  questionnaire={questionnaire}
-                  section={section}
-                  page={page}
-                  match={match}
-                />
-              </Tabs>
-            </MainCanvas>
-          </Margin>
-        </ScrollPane>
-      </Column>
+      <RoutingEditor
+        questionnaire={questionnaire}
+        section={section}
+        page={page}
+        match={match}
+      />
     );
+  }
+
+  render() {
+    return <EditorLayout>{this.renderContent()}</EditorLayout>;
   }
 }
 
-export default RoutingPageRoute;
+export default withRouting(RoutingPageRoute);

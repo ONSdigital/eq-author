@@ -19,12 +19,9 @@ export const createUpdater = (routingRuleSetId, pageId) => (proxy, result) => {
 };
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
-  onDeleteRoutingRuleSet(id) {
-    const input = {
-      id
-    };
-
-    const update = createUpdater(id, ownProps.pageId);
+  onDeleteRoutingRuleSet(routingRuleSetId, pageId) {
+    const input = { id: routingRuleSetId };
+    const update = createUpdater(routingRuleSetId, pageId);
 
     return mutate({
       variables: { input },
