@@ -227,9 +227,17 @@ class UnconnectedRoutingEditor extends React.Component {
         pathEnd={!canRoute}
         canRemove={canRemove}
       >
-        {canRoute
-          ? this.renderAnswer(routingCondition, answer)
-          : this.renderNoAnswerAlert()}
+        <TransitionGroup>
+          {canRoute ? (
+            <Transition key="answer" exit={false}>
+              <div>{this.renderAnswer(routingCondition, answer)}</div>
+            </Transition>
+          ) : (
+            <Transition key="no-answer-alert" exit={false}>
+              <div>{this.renderNoAnswerAlert()}</div>
+            </Transition>
+          )}{" "}
+        </TransitionGroup>
       </RoutingCondition>
     );
   };
@@ -243,6 +251,7 @@ class UnconnectedRoutingEditor extends React.Component {
       onAddRoutingRuleSet,
       onAddRoutingRule,
       onDeleteRoutingRule,
+      onDeleteRoutingRuleSet,
       onAddRoutingCondition
     } = this.props;
 
@@ -269,58 +278,79 @@ class UnconnectedRoutingEditor extends React.Component {
       <React.Fragment>
         <Title>{get(currentPage, "plaintextTitle", currentPage.title)}</Title>
         <Padding>
-          {routingRuleSet && (
-            <RoutingRuleset
-              routingRuleSet={routingRuleSet}
-              routingOptions={routingOptions}
-              onAddRule={onAddRoutingRule}
-              onElseChange={this.handleElseChange}
-              elseValue={getIdForObject(routingRuleSet.else)}
-              canRoute={canRoute}
-            >
-              <TransitionGroup>
-                {routingRuleSet.routingRules.map(rule => (
-                  <Transition key={rule.id}>
-                    <RoutingRule
-                      rule={rule}
-                      routingRuleSetId={routingRuleSet.id}
-                      key={rule.id}
-                      page={currentPage}
-                      routingOptions={routingOptions}
-                      onAddRule={onAddRoutingRule}
-                      onDeleteRule={onDeleteRoutingRule}
-                      onThenChange={this.handleThenChange}
-                      canRoute={canRoute}
-                    >
-                      <RoutingStatement
-                        onAddCondition={onAddRoutingCondition}
-                        routingRuleId={rule.id}
-                        canRoute={canRoute}
-                      >
-                        <TransitionGroup>
-                          {rule.conditions.map(routingCondition => (
-                            <Transition key={routingCondition.id}>
-                              {this.renderRoutingConditions(
-                                routingCondition,
-                                rule.id,
-                                rule.conditions.length > 1
-                              )}
-                            </Transition>
-                          ))}
-                        </TransitionGroup>
-                      </RoutingStatement>
-                    </RoutingRule>
-                  </Transition>
-                ))}
-              </TransitionGroup>
-            </RoutingRuleset>
-          )}
-          {!currentPage.routingRuleSet && (
-            <RoutingRulesetEmpty
-              title="No routing rules exist for this question"
-              onAddRule={onAddRoutingRuleSet}
-            />
-          )}
+          <TransitionGroup>
+            {routingRuleSet ? (
+              <Transition key="routing-ruleset" exit={false}>
+                <div>
+                  <RoutingRuleset
+                    routingRuleSet={routingRuleSet}
+                    routingOptions={routingOptions}
+                    onAddRule={onAddRoutingRule}
+                    onElseChange={this.handleElseChange}
+                    elseValue={getIdForObject(routingRuleSet.else)}
+                    canRoute={canRoute}
+                  >
+                    <TransitionGroup>
+                      {routingRuleSet.routingRules.map(rule => (
+                        <Transition key={rule.id}>
+                          <RoutingRule
+                            rule={rule}
+                            routingRuleSetId={routingRuleSet.id}
+                            key={rule.id}
+                            page={currentPage}
+                            routingOptions={routingOptions}
+                            onAddRule={onAddRoutingRule}
+                            onDeleteRule={function() {
+                              routingRuleSet.routingRules.length > 1
+                                ? onDeleteRoutingRule(
+                                    routingRuleSet.id,
+                                    rule.id
+                                  )
+                                : onDeleteRoutingRuleSet(
+                                    routingRuleSet.id,
+                                    currentPage.id
+                                  );
+                            }}
+                            onThenChange={this.handleThenChange}
+                            canRoute={canRoute}
+                          >
+                            <RoutingStatement
+                              onAddCondition={onAddRoutingCondition}
+                              routingRuleId={rule.id}
+                              canRoute={canRoute}
+                            >
+                              <TransitionGroup>
+                                {rule.conditions.map(routingCondition => (
+                                  <Transition key={routingCondition.id}>
+                                    <div>
+                                      {this.renderRoutingConditions(
+                                        routingCondition,
+                                        rule.id,
+                                        rule.conditions.length > 1
+                                      )}
+                                    </div>
+                                  </Transition>
+                                ))}
+                              </TransitionGroup>
+                            </RoutingStatement>
+                          </RoutingRule>
+                        </Transition>
+                      ))}
+                    </TransitionGroup>
+                  </RoutingRuleset>
+                </div>
+              </Transition>
+            ) : (
+              <Transition key="routing-ruleset-empty" exit={false}>
+                <div>
+                  <RoutingRulesetEmpty
+                    title="No routing rules exist for this question"
+                    onAddRule={onAddRoutingRuleSet}
+                  />
+                </div>
+              </Transition>
+            )}
+          </TransitionGroup>
         </Padding>
       </React.Fragment>
     );

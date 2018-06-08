@@ -8,6 +8,8 @@ fragment RoutingRuleSet on RoutingRuleSet {
   }
   questionPage {
     id
+    description
+    guidance
     plaintextTitle: title(format: Plaintext)
   }
   else {

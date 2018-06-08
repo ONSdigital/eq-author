@@ -51,7 +51,6 @@ const RoutingRule = ({
   gotoValue,
   canRoute,
   rule,
-  routingRuleSetId,
   className
 }) => {
   const { conditions } = rule;
@@ -62,9 +61,7 @@ const RoutingRule = ({
         {title && <Title>{title}</Title>}
         <Buttons>
           <Button
-            onClick={function() {
-              onDeleteRule(routingRuleSetId, rule.id);
-            }}
+            onClick={onDeleteRule}
             data-test="btn-delete"
             disabled={!children}
             variant="tertiary"
