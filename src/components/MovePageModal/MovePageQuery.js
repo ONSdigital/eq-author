@@ -1,6 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
-import query from "./MovePage.graphql";
+import query from "graphql/getQuestionnaire.graphql";
 import PropTypes from "prop-types";
 
 const MovePageQuery = ({ questionnaireId, children }) => (

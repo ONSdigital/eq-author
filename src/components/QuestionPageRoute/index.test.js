@@ -8,7 +8,7 @@ import createRouterContext from "react-router-test-context";
 import PropTypes from "prop-types";
 
 import query from "./QuestionPage.graphql";
-import movePageQuery from "components/MovePageModal/MovePage.graphql";
+import movePageQuery from "graphql/getQuestionnaire.graphql";
 
 const movePageMock = {
   request: {
@@ -21,6 +21,13 @@ const movePageMock = {
     data: {
       questionnaire: {
         id: "1",
+        title: "",
+        description: "",
+        surveyId: "1",
+        theme: "foo",
+        legalBasis: "",
+        navigation: true,
+        summary: "",
         __typename: "Questionnaire",
         sections: [
           {
