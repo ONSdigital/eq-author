@@ -28,33 +28,34 @@ const RoutingRuleset = ({
   onAddRule,
   onElseChange,
   routingOptions,
+  routingRuleSet,
   elseValue,
   canRoute
 }) => (
   <React.Fragment>
     {children}
-    {canRoute && (
-      <React.Fragment>
-        <AddRuleButton
-          variant="secondary"
-          small
-          onClick={onAddRule}
-          data-test="btn-add-rule"
-        >
-          <IconText icon={IconAddRule}>Add rule</IconText>
-        </AddRuleButton>
-        <Box>
-          <RoutingRuleResultSelector
-            id="else"
-            label="ELSE"
-            value={elseValue}
-            routingOptions={routingOptions}
-            onChange={onElseChange}
-            data-test="select-else"
-          />
-        </Box>
-      </React.Fragment>
-    )}
+
+    <AddRuleButton
+      variant="secondary"
+      small
+      onClick={function() {
+        onAddRule(routingRuleSet.id);
+      }}
+      data-test="btn-add-rule"
+    >
+      <IconText icon={IconAddRule}>Add rule</IconText>
+    </AddRuleButton>
+    <Box>
+      <RoutingRuleResultSelector
+        id="else"
+        label="ELSE"
+        value={elseValue}
+        routingOptions={routingOptions}
+        onChange={onElseChange}
+        data-test="select-else"
+        disabled={!canRoute}
+      />
+    </Box>
   </React.Fragment>
 );
 
@@ -62,7 +63,7 @@ RoutingRuleset.propTypes = {
   children: PropTypes.node.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
-  sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  routingOptions: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   elseValue: PropTypes.string,
   canRoute: PropTypes.bool.isRequired
 };

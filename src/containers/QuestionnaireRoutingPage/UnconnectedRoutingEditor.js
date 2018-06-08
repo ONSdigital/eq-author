@@ -29,6 +29,9 @@ import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
 import getIdForObject from "utils/getIdForObject";
 import { RADIO, CHECKBOX } from "constants/answer-types";
 
+import Transition from "components/routing/Transition";
+import { TransitionGroup } from "react-transition-group";
+
 const Title = styled.h2`
   padding: 0.5em 1em;
   color: #666;
@@ -157,11 +160,6 @@ class UnconnectedRoutingEditor extends React.Component {
     );
   };
 
-  handleAddRule = () => {
-    const { onAddRoutingRule, routingRuleSet } = this.props;
-    onAddRoutingRule(routingRuleSet.id);
-  };
-
   handleElseChange = ({ value }) => {
     const { section, page, onUpdateRoutingRuleSet } = this.props;
 
@@ -169,11 +167,6 @@ class UnconnectedRoutingEditor extends React.Component {
       id: page.routingRuleSet.id,
       else: getSectionAndPageFromSelect(value, section.id)
     });
-  };
-
-  handleDeleteRule = rule => {
-    const { onDeleteRoutingRule, routingRuleSet } = this.props;
-    onDeleteRoutingRule(routingRuleSet.id, rule.id);
   };
 
   handleThenChange = (value, rule) => {
@@ -191,7 +184,7 @@ class UnconnectedRoutingEditor extends React.Component {
     });
   };
 
-  renderRoutingConditions = (routingCondition, ruleId) => {
+  renderRoutingConditions = (routingCondition, ruleId, canRemove) => {
     const {
       questionnaire,
       page: currentPage,
@@ -232,6 +225,7 @@ class UnconnectedRoutingEditor extends React.Component {
         onRemove={onDeleteRoutingCondition}
         onPageChange={onUpdateRoutingCondition}
         pathEnd={!canRoute}
+        canRemove={canRemove}
       >
         {canRoute
           ? this.renderAnswer(routingCondition, answer)
@@ -247,6 +241,8 @@ class UnconnectedRoutingEditor extends React.Component {
       routingDestinationsLoading,
       availableRoutingDestinations,
       onAddRoutingRuleSet,
+      onAddRoutingRule,
+      onDeleteRoutingRule,
       onAddRoutingCondition
     } = this.props;
 
@@ -257,37 +253,66 @@ class UnconnectedRoutingEditor extends React.Component {
     const { routingRuleSet } = currentPage;
     const routingOptions = getRoutingOptions(availableRoutingDestinations);
 
+    const canRoute =
+      routingRuleSet &&
+      routingRuleSet.routingRules.every(rule =>
+        rule.conditions.every(condition => {
+          return (
+            condition.answer &&
+            (condition.answer.type === RADIO ||
+              condition.answer.type === CHECKBOX)
+          );
+        })
+      );
+
     return (
       <React.Fragment>
         <Title>{get(currentPage, "plaintextTitle", currentPage.title)}</Title>
         <Padding>
           {routingRuleSet && (
             <RoutingRuleset
+              routingRuleSet={routingRuleSet}
               routingOptions={routingOptions}
-              onAddRule={this.handleAddRule}
+              onAddRule={onAddRoutingRule}
               onElseChange={this.handleElseChange}
               elseValue={getIdForObject(routingRuleSet.else)}
-              canRoute={routingRuleSet.routingRules.every(rule =>
-                rule.conditions.every(condition => condition.answer)
-              )}
+              canRoute={canRoute}
             >
-              {routingRuleSet.routingRules.map(rule => (
-                <RoutingRule
-                  rule={rule}
-                  key={rule.id}
-                  page={currentPage}
-                  routingOptions={routingOptions}
-                  onAddRule={this.handleAddRule}
-                  onDeleteRule={this.handleDeleteRule}
-                  onThenChange={this.handleThenChange}
-                >
-                  <RoutingStatement onAddCondition={onAddRoutingCondition}>
-                    {rule.conditions.map(routingCondition =>
-                      this.renderRoutingConditions(routingCondition, rule.id)
-                    )}
-                  </RoutingStatement>
-                </RoutingRule>
-              ))}
+              <TransitionGroup>
+                {routingRuleSet.routingRules.map(rule => (
+                  <Transition key={rule.id}>
+                    <RoutingRule
+                      rule={rule}
+                      routingRuleSetId={routingRuleSet.id}
+                      key={rule.id}
+                      page={currentPage}
+                      routingOptions={routingOptions}
+                      onAddRule={onAddRoutingRule}
+                      onDeleteRule={onDeleteRoutingRule}
+                      onThenChange={this.handleThenChange}
+                      canRoute={canRoute}
+                    >
+                      <RoutingStatement
+                        onAddCondition={onAddRoutingCondition}
+                        routingRuleId={rule.id}
+                        canRoute={canRoute}
+                      >
+                        <TransitionGroup>
+                          {rule.conditions.map(routingCondition => (
+                            <Transition key={routingCondition.id}>
+                              {this.renderRoutingConditions(
+                                routingCondition,
+                                rule.id,
+                                rule.conditions.length > 1
+                              )}
+                            </Transition>
+                          ))}
+                        </TransitionGroup>
+                      </RoutingStatement>
+                    </RoutingRule>
+                  </Transition>
+                ))}
+              </TransitionGroup>
             </RoutingRuleset>
           )}
           {!currentPage.routingRuleSet && (

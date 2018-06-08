@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 import createRoutingCondition from "graphql/createRoutingCondition.graphql";
 import fragment from "graphql/fragments/routing-rule.graphql";
-import { first, isNil } from "lodash";
+import { first, isNil, get } from "lodash";
 
 export const createUpdater = routingRuleId => (proxy, result) => {
   const id = `RoutingRule${routingRuleId}`;
@@ -24,14 +24,11 @@ export const createUpdater = routingRuleId => (proxy, result) => {
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddRoutingCondition(routingRuleId) {
     const answer = first(ownProps.page.answers);
-    if (isNil(answer)) {
-      throw new Error("Cannot add routing condition without an answer");
-    }
 
     const input = {
       comparator: "Equal",
       questionPageId: ownProps.page.id,
-      answerId: answer.id,
+      answerId: get(answer, "id"),
       routingRuleId
     };
 

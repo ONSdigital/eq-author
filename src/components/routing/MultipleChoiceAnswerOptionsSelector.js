@@ -9,7 +9,7 @@ const MultipleChoiceAnswerOptions = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 0.5em 0;
+  padding: 1em 0;
 `;
 
 const MultipleChoiceAnswerOptionsSelector = ({
@@ -25,7 +25,7 @@ const MultipleChoiceAnswerOptionsSelector = ({
         title={option.label}
         onChange={onOptionSelectionChange}
       >
-        {option.label}
+        {option.label || <strong>Unlabelled option</strong>}
       </ToggleChip>
     ))}
   </MultipleChoiceAnswerOptions>

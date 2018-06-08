@@ -49,18 +49,22 @@ const RoutingRule = ({
   title,
   routingOptions,
   gotoValue,
-  rule
+  canRoute,
+  rule,
+  routingRuleSetId,
+  className
 }) => {
   const { conditions } = rule;
-  const canRoute = conditions.every(condition => condition.answer);
 
   return (
-    <div>
+    <div className={className}>
       <Box>
         {title && <Title>{title}</Title>}
         <Buttons>
           <Button
-            onClick={onDeleteRule}
+            onClick={function() {
+              onDeleteRule(routingRuleSetId, rule.id);
+            }}
             data-test="btn-delete"
             disabled={!children}
             variant="tertiary"
@@ -72,18 +76,17 @@ const RoutingRule = ({
 
         <RoutingStatement>{children}</RoutingStatement>
 
-        {canRoute && (
-          <RoutingRuleResultSelector
-            id="then"
-            label="THEN"
-            routingOptions={routingOptions}
-            onChange={function({ value }) {
-              onThenChange(value, rule);
-            }}
-            value={getIdForObject(rule.goto)}
-            data-test="select-then"
-          />
-        )}
+        <RoutingRuleResultSelector
+          id="then"
+          label="THEN"
+          routingOptions={routingOptions}
+          onChange={function({ value }) {
+            onThenChange(value, rule);
+          }}
+          value={getIdForObject(rule.goto)}
+          data-test="select-then"
+          disabled={!canRoute}
+        />
       </Box>
     </div>
   );

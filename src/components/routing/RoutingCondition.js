@@ -65,6 +65,7 @@ const RoutingCondition = ({
   pathEnd,
   onPageChange,
   onRemove,
+  canRemove,
   children
 }) => (
   <div>
@@ -105,7 +106,7 @@ const RoutingCondition = ({
           onClick={function() {
             onRemove(ruleId, routingCondition.id);
           }}
-          disabled={!onRemove}
+          disabled={!canRemove}
           data-test="btn-remove"
         >
           <IconText icon={IconClose} hideText>
