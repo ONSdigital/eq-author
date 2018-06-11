@@ -317,10 +317,11 @@ class UnconnectedRoutingEditor extends React.Component {
                     canRoute={canRoute}
                   >
                     <TransitionGroup>
-                      {routingRuleSet.routingRules.map(rule => (
+                      {routingRuleSet.routingRules.map((rule, index) => (
                         <Transition key={rule.id}>
                           <RoutingRule
                             rule={rule}
+                            title={index > 0 && "OR"}
                             routingRuleSetId={routingRuleSet.id}
                             key={rule.id}
                             page={currentPage}
