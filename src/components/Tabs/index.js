@@ -22,11 +22,11 @@ export const TabsContainer = styled.nav`
 const Tab = styled(NavLink)`
   font-size: 1em;
   font-weight: bold;
-  color: ${colors.lightGrey};
+  color: ${colors.white};
   padding: 0.3em 2em;
-  border: 1px solid #666;
+  border: 1px solid ${colors.secondary};
   border-bottom: none;
-  background-color: #666;
+  background-color: ${colors.secondary};
   text-decoration: none;
   border-radius: ${radius} ${radius} 0 0;
   margin: 0 0.25em 0 0;
@@ -45,7 +45,10 @@ const TabsBody = styled.div`
   border-radius: ${radius};
 `;
 
-const DisabledTab = Tab.withComponent("span");
+const DisabledTab = styled(Tab.withComponent("span"))`
+  opacity: 0.5;
+  color: ${colors.lightGrey};
+`;
 
 export const UnwrappedTabs = ({ match, children }) => {
   const { pageId } = match.params;
