@@ -12,7 +12,7 @@ export const generatePath = curry((path, params) => compile(path)(params));
 export const Routes = {
   HOME: "/",
   SIGN_IN: "/sign-in",
-  QUESTIONNAIRE: `/questionnaire/:questionnaireId/:sectionId?/:pageId?`,
+  QUESTIONNAIRE: `/questionnaire/:questionnaireId/:sectionId?/:pageId?/:tab?`,
   SECTION: `/questionnaire/:questionnaireId/:sectionId(\\d+)/design`,
   PAGE: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/design`
 };
