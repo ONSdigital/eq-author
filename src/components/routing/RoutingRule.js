@@ -54,8 +54,6 @@ const RoutingRule = ({
   rule,
   className
 }) => {
-  const { conditions } = rule;
-
   return (
     <div className={className}>
       <Box>
@@ -100,6 +98,7 @@ RoutingRule.propTypes = {
   title: PropTypes.string,
   routingOptions: PropTypes.arrayOf(CustomPropTypes.section),
   canRoute: PropTypes.bool.isRequired,
+  className: PropTypes.string,
   gotoValue: PropTypes.string
 };
 

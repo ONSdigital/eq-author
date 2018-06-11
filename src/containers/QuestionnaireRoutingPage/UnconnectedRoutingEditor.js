@@ -321,7 +321,7 @@ class UnconnectedRoutingEditor extends React.Component {
                         <Transition key={rule.id}>
                           <RoutingRule
                             rule={rule}
-                            title={index > 0 && "OR"}
+                            title={index > 0 ? "OR" : null}
                             routingRuleSetId={routingRuleSet.id}
                             key={rule.id}
                             page={currentPage}

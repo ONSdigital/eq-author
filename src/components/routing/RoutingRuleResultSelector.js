@@ -25,49 +25,67 @@ const Goto = styled.span`
   margin-right: 1em;
 `;
 
-const RoutingRuleResultSelector = ({
-  onChange,
-  routingOptions,
-  label,
-  id,
-  value,
-  disabled
-}) => (
-  <RoutingRuleResult key={id}>
-    <Grid align="center">
-      <Column gutters={false} cols={5}>
-        <Label htmlFor={id} disabled={disabled}>
-          {label} <Goto>Go to: </Goto>
-        </Label>
-      </Column>
-      <Column gutters={false} cols={7}>
-        <Select
-          value={value}
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          data-test="result-selector"
-        >
-          {routingOptions.map(routingOption => (
-            <optgroup
-              label={
-                get(routingOption, "plaintextTitle", routingOption.title) ||
-                "Section Title"
-              }
-              key={routingOption.id}
+const RoutingRuleResultSelector = class extends React.Component {
+  state = { loading: false };
+
+  componentDidUpdate(previousProps) {
+    if (previousProps.value !== this.props.value) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({ loading: false });
+    }
+  }
+
+  handleChange = args => {
+    this.props.onChange(args);
+    this.setState({ loading: true });
+  };
+
+  render() {
+    const { routingOptions, label, id, value, disabled } = this.props;
+
+    return (
+      <RoutingRuleResult key={id}>
+        <Grid align="center">
+          <Column gutters={false} cols={5}>
+            <Label htmlFor={id} disabled={disabled}>
+              {label} <Goto>Go to: </Goto>
+            </Label>
+          </Column>
+          <Column gutters={false} cols={7}>
+            <Select
+              value={value}
+              id={id}
+              onChange={this.handleChange}
+              disabled={disabled}
+              data-test="result-selector"
+              loading={this.state.loading}
             >
-              {routingOption.pages.map(page => (
-                <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {get(page, "plaintextTitle", page.title) || "Page Title"}
-                </option>
+              {routingOptions.map(routingOption => (
+                <optgroup
+                  label={
+                    get(routingOption, "plaintextTitle", routingOption.title) ||
+                    "Section Title"
+                  }
+                  key={routingOption.id}
+                >
+                  {routingOption.pages.map(page => (
+                    <option
+                      value={page.id}
+                      key={page.id}
+                      disabled={page.disabled}
+                    >
+                      {get(page, "plaintextTitle", page.title) || "Page Title"}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
-            </optgroup>
-          ))}
-        </Select>
-      </Column>
-    </Grid>
-  </RoutingRuleResult>
-);
+            </Select>
+          </Column>
+        </Grid>
+      </RoutingRuleResult>
+    );
+  }
+};
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -75,11 +93,13 @@ RoutingRuleResultSelector.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool
 };
 
 RoutingRuleResultSelector.defaultProps = {
-  disabled: false
+  disabled: false,
+  loading: false
 };
 
 export default RoutingRuleResultSelector;
