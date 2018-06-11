@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { Column, Grid } from "components/Grid";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -45,13 +44,7 @@ class RoutingPageRoute extends React.Component {
     const { questionnaire, section, page, match, loading } = this.props;
 
     if (loading) {
-      return (
-        <Grid>
-          <Column cols={10}>
-            <Loading height="100%">Loading routing</Loading>
-          </Column>
-        </Grid>
-      );
+      return <Loading height="20em">Loading routing</Loading>;
     }
 
     return (

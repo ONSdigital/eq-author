@@ -57,7 +57,7 @@ const RoutingRule = ({
   return (
     <div className={className}>
       <Box>
-        {title && <Title>{title}</Title>}
+        <Title>{title || "Page Title"}</Title>
         <Buttons>
           <Button
             onClick={onDeleteRule}
