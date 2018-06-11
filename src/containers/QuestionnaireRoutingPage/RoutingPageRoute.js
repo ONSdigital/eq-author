@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Column } from "components/Grid";
-import ScrollPane from "components/ScrollPane";
-import MainCanvas from "components/MainCanvas";
-import SavingIndicator from "components/SavingIndicator";
-import Tabs from "components/Tabs";
+import { Column, Grid } from "components/Grid";
+
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import RoutingEditor from "./RoutingEditor";
 import withRouting from "../enhancers/withRouting";
 import EditorLayout from "components/EditorLayout";
+import Loading from "components/Loading";
 
 import { flowRight } from "lodash";
 import { connect } from "react-redux";
@@ -47,7 +45,13 @@ class RoutingPageRoute extends React.Component {
     const { questionnaire, section, page, match, loading } = this.props;
 
     if (loading) {
-      return <div>Loading...</div>;
+      return (
+        <Grid>
+          <Column cols={10}>
+            <Loading height="100%">Loading routing</Loading>
+          </Column>
+        </Grid>
+      );
     }
 
     return (
