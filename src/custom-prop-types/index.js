@@ -41,7 +41,8 @@ export default {
     params: PropTypes.shape({
       questionnaireId: PropTypes.string.isRequired,
       sectionId: PropTypes.string,
-      pageId: PropTypes.string
+      pageId: PropTypes.string,
+      tab: PropTypes.string
     }).isRequired
   }).isRequired,
   questionnaireList: PropTypes.arrayOf(
