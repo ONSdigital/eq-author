@@ -15,6 +15,7 @@ fragment RoutingRule on RoutingRule {
   operation
   conditions {
     ...RoutingCondition
+    __typename
   }
   goto {
     ...LogicalDestination

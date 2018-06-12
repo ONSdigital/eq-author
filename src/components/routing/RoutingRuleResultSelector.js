@@ -28,16 +28,16 @@ const Goto = styled.span`
 const RoutingRuleResultSelector = class extends React.Component {
   state = { loading: false };
 
-  componentDidUpdate(previousProps) {
-    if (previousProps.value !== this.props.value) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ loading: false });
-    }
-  }
+  // componentDidUpdate(previousProps) {
+  //   if (previousProps.value !== this.props.value) {
+  //     // eslint-disable-next-line react/no-did-update-set-state
+  //     this.setState({ loading: false });
+  //   }
+  // }
 
   handleChange = args => {
     this.props.onChange(args);
-    this.setState({ loading: true });
+    // this.setState({ loading: true });
   };
 
   render() {

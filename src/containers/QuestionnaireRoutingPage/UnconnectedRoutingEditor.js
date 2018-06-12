@@ -203,11 +203,13 @@ class UnconnectedRoutingEditor extends React.Component {
   };
 
   handleThenChange = (value, rule) => {
-    const { onUpdateRoutingRule } = this.props;
-    onUpdateRoutingRule({
-      id: rule.id,
-      goto: getDestinationFromSelect(value)
-    });
+    const { section, onUpdateRoutingRule } = this.props;
+    const { sectionId, pageId } = getSectionAndPageFromSelect(
+      value,
+      section.id
+    );
+
+    onUpdateRoutingRule(sectionId, pageId, rule);
   };
 
   renderRoutingConditions = (routingCondition, ruleId, canRemove) => {
