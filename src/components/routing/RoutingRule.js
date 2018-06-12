@@ -12,6 +12,7 @@ import IconRoute from "./icon-route.svg?inline";
 
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 import getIdForObject from "utils/getIdForObject";
+import getDestinationId from "utils/getDestinationId";
 
 const RoutingStatement = styled.div`
   padding: 0;
@@ -80,7 +81,7 @@ const RoutingRule = ({
           onChange={function({ value }) {
             onThenChange(value, rule);
           }}
-          value={getIdForObject(rule.goto)}
+          value={getDestinationId(rule.goto)}
           data-test="select-then"
           disabled={!canRoute}
         />

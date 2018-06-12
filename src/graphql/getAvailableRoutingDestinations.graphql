@@ -1,8 +1,19 @@
 #import "./fragments/routing-destination.graphql"
 
+fragment AvailableRoutingDestinations on AvailableRoutingDestinations {
+  logicalDestinations {
+    ...LogicalDestination
+  }
+  questionPages {
+    ...QuestionPageDestination
+  }
+  sections {
+    ...SectionDestination
+  }
+}
+
 query GetAvailableRoutingDestinations($pageId: ID!) {
   availableRoutingDestinations(pageId: $pageId) {
-    ...RoutingDestinationQuestionPage
-    ...RoutingDestinationSection
+    ...AvailableRoutingDestinations
   }
 }

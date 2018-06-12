@@ -31,15 +31,15 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
 
     return mutate({
       variables: { input },
-      update,
-      refetchQueries: res => [
-        {
-          query: getRouting,
-          variables: {
-            id: questionnaireId
-          }
-        }
-      ]
+      update
+      // refetchQueries: res => [
+      //   {
+      //     query: getRouting,
+      //     variables: {
+      //       id: questionnaireId
+      //     }
+      //   }
+      // ]
     });
   }
 });

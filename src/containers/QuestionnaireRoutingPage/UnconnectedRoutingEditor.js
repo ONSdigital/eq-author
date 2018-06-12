@@ -10,8 +10,7 @@ import {
   flatMap,
   dropRightWhile,
   replace,
-  lowerCase,
-  filter
+  lowerCase
 } from "lodash";
 import RoutingRuleset from "components/routing/RoutingRuleset";
 import RoutingRule from "components/routing/RoutingRule";
@@ -27,6 +26,7 @@ import getSectionAndPageFromSelect from "utils/getSectionAndPageFromSelect";
 
 import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
 import getIdForObject from "utils/getIdForObject";
+import getDestinationId from "utils/getDestinationId";
 import { RADIO, CHECKBOX } from "constants/answer-types";
 
 import Transition from "components/routing/Transition";
@@ -45,40 +45,71 @@ const Padding = styled.div`
 `;
 
 const getRoutingOptions = availableRoutingDestinations => {
-  const destinations = map(availableRoutingDestinations, destination => ({
-    ...destination,
-    id: getIdForObject(destination)
-  }));
+  const {
+    logicalDestinations,
+    questionPages,
+    sections
+  } = availableRoutingDestinations;
 
-  const routingOptions = [
-    {
-      id: "3",
-      title: "Questionnaire Summary",
-      pages: [{ title: "Summary", id: "summary" }]
-    }
-  ];
+  const prefixIdsWithTypeName = destinations =>
+    map(destinations, destination => ({
+      ...destination,
+      id: getIdForObject(destination)
+    }));
 
-  const questions = {
-    id: "1",
+  const questionPageDestinations = {
+    id: "questionPages",
     title: "Questions in this section",
-    pages: filter(destinations, dest => dest.__typename === "QuestionPage")
+    pages: prefixIdsWithTypeName(questionPages)
   };
 
-  const sections = {
-    id: "2",
+  const sectionDestinations = {
+    id: "sections",
     title: "Other sections",
-    pages: filter(destinations, dest => dest.__typename === "Section")
+    pages: prefixIdsWithTypeName(sections)
   };
 
-  if (sections.pages.length > 0) {
-    routingOptions.unshift(sections);
+  const summary = {
+    id: logicalDestinations[1].logicalDestination,
+    title: "Questionnaire summary",
+    pages: [{ title: "Summary", id: logicalDestinations[1].logicalDestination }]
+  };
+
+  const routingOptions = [summary];
+
+  if (sections.length > 0) {
+    routingOptions.unshift(sectionDestinations);
   }
 
-  if (questions.pages.length > 0) {
-    routingOptions.unshift(questions);
+  if (questionPages.length > 0) {
+    routingOptions.unshift(questionPageDestinations);
   }
 
   return routingOptions;
+};
+
+const getDestinationFromSelect = value => {
+  const isAbsoluteDestination =
+    /^QuestionPage/.test(value) || /^Section/.test(value);
+  let input;
+  if (isAbsoluteDestination) {
+    const destinationType = /^QuestionPage/.test(value)
+      ? "QuestionPage"
+      : "Section";
+    input = {
+      absoluteDestination: {
+        destinationType,
+        destinationId: replace(value, destinationType, "")
+      }
+    };
+  } else {
+    input = {
+      logicalDestination: {
+        destinationType: value
+      }
+    };
+  }
+  return input;
 };
 
 class UnconnectedRoutingEditor extends React.Component {
@@ -98,7 +129,11 @@ class UnconnectedRoutingEditor extends React.Component {
     onDeleteRoutingRuleSet: PropTypes.func.isRequired,
     routingDestinationsLoading: PropTypes.bool,
     loading: PropTypes.bool,
-    availableRoutingDestinations: PropTypes.arrayOf(PropTypes.any)
+    availableRoutingDestinations: PropTypes.shape({
+      logicalDestinations: PropTypes.arrayOf(PropTypes.any),
+      questionPages: PropTypes.arrayOf(CustomPropTypes.page),
+      sections: PropTypes.arrayOf(CustomPropTypes.section)
+    })
   };
 
   renderNoAnswerAlert = () => {
@@ -158,26 +193,20 @@ class UnconnectedRoutingEditor extends React.Component {
   };
 
   handleElseChange = ({ value }) => {
-    const { section, page, onUpdateRoutingRuleSet } = this.props;
+    const { page, onUpdateRoutingRuleSet } = this.props;
+    const input = getDestinationFromSelect(value);
 
     onUpdateRoutingRuleSet({
       id: page.routingRuleSet.id,
-      else: getSectionAndPageFromSelect(value, section.id)
+      else: input
     });
   };
 
   handleThenChange = (value, rule) => {
-    const { section, onUpdateRoutingRule } = this.props;
-    const { sectionId, pageId } = getSectionAndPageFromSelect(
-      value,
-      section.id
-    );
+    const { onUpdateRoutingRule } = this.props;
     onUpdateRoutingRule({
       id: rule.id,
-      goto: {
-        sectionId,
-        pageId
-      }
+      goto: getDestinationFromSelect(value)
     });
   };
 
@@ -284,7 +313,7 @@ class UnconnectedRoutingEditor extends React.Component {
                     routingOptions={routingOptions}
                     onAddRule={onAddRoutingRule}
                     onElseChange={this.handleElseChange}
-                    elseValue={getIdForObject(routingRuleSet.else)}
+                    elseValue={getDestinationId(routingRuleSet.else)}
                     canRoute={canRoute}
                   >
                     <TransitionGroup>
