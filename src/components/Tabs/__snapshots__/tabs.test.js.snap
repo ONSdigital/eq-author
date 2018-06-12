@@ -208,14 +208,6 @@ exports[`components/Nav when pageId present should render page link 1`] = `
                 aria-current="true"
                 className="c1 selected"
                 replace={false}
-<<<<<<< HEAD
-                to="/questionnaire/1/2/3/design"
-              >
-                <a
-                  aria-current={false}
-                  className="c1"
-                  href="/questionnaire/1/2/3/design"
-=======
                 style={Object {}}
                 to="/questionnaire/1/design/2/3"
               >
@@ -223,7 +215,6 @@ exports[`components/Nav when pageId present should render page link 1`] = `
                   aria-current="true"
                   className="c1 selected"
                   href="/questionnaire/1/design/2/3"
->>>>>>> Integrate routing components with the GraphQL API changes.
                   onClick={[Function]}
                   style={Object {}}
                 >
