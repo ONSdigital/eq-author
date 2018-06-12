@@ -1,6 +1,15 @@
 #import "./routing-rule.graphql"
 #import "./routing-destination.graphql"
 
+fragment AbsoluteDestination on AbsoluteDestination {
+  ... on AbsoluteDestination {
+    absoluteDestination {
+      ...QuestionPageDestination
+      ...SectionDestination
+    }
+  }
+}
+
 fragment RoutingRuleSet on RoutingRuleSet {
   id
   routingRules {
@@ -13,7 +22,7 @@ fragment RoutingRuleSet on RoutingRuleSet {
     plaintextTitle: title(format: Plaintext)
   }
   else {
-    ...RoutingDestinationQuestionPage
-    ...RoutingDestinationSection
+    ...LogicalDestination
+    ...AbsoluteDestination
   }
 }

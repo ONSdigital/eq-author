@@ -1,18 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RoutingRulesetEmptyMsg from "./RoutingRulesetEmptyMsg";
+import RoutingRuleSetEmptyMsg from "./RoutingRuleSetEmptyMsg";
 
 let wrapper, props;
 
-describe("components/RoutingRulesetEmptyMsg", () => {
+describe("components/RoutingRuleSetEmptyMsg", () => {
   beforeEach(() => {
     props = {
-      onAddRule: jest.fn(),
+      onAddRuleSet: jest.fn(),
       title: "Test"
     };
 
-    wrapper = shallow(<RoutingRulesetEmptyMsg {...props} />);
+    wrapper = shallow(<RoutingRuleSetEmptyMsg {...props} />);
   });
 
   it("should render children", () => {
@@ -21,6 +21,6 @@ describe("components/RoutingRulesetEmptyMsg", () => {
 
   it("should allow adding a rule", () => {
     wrapper.find("[data-test='btn-add-rule']").simulate("click");
-    expect(props.onAddRule).toHaveBeenCalled();
+    expect(props.onAddRuleSet).toHaveBeenCalled();
   });
 });

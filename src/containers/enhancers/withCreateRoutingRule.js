@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
 import createRoutingRule from "graphql/createRoutingRule.graphql";
-import fragment from "graphql/fragments/routing-ruleset.graphql";
+import fragment from "graphql/fragments/routing-rule-set.graphql";
 
 export const createUpdater = routingRuleSetId => (proxy, result) => {
   const id = `RoutingRuleSet${routingRuleSetId}`;

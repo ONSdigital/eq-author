@@ -71,7 +71,7 @@ Text.defaultProps = {
   maxWidth: 30
 };
 
-export const Input = styled.input`
+const Input = styled.input`
   font-size: 1em;
   width: 1em;
   height: 1em;
@@ -90,34 +90,37 @@ export const Input = styled.input`
   }
 `;
 
-class ToggleChip extends React.Component {
+export class ToggleChip extends React.Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    value: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
-    checked: PropTypes.bool.isRequired,
+    checked: PropTypes.bool,
     maxWidth: PropTypes.number,
-    onChange: PropTypes.func.isRequired
-  };
-
-  handleToggle = () => {
-    this.props.onChange({
-      name: this.props.id,
-      value: !this.props.checked
-    });
+    onChange: PropTypes.func
   };
 
   render() {
-    const { id, title, children, checked, maxWidth } = this.props;
+    const {
+      name,
+      onChange,
+      title,
+      children,
+      checked,
+      maxWidth,
+      value
+    } = this.props;
+
     return (
       <Field>
-        <Label htmlFor={id} checked={checked}>
+        <Label checked={checked}>
           <Input
-            id={id}
-            name={id}
+            name={name}
             type="checkbox"
             checked={checked}
-            onChange={this.handleToggle}
+            onChange={onChange}
+            value={value}
           />
           <Text title={title} maxWidth={maxWidth}>
             {children}
@@ -127,5 +130,37 @@ class ToggleChip extends React.Component {
     );
   }
 }
+export class ToggleChipGroup extends React.Component {
+  static propTypes = {
+    children: PropTypes.node,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    name: PropTypes.string
+  };
 
-export default ToggleChip;
+  handleChange = e => {
+    const { value, onChange, name } = this.props;
+
+    if (e.target.value === value) {
+      onChange({ name, value: null });
+    } else {
+      onChange({ name, value: e.target.value });
+    }
+  };
+
+  render() {
+    const { value, name, children } = this.props;
+
+    return (
+      <React.Fragment>
+        {React.Children.map(children, child =>
+          React.cloneElement(child, {
+            onChange: this.handleChange,
+            name,
+            checked: child.props.value === value
+          })
+        )}
+      </React.Fragment>
+    );
+  }
+}

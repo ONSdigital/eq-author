@@ -1,14 +1,24 @@
 #import "./routing-condition.graphql"
 #import "./routing-destination.graphql"
 
+fragment AbsoluteDestination on AbsoluteDestination {
+  ... on AbsoluteDestination {
+    absoluteDestination {
+      ...QuestionPageDestination
+      ...SectionDestination
+    }
+  }
+}
+
 fragment RoutingRule on RoutingRule {
   id
   operation
   conditions {
     ...RoutingCondition
+    __typename
   }
   goto {
-    ...RoutingDestinationQuestionPage
-    ...RoutingDestinationSection
+    ...LogicalDestination
+    ...AbsoluteDestination
   }
 }

@@ -1,5 +1,5 @@
 import { mapMutateToProps, createUpdater } from "./withCreateRoutingRuleSet";
-import fragment from "graphql/pageFragment.graphql";
+import fragment from "graphql/fragments/page.graphql";
 
 describe("containers/enhancers/withCreateRoutingRuleSet", () => {
   const questionPage = {
@@ -11,7 +11,11 @@ describe("containers/enhancers/withCreateRoutingRuleSet", () => {
 
   beforeEach(() => {
     ownProps = {
-      pageId: questionPage.id
+      match: {
+        params: {
+          pageId: questionPage.id
+        }
+      }
     };
 
     createRoutingRuleSet = {
@@ -41,7 +45,7 @@ describe("containers/enhancers/withCreateRoutingRuleSet", () => {
       id = `QuestionPage${questionPage.id}`;
       writeFragment = jest.fn();
       readFragment = jest.fn(() => questionPage);
-      updater = createUpdater({ pageId: questionPage.id });
+      updater = createUpdater(questionPage.id);
     });
 
     it("should update the apollo cache", () => {
@@ -74,8 +78,7 @@ describe("containers/enhancers/withCreateRoutingRuleSet", () => {
           expect.objectContaining({
             variables: {
               input: { questionPageId: questionPage.id }
-            },
-            refetchQueries: expect.any(Function)
+            }
           })
         );
       });

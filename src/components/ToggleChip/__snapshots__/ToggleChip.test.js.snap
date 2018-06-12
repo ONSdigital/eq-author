@@ -4,14 +4,13 @@ exports[`ToggleChip should render 1`] = `
 <ToggleChip__Field>
   <ToggleChip__Label
     checked={false}
-    htmlFor="test"
   >
     <ToggleChip__Input
       checked={false}
-      id="test"
       name="test"
       onChange={[Function]}
       type="checkbox"
+      value="foo"
     />
     <ToggleChip__Text
       maxWidth={30}
@@ -27,14 +26,13 @@ exports[`ToggleChip should render checked 1`] = `
 <ToggleChip__Field>
   <ToggleChip__Label
     checked={true}
-    htmlFor="chiptoggle-1"
   >
     <ToggleChip__Input
       checked={true}
-      id="chiptoggle-1"
-      name="chiptoggle-1"
+      name="test"
       onChange={[Function]}
       type="checkbox"
+      value="foo"
     />
     <ToggleChip__Text
       maxWidth={30}

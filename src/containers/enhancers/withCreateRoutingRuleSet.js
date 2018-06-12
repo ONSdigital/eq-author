@@ -1,7 +1,6 @@
 import { graphql } from "react-apollo";
 import createRoutingRuleSet from "graphql/createRoutingRuleSet.graphql";
-import fragment from "graphql/pageFragment.graphql";
-import getRouting from "graphql/getRouting.graphql";
+import fragment from "graphql/fragments/page.graphql";
 
 export const createUpdater = pageId => (proxy, result) => {
   const id = `QuestionPage${pageId}`;
@@ -22,7 +21,7 @@ export const createUpdater = pageId => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddRoutingRuleSet() {
-    const { pageId, questionnaireId } = ownProps.match.params;
+    const { pageId } = ownProps.match.params;
     const input = {
       questionPageId: pageId
     };
@@ -31,15 +30,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
 
     return mutate({
       variables: { input },
-      update,
-      refetchQueries: res => [
-        {
-          query: getRouting,
-          variables: {
-            id: questionnaireId
-          }
-        }
-      ]
+      update
     });
   }
 });

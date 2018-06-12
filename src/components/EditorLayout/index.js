@@ -39,7 +39,7 @@ const EditorLayout = ({ children, onAddPage, page, ...otherProps }) => (
               variant="tertiary"
               small
               onClick={onAddPage}
-              data-test="btn-add-page-2"
+              data-test="btn-add-page"
             >
               <IconText icon={AddPage}>Add question page</IconText>
             </Button>

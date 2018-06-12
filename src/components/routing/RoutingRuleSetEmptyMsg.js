@@ -34,8 +34,8 @@ const AddRuleButton = styled(Button)`
   margin: 2em auto 1em;
 `;
 
-const RoutingRulesetEmptyMsg = ({ title, onAddRule }) => (
-  <Container>
+const RoutingRuleSetEmptyMsg = ({ title, onAddRuleSet }) => (
+  <Container data-test="routing-rule-set-empty-msg">
     <Title>{title}</Title>
     <Paragraph>
       Users completing this question will be taken to the next page.
@@ -44,7 +44,7 @@ const RoutingRulesetEmptyMsg = ({ title, onAddRule }) => (
       small
       naked
       variant="primary"
-      onClick={onAddRule}
+      onClick={onAddRuleSet}
       data-test="btn-add-rule"
     >
       <IconText icon={IconAddRule}>Add your first rule</IconText>
@@ -52,9 +52,9 @@ const RoutingRulesetEmptyMsg = ({ title, onAddRule }) => (
   </Container>
 );
 
-RoutingRulesetEmptyMsg.propTypes = {
+RoutingRuleSetEmptyMsg.propTypes = {
   title: PropTypes.string.isRequired,
-  onAddRule: PropTypes.func.isRequired
+  onAddRuleSet: PropTypes.func.isRequired
 };
 
-export default RoutingRulesetEmptyMsg;
+export default RoutingRuleSetEmptyMsg;

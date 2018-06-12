@@ -12,7 +12,7 @@ import { find, flatMap } from "lodash";
 import { Titled } from "react-titled";
 import { Routes, buildSectionPath } from "utils/UrlUtils";
 import Loading from "components/Loading";
-import RoutingPageRoute from "containers/QuestionnaireRoutingPage/RoutingPageRoute";
+import RoutingPageRoute from "containers/QuestionnaireRoutingPage";
 
 class QuestionnaireDesignPage extends Component {
   static propTypes = {

@@ -7,7 +7,10 @@ import {
   typeIntoDraftEditor,
   findByLabel,
   addSection,
-  addQuestionPage
+  addQuestionPage,
+  buildMultipleChoiceAnswer,
+  buildMultipleRouting,
+  assertCheckboxInput
 } from "../utils";
 import { times, includes } from "lodash";
 import { Routes } from "../../src/utils/UrlUtils";

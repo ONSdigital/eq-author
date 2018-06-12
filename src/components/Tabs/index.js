@@ -59,7 +59,7 @@ export const UnwrappedTabs = ({ match, children }) => {
 
   return (
     <div>
-      <TabsContainer>
+      <TabsContainer data-test="tabs-nav">
         <Tab to={url}>Builder</Tab>
         {pageId ? (
           <Tab activeClassName="selected" to={buildRoutingPath(match.params)}>
@@ -69,7 +69,7 @@ export const UnwrappedTabs = ({ match, children }) => {
           <DisabledTab>Routing</DisabledTab>
         )}
       </TabsContainer>
-      <TabsBody>{children}</TabsBody>
+      <TabsBody data-test="tabs-body">{children}</TabsBody>
     </div>
   );
 };

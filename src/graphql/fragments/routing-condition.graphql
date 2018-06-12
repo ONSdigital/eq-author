@@ -25,10 +25,8 @@ fragment RoutingCondition on RoutingCondition {
     }
   }
   routingValue {
-    ... on IDArrayValue {
+    ... on IDValue {
       value
     }
   }
 }
-
-

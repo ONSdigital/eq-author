@@ -1,0 +1,9 @@
+mutation UpdateRoutingConditionValue(
+  $input: UpdateRoutingConditionValueInput!
+) {
+  updateRoutingConditionValue(input: $input) {
+    ... on IDValue {
+      value
+    }
+  }
+}

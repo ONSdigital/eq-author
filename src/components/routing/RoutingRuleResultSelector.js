@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Select from "components/Forms/Select";
+import GroupedSelect from "./GroupedSelect";
 import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
-import { get } from "lodash";
 
 const RoutingRuleResult = styled.div`
   padding: 1em;
@@ -25,61 +23,120 @@ const Goto = styled.span`
   margin-right: 1em;
 `;
 
-const RoutingRuleResultSelector = ({
-  onChange,
-  routingOptions,
-  label,
-  id,
-  value,
-  disabled
-}) => (
-  <RoutingRuleResult key={id}>
-    <Grid align="center">
-      <Column gutters={false} cols={5}>
-        <Label htmlFor={id} disabled={disabled}>
-          {label} <Goto>Go to: </Goto>
-        </Label>
-      </Column>
-      <Column gutters={false} cols={7}>
-        <Select
-          value={value}
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          data-test="result-selector"
-        >
-          {routingOptions.map(routingOption => (
-            <optgroup
-              label={
-                get(routingOption, "plaintextTitle", routingOption.title) ||
-                "Section Title"
-              }
-              key={routingOption.id}
-            >
-              {routingOption.pages.map(page => (
-                <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {get(page, "plaintextTitle", page.title) || "Page Title"}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </Select>
-      </Column>
-    </Grid>
-  </RoutingRuleResult>
-);
+const LogicalDestinations = {
+  END_OF_QUESTIONNAIRE: "EndOfQuestionnaire"
+};
+
+const toAbsoluteDestination = entity => ({
+  absoluteDestination: {
+    destinationType: entity.__typename,
+    destinationId: entity.id
+  }
+});
+
+const toLogicalDestination = destinationType => ({
+  logicalDestination: {
+    destinationType
+  }
+});
+
+const toOption = defaultTitle => entity => ({
+  label: entity.plaintextTitle || defaultTitle,
+  value: toAbsoluteDestination(entity)
+});
+
+class RoutingRuleResultSelector extends React.Component {
+  groupDestinations({ questionPages, sections }) {
+    const pagesGroup = {
+      label: "Questions in this section",
+      id: "questions",
+      options: questionPages.map(toOption("Page Title"))
+    };
+
+    const sectionsGroup = {
+      label: "Other sections",
+      id: "sections",
+      options: sections.map(toOption("Section Title"))
+    };
+
+    const summaryGroup = {
+      label: "Questionnaire Summary",
+      id: "summary",
+      options: [
+        {
+          label: "Summary",
+          value: toLogicalDestination(LogicalDestinations.END_OF_QUESTIONNAIRE)
+        }
+      ]
+    };
+
+    return [pagesGroup, sectionsGroup, summaryGroup].filter(
+      group => group.options.length
+    );
+  }
+
+  convertValueToDestination(value) {
+    if (!value) {
+      return null;
+    }
+
+    const { absoluteDestination, logicalDestination } = value;
+    return absoluteDestination
+      ? toAbsoluteDestination(absoluteDestination)
+      : toLogicalDestination(logicalDestination);
+  }
+
+  handleChange = ({ value }) => {
+    this.props.onChange(JSON.parse(value));
+  };
+
+  render() {
+    const { destinations, label, id, value, disabled } = this.props;
+
+    const convertedValue = this.convertValueToDestination(value);
+    const groups = this.groupDestinations(destinations);
+    groups.forEach(group =>
+      group.options.forEach(option => {
+        option.value = JSON.stringify(option.value);
+      })
+    );
+
+    return (
+      <RoutingRuleResult key={id}>
+        <Grid align="center">
+          <Column gutters={false} cols={5}>
+            <Label htmlFor={id} disabled={disabled}>
+              {label} <Goto>Go to: </Goto>
+            </Label>
+          </Column>
+          <Column gutters={false} cols={7}>
+            <GroupedSelect
+              id={id}
+              value={convertedValue ? JSON.stringify(convertedValue) : null}
+              groups={groups}
+              onChange={this.handleChange}
+              disabled={disabled}
+              data-test="result-selector"
+            />
+          </Column>
+        </Grid>
+      </RoutingRuleResult>
+    );
+  }
+}
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  routingOptions: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   disabled: PropTypes.bool.isRequired
 };
 
 RoutingRuleResultSelector.defaultProps = {
-  disabled: false
+  disabled: false,
+  loading: false
 };
 
 export default RoutingRuleResultSelector;
