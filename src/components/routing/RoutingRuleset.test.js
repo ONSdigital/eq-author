@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 
 import RoutingRuleset from "./RoutingRuleset";
 
-import sections from "./mockstate";
+import routingOptions from "./mockstate";
 
 let wrapper, props;
 
@@ -12,7 +12,10 @@ describe("components/RoutingRuleset", () => {
     props = {
       onAddRule: jest.fn(),
       onElseChange: jest.fn(),
-      sections
+      routingOptions,
+      routingRuleSet: {
+        id: "1"
+      }
     };
 
     wrapper = shallow(
@@ -33,7 +36,8 @@ describe("components/RoutingRuleset", () => {
   });
 
   it("should allow adding a rule", () => {
-    wrapper.find("[data-test='btn-add-rule']").simulate("click");
-    expect(props.onAddRule).toHaveBeenCalled();
+    const found = wrapper.find("[data-test='btn-add-rule']");
+    found.simulate("click");
+    expect(props.onAddRule).toHaveBeenCalledWith(props.routingRuleSet.id);
   });
 });

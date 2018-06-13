@@ -7,7 +7,6 @@ exports[`components/RoutingRuleset should render children 1`] = `
   </div>
   <RoutingRuleset__AddRuleButton
     data-test="btn-add-rule"
-    disabled={false}
     onClick={[Function]}
     small={true}
     variant="secondary"
@@ -25,8 +24,9 @@ exports[`components/RoutingRuleset should render children 1`] = `
       disabled={false}
       id="else"
       label="ELSE"
+      loading={false}
       onChange={[Function]}
-      sections={
+      routingOptions={
         Array [
           Object {
             "id": "1",
