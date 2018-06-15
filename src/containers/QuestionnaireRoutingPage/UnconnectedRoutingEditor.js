@@ -210,7 +210,12 @@ class UnconnectedRoutingEditor extends React.Component {
     });
   };
 
-  renderRoutingConditions = (routingCondition, ruleId, canRemove) => {
+  renderRoutingConditions = ({
+    routingCondition,
+    ruleId,
+    canRemove,
+    index
+  }) => {
     const {
       questionnaire,
       page: currentPage,
@@ -244,6 +249,7 @@ class UnconnectedRoutingEditor extends React.Component {
       <RoutingCondition
         key={routingCondition.id}
         id="routing-condition"
+        label={index > 0 ? "AND" : "IF"}
         ruleId={ruleId}
         sections={pagesAfterCurrentDisabled}
         selectedPage={routingCondition.questionPage}
@@ -262,7 +268,7 @@ class UnconnectedRoutingEditor extends React.Component {
             <Transition key="no-answer-alert" exit={false}>
               <div>{this.renderNoAnswerAlert()}</div>
             </Transition>
-          )}{" "}
+          )}
         </TransitionGroup>
       </RoutingCondition>
     );
@@ -347,17 +353,20 @@ class UnconnectedRoutingEditor extends React.Component {
                               canRoute={canRoute}
                             >
                               <TransitionGroup>
-                                {rule.conditions.map(routingCondition => (
-                                  <Transition key={routingCondition.id}>
-                                    <div>
-                                      {this.renderRoutingConditions(
-                                        routingCondition,
-                                        rule.id,
-                                        rule.conditions.length > 1
-                                      )}
-                                    </div>
-                                  </Transition>
-                                ))}
+                                {rule.conditions.map(
+                                  (routingCondition, index) => (
+                                    <Transition key={routingCondition.id}>
+                                      <div>
+                                        {this.renderRoutingConditions({
+                                          routingCondition,
+                                          ruleId: rule.id,
+                                          canRemove: rule.conditions.length > 1,
+                                          index
+                                        })}
+                                      </div>
+                                    </Transition>
+                                  )
+                                )}
                               </TransitionGroup>
                             </RoutingStatement>
                           </RoutingRule>
