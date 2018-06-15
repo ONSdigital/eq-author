@@ -127,7 +127,6 @@ class UnconnectedRoutingEditor extends React.Component {
     onUpdateRoutingRule: PropTypes.func.isRequired,
     onUpdateRoutingRuleSet: PropTypes.func.isRequired,
     onDeleteRoutingRuleSet: PropTypes.func.isRequired,
-    routingDestinationsLoading: PropTypes.bool,
     loading: PropTypes.bool,
     availableRoutingDestinations: PropTypes.shape({
       logicalDestinations: PropTypes.arrayOf(PropTypes.any),
@@ -278,7 +277,6 @@ class UnconnectedRoutingEditor extends React.Component {
     const {
       loading,
       page: currentPage,
-      routingDestinationsLoading,
       availableRoutingDestinations,
       onAddRoutingRuleSet,
       onAddRoutingRule,
@@ -287,8 +285,8 @@ class UnconnectedRoutingEditor extends React.Component {
       onAddRoutingCondition
     } = this.props;
 
-    if (loading || routingDestinationsLoading) {
-      return null;
+    if (loading) {
+      return <div>Loading..</div>;
     }
 
     const { routingRuleSet } = currentPage;

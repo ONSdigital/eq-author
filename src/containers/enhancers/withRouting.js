@@ -4,7 +4,7 @@ import findById from "utils/findById";
 import { get } from "lodash";
 
 export const mapResultsToProps = ({ data, ownProps }) => {
-  const { questionnaire, loading } = data;
+  const { questionnaire, loading, availableRoutingDestinations } = data;
   const { sectionId, pageId } = ownProps.match.params;
 
   if (loading) {
@@ -25,15 +25,16 @@ export const mapResultsToProps = ({ data, ownProps }) => {
     loading,
     questionnaire,
     section,
-    page
+    page,
+    availableRoutingDestinations
   };
 };
 
-export const mapPropToOptions = props => ({
-  variables: { id: props.match.params.questionnaireId }
+export const mapPropsToOptions = ({ match: { params } }) => ({
+  variables: params
 });
 
 export default graphql(getRoutingQuery, {
   props: mapResultsToProps,
-  options: mapPropToOptions
+  options: mapPropsToOptions
 });

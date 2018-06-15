@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -25,7 +24,6 @@ import withUpdateRoutingRule from "../enhancers/withUpdateRoutingRule";
 import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
 
 import UnconnectedRoutingEditor from "./UnconnectedRoutingEditor";
-import withAvailableRoutingDestinations from "containers/enhancers/withAvailableRoutingDestinations";
 
 class RoutingPageRoute extends React.Component {
   static propTypes = {
@@ -62,7 +60,6 @@ class RoutingPageRoute extends React.Component {
 export default flowRight(
   connect(null, { raiseToast }),
   withRouting,
-  withAvailableRoutingDestinations,
   withCreateRoutingRuleSet,
   withCreateRoutingCondition,
   withDeleteRoutingCondition,
