@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import RoutingEditor from "./RoutingEditor";
+
 import withRouting from "../enhancers/withRouting";
 import EditorLayout from "components/EditorLayout";
 import Loading from "components/Loading";
@@ -27,10 +27,6 @@ import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
 import UnconnectedRoutingEditor from "./UnconnectedRoutingEditor";
 import withAvailableRoutingDestinations from "containers/enhancers/withAvailableRoutingDestinations";
 
-const Margin = styled.div`
-  margin-top: 2em;
-`;
-
 class RoutingPageRoute extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
@@ -48,7 +44,7 @@ class RoutingPageRoute extends React.Component {
     }
 
     return (
-      <RoutingEditor
+      <UnconnectedRoutingEditor
         questionnaire={questionnaire}
         section={section}
         page={page}
@@ -78,5 +74,3 @@ export default flowRight(
   withUpdateRoutingRuleSet,
   withDeleteRoutingRuleSet
 )(RoutingPageRoute);
-
-// export default withRouting(RoutingPageRoute);
