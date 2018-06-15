@@ -44,74 +44,6 @@ const Padding = styled.div`
   padding: 2em;
 `;
 
-const getRoutingOptions = availableRoutingDestinations => {
-  const {
-    logicalDestinations,
-    questionPages,
-    sections
-  } = availableRoutingDestinations;
-
-  const prefixIdsWithTypeName = destinations =>
-    map(destinations, destination => ({
-      ...destination,
-      id: getIdForObject(destination)
-    }));
-
-  const questionPageDestinations = {
-    id: "questionPages",
-    title: "Questions in this section",
-    pages: prefixIdsWithTypeName(questionPages)
-  };
-
-  const sectionDestinations = {
-    id: "sections",
-    title: "Other sections",
-    pages: prefixIdsWithTypeName(sections)
-  };
-
-  const summary = {
-    id: logicalDestinations[1].logicalDestination,
-    title: "Questionnaire summary",
-    pages: [{ title: "Summary", id: logicalDestinations[1].logicalDestination }]
-  };
-
-  const routingOptions = [summary];
-
-  if (sections.length > 0) {
-    routingOptions.unshift(sectionDestinations);
-  }
-
-  if (questionPages.length > 0) {
-    routingOptions.unshift(questionPageDestinations);
-  }
-
-  return routingOptions;
-};
-
-const getDestinationFromSelect = value => {
-  const isAbsoluteDestination =
-    /^QuestionPage/.test(value) || /^Section/.test(value);
-  let input;
-  if (isAbsoluteDestination) {
-    const destinationType = /^QuestionPage/.test(value)
-      ? "QuestionPage"
-      : "Section";
-    input = {
-      absoluteDestination: {
-        destinationType,
-        destinationId: replace(value, destinationType, "")
-      }
-    };
-  } else {
-    input = {
-      logicalDestination: {
-        destinationType: value
-      }
-    };
-  }
-  return input;
-};
-
 class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
@@ -191,22 +123,12 @@ class UnconnectedRoutingEditor extends React.Component {
     );
   };
 
-  handleElseChange = ({ value }) => {
-    const { page, onUpdateRoutingRuleSet } = this.props;
-    const input = getDestinationFromSelect(value);
-
-    onUpdateRoutingRuleSet({
-      id: page.routingRuleSet.id,
-      else: input
-    });
+  handleElseChange = value => {
+    this.props.onUpdateRoutingRuleSet(value);
   };
 
-  handleThenChange = (value, rule) => {
-    const { onUpdateRoutingRule } = this.props;
-    onUpdateRoutingRule({
-      id: rule.id,
-      goto: getDestinationFromSelect(value)
-    });
+  handleThenChange = value => {
+    this.props.onUpdateRoutingRule(value);
   };
 
   renderRoutingConditions = ({
@@ -290,7 +212,6 @@ class UnconnectedRoutingEditor extends React.Component {
     }
 
     const { routingRuleSet } = currentPage;
-    const routingOptions = getRoutingOptions(availableRoutingDestinations);
 
     const canRoute =
       routingRuleSet &&
@@ -314,10 +235,9 @@ class UnconnectedRoutingEditor extends React.Component {
                 <div>
                   <RoutingRuleset
                     routingRuleSet={routingRuleSet}
-                    routingOptions={routingOptions}
+                    routingOptions={availableRoutingDestinations}
                     onAddRule={onAddRoutingRule}
                     onElseChange={this.handleElseChange}
-                    elseValue={getDestinationId(routingRuleSet.else)}
                     canRoute={canRoute}
                   >
                     <TransitionGroup>
@@ -329,7 +249,7 @@ class UnconnectedRoutingEditor extends React.Component {
                             routingRuleSetId={routingRuleSet.id}
                             key={rule.id}
                             page={currentPage}
-                            routingOptions={routingOptions}
+                            routingOptions={availableRoutingDestinations}
                             onAddRule={onAddRoutingRule}
                             onDeleteRule={function() {
                               routingRuleSet.routingRules.length > 1

@@ -76,10 +76,8 @@ const RoutingRule = ({
           id="then"
           label="THEN"
           routingOptions={routingOptions}
-          onChange={function({ value }) {
-            onThenChange(value, rule);
-          }}
-          value={getDestinationId(rule.goto)}
+          onChange={value => onThenChange({ id: rule.id, goto: value })}
+          value={rule.goto}
           data-test="select-then"
           disabled={!canRoute}
         />
@@ -96,7 +94,7 @@ RoutingRule.propTypes = {
   onDeleteRule: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
-  routingOptions: PropTypes.arrayOf(CustomPropTypes.section),
+  routingOptions: PropTypes.object.isRequired,
   canRoute: PropTypes.bool.isRequired,
   className: PropTypes.string,
   gotoValue: PropTypes.string

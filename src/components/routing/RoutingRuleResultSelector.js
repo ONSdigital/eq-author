@@ -3,8 +3,7 @@ import styled from "styled-components";
 import Select from "components/Forms/Select";
 import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
-import { get } from "lodash";
+import { map, isEmpty, negate, filter, flow, get } from "lodash/fp";
 
 const RoutingRuleResult = styled.div`
   padding: 1em;
@@ -25,23 +24,86 @@ const Goto = styled.span`
   margin-right: 1em;
 `;
 
-const RoutingRuleResultSelector = class extends React.Component {
-  state = { loading: false };
+const LogicalDestinations = {
+  END_OF_QUESTIONNAIRE: "EndOfQuestionnaire"
+};
 
-  // componentDidUpdate(previousProps) {
-  //   if (previousProps.value !== this.props.value) {
-  //     // eslint-disable-next-line react/no-did-update-set-state
-  //     this.setState({ loading: false });
-  //   }
-  // }
+const toOption = destinationType => x => ({
+  title: x.plaintextTitle,
+  value: {
+    absoluteDestination: {
+      destinationType,
+      destinationId: x.id
+    }
+  }
+});
 
-  handleChange = args => {
-    this.props.onChange(args);
-    // this.setState({ loading: true });
+const filterNonEmptyGroups = filter(flow(get("pages"), negate(isEmpty)));
+
+const SUMMARY_GROUP = {
+  title: "Questionnaire Summary",
+  pages: [
+    {
+      title: "Summary",
+      value: {
+        logicalDestination: {
+          destinationType: LogicalDestinations.END_OF_QUESTIONNAIRE
+        }
+      }
+    }
+  ]
+};
+
+class RoutingRuleResultSelector extends React.Component {
+  getRoutingOptions({ questionPages, sections }) {
+    const pagesGroup = {
+      title: "Questions in this section",
+      pages: map(toOption("QuestionPage"), questionPages)
+    };
+
+    const sectionsGroup = {
+      title: "Other sections",
+      pages: map(toOption("QuestionPage"), sections)
+    };
+
+    return filterNonEmptyGroups([pagesGroup, sectionsGroup, SUMMARY_GROUP]);
+  }
+
+  convertValue(value) {
+    if (!value) {
+      return null;
+    }
+
+    const { absoluteDestination, logicalDestination } = value;
+
+    if (absoluteDestination) {
+      return {
+        absoluteDestination: {
+          destinationType: absoluteDestination.__typename,
+          destinationId: absoluteDestination.id
+        }
+      };
+    }
+
+    if (logicalDestination) {
+      return {
+        logicalDestination: {
+          destinationType: logicalDestination
+        }
+      };
+    }
+
+    return null;
+  }
+
+  handleChange = ({ value }) => {
+    this.props.onChange(JSON.parse(value));
   };
 
   render() {
     const { routingOptions, label, id, value, disabled } = this.props;
+    const options = this.getRoutingOptions(routingOptions);
+    const convertedValue = JSON.stringify(this.convertValue(value));
 
     return (
       <RoutingRuleResult key={id}>
@@ -53,28 +115,24 @@ const RoutingRuleResultSelector = class extends React.Component {
           </Column>
           <Column gutters={false} cols={7}>
             <Select
-              value={value}
+              value={convertedValue}
               id={id}
               onChange={this.handleChange}
               disabled={disabled}
               data-test="result-selector"
-              loading={this.state.loading}
             >
-              {routingOptions.map(routingOption => (
+              {options.map(routingOption => (
                 <optgroup
-                  label={
-                    get(routingOption, "plaintextTitle", routingOption.title) ||
-                    "Section Title"
-                  }
-                  key={routingOption.id}
+                  label={routingOption.title || "Section Title"}
+                  key={routingOption.title}
                 >
                   {routingOption.pages.map(page => (
                     <option
-                      value={page.id}
-                      key={page.id}
+                      value={JSON.stringify(page.value)}
+                      key={JSON.stringify(page.value)}
                       disabled={page.disabled}
                     >
-                      {get(page, "plaintextTitle", page.title) || "Page Title"}
+                      {page.title || "Page Title"}
                     </option>
                   ))}
                 </optgroup>
@@ -85,16 +143,15 @@ const RoutingRuleResultSelector = class extends React.Component {
       </RoutingRuleResult>
     );
   }
-};
+}
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  routingOptions: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  routingOptions: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  disabled: PropTypes.bool,
-  loading: PropTypes.bool
+  value: PropTypes.object,
+  disabled: PropTypes.bool.isRequired
 };
 
 RoutingRuleResultSelector.defaultProps = {

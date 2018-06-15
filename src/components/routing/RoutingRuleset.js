@@ -7,7 +7,6 @@ import IconAddRule from "./icon-add-rule.svg?inline";
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
 import IconText from "components/IconText";
 import { colors, radius } from "constants/theme";
 
@@ -29,7 +28,6 @@ const RoutingRuleset = ({
   onElseChange,
   routingOptions,
   routingRuleSet,
-  elseValue,
   canRoute
 }) => (
   <React.Fragment>
@@ -49,9 +47,9 @@ const RoutingRuleset = ({
       <RoutingRuleResultSelector
         id="else"
         label="ELSE"
-        value={elseValue}
+        value={routingRuleSet.else}
         routingOptions={routingOptions}
-        onChange={onElseChange}
+        onChange={value => onElseChange({ id: routingRuleSet.id, else: value })}
         data-test="select-else"
         disabled={!canRoute}
       />
@@ -63,8 +61,8 @@ RoutingRuleset.propTypes = {
   children: PropTypes.node.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
-  routingOptions: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
-  elseValue: PropTypes.string,
+  routingOptions: PropTypes.object.isRequired,
+  routingRuleSet: PropTypes.object.isRequired,
   canRoute: PropTypes.bool.isRequired
 };
 
