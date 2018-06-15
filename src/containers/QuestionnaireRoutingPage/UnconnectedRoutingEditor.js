@@ -15,18 +15,19 @@ import {
 import RoutingRuleset from "components/routing/RoutingRuleset";
 import RoutingRule from "components/routing/RoutingRule";
 import RoutingCondition from "components/routing/RoutingCondition";
-import RoutingStatement from "components/routing/RoutingStatement";
+
 import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
 import { Alert, AlertTitle, AlertText } from "components/routing/Alert";
 import { buildPagePath } from "utils/UrlUtils";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import getSectionAndPageFromSelect from "utils/getSectionAndPageFromSelect";
+
+import TextButton from "components/TextButton";
+import { Grid, Column } from "components/Grid";
 
 import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
-import getIdForObject from "utils/getIdForObject";
-import getDestinationId from "utils/getDestinationId";
+
 import { RADIO, CHECKBOX } from "constants/answer-types";
 
 import Transition from "components/routing/Transition";
@@ -42,6 +43,13 @@ const Title = styled.h2`
 
 const Padding = styled.div`
   padding: 2em;
+`;
+
+const CenteringColumn = styled(Column)`
+  display: flex;
+  justify-content: center;
+  padding: 0.25em 0;
+  margin-bottom: 0.5em;
 `;
 
 class UnconnectedRoutingEditor extends React.Component {
@@ -265,28 +273,37 @@ class UnconnectedRoutingEditor extends React.Component {
                             onThenChange={this.handleThenChange}
                             canRoute={canRoute}
                           >
-                            <RoutingStatement
-                              onAddCondition={onAddRoutingCondition}
-                              routingRuleId={rule.id}
-                              canRoute={canRoute}
-                            >
-                              <TransitionGroup>
-                                {rule.conditions.map(
-                                  (routingCondition, index) => (
-                                    <Transition key={routingCondition.id}>
-                                      <div>
-                                        {this.renderRoutingConditions({
-                                          routingCondition,
-                                          ruleId: rule.id,
-                                          canRemove: rule.conditions.length > 1,
-                                          index
-                                        })}
-                                      </div>
-                                    </Transition>
-                                  )
-                                )}
-                              </TransitionGroup>
-                            </RoutingStatement>
+                            <TransitionGroup>
+                              {rule.conditions.map(
+                                (routingCondition, index) => (
+                                  <Transition key={routingCondition.id}>
+                                    <div>
+                                      {this.renderRoutingConditions({
+                                        routingCondition,
+                                        ruleId: rule.id,
+                                        canRemove: rule.conditions.length > 1,
+                                        index
+                                      })}
+                                    </div>
+                                  </Transition>
+                                )
+                              )}
+                            </TransitionGroup>
+
+                            {canRoute && (
+                              <Grid align="center">
+                                <CenteringColumn gutters={false} cols={1}>
+                                  <TextButton
+                                    onClick={function() {
+                                      onAddRoutingCondition(rule.id);
+                                    }}
+                                    data-test="btn-add"
+                                  >
+                                    AND
+                                  </TextButton>
+                                </CenteringColumn>
+                              </Grid>
+                            )}
                           </RoutingRule>
                         </Transition>
                       ))}

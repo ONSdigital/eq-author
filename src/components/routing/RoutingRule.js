@@ -11,12 +11,6 @@ import { colors, radius } from "constants/theme";
 import IconRoute from "./icon-route.svg?inline";
 
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
-import getIdForObject from "utils/getIdForObject";
-import getDestinationId from "utils/getDestinationId";
-
-const RoutingStatement = styled.div`
-  padding: 0;
-`;
 
 const Box = styled.div`
   border: 1px solid ${colors.bordersLight};
@@ -70,7 +64,7 @@ const RoutingRule = ({
           </Button>
         </Buttons>
 
-        <RoutingStatement>{children}</RoutingStatement>
+        <div>{children}</div>
 
         <RoutingRuleResultSelector
           id="then"
