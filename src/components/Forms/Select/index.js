@@ -15,7 +15,7 @@ const loading = css`
 export const SimpleSelect = styled.select`
   ${sharedStyles};
   display: inline-block;
-  padding: 0.5em 1.5em 0.5em 0.5em;
+  padding: 0.5em 2em 0.5em 0.5em;
   background: white url('${Icon}') no-repeat right center;
   appearance: none;
   position: relative;
