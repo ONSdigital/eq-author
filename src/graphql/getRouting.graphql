@@ -3,39 +3,65 @@
 #import "./fragments/routing-ruleset.graphql"
 #import "./fragments/routing-destination.graphql"
 
-query GetRouting($questionnaireId: ID!, $pageId: ID!) {
+query GetRouting($questionnaireId: ID!, $pageId: ID!, $sectionId: ID!) {
   questionnaire(id: $questionnaireId) {
     id
     sections {
       id
-      plaintextTitle: title(format: Plaintext)
       pages {
         id
-        title
         ... on QuestionPage {
           plaintextTitle: title(format: Plaintext)
-          answers {
-            ...Answer
-            ... on MultipleChoiceAnswer {
-              options {
-                ...Option
+        }
+      }
+    }
+  }
+  section(id: $sectionId) {
+    id
+    title
+    plaintextTitle: title(format: Plaintext)
+    pages {
+      id
+      title
+      ... on QuestionPage {
+        title
+        plaintextTitle: title(format: Plaintext)
+        routingRuleSet {
+          ...RoutingRuleSet
+        }
+        answers {
+          id
+          type
+          __typename
+          ... on MultipleChoiceAnswer {
+            options {
+              id
+              label
+              __typename
+            }
+            other {
+              option {
+                id
+                label
+                __typename
               }
-              other {
-                option {
-                  ...Option
-                }
-                answer {
-                  ...Answer
-                }
+              answer {
+                id
+                type
+                __typename
               }
             }
-          }
-          routingRuleSet {
-            ...RoutingRuleSet
           }
         }
       }
     }
+  }
+  questionPage(id: $pageId) {
+    id
+    routingRuleSet {
+      ...RoutingRuleSet
+    }
+    __typename
   }
   availableRoutingDestinations(pageId: $pageId) {
     logicalDestinations {

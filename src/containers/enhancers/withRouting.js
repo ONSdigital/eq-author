@@ -1,11 +1,15 @@
 import getRoutingQuery from "graphql/getRouting.graphql";
 import { graphql } from "react-apollo";
-import findById from "utils/findById";
-import { get } from "lodash";
 
 export const mapResultsToProps = ({ data, ownProps }) => {
-  const { questionnaire, loading, availableRoutingDestinations } = data;
-  const { sectionId, pageId } = ownProps.match.params;
+  const {
+    questionnaire,
+    loading,
+    availableRoutingDestinations,
+    section,
+    questionPage
+  } = data;
+  const { sectionId } = ownProps.match.params;
 
   if (loading) {
     return { loading };
@@ -18,14 +22,11 @@ export const mapResultsToProps = ({ data, ownProps }) => {
     };
   }
 
-  const section = findById(questionnaire.sections, sectionId);
-  const page = findById(get(section, "pages"), pageId);
-
   return {
     loading,
     questionnaire,
     section,
-    page,
+    page: questionPage,
     availableRoutingDestinations
   };
 };

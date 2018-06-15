@@ -6,7 +6,7 @@ export const createUpdater = (routingRuleSetId, pageId) => (proxy, result) => {
   const id = `QuestionPage${pageId}`;
   const page = proxy.readFragment({
     id,
-    fragment: fragment
+    fragment
   });
 
   page.routingRuleSet = null;
