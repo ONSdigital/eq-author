@@ -98,7 +98,7 @@ class RoutingRuleResultSelector extends React.Component {
   render() {
     const { routingOptions, label, id, value, disabled } = this.props;
 
-    const convertedValue = JSON.stringify(this.convertValue(value));
+    const convertedValue = this.convertValue(value);
     const groups = this.getRoutingOptions(routingOptions);
     groups.forEach(group =>
       group.options.forEach(option => {
@@ -117,7 +117,7 @@ class RoutingRuleResultSelector extends React.Component {
           <Column gutters={false} cols={7}>
             <GroupedSelect
               id={id}
-              value={convertedValue}
+              value={convertedValue ? JSON.stringify(convertedValue) : null}
               groups={groups}
               onChange={this.handleChange}
               disabled={disabled}

@@ -27,7 +27,6 @@ import TextButton from "components/TextButton";
 import { Grid, Column } from "components/Grid";
 
 import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
-
 import { RADIO, CHECKBOX } from "constants/answer-types";
 
 import Transition from "components/routing/Transition";
@@ -101,6 +100,12 @@ class UnconnectedRoutingEditor extends React.Component {
 
   renderAnswer = (routingCondition, answer) => {
     const answerType = get(answer, "type");
+
+    if (isNil(routingCondition.questionPage)) {
+      // TODO: what should we render in this case?
+      return null;
+    }
+
     return includes([RADIO, CHECKBOX], answerType)
       ? this.renderOptions(routingCondition, answer)
       : this.renderUnsupportedAnswerAlert(answerType);

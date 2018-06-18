@@ -38,13 +38,10 @@ const Title = styled.h2`
 
 const RoutingRule = ({
   children,
-  page,
   onDeleteRule,
   onThenChange,
-  onAddRule,
   title,
   routingOptions,
-  gotoValue,
   canRoute,
   rule,
   className
