@@ -226,7 +226,7 @@ class UnconnectedRoutingEditor extends React.Component {
 
     return (
       <React.Fragment>
-        <Title>{get(currentPage, "plaintextTitle")}</Title>
+        <Title>{get(currentPage, "plaintextTitle") || "Page Title"}</Title>
         <Padding>
           <TransitionGroup>
             {routingRuleSet ? (
