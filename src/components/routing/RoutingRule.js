@@ -33,6 +33,7 @@ const Title = styled.h2`
   letter-spacing: 0.05em;
   font-size: 0.9em;
   font-weight: bold;
+  text-transform: uppercase;
 `;
 
 const RoutingRule = ({
@@ -63,9 +64,7 @@ const RoutingRule = ({
             <IconText icon={IconRoute}>Remove rule</IconText>
           </Button>
         </Buttons>
-
         <div>{children}</div>
-
         <RoutingRuleResultSelector
           id="then"
           label="THEN"
