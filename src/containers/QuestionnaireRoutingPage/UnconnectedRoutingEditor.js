@@ -180,11 +180,11 @@ class UnconnectedRoutingEditor extends React.Component {
     return (
       <RoutingCondition
         key={routingCondition.id}
+        condition={routingCondition}
         id="routing-condition"
         label={index > 0 ? "AND" : "IF"}
         ruleId={ruleId}
         sections={pagesAfterCurrentDisabled}
-        selectedPage={routingCondition.questionPage}
         routingCondition={routingCondition}
         onRemove={onDeleteRoutingCondition}
         onPageChange={onUpdateRoutingCondition}

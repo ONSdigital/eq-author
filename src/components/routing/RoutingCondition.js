@@ -1,5 +1,4 @@
 import React from "react";
-import Select from "components/Forms/Select";
 import styled from "styled-components";
 
 import DeleteButton from "components/DeleteButton";
@@ -13,6 +12,7 @@ import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
 import { get } from "lodash";
+import GroupedSelect from "./GroupedSelect";
 
 const Label = styled.label`
   width: 100%;
@@ -24,7 +24,7 @@ const Label = styled.label`
   align-self: center;
 `;
 
-export const PageSelect = styled(Select)`
+export const PageSelect = styled(GroupedSelect)`
   margin: 0;
   align-self: center;
 `;
@@ -54,12 +54,20 @@ const RemoveButton = styled(DeleteButton)`
   right: 2px;
 `;
 
+const convertToGroups = sections =>
+  sections.map(section => ({
+    label: section.plaintextTitle || "Section Title",
+    options: section.pages.map(page => ({
+      label: page.plaintextTitle || "Page Title",
+      value: page.id,
+      disabled: page.disabled
+    }))
+  }));
+
 const RoutingCondition = ({
-  routingCondition,
+  condition,
   ruleId,
   sections,
-  value,
-  selectedPage,
   id,
   label,
   pathEnd,
@@ -75,37 +83,16 @@ const RoutingCondition = ({
       </Column>
       <Column gutters={false} cols={10}>
         <PageSelect
-          defaultValue={selectedPage.id}
-          value={value}
-          onChange={function({ value }) {
-            onPageChange({
-              id: routingCondition.id,
-              questionPageId: value
-            });
-          }}
+          value={get(condition, "questionPage.id")}
+          onChange={({ value }) =>
+            onPageChange({ id: condition.id, questionPageId: value })}
+          groups={convertToGroups(sections)}
           id={id}
-        >
-          {sections.map(section => (
-            <optgroup
-              label={
-                get(section, "plaintextTitle", section.title) || "Section Title"
-              }
-              key={section.id}
-            >
-              {section.pages.map(page => (
-                <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {get(page, "plaintextTitle", page.title) || "Page Title"}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </PageSelect>
+        />
       </Column>
       <Column gutters={false} cols={1}>
         <RemoveButton
-          onClick={function() {
-            onRemove(ruleId, routingCondition.id);
-          }}
+          onClick={() => onRemove(ruleId, condition.id)}
           disabled={!canRemove}
           data-test="btn-remove"
         >

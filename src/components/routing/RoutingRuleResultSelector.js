@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Select from "components/Forms/Select";
+import GroupedSelect from "./GroupedSelect";
 import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
-import { map, isEmpty, negate, filter, flow, get } from "lodash/fp";
 
 const RoutingRuleResult = styled.div`
   padding: 1em;
@@ -29,7 +28,7 @@ const LogicalDestinations = {
 };
 
 const toOption = destinationType => x => ({
-  title: x.plaintextTitle,
+  label: x.plaintextTitle,
   value: {
     absoluteDestination: {
       destinationType,
@@ -38,35 +37,35 @@ const toOption = destinationType => x => ({
   }
 });
 
-const filterNonEmptyGroups = filter(flow(get("pages"), negate(isEmpty)));
-
-const SUMMARY_GROUP = {
-  title: "Questionnaire Summary",
-  pages: [
-    {
-      title: "Summary",
-      value: {
-        logicalDestination: {
-          destinationType: LogicalDestinations.END_OF_QUESTIONNAIRE
-        }
-      }
-    }
-  ]
-};
-
 class RoutingRuleResultSelector extends React.Component {
   getRoutingOptions({ questionPages, sections }) {
     const pagesGroup = {
-      title: "Questions in this section",
-      pages: map(toOption("QuestionPage"), questionPages)
+      label: "Questions in this section",
+      options: questionPages.map(toOption("QuestionPage"))
     };
 
     const sectionsGroup = {
-      title: "Other sections",
-      pages: map(toOption("QuestionPage"), sections)
+      label: "Other sections",
+      options: sections.map(toOption("QuestionPage"))
     };
 
-    return filterNonEmptyGroups([pagesGroup, sectionsGroup, SUMMARY_GROUP]);
+    const summaryGroup = {
+      label: "Questionnaire Summary",
+      options: [
+        {
+          label: "Summary",
+          value: {
+            logicalDestination: {
+              destinationType: LogicalDestinations.END_OF_QUESTIONNAIRE
+            }
+          }
+        }
+      ]
+    };
+
+    return [pagesGroup, sectionsGroup, summaryGroup].filter(
+      group => group.options.length
+    );
   }
 
   convertValue(value) {
@@ -83,17 +82,13 @@ class RoutingRuleResultSelector extends React.Component {
           destinationId: absoluteDestination.id
         }
       };
-    }
-
-    if (logicalDestination) {
+    } else {
       return {
         logicalDestination: {
           destinationType: logicalDestination
         }
       };
     }
-
-    return null;
   }
 
   handleChange = ({ value }) => {
@@ -102,8 +97,14 @@ class RoutingRuleResultSelector extends React.Component {
 
   render() {
     const { routingOptions, label, id, value, disabled } = this.props;
-    const options = this.getRoutingOptions(routingOptions);
+
     const convertedValue = JSON.stringify(this.convertValue(value));
+    const groups = this.getRoutingOptions(routingOptions);
+    groups.forEach(group =>
+      group.options.forEach(option => {
+        option.value = JSON.stringify(option.value);
+      })
+    );
 
     return (
       <RoutingRuleResult key={id}>
@@ -114,30 +115,14 @@ class RoutingRuleResultSelector extends React.Component {
             </Label>
           </Column>
           <Column gutters={false} cols={7}>
-            <Select
-              value={convertedValue}
+            <GroupedSelect
               id={id}
+              value={convertedValue}
+              groups={groups}
               onChange={this.handleChange}
               disabled={disabled}
               data-test="result-selector"
-            >
-              {options.map(routingOption => (
-                <optgroup
-                  label={routingOption.title || "Section Title"}
-                  key={routingOption.title}
-                >
-                  {routingOption.pages.map(page => (
-                    <option
-                      value={JSON.stringify(page.value)}
-                      key={JSON.stringify(page.value)}
-                      disabled={page.disabled}
-                    >
-                      {page.title || "Page Title"}
-                    </option>
-                  ))}
-                </optgroup>
-              ))}
-            </Select>
+            />
           </Column>
         </Grid>
       </RoutingRuleResult>
