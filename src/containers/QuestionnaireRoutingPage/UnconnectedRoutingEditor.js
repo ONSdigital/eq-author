@@ -32,6 +32,7 @@ import { RADIO, CHECKBOX } from "constants/answer-types";
 
 import Transition from "components/routing/Transition";
 import { TransitionGroup } from "react-transition-group";
+import Loading from "components/Loading";
 
 const Title = styled.h2`
   padding: 0.5em 1em;
@@ -56,7 +57,7 @@ class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     section: CustomPropTypes.section.isRequired,
-    page: CustomPropTypes.page.isRequired,
+    currentPage: CustomPropTypes.page.isRequired,
     onAddRoutingRuleSet: PropTypes.func.isRequired,
     onAddRoutingCondition: PropTypes.func.isRequired,
     onDeleteRoutingCondition: PropTypes.func.isRequired,
@@ -147,7 +148,7 @@ class UnconnectedRoutingEditor extends React.Component {
   }) => {
     const {
       questionnaire,
-      page: currentPage,
+      currentPage,
       onDeleteRoutingCondition,
       onUpdateRoutingCondition
     } = this.props;
@@ -206,7 +207,7 @@ class UnconnectedRoutingEditor extends React.Component {
   render() {
     const {
       loading,
-      page: currentPage,
+      currentPage,
       availableRoutingDestinations,
       onAddRoutingRuleSet,
       onAddRoutingRule,
@@ -215,8 +216,8 @@ class UnconnectedRoutingEditor extends React.Component {
       onAddRoutingCondition
     } = this.props;
 
-    if (loading) {
-      return <div>Loading..</div>;
+    if (loading || !currentPage) {
+      return <Loading height="38rem">Loading…</Loading>;
     }
 
     const { routingRuleSet } = currentPage;

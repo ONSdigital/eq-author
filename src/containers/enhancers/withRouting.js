@@ -26,7 +26,7 @@ export const mapResultsToProps = ({ data, ownProps }) => {
     loading,
     questionnaire,
     section,
-    page: questionPage,
+    currentPage: questionPage,
     availableRoutingDestinations
   };
 };
