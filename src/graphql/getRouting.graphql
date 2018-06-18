@@ -58,6 +58,7 @@ query GetRouting($questionnaireId: ID!, $pageId: ID!, $sectionId: ID!) {
   }
   questionPage(id: $pageId) {
     id
+    plaintextTitle: title(format: Plaintext)
     routingRuleSet {
       ...RoutingRuleSet
     }
