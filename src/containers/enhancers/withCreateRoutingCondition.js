@@ -23,11 +23,11 @@ export const createUpdater = routingRuleId => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddRoutingCondition(routingRuleId) {
-    const answer = first(ownProps.page.answers);
+    const answer = first(ownProps.currentPage.answers);
 
     const input = {
       comparator: "Equal",
-      questionPageId: ownProps.page.id,
+      questionPageId: ownProps.currentPage.id,
       answerId: get(answer, "id"),
       routingRuleId
     };

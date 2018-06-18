@@ -80,7 +80,7 @@ describe("containers/enhancers/withCreateRoutingRule", () => {
     });
 
     it("should throw error if no answer on page", () => {
-      ownProps.page.answers.splice(0, 1);
+      ownProps.currentPage.answers.splice(0, 1);
       expect(() =>
         props.onAddRoutingCondition(routingRule.id)
       ).toThrowErrorMatchingSnapshot();
@@ -93,9 +93,9 @@ describe("containers/enhancers/withCreateRoutingRule", () => {
             variables: {
               input: {
                 comparator: "Equal",
-                questionPageId: ownProps.page.id,
+                questionPageId: ownProps.currentPage.id,
                 routingRuleId: routingRule.id,
-                answerId: ownProps.page.answers[0].id
+                answerId: ownProps.currentPage.answers[0].id
               }
             }
           })

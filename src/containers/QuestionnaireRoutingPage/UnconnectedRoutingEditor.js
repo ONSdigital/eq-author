@@ -108,8 +108,10 @@ class UnconnectedRoutingEditor extends React.Component {
 
   renderOptions = (routingCondition, answer) => {
     const selectedOptions = get(routingCondition, "routingValue.value", []);
+    const answerOptions = get(routingCondition, "answer.options", []);
+    const answerOtherOption = get(routingCondition, "answer.other.option", []);
 
-    const options = get(routingCondition, "answer.options", []).map(opt => ({
+    const options = flatMap([answerOptions, answerOtherOption]).map(opt => ({
       ...opt,
       id: `${routingCondition.id}_${opt.id}`,
       selected: includes(selectedOptions, opt.id)
