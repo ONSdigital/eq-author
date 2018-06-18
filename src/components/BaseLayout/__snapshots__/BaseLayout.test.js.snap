@@ -4,7 +4,7 @@ exports[`components/BaseLayout should render 1`] = `
 <GetContext
   title={[Function]}
 >
-  <App>
+  <Connect(UnconnectedApp)>
     <BaseLayout__Wrapper>
       <Connect(UnconnectedHeader)
         questionnaire={
@@ -18,7 +18,7 @@ exports[`components/BaseLayout should render 1`] = `
         Children
       </BaseLayout__Main>
     </BaseLayout__Wrapper>
-  </App>
+  </Connect(UnconnectedApp)>
 </GetContext>
 `;
 
@@ -26,7 +26,7 @@ exports[`components/BaseLayout should render a title 1`] = `
 <GetContext
   title={[Function]}
 >
-  <App>
+  <Connect(UnconnectedApp)>
     <BaseLayout__Wrapper>
       <Connect(UnconnectedHeader)
         questionnaire={
@@ -47,6 +47,6 @@ exports[`components/BaseLayout should render a title 1`] = `
         </ScrollPane>
       </BaseLayout__Main>
     </BaseLayout__Wrapper>
-  </App>
+  </Connect(UnconnectedApp)>
 </GetContext>
 `;

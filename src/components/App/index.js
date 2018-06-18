@@ -1,7 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { injectGlobal, ThemeProvider } from "styled-components";
 import theme, { colors } from "constants/theme";
+
+import { lostConnection, gainConnection } from "redux/saving/actions";
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
@@ -47,12 +50,29 @@ injectGlobal`
   }
 `;
 
-const App = ({ children }) => (
-  <ThemeProvider theme={theme}>{children}</ThemeProvider>
-);
+class UnconnectedApp extends React.Component {
+  static propTypes = {
+    children: PropTypes.element.isRequired,
+    gainConnection: PropTypes.func.isRequired,
+    lostConnection: PropTypes.func.isRequired
+  };
 
-App.propTypes = {
-  children: PropTypes.element.isRequired
-};
+  componentDidMount = () => {
+    window.addEventListener("online", this.props.gainConnection);
+    window.addEventListener("offline", this.props.lostConnection);
+  };
 
-export default App;
+  componentWillUnmount = () => {
+    window.removeEventListener("online", this.props.gainConnection);
+    window.removeEventListener("offline", this.props.lostConnection);
+  };
+
+  render() {
+    return <ThemeProvider theme={theme}>{this.props.children}</ThemeProvider>;
+  }
+}
+
+export default connect(null, {
+  lostConnection,
+  gainConnection
+})(UnconnectedApp);

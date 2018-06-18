@@ -65,11 +65,19 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       this.props
         .onUpdate(this.getFilteredEntity())
         .then(() => {
+          if (!this.unmounted) {
+            this.setState(() => ({ isDirty: false }));
+          }
           this.props.endRequest();
-          this.setState(() => ({ isDirty: false }));
         })
-        .catch(() => this.props.endRequest());
+        .catch(() => {
+          this.props.endRequest();
+        });
     };
+
+    componentWillUnmount() {
+      this.unmounted = true;
+    }
 
     handleSubmit = e => {
       e.preventDefault();

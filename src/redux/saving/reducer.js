@@ -1,12 +1,30 @@
 import { get } from "lodash";
-import { START_REQUEST, END_REQUEST } from "redux/saving/actions";
+import {
+  START_REQUEST,
+  END_REQUEST,
+  LOST_CONNECTION,
+  GAIN_CONNECTION
+} from "redux/saving/actions";
 
 const initialState = {
-  pendingRequestCount: 0
+  pendingRequestCount: 0,
+  online: true
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOST_CONNECTION: {
+      return {
+        ...state,
+        online: false
+      };
+    }
+    case GAIN_CONNECTION: {
+      return {
+        ...state,
+        online: true
+      };
+    }
     case START_REQUEST: {
       return {
         ...state,
@@ -25,3 +43,4 @@ export default (state = initialState, action) => {
 };
 
 export const isSaving = state => get(state, "saving.pendingRequestCount") > 0;
+export const isOnline = state => get(state, "saving.online");
