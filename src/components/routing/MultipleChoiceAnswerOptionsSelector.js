@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ToggleChip from "components/ToggleChip";
+import { includes, get } from "lodash";
 
 import { PropTypes } from "prop-types";
 
@@ -13,32 +14,37 @@ const MultipleChoiceAnswerOptions = styled.div`
 `;
 
 const MultipleChoiceAnswerOptionsSelector = ({
-  options,
+  condition,
   onOptionSelectionChange
-}) => (
-  <MultipleChoiceAnswerOptions>
-    {options.map(option => (
-      <ToggleChip
-        key={option.id}
-        id={option.id}
-        checked={option.selected}
-        title={option.label}
-        onChange={onOptionSelectionChange}
-      >
-        {option.label || <strong>Unlabelled option</strong>}
-      </ToggleChip>
-    ))}
-  </MultipleChoiceAnswerOptions>
-);
+}) => {
+  const answerOptions = get(condition, "answer.options", []);
+  const answerOtherOption = get(condition, "answer.other.option");
+  const options = answerOtherOption
+    ? answerOptions.concat(answerOtherOption)
+    : answerOptions;
+
+  const selectedOptions = get(condition, "routingValue.value", []);
+
+  return (
+    <MultipleChoiceAnswerOptions>
+      {options.map(option => (
+        <ToggleChip
+          key={option.id}
+          name={option.id}
+          checked={includes(selectedOptions, option.id)}
+          title={option.label}
+          onChange={({ name, value }) =>
+            onOptionSelectionChange(condition.id, name, value)}
+        >
+          {option.label || <strong>Unlabelled option</strong>}
+        </ToggleChip>
+      ))}
+    </MultipleChoiceAnswerOptions>
+  );
+};
 
 MultipleChoiceAnswerOptionsSelector.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      selected: PropTypes.bool.isRequired,
-      label: PropTypes.string.isRequired
-    })
-  ).isRequired,
+  condition: PropTypes.object.isRequired,
   onOptionSelectionChange: PropTypes.func.isRequired
 };
 

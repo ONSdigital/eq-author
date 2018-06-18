@@ -115,9 +115,8 @@ const RoutingCondition = ({
 );
 
 RoutingCondition.propTypes = {
+  condition: PropTypes.object.isRequired,
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
-  value: PropTypes.string,
-  selectedPage: CustomPropTypes.page.isRequired,
   id: PropTypes.string.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onRemove: PropTypes.func,

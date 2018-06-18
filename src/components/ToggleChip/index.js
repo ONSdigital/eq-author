@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
 import checkedIcon from "./checked.svg";
 import Truncated from "components/Truncated";
+import withChangeHandler from "../Forms/withChangeHandler";
 
 const labelStyles = {
   unchecked: css`
@@ -92,7 +93,7 @@ export const Input = styled.input`
 
 class ToggleChip extends React.Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
     checked: PropTypes.bool.isRequired,
@@ -100,24 +101,16 @@ class ToggleChip extends React.Component {
     onChange: PropTypes.func.isRequired
   };
 
-  handleToggle = () => {
-    this.props.onChange({
-      name: this.props.id,
-      value: !this.props.checked
-    });
-  };
-
   render() {
-    const { id, title, children, checked, maxWidth } = this.props;
+    const { name, onChange, title, children, checked, maxWidth } = this.props;
     return (
       <Field>
-        <Label htmlFor={id} checked={checked}>
+        <Label checked={checked}>
           <Input
-            id={id}
-            name={id}
+            name={name}
             type="checkbox"
             checked={checked}
-            onChange={this.handleToggle}
+            onChange={onChange}
           />
           <Text title={title} maxWidth={maxWidth}>
             {children}
@@ -128,4 +121,4 @@ class ToggleChip extends React.Component {
   }
 }
 
-export default ToggleChip;
+export default withChangeHandler(ToggleChip);

@@ -79,15 +79,12 @@ const RoutingRule = ({
 RoutingRule.propTypes = {
   rule: PropTypes.object.isRequired,
   children: PropTypes.node,
-  page: CustomPropTypes.page.isRequired,
-  onAddRule: PropTypes.func.isRequired,
   onDeleteRule: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   routingOptions: PropTypes.object.isRequired,
   canRoute: PropTypes.bool.isRequired,
-  className: PropTypes.string,
-  gotoValue: PropTypes.string
+  className: PropTypes.string
 };
 
 RoutingRule.defaultProps = {

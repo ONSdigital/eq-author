@@ -111,30 +111,13 @@ class UnconnectedRoutingEditor extends React.Component {
       : this.renderUnsupportedAnswerAlert(answerType);
   };
 
-  renderOptions = (routingCondition, answer) => {
-    const selectedOptions = get(routingCondition, "routingValue.value", []);
-    const answerOptions = get(routingCondition, "answer.options", []);
-    const answerOtherOption = get(routingCondition, "answer.other.option", []);
-
-    const options = flatMap([answerOptions, answerOtherOption]).map(opt => ({
-      ...opt,
-      id: `${routingCondition.id}_${opt.id}`,
-      selected: includes(selectedOptions, opt.id)
-    }));
-
+  renderOptions = condition => {
     const { onToggleConditionOption } = this.props;
 
     return (
       <MultipleChoiceAnswerOptionsSelector
-        options={options}
-        onOptionSelectionChange={function({ name, value: checked }) {
-          const optionId = replace(
-            name,
-            new RegExp(`^${routingCondition.id}_`),
-            ""
-          );
-          onToggleConditionOption(routingCondition.id, optionId, checked);
-        }}
+        condition={condition}
+        onOptionSelectionChange={onToggleConditionOption}
       />
     );
   };
@@ -262,11 +245,8 @@ class UnconnectedRoutingEditor extends React.Component {
                           <RoutingRule
                             rule={rule}
                             title={index > 0 ? rule.operation : null}
-                            routingRuleSetId={routingRuleSet.id}
                             key={rule.id}
-                            page={currentPage}
                             routingOptions={availableRoutingDestinations}
-                            onAddRule={onAddRoutingRule}
                             onDeleteRule={function() {
                               routingRuleSet.routingRules.length > 1
                                 ? onDeleteRoutingRule(
