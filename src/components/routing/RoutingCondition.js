@@ -5,14 +5,21 @@ import DeleteButton from "components/DeleteButton";
 import IconClose from "./icon-close.svg?inline";
 import { PropTypes } from "prop-types";
 import CustomPropTypes from "custom-prop-types";
+import { RADIO, CHECKBOX } from "constants/answer-types";
 
 import { Grid, Column } from "components/Grid";
+import { NavLink } from "react-router-dom";
 
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
-import { get } from "lodash";
+import { get, isNil, lowerCase, uniqueId } from "lodash";
+import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
 import GroupedSelect from "./GroupedSelect";
+import Transition from "components/routing/Transition";
+import { TransitionGroup } from "react-transition-group";
+import { Alert, AlertTitle, AlertText } from "components/routing/Alert";
+import { buildPagePath } from "utils/UrlUtils";
 
 const Label = styled.label`
   width: 100%;
@@ -24,7 +31,9 @@ const Label = styled.label`
   align-self: center;
 `;
 
-export const PageSelect = styled(GroupedSelect)`
+export const PageSelect = styled(GroupedSelect).attrs({
+  onChange: props => ({ value }) => props.onChange(value)
+})`
   margin: 0;
   align-self: center;
 `;
@@ -64,63 +73,124 @@ const convertToGroups = sections =>
     }))
   }));
 
+const isValidAnswer = answer =>
+  answer.type === RADIO || answer.type === CHECKBOX;
+
+const renderNoAnswer = params => (
+  <Transition key="no-answer-alert" exit={false}>
+    <Alert>
+      <AlertTitle>No answers have been added to this question yet.</AlertTitle>
+      <AlertText>
+        First, <NavLink to={buildPagePath(params)}>add an answer</NavLink> to
+        continue.
+      </AlertText>
+    </Alert>
+  </Transition>
+);
+
+const renderUnsupportedAnswer = answer => (
+  <Transition key="answer" exit={false}>
+    <Alert>
+      <AlertTitle>Routing is not available for this type of answer</AlertTitle>
+      <AlertText>
+        You cannot route on &apos;{lowerCase(answer.type)}&apos; answers
+      </AlertText>
+    </Alert>
+  </Transition>
+);
+
+const renderDeletedQuestion = () => (
+  <Transition key="answer" exit={false}>
+    <Alert>
+      <AlertTitle>
+        The question this condition referred to has been deleted
+      </AlertTitle>
+      <AlertText>
+        Please select a new question from the dropdown above
+      </AlertText>
+    </Alert>
+  </Transition>
+);
+
+const renderEditor = (condition, onToggleConditionOption) => (
+  <Transition key="answer" exit={false}>
+    <MultipleChoiceAnswerOptionsSelector
+      condition={condition}
+      onOptionSelectionChange={onToggleConditionOption}
+    />
+  </Transition>
+);
+
 const RoutingCondition = ({
   condition,
   ruleId,
   sections,
-  id,
   label,
-  pathEnd,
   onPageChange,
   onRemove,
   canRemove,
-  children
-}) => (
-  <div>
-    <Grid align="center">
-      <Column gutters={false} cols={1}>
-        <Label htmlFor={id}>{label}</Label>
-      </Column>
-      <Column gutters={false} cols={10}>
-        <PageSelect
-          value={get(condition, "questionPage.id")}
-          onChange={({ value }) =>
-            onPageChange({ id: condition.id, questionPageId: value })}
-          groups={convertToGroups(sections)}
-          id={id}
-        />
-      </Column>
-      <Column gutters={false} cols={1}>
-        <RemoveButton
-          onClick={() => onRemove(ruleId, condition.id)}
-          disabled={!canRemove}
-          data-test="btn-remove"
-        >
-          <IconText icon={IconClose} hideText>
-            Remove
-          </IconText>
-        </RemoveButton>
-      </Column>
-    </Grid>
-    <Grid>
-      <Column gutters={false} cols={1}>
-        <ConnectedPath pathEnd={pathEnd} />
-      </Column>
-      <Column gutters={false} cols={10}>
-        {children}
-      </Column>
-      <Column cols={1} />
-    </Grid>
-  </div>
-);
+  onToggleConditionOption,
+  match
+}) => {
+  let editor;
+
+  if (isNil(condition.answer)) {
+    editor = renderNoAnswer(match.params);
+  } else if (isNil(condition.questionPage)) {
+    editor = renderDeletedQuestion();
+  } else if (!isValidAnswer(condition.answer)) {
+    editor = renderUnsupportedAnswer(condition.answer);
+  } else {
+    editor = renderEditor(condition, onToggleConditionOption);
+  }
+
+  const id = uniqueId("RoutingCondition");
+
+  return (
+    <div>
+      <Grid align="center">
+        <Column gutters={false} cols={1}>
+          <Label htmlFor={id}>{label}</Label>
+        </Column>
+        <Column gutters={false} cols={10}>
+          <PageSelect
+            value={get(condition, "questionPage.id")}
+            onChange={({ value }) =>
+              onPageChange({ id: condition.id, questionPageId: value })}
+            groups={convertToGroups(sections)}
+            id={id}
+          />
+        </Column>
+        <Column gutters={false} cols={1}>
+          <RemoveButton
+            onClick={() => onRemove(ruleId, condition.id)}
+            disabled={!canRemove}
+            data-test="btn-remove"
+          >
+            <IconText icon={IconClose} hideText>
+              Remove
+            </IconText>
+          </RemoveButton>
+        </Column>
+      </Grid>
+      <Grid>
+        <Column gutters={false} cols={1}>
+          <ConnectedPath pathEnd={isNil(condition.answer)} />
+        </Column>
+        <Column gutters={false} cols={10}>
+          <TransitionGroup>{editor}</TransitionGroup>
+        </Column>
+        <Column cols={1} />
+      </Grid>
+    </div>
+  );
+};
 
 RoutingCondition.propTypes = {
   condition: PropTypes.object.isRequired,
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
-  id: PropTypes.string.isRequired,
   onPageChange: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
-  children: PropTypes.node.isRequired,
   label: PropTypes.oneOf(["IF", "AND"]).isRequired,
   pathEnd: PropTypes.bool.isRequired
 };

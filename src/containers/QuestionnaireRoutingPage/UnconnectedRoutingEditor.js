@@ -1,25 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "constants/theme";
-import {
-  isNil,
-  get,
-  includes,
-  map,
-  find,
-  flatMap,
-  dropRightWhile,
-  replace,
-  lowerCase
-} from "lodash";
+import { negate, get, map, some, flatMap, dropRightWhile } from "lodash";
 import RoutingRuleset from "components/routing/RoutingRuleset";
 import RoutingRule from "components/routing/RoutingRule";
 import RoutingCondition from "components/routing/RoutingCondition";
 
-import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
-import { Alert, AlertTitle, AlertText } from "components/routing/Alert";
-import { buildPagePath } from "utils/UrlUtils";
-import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
@@ -52,6 +38,8 @@ const CenteringColumn = styled(Column)`
   margin-bottom: 0.5em;
 `;
 
+const none = negate(some);
+
 class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
@@ -74,53 +62,6 @@ class UnconnectedRoutingEditor extends React.Component {
     })
   };
 
-  renderNoAnswerAlert = () => {
-    const link = buildPagePath(this.props.match.params);
-    return (
-      <Alert>
-        <AlertTitle>
-          No answers have been added to this question yet.
-        </AlertTitle>
-        <AlertText>
-          First, <NavLink to={link}>add an answer</NavLink> to continue.
-        </AlertText>
-      </Alert>
-    );
-  };
-
-  renderUnsupportedAnswerAlert = answerType => (
-    <Alert>
-      <AlertTitle>Routing is not available for this type of answer</AlertTitle>
-      <AlertText>
-        You cannot route on &apos;{lowerCase(answerType)}&apos; answers
-      </AlertText>
-    </Alert>
-  );
-
-  renderAnswer = (routingCondition, answer) => {
-    const answerType = get(answer, "type");
-
-    if (isNil(routingCondition.questionPage)) {
-      // TODO: what should we render in this case?
-      return null;
-    }
-
-    return includes([RADIO, CHECKBOX], answerType)
-      ? this.renderOptions(routingCondition, answer)
-      : this.renderUnsupportedAnswerAlert(answerType);
-  };
-
-  renderOptions = condition => {
-    const { onToggleConditionOption } = this.props;
-
-    return (
-      <MultipleChoiceAnswerOptionsSelector
-        condition={condition}
-        onOptionSelectionChange={onToggleConditionOption}
-      />
-    );
-  };
-
   handleElseChange = value => {
     this.props.onUpdateRoutingRuleSet(value);
   };
@@ -139,7 +80,9 @@ class UnconnectedRoutingEditor extends React.Component {
       questionnaire,
       currentPage,
       onDeleteRoutingCondition,
-      onUpdateRoutingCondition
+      onUpdateRoutingCondition,
+      onToggleConditionOption,
+      match
     } = this.props;
 
     const allPages = flatMap(questionnaire.sections, section => section.pages);
@@ -153,43 +96,24 @@ class UnconnectedRoutingEditor extends React.Component {
       ...section,
       pages: map(section.pages, page => ({
         ...page,
-        disabled: isNil(
-          find(pagesBeforeCurrentPage, {
-            id: page.id
-          })
-        )
+        disabled: none(pagesBeforeCurrentPage, { id: page.id })
       }))
     }));
-
-    const answer = get(routingCondition, "answer");
-    const canRoute = !isNil(answer);
 
     return (
       <RoutingCondition
         key={routingCondition.id}
         condition={routingCondition}
-        id="routing-condition"
         label={index > 0 ? "AND" : "IF"}
         ruleId={ruleId}
         sections={pagesAfterCurrentDisabled}
         routingCondition={routingCondition}
         onRemove={onDeleteRoutingCondition}
         onPageChange={onUpdateRoutingCondition}
-        pathEnd={!canRoute}
         canRemove={canRemove}
-      >
-        <TransitionGroup>
-          {canRoute ? (
-            <Transition key="answer" exit={false}>
-              <div>{this.renderAnswer(routingCondition, answer)}</div>
-            </Transition>
-          ) : (
-            <Transition key="no-answer-alert" exit={false}>
-              <div>{this.renderNoAnswerAlert()}</div>
-            </Transition>
-          )}
-        </TransitionGroup>
-      </RoutingCondition>
+        onToggleConditionOption={onToggleConditionOption}
+        match={match}
+      />
     );
   };
 

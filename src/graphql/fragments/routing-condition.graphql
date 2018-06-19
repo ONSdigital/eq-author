@@ -7,6 +7,9 @@ fragment RoutingCondition on RoutingCondition {
   questionPage {
     id
     plaintextTitle: title(format: Plaintext)
+    answers {
+      id
+    }
   }
   answer {
     ...Answer
@@ -30,5 +33,3 @@ fragment RoutingCondition on RoutingCondition {
     }
   }
 }
-
-
