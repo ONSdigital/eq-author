@@ -27,38 +27,45 @@ const LogicalDestinations = {
   END_OF_QUESTIONNAIRE: "EndOfQuestionnaire"
 };
 
-const toOption = (destinationType, defaultTitle) => x => ({
-  label: x.plaintextTitle || defaultTitle,
-  value: {
-    absoluteDestination: {
-      destinationType,
-      destinationId: x.id
-    }
+const toAbsoluteDestination = entity => ({
+  absoluteDestination: {
+    destinationType: entity.__typename,
+    destinationId: entity.id
   }
+});
+
+const toLogicalDestination = destinationType => ({
+  logicalDestination: {
+    destinationType
+  }
+});
+
+const toOption = defaultTitle => entity => ({
+  label: entity.plaintextTitle || defaultTitle,
+  value: toAbsoluteDestination(entity)
 });
 
 class RoutingRuleResultSelector extends React.Component {
   getRoutingOptions({ questionPages, sections }) {
     const pagesGroup = {
       label: "Questions in this section",
-      options: questionPages.map(toOption("QuestionPage", "Page Title"))
+      id: "questions",
+      options: questionPages.map(toOption("Page Title"))
     };
 
     const sectionsGroup = {
       label: "Other sections",
-      options: sections.map(toOption("Section", "Section Title"))
+      id: "sections",
+      options: sections.map(toOption("Section Title"))
     };
 
     const summaryGroup = {
       label: "Questionnaire Summary",
+      id: "summary",
       options: [
         {
           label: "Summary",
-          value: {
-            logicalDestination: {
-              destinationType: LogicalDestinations.END_OF_QUESTIONNAIRE
-            }
-          }
+          value: toLogicalDestination(LogicalDestinations.END_OF_QUESTIONNAIRE)
         }
       ]
     };
@@ -74,21 +81,9 @@ class RoutingRuleResultSelector extends React.Component {
     }
 
     const { absoluteDestination, logicalDestination } = value;
-
-    if (absoluteDestination) {
-      return {
-        absoluteDestination: {
-          destinationType: absoluteDestination.__typename,
-          destinationId: absoluteDestination.id
-        }
-      };
-    } else {
-      return {
-        logicalDestination: {
-          destinationType: logicalDestination
-        }
-      };
-    }
+    return absoluteDestination
+      ? toAbsoluteDestination(absoluteDestination)
+      : toLogicalDestination(logicalDestination);
   }
 
   handleChange = ({ value }) => {

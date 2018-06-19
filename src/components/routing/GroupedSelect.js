@@ -5,7 +5,7 @@ import Select from "components/Forms/Select";
 
 const GroupedSelect = ({ groups, onChange, value, ...otherProps }) => {
   let optGroups = groups.map(group => (
-    <optgroup label={group.label} key={group.label}>
+    <optgroup label={group.label} key={group.id}>
       {group.options.map(option => (
         <option
           value={option.value}

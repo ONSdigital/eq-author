@@ -66,6 +66,7 @@ const RemoveButton = styled(DeleteButton)`
 const convertToGroups = sections =>
   sections.map(section => ({
     label: section.plaintextTitle || "Section Title",
+    id: section.id,
     options: section.pages.map(page => ({
       label: page.plaintextTitle || "Page Title",
       value: page.id,
