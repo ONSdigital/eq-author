@@ -7,7 +7,7 @@ import Transition from "components/routing/Transition";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { colors } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
-import { dropRightWhile, first, flatMap, get, map, negate, some } from "lodash";
+import { dropRightWhile, first, last, get } from "lodash";
 import PropTypes from "prop-types";
 import React from "react";
 import { TransitionGroup } from "react-transition-group";
@@ -25,22 +25,16 @@ const Padding = styled.div`
   padding: 2em;
 `;
 
-const none = negate(some);
+const getPagesAvaiableForRouting = (sections, sectionId, pageId) => {
+  const filteredSections = dropRightWhile(sections, s => s.id !== sectionId);
+  const currentSection = last(filteredSections);
 
-const markFuturePagesAsDisabled = (sections, currentPage) => {
-  const allPages = flatMap(sections, section => section.pages);
-  const pagesBeforeCurrentPage = dropRightWhile(
-    allPages,
-    p => p.id !== currentPage.id
-  );
+  filteredSections[filteredSections.length - 1] = {
+    ...currentSection,
+    pages: dropRightWhile(currentSection.pages, p => p.id !== pageId)
+  };
 
-  return map(sections, section => ({
-    ...section,
-    pages: map(section.pages, page => ({
-      ...page,
-      disabled: none(pagesBeforeCurrentPage, { id: page.id })
-    }))
-  }));
+  return filteredSections;
 };
 
 const determineCanRoute = routingRuleSet =>
@@ -120,9 +114,10 @@ class UnconnectedRoutingEditor extends React.Component {
 
     const { routingRuleSet } = currentPage;
     const canRoute = determineCanRoute(currentPage.routingRuleSet);
-    const pagesAfterCurrentDisabled = markFuturePagesAsDisabled(
+    const pagesAvailableForRouting = getPagesAvaiableForRouting(
       questionnaire.sections,
-      currentPage
+      match.params.sectionId,
+      match.params.pageId
     );
 
     return (
@@ -161,7 +156,7 @@ class UnconnectedRoutingEditor extends React.Component {
                                       condition={condition}
                                       label={index > 0 ? "AND" : "IF"}
                                       ruleId={rule.id}
-                                      sections={pagesAfterCurrentDisabled}
+                                      sections={pagesAvailableForRouting}
                                       onRemove={
                                         rule.conditions.length > 1
                                           ? onDeleteRoutingCondition
