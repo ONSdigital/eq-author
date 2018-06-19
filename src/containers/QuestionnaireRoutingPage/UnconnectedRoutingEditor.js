@@ -26,7 +26,8 @@ const Padding = styled.div`
 `;
 
 const none = negate(some);
-function markFuturePagesAsDisabled(sections, currentPage) {
+
+const markFuturePagesAsDisabled = (sections, currentPage) => {
   const allPages = flatMap(sections, section => section.pages);
   const pagesBeforeCurrentPage = dropRightWhile(
     allPages,
@@ -40,7 +41,16 @@ function markFuturePagesAsDisabled(sections, currentPage) {
       disabled: none(pagesBeforeCurrentPage, { id: page.id })
     }))
   }));
-}
+};
+
+const determineCanRoute = routingRuleSet =>
+  routingRuleSet &&
+  routingRuleSet.routingRules.every(rule =>
+    rule.conditions.every(condition => {
+      const type = get(condition, "answer.type");
+      return type === RADIO || type === CHECKBOX;
+    })
+  );
 
 class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
@@ -190,17 +200,3 @@ class UnconnectedRoutingEditor extends React.Component {
 }
 
 export default UnconnectedRoutingEditor;
-function determineCanRoute(routingRuleSet) {
-  return (
-    routingRuleSet &&
-    routingRuleSet.routingRules.every(rule =>
-      rule.conditions.every(condition => {
-        return (
-          condition.answer &&
-          (condition.answer.type === RADIO ||
-            condition.answer.type === CHECKBOX)
-        );
-      })
-    )
-  );
-}
