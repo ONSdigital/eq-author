@@ -75,7 +75,6 @@ export class UnwrappedSectionEditor extends React.Component {
             testSelector="txt-section-title"
             autoFocus={!sectionTitleText}
           />
-
           <RichTextEditor
             id="description"
             value={section.description}

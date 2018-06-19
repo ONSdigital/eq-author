@@ -19,6 +19,9 @@ import PipedValueDecorator, {
   insertPipedValue
 } from "./entities/PipedValue";
 
+import { filterEditorState } from "draftjs-filters";
+import { mapControlsToFilterConfig } from "./utils/mapControlsToFilterConfig";
+
 import { flow, uniq, map, keyBy, mapValues } from "lodash/fp";
 import { sharedStyles } from "../Forms/css";
 import { Field, Label } from "../Forms";
@@ -127,13 +130,17 @@ class RichTextEditor extends React.Component {
     size: PropTypes.oneOf(Object.keys(sizes)),
     fetchAnswers: PropTypes.func,
     testSelector: PropTypes.string,
-    autoFocus: PropTypes.bool
+    autoFocus: PropTypes.bool,
+    // eslint-disable-next-line react/forbid-prop-types
+    controls: PropTypes.object
   };
 
   constructor(props) {
     super(props);
 
     const decorator = new CompositeDecorator([PipedValueDecorator]);
+
+    this.filterConfig = mapControlsToFilterConfig(this.props.controls);
 
     const editorState = props.value
       ? convertFromHTML(props.value, decorator)
@@ -233,7 +240,11 @@ class RichTextEditor extends React.Component {
   };
 
   handleChange = (editorState, callback) => {
-    return this.setState({ editorState }, callback);
+    let filteredState = editorState;
+    if (this.props.controls) {
+      filteredState = filterEditorState(this.filterConfig, filteredState);
+    }
+    return this.setState({ editorState: filteredState }, callback);
   };
 
   handleToggle = ({ id, type, style }) => {
