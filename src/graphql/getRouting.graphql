@@ -22,6 +22,9 @@ query GetRouting($questionnaireId: ID!, $pageId: ID!) {
     routingRuleSet {
       ...RoutingRuleSet
     }
+    answers {
+      id
+    }
   }
   availableRoutingDestinations(pageId: $pageId) {
     logicalDestinations {

@@ -112,11 +112,11 @@ const renderDeletedQuestion = () => (
   </Transition>
 );
 
-const renderEditor = (condition, onToggleConditionOption) => (
+const renderEditor = (condition, onToggleOption) => (
   <Transition key="answer" exit={false}>
     <MultipleChoiceAnswerOptionsSelector
       condition={condition}
-      onOptionSelectionChange={onToggleConditionOption}
+      onOptionSelectionChange={onToggleOption}
     />
   </Transition>
 );
@@ -128,8 +128,7 @@ const RoutingCondition = ({
   label,
   onPageChange,
   onRemove,
-  canRemove,
-  onToggleConditionOption,
+  onToggleOption,
   match
 }) => {
   let editor;
@@ -141,10 +140,11 @@ const RoutingCondition = ({
   } else if (!isValidAnswer(condition.answer)) {
     editor = renderUnsupportedAnswer(condition.answer);
   } else {
-    editor = renderEditor(condition, onToggleConditionOption);
+    editor = renderEditor(condition, onToggleOption);
   }
 
   const id = uniqueId("RoutingCondition");
+  const handleRemove = onRemove ? () => onRemove(ruleId, condition.id) : null;
 
   return (
     <div>
@@ -163,8 +163,8 @@ const RoutingCondition = ({
         </Column>
         <Column gutters={false} cols={1}>
           <RemoveButton
-            onClick={() => onRemove(ruleId, condition.id)}
-            disabled={!canRemove}
+            onClick={handleRemove}
+            disabled={!onRemove}
             data-test="btn-remove"
           >
             <IconText icon={IconClose} hideText>
@@ -187,16 +187,17 @@ const RoutingCondition = ({
 };
 
 RoutingCondition.propTypes = {
+  ruleId: PropTypes.string.isRequired,
   condition: PropTypes.object.isRequired,
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   onPageChange: PropTypes.func.isRequired,
+  onToggleOption: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
   label: PropTypes.oneOf(["IF", "AND"]).isRequired,
-  pathEnd: PropTypes.bool.isRequired
+  match: CustomPropTypes.match
 };
 
 RoutingCondition.defaultProps = {
-  pathEnd: false,
   label: "IF"
 };
 

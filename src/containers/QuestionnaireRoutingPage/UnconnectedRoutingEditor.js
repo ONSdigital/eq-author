@@ -1,23 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import { colors } from "constants/theme";
-import { negate, get, map, some, flatMap, dropRightWhile } from "lodash";
-import RoutingRuleset from "components/routing/RoutingRuleset";
-import RoutingRule from "components/routing/RoutingRule";
-import RoutingCondition from "components/routing/RoutingCondition";
-
-import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
-
-import TextButton from "components/TextButton";
-import { Grid, Column } from "components/Grid";
-
-import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
-import { RADIO, CHECKBOX } from "constants/answer-types";
-
-import Transition from "components/routing/Transition";
-import { TransitionGroup } from "react-transition-group";
 import Loading from "components/Loading";
+import RoutingCondition from "components/routing/RoutingCondition";
+import RoutingRule from "components/routing/RoutingRule";
+import RoutingRuleset from "components/routing/RoutingRuleset";
+import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
+import Transition from "components/routing/Transition";
+import { CHECKBOX, RADIO } from "constants/answer-types";
+import { colors } from "constants/theme";
+import CustomPropTypes from "custom-prop-types";
+import { dropRightWhile, first, flatMap, get, map, negate, some } from "lodash";
+import PropTypes from "prop-types";
+import React from "react";
+import { TransitionGroup } from "react-transition-group";
+import styled from "styled-components";
 
 const Title = styled.h2`
   padding: 0.5em 1em;
@@ -31,14 +25,22 @@ const Padding = styled.div`
   padding: 2em;
 `;
 
-const CenteringColumn = styled(Column)`
-  display: flex;
-  justify-content: center;
-  padding: 0.25em 0;
-  margin-bottom: 0.5em;
-`;
-
 const none = negate(some);
+function markFuturePagesAsDisabled(sections, currentPage) {
+  const allPages = flatMap(sections, section => section.pages);
+  const pagesBeforeCurrentPage = dropRightWhile(
+    allPages,
+    p => p.id !== currentPage.id
+  );
+
+  return map(sections, section => ({
+    ...section,
+    pages: map(section.pages, page => ({
+      ...page,
+      disabled: none(pagesBeforeCurrentPage, { id: page.id })
+    }))
+  }));
+}
 
 class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
@@ -54,7 +56,6 @@ class UnconnectedRoutingEditor extends React.Component {
     onUpdateRoutingRule: PropTypes.func.isRequired,
     onUpdateRoutingRuleSet: PropTypes.func.isRequired,
     onDeleteRoutingRuleSet: PropTypes.func.isRequired,
-    loading: PropTypes.bool,
     availableRoutingDestinations: PropTypes.shape({
       logicalDestinations: PropTypes.arrayOf(PropTypes.any),
       questionPages: PropTypes.arrayOf(CustomPropTypes.page),
@@ -70,82 +71,49 @@ class UnconnectedRoutingEditor extends React.Component {
     this.props.onUpdateRoutingRule(value);
   };
 
-  renderRoutingConditions = ({
-    routingCondition,
-    ruleId,
-    canRemove,
-    index
-  }) => {
+  handleAddCondition = rule => {
+    const answer = first(this.props.currentPage.answers);
+    this.props.onAddRoutingCondition(rule.id, answer.id);
+  };
+
+  handleDeleteRule = rule => {
+    const {
+      currentPage,
+      onDeleteRoutingRule,
+      onDeleteRoutingRuleSet
+    } = this.props;
+    const { routingRuleSet } = currentPage;
+
+    routingRuleSet.routingRules.length > 1
+      ? onDeleteRoutingRule(routingRuleSet.id, rule.id)
+      : onDeleteRoutingRuleSet(routingRuleSet.id, currentPage.id);
+  };
+
+  render() {
     const {
       questionnaire,
       currentPage,
+      availableRoutingDestinations,
+      onAddRoutingRuleSet,
+      onAddRoutingRule,
       onDeleteRoutingCondition,
       onUpdateRoutingCondition,
       onToggleConditionOption,
       match
     } = this.props;
 
-    const allPages = flatMap(questionnaire.sections, section => section.pages);
-
-    const pagesBeforeCurrentPage = dropRightWhile(
-      allPages,
-      p => p.id !== currentPage.id
-    );
-
-    const pagesAfterCurrentDisabled = map(questionnaire.sections, section => ({
-      ...section,
-      pages: map(section.pages, page => ({
-        ...page,
-        disabled: none(pagesBeforeCurrentPage, { id: page.id })
-      }))
-    }));
-
-    return (
-      <RoutingCondition
-        key={routingCondition.id}
-        condition={routingCondition}
-        label={index > 0 ? "AND" : "IF"}
-        ruleId={ruleId}
-        sections={pagesAfterCurrentDisabled}
-        routingCondition={routingCondition}
-        onRemove={onDeleteRoutingCondition}
-        onPageChange={onUpdateRoutingCondition}
-        canRemove={canRemove}
-        onToggleConditionOption={onToggleConditionOption}
-        match={match}
-      />
-    );
-  };
-
-  render() {
-    const {
-      loading,
-      currentPage,
-      availableRoutingDestinations,
-      onAddRoutingRuleSet,
-      onAddRoutingRule,
-      onDeleteRoutingRule,
-      onDeleteRoutingRuleSet,
-      onAddRoutingCondition
-    } = this.props;
-
-    if (loading || !currentPage) {
+    // when new section is added, this component re-renders before
+    // the redirect, causing currentPage to be undefined/null
+    if (!currentPage) {
       return <Loading height="38rem">Loading…</Loading>;
     }
 
     const { routingRuleSet } = currentPage;
-
-    const canRoute =
-      routingRuleSet &&
-      routingRuleSet.routingRules.every(rule =>
-        rule.conditions.every(condition => {
-          return (
-            condition.answer &&
-            (condition.answer.type === RADIO ||
-              condition.answer.type === CHECKBOX)
-          );
-        })
-      );
+    const canRoute = determineCanRoute(currentPage.routingRuleSet);
+    const pagesAfterCurrentDisabled = markFuturePagesAsDisabled(
+      questionnaire.sections,
+      currentPage
+    );
 
     return (
       <React.Fragment>
@@ -170,51 +138,33 @@ class UnconnectedRoutingEditor extends React.Component {
                             title={index > 0 ? rule.operation : null}
                             key={rule.id}
                             routingOptions={availableRoutingDestinations}
-                            onDeleteRule={function() {
-                              routingRuleSet.routingRules.length > 1
-                                ? onDeleteRoutingRule(
-                                    routingRuleSet.id,
-                                    rule.id
-                                  )
-                                : onDeleteRoutingRuleSet(
-                                    routingRuleSet.id,
-                                    currentPage.id
-                                  );
-                            }}
+                            onAddRoutingCondition={this.handleAddCondition}
+                            onDeleteRule={this.handleDeleteRule}
                             onThenChange={this.handleThenChange}
                             canRoute={canRoute}
                           >
                             <TransitionGroup>
-                              {rule.conditions.map(
-                                (routingCondition, index) => (
-                                  <Transition key={routingCondition.id}>
-                                    <div>
-                                      {this.renderRoutingConditions({
-                                        routingCondition,
-                                        ruleId: rule.id,
-                                        canRemove: rule.conditions.length > 1,
-                                        index
-                                      })}
-                                    </div>
-                                  </Transition>
-                                )
-                              )}
+                              {rule.conditions.map((condition, index) => (
+                                <Transition key={condition.id}>
+                                  <div>
+                                    <RoutingCondition
+                                      condition={condition}
+                                      label={index > 0 ? "AND" : "IF"}
+                                      ruleId={rule.id}
+                                      sections={pagesAfterCurrentDisabled}
+                                      onRemove={
+                                        rule.conditions.length > 1
+                                          ? onDeleteRoutingCondition
+                                          : null
+                                      }
+                                      onPageChange={onUpdateRoutingCondition}
+                                      onToggleOption={onToggleConditionOption}
+                                      match={match}
+                                    />
+                                  </div>
+                                </Transition>
+                              ))}
                             </TransitionGroup>
-
-                            {canRoute && (
-                              <Grid align="center">
-                                <CenteringColumn gutters={false} cols={1}>
-                                  <TextButton
-                                    onClick={function() {
-                                      onAddRoutingCondition(rule.id);
-                                    }}
-                                    data-test="btn-add"
-                                  >
-                                    AND
-                                  </TextButton>
-                                </CenteringColumn>
-                              </Grid>
-                            )}
                           </RoutingRule>
                         </Transition>
                       ))}
@@ -240,3 +190,17 @@ class UnconnectedRoutingEditor extends React.Component {
 }
 
 export default UnconnectedRoutingEditor;
+function determineCanRoute(routingRuleSet) {
+  return (
+    routingRuleSet &&
+    routingRuleSet.routingRules.every(rule =>
+      rule.conditions.every(condition => {
+        return (
+          condition.answer &&
+          (condition.answer.type === RADIO ||
+            condition.answer.type === CHECKBOX)
+        );
+      })
+    )
+  );
+}

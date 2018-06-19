@@ -5,12 +5,11 @@ import CustomPropTypes from "custom-prop-types";
 
 import Button from "components/Button";
 import IconText from "components/IconText";
-
 import { colors, radius } from "constants/theme";
-
 import IconRoute from "./icon-route.svg?inline";
-
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
+import TextButton from "components/TextButton";
+import { Grid, Column } from "components/Grid";
 
 const Box = styled.div`
   border: 1px solid ${colors.bordersLight};
@@ -36,10 +35,18 @@ const Title = styled.h2`
   text-transform: uppercase;
 `;
 
+const CenteringColumn = styled(Column)`
+  display: flex;
+  justify-content: center;
+  padding: 0.25em 0;
+  margin-bottom: 0.5em;
+`;
+
 const RoutingRule = ({
   children,
   onDeleteRule,
   onThenChange,
+  onAddRoutingCondition,
   title,
   routingOptions,
   canRoute,
@@ -52,7 +59,7 @@ const RoutingRule = ({
         {title && <Title>{title}</Title>}
         <Buttons>
           <Button
-            onClick={onDeleteRule}
+            onClick={() => onDeleteRule(rule)}
             data-test="btn-delete"
             disabled={!children}
             variant="tertiary"
@@ -61,7 +68,21 @@ const RoutingRule = ({
             <IconText icon={IconRoute}>Remove rule</IconText>
           </Button>
         </Buttons>
-        <div>{children}</div>
+        <div>
+          {children}
+          {canRoute && (
+            <Grid align="center">
+              <CenteringColumn gutters={false} cols={1}>
+                <TextButton
+                  onClick={() => onAddRoutingCondition(rule)}
+                  data-test="btn-add"
+                >
+                  AND
+                </TextButton>
+              </CenteringColumn>
+            </Grid>
+          )}
+        </div>
         <RoutingRuleResultSelector
           id="then"
           label="THEN"
@@ -80,6 +101,7 @@ RoutingRule.propTypes = {
   rule: PropTypes.object.isRequired,
   children: PropTypes.node,
   onDeleteRule: PropTypes.func.isRequired,
+  onAddRoutingCondition: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   routingOptions: PropTypes.object.isRequired,

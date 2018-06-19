@@ -1,7 +1,7 @@
 import { graphql } from "react-apollo";
 import createRoutingCondition from "graphql/createRoutingCondition.graphql";
 import fragment from "graphql/fragments/routing-rule.graphql";
-import { first, isNil, get } from "lodash";
+import { get } from "lodash/fp";
 
 export const createUpdater = routingRuleId => (proxy, result) => {
   const id = `RoutingRule${routingRuleId}`;
@@ -22,13 +22,11 @@ export const createUpdater = routingRuleId => (proxy, result) => {
 };
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
-  onAddRoutingCondition(routingRuleId) {
-    const answer = first(ownProps.currentPage.answers);
-
+  onAddRoutingCondition(routingRuleId, answerId) {
     const input = {
       comparator: "Equal",
-      questionPageId: ownProps.currentPage.id,
-      answerId: get(answer, "id"),
+      questionPageId: ownProps.match.params.pageId,
+      answerId,
       routingRuleId
     };
 
@@ -37,7 +35,7 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     return mutate({
       variables: { input },
       update
-    }).then(res => res.data.createRoutingCondition);
+    }).then(get("data.createRoutingCondition"));
   }
 });
 
