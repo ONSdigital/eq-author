@@ -24,6 +24,7 @@ import withUpdateRoutingRule from "../enhancers/withUpdateRoutingRule";
 import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
 
 import UnconnectedRoutingEditor from "./UnconnectedRoutingEditor";
+import Error from "components/Error";
 
 class RoutingPageRoute extends React.Component {
   static propTypes = {
@@ -41,6 +42,10 @@ class RoutingPageRoute extends React.Component {
 
     if (data.loading) {
       return <Loading height="20em">Loading routing</Loading>;
+    }
+
+    if (data.error) {
+      return <Error>Something went wrong</Error>;
     }
 
     return <UnconnectedRoutingEditor {...otherProps} {...data} />;
