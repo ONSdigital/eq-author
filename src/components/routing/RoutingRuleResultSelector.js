@@ -27,8 +27,8 @@ const LogicalDestinations = {
   END_OF_QUESTIONNAIRE: "EndOfQuestionnaire"
 };
 
-const toOption = destinationType => x => ({
-  label: x.plaintextTitle,
+const toOption = (destinationType, defaultTitle) => x => ({
+  label: x.plaintextTitle || defaultTitle,
   value: {
     absoluteDestination: {
       destinationType,
@@ -41,12 +41,12 @@ class RoutingRuleResultSelector extends React.Component {
   getRoutingOptions({ questionPages, sections }) {
     const pagesGroup = {
       label: "Questions in this section",
-      options: questionPages.map(toOption("QuestionPage"))
+      options: questionPages.map(toOption("QuestionPage", "Page Title"))
     };
 
     const sectionsGroup = {
       label: "Other sections",
-      options: sections.map(toOption("QuestionPage"))
+      options: sections.map(toOption("Section", "Section Title"))
     };
 
     const summaryGroup = {
