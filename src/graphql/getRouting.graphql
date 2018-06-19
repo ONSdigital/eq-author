@@ -16,13 +16,12 @@ query GetRouting($questionnaireId: ID!, $pageId: ID!) {
       }
     }
   }
-  questionPage(id: $pageId) {
+  currentPage: questionPage(id: $pageId) {
     id
     plaintextTitle: title(format: Plaintext)
     routingRuleSet {
       ...RoutingRuleSet
     }
-    __typename
   }
   availableRoutingDestinations(pageId: $pageId) {
     logicalDestinations {
