@@ -28,14 +28,13 @@ import UnconnectedRoutingEditor from "./UnconnectedRoutingEditor";
 class RoutingPageRoute extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
-    section: CustomPropTypes.section,
     page: CustomPropTypes.page,
     match: CustomPropTypes.match,
     loading: PropTypes.bool.isRequired
   };
 
   renderContent() {
-    const { questionnaire, section, page, match, loading } = this.props;
+    const { questionnaire, page, match, loading } = this.props;
 
     if (loading) {
       return <Loading height="20em">Loading routing</Loading>;
@@ -44,7 +43,6 @@ class RoutingPageRoute extends React.Component {
     return (
       <UnconnectedRoutingEditor
         questionnaire={questionnaire}
-        section={section}
         page={page}
         {...this.props}
         match={match}

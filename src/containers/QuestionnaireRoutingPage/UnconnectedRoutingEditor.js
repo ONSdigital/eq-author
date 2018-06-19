@@ -55,7 +55,6 @@ const CenteringColumn = styled(Column)`
 class UnconnectedRoutingEditor extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
-    section: CustomPropTypes.section.isRequired,
     currentPage: CustomPropTypes.page.isRequired,
     onAddRoutingRuleSet: PropTypes.func.isRequired,
     onAddRoutingCondition: PropTypes.func.isRequired,

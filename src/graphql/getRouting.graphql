@@ -3,7 +3,7 @@
 #import "./fragments/routing-ruleset.graphql"
 #import "./fragments/routing-destination.graphql"
 
-query GetRouting($questionnaireId: ID!, $pageId: ID!, $sectionId: ID!) {
+query GetRouting($questionnaireId: ID!, $pageId: ID!) {
   questionnaire(id: $questionnaireId) {
     id
     sections {
@@ -12,46 +12,6 @@ query GetRouting($questionnaireId: ID!, $pageId: ID!, $sectionId: ID!) {
         id
         ... on QuestionPage {
           plaintextTitle: title(format: Plaintext)
-        }
-      }
-    }
-  }
-  section(id: $sectionId) {
-    id
-    title
-    plaintextTitle: title(format: Plaintext)
-    pages {
-      id
-      title
-      ... on QuestionPage {
-        title
-        plaintextTitle: title(format: Plaintext)
-        routingRuleSet {
-          ...RoutingRuleSet
-        }
-        answers {
-          id
-          type
-          __typename
-          ... on MultipleChoiceAnswer {
-            options {
-              id
-              label
-              __typename
-            }
-            other {
-              option {
-                id
-                label
-                __typename
-              }
-              answer {
-                id
-                type
-                __typename
-              }
-            }
-          }
         }
       }
     }
