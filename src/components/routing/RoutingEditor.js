@@ -1,17 +1,17 @@
-import Loading from "components/Loading";
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { dropRightWhile, first, last, get } from "lodash";
+import { TransitionGroup } from "react-transition-group";
 
-import RoutingRule from "components/routing/RoutingRule";
+import Transition from "components/routing/Transition";
+import Loading from "components/Loading";
 import RoutingRuleSet from "components/routing/RoutingRuleSet";
 import RoutingRuleSetEmpty from "components/routing/RoutingRuleSetEmptyMsg";
-import Transition from "components/routing/Transition";
+
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { colors } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
-import { dropRightWhile, first, last, get } from "lodash";
-import PropTypes from "prop-types";
-import React from "react";
-import { TransitionGroup } from "react-transition-group";
-import styled from "styled-components";
 
 const Title = styled.h2`
   padding: 0.5em 1em;
@@ -52,11 +52,8 @@ class RoutingEditor extends React.Component {
     currentPage: CustomPropTypes.page.isRequired,
     onAddRoutingRuleSet: PropTypes.func.isRequired,
     onAddRoutingCondition: PropTypes.func.isRequired,
-    onDeleteRoutingCondition: PropTypes.func.isRequired,
     onAddRoutingRule: PropTypes.func.isRequired,
     onDeleteRoutingRule: PropTypes.func.isRequired,
-    onToggleConditionOption: PropTypes.func.isRequired,
-    onUpdateRoutingCondition: PropTypes.func.isRequired,
     onUpdateRoutingRule: PropTypes.func.isRequired,
     onUpdateRoutingRuleSet: PropTypes.func.isRequired,
     onDeleteRoutingRuleSet: PropTypes.func.isRequired,
@@ -130,30 +127,15 @@ class RoutingEditor extends React.Component {
                   <RoutingRuleSet
                     ruleSet={routingRuleSet}
                     destinations={availableRoutingDestinations}
-                    onAddRule={onAddRoutingRule}
+                    pagesAvailableForRouting={pagesAvailableForRouting}
                     onElseChange={this.handleElseChange}
+                    onAddRoutingCondition={this.handleAddCondition}
+                    onDeleteRule={this.handleDeleteRule}
+                    onThenChange={this.handleThenChange}
                     canRoute={canRoute}
-                  >
-                    <TransitionGroup>
-                      {routingRuleSet.routingRules.map((rule, index) => (
-                        <Transition key={rule.id}>
-                          <RoutingRule
-                            rule={rule}
-                            title={index > 0 ? rule.operation : null}
-                            key={rule.id}
-                            destinations={availableRoutingDestinations}
-                            onAddRoutingCondition={this.handleAddCondition}
-                            onDeleteRule={this.handleDeleteRule}
-                            onThenChange={this.handleThenChange}
-                            canRoute={canRoute}
-                            pagesAvailableForRouting={pagesAvailableForRouting}
-                            match={match}
-                            {...otherProps}
-                          />
-                        </Transition>
-                      ))}
-                    </TransitionGroup>
-                  </RoutingRuleSet>
+                    match={match}
+                    {...otherProps}
+                  />
                 </div>
               </Transition>
             ) : (
