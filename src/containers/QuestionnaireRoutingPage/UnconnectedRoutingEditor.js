@@ -25,7 +25,7 @@ const Padding = styled.div`
   padding: 2em;
 `;
 
-const getPagesAvaiableForRouting = (sections, sectionId, pageId) => {
+const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
   const filteredSections = dropRightWhile(sections, s => s.id !== sectionId);
   const currentSection = last(filteredSections);
 
@@ -115,7 +115,7 @@ class UnconnectedRoutingEditor extends React.Component {
 
     const { routingRuleSet } = currentPage;
     const canRoute = determineCanRoute(currentPage.routingRuleSet);
-    const pagesAvailableForRouting = getPagesAvaiableForRouting(
+    const pagesAvailableForRouting = getPagesAvailableForRouting(
       questionnaire.sections,
       match.params.sectionId,
       match.params.pageId
