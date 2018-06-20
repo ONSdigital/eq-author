@@ -12,6 +12,7 @@ import RoutingRuleSetEmpty from "components/routing/RoutingRuleSetEmptyMsg";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { colors } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
+import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
 const Title = styled.h2`
   padding: 0.5em 1em;
@@ -40,10 +41,9 @@ const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
 const determineCanRoute = routingRuleSet =>
   routingRuleSet &&
   routingRuleSet.routingRules.every(rule =>
-    rule.conditions.every(condition => {
-      const type = get(condition, "answer.type");
-      return type === RADIO || type === CHECKBOX;
-    })
+    rule.conditions.every(condition =>
+      isAnswerValidForRouting(get(condition, "answer"))
+    )
   );
 
 class RoutingEditor extends React.Component {

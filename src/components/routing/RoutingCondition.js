@@ -5,7 +5,6 @@ import DeleteButton from "components/DeleteButton";
 import IconClose from "./icon-close.svg?inline";
 import { PropTypes } from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import { RADIO, CHECKBOX } from "constants/answer-types";
 
 import { Grid, Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
@@ -30,6 +29,7 @@ import Transition from "components/routing/Transition";
 import { TransitionGroup } from "react-transition-group";
 import { Alert, AlertTitle, AlertText } from "components/routing/Alert";
 import { buildPagePath } from "utils/UrlUtils";
+import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
 const Label = styled.label`
   width: 100%;
@@ -73,9 +73,7 @@ const RemoveButton = styled(DeleteButton)`
   right: 2px;
 `;
 
-const isValidAnswer = ({ type }) => type === RADIO || type === CHECKBOX;
-
-const firstAnswerIsValid = flow(first, isValidAnswer);
+const firstAnswerIsValid = flow(first, isAnswerValidForRouting);
 const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
 
 const convertToGroups = sections =>
@@ -152,7 +150,7 @@ const RoutingCondition = ({
   } else if (isNil(condition.answer)) {
     value = null;
     editor = renderNoAnswer(match.params);
-  } else if (!isValidAnswer(condition.answer)) {
+  } else if (!isAnswerValidForRouting(condition.answer)) {
     editor = renderUnsupportedAnswer(condition.answer);
   } else {
     editor = renderEditor(condition, onToggleOption);
