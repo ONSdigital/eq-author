@@ -32,7 +32,6 @@ const RoutingRuleSet = ({
 }) => (
   <React.Fragment>
     {children}
-
     <AddRuleButton
       variant="secondary"
       small

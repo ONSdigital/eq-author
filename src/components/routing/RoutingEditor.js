@@ -1,5 +1,5 @@
 import Loading from "components/Loading";
-import RoutingCondition from "components/routing/RoutingCondition";
+
 import RoutingRule from "components/routing/RoutingRule";
 import RoutingRuleSet from "components/routing/RoutingRuleSet";
 import RoutingRuleSetEmpty from "components/routing/RoutingRuleSetEmptyMsg";
@@ -101,10 +101,8 @@ class RoutingEditor extends React.Component {
       availableRoutingDestinations,
       onAddRoutingRuleSet,
       onAddRoutingRule,
-      onDeleteRoutingCondition,
-      onUpdateRoutingCondition,
-      onToggleConditionOption,
-      match
+      match,
+      ...otherProps
     } = this.props;
 
     // when new section is added, this component re-renders before
@@ -148,30 +146,10 @@ class RoutingEditor extends React.Component {
                             onDeleteRule={this.handleDeleteRule}
                             onThenChange={this.handleThenChange}
                             canRoute={canRoute}
-                          >
-                            <TransitionGroup>
-                              {rule.conditions.map((condition, index) => (
-                                <Transition key={condition.id}>
-                                  <div>
-                                    <RoutingCondition
-                                      condition={condition}
-                                      label={index > 0 ? "AND" : "IF"}
-                                      ruleId={rule.id}
-                                      sections={pagesAvailableForRouting}
-                                      onRemove={
-                                        rule.conditions.length > 1
-                                          ? onDeleteRoutingCondition
-                                          : null
-                                      }
-                                      onPageChange={onUpdateRoutingCondition}
-                                      onToggleOption={onToggleConditionOption}
-                                      match={match}
-                                    />
-                                  </div>
-                                </Transition>
-                              ))}
-                            </TransitionGroup>
-                          </RoutingRule>
+                            pagesAvailableForRouting={pagesAvailableForRouting}
+                            match={match}
+                            {...otherProps}
+                          />
                         </Transition>
                       ))}
                     </TransitionGroup>

@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { TransitionGroup } from "react-transition-group";
 
+import Transition from "components/routing/Transition";
 import Button from "components/Button";
 import IconText from "components/IconText";
 import { colors, radius } from "constants/theme";
 import IconRoute from "./icon-route.svg?inline";
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 import TextButton from "components/TextButton";
+import RoutingCondition from "components/routing/RoutingCondition";
+
 import { Grid, Column } from "components/Grid";
 
 const Box = styled.div`
@@ -42,15 +46,19 @@ const CenteringColumn = styled(Column)`
 `;
 
 const RoutingRule = ({
-  children,
+  rule,
   onDeleteRule,
   onThenChange,
   onAddRoutingCondition,
+  onToggleConditionOption,
+  onUpdateRoutingCondition,
+  onDeleteRoutingCondition,
   title,
   destinations,
+  pagesAvailableForRouting,
   canRoute,
-  rule,
-  className
+  className,
+  ...otherProps
 }) => {
   return (
     <div className={className}>
@@ -60,7 +68,6 @@ const RoutingRule = ({
           <Button
             onClick={() => onDeleteRule(rule)}
             data-test="btn-delete"
-            disabled={!children}
             variant="tertiary"
             small
           >
@@ -68,7 +75,28 @@ const RoutingRule = ({
           </Button>
         </Buttons>
         <div>
-          {children}
+          <TransitionGroup>
+            {rule.conditions.map((condition, index) => (
+              <Transition key={condition.id}>
+                <div>
+                  <RoutingCondition
+                    condition={condition}
+                    label={index > 0 ? "AND" : "IF"}
+                    ruleId={rule.id}
+                    sections={pagesAvailableForRouting}
+                    onRemove={
+                      rule.conditions.length > 1
+                        ? onDeleteRoutingCondition
+                        : null
+                    }
+                    onPageChange={onUpdateRoutingCondition}
+                    onToggleOption={onToggleConditionOption}
+                    {...otherProps}
+                  />
+                </div>
+              </Transition>
+            ))}
+          </TransitionGroup>
           {canRoute && (
             <Grid align="center">
               <CenteringColumn gutters={false} cols={1}>
@@ -101,9 +129,13 @@ RoutingRule.propTypes = {
   children: PropTypes.node,
   onDeleteRule: PropTypes.func.isRequired,
   onAddRoutingCondition: PropTypes.func.isRequired,
+  onToggleConditionOption: PropTypes.func.isRequired,
+  onUpdateRoutingCondition: PropTypes.func.isRequired,
+  onDeleteRoutingCondition: PropTypes.func,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
   destinations: PropTypes.object.isRequired,
+  pagesAvailableForRouting: PropTypes.array.isRequired,
   canRoute: PropTypes.bool.isRequired,
   className: PropTypes.string
 };
