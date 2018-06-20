@@ -1,18 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RoutingRulesetEmptyMsg from "./RoutingRulesetEmptyMsg2";
+import RoutingRuleSetEmptyMsg from "./RoutingRuleSetEmptyMsg";
 
 let wrapper, props;
 
-describe("components/RoutingRulesetEmptyMsg", () => {
+describe("components/RoutingRuleSetEmptyMsg", () => {
   beforeEach(() => {
     props = {
       onAddRule: jest.fn(),
       title: "Test"
     };
 
-    wrapper = shallow(<RoutingRulesetEmptyMsg {...props} />);
+    wrapper = shallow(<RoutingRuleSetEmptyMsg {...props} />);
   });
 
   it("should render children", () => {

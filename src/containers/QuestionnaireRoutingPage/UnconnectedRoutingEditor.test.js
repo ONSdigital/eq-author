@@ -165,12 +165,12 @@ describe("UnconnectedRoutingEditor", () => {
     });
 
     it("should handle adding routing rule", () => {
-      wrapper.find("RoutingRuleset").simulate("addRule");
+      wrapper.find("RoutingRuleSet").simulate("addRule");
       expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
     });
 
     it("should handle changing else destination", () => {
-      wrapper.find("RoutingRuleset").simulate("elseChange", {
+      wrapper.find("RoutingRuleSet").simulate("elseChange", {
         value: "QuestionPage_3"
       });
 

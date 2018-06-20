@@ -1,8 +1,8 @@
 import Loading from "components/Loading";
 import RoutingCondition from "components/routing/RoutingCondition";
 import RoutingRule from "components/routing/RoutingRule";
-import RoutingRuleset from "components/routing/RoutingRuleset2";
-import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg2";
+import RoutingRuleSet from "components/routing/RoutingRuleSet";
+import RoutingRuleSetEmpty from "components/routing/RoutingRuleSetEmptyMsg";
 import Transition from "components/routing/Transition";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { colors } from "constants/theme";
@@ -127,9 +127,9 @@ class UnconnectedRoutingEditor extends React.Component {
         <Padding>
           <TransitionGroup>
             {routingRuleSet ? (
-              <Transition key="routing-ruleset" exit={false}>
+              <Transition key="routing-rule-set" exit={false}>
                 <div>
-                  <RoutingRuleset
+                  <RoutingRuleSet
                     routingRuleSet={routingRuleSet}
                     destinations={availableRoutingDestinations}
                     onAddRule={onAddRoutingRule}
@@ -175,13 +175,13 @@ class UnconnectedRoutingEditor extends React.Component {
                         </Transition>
                       ))}
                     </TransitionGroup>
-                  </RoutingRuleset>
+                  </RoutingRuleSet>
                 </div>
               </Transition>
             ) : (
-              <Transition key="routing-ruleset-empty" exit={false}>
+              <Transition key="routing-rule-set-empty" exit={false}>
                 <div>
-                  <RoutingRulesetEmpty
+                  <RoutingRuleSetEmpty
                     title="No routing rules exist for this question"
                     onAddRule={onAddRoutingRuleSet}
                   />

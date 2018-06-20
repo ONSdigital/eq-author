@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RoutingRuleset from "./RoutingRuleset2";
+import RoutingRuleSet from "./RoutingRuleSet";
 
 import routingOptions from "./mockstate";
 
 let wrapper, props;
 
-describe("components/RoutingRuleset", () => {
+describe("components/RoutingRuleSet", () => {
   beforeEach(() => {
     props = {
       onAddRule: jest.fn(),
@@ -19,9 +19,9 @@ describe("components/RoutingRuleset", () => {
     };
 
     wrapper = shallow(
-      <RoutingRuleset {...props}>
+      <RoutingRuleSet {...props}>
         <div>I am a child</div>
-      </RoutingRuleset>
+      </RoutingRuleSet>
     );
   });
 

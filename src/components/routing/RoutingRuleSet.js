@@ -22,7 +22,7 @@ const Box = styled.div`
   opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
-const RoutingRuleset = ({
+const RoutingRuleSet = ({
   children,
   onAddRule,
   onElseChange,
@@ -57,7 +57,7 @@ const RoutingRuleset = ({
   </React.Fragment>
 );
 
-RoutingRuleset.propTypes = {
+RoutingRuleSet.propTypes = {
   children: PropTypes.node.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
@@ -66,8 +66,8 @@ RoutingRuleset.propTypes = {
   canRoute: PropTypes.bool.isRequired
 };
 
-RoutingRuleset.defaultProps = {
+RoutingRuleSet.defaultProps = {
   canRoute: true
 };
 
-export default RoutingRuleset;
+export default RoutingRuleSet;
