@@ -134,10 +134,10 @@ const RoutingCondition = ({
 }) => {
   let editor;
 
-  if (isNil(condition.answer)) {
-    editor = renderNoAnswer(match.params);
-  } else if (isNil(condition.questionPage)) {
+  if (isNil(condition.questionPage)) {
     editor = renderDeletedQuestion();
+  } else if (isNil(condition.answer)) {
+    editor = renderNoAnswer(match.params);
   } else if (!isValidAnswer(condition.answer)) {
     editor = renderUnsupportedAnswer(condition.answer);
   } else {
