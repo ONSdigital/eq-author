@@ -46,7 +46,7 @@ const determineCanRoute = routingRuleSet =>
     })
   );
 
-class UnconnectedRoutingEditor extends React.Component {
+class RoutingEditor extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire.isRequired,
     currentPage: CustomPropTypes.page.isRequired,
@@ -130,7 +130,7 @@ class UnconnectedRoutingEditor extends React.Component {
               <Transition key="routing-rule-set" exit={false}>
                 <div>
                   <RoutingRuleSet
-                    routingRuleSet={routingRuleSet}
+                    ruleSet={routingRuleSet}
                     destinations={availableRoutingDestinations}
                     onAddRule={onAddRoutingRule}
                     onElseChange={this.handleElseChange}
@@ -195,4 +195,4 @@ class UnconnectedRoutingEditor extends React.Component {
   }
 }
 
-export default UnconnectedRoutingEditor;
+export default RoutingEditor;

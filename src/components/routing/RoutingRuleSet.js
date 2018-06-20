@@ -23,11 +23,11 @@ const Box = styled.div`
 `;
 
 const RoutingRuleSet = ({
-  children,
+  ruleSet,
+  destinations,
   onAddRule,
   onElseChange,
-  destinations,
-  routingRuleSet,
+  children,
   canRoute
 }) => (
   <React.Fragment>
@@ -36,9 +36,7 @@ const RoutingRuleSet = ({
     <AddRuleButton
       variant="secondary"
       small
-      onClick={function() {
-        onAddRule(routingRuleSet.id);
-      }}
+      onClick={() => onAddRule(ruleSet.id)}
       data-test="btn-add-rule"
     >
       <IconText icon={IconAddRule}>Add rule</IconText>
@@ -47,9 +45,9 @@ const RoutingRuleSet = ({
       <RoutingRuleResultSelector
         id="else"
         label="ELSE"
-        value={routingRuleSet.else}
+        value={ruleSet.else}
         destinations={destinations}
-        onChange={value => onElseChange({ id: routingRuleSet.id, else: value })}
+        onChange={value => onElseChange({ id: ruleSet.id, else: value })}
         data-test="select-else"
         disabled={!canRoute}
       />
@@ -58,11 +56,11 @@ const RoutingRuleSet = ({
 );
 
 RoutingRuleSet.propTypes = {
-  children: PropTypes.node.isRequired,
+  ruleSet: PropTypes.object.isRequired,
+  destinations: PropTypes.object.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
-  destinations: PropTypes.object.isRequired,
-  routingRuleSet: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
   canRoute: PropTypes.bool.isRequired
 };
 

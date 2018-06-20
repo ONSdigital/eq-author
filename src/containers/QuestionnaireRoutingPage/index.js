@@ -23,7 +23,7 @@ import withUpdateRoutingCondition from "../enhancers/withUpdateRoutingCondition"
 import withUpdateRoutingRule from "../enhancers/withUpdateRoutingRule";
 import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
 
-import UnconnectedRoutingEditor from "./UnconnectedRoutingEditor";
+import RoutingEditor from "components/routing/RoutingEditor";
 import Error from "components/Error";
 
 class RoutingPageRoute extends React.Component {
@@ -48,7 +48,7 @@ class RoutingPageRoute extends React.Component {
       return <Error>Something went wrong</Error>;
     }
 
-    return <UnconnectedRoutingEditor {...otherProps} {...data} />;
+    return <RoutingEditor {...otherProps} {...data} />;
   }
 
   render() {

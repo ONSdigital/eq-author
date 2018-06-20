@@ -1,13 +1,13 @@
-import UnconnectedRoutingEditor from "containers/QuestionnaireRoutingPage/UnconnectedRoutingEditor";
+import RoutingEditor from "./RoutingEditor";
 import React from "react";
 import { shallow } from "enzyme";
 import { merge } from "lodash";
 
 const createWrapper = (props, render = shallow) => {
-  return render(<UnconnectedRoutingEditor {...props} />);
+  return render(<RoutingEditor {...props} />);
 };
 
-describe("UnconnectedRoutingEditor", () => {
+describe("RoutingEditor", () => {
   let wrapper, props;
 
   const questionnaire = {

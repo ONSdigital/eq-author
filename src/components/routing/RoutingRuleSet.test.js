@@ -13,9 +13,7 @@ describe("components/RoutingRuleSet", () => {
       onAddRule: jest.fn(),
       onElseChange: jest.fn(),
       routingOptions,
-      routingRuleSet: {
-        id: "1"
-      }
+      ruleSet: { id: "1" }
     };
 
     wrapper = shallow(
@@ -38,6 +36,6 @@ describe("components/RoutingRuleSet", () => {
   it("should allow adding a rule", () => {
     const found = wrapper.find("[data-test='btn-add-rule']");
     found.simulate("click");
-    expect(props.onAddRule).toHaveBeenCalledWith(props.routingRuleSet.id);
+    expect(props.onAddRule).toHaveBeenCalledWith(props.ruleSet.id);
   });
 });
