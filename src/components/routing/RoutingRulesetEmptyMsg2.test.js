@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RoutingRulesetEmptyMsg from "./RoutingRulesetEmptyMsg";
+import RoutingRulesetEmptyMsg from "./RoutingRulesetEmptyMsg2";
 
 let wrapper, props;
 

@@ -1,8 +1,8 @@
 import Loading from "components/Loading";
 import RoutingCondition from "components/routing/RoutingCondition";
 import RoutingRule from "components/routing/RoutingRule";
-import RoutingRuleset from "components/routing/RoutingRuleset";
-import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg";
+import RoutingRuleset from "components/routing/RoutingRuleset2";
+import RoutingRulesetEmpty from "components/routing/RoutingRulesetEmptyMsg2";
 import Transition from "components/routing/Transition";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import { colors } from "constants/theme";

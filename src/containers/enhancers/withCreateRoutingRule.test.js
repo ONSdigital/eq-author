@@ -1,5 +1,5 @@
 import { mapMutateToProps, createUpdater } from "./withCreateRoutingRule";
-import fragment from "graphql/fragments/routing-ruleset.graphql";
+import fragment from "graphql/fragments/routing-rule-set.graphql";
 
 describe("containers/enhancers/withCreateRoutingRule", () => {
   const routingRuleSet = {

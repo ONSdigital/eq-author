@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import RoutingRuleset from "./RoutingRuleset";
+import RoutingRuleset from "./RoutingRuleset2";
 
 import routingOptions from "./mockstate";
 

@@ -1,6 +1,6 @@
 import { graphql } from "react-apollo";
 import deleteRoutingRule from "graphql/deleteRoutingRule.graphql";
-import fragment from "graphql/fragments/routing-ruleset.graphql";
+import fragment from "graphql/fragments/routing-rule-set.graphql";
 import { remove } from "lodash";
 
 export const createUpdater = (routingRuleSetId, routingRuleId) => (

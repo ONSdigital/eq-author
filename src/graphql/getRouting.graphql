@@ -1,6 +1,6 @@
 #import "./fragments/answer.graphql"
 #import "./fragments/option.graphql"
-#import "./fragments/routing-ruleset.graphql"
+#import "./fragments/routing-rule-set.graphql"
 #import "./fragments/routing-destination.graphql"
 
 query GetRouting($questionnaireId: ID!, $pageId: ID!) {
