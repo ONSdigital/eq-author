@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
 
 import Button from "components/Button";
 import IconText from "components/IconText";
@@ -48,7 +47,7 @@ const RoutingRule = ({
   onThenChange,
   onAddRoutingCondition,
   title,
-  routingOptions,
+  destinations,
   canRoute,
   rule,
   className
@@ -86,7 +85,7 @@ const RoutingRule = ({
         <RoutingRuleResultSelector
           id="then"
           label="THEN"
-          routingOptions={routingOptions}
+          destinations={destinations}
           onChange={value => onThenChange({ id: rule.id, goto: value })}
           value={rule.goto}
           data-test="select-then"
@@ -104,7 +103,7 @@ RoutingRule.propTypes = {
   onAddRoutingCondition: PropTypes.func.isRequired,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
-  routingOptions: PropTypes.object.isRequired,
+  destinations: PropTypes.object.isRequired,
   canRoute: PropTypes.bool.isRequired,
   className: PropTypes.string
 };

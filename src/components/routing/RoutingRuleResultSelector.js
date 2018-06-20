@@ -46,7 +46,7 @@ const toOption = defaultTitle => entity => ({
 });
 
 class RoutingRuleResultSelector extends React.Component {
-  getRoutingOptions({ questionPages, sections }) {
+  groupDestinations({ questionPages, sections }) {
     const pagesGroup = {
       label: "Questions in this section",
       id: "questions",
@@ -75,7 +75,7 @@ class RoutingRuleResultSelector extends React.Component {
     );
   }
 
-  convertValue(value) {
+  convertValueToDestination(value) {
     if (!value) {
       return null;
     }
@@ -91,10 +91,10 @@ class RoutingRuleResultSelector extends React.Component {
   };
 
   render() {
-    const { routingOptions, label, id, value, disabled } = this.props;
+    const { destinations, label, id, value, disabled } = this.props;
 
-    const convertedValue = this.convertValue(value);
-    const groups = this.getRoutingOptions(routingOptions);
+    const convertedValue = this.convertValueToDestination(value);
+    const groups = this.groupDestinations(destinations);
     groups.forEach(group =>
       group.options.forEach(option => {
         option.value = JSON.stringify(option.value);
@@ -127,7 +127,7 @@ class RoutingRuleResultSelector extends React.Component {
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  routingOptions: PropTypes.object.isRequired,
+  destinations: PropTypes.object.isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.object,

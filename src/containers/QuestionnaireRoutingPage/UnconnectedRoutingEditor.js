@@ -64,7 +64,8 @@ class UnconnectedRoutingEditor extends React.Component {
       logicalDestinations: PropTypes.arrayOf(PropTypes.any),
       questionPages: PropTypes.arrayOf(CustomPropTypes.page),
       sections: PropTypes.arrayOf(CustomPropTypes.section)
-    })
+    }),
+    match: CustomPropTypes.match
   };
 
   handleElseChange = value => {
@@ -130,7 +131,7 @@ class UnconnectedRoutingEditor extends React.Component {
                 <div>
                   <RoutingRuleset
                     routingRuleSet={routingRuleSet}
-                    routingOptions={availableRoutingDestinations}
+                    destinations={availableRoutingDestinations}
                     onAddRule={onAddRoutingRule}
                     onElseChange={this.handleElseChange}
                     canRoute={canRoute}
@@ -142,7 +143,7 @@ class UnconnectedRoutingEditor extends React.Component {
                             rule={rule}
                             title={index > 0 ? rule.operation : null}
                             key={rule.id}
-                            routingOptions={availableRoutingDestinations}
+                            destinations={availableRoutingDestinations}
                             onAddRoutingCondition={this.handleAddCondition}
                             onDeleteRule={this.handleDeleteRule}
                             onThenChange={this.handleThenChange}

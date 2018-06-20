@@ -26,7 +26,7 @@ const RoutingRuleset = ({
   children,
   onAddRule,
   onElseChange,
-  routingOptions,
+  destinations,
   routingRuleSet,
   canRoute
 }) => (
@@ -48,7 +48,7 @@ const RoutingRuleset = ({
         id="else"
         label="ELSE"
         value={routingRuleSet.else}
-        routingOptions={routingOptions}
+        destinations={destinations}
         onChange={value => onElseChange({ id: routingRuleSet.id, else: value })}
         data-test="select-else"
         disabled={!canRoute}
@@ -61,7 +61,7 @@ RoutingRuleset.propTypes = {
   children: PropTypes.node.isRequired,
   onAddRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired,
-  routingOptions: PropTypes.object.isRequired,
+  destinations: PropTypes.object.isRequired,
   routingRuleSet: PropTypes.object.isRequired,
   canRoute: PropTypes.bool.isRequired
 };
