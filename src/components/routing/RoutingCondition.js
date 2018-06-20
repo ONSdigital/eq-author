@@ -13,7 +13,17 @@ import { NavLink } from "react-router-dom";
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
-import { get, isNil, isEmpty, lowerCase, uniqueId } from "lodash";
+import {
+  get,
+  isNil,
+  isEmpty,
+  lowerCase,
+  uniqueId,
+  first,
+  flow,
+  negate,
+  overSome
+} from "lodash";
 import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
 import GroupedSelect from "./GroupedSelect";
 import Transition from "components/routing/Transition";
@@ -63,6 +73,11 @@ const RemoveButton = styled(DeleteButton)`
   right: 2px;
 `;
 
+const isValidAnswer = ({ type }) => type === RADIO || type === CHECKBOX;
+
+const firstAnswerIsValid = flow(first, isValidAnswer);
+const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
+
 const convertToGroups = sections =>
   sections.map(section => ({
     label: section.plaintextTitle || "Section Title",
@@ -70,12 +85,9 @@ const convertToGroups = sections =>
     options: section.pages.map(page => ({
       label: page.plaintextTitle || "Page Title",
       value: page.id,
-      disabled: isEmpty(page.answers)
+      disabled: shouldDisable(page.answers)
     }))
   }));
-
-const isValidAnswer = answer =>
-  answer.type === RADIO || answer.type === CHECKBOX;
 
 const renderNoAnswer = params => (
   <Transition key="no-answer-alert" exit={false}>
@@ -133,10 +145,12 @@ const RoutingCondition = ({
   match
 }) => {
   let editor;
+  let value = get(condition, "questionPage.id");
 
   if (isNil(condition.questionPage)) {
     editor = renderDeletedQuestion();
   } else if (isNil(condition.answer)) {
+    value = null;
     editor = renderNoAnswer(match.params);
   } else if (!isValidAnswer(condition.answer)) {
     editor = renderUnsupportedAnswer(condition.answer);
@@ -155,7 +169,7 @@ const RoutingCondition = ({
         </Column>
         <Column gutters={false} cols={10}>
           <PageSelect
-            value={get(condition, "questionPage.id")}
+            value={value}
             onChange={({ value }) =>
               onPageChange({ id: condition.id, questionPageId: value })}
             groups={convertToGroups(sections)}
