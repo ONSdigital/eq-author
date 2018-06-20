@@ -52,7 +52,6 @@ class RoutingEditor extends React.Component {
     currentPage: CustomPropTypes.page.isRequired,
     onAddRoutingRuleSet: PropTypes.func.isRequired,
     onAddRoutingCondition: PropTypes.func.isRequired,
-    onAddRoutingRule: PropTypes.func.isRequired,
     onDeleteRoutingRule: PropTypes.func.isRequired,
     onUpdateRoutingRule: PropTypes.func.isRequired,
     onUpdateRoutingRuleSet: PropTypes.func.isRequired,
@@ -97,7 +96,6 @@ class RoutingEditor extends React.Component {
       currentPage,
       availableRoutingDestinations,
       onAddRoutingRuleSet,
-      onAddRoutingRule,
       match,
       ...otherProps
     } = this.props;
@@ -143,7 +141,7 @@ class RoutingEditor extends React.Component {
                 <div>
                   <RoutingRuleSetEmpty
                     title="No routing rules exist for this question"
-                    onAddRule={onAddRoutingRuleSet}
+                    onAddRuleSet={onAddRoutingRuleSet}
                   />
                 </div>
               </Transition>
