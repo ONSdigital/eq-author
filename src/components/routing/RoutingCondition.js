@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
-import { get, isNil, lowerCase, uniqueId } from "lodash";
+import { get, isNil, isEmpty, lowerCase, uniqueId } from "lodash";
 import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
 import GroupedSelect from "./GroupedSelect";
 import Transition from "components/routing/Transition";
@@ -70,7 +70,7 @@ const convertToGroups = sections =>
     options: section.pages.map(page => ({
       label: page.plaintextTitle || "Page Title",
       value: page.id,
-      disabled: page.disabled
+      disabled: isEmpty(page.answers)
     }))
   }));
 

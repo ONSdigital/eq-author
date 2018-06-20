@@ -12,6 +12,9 @@ query GetRouting($questionnaireId: ID!, $pageId: ID!) {
         id
         ... on QuestionPage {
           plaintextTitle: title(format: Plaintext)
+          answers {
+            id
+          }
         }
       }
     }
