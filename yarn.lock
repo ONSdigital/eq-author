@@ -3270,6 +3270,10 @@ draft-js@^0.10.5:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
+draftjs-filters@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/draftjs-filters/-/draftjs-filters-1.0.0.tgz#4dd8e2943f15edbdc28de961bf3445db0ea6631c"
+
 draftjs-to-html@^0.7.6:
   version "0.7.6"
   resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.7.6.tgz#95bc55aeeca6c6a7abc242c5616946704c6685c9"
