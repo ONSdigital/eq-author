@@ -88,8 +88,8 @@ const convertToGroups = sections =>
   }));
 
 const renderNoAnswer = params => (
-  <Transition key="no-answer-alert" exit={false}>
-    <Alert>
+  <Transition exit={false}>
+    <Alert key="no-answer-msg">
       <AlertTitle>No answers have been added to this question yet.</AlertTitle>
       <AlertText>
         First, <NavLink to={buildPagePath(params)}>add an answer</NavLink> to
@@ -101,7 +101,7 @@ const renderNoAnswer = params => (
 
 const renderUnsupportedAnswer = answer => (
   <Transition key="answer" exit={false}>
-    <Alert>
+    <Alert data-test="invalid-answer-type-msg">
       <AlertTitle>Routing is not available for this type of answer</AlertTitle>
       <AlertText>
         You cannot route on &apos;{lowerCase(answer.type)}&apos; answers
@@ -112,7 +112,7 @@ const renderUnsupportedAnswer = answer => (
 
 const renderDeletedQuestion = () => (
   <Transition key="answer" exit={false}>
-    <Alert>
+    <Alert data-test="deleted-answer-msg">
       <AlertTitle>
         The question this condition referred to has been deleted
       </AlertTitle>

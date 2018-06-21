@@ -26,8 +26,8 @@ export const AlertIcon = styled(InfoIcon)`
   margin-right: 1em;
 `;
 
-export const Alert = ({ children }) => (
-  <AlertContainer>
+export const Alert = ({ children, ...otherProps }) => (
+  <AlertContainer {...otherProps}>
     <AlertIcon />
     <div>{children}</div>
   </AlertContainer>
