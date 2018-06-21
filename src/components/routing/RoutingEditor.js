@@ -64,7 +64,7 @@ class RoutingEditor extends React.Component {
 
   handleAddCondition = rule => {
     const answer = first(this.props.currentPage.answers);
-    this.props.onAddRoutingCondition(rule.id, answer.id);
+    this.props.onAddRoutingCondition(rule.id, answer && answer.id);
   };
 
   handleDeleteRule = rule => {
