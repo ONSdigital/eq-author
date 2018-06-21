@@ -22,15 +22,15 @@ export const createUpdater = routingRuleId => (proxy, result) => {
 };
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
-  onAddRoutingCondition(routingRuleId, answerId) {
+  onAddRoutingCondition(routingRule, answerId) {
     const input = {
       comparator: "Equal",
       questionPageId: ownProps.match.params.pageId,
       answerId,
-      routingRuleId
+      routingRuleId: routingRule.id
     };
 
-    const update = createUpdater(routingRuleId);
+    const update = createUpdater(routingRule.id);
 
     return mutate({
       variables: { input },
