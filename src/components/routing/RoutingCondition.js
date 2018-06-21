@@ -166,6 +166,7 @@ const RoutingCondition = ({
     value = null;
     editor = renderNoAnswer(match.params);
   } else if (!isAnswerValidForRouting(condition.answer)) {
+    value = null;
     editor = renderUnsupportedAnswer(condition.answer);
   } else if (!canAddAndCondition) {
     editor = renderCannotAddAndCondition();

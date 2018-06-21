@@ -7,6 +7,10 @@ export const focusStyle = css`
   box-shadow: 0 0 0 3px ${colors.tertiary};
 `;
 
+const invalidStyle = css`
+  border-color: ${colors.red};
+`;
+
 export const sharedStyles = css`
   font-size: 1em;
   border: 1px solid ${colors.borders};
@@ -40,4 +44,6 @@ export const sharedStyles = css`
     opacity: 0.8;
     pointer-events: none;
   }
+
+  ${props => props.invalid && invalidStyle};
 `;

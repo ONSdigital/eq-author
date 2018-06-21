@@ -21,7 +21,7 @@ const GroupedSelect = ({ groups, onChange, value, ...otherProps }) => {
   if (isNil(value)) {
     optGroups.unshift(
       <option disabled value="" key="please-select">
-        Please select
+        Please select&hellip;
       </option>
     );
   }
@@ -30,6 +30,7 @@ const GroupedSelect = ({ groups, onChange, value, ...otherProps }) => {
     <Select
       onChange={onChange}
       value={isNil(value) ? "" : value}
+      invalid={isNil(value)}
       {...otherProps}
     >
       {optGroups}

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import InfoIcon from "./icon-info.svg?inline";
+import Icon from "./icon-alert.svg?inline";
 import { PropTypes } from "prop-types";
 
 export const AlertContainer = styled.div`
@@ -20,7 +20,7 @@ export const AlertText = styled.div`
   font-size: 0.9em;
 `;
 
-export const AlertIcon = styled(InfoIcon)`
+export const AlertIcon = styled(Icon)`
   display: inline-block;
   flex: 0 0 auto;
   margin-right: 1em;
