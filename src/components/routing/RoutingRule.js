@@ -57,8 +57,6 @@ const RoutingRule = ({
   title,
   destinations,
   pagesAvailableForRouting,
-  canRoute,
-  setCanRoute,
   className,
   ...otherProps
 }) => {
@@ -115,18 +113,16 @@ const RoutingRule = ({
               );
             })}
           </TransitionGroup>
-          {canRoute && (
-            <Grid align="center">
-              <CenteringColumn gutters={false} cols={1}>
-                <TextButton
-                  onClick={() => onAddRoutingCondition(rule)}
-                  data-test="btn-add"
-                >
-                  AND
-                </TextButton>
-              </CenteringColumn>
-            </Grid>
-          )}
+          <Grid align="center">
+            <CenteringColumn gutters={false} cols={1}>
+              <TextButton
+                onClick={() => onAddRoutingCondition(rule)}
+                data-test="btn-add"
+              >
+                AND
+              </TextButton>
+            </CenteringColumn>
+          </Grid>
         </div>
         <RoutingRuleResultSelector
           id="then"
@@ -135,7 +131,6 @@ const RoutingRule = ({
           onChange={value => onThenChange({ id: id, goto: value })}
           value={goto}
           data-test="select-then"
-          disabled={!canRoute}
         />
       </Box>
     </div>
@@ -154,12 +149,7 @@ RoutingRule.propTypes = {
   title: PropTypes.string,
   destinations: PropTypes.object.isRequired,
   pagesAvailableForRouting: PropTypes.array.isRequired,
-  canRoute: PropTypes.bool.isRequired,
   className: PropTypes.string
-};
-
-RoutingRule.defaultProps = {
-  canRoute: true
 };
 
 export default RoutingRule;

@@ -74,8 +74,4 @@ RoutingRuleSet.propTypes = {
   onElseChange: PropTypes.func.isRequired
 };
 
-RoutingRuleSet.defaultProps = {
-  canRoute: true
-};
-
 export default RoutingRuleSet;
