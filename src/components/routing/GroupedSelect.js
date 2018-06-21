@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { isNil } from "lodash";
 import Select from "components/Forms/Select";
 
-const GroupedSelect = ({ groups, onChange, value, ...otherProps }) => {
+const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
   let optGroups = groups.map(group => (
     <optgroup label={group.label} key={group.id}>
       {group.options.map(option => (
@@ -30,7 +30,7 @@ const GroupedSelect = ({ groups, onChange, value, ...otherProps }) => {
     <Select
       onChange={onChange}
       value={isNil(value) ? "" : value}
-      invalid={isNil(value)}
+      invalid={!valid}
       {...otherProps}
     >
       {optGroups}
@@ -51,7 +51,12 @@ const GroupProp = PropTypes.shape({
 GroupedSelect.propTypes = {
   groups: PropTypes.arrayOf(GroupProp).isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string
+  value: PropTypes.string,
+  valid: PropTypes.bool
+};
+
+GroupedSelect.defaultProps = {
+  valid: true
 };
 
 export default GroupedSelect;

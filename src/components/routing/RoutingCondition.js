@@ -159,16 +159,20 @@ const RoutingCondition = ({
 }) => {
   let editor;
   let value = get(condition, "questionPage.id");
+  let pageSelectIsValid;
 
   if (isNil(condition.questionPage)) {
     editor = renderDeletedQuestion();
   } else if (isNil(condition.answer)) {
     value = null;
+    pageSelectIsValid = false;
     editor = renderNoAnswer(match.params);
   } else if (!isAnswerValidForRouting(condition.answer)) {
     value = null;
+    pageSelectIsValid = false;
     editor = renderUnsupportedAnswer(condition.answer);
   } else if (!canAddAndCondition) {
+    pageSelectIsValid = false;
     editor = renderCannotAddAndCondition();
   } else {
     editor = renderEditor(condition, onToggleOption);
@@ -186,6 +190,7 @@ const RoutingCondition = ({
         <Column gutters={false} cols={10}>
           <PageSelect
             value={value}
+            valid={pageSelectIsValid}
             onChange={({ value }) =>
               onPageChange({ id: condition.id, questionPageId: value })}
             groups={convertToGroups(sections)}

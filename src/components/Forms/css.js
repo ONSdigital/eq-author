@@ -9,6 +9,14 @@ export const focusStyle = css`
 
 const invalidStyle = css`
   border-color: ${colors.red};
+  &:focus {
+    border-color: ${colors.red};
+    outline-color: ${colors.red};
+  }
+  &:hover {
+    border-color: ${colors.red};
+    outline-color: ${colors.red};
+  }
 `;
 
 export const sharedStyles = css`
