@@ -35,7 +35,7 @@ const AddRuleButton = styled(Button)`
 `;
 
 const RoutingRuleSetEmptyMsg = ({ title, onAddRuleSet }) => (
-  <Container>
+  <Container data-test="routing-rule-set-empty">
     <Title>{title}</Title>
     <Paragraph>
       Users completing this question will be taken to the next page.
