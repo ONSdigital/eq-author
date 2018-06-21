@@ -29,7 +29,7 @@ const RoutingRuleSet = ({
   destinations,
   onAddRoutingRule,
   onElseChange,
-  canRoute,
+
   ...otherProps
 }) => (
   <React.Fragment>
@@ -41,7 +41,6 @@ const RoutingRuleSet = ({
             title={index > 0 ? rule.operation : null}
             key={rule.id}
             destinations={destinations}
-            canRoute={canRoute}
             {...otherProps}
           />
         </Transition>
@@ -63,7 +62,6 @@ const RoutingRuleSet = ({
         destinations={destinations}
         onChange={value => onElseChange({ id: ruleSet.id, else: value })}
         data-test="select-else"
-        disabled={!canRoute}
       />
     </Box>
   </React.Fragment>
@@ -73,8 +71,7 @@ RoutingRuleSet.propTypes = {
   ruleSet: PropTypes.object.isRequired,
   destinations: PropTypes.object.isRequired,
   onAddRoutingRule: PropTypes.func.isRequired,
-  onElseChange: PropTypes.func.isRequired,
-  canRoute: PropTypes.bool.isRequired
+  onElseChange: PropTypes.func.isRequired
 };
 
 RoutingRuleSet.defaultProps = {

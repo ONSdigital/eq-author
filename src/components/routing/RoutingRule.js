@@ -13,6 +13,7 @@ import TextButton from "components/TextButton";
 import RoutingCondition from "components/routing/RoutingCondition";
 
 import { Grid, Column } from "components/Grid";
+import { RADIO } from "constants/answer-types";
 
 const Box = styled.div`
   border: 1px solid ${colors.bordersLight};
@@ -57,9 +58,15 @@ const RoutingRule = ({
   destinations,
   pagesAvailableForRouting,
   canRoute,
+  setCanRoute,
   className,
   ...otherProps
 }) => {
+  const { conditions, id, goto } = rule;
+
+  const existingRadioConditions = {};
+  let canAddAndCondition = true;
+
   return (
     <div className={className} data-test="routing-rule">
       <Box>
@@ -76,26 +83,37 @@ const RoutingRule = ({
         </Buttons>
         <div>
           <TransitionGroup>
-            {rule.conditions.map((condition, index) => (
-              <Transition key={condition.id}>
-                <div>
-                  <RoutingCondition
-                    condition={condition}
-                    label={index > 0 ? "AND" : "IF"}
-                    ruleId={rule.id}
-                    sections={pagesAvailableForRouting}
-                    onRemove={
-                      rule.conditions.length > 1
-                        ? onDeleteRoutingCondition
-                        : null
-                    }
-                    onPageChange={onUpdateRoutingCondition}
-                    onToggleOption={onToggleConditionOption}
-                    {...otherProps}
-                  />
-                </div>
-              </Transition>
-            ))}
+            {conditions.map((condition, index) => {
+              const { answer } = condition;
+
+              if (answer && answer.type === RADIO) {
+                if (existingRadioConditions[answer.id]) {
+                  canAddAndCondition = false;
+                } else {
+                  existingRadioConditions[answer.id] = condition.id;
+                }
+              }
+
+              return (
+                <Transition key={condition.id}>
+                  <div>
+                    <RoutingCondition
+                      condition={condition}
+                      label={index > 0 ? "AND" : "IF"}
+                      ruleId={id}
+                      sections={pagesAvailableForRouting}
+                      onRemove={
+                        conditions.length > 1 ? onDeleteRoutingCondition : null
+                      }
+                      onPageChange={onUpdateRoutingCondition}
+                      onToggleOption={onToggleConditionOption}
+                      canAddAndCondition={canAddAndCondition}
+                      {...otherProps}
+                    />
+                  </div>
+                </Transition>
+              );
+            })}
           </TransitionGroup>
           {canRoute && (
             <Grid align="center">
@@ -114,8 +132,8 @@ const RoutingRule = ({
           id="then"
           label="THEN"
           destinations={destinations}
-          onChange={value => onThenChange({ id: rule.id, goto: value })}
-          value={rule.goto}
+          onChange={value => onThenChange({ id: id, goto: value })}
+          value={goto}
           data-test="select-then"
           disabled={!canRoute}
         />

@@ -107,7 +107,7 @@ class RoutingEditor extends React.Component {
     }
 
     const { routingRuleSet } = currentPage;
-    const canRoute = determineCanRoute(currentPage.routingRuleSet);
+
     const pagesAvailableForRouting = getPagesAvailableForRouting(
       questionnaire.sections,
       match.params.sectionId,
@@ -123,6 +123,7 @@ class RoutingEditor extends React.Component {
               <Transition key="routing-rule-set" exit={false}>
                 <div>
                   <RoutingRuleSet
+                    {...otherProps}
                     ruleSet={routingRuleSet}
                     destinations={availableRoutingDestinations}
                     pagesAvailableForRouting={pagesAvailableForRouting}
@@ -130,9 +131,7 @@ class RoutingEditor extends React.Component {
                     onAddRoutingCondition={this.handleAddCondition}
                     onDeleteRule={this.handleDeleteRule}
                     onThenChange={this.handleThenChange}
-                    canRoute={canRoute}
                     match={match}
-                    {...otherProps}
                   />
                 </div>
               </Transition>

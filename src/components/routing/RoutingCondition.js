@@ -104,7 +104,7 @@ const renderUnsupportedAnswer = answer => (
     <Alert data-test="invalid-answer-type-msg">
       <AlertTitle>Routing is not available for this type of answer</AlertTitle>
       <AlertText>
-        You cannot route on &apos;{lowerCase(answer.type)}&apos; answers
+        You cannot route on &lsquo;{lowerCase(answer.type)}&rsquo; answers.
       </AlertText>
     </Alert>
   </Transition>
@@ -117,7 +117,21 @@ const renderDeletedQuestion = () => (
         The question this condition referred to has been deleted
       </AlertTitle>
       <AlertText>
-        Please select a new question from the dropdown above
+        Please select a new question from the dropdown above.
+      </AlertText>
+    </Alert>
+  </Transition>
+);
+
+const renderCannotAddAndCondition = () => (
+  <Transition key="answer" exit={false}>
+    <Alert>
+      <AlertTitle>
+        AND condition not valid with &lsquo;radio button&rsquo; answer
+      </AlertTitle>
+      <AlertText>
+        Please select a different answer, or use a &lsquo;checkbox&rsquo;
+        instead.
       </AlertText>
     </Alert>
   </Transition>
@@ -140,6 +154,7 @@ const RoutingCondition = ({
   onPageChange,
   onRemove,
   onToggleOption,
+  canAddAndCondition,
   match
 }) => {
   let editor;
@@ -152,6 +167,8 @@ const RoutingCondition = ({
     editor = renderNoAnswer(match.params);
   } else if (!isAnswerValidForRouting(condition.answer)) {
     editor = renderUnsupportedAnswer(condition.answer);
+  } else if (!canAddAndCondition) {
+    editor = renderCannotAddAndCondition();
   } else {
     editor = renderEditor(condition, onToggleOption);
   }
@@ -207,7 +224,8 @@ RoutingCondition.propTypes = {
   onToggleOption: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
   label: PropTypes.oneOf(["IF", "AND"]).isRequired,
-  match: CustomPropTypes.match
+  match: CustomPropTypes.match,
+  canAddAndCondition: PropTypes.bool.isRequired
 };
 
 RoutingCondition.defaultProps = {
