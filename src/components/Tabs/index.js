@@ -58,7 +58,7 @@ export const UnwrappedTabs = ({ match, children }) => {
     : buildSectionPath(match.params);
 
   return (
-    <div>
+    <div data-test="tabs">
       <TabsContainer>
         <Tab to={url}>Builder</Tab>
         {pageId ? (

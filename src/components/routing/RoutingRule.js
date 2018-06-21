@@ -61,7 +61,7 @@ const RoutingRule = ({
   ...otherProps
 }) => {
   return (
-    <div className={className}>
+    <div className={className} data-test="routing-rule">
       <Box>
         {title && <Title>{title}</Title>}
         <Buttons>

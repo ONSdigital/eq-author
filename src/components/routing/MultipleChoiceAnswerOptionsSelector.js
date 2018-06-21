@@ -26,7 +26,7 @@ const MultipleChoiceAnswerOptionsSelector = ({
   const selectedOptions = get(condition, "routingValue.value", []);
 
   return (
-    <MultipleChoiceAnswerOptions>
+    <MultipleChoiceAnswerOptions data-test="options-selector">
       {options.map(option => (
         <ToggleChip
           key={option.id}

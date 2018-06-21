@@ -160,7 +160,7 @@ const RoutingCondition = ({
   const handleRemove = onRemove ? () => onRemove(ruleId, condition.id) : null;
 
   return (
-    <div>
+    <div data-test="routing-condition">
       <Grid align="center">
         <Column gutters={false} cols={1}>
           <Label htmlFor={id}>{label}</Label>
