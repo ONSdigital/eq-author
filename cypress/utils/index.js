@@ -1,4 +1,5 @@
 import { matchPath } from "../../src/utils/UrlUtils";
+import { zipWith } from "lodash";
 
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
@@ -33,6 +34,48 @@ export const addQuestionPage = () =>
       .contains("Question Page")
       .click();
   });
+
+export const buildMultipleChoiceAnswer = labelArray => {
+  addAnswerType("Checkbox");
+  labelArray.map(label => {
+    cy
+      .get("[data-test='option-label']")
+      .last()
+      .type(label);
+    cy.get("[data-test='btn-add-option']").click();
+  });
+  cy
+    .get("[data-test='btn-delete-option']")
+    .last()
+    .click();
+};
+
+export const buildMultipleRouting = (questionTitles, labels, operator) => {
+  zipWith(questionTitles, labels, (questionTitle, label) => {
+    operator == "And"
+      ? cy
+          .get("[data-test='btn-add']")
+          .last()
+          .click()
+      : cy.get("[data-test='btn-add-rule']").click();
+
+    cy
+      .get("[data-test='routing-rule']")
+      .last()
+      .within(() => {
+        findByLabel("IF")
+          .last()
+          .select(questionTitle);
+
+        cy
+          .get("[data-test='options-selector']")
+          .last()
+          .within(() => {
+            cy.contains(label).click();
+          });
+      });
+  });
+};
 
 export function addAnswerType(answerType) {
   cy.get("[data-test='btn-add-answer']").click();
