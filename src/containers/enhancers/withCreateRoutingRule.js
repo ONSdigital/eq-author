@@ -23,7 +23,7 @@ export const createUpdater = routingRuleSetId => (proxy, result) => {
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddRoutingRule(routingRuleSetId) {
     const input = {
-      operation: "Or",
+      operation: "And",
       routingRuleSetId
     };
 

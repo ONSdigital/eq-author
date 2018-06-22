@@ -1,7 +1,7 @@
 import { mapMutateToProps, createUpdater } from "./withCreateRoutingCondition";
 import fragment from "graphql/fragments/routing-rule.graphql";
 
-describe("containers/enhancers/withCreateRoutingRule", () => {
+describe("containers/enhancers/withCreateRoutingCondition", () => {
   const routingRule = {
     id: "1",
     conditions: []
@@ -11,13 +11,10 @@ describe("containers/enhancers/withCreateRoutingRule", () => {
 
   beforeEach(() => {
     ownProps = {
-      page: {
-        id: "1",
-        answers: [
-          {
-            id: "1"
-          }
-        ]
+      match: {
+        params: {
+          pageId: "1"
+        }
       }
     };
 
@@ -79,23 +76,19 @@ describe("containers/enhancers/withCreateRoutingRule", () => {
       expect(props.onAddRoutingCondition).toBeInstanceOf(Function);
     });
 
-    it("should throw error if no answer on page", () => {
-      ownProps.currentPage.answers.splice(0, 1);
-      expect(() =>
-        props.onAddRoutingCondition(routingRule.id)
-      ).toThrowErrorMatchingSnapshot();
-    });
-
     it("should call mutate", () => {
-      return props.onAddRoutingCondition(routingRule.id).then(() => {
+      expect.hasAssertions();
+      const answerId = "1";
+
+      return props.onAddRoutingCondition(routingRule.id, answerId).then(() => {
         expect(mutate).toHaveBeenCalledWith(
           expect.objectContaining({
             variables: {
               input: {
                 comparator: "Equal",
-                questionPageId: ownProps.currentPage.id,
+                questionPageId: ownProps.match.params.pageId,
                 routingRuleId: routingRule.id,
-                answerId: ownProps.currentPage.answers[0].id
+                answerId
               }
             }
           })

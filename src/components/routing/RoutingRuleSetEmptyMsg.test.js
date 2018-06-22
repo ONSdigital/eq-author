@@ -8,7 +8,7 @@ let wrapper, props;
 describe("components/RoutingRuleSetEmptyMsg", () => {
   beforeEach(() => {
     props = {
-      onAddRule: jest.fn(),
+      onAddRuleSet: jest.fn(),
       title: "Test"
     };
 
@@ -21,6 +21,6 @@ describe("components/RoutingRuleSetEmptyMsg", () => {
 
   it("should allow adding a rule", () => {
     wrapper.find("[data-test='btn-add-rule']").simulate("click");
-    expect(props.onAddRule).toHaveBeenCalled();
+    expect(props.onAddRuleSet).toHaveBeenCalled();
   });
 });

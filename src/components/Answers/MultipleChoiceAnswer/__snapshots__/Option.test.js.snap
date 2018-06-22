@@ -165,8 +165,8 @@ exports[`Option should render a checkbox 1`] = `
   border: none;
   background: transparent;
   cursor: pointer;
-  -webkit-transition: color 0.2s ease-in;
-  transition: color 0.2s ease-in;
+  -webkit-transition: color 200ms ease-in,opacity 300ms ease-in;
+  transition: color 200ms ease-in,opacity 300ms ease-in;
   width: 1em;
   height: 1em;
   padding: 0;
@@ -179,6 +179,11 @@ exports[`Option should render a checkbox 1`] = `
 
 .c10:focus {
   outline: 3px solid #FDBD56;
+}
+
+.c10[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .c11 {

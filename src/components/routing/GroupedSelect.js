@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { isNil } from "lodash";
 import Select from "components/Forms/Select";
+import { constants } from "zlib";
 
 const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
-  let optGroups = groups.map(group => (
+  const optGroups = groups.map(group => (
     <optgroup label={group.label} key={group.id}>
       {group.options.map(option => (
         <option
@@ -18,14 +19,6 @@ const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
     </optgroup>
   ));
 
-  if (isNil(value)) {
-    optGroups.unshift(
-      <option disabled value="" key="please-select">
-        Please select&hellip;
-      </option>
-    );
-  }
-
   return (
     <Select
       onChange={onChange}
@@ -33,6 +26,11 @@ const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
       invalid={!valid}
       {...otherProps}
     >
+      {isNil(value) && (
+        <option disabled value="" key="please-select">
+          Please select
+        </option>
+      )}
       {optGroups}
     </Select>
   );
@@ -45,6 +43,7 @@ const OptionProp = PropTypes.shape({
 
 const GroupProp = PropTypes.shape({
   label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(OptionProp).isRequired
 });
 

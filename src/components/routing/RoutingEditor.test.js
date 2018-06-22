@@ -1,7 +1,6 @@
 import RoutingEditor from "./RoutingEditor";
 import React from "react";
 import { shallow } from "enzyme";
-import { merge } from "lodash";
 
 const createWrapper = (props, render = shallow) => {
   return render(<RoutingEditor {...props} />);
@@ -10,73 +9,24 @@ const createWrapper = (props, render = shallow) => {
 describe("RoutingEditor", () => {
   let wrapper, props;
 
-  const questionnaire = {
-    id: "1"
-  };
-
-  const section = {
-    id: "1"
-  };
-
-  const page = {
-    id: "1"
-  };
-
   const answer = {
     id: "1",
     type: "Number"
   };
 
-  const multipleChoiceAnswer = {
-    ...answer,
-    type: "Checkbox",
-    options: [
-      {
-        id: "1",
-        label: "Option 1"
-      },
-      {
-        id: "2",
-        label: "Option 2"
-      }
-    ]
-  };
-
-  const availableRoutingDestinations = [
-    {
-      id: "2",
-      __typename: "QuestionPage",
-      section: {
-        id: "1"
-      }
-    },
-    {
-      id: "3",
-      __typename: "QuestionPage",
-      section: {
-        id: "1"
-      }
-    },
-    {
-      id: "2",
-      __typename: "Section"
-    },
-    {
-      id: "3",
-      __typename: "Section"
-    }
-  ];
-
-  const routingValue = {
-    value: []
-  };
-
-  const routingCondition = {
+  const page = {
     id: "1",
-    comparator: "Equal",
-    questionPage: page,
-    answer: null,
-    routingValue
+    answers: [answer]
+  };
+
+  const section = {
+    id: "1",
+    pages: [page]
+  };
+
+  const questionnaire = {
+    id: "1",
+    sections: [section]
   };
 
   const routingRule = {
@@ -93,6 +43,35 @@ describe("RoutingEditor", () => {
     else: null
   };
 
+  const availableRoutingDestinations = {
+    questionPages: [
+      {
+        id: "2",
+        __typename: "QuestionPage",
+        section: {
+          id: "1"
+        }
+      },
+      {
+        id: "3",
+        __typename: "QuestionPage",
+        section: {
+          id: "1"
+        }
+      }
+    ],
+    sections: [
+      {
+        id: "2",
+        __typename: "Section"
+      },
+      {
+        id: "3",
+        __typename: "Section"
+      }
+    ]
+  };
+
   const pageWithRoutingRuleSet = {
     ...page,
     routingRuleSet
@@ -101,30 +80,15 @@ describe("RoutingEditor", () => {
   const pageWithRoutingRules = {
     ...pageWithRoutingRuleSet,
     routingRuleSet: {
+      id: "2",
       routingRules: [routingRule]
-    }
-  };
-
-  const pageWithRoutingConditions = {
-    ...pageWithRoutingRules,
-    routingRuleSet: {
-      routingRules: [
-        {
-          ...routingRule,
-          conditions: [routingCondition]
-        }
-      ]
     }
   };
 
   beforeEach(() => {
     props = {
       questionnaire,
-      section,
-      page,
-      questionnaireId: questionnaire.id,
-      sectionId: section.id,
-      pageId: page.id,
+      currentPage: page,
       onAddRoutingRuleSet: jest.fn(),
       onUpdateRoutingRuleSet: jest.fn(),
       onAddRoutingRule: jest.fn(),
@@ -133,29 +97,39 @@ describe("RoutingEditor", () => {
       onAddRoutingCondition: jest.fn(),
       onUpdateRoutingCondition: jest.fn(),
       onDeleteRoutingCondition: jest.fn(),
-      onToggleConditionOption: jest.fn()
+      onToggleConditionOption: jest.fn(),
+      onDeleteRoutingRuleSet: jest.fn(),
+      availableRoutingDestinations,
+      match: {
+        params: {
+          questionnaireId: questionnaire.id,
+          sectionId: section.id,
+          pageId: page.id
+        }
+      }
     };
 
     wrapper = createWrapper(props);
   });
 
-  it("should render loading state", () => {
-    const withLoading = merge(props, { loading: true });
+  describe("when not routing rule set", () => {
+    it("should render when no routing rule set", () => {
+      expect(wrapper).toMatchSnapshot();
+    });
 
-    const wrapper = createWrapper(withLoading);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it("should render when no routing rule set", () => {
-    expect(wrapper).toMatchSnapshot();
+    it("should allow a rule set to be added", () => {
+      wrapper.find("RoutingRuleSetEmptyMsg").simulate("addRuleSet");
+      expect(props.onAddRoutingRuleSet).toHaveBeenCalled();
+    });
   });
 
   describe("routing rule set", () => {
     beforeEach(() => {
-      const withRoutingRuleSet = merge(props, {
-        page: pageWithRoutingRuleSet,
+      const withRoutingRuleSet = {
+        ...props,
+        currentPage: pageWithRoutingRuleSet,
         availableRoutingDestinations
-      });
+      };
 
       wrapper = createWrapper(withRoutingRuleSet);
     });
@@ -164,31 +138,33 @@ describe("RoutingEditor", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should handle adding routing rule", () => {
-      wrapper.find("RoutingRuleSet").simulate("addRule");
-      expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
-    });
+    // it.only("should handle adding routing rule", () => {
+    //   wrapper.find("RoutingRuleSet").simulate("addRule");
+    //   expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
+    // });
 
     it("should handle changing else destination", () => {
-      wrapper.find("RoutingRuleSet").simulate("elseChange", {
-        value: "QuestionPage_3"
-      });
-
-      expect(props.onUpdateRoutingRuleSet).toHaveBeenCalledWith({
-        id: routingRuleSet.id,
+      const destination = {
+        id: "26",
         else: {
-          sectionId: "1",
-          pageId: "3"
+          absoluteDestination: {
+            destinationType: "QuestionPage",
+            destinationId: "19"
+          }
         }
-      });
+      };
+
+      wrapper.find("RoutingRuleSet").simulate("elseChange", destination);
+      expect(props.onUpdateRoutingRuleSet).toHaveBeenCalledWith(destination);
     });
   });
 
   describe("routing rules", () => {
     beforeEach(() => {
-      const withRoutingRules = merge(props, {
-        page: pageWithRoutingRules
-      });
+      const withRoutingRules = {
+        ...props,
+        currentPage: pageWithRoutingRules
+      };
 
       wrapper = createWrapper(withRoutingRules);
     });
@@ -197,135 +173,63 @@ describe("RoutingEditor", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should handle adding a routing rule", () => {
-      wrapper.find("RoutingRule").simulate("addRule");
-      expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
-    });
+    // it("should handle adding a routing rule", () => {
+    //   wrapper.find("RoutingRuleSet").simulate("addRule");
+    //   expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
+    // });
 
     it("should handle deleting a routing rule", () => {
-      wrapper.find("RoutingRule").simulate("deleteRule");
+      const currentPage = {
+        ...pageWithRoutingRuleSet,
+        routingRuleSet: {
+          ...pageWithRoutingRuleSet.routingRuleSet,
+          routingRules: [routingRule, routingRule]
+        }
+      };
+      wrapper = createWrapper({
+        ...props,
+        currentPage
+      });
+
+      wrapper.find("RoutingRuleSet").simulate("deleteRule", routingRule);
       expect(props.onDeleteRoutingRule).toHaveBeenCalledWith(
-        routingRuleSet.id,
+        currentPage.routingRuleSet.id,
         routingRule.id
       );
     });
 
+    it("delete routing rule set when last rule deleted", () => {
+      wrapper.find("RoutingRuleSet").simulate("deleteRule", routingRule);
+      expect(props.onDeleteRoutingRuleSet).toHaveBeenCalledWith(
+        pageWithRoutingRules.routingRuleSet.id,
+        pageWithRoutingRules.id
+      );
+    });
+
     it("should handle changing the THEN destination", () => {
-      wrapper.find("RoutingRule").simulate("thenChange", {
-        value: "Section_2"
-      });
-      expect(props.onUpdateRoutingRule).toHaveBeenCalledWith({
-        id: routingRule.id,
+      const destination = {
+        id: "26",
         goto: {
-          sectionId: "2",
-          pageId: null
+          absoluteDestination: {
+            destinationType: "QuestionPage",
+            destinationId: "19"
+          }
         }
-      });
+      };
+
+      wrapper.find("RoutingRuleSet").simulate("thenChange", destination);
+      expect(props.onUpdateRoutingRule).toHaveBeenCalledWith(destination);
     });
 
     it("should handle adding a routing condition", () => {
-      wrapper.find("RoutingStatement").simulate("addCondition");
-      expect(props.onAddRoutingCondition).toHaveBeenCalledWith(routingRule.id);
-    });
-  });
+      wrapper
+        .find("RoutingRuleSet")
+        .simulate("addRoutingCondition", routingRule);
 
-  describe("routing conditions", () => {
-    it("should render routing conditions - no answer provided", () => {
-      const withRoutingConditions = merge(props, {
-        page: pageWithRoutingConditions
-      });
-
-      wrapper = createWrapper(withRoutingConditions);
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    it("should render routing conditions - basic answer", () => {
-      const withRoutingConditions = merge(props, {
-        page: {
-          ...pageWithRoutingConditions,
-          routingRuleSet: {
-            routingRules: [
-              {
-                ...routingRule,
-                conditions: [
-                  {
-                    ...routingCondition,
-                    answer
-                  }
-                ]
-              }
-            ]
-          },
-          answers: [answer]
-        }
-      });
-
-      wrapper = createWrapper(withRoutingConditions);
-      expect(wrapper).toMatchSnapshot();
-    });
-
-    describe("multiple choice answer", () => {
-      beforeEach(() => {
-        const withRoutingConditions = merge(props, {
-          page: {
-            ...pageWithRoutingConditions,
-            routingRuleSet: {
-              routingRules: [
-                {
-                  ...routingRule,
-                  conditions: [
-                    {
-                      ...routingCondition,
-                      answer: multipleChoiceAnswer
-                    }
-                  ]
-                }
-              ]
-            },
-            answers: [multipleChoiceAnswer]
-          }
-        });
-
-        wrapper = createWrapper(withRoutingConditions);
-      });
-
-      it("should render routing conditions - multiple choice answer", () => {
-        expect(wrapper).toMatchSnapshot();
-      });
-
-      it("should handle removing routing conditions", () => {
-        wrapper.find("RoutingCondition").simulate("remove");
-        expect(props.onDeleteRoutingCondition).toHaveBeenCalledWith(
-          routingRule.id,
-          routingCondition.id
-        );
-      });
-
-      it("should handle page change", () => {
-        wrapper.find("RoutingCondition").simulate("pageChange", {
-          value: page.id
-        });
-
-        expect(props.onUpdateRoutingCondition).toHaveBeenCalledWith({
-          id: routingCondition.id,
-          questionPageId: page.id
-        });
-      });
-
-      it("should handle toggling options", () => {
-        wrapper
-          .find("MultipleChoiceAnswerOptionsSelector")
-          .simulate("optionSelectionChange", {
-            name: `${routingCondition.id}_1`,
-            value: true
-          });
-
-        expect(props.onToggleConditionOption).toHaveBeenCalledWith(
-          routingCondition.id,
-          "1",
-          true
-        );
-      });
+      expect(props.onAddRoutingCondition).toHaveBeenCalledWith(
+        routingRule.id,
+        page.answers[0].id
+      );
     });
   });
 });

@@ -72,7 +72,7 @@ Text.defaultProps = {
   maxWidth: 30
 };
 
-export const Input = styled.input`
+const Input = styled.input`
   font-size: 1em;
   width: 1em;
   height: 1em;

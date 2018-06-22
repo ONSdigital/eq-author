@@ -89,7 +89,7 @@ const convertToGroups = sections =>
 
 const renderNoAnswer = params => (
   <Transition exit={false}>
-    <Alert key="no-answer-msg">
+    <Alert data-test="no-answer-msg">
       <AlertTitle>No answers have been added to this question yet.</AlertTitle>
       <AlertText>
         First, <NavLink to={buildPagePath(params)}>add an answer</NavLink> to

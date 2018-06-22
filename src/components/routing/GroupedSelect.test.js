@@ -6,6 +6,7 @@ describe("GroupedSelect", () => {
   const groups = [
     {
       label: "foo",
+      id: "1",
       options: [
         { label: "a", value: "1" },
         { label: "b", value: "2" },
@@ -14,6 +15,7 @@ describe("GroupedSelect", () => {
     },
     {
       label: "bar",
+      id: "2",
       options: [
         { label: "d", value: "4" },
         { label: "e", value: "5" },

@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/RoutingRuleResultSelector should render 1`] = `
-<RoutingRuleResultSelector__RoutingRuleResult>
+<RoutingRuleResultSelector__RoutingRuleResult
+  key="test-select"
+>
   <Grid
     align="center"
     fillHeight={true}
@@ -25,88 +27,56 @@ exports[`components/RoutingRuleResultSelector should render 1`] = `
       cols={7}
       gutters={false}
     >
-      <withChangeHandler(Select__SimpleSelect)
+      <GroupedSelect
         data-test="result-selector"
         disabled={false}
+        groups={
+          Array [
+            Object {
+              "id": "questions",
+              "label": "Questions in this section",
+              "options": Array [
+                Object {
+                  "label": "Page Title",
+                  "value": "{\\"absoluteDestination\\":{\\"destinationType\\":\\"QuestionPage\\",\\"destinationId\\":\\"1\\"}}",
+                },
+                Object {
+                  "label": "Page Title",
+                  "value": "{\\"absoluteDestination\\":{\\"destinationType\\":\\"QuestionPage\\",\\"destinationId\\":\\"2\\"}}",
+                },
+              ],
+            },
+            Object {
+              "id": "sections",
+              "label": "Other sections",
+              "options": Array [
+                Object {
+                  "label": "Section Title",
+                  "value": "{\\"absoluteDestination\\":{\\"destinationType\\":\\"Section\\",\\"destinationId\\":\\"3\\"}}",
+                },
+                Object {
+                  "label": "Section Title",
+                  "value": "{\\"absoluteDestination\\":{\\"destinationType\\":\\"Section\\",\\"destinationId\\":\\"4\\"}}",
+                },
+              ],
+            },
+            Object {
+              "id": "summary",
+              "label": "Questionnaire Summary",
+              "options": Array [
+                Object {
+                  "label": "Summary",
+                  "value": "{\\"logicalDestination\\":{\\"destinationType\\":\\"EndOfQuestionnaire\\"}}",
+                },
+              ],
+            },
+          ]
+        }
         id="test-select"
         onChange={[Function]}
-      >
-        <optgroup
-          key="1"
-          label="1. Integer posuere erat a ante"
-        >
-          <option
-            disabled={false}
-            key="2"
-            value="2"
-          >
-            1.1 Curabitur blandit tempus porttitor
-          </option>
-          <option
-            disabled={false}
-            key="9"
-            value="9"
-          >
-            1.2 Nulla vitae elit libero, a pharetra augue.
-          </option>
-        </optgroup>
-      </withChangeHandler(Select__SimpleSelect)>
-    </Column>
-  </Grid>
-</RoutingRuleResultSelector__RoutingRuleResult>
-`;
-
-exports[`components/RoutingRuleResultSelector should render as disabled given the relevant prop 1`] = `
-<RoutingRuleResultSelector__RoutingRuleResult>
-  <Grid
-    align="center"
-    fillHeight={true}
-  >
-    <Column
-      cols={5}
-      gutters={false}
-    >
-      <RoutingRuleResultSelector__Label
-        disabled={true}
-        htmlFor="test-select"
-      >
-        Test
-         
-        <RoutingRuleResultSelector__Goto>
-          Go to: 
-        </RoutingRuleResultSelector__Goto>
-      </RoutingRuleResultSelector__Label>
-    </Column>
-    <Column
-      cols={7}
-      gutters={false}
-    >
-      <withChangeHandler(Select__SimpleSelect)
-        data-test="result-selector"
-        disabled={true}
-        id="test-select"
-        onChange={[Function]}
-      >
-        <optgroup
-          key="1"
-          label="1. Integer posuere erat a ante"
-        >
-          <option
-            disabled={false}
-            key="2"
-            value="2"
-          >
-            1.1 Curabitur blandit tempus porttitor
-          </option>
-          <option
-            disabled={false}
-            key="9"
-            value="9"
-          >
-            1.2 Nulla vitae elit libero, a pharetra augue.
-          </option>
-        </optgroup>
-      </withChangeHandler(Select__SimpleSelect)>
+        valid={true}
+        value="{\\"logicalDestination\\":{\\"destinationType\\":{\\"destinationType\\":\\"EndOfQuestionnaire\\"}}}"
+      />
     </Column>
   </Grid>
 </RoutingRuleResultSelector__RoutingRuleResult>

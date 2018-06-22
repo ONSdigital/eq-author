@@ -18,11 +18,11 @@ exports[`components/Nav when no pageId should render section link 1`] = `
 .c1 {
   font-size: 1em;
   font-weight: bold;
-  color: #c3c3c3;
+  color: #FFFFFF;
   padding: 0.3em 2em;
-  border: 1px solid #666;
+  border: 1px solid #5F7682;
   border-bottom: none;
-  background-color: #666;
+  background-color: #5F7682;
   text-decoration: none;
   border-radius: 4px 4px 0 0;
   margin: 0 0.25em 0 0;
@@ -35,10 +35,35 @@ exports[`components/Nav when no pageId should render section link 1`] = `
   border-bottom: none;
 }
 
-.c2 {
+.c4 {
   background: #FFFFFF;
   border: 1px solid #c3c3c3;
   border-radius: 4px;
+}
+
+.c3 {
+  font-size: 1em;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 0.3em 2em;
+  border: 1px solid #5F7682;
+  border-bottom: none;
+  background-color: #5F7682;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  margin: 0 0.25em 0 0;
+}
+
+.c3[aria-current="true"] {
+  background: #FFFFFF;
+  color: #5F7682;
+  border: 1px solid #c3c3c3;
+  border-bottom: none;
+}
+
+.c2 {
+  opacity: 0.5;
+  color: #c3c3c3;
 }
 
 <UnwrappedTabs
@@ -53,9 +78,12 @@ exports[`components/Nav when no pageId should render section link 1`] = `
   }
 >
   <div>
-    <Tabs__TabsContainer>
+    <Tabs__TabsContainer
+      data-test="tabs-nav"
+    >
       <nav
         className="c0"
+        data-test="tabs-nav"
       >
         <Tabs__Tab
           to="/questionnaire/123/888/design"
@@ -87,46 +115,25 @@ exports[`components/Nav when no pageId should render section link 1`] = `
             </Route>
           </NavLink>
         </Tabs__Tab>
-        <Tabs__Tab
-          activeClassName="selected"
-          isActive={[Function]}
-          to="/questionnaire/1/routing/2/3"
-        >
-          <NavLink
-            activeClassName="selected"
-            ariaCurrent="true"
-            className="c1"
-            isActive={[Function]}
-            to="/questionnaire/1/routing/2/3"
+        <Tabs__DisabledTab>
+          <Tabs__Tab
+            className="c2"
           >
-            <Route
-              path="/questionnaire/1/routing/2/3"
+            <span
+              className="c2 -span c3"
             >
-              <Link
-                aria-current="true"
-                className="c1 selected"
-                replace={false}
-                style={Object {}}
-                to="/questionnaire/1/routing/2/3"
-              >
-                <a
-                  aria-current="true"
-                  className="c1 selected"
-                  href="/questionnaire/1/routing/2/3"
-                  onClick={[Function]}
-                  style={Object {}}
-                >
-                  Routing
-                </a>
-              </Link>
-            </Route>
-          </NavLink>
-        </Tabs__Tab>
+              Routing
+            </span>
+          </Tabs__Tab>
+        </Tabs__DisabledTab>
       </nav>
     </Tabs__TabsContainer>
-    <Tabs__TabsBody>
+    <Tabs__TabsBody
+      data-test="tabs-body"
+    >
       <div
-        className="c2"
+        className="c4"
+        data-test="tabs-body"
       >
         Tab Content
       </div>
@@ -153,11 +160,11 @@ exports[`components/Nav when pageId present should render page link 1`] = `
 .c1 {
   font-size: 1em;
   font-weight: bold;
-  color: #c3c3c3;
+  color: #FFFFFF;
   padding: 0.3em 2em;
-  border: 1px solid #666;
+  border: 1px solid #5F7682;
   border-bottom: none;
-  background-color: #666;
+  background-color: #5F7682;
   text-decoration: none;
   border-radius: 4px 4px 0 0;
   margin: 0 0.25em 0 0;
@@ -188,9 +195,12 @@ exports[`components/Nav when pageId present should render page link 1`] = `
   }
 >
   <div>
-    <Tabs__TabsContainer>
+    <Tabs__TabsContainer
+      data-test="tabs-nav"
+    >
       <nav
         className="c0"
+        data-test="tabs-nav"
       >
         <Tabs__Tab
           to="/questionnaire/1/2/3/design"
@@ -205,18 +215,16 @@ exports[`components/Nav when pageId present should render page link 1`] = `
               path="/questionnaire/1/2/3/design"
             >
               <Link
-                aria-current="true"
-                className="c1 selected"
+                aria-current={false}
+                className="c1"
                 replace={false}
-                style={Object {}}
-                to="/questionnaire/1/design/2/3"
+                to="/questionnaire/1/2/3/design"
               >
                 <a
-                  aria-current="true"
-                  className="c1 selected"
-                  href="/questionnaire/1/design/2/3"
+                  aria-current={false}
+                  className="c1"
+                  href="/questionnaire/1/2/3/design"
                   onClick={[Function]}
-                  style={Object {}}
                 >
                   Builder
                 </a>
@@ -226,32 +234,28 @@ exports[`components/Nav when pageId present should render page link 1`] = `
         </Tabs__Tab>
         <Tabs__Tab
           activeClassName="selected"
-          isActive={[Function]}
-          to="/questionnaire/1/routing/2/3"
+          to="/questionnaire/1/2/3/routing"
         >
           <NavLink
             activeClassName="selected"
             ariaCurrent="true"
             className="c1"
-            isActive={[Function]}
-            to="/questionnaire/1/routing/2/3"
+            to="/questionnaire/1/2/3/routing"
           >
             <Route
-              path="/questionnaire/1/routing/2/3"
+              path="/questionnaire/1/2/3/routing"
             >
               <Link
-                aria-current="true"
-                className="c1 selected"
+                aria-current={false}
+                className="c1"
                 replace={false}
-                style={Object {}}
-                to="/questionnaire/1/routing/2/3"
+                to="/questionnaire/1/2/3/routing"
               >
                 <a
-                  aria-current="true"
-                  className="c1 selected"
-                  href="/questionnaire/1/routing/2/3"
+                  aria-current={false}
+                  className="c1"
+                  href="/questionnaire/1/2/3/routing"
                   onClick={[Function]}
-                  style={Object {}}
                 >
                   Routing
                 </a>
@@ -261,9 +265,12 @@ exports[`components/Nav when pageId present should render page link 1`] = `
         </Tabs__Tab>
       </nav>
     </Tabs__TabsContainer>
-    <Tabs__TabsBody>
+    <Tabs__TabsBody
+      data-test="tabs-body"
+    >
       <div
         className="c2"
+        data-test="tabs-body"
       >
         Tab Content
       </div>

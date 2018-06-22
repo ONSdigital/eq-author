@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 import sections from "./mockstate";
@@ -10,8 +10,23 @@ describe("components/RoutingRuleResultSelector", () => {
   beforeEach(() => {
     props = {
       onChange: jest.fn(),
+      value: {
+        logicalDestination: {
+          destinationType: "EndOfQuestionnaire"
+        }
+      },
       label: "Test",
       id: "test-select",
+      destinations: {
+        questionPages: [
+          { id: "1", title: "page 1", __typename: "QuestionPage" },
+          { id: "2", title: "page 2", __typename: "QuestionPage" }
+        ],
+        sections: [
+          { id: "3", title: "section 1", __typename: "Section" },
+          { id: "4", title: "section 2", __typename: "Section" }
+        ]
+      },
       sections
     };
 
@@ -22,15 +37,16 @@ describe("components/RoutingRuleResultSelector", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should render as disabled given the relevant prop", () => {
-    wrapper = shallow(<RoutingRuleResultSelector {...props} disabled />);
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it("should allow change of goto select", () => {
-    const data = { name: "hello", value: "there" };
-    wrapper.find(`#${props.id}`).simulate("change", data);
-    expect(props.onChange).toHaveBeenLastCalledWith(data);
+    wrapper = mount(<RoutingRuleResultSelector {...props} />);
+    wrapper.find(`select[data-test="result-selector"]`).simulate("change");
+
+    expect(props.onChange).toHaveBeenCalledWith({
+      absoluteDestination: {
+        destinationId: "1",
+        destinationType: "QuestionPage"
+      }
+    });
   });
 
   it("should pass disabled prop onto select field", () => {

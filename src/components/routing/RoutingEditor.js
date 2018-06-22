@@ -50,7 +50,7 @@ class RoutingEditor extends React.Component {
       logicalDestinations: PropTypes.arrayOf(PropTypes.any),
       questionPages: PropTypes.arrayOf(CustomPropTypes.page),
       sections: PropTypes.arrayOf(CustomPropTypes.section)
-    }),
+    }).isRequired,
     match: CustomPropTypes.match
   };
 

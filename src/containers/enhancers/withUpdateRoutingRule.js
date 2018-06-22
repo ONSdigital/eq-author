@@ -5,16 +5,6 @@ export const mapMutateToProps = ({ mutate }) => ({
   onUpdateRoutingRule: routingRule =>
     mutate({
       variables: { input: routingRule }
-      // optimisticResponse: {
-      //   updateRoutingRule: {
-      //     ...rule,
-      //     goto: {
-      //       ...rule.goto,
-      //       ...goto,
-      //       plaintextTitle: "Loading.."
-      //     }
-      //   }
-      // }
     })
 });
 

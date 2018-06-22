@@ -1,26 +1,37 @@
 import React from "react";
 import { shallow } from "enzyme";
-
 import RoutingRuleSet from "./RoutingRuleSet";
-
-import routingOptions from "./mockstate";
 
 let wrapper, props;
 
 describe("components/RoutingRuleSet", () => {
   beforeEach(() => {
     props = {
-      onAddRule: jest.fn(),
+      onAddRoutingRule: jest.fn(),
       onElseChange: jest.fn(),
-      routingOptions,
-      ruleSet: { id: "1" }
+      onDeleteRule: jest.fn(),
+      onAddRoutingCondition: jest.fn(),
+      onToggleConditionOption: jest.fn(),
+      onUpdateRoutingCondition: jest.fn(),
+      onThenChange: jest.fn(),
+      pagesAvailableForRouting: [],
+      destinations: {},
+      ruleSet: {
+        id: "1",
+        routingRules: [
+          {
+            id: "2",
+            operation: "And"
+          },
+          {
+            id: "3",
+            operation: "And"
+          }
+        ]
+      }
     };
 
-    wrapper = shallow(
-      <RoutingRuleSet {...props}>
-        <div>I am a child</div>
-      </RoutingRuleSet>
-    );
+    wrapper = shallow(<RoutingRuleSet {...props} />);
   });
 
   it("should render children", () => {
@@ -30,12 +41,16 @@ describe("components/RoutingRuleSet", () => {
   it("should allow change of ELSE condition", () => {
     const data = { name: "hello", value: "there" };
     wrapper.find("[data-test='select-else']").simulate("change", data);
-    expect(props.onElseChange).toHaveBeenLastCalledWith(data);
+
+    expect(props.onElseChange).toHaveBeenLastCalledWith({
+      id: props.ruleSet.id,
+      else: data
+    });
   });
 
   it("should allow adding a rule", () => {
     const found = wrapper.find("[data-test='btn-add-rule']");
     found.simulate("click");
-    expect(props.onAddRule).toHaveBeenCalledWith(props.ruleSet.id);
+    expect(props.onAddRoutingRule).toHaveBeenCalledWith(props.ruleSet.id);
   });
 });

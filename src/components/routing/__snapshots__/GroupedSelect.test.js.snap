@@ -2,11 +2,12 @@
 
 exports[`GroupedSelect renders 1`] = `
 <withChangeHandler(Select__SimpleSelect)
+  invalid={false}
   onChange={[Function]}
   value="1"
 >
   <optgroup
-    key="foo"
+    key="1"
     label="foo"
   >
     <option
@@ -29,7 +30,7 @@ exports[`GroupedSelect renders 1`] = `
     </option>
   </optgroup>
   <optgroup
-    key="bar"
+    key="2"
     label="bar"
   >
     <option
