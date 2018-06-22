@@ -18,7 +18,7 @@ import withDeleteRoutingCondition from "containers/enhancers/withDeleteRoutingCo
 import withCreateRoutingRule from "../enhancers/withCreateRoutingRule";
 import withDeleteRoutingRule from "../enhancers/withDeleteRoutingRule";
 import withDeleteRoutingRuleSet from "../enhancers/withDeleteRoutingRuleSet";
-import withToggleConditionOption from "../enhancers/withToggleConditionOption";
+import withUpdateRoutingConditionValue from "../enhancers/withUpdateRoutingConditionValue";
 import withUpdateRoutingCondition from "../enhancers/withUpdateRoutingCondition";
 import withUpdateRoutingRule from "../enhancers/withUpdateRoutingRule";
 import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
@@ -64,7 +64,7 @@ export default flowRight(
   withDeleteRoutingCondition,
   withCreateRoutingRule,
   withDeleteRoutingRule,
-  withToggleConditionOption,
+  withUpdateRoutingConditionValue,
   withUpdateRoutingCondition,
   withUpdateRoutingRule,
   withUpdateRoutingRuleSet,

@@ -102,9 +102,12 @@ exports[`components/RoutingCondition should render consistently 1`] = `
                 "questionPage": Object {
                   "id": "2",
                 },
+                "routingValue": Object {
+                  "value": "123",
+                },
               }
             }
-            onOptionSelectionChange={[Function]}
+            onConditionValueChange={[Function]}
           />
         </Transition__RoutingComponentTransition>
       </TransitionGroup>

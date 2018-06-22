@@ -29,7 +29,6 @@ const RoutingRuleSet = ({
   destinations,
   onAddRoutingRule,
   onElseChange,
-
   ...otherProps
 }) => (
   <React.Fragment>

@@ -7,10 +7,11 @@ let mockHandlers, condition;
 describe("components/MultipleChoiceAnswerOptionsSelector", () => {
   beforeEach(() => {
     mockHandlers = {
-      onOptionSelectionChange: jest.fn()
+      onConditionValueChange: jest.fn()
     };
 
     condition = {
+      id: "9",
       answer: {
         options: [
           { label: "a", id: "1" },
@@ -19,7 +20,7 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
         ]
       },
       routingValue: {
-        value: ["1", "2"]
+        value: "2"
       }
     };
   });
@@ -35,7 +36,26 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should handle change events on ToggleChip", () => {
+  it("should set value to option id if clicking unchecked option", () => {
+    const wrapper = mount(
+      <MultipleChoiceAnswerOptionsSelector
+        condition={condition}
+        {...mockHandlers}
+      />
+    );
+
+    wrapper
+      .find("input")
+      .at(1)
+      .simulate("change");
+
+    expect(mockHandlers.onConditionValueChange).toHaveBeenCalledWith(
+      condition.id,
+      null
+    );
+  });
+
+  it("should set value to null if clicking checked option", () => {
     const wrapper = mount(
       <MultipleChoiceAnswerOptionsSelector
         condition={condition}
@@ -48,10 +68,9 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
       .first()
       .simulate("change");
 
-    expect(mockHandlers.onOptionSelectionChange).toHaveBeenCalledWith(
+    expect(mockHandlers.onConditionValueChange).toHaveBeenCalledWith(
       condition.id,
-      condition.answer.options[0].id,
-      expect.anything()
+      condition.answer.options[0].id
     );
   });
 
@@ -73,10 +92,9 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
       .findWhere(x => x.closest("label").text() === other.option.label)
       .simulate("change");
 
-    expect(mockHandlers.onOptionSelectionChange).toHaveBeenCalledWith(
+    expect(mockHandlers.onConditionValueChange).toHaveBeenCalledWith(
       condition.id,
-      other.option.id,
-      expect.anything()
+      other.option.id
     );
   });
 });

@@ -1,7 +1,10 @@
-import { mapMutateToProps, createUpdater } from "./withToggleConditionOption";
+import {
+  mapMutateToProps,
+  createUpdater
+} from "./withUpdateRoutingConditionValue";
 import fragment from "graphql/fragments/routing-rule.graphql";
 
-describe("containers/enhancers/withToggleConditionOption", () => {
+describe("containers/enhancers/withUpdateRoutingConditionValue", () => {
   const routingCondition = {
     id: "1"
   };
@@ -15,16 +18,16 @@ describe("containers/enhancers/withToggleConditionOption", () => {
     routingRuleSet: null
   };
 
-  let mutate, result, toggleConditionOption;
+  let mutate, result, updateRoutingConditionValue;
 
   beforeEach(() => {
-    toggleConditionOption = {
-      value: [option.id]
+    updateRoutingConditionValue = {
+      value: option.id
     };
 
     result = {
       data: {
-        toggleConditionOption
+        updateRoutingConditionValue
       }
     };
 
@@ -59,7 +62,7 @@ describe("containers/enhancers/withToggleConditionOption", () => {
       });
 
       expect(routingCondition.routingValue).toMatchObject(
-        toggleConditionOption
+        updateRoutingConditionValue
       );
     });
   });
@@ -72,20 +75,19 @@ describe("containers/enhancers/withToggleConditionOption", () => {
     });
 
     it("should have a onToggleConditionOption prop", () => {
-      expect(props.onToggleConditionOption).toBeInstanceOf(Function);
+      expect(props.onUpdateRoutingConditionValue).toBeInstanceOf(Function);
     });
 
     it("should call mutate", () => {
       return props
-        .onToggleConditionOption(routingCondition.id, option.id, true)
+        .onUpdateRoutingConditionValue(routingCondition.id, option.id)
         .then(() => {
           expect(mutate).toHaveBeenCalledWith(
             expect.objectContaining({
               variables: {
                 input: {
                   conditionId: routingCondition.id,
-                  optionId: option.id,
-                  checked: true
+                  optionId: option.id
                 }
               }
             })

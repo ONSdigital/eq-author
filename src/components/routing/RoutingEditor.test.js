@@ -97,7 +97,7 @@ describe("RoutingEditor", () => {
       onAddRoutingCondition: jest.fn(),
       onUpdateRoutingCondition: jest.fn(),
       onDeleteRoutingCondition: jest.fn(),
-      onToggleConditionOption: jest.fn(),
+      onUpdateRoutingConditionValue: jest.fn(),
       onDeleteRoutingRuleSet: jest.fn(),
       availableRoutingDestinations,
       match: {

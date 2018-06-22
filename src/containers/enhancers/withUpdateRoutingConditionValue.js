@@ -1,5 +1,5 @@
 import { graphql } from "react-apollo";
-import toggleConditionOption from "graphql/toggleConditionOption.graphql";
+import updateRoutingConditionValue from "graphql/updateRoutingConditionValue.graphql";
 import fragment from "graphql/fragments/routing-rule.graphql";
 
 export const createUpdater = routingConditionId => (proxy, result) => {
@@ -10,7 +10,7 @@ export const createUpdater = routingConditionId => (proxy, result) => {
     fragmentName: "RoutingCondition"
   });
 
-  routingCondition.routingValue = result.data.toggleConditionOption;
+  routingCondition.routingValue = result.data.updateRoutingConditionValue;
 
   proxy.writeFragment({
     id,
@@ -21,11 +21,10 @@ export const createUpdater = routingConditionId => (proxy, result) => {
 };
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
-  onToggleConditionOption(conditionId, optionId, checked) {
+  onUpdateRoutingConditionValue(conditionId, optionId) {
     const input = {
       conditionId,
-      optionId,
-      checked
+      optionId
     };
 
     const update = createUpdater(conditionId);
@@ -33,10 +32,10 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     return mutate({
       variables: { input },
       update
-    }).then(res => res.data.toggleConditionOption);
+    }).then(res => res.data.updateRoutingConditionValue);
   }
 });
 
-export default graphql(toggleConditionOption, {
+export default graphql(updateRoutingConditionValue, {
   props: mapMutateToProps
 });

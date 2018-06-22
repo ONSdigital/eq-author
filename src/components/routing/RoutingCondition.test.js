@@ -12,7 +12,7 @@ describe("components/RoutingCondition", () => {
     mockHandlers = {
       onPageChange: jest.fn(),
       onRemove: jest.fn(),
-      onToggleOption: jest.fn()
+      onConditionValueChange: jest.fn()
     };
 
     condition = {
@@ -23,6 +23,9 @@ describe("components/RoutingCondition", () => {
       answer: {
         id: "3",
         type: "Radio"
+      },
+      routingValue: {
+        value: "123"
       }
     };
 

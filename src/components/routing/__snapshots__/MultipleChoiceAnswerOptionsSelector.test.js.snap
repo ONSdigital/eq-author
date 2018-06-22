@@ -4,32 +4,31 @@ exports[`components/MultipleChoiceAnswerOptionsSelector should render consistent
 <MultipleChoiceAnswerOptionsSelector__MultipleChoiceAnswerOptions
   data-test="options-selector"
 >
-  <withChangeHandler(ToggleChip)
-    checked={true}
-    key="1"
-    name="1"
+  <ToggleChipGroup
     onChange={[Function]}
-    title="a"
+    value="2"
   >
-    a
-  </withChangeHandler(ToggleChip)>
-  <withChangeHandler(ToggleChip)
-    checked={true}
-    key="2"
-    name="2"
-    onChange={[Function]}
-    title="b"
-  >
-    b
-  </withChangeHandler(ToggleChip)>
-  <withChangeHandler(ToggleChip)
-    checked={false}
-    key="3"
-    name="3"
-    onChange={[Function]}
-    title="c"
-  >
-    c
-  </withChangeHandler(ToggleChip)>
+    <ToggleChip
+      key="1"
+      title="a"
+      value="1"
+    >
+      a
+    </ToggleChip>
+    <ToggleChip
+      key="2"
+      title="b"
+      value="2"
+    >
+      b
+    </ToggleChip>
+    <ToggleChip
+      key="3"
+      title="c"
+      value="3"
+    >
+      c
+    </ToggleChip>
+  </ToggleChipGroup>
 </MultipleChoiceAnswerOptionsSelector__MultipleChoiceAnswerOptions>
 `;

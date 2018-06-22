@@ -7,9 +7,8 @@ import styled from "styled-components";
 import routingOptions from "./mockstate";
 
 import RoutingCondition from "./RoutingCondition";
-import RoutingStatement from "./RoutingStatement";
 import RoutingRule from "./RoutingRule";
-import RoutingRuleset from "./RoutingRuleset";
+import RoutingRuleset from "./RoutingRuleSet";
 import MultipleChoiceAnswerOptionsSelector from "./MultipleChoiceAnswerOptionsSelector";
 import { Alert, AlertText, AlertTitle } from "./Alert";
 
@@ -55,68 +54,60 @@ storiesOf("Routing", module)
   .add("With single RoutingCondition", () => (
     <RoutingRuleset {...ruleSetProps}>
       <RoutingRule {...ruleProps}>
-        <RoutingStatement {...statementProps}>
-          <RoutingCondition id="routing-condition" {...conditionProps}>
-            <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
-          </RoutingCondition>
-        </RoutingStatement>
+        <RoutingCondition id="routing-condition" {...conditionProps}>
+          <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
+        </RoutingCondition>
       </RoutingRule>
     </RoutingRuleset>
   ))
   .add("With multiple RoutingCondition", () => (
     <RoutingRuleset {...ruleSetProps}>
       <RoutingRule {...ruleProps}>
-        <RoutingStatement {...statementProps}>
-          <RoutingCondition id="routing-condition-0" {...conditionProps}>
-            <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
-          </RoutingCondition>
-          <RoutingCondition
-            id="routing-condition-1"
-            label="AND"
-            {...conditionProps}
-          >
-            <MultipleChoiceAnswerOptionsSelector
-              {...multiChoiceAnswerProps}
-              options={routingOptions[0].pages[1].options}
-            />
-          </RoutingCondition>
-        </RoutingStatement>
+        <RoutingCondition id="routing-condition-0" {...conditionProps}>
+          <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
+        </RoutingCondition>
+        <RoutingCondition
+          id="routing-condition-1"
+          label="AND"
+          {...conditionProps}
+        >
+          <MultipleChoiceAnswerOptionsSelector
+            {...multiChoiceAnswerProps}
+            options={routingOptions[0].pages[1].options}
+          />
+        </RoutingCondition>
       </RoutingRule>
     </RoutingRuleset>
   ))
   .add("With 'no answers' error", () => (
     <RoutingRuleset {...ruleSetProps} canRoute={false}>
       <RoutingRule {...ruleProps} canRoute={false}>
-        <RoutingStatement {...statementProps} onAddCondition={null}>
-          <RoutingCondition id="routing-condition" {...conditionProps} pathEnd>
-            <Alert>
-              <AlertTitle>
-                No answers have been added to this question yet.
-              </AlertTitle>
-              <AlertText>
-                First, <a href="#">add an answer</a> to continue.
-              </AlertText>
-            </Alert>
-          </RoutingCondition>
-        </RoutingStatement>
+        <RoutingCondition id="routing-condition" {...conditionProps} pathEnd>
+          <Alert>
+            <AlertTitle>
+              No answers have been added to this question yet.
+            </AlertTitle>
+            <AlertText>
+              First, <a href="#">add an answer</a> to continue.
+            </AlertText>
+          </Alert>
+        </RoutingCondition>
       </RoutingRule>
     </RoutingRuleset>
   ))
   .add("With 'unsupported answer type' error", () => (
     <RoutingRuleset {...ruleSetProps} canRoute={false}>
       <RoutingRule {...ruleProps} canRoute={false}>
-        <RoutingStatement {...statementProps} onAddCondition={null}>
-          <RoutingCondition id="routing-condition" {...conditionProps} pathEnd>
-            <Alert>
-              <AlertTitle>
-                Routing is not available for this type of answer
-              </AlertTitle>
-              <AlertText>
-                You cannot route on &apos;date range&apos; answers
-              </AlertText>
-            </Alert>
-          </RoutingCondition>
-        </RoutingStatement>
+        <RoutingCondition id="routing-condition" {...conditionProps} pathEnd>
+          <Alert>
+            <AlertTitle>
+              Routing is not available for this type of answer
+            </AlertTitle>
+            <AlertText>
+              You cannot route on &apos;date range&apos; answers
+            </AlertText>
+          </Alert>
+        </RoutingCondition>
       </RoutingRule>
     </RoutingRuleset>
   ))
@@ -124,23 +115,15 @@ storiesOf("Routing", module)
     <React.Fragment>
       <RoutingRuleset {...ruleSetProps}>
         <RoutingRule {...ruleProps}>
-          <RoutingStatement {...statementProps}>
-            <RoutingCondition id="routing-condition-0" {...conditionProps}>
-              <MultipleChoiceAnswerOptionsSelector
-                {...multiChoiceAnswerProps}
-              />
-            </RoutingCondition>
-          </RoutingStatement>
+          <RoutingCondition id="routing-condition-0" {...conditionProps}>
+            <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
+          </RoutingCondition>
         </RoutingRule>
 
         <RoutingRule {...ruleProps} title="OR">
-          <RoutingStatement {...statementProps}>
-            <RoutingCondition id="routing-condition-1" {...conditionProps}>
-              <MultipleChoiceAnswerOptionsSelector
-                {...multiChoiceAnswerProps}
-              />
-            </RoutingCondition>
-          </RoutingStatement>
+          <RoutingCondition id="routing-condition-1" {...conditionProps}>
+            <MultipleChoiceAnswerOptionsSelector {...multiChoiceAnswerProps} />
+          </RoutingCondition>
         </RoutingRule>
       </RoutingRuleset>
     </React.Fragment>

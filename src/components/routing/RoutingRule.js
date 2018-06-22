@@ -51,7 +51,7 @@ const RoutingRule = ({
   onDeleteRule,
   onThenChange,
   onAddRoutingCondition,
-  onToggleConditionOption,
+  onUpdateRoutingConditionValue,
   onUpdateRoutingCondition,
   onDeleteRoutingCondition,
   title,
@@ -104,7 +104,7 @@ const RoutingRule = ({
                         conditions.length > 1 ? onDeleteRoutingCondition : null
                       }
                       onPageChange={onUpdateRoutingCondition}
-                      onToggleOption={onToggleConditionOption}
+                      onConditionValueChange={onUpdateRoutingConditionValue}
                       canAddAndCondition={canAddAndCondition}
                       {...otherProps}
                     />
@@ -142,7 +142,7 @@ RoutingRule.propTypes = {
   children: PropTypes.node,
   onDeleteRule: PropTypes.func.isRequired,
   onAddRoutingCondition: PropTypes.func.isRequired,
-  onToggleConditionOption: PropTypes.func.isRequired,
+  onUpdateRoutingConditionValue: PropTypes.func.isRequired,
   onUpdateRoutingCondition: PropTypes.func.isRequired,
   onDeleteRoutingCondition: PropTypes.func,
   onThenChange: PropTypes.func.isRequired,
