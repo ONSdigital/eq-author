@@ -63,7 +63,6 @@ const RoutingRule = ({
   const { conditions, id, goto } = rule;
 
   const existingRadioConditions = {};
-  let canAddAndCondition = true;
 
   const handleDeleteClick = () => onDeleteRule(rule);
   const handleAddClick = () => onAddRoutingCondition(rule);
@@ -88,15 +87,7 @@ const RoutingRule = ({
             {conditions.map((condition, index) => {
               const { answer } = condition;
 
-              if (answer && answer.type === RADIO) {
-                if (existingRadioConditions[answer.id]) {
-                  canAddAndCondition = false;
-                } else {
-                  existingRadioConditions[answer.id] = condition.id;
-                }
-              }
-
-              return (
+              const component = (
                 <Transition key={condition.id}>
                   <div>
                     <RoutingCondition
@@ -109,12 +100,18 @@ const RoutingRule = ({
                       }
                       onPageChange={onUpdateRoutingCondition}
                       onConditionValueChange={onUpdateRoutingConditionValue}
-                      canAddAndCondition={canAddAndCondition}
+                      canAddAndCondition={!existingRadioConditions[answer.id]}
                       {...otherProps}
                     />
                   </div>
                 </Transition>
               );
+
+              if (answer && answer.type === RADIO) {
+                existingRadioConditions[answer.id] = true;
+              }
+
+              return component;
             })}
           </TransitionGroup>
           <Grid align="center">

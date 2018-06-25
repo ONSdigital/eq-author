@@ -38,6 +38,9 @@ exports[`components/RoutingRule should render children 1`] = `
               canAddAndCondition={true}
               condition={
                 Object {
+                  "answer": Object {
+                    "id": "1",
+                  },
                   "id": "2",
                 }
               }
@@ -69,6 +72,9 @@ exports[`components/RoutingRule should render children 1`] = `
               canAddAndCondition={true}
               condition={
                 Object {
+                  "answer": Object {
+                    "id": "2",
+                  },
                   "id": "3",
                 }
               }

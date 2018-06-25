@@ -9,7 +9,10 @@ describe("components/RoutingRule", () => {
     props = {
       rule: {
         id: "1",
-        conditions: [{ id: "2" }, { id: "3" }]
+        conditions: [
+          { id: "2", answer: { id: "1" } },
+          { id: "3", answer: { id: "2" } }
+        ]
       },
       onAddRule: jest.fn(),
       onDeleteRule: jest.fn(),
@@ -43,7 +46,7 @@ describe("components/RoutingRule", () => {
   });
 
   it("should not allow deletion when there is only one condition", () => {
-    props.rule.conditions = [{ id: "2" }];
+    props.rule.conditions = [{ id: "2", answer: { id: "1" } }];
 
     wrapper = shallow(<RoutingRule {...props} />);
     wrapper.find("RoutingCondition").simulate("remove");
@@ -59,5 +62,32 @@ describe("components/RoutingRule", () => {
       goto: data,
       id: "1"
     });
+  });
+
+  it("should disable adding of condition if more than one condition refers to same radio answer", () => {
+    props.rule.conditions = [
+      {
+        id: "1",
+        answer: { type: "Radio", id: "1" }
+      },
+      {
+        id: "2",
+        answer: { type: "Radio", id: "1" }
+      }
+    ];
+
+    wrapper = shallow(<RoutingRule {...props} />);
+
+    const firstCondition = wrapper.find("RoutingCondition").first();
+    expect(firstCondition.prop("canAddAndCondition")).toBe(true);
+
+    const lastCondition = wrapper.find("RoutingCondition").last();
+    expect(lastCondition.prop("canAddAndCondition")).toBe(false);
+  });
+
+  it("allows adding of new condition", () => {
+    wrapper.find(`[data-test="btn-add"]`).simulate("click");
+
+    expect(props.onAddRoutingCondition).toHaveBeenCalledWith(props.rule);
   });
 });
