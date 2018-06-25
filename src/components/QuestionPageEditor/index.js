@@ -126,7 +126,7 @@ export default class QuestionPageEditor extends React.Component {
 
     return (
       <div data-test="question-page-editor">
-        <div key={id}>
+        <div>
           <QuestionSegment id={id}>
             <MetaEditor onUpdate={onUpdatePage} page={page} />
             <DeleteConfirmDialog

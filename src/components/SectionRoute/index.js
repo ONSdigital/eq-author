@@ -96,6 +96,7 @@ export class UnwrappedSectionRoute extends React.Component {
           </Buttons>
         </Toolbar>
         <SectionEditor
+          key={data.section.id} // this is needed to reset the state of the RichTextEditors when moving between sections
           section={data.section}
           onUpdate={this.props.onUpdateSection}
           showDeleteConfirmDialog={this.state.showDeleteConfirmDialog}
