@@ -14,6 +14,7 @@ exports[`components/BaseLayout should render 1`] = `
           }
         }
       />
+      <Connect(UnconnectedOfflineBanner) />
       <BaseLayout__Main>
         Children
       </BaseLayout__Main>
@@ -36,6 +37,7 @@ exports[`components/BaseLayout should render a title 1`] = `
           }
         }
       />
+      <Connect(UnconnectedOfflineBanner) />
       <BaseLayout__Main>
         <ScrollPane
           permanentScrollBar={false}

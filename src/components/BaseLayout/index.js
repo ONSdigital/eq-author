@@ -7,6 +7,8 @@ import Header from "components/Header";
 import ScrollPane from "components/ScrollPane";
 import { Titled } from "react-titled";
 
+import ConnectedOfflineBanner from "components/OfflineBanner";
+
 import CustomPropTypes from "custom-prop-types";
 import { colors } from "constants/theme";
 
@@ -40,6 +42,7 @@ const BaseLayout = ({ children, title, questionnaire }) => (
     <App>
       <Wrapper>
         <Header questionnaire={questionnaire} />
+        <ConnectedOfflineBanner />
         <Main>
           {title ? (
             <ScrollPane>
