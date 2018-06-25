@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RoutingEditor routing rule set should render routing rule set 1`] = `
-<React.Fragment>
+<div
+  data-test="routing-editor"
+>
   <RoutingEditor__Title>
     Page Title
   </RoutingEditor__Title>
@@ -107,11 +109,13 @@ exports[`RoutingEditor routing rule set should render routing rule set 1`] = `
       </Transition__RoutingComponentTransition>
     </TransitionGroup>
   </RoutingEditor__Padding>
-</React.Fragment>
+</div>
 `;
 
 exports[`RoutingEditor routing rules should render routing rules 1`] = `
-<React.Fragment>
+<div
+  data-test="routing-editor"
+>
   <RoutingEditor__Title>
     Page Title
   </RoutingEditor__Title>
@@ -214,11 +218,13 @@ exports[`RoutingEditor routing rules should render routing rules 1`] = `
       </Transition__RoutingComponentTransition>
     </TransitionGroup>
   </RoutingEditor__Padding>
-</React.Fragment>
+</div>
 `;
 
 exports[`RoutingEditor when not routing rule set should render when no routing rule set 1`] = `
-<React.Fragment>
+<div
+  data-test="routing-editor"
+>
   <RoutingEditor__Title>
     Page Title
   </RoutingEditor__Title>
@@ -241,5 +247,5 @@ exports[`RoutingEditor when not routing rule set should render when no routing r
       </Transition__RoutingComponentTransition>
     </TransitionGroup>
   </RoutingEditor__Padding>
-</React.Fragment>
+</div>
 `;

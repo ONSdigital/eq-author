@@ -138,11 +138,6 @@ describe("RoutingEditor", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    // it.only("should handle adding routing rule", () => {
-    //   wrapper.find("RoutingRuleSet").simulate("addRule");
-    //   expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
-    // });
-
     it("should handle changing else destination", () => {
       const destination = {
         id: "26",
@@ -172,11 +167,6 @@ describe("RoutingEditor", () => {
     it("should render routing rules", () => {
       expect(wrapper).toMatchSnapshot();
     });
-
-    // it("should handle adding a routing rule", () => {
-    //   wrapper.find("RoutingRuleSet").simulate("addRule");
-    //   expect(props.onAddRoutingRule).toHaveBeenCalledWith(routingRuleSet.id);
-    // });
 
     it("should handle deleting a routing rule", () => {
       const currentPage = {

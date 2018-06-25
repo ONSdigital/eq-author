@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { dropRightWhile, first, last, get } from "lodash";
+import { dropRightWhile, first, last, get, isEmpty } from "lodash";
 import { TransitionGroup } from "react-transition-group";
 
 import Transition from "components/routing/Transition";
@@ -25,6 +25,10 @@ const Padding = styled.div`
 `;
 
 const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
+  if (isEmpty(sections)) {
+    return [];
+  }
+
   const filteredSections = dropRightWhile(sections, s => s.id !== sectionId);
   const currentSection = last(filteredSections);
 
@@ -105,7 +109,7 @@ class RoutingEditor extends React.Component {
     );
 
     return (
-      <React.Fragment>
+      <div data-test="routing-editor">
         <Title>{get(currentPage, "plaintextTitle") || "Page Title"}</Title>
         <Padding>
           <TransitionGroup>
@@ -137,7 +141,7 @@ class RoutingEditor extends React.Component {
             )}
           </TransitionGroup>
         </Padding>
-      </React.Fragment>
+      </div>
     );
   }
 }
