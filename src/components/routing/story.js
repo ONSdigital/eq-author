@@ -34,10 +34,6 @@ const ruleProps = {
   onThenChange: action("Then changed")
 };
 
-const statementProps = {
-  onAddCondition: action("Add condition")
-};
-
 const conditionProps = {
   routingOptions,
   selectedPage: selectedPage,

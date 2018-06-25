@@ -41,7 +41,7 @@ const Label = styled.label`
   align-self: center;
 `;
 
-export const PageSelect = styled(GroupedSelect).attrs({
+const PageSelect = styled(GroupedSelect).attrs({
   onChange: props => ({ value }) => props.onChange(value)
 })`
   margin: 0;
@@ -180,6 +180,8 @@ const RoutingCondition = ({
 
   const id = uniqueId("RoutingCondition");
   const handleRemove = onRemove ? () => onRemove(ruleId, condition.id) : null;
+  const handleChange = ({ value }) =>
+    onPageChange({ id: condition.id, questionPageId: value });
 
   return (
     <div data-test="routing-condition">
@@ -191,8 +193,7 @@ const RoutingCondition = ({
           <PageSelect
             value={value}
             valid={pageSelectIsValid}
-            onChange={({ value }) =>
-              onPageChange({ id: condition.id, questionPageId: value })}
+            onChange={handleChange}
             groups={convertToGroups(sections)}
             id={id}
           />
@@ -224,7 +225,7 @@ const RoutingCondition = ({
 
 RoutingCondition.propTypes = {
   ruleId: PropTypes.string.isRequired,
-  condition: PropTypes.object.isRequired,
+  condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   onPageChange: PropTypes.func.isRequired,
   onConditionValueChange: PropTypes.func.isRequired,

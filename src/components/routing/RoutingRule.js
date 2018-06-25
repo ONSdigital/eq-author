@@ -65,13 +65,17 @@ const RoutingRule = ({
   const existingRadioConditions = {};
   let canAddAndCondition = true;
 
+  const handleDeleteClick = () => onDeleteRule(rule);
+  const handleAddClick = () => onAddRoutingCondition(rule);
+  const handleThenChange = value => onThenChange({ id: id, goto: value });
+
   return (
     <div className={className} data-test="routing-rule">
       <Box>
         {title && <Title>{title}</Title>}
         <Buttons>
           <Button
-            onClick={() => onDeleteRule(rule)}
+            onClick={handleDeleteClick}
             data-test="btn-delete"
             variant="tertiary"
             small
@@ -115,10 +119,7 @@ const RoutingRule = ({
           </TransitionGroup>
           <Grid align="center">
             <CenteringColumn gutters={false} cols={1}>
-              <TextButton
-                onClick={() => onAddRoutingCondition(rule)}
-                data-test="btn-add"
-              >
+              <TextButton onClick={handleAddClick} data-test="btn-add">
                 AND
               </TextButton>
             </CenteringColumn>
@@ -128,7 +129,7 @@ const RoutingRule = ({
           id="then"
           label="THEN"
           destinations={destinations}
-          onChange={value => onThenChange({ id: id, goto: value })}
+          onChange={handleThenChange}
           value={goto}
           data-test="select-then"
         />
@@ -138,7 +139,7 @@ const RoutingRule = ({
 };
 
 RoutingRule.propTypes = {
-  rule: PropTypes.object.isRequired,
+  rule: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node,
   onDeleteRule: PropTypes.func.isRequired,
   onAddRoutingCondition: PropTypes.func.isRequired,
@@ -147,8 +148,8 @@ RoutingRule.propTypes = {
   onDeleteRoutingCondition: PropTypes.func,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
-  destinations: PropTypes.object.isRequired,
-  pagesAvailableForRouting: PropTypes.array.isRequired,
+  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  pagesAvailableForRouting: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   className: PropTypes.string
 };
 

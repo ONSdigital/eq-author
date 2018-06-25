@@ -127,10 +127,10 @@ class RoutingRuleResultSelector extends React.Component {
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  destinations: PropTypes.object.isRequired,
+  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.object,
+  value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   disabled: PropTypes.bool.isRequired
 };
 

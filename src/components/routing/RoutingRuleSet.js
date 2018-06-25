@@ -30,45 +30,51 @@ const RoutingRuleSet = ({
   onAddRoutingRule,
   onElseChange,
   ...otherProps
-}) => (
-  <React.Fragment>
-    <TransitionGroup>
-      {ruleSet.routingRules.map((rule, index) => (
-        <Transition key={rule.id}>
-          <RoutingRule
-            rule={rule}
-            title={index > 0 ? "Or" : null}
-            key={rule.id}
-            destinations={destinations}
-            {...otherProps}
-          />
-        </Transition>
-      ))}
-    </TransitionGroup>
-    <AddRuleButton
-      variant="secondary"
-      small
-      onClick={() => onAddRoutingRule(ruleSet.id)}
-      data-test="btn-add-rule"
-    >
-      <IconText icon={IconAddRule}>Add rule</IconText>
-    </AddRuleButton>
-    <Box>
-      <RoutingRuleResultSelector
-        id="else"
-        label="ELSE"
-        value={ruleSet.else}
-        destinations={destinations}
-        onChange={value => onElseChange({ id: ruleSet.id, else: value })}
-        data-test="select-else"
-      />
-    </Box>
-  </React.Fragment>
-);
+}) => {
+  const handleAddClick = () => onAddRoutingRule(ruleSet.id);
+  const handleElseChange = value =>
+    onElseChange({ id: ruleSet.id, else: value });
+
+  return (
+    <React.Fragment>
+      <TransitionGroup>
+        {ruleSet.routingRules.map((rule, index) => (
+          <Transition key={rule.id}>
+            <RoutingRule
+              rule={rule}
+              title={index > 0 ? "Or" : null}
+              key={rule.id}
+              destinations={destinations}
+              {...otherProps}
+            />
+          </Transition>
+        ))}
+      </TransitionGroup>
+      <AddRuleButton
+        variant="secondary"
+        small
+        onClick={handleAddClick}
+        data-test="btn-add-rule"
+      >
+        <IconText icon={IconAddRule}>Add rule</IconText>
+      </AddRuleButton>
+      <Box>
+        <RoutingRuleResultSelector
+          id="else"
+          label="ELSE"
+          value={ruleSet.else}
+          destinations={destinations}
+          onChange={handleElseChange}
+          data-test="select-else"
+        />
+      </Box>
+    </React.Fragment>
+  );
+};
 
 RoutingRuleSet.propTypes = {
-  ruleSet: PropTypes.object.isRequired,
-  destinations: PropTypes.object.isRequired,
+  ruleSet: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   onAddRoutingRule: PropTypes.func.isRequired,
   onElseChange: PropTypes.func.isRequired
 };

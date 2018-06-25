@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
 import { ToggleChip, ToggleChipGroup } from "components/ToggleChip";
 import { uniqueId } from "lodash";
-import { h1 } from "draft-js-raw-content-state/build/utils/blockTypes";
 
 const Wrapper = styled.div`
   padding: 1em;
@@ -35,8 +34,6 @@ class StatefulToggleChip extends React.Component {
     );
   }
 }
-
-console.log(ToggleChipGroup);
 
 class ToggleChipGroupContainer extends React.Component {
   state = {

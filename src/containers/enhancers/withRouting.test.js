@@ -22,11 +22,6 @@ const page = {
   title: "My Page",
   routingRuleSet
 };
-const section = {
-  id: "2",
-  title: "My Section",
-  pages: [page]
-};
 
 routingRuleSet.questionPage = page;
 routingCondition.questionPage = page;

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { isNil } from "lodash";
 import Select from "components/Forms/Select";
-import { constants } from "zlib";
 
 const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
   const optGroups = groups.map(group => (
