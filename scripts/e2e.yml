@@ -2,7 +2,7 @@ version: '3'
 
 services:
   eq-author-api:
-    image: onsdigital/eq-author-api
+    image: onsdigital/eq-author-api:361-implement-routing-on-api
     networks:
       - eq-author
     environment:

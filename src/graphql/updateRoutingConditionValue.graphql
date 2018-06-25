@@ -2,7 +2,7 @@ mutation UpdateRoutingConditionValue(
   $input: UpdateRoutingConditionValueInput!
 ) {
   updateRoutingConditionValue(input: $input) {
-    ... on IDValue {
+    ... on IDArrayValue {
       value
     }
   }

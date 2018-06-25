@@ -2,11 +2,25 @@ import { matchPath } from "../../src/utils/UrlUtils";
 import { zipWith } from "lodash";
 
 export const answerTypes = ["Text", "Textarea", "Currency", "Number"];
+export const testId = (id, attr = "test") => `[data-${attr}="${id}"]`;
+
+export const selectOptionByLabel = label => {
+  cy
+    .get("option")
+    .contains(label)
+    .then(option => option.val())
+    .then(value => {
+      cy
+        .root()
+        .select(label)
+        .should("have.value", value);
+    });
+};
 
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
     cy
-      .get("[data-test='txt-questionnaire-title']")
+      .get(testId("txt-questionnaire-title"))
       .clear()
       .type(name);
     cy.get("label[for='navigation']").click();
@@ -21,7 +35,7 @@ export const addQuestionnaire = title => {
 };
 
 export const addSection = () =>
-  cy.get("[data-test='add-menu']").within(() => {
+  cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
       .contains("Add")
@@ -32,7 +46,7 @@ export const addSection = () =>
   });
 
 export const addQuestionPage = () =>
-  cy.get("[data-test='add-menu']").within(() => {
+  cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
       .contains("Add")
@@ -44,44 +58,18 @@ export const addQuestionPage = () =>
 
 export const buildMultipleChoiceAnswer = labelArray => {
   addAnswerType("Checkbox");
-  labelArray.map(label => {
+  labelArray.map((label, index) => {
+    cy.get(testId("answer-editor")).should("have.length", index + 1);
     cy
-      .get("[data-test='option-label']")
+      .get(testId("option-label"))
       .last()
       .type(label);
-    cy.get("[data-test='btn-add-option']").click();
+    cy.get(testId("btn-add-option")).click();
   });
   cy
-    .get("[data-test='btn-delete-option']")
+    .get(testId("btn-delete-option"))
     .last()
     .click();
-};
-
-export const buildMultipleRouting = (questionTitles, labels, operator) => {
-  zipWith(questionTitles, labels, (questionTitle, label) => {
-    operator == "And"
-      ? cy
-          .get("[data-test='btn-add']")
-          .last()
-          .click()
-      : cy.get("[data-test='btn-add-rule']").click();
-
-    cy
-      .get("[data-test='routing-rule']")
-      .last()
-      .within(() => {
-        findByLabel("IF")
-          .last()
-          .select(questionTitle);
-
-        cy
-          .get("[data-test='options-selector']")
-          .last()
-          .within(() => {
-            cy.contains(label).click();
-          });
-      });
-  });
 };
 
 export function addAnswerType(answerType) {
@@ -91,28 +79,28 @@ export function addAnswerType(answerType) {
   });
 }
 
+export const matchHashToPath = (path, hash) => {
+  hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
+
+  return matchPath(hash, {
+    path,
+    exact: true,
+    strict: false
+  });
+};
+
 export function assertHash({
   previousPath,
   previousHash,
   currentPath,
   equality
 }) {
-  const match = (path, hash) => {
-    hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
-
-    return matchPath(hash, {
-      path,
-      exact: true,
-      strict: false
-    });
-  };
-
   cy
     .log("comparing previous hash", previousHash)
     .hash()
     .should(currentHash => {
-      const previousMatch = match(previousPath, previousHash);
-      const currentMatch = match(currentPath, currentHash);
+      const previousMatch = matchHashToPath(previousPath, previousHash);
+      const currentMatch = matchHashToPath(currentPath, currentHash);
 
       expect(previousMatch).not.to.equal(null);
       expect(currentMatch).not.to.equal(null);

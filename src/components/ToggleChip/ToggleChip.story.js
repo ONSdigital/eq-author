@@ -28,6 +28,7 @@ class StatefulToggleChip extends React.Component {
       <ToggleChip
         id={uniqueId()}
         onChange={this.handleChange}
+        value={uniqueId()}
         checked={this.state.value}
         {...this.props}
       />

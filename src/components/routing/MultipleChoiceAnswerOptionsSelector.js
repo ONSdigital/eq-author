@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ToggleChip, ToggleChipGroup } from "components/ToggleChip";
+import ToggleChip from "components/ToggleChip";
 import { get } from "lodash";
 
 import { PropTypes } from "prop-types";
@@ -23,27 +23,25 @@ const MultipleChoiceAnswerOptionsSelector = ({
     ? answerOptions.concat(answerOtherOption)
     : answerOptions;
 
-  const handleChange = ({ value }) =>
-    onConditionValueChange(condition.id, value);
-
   return (
     <MultipleChoiceAnswerOptions data-test="options-selector">
-      <ToggleChipGroup
-        onChange={handleChange}
-        value={condition.routingValue.value}
-      >
-        {options.map(option => (
-          <ToggleChip key={option.id} value={option.id} title={option.label}>
-            {option.label || <strong>Unlabelled option</strong>}
-          </ToggleChip>
-        ))}
-      </ToggleChipGroup>
+      {options.map(option => (
+        <ToggleChip
+          key={option.id}
+          name={option.id}
+          title={option.label}
+          onChange={({ name, value }) =>
+            onConditionValueChange(condition.id, name, value)}
+        >
+          {option.label || <strong>Unlabelled option</strong>}
+        </ToggleChip>
+      ))}
     </MultipleChoiceAnswerOptions>
   );
 };
 
 MultipleChoiceAnswerOptionsSelector.propTypes = {
-  condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  condition: PropTypes.object.isRequired,
   onConditionValueChange: PropTypes.func.isRequired
 };
 

@@ -27,7 +27,7 @@ const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
     >
       {isNil(value) && (
         <option disabled value="" key="please-select">
-          Please select
+          Please select&hellip;
         </option>
       )}
       {optGroups}
