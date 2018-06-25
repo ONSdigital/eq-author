@@ -133,6 +133,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
           </Buttons>
         </Toolbar>
         <QuestionPageEditor
+          key={data.questionPage.id} // this is needed to reset the state of the RichTextEditors when moving between pages
           {...this.props}
           page={data.questionPage}
           showMovePageDialog={showMovePageDialog}
