@@ -11,7 +11,7 @@ import IconRoute from "./icon-route.svg?inline";
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
 import TextButton from "components/TextButton";
 import RoutingCondition from "components/routing/RoutingCondition";
-
+import { get } from "lodash";
 import { Grid, Column } from "components/Grid";
 import { RADIO } from "constants/answer-types";
 
@@ -86,6 +86,9 @@ const RoutingRule = ({
           <TransitionGroup>
             {conditions.map((condition, index) => {
               const { answer } = condition;
+              const canAddAndCondition = !existingRadioConditions[
+                get(answer, "id")
+              ];
 
               const component = (
                 <Transition key={condition.id}>
@@ -100,7 +103,7 @@ const RoutingRule = ({
                       }
                       onPageChange={onUpdateRoutingCondition}
                       onConditionValueChange={onUpdateRoutingConditionValue}
-                      canAddAndCondition={!existingRadioConditions[answer.id]}
+                      canAddAndCondition={canAddAndCondition}
                       {...otherProps}
                     />
                   </div>
