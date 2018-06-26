@@ -68,6 +68,21 @@ export const buildMultipleRouting = (questionTitles, labels, operator) => {
           .last()
           .select(questionTitle);
 
+        let value;
+
+        cy
+          .get("option")
+          .contains(questionTitle)
+          .then(option => {
+            value = option.val();
+          });
+
+        cy.then(() => {
+          findByLabel("IF")
+            .last()
+            .should("have.value", value);
+        });
+
         cy
           .get("[data-test='options-selector']")
           .last()
