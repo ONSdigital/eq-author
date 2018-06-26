@@ -45,11 +45,15 @@ describe("Routing", () => {
     cy.get("[data-test='option-label']").type("A");
     cy.get("[data-test='btn-add-option']").click();
 
+    cy.get("[data-test='answer-editor']").should("have.length", 2);
+
     cy
       .get("[data-test='option-label']")
       .last()
       .type("B");
     cy.get("[data-test='btn-add-option']").click();
+
+    cy.get("[data-test='answer-editor']").should("have.length", 3);
 
     cy
       .get("[data-test='option-label']")

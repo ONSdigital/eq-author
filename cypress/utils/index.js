@@ -37,7 +37,8 @@ export const addQuestionPage = () =>
 
 export const buildMultipleChoiceAnswer = labelArray => {
   addAnswerType("Checkbox");
-  labelArray.map(label => {
+  labelArray.map((label, index) => {
+    cy.get("[data-test='answer-editor']").should("have.length", index + 1);
     cy
       .get("[data-test='option-label']")
       .last()
