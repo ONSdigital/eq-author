@@ -5,10 +5,7 @@ import {
   typeIntoDraftEditor,
   findByLabel,
   addSection,
-  addQuestionPage,
-  buildMultipleChoiceAnswer,
-  buildMultipleRouting,
-  assertCheckboxInput
+  addQuestionPage
 } from "../utils";
 import { times } from "lodash";
 import { Routes } from "../../src/utils/UrlUtils";

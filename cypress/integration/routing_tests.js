@@ -1,17 +1,14 @@
 import {
   setQuestionnaireSettings,
   addAnswerType,
-  assertHash,
   typeIntoDraftEditor,
   findByLabel,
   addSection,
   addQuestionPage,
   buildMultipleChoiceAnswer,
-  buildMultipleRouting,
-  assertCheckboxInput
+  buildMultipleRouting
 } from "../utils";
-import { times, last } from "lodash";
-import { Routes } from "../../src/utils/UrlUtils";
+import { last } from "lodash";
 
 describe("Routing", () => {
   it("should see no routing rules exist and add one", () => {
