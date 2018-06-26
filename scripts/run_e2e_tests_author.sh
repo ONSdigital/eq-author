@@ -47,7 +47,7 @@ docker-compose -f ./scripts/e2e.yml up -d
 
 # Run the tests
 if [ -z "${CYPRESS_RECORD_KEY-}" ]; then
-  yarn cypress open
+  yarn cypress run --browser chrome
 else
-  yarn cypress open --record
+  yarn cypress run --browser electron --record
 fi
