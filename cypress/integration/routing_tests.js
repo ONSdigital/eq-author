@@ -98,6 +98,9 @@ describe("Routing", () => {
     });
 
     cy.get("[data-test='btn-add-rule']").click();
+
+    cy.get('[data-test="routing-rule"]');
+
     buildMultipleRouting(
       ["question 1", "question 2", "question 3"],
       ["A", "D", "G"],
