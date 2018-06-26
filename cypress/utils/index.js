@@ -52,13 +52,19 @@ export const buildMultipleChoiceAnswer = labelArray => {
 };
 
 export const buildMultipleRouting = (questionTitles, labels, operator) => {
+  let index = 1;
   zipWith(questionTitles, labels, (questionTitle, label) => {
+    index = index + 1;
     operator == "And"
       ? cy
           .get("[data-test='btn-add']")
           .last()
           .click()
-      : cy.get("[data-test='btn-add-rule']").click();
+      : cy
+          .get("[data-test='btn-add-rule']")
+          .click()
+          .get("[data-test='routing-rule']")
+          .should("have.length", index);
 
     cy
       .get("[data-test='routing-rule']")
