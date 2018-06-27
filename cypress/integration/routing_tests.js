@@ -6,70 +6,65 @@ import {
   addSection,
   addQuestionPage,
   buildMultipleChoiceAnswer,
-  buildMultipleRouting
+  testId,
+  selectOptionByLabel
 } from "../utils";
-import { last } from "lodash";
 
 describe("Routing", () => {
   it("should see no routing rules exist and add one", () => {
     cy.visit("/");
     cy.contains("Sign in as Guest").click();
     cy.get("h1").should("contain", "Your Questionnaires");
-    cy.get("[data-test='create-questionnaire']").click();
+    cy.get(testId("create-questionnaire")).click();
     setQuestionnaireSettings("Routing test questionnaire");
 
-    typeIntoDraftEditor("[data-testid='txt-question-title']", "question 1");
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "question 1");
 
-    cy.get("[data-test='tabs-nav']").within(() => {
+    cy.get(testId("tabs-nav")).within(() => {
       cy.contains("Routing").click();
     });
 
-    cy
-      .get('[data-test="routing-rule-set-empty-msg"]')
-      .should("contain", "No routing rules exist for this question");
-    cy.get("[data-test='btn-add-rule']").click();
+    cy.get(testId("routing-rule-set-empty-msg"));
+    cy.get(testId("btn-add-rule")).click();
 
-    cy
-      .get('[data-test="routing-rule"]')
-      .should("contain", "No answers have been added to this question yet.");
+    cy.get(testId("routing-rule"));
   });
 
   it("follows the link to add a answer and routing updates with the new answer", () => {
-    cy
-      .get("a")
-      .contains("add an answer")
-      .click();
+    cy.get(testId("no-answer-msg")).within(() => {
+      cy.get("a").click();
+    });
 
     addAnswerType("Checkbox");
 
-    cy.get("[data-test='option-label']").type("A");
-    cy.get("[data-test='btn-add-option']").click();
+    cy.get(testId("option-label")).type("A");
+    cy.get(testId("btn-add-option")).click();
 
-    cy.get("[data-test='answer-editor']").should("have.length", 2);
+    cy.get(testId("answer-editor")).should("have.length", 2);
 
     cy
-      .get("[data-test='option-label']")
+      .get(testId("option-label"))
       .last()
       .type("B");
-    cy.get("[data-test='btn-add-option']").click();
+    cy.get(testId("btn-add-option")).click();
 
-    cy.get("[data-test='answer-editor']").should("have.length", 3);
+    cy.get(testId("answer-editor")).should("have.length", 3);
 
     cy
-      .get("[data-test='option-label']")
+      .get(testId("option-label"))
       .last()
       .type("C");
 
-    cy.get("[data-test='tabs-nav']").within(() => {
+    cy.get(testId("tabs-nav")).within(() => {
       cy.contains("Routing").click();
     });
 
-    cy.get('[data-test="routing-rule"]').within(() => {
+    cy.get(testId("routing-rule")).within(() => {
       findByLabel("IF").select("question 1");
     });
 
     cy
-      .get("[data-test='options-selector']")
+      .get(testId("options-selector"))
       .should("contain", "A")
       .should("contain", "B")
       .should("contain", "C")
@@ -78,54 +73,73 @@ describe("Routing", () => {
 
   it("builds a large questionnaire.", () => {
     addQuestionPage();
-    typeIntoDraftEditor("[data-testid='txt-question-title']", "question 2");
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "question 2");
     buildMultipleChoiceAnswer(["D", "E", "F"]);
 
     addSection();
 
     addQuestionPage();
-    typeIntoDraftEditor("[data-testid='txt-question-title']", "question 3");
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "question 3");
     buildMultipleChoiceAnswer(["G", "H", "I"]);
 
     addQuestionPage();
-    typeIntoDraftEditor("[data-testid='txt-question-title']", "question 4");
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "question 4");
     buildMultipleChoiceAnswer(["J", "K", "L"]);
   });
 
   it("builds a series of Or'd rules", () => {
     cy.contains("question 3").click();
-    cy.get("[data-test='tabs-nav']").within(() => {
+    cy.get(testId("tabs-nav")).within(() => {
       cy.contains("Routing").click();
     });
 
-    cy.get("[data-test='btn-add-rule']").click();
+    cy.get(testId("btn-add-rule")).click();
 
-    cy.get('[data-test="routing-rule"]');
+    cy.get(testId("routing-rule"));
 
-    buildMultipleRouting(
-      ["question 1", "question 2", "question 3"],
-      ["A", "D", "G"],
-      "Or"
-    );
+    const setRoutingCondition = (questionTitle, label) => {
+      findByLabel("IF").within(() => selectOptionByLabel(questionTitle));
+
+      cy
+        .get(testId("options-selector"))
+        .within(() => cy.contains(label).click());
+    };
+
+    cy.get(testId("routing-editor")).within(() => {
+      cy
+        .get(testId("routing-rule"))
+        .last()
+        .within(() => setRoutingCondition("question 1", "A"));
+
+      cy.get(testId("btn-add-rule")).click();
+      cy.get(testId("routing-rule")).should("have.length", 2);
+
+      cy
+        .get(testId("routing-rule"))
+        .last()
+        .within(() => setRoutingCondition("question 2", "D"));
+
+      cy.get(testId("btn-add-rule")).click();
+      cy.get(testId("routing-rule")).should("have.length", 3);
+
+      cy
+        .get(testId("routing-rule"))
+        .last()
+        .within(() => setRoutingCondition("question 3", "G"));
+    });
 
     cy
-      .get('[data-test="btn-delete"]')
-      .first()
-      .click();
-
-    cy.get('[data-test="routing-rule"]').should("have.length", 3);
-
-    cy
-      .get("[data-test='options-selector']")
-      .first()
+      .get(testId("options-selector"))
+      .eq(0)
       .within(() => {
         cy
           .get("input")
           .first()
           .should("be.checked");
       });
+
     cy
-      .get("[data-test='options-selector']")
+      .get(testId("options-selector"))
       .eq(1)
       .within(() => {
         cy
@@ -134,8 +148,8 @@ describe("Routing", () => {
           .should("be.checked");
       });
     cy
-      .get("[data-test='options-selector']")
-      .last()
+      .get(testId("options-selector"))
+      .eq(2)
       .within(() => {
         cy
           .get("input")
@@ -152,7 +166,7 @@ describe("Routing", () => {
 
   it("updates the options when a new question is selected", () => {
     cy
-      .get("[data-test='options-selector']")
+      .get(testId("options-selector"))
       .first()
       .contains("A");
 
@@ -161,14 +175,14 @@ describe("Routing", () => {
       .select("question 2");
 
     cy
-      .get("[data-test='options-selector']")
+      .get(testId("options-selector"))
       .first()
       .contains("D");
   });
 
   it("can't route to a previous question", () => {
     cy
-      .get("[data-test='result-selector']")
+      .get(testId("result-selector"))
       .first()
       .within(() => {
         cy.contains("question 1").should("not.exist");
@@ -177,87 +191,83 @@ describe("Routing", () => {
 
   it("deletes all current rules and builds an And'd rule set", () => {
     cy
-      .get('[data-test="btn-delete"]')
+      .get(testId("btn-delete"))
       .first()
       .click();
 
-    cy.get('[data-test="routing-condition"]').should("have.length", 2);
+    cy.get(testId("routing-condition")).should("have.length", 2);
 
     cy
-      .get('[data-test="btn-delete"]')
+      .get(testId("btn-delete"))
       .first()
       .click();
 
     cy
-      .get('[data-test="routing-rule"]')
+      .get(testId("routing-rule"))
       .last()
       .within(() => {
-        cy.get('[data-test="btn-add"]').click();
-        cy.get('[data-test="btn-add"]').click();
+        cy.get(testId("btn-add")).click();
+        cy.get(testId("btn-add")).click();
       });
 
-    cy.get('[data-test="routing-rule"]').should("have.length", 1);
-    cy.get('[data-test="routing-condition"]').should("have.length", 3);
+    cy.get(testId("routing-rule")).should("have.length", 1);
+    cy.get(testId("routing-condition")).should("have.length", 3);
   });
 
-  it("can change the destination to another page and the else to the Summery", () => {
-    cy.url().then(url => {
-      const pageId = last(url.match(/(\d+)/g)) - 1;
-      const destinationValue = `{"absoluteDestination":{"destinationType":"QuestionPage","destinationId":"${pageId}"}}`;
-      cy
-        .get('[data-test="result-selector"]')
-        .first()
-        .select(`Page Title`)
-        .should("have.value", destinationValue);
-    });
+  it("can change the destination to another page and the else to the Summary", () => {
+    cy
+      .get(testId("result-selector"))
+      .first()
+      .within(() => selectOptionByLabel("Page Title"));
 
     cy
-      .get('[data-test="result-selector"]')
-      .first()
-      .select("Summary")
-      .should(
-        "have.value",
-        '{"logicalDestination":{"destinationType":"EndOfQuestionnaire"}}'
-      );
+      .get(testId("result-selector"))
+      .last()
+      .within(() => selectOptionByLabel("Summary"));
   });
 
   it("should change rule if the dependent question is removed", () => {
+    const setRoutingCondition = (questionTitle, label) => {
+      findByLabel("IF").within(() => selectOptionByLabel(questionTitle));
+
+      cy
+        .get(testId("options-selector"))
+        .within(() => cy.contains(label).click());
+    };
+
     cy
-      .get('[data-test="btn-remove"]')
-      .first()
-      .click()
-      .then(() => {
-        cy
-          .get('[data-test="btn-remove"]')
-          .last()
-          .click();
-      });
+      .get(testId("routing-rule"))
+      .last()
+      .within(() => setRoutingCondition("question 1", "A"));
 
-    cy.url().then(url => {
-      cy
-        .get('[data-test="page-item"]')
-        .first()
-        .click();
+    cy
+      .get(testId("page-item"))
+      .contains("question 1")
+      .click();
 
-      cy.get('[data-test="tabs-nav"]').within(() => {
-        cy.contains("Builder").click();
-      });
+    cy
+      .get(testId("tabs-nav"))
+      .contains("Builder")
+      .click();
 
-      cy
-        .get('[data-test="btn-delete"]')
-        .click()
-        .then(() => {
-          cy.get('[data-test="btn-delete-modal"]').click();
-        });
+    cy.get(testId("btn-delete")).click();
+    cy.get(testId("btn-delete-modal")).click();
 
-      cy.visit(url);
-      cy.contains("Sign in as Guest").click();
-    });
+    cy
+      .get(testId("page-item"))
+      .contains("question 3")
+      .click();
+
+    cy
+      .get(testId("tabs-nav"))
+      .contains("Routing")
+      .click();
 
     findByLabel("IF")
       .first()
-      .within(() => {
-        cy.contains("question 1").should("not.exist");
-      });
+      .contains("question 1")
+      .should("not.exist");
+
+    cy.get(testId("deleted-answer-msg")).should("exist");
   });
 });

@@ -1,10 +1,25 @@
 import { matchPath } from "../../src/utils/UrlUtils";
 import { zipWith } from "lodash";
 
+export const testId = (id, attr = "test") => `[data-${attr}="${id}"]`;
+
+export const selectOptionByLabel = label => {
+  cy
+    .get("option")
+    .contains(label)
+    .then(option => option.val())
+    .then(value => {
+      cy
+        .root()
+        .select(label)
+        .should("have.value", value);
+    });
+};
+
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
     cy
-      .get("[data-test='txt-questionnaire-title']")
+      .get(testId("txt-questionnaire-title"))
       .clear()
       .type(name);
     cy.get("label[for='navigation']").click();
@@ -14,7 +29,7 @@ export function setQuestionnaireSettings(name) {
 }
 
 export const addSection = () =>
-  cy.get("[data-test='add-menu']").within(() => {
+  cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
       .contains("Add")
@@ -25,7 +40,7 @@ export const addSection = () =>
   });
 
 export const addQuestionPage = () =>
-  cy.get("[data-test='add-menu']").within(() => {
+  cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
       .contains("Add")
@@ -38,71 +53,33 @@ export const addQuestionPage = () =>
 export const buildMultipleChoiceAnswer = labelArray => {
   addAnswerType("Checkbox");
   labelArray.map((label, index) => {
-    cy.get("[data-test='answer-editor']").should("have.length", index + 1);
+    cy.get(testId("answer-editor")).should("have.length", index + 1);
     cy
-      .get("[data-test='option-label']")
+      .get(testId("option-label"))
       .last()
       .type(label);
-    cy.get("[data-test='btn-add-option']").click();
+    cy.get(testId("btn-add-option")).click();
   });
   cy
-    .get("[data-test='btn-delete-option']")
+    .get(testId("btn-delete-option"))
     .last()
     .click();
 };
 
-export const buildMultipleRouting = (questionTitles, labels, operator) => {
-  let index = 1;
-  zipWith(questionTitles, labels, (questionTitle, label) => {
-    index = index + 1;
-    operator == "And"
-      ? cy
-          .get("[data-test='btn-add']")
-          .last()
-          .click()
-      : cy
-          .get("[data-test='btn-add-rule']")
-          .click()
-          .get("[data-test='routing-rule']")
-          .should("have.length", index);
-
-    cy
-      .get("[data-test='routing-rule']")
-      .last()
-      .within(() => {
-        findByLabel("IF")
-          .last()
-          .select(questionTitle);
-
-        let value;
-
-        cy
-          .get("option")
-          .contains(questionTitle)
-          .then(option => {
-            value = option.val();
-          });
-
-        cy.then(() => {
-          findByLabel("IF")
-            .last()
-            .should("have.value", value);
-        });
-
-        cy
-          .get("[data-test='options-selector']")
-          .last()
-          .within(() => {
-            cy.contains(label).click();
-          });
-      });
-  });
-};
-
 export function addAnswerType(answerType) {
-  cy.get("[data-test='btn-add-answer']").click();
+  cy.get(testId("btn-add-answer")).click();
   cy.contains(answerType).click();
 }
+
+export const matchHashToPath = (path, hash) => {
+  hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
+
+  return matchPath(hash, {
+    path,
+    exact: true,
+    strict: false
+  });
+};
 
 export function assertHash({
   previousPath,
@@ -110,22 +87,12 @@ export function assertHash({
   currentPath,
   equality
 }) {
-  const match = (path, hash) => {
-    hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
-
-    return matchPath(hash, {
-      path,
-      exact: true,
-      strict: false
-    });
-  };
-
   cy
     .log("comparing previous hash", previousHash)
     .hash()
     .should(currentHash => {
-      const previousMatch = match(previousPath, previousHash);
-      const currentMatch = match(currentPath, currentHash);
+      const previousMatch = matchHashToPath(previousPath, previousHash);
+      const currentMatch = matchHashToPath(currentPath, currentHash);
 
       expect(previousMatch).not.to.equal(null);
       expect(currentMatch).not.to.equal(null);
