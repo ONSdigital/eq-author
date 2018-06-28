@@ -1,13 +1,12 @@
 import React from "react";
-import Input from "components/Forms/Input";
-
-import { TEXTFIELD } from "constants/answer-types";
+import { Input } from "components/Forms";
+import { HiddenInput } from "components/ToggleSwitch";
+import { NUMBER } from "constants/answer-types";
 
 import AnswerProperties from "components/AnswerProperties";
 import { shallow, mount } from "enzyme";
 
 let wrapper;
-
 let handleUpdate;
 let handleSubmit;
 let handleChange;
@@ -19,8 +18,11 @@ const answer = {
   index: "0",
   title: "answer-title",
   description: "answer-description",
-  type: TEXTFIELD,
-  mandatory: false
+  type: NUMBER,
+  properties: {
+    required: true,
+    decimals: 2
+  }
 };
 
 describe("Answer Properties", () => {
@@ -51,13 +53,30 @@ describe("Answer Properties", () => {
       wrapper = mount(answerProperties());
     });
 
-    it("should handle change event for mandatory checkbox", () => {
+    it("should handle change event for 'Required' toggle input", () => {
       wrapper
-        .find(Input)
-        .simulate("change", { target: { type: "checkbox", checked: true } });
+        .find(HiddenInput)
+        .simulate("change", { target: { value: false } });
       expect(handleChange).toHaveBeenCalledWith({
         id: "1",
-        mandatory: true
+        properties: {
+          decimals: 2,
+          required: false
+        }
+      });
+    });
+
+    it("should handle change event for 'Decimals' number input", () => {
+      wrapper
+        .find(Input)
+        .at(1)
+        .simulate("change", { target: { value: 3 } });
+      expect(handleChange).toHaveBeenCalledWith({
+        id: "1",
+        properties: {
+          required: true,
+          decimals: 3
+        }
       });
     });
   });

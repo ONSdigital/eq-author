@@ -26,13 +26,13 @@ const StyledInput = styled(Input)`
 class Number extends React.Component {
   handleUp = () => {
     const name = this.props.name || this.props.id;
-    const value = parseInt(this.props.value, 10) + 1;
+    const value = this.props.value + 1;
     this.handleChange({ name, value });
   };
 
   handleDown = () => {
     const name = this.props.name || this.props.id;
-    const value = parseInt(this.props.value, 10) - 1;
+    const value = this.props.value - 1;
     this.handleChange({ name, value });
   };
 
@@ -48,7 +48,7 @@ class Number extends React.Component {
         ? this.props.min
         : enteredValue;
 
-    this.props.onChange({ name, value: newValue.toString() });
+    this.props.onChange({ name, value: newValue });
   };
 
   render() {
@@ -75,7 +75,7 @@ Number.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.number,
   step: PropTypes.number,
   min: PropTypes.number,
   max: PropTypes.number.isRequired

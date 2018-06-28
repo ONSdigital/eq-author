@@ -7,40 +7,51 @@ exports[`PropertiesPanel should render when there are answers 1`] = `
       permanentScrollBar={false}
     >
       <div>
-        <PropertiesPanel__PropertiesPanelTitle>
-          Answer properties
-        </PropertiesPanel__PropertiesPanelTitle>
         <PropertiesPanel__PropertiesGroup>
-          <div
+          <PropertiesPanel__AnswerProperties
+            data-test="properties-0"
             key="Answer1"
           >
+            <PropertiesPanel__PropertiesPanelTitle
+              data-test="properties-title-0"
+            >
+              NUMBER
+            </PropertiesPanel__PropertiesPanelTitle>
             <Apollo(AnswerProperties)
               answer={
                 Object {
                   "__typename": "Answer",
                   "id": "1",
                   "index": 0,
+                  "type": "Number",
                 }
               }
               id="Answer1"
               onSubmit={[Function]}
             />
-          </div>
-          <div
+          </PropertiesPanel__AnswerProperties>
+          <PropertiesPanel__AnswerProperties
+            data-test="properties-1"
             key="Answer2"
           >
+            <PropertiesPanel__PropertiesPanelTitle
+              data-test="properties-title-1"
+            >
+              TEXTFIELD
+            </PropertiesPanel__PropertiesPanelTitle>
             <Apollo(AnswerProperties)
               answer={
                 Object {
                   "__typename": "Answer",
                   "id": "2",
                   "index": 1,
+                  "type": "TextField",
                 }
               }
               id="Answer2"
               onSubmit={[Function]}
             />
-          </div>
+          </PropertiesPanel__AnswerProperties>
         </PropertiesPanel__PropertiesGroup>
       </div>
     </ScrollPane>

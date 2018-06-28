@@ -1,5 +1,6 @@
 import React from "react";
 import PropertiesPanel from "components/PropertiesPanel";
+import { NUMBER, TEXTFIELD } from "constants/answer-types";
 import { shallow } from "enzyme";
 import { merge } from "lodash";
 
@@ -42,11 +43,13 @@ describe("PropertiesPanel", () => {
           {
             id: "1",
             index: 0,
+            type: NUMBER,
             __typename: "Answer"
           },
           {
             id: "2",
             index: 1,
+            type: TEXTFIELD,
             __typename: "Answer"
           }
         ]

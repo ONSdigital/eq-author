@@ -5,7 +5,7 @@ const withChangeHandler = WrappedComponent => {
   return class extends React.Component {
     static propTypes = {
       onChange: PropTypes.func,
-      value: PropTypes.string,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       id: PropTypes.string,
       name: PropTypes.string,
       className: PropTypes.string

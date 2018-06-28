@@ -1,19 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Properties should render 1`] = `
-<AnswerProperties__InlineField>
-  <Label
-    htmlFor="answer-1-mandatory"
-    inline={true}
-    small={true}
+<div>
+  <AnswerProperties__InlineField
+    key="answer-1-required"
   >
-    Answer 01 required
-  </Label>
-  <ToggleSwitch
-    checked={false}
-    id="answer-1-mandatory"
-    name="answer-1-mandatory"
-    onChange={[Function]}
-  />
-</AnswerProperties__InlineField>
+    <Label
+      bold={false}
+      htmlFor="answer-1-required"
+      inline={true}
+    >
+      Required
+    </Label>
+    <ToggleSwitch
+      checked={true}
+      id="answer-1-required"
+      name="answer-1-required"
+      onChange={[Function]}
+    />
+  </AnswerProperties__InlineField>
+  <AnswerProperties__InlineField
+    key="answer-1-decimals"
+  >
+    <Label
+      bold={false}
+      htmlFor="answer-1-decimals"
+      inline={true}
+    >
+      Decimals
+    </Label>
+    <Number
+      id="answer-1-decimals"
+      max={6}
+      min={0}
+      name="answer-1-decimals"
+      onChange={[Function]}
+      step={1}
+      value={2}
+    />
+  </AnswerProperties__InlineField>
+</div>
 `;
