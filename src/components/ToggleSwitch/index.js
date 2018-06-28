@@ -7,21 +7,31 @@ import { Input } from "components/Forms";
 import { colors } from "constants/theme";
 
 const knobColors = {
-  off: "#E8E8E8",
-  on: colors.blue
+  off: colors.white,
+  on: colors.white
 };
 
 const backgroundColors = {
-  on: "#78C3E9",
-  off: "#c3c3c3"
+  on: colors.blue,
+  off: colors.white
+};
+
+const knobBorder = {
+  on: `none`,
+  off: `1px solid ${colors.borders}`
+};
+
+const backgroundBorder = {
+  on: `none`,
+  off: `0.1em solid ${colors.borders}`
 };
 
 const SharedDefaultProps = {
-  width: 2.6,
-  height: 1
+  width: 1.7,
+  height: 1.15
 };
 
-const glowScale = 1.5;
+const glowScale = 1.4;
 
 export const HiddenInput = styled(Input)`
   opacity: 0;
@@ -42,6 +52,8 @@ export const ToggleSwitchBackground = styled.div`
   content: "";
   transition: background 100ms ease-in-out;
   position: relative;
+  border: ${props =>
+    props.checked ? backgroundBorder.on : backgroundBorder.off};
 `;
 
 ToggleSwitchBackground.propTypes = {
@@ -53,12 +65,13 @@ ToggleSwitchBackground.defaultProps = SharedDefaultProps;
 
 const ToggleSwitchKnob = styled.div`
   display: inline-block;
-  height: ${props => props.size}em;
-  width: ${props => props.size}em;
+  height: ${props => (props.checked ? props.size - 0.1 : props.size + 0.1)}em;
+  width: ${props => (props.checked ? props.size - 0.1 : props.size + 0.1)}em;
   background: ${props => (props.checked ? knobColors.on : knobColors.off)};
   content: "";
   position: relative;
-  top: ${props => -((props.size - props.height) / 2)}em;
+  top: ${props => (props.checked ? 0.15 : -0.025)}em;
+  right: 0.05em;
   will-change: transform;
   transform: translateX(
     ${props => (props.checked ? props.width - props.size : 0)}em
@@ -66,7 +79,7 @@ const ToggleSwitchKnob = styled.div`
   border-radius: 50%;
   transition: transform 100ms ease-in-out;
   box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
-
+  border: ${props => (props.checked ? knobBorder.on : knobBorder.off)};
   &::before {
     background: ${knobColors.on};
     display: inline-block;
@@ -95,7 +108,7 @@ ToggleSwitchKnob.propTypes = {
 };
 
 ToggleSwitchKnob.defaultProps = {
-  size: 1.4,
+  size: 0.9,
   ...SharedDefaultProps
 };
 
