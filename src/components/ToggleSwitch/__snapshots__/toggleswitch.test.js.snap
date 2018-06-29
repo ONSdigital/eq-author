@@ -3,9 +3,7 @@
 exports[`ToggleSwitch should render 1`] = `
 <ToggleSwitch__FlexInline
   aria-checked={false}
-  height={1.15}
   role="switch"
-  width={1.7}
 >
   <ToggleSwitch__HiddenInput
     checked={false}
@@ -15,16 +13,11 @@ exports[`ToggleSwitch should render 1`] = `
   />
   <ToggleSwitch__ToggleSwitchBackground
     checked={false}
-    height={1.15}
     onClick={[Function]}
     role="presentation"
-    width={1.7}
   >
     <ToggleSwitch__ToggleSwitchKnob
       checked={false}
-      height={1.15}
-      size={0.9}
-      width={1.7}
     />
   </ToggleSwitch__ToggleSwitchBackground>
 </ToggleSwitch__FlexInline>
@@ -33,9 +26,7 @@ exports[`ToggleSwitch should render 1`] = `
 exports[`ToggleSwitch should render a large toggle button 1`] = `
 <ToggleSwitch__FlexInline
   aria-checked={false}
-  height={1.15}
   role="switch"
-  width={5}
 >
   <ToggleSwitch__HiddenInput
     checked={false}
@@ -45,23 +36,18 @@ exports[`ToggleSwitch should render a large toggle button 1`] = `
   />
   <ToggleSwitch__ToggleSwitchBackground
     checked={false}
-    height={2}
     onClick={[Function]}
     role="presentation"
-    width={5}
   >
     <ToggleSwitch__ToggleSwitchKnob
       checked={false}
-      height={2}
-      size={2}
-      width={5}
     />
   </ToggleSwitch__ToggleSwitchBackground>
 </ToggleSwitch__FlexInline>
 `;
 
 exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
-.c3 {
+.c2 {
   font-size: 1em;
   border: 1px solid #999999;
   padding: 0.5em;
@@ -83,84 +69,75 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   font-size: 1em;
 }
 
-.c3:hover {
+.c2:hover {
   border-color: #3B7A9E;
   outline-color: #3B7A9E;
 }
 
-.c3:focus,
-.c3:focus-within {
+.c2:focus,
+.c2:focus-within {
   border-color: #3B7A9E;
   outline-color: #3B7A9E;
   box-shadow: 0 0 0 3px #FDBD56;
 }
 
-.c3::-webkit-input-placeholder {
+.c2::-webkit-input-placeholder {
   color: #a3a3a3;
 }
 
-.c3::-moz-placeholder {
+.c2::-moz-placeholder {
   color: #a3a3a3;
 }
 
-.c3:-ms-input-placeholder {
+.c2:-ms-input-placeholder {
   color: #a3a3a3;
 }
 
-.c3::placeholder {
+.c2::placeholder {
   color: #a3a3a3;
 }
 
-.c3:focus {
+.c2:focus {
   outline: none;
   border: 1px solid #3B7A9E;
 }
 
-.c3[disabled] {
+.c2[disabled] {
   opacity: 0.8;
   pointer-events: none;
 }
 
-.c3:checked {
+.c2:checked {
   background: url(icon-checkbox.svg) no-repeat center;
   background-size: 0.8em auto;
 }
 
-.c2 {
-  opacity: 0;
+.c4 {
+  height: 1em;
+  width: 1.5em;
+  top: 1em;
+  background: #FFFFFF;
+  border-radius: 2em;
   position: absolute;
+  border: 1px solid #666666;
+  -webkit-transition: background 100ms ease-out,border-color 100ms ease-in;
+  transition: background 100ms ease-out,border-color 100ms ease-in;
+  outline: 1px solid transparent;
+  cursor: pointer;
 }
 
-.c2:focus {
-  border: none;
+.c4:hover {
+  border-color: #3B7A9E;
 }
 
 .c5 {
-  cursor: pointer;
-  height: 2em;
-  width: 5em;
-  background: #FFFFFF;
-  border-radius: 1em;
-  content: "";
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
-  position: relative;
-  border: 0.1em solid #999999;
-}
-
-.c1:focus + .c4 .JGIEx::before {
-  opacity: 0.12;
-}
-
-.c6 {
   display: inline-block;
-  height: 2.1em;
-  width: 2.1em;
+  height: 1em;
+  width: 1em;
   background: #FFFFFF;
-  content: "";
+  top: calc(50% - 1em / 2);
+  left: calc(33% - 1em / 2);
   position: relative;
-  top: -0.025em;
-  right: 0.05em;
   will-change: transform;
   -webkit-transform: translateX( 0em );
   -ms-transform: translateX( 0em );
@@ -169,30 +146,24 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   -webkit-transition: -webkit-transform 100ms ease-in-out;
   -webkit-transition: transform 100ms ease-in-out;
   transition: transform 100ms ease-in-out;
-  box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
-  border: 1px solid #999999;
+  border: inherit;
 }
 
-.c6::before {
-  background: #FFFFFF;
-  display: inline-block;
-  content: "";
-  width: 2.8em;
-  height: 2.8em;
-  position: relative;
-  top: -0.3999999999999999em;
-  will-change: transform;
-  -webkit-transform: translateX( -0.3999999999999999em );
-  -ms-transform: translateX( -0.3999999999999999em );
-  transform: translateX( -0.3999999999999999em );
-  border-radius: 50%;
+.c1 {
   opacity: 0;
-  -webkit-transition: opacity 100ms ease-in-out;
-  transition: opacity 100ms ease-in-out;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
 }
 
-.c1:focus + .c4 .c6::before {
-  opacity: 0.12;
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 2px #FDBD56;
+}
+
+.c1:hover + .c3 {
+  border-color: #3B7A9E;
 }
 
 .c0 {
@@ -207,7 +178,8 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 5em;
+  height: 3em;
+  width: 3em;
   position: relative;
 }
 
@@ -223,16 +195,12 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 >
   <ToggleSwitch__FlexInline
     aria-checked={false}
-    height={1.15}
     role="switch"
-    width={5}
   >
     <div
       aria-checked={false}
       className="c0"
-      height={1.15}
       role="switch"
-      width={5}
     >
       <ToggleSwitch__HiddenInput
         checked={false}
@@ -242,21 +210,21 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
       >
         <withChangeHandler(Input)
           checked={false}
-          className="c1 c2"
+          className="c1"
           id="toggle-3"
           onChange={[Function]}
           type="checkbox"
         >
           <Input
             checked={false}
-            className="c1 c2"
+            className="c1"
             id="toggle-3"
             onChange={[Function]}
             type="checkbox"
           >
             <Input__StyledInput
               checked={false}
-              className="c1 c2"
+              className="c1"
               id="toggle-3"
               name="toggle-3"
               onChange={[Function]}
@@ -264,7 +232,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
             >
               <input
                 checked={false}
-                className="c1 c2 c3"
+                className="c1 c2"
                 id="toggle-3"
                 name="toggle-3"
                 onChange={[Function]}
@@ -276,31 +244,21 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
       </ToggleSwitch__HiddenInput>
       <ToggleSwitch__ToggleSwitchBackground
         checked={false}
-        height={2}
         onClick={[Function]}
         role="presentation"
-        width={5}
       >
         <div
           checked={false}
-          className="c4 c5"
-          height={2}
+          className="c3 c4"
           onClick={[Function]}
           role="presentation"
-          width={5}
         >
           <ToggleSwitch__ToggleSwitchKnob
             checked={false}
-            height={2}
-            size={2}
-            width={5}
           >
             <div
               checked={false}
-              className="c6"
-              height={2}
-              size={2}
-              width={5}
+              className="c5"
             />
           </ToggleSwitch__ToggleSwitchKnob>
         </div>
@@ -313,9 +271,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 exports[`ToggleSwitch should render checked 1`] = `
 <ToggleSwitch__FlexInline
   aria-checked={true}
-  height={1.15}
   role="switch"
-  width={1.7}
 >
   <ToggleSwitch__HiddenInput
     checked={true}
@@ -325,23 +281,18 @@ exports[`ToggleSwitch should render checked 1`] = `
   />
   <ToggleSwitch__ToggleSwitchBackground
     checked={true}
-    height={1.15}
     onClick={[Function]}
     role="presentation"
-    width={1.7}
   >
     <ToggleSwitch__ToggleSwitchKnob
       checked={true}
-      height={1.15}
-      size={0.9}
-      width={1.7}
     />
   </ToggleSwitch__ToggleSwitchBackground>
 </ToggleSwitch__FlexInline>
 `;
 
 exports[`ToggleSwitch should render when checked and mounted 1`] = `
-.c3 {
+.c2 {
   font-size: 1em;
   border: 1px solid #999999;
   padding: 0.5em;
@@ -363,112 +314,101 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   font-size: 1em;
 }
 
-.c3:hover {
+.c2:hover {
   border-color: #3B7A9E;
   outline-color: #3B7A9E;
 }
 
-.c3:focus,
-.c3:focus-within {
+.c2:focus,
+.c2:focus-within {
   border-color: #3B7A9E;
   outline-color: #3B7A9E;
   box-shadow: 0 0 0 3px #FDBD56;
 }
 
-.c3::-webkit-input-placeholder {
+.c2::-webkit-input-placeholder {
   color: #a3a3a3;
 }
 
-.c3::-moz-placeholder {
+.c2::-moz-placeholder {
   color: #a3a3a3;
 }
 
-.c3:-ms-input-placeholder {
+.c2:-ms-input-placeholder {
   color: #a3a3a3;
 }
 
-.c3::placeholder {
+.c2::placeholder {
   color: #a3a3a3;
 }
 
-.c3:focus {
+.c2:focus {
   outline: none;
   border: 1px solid #3B7A9E;
 }
 
-.c3[disabled] {
+.c2[disabled] {
   opacity: 0.8;
   pointer-events: none;
 }
 
-.c3:checked {
+.c2:checked {
   background: url(icon-checkbox.svg) no-repeat center;
   background-size: 0.8em auto;
 }
 
-.c2 {
-  opacity: 0;
+.c4 {
+  height: 1em;
+  width: 1.5em;
+  top: 1em;
+  background: #3B7A9E;
+  border-radius: 2em;
   position: absolute;
+  border: 1px solid #3B7A9E;
+  -webkit-transition: background 100ms ease-out,border-color 100ms ease-in;
+  transition: background 100ms ease-out,border-color 100ms ease-in;
+  outline: 1px solid transparent;
+  cursor: pointer;
 }
 
-.c2:focus {
-  border: none;
+.c4:hover {
+  border-color: #3B7A9E;
 }
 
 .c5 {
-  cursor: pointer;
-  height: 1.15em;
-  width: 1.7em;
-  background: #3B7A9E;
-  border-radius: 1em;
-  content: "";
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
-  position: relative;
-  border: none;
-}
-
-.c6 {
   display: inline-block;
-  height: 0.8em;
-  width: 0.8em;
+  height: 1em;
+  width: 1em;
   background: #FFFFFF;
-  content: "";
+  top: calc(50% - 1em / 2);
+  left: calc(33% - 1em / 2);
   position: relative;
-  top: 0.15em;
-  right: 0.05em;
   will-change: transform;
-  -webkit-transform: translateX( 0.7999999999999999em );
-  -ms-transform: translateX( 0.7999999999999999em );
-  transform: translateX( 0.7999999999999999em );
+  -webkit-transform: translateX( 0.5em );
+  -ms-transform: translateX( 0.5em );
+  transform: translateX( 0.5em );
   border-radius: 50%;
   -webkit-transition: -webkit-transform 100ms ease-in-out;
   -webkit-transition: transform 100ms ease-in-out;
   transition: transform 100ms ease-in-out;
-  box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
-  border: none;
+  border: inherit;
 }
 
-.c6::before {
-  background: #FFFFFF;
-  display: inline-block;
-  content: "";
-  width: 1.26em;
-  height: 1.26em;
-  position: relative;
-  top: -0.18em;
-  will-change: transform;
-  -webkit-transform: translateX( -0.18em );
-  -ms-transform: translateX( -0.18em );
-  transform: translateX( -0.18em );
-  border-radius: 50%;
+.c1 {
   opacity: 0;
-  -webkit-transition: opacity 100ms ease-in-out;
-  transition: opacity 100ms ease-in-out;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
 }
 
-.c1:focus + .c4 .c6::before {
-  opacity: 0.12;
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 2px #FDBD56;
+}
+
+.c1:hover + .c3 {
+  border-color: #3B7A9E;
 }
 
 .c0 {
@@ -483,7 +423,8 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 1.7em;
+  height: 3em;
+  width: 3em;
   position: relative;
 }
 
@@ -496,16 +437,12 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
 >
   <ToggleSwitch__FlexInline
     aria-checked={true}
-    height={1.15}
     role="switch"
-    width={1.7}
   >
     <div
       aria-checked={true}
       className="c0"
-      height={1.15}
       role="switch"
-      width={1.7}
     >
       <ToggleSwitch__HiddenInput
         checked={true}
@@ -515,21 +452,21 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
       >
         <withChangeHandler(Input)
           checked={true}
-          className="c1 c2"
+          className="c1"
           id="toggle-2"
           onChange={[Function]}
           type="checkbox"
         >
           <Input
             checked={true}
-            className="c1 c2"
+            className="c1"
             id="toggle-2"
             onChange={[Function]}
             type="checkbox"
           >
             <Input__StyledInput
               checked={true}
-              className="c1 c2"
+              className="c1"
               id="toggle-2"
               name="toggle-2"
               onChange={[Function]}
@@ -537,7 +474,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
             >
               <input
                 checked={true}
-                className="c1 c2 c3"
+                className="c1 c2"
                 id="toggle-2"
                 name="toggle-2"
                 onChange={[Function]}
@@ -549,31 +486,21 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
       </ToggleSwitch__HiddenInput>
       <ToggleSwitch__ToggleSwitchBackground
         checked={true}
-        height={1.15}
         onClick={[Function]}
         role="presentation"
-        width={1.7}
       >
         <div
           checked={true}
-          className="c4 c5"
-          height={1.15}
+          className="c3 c4"
           onClick={[Function]}
           role="presentation"
-          width={1.7}
         >
           <ToggleSwitch__ToggleSwitchKnob
             checked={true}
-            height={1.15}
-            size={0.9}
-            width={1.7}
           >
             <div
               checked={true}
-              className="c6"
-              height={1.15}
-              size={0.9}
-              width={1.7}
+              className="c5"
             />
           </ToggleSwitch__ToggleSwitchKnob>
         </div>
@@ -584,7 +511,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
 `;
 
 exports[`ToggleSwitch should render when mounted 1`] = `
-.c3 {
+.c2 {
   font-size: 1em;
   border: 1px solid #999999;
   padding: 0.5em;
@@ -606,112 +533,101 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   font-size: 1em;
 }
 
-.c3:hover {
+.c2:hover {
   border-color: #3B7A9E;
   outline-color: #3B7A9E;
 }
 
-.c3:focus,
-.c3:focus-within {
+.c2:focus,
+.c2:focus-within {
   border-color: #3B7A9E;
   outline-color: #3B7A9E;
   box-shadow: 0 0 0 3px #FDBD56;
 }
 
-.c3::-webkit-input-placeholder {
+.c2::-webkit-input-placeholder {
   color: #a3a3a3;
 }
 
-.c3::-moz-placeholder {
+.c2::-moz-placeholder {
   color: #a3a3a3;
 }
 
-.c3:-ms-input-placeholder {
+.c2:-ms-input-placeholder {
   color: #a3a3a3;
 }
 
-.c3::placeholder {
+.c2::placeholder {
   color: #a3a3a3;
 }
 
-.c3:focus {
+.c2:focus {
   outline: none;
   border: 1px solid #3B7A9E;
 }
 
-.c3[disabled] {
+.c2[disabled] {
   opacity: 0.8;
   pointer-events: none;
 }
 
-.c3:checked {
+.c2:checked {
   background: url(icon-checkbox.svg) no-repeat center;
   background-size: 0.8em auto;
 }
 
-.c2 {
-  opacity: 0;
+.c4 {
+  height: 1em;
+  width: 1.5em;
+  top: 1em;
+  background: #3B7A9E;
+  border-radius: 2em;
   position: absolute;
+  border: 1px solid #3B7A9E;
+  -webkit-transition: background 100ms ease-out,border-color 100ms ease-in;
+  transition: background 100ms ease-out,border-color 100ms ease-in;
+  outline: 1px solid transparent;
+  cursor: pointer;
 }
 
-.c2:focus {
-  border: none;
+.c4:hover {
+  border-color: #3B7A9E;
 }
 
 .c5 {
-  cursor: pointer;
-  height: 1.15em;
-  width: 1.7em;
-  background: #3B7A9E;
-  border-radius: 1em;
-  content: "";
-  -webkit-transition: background 100ms ease-in-out;
-  transition: background 100ms ease-in-out;
-  position: relative;
-  border: none;
-}
-
-.c6 {
   display: inline-block;
-  height: 0.8em;
-  width: 0.8em;
+  height: 1em;
+  width: 1em;
   background: #FFFFFF;
-  content: "";
+  top: calc(50% - 1em / 2);
+  left: calc(33% - 1em / 2);
   position: relative;
-  top: 0.15em;
-  right: 0.05em;
   will-change: transform;
-  -webkit-transform: translateX( 0.7999999999999999em );
-  -ms-transform: translateX( 0.7999999999999999em );
-  transform: translateX( 0.7999999999999999em );
+  -webkit-transform: translateX( 0.5em );
+  -ms-transform: translateX( 0.5em );
+  transform: translateX( 0.5em );
   border-radius: 50%;
   -webkit-transition: -webkit-transform 100ms ease-in-out;
   -webkit-transition: transform 100ms ease-in-out;
   transition: transform 100ms ease-in-out;
-  box-shadow: 0 0 1px 0 rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.24);
-  border: none;
+  border: inherit;
 }
 
-.c6::before {
-  background: #FFFFFF;
-  display: inline-block;
-  content: "";
-  width: 1.26em;
-  height: 1.26em;
-  position: relative;
-  top: -0.18em;
-  will-change: transform;
-  -webkit-transform: translateX( -0.18em );
-  -ms-transform: translateX( -0.18em );
-  transform: translateX( -0.18em );
-  border-radius: 50%;
+.c1 {
   opacity: 0;
-  -webkit-transition: opacity 100ms ease-in-out;
-  transition: opacity 100ms ease-in-out;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
 }
 
-.c1:focus + .c4 .c6::before {
-  opacity: 0.12;
+.c1:focus + .c3 {
+  box-shadow: 0 0 0 2px #FDBD56;
+}
+
+.c1:hover + .c3 {
+  border-color: #3B7A9E;
 }
 
 .c0 {
@@ -726,7 +642,8 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 1.7em;
+  height: 3em;
+  width: 3em;
   position: relative;
 }
 
@@ -739,16 +656,12 @@ exports[`ToggleSwitch should render when mounted 1`] = `
 >
   <ToggleSwitch__FlexInline
     aria-checked={true}
-    height={1.15}
     role="switch"
-    width={1.7}
   >
     <div
       aria-checked={true}
       className="c0"
-      height={1.15}
       role="switch"
-      width={1.7}
     >
       <ToggleSwitch__HiddenInput
         checked={true}
@@ -758,21 +671,21 @@ exports[`ToggleSwitch should render when mounted 1`] = `
       >
         <withChangeHandler(Input)
           checked={true}
-          className="c1 c2"
+          className="c1"
           id="toggle-2"
           onChange={[Function]}
           type="checkbox"
         >
           <Input
             checked={true}
-            className="c1 c2"
+            className="c1"
             id="toggle-2"
             onChange={[Function]}
             type="checkbox"
           >
             <Input__StyledInput
               checked={true}
-              className="c1 c2"
+              className="c1"
               id="toggle-2"
               name="toggle-2"
               onChange={[Function]}
@@ -780,7 +693,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
             >
               <input
                 checked={true}
-                className="c1 c2 c3"
+                className="c1 c2"
                 id="toggle-2"
                 name="toggle-2"
                 onChange={[Function]}
@@ -792,31 +705,21 @@ exports[`ToggleSwitch should render when mounted 1`] = `
       </ToggleSwitch__HiddenInput>
       <ToggleSwitch__ToggleSwitchBackground
         checked={true}
-        height={1.15}
         onClick={[Function]}
         role="presentation"
-        width={1.7}
       >
         <div
           checked={true}
-          className="c4 c5"
-          height={1.15}
+          className="c3 c4"
           onClick={[Function]}
           role="presentation"
-          width={1.7}
         >
           <ToggleSwitch__ToggleSwitchKnob
             checked={true}
-            height={1.15}
-            size={0.9}
-            width={1.7}
           >
             <div
               checked={true}
-              className="c6"
-              height={1.15}
-              size={0.9}
-              width={1.7}
+              className="c5"
             />
           </ToggleSwitch__ToggleSwitchKnob>
         </div>

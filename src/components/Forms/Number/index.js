@@ -3,9 +3,6 @@ import Input from "components/Forms/Input";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { clamp, isNaN } from "lodash";
-import arrowIcon from "./arrow.svg";
-
-const spinnerIconSize = "20px";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -24,29 +21,6 @@ const StyledInput = styled(Input)`
   &[type="number"] {
     appearance: textfield;
   }
-`;
-
-const SpinnerButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-export const SpinnerButton = styled.button`
-  border: none;
-  width: ${spinnerIconSize};
-  height: ${spinnerIconSize};
-  background: url(${arrowIcon}) no-repeat;
-  background-size: contain;
-  cursor: pointer;
-  opacity: 0.6;
-
-  &:hover {
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out;
-  }
-
-  transform: scaleY(${props => (props.inverted ? -1 : 1)});
 `;
 
 class Number extends React.Component {
@@ -87,23 +61,6 @@ class Number extends React.Component {
           aria-live="assertive"
           role="alert"
         />
-        {this.props.showSpinner && (
-          <SpinnerButtonWrapper>
-            <SpinnerButton
-              type="button"
-              title={`Add ${this.props.step}`}
-              onClick={this.handleUp}
-              aria-controls={this.props.id}
-              inverted
-            />
-            <SpinnerButton
-              type="button"
-              title={`Subtract ${this.props.step}`}
-              onClick={this.handleDown}
-              aria-controls={this.props.id}
-            />
-          </SpinnerButtonWrapper>
-        )}
       </StyledDiv>
     );
   }
@@ -111,7 +68,6 @@ class Number extends React.Component {
 
 Number.defaultProps = {
   min: 0,
-  showSpinner: true,
   step: 1
 };
 
@@ -119,7 +75,6 @@ Number.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  showSpinner: PropTypes.bool,
   value: PropTypes.string,
   step: PropTypes.number,
   min: PropTypes.number,

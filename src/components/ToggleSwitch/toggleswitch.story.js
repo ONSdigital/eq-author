@@ -78,17 +78,4 @@ storiesOf("ToggleSwitch", module)
         <StatefulToggleSwitch label="Mandatory" name="mandatory" />
       </Wrapper>
     </StoryContainer>
-  ))
-  .add("Large", () => (
-    <StoryContainer>
-      <Wrapper>
-        <StatefulToggleSwitch
-          label="Hello world"
-          name="demo"
-          width={5}
-          height={2.3}
-          size={2}
-        />
-      </Wrapper>
-    </StoryContainer>
   ));
