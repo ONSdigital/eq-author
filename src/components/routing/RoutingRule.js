@@ -64,17 +64,13 @@ const RoutingRule = ({
 
   const existingRadioConditions = {};
 
-  const handleDeleteClick = () => onDeleteRule(rule);
-  const handleAddClick = () => onAddRoutingCondition(rule);
-  const handleThenChange = value => onThenChange({ id: id, goto: value });
-
   return (
     <div className={className} data-test="routing-rule">
       <Box>
         {title && <Title>{title}</Title>}
         <Buttons>
           <Button
-            onClick={handleDeleteClick}
+            onClick={() => onDeleteRule(rule)}
             data-test="btn-delete"
             variant="tertiary"
             small
@@ -119,7 +115,10 @@ const RoutingRule = ({
           </TransitionGroup>
           <Grid align="center">
             <CenteringColumn gutters={false} cols={1}>
-              <TextButton onClick={handleAddClick} data-test="btn-add">
+              <TextButton
+                onClick={() => onAddRoutingCondition(rule)}
+                data-test="btn-add"
+              >
                 AND
               </TextButton>
             </CenteringColumn>
@@ -129,7 +128,7 @@ const RoutingRule = ({
           id="then"
           label="THEN"
           destinations={destinations}
-          onChange={handleThenChange}
+          onChange={value => onThenChange({ id: id, goto: value })}
           value={goto}
           data-test="select-then"
         />
@@ -139,7 +138,7 @@ const RoutingRule = ({
 };
 
 RoutingRule.propTypes = {
-  rule: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  rule: PropTypes.object.isRequired,
   children: PropTypes.node,
   onDeleteRule: PropTypes.func.isRequired,
   onAddRoutingCondition: PropTypes.func.isRequired,
@@ -148,8 +147,8 @@ RoutingRule.propTypes = {
   onDeleteRoutingCondition: PropTypes.func,
   onThenChange: PropTypes.func.isRequired,
   title: PropTypes.string,
-  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  pagesAvailableForRouting: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  destinations: PropTypes.object.isRequired,
+  pagesAvailableForRouting: PropTypes.array.isRequired,
   className: PropTypes.string
 };
 

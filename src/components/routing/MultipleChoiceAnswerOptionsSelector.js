@@ -23,13 +23,12 @@ const MultipleChoiceAnswerOptionsSelector = ({
     ? answerOptions.concat(answerOtherOption)
     : answerOptions;
 
-  const handleChange = ({ value }) =>
-    onConditionValueChange(condition.id, value);
-
   return (
     <MultipleChoiceAnswerOptions data-test="options-selector">
       <ToggleChipGroup
-        onChange={handleChange}
+        onChange={({ value }) => {
+          onConditionValueChange(condition.id, value);
+        }}
         value={condition.routingValue.value}
       >
         {options.map(option => (
@@ -43,7 +42,7 @@ const MultipleChoiceAnswerOptionsSelector = ({
 };
 
 MultipleChoiceAnswerOptionsSelector.propTypes = {
-  condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  condition: PropTypes.object.isRequired,
   onConditionValueChange: PropTypes.func.isRequired
 };
 

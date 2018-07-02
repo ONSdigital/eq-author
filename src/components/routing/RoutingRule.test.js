@@ -1,6 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
+
 import RoutingRule from "./RoutingRule";
+
+import sections from "./mockstate";
 
 let wrapper, props;
 
