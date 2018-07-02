@@ -41,7 +41,7 @@ const Label = styled.label`
   align-self: center;
 `;
 
-const PageSelect = styled(GroupedSelect).attrs({
+export const PageSelect = styled(GroupedSelect).attrs({
   onChange: props => ({ value }) => props.onChange(value)
 })`
   margin: 0;
@@ -129,19 +129,16 @@ const renderCannotAddAndCondition = () => (
       <AlertTitle>
         AND condition not valid with &lsquo;radio button&rsquo; answer
       </AlertTitle>
-      <AlertText>
-        Please select a different answer, or use a &lsquo;checkbox&rsquo;
-        instead.
-      </AlertText>
+      <AlertText>Please select a different question.</AlertText>
     </Alert>
   </Transition>
 );
 
-const renderEditor = (condition, onConditionValueChange) => (
+const renderEditor = (condition, onToggleOption) => (
   <Transition key="answer" exit={false}>
     <MultipleChoiceAnswerOptionsSelector
       condition={condition}
-      onConditionValueChange={onConditionValueChange}
+      onOptionSelectionChange={onToggleOption}
     />
   </Transition>
 );
@@ -153,7 +150,7 @@ const RoutingCondition = ({
   label,
   onPageChange,
   onRemove,
-  onConditionValueChange,
+  onToggleOption,
   canAddAndCondition,
   match
 }) => {
@@ -175,7 +172,7 @@ const RoutingCondition = ({
     pageSelectIsValid = false;
     editor = renderCannotAddAndCondition();
   } else {
-    editor = renderEditor(condition, onConditionValueChange);
+    editor = renderEditor(condition, onToggleOption);
   }
 
   const id = uniqueId("RoutingCondition");
@@ -228,7 +225,7 @@ RoutingCondition.propTypes = {
   condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   onPageChange: PropTypes.func.isRequired,
-  onConditionValueChange: PropTypes.func.isRequired,
+  onToggleOption: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
   label: PropTypes.oneOf(["IF", "AND"]).isRequired,
   match: CustomPropTypes.match,

@@ -1,5 +1,5 @@
 import React from "react";
-import GroupedSelect from "./GroupedSelect";
+import GroupedSelect, { textSelect } from "./GroupedSelect";
 import { shallow, mount } from "enzyme";
 
 describe("GroupedSelect", () => {
@@ -58,7 +58,7 @@ describe("GroupedSelect", () => {
 
     const options = wrapper
       .find("option")
-      .filterWhere(option => option.text() === "Please select");
+      .filterWhere(option => option.text() === textSelect);
 
     expect(options.length).toBe(1);
   });

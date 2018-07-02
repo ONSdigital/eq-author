@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
-import withRouting from "../enhancers/withRouting";
+import withRouting from "containers/enhancers/withRouting";
 import EditorLayout from "components/EditorLayout";
 import Loading from "components/Loading";
 
@@ -15,13 +15,13 @@ import { raiseToast } from "redux/toast/actions";
 import withCreateRoutingRuleSet from "containers/enhancers/withCreateRoutingRuleSet";
 import withCreateRoutingCondition from "containers/enhancers/withCreateRoutingCondition";
 import withDeleteRoutingCondition from "containers/enhancers/withDeleteRoutingCondition";
-import withCreateRoutingRule from "../enhancers/withCreateRoutingRule";
-import withDeleteRoutingRule from "../enhancers/withDeleteRoutingRule";
-import withDeleteRoutingRuleSet from "../enhancers/withDeleteRoutingRuleSet";
-import withUpdateRoutingConditionValue from "../enhancers/withUpdateRoutingConditionValue";
-import withUpdateRoutingCondition from "../enhancers/withUpdateRoutingCondition";
-import withUpdateRoutingRule from "../enhancers/withUpdateRoutingRule";
-import withUpdateRoutingRuleSet from "../enhancers/withUpdateRoutingRuleSet";
+import withCreateRoutingRule from "containers/enhancers/withCreateRoutingRule";
+import withDeleteRoutingRule from "containers/enhancers/withDeleteRoutingRule";
+import withDeleteRoutingRuleSet from "containers/enhancers/withDeleteRoutingRuleSet";
+import withToggleConditionOption from "containers/enhancers/withToggleConditionOption";
+import withUpdateRoutingCondition from "containers/enhancers/withUpdateRoutingCondition";
+import withUpdateRoutingRule from "containers/enhancers/withUpdateRoutingRule";
+import withUpdateRoutingRuleSet from "containers/enhancers/withUpdateRoutingRuleSet";
 
 import RoutingEditor from "components/routing/RoutingEditor";
 import Error from "components/Error";
@@ -64,7 +64,7 @@ export default flowRight(
   withDeleteRoutingCondition,
   withCreateRoutingRule,
   withDeleteRoutingRule,
-  withUpdateRoutingConditionValue,
+  withToggleConditionOption,
   withUpdateRoutingCondition,
   withUpdateRoutingRule,
   withUpdateRoutingRuleSet,

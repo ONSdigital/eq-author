@@ -57,19 +57,16 @@ export const addQuestionPage = () =>
   });
 
 export const buildMultipleChoiceAnswer = labelArray => {
-  addAnswerType("Checkbox");
+  addAnswerType("Radio");
+
+  cy.get(testId("btn-add-option")).click();
+
   labelArray.map((label, index) => {
-    cy.get(testId("answer-editor")).should("have.length", index + 1);
     cy
       .get(testId("option-label"))
-      .last()
+      .eq(index)
       .type(label);
-    cy.get(testId("btn-add-option")).click();
   });
-  cy
-    .get(testId("btn-delete-option"))
-    .last()
-    .click();
 };
 
 export function addAnswerType(answerType) {

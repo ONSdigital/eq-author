@@ -18,7 +18,7 @@ const labelStyles = {
   `,
   checked: css`
     color: ${colors.white};
-    background: #008dd0;
+    background: ${colors.primary};
 
     &:hover {
       background: #007ab3;
@@ -102,17 +102,7 @@ class ToggleChip extends React.Component {
   };
 
   render() {
-    const {
-      name,
-      onChange,
-      title,
-      children,
-      checked,
-      maxWidth,
-      value
-    } = this.props;
-
-    console.log(this.props);
+    const { name, onChange, title, children, checked, maxWidth } = this.props;
 
     return (
       <Field>

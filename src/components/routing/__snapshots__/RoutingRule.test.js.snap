@@ -55,9 +55,9 @@ exports[`components/RoutingRule should render children 1`] = `
                 }
               }
               onAddRule={[Function]}
-              onConditionValueChange={[Function]}
               onPageChange={[Function]}
               onRemove={[Function]}
+              onToggleOption={[Function]}
               ruleId="1"
               sections={Array []}
             />
@@ -89,9 +89,9 @@ exports[`components/RoutingRule should render children 1`] = `
                 }
               }
               onAddRule={[Function]}
-              onConditionValueChange={[Function]}
               onPageChange={[Function]}
               onRemove={[Function]}
+              onToggleOption={[Function]}
               ruleId="1"
               sections={Array []}
             />

@@ -14,8 +14,6 @@ const withChangeHandler = WrappedComponent => {
     static displayName = `withChangeHandler(${WrappedComponent.displayName})`;
 
     handleChange = e => {
-      console.log(e);
-
       const name = this.props.name || this.props.id;
       const value =
         e.target.type === "checkbox" ? e.target.checked : e.target.value;

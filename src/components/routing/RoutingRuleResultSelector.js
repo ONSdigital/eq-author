@@ -5,7 +5,7 @@ import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
 
 const RoutingRuleResult = styled.div`
-  padding: 1em;
+  padding: 1em 1em 1em 0.7em;
 `;
 
 const Label = styled.label`

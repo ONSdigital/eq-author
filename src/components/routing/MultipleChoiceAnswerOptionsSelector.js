@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import ToggleChip from "components/ToggleChip";
-import { get } from "lodash";
+import { includes, get } from "lodash";
 
 import { PropTypes } from "prop-types";
 
@@ -15,13 +15,15 @@ const MultipleChoiceAnswerOptions = styled.div`
 
 const MultipleChoiceAnswerOptionsSelector = ({
   condition,
-  onConditionValueChange
+  onOptionSelectionChange
 }) => {
   const answerOptions = get(condition, "answer.options", []);
   const answerOtherOption = get(condition, "answer.other.option");
   const options = answerOtherOption
     ? answerOptions.concat(answerOtherOption)
     : answerOptions;
+
+  const selectedOptions = get(condition, "routingValue.value", []);
 
   return (
     <MultipleChoiceAnswerOptions data-test="options-selector">
@@ -30,8 +32,9 @@ const MultipleChoiceAnswerOptionsSelector = ({
           key={option.id}
           name={option.id}
           title={option.label}
+          checked={includes(selectedOptions, option.id)}
           onChange={({ name, value }) =>
-            onConditionValueChange(condition.id, name, value)}
+            onOptionSelectionChange(condition.id, name, value)}
         >
           {option.label || <strong>Unlabelled option</strong>}
         </ToggleChip>
@@ -41,8 +44,8 @@ const MultipleChoiceAnswerOptionsSelector = ({
 };
 
 MultipleChoiceAnswerOptionsSelector.propTypes = {
-  condition: PropTypes.object.isRequired,
-  onConditionValueChange: PropTypes.func.isRequired
+  condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  onOptionSelectionChange: PropTypes.func.isRequired
 };
 
 export default MultipleChoiceAnswerOptionsSelector;

@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import styled from "styled-components";
-import { ToggleChip, ToggleChipGroup } from "components/ToggleChip";
+import ToggleChip from "components/ToggleChip";
 import { uniqueId } from "lodash";
 
 const Wrapper = styled.div`
@@ -17,9 +17,9 @@ class StatefulToggleChip extends React.Component {
     };
   }
 
-  handleChange = e => {
+  handleChange = ({ value }) => {
     this.setState({
-      value: e.target.checked
+      value
     });
   };
 
@@ -27,41 +27,12 @@ class StatefulToggleChip extends React.Component {
     return (
       <ToggleChip
         id={uniqueId()}
+        name={uniqueId()}
         onChange={this.handleChange}
         value={uniqueId()}
         checked={this.state.value}
         {...this.props}
       />
-    );
-  }
-}
-
-class ToggleChipGroupContainer extends React.Component {
-  state = {
-    value: "123"
-  };
-
-  handleChange = ({ value }) => {
-    this.setState({ value });
-  };
-
-  render() {
-    return (
-      <ToggleChipGroup
-        onChange={this.handleChange}
-        value={this.state.value}
-        name="haha"
-      >
-        <ToggleChip title="hello" value="1">
-          foo
-        </ToggleChip>
-        <ToggleChip title="hello" value="2">
-          bar
-        </ToggleChip>
-        <ToggleChip title="hello" value="123">
-          blah
-        </ToggleChip>
-      </ToggleChipGroup>
     );
   }
 }
@@ -99,5 +70,4 @@ storiesOf("ToggleChip", module)
         voluptate.
       </StatefulToggleChip>
     </Wrapper>
-  ))
-  .add("Grouped", () => <ToggleChipGroupContainer />);
+  ));

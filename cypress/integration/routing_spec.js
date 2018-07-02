@@ -35,25 +35,9 @@ describe("Routing", () => {
       cy.get("a").click();
     });
 
-    addAnswerType("Checkbox");
+    const options = ["A", "B", "C"];
 
-    cy.get(testId("option-label")).type("A");
-    cy.get(testId("btn-add-option")).click();
-
-    cy.get(testId("answer-editor")).should("have.length", 2);
-
-    cy
-      .get(testId("option-label"))
-      .last()
-      .type("B");
-    cy.get(testId("btn-add-option")).click();
-
-    cy.get(testId("answer-editor")).should("have.length", 3);
-
-    cy
-      .get(testId("option-label"))
-      .last()
-      .type("C");
+    buildMultipleChoiceAnswer(options);
 
     cy.get(testId("tabs-nav")).within(() => {
       cy.contains("Routing").click();
@@ -63,12 +47,11 @@ describe("Routing", () => {
       findByLabel("IF").select("question 1");
     });
 
-    cy
-      .get(testId("options-selector"))
-      .should("contain", "A")
-      .should("contain", "B")
-      .should("contain", "C")
-      .within(() => cy.get("input").should("have.length", 3));
+    cy.get(testId("options-selector")).within(() => {
+      options.forEach((label, index) => {
+        findByLabel(label).should("have.length", 1);
+      });
+    });
   });
 
   it("builds a large questionnaire.", () => {

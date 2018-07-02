@@ -1,10 +1,7 @@
-import {
-  mapMutateToProps,
-  createUpdater
-} from "./withUpdateRoutingConditionValue";
+import { mapMutateToProps, createUpdater } from "./withToggleConditionOption";
 import fragment from "graphql/fragments/routing-rule.graphql";
 
-describe("containers/enhancers/withUpdateRoutingConditionValue", () => {
+describe("containers/enhancers/withToggleConditionOption", () => {
   const routingCondition = {
     id: "1"
   };
@@ -18,16 +15,16 @@ describe("containers/enhancers/withUpdateRoutingConditionValue", () => {
     routingRuleSet: null
   };
 
-  let mutate, result, updateRoutingConditionValue;
+  let mutate, result, toggleConditionOption;
 
   beforeEach(() => {
-    updateRoutingConditionValue = {
-      value: option.id
+    toggleConditionOption = {
+      value: [option.id]
     };
 
     result = {
       data: {
-        updateRoutingConditionValue
+        toggleConditionOption
       }
     };
 
@@ -62,7 +59,7 @@ describe("containers/enhancers/withUpdateRoutingConditionValue", () => {
       });
 
       expect(routingCondition.routingValue).toMatchObject(
-        updateRoutingConditionValue
+        toggleConditionOption
       );
     });
   });
@@ -75,19 +72,20 @@ describe("containers/enhancers/withUpdateRoutingConditionValue", () => {
     });
 
     it("should have a onToggleConditionOption prop", () => {
-      expect(props.onUpdateRoutingConditionValue).toBeInstanceOf(Function);
+      expect(props.onToggleConditionOption).toBeInstanceOf(Function);
     });
 
     it("should call mutate", () => {
       return props
-        .onUpdateRoutingConditionValue(routingCondition.id, option.id)
+        .onToggleConditionOption(routingCondition.id, option.id, true)
         .then(() => {
           expect(mutate).toHaveBeenCalledWith(
             expect.objectContaining({
               variables: {
                 input: {
                   conditionId: routingCondition.id,
-                  optionId: option.id
+                  optionId: option.id,
+                  checked: true
                 }
               }
             })

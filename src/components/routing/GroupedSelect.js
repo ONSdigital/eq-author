@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { isNil } from "lodash";
 import Select from "components/Forms/Select";
 
+export const textSelect = "Please select…";
+
 const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
   const optGroups = groups.map(group => (
     <optgroup label={group.label} key={group.id}>
@@ -27,7 +29,7 @@ const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
     >
       {isNil(value) && (
         <option disabled value="" key="please-select">
-          Please select&hellip;
+          {textSelect}
         </option>
       )}
       {optGroups}
