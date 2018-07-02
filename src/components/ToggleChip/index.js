@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import { colors } from "constants/theme";
 import checkedIcon from "./checked.svg";
 import Truncated from "components/Truncated";
+import withChangeHandler from "../Forms/withChangeHandler";
 
 const labelStyles = {
   unchecked: css`
@@ -90,28 +91,18 @@ const Input = styled.input`
   }
 `;
 
-export class ToggleChip extends React.Component {
+class ToggleChip extends React.Component {
   static propTypes = {
-    name: PropTypes.string,
-    value: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
-    checked: PropTypes.bool,
+    checked: PropTypes.bool.isRequired,
     maxWidth: PropTypes.number,
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
   };
 
   render() {
-    const {
-      name,
-      onChange,
-      title,
-      children,
-      checked,
-      maxWidth,
-      value
-    } = this.props;
-
+    const { name, onChange, title, children, checked, maxWidth } = this.props;
     return (
       <Field>
         <Label checked={checked}>
@@ -120,7 +111,6 @@ export class ToggleChip extends React.Component {
             type="checkbox"
             checked={checked}
             onChange={onChange}
-            value={value}
           />
           <Text title={title} maxWidth={maxWidth}>
             {children}
@@ -130,37 +120,5 @@ export class ToggleChip extends React.Component {
     );
   }
 }
-export class ToggleChipGroup extends React.Component {
-  static propTypes = {
-    children: PropTypes.node,
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-    name: PropTypes.string
-  };
 
-  handleChange = e => {
-    const { value, onChange, name } = this.props;
-
-    if (e.target.value === value) {
-      onChange({ name, value: null });
-    } else {
-      onChange({ name, value: e.target.value });
-    }
-  };
-
-  render() {
-    const { value, name, children } = this.props;
-
-    return (
-      <React.Fragment>
-        {React.Children.map(children, child =>
-          React.cloneElement(child, {
-            onChange: this.handleChange,
-            name,
-            checked: child.props.value === value
-          })
-        )}
-      </React.Fragment>
-    );
-  }
-}
+export default withChangeHandler(ToggleChip);

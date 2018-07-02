@@ -7,11 +7,10 @@ let mockHandlers, condition;
 describe("components/MultipleChoiceAnswerOptionsSelector", () => {
   beforeEach(() => {
     mockHandlers = {
-      onConditionValueChange: jest.fn()
+      onOptionSelectionChange: jest.fn()
     };
 
     condition = {
-      id: "9",
       answer: {
         options: [
           { label: "a", id: "1" },
@@ -20,7 +19,7 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
         ]
       },
       routingValue: {
-        value: "2"
+        value: ["1", "2"]
       }
     };
   });
@@ -36,26 +35,7 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should set value to option id if clicking unchecked option", () => {
-    const wrapper = mount(
-      <MultipleChoiceAnswerOptionsSelector
-        condition={condition}
-        {...mockHandlers}
-      />
-    );
-
-    wrapper
-      .find("input")
-      .at(1)
-      .simulate("change");
-
-    expect(mockHandlers.onConditionValueChange).toHaveBeenCalledWith(
-      condition.id,
-      null
-    );
-  });
-
-  it("should set value to null if clicking checked option", () => {
+  it("should handle change events on ToggleChip", () => {
     const wrapper = mount(
       <MultipleChoiceAnswerOptionsSelector
         condition={condition}
@@ -68,9 +48,10 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
       .first()
       .simulate("change");
 
-    expect(mockHandlers.onConditionValueChange).toHaveBeenCalledWith(
+    expect(mockHandlers.onOptionSelectionChange).toHaveBeenCalledWith(
       condition.id,
-      condition.answer.options[0].id
+      condition.answer.options[0].id,
+      expect.anything()
     );
   });
 
@@ -92,9 +73,10 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
       .findWhere(x => x.closest("label").text() === other.option.label)
       .simulate("change");
 
-    expect(mockHandlers.onConditionValueChange).toHaveBeenCalledWith(
+    expect(mockHandlers.onOptionSelectionChange).toHaveBeenCalledWith(
       condition.id,
-      other.option.id
+      other.option.id,
+      expect.anything()
     );
   });
 });

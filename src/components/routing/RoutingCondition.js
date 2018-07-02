@@ -137,11 +137,11 @@ const renderCannotAddAndCondition = () => (
   </Transition>
 );
 
-const renderEditor = (condition, onConditionValueChange) => (
+const renderEditor = (condition, onToggleOption) => (
   <Transition key="answer" exit={false}>
     <MultipleChoiceAnswerOptionsSelector
       condition={condition}
-      onConditionValueChange={onConditionValueChange}
+      onOptionSelectionChange={onToggleOption}
     />
   </Transition>
 );
@@ -153,7 +153,7 @@ const RoutingCondition = ({
   label,
   onPageChange,
   onRemove,
-  onConditionValueChange,
+  onToggleOption,
   canAddAndCondition,
   match
 }) => {
@@ -175,7 +175,7 @@ const RoutingCondition = ({
     pageSelectIsValid = false;
     editor = renderCannotAddAndCondition();
   } else {
-    editor = renderEditor(condition, onConditionValueChange);
+    editor = renderEditor(condition, onToggleOption);
   }
 
   const id = uniqueId("RoutingCondition");
@@ -227,7 +227,7 @@ RoutingCondition.propTypes = {
   condition: PropTypes.object.isRequired,
   sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
   onPageChange: PropTypes.func.isRequired,
-  onConditionValueChange: PropTypes.func.isRequired,
+  onToggleOption: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
   label: PropTypes.oneOf(["IF", "AND"]).isRequired,
   match: CustomPropTypes.match,

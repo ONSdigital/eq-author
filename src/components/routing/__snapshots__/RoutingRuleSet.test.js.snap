@@ -16,8 +16,8 @@ exports[`components/RoutingRuleSet should render children 1`] = `
         onAddRoutingCondition={[Function]}
         onDeleteRule={[Function]}
         onThenChange={[Function]}
+        onToggleConditionOption={[Function]}
         onUpdateRoutingCondition={[Function]}
-        onUpdateRoutingConditionValue={[Function]}
         pagesAvailableForRouting={Array []}
         rule={
           Object {
@@ -38,8 +38,8 @@ exports[`components/RoutingRuleSet should render children 1`] = `
         onAddRoutingCondition={[Function]}
         onDeleteRule={[Function]}
         onThenChange={[Function]}
+        onToggleConditionOption={[Function]}
         onUpdateRoutingCondition={[Function]}
-        onUpdateRoutingConditionValue={[Function]}
         pagesAvailableForRouting={Array []}
         rule={
           Object {

@@ -21,7 +21,7 @@ describe("components/RoutingRule", () => {
       onDeleteRule: jest.fn(),
       onThenChange: jest.fn(),
       onAddRoutingCondition: jest.fn(),
-      onUpdateRoutingConditionValue: jest.fn(),
+      onToggleConditionOption: jest.fn(),
       onUpdateRoutingCondition: jest.fn(),
       onDeleteRoutingCondition: jest.fn(),
       title: "Test",
