@@ -53,9 +53,6 @@ storiesOf("Forms", module)
     </Field>
   ))
   .add("Input/Number", props => <NumberWrapper min={0} max={100} />)
-  .add("Input/Number Without Spinner", props => (
-    <NumberWrapper showSpinner={false} min={0} max={100} />
-  ))
   .add("Input/Number Min=1 Max=100", props => (
     <NumberWrapper min={1} max={100} />
   ))
