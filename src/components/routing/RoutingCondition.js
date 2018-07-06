@@ -125,7 +125,7 @@ const renderDeletedQuestion = () => (
 
 const renderCannotAddAndCondition = () => (
   <Transition key="answer" exit={false}>
-    <Alert>
+    <Alert data-test="and-not-valid-msg">
       <AlertTitle>
         AND condition not valid with &lsquo;radio button&rsquo; answer
       </AlertTitle>

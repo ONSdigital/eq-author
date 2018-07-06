@@ -86,7 +86,7 @@ describe("components/RoutingRule", () => {
   });
 
   it("allows adding of new condition", () => {
-    wrapper.find(`[data-test="btn-add"]`).simulate("click");
+    wrapper.find(`[data-test="btn-and"]`).simulate("click");
 
     expect(props.onAddRoutingCondition).toHaveBeenCalledWith(props.rule);
   });

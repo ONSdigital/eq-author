@@ -1,16 +1,27 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
+import { setQuestionnaireSettings, testId } from "../utils";
+
+Cypress.Commands.add("login", () => {
+  cy.visit("/");
+  cy.contains("Sign in as Guest").click();
+});
+
+Cypress.Commands.add("createQuestionnaire", title => {
+  cy.get(testId("logo")).click();
+  cy.get(testId("create-questionnaire")).click();
+  setQuestionnaireSettings(title);
+});
+
+Cypress.Commands.add("deleteQuestionnaire", title => {
+  cy.get(testId("logo")).click();
+  cy.get("table").within(() => {
+    cy
+      .contains(title)
+      .closest("tr")
+      .within(() => {
+        cy.get("button").click();
+      });
+  });
+});
 //
 //
 // -- This is a child command --

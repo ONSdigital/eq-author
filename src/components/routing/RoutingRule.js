@@ -119,7 +119,7 @@ const RoutingRule = ({
           </TransitionGroup>
           <Grid align="center">
             <CenteringColumn gutters={false} cols={1}>
-              <TextButton onClick={handleAddClick} data-test="btn-add">
+              <TextButton onClick={handleAddClick} data-test="btn-and">
                 AND
               </TextButton>
             </CenteringColumn>

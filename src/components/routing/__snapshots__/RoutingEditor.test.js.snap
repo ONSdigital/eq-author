@@ -238,12 +238,13 @@ exports[`RoutingEditor when not routing rule set should render when no routing r
         key="routing-rule-set-empty"
         timeout={200}
       >
-        <div>
-          <RoutingRuleSetEmptyMsg
-            onAddRuleSet={[Function]}
-            title="No routing rules exist for this question"
-          />
-        </div>
+        <RoutingRuleSetMsg
+          data-test="routing-rule-set-empty-msg"
+          onAddRuleSet={[Function]}
+          title="No routing rules exist for this question"
+        >
+          Users completing this question will be taken to the next page.
+        </RoutingRuleSetMsg>
       </Transition__RoutingComponentTransition>
     </TransitionGroup>
   </RoutingEditor__Padding>

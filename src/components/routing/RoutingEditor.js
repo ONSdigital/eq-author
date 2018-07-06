@@ -7,7 +7,7 @@ import { TransitionGroup } from "react-transition-group";
 import Transition from "components/routing/Transition";
 import Loading from "components/Loading";
 import RoutingRuleSet from "components/routing/RoutingRuleSet";
-import RoutingRuleSetEmpty from "components/routing/RoutingRuleSetEmptyMsg";
+import RoutingRuleSetMsg from "components/routing/RoutingRuleSetMsg";
 
 import { colors } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
@@ -84,7 +84,36 @@ class RoutingEditor extends React.Component {
       : onDeleteRoutingRuleSet(routingRuleSet.id, currentPage.id);
   };
 
-  render() {
+  renderRoutingUnavailable() {
+    return (
+      <Transition key="routing-unavailable" exit={false}>
+        <RoutingRuleSetMsg
+          title="Routing not possible from this page"
+          data-test="routing-unavailable-msg"
+        >
+          You can only route within a section, routing from the last page in a
+          section is not supported.
+        </RoutingRuleSetMsg>
+      </Transition>
+    );
+  }
+
+  renderEmptyRuleSet() {
+    const { onAddRoutingRuleSet } = this.props;
+    return (
+      <Transition key="routing-rule-set-empty" exit={false}>
+        <RoutingRuleSetMsg
+          title="No routing rules exist for this question"
+          onAddRuleSet={onAddRoutingRuleSet}
+          data-test="routing-rule-set-empty-msg"
+        >
+          Users completing this question will be taken to the next page.
+        </RoutingRuleSetMsg>
+      </Transition>
+    );
+  }
+
+  renderRoutingRuleSet() {
     const {
       questionnaire,
       currentPage,
@@ -94,6 +123,36 @@ class RoutingEditor extends React.Component {
       ...otherProps
     } = this.props;
 
+    const pagesAvailableForRouting = getPagesAvailableForRouting(
+      questionnaire.sections,
+      match.params.sectionId,
+      match.params.pageId
+    );
+
+    const { routingRuleSet } = currentPage;
+
+    return (
+      <Transition key="routing-rule-set" exit={false}>
+        <div>
+          <RoutingRuleSet
+            {...otherProps}
+            ruleSet={routingRuleSet}
+            destinations={availableRoutingDestinations}
+            pagesAvailableForRouting={pagesAvailableForRouting}
+            onElseChange={this.handleElseChange}
+            onAddRoutingCondition={this.handleAddCondition}
+            onDeleteRule={this.handleDeleteRule}
+            onThenChange={this.handleThenChange}
+            match={match}
+          />
+        </div>
+      </Transition>
+    );
+  }
+
+  render() {
+    const { currentPage, availableRoutingDestinations } = this.props;
+
     // when new section is added, this component re-renders before
     // the redirect, causing currentPage to be undefined/null
     if (!currentPage) {
@@ -102,44 +161,21 @@ class RoutingEditor extends React.Component {
 
     const { routingRuleSet } = currentPage;
 
-    const pagesAvailableForRouting = getPagesAvailableForRouting(
-      questionnaire.sections,
-      match.params.sectionId,
-      match.params.pageId
-    );
+    let content;
+
+    if (isEmpty(availableRoutingDestinations.questionPages)) {
+      content = this.renderRoutingUnavailable();
+    } else if (routingRuleSet) {
+      content = this.renderRoutingRuleSet();
+    } else {
+      content = this.renderEmptyRuleSet();
+    }
 
     return (
       <div data-test="routing-editor">
         <Title>{get(currentPage, "plaintextTitle") || "Page Title"}</Title>
         <Padding>
-          <TransitionGroup>
-            {routingRuleSet ? (
-              <Transition key="routing-rule-set" exit={false}>
-                <div>
-                  <RoutingRuleSet
-                    {...otherProps}
-                    ruleSet={routingRuleSet}
-                    destinations={availableRoutingDestinations}
-                    pagesAvailableForRouting={pagesAvailableForRouting}
-                    onElseChange={this.handleElseChange}
-                    onAddRoutingCondition={this.handleAddCondition}
-                    onDeleteRule={this.handleDeleteRule}
-                    onThenChange={this.handleThenChange}
-                    match={match}
-                  />
-                </div>
-              </Transition>
-            ) : (
-              <Transition key="routing-rule-set-empty" exit={false}>
-                <div>
-                  <RoutingRuleSetEmpty
-                    title="No routing rules exist for this question"
-                    onAddRuleSet={onAddRoutingRuleSet}
-                  />
-                </div>
-              </Transition>
-            )}
-          </TransitionGroup>
+          <TransitionGroup>{content}</TransitionGroup>
         </Padding>
       </div>
     );

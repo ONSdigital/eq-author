@@ -22,7 +22,7 @@ describe("SectionRoute", () => {
     store = {
       getState: jest.fn(() => ({
         toasts: {},
-        saving: { isOffline: false, apiDownError: false }
+        saving: { apiDownError: false }
       })),
       subscribe: jest.fn(),
       dispatch: jest.fn()

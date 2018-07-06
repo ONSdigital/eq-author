@@ -41,7 +41,14 @@ const Title = styled.h3`
   font-weight: 400;
 `;
 
-const IconGridButton = ({ iconSrc, title, disabled, order, onClick }) => {
+const IconGridButton = ({
+  iconSrc,
+  title,
+  disabled,
+  order,
+  onClick,
+  ...otherProps
+}) => {
   return (
     <Button
       role="menuitem"
@@ -50,6 +57,7 @@ const IconGridButton = ({ iconSrc, title, disabled, order, onClick }) => {
       disabled={disabled}
       order={order}
       type="button"
+      {...otherProps}
     >
       <img src={iconSrc} alt={title} />
       <Title>{title}</Title>

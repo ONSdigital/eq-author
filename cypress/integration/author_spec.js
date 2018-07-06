@@ -260,7 +260,6 @@ describe("eq-author", () => {
   it("Can create and delete the different types of textbox", () => {
     answerTypes.forEach(answerType => {
       addAnswerType(answerType);
-<<<<<<< HEAD
       cy.get("[data-test='txt-answer-label']").type(answerType + " label");
       if (includes(["Currency"], answerType)) {
         cy
@@ -269,14 +268,6 @@ describe("eq-author", () => {
       }
       cy.get("[data-test='btn-delete-answer']").click();
       cy.get("[data-test='btn-delete-answer']").should("not.exist");
-=======
-      cy.get(testId("txt-answer-label")).type(answerType + " label");
-      cy
-        .get(testId("txt-answer-description"))
-        .type(answerType + " description");
-      cy.get(testId("btn-delete-answer")).click();
-      cy.get(testId("btn-delete-answer")).should("not.exist");
->>>>>>> fix logic for disallowing same radio answer multiple times in one rule
     });
   });
 

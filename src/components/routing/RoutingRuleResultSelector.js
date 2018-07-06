@@ -23,10 +23,6 @@ const Goto = styled.span`
   margin-right: 1em;
 `;
 
-const LogicalDestinations = {
-  END_OF_QUESTIONNAIRE: "EndOfQuestionnaire"
-};
-
 const toAbsoluteDestination = entity => ({
   absoluteDestination: {
     destinationType: entity.__typename,
@@ -46,33 +42,14 @@ const toOption = defaultTitle => entity => ({
 });
 
 class RoutingRuleResultSelector extends React.Component {
-  groupDestinations({ questionPages, sections }) {
+  groupDestinations({ questionPages }) {
     const pagesGroup = {
       label: "Questions in this section",
       id: "questions",
       options: questionPages.map(toOption("Page Title"))
     };
 
-    const sectionsGroup = {
-      label: "Other sections",
-      id: "sections",
-      options: sections.map(toOption("Section Title"))
-    };
-
-    const summaryGroup = {
-      label: "Questionnaire Summary",
-      id: "summary",
-      options: [
-        {
-          label: "Summary",
-          value: toLogicalDestination(LogicalDestinations.END_OF_QUESTIONNAIRE)
-        }
-      ]
-    };
-
-    return [pagesGroup, sectionsGroup, summaryGroup].filter(
-      group => group.options.length
-    );
+    return [pagesGroup].filter(group => group.options.length);
   }
 
   convertValueToDestination(value) {

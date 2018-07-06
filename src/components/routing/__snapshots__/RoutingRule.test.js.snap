@@ -107,7 +107,7 @@ exports[`components/RoutingRule should render children 1`] = `
           gutters={false}
         >
           <TextButton
-            data-test="btn-add"
+            data-test="btn-and"
             onClick={[Function]}
           >
             AND

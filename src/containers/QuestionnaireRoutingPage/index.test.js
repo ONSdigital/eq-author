@@ -22,7 +22,7 @@ describe("QuestionnaireRoutingPage", () => {
       getState: jest.fn(() => ({
         toasts: {},
         saving: {
-          online: true
+          apiDownError: false
         }
       })),
       subscribe: jest.fn(),
