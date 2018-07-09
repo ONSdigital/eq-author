@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled, { keyframes } from "styled-components";
 import { colors } from "constants/theme";
 import { connect } from "react-redux";
-import { isOnline } from "redux/saving/reducer";
+import { isOffline, hasApiError, hasError } from "redux/saving/reducer";
 import WarningIcon from "./icon-warning.svg?inline";
 import { TransitionGroup } from "react-transition-group";
 import ExpansionTransition from "components/ExpansionTransition";
@@ -41,15 +41,21 @@ const WarningMessage = styled(IconText)`
   animation: ${fade} 750ms ease-in forwards;
 `;
 
+const errorMessage = {
+  apiError:
+    "We're unable to save your progress right now. Try refreshing the page or try again shortly",
+  isOffline:
+    "You're currently offline and any changes you make won't be saved. Check your connection and try again."
+};
+
 export const UnconnectedOfflineBanner = props => {
   return (
     <TransitionGroup>
-      {!props.isOnline && (
+      {props.hasError && (
         <StyledExpansionTransition finalHeight="2.5em">
           <Banner>
             <WarningMessage icon={WarningIcon}>
-              You&apos;re currently offline and any changes you make won&apos;t
-              be saved. Check your connection and try again.
+              {errorMessage[props.isOffline ? "isOffline" : "apiError"]}
             </WarningMessage>
           </Banner>
         </StyledExpansionTransition>
@@ -59,11 +65,15 @@ export const UnconnectedOfflineBanner = props => {
 };
 
 UnconnectedOfflineBanner.propTypes = {
-  isOnline: PropTypes.bool.isRequired
+  isOffline: PropTypes.bool.isRequired,
+  apiError: PropTypes.bool.isRequired,
+  hasError: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  isOnline: isOnline(state)
+  isOffline: isOffline(state),
+  apiError: hasApiError(state),
+  hasError: hasError(state)
 });
 
 export default connect(mapStateToProps)(UnconnectedOfflineBanner);

@@ -114,6 +114,7 @@
     "apollo-client": "^2.2.8",
     "apollo-client-preset": "^1.0.8",
     "apollo-link": "1.1.0",
+    "apollo-link-error": "^1.1.0",
     "apollo-link-http": "^1.5.3",
     "connected-react-router": "^4.2.1",
     "draft-convert": "^2.0.0",

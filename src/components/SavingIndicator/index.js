@@ -4,7 +4,7 @@ import styled, { keyframes } from "styled-components";
 import SavingIcon from "./icon-saving.svg?inline";
 import timer from "utils/timer";
 import { connect } from "react-redux";
-import { isSaving, isOnline } from "redux/saving/reducer";
+import { isSaving, hasError } from "redux/saving/reducer";
 import FadeTransition from "components/FadeTransition";
 import { TransitionGroup } from "react-transition-group";
 import IconText from "components/IconText";
@@ -32,7 +32,7 @@ const Icon = styled(SavingIcon)`
 export class UnconnectedSavingIndicator extends React.Component {
   static propTypes = {
     isSaving: PropTypes.bool.isRequired,
-    isOnline: PropTypes.bool.isRequired,
+    hasError: PropTypes.bool.isRequired,
     minDisplayTime: PropTypes.number
   };
 
@@ -88,7 +88,7 @@ export class UnconnectedSavingIndicator extends React.Component {
 
   render() {
     const isVisible =
-      this.props.isOnline && (this.props.isSaving || this.state.timerRunning);
+      !this.props.hasError && (this.props.isSaving || this.state.timerRunning);
 
     return (
       <TransitionGroup>
@@ -101,7 +101,7 @@ export class UnconnectedSavingIndicator extends React.Component {
 const mapStateToProps = state => {
   return {
     isSaving: isSaving(state),
-    isOnline: isOnline(state)
+    hasError: hasError(state)
   };
 };
 
