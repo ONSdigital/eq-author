@@ -2,7 +2,7 @@
 
 exports[`components/Forms/Label should render correctly 1`] = `
 <Label__StyledLabel
-  small={false}
+  bold={true}
 >
   Name
 </Label__StyledLabel>

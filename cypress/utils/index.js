@@ -1,5 +1,7 @@
 import { matchPath } from "../../src/utils/UrlUtils";
 
+export const answerTypes = ["Text", "Textarea", "Currency", "Number"];
+
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
     cy
@@ -11,6 +13,11 @@ export function setQuestionnaireSettings(name) {
     cy.get("form").submit();
   });
 }
+
+export const addQuestionnaire = title => {
+  cy.get("[data-test='create-questionnaire']").click();
+  setQuestionnaireSettings(title);
+};
 
 export const addSection = () =>
   cy.get("[data-test='add-menu']").within(() => {
@@ -35,8 +42,10 @@ export const addQuestionPage = () =>
   });
 
 export function addAnswerType(answerType) {
-  cy.get("[data-test='btn-add-answer']").click();
-  cy.contains(answerType).click();
+  cy.get("[data-test='btn-add-answer']").click({ force: true });
+  cy.get("[role='menu']").within(() => {
+    cy.contains(answerType).click({ force: true });
+  });
 }
 
 export function assertHash({
@@ -100,3 +109,6 @@ export const findByLabel = text =>
     .get("label")
     .contains(text)
     .then($label => $label.prop("control"));
+
+export const removeAnswer = params =>
+  cy.get("[data-test='btn-delete-answer']").click(params);

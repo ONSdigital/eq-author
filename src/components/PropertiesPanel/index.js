@@ -3,7 +3,7 @@ import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import { colors } from "constants/theme";
 import ScrollPane from "components/ScrollPane";
-import { noop } from "lodash";
+import { noop, filter, findIndex, flow, toUpper } from "lodash/fp";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
 
@@ -20,13 +20,11 @@ const PropertiesPane = styled.div`
 `;
 
 const PropertiesPanelTitle = styled.h2`
-  font-size: 0.6em;
-  text-transform: uppercase;
-  font-weight: 900;
-  margin: 0;
-  line-height: 1.5em;
-  position: relative;
-  padding: 1.7em 1.4em 0;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+  color: ${colors.darkGrey};
+  text-align: center;
 `;
 
 const PropertiesPaneBody = styled.div`
@@ -40,8 +38,20 @@ const PropertiesPaneBody = styled.div`
 
 const PropertiesGroup = styled.div`
   border-bottom: 1px solid ${colors.lightGrey};
-  padding: 1em 1em 0;
 `;
+
+const AnswerProperties = styled.div`
+  padding: 0 1em 1em;
+  border-bottom: 8px solid ${colors.lightGrey};
+`;
+
+const filterByType = type => filter({ type });
+const findIndexById = ({ id }) => findIndex({ id });
+const numberTitle = title => index =>
+  index > 0 ? `${title} ${index + 1}` : title;
+
+const getTitle = ({ answer, answer: { type } }) =>
+  flow(filterByType(type), findIndexById(answer), numberTitle(type), toUpper);
 
 class PropertiesPanel extends React.Component {
   static propTypes = {
@@ -59,16 +69,23 @@ class PropertiesPanel extends React.Component {
             {page &&
               page.answers.length > 0 && (
                 <div>
-                  <PropertiesPanelTitle>Answer properties</PropertiesPanelTitle>
                   <PropertiesGroup>
                     {page.answers.map((answer, index) => (
-                      <div key={getIdForObject(answer)}>
+                      <AnswerProperties
+                        key={getIdForObject(answer)}
+                        data-test={`properties-${index}`}
+                      >
+                        <PropertiesPanelTitle
+                          data-test={`properties-title-${index}`}
+                        >
+                          {getTitle({ answer })(page.answers)}
+                        </PropertiesPanelTitle>
                         <AnswerPropertiesContainer
                           id={getIdForObject(answer)}
                           answer={{ ...answer, index }}
                           onSubmit={this.handleSubmit}
                         />
-                      </div>
+                      </AnswerProperties>
                     ))}
                   </PropertiesGroup>
                 </div>

@@ -13,8 +13,8 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
     onMouseDown={[Function]}
   >
     <Label
+      bold={true}
       id="label-test"
-      small={false}
     >
       I am a label
     </Label>
@@ -299,8 +299,8 @@ exports[`components/RichTextEditor should render 1`] = `
     onMouseDown={[Function]}
   >
     <Label
+      bold={true}
       id="label-test"
-      small={false}
     >
       I am a label
     </Label>
@@ -587,8 +587,8 @@ exports[`components/RichTextEditor should render existing content 1`] = `
     onMouseDown={[Function]}
   >
     <Label
+      bold={true}
       id="label-test"
-      small={false}
     >
       I am a label
     </Label>

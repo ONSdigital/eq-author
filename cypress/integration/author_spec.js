@@ -1,4 +1,6 @@
 import {
+  addQuestionnaire,
+  answerTypes,
   setQuestionnaireSettings,
   addAnswerType,
   assertHash,
@@ -22,8 +24,7 @@ describe("eq-author", () => {
   });
 
   it("Can create a questionnaire", () => {
-    cy.get("[data-test='create-questionnaire']").click();
-    setQuestionnaireSettings("My Questionnaire Title");
+    addQuestionnaire("My Questionnaire Title");
   });
 
   it("Should show questionnaire on listing page", () => {
@@ -252,8 +253,6 @@ describe("eq-author", () => {
   });
 
   it("Can create and delete the different types of textbox", () => {
-    const answerTypes = ["Text", "Textarea", "Currency", "Number"];
-
     answerTypes.forEach(answerType => {
       addAnswerType(answerType);
       cy.get("[data-test='txt-answer-label']").type(answerType + " label");

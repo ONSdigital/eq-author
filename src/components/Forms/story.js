@@ -22,7 +22,7 @@ class NumberWrapper extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      "number.input": props.min.toString()
+      "number.input": props.min
     };
   }
 

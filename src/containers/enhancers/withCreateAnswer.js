@@ -22,7 +22,6 @@ export const mapMutateToProps = ({ mutate }) => ({
   onAddAnswer(pageId, type) {
     const answer = {
       type,
-      mandatory: false,
       questionPageId: pageId,
       description: "",
       guidance: "",

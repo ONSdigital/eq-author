@@ -7,5 +7,5 @@ fragment Answer on Answer {
     secondaryLabel
   }
   type
-  mandatory
+  properties
 }
