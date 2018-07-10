@@ -6,7 +6,7 @@ import { colors } from "constants/theme";
 const StyledLabel = styled.label`
   display: ${props => (props.inline ? "inline-block" : "block")};
   margin-bottom: ${props => (props.inline ? "0" : "0.4em")};
-  font-weight: bold;
+  font-weight: ${props => (props.bold ? "bold" : "normal")};
   vertical-align: middle;
   color: ${colors.darkGrey};
 `;
@@ -19,9 +19,12 @@ const Label = ({ htmlFor, children, ...otherProps }) => (
 
 Label.propTypes = {
   htmlFor: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  bold: PropTypes.bool
 };
 
-Label.defaultProps = {};
+Label.defaultProps = {
+  bold: true
+};
 
 export default Label;

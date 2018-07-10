@@ -23,6 +23,7 @@ exports[`Option should match snapshot 1`] = `
       />
       <Option__OptionField>
         <Label
+          bold={true}
           htmlFor="option-label-1"
         >
           Label
@@ -43,6 +44,7 @@ exports[`Option should match snapshot 1`] = `
     </Option__Flex>
     <Option__OptionField>
       <Label
+        bold={true}
         htmlFor="option-description-1"
       >
         Description (optional)
@@ -314,9 +316,11 @@ exports[`Option should render a checkbox 1`] = `
                     className="c3 c4"
                   >
                     <Label
+                      bold={true}
                       htmlFor="option-label-1"
                     >
                       <Label__StyledLabel
+                        bold={true}
                         htmlFor="option-label-1"
                       >
                         <label
@@ -428,9 +432,11 @@ exports[`Option should render a checkbox 1`] = `
                 className="c3 c4"
               >
                 <Label
+                  bold={true}
                   htmlFor="option-description-1"
                 >
                   <Label__StyledLabel
+                    bold={true}
                     htmlFor="option-description-1"
                   >
                     <label
@@ -631,6 +637,7 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
       />
       <Option__OptionField>
         <Label
+          bold={true}
           htmlFor="option-label-1"
         >
           Label
@@ -651,6 +658,7 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
     </Option__Flex>
     <Option__OptionField>
       <Label
+        bold={true}
         htmlFor="option-description-1"
       >
         Description (optional)

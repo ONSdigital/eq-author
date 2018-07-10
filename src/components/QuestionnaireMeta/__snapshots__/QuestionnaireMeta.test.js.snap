@@ -8,6 +8,7 @@ exports[`QuestionnaireMeta should render 1`] = `
     last={false}
   >
     <Label
+      bold={true}
       htmlFor="title"
     >
       Questionnaire Title
@@ -24,6 +25,7 @@ exports[`QuestionnaireMeta should render 1`] = `
   <QuestionnaireMeta__ToggleWrapper>
     <QuestionnaireMeta__InlineField>
       <Label
+        bold={true}
         htmlFor="navigation"
         inline={true}
       >
@@ -43,6 +45,7 @@ exports[`QuestionnaireMeta should render 1`] = `
     </QuestionnaireMeta__InlineField>
     <QuestionnaireMeta__InlineField>
       <Label
+        bold={true}
         htmlFor="summary"
         inline={true}
       >

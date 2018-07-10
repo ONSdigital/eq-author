@@ -76,9 +76,11 @@ exports[`components/Forms/Field should render correctly 1`] = `
       className="c0"
     >
       <Label
+        bold={true}
         htmlFor="name"
       >
         <Label__StyledLabel
+          bold={true}
           htmlFor="name"
         >
           <label
