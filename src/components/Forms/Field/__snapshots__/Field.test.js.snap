@@ -10,7 +10,6 @@ exports[`components/Forms/Field should render correctly 1`] = `
 
 .c1 {
   display: block;
-  font-size: 1em;
   margin-bottom: 0.4em;
   font-weight: bold;
   vertical-align: middle;
@@ -78,11 +77,9 @@ exports[`components/Forms/Field should render correctly 1`] = `
     >
       <Label
         htmlFor="name"
-        small={false}
       >
         <Label__StyledLabel
           htmlFor="name"
-          small={false}
         >
           <label
             className="c1"

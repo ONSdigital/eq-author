@@ -5,7 +5,6 @@ import { colors } from "constants/theme";
 
 const StyledLabel = styled.label`
   display: ${props => (props.inline ? "inline-block" : "block")};
-  font-size: ${props => (props.small ? "0.75" : "1")}em;
   margin-bottom: ${props => (props.inline ? "0" : "0.4em")};
   font-weight: bold;
   vertical-align: middle;
@@ -20,12 +19,9 @@ const Label = ({ htmlFor, children, ...otherProps }) => (
 
 Label.propTypes = {
   htmlFor: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  small: PropTypes.bool
+  children: PropTypes.node.isRequired
 };
 
-Label.defaultProps = {
-  small: false
-};
+Label.defaultProps = {};
 
 export default Label;

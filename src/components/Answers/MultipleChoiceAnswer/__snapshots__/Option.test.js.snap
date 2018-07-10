@@ -24,7 +24,6 @@ exports[`Option should match snapshot 1`] = `
       <Option__OptionField>
         <Label
           htmlFor="option-label-1"
-          small={false}
         >
           Label
         </Label>
@@ -45,7 +44,6 @@ exports[`Option should match snapshot 1`] = `
     <Option__OptionField>
       <Label
         htmlFor="option-description-1"
-        small={false}
       >
         Description (optional)
       </Label>
@@ -146,7 +144,6 @@ exports[`Option should render a checkbox 1`] = `
 
 .c5 {
   display: block;
-  font-size: 1em;
   margin-bottom: 0.4em;
   font-weight: bold;
   vertical-align: middle;
@@ -318,11 +315,9 @@ exports[`Option should render a checkbox 1`] = `
                   >
                     <Label
                       htmlFor="option-label-1"
-                      small={false}
                     >
                       <Label__StyledLabel
                         htmlFor="option-label-1"
-                        small={false}
                       >
                         <label
                           className="c5"
@@ -434,11 +429,9 @@ exports[`Option should render a checkbox 1`] = `
               >
                 <Label
                   htmlFor="option-description-1"
-                  small={false}
                 >
                   <Label__StyledLabel
                     htmlFor="option-description-1"
-                    small={false}
                   >
                     <label
                       className="c5"
@@ -639,7 +632,6 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
       <Option__OptionField>
         <Label
           htmlFor="option-label-1"
-          small={false}
         >
           Label
         </Label>
@@ -660,7 +652,6 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
     <Option__OptionField>
       <Label
         htmlFor="option-description-1"
-        small={false}
       >
         Description (optional)
       </Label>

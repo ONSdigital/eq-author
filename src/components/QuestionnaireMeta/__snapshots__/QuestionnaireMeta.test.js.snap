@@ -9,7 +9,6 @@ exports[`QuestionnaireMeta should render 1`] = `
   >
     <Label
       htmlFor="title"
-      small={false}
     >
       Questionnaire Title
     </Label>
@@ -27,7 +26,6 @@ exports[`QuestionnaireMeta should render 1`] = `
       <Label
         htmlFor="navigation"
         inline={true}
-        small={false}
       >
         <QuestionnaireMeta__Icon
           alt=""
@@ -47,7 +45,6 @@ exports[`QuestionnaireMeta should render 1`] = `
       <Label
         htmlFor="summary"
         inline={true}
-        small={false}
       >
         <QuestionnaireMeta__Icon
           alt=""

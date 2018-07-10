@@ -7,7 +7,6 @@ exports[`BasicAnswer should render 1`] = `
   >
     <Label
       htmlFor="answer-label-undefined"
-      small={false}
     >
       Label
     </Label>
@@ -27,7 +26,6 @@ exports[`BasicAnswer should render 1`] = `
   >
     <Label
       htmlFor="answer-description-undefined"
-      small={false}
     >
       Description (optional)
     </Label>

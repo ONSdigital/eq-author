@@ -14,7 +14,6 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
   >
     <Label
       id="label-test"
-      small={false}
     >
       I am a label
     </Label>
@@ -300,7 +299,6 @@ exports[`components/RichTextEditor should render 1`] = `
   >
     <Label
       id="label-test"
-      small={false}
     >
       I am a label
     </Label>
@@ -588,7 +586,6 @@ exports[`components/RichTextEditor should render existing content 1`] = `
   >
     <Label
       id="label-test"
-      small={false}
     >
       I am a label
     </Label>
