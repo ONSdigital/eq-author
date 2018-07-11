@@ -6,7 +6,10 @@ import createMockStore from "tests/utils/createMockStore";
 const answer = {
   id: "1",
   label: "Lorem ipsum",
-  secondaryLabel: "dolor sit amet"
+  childAnswers: [
+    { id: "1from", label: "Period from" },
+    { id: "1to", label: "Period to" }
+  ]
 };
 
 describe("DateRange", () => {

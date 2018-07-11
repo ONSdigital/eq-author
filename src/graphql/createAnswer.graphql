@@ -1,24 +1,6 @@
 #import "./fragments/answer.graphql"
-#import "./fragments/option.graphql"
-
 mutation createAnswer($input: CreateAnswerInput!) {
   createAnswer(input: $input) {
     ...Answer
-    ... on BasicAnswer {
-      secondaryLabel
-    }
-    ... on MultipleChoiceAnswer {
-      options {
-        ...Option
-      }
-      other {
-        option {
-          ...Option
-        }
-        answer {
-          ...Answer
-        }
-      }
-    }
   }
 }
