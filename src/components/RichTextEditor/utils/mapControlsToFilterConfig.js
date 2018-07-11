@@ -1,4 +1,5 @@
 import { mapKeys } from "lodash";
+import { filterConfig } from "../entities/PipedValue";
 
 const mapper = {
   bold: { format: "BOLD", type: "styles" },
@@ -11,7 +12,7 @@ export function mapControlsToFilterConfig(controls) {
   const filterConfiguration = {
     blocks: [],
     styles: [],
-    entities: [],
+    entities: [filterConfig],
     maxNesting: 0,
     whitespacedCharacters: []
   };

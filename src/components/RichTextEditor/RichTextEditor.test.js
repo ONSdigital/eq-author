@@ -31,7 +31,8 @@ describe("components/RichTextEditor", function() {
     props = {
       onUpdate: jest.fn(),
       label: "I am a label",
-      id: "test"
+      id: "test",
+      controls: {}
     };
     editorInstance = {
       focus: jest.fn()
@@ -284,6 +285,24 @@ describe("components/RichTextEditor", function() {
 
         expect(toRaw(wrapper)).toEqual(expected);
       });
+    });
+  });
+
+  describe("formatting", () => {
+    it("should not strip piped values", () => {
+      const answer = {
+        id: "123",
+        label: "pipe",
+        type: "TextField"
+      };
+
+      wrapper.find(Toolbar).simulate("piping", answer);
+      wrapper.find(`[data-test="rte-field"]`).simulate("blur");
+
+      const { value } = props.onUpdate.mock.calls[0][0];
+      expect(value).toEqual(
+        '<p><span data-piped="answers" data-id="123" data-type="TextField">[Piped Value]</span></p>'
+      );
     });
   });
 });
