@@ -1,12 +1,12 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
+import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import sections from "./mockstate";
 
 let wrapper, props;
 
-describe("components/RoutingRuleResultSelector", () => {
+describe("components/RoutingRuleDestinationSelector", () => {
   beforeEach(() => {
     props = {
       onChange: jest.fn(),
@@ -30,7 +30,7 @@ describe("components/RoutingRuleResultSelector", () => {
       sections
     };
 
-    wrapper = shallow(<RoutingRuleResultSelector {...props} />);
+    wrapper = shallow(<RoutingRuleDestinationSelector {...props} />);
   });
 
   it("should render", () => {
@@ -38,7 +38,7 @@ describe("components/RoutingRuleResultSelector", () => {
   });
 
   it("should allow change of goto select", () => {
-    wrapper = mount(<RoutingRuleResultSelector {...props} />);
+    wrapper = mount(<RoutingRuleDestinationSelector {...props} />);
     wrapper.find(`select[data-test="result-selector"]`).simulate("change");
 
     expect(props.onChange).toHaveBeenCalledWith({

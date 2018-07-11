@@ -4,6 +4,11 @@ import GroupedSelect from "./GroupedSelect";
 import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
 
+import AbsoluteDestination from "graphql/fragments/absolute-destination.graphql";
+import LogicalDestination from "graphql/fragments/logical-destination.graphql";
+import QuestionPageDestination from "graphql/fragments/question-page-destination.graphql";
+import SectionDestination from "graphql/fragments/section-destination.graphql";
+
 const RoutingRuleResult = styled.div`
   padding: 1em 1em 1em 0.7em;
 `;
@@ -41,7 +46,7 @@ const toOption = defaultTitle => entity => ({
   value: toAbsoluteDestination(entity)
 });
 
-class RoutingRuleResultSelector extends React.Component {
+class RoutingRuleDestinationSelector extends React.Component {
   groupDestinations({ questionPages }) {
     const pagesGroup = {
       label: "Questions in this section",
@@ -102,7 +107,7 @@ class RoutingRuleResultSelector extends React.Component {
   }
 }
 
-RoutingRuleResultSelector.propTypes = {
+RoutingRuleDestinationSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
   destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   label: PropTypes.string.isRequired,
@@ -111,9 +116,16 @@ RoutingRuleResultSelector.propTypes = {
   disabled: PropTypes.bool.isRequired
 };
 
-RoutingRuleResultSelector.defaultProps = {
+RoutingRuleDestinationSelector.defaultProps = {
   disabled: false,
   loading: false
 };
 
-export default RoutingRuleResultSelector;
+RoutingRuleDestinationSelector.fragments = {
+  LogicalDestination,
+  AbsoluteDestination,
+  QuestionPageDestination,
+  SectionDestination
+};
+
+export default RoutingRuleDestinationSelector;

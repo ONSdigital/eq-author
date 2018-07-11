@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { withApollo } from "react-apollo";
 import { flip, partial, flowRight } from "lodash";
 import getAnswersQuery from "graphql/getAnswers.graphql";
-import getTextFromHTML from "utils/getTextFromHTML";
+
 import { colors } from "constants/theme";
 
 const titleControls = {
@@ -37,7 +37,7 @@ export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate, client } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
-    const pageTitleText = getTextFromHTML(page.title);
+    const pageTitleText = page.plaintextTitle;
 
     const fetchAnswers = ids => {
       return client
@@ -93,6 +93,10 @@ StatelessMetaEditor.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   page: CustomPropTypes.page,
   client: CustomPropTypes.apolloClient.isRequired
+};
+
+StatelessMetaEditor.fragments = {
+  Page: pageFragment
 };
 
 export default flowRight(withApollo, withEntityEditor("page", pageFragment))(

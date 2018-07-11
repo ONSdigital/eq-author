@@ -5,8 +5,8 @@ import PageNav from "components/NavigationSidebar/PageNav";
 import NavLink from "./NavLink";
 import CustomPropTypes from "custom-prop-types";
 import { buildSectionPath } from "utils/UrlUtils";
-import getTextFromHTML from "utils/getTextFromHTML";
 import SectionIcon from "./icon-section.svg?inline";
+import gql from "graphql-tag";
 
 const StyledSectionNavItem = styled.li`
   display: block;
@@ -31,10 +31,10 @@ class SectionNavItem extends React.Component {
           exact
           to={url}
           data-test="nav-section-link"
-          title={getTextFromHTML(section.title)}
+          title={section.plaintextTitle}
           icon={SectionIcon}
         >
-          {getTextFromHTML(section.title) || "Section Title"}
+          {section.plaintextTitle || "Section Title"}
         </NavLink>
 
         <PageNav section={section} questionnaire={questionnaire} />
@@ -42,5 +42,18 @@ class SectionNavItem extends React.Component {
     );
   }
 }
+
+SectionNavItem.fragments = {
+  SectionNavItem: gql`
+    fragment SectionNavItem on Section {
+      id
+      title
+      plaintextTitle: title(format: Plaintext)
+      ...PageNav
+    }
+
+    ${PageNav.fragments.PageNav}
+  `
+};
 
 export default SectionNavItem;

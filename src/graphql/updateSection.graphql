@@ -3,5 +3,6 @@
 mutation UpdateSection($input: UpdateSectionInput!) {
   updateSection(input: $input) {
     ...Section
+    plaintextTitle: title(format: Plaintext)
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import NavigationSidebar from "components/NavigationSidebar";
+import { UnwrappedNavigationSidebar as NavigationSidebar } from "components/NavigationSidebar";
 import { SynchronousPromise } from "synchronous-promise";
 
 describe("NavigationSidebar", () => {

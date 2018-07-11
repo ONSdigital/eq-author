@@ -51,7 +51,7 @@ exports[`QuestionnaireDesignPage should render 1`] = `
         cols={2}
         gutters={false}
       >
-        <withRouter(Apollo(Apollo(NavigationSidebar)))
+        <withRouter(Apollo(Apollo(UnwrappedNavigationSidebar)))
           data-test="side-nav"
           loading={false}
           onAddPage={[Function]}

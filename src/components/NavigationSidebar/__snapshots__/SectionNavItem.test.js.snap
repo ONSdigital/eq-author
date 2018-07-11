@@ -20,15 +20,18 @@ exports[`SectionNavItem should render 1`] = `
     questionnaire={
       Object {
         "id": "1",
+        "plaintextTitle": "Questionnaire",
         "sections": Array [
           Object {
             "id": "3",
             "pages": Array [
               Object {
                 "id": "2",
+                "plaintextTitle": "Page",
                 "title": "Page",
               },
             ],
+            "plaintextTitle": "Section",
             "title": "Section",
           },
         ],
@@ -41,9 +44,11 @@ exports[`SectionNavItem should render 1`] = `
         "pages": Array [
           Object {
             "id": "2",
+            "plaintextTitle": "Page",
             "title": "Page",
           },
         ],
+        "plaintextTitle": "Section",
         "title": "Section",
       }
     }

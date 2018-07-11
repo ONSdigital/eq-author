@@ -12,10 +12,14 @@ exports[`PageNav should render 1`] = `
     timeout={300}
   >
     <withRouter(UnwrappedPageNavItem)
-      pageId="2"
+      page={
+        Object {
+          "id": "2",
+          "title": "Page",
+        }
+      }
       questionnaireId="1"
       sectionId="3"
-      title="Page"
     />
   </NavItemTransition>
 </TransitionGroup>

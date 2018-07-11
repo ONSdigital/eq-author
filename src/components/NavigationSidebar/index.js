@@ -6,6 +6,12 @@ import { colors } from "constants/theme";
 import SectionNav from "components/NavigationSidebar/SectionNav";
 import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import ScrollPane from "components/ScrollPane";
+import { flowRight } from "lodash";
+import { withRouter } from "react-router";
+import gql from "graphql-tag";
+
+import withCreateSection from "containers/enhancers/withCreateSection";
+import withUpdateQuestionnaire from "containers/enhancers/withUpdateQuestionnaire";
 
 const Container = styled.div`
   background: ${colors.darkBlue};
@@ -23,7 +29,7 @@ const NavigationScrollPane = styled(ScrollPane)`
   }
 `;
 
-class NavigationSidebar extends Component {
+export class UnwrappedNavigationSidebar extends Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire,
     onAddPage: PropTypes.func.isRequired,
@@ -65,4 +71,21 @@ class NavigationSidebar extends Component {
   }
 }
 
-export default NavigationSidebar;
+UnwrappedNavigationSidebar.fragments = {
+  NavigationSidebar: gql`
+    fragment NavigationSidebar on Questionnaire {
+      id
+      ...SectionNav
+      ...NavigationHeader
+    }
+
+    ${NavigationHeader.fragments.NavigationHeader}
+    ${SectionNav.fragments.SectionNav}
+  `
+};
+
+export default flowRight(
+  withRouter,
+  withCreateSection,
+  withUpdateQuestionnaire
+)(UnwrappedNavigationSidebar);

@@ -1,16 +1,20 @@
 import React from "react";
+import { withApollo, Query } from "react-apollo";
+import { connect } from "react-redux";
+import gql from "graphql-tag";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { flowRight, isFunction, isNil } from "lodash";
 import fp from "lodash/fp";
+import { Titled } from "react-titled";
 
-import SectionQuery from "./SectionQuery";
 import SectionEditor from "components/SectionEditor";
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
+import EditorLayout from "components/EditorLayout";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
@@ -18,14 +22,10 @@ import withCreatePage from "containers/enhancers/withCreatePage";
 import withCreateSection from "containers/enhancers/withCreateSection";
 import withMoveSection from "containers/enhancers/withMoveSection";
 
-import getTextFromHTML from "utils/getTextFromHTML";
-import { Titled } from "react-titled";
 import Loading from "components/Loading";
 import Error from "components/Error";
-import { withApollo } from "react-apollo";
-import { connect } from "react-redux";
+
 import { raiseToast } from "redux/toast/actions";
-import EditorLayout from "components/EditorLayout";
 
 export class UnwrappedSectionRoute extends React.Component {
   static propTypes = {
@@ -80,7 +80,7 @@ export class UnwrappedSectionRoute extends React.Component {
   };
 
   getSectionTitle = section => title => {
-    const sectionTitle = getTextFromHTML(section.title) || "Untitled section";
+    const sectionTitle = section.plaintextTitle || "Untitled section";
     return `${sectionTitle} - ${title}`;
   };
 
@@ -160,8 +160,25 @@ const withSectionEditing = flowRight(
   withMoveSection
 );
 
+export const SECTION_QUERY = gql`
+  query SectionQuery($id: ID!) {
+    section(id: $id) {
+      ...Section
+      plaintextTitle: title(format: Plaintext)
+      position
+      questionnaire {
+        questionnaireInfo {
+          totalSectionCount
+        }
+      }
+    }
+  }
+
+  ${SectionEditor.fragments.Section}
+`;
+
 export default withSectionEditing(props => (
-  <SectionQuery id={props.match.params.sectionId}>
+  <Query query={SECTION_QUERY} variables={{ id: props.match.params.sectionId }}>
     {innerProps => <UnwrappedSectionRoute {...innerProps} {...props} />}
-  </SectionQuery>
+  </Query>
 ));

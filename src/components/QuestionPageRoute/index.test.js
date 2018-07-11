@@ -1,13 +1,15 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import QuestionPageRoute, { UnwrappedQuestionPageRoute } from "./";
+import QuestionPageRoute, {
+  UnwrappedQuestionPageRoute,
+  QUESTION_PAGE_QUERY
+} from "./";
 import TestProvider from "tests/utils/TestProvider";
 import { buildPagePath } from "utils/UrlUtils";
 import flushPromises from "tests/utils/flushPromises";
 import createRouterContext from "react-router-test-context";
 import PropTypes from "prop-types";
 
-import query from "./QuestionPage.graphql";
 import movePageQuery from "graphql/getQuestionnaire.graphql";
 
 const movePageMock = {
@@ -100,7 +102,7 @@ describe("QuestionPageRoute", () => {
     it("should show loading spinner while request in flight", () => {
       const mock = {
         request: {
-          query,
+          query: QUESTION_PAGE_QUERY,
           variables: {
             id: "3"
           }
@@ -111,11 +113,11 @@ describe("QuestionPageRoute", () => {
               __typename: "QuestionPage",
               id: "3",
               title: "foo",
+              plaintextTitle: "foo",
               description: "bar",
               pageType: "QuestionPage",
               position: 0,
               guidance: "",
-
               answers: []
             }
           }
@@ -123,6 +125,7 @@ describe("QuestionPageRoute", () => {
       };
 
       const wrapper = render([mock, mock, movePageMock, movePageMock]);
+
       expect(wrapper.find(`[data-test="loading"]`).exists()).toBe(true);
       expect(wrapper.find(`[data-test="question-page-editor"]`).exists()).toBe(
         false
@@ -132,7 +135,7 @@ describe("QuestionPageRoute", () => {
     it("should render the editor once loaded", () => {
       const mock = {
         request: {
-          query,
+          query: QUESTION_PAGE_QUERY,
           variables: {
             id: "3"
           }
@@ -143,6 +146,7 @@ describe("QuestionPageRoute", () => {
               __typename: "QuestionPage",
               id: "3",
               title: "foo",
+              plaintextTitle: "foo",
               description: "bar",
               pageType: "QuestionPage",
               position: 0,
@@ -167,7 +171,7 @@ describe("QuestionPageRoute", () => {
     it("should render error if problem with request", () => {
       const mock = {
         request: {
-          query,
+          query: QUESTION_PAGE_QUERY,
           variables: {
             id: "3"
           }
@@ -195,7 +199,7 @@ describe("QuestionPageRoute", () => {
     it("should render error if no page returned", () => {
       const mock = {
         request: {
-          query,
+          query: QUESTION_PAGE_QUERY,
           variables: {
             id: "3"
           }
@@ -257,6 +261,7 @@ describe("QuestionPageRoute", () => {
           __typename: "QuestionPage",
           id: "3",
           title: "foo",
+          plaintextTitle: "foo",
           description: "bar",
           pageType: "QuestionPage",
           position: 0,

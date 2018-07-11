@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
-import SectionRoute, { UnwrappedSectionRoute } from "./";
+import SectionRoute, { UnwrappedSectionRoute, SECTION_QUERY } from "./";
+
 import TestProvider from "tests/utils/TestProvider";
 import { buildSectionPath } from "utils/UrlUtils";
 import flushPromises from "tests/utils/flushPromises";
@@ -8,12 +9,11 @@ import createRouterContext from "react-router-test-context";
 import PropTypes from "prop-types";
 import { byTestAttr } from "tests/utils/selectors";
 
-import query from "./Section.graphql";
-import moveSectionQuery from "graphql/getQuestionnaire.graphql";
+import GET_QUESTIONNAIRE_QUERY from "graphql/getQuestionnaire.graphql";
 
 const moveSectionMock = {
   request: {
-    query: moveSectionQuery,
+    query: GET_QUESTIONNAIRE_QUERY,
     variables: {
       id: "1"
     }
@@ -35,6 +35,7 @@ const moveSectionMock = {
             __typename: "Section",
             id: "2",
             title: "foo",
+            plaintextTitle: "foo",
             position: 0,
             pages: [
               {
@@ -62,6 +63,7 @@ const moveSectionMock = {
             __typename: "Section",
             id: "3",
             title: "foo",
+            plaintextTitle: "foo",
             position: 1,
             pages: [
               {
@@ -128,7 +130,7 @@ describe("SectionRoute", () => {
     it("should show loading spinner while request in flight", () => {
       const mock = {
         request: {
-          query,
+          query: SECTION_QUERY,
           variables: {
             id: "2"
           }
@@ -139,6 +141,7 @@ describe("SectionRoute", () => {
               __typename: "Section",
               id: "1",
               title: "foo",
+              plaintextTitle: "foo",
               description: "bar",
               position: 0,
               questionnaire: {
@@ -161,7 +164,7 @@ describe("SectionRoute", () => {
     it("should render the editor once loaded", () => {
       const mock = {
         request: {
-          query,
+          query: SECTION_QUERY,
           variables: {
             id: "2"
           }
@@ -170,8 +173,9 @@ describe("SectionRoute", () => {
           data: {
             section: {
               __typename: "Section",
-              id: "1",
+              id: "2",
               title: "foo",
+              plaintextTitle: "foo",
               description: "bar",
               position: 0,
               questionnaire: {
@@ -200,10 +204,7 @@ describe("SectionRoute", () => {
     it("should render error if problem with request", () => {
       const mock = {
         request: {
-          query,
-          variables: {
-            id: "2"
-          }
+          query: SECTION_QUERY
         },
         error: new Error("something went wrong")
       };
@@ -223,10 +224,7 @@ describe("SectionRoute", () => {
     it("should render error if no section returned", () => {
       const mock = {
         request: {
-          query,
-          variables: {
-            id: "2"
-          }
+          query: SECTION_QUERY
         },
         result: {
           data: {
@@ -335,7 +333,9 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
+          plaintextTitle: "foo",
           description: "bar",
+          position: 0,
           questionnaire: {
             questionnaireInfo: {
               totalSectionCount: 1
@@ -368,7 +368,9 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
+          plaintextTitle: "foo",
           description: "bar",
+          position: 0,
           questionnaire: {
             questionnaireInfo: {
               totalSectionCount: 2

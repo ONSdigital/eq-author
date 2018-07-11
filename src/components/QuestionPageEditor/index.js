@@ -16,9 +16,9 @@ import getIdForObject from "utils/getIdForObject";
 import iconPage from "./icon-dialog-page.svg";
 
 import DeleteConfirmDialog from "components/DeleteConfirmDialog";
-import getTextFromHTML from "utils/getTextFromHTML";
 import MovePageModal from "components/MovePageModal";
 import MovePageQuery from "components/MovePageModal/MovePageQuery";
+import gql from "graphql-tag";
 
 const AddAnswerSegment = styled.div`
   padding: 1em 2em 2em;
@@ -133,7 +133,7 @@ export default class QuestionPageEditor extends React.Component {
               isOpen={showDeleteConfirmDialog}
               onClose={onCloseDeleteConfirmDialog}
               onDelete={onDeletePageConfirm}
-              title={getTextFromHTML(page.title) || "Untitled Page"}
+              title={page.plaintextTitle || "Untitled Page"}
               alertText="All edits, properties and routing settings will also be removed."
               icon={iconPage}
               data-test="delete-page"
@@ -158,3 +158,19 @@ export default class QuestionPageEditor extends React.Component {
     );
   }
 }
+
+QuestionPageEditor.fragments = {
+  QuestionPage: gql`
+    fragment QuestionPage on QuestionPage {
+      ...Page
+      plaintextTitle: title(format: Plaintext)
+      position
+      answers {
+        ...AnswerEditor
+      }
+    }
+
+    ${MetaEditor.fragments.Page}
+    ${AnswerEditor.fragments.AnswerEditor}
+  `
+};

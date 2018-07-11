@@ -33,6 +33,8 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       return null;
     }
 
+    static fragments = WrappedComponent.fragments;
+
     getEntity() {
       return this.state[entityPropName];
     }
@@ -47,6 +49,7 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       if (currentEntity[name] === value) {
         return;
       }
+
       const entity = {
         ...currentEntity,
         [name]: value

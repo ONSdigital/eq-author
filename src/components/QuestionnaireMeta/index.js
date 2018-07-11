@@ -105,6 +105,10 @@ StatelessQuestionnaireMeta.propTypes = {
   confirmText: PropTypes.string.isRequired
 };
 
+StatelessQuestionnaireMeta.fragments = {
+  Questionnaire: questionnaireFragment
+};
+
 export default withEntityEditor("questionnaire", questionnaireFragment)(
   StatelessQuestionnaireMeta
 );

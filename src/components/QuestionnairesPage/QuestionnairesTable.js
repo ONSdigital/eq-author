@@ -8,6 +8,7 @@ import IconButtonDelete from "components/IconButtonDelete";
 import QuestionnaireLink from "./QuestionnaireLink";
 import FormattedDate from "./FormattedDate";
 import Truncated from "components/Truncated";
+import gql from "graphql-tag";
 
 const Table = styled.table`
   width: 100%;
@@ -80,10 +81,7 @@ RowTransition.defaultProps = {
 
 const TBody = props => <tbody {...props} />;
 
-const QuestionnairesTable = ({
-  questionnaires,
-  onDeleteQuestionnaire: handleDelete
-}) => {
+const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
   if (isEmpty(questionnaires)) {
     return <p>You have no questionnaires</p>;
   }
@@ -128,7 +126,7 @@ const QuestionnairesTable = ({
                 <Collapsible>
                   <IconButtonDelete
                     hideText
-                    onClick={partial(handleDelete, questionnaire.id)}
+                    onClick={partial(onDeleteQuestionnaire, questionnaire.id)}
                   />
                 </Collapsible>
               </TD>
@@ -143,6 +141,19 @@ const QuestionnairesTable = ({
 QuestionnairesTable.propTypes = {
   questionnaires: CustomPropTypes.questionnaireList,
   onDeleteQuestionnaire: PropTypes.func.isRequired
+};
+
+QuestionnairesTable.fragments = {
+  QuestionnaireDetails: gql`
+    fragment QuestionnaireDetails on Questionnaire {
+      id
+      title
+      createdAt
+      createdBy {
+        name
+      }
+    }
+  `
 };
 
 export default QuestionnairesTable;

@@ -3,5 +3,6 @@
 mutation UpdateQuestionPage($input: UpdateQuestionPageInput!) {
   updateQuestionPage(input: $input) {
     ...Page
+    plaintextTitle: title(format: Plaintext)
   }
 }

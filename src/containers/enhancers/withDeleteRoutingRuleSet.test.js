@@ -1,7 +1,16 @@
 import { mapMutateToProps, createUpdater } from "./withDeleteRoutingRuleSet";
-import fragment from "graphql/fragments/page.graphql";
 
-describe("containers/QuestionnaireRoutingPage/withDeleteRoutingRuleSet", () => {
+import gql from "graphql-tag";
+
+const fragment = gql`
+  fragment PageWithRouting on Page {
+    routingRuleSet {
+      id
+    }
+  }
+`;
+
+describe("components/QuestionnaireRoutingPage/withDeleteRoutingRuleSet", () => {
   let mutate,
     ownProps,
     result,

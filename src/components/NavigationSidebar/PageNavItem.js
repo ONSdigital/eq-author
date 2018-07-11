@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { buildQuestionnairePath } from "utils/UrlUtils";
 import NavLink from "./NavLink";
-import getTextFromHTML from "utils/getTextFromHTML";
 import PageIcon from "./icon-questionpage.svg?inline";
 import { withRouter } from "react-router-dom";
 import CustomPropTypes from "custom-prop-types";
+import gql from "graphql-tag";
 
 const StyledPageItem = styled.li`
   padding: 0;
@@ -19,8 +19,7 @@ const StyledPageItem = styled.li`
 export const UnwrappedPageNavItem = ({
   sectionId,
   questionnaireId,
-  pageId,
-  title,
+  page,
   match,
   ...otherProps
 }) => (
@@ -29,23 +28,33 @@ export const UnwrappedPageNavItem = ({
       to={buildQuestionnairePath({
         questionnaireId,
         sectionId,
-        pageId,
+        pageId: page.id,
         tab: match.params.tab || "design"
       })}
-      title={getTextFromHTML(title)}
+      title={page.plaintextTitle}
       icon={PageIcon}
       data-test="nav-page-link"
     >
-      {getTextFromHTML(title) || "Page Title"}
+      {page.plaintextTitle || "Page Title"}
     </NavLink>
   </StyledPageItem>
 );
 
+UnwrappedPageNavItem.fragments = {
+  PageNavItem: gql`
+    fragment PageNavItem on QuestionPage {
+      id
+      title
+      position
+      plaintextTitle: title(format: Plaintext)
+    }
+  `
+};
+
 UnwrappedPageNavItem.propTypes = {
   sectionId: PropTypes.string.isRequired,
   questionnaireId: PropTypes.string.isRequired,
-  pageId: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  page: CustomPropTypes.page,
   match: CustomPropTypes.match
 };
 

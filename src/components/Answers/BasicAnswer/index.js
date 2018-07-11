@@ -75,4 +75,8 @@ StatelessBasicAnswer.defaultProps = {
   autoFocus: true
 };
 
+StatelessBasicAnswer.fragments = {
+  Answer: answerFragment
+};
+
 export default withEntityEditor("answer", answerFragment)(StatelessBasicAnswer);

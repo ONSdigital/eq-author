@@ -7,37 +7,37 @@ import { MemoryRouter, Route } from "react-router";
 
 import styled from "styled-components";
 
-import NavigationSidebar from "components/NavigationSidebar";
+import { UnwrappedNavigationSidebar as NavigationSidebar } from "components/NavigationSidebar";
 
 const Wrapper = styled.div`
   width: 20em;
 `;
 
 const section1 = {
-  title: "Section 1",
+  plaintextTitle: "Section 1",
   id: "1",
   pages: [
     {
-      title: "Question 1.1",
+      plaintextTitle: "Question 1.1",
       id: "2"
     },
     {
-      title: "Question 1.2",
+      plaintextTitle: "Question 1.2",
       id: "3"
     }
   ]
 };
 
 const section2 = {
-  title: "Section 2",
+  plaintextTitle: "Section 2",
   id: "4",
   pages: [
     {
-      title: "Question 2.1",
+      plaintextTitle: "Question 2.1",
       id: "5"
     },
     {
-      title: "Question 2.2",
+      plaintextTitle: "Question 2.2",
       id: "6"
     }
   ]

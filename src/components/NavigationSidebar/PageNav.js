@@ -7,6 +7,7 @@ import NavItemTransition from "./NavItemTransition";
 
 import PageNavItem from "./PageNavItem";
 import scrollIntoView from "utils/scrollIntoView";
+import gql from "graphql-tag";
 
 const NavList = styled.ol`
   padding: 0 0 1em;
@@ -20,8 +21,7 @@ const PageNav = ({ section, questionnaire }) => (
     {section.pages.map(page => (
       <NavItemTransition key={page.id} onEntered={scrollIntoView}>
         <PageNavItem
-          title={page.title}
-          pageId={page.id}
+          page={page}
           sectionId={section.id}
           questionnaireId={questionnaire.id}
         />
@@ -29,6 +29,18 @@ const PageNav = ({ section, questionnaire }) => (
     ))}
   </TransitionGroup>
 );
+
+PageNav.fragments = {
+  PageNav: gql`
+    fragment PageNav on Section {
+      id
+      pages {
+        ...PageNavItem
+      }
+    }
+    ${PageNavItem.fragments.PageNavItem}
+  `
+};
 
 PageNav.propTypes = {
   questionnaire: CustomPropTypes.questionnaire.isRequired,

@@ -9,7 +9,9 @@ const handleClick = () => {
   alert("Not implemented yet.");
 };
 
-const StyledSpan = styled.span`position: relative;`;
+const StyledSpan = styled.span`
+  position: relative;
+`;
 
 const StyledButton = styled(Button)`
   width: 18px;

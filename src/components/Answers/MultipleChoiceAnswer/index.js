@@ -17,6 +17,7 @@ import Dropdown from "components/SplitButton/Dropdown";
 import MenuItem from "components/SplitButton/MenuItem";
 
 import { last } from "lodash";
+import gql from "graphql-tag";
 
 const AnswerWrapper = styled.div`
   margin: 2em 0 0;
@@ -186,5 +187,28 @@ class MultipleChoiceAnswer extends Component {
     );
   }
 }
+
+MultipleChoiceAnswer.fragments = {
+  MultipleChoice: gql`
+    fragment MultipleChoice on Answer {
+      ...Answer
+      ... on MultipleChoiceAnswer {
+        options {
+          ...Option
+        }
+        other {
+          option {
+            ...Option
+          }
+          answer {
+            ...Answer
+          }
+        }
+      }
+    }
+    ${Option.fragments.Option}
+    ${BasicAnswer.fragments.Answer}
+  `
+};
 
 export default MultipleChoiceAnswer;

@@ -1,6 +1,14 @@
 import { graphql } from "react-apollo";
 import deleteRoutingRuleSet from "graphql/deleteRoutingRuleSet.graphql";
-import fragment from "graphql/fragments/page.graphql";
+import gql from "graphql-tag";
+
+const fragment = gql`
+  fragment PageWithRouting on Page {
+    routingRuleSet {
+      id
+    }
+  }
+`;
 
 export const createUpdater = (routingRuleSetId, pageId) => (proxy, result) => {
   const id = `QuestionPage${pageId}`;

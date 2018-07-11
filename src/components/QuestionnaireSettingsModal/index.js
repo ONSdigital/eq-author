@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import QuestionnaireMeta from "components/QuestionnaireMeta";
 import CustomPropTypes from "custom-prop-types";
 import { noop } from "lodash";
+import gql from "graphql-tag";
 
 const defaultQuestionnaire = {
   title: "",
@@ -63,6 +64,15 @@ QuestionnaireSettingsModal.propTypes = {
 
 QuestionnaireSettingsModal.defaultProps = {
   questionnaire: defaultQuestionnaire
+};
+
+QuestionnaireSettingsModal.fragments = {
+  QuestionnaireSettingsModal: gql`
+    fragment QuestionnaireSettingsModal on Questionnaire {
+      ...Questionnaire
+    }
+    ${QuestionnaireMeta.fragments.Questionnaire}
+  `
 };
 
 export default QuestionnaireSettingsModal;

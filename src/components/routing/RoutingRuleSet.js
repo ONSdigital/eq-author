@@ -3,10 +3,12 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { TransitionGroup } from "react-transition-group";
 
+import routingRuleSetFragment from "graphql/fragments/routing-rule-set.graphql";
+
 import Transition from "./Transition";
 import Button from "components/Button";
 import IconText from "components/IconText";
-import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
+import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import RoutingRule from "./RoutingRule";
 
 import IconAddRule from "./icon-add-rule.svg?inline";
@@ -59,7 +61,7 @@ const RoutingRuleSet = ({
         <IconText icon={IconAddRule}>Add rule</IconText>
       </AddRuleButton>
       <Box>
-        <RoutingRuleResultSelector
+        <RoutingRuleDestinationSelector
           id="else"
           label="ELSE"
           value={ruleSet.else}
@@ -70,6 +72,10 @@ const RoutingRuleSet = ({
       </Box>
     </React.Fragment>
   );
+};
+
+RoutingRuleSet.fragments = {
+  RoutingRuleSet: routingRuleSetFragment
 };
 
 RoutingRuleSet.propTypes = {

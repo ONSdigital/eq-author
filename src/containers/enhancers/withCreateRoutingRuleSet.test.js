@@ -1,5 +1,13 @@
 import { mapMutateToProps, createUpdater } from "./withCreateRoutingRuleSet";
-import fragment from "graphql/fragments/page.graphql";
+import gql from "graphql-tag";
+
+const fragment = gql`
+  fragment PageWithRouting on Page {
+    routingRuleSet {
+      id
+    }
+  }
+`;
 
 describe("containers/enhancers/withCreateRoutingRuleSet", () => {
   const questionPage = {

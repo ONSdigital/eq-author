@@ -49,4 +49,8 @@ const CurrencyAnswer = props => (
   </BasicAnswer>
 );
 
+CurrencyAnswer.fragments = {
+  Currency: BasicAnswer.fragments.Answer
+};
+
 export default CurrencyAnswer;

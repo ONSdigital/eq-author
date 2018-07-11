@@ -1,7 +1,7 @@
 import { mapMutateToProps, createUpdater } from "./withDeleteRoutingRule";
 import fragment from "graphql/fragments/routing-rule-set.graphql";
 
-describe("containers/QuestionnaireRoutingPage/withDeleteRoutingRule", () => {
+describe("components/QuestionnaireRoutingPage/withDeleteRoutingRule", () => {
   let mutate, result, deleteRoutingRule, routingRule, routingRuleSet;
 
   beforeEach(() => {
