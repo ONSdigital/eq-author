@@ -10,6 +10,11 @@ import { bindKey } from "lodash";
 
 export const ENTITY_TYPE = "PIPED-DATA";
 
+export const filterConfig = {
+  type: ENTITY_TYPE,
+  attributes: ["id", "type"]
+};
+
 const PipedValueDecorator = styled.span`
   background-color: #e0e0e0;
   padding: 0 0.125em;

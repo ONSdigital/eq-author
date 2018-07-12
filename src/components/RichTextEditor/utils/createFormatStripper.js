@@ -1,4 +1,6 @@
 import { mapKeys } from "lodash";
+import { filterEditorState } from "draftjs-filters";
+import { filterConfig } from "../entities/PipedValue";
 
 const mapper = {
   bold: { format: "BOLD", type: "styles" },
@@ -7,19 +9,20 @@ const mapper = {
   heading: { format: "header-two", type: "blocks" }
 };
 
-export function mapControlsToFilterConfig(controls) {
+export default function createFormatStripper(controls) {
   const filterConfiguration = {
     blocks: [],
     styles: [],
-    entities: [],
+    entities: [filterConfig],
     maxNesting: 0,
     whitespacedCharacters: []
   };
 
   mapKeys(controls, (value, key) => {
-    if (mapper[key]) {
+    if (mapper[key] && controls[key]) {
       filterConfiguration[mapper[key].type].push(mapper[key].format);
     }
   });
-  return filterConfiguration;
+
+  return editorState => filterEditorState(filterConfiguration, editorState);
 }
