@@ -31,8 +31,7 @@ describe("components/RichTextEditor", function() {
     props = {
       onUpdate: jest.fn(),
       label: "I am a label",
-      id: "test",
-      controls: {}
+      id: "test"
     };
     editorInstance = {
       focus: jest.fn()
