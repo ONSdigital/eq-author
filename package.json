@@ -22,6 +22,9 @@
     "coverage": "yarn test -- --coverage",
     "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:3000/} cypress open"
   },
+  "resolutions": {
+    "eslint-scope": "3.7.1"
+  }, 
   "lint-staged": {
     "*.js": [
       "prettier --write",
