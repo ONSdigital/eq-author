@@ -42,7 +42,7 @@ CurrencyComponent.defaultProps = {
 };
 
 const CurrencyAnswer = props => (
-  <BasicAnswer {...props}>
+  <BasicAnswer showDescription {...props}>
     <FieldWrapper>
       <CurrencyComponent />
     </FieldWrapper>

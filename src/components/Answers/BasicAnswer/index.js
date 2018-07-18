@@ -71,7 +71,7 @@ StatelessBasicAnswer.propTypes = {
 StatelessBasicAnswer.defaultProps = {
   labelText: "Label",
   descriptionText: "Description (optional)",
-  showDescription: true,
+  showDescription: false,
   autoFocus: true
 };
 
