@@ -49,7 +49,7 @@ exports[`MetaEditor should render 1`] = `
     }
     fetchAnswers={[Function]}
     id="guidance"
-    label="Guidance"
+    label="Include and exclude guidance"
     multiline={true}
     onUpdate={[Function]}
     testSelector="txt-question-guidance"
