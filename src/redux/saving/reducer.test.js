@@ -12,6 +12,7 @@ describe("saveReducer", () => {
   it("should initially return an empty saving state", () => {
     expect(saveReducer(createState(), createAction(undefined))).toEqual({});
   });
+
   it("Should be able to show saving", () => {
     expect(
       saveReducer(
@@ -22,6 +23,7 @@ describe("saveReducer", () => {
       pendingRequestCount: 1
     });
   });
+
   it("Should be able to hide saving", () => {
     expect(
       saveReducer(
@@ -39,27 +41,28 @@ describe("saveReducer", () => {
       saveReducer(
         createState({
           pendingRequestCount: 0,
-          online: false
+          offline: true
         }),
         createAction(GAIN_CONNECTION)
       )
     ).toMatchObject({
       pendingRequestCount: 0,
-      online: true
+      offline: false
     });
   });
+
   it("can switch from online state to offline state", () => {
     expect(
       saveReducer(
         createState({
           pendingRequestCount: 0,
-          online: true
+          offline: false
         }),
         createAction(LOST_CONNECTION)
       )
     ).toMatchObject({
       pendingRequestCount: 0,
-      online: false
+      offline: true
     });
   });
 });

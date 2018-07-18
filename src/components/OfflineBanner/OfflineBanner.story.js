@@ -11,6 +11,14 @@ const Padding = styled.div`
 storiesOf("Offline Banner", module)
   .addDecorator(story => <Padding>{story()}</Padding>)
   .addDecorator(withKnobs)
-  .add("Primary", () => (
-    <UnconnectedOfflineBanner isOnline={boolean("online", true)} />
-  ));
+  .add("Primary", () => {
+    let isOffline = boolean("offline", false);
+    let apiError = boolean("api error", false);
+    return (
+      <UnconnectedOfflineBanner
+        isOffline
+        apiError
+        hasError={isOffline || apiError}
+      />
+    );
+  });

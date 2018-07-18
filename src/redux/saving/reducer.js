@@ -3,12 +3,14 @@ import {
   START_REQUEST,
   END_REQUEST,
   LOST_CONNECTION,
-  GAIN_CONNECTION
+  GAIN_CONNECTION,
+  API_DOWN_ERROR
 } from "redux/saving/actions";
 
 const initialState = {
   pendingRequestCount: 0,
-  online: true
+  offline: false,
+  apiDownError: false
 };
 
 export default (state = initialState, action) => {
@@ -16,13 +18,13 @@ export default (state = initialState, action) => {
     case LOST_CONNECTION: {
       return {
         ...state,
-        online: false
+        offline: true
       };
     }
     case GAIN_CONNECTION: {
       return {
         ...state,
-        online: true
+        offline: false
       };
     }
     case START_REQUEST: {
@@ -37,10 +39,18 @@ export default (state = initialState, action) => {
         pendingRequestCount: Math.max(0, state.pendingRequestCount - 1)
       };
     }
+    case API_DOWN_ERROR: {
+      return {
+        ...state,
+        apiDownError: true
+      };
+    }
     default:
       return state;
   }
 };
 
 export const isSaving = state => get(state, "saving.pendingRequestCount") > 0;
-export const isOnline = state => get(state, "saving.online");
+export const isOffline = state => get(state, "saving.offline");
+export const hasApiError = state => get(state, "saving.apiDownError");
+export const hasError = state => isOffline(state) || hasApiError(state);

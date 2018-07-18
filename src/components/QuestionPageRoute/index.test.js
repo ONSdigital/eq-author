@@ -68,7 +68,7 @@ describe("QuestionPageRoute", () => {
     store = {
       getState: jest.fn(() => ({
         toasts: {},
-        saving: { online: true }
+        saving: { offline: false, apiDownError: false }
       })),
       subscribe: jest.fn(),
       dispatch: jest.fn()
