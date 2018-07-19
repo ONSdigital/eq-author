@@ -279,7 +279,7 @@ describe("eq-author", () => {
   });
 
   it("Can create and delete date ranges", () => {
-    addAnswerType("Date range");
+    addAnswerType("Daterange");
 
     cy.get(testId("date-range-editor")).within(() => {
       findByLabel("Label from")

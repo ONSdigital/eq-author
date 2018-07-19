@@ -2,6 +2,8 @@ import { matchPath } from "../../src/utils/UrlUtils";
 import { RADIO } from "../../src/constants/answer-types";
 export const testId = (id, attr = "test") => `[data-${attr}="${id}"]`;
 
+export const answerTypes = ["Textfield", "Textarea", "Currency", "Number"];
+
 export const selectOptionByLabel = label => {
   cy
     .get("option")
