@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`containers/withRouting mapOptionsToProps should pass questionnaireId as a variable 1`] = `
+Object {
+  "fetchPolicy": "network-only",
+  "variables": Object {
+    "questionnaireId": "1",
+  },
+}
+`;

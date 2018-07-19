@@ -2,6 +2,7 @@
 
 exports[`components/AnswerTypeButton should render 1`] = `
 <IconGridButton
+  data-test="btn-answer-type-textfield"
   iconSrc="textfield.svg"
   onClick={[Function]}
   title="Text field"

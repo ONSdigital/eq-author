@@ -3,23 +3,29 @@ import { toUpper } from "lodash";
 import {
   addAnswerType,
   addQuestionnaire,
-  answerTypes,
   findByLabel,
   removeAnswer
 } from "../utils";
 
+import {
+  TEXTFIELD,
+  NUMBER,
+  CURRENCY,
+  TEXTAREA
+} from "../../src/constants/answer-types";
+
 describe("Answer Properties", () => {
   it("Can create a questionnaire", () => {
-    cy.visit("/");
-    cy.contains("Sign in as Guest").click();
+    cy.login();
     addQuestionnaire("Answer Properties Question Test");
   });
   describe("Title", () => {
     it("Should show answer type as uppercase text", () => {
-      answerTypes.forEach(answerType => {
+      [TEXTFIELD, NUMBER, CURRENCY, TEXTAREA].forEach(answerType => {
         addAnswerType(answerType);
         cy
           .get(`[data-test="properties-title-0"]`)
+          .should("have.length", 1)
           .contains(toUpper(answerType));
         removeAnswer({ multiple: false });
       });
@@ -27,23 +33,23 @@ describe("Answer Properties", () => {
     it("Should show numbered answer types", () => {
       const answerTypeTitles = [
         {
-          type: "Number",
+          type: NUMBER,
           title: "NUMBER"
         },
         {
-          type: "Number",
+          type: NUMBER,
           title: "NUMBER 2"
         },
         {
-          type: "Text",
+          type: TEXTFIELD,
           title: "TEXTFIELD"
         },
         {
-          type: "Number",
+          type: NUMBER,
           title: "NUMBER 3"
         },
         {
-          type: "Text",
+          type: TEXTFIELD,
           title: "TEXTFIELD"
         }
       ];
@@ -59,7 +65,7 @@ describe("Answer Properties", () => {
   describe("Answer Type", () => {
     describe("Text", () => {
       beforeEach(() => {
-        addAnswerType("Text");
+        addAnswerType(TEXTFIELD);
         cy.get('[data-test="properties-0"]').as("answerProperty");
         cy.get("@answerProperty").should("be.visible");
       });
@@ -100,7 +106,7 @@ describe("Answer Properties", () => {
     });
     describe("Number", () => {
       beforeEach(() => {
-        addAnswerType("Number");
+        addAnswerType(NUMBER);
         cy.get('[data-test="properties-0"]').as("answerProperty");
         cy.get("@answerProperty").should("be.visible");
       });
@@ -161,7 +167,7 @@ describe("Answer Properties", () => {
     });
     describe("Currency", () => {
       beforeEach(() => {
-        addAnswerType("Currency");
+        addAnswerType(CURRENCY);
         cy.get('[data-test="properties-0"]').as("answerProperty");
         cy.get("@answerProperty").should("be.visible");
       });

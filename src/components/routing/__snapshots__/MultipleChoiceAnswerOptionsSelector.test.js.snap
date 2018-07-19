@@ -1,60 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/MultipleChoiceAnswerOptionsSelector should render consistently 1`] = `
-<MultipleChoiceAnswerOptionsSelector__MultipleChoiceAnswerOptions>
-  <ToggleChip
+<MultipleChoiceAnswerOptionsSelector__MultipleChoiceAnswerOptions
+  data-test="options-selector"
+>
+  <withChangeHandler(ToggleChip)
+    checked={true}
+    key="1"
+    name="1"
+    onChange={[Function]}
+    title="a"
+  >
+    a
+  </withChangeHandler(ToggleChip)>
+  <withChangeHandler(ToggleChip)
+    checked={true}
+    key="2"
+    name="2"
+    onChange={[Function]}
+    title="b"
+  >
+    b
+  </withChangeHandler(ToggleChip)>
+  <withChangeHandler(ToggleChip)
     checked={false}
-    id="3"
     key="3"
+    name="3"
     onChange={[Function]}
-    title="Bibendum Cras"
+    title="c"
   >
-    Bibendum Cras
-  </ToggleChip>
-  <ToggleChip
-    checked={false}
-    id="4"
-    key="4"
-    onChange={[Function]}
-    title="Aenean Quam Venenatis Elit"
-  >
-    Aenean Quam Venenatis Elit
-  </ToggleChip>
-  <ToggleChip
-    checked={false}
-    id="5"
-    key="5"
-    onChange={[Function]}
-    title="Purus Ornare Ipsum"
-  >
-    Purus Ornare Ipsum
-  </ToggleChip>
-  <ToggleChip
-    checked={false}
-    id="6"
-    key="6"
-    onChange={[Function]}
-    title="Nibh"
-  >
-    Nibh
-  </ToggleChip>
-  <ToggleChip
-    checked={false}
-    id="7"
-    key="7"
-    onChange={[Function]}
-    title="Risus Mattis Magna Bibendum"
-  >
-    Risus Mattis Magna Bibendum
-  </ToggleChip>
-  <ToggleChip
-    checked={false}
-    id="8"
-    key="8"
-    onChange={[Function]}
-    title="Consectetur Ultricies Purus Elit Fermentum"
-  >
-    Consectetur Ultricies Purus Elit Fermentum
-  </ToggleChip>
+    c
+  </withChangeHandler(ToggleChip)>
 </MultipleChoiceAnswerOptionsSelector__MultipleChoiceAnswerOptions>
 `;

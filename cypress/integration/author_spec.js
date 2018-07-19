@@ -7,7 +7,8 @@ import {
   typeIntoDraftEditor,
   findByLabel,
   addSection,
-  addQuestionPage
+  addQuestionPage,
+  testId
 } from "../utils";
 import { times, includes } from "lodash";
 import { Routes } from "../../src/utils/UrlUtils";
@@ -28,13 +29,11 @@ describe("eq-author", () => {
   });
 
   it("Should show questionnaire on listing page", () => {
-    cy
-      .get(`[data-test="questionnaire-title"]`)
-      .contains("My Questionnaire Title");
+    cy.get(testId("questionnaire-title")).contains("My Questionnaire Title");
 
-    cy.get(`[data-test="logo"]`).click();
+    cy.get(testId("logo")).click();
 
-    cy.get(`[data-test="username"]`).then($name => {
+    cy.get(testId("username")).then($name => {
       cy
         .get("tbody tr")
         .first()
@@ -46,9 +45,12 @@ describe("eq-author", () => {
   });
 
   it("Can edit page title", () => {
-    cy.get(`[data-test="page-item"]`).click();
-    typeIntoDraftEditor("[data-testid='txt-question-title']", "goodbye world");
-    cy.get("[data-test='side-nav']").should("contain", "goodbye world");
+    cy.get(testId("page-item")).click();
+    typeIntoDraftEditor(
+      testId("txt-question-title", "testid"),
+      "goodbye world"
+    );
+    cy.get(testId("side-nav")).should("contain", "goodbye world");
   });
 
   it("Can create a new page", () => {
@@ -73,44 +75,46 @@ describe("eq-author", () => {
         });
       });
 
-    cy.get("[data-test='page-item']").should("have.length", 2);
+    cy.get(testId("page-item")).should("have.length", 2);
   });
 
   it("Can edit question guidance", () => {
     const guidance = "this is some guidance";
-    typeIntoDraftEditor("[data-testid='txt-question-guidance']", guidance);
+    typeIntoDraftEditor(testId("txt-question-guidance", "testid"), guidance);
 
     cy
-      .get(`[data-test="page-item"]`)
+      .get(testId("page-item"))
       .first()
       .click();
 
     cy
-      .get(`[data-test="page-item"]`)
+      .get(testId("page-item"))
       .last()
       .click();
 
-    cy.get("[data-testid='txt-question-guidance']").should("contain", guidance);
+    cy
+      .get(testId("txt-question-guidance", "testid"))
+      .should("contain", guidance);
   });
 
   it("Can delete a page", () => {
-    cy.get("[data-test='btn-delete']").click();
+    cy.get(testId("btn-delete")).click();
 
-    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
       cy
         .get("button")
         .contains("Delete")
         .click();
     });
 
-    cy.get("[data-test='page-item']").should("have.length", 1);
+    cy.get(testId("page-item")).should("have.length", 1);
   });
 
   it("Can change the questionnaire title", () => {
-    cy.get(`[data-test="settings-btn"]`).click();
+    cy.get(testId("settings-btn")).click();
     setQuestionnaireSettings("Test Questionnaire");
     cy
-      .get("[data-test='questionnaire-title']")
+      .get(testId("questionnaire-title"))
       .should("contain", "Test Questionnaire");
   });
 
@@ -143,7 +147,7 @@ describe("eq-author", () => {
       prevHash = hash;
     });
     cy
-      .get(`[data-test="nav-section-link"]`)
+      .get(testId("nav-section-link"))
       .first()
       .click()
       .then(() => {
@@ -160,18 +164,19 @@ describe("eq-author", () => {
   });
 
   it("Can edit section title and description", () => {
-    typeIntoDraftEditor("[data-testid='txt-section-title']", "my new section");
-    cy
-      .get("[data-test='nav-section-link']")
-      .should("contain", "my new section");
+    typeIntoDraftEditor(
+      testId("txt-section-title", "testid"),
+      "my new section"
+    );
+    cy.get(testId("nav-section-link")).should("contain", "my new section");
 
     typeIntoDraftEditor(
-      "[data-testid='txt-section-description']",
+      testId("txt-section-description", "testid"),
       "section description"
     );
 
     cy
-      .get("[data-testid='txt-section-description']")
+      .get(testId("txt-section-description", "testid"))
       .should("contain", "section description");
   });
 
@@ -182,8 +187,8 @@ describe("eq-author", () => {
       prevHash = hash;
     });
 
-    cy.get("[data-test='btn-delete']").click();
-    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+    cy.get(testId("btn-delete")).click();
+    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
       cy
         .get("button")
         .contains("Delete")
@@ -206,50 +211,50 @@ describe("eq-author", () => {
 
   it("Can create checkboxes", () => {
     addAnswerType("Checkbox");
-    cy.get("[data-test='btn-add-option']").click();
-    cy.get("[data-test='option-label']").should("have.length", 2);
+    cy.get(testId("btn-add-option")).click();
+    cy.get(testId("option-label")).should("have.length", 2);
     cy
-      .get("[data-test='option-label']")
+      .get(testId("option-label"))
       .first()
       .type("Checkbox label");
     cy
-      .get("[data-test='option-description']")
+      .get(testId("option-description"))
       .first()
       .type("Checkbox description");
   });
 
   it("Can delete checkboxes", () => {
     cy
-      .get("[data-test='btn-delete-option']")
+      .get(testId("btn-delete-option"))
       .last()
       .click();
-    cy.get("[data-test='option-label']").should("have.length", 1);
-    cy.get("[data-test='btn-delete-answer']").click();
-    cy.get("[data-test='btn-delete-answer']").should("not.exist");
+    cy.get(testId("option-label")).should("have.length", 1);
+    cy.get(testId("btn-delete-answer")).click();
+    cy.get(testId("btn-delete-answer")).should("not.exist");
   });
 
   it("Can create radio buttons", () => {
     addAnswerType("Radio");
-    cy.get("[data-test='btn-add-option']").click();
-    cy.get("[data-test='option-label']").should("have.length", 3);
+    cy.get(testId("btn-add-option")).click();
+    cy.get(testId("option-label")).should("have.length", 3);
     cy
-      .get("[data-test='option-label']")
+      .get(testId("option-label"))
       .first()
       .type("Radio label");
     cy
-      .get("[data-test='option-description']")
+      .get(testId("option-description"))
       .first()
       .type("Radio description");
   });
 
   it("Can delete radio buttons", () => {
     cy
-      .get("[data-test='btn-delete-option']")
+      .get(testId("btn-delete-option"))
       .last()
       .click();
-    cy.get("[data-test='option-label']").should("have.length", 2);
-    cy.get("[data-test='btn-delete-answer']").click();
-    cy.get("[data-test='btn-delete-answer']").should("not.exist");
+    cy.get(testId("option-label")).should("have.length", 2);
+    cy.get(testId("btn-delete-answer")).click();
+    cy.get(testId("btn-delete-answer")).should("not.exist");
   });
 
   it("Can create and delete the different types of textbox", () => {
@@ -268,15 +273,15 @@ describe("eq-author", () => {
 
   it("Can create and delete dates", () => {
     addAnswerType("Date");
-    cy.get("[data-test='date-answer-label']").type("Date label");
-    cy.get("[data-test='btn-delete-answer']").click();
-    cy.get("[data-test='btn-delete-answer']").should("not.exist");
+    cy.get(testId("date-answer-label")).type("Date label");
+    cy.get(testId("btn-delete-answer")).click();
+    cy.get(testId("btn-delete-answer")).should("not.exist");
   });
 
   it("Can create and delete date ranges", () => {
-    addAnswerType("Date range");
+    addAnswerType("Daterange");
 
-    cy.get(`[data-test="date-range-editor"]`).within(() => {
+    cy.get(testId("date-range-editor")).within(() => {
       findByLabel("Label from")
         .click()
         .type("Date Range label");
@@ -286,8 +291,8 @@ describe("eq-author", () => {
         .type("Date Range label 2");
     });
 
-    cy.get("[data-test='btn-delete-answer']").click();
-    cy.get("[data-test='btn-delete-answer']").should("not.exist");
+    cy.get(testId("btn-delete-answer")).click();
+    cy.get(testId("btn-delete-answer")).should("not.exist");
   });
 
   it("Should create a new page when deleting only page in section", () => {
@@ -297,8 +302,8 @@ describe("eq-author", () => {
       prevHash = hash;
     });
 
-    cy.get("[data-test='btn-delete']").click();
-    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+    cy.get(testId("btn-delete")).click();
+    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
       cy
         .get("button")
         .contains("Delete")
@@ -323,7 +328,7 @@ describe("eq-author", () => {
     let prevHash;
 
     cy
-      .get(`[data-test="nav-section-link"]`)
+      .get(testId("nav-section-link"))
       .first()
       .click();
 
@@ -331,8 +336,8 @@ describe("eq-author", () => {
       prevHash = hash;
     });
 
-    cy.get("[data-test='btn-delete']").click();
-    cy.get(`[data-testid="delete-confirm-modal"]`).within(() => {
+    cy.get(testId("btn-delete")).click();
+    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
       cy
         .get("button")
         .contains("Delete")
@@ -354,10 +359,10 @@ describe("eq-author", () => {
 
   it("Can move pages within a section", () => {
     cy
-      .get(`[data-test="page-item"]`)
+      .get(testId("page-item"))
       .first()
       .click();
-    typeIntoDraftEditor("[data-testid='txt-question-title']", `Page 0`);
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), `Page 0`);
 
     let pageCount = 1;
 
@@ -368,24 +373,24 @@ describe("eq-author", () => {
       // which avoids a race condition where cypress will type into
       // a matching text box on the prev page, while animation is underway
       pageCount++;
-      cy.get(`[data-test="page-item"]`).should("have.length", pageCount);
+      cy.get(testId("page-item")).should("have.length", pageCount);
 
       typeIntoDraftEditor(
-        "[data-testid='txt-question-title']",
+        testId("txt-question-title", "testid"),
         `Page ${i + 1}`
       );
     });
 
-    cy.get(`[data-test="btn-move"]`).click();
+    cy.get(testId("btn-move")).click();
 
     findByLabel("Position").click();
-    cy.get(`[data-testid="position-modal"]`).within(() => {
+    cy.get(testId("position-modal", "testid")).within(() => {
       findByLabel("Page 0").click();
       cy.get("form").submit();
     });
 
     cy
-      .get(`[data-test="page-item"]`)
+      .get(testId("page-item"))
       .first()
       .should("contain", "Page 2");
   });
@@ -394,14 +399,14 @@ describe("eq-author", () => {
     addSection();
 
     cy
-      .get(`[data-test="page-item"]`)
+      .get(testId("page-item"))
       .contains("Page 2")
       .click();
 
-    cy.get(`[data-test="btn-move"]`).click();
+    cy.get(testId("btn-move")).click();
 
     findByLabel("Section").click();
-    cy.get(`[data-testid="section-modal"]`).within(() => {
+    cy.get(testId("section-modal", "testid")).within(() => {
       cy
         .get("label")
         .last()
@@ -410,14 +415,14 @@ describe("eq-author", () => {
     });
 
     findByLabel("Position").click();
-    cy.get(`[data-testid="position-modal"]`).within(() => {
+    cy.get(testId("position-modal", "testid")).within(() => {
       cy.get("form").submit();
     });
 
     cy
-      .get(`[data-test="section-item"]`)
+      .get(testId("section-item"))
       .last()
-      .find(`[data-test="page-item"]`)
+      .find(testId("page-item"))
       .first()
       .should("contain", "Page 2");
   });
@@ -426,44 +431,44 @@ describe("eq-author", () => {
     it("should goto questionnaire design page", () => {
       cy.visit("/");
       cy.contains("Sign in as Guest").click();
-      cy.get("[data-test='create-questionnaire']").click();
+      cy.get(testId("create-questionnaire")).click();
       setQuestionnaireSettings("My Questionnaire Title");
     });
 
     it('should add an "other" answer', () => {
       addAnswerType("Checkbox");
-      cy.get("[data-test='btn-add-option-menu']").click();
-      cy.get("[data-test='btn-add-option-other']").click();
-      cy.get("[data-test='option-label']").should("have.length", 2);
-      cy.get("[data-test='other-answer']").should("have.length", 1);
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-option-other")).click();
+      cy.get(testId("option-label")).should("have.length", 2);
+      cy.get(testId("other-answer")).should("have.length", 1);
     });
 
     it("should update the other option and answer values", () => {
       cy
-        .get("[data-test='option-label']")
+        .get(testId("option-label"))
         .last()
         .type("Other label");
       cy
-        .get("[data-test='option-description']")
+        .get(testId("option-description"))
         .last()
         .type("Other description");
       cy
-        .get("[data-test='txt-answer-label']")
+        .get(testId("txt-answer-label"))
         .last()
         .type("Text answer label");
       cy
-        .get("[data-test='option-label']")
+        .get(testId("option-label"))
         .first()
         .click();
     });
 
     it('should remove the "other" option.', () => {
       cy
-        .get("[data-test='btn-delete-option']")
+        .get(testId("btn-delete-option"))
         .last()
         .click();
-      cy.get("[data-test='option-label']").should("have.length", 1);
-      cy.get("[data-test='other-answer']").should("have.length", 0);
+      cy.get(testId("option-label")).should("have.length", 1);
+      cy.get(testId("other-answer")).should("have.length", 0);
     });
   });
 });

@@ -1,11 +1,26 @@
 import { matchPath } from "../../src/utils/UrlUtils";
+import { RADIO } from "../../src/constants/answer-types";
+export const testId = (id, attr = "test") => `[data-${attr}="${id}"]`;
 
-export const answerTypes = ["Text", "Textarea", "Currency", "Number"];
+export const answerTypes = ["Textfield", "Textarea", "Currency", "Number"];
+
+export const selectOptionByLabel = label => {
+  cy
+    .get("option")
+    .contains(label)
+    .then(option => option.val())
+    .then(value => {
+      cy
+        .root()
+        .select(label)
+        .should("have.value", value);
+    });
+};
 
 export function setQuestionnaireSettings(name) {
   cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
     cy
-      .get("[data-test='txt-questionnaire-title']")
+      .get(testId("txt-questionnaire-title"))
       .clear()
       .type(name);
     cy.get("label[for='navigation']").click();
@@ -20,7 +35,7 @@ export const addQuestionnaire = title => {
 };
 
 export const addSection = () =>
-  cy.get("[data-test='add-menu']").within(() => {
+  cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
       .contains("Add")
@@ -30,23 +45,60 @@ export const addSection = () =>
       .click();
   });
 
-export const addQuestionPage = () =>
-  cy.get("[data-test='add-menu']").within(() => {
-    cy
-      .get("button")
-      .contains("Add")
-      .click()
-      .get("button")
-      .contains("Question Page")
-      .click();
+export const addQuestionPage = title => {
+  let prevCount;
+
+  cy.get(testId("nav-page-link")).then(items => {
+    prevCount = items.length;
+
+    cy.get(testId("add-menu")).within(() => {
+      cy
+        .get("button")
+        .contains("Add")
+        .click()
+        .get("button")
+        .contains("Question Page")
+        .click();
+    });
+
+    cy.get(testId("nav-page-link")).should("have.length", prevCount + 1);
+    cy.get(testId("nav-page-link")).should("contain", "Page Title");
+
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), title);
   });
+};
+
+export const buildMultipleChoiceAnswer = labelArray => {
+  addAnswerType(RADIO);
+
+  cy.get(testId("btn-add-option")).click();
+
+  cy.get(testId("option-label")).should("have.length", 3);
+
+  labelArray.map((label, index) => {
+    cy
+      .get(testId("option-label"))
+      .eq(index)
+      .type(label);
+  });
+};
 
 export function addAnswerType(answerType) {
-  cy.get("[data-test='btn-add-answer']").click({ force: true });
-  cy.get("[role='menu']").within(() => {
-    cy.contains(answerType).click({ force: true });
-  });
+  cy.get(testId("btn-add-answer")).click({ force: true });
+  cy
+    .get(testId(`btn-answer-type-${answerType.toLowerCase()}`))
+    .click({ force: true });
 }
+
+export const matchHashToPath = (path, hash) => {
+  hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
+
+  return matchPath(hash, {
+    path,
+    exact: true,
+    strict: false
+  });
+};
 
 export function assertHash({
   previousPath,
@@ -54,22 +106,12 @@ export function assertHash({
   currentPath,
   equality
 }) {
-  const match = (path, hash) => {
-    hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
-
-    return matchPath(hash, {
-      path,
-      exact: true,
-      strict: false
-    });
-  };
-
   cy
     .log("comparing previous hash", previousHash)
     .hash()
     .should(currentHash => {
-      const previousMatch = match(previousPath, previousHash);
-      const currentMatch = match(currentPath, currentHash);
+      const previousMatch = matchHashToPath(previousPath, previousHash);
+      const currentMatch = matchHashToPath(currentPath, currentHash);
 
       expect(previousMatch).not.to.equal(null);
       expect(currentMatch).not.to.equal(null);
@@ -98,7 +140,6 @@ export const typeIntoDraftEditor = (selector, text) => {
       var textEvent = document.createEvent("TextEvent");
       textEvent.initTextEvent("textInput", true, true, null, text);
       textarea.dispatchEvent(textEvent);
-
       textarea.dispatchEvent(new Event("blur"));
     });
 };
@@ -110,5 +151,16 @@ export const findByLabel = text =>
     .contains(text)
     .then($label => $label.prop("control"));
 
-export const removeAnswer = params =>
+export const removeAnswer = params => {
   cy.get("[data-test='btn-delete-answer']").click(params);
+  cy.get("[data-test='btn-delete-answer']").should("have.length", 0);
+};
+
+export const navigateToPage = text => {
+  cy
+    .log("Navigating to page", text)
+    .get("[data-test='nav-page-link']")
+    .contains(text)
+    .first()
+    .click();
+};

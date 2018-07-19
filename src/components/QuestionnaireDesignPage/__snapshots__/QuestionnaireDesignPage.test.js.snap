@@ -105,6 +105,11 @@ exports[`QuestionnaireDesignPage should render 1`] = `
             path="/questionnaire/:questionnaireId/:sectionId(\\\\d+)/:pageId(\\\\d+)/design"
           />
           <Route
+            component={[Function]}
+            exact={true}
+            path="/questionnaire/:questionnaireId/:sectionId(\\\\d+)/:pageId(\\\\d+)/routing"
+          />
+          <Route
             path="*"
             render={[Function]}
           />

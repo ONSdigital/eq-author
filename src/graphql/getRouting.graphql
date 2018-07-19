@@ -1,0 +1,45 @@
+#import "./fragments/answer.graphql"
+#import "./fragments/option.graphql"
+#import "./fragments/routing-rule-set.graphql"
+#import "./fragments/routing-destination.graphql"
+
+query GetRouting($questionnaireId: ID!, $pageId: ID!) {
+  questionnaire(id: $questionnaireId) {
+    id
+    sections {
+      id
+      plaintextTitle: title(format: Plaintext)
+      pages {
+        id
+        ... on QuestionPage {
+          plaintextTitle: title(format: Plaintext)
+          answers {
+            id
+            type
+          }
+        }
+      }
+    }
+  }
+  currentPage: questionPage(id: $pageId) {
+    id
+    plaintextTitle: title(format: Plaintext)
+    routingRuleSet {
+      ...RoutingRuleSet
+    }
+    answers {
+      id
+    }
+  }
+  availableRoutingDestinations(pageId: $pageId) {
+    logicalDestinations {
+      ...LogicalDestination
+    }
+    questionPages {
+      ...QuestionPageDestination
+    }
+    sections {
+      ...SectionDestination
+    }
+  }
+}

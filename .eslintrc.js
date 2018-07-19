@@ -20,6 +20,7 @@ module.exports = {
     }
   },
   rules: {
+    "react/jsx-no-bind": [2, { allowArrowFunctions: true }],
     "graphql/template-strings": [
       "error",
       {

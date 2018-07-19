@@ -1,6 +1,10 @@
 fragment Page on QuestionPage {
   id
   title
+  plaintextTitle: title(format: Plaintext)
   description
   guidance
+  routingRuleSet {
+    id
+  }
 }

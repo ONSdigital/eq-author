@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-
-import Select from "components/Forms/Select";
+import GroupedSelect from "./GroupedSelect";
 import { Grid, Column } from "components/Grid";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
 
 const RoutingRuleResult = styled.div`
-  padding: 1em;
+  padding: 1em 1em 1em 0.7em;
 `;
 
 const Label = styled.label`
   width: 100%;
   display: block;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: bold;
   &[disabled] {
     opacity: 0.5;
@@ -25,52 +23,97 @@ const Goto = styled.span`
   margin-right: 1em;
 `;
 
-const RoutingRuleResultSelector = ({
-  onChange,
-  sections,
-  label,
-  id,
-  disabled
-}) => (
-  <RoutingRuleResult>
-    <Grid align="center">
-      <Column gutters={false} cols={5}>
-        <Label htmlFor={id} disabled={disabled}>
-          {label} <Goto>Go to: </Goto>
-        </Label>
-      </Column>
-      <Column gutters={false} cols={7}>
-        <Select
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          data-test="result-selector"
-        >
-          {sections.map(section => (
-            <optgroup label={section.title} key={section.id}>
-              {section.pages.map(page => (
-                <option value={page.id} key={page.id} disabled={page.disabled}>
-                  {page.title}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </Select>
-      </Column>
-    </Grid>
-  </RoutingRuleResult>
-);
+const toAbsoluteDestination = entity => ({
+  absoluteDestination: {
+    destinationType: entity.__typename,
+    destinationId: entity.id
+  }
+});
+
+const toLogicalDestination = destinationType => ({
+  logicalDestination: {
+    destinationType
+  }
+});
+
+const toOption = defaultTitle => entity => ({
+  label: entity.plaintextTitle || defaultTitle,
+  value: toAbsoluteDestination(entity)
+});
+
+class RoutingRuleResultSelector extends React.Component {
+  groupDestinations({ questionPages }) {
+    const pagesGroup = {
+      label: "Questions in this section",
+      id: "questions",
+      options: questionPages.map(toOption("Page Title"))
+    };
+
+    return [pagesGroup].filter(group => group.options.length);
+  }
+
+  convertValueToDestination(value) {
+    if (!value) {
+      return null;
+    }
+
+    const { absoluteDestination, logicalDestination } = value;
+    return absoluteDestination
+      ? toAbsoluteDestination(absoluteDestination)
+      : toLogicalDestination(logicalDestination);
+  }
+
+  handleChange = ({ value }) => {
+    this.props.onChange(JSON.parse(value));
+  };
+
+  render() {
+    const { destinations, label, id, value, disabled } = this.props;
+
+    const convertedValue = this.convertValueToDestination(value);
+    const groups = this.groupDestinations(destinations);
+    groups.forEach(group =>
+      group.options.forEach(option => {
+        option.value = JSON.stringify(option.value);
+      })
+    );
+
+    return (
+      <RoutingRuleResult key={id}>
+        <Grid align="center">
+          <Column gutters={false} cols={5}>
+            <Label htmlFor={id} disabled={disabled}>
+              {label} <Goto>Go to: </Goto>
+            </Label>
+          </Column>
+          <Column gutters={false} cols={7}>
+            <GroupedSelect
+              id={id}
+              value={convertedValue ? JSON.stringify(convertedValue) : null}
+              groups={groups}
+              onChange={this.handleChange}
+              disabled={disabled}
+              data-test="result-selector"
+            />
+          </Column>
+        </Grid>
+      </RoutingRuleResult>
+    );
+  }
+}
 
 RoutingRuleResultSelector.propTypes = {
   onChange: PropTypes.func.isRequired,
-  sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  value: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   disabled: PropTypes.bool.isRequired
 };
 
 RoutingRuleResultSelector.defaultProps = {
-  disabled: false
+  disabled: false,
+  loading: false
 };
 
 export default RoutingRuleResultSelector;

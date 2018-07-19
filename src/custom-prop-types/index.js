@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import * as answerTypes from "constants/answer-types";
 
-export default {
+const CustomPropTypes = {
   breadcrumb: PropTypes.shape({
     title: PropTypes.string.isRequired
   }),
@@ -74,3 +74,5 @@ export default {
     email: PropTypes.string.isRequired
   })
 };
+
+export default CustomPropTypes;

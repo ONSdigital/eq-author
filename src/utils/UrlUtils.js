@@ -14,9 +14,11 @@ export const Routes = {
   SIGN_IN: "/sign-in",
   QUESTIONNAIRE: `/questionnaire/:questionnaireId/:sectionId?/:pageId?/:tab?`,
   SECTION: `/questionnaire/:questionnaireId/:sectionId(\\d+)/design`,
-  PAGE: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/design`
+  PAGE: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/design`,
+  ROUTING: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/routing`
 };
 
 export const buildSectionPath = generatePath(Routes.SECTION);
 export const buildPagePath = generatePath(Routes.PAGE);
 export const buildQuestionnairePath = generatePath(Routes.QUESTIONNAIRE);
+export const buildRoutingPath = generatePath(Routes.ROUTING);

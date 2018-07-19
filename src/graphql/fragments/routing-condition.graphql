@@ -1,0 +1,32 @@
+#import "./answer.graphql"
+#import "./option.graphql"
+
+fragment RoutingCondition on RoutingCondition {
+  id
+  comparator
+  questionPage {
+    id
+    plaintextTitle: title(format: Plaintext)
+  }
+  answer {
+    ...Answer
+    ... on MultipleChoiceAnswer {
+      options {
+        ...Option
+      }
+      other {
+        option {
+          ...Option
+        }
+        answer {
+          ...Answer
+        }
+      }
+    }
+  }
+  routingValue {
+    ... on IDArrayValue {
+      value
+    }
+  }
+}

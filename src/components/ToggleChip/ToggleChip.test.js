@@ -1,6 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
-import ToggleChip, { Input } from "components/ToggleChip";
+import { shallow, mount } from "enzyme";
+import ToggleChip from "components/ToggleChip";
 
 const createWrapper = (props, render = shallow) => {
   return render(<ToggleChip {...props}>Test</ToggleChip>);
@@ -20,7 +20,8 @@ describe("ToggleChip", () => {
       title: "Test chip",
       name: "test",
       onChange: handleChange,
-      checked: false
+      checked: false,
+      value: "foo"
     };
 
     wrapper = createWrapper(props);
@@ -40,12 +41,8 @@ describe("ToggleChip", () => {
   });
 
   it("should call onChange when clicked", () => {
-    wrapper
-      .find(Input)
-      .simulate("change", { target: { name: props.name, value: true } });
-    expect(handleChange).toHaveBeenCalledWith({
-      name: props.name,
-      value: true
-    });
+    const wrapper = createWrapper(props, mount);
+    wrapper.find("input").simulate("change");
+    expect(handleChange).toHaveBeenCalled();
   });
 });

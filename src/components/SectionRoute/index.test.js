@@ -22,7 +22,7 @@ describe("SectionRoute", () => {
     store = {
       getState: jest.fn(() => ({
         toasts: {},
-        saving: { isOffline: false, apiDownError: false }
+        saving: { apiDownError: false }
       })),
       subscribe: jest.fn(),
       dispatch: jest.fn()
@@ -192,6 +192,39 @@ describe("SectionRoute", () => {
         .simulate("click");
 
       expect(mockHandlers.onDeleteSection).toHaveBeenCalledWith("2");
+    });
+
+    it("allows new pages to be added", () => {
+      const data = {
+        section: {
+          id: "1",
+          title: "foo",
+          description: "bar"
+        }
+      };
+
+      const mockHandlers = {
+        onUpdateSection: jest.fn(),
+        onDeleteSection: jest.fn(),
+        onAddPage: jest.fn()
+      };
+
+      const wrapper = render({
+        loading: false,
+        match,
+        data,
+        ...mockHandlers
+      });
+
+      wrapper
+        .find(`[data-test="btn-add-page"]`)
+        .first()
+        .simulate("click");
+
+      expect(mockHandlers.onAddPage).toHaveBeenCalledWith(
+        match.params.sectionId,
+        0
+      );
     });
   });
 });

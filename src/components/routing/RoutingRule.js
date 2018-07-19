@@ -1,25 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import CustomPropTypes from "custom-prop-types";
+import { TransitionGroup } from "react-transition-group";
 
+import Transition from "components/routing/Transition";
 import Button from "components/Button";
 import IconText from "components/IconText";
-
-import RoutingRuleEmpty from "./RoutingRuleEmptyMsg";
-
 import { colors, radius } from "constants/theme";
-
 import IconRoute from "./icon-route.svg?inline";
-
 import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
-
-const RoutingStatement = styled.div`
-  padding: 0;
-`;
+import TextButton from "components/TextButton";
+import RoutingCondition from "components/routing/RoutingCondition";
+import { get } from "lodash";
+import { Grid, Column } from "components/Grid";
+import { RADIO } from "constants/answer-types";
 
 const Box = styled.div`
-  border: 1px solid ${colors.borders};
+  border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
   margin-bottom: 2em;
   position: relative;
@@ -35,73 +32,125 @@ const Title = styled.h2`
   position: absolute;
   margin: 0;
   top: 1.5em;
-  left: 1.7em;
+  left: 1.4em;
   letter-spacing: 0.05em;
   font-size: 0.9em;
   font-weight: bold;
+  text-transform: uppercase;
+`;
+
+const CenteringColumn = styled(Column)`
+  display: flex;
+  justify-content: center;
+  padding: 0.25em 0;
+  margin-bottom: 0.5em;
 `;
 
 const RoutingRule = ({
-  children,
-  page,
+  rule,
   onDeleteRule,
   onThenChange,
-  onAddRule,
+  onAddRoutingCondition,
+  onToggleConditionOption,
+  onUpdateRoutingCondition,
+  onDeleteRoutingCondition,
   title,
-  sections,
-  canRoute
-}) => (
-  <div>
-    <Box>
-      {children ? (
-        <React.Fragment>
-          {title && <Title>{title}</Title>}
-          <Buttons>
-            <Button
-              onClick={onDeleteRule}
-              data-test="btn-delete"
-              disabled={!children}
-              variant="tertiary"
-              small
-            >
-              <IconText icon={IconRoute}>Remove rule</IconText>
-            </Button>
-          </Buttons>
+  destinations,
+  pagesAvailableForRouting,
+  className,
+  ...otherProps
+}) => {
+  const { conditions, id, goto } = rule;
 
-          <RoutingStatement>{children}</RoutingStatement>
+  const existingRadioConditions = {};
 
-          <RoutingRuleResultSelector
-            id="then"
-            label="THEN"
-            sections={sections}
-            onChange={onThenChange}
-            data-test="select-then"
-            disabled={!canRoute}
-          />
-        </React.Fragment>
-      ) : (
-        <RoutingRuleEmpty
-          title="No routing rules exist for this question"
-          onAddRule={onAddRule}
+  const handleDeleteClick = () => onDeleteRule(rule);
+  const handleAddClick = () => onAddRoutingCondition(rule);
+  const handleThenChange = value => onThenChange({ id: id, goto: value });
+
+  return (
+    <div className={className} data-test="routing-rule">
+      <Box>
+        {title && <Title>{title}</Title>}
+        <Buttons>
+          <Button
+            onClick={handleDeleteClick}
+            data-test="btn-delete"
+            variant="tertiary"
+            small
+          >
+            <IconText icon={IconRoute}>Remove rule</IconText>
+          </Button>
+        </Buttons>
+        <div>
+          <TransitionGroup>
+            {conditions.map((condition, index) => {
+              const { answer } = condition;
+              const canAddAndCondition = !existingRadioConditions[
+                get(answer, "id")
+              ];
+
+              const component = (
+                <Transition key={condition.id}>
+                  <div>
+                    <RoutingCondition
+                      condition={condition}
+                      label={index > 0 ? "AND" : "IF"}
+                      ruleId={id}
+                      sections={pagesAvailableForRouting}
+                      onRemove={
+                        conditions.length > 1 ? onDeleteRoutingCondition : null
+                      }
+                      onPageChange={onUpdateRoutingCondition}
+                      onToggleOption={onToggleConditionOption}
+                      canAddAndCondition={canAddAndCondition}
+                      {...otherProps}
+                    />
+                  </div>
+                </Transition>
+              );
+
+              if (answer && answer.type === RADIO) {
+                existingRadioConditions[answer.id] = true;
+              }
+
+              return component;
+            })}
+          </TransitionGroup>
+          <Grid align="center">
+            <CenteringColumn gutters={false} cols={1}>
+              <TextButton onClick={handleAddClick} data-test="btn-and">
+                AND
+              </TextButton>
+            </CenteringColumn>
+          </Grid>
+        </div>
+        <RoutingRuleResultSelector
+          id="then"
+          label="THEN"
+          destinations={destinations}
+          onChange={handleThenChange}
+          value={goto}
+          data-test="select-then"
         />
-      )}
-    </Box>
-  </div>
-);
-
-RoutingRule.propTypes = {
-  children: PropTypes.node,
-  page: CustomPropTypes.page.isRequired,
-  onAddRule: PropTypes.func.isRequired,
-  onDeleteRule: PropTypes.func.isRequired,
-  onThenChange: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  sections: PropTypes.arrayOf(CustomPropTypes.section),
-  canRoute: PropTypes.bool.isRequired
+      </Box>
+    </div>
+  );
 };
 
-RoutingRule.defaultProps = {
-  canRoute: true
+RoutingRule.propTypes = {
+  rule: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  children: PropTypes.node,
+  onDeleteRule: PropTypes.func.isRequired,
+  onAddRoutingCondition: PropTypes.func.isRequired,
+  onToggleConditionOption: PropTypes.func.isRequired,
+  onUpdateRoutingCondition: PropTypes.func.isRequired,
+  onDeleteRoutingCondition: PropTypes.func,
+  onThenChange: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  pagesAvailableForRouting: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  className: PropTypes.string
 };
 
 export default RoutingRule;
