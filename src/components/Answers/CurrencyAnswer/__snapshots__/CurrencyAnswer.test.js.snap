@@ -10,6 +10,7 @@ exports[`CurrencyAnswer should render 1`] = `
   }
   onChange={[Function]}
   onUpdate={[Function]}
+  showDescription={true}
   store={
     Object {
       "dispatch": [Function],

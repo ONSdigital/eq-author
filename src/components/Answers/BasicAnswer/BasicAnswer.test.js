@@ -33,8 +33,14 @@ describe("BasicAnswer", () => {
     };
   });
 
-  it("should render", () => {
+  it("should render without description", () => {
     expect(createWrapper(props, children)).toMatchSnapshot();
+  });
+
+  it("should render with description", () => {
+    expect(
+      createWrapper({ ...props, showDescription: true }, children)
+    ).toMatchSnapshot();
   });
 
   it("can turn off auto-focus", () => {
@@ -55,15 +61,17 @@ describe("BasicAnswer", () => {
     });
 
     it("should invoke update callback onBlur", () => {
-      wrapper.find(WrappingInput).forEach(input => input.simulate("blur"));
+      const inputFields = wrapper.find(WrappingInput);
+      inputFields.forEach(input => input.simulate("blur"));
 
-      expect(onUpdate).toHaveBeenCalledTimes(2);
+      expect(onUpdate).toHaveBeenCalledTimes(inputFields.length);
     });
 
     it("should invoke change callback onChange", () => {
-      wrapper.find(WrappingInput).forEach(input => input.simulate("change"));
+      const inputFields = wrapper.find(WrappingInput);
+      inputFields.forEach(input => input.simulate("change"));
 
-      expect(onChange).toHaveBeenCalledTimes(2);
+      expect(onChange).toHaveBeenCalledTimes(inputFields.length);
     });
   });
 });

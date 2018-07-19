@@ -9,7 +9,7 @@ import {
   addSection,
   addQuestionPage
 } from "../utils";
-import { times } from "lodash";
+import { times, includes } from "lodash";
 import { Routes } from "../../src/utils/UrlUtils";
 
 describe("eq-author", () => {
@@ -256,9 +256,11 @@ describe("eq-author", () => {
     answerTypes.forEach(answerType => {
       addAnswerType(answerType);
       cy.get("[data-test='txt-answer-label']").type(answerType + " label");
-      cy
-        .get("[data-test='txt-answer-description']")
-        .type(answerType + " description");
+      if (includes(["Currency"], answerType)) {
+        cy
+          .get("[data-test='txt-answer-description']")
+          .type(answerType + " description");
+      }
       cy.get("[data-test='btn-delete-answer']").click();
       cy.get("[data-test='btn-delete-answer']").should("not.exist");
     });
