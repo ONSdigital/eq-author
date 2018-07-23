@@ -24,7 +24,7 @@
   },
   "resolutions": {
     "eslint-scope": "3.7.1"
-  }, 
+  },
   "lint-staged": {
     "*.js": [
       "prettier --write",
