@@ -39,6 +39,7 @@ injectGlobal`
   textarea,
   button {
     font-family: inherit;
+    -webkit-font-smoothing: inherit;
   }
 
   a {
