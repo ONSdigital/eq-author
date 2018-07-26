@@ -8,8 +8,15 @@ import { Query } from "react-apollo";
 import { MenuButton as RMLMenuButton } from "react-menu-list";
 import { withRouter } from "react-router-dom";
 import { takeWhile, dropRightWhile, last, get, isEmpty } from "lodash";
+import fp from "lodash/fp";
 import query from "./Piping.graphql";
-import { TEXTAREA, TEXTFIELD, NUMBER, CURRENCY } from "constants/answer-types";
+import {
+  TEXTAREA,
+  TEXTFIELD,
+  NUMBER,
+  CURRENCY,
+  DATE_RANGE
+} from "constants/answer-types";
 import ToolbarButton from "./ToolbarButton";
 import styled from "styled-components";
 
@@ -17,7 +24,8 @@ const validAnswerTypes = {
   [TEXTAREA]: true,
   [TEXTFIELD]: true,
   [NUMBER]: true,
-  [CURRENCY]: true
+  [CURRENCY]: true,
+  [DATE_RANGE]: true
 };
 
 const PipingIconButton = props => (
@@ -37,6 +45,21 @@ const MenuButton = styled(RMLMenuButton).attrs({
     opacity: 0.2;
   }
 `;
+
+const getAnswer = answer => {
+  if (answer.__typename === "CompositeAnswer") {
+    return answer.childAnswers;
+  }
+  return answer;
+};
+
+const isValidType = ({ type }) => validAnswerTypes[type];
+
+const filterAnswers = fp.flow(
+  fp.map(getAnswer),
+  fp.flatten,
+  fp.filter(isValidType)
+);
 
 export class Menu extends React.Component {
   static propTypes = {
@@ -83,7 +106,7 @@ export class Menu extends React.Component {
         ...section,
         pages: section.pages.map(page => ({
           ...page,
-          answers: page.answers.filter(answer => validAnswerTypes[answer.type])
+          answers: filterAnswers(page.answers)
         }))
       }))
     };

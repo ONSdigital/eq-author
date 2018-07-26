@@ -1,11 +1,24 @@
+#import "./option.graphql"
+#import "./minimalBasicAnswer.graphql"
+
 fragment Answer on Answer {
-  id
-  description
-  guidance
-  label
-  ... on BasicAnswer {
-    secondaryLabel
+  ...MinimalBasicAnswer
+  ... on CompositeAnswer {
+    childAnswers {
+      ...MinimalBasicAnswer
+    }
   }
-  type
-  properties
+  ... on MultipleChoiceAnswer {
+    options {
+      ...Option
+    }
+    other {
+      option {
+        ...Option
+      }
+      answer {
+        ...MinimalBasicAnswer
+      }
+    }
+  }
 }

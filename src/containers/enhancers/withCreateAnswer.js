@@ -26,8 +26,7 @@ export const mapMutateToProps = ({ mutate }) => ({
       description: "",
       guidance: "",
       qCode: "",
-      label: "",
-      secondaryLabel: ""
+      label: ""
     };
 
     const update = createUpdater(pageId);

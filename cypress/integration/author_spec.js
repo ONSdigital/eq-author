@@ -282,11 +282,15 @@ describe("eq-author", () => {
     addAnswerType("Daterange");
 
     cy.get(testId("date-range-editor")).within(() => {
-      findByLabel("Label from")
+      cy
+        .get(testId("date-answer-label"))
+        .first()
         .click()
         .type("Date Range label");
 
-      findByLabel("Label to")
+      cy
+        .get(testId("date-answer-label"))
+        .last()
         .click()
         .type("Date Range label 2");
     });

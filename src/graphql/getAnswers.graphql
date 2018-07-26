@@ -1,9 +1,6 @@
 query GetAnswers($ids: [ID]!) {
   answers(ids: $ids) {
     label
-    ... on BasicAnswer {
-      secondaryLabel
-    }
     id
   }
 }

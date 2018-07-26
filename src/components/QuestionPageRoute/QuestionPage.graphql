@@ -1,5 +1,4 @@
 #import "graphql/fragments/answer.graphql"
-#import "graphql/fragments/option.graphql"
 
 query GetQuestionPage($id: ID!) {
   questionPage(id: $id) {
@@ -10,19 +9,6 @@ query GetQuestionPage($id: ID!) {
     guidance
     answers {
       ...Answer
-      ... on MultipleChoiceAnswer {
-        options {
-          ...Option
-        }
-        other {
-          option {
-            ...Option
-          }
-          answer {
-            ...Answer
-          }
-        }
-      }
     }
   }
 }
