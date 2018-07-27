@@ -34,7 +34,11 @@ export const addQuestionnaire = title => {
   setQuestionnaireSettings(title);
 };
 
-export const addSection = () => {
+export const addSection = (initialNumberOfSections = 1) => {
+  cy
+    .get(testId("nav-section-link"))
+    .should("have.length", initialNumberOfSections);
+
   cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
@@ -47,8 +51,7 @@ export const addSection = () => {
 
   cy
     .get(testId("nav-section-link"))
-    .last()
-    .should("contain", "Section Title");
+    .should("have.length", initialNumberOfSections + 1);
 };
 
 export const deleteSection = ({ index }) => {

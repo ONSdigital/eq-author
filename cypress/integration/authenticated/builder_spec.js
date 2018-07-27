@@ -8,41 +8,27 @@ import {
   findByLabel,
   addSection,
   addQuestionPage,
-  testId,
-  deleteSection
-} from "../utils";
+  testId
+} from "../../utils";
 import { times, includes } from "lodash";
-import { Routes } from "../../src/utils/UrlUtils";
+import { Routes } from "../../../src/utils/UrlUtils";
 
-describe("eq-author", () => {
-  it("Should redirect to the sign-in page", () => {
+const questionnaireTitle = "My Questionnaire Title";
+
+const questionPageRegex = /\/questionnaire\/\d+\/\d+\/\d+\/design$/;
+const sectionRegex = /\/questionnaire\/\d+\/\d+\/design$/;
+
+describe("builder", () => {
+  const checkIsOnDesignPage = () => cy.hash().should("match", /\/design$/);
+
+  beforeEach(() => {
     cy.visit("/");
-    cy.url().should("include", "sign-in");
+    cy.login();
+    addQuestionnaire(questionnaireTitle);
   });
 
-  it("Should allow user to log in as guest", () => {
-    cy.contains("Sign in as Guest").click();
-    cy.get("h1").should("contain", "Your Questionnaires");
-  });
-
-  it("Can create a questionnaire", () => {
-    addQuestionnaire("My Questionnaire Title");
-  });
-
-  it("Should show questionnaire on listing page", () => {
-    cy.get(testId("questionnaire-title")).contains("My Questionnaire Title");
-
-    cy.get(testId("logo")).click();
-
-    cy.get(testId("username")).then($name => {
-      cy
-        .get("tbody tr")
-        .first()
-        .should("contain", "My Questionnaire Title")
-        .and("contain", $name.text())
-        .find("a")
-        .click();
-    });
+  afterEach(() => {
+    cy.deleteQuestionnaire(questionnaireTitle);
   });
 
   it("Can edit page title", () => {
@@ -56,6 +42,8 @@ describe("eq-author", () => {
 
   it("Can create a new page", () => {
     let prevHash;
+
+    checkIsOnDesignPage();
 
     cy
       .hash()
@@ -99,6 +87,12 @@ describe("eq-author", () => {
   });
 
   it("Can delete a page", () => {
+    checkIsOnDesignPage();
+
+    addQuestionPage();
+
+    cy.get(testId("page-item")).should("have.length", 2);
+
     cy.get(testId("btn-delete")).click();
 
     cy.get(testId("delete-confirm-modal", "testid")).within(() => {
@@ -111,15 +105,20 @@ describe("eq-author", () => {
     cy.get(testId("page-item")).should("have.length", 1);
   });
 
-  it("Can change the questionnaire title", () => {
+  const changeQuestionnaireTitle = newTitle => {
     cy.get(testId("settings-btn")).click();
-    setQuestionnaireSettings("Test Questionnaire");
-    cy
-      .get(testId("questionnaire-title"))
-      .should("contain", "Test Questionnaire");
+    setQuestionnaireSettings(newTitle);
+    cy.get(testId("questionnaire-title")).should("contain", newTitle);
+  };
+
+  it("Can change the questionnaire title", () => {
+    changeQuestionnaireTitle("Test Questionnaire");
+    changeQuestionnaireTitle(questionnaireTitle);
   });
 
   it("Can create a new section", () => {
+    checkIsOnDesignPage();
+
     let prevHash;
 
     cy
@@ -142,29 +141,40 @@ describe("eq-author", () => {
   });
 
   it("Can navigate to a section", () => {
-    let prevHash;
+    checkIsOnDesignPage();
 
-    cy.hash().then(hash => {
-      prevHash = hash;
-    });
+    const initialHash = cy
+      .hash()
+      .should("match", questionPageRegex)
+      .then(hash => hash);
+
+    addSection();
+
+    cy.hash().should("not.eq", initialHash);
+    const resultingHash = cy
+      .hash()
+      .should("match", sectionRegex)
+      .then(hash => hash);
+
     cy
       .get(testId("nav-section-link"))
       .first()
-      .click()
-      .then(() => {
-        assertHash({
-          previousPath: Routes.SECTION,
-          previousHash: prevHash,
-          currentPath: Routes.SECTION,
-          equality: {
-            questionnaireId: true,
-            sectionId: false
-          }
-        });
-      });
+      .click();
+
+    cy
+      .hash()
+      .should("match", sectionRegex)
+      .and("not.eq", resultingHash);
   });
 
-  it("Can edit section title", () => {
+  it("Can edit section title and description", () => {
+    checkIsOnDesignPage();
+
+    cy
+      .get(testId("nav-section-link"))
+      .first()
+      .click();
+
     typeIntoDraftEditor(
       testId("txt-section-title", "testid"),
       "my new section"
@@ -173,6 +183,15 @@ describe("eq-author", () => {
   });
 
   it("Can delete a section", () => {
+    checkIsOnDesignPage();
+
+    addSection();
+
+    cy
+      .get(testId("nav-section-link"))
+      .first()
+      .click();
+
     let prevHash;
 
     cy.hash().then(hash => {
@@ -216,6 +235,8 @@ describe("eq-author", () => {
   });
 
   it("Can delete checkboxes", () => {
+    addAnswerType("Checkbox");
+    cy.get(testId("btn-add-option")).click();
     cy
       .get(testId("btn-delete-option"))
       .last()
@@ -240,6 +261,8 @@ describe("eq-author", () => {
   });
 
   it("Can delete radio buttons", () => {
+    addAnswerType("Radio");
+    cy.get(testId("btn-add-option")).click();
     cy
       .get(testId("btn-delete-option"))
       .last()
@@ -294,6 +317,8 @@ describe("eq-author", () => {
   it("Should create a new page when deleting only page in section", () => {
     let prevHash;
 
+    checkIsOnDesignPage();
+
     cy.hash().then(hash => {
       prevHash = hash;
     });
@@ -322,6 +347,8 @@ describe("eq-author", () => {
 
   it("Should create a new section when deleting only section", () => {
     let prevHash;
+
+    checkIsOnDesignPage();
 
     cy
       .get(testId("nav-section-link"))
@@ -393,12 +420,15 @@ describe("eq-author", () => {
   });
 
   it("Can move pages between sections", () => {
+    checkIsOnDesignPage();
     addSection();
 
     cy
       .get(testId("page-item"))
-      .contains("Page 2")
+      .last()
       .click();
+
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "Page 2");
 
     cy.get(testId("btn-move")).click();
 
@@ -432,8 +462,6 @@ describe("eq-author", () => {
   });
 
   it("Can move sections", () => {
-    deleteSection({ index: 0 });
-
     cy
       .get(testId("nav-section-link"))
       .should("have.length", 1)
@@ -443,7 +471,7 @@ describe("eq-author", () => {
       });
 
     addSection();
-    addSection();
+    addSection(2);
 
     cy
       .get(testId("nav-section-link"))
@@ -475,22 +503,22 @@ describe("eq-author", () => {
   });
 
   describe('Checkbox/Radio with "other" option', () => {
-    it("should goto questionnaire design page", () => {
-      cy.visit("/");
-      cy.contains("Sign in as Guest").click();
-      cy.get(testId("create-questionnaire")).click();
-      setQuestionnaireSettings("My Questionnaire Title");
-    });
+    const addMultipleChoiceAnswer = (type = "Checkbox", withOther = true) => {
+      addAnswerType(type);
+      if (withOther) {
+        cy.get(testId("btn-add-option-menu")).click();
+        cy.get(testId("btn-add-option-other")).click();
+      }
+    };
 
     it('should add an "other" answer', () => {
-      addAnswerType("Checkbox");
-      cy.get(testId("btn-add-option-menu")).click();
-      cy.get(testId("btn-add-option-other")).click();
+      addMultipleChoiceAnswer();
       cy.get(testId("option-label")).should("have.length", 2);
       cy.get(testId("other-answer")).should("have.length", 1);
     });
 
     it("should update the other option and answer values", () => {
+      addMultipleChoiceAnswer();
       cy
         .get(testId("option-label"))
         .last()
@@ -510,6 +538,7 @@ describe("eq-author", () => {
     });
 
     it('should remove the "other" option.', () => {
+      addMultipleChoiceAnswer();
       cy
         .get(testId("btn-delete-option"))
         .last()
