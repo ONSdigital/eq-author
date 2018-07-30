@@ -8,6 +8,73 @@ import createRouterContext from "react-router-test-context";
 import PropTypes from "prop-types";
 
 import query from "./Section.graphql";
+import moveSectionQuery from "graphql/getQuestionnaire.graphql";
+
+const moveSectionMock = {
+  request: {
+    query: moveSectionQuery,
+    variables: {
+      id: "1"
+    }
+  },
+  result: {
+    data: {
+      questionnaire: {
+        id: "1",
+        title: "",
+        description: "",
+        surveyId: "1",
+        theme: "foo",
+        legalBasis: "",
+        navigation: true,
+        summary: "",
+        __typename: "Questionnaire",
+        sections: [
+          {
+            __typename: "Section",
+            id: "2",
+            title: "foo",
+            position: 0,
+            pages: [
+              {
+                __typename: "QuestionPage",
+                id: "3",
+                title: "bar",
+                position: 0
+              },
+              {
+                __typename: "QuestionPage",
+                id: "4",
+                title: "blah",
+                position: 1
+              }
+            ]
+          },
+          {
+            __typename: "Section",
+            id: "3",
+            title: "foo",
+            position: 1,
+            pages: [
+              {
+                __typename: "QuestionPage",
+                id: "5",
+                title: "bar",
+                position: 0
+              },
+              {
+                __typename: "QuestionPage",
+                id: "6",
+                title: "blah",
+                position: 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+};
 
 describe("SectionRoute", () => {
   let store, match, context, childContextTypes;
@@ -57,13 +124,14 @@ describe("SectionRoute", () => {
               __typename: "Section",
               id: "1",
               title: "foo",
-              description: "bar"
+              description: "bar",
+              position: 0
             }
           }
         }
       };
 
-      const wrapper = render([mock]);
+      const wrapper = render([mock, moveSectionMock]);
       expect(wrapper.find(`[data-test="loading"]`).exists()).toBe(true);
       expect(wrapper.find(`[data-test="section-editor"]`).exists()).toBe(false);
     });
@@ -82,13 +150,14 @@ describe("SectionRoute", () => {
               __typename: "Section",
               id: "1",
               title: "foo",
-              description: "bar"
+              description: "bar",
+              position: 0
             }
           }
         }
       };
 
-      const wrapper = render([mock, mock]);
+      const wrapper = render([mock, mock, moveSectionMock, moveSectionMock]);
 
       return flushPromises().then(() => {
         wrapper.update();
@@ -153,7 +222,10 @@ describe("SectionRoute", () => {
   describe("behaviour", () => {
     const render = (props = {}) =>
       mount(
-        <TestProvider reduxProps={{ store }} apolloProps={{ mocks: [] }}>
+        <TestProvider
+          reduxProps={{ store }}
+          apolloProps={{ mocks: [moveSectionMock] }}
+        >
           <UnwrappedSectionRoute {...props} />
         </TestProvider>,
         { context, childContextTypes }
@@ -171,7 +243,8 @@ describe("SectionRoute", () => {
       const mockHandlers = {
         onUpdateSection: jest.fn(),
         onDeleteSection: jest.fn(),
-        onAddPage: jest.fn()
+        onAddPage: jest.fn(),
+        onMoveSection: jest.fn()
       };
 
       const wrapper = render({
@@ -206,7 +279,8 @@ describe("SectionRoute", () => {
       const mockHandlers = {
         onUpdateSection: jest.fn(),
         onDeleteSection: jest.fn(),
-        onAddPage: jest.fn()
+        onAddPage: jest.fn(),
+        onMoveSection: jest.fn()
       };
 
       const wrapper = render({

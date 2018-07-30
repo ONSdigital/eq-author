@@ -14,6 +14,9 @@ exports[`SectionEditor should render 1`] = `
     onDelete={[Function]}
     title="Section 1"
   />
+  <MoveSectionQuery
+    questionnaireId="1"
+  />
   <SectionEditor__Padding>
     <RichTextEditor
       autoFocus={false}
@@ -63,6 +66,9 @@ exports[`SectionEditor should render 2`] = `
     onClose={[Function]}
     onDelete={[Function]}
     title="Section 2"
+  />
+  <MoveSectionQuery
+    questionnaireId="1"
   />
   <SectionEditor__Padding>
     <RichTextEditor

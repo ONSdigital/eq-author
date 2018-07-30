@@ -3,6 +3,7 @@
 mutation CreateSection($input: CreateSectionInput!) {
   createSection(input: $input) {
     ...Section
+    position
     pages {
       id
       title

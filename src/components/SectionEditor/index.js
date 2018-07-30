@@ -12,6 +12,8 @@ import withEntityEditor from "components/withEntityEditor";
 import sectionFragment from "graphql/fragments/section.graphql";
 import { flip, partial } from "lodash";
 import getTextFromHTML from "utils/getTextFromHTML";
+import MoveSectionModal from "components/MoveSectionModal";
+import MoveSectionQuery from "components/MoveSectionModal/MoveSectionQuery";
 
 const titleControls = {
   emphasis: true
@@ -37,7 +39,33 @@ export class UnwrappedSectionEditor extends React.Component {
     onUpdate: PropTypes.func.isRequired,
     onDeleteSectionConfirm: PropTypes.func.isRequired,
     onCloseDeleteConfirmDialog: PropTypes.func.isRequired,
-    showDeleteConfirmDialog: PropTypes.bool.isRequired
+    showDeleteConfirmDialog: PropTypes.bool.isRequired,
+    onMoveSectionDialog: PropTypes.func.isRequired,
+    showMoveSectionDialog: PropTypes.bool.isRequired,
+    onCloseMoveSectionDialog: PropTypes.func.isRequired,
+    match: CustomPropTypes.match
+  };
+
+  renderMoveSectionModal = ({ loading, error, data }) => {
+    const {
+      onMoveSectionDialog,
+      showMoveSectionDialog,
+      onCloseMoveSectionDialog,
+      section
+    } = this.props;
+
+    if (loading || error) {
+      return null;
+    }
+    return (
+      <MoveSectionModal
+        questionnaire={data.questionnaire}
+        isOpen={showMoveSectionDialog}
+        onClose={onCloseMoveSectionDialog}
+        onMoveSection={onMoveSectionDialog}
+        section={section}
+      />
+    );
   };
 
   render() {
@@ -47,7 +75,8 @@ export class UnwrappedSectionEditor extends React.Component {
       onChange,
       showDeleteConfirmDialog,
       onCloseDeleteConfirmDialog,
-      onDeleteSectionConfirm
+      onDeleteSectionConfirm,
+      match
     } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
     const sectionTitleText = getTextFromHTML(section.title);
@@ -63,7 +92,9 @@ export class UnwrappedSectionEditor extends React.Component {
           icon={iconSection}
           data-test="dialog-delete-confirm"
         />
-
+        <MoveSectionQuery questionnaireId={match.params.questionnaireId}>
+          {this.renderMoveSectionModal}
+        </MoveSectionQuery>
         <Padding>
           <RichTextEditor
             id="title"

@@ -14,11 +14,21 @@ describe("SectionEditor", () => {
     title: "Section 2"
   };
 
+  const match = {
+    params: {
+      questionnaireId: "1",
+      sectionId: "2",
+      pageId: "3"
+    }
+  };
+
   const mockHandlers = {
     onChange: jest.fn(),
     onUpdate: jest.fn(),
     onDeleteSectionConfirm: jest.fn(),
-    onCloseDeleteConfirmDialog: jest.fn()
+    onCloseDeleteConfirmDialog: jest.fn(),
+    onMoveSectionDialog: jest.fn(),
+    onCloseMoveSectionDialog: jest.fn()
   };
 
   let wrapper;
@@ -28,6 +38,8 @@ describe("SectionEditor", () => {
       <UnwrappedSectionEditor
         section={section1}
         showDeleteConfirmDialog={false}
+        showMoveSectionDialog={false}
+        match={match}
         {...mockHandlers}
         {...props}
       />

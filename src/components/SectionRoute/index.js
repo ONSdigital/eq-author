@@ -15,6 +15,8 @@ import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
 import withCreatePage from "containers/enhancers/withCreatePage";
 import withCreateSection from "containers/enhancers/withCreateSection";
+import withMoveSection from "containers/enhancers/withMoveSection";
+
 import getTextFromHTML from "utils/getTextFromHTML";
 import { Titled } from "react-titled";
 import Loading from "components/Loading";
@@ -30,6 +32,7 @@ export class UnwrappedSectionRoute extends React.Component {
     onUpdateSection: PropTypes.func.isRequired,
     onDeleteSection: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
+    onMoveSection: PropTypes.func.isRequired,
     error: PropTypes.object, // eslint-disable-line
     loading: PropTypes.bool.isRequired,
     data: PropTypes.shape({
@@ -38,7 +41,20 @@ export class UnwrappedSectionRoute extends React.Component {
   };
 
   state = {
-    showDeleteConfirmDialog: false
+    showDeleteConfirmDialog: false,
+    showMoveSectionDialog: false
+  };
+
+  handleOpenMoveSectionDialog = () => {
+    this.setState({ showMoveSectionDialog: true });
+  };
+
+  handleCloseMoveSectionDialog = cb => {
+    this.setState({ showMoveSectionDialog: false }, isFunction(cb) ? cb : null);
+  };
+
+  handleMoveSection = args => {
+    this.handleCloseMoveSectionDialog(() => this.props.onMoveSection(args));
   };
 
   handleOpenDeleteConfirmDialog = () =>
@@ -84,7 +100,12 @@ export class UnwrappedSectionRoute extends React.Component {
       <Titled title={this.getSectionTitle(data.section)}>
         <Toolbar>
           <Buttons>
-            <Button data-test="btn-move" variant="tertiary" small disabled>
+            <Button
+              onClick={this.handleOpenMoveSectionDialog}
+              data-test="btn-move"
+              variant="tertiary"
+              small
+            >
               <IconText icon={IconMove}>Move</IconText>
             </Button>
             <IconButtonDelete
@@ -102,6 +123,10 @@ export class UnwrappedSectionRoute extends React.Component {
           showDeleteConfirmDialog={this.state.showDeleteConfirmDialog}
           onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}
           onDeleteSectionConfirm={this.handleDeleteSectionConfirm}
+          showMoveSectionDialog={this.state.showMoveSectionDialog}
+          onCloseMoveSectionDialog={this.handleCloseMoveSectionDialog}
+          onMoveSectionDialog={this.handleMoveSection}
+          {...this.props}
         />
       </Titled>
     );
@@ -122,7 +147,8 @@ const withSectionEditing = flowRight(
   withCreateSection,
   withUpdateSection,
   withDeleteSection,
-  withCreatePage
+  withCreatePage,
+  withMoveSection
 );
 
 export default withSectionEditing(props => (

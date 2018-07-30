@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovePageModal/PlainModal should render 1`] = `
+exports[`PositionModal/PlainModal should render 1`] = `
 .c0 .Overlay {
   background: transparent;
 }

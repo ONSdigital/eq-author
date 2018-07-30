@@ -260,14 +260,14 @@ describe("eq-author", () => {
   it("Can create and delete the different types of textbox", () => {
     answerTypes.forEach(answerType => {
       addAnswerType(answerType);
-      cy.get("[data-test='txt-answer-label']").type(answerType + " label");
+      cy.get(testId("txt-answer-label")).type(answerType + " label");
       if (includes(["Currency"], answerType)) {
         cy
-          .get("[data-test='txt-answer-description']")
+          .get(testId("txt-answer-description"))
           .type(answerType + " description");
       }
-      cy.get("[data-test='btn-delete-answer']").click();
-      cy.get("[data-test='btn-delete-answer']").should("not.exist");
+      cy.get(testId("btn-delete-answer")).click();
+      cy.get(testId("btn-delete-answer")).should("not.exist");
     });
   });
 
@@ -388,10 +388,11 @@ describe("eq-author", () => {
     cy.get(testId("btn-move")).click();
 
     findByLabel("Position").click();
-    cy.get(testId("position-modal", "testid")).within(() => {
+    cy.get(testId("item-select-modal-form")).within(() => {
       findByLabel("Page 0").click();
-      cy.get("form").submit();
     });
+
+    cy.get(testId("item-select-modal-form")).submit();
 
     cy
       .get(testId("page-item"))
@@ -410,18 +411,25 @@ describe("eq-author", () => {
     cy.get(testId("btn-move")).click();
 
     findByLabel("Section").click();
-    cy.get(testId("section-modal", "testid")).within(() => {
+
+    cy.get(testId("item-select-modal-form")).within(() => {
       cy
         .get("label")
         .last()
         .click();
-      cy.get("form").submit();
     });
+    cy.get(testId("item-select-modal-form")).submit();
 
     findByLabel("Position").click();
-    cy.get(testId("position-modal", "testid")).within(() => {
-      cy.get("form").submit();
+
+    cy.get(testId("item-select-modal-form")).within(() => {
+      cy
+        .get("label")
+        .first()
+        .click();
     });
+
+    cy.get(testId("item-select-modal-form")).submit();
 
     cy
       .get(testId("section-item"))
@@ -429,6 +437,36 @@ describe("eq-author", () => {
       .find(testId("page-item"))
       .first()
       .should("contain", "Page 2");
+  });
+
+  it("Can move sections", () => {
+    addSection();
+    addSection();
+
+    cy
+      .get(testId("nav-section-link"))
+      .first()
+      .click();
+
+    typeIntoDraftEditor(testId("txt-section-title", "testid"), `Section 1`);
+
+    cy.get(testId("btn-move")).click();
+
+    findByLabel("Position").click();
+
+    cy.get(testId("item-select-modal-form")).within(() => {
+      cy
+        .get("label")
+        .last()
+        .click();
+    });
+
+    cy.get(testId("item-select-modal-form")).submit();
+
+    cy
+      .get(testId("section-item"))
+      .last()
+      .should("contain", "Section 1");
   });
 
   describe('Checkbox/Radio with "other" option', () => {

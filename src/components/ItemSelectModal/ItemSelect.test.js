@@ -3,7 +3,7 @@ import ItemSelect, { Option } from "./ItemSelect";
 import { shallow } from "enzyme";
 import { times } from "lodash";
 
-describe("MovePageModal/ItemSelect", () => {
+describe("PositionModal/ItemSelect", () => {
   const createWrapper = (props = {}, render = shallow) =>
     render(
       <ItemSelect {...props} name="foo">
