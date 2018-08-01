@@ -12,6 +12,11 @@ query GetQuestionnaire($id: ID!) {
         title
         position
       }
+      questionnaire {
+        questionnaireInfo {
+          totalSectionCount
+        }
+      }
     }
   }
 }

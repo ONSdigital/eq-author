@@ -17,5 +17,10 @@ mutation CreateSection($input: CreateSectionInput!) {
         }
       }
     }
+    questionnaire {
+      questionnaireInfo {
+        totalSectionCount
+      }
+    }
   }
 }

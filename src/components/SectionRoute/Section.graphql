@@ -4,5 +4,10 @@ query GetSection($id: ID!) {
   section(id: $id) {
     ...Section
     position
+    questionnaire {
+      questionnaireInfo {
+        totalSectionCount
+      }
+    }
   }
 }

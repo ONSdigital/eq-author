@@ -1,5 +1,10 @@
 mutation DeleteSection($input: DeleteSectionInput!) {
   deleteSection(input: $input) {
-    id
+    id,
+    questionnaire {
+      questionnaireInfo {
+        totalSectionCount
+      }
+    }
   }
 }
