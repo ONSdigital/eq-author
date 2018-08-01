@@ -5,6 +5,8 @@ import CustomPropTypes from "custom-prop-types";
 import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
+import MinValueValidationRule from "graphql/fragments/min-value-validation-rule.graphql";
+import gql from "graphql-tag";
 
 export const StatelessBasicAnswer = ({
   answer,
@@ -76,7 +78,19 @@ StatelessBasicAnswer.defaultProps = {
 };
 
 StatelessBasicAnswer.fragments = {
-  Answer: answerFragment
+  Answer: answerFragment,
+  BasicAnswer: gql`
+    fragment BasicAnswer on BasicAnswer {
+      validation {
+        ... on NumberValidation {
+          minValue {
+            ...MinValueValidationRule
+          }
+        }
+      }
+    }
+    ${MinValueValidationRule}
+  `
 };
 
 export default withEntityEditor("answer", answerFragment)(StatelessBasicAnswer);

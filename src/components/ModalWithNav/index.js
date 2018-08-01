@@ -43,7 +43,7 @@ const SidebarTitle = styled.h2`
   font-size: 0.9em;
   margin: 0;
   text-align: center;
-  color: ${colors.grey};
+  color: ${colors.text};
 `;
 
 const MainContainer = styled.div`
@@ -55,6 +55,7 @@ const MainContainer = styled.div`
 
 const Content = styled.div`
   flex: 1 1 auto;
+  display: flex;
 `;
 
 const Buttons = styled.div`
@@ -66,14 +67,13 @@ export const UnconnectedModalWithNav = ({
   title,
   onClose,
   navItems,
-  defaultActiveTabId,
-  activeTabId = defaultActiveTabId,
+  activeTabId,
   gotoTab,
   isOpen,
   id,
   ...otherProps
 }) => {
-  const activeItem = find(navItems, { id: activeTabId });
+  const activeItem = find(navItems, { id: activeTabId || navItems[0].id });
 
   return (
     <Dialog onClose={onClose} isOpen={isOpen} {...otherProps}>
@@ -102,7 +102,7 @@ export const UnconnectedModalWithNav = ({
           <MainContainer>
             <Content>
               <TabsBody navItemId={activeItem.id} data-test="tabs-body">
-                <TransitionGroup>
+                <TransitionGroup component={Content}>
                   <FadeTransition key={activeItem.id} enter exit={false}>
                     {activeItem.component}
                   </FadeTransition>
@@ -127,7 +127,6 @@ UnconnectedModalWithNav.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   gotoTab: PropTypes.func.isRequired,
-  defaultActiveTabId: PropTypes.string.isRequired,
   activeTabId: PropTypes.string,
   navItems: PropTypes.arrayOf(
     PropTypes.shape({

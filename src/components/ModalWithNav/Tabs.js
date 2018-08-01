@@ -91,10 +91,15 @@ TabsNav.propTypes = {
   title: PropTypes.string.isRequired
 };
 
+const TabPanel = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+`;
+
 export const TabsBody = ({ children, navItemId, ...otherProps }) => (
-  <div role="tabpanel" aria-labelledby={navItemId} {...otherProps}>
+  <TabPanel role="tabpanel" aria-labelledby={navItemId} {...otherProps}>
     {children}
-  </div>
+  </TabPanel>
 );
 
 TabsBody.propTypes = {

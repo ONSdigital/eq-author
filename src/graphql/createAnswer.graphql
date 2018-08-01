@@ -1,11 +1,18 @@
 #import "./fragments/answer.graphql"
 #import "./fragments/option.graphql"
+#import "./fragments/min-value-validation-rule.graphql"
 
 mutation createAnswer($input: CreateAnswerInput!) {
   createAnswer(input: $input) {
     ...Answer
     ... on BasicAnswer {
-      secondaryLabel
+      validation {
+        ... on NumberValidation {
+          minValue {
+            ...MinValueValidationRule
+          }
+        }
+      }
     }
     ... on MultipleChoiceAnswer {
       options {

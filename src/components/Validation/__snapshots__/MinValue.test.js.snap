@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MinValue should render 1`] = `
+<ValidationView
+  data-test="min-value-view"
+  enabled={true}
+  onToggleChange={[Function]}
+>
+  <Grid
+    align="top"
+    fillHeight={true}
+  >
+    <Column
+      cols={3}
+    >
+      <MinValue__Title>
+        Min Value is
+      </MinValue__Title>
+    </Column>
+    <Column
+      cols={12}
+    >
+      <FieldWithInclude
+        checked={true}
+        id="min-value-include"
+        name="min-value-include"
+        onChange={[Function]}
+      >
+        <MinValue__ValueInput
+          data-test="min-value-input"
+          id="min-value"
+          list="defaultNumbers"
+          max={999999999}
+          min={-999999999}
+          onChange={[Function]}
+          type="number"
+          value={true}
+        />
+      </FieldWithInclude>
+    </Column>
+  </Grid>
+</ValidationView>
+`;
