@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovePageModal/ItemSelectModal should render 1`] = `
+exports[`ItemSelectModal should render 1`] = `
 <PlainModal
   isOpen={true}
   onClose={[Function]}
 >
   <form
+    data-test="item-select-modal-form"
     onSubmit={[Function]}
   >
     <ItemSelectModal__Fieldset>

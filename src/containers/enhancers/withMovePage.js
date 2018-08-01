@@ -6,7 +6,6 @@ import { remove } from "lodash";
 
 export const createUpdater = ({ from, to }) => (proxy, result) => {
   result = result.data.movePage;
-
   const fromSectionId = `Section${from.sectionId}`;
   const fromSection = proxy.readFragment({ id: fromSectionId, fragment });
 

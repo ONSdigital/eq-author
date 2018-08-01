@@ -1,37 +1,17 @@
 import React from "react";
-import Modal from "components/Modal";
 import styled from "styled-components";
-import DialogHeader from "components/Dialog/DialogHeader";
-import { Message, Heading } from "components/Dialog/DialogMessage";
+import MoveModal from "components/MoveModal";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import ItemSelectModal from "./ItemSelectModal";
-import { find, reject, parseInt, uniqueId } from "lodash";
+import PositionModal from "components/PositionModal";
+import ItemSelectModal from "components/ItemSelectModal";
+import ItemSelect, { Option } from "components/ItemSelectModal/ItemSelect";
+import { find, uniqueId } from "lodash";
 import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
-import ItemSelect, { Option } from "./ItemSelect";
 
 import { colors, radius } from "constants/theme";
-import Truncated from "../Truncated";
-
-const StyledModal = styled(Modal)`
-  .Modal {
-    width: 25em;
-  }
-`;
-
-const moveTo = (array, item, position) => {
-  array = reject(array, { id: item.id });
-  array.splice(position, 0, item);
-
-  return array;
-};
-
-const CenteredHeading = styled(Heading)`
-  text-align: center;
-  margin-bottom: 1rem;
-  color: ${colors.text};
-`;
+import Truncated from "components/Truncated";
 
 const Label = styled.label`
   display: block;
@@ -73,11 +53,8 @@ class MovePageModal extends React.Component {
 
     this.state = {
       isSectionSelectOpen: false,
-      isPagePositionOpen: false,
       selectedSectionId: props.sectionId,
-      selectedPagePosition: props.page.position,
-      previousSelectedSectionId: null,
-      previousSelectedPagePosition: null
+      previousSelectedSectionId: null
     };
   }
 
@@ -95,20 +72,6 @@ class MovePageModal extends React.Component {
     });
   };
 
-  handleClosePagePosition = () => {
-    this.setState({
-      isPagePositionOpen: false,
-      selectedPagePosition: this.state.previousSelectedPagePosition
-    });
-  };
-
-  handleOpenPagePosition = () => {
-    this.setState({
-      isPagePositionOpen: true,
-      previousSelectedPagePosition: this.state.selectedPagePosition
-    });
-  };
-
   handleSectionChange = ({ value }) => {
     this.setState({
       selectedSectionId: value
@@ -117,37 +80,9 @@ class MovePageModal extends React.Component {
 
   handleSectionConfirm = e => {
     e.preventDefault();
-
     this.setState({
-      isSectionSelectOpen: false,
-      selectedPagePosition: 0
+      isSectionSelectOpen: false
     });
-  };
-
-  handlePositionChange = ({ value }) => {
-    this.setState({ selectedPagePosition: parseInt(value) });
-  };
-
-  handlePositionConfirm = e => {
-    const { page, sectionId, onMovePage } = this.props;
-    const { selectedSectionId, selectedPagePosition } = this.state;
-
-    e.preventDefault();
-
-    this.setState({ isPagePositionOpen: false }, () =>
-      onMovePage({
-        from: {
-          id: page.id,
-          sectionId,
-          position: page.position
-        },
-        to: {
-          id: page.id,
-          sectionId: selectedSectionId,
-          position: selectedPagePosition
-        }
-      })
-    );
   };
 
   getSelectedSection() {
@@ -157,13 +92,23 @@ class MovePageModal extends React.Component {
     return find(questionnaire.sections, { id: selectedSectionId });
   }
 
-  getPagesForSection(section) {
-    return moveTo(
-      section.pages,
-      this.props.page,
-      this.state.selectedPagePosition
-    );
-  }
+  handlePageMove = position => {
+    const { page, onMovePage, sectionId } = this.props;
+    const { selectedSectionId } = this.state;
+
+    onMovePage({
+      from: {
+        id: page.id,
+        sectionId: sectionId,
+        position: page.position
+      },
+      to: {
+        id: page.id,
+        sectionId: selectedSectionId,
+        position: position
+      }
+    });
+  };
 
   renderSectionSelect(section) {
     const { questionnaire } = this.props;
@@ -171,14 +116,14 @@ class MovePageModal extends React.Component {
 
     return (
       <ItemSelectModal
-        testId="section-modal"
         title="Section"
+        data-test={"section-select-modal"}
         isOpen={isSectionSelectOpen}
         onClose={this.handleCloseSectionSelect}
         onConfirm={this.handleSectionConfirm}
       >
         <ItemSelect
-          data-test="section-select"
+          data-test="section-item-select"
           name="section"
           value={section.id}
           onChange={this.handleSectionChange}
@@ -193,64 +138,29 @@ class MovePageModal extends React.Component {
     );
   }
 
-  renderPositionSelect(pages) {
-    const { isPagePositionOpen, selectedPagePosition } = this.state;
-
-    return (
-      <ItemSelectModal
-        testId="position-modal"
-        title="Position"
-        primaryText="Move page"
-        isOpen={isPagePositionOpen}
-        onClose={this.handleClosePagePosition}
-        onConfirm={this.handlePositionConfirm}
-      >
-        <ItemSelect
-          data-test="position-select"
-          name="position"
-          value={String(selectedPagePosition)}
-          onChange={this.handlePositionChange}
-        >
-          {pages.map((page, i) => (
-            <Option key={i} value={String(i)}>
-              {getTextFromHTML(page.title) || "Untitled Page"}
-            </Option>
-          ))}
-        </ItemSelect>
-      </ItemSelectModal>
-    );
-  }
-
   render() {
-    const { isOpen, onClose } = this.props;
-    const section = this.getSelectedSection();
-    const pages = this.getPagesForSection(section);
-
+    const { page } = this.props;
+    const selectedSection = this.getSelectedSection();
     const sectionButtonId = uniqueId("MovePageModal");
-    const positionButtonId = uniqueId("MovePageModal");
 
     return (
-      <StyledModal isOpen={isOpen} onClose={onClose} testId="move-page-modal">
-        <DialogHeader>
-          <Message>
-            <CenteredHeading>Move question</CenteredHeading>
-          </Message>
-        </DialogHeader>
-
+      <MoveModal title={"Move question"} {...this.props}>
         <Label htmlFor={sectionButtonId}>Section</Label>
         <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
           <Truncated>
-            {getTextFromHTML(section.title) || "Untitled Section"}
+            {getTextFromHTML(selectedSection.title) || "Untitled Section"}
           </Truncated>
         </Trigger>
-        {this.renderSectionSelect(section)}
+        {this.renderSectionSelect(selectedSection)}
 
-        <Label htmlFor={positionButtonId}>Position</Label>
-        <Trigger id={positionButtonId} onClick={this.handleOpenPagePosition}>
-          Select
-        </Trigger>
-        {this.renderPositionSelect(pages)}
-      </StyledModal>
+        <PositionModal
+          data-test={"page-position-modal"}
+          options={selectedSection.pages}
+          onMove={this.handlePageMove}
+          selected={page}
+          {...this.props}
+        />
+      </MoveModal>
     );
   }
 }

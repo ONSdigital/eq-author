@@ -1,12 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import MovePageModal from ".";
+import MoveSectionModal from ".";
 import CustomPropTypes from "custom-prop-types";
 import { ApolloProvider } from "react-apollo";
 import { buildQuestionnaire } from "tests/utils/createMockQuestionnaire";
 
-class MovePageStory extends React.Component {
+class MoveSectionStory extends React.Component {
   static propTypes = {
     questionnaire: CustomPropTypes.questionnaire
   };
@@ -24,15 +24,14 @@ class MovePageStory extends React.Component {
     return (
       <div>
         <button type="button" onClick={this.handleToggleModal}>
-          move page
+          move section
         </button>
-        <MovePageModal
+        <MoveSectionModal
           isOpen={this.state.isModalOpen}
           onClose={this.handleToggleModal}
           questionnaire={questionnaire}
-          sectionId={questionnaire.sections[0].id}
-          page={questionnaire.sections[0].pages[0]}
-          onMovePage={action("movePage")}
+          section={questionnaire.sections[0]}
+          onMoveSection={action("moveSection")}
         />
       </div>
     );
@@ -46,8 +45,8 @@ const client = {
   })
 };
 
-storiesOf("MovePageModal", module).add("Modal", () => (
+storiesOf("MoveSectionModal", module).add("Modal", () => (
   <ApolloProvider client={client}>
-    <MovePageStory questionnaire={buildQuestionnaire()} />
+    <MoveSectionStory questionnaire={buildQuestionnaire()} />
   </ApolloProvider>
 ));

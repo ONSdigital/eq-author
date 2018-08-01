@@ -1,17 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovePageModal should render 1`] = `
+exports[`MoveSectionModal should render 1`] = `
 <MoveModal
   isOpen={true}
   onClose={[Function]}
-  onMovePage={[Function]}
-  page={
-    Object {
-      "id": "1.1",
-      "position": 0,
-      "title": "Page 1.1",
-    }
-  }
+  onMoveSection={[Function]}
   questionnaire={
     Object {
       "id": "1",
@@ -53,60 +46,10 @@ exports[`MovePageModal should render 1`] = `
       ],
     }
   }
-  sectionId="1"
-  selectedPosition={0}
-  title="Move question"
->
-  <MovePageModal__Label
-    htmlFor="MovePageModal1"
-  >
-    Section
-  </MovePageModal__Label>
-  <MovePageModal__Trigger
-    id="MovePageModal1"
-    onClick={[Function]}
-  >
-    <Truncated>
-      Section 1
-    </Truncated>
-  </MovePageModal__Trigger>
-  <ItemSelectModal
-    data-test="section-select-modal"
-    isOpen={false}
-    onClose={[Function]}
-    onConfirm={[Function]}
-    primaryText="Select"
-    secondaryText="Cancel"
-    title="Section"
-  >
-    <withChangeHandler(ItemSelect)
-      data-test="section-item-select"
-      name="section"
-      onChange={[Function]}
-      value="1"
-    >
-      <Option
-        key="1"
-        value="1"
-      >
-        Section 1
-      </Option>
-      <Option
-        key="2"
-        value="2"
-      >
-        Section 2
-      </Option>
-    </withChangeHandler(ItemSelect)>
-  </ItemSelectModal>
-  <PositionModal
-    data-test="page-position-modal"
-    isOpen={true}
-    onClose={[Function]}
-    onMove={[Function]}
-    onMovePage={[Function]}
-    options={
-      Array [
+  section={
+    Object {
+      "id": "1",
+      "pages": Array [
         Object {
           "id": "1.1",
           "position": 0,
@@ -117,14 +60,55 @@ exports[`MovePageModal should render 1`] = `
           "position": 1,
           "title": "Page 1.2",
         },
-      ]
+      ],
+      "position": 0,
+      "title": "Section 1",
     }
-    page={
-      Object {
-        "id": "1.1",
-        "position": 0,
-        "title": "Page 1.1",
-      }
+  }
+  title="Move section"
+>
+  <PositionModal
+    isOpen={true}
+    onClose={[Function]}
+    onMove={[Function]}
+    onMoveSection={[Function]}
+    options={
+      Array [
+        Object {
+          "id": "1",
+          "pages": Array [
+            Object {
+              "id": "1.1",
+              "position": 0,
+              "title": "Page 1.1",
+            },
+            Object {
+              "id": "1.2",
+              "position": 1,
+              "title": "Page 1.2",
+            },
+          ],
+          "position": 0,
+          "title": "Section 1",
+        },
+        Object {
+          "id": "2",
+          "pages": Array [
+            Object {
+              "id": "2.1",
+              "position": 0,
+              "title": "Page 2.1",
+            },
+            Object {
+              "id": "2.2",
+              "position": 1,
+              "title": "Page 2.2",
+            },
+          ],
+          "position": 1,
+          "title": "Section 2",
+        },
+      ]
     }
     questionnaire={
       Object {
@@ -167,15 +151,44 @@ exports[`MovePageModal should render 1`] = `
         ],
       }
     }
-    sectionId="1"
-    selected={
+    section={
       Object {
-        "id": "1.1",
+        "id": "1",
+        "pages": Array [
+          Object {
+            "id": "1.1",
+            "position": 0,
+            "title": "Page 1.1",
+          },
+          Object {
+            "id": "1.2",
+            "position": 1,
+            "title": "Page 1.2",
+          },
+        ],
         "position": 0,
-        "title": "Page 1.1",
+        "title": "Section 1",
       }
     }
-    selectedPosition={0}
+    selected={
+      Object {
+        "id": "1",
+        "pages": Array [
+          Object {
+            "id": "1.1",
+            "position": 0,
+            "title": "Page 1.1",
+          },
+          Object {
+            "id": "1.2",
+            "position": 1,
+            "title": "Page 1.2",
+          },
+        ],
+        "position": 0,
+        "title": "Section 1",
+      }
+    }
   />
 </MoveModal>
 `;

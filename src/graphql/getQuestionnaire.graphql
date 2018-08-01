@@ -6,6 +6,7 @@ query GetQuestionnaire($id: ID!) {
     sections {
       id
       title
+      position
       pages {
         id
         title

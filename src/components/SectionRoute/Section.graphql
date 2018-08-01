@@ -3,5 +3,6 @@
 query GetSection($id: ID!) {
   section(id: $id) {
     ...Section
+    position
   }
 }

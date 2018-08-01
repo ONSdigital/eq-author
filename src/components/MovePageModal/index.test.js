@@ -1,35 +1,19 @@
 import React from "react";
 import MovePageModal from ".";
 import { shallow } from "enzyme";
-import { times } from "lodash";
+import { byTestAttr } from "tests/utils/selectors";
+import { buildQuestionnaire } from "tests/utils/createMockQuestionnaire";
 
-const buildPages = (sectionNumber, count) =>
-  times(count, i => ({
-    id: `${sectionNumber}.${i + 1}`,
-    title: `Page ${sectionNumber}.${i + 1}`,
-    position: i
-  }));
+const getSectionModal = wrapper =>
+  wrapper.find(byTestAttr("section-select-modal"));
 
-const buildSections = count =>
-  times(count, i => ({
-    id: `${i + 1}`,
-    title: `Section ${i + 1}`,
-    pages: buildPages(i + 1, 2)
-  }));
+const getSectionItem = wrapper =>
+  wrapper.find(byTestAttr("section-item-select"));
 
-const buildQuestionnaire = () => ({
-  id: "1",
-  sections: buildSections(2)
-});
+const getPagePositionModal = wrapper =>
+  wrapper.find(byTestAttr("page-position-modal"));
 
-const byId = id => `[testId="${id}"]`;
-const byName = n => `[name="${n}"]`;
-const getSectionModal = wrapper => wrapper.find(byId("section-modal"));
-const getSectionSelect = wrapper => wrapper.find(byName("section"));
-const getPositionModal = wrapper => wrapper.find(byId("position-modal"));
-const getPositionSelect = wrapper => wrapper.find(byName("position"));
-
-describe("MovePageModal/MovePageModal", () => {
+describe("MovePageModal", () => {
   const questionnaire = buildQuestionnaire();
   const currentSection = questionnaire.sections[0];
   const currentPage = currentSection.pages[0];
@@ -66,25 +50,15 @@ describe("MovePageModal/MovePageModal", () => {
   it("opens position select modal when correct button is clicked", () => {
     const wrapper = createWrapper();
 
-    wrapper
-      .find("MovePageModal__Trigger")
-      .last()
-      .simulate("click");
+    getPagePositionModal(wrapper).simulate("click");
 
-    expect(getPositionModal(wrapper).prop("isOpen")).toBe(true);
+    expect(getPagePositionModal(wrapper).prop("isOpen")).toBe(true);
   });
 
   it("should close section select modal on confirm", () => {
     const wrapper = createWrapper();
 
-    wrapper
-      .find("MovePageModal__Trigger")
-      .first()
-      .simulate("click");
-
-    getSectionModal(wrapper).simulate("change", {
-      value: questionnaire.sections[1].id
-    });
+    wrapper.find("MovePageModal__Trigger").simulate("click");
 
     getSectionModal(wrapper).simulate("confirm", {
       preventDefault: jest.fn()
@@ -97,78 +71,10 @@ describe("MovePageModal/MovePageModal", () => {
     const wrapper = createWrapper();
     const selectedSection = questionnaire.sections[1];
 
-    getSectionSelect(wrapper).simulate("change", { value: selectedSection.id });
+    getSectionItem(wrapper).simulate("change", { value: selectedSection.id });
 
-    expect(getSectionSelect(wrapper).prop("value")).toBe(selectedSection.id);
-  });
-
-  it("should update selected position on change", () => {
-    const wrapper = createWrapper();
-
-    getSectionSelect(wrapper).simulate("change", { value: "2" });
-    getPositionSelect(wrapper).simulate("change", { value: "1" });
-
-    expect(getPositionSelect(wrapper)).toMatchSnapshot();
-  });
-
-  it("calls onMovePage when confirmed", () => {
-    const onMovePage = jest.fn();
-    const onClose = jest.fn();
-    const selectedSection = questionnaire.sections[1];
-    const position = 1;
-
-    const wrapper = createWrapper({ onMovePage, onClose });
-
-    getSectionSelect(wrapper).simulate("change", { value: selectedSection.id });
-    getPositionSelect(wrapper).simulate("change", { value: String(position) });
-    getPositionModal(wrapper).simulate("confirm", {
-      preventDefault: jest.fn()
-    });
-
-    expect(getPositionModal(wrapper).prop("isOpen")).toBe(false);
-
-    expect(onMovePage).toHaveBeenCalledWith({
-      from: {
-        id: currentPage.id,
-        sectionId: currentSection.id,
-        position: 0
-      },
-      to: {
-        id: currentPage.id,
-        sectionId: selectedSection.id,
-        position
-      }
-    });
-  });
-
-  it("resets the section selection if modal is closed", () => {
-    const wrapper = createWrapper();
-
-    wrapper
-      .find("MovePageModal__Trigger")
-      .first()
-      .simulate("click");
-
-    const selectedSection = questionnaire.sections[1];
-    getSectionSelect(wrapper).simulate("change", { value: selectedSection.id });
-    expect(getSectionSelect(wrapper).prop("value")).toBe(selectedSection.id);
-
-    getSectionModal(wrapper).simulate("close");
-    expect(getSectionSelect(wrapper).prop("value")).toBe(currentSection.id);
-  });
-
-  it("reset the position if modal is closed", () => {
-    const wrapper = createWrapper();
-
-    wrapper
-      .find("MovePageModal__Trigger")
-      .last()
-      .simulate("click");
-
-    getPositionSelect(wrapper).simulate("change", { value: 1 });
-    expect(getPositionSelect(wrapper).prop("value")).toBe("1");
-
-    getPositionModal(wrapper).simulate("close");
-    expect(getPositionSelect(wrapper).prop("value")).toBe("0");
+    expect(wrapper.find("PositionModal").prop("options")).toBe(
+      selectedSection.pages
+    );
   });
 });

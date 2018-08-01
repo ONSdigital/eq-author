@@ -2,7 +2,7 @@ import React from "react";
 import PlainModal from "./PlainModal";
 import { shallow } from "enzyme";
 
-describe("MovePageModal/PlainModal", () => {
+describe("PositionModal/PlainModal", () => {
   it("should render", () => {
     const wrapper = shallow(
       <PlainModal isOpen onClose={jest.fn()}>

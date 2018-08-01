@@ -1,8 +1,8 @@
 import React from "react";
-import ItemSelectModal from "./ItemSelectModal";
+import ItemSelectModal from ".";
 import { shallow } from "enzyme";
 
-describe("MovePageModal/ItemSelectModal", () => {
+describe("ItemSelectModal", () => {
   const createWrapper = (props = {}, render = shallow) =>
     render(
       <ItemSelectModal

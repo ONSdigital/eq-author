@@ -57,7 +57,7 @@ const ItemSelectModal = ({
   ...otherProps
 }) => (
   <PlainModal isOpen={isOpen} onClose={onClose} {...otherProps}>
-    <form onSubmit={onConfirm}>
+    <form onSubmit={onConfirm} data-test="item-select-modal-form">
       <Fieldset>
         <Title>{title}</Title>
         <Body>{children}</Body>

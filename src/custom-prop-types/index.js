@@ -16,7 +16,8 @@ const CustomPropTypes = {
   section: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
-    description: PropTypes.string
+    description: PropTypes.string,
+    position: PropTypes.number
   }),
   page: PropTypes.shape({
     id: PropTypes.string,
