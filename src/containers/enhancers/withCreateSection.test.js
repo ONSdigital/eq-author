@@ -57,14 +57,20 @@ describe("withCreateSection", () => {
       const writeFragment = jest.fn();
 
       const updater = createUpdater(questionnaire.id);
+
       updater({ readFragment, writeFragment }, result);
 
       expect(readFragment).toHaveBeenCalledWith({ id, fragment });
+
       expect(writeFragment).toHaveBeenCalledWith({
         id,
         fragment,
-        data: questionnaire
+        data: {
+          ...questionnaire,
+          sections: [newSection]
+        }
       });
+
       expect(questionnaire.sections).toContain(newSection);
     });
   });

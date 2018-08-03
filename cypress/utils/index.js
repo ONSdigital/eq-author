@@ -34,7 +34,7 @@ export const addQuestionnaire = title => {
   setQuestionnaireSettings(title);
 };
 
-export const addSection = () =>
+export const addSection = () => {
   cy.get(testId("add-menu")).within(() => {
     cy
       .get("button")
@@ -44,6 +44,26 @@ export const addSection = () =>
       .contains("Section")
       .click();
   });
+
+  cy
+    .get(testId("nav-section-link"))
+    .last()
+    .should("contain", "Section Title");
+};
+
+export const deleteSection = ({ index }) => {
+  cy
+    .get(testId("nav-section-link"))
+    .eq(index)
+    .click();
+  cy.get(testId("btn-delete")).click();
+  cy.get(testId("delete-confirm-modal", "testid")).within(() => {
+    cy
+      .get("button")
+      .contains("Delete")
+      .click();
+  });
+};
 
 export const addQuestionPage = title => {
   let prevCount;

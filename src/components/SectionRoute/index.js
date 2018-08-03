@@ -2,6 +2,7 @@ import React from "react";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { flowRight, isFunction, isNil } from "lodash";
+import fp from "lodash/fp";
 
 import SectionQuery from "./SectionQuery";
 import SectionEditor from "components/SectionEditor";
@@ -83,6 +84,11 @@ export class UnwrappedSectionRoute extends React.Component {
     return `${sectionTitle} - ${title}`;
   };
 
+  isMoveSectionButtonDisabled = fp.flow(
+    fp.get("questionnaireInfo.totalSectionCount"),
+    fp.isEqual(1)
+  );
+
   renderContent() {
     const { loading, error, data } = this.props;
 
@@ -105,6 +111,9 @@ export class UnwrappedSectionRoute extends React.Component {
               data-test="btn-move"
               variant="tertiary"
               small
+              disabled={this.isMoveSectionButtonDisabled(
+                data.section.questionnaire
+              )}
             >
               <IconText icon={IconMove}>Move</IconText>
             </Button>

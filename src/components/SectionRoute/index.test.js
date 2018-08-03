@@ -6,6 +6,7 @@ import { buildSectionPath } from "utils/UrlUtils";
 import flushPromises from "tests/utils/flushPromises";
 import createRouterContext from "react-router-test-context";
 import PropTypes from "prop-types";
+import { byTestAttr } from "tests/utils/selectors";
 
 import query from "./Section.graphql";
 import moveSectionQuery from "graphql/getQuestionnaire.graphql";
@@ -48,7 +49,14 @@ const moveSectionMock = {
                 title: "blah",
                 position: 1
               }
-            ]
+            ],
+            questionnaire: {
+              __typename: "Questionnaire",
+              questionnaireInfo: {
+                __typename: "QuestionnaireInfo",
+                totalSectionCount: 1
+              }
+            }
           },
           {
             __typename: "Section",
@@ -68,7 +76,14 @@ const moveSectionMock = {
                 title: "blah",
                 position: 1
               }
-            ]
+            ],
+            questionnaire: {
+              __typename: "Questionnaire",
+              questionnaireInfo: {
+                __typename: "QuestionnaireInfo",
+                totalSectionCount: 1
+              }
+            }
           }
         ]
       }
@@ -125,7 +140,14 @@ describe("SectionRoute", () => {
               id: "1",
               title: "foo",
               description: "bar",
-              position: 0
+              position: 0,
+              questionnaire: {
+                __typename: "Questionnaire",
+                questionnaireInfo: {
+                  __typename: "QuestionnaireInfo",
+                  totalSectionCount: 1
+                }
+              }
             }
           }
         }
@@ -151,7 +173,14 @@ describe("SectionRoute", () => {
               id: "1",
               title: "foo",
               description: "bar",
-              position: 0
+              position: 0,
+              questionnaire: {
+                __typename: "Questionnaire",
+                questionnaireInfo: {
+                  __typename: "QuestionnaireInfo",
+                  totalSectionCount: 1
+                }
+              }
             }
           }
         }
@@ -299,6 +328,72 @@ describe("SectionRoute", () => {
         match.params.sectionId,
         0
       );
+    });
+
+    it("should disable move section button when one section", () => {
+      const data = {
+        section: {
+          id: "1",
+          title: "foo",
+          description: "bar",
+          questionnaire: {
+            questionnaireInfo: {
+              totalSectionCount: 1
+            }
+          }
+        }
+      };
+
+      const mockHandlers = {
+        onUpdateSection: jest.fn(),
+        onDeleteSection: jest.fn(),
+        onAddPage: jest.fn(),
+        onMoveSection: jest.fn()
+      };
+
+      const wrapper = render({
+        loading: false,
+        match,
+        data,
+        ...mockHandlers
+      });
+
+      expect(
+        wrapper.find(`Button${byTestAttr("btn-move")}`).prop("disabled")
+      ).toBe(true);
+    });
+
+    it("should enable move section button when multiple sections", () => {
+      const data = {
+        section: {
+          id: "1",
+          title: "foo",
+          description: "bar",
+          questionnaire: {
+            questionnaireInfo: {
+              totalSectionCount: 2
+            }
+          }
+        }
+      };
+
+      const mockHandlers = {
+        onUpdateSection: jest.fn(),
+        onDeleteSection: jest.fn(),
+        onAddPage: jest.fn(),
+        onMoveSection: jest.fn()
+      };
+
+      const wrapper = render({
+        loading: false,
+        match,
+        data,
+        ...mockHandlers
+      });
+
+      expect(
+        wrapper.find(`Button${byTestAttr("btn-move")}`).prop("disabled")
+      ).toBe(false);
     });
   });
 });

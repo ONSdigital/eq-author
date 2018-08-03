@@ -48,7 +48,14 @@ const movePageMock = {
                 title: "blah",
                 position: 1
               }
-            ]
+            ],
+            questionnaire: {
+              __typename: "Questionnaire",
+              questionnaireInfo: {
+                __typename: "QuestionnaireInfo",
+                totalSectionCount: 1
+              }
+            }
           }
         ]
       }

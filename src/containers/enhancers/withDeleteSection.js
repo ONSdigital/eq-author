@@ -52,10 +52,18 @@ export const deleteUpdater = (questionnaireId, sectionId) => (
 
   remove(questionnaire.sections, { id: sectionId });
 
+  const sections = questionnaire.sections.map(section => ({
+    ...section,
+    questionnaire: result.data.deleteSection.questionnaire
+  }));
+
   proxy.writeFragment({
     id,
     fragment,
-    data: questionnaire
+    data: {
+      ...questionnaire,
+      sections
+    }
   });
 };
 

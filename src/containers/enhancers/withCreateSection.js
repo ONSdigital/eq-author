@@ -21,10 +21,18 @@ export const createUpdater = questionnaireId => (proxy, result) => {
 
   questionnaire.sections.push(result.data.createSection);
 
+  const sections = questionnaire.sections.map(section => ({
+    ...section,
+    questionnaire: result.data.createSection.questionnaire
+  }));
+
   proxy.writeFragment({
     id,
     fragment,
-    data: questionnaire
+    data: {
+      ...questionnaire,
+      sections
+    }
   });
 };
 

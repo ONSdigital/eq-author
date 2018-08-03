@@ -8,7 +8,8 @@ import {
   findByLabel,
   addSection,
   addQuestionPage,
-  testId
+  testId,
+  deleteSection
 } from "../utils";
 import { times, includes } from "lodash";
 import { Routes } from "../../src/utils/UrlUtils";
@@ -440,13 +441,26 @@ describe("eq-author", () => {
   });
 
   it("Can move sections", () => {
+    deleteSection({ index: 0 });
+
+    cy
+      .get(testId("nav-section-link"))
+      .should("have.length", 1)
+      .each($el => {
+        cy.wrap($el).click();
+        cy.get(testId("btn-move")).should("disabled");
+      });
+
     addSection();
     addSection();
 
     cy
       .get(testId("nav-section-link"))
-      .first()
-      .click();
+      .should("have.length", 3)
+      .each($el => {
+        cy.wrap($el).click();
+        cy.get(testId("btn-move")).should("not.be.disabled");
+      });
 
     typeIntoDraftEditor(testId("txt-section-title", "testid"), `Section 1`);
 
