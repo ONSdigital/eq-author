@@ -208,14 +208,14 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
         onChange={[Function]}
         type="checkbox"
       >
-        <withChangeHandler(Input)
+        <withChangeHandler(UncontrolledInput)
           checked={false}
           className="c1"
           id="toggle-3"
           onChange={[Function]}
           type="checkbox"
         >
-          <Input
+          <UncontrolledInput
             checked={false}
             className="c1"
             id="toggle-3"
@@ -239,8 +239,8 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
                 type="checkbox"
               />
             </Input__StyledInput>
-          </Input>
-        </withChangeHandler(Input)>
+          </UncontrolledInput>
+        </withChangeHandler(UncontrolledInput)>
       </ToggleSwitch__HiddenInput>
       <ToggleSwitch__ToggleSwitchBackground
         checked={false}
@@ -450,14 +450,14 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
         onChange={[Function]}
         type="checkbox"
       >
-        <withChangeHandler(Input)
+        <withChangeHandler(UncontrolledInput)
           checked={true}
           className="c1"
           id="toggle-2"
           onChange={[Function]}
           type="checkbox"
         >
-          <Input
+          <UncontrolledInput
             checked={true}
             className="c1"
             id="toggle-2"
@@ -481,8 +481,8 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
                 type="checkbox"
               />
             </Input__StyledInput>
-          </Input>
-        </withChangeHandler(Input)>
+          </UncontrolledInput>
+        </withChangeHandler(UncontrolledInput)>
       </ToggleSwitch__HiddenInput>
       <ToggleSwitch__ToggleSwitchBackground
         checked={true}
@@ -669,14 +669,14 @@ exports[`ToggleSwitch should render when mounted 1`] = `
         onChange={[Function]}
         type="checkbox"
       >
-        <withChangeHandler(Input)
+        <withChangeHandler(UncontrolledInput)
           checked={true}
           className="c1"
           id="toggle-2"
           onChange={[Function]}
           type="checkbox"
         >
-          <Input
+          <UncontrolledInput
             checked={true}
             className="c1"
             id="toggle-2"
@@ -700,8 +700,8 @@ exports[`ToggleSwitch should render when mounted 1`] = `
                 type="checkbox"
               />
             </Input__StyledInput>
-          </Input>
-        </withChangeHandler(Input)>
+          </UncontrolledInput>
+        </withChangeHandler(UncontrolledInput)>
       </ToggleSwitch__HiddenInput>
       <ToggleSwitch__ToggleSwitchBackground
         checked={true}
