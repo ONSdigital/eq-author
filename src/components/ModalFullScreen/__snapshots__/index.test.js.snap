@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalFullScreen should render when closed 1`] = `
+<ModalFullScreen__StyledModal
+  isOpen={false}
+  onClose={[Function]}
+>
+  <div>
+    Modal content
+  </div>
+</ModalFullScreen__StyledModal>
+`;
+
+exports[`ModalFullScreen should render when open 1`] = `
+<ModalFullScreen__StyledModal
+  isOpen={true}
+  onClose={[Function]}
+>
+  <div>
+    Modal content
+  </div>
+</ModalFullScreen__StyledModal>
+`;
