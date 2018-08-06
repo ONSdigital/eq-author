@@ -19,11 +19,6 @@ const titleControls = {
   emphasis: true
 };
 
-const descriptionControls = {
-  bold: true,
-  emphasis: true
-};
-
 const Padding = styled.div`
   padding: 0 2em 2em;
 `;
@@ -105,15 +100,6 @@ export class UnwrappedSectionEditor extends React.Component {
             size="large"
             testSelector="txt-section-title"
             autoFocus={!sectionTitleText}
-          />
-          <RichTextEditor
-            id="description"
-            value={section.description}
-            onUpdate={handleUpdate}
-            label="Description"
-            controls={descriptionControls}
-            multiline
-            testSelector="txt-section-description"
           />
         </Padding>
       </SectionCanvas>
