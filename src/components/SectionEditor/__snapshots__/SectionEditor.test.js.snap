@@ -34,21 +34,6 @@ exports[`SectionEditor should render 1`] = `
       testSelector="txt-section-title"
       value="Section 1"
     />
-    <RichTextEditor
-      autoFocus={false}
-      controls={
-        Object {
-          "bold": true,
-          "emphasis": true,
-        }
-      }
-      id="description"
-      label="Description"
-      multiline={true}
-      onUpdate={[Function]}
-      placeholder=""
-      testSelector="txt-section-description"
-    />
   </SectionEditor__Padding>
 </SectionEditor__SectionCanvas>
 `;
@@ -86,21 +71,6 @@ exports[`SectionEditor should render 2`] = `
       size="large"
       testSelector="txt-section-title"
       value="Section 2"
-    />
-    <RichTextEditor
-      autoFocus={false}
-      controls={
-        Object {
-          "bold": true,
-          "emphasis": true,
-        }
-      }
-      id="description"
-      label="Description"
-      multiline={true}
-      onUpdate={[Function]}
-      placeholder=""
-      testSelector="txt-section-description"
     />
   </SectionEditor__Padding>
 </SectionEditor__SectionCanvas>

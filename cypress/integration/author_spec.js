@@ -164,21 +164,12 @@ describe("eq-author", () => {
       });
   });
 
-  it("Can edit section title and description", () => {
+  it("Can edit section title", () => {
     typeIntoDraftEditor(
       testId("txt-section-title", "testid"),
       "my new section"
     );
     cy.get(testId("nav-section-link")).should("contain", "my new section");
-
-    typeIntoDraftEditor(
-      testId("txt-section-description", "testid"),
-      "section description"
-    );
-
-    cy
-      .get(testId("txt-section-description", "testid"))
-      .should("contain", "section description");
   });
 
   it("Can delete a section", () => {
