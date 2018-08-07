@@ -36,7 +36,7 @@ const Answer = styled.div`
 `;
 
 const AnswerType = styled.div`
-  background: #e4e8eb;
+  background: ${colors.lightMediumGrey};
   border-bottom: 1px solid ${colors.bordersLight};
   text-align: center;
   padding: 0.5em 1em;
