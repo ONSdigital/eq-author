@@ -51,12 +51,12 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
   pointer-events: none;
 }
 
-<withChangeHandler(Input)
+<withChangeHandler(UncontrolledInput)
   defaultValue="I am some text"
   id="text"
   onChange={[Function]}
 >
-  <Input
+  <UncontrolledInput
     defaultValue="I am some text"
     id="text"
     onChange={[Function]}
@@ -78,6 +78,6 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
         type="text"
       />
     </Input__StyledInput>
-  </Input>
-</withChangeHandler(Input)>
+  </UncontrolledInput>
+</withChangeHandler(UncontrolledInput)>
 `;

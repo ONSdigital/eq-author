@@ -91,10 +91,10 @@ exports[`components/Forms/Field should render correctly 1`] = `
           </label>
         </Label__StyledLabel>
       </Label>
-      <withChangeHandler(Input)
+      <withChangeHandler(UncontrolledInput)
         id="name"
       >
-        <Input
+        <UncontrolledInput
           id="name"
           onChange={[Function]}
           type="text"
@@ -113,8 +113,8 @@ exports[`components/Forms/Field should render correctly 1`] = `
               type="text"
             />
           </Input__StyledInput>
-        </Input>
-      </withChangeHandler(Input)>
+        </UncontrolledInput>
+      </withChangeHandler(UncontrolledInput)>
     </div>
   </Field__StyledField>
 </Field>

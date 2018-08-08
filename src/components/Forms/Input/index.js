@@ -41,7 +41,12 @@ const StyledInput = styled.input`
   ${props => props.type === "radio" && radioButton};
 `;
 
-const Input = ({ type, defaultValue, id, ...otherProps }) => (
+export const UncontrolledInput = ({
+  type,
+  defaultValue,
+  id,
+  ...otherProps
+}) => (
   <StyledInput
     type={type}
     defaultValue={defaultValue}
@@ -51,11 +56,11 @@ const Input = ({ type, defaultValue, id, ...otherProps }) => (
   />
 );
 
-Input.defaultProps = {
+UncontrolledInput.defaultProps = {
   type: "text"
 };
 
-Input.propTypes = {
+UncontrolledInput.propTypes = {
   id: PropTypes.string,
   type: PropTypes.oneOf(["text", "checkbox", "radio", "number"]).isRequired,
   defaultValue: PropTypes.oneOfType([
@@ -65,4 +70,4 @@ Input.propTypes = {
   ])
 };
 
-export default withChangeHandler(Input);
+export default withChangeHandler(UncontrolledInput);
