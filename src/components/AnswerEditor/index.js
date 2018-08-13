@@ -22,6 +22,7 @@ import {
 import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 import Tooltip from "components/Tooltip";
 import BasicAnswer from "components/Answers/BasicAnswer";
+import gql from "graphql-tag";
 
 const Answer = styled.div`
   border: 1px solid ${colors.bordersLight};
@@ -119,6 +120,21 @@ AnswerEditor.propTypes = {
   onDeleteOther: PropTypes.func.isRequired,
   onUpdateOption: PropTypes.func.isRequired,
   onDeleteOption: PropTypes.func.isRequired
+};
+
+AnswerEditor.fragments = {
+  AnswerEditor: gql`
+    fragment AnswerEditor on Answer {
+      ...Answer
+      ...MultipleChoice
+      ...DateRange
+      ...Date
+    }
+    ${BasicAnswer.fragments.Answer}
+    ${MultipleChoiceAnswer.fragments.MultipleChoice}
+    ${DateRange.fragments.DateRange}
+    ${Date.fragments.Date}
+  `
 };
 
 export default AnswerEditor;

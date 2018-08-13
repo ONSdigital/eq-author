@@ -1,12 +1,12 @@
 import React from "react";
-import QuestionnairesPage from "./QuestionnairesPage";
+import { UnconnectedQuestionnairesPage } from "./index";
 import { shallow } from "enzyme";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 
-describe("containers/QuestionnairesPage", () => {
+describe("components/QuestionnairesPage", () => {
   const createWrapper = props =>
     shallow(
-      <QuestionnairesPage
+      <UnconnectedQuestionnairesPage
         onDeleteQuestionnaire={jest.fn()}
         onCreateQuestionnaire={jest.fn()}
         {...props}

@@ -115,7 +115,7 @@ exports[`components/RoutingRule should render children 1`] = `
         </RoutingRule__CenteringColumn>
       </Grid>
     </div>
-    <RoutingRuleResultSelector
+    <RoutingRuleDestinationSelector
       data-test="select-then"
       destinations={Object {}}
       disabled={false}

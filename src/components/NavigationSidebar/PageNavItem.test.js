@@ -2,6 +2,11 @@ import React from "react";
 import { shallow } from "enzyme";
 import { UnwrappedPageNavItem } from "./PageNavItem";
 
+const page = {
+  id: "3",
+  plaintextTitle: "Page title"
+};
+
 describe("PageNavItem", () => {
   let component;
 
@@ -10,10 +15,10 @@ describe("PageNavItem", () => {
       <UnwrappedPageNavItem
         questionnaireId={"1"}
         sectionId={"2"}
-        pageId={"3"}
         title="Title"
+        page={page}
         match={{
-          params: { questionnaireId: "1", sectionId: "2", pageId: "3" }
+          params: { questionnaireId: "1", sectionId: "2", pageId: page.id }
         }}
       />
     );

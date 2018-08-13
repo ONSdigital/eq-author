@@ -11,7 +11,7 @@ import getIdForObject from "utils/getIdForObject";
 import withEntityEditor from "components/withEntityEditor";
 import sectionFragment from "graphql/fragments/section.graphql";
 import { flip, partial } from "lodash";
-import getTextFromHTML from "utils/getTextFromHTML";
+
 import MoveSectionModal from "components/MoveSectionModal";
 import MoveSectionQuery from "components/MoveSectionModal/MoveSectionQuery";
 
@@ -74,7 +74,7 @@ export class UnwrappedSectionEditor extends React.Component {
       match
     } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
-    const sectionTitleText = getTextFromHTML(section.title);
+    const sectionTitleText = section.plaintextTitle;
 
     return (
       <SectionCanvas data-test="section-editor" id={getIdForObject(section)}>
@@ -106,6 +106,10 @@ export class UnwrappedSectionEditor extends React.Component {
     );
   }
 }
+
+UnwrappedSectionEditor.fragments = {
+  Section: sectionFragment
+};
 
 export default withEntityEditor("section", sectionFragment)(
   UnwrappedSectionEditor

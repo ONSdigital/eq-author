@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionnaireDesignPage from "components/QuestionnaireDesignPage";
+import { UnwrappedQuestionnaireDesignPage as QuestionnaireDesignPage } from "components/QuestionnaireDesignPage";
 import { shallow } from "enzyme";
 
 describe("QuestionnaireDesignPage", () => {
@@ -60,7 +60,7 @@ describe("QuestionnaireDesignPage", () => {
       <QuestionnaireDesignPage
         {...mockHandlers}
         match={match}
-        questionnaire={questionnaire}
+        data={{ questionnaire }}
         loading={false}
       />
     );
@@ -105,7 +105,7 @@ describe("QuestionnaireDesignPage", () => {
 
       wrapper.find(`[data-test="side-nav"]`).simulate("addPage");
 
-      expect(mockHandlers.onAddPage).toHaveBeenCalledWith(section.id, 0);
+      expect(mockHandlers.onAddPage).toHaveBeenCalledWith(section.id, 1);
     });
   });
 

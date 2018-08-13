@@ -65,7 +65,7 @@ exports[`components/RoutingRuleSet should render children 1`] = `
     </IconText>
   </RoutingRuleSet__AddRuleButton>
   <RoutingRuleSet__Box>
-    <RoutingRuleResultSelector
+    <RoutingRuleDestinationSelector
       data-test="select-else"
       destinations={Object {}}
       disabled={false}

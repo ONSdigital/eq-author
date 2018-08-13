@@ -1,0 +1,523 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/QuestionnairesPage should not render table whilst data is loading 1`] = `
+<GetContext
+  title={[Function]}
+>
+  <BaseLayout
+    title="Your Questionnaires"
+  >
+    <MainCanvas>
+      <QuestionnairesPage__StyledButtonGroup
+        horizontal={true}
+      >
+        <Button
+          data-test="create-questionnaire"
+          onClick={[Function]}
+          primary={true}
+          type="button"
+          variant="primary"
+        >
+          Create
+        </Button>
+        <QuestionnaireSettingsModal
+          confirmText="Create"
+          isOpen={false}
+          onClose={[Function]}
+          onSubmit={[Function]}
+          questionnaire={
+            Object {
+              "description": "",
+              "legalBasis": "StatisticsOfTradeAct",
+              "navigation": false,
+              "surveyId": "",
+              "theme": "default",
+              "title": "",
+            }
+          }
+        />
+      </QuestionnairesPage__StyledButtonGroup>
+      <QuestionnairesPage__StyledCenteredPanel>
+        <Query
+          query={
+            Object {
+              "definitions": Array [
+                Object {
+                  "directives": Array [],
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GetQuestionnaireList",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "questionnaires",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "directives": Array [],
+                              "kind": "FragmentSpread",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "QuestionnaireDetails",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  "variableDefinitions": Array [],
+                },
+                Object {
+                  "directives": Array [],
+                  "kind": "FragmentDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "QuestionnaireDetails",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "id",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "title",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdAt",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdBy",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "name",
+                              },
+                              "selectionSet": undefined,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  "typeCondition": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "Questionnaire",
+                    },
+                  },
+                },
+              ],
+              "kind": "Document",
+              "loc": Object {
+                "end": 234,
+                "start": 0,
+              },
+            }
+          }
+        />
+      </QuestionnairesPage__StyledCenteredPanel>
+    </MainCanvas>
+  </BaseLayout>
+</GetContext>
+`;
+
+exports[`components/QuestionnairesPage should render table when there are questionnaires 1`] = `
+<GetContext
+  title={[Function]}
+>
+  <BaseLayout
+    title="Your Questionnaires"
+  >
+    <MainCanvas>
+      <QuestionnairesPage__StyledButtonGroup
+        horizontal={true}
+      >
+        <Button
+          data-test="create-questionnaire"
+          onClick={[Function]}
+          primary={true}
+          type="button"
+          variant="primary"
+        >
+          Create
+        </Button>
+        <QuestionnaireSettingsModal
+          confirmText="Create"
+          isOpen={false}
+          onClose={[Function]}
+          onSubmit={[Function]}
+          questionnaire={
+            Object {
+              "description": "",
+              "legalBasis": "StatisticsOfTradeAct",
+              "navigation": false,
+              "surveyId": "",
+              "theme": "default",
+              "title": "",
+            }
+          }
+        />
+      </QuestionnairesPage__StyledButtonGroup>
+      <QuestionnairesPage__StyledCenteredPanel>
+        <Query
+          query={
+            Object {
+              "definitions": Array [
+                Object {
+                  "directives": Array [],
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GetQuestionnaireList",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "questionnaires",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "directives": Array [],
+                              "kind": "FragmentSpread",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "QuestionnaireDetails",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  "variableDefinitions": Array [],
+                },
+                Object {
+                  "directives": Array [],
+                  "kind": "FragmentDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "QuestionnaireDetails",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "id",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "title",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdAt",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdBy",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "name",
+                              },
+                              "selectionSet": undefined,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  "typeCondition": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "Questionnaire",
+                    },
+                  },
+                },
+              ],
+              "kind": "Document",
+              "loc": Object {
+                "end": 234,
+                "start": 0,
+              },
+            }
+          }
+        />
+      </QuestionnairesPage__StyledCenteredPanel>
+    </MainCanvas>
+  </BaseLayout>
+</GetContext>
+`;
+
+exports[`components/QuestionnairesPage should render when there are no questionnaires 1`] = `
+<GetContext
+  title={[Function]}
+>
+  <BaseLayout
+    title="Your Questionnaires"
+  >
+    <MainCanvas>
+      <QuestionnairesPage__StyledButtonGroup
+        horizontal={true}
+      >
+        <Button
+          data-test="create-questionnaire"
+          onClick={[Function]}
+          primary={true}
+          type="button"
+          variant="primary"
+        >
+          Create
+        </Button>
+        <QuestionnaireSettingsModal
+          confirmText="Create"
+          isOpen={false}
+          onClose={[Function]}
+          onSubmit={[Function]}
+          questionnaire={
+            Object {
+              "description": "",
+              "legalBasis": "StatisticsOfTradeAct",
+              "navigation": false,
+              "surveyId": "",
+              "theme": "default",
+              "title": "",
+            }
+          }
+        />
+      </QuestionnairesPage__StyledButtonGroup>
+      <QuestionnairesPage__StyledCenteredPanel>
+        <Query
+          query={
+            Object {
+              "definitions": Array [
+                Object {
+                  "directives": Array [],
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GetQuestionnaireList",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "questionnaires",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "directives": Array [],
+                              "kind": "FragmentSpread",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "QuestionnaireDetails",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  "variableDefinitions": Array [],
+                },
+                Object {
+                  "directives": Array [],
+                  "kind": "FragmentDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "QuestionnaireDetails",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "id",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "title",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdAt",
+                        },
+                        "selectionSet": undefined,
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "createdBy",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "name",
+                              },
+                              "selectionSet": undefined,
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  "typeCondition": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "Questionnaire",
+                    },
+                  },
+                },
+              ],
+              "kind": "Document",
+              "loc": Object {
+                "end": 234,
+                "start": 0,
+              },
+            }
+          }
+        />
+      </QuestionnairesPage__StyledCenteredPanel>
+    </MainCanvas>
+  </BaseLayout>
+</GetContext>
+`;

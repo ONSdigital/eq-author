@@ -31,6 +31,8 @@ import { Alert, AlertTitle, AlertText } from "components/routing/Alert";
 import { buildPagePath } from "utils/UrlUtils";
 import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
+import routingConditionFragment from "graphql/fragments/routing-condition.graphql";
+
 const Label = styled.label`
   width: 100%;
   display: inline-block;
@@ -234,6 +236,10 @@ RoutingCondition.propTypes = {
 
 RoutingCondition.defaultProps = {
   label: "IF"
+};
+
+RoutingCondition.fragments = {
+  RoutingCondition: routingConditionFragment
 };
 
 export default RoutingCondition;

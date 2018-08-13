@@ -151,4 +151,8 @@ export class StatelessOption extends Component {
   }
 }
 
+StatelessOption.fragments = {
+  Option: optionFragment
+};
+
 export default withEntityEditor("option", optionFragment)(StatelessOption);

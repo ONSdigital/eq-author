@@ -11,6 +11,7 @@ import answerFragment from "graphql/fragments/answer.graphql";
 import styled from "styled-components";
 import { SimpleSelect } from "../../Forms/Select";
 import VisuallyHidden from "../../VisuallyHidden";
+import gql from "graphql-tag";
 
 const FormatSelect = styled(SimpleSelect.withComponent("div"))`
   padding: 1em 3em 1em 1em;
@@ -73,6 +74,15 @@ UnwrappedDate.propTypes = {
 UnwrappedDate.defaultProps = {
   label: "Label",
   name: "label"
+};
+
+UnwrappedDate.fragments = {
+  Date: gql`
+    fragment Date on Answer {
+      id
+      label
+    }
+  `
 };
 
 export default withEntityEditor("answer", answerFragment)(UnwrappedDate);

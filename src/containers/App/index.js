@@ -12,9 +12,9 @@ import PrivateRoute from "components/PrivateRoute";
 import RedirectRoute from "components/RedirectRoute";
 import { Routes as RoutePaths } from "utils/UrlUtils";
 
-import QuestionnairesPage from "containers/QuestionnairesPage";
+import QuestionnairesPage from "components/QuestionnairesPage";
 import SignInPage from "containers/SignInPage";
-import QuestionnaireDesignPage from "containers/QuestionnaireDesignPage";
+import QuestionnaireDesignPage from "components/QuestionnaireDesignPage";
 import NotFoundPage from "containers/NotFoundPage";
 import { Provider, connect } from "react-redux";
 import { isSignedIn } from "redux/auth/reducer";

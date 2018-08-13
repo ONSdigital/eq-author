@@ -6,6 +6,7 @@ import { TransitionGroup } from "react-transition-group";
 import NavItemTransition from "./NavItemTransition";
 import SectionNavItem from "./SectionNavItem";
 import scrollIntoView from "utils/scrollIntoView";
+import gql from "graphql-tag";
 
 const NavList = styled.ol`
   margin: 0 0 1em;
@@ -32,5 +33,17 @@ class SectionNav extends Component {
     );
   }
 }
+
+SectionNav.fragments = {
+  SectionNav: gql`
+    fragment SectionNav on Questionnaire {
+      id
+      sections {
+        ...SectionNavItem
+      }
+    }
+    ${SectionNavItem.fragments.SectionNavItem}
+  `
+};
 
 export default SectionNav;

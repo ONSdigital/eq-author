@@ -1,12 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
-import QuestionnaireRoutingRoute from "./";
+import QuestionnaireRoutingRoute, {
+  ROUTING_QUERY
+} from "./QuestionnaireRoutingPage";
 import TestProvider from "tests/utils/TestProvider";
 import { buildSectionPath } from "utils/UrlUtils";
 import flushPromises from "tests/utils/flushPromises";
 import createRouterContext from "react-router-test-context";
 import PropTypes from "prop-types";
-import query from "graphql/getRouting.graphql";
 
 describe("QuestionnaireRoutingPage", () => {
   let store, match, context, childContextTypes;
@@ -47,7 +48,7 @@ describe("QuestionnaireRoutingPage", () => {
     it("should show loading spinner while request in flight", () => {
       const mock = {
         request: {
-          query,
+          query: ROUTING_QUERY,
           variables: match.params
         },
         result: {
@@ -83,7 +84,7 @@ describe("QuestionnaireRoutingPage", () => {
     it("should render the editor once loaded", () => {
       const mock = {
         request: {
-          query,
+          query: ROUTING_QUERY,
           variables: match.params
         },
         result: {
@@ -125,7 +126,7 @@ describe("QuestionnaireRoutingPage", () => {
     it("should render error if problem with request", () => {
       const mock = {
         request: {
-          query,
+          query: ROUTING_QUERY,
           variables: match.params
         },
         error: new Error("something went wrong")

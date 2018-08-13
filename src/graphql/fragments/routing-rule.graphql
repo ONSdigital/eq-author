@@ -1,14 +1,6 @@
 #import "./routing-condition.graphql"
-#import "./routing-destination.graphql"
-
-fragment AbsoluteDestination on AbsoluteDestination {
-  ... on AbsoluteDestination {
-    absoluteDestination {
-      ...QuestionPageDestination
-      ...SectionDestination
-    }
-  }
-}
+#import "./absolute-destination.graphql"
+#import "./logical-destination.graphql"
 
 fragment RoutingRule on RoutingRule {
   id

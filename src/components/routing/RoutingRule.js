@@ -8,12 +8,13 @@ import Button from "components/Button";
 import IconText from "components/IconText";
 import { colors, radius } from "constants/theme";
 import IconRoute from "./icon-route.svg?inline";
-import RoutingRuleResultSelector from "./RoutingRuleResultSelector";
+import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import TextButton from "components/TextButton";
 import RoutingCondition from "components/routing/RoutingCondition";
 import { get } from "lodash";
 import { Grid, Column } from "components/Grid";
 import { RADIO } from "constants/answer-types";
+import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
 
 const Box = styled.div`
   border: 1px solid ${colors.bordersLight};
@@ -61,7 +62,6 @@ const RoutingRule = ({
   ...otherProps
 }) => {
   const { conditions, id, goto } = rule;
-
   const existingRadioConditions = {};
 
   const handleDeleteClick = () => onDeleteRule(rule);
@@ -125,7 +125,7 @@ const RoutingRule = ({
             </CenteringColumn>
           </Grid>
         </div>
-        <RoutingRuleResultSelector
+        <RoutingRuleDestinationSelector
           id="then"
           label="THEN"
           destinations={destinations}
@@ -151,6 +151,10 @@ RoutingRule.propTypes = {
   destinations: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   pagesAvailableForRouting: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   className: PropTypes.string
+};
+
+RoutingRule.fragments = {
+  RoutingRule: routingRuleFragment
 };
 
 export default RoutingRule;

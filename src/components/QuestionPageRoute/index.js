@@ -1,10 +1,11 @@
 import React from "react";
+import { withApollo, Query } from "react-apollo";
+import gql from "graphql-tag";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { flowRight, isFunction, isNil } from "lodash";
 import { Titled } from "react-titled";
 
-import QuestionPageQuery from "./QuestionPageQuery";
 import QuestionPageEditor from "components/QuestionPageEditor";
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorToolbar";
@@ -26,11 +27,10 @@ import withDeleteOther from "containers/enhancers/withDeleteOther";
 import withMovePage from "containers/enhancers/withMovePage";
 import focusOnEntity from "utils/focusOnEntity";
 import withDeletePage from "containers/enhancers/withDeletePage";
-import getTextFromHTML from "utils/getTextFromHTML";
 import Loading from "components/Loading";
 import Error from "components/Error";
 import withCreatePage from "containers/enhancers/withCreatePage";
-import { withApollo } from "react-apollo";
+
 import EditorLayout from "components/EditorLayout";
 
 export class UnwrappedQuestionPageRoute extends React.Component {
@@ -49,7 +49,8 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 
   state = {
     showDeleteConfirmDialog: false,
-    showMovePageDialog: false
+    showMovePageDialog: false,
+    hasError: false
   };
 
   handleOpenMovePageDialog = () => {
@@ -93,7 +94,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
   };
 
   getPageTitle = page => title => {
-    const pageTitle = getTextFromHTML(page.title) || "Untitled page";
+    const pageTitle = page.plaintextTitle || "Untitled page";
     return `${pageTitle} - ${title}`;
   };
 
@@ -103,11 +104,13 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     if (loading) {
       return <Loading height="38rem">Page loading…</Loading>;
     }
+
     if (error) {
       return <Error>Something went wrong</Error>;
     }
-    if (isNil(data.questionPage)) {
-      return <Error>Oops! Page could not be found</Error>;
+
+    if (isNil(this.props.data.questionPage)) {
+      return <Error>Something went wrong</Error>;
     }
 
     const { showMovePageDialog, showDeleteConfirmDialog } = this.state;
@@ -178,10 +181,21 @@ const withQuestionPageEditing = flowRight(
   withDeleteOther
 );
 
+export const QUESTION_PAGE_QUERY = gql`
+  query GetQuestionPage($id: ID!) {
+    questionPage(id: $id) {
+      ...QuestionPage
+    }
+  }
+
+  ${QuestionPageEditor.fragments.QuestionPage}
+`;
+
 export default withQuestionPageEditing(props => (
-  <QuestionPageQuery id={props.match.params.pageId}>
-    {innerProps => {
-      return <UnwrappedQuestionPageRoute {...innerProps} {...props} />;
-    }}
-  </QuestionPageQuery>
+  <Query
+    query={QUESTION_PAGE_QUERY}
+    variables={{ id: props.match.params.pageId }}
+  >
+    {innerProps => <UnwrappedQuestionPageRoute {...innerProps} {...props} />}
+  </Query>
 ));

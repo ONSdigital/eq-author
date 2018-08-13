@@ -1,8 +1,0 @@
-fragment MinimalBasicAnswer on Answer {
-  id
-  description
-  guidance
-  label
-  type
-  properties
-}

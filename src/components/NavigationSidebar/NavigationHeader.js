@@ -10,6 +10,7 @@ import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
 import Button from "components/Button";
 import RouteButton from "components/Button/RouteButton";
 import IconText from "components/IconText";
+import gql from "graphql-tag";
 
 import pipeP from "utils/pipeP";
 import AddMenu from "./AddMenu";
@@ -122,5 +123,15 @@ class NavigationHeader extends React.Component {
     );
   }
 }
+
+NavigationHeader.fragments = {
+  NavigationHeader: gql`
+    fragment NavigationHeader on Questionnaire {
+      ...QuestionnaireSettingsModal
+    }
+
+    ${QuestionnaireSettingsModal.fragments.QuestionnaireSettingsModal}
+  `
+};
 
 export default NavigationHeader;
