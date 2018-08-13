@@ -8,6 +8,7 @@ exports[`MovePageModal should render 1`] = `
   page={
     Object {
       "id": "1.1",
+      "plaintextTitle": "Page 1.1",
       "position": 0,
       "title": "Page 1.1",
     }
@@ -21,15 +22,18 @@ exports[`MovePageModal should render 1`] = `
           "pages": Array [
             Object {
               "id": "1.1",
+              "plaintextTitle": "Page 1.1",
               "position": 0,
               "title": "Page 1.1",
             },
             Object {
               "id": "1.2",
+              "plaintextTitle": "Page 1.2",
               "position": 1,
               "title": "Page 1.2",
             },
           ],
+          "plaintextTitle": "Section 1",
           "position": 0,
           "title": "Section 1",
         },
@@ -38,15 +42,18 @@ exports[`MovePageModal should render 1`] = `
           "pages": Array [
             Object {
               "id": "2.1",
+              "plaintextTitle": "Page 2.1",
               "position": 0,
               "title": "Page 2.1",
             },
             Object {
               "id": "2.2",
+              "plaintextTitle": "Page 2.2",
               "position": 1,
               "title": "Page 2.2",
             },
           ],
+          "plaintextTitle": "Section 2",
           "position": 1,
           "title": "Section 2",
         },
@@ -109,11 +116,13 @@ exports[`MovePageModal should render 1`] = `
       Array [
         Object {
           "id": "1.1",
+          "plaintextTitle": "Page 1.1",
           "position": 0,
           "title": "Page 1.1",
         },
         Object {
           "id": "1.2",
+          "plaintextTitle": "Page 1.2",
           "position": 1,
           "title": "Page 1.2",
         },
@@ -122,6 +131,7 @@ exports[`MovePageModal should render 1`] = `
     page={
       Object {
         "id": "1.1",
+        "plaintextTitle": "Page 1.1",
         "position": 0,
         "title": "Page 1.1",
       }
@@ -135,15 +145,18 @@ exports[`MovePageModal should render 1`] = `
             "pages": Array [
               Object {
                 "id": "1.1",
+                "plaintextTitle": "Page 1.1",
                 "position": 0,
                 "title": "Page 1.1",
               },
               Object {
                 "id": "1.2",
+                "plaintextTitle": "Page 1.2",
                 "position": 1,
                 "title": "Page 1.2",
               },
             ],
+            "plaintextTitle": "Section 1",
             "position": 0,
             "title": "Section 1",
           },
@@ -152,15 +165,18 @@ exports[`MovePageModal should render 1`] = `
             "pages": Array [
               Object {
                 "id": "2.1",
+                "plaintextTitle": "Page 2.1",
                 "position": 0,
                 "title": "Page 2.1",
               },
               Object {
                 "id": "2.2",
+                "plaintextTitle": "Page 2.2",
                 "position": 1,
                 "title": "Page 2.2",
               },
             ],
+            "plaintextTitle": "Section 2",
             "position": 1,
             "title": "Section 2",
           },
@@ -171,6 +187,7 @@ exports[`MovePageModal should render 1`] = `
     selected={
       Object {
         "id": "1.1",
+        "plaintextTitle": "Page 1.1",
         "position": 0,
         "title": "Page 1.1",
       }

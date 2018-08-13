@@ -42,12 +42,14 @@ const moveSectionMock = {
                 __typename: "QuestionPage",
                 id: "3",
                 title: "bar",
+                plaintextTitle: "bar",
                 position: 0
               },
               {
                 __typename: "QuestionPage",
                 id: "4",
                 title: "blah",
+                plaintextTitle: "blah",
                 position: 1
               }
             ],
@@ -70,12 +72,14 @@ const moveSectionMock = {
                 __typename: "QuestionPage",
                 id: "5",
                 title: "bar",
+                plaintextTitle: "bar",
                 position: 0
               },
               {
                 __typename: "QuestionPage",
                 id: "6",
                 title: "blah",
+                plaintextTitle: "blah",
                 position: 1
               }
             ],

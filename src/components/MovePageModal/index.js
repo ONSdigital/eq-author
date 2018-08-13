@@ -7,7 +7,6 @@ import PositionModal from "components/PositionModal";
 import ItemSelectModal from "components/ItemSelectModal";
 import ItemSelect, { Option } from "components/ItemSelectModal/ItemSelect";
 import { find, uniqueId } from "lodash";
-import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
 
 import { colors, radius } from "constants/theme";
@@ -130,7 +129,7 @@ class MovePageModal extends React.Component {
         >
           {questionnaire.sections.map(section => (
             <Option key={section.id} value={section.id}>
-              {getTextFromHTML(section.title) || "Untitled Section"}
+              {section.plaintextTitle || "Untitled Section"}
             </Option>
           ))}
         </ItemSelect>
@@ -148,7 +147,7 @@ class MovePageModal extends React.Component {
         <Label htmlFor={sectionButtonId}>Section</Label>
         <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
           <Truncated>
-            {getTextFromHTML(selectedSection.title) || "Untitled Section"}
+            {selectedSection.plaintextTitle || "Untitled Section"}
           </Truncated>
         </Trigger>
         {this.renderSectionSelect(selectedSection)}

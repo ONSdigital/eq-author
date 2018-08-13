@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ItemSelectModal from "components/ItemSelectModal";
 import ItemSelect, { Option } from "components/ItemSelectModal/ItemSelect";
 import { reject, uniqueId } from "lodash";
-import getTextFromHTML from "utils/getTextFromHTML";
 import Icon from "assets/icon-select.svg";
 import styled from "styled-components";
 
@@ -44,7 +43,7 @@ class PositionModal extends React.Component {
     options: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
+        plaintextTitle: PropTypes.string.isRequired,
         position: PropTypes.number.isRequired
       })
     ).isRequired,
@@ -53,7 +52,7 @@ class PositionModal extends React.Component {
     onMove: PropTypes.func.isRequired,
     selected: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      plaintextTitle: PropTypes.string.isRequired,
       position: PropTypes.number.isRequired
     }).isRequired
   };
@@ -121,7 +120,7 @@ class PositionModal extends React.Component {
         >
           {data.map((item, i) => (
             <Option key={i} value={String(i)}>
-              {getTextFromHTML(item.title) || "Untitled Page"}
+              {item.plaintextTitle || "Untitled Page"}
             </Option>
           ))}
         </ItemSelect>
