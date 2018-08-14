@@ -62,7 +62,8 @@ UncontrolledInput.defaultProps = {
 
 UncontrolledInput.propTypes = {
   id: PropTypes.string,
-  type: PropTypes.oneOf(["text", "checkbox", "radio", "number"]).isRequired,
+  type: PropTypes.oneOf(["text", "checkbox", "radio", "number", "date"])
+    .isRequired,
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool,

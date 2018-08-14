@@ -60,10 +60,11 @@ const TypeaheadMenu = ({
   highlightedIndex,
   selectedItem,
   inputValue,
-  items
+  items,
+  ...otherProps
 }) => {
   return (
-    <Menu>
+    <Menu {...otherProps}>
       <MenuList {...getMenuProps()}>
         {filterItemsByInputValue(items, inputValue).map((item, index) => (
           <MenuItem

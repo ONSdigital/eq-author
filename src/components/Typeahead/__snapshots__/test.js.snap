@@ -136,7 +136,9 @@ exports[`TypeaheadMenu should handle the currently selected item 1`] = `
 `;
 
 exports[`TypeaheadMenu should handle the menu being open 1`] = `
-<TypeaheadMenu__Menu>
+<TypeaheadMenu__Menu
+  openMenu={true}
+>
   <TypeaheadMenu__MenuList>
     <TypeaheadMenu__MenuItem
       key="apple"
