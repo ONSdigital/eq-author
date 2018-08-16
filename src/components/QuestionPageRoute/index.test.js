@@ -36,18 +36,21 @@ const movePageMock = {
             __typename: "Section",
             id: "2",
             title: "foo",
+            plaintextTitle: "foo",
             position: 0,
             pages: [
               {
                 __typename: "QuestionPage",
                 id: "3",
                 title: "bar",
+                plaintextTitle: "bar",
                 position: 0
               },
               {
                 __typename: "QuestionPage",
                 id: "4",
                 title: "blah",
+                plaintextTitle: "blah",
                 position: 1
               }
             ],

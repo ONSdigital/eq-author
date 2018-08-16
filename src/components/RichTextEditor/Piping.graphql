@@ -3,11 +3,11 @@ query GetQuestionnaire_Piping($id: ID!) {
     id
     sections {
       id
-      title
+      plaintextTitle: title(format: Plaintext)
       pages {
         ... on QuestionPage {
           id
-          title
+          plaintextTitle: title(format: Plaintext)
           answers {
             id
             label

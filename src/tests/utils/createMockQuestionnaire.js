@@ -4,6 +4,7 @@ export const buildPages = (sectionNumber, count) =>
   times(count, i => ({
     id: `${sectionNumber}.${i + 1}`,
     title: `Page ${sectionNumber}.${i + 1}`,
+    plaintextTitle: `Page ${sectionNumber}.${i + 1}`,
     position: i
   }));
 
@@ -11,6 +12,7 @@ export const buildSections = count =>
   times(count, i => ({
     id: `${i + 1}`,
     title: `Section ${i + 1}`,
+    plaintextTitle: `Section ${i + 1}`,
     pages: buildPages(i + 1, 2),
     position: i
   }));
