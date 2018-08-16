@@ -1,17 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { filter } from "graphql-anywhere";
-import { get, isEmpty } from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import { startRequest, endRequest } from "../../redux/saving/actions";
 import { connect } from "react-redux";
 
 const withSaveTracking = connect(null, { startRequest, endRequest });
 
 const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
-  const getEntityId = entity => get(entity, [entityPropName, "id"]);
   const entityIsUnset = state => isEmpty(state[entityPropName]);
-  const entityHasChanged = (nextProps, prevState) =>
-    getEntityId(prevState) !== getEntityId(nextProps);
 
   class EntityEditor extends React.Component {
     static propTypes = {
@@ -25,7 +22,7 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
     state = {};
 
     static getDerivedStateFromProps(nextProps, prevState) {
-      if (entityIsUnset(prevState) || entityHasChanged(nextProps, prevState)) {
+      if (entityIsUnset(prevState) || !isEqual(nextProps, prevState)) {
         return {
           [entityPropName]: nextProps[entityPropName]
         };

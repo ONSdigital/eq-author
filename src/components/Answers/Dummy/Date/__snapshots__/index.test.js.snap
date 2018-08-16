@@ -1,24 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dummy/Date should render 1`] = `
-<Date__Wrapper>
-  <Date__Field>
-    <Date__Label>
-      Day
-    </Date__Label>
-    <Date__Input />
-  </Date__Field>
-  <Date__SelectField>
-    <Date__Label>
-      Month
-    </Date__Label>
-    <Date__Input />
-  </Date__SelectField>
-  <Date__Field>
-    <Date__Label>
-      Year
-    </Date__Label>
-    <Date__Input />
-  </Date__Field>
-</Date__Wrapper>
+<Date__Wrapper
+  data-test="dummy-date"
+/>
 `;

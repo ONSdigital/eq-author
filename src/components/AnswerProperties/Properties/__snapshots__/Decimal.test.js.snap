@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Decimal Property should render 1`] = `
+<Number
+  id="1"
+  max={6}
+  min={0}
+  name="1"
+  onChange={[Function]}
+  step={1}
+  value={2}
+/>
+`;

@@ -1,7 +1,7 @@
 import React from "react";
-import { Input } from "components/Forms";
+import { Input, Select } from "components/Forms";
 import { HiddenInput } from "components/ToggleSwitch";
-import { NUMBER } from "constants/answer-types";
+import { NUMBER, DATE } from "constants/answer-types";
 
 import AnswerProperties from "components/AnswerProperties";
 import { shallow, mount } from "enzyme";
@@ -13,11 +13,8 @@ let handleChange;
 
 let answerProperties;
 
-const answer = {
+let answer = {
   id: "1",
-  index: "0",
-  title: "answer-title",
-  description: "answer-description",
   type: NUMBER,
   properties: {
     required: true,
@@ -31,13 +28,14 @@ describe("Answer Properties", () => {
     handleSubmit = jest.fn();
     handleChange = jest.fn();
 
-    answerProperties = () => (
+    answerProperties = (props = {}) => (
       <AnswerProperties
         answer={answer}
         onUpdate={handleUpdate}
         loading={false}
         onSubmit={handleSubmit}
         onUpdateAnswer={handleChange}
+        {...props}
       />
     );
 
@@ -49,11 +47,9 @@ describe("Answer Properties", () => {
   });
 
   describe("behaviour", () => {
-    beforeEach(() => {
-      wrapper = mount(answerProperties());
-    });
-
     it("should handle change event for 'Required' toggle input", () => {
+      wrapper = mount(answerProperties());
+
       wrapper
         .find(HiddenInput)
         .simulate("change", { target: { value: false } });
@@ -67,6 +63,8 @@ describe("Answer Properties", () => {
     });
 
     it("should handle change event for 'Decimals' number input", () => {
+      wrapper = mount(answerProperties());
+
       wrapper
         .find(Input)
         .at(1)
@@ -76,6 +74,30 @@ describe("Answer Properties", () => {
         properties: {
           required: true,
           decimals: 3
+        }
+      });
+    });
+
+    it("should handle change event for 'Date Format' number input", () => {
+      wrapper = mount(
+        answerProperties({
+          answer: {
+            id: "1",
+            type: DATE,
+            properties: {
+              required: true,
+              format: "dd/mm/yyyy"
+            }
+          }
+        })
+      );
+
+      wrapper.find(Select).simulate("change", { target: { value: "mm/yy" } });
+      expect(handleChange).toHaveBeenCalledWith({
+        id: "1",
+        properties: {
+          required: true,
+          format: "mm/yy"
         }
       });
     });

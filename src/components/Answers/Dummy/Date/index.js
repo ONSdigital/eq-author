@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import DummyTextInput from "components/Answers/Dummy/TextInput";
 
 const Field = styled.div`
   display: inline-block;
   margin-left: 1em;
-  flex: 1 1 auto;
+  width: 5em;
   pointer-events: none;
 
   &:first-of-type {
@@ -15,7 +16,7 @@ const Field = styled.div`
 `;
 
 const SelectField = styled(Field)`
-  flex: 3 3 auto;
+  width: 12em;
 `;
 
 const Input = styled(DummyTextInput)`
@@ -32,21 +33,35 @@ const Label = styled.p`
   margin: 0 0 0.5rem;
 `;
 
-const Date = () => (
-  <Wrapper>
-    <Field>
-      <Label>Day</Label>
-      <Input />
-    </Field>
-    <SelectField>
-      <Label>Month</Label>
-      <Input />
-    </SelectField>
-    <Field>
-      <Label>Year</Label>
-      <Input />
-    </Field>
-  </Wrapper>
-);
+const Date = ({ showDay, showMonth, showYear }) => {
+  return (
+    <Wrapper data-test="dummy-date">
+      {showDay && (
+        <Field data-test="dummy-date-day">
+          <Label>Day</Label>
+          <Input />
+        </Field>
+      )}
+      {showMonth && (
+        <SelectField data-test="dummy-date-month">
+          <Label>Month</Label>
+          <Input />
+        </SelectField>
+      )}
+      {showYear && (
+        <Field data-test="dummy-date-year">
+          <Label>Year</Label>
+          <Input />
+        </Field>
+      )}
+    </Wrapper>
+  );
+};
 
 export default Date;
+
+Date.propTypes = {
+  showDay: PropTypes.bool,
+  showMonth: PropTypes.bool,
+  showYear: PropTypes.bool
+};

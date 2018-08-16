@@ -102,7 +102,7 @@ describe("withEntityEditor", () => {
     expect(wrapper.state("entity")).toEqual(newEntity);
   });
 
-  it("should not update state when new entity with same id passed via props", () => {
+  it("should update state when new entity with same id passed via props", () => {
     const newEntity = {
       id: "1",
       title: "bar",
@@ -111,7 +111,7 @@ describe("withEntityEditor", () => {
 
     wrapper.setProps({ entity: newEntity });
 
-    expect(wrapper.state("entity")).toEqual(entity);
+    expect(wrapper.state("entity")).toEqual(newEntity);
   });
 
   it("should only update when state is dirty", () => {
