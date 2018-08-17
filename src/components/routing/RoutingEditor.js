@@ -84,20 +84,6 @@ class RoutingEditor extends React.Component {
       : onDeleteRoutingRuleSet(routingRuleSet.id, currentPage.id);
   };
 
-  renderRoutingUnavailable() {
-    return (
-      <Transition key="routing-unavailable" exit={false}>
-        <RoutingRuleSetMsg
-          title="Routing not possible from this page"
-          data-test="routing-unavailable-msg"
-        >
-          You can only route within a section, routing from the last page in a
-          section is not supported.
-        </RoutingRuleSetMsg>
-      </Transition>
-    );
-  }
-
   renderEmptyRuleSet() {
     const { onAddRoutingRuleSet } = this.props;
     return (
@@ -151,7 +137,7 @@ class RoutingEditor extends React.Component {
   }
 
   render() {
-    const { currentPage, availableRoutingDestinations } = this.props;
+    const { currentPage } = this.props;
 
     // when new section is added, this component re-renders before
     // the redirect, causing currentPage to be undefined/null
@@ -163,9 +149,7 @@ class RoutingEditor extends React.Component {
 
     let content;
 
-    if (isEmpty(availableRoutingDestinations.questionPages)) {
-      content = this.renderRoutingUnavailable();
-    } else if (routingRuleSet) {
+    if (routingRuleSet) {
       content = this.renderRoutingRuleSet();
     } else {
       content = this.renderEmptyRuleSet();

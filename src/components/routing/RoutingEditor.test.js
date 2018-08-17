@@ -117,20 +117,6 @@ describe("RoutingEditor", () => {
       expect(wrapper).toMatchSnapshot();
     });
 
-    it("should not allow adding a rule set on last page of section", () => {
-      wrapper = createWrapper({
-        ...props,
-        availableRoutingDestinations: {
-          ...availableRoutingDestinations,
-          questionPages: []
-        }
-      });
-
-      expect(
-        wrapper.find("[data-test='routing-unavailable-msg']")
-      ).toHaveLength(1);
-    });
-
     it("should allow a rule set to be added", () => {
       wrapper
         .find("[data-test='routing-rule-set-empty-msg']")

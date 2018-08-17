@@ -47,14 +47,33 @@ const toOption = defaultTitle => entity => ({
 });
 
 class RoutingRuleDestinationSelector extends React.Component {
-  groupDestinations({ questionPages }) {
+  groupDestinations({ questionPages, sections, logicalDestinations }) {
     const pagesGroup = {
       label: "Questions in this section",
       id: "questions",
       options: questionPages.map(toOption("Page Title"))
     };
 
-    return [pagesGroup].filter(group => group.options.length);
+    const sectionGroup = {
+      label: "Sections in this questionnaire",
+      id: "sections",
+      options: sections.map(toOption("Section Title"))
+    };
+
+    const logicalGroup = {
+      label: "End of Questionnaire",
+      id: "endOfQuestionnaire",
+      options: [
+        {
+          label: "End of Questionnaire",
+          value: toLogicalDestination("EndOfQuestionnaire")
+        }
+      ]
+    };
+
+    return [pagesGroup, sectionGroup, logicalGroup].filter(
+      group => group.options.length
+    );
   }
 
   convertValueToDestination(value) {
