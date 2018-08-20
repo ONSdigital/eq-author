@@ -48,7 +48,7 @@ exports[`QuestionnaireDesignPage should render 1`] = `
       fillHeight={true}
     >
       <Column
-        cols={2}
+        cols={3}
         gutters={false}
       >
         <withRouter(Apollo(Apollo(UnwrappedNavigationSidebar)))

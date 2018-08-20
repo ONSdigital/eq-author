@@ -82,7 +82,7 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
       <BaseLayout questionnaire={questionnaire}>
         <Titled title={this.getTitle}>
           <Grid>
-            <Column cols={2} gutters={false}>
+            <Column cols={3} gutters={false}>
               <NavigationSidebar
                 data-test="side-nav"
                 loading={loading}
