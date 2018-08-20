@@ -75,7 +75,10 @@ const RemoveButton = styled(DeleteButton)`
   right: 2px;
 `;
 
-const firstAnswerIsValid = flow(first, isAnswerValidForRouting);
+const firstAnswerIsValid = flow(
+  first,
+  isAnswerValidForRouting
+);
 const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
 
 const convertToGroups = sections =>
@@ -106,7 +109,9 @@ const renderUnsupportedAnswer = answer => (
     <Alert data-test="invalid-answer-type-msg">
       <AlertTitle>Routing is not available for this type of answer</AlertTitle>
       <AlertText>
-        You cannot route on &lsquo;{lowerCase(answer.type)}&rsquo; answers.
+        You cannot route on &lsquo;
+        {lowerCase(answer.type)}
+        &rsquo; answers.
       </AlertText>
     </Alert>
   </Transition>

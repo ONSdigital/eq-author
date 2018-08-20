@@ -25,8 +25,7 @@ const OptionTransition = styled(CSSTransition).attrs({
     opacity: 1;
     transform: scale(1);
     transition: opacity ${timeout}ms ease-out,
-      transform ${timeout}ms
-        cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform ${timeout}ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   &.option-exit {

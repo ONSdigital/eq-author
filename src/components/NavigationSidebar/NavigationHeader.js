@@ -104,7 +104,10 @@ class NavigationHeader extends React.Component {
                 isOpen={this.state.isModalOpen}
                 onClose={this.handleModalClose}
                 questionnaire={questionnaire}
-                onSubmit={pipeP(onUpdateQuestionnaire, this.handleModalClose)}
+                onSubmit={pipeP(
+                  onUpdateQuestionnaire,
+                  this.handleModalClose
+                )}
                 confirmText="Apply"
               />
             </IconListItem>

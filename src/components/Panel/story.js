@@ -11,7 +11,7 @@ const Background = styled.span`
 
 storiesOf("Panel", module)
   .addDecorator(story => <Background>{story()}</Background>)
-  .add("Default", () =>
+  .add("Default", () => (
     <Panel>
       <p>
         Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus
@@ -21,4 +21,4 @@ storiesOf("Panel", module)
         lacinia bibendum nulla sed consectetur. Donec sed odio dui.
       </p>
     </Panel>
-  );
+  ));

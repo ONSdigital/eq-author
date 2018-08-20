@@ -115,7 +115,10 @@ const mapStateToProps = state => ({
 });
 
 export default flowRight(
-  connect(mapStateToProps, { raiseToast }),
+  connect(
+    mapStateToProps,
+    { raiseToast }
+  ),
   withQuestionnaireList,
   withCreateQuestionnaire,
   withDeleteQuestionnaire // relies on raiseToast to display undo

@@ -9,13 +9,12 @@ const Wrapper = styled.div`
   padding: 2em;
 `;
 
-const Decorator = storyFn =>
-  <Wrapper>
-    {storyFn()}
-  </Wrapper>;
+const Decorator = storyFn => <Wrapper>{storyFn()}</Wrapper>;
 
-storiesOf("Tooltip", module).addDecorator(Decorator).add("Default", () =>
-  <Tooltip content="I'm a tooltip!">
-    <Button primary>Hover me!</Button>
-  </Tooltip>
-);
+storiesOf("Tooltip", module)
+  .addDecorator(Decorator)
+  .add("Default", () => (
+    <Tooltip content="I'm a tooltip!">
+      <Button primary>Hover me!</Button>
+    </Tooltip>
+  ));

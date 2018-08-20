@@ -36,7 +36,8 @@ const MultipleChoiceAnswerOptionsSelector = ({
           title={option.label}
           checked={includes(selectedOptions, option.id)}
           onChange={({ name, value }) =>
-            onOptionSelectionChange(condition.id, name, value)}
+            onOptionSelectionChange(condition.id, name, value)
+          }
         >
           {option.label || <strong>Unlabelled option</strong>}
         </ToggleChip>

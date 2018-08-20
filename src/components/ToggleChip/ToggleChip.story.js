@@ -62,9 +62,11 @@ storiesOf("ToggleChip", module)
       </StatefulToggleChip>
       <StatefulToggleChip title="Lorem ipsum.">Lorem ipsum.</StatefulToggleChip>
       <StatefulToggleChip title="Lorem.">Lorem.</StatefulToggleChip>
-      <StatefulToggleChip title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quos
+      <StatefulToggleChip
+        title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quos
       saepe voluptatem. Ab consectetur dolore ea eaque excepturi praesentium
-      voluptate.">
+      voluptate."
+      >
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quos
         saepe voluptatem. Ab consectetur dolore ea eaque excepturi praesentium
         voluptate.

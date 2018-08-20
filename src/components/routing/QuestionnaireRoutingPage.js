@@ -117,7 +117,7 @@ export const ROUTING_QUERY = gql`
       }
     }
   }
-  
+
   ${RoutingRule.fragments.RoutingRule}
   ${RoutingRuleSet.fragments.RoutingRuleSet}
   ${RoutingCondition.fragments.RoutingCondition}
@@ -130,7 +130,10 @@ export const ROUTING_QUERY = gql`
 `;
 
 const withRouting = flowRight(
-  connect(null, { raiseToast }),
+  connect(
+    null,
+    { raiseToast }
+  ),
   withApollo,
   withCreateRoutingRuleSet,
   withCreateRoutingCondition,

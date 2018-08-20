@@ -59,8 +59,8 @@ const RowTransition = styled(CSSTransition).attrs({
   classNames: "row"
 })`
   transition: opacity ${halfTimeout}ms ease-out,
-    border-color ${props => props.timeout / 10}ms ease-in ${props =>
-  props.timeout / 10 * 9}ms;
+    border-color ${props => props.timeout / 10}ms ease-in
+      ${props => (props.timeout / 10) * 9}ms;
 
   &.row-exit {
     opacity: 0.01;
@@ -71,7 +71,7 @@ const RowTransition = styled(CSSTransition).attrs({
     height: 0;
     padding: 0;
     transition: height ${halfTimeout}ms ease-in ${halfTimeout}ms,
-    padding ${halfTimeout}ms ease-in ${halfTimeout}ms;
+      padding ${halfTimeout}ms ease-in ${halfTimeout}ms;
   }
 `;
 

@@ -38,7 +38,11 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
   };
 
   handleAddPage = e => {
-    const { onAddPage, match, data: { questionnaire } } = this.props;
+    const {
+      onAddPage,
+      match,
+      data: { questionnaire }
+    } = this.props;
     const { pageId, sectionId } = match.params;
 
     const pages = flatMap(questionnaire.sections, "pages");
@@ -48,12 +52,18 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
   };
 
   getTitle = title => {
-    const { loading, data: { questionnaire } } = this.props;
+    const {
+      loading,
+      data: { questionnaire }
+    } = this.props;
     return loading ? title : `${questionnaire.title} - ${title}`;
   };
 
   renderRedirect = () => {
-    const { loading, data: { questionnaire } } = this.props;
+    const {
+      loading,
+      data: { questionnaire }
+    } = this.props;
 
     if (loading) {
       return (
@@ -76,7 +86,11 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
   };
 
   render() {
-    const { loading, data: { questionnaire }, location } = this.props;
+    const {
+      loading,
+      data: { questionnaire },
+      location
+    } = this.props;
 
     return (
       <BaseLayout questionnaire={questionnaire}>
@@ -110,7 +124,10 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
 }
 
 const withMutations = flowRight(
-  connect(null, { raiseToast }),
+  connect(
+    null,
+    { raiseToast }
+  ),
   withCreateSection,
   withCreatePage
 );

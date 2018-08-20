@@ -77,7 +77,7 @@ const StyledModal = styled(ReactModalAdapter).attrs({
     justify-content: center;
     z-index: 9999999;
     background-color: rgba(0, 0, 0, 0.5);
-    
+
     &--after-open {
       opacity: 1;
     }

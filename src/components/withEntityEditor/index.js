@@ -5,7 +5,10 @@ import { isEmpty, isEqual } from "lodash";
 import { startRequest, endRequest } from "../../redux/saving/actions";
 import { connect } from "react-redux";
 
-const withSaveTracking = connect(null, { startRequest, endRequest });
+const withSaveTracking = connect(
+  null,
+  { startRequest, endRequest }
+);
 
 const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
   const entityIsUnset = state => isEmpty(state[entityPropName]);
@@ -105,7 +108,9 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
     }
   }
 
-  EntityEditor.displayName = `withEntityEditor(${WrappedComponent.displayName})`;
+  EntityEditor.displayName = `withEntityEditor(${
+    WrappedComponent.displayName
+  })`;
 
   return withSaveTracking(EntityEditor);
 };

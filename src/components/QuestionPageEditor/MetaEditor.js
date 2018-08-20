@@ -99,6 +99,7 @@ StatelessMetaEditor.fragments = {
   Page: pageFragment
 };
 
-export default flowRight(withApollo, withEntityEditor("page", pageFragment))(
-  StatelessMetaEditor
-);
+export default flowRight(
+  withApollo,
+  withEntityEditor("page", pageFragment)
+)(StatelessMetaEditor);

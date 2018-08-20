@@ -69,13 +69,17 @@ export class UnwrappedSectionRoute extends React.Component {
 
   handleDeleteSectionConfirm = () => {
     const { onDeleteSection, match } = this.props;
-    const { params: { sectionId } } = match;
+    const {
+      params: { sectionId }
+    } = match;
 
     this.handleCloseDeleteConfirmDialog(() => onDeleteSection(sectionId));
   };
 
   handleAddPage = () => {
-    const { params: { sectionId } } = this.props.match;
+    const {
+      params: { sectionId }
+    } = this.props.match;
     this.props.onAddPage(sectionId, 0);
   };
 
@@ -151,7 +155,10 @@ export class UnwrappedSectionRoute extends React.Component {
 }
 
 const withSectionEditing = flowRight(
-  connect(null, { raiseToast }),
+  connect(
+    null,
+    { raiseToast }
+  ),
   withApollo,
   withCreateSection,
   withUpdateSection,
