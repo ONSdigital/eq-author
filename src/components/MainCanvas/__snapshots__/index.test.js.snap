@@ -2,7 +2,7 @@
 
 exports[`MainCanvas should render 1`] = `
 .c0 {
-  max-width: 50em;
+  max-width: 42em;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1em;
