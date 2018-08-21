@@ -70,6 +70,7 @@ export const ToastArea = ({
                   {toast.message}
                   {toast.undoAction && (
                     <UndoButton
+                      data-test="btn-undo"
                       onClick={function() {
                         undoToast(
                           id,

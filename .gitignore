@@ -27,4 +27,3 @@ public/status.json
 .env.*local
 cypress/videos/
 cypress/screenshots/
-cypress/fixtures

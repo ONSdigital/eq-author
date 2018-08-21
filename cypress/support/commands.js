@@ -1,8 +1,34 @@
 import { setQuestionnaireSettings, testId } from "../utils";
 
-Cypress.Commands.add("login", () => {
-  cy.visit("/");
-  cy.contains("Sign in as Guest").click();
+Cypress.Commands.add("login", options => {
+  const payload = Object.assign(
+    {
+      displayName: "Cypress",
+      email: "cypresstest@ons.gov.uk",
+      photoURL: "https://avatars0.githubusercontent.com/u/8908513?s=64"
+    },
+    options
+  );
+  cy
+    .window()
+    .its("__store__")
+    .then(store => {
+      store.dispatch({
+        type: "SIGN_IN_USER",
+        payload
+      });
+    });
+});
+
+Cypress.Commands.add("logout", () => {
+  cy
+    .window()
+    .its("__store__")
+    .then(store => {
+      store.dispatch({
+        type: "SIGN_OUT_USER"
+      });
+    });
 });
 
 Cypress.Commands.add("createQuestionnaire", title => {
@@ -22,6 +48,37 @@ Cypress.Commands.add("deleteQuestionnaire", title => {
       });
   });
 });
+
+Cypress.Commands.add("visitStubbed", function(url, operations = {}) {
+  cy.visit(url, {
+    onBeforeLoad: win => {
+      cy.stub(win, "fetch", serverStub).withArgs("/graphql");
+    }
+  });
+
+  function serverStub(_, req) {
+    const { operationName } = JSON.parse(req.body);
+
+    const resultStub = operations[operationName];
+    if (resultStub) {
+      return Promise.resolve(responseStub(resultStub));
+    }
+    console.log(`${operationName} has not been stubbed`);
+    return Promise.reject(new Error(`${operationName} has not been stubbed`));
+  }
+});
+
+function responseStub(result) {
+  return {
+    json() {
+      return Promise.resolve(result);
+    },
+    text() {
+      return Promise.resolve(JSON.stringify(result));
+    },
+    ok: true
+  };
+}
 //
 //
 // -- This is a child command --

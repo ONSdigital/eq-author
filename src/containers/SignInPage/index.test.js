@@ -1,7 +1,6 @@
 import React from "react";
 import { UnconnectedSignInPage as SignInPage, mapStateToProps } from "./index";
 import { shallow } from "enzyme";
-import GuestSignInForm from "components/SignInForm/GuestSignInForm";
 
 describe("SignInPage", () => {
   describe("Component", () => {
@@ -57,30 +56,6 @@ describe("SignInPage", () => {
         });
 
         expect(wrapper).toMatchSnapshot();
-      });
-    });
-
-    describe("when unauthenticated", () => {
-      it("should render the sign in form", () => {
-        const wrapper = render({
-          verifiedAuthStatus: true
-        });
-
-        expect(wrapper).toMatchSnapshot();
-      });
-    });
-
-    describe("events", () => {
-      it("should call signInUser when signing in", () => {
-        const handleSignInUser = jest.fn();
-        const wrapper = render({
-          verifiedAuthStatus: true,
-          signInUser: handleSignInUser
-        });
-
-        wrapper.find(GuestSignInForm).simulate("signIn");
-
-        expect(handleSignInUser).toHaveBeenCalled();
       });
     });
 

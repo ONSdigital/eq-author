@@ -6,7 +6,7 @@ import {
   buildMultipleChoiceAnswer,
   testId,
   selectOptionByLabel
-} from "../utils";
+} from "../../utils";
 
 let title;
 
@@ -25,6 +25,7 @@ const navigateToRoutingTab = () =>
 
 describe("Routing", () => {
   beforeEach(() => {
+    cy.visit("/");
     cy.login();
     // delete the previous questionnaire if it exists
     title && cy.deleteQuestionnaire(title);

@@ -5,19 +5,21 @@ import {
   addQuestionnaire,
   findByLabel,
   removeAnswer
-} from "../utils";
+} from "../../utils";
 
 import {
   TEXTFIELD,
   NUMBER,
   CURRENCY,
   TEXTAREA
-} from "../../src/constants/answer-types";
+} from "../../../src/constants/answer-types";
 
+const questionnaireTitle = "Answer Properties Question Test";
 describe("Answer Properties", () => {
   it("Can create a questionnaire", () => {
+    cy.visit("/");
     cy.login();
-    addQuestionnaire("Answer Properties Question Test");
+    addQuestionnaire(questionnaireTitle);
   });
   describe("Title", () => {
     it("Should show answer type as uppercase text", () => {
@@ -226,5 +228,9 @@ describe("Answer Properties", () => {
         removeAnswer();
       });
     });
+  });
+
+  after(() => {
+    cy.deleteQuestionnaire(questionnaireTitle);
   });
 });

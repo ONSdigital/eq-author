@@ -39,6 +39,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__Collapsible>
             <TruncatedQuestionnaireLink
+              data-test="anchor-questionnaire-title"
               questionnaire={
                 Object {
                   "createdAt": "2017/01/02",
@@ -88,6 +89,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__Collapsible>
             <IconButtonDelete
+              data-test="btn-delete-questionnaire"
               hideText={true}
               onClick={[Function]}
             />
@@ -105,6 +107,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__Collapsible>
             <TruncatedQuestionnaireLink
+              data-test="anchor-questionnaire-title"
               questionnaire={
                 Object {
                   "createdAt": "2017/03/04",
@@ -154,6 +157,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__Collapsible>
             <IconButtonDelete
+              data-test="btn-delete-questionnaire"
               hideText={true}
               onClick={[Function]}
             />

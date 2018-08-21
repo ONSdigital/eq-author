@@ -103,6 +103,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
               <TD>
                 <Collapsible>
                   <TruncatedQuestionnaireLink
+                    data-test="anchor-questionnaire-title"
                     questionnaire={questionnaire}
                     title={questionnaire.title}
                   >
@@ -126,6 +127,7 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
                 <Collapsible>
                   <IconButtonDelete
                     hideText
+                    data-test="btn-delete-questionnaire"
                     onClick={partial(onDeleteQuestionnaire, questionnaire.id)}
                   />
                 </Collapsible>
