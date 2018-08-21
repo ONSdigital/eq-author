@@ -12,8 +12,7 @@ import authReducer from "redux/auth/reducer";
 
 let auth;
 
-/* istanbul ignore next */
-if (window.Cypress && !window.Cypress) {
+if (process.env.REACT_APP_ENABLE_AUTH === "true") {
   auth = require("auth").default;
 } else {
   auth = require("auth/fakeAuth").default;
