@@ -51,7 +51,12 @@ const numberTitle = title => index =>
   index > 0 ? `${title} ${index + 1}` : title;
 
 const getTitle = ({ answer, answer: { type } }) =>
-  flow(filterByType(type), findIndexById(answer), numberTitle(type), toUpper);
+  flow(
+    filterByType(type),
+    findIndexById(answer),
+    numberTitle(type),
+    toUpper
+  );
 
 class PropertiesPanel extends React.Component {
   static propTypes = {

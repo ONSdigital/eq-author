@@ -11,15 +11,11 @@ const Background = styled.div`
 `;
 
 storiesOf("DeleteButton", module)
-  .addDecorator(story =>
-    <Background>
-      {story()}
-    </Background>
-  )
+  .addDecorator(story => <Background>{story()}</Background>)
   .add("Small", () => <DeleteButton size="small" onClick={action("clicked")} />)
-  .add("Medium", () =>
+  .add("Medium", () => (
     <DeleteButton size="medium" onClick={action("clicked")} />
-  )
-  .add("Large", () =>
+  ))
+  .add("Large", () => (
     <DeleteButton size="large" onClick={action("clicked")} />
-  );
+  ));

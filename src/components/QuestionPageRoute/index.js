@@ -76,13 +76,18 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 
   handleDeletePageConfirm = () => {
     const { onDeletePage, match } = this.props;
-    const { params: { pageId, sectionId } } = match;
+    const {
+      params: { pageId, sectionId }
+    } = match;
 
     this.handleCloseDeleteConfirmDialog(() => onDeletePage(sectionId, pageId));
   };
 
   handleAddPage = () => {
-    const { match: { params }, data: { questionPage } } = this.props;
+    const {
+      match: { params },
+      data: { questionPage }
+    } = this.props;
 
     this.props.onAddPage(params.sectionId, questionPage.position + 1);
   };
@@ -165,7 +170,10 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 }
 
 const withQuestionPageEditing = flowRight(
-  connect(null, { raiseToast }),
+  connect(
+    null,
+    { raiseToast }
+  ),
   withApollo,
   withMovePage,
   withCreatePage,

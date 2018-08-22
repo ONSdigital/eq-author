@@ -146,4 +146,7 @@ const mapStateToProps = (state, ownProps) => ({
   activeTabId: state.tabs[ownProps.id]
 });
 
-export default connect(mapStateToProps, { gotoTab })(UnconnectedModalWithNav);
+export default connect(
+  mapStateToProps,
+  { gotoTab }
+)(UnconnectedModalWithNav);

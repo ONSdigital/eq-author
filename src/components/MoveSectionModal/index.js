@@ -28,7 +28,10 @@ class MoveSectionModal extends React.Component {
   };
 
   render() {
-    const { questionnaire: { sections }, section } = this.props;
+    const {
+      questionnaire: { sections },
+      section
+    } = this.props;
 
     return (
       <MoveModal title={"Move section"} {...this.props}>

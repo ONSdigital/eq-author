@@ -174,6 +174,7 @@ const mapStateToProps = state => ({
   user: getUser(state)
 });
 
-export default connect(mapStateToProps, { signOutUser, raiseToast })(
-  UnconnectedHeader
-);
+export default connect(
+  mapStateToProps,
+  { signOutUser, raiseToast }
+)(UnconnectedHeader);
