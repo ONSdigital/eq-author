@@ -25,7 +25,7 @@ const Margin = styled.div`
 
 const EditorLayout = ({ children, onAddPage, page, ...otherProps }) => (
   <Grid {...otherProps}>
-    <Column gutters={false}>
+    <Column cols={9} gutters={false}>
       <ScrollPane permanentScrollBar>
         <Margin>
           <MainCanvas>
@@ -47,7 +47,7 @@ const EditorLayout = ({ children, onAddPage, page, ...otherProps }) => (
         )}
       </ScrollPane>
     </Column>
-    <Column cols={2} gutters={false}>
+    <Column cols={3} gutters={false}>
       <PropertiesPanel page={page} />
     </Column>
   </Grid>
