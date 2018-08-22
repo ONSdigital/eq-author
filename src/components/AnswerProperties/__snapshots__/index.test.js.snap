@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Answer Properties should render 1`] = `
+<React.Fragment>
+  <InlineField
+    id="answer-1-required"
+    label="Required"
+  >
+    <Required
+      handleChange={[Function]}
+      id="answer-1-required"
+      value={true}
+    />
+  </InlineField>
+  <InlineField
+    id="answer-1-decimals"
+    label="Decimals"
+  >
+    <Decimal
+      handleChange={[Function]}
+      id="answer-1-decimals"
+      value={2}
+    />
+  </InlineField>
+</React.Fragment>
+`;
