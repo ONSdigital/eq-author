@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import DummyTextInput from "components/Answers/Dummy/TextInput";
+import placeholder from "./placeholder.svg";
 
 const Field = styled.div`
   display: inline-block;
@@ -21,6 +22,8 @@ const SelectField = styled(Field)`
 
 const Input = styled(DummyTextInput)`
   width: 100%;
+  background: transparent url(${placeholder}) no-repeat;
+  background-size: 100% 100%;
 `;
 
 const Wrapper = styled.div`
