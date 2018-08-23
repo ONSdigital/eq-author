@@ -51,6 +51,44 @@ describe("withEntityEditor", () => {
     wrapper = render();
   });
 
+  it("should set state with prop values", () => {
+    const newProps = {
+      entity: {
+        id: 1,
+        title: "new title",
+        __typename: "Foo"
+      }
+    };
+    wrapper.setProps(newProps);
+    expect(wrapper.state("entity")).toEqual(newProps.entity);
+  });
+
+  it("should set state only when necessary with getDerivedStateFromProps", () => {
+    const newProps = { entity: { id: 1, title: "new title" } };
+    const currentState = { entity: { id: 1, title: "foo" } };
+
+    expect(
+      ComponentWithEntity.WrappedComponent.getDerivedStateFromProps(
+        newProps,
+        currentState
+      )
+    ).toEqual(newProps);
+
+    expect(
+      ComponentWithEntity.WrappedComponent.getDerivedStateFromProps(
+        currentState,
+        currentState
+      )
+    ).toBeNull();
+  });
+
+  it("should correctly un-mount component", () => {
+    const instance = wrapper.instance();
+    expect(instance.unmounted).toBeFalsy();
+    wrapper.unmount();
+    expect(instance.unmounted).toBeTruthy();
+  });
+
   it("should have an appropriate displayName", () => {
     expect(ComponentWithEntity.displayName).toBe(
       "Connect(withEntityEditor(Component))"
@@ -65,13 +103,23 @@ describe("withEntityEditor", () => {
     expect(wrapper.dive().prop("entity")).toEqual(entity);
   });
 
-  it("should update state onChange", () => {
+  it("should update state onChange when new values are different", () => {
     const newValue = "foo1";
     wrapper.simulate("change", { name: "title", value: newValue });
 
     expect(wrapper.state("entity")).toEqual(
       expect.objectContaining({ title: newValue })
     );
+    expect(wrapper.state("isDirty")).toBeTruthy();
+  });
+
+  it("should not update state onChange when new values are the same", () => {
+    const newValue = "foo";
+    wrapper.simulate("change", { name: "title", value: newValue });
+    expect(wrapper.state("entity")).toEqual(
+      expect.objectContaining({ title: "foo" })
+    );
+    expect(wrapper.state("isDirty")).toBeFalsy();
   });
 
   it("should pass filtered entity to callback onUpdate", () => {

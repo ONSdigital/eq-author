@@ -43,6 +43,13 @@ describe("components/RichTextEditor", function() {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should correctly un-mount component", () => {
+    const instance = wrapper.instance();
+    expect(instance.unmounted).toBeFalsy();
+    wrapper.unmount();
+    expect(instance.unmounted).toBeTruthy();
+  });
+
   it("should render existing content", () => {
     wrapper = shallow(<RichTextEditor {...props} value={content} />);
     expect(wrapper).toMatchSnapshot();

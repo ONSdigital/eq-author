@@ -166,6 +166,10 @@ class RichTextEditor extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.unmounted = true;
+  }
+
   updatePipedValues() {
     const { editorState } = this.state;
     const { fetchAnswers } = this.props;
@@ -263,7 +267,7 @@ class RichTextEditor extends React.Component {
     });
 
     this.timeoutID = setTimeout(() => {
-      if (this.state.focused) {
+      if (!this.unmounted && this.state.focused) {
         this.setState({ focused: false });
       }
     }, 0);
@@ -272,7 +276,7 @@ class RichTextEditor extends React.Component {
   handleFocus = e => {
     clearTimeout(this.timeoutID);
 
-    if (!this.state.focused) {
+    if (!this.unmounted && !this.state.focused) {
       this.setState({ focused: true });
     }
   };
