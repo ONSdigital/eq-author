@@ -45,8 +45,6 @@ describe("Routing", () => {
 
     navigateToRoutingTab();
 
-    cy.get(testId("routing-unavailable-msg"));
-
     addQuestionPage("Question 2");
 
     buildMultipleChoiceAnswer(["D", "E", "F"]);

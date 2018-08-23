@@ -46,6 +46,30 @@ exports[`components/RoutingRuleDestinationSelector should render 1`] = `
                 },
               ],
             },
+            Object {
+              "id": "sections",
+              "label": "Sections in this questionnaire",
+              "options": Array [
+                Object {
+                  "label": "Section Title",
+                  "value": "{\\"absoluteDestination\\":{\\"destinationType\\":\\"Section\\",\\"destinationId\\":\\"3\\"}}",
+                },
+                Object {
+                  "label": "Section Title",
+                  "value": "{\\"absoluteDestination\\":{\\"destinationType\\":\\"Section\\",\\"destinationId\\":\\"4\\"}}",
+                },
+              ],
+            },
+            Object {
+              "id": "endOfQuestionnaire",
+              "label": "End of Questionnaire",
+              "options": Array [
+                Object {
+                  "label": "End of Questionnaire",
+                  "value": "{\\"logicalDestination\\":{\\"destinationType\\":\\"EndOfQuestionnaire\\"}}",
+                },
+              ],
+            },
           ]
         }
         id="test-select"
