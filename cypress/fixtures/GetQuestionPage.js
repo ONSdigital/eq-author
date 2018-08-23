@@ -6,6 +6,7 @@ export default {
       description: "",
       position: 0,
       guidance: null,
+      plaintextTitle: "",
       answers: [],
       __typename: "QuestionPage"
     }
