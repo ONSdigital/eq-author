@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import TableTypeaheadInput from "components/DataTable/Controls/TableTypeaheadInput";
+import { TableTypeaheadInput } from "components/DataTable/Controls";
 
 const createWrapper = (props = {}, render = shallow) => {
   return render(<TableTypeaheadInput {...props} />);

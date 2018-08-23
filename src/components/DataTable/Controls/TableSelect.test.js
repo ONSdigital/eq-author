@@ -1,21 +1,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { TableTypeaheadMenu } from "components/DataTable/Controls";
+import { TableSelect } from "components/DataTable/Controls";
 
 const createWrapper = (props = {}, render = shallow) => {
-  return render(<TableTypeaheadMenu {...props} />);
+  return render(<TableSelect {...props} />);
 };
 
-describe("TableTypeaheadMenu", () => {
+describe("TableSelect", () => {
   let props;
   let wrapper;
 
   beforeEach(() => {
-    props = {
-      getMenuProps: jest.fn(),
-      getItemProps: jest.fn()
-    };
+    props = {};
 
     wrapper = createWrapper(props, shallow);
   });
