@@ -12,6 +12,7 @@ import { colors } from "constants/theme";
 import SidebarButton, { Title, Detail } from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
 import MinValueValidation from "./MinValue";
+import MaxValueValidation from "./MaxValue";
 
 import ValidationContext from "./ValidationContext";
 
@@ -28,6 +29,11 @@ const validationTypes = [
     id: "min-value",
     title: "Min Value",
     component: <MinValueValidation />
+  },
+  {
+    id: "max-value",
+    title: "Max Value",
+    component: <MaxValueValidation />
   }
 ];
 
@@ -73,6 +79,11 @@ export class UnconnectedAnswerValidation extends React.Component {
             value: get(answer, "validation.minValue.custom"),
             enabled: get(answer, "validation.minValue.enabled")
           })}
+          {this.renderButton({
+            ...find(validationTypes, { id: "max-value" }),
+            value: get(answer, "validation.maxValue.custom"),
+            enabled: get(answer, "validation.maxValue.enabled")
+          })}
           <ModalWithNav
             id={this.modalId}
             onClose={this.handleModalClose}
@@ -95,6 +106,7 @@ const mapStateToProps = state => ({
   tabsState: state.tabs
 });
 
-export default connect(mapStateToProps, { gotoTab })(
-  UnconnectedAnswerValidation
-);
+export default connect(
+  mapStateToProps,
+  { gotoTab }
+)(UnconnectedAnswerValidation);

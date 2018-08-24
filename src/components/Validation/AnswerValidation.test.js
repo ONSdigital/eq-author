@@ -5,11 +5,12 @@ import SidebarButton from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
 import { UnconnectedAnswerValidation } from "components/Validation/AnswerValidation";
 
-describe("AnswerValidation", () => {
-  let wrapper, props;
+const render = (props, render = shallow) => {
+  return render(<UnconnectedAnswerValidation {...props} />);
+};
 
-  const render = (props = {}) =>
-    shallow(<UnconnectedAnswerValidation {...props} />);
+describe("AnswerValidation", () => {
+  let props;
 
   beforeEach(() => {
     props = {
@@ -19,25 +20,34 @@ describe("AnswerValidation", () => {
       },
       gotoTab: jest.fn()
     };
-
-    wrapper = render(props);
   });
 
   it("should render", () => {
-    expect(wrapper).toMatchSnapshot();
+    expect(render(props)).toMatchSnapshot();
+  });
+
+  it("should not render when answer type invalid", () => {
+    props.answer.type = "Radio";
+    expect(render(props)).toMatchSnapshot();
   });
 
   it("should correctly initialise state", () => {
+    const wrapper = render(props);
     expect(wrapper.state("modalIsOpen")).toEqual(false);
   });
 
   it("should correctly update state when opening a modal", () => {
-    wrapper.find(SidebarButton).simulate("click");
+    const wrapper = render(props);
+    wrapper
+      .find(SidebarButton)
+      .first()
+      .simulate("click");
     expect(wrapper.state("modalIsOpen")).toEqual(true);
   });
 
   it("should correctly update state when closing a modal", () => {
-    wrapper.find(ModalWithNav).simulate("click");
+    const wrapper = render(props);
+    wrapper.find(ModalWithNav).simulate("close");
     expect(wrapper.state("modalIsOpen")).toEqual(false);
   });
 });

@@ -1,15 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { MinValue } from "components/Validation/MinValue";
+import { MaxValue } from "components/Validation/MaxValue";
 
 import { byTestAttr } from "tests/utils/selectors";
 
 const createWrapper = (props, render = shallow) => {
-  return render(<MinValue {...props} />);
+  return render(<MaxValue {...props} />);
 };
 
-describe("MinValue", () => {
+describe("MaxValue", () => {
   let onUpdateAnswerValidation;
   let onToggleValidationRule;
   let props;
@@ -19,7 +19,7 @@ describe("MinValue", () => {
     onToggleValidationRule = jest.fn();
 
     props = {
-      minValue: {
+      maxValue: {
         id: "1",
         enabled: true,
         custom: true,
@@ -36,7 +36,7 @@ describe("MinValue", () => {
   });
 
   it("should render with disabled content", () => {
-    props.minValue.enabled = false;
+    props.maxValue.enabled = false;
     expect(createWrapper(props)).toMatchSnapshot();
   });
 
@@ -45,66 +45,66 @@ describe("MinValue", () => {
     wrapper.simulate("toggleChange", { value: false });
 
     expect(onToggleValidationRule).toHaveBeenCalledWith({
-      id: props.minValue.id,
+      id: props.maxValue.id,
       enabled: false
     });
   });
 
-  it("should correctly handle min value changes with in range values", () => {
+  it("should correctly handle max value changes with in range values", () => {
     const wrapper = createWrapper(props);
     wrapper
-      .find(byTestAttr("min-value-input"))
+      .find(byTestAttr("max-value-input"))
       .simulate("change", { value: 1 });
 
     expect(onUpdateAnswerValidation).toHaveBeenCalledWith({
-      id: props.minValue.id,
-      minValueInput: {
-        inclusive: props.minValue.inclusive,
+      id: props.maxValue.id,
+      maxValueInput: {
+        inclusive: props.maxValue.inclusive,
         custom: 1
       }
     });
   });
 
-  it("should correctly handle min value change with empty string", () => {
+  it("should correctly handle max value change with empty string", () => {
     const wrapper = createWrapper(props);
     wrapper
-      .find(byTestAttr("min-value-input"))
+      .find(byTestAttr("max-value-input"))
       .simulate("change", { value: "" });
 
     expect(onUpdateAnswerValidation).toHaveBeenCalledWith({
-      id: props.minValue.id,
-      minValueInput: {
-        inclusive: props.minValue.inclusive,
+      id: props.maxValue.id,
+      maxValueInput: {
+        inclusive: props.maxValue.inclusive,
         custom: null
       }
     });
   });
 
-  it("should correctly handle min value change with out of range values", () => {
+  it("should correctly handle max value change with out of range values", () => {
     const wrapper = createWrapper(props);
 
-    const minValueInput = wrapper.find(byTestAttr("min-value-input"));
-    minValueInput.simulate("change", { value: 1000000000 });
+    const maxValueInput = wrapper.find(byTestAttr("max-value-input"));
+    maxValueInput.simulate("change", { value: 1000000000 });
     expect(onUpdateAnswerValidation).not.toHaveBeenCalled();
 
-    minValueInput.simulate("change", { value: -1000000000 });
+    maxValueInput.simulate("change", { value: -1000000000 });
     expect(onUpdateAnswerValidation).not.toHaveBeenCalled();
 
-    minValueInput.simulate("change", { value: 999999999 });
+    maxValueInput.simulate("change", { value: 999999999 });
     expect(onUpdateAnswerValidation).toHaveBeenCalled();
 
-    minValueInput.simulate("change", { value: -999999999 });
+    maxValueInput.simulate("change", { value: -999999999 });
     expect(onUpdateAnswerValidation).toHaveBeenCalled();
   });
 
   it("should correctly handle include change", () => {
     const wrapper = createWrapper(props);
-    wrapper.find("#min-value-include").simulate("change", { value: false });
+    wrapper.find("#max-value-include").simulate("change", { value: false });
 
     expect(onUpdateAnswerValidation).toHaveBeenCalledWith({
-      id: props.minValue.id,
-      minValueInput: {
-        custom: props.minValue.custom,
+      id: props.maxValue.id,
+      maxValueInput: {
+        custom: props.maxValue.custom,
         inclusive: false
       }
     });

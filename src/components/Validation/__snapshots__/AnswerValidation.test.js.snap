@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AnswerValidation should not render when answer type invalid 1`] = `""`;
+
 exports[`AnswerValidation should render 1`] = `
 <AnswerValidation__Container>
   <[object Object]
@@ -21,6 +23,15 @@ exports[`AnswerValidation should render 1`] = `
         Min Value
       </SidebarButton__Title>
     </SidebarButton>
+    <SidebarButton
+      data-test="sidebar-button-max-value"
+      key="max-value"
+      onClick={[Function]}
+    >
+      <SidebarButton__Title>
+        Max Value
+      </SidebarButton__Title>
+    </SidebarButton>
     <Connect(UnconnectedModalWithNav)
       id="modal-validation-1"
       isOpen={false}
@@ -30,6 +41,11 @@ exports[`AnswerValidation should render 1`] = `
             "component": <withApollo(Apollo(Apollo(MinValueWithAnswer))) />,
             "id": "min-value",
             "title": "Min Value",
+          },
+          Object {
+            "component": <withApollo(Apollo(Apollo(MaxValueWithAnswer))) />,
+            "id": "max-value",
+            "title": "Max Value",
           },
         ]
       }

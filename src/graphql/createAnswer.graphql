@@ -1,6 +1,7 @@
 #import "./fragments/answer.graphql"
 #import "./fragments/option.graphql"
 #import "./fragments/min-value-validation-rule.graphql"
+#import "./fragments/max-value-validation-rule.graphql"
 
 mutation createAnswer($input: CreateAnswerInput!) {
   createAnswer(input: $input) {
@@ -10,6 +11,9 @@ mutation createAnswer($input: CreateAnswerInput!) {
         ... on NumberValidation {
           minValue {
             ...MinValueValidationRule
+          }
+          maxValue {
+            ...MaxValueValidationRule
           }
         }
       }

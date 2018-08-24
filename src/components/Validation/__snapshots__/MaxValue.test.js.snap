@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MinValue should render with content 1`] = `
+exports[`MaxValue should render with content 1`] = `
 <ValidationView
-  data-test="min-value-view"
+  data-test="max-value-view"
   enabled={true}
   onToggleChange={[Function]}
 >
@@ -13,22 +13,22 @@ exports[`MinValue should render with content 1`] = `
     <Column
       cols={3}
     >
-      <MinValue__Title>
-        Min Value is
-      </MinValue__Title>
+      <MaxValue__Title>
+        Max Value is
+      </MaxValue__Title>
     </Column>
     <Column
       cols={12}
     >
       <FieldWithInclude
         checked={true}
-        id="min-value-include"
-        name="min-value-include"
+        id="max-value-include"
+        name="max-value-include"
         onChange={[Function]}
       >
-        <MinValue__ValueInput
-          data-test="min-value-input"
-          id="min-value"
+        <MaxValue__ValueInput
+          data-test="max-value-input"
+          id="max-value"
           list="defaultNumbers"
           max={999999999}
           min={-999999999}
@@ -42,14 +42,14 @@ exports[`MinValue should render with content 1`] = `
 </ValidationView>
 `;
 
-exports[`MinValue should render with disabled content 1`] = `
+exports[`MaxValue should render with disabled content 1`] = `
 <ValidationView
-  data-test="min-value-view"
+  data-test="max-value-view"
   enabled={false}
   onToggleChange={[Function]}
 >
   <DisabledMessage>
-    Min value is disabled
+    Max value is disabled
   </DisabledMessage>
 </ValidationView>
 `;

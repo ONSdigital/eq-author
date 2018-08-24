@@ -8,15 +8,6 @@ import FadeTransition from "components/FadeTransition";
 import ToggleSwitch from "components/ToggleSwitch";
 import { Label, Field } from "components/Forms";
 
-const DisabledMsg = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-  font-weight: bold;
-  margin-bottom: 3em;
-`;
-
 const InlineField = styled(Field)`
   display: flex;
   flex-direction: row;
@@ -35,8 +26,6 @@ const ValidationContainer = styled(Container)`
 `;
 
 class ValidationView extends Component {
-  renderDisabled = () => <DisabledMsg>Min value is disabled</DisabledMsg>;
-
   renderChildren = () => (
     <ValidationContainer>{this.props.children}</ValidationContainer>
   );
@@ -65,7 +54,7 @@ class ValidationView extends Component {
             enter
             exit={false}
           >
-            {enabled ? this.renderChildren() : this.renderDisabled()}
+            {this.renderChildren()}
           </FadeTransition>
         </TransitionGroup>
       </Container>

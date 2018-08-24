@@ -79,7 +79,9 @@ exports[`ModalWithNav should render a list of items 1`] = `
     >
       <ModalWithNav__Sidebar>
         <ModalWithNav__SidebarHeader>
-          <ModalWithNav__SidebarTitle>
+          <ModalWithNav__SidebarTitle
+            data-test="sidebar-title"
+          >
             I am a title
           </ModalWithNav__SidebarTitle>
         </ModalWithNav__SidebarHeader>
@@ -183,7 +185,9 @@ exports[`ModalWithNav should render an open modal 1`] = `
     >
       <ModalWithNav__Sidebar>
         <ModalWithNav__SidebarHeader>
-          <ModalWithNav__SidebarTitle>
+          <ModalWithNav__SidebarTitle
+            data-test="sidebar-title"
+          >
             I am a title
           </ModalWithNav__SidebarTitle>
         </ModalWithNav__SidebarHeader>
