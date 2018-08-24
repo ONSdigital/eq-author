@@ -64,8 +64,10 @@ describe("withEntityEditor", () => {
   });
 
   it("should set state only when necessary with getDerivedStateFromProps", () => {
-    const newProps = { entity: { id: 1, title: "new title" } };
-    const currentState = { entity: { id: 1, title: "foo" } };
+    const newProps = {
+      entity: { id: 1, title: "new title", __typename: "Bar" }
+    };
+    const currentState = { entity: { id: 1, title: "foo", __typename: "Foo" } };
 
     expect(
       ComponentWithEntity.WrappedComponent.getDerivedStateFromProps(
@@ -150,11 +152,26 @@ describe("withEntityEditor", () => {
     expect(wrapper.state("entity")).toEqual(newEntity);
   });
 
-  it("should update state when new entity with same id passed via props", () => {
+  it("should update state when new entity with same id of different type passed via props", () => {
     const newEntity = {
       id: "1",
       title: "bar",
       __typename: "Bar"
+    };
+
+    wrapper.setProps({ entity: newEntity });
+
+    expect(wrapper.state("entity")).toEqual(newEntity);
+  });
+
+  it("should update state when properties of entity have changed", () => {
+    const newEntity = {
+      id: "1",
+      title: "foo",
+      properties: {
+        value: "updated"
+      },
+      __typename: "Foo"
     };
 
     wrapper.setProps({ entity: newEntity });
