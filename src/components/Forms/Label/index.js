@@ -9,6 +9,7 @@ const StyledLabel = styled.label`
   font-weight: ${props => (props.bold ? "bold" : "normal")};
   vertical-align: middle;
   color: ${colors.darkGrey};
+  line-height: 1.3;
 `;
 
 const Label = ({ htmlFor, children, ...otherProps }) => (

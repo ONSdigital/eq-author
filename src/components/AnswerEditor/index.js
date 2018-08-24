@@ -129,8 +129,10 @@ AnswerEditor.fragments = {
       ...MultipleChoice
       ...DateRange
       ...Date
+      ...BasicAnswer
     }
     ${BasicAnswer.fragments.Answer}
+    ${BasicAnswer.fragments.BasicAnswer}
     ${MultipleChoiceAnswer.fragments.MultipleChoice}
     ${DateRange.fragments.DateRange}
     ${Date.fragments.Date}

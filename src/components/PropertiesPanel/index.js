@@ -6,6 +6,7 @@ import ScrollPane from "components/ScrollPane";
 import { noop, filter, findIndex, flow, toUpper } from "lodash/fp";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
+import AnswerValidation from "components/Validation/AnswerValidation";
 
 const PropertiesPane = styled.div`
   background: ${colors.white};
@@ -36,13 +37,10 @@ const PropertiesPaneBody = styled.div`
   margin: 0;
 `;
 
-const PropertiesGroup = styled.div`
-  border-bottom: 1px solid ${colors.lightGrey};
-`;
-
 const AnswerProperties = styled.div`
-  padding: 0 1em 1em;
-  border-bottom: 8px solid ${colors.lightGrey};
+  padding: 1em;
+  border-top: ${props =>
+    props.hasBorder ? `8px solid ${colors.lighterGrey}` : "none"};
 `;
 
 const filterByType = type => filter({ type });
@@ -74,25 +72,25 @@ class PropertiesPanel extends React.Component {
             {page &&
               page.answers.length > 0 && (
                 <div>
-                  <PropertiesGroup>
-                    {page.answers.map((answer, index) => (
-                      <AnswerProperties
-                        key={getIdForObject(answer)}
-                        data-test={`properties-${index}`}
+                  {page.answers.map((answer, index) => (
+                    <AnswerProperties
+                      key={getIdForObject(answer)}
+                      data-test={`properties-${index}`}
+                      hasBorder={index > 0}
+                    >
+                      <PropertiesPanelTitle
+                        data-test={`properties-title-${index}`}
                       >
-                        <PropertiesPanelTitle
-                          data-test={`properties-title-${index}`}
-                        >
-                          {getTitle({ answer })(page.answers)}
-                        </PropertiesPanelTitle>
-                        <AnswerPropertiesContainer
-                          id={getIdForObject(answer)}
-                          answer={{ ...answer, index }}
-                          onSubmit={this.handleSubmit}
-                        />
-                      </AnswerProperties>
-                    ))}
-                  </PropertiesGroup>
+                        {getTitle({ answer })(page.answers)}
+                      </PropertiesPanelTitle>
+                      <AnswerPropertiesContainer
+                        id={getIdForObject(answer)}
+                        answer={{ ...answer, index }}
+                        onSubmit={this.handleSubmit}
+                      />
+                      <AnswerValidation answer={answer} />
+                    </AnswerProperties>
+                  ))}
                 </div>
               )}
           </ScrollPane>

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnswerValidation should render 1`] = `
+<AnswerValidation__Container>
+  <[object Object]
+    value={
+      Object {
+        "answer": Object {
+          "id": "1",
+          "type": "Number",
+        },
+      }
+    }
+  >
+    <SidebarButton
+      data-test="sidebar-button-min-value"
+      key="min-value"
+      onClick={[Function]}
+    >
+      <SidebarButton__Title>
+        Min Value
+      </SidebarButton__Title>
+    </SidebarButton>
+    <Connect(UnconnectedModalWithNav)
+      id="modal-validation-1"
+      isOpen={false}
+      navItems={
+        Array [
+          Object {
+            "component": <withApollo(Apollo(Apollo(MinValueWithAnswer))) />,
+            "id": "min-value",
+            "title": "Min Value",
+          },
+        ]
+      }
+      onClose={[Function]}
+      title="Number validation"
+    />
+  </[object Object]>
+</AnswerValidation__Container>
+`;

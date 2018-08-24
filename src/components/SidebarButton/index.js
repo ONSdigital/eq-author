@@ -6,14 +6,13 @@ const SidebarButton = styled.button`
   width: 100%;
   padding: 0.75em;
   margin-bottom: 0.5em;
-
+  color: ${colors.text};
   border: none;
   border-radius: ${radius};
   background-color: ${colors.lightMediumGrey};
 
   text-align: left;
   font-size: 1em;
-
   transition: all 100ms ease-out;
 
   &:hover {
@@ -34,7 +33,10 @@ const SidebarButton = styled.button`
 export const Title = styled.span`
   display: block;
   color: ${colors.darkGrey};
-  margin-bottom: 0.5rem;
+
+  &:not(:only-child) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const Detail = styled.span`

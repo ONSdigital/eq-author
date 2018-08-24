@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tabs TabsBody should render  1`] = `
-<div
+<Tabs__TabPanel
   aria-labelledby="tab-1"
   role="tabpanel"
 >
   Children
-</div>
+</Tabs__TabPanel>
 `;
 
 exports[`Tabs TabsNav should render 1`] = `

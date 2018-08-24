@@ -39,7 +39,7 @@ exports[`ModalWithNav should override the default active tab when receiving the 
 >
   <TransitionGroup
     childFactory={[Function]}
-    component="div"
+    component={[Function]}
   >
     <FadeTransition
       enter={true}
@@ -65,6 +65,7 @@ exports[`ModalWithNav should override the default active tab when receiving the 
 
 exports[`ModalWithNav should render a list of items 1`] = `
 <ModalWithNav__Dialog
+  defaultActiveTabId="tab-3"
   isOpen={false}
   onClose={[Function]}
 >
@@ -104,7 +105,7 @@ exports[`ModalWithNav should render a list of items 1`] = `
             Euismod Ridiculus Parturient
           </TabsNavItem>
           <TabsNavItem
-            active={true}
+            active={false}
             controls="tab-3"
             data-test="tabs-nav-item"
             key="tab-3"
@@ -123,27 +124,27 @@ exports[`ModalWithNav should render a list of items 1`] = `
         <ModalWithNav__Content>
           <TabsBody
             data-test="tabs-body"
-            navItemId="tab-3"
+            navItemId="tab-1"
           >
             <TransitionGroup
               childFactory={[Function]}
-              component="div"
+              component={[Function]}
             >
               <FadeTransition
                 enter={true}
                 exit={false}
                 in={false}
-                key="tab-3"
+                key="tab-1"
                 timeout={250}
               >
                 <div
-                  id="tab-3"
+                  id="tab-1"
                 >
                   <h2>
-                    Tellus Dolor
+                    Cursus Bibendum
                   </h2>
                   <p>
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.
+                    Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
                   </p>
                 </div>
               </FadeTransition>
@@ -168,6 +169,7 @@ exports[`ModalWithNav should render a list of items 1`] = `
 
 exports[`ModalWithNav should render an open modal 1`] = `
 <ModalWithNav__Dialog
+  defaultActiveTabId="tab-3"
   isOpen={true}
   onClose={[Function]}
 >
@@ -207,7 +209,7 @@ exports[`ModalWithNav should render an open modal 1`] = `
             Euismod Ridiculus Parturient
           </TabsNavItem>
           <TabsNavItem
-            active={true}
+            active={false}
             controls="tab-3"
             data-test="tabs-nav-item"
             key="tab-3"
@@ -226,27 +228,27 @@ exports[`ModalWithNav should render an open modal 1`] = `
         <ModalWithNav__Content>
           <TabsBody
             data-test="tabs-body"
-            navItemId="tab-3"
+            navItemId="tab-1"
           >
             <TransitionGroup
               childFactory={[Function]}
-              component="div"
+              component={[Function]}
             >
               <FadeTransition
                 enter={true}
                 exit={false}
                 in={false}
-                key="tab-3"
+                key="tab-1"
                 timeout={250}
               >
                 <div
-                  id="tab-3"
+                  id="tab-1"
                 >
                   <h2>
-                    Tellus Dolor
+                    Cursus Bibendum
                   </h2>
                   <p>
-                    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.
+                    Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
                   </p>
                 </div>
               </FadeTransition>
@@ -281,7 +283,7 @@ Array [
     Cursus Bibendum
   </TabsNavItem>,
   <TabsNavItem
-    active={true}
+    active={false}
     controls="tab-2"
     data-test="tabs-nav-item"
     key="tab-2"
@@ -304,27 +306,27 @@ Array [
 exports[`ModalWithNav should use default active tab id to navigate to a tab 2`] = `
 <TabsBody
   data-test="tabs-body"
-  navItemId="tab-2"
+  navItemId="tab-1"
 >
   <TransitionGroup
     childFactory={[Function]}
-    component="div"
+    component={[Function]}
   >
     <FadeTransition
       enter={true}
       exit={false}
       in={false}
-      key="tab-2"
+      key="tab-1"
       timeout={250}
     >
       <div
-        id="tab-2"
+        id="tab-1"
       >
         <h2>
-          Euismod Ridiculus Parturient
+          Cursus Bibendum
         </h2>
         <p>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec id elit non mi porta gravida at eget metus.
+          Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
         </p>
       </div>
     </FadeTransition>

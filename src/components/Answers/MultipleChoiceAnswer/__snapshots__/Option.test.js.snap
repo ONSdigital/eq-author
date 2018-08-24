@@ -150,6 +150,7 @@ exports[`Option should render a checkbox 1`] = `
   font-weight: bold;
   vertical-align: middle;
   color: #666666;
+  line-height: 1.3;
 }
 
 .c4 {

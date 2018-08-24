@@ -42,6 +42,7 @@ class AnswerProperties extends React.Component {
       <React.Fragment>
         <InlineField id={this.getId("required", answer)} label={"Required"}>
           <Required
+            data-test="answer-properties-required-toggle"
             id={this.getId("required", answer)}
             handleChange={this.handleChange("required")}
             value={answer.properties.required}
