@@ -54,8 +54,9 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
         ...currentEntity,
         [name]: value
       };
-
-      this.setState(() => ({ [entityPropName]: entity, isDirty: true }), cb);
+      if (!this.unmounted) {
+        this.setState(() => ({ [entityPropName]: entity, isDirty: true }), cb);
+      }
     };
 
     handleUpdate = () => {
@@ -86,7 +87,9 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       e.preventDefault();
 
       this.props.onSubmit(this.getFilteredEntity()).then(() => {
-        this.setState(() => ({ isDirty: false }));
+        if (!this.unmounted) {
+          this.setState(() => ({ isDirty: false }));
+        }
       });
     };
 
