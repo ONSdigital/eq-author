@@ -11,9 +11,9 @@ describe("dashboard", () => {
 
   it("should contain button to create a questionnaire", () => {
     cy.get(testId("create-questionnaire")).click();
-    cy
-      .get(testId("questionnaire-settings-modal", "testid"))
-      .should("be.visible");
+    cy.get(testId("questionnaire-settings-modal", "testid")).should(
+      "be.visible"
+    );
   });
 
   describe("empty state", () => {
@@ -80,12 +80,24 @@ describe("dashboard", () => {
           },
           DeleteQuestionnaire: {
             data: {
-              deleteQuestionnaire: { id: "1", __typename: "Questionnaire" }
+              deleteQuestionnaire: {
+                id: "1",
+                title: "Test Questionnaire",
+                createdAt: "2018-08-01",
+                createdBy: { name: "Test user", __typename: "User" },
+                __typename: "Questionnaire"
+              }
             }
           },
           UndeleteQuestionnaire: {
             data: {
-              undeleteQuestionnaire: { id: "1", __typename: "Questionnaire" }
+              undeleteQuestionnaire: {
+                id: "1",
+                title: "Test Questionnaire",
+                createdAt: "2018-08-01",
+                createdBy: { name: "Test user", __typename: "User" },
+                __typename: "Questionnaire"
+              }
             }
           }
         });
