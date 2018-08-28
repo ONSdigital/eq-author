@@ -14,7 +14,14 @@ const Wrapper = styled.div`
 const DateRange = ({ answer, ...otherProps }) => (
   <Wrapper data-test="date-range-editor">
     {answer.childAnswers.map(answer => (
-      <Date key={answer.id} answer={answer} {...otherProps} />
+      <Date
+        key={answer.id}
+        answer={answer}
+        showDay
+        showMonth
+        showYear
+        {...otherProps}
+      />
     ))}
   </Wrapper>
 );

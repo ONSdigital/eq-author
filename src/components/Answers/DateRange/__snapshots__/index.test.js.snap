@@ -14,6 +14,9 @@ exports[`DateRange should render 1`] = `
     key="1from"
     onChange={[Function]}
     onUpdate={[Function]}
+    showDay={true}
+    showMonth={true}
+    showYear={true}
     store={
       Object {
         "dispatch": [Function],
@@ -32,6 +35,9 @@ exports[`DateRange should render 1`] = `
     key="1to"
     onChange={[Function]}
     onUpdate={[Function]}
+    showDay={true}
+    showMonth={true}
+    showYear={true}
     store={
       Object {
         "dispatch": [Function],

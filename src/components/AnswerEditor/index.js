@@ -5,6 +5,7 @@ import { colors, radius } from "constants/theme";
 
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
+import fp from "lodash/fp";
 
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import DateRange from "components/Answers/DateRange";
@@ -62,6 +63,12 @@ class AnswerEditor extends React.Component {
     this.props.onDeleteAnswer(this.props.answer.id);
   };
 
+  formatIncludes = x =>
+    fp.flow(
+      fp.get("properties.format"),
+      fp.includes(x)
+    );
+
   renderAnswer(answer) {
     switch (answer.type) {
       case TEXTFIELD:
@@ -83,7 +90,14 @@ class AnswerEditor extends React.Component {
       case DATE_RANGE:
         return <DateRange {...this.props} />;
       case DATE:
-        return <Date {...this.props} />;
+        return (
+          <Date
+            {...this.props}
+            showDay={this.formatIncludes("dd")(answer)}
+            showMonth={this.formatIncludes("mm")(answer)}
+            showYear={this.formatIncludes("yyyy")(answer)}
+          />
+        );
       default:
         throw new TypeError(`Unknown answer type: ${answer.type}`);
     }
