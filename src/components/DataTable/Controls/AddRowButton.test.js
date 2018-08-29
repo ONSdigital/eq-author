@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import AddRowButton from "components/DataTable/Controls/AddRowButton";
+import { AddRowButton } from "components/DataTable/Controls";
 
 const createWrapper = (props = {}, render = shallow) => {
   return render(<AddRowButton {...props}>Button</AddRowButton>);
