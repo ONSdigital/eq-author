@@ -64,7 +64,7 @@ export const deleteSection = ({ index }) => {
   });
 };
 
-export const addQuestionPage = title => {
+export const addQuestionPage = (title = "hello world") => {
   let prevCount;
 
   cy.get(testId("nav-page-link")).then(items => {

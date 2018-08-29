@@ -21,6 +21,7 @@ export default {
               id: "1",
               title: "",
               position: 0,
+              plaintextTitle: "",
               __typename: "QuestionPage"
             }
           ],
