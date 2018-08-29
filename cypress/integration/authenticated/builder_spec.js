@@ -45,8 +45,7 @@ describe("builder", () => {
 
     checkIsOnDesignPage();
 
-    cy
-      .hash()
+    cy.hash()
       .then(hash => {
         prevHash = hash;
         addQuestionPage();
@@ -71,19 +70,18 @@ describe("builder", () => {
     const guidance = "this is some guidance";
     typeIntoDraftEditor(testId("txt-question-guidance", "testid"), guidance);
 
-    cy
-      .get(testId("page-item"))
+    cy.get(testId("page-item"))
       .first()
       .click();
 
-    cy
-      .get(testId("page-item"))
+    cy.get(testId("page-item"))
       .last()
       .click();
 
-    cy
-      .get(testId("txt-question-guidance", "testid"))
-      .should("contain", guidance);
+    cy.get(testId("txt-question-guidance", "testid")).should(
+      "contain",
+      guidance
+    );
   });
 
   it("Can delete a page", () => {
@@ -96,8 +94,7 @@ describe("builder", () => {
     cy.get(testId("btn-delete")).click();
 
     cy.get(testId("delete-confirm-modal", "testid")).within(() => {
-      cy
-        .get("button")
+      cy.get("button")
         .contains("Delete")
         .click();
     });
@@ -121,8 +118,7 @@ describe("builder", () => {
 
     let prevHash;
 
-    cy
-      .hash()
+    cy.hash()
       .then(hash => {
         prevHash = hash;
         addSection();
@@ -156,13 +152,11 @@ describe("builder", () => {
       .should("match", sectionRegex)
       .then(hash => hash);
 
-    cy
-      .get(testId("nav-section-link"))
+    cy.get(testId("nav-section-link"))
       .first()
       .click();
 
-    cy
-      .hash()
+    cy.hash()
       .should("match", sectionRegex)
       .and("not.eq", resultingHash);
   });
@@ -170,8 +164,7 @@ describe("builder", () => {
   it("Can edit section title and description", () => {
     checkIsOnDesignPage();
 
-    cy
-      .get(testId("nav-section-link"))
+    cy.get(testId("nav-section-link"))
       .first()
       .click();
 
@@ -187,8 +180,7 @@ describe("builder", () => {
 
     addSection();
 
-    cy
-      .get(testId("nav-section-link"))
+    cy.get(testId("nav-section-link"))
       .first()
       .click();
 
@@ -200,8 +192,7 @@ describe("builder", () => {
 
     cy.get(testId("btn-delete")).click();
     cy.get(testId("delete-confirm-modal", "testid")).within(() => {
-      cy
-        .get("button")
+      cy.get("button")
         .contains("Delete")
         .click();
     });
@@ -224,12 +215,10 @@ describe("builder", () => {
     addAnswerType("Checkbox");
     cy.get(testId("btn-add-option")).click();
     cy.get(testId("option-label")).should("have.length", 2);
-    cy
-      .get(testId("option-label"))
+    cy.get(testId("option-label"))
       .first()
       .type("Checkbox label");
-    cy
-      .get(testId("option-description"))
+    cy.get(testId("option-description"))
       .first()
       .type("Checkbox description");
   });
@@ -237,8 +226,7 @@ describe("builder", () => {
   it("Can delete checkboxes", () => {
     addAnswerType("Checkbox");
     cy.get(testId("btn-add-option")).click();
-    cy
-      .get(testId("btn-delete-option"))
+    cy.get(testId("btn-delete-option"))
       .last()
       .click();
     cy.get(testId("option-label")).should("have.length", 1);
@@ -250,12 +238,10 @@ describe("builder", () => {
     addAnswerType("Radio");
     cy.get(testId("btn-add-option")).click();
     cy.get(testId("option-label")).should("have.length", 3);
-    cy
-      .get(testId("option-label"))
+    cy.get(testId("option-label"))
       .first()
       .type("Radio label");
-    cy
-      .get(testId("option-description"))
+    cy.get(testId("option-description"))
       .first()
       .type("Radio description");
   });
@@ -263,8 +249,7 @@ describe("builder", () => {
   it("Can delete radio buttons", () => {
     addAnswerType("Radio");
     cy.get(testId("btn-add-option")).click();
-    cy
-      .get(testId("btn-delete-option"))
+    cy.get(testId("btn-delete-option"))
       .last()
       .click();
     cy.get(testId("option-label")).should("have.length", 2);
@@ -277,9 +262,9 @@ describe("builder", () => {
       addAnswerType(answerType);
       cy.get(testId("txt-answer-label")).type(answerType + " label");
       if (includes(["Currency"], answerType)) {
-        cy
-          .get(testId("txt-answer-description"))
-          .type(answerType + " description");
+        cy.get(testId("txt-answer-description")).type(
+          answerType + " description"
+        );
       }
       cy.get(testId("btn-delete-answer")).click();
       cy.get(testId("btn-delete-answer")).should("not.exist");
@@ -297,14 +282,12 @@ describe("builder", () => {
     addAnswerType("Daterange");
 
     cy.get(testId("date-range-editor")).within(() => {
-      cy
-        .get(testId("date-answer-label"))
+      cy.get(testId("date-answer-label"))
         .first()
         .click()
         .type("Date Range label");
 
-      cy
-        .get(testId("date-answer-label"))
+      cy.get(testId("date-answer-label"))
         .last()
         .click()
         .type("Date Range label 2");
@@ -325,8 +308,7 @@ describe("builder", () => {
 
     cy.get(testId("btn-delete")).click();
     cy.get(testId("delete-confirm-modal", "testid")).within(() => {
-      cy
-        .get("button")
+      cy.get("button")
         .contains("Delete")
         .click();
     });
@@ -350,8 +332,7 @@ describe("builder", () => {
 
     checkIsOnDesignPage();
 
-    cy
-      .get(testId("nav-section-link"))
+    cy.get(testId("nav-section-link"))
       .first()
       .click();
 
@@ -361,8 +342,7 @@ describe("builder", () => {
 
     cy.get(testId("btn-delete")).click();
     cy.get(testId("delete-confirm-modal", "testid")).within(() => {
-      cy
-        .get("button")
+      cy.get("button")
         .contains("Delete")
         .click();
     });
@@ -381,8 +361,7 @@ describe("builder", () => {
   });
 
   it("Can move pages within a section", () => {
-    cy
-      .get(testId("page-item"))
+    cy.get(testId("page-item"))
       .first()
       .click();
     typeIntoDraftEditor(testId("txt-question-title", "testid"), `Page 0`);
@@ -413,8 +392,7 @@ describe("builder", () => {
 
     cy.get(testId("item-select-modal-form")).submit();
 
-    cy
-      .get(testId("page-item"))
+    cy.get(testId("page-item"))
       .first()
       .should("contain", "Page 2");
   });
@@ -423,8 +401,7 @@ describe("builder", () => {
     checkIsOnDesignPage();
     addSection();
 
-    cy
-      .get(testId("page-item"))
+    cy.get(testId("page-item"))
       .last()
       .click();
 
@@ -435,8 +412,7 @@ describe("builder", () => {
     findByLabel("Section").click();
 
     cy.get(testId("item-select-modal-form")).within(() => {
-      cy
-        .get("label")
+      cy.get("label")
         .last()
         .click();
     });
@@ -445,16 +421,14 @@ describe("builder", () => {
     findByLabel("Position").click();
 
     cy.get(testId("item-select-modal-form")).within(() => {
-      cy
-        .get("label")
+      cy.get("label")
         .first()
         .click();
     });
 
     cy.get(testId("item-select-modal-form")).submit();
 
-    cy
-      .get(testId("section-item"))
+    cy.get(testId("section-item"))
       .last()
       .find(testId("page-item"))
       .first()
@@ -462,8 +436,7 @@ describe("builder", () => {
   });
 
   it("Can move sections", () => {
-    cy
-      .get(testId("nav-section-link"))
+    cy.get(testId("nav-section-link"))
       .should("have.length", 1)
       .each($el => {
         cy.wrap($el).click();
@@ -473,8 +446,7 @@ describe("builder", () => {
     addSection();
     addSection(2);
 
-    cy
-      .get(testId("nav-section-link"))
+    cy.get(testId("nav-section-link"))
       .should("have.length", 3)
       .each($el => {
         cy.wrap($el).click();
@@ -488,18 +460,96 @@ describe("builder", () => {
     findByLabel("Position").click();
 
     cy.get(testId("item-select-modal-form")).within(() => {
-      cy
-        .get("label")
+      cy.get("label")
         .last()
         .click();
     });
 
     cy.get(testId("item-select-modal-form")).submit();
 
-    cy
-      .get(testId("section-item"))
+    cy.get(testId("section-item"))
       .last()
       .should("contain", "Section 1");
+  });
+
+  describe("Checkbox with Exclusive option", () => {
+    it("Can add a mutually exclusive checkbox", () => {
+      addAnswerType("Checkbox");
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).click();
+      cy.get(testId("option-label")).should("have.length", 2);
+    });
+
+    it("Can edit a mutually exclusive checkbox", () => {
+      addAnswerType("Checkbox");
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).click();
+
+      cy.get(testId("option-label"))
+        .last()
+        .type("Checkbox label");
+      cy.get(testId("option-description"))
+        .last()
+        .type("Checkbox description");
+    });
+
+    it("Can't add a second mutually exclusive checkbox", () => {
+      addAnswerType("Checkbox");
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).click();
+      cy.get(testId("btn-add-option-menu")).click();
+
+      cy.get(testId("btn-add-mutually-exclusive-option")).should("be.disabled");
+    });
+
+    it("Always positions Exclusive checkboxes at the end", () => {
+      addAnswerType("Checkbox");
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).click();
+
+      cy.get(testId("multiple-choice-options"))
+        .children()
+        .should("have.length", 2)
+        .last()
+        .should("contain", "Or");
+
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-option-other")).click();
+
+      cy.get(testId("multiple-choice-options"))
+        .children()
+        .should("have.length", 3)
+        .last()
+        .should("contain", "Or");
+
+      cy.get(testId("btn-add-option")).click();
+
+      cy.get(testId("multiple-choice-options"))
+        .children()
+        .should("have.length", 4)
+        .last()
+        .should("contain", "Or");
+    });
+
+    it.only("Can be deleted and re-enable the add button", () => {
+      addAnswerType("Checkbox");
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).click();
+
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).should("be.disabled");
+
+      cy.get(testId("btn-delete-option"))
+        .last()
+        .click();
+
+      cy.get(testId("option-label")).should("have.length", 1);
+
+      cy.get(testId("btn-add-option-menu")).click();
+      cy.get(testId("btn-add-mutually-exclusive-option")).should(
+        "not.be.disabled"
+      );
+    });
   });
 
   describe('Checkbox/Radio with "other" option', () => {
@@ -519,28 +569,23 @@ describe("builder", () => {
 
     it("should update the other option and answer values", () => {
       addMultipleChoiceAnswer();
-      cy
-        .get(testId("option-label"))
+      cy.get(testId("option-label"))
         .last()
         .type("Other label");
-      cy
-        .get(testId("option-description"))
+      cy.get(testId("option-description"))
         .last()
         .type("Other description");
-      cy
-        .get(testId("txt-answer-label"))
+      cy.get(testId("txt-answer-label"))
         .last()
         .type("Text answer label");
-      cy
-        .get(testId("option-label"))
+      cy.get(testId("option-label"))
         .first()
         .click();
     });
 
     it('should remove the "other" option.', () => {
       addMultipleChoiceAnswer();
-      cy
-        .get(testId("btn-delete-option"))
+      cy.get(testId("btn-delete-option"))
         .last()
         .click();
       cy.get(testId("option-label")).should("have.length", 1);

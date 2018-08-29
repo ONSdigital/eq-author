@@ -91,6 +91,7 @@ class MultipleChoiceAnswerWrapper extends React.Component {
           onDeleteOption={this.handleDeleteOption}
           onAddOther={action("addOther")}
           onDeleteOther={action("deleteOther")}
+          onAddExclusive={action("addExclusive")}
         />
       </Wrapper>
     );

@@ -236,6 +236,7 @@ describe("QuestionPageRoute", () => {
         onUpdatePage: jest.fn(),
         onDeletePage: jest.fn(),
         onAddPage: jest.fn(),
+        onAddExclusive: jest.fn(),
         onUpdateAnswer: jest.fn(),
         onAddAnswer: jest.fn(),
         onDeleteAnswer: jest.fn(),

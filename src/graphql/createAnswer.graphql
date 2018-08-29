@@ -22,6 +22,9 @@ mutation createAnswer($input: CreateAnswerInput!) {
       options {
         ...Option
       }
+      mutuallyExclusiveOption {
+        id
+      }
       other {
         option {
           ...Option

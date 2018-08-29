@@ -5,7 +5,6 @@ import { times } from "lodash";
 
 import { shallow } from "enzyme";
 import createMockStore from "tests/utils/createMockStore";
-
 describe("MultipleChoiceAnswer", () => {
   let wrapper;
 
@@ -40,6 +39,13 @@ describe("MultipleChoiceAnswer", () => {
     }
   };
 
+  const mutuallyExclusiveOption = {
+    id: "4",
+    label: "I am mutually exclusive",
+    description: "",
+    __typename: "Option"
+  };
+
   let mockHandlers;
 
   const createAnswer = numberOptions => ({
@@ -66,6 +72,7 @@ describe("MultipleChoiceAnswer", () => {
     mockHandlers = {
       onAddOption: jest.fn(() => Promise.resolve(option)),
       onUpdate: jest.fn(),
+      onAddExclusive: jest.fn(() => Promise.resolve(option)),
       onUpdateOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onAddOther: jest.fn(() => Promise.resolve(optionWithAnswer)),
@@ -206,6 +213,63 @@ describe("MultipleChoiceAnswer", () => {
       wrapper.find(Option).forEach(option => {
         expect(option.prop("hasDeleteButton")).toBe(false);
       });
+    });
+  });
+
+  describe("exclusive options", () => {
+    const minOptions = 1;
+    let preventDefault;
+    let answerWithExclusive;
+    let stopPropagation;
+
+    beforeEach(() => {
+      answerWithExclusive = {
+        ...createAnswer(minOptions),
+        mutuallyExclusiveOption,
+        type: "Checkbox"
+      };
+
+      preventDefault = jest.fn();
+      stopPropagation = jest.fn();
+    });
+
+    it("should render exclusive", () => {
+      wrapper = createWrapper({ answer: answerWithExclusive });
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("exclusive should always be the final option", () => {
+      wrapper = createWrapper({ answer: answerWithExclusive });
+
+      expect(
+        wrapper
+          .find(Option)
+          .last()
+          .props().option.label
+      ).toEqual("I am mutually exclusive");
+    });
+
+    it("can add Exclusive option", () => {
+      wrapper = createWrapper({ answer: answerWithExclusive });
+
+      wrapper
+        .find('[data-test="btn-add-mutually-exclusive-option"]')
+        .first()
+        .simulate("click", { preventDefault, stopPropagation });
+
+      expect(preventDefault).toHaveBeenCalled();
+      expect(mockHandlers.onAddExclusive).toHaveBeenCalledWith(answer.id);
+    });
+
+    it("should disable add button when exclusive answer already exists", () => {
+      wrapper = createWrapper({ answer: answerWithExclusive });
+
+      expect(
+        wrapper
+          .find('[data-test="btn-add-mutually-exclusive-option"]')
+          .first()
+          .props().disabled
+      ).toBe(true);
     });
   });
 });

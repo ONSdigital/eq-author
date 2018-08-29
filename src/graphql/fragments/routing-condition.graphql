@@ -15,6 +15,9 @@ fragment RoutingCondition on RoutingCondition {
       options {
         ...Option
       }
+      mutuallyExclusiveOption {
+        id
+      }
       other {
         option {
           ...Option

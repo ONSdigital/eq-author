@@ -31,6 +31,13 @@ const AnswerHelper = styled.div`
   color: ${colors.text};
 `;
 
+const ExclusiveOr = styled.div`
+  padding-bottom: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  color: ${colors.text};
+`;
+
 const Options = styled.div`
   margin: 0 0 1em;
 `;
@@ -42,7 +49,7 @@ export const AddOtherLink = styled.button`
   background: none;
 `;
 
-const OtherAnswerWrapper = styled.div`
+const SpecialOptionWrapper = styled.div`
   padding-top: 0.25em;
   margin-bottom: 1em;
 `;
@@ -56,7 +63,8 @@ class MultipleChoiceAnswer extends Component {
     onDeleteOption: PropTypes.func.isRequired,
     onAddOther: PropTypes.func.isRequired,
     onDeleteOther: PropTypes.func.isRequired,
-    minOptions: PropTypes.number.isRequired
+    minOptions: PropTypes.number.isRequired,
+    onAddExclusive: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -75,6 +83,15 @@ class MultipleChoiceAnswer extends Component {
     e.preventDefault();
     e.stopPropagation();
     return this.props.onAddOption(this.props.answer.id).then(focusOnEntity);
+  };
+
+  handleAddExclusive = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    return this.props
+      .onAddExclusive(this.props.answer.id)
+      .then(this.handleToggleOpen(false))
+      .then(focusOnEntity);
   };
 
   handleAddOther = e => {
@@ -125,7 +142,10 @@ class MultipleChoiceAnswer extends Component {
           {answer.type === CHECKBOX && (
             <AnswerHelper>Select all that apply</AnswerHelper>
           )}
-          <TransitionGroup component={Options}>
+          <TransitionGroup
+            component={Options}
+            data-test="multiple-choice-options"
+          >
             {answer.options.map((option, optionIndex, options) => (
               <OptionTransition key={option.id}>
                 <Option
@@ -149,7 +169,7 @@ class MultipleChoiceAnswer extends Component {
                   hasDeleteButton={showDeleteOption}
                   labelPlaceholder="eg. Other"
                 >
-                  <OtherAnswerWrapper data-test="other-answer">
+                  <SpecialOptionWrapper data-test="other-answer">
                     <BasicAnswer
                       answer={answer.other.answer}
                       onUpdate={onUpdate}
@@ -158,15 +178,32 @@ class MultipleChoiceAnswer extends Component {
                       labelPlaceholder="eg. Please specify"
                       bold={false}
                     />
-                  </OtherAnswerWrapper>
+                  </SpecialOptionWrapper>
                 </Option>
+              </OptionTransition>
+            )}
+            {answer.mutuallyExclusiveOption && (
+              <OptionTransition key={answer.mutuallyExclusiveOption.id}>
+                <SpecialOptionWrapper data-test="exclusive-option">
+                  <ExclusiveOr>Or</ExclusiveOr>
+                  <Option
+                    {...otherProps}
+                    option={answer.mutuallyExclusiveOption}
+                    onDelete={this.handleOptionDelete}
+                    onUpdate={onUpdateOption}
+                    onEnterKey={this.handleAddOption}
+                    hasDeleteButton
+                  />
+                </SpecialOptionWrapper>
               </OptionTransition>
             )}
           </TransitionGroup>
           <div>
             <SplitButton
               onPrimaryAction={this.handleAddOption}
-              primaryText="Add another option"
+              primaryText={
+                answer.type === CHECKBOX ? "Add checkbox" : "Add another option"
+              }
               onToggleOpen={this.handleToggleOpen}
               open={this.state.open}
               dataTest="btn-add-option"
@@ -177,8 +214,17 @@ class MultipleChoiceAnswer extends Component {
                   disabled={answer.other !== null}
                   data-test="btn-add-option-other"
                 >
-                  Add &quot;other&quot; option
+                  Add &ldquo;Other&rdquo; option
                 </MenuItem>
+                {answer.type === CHECKBOX && (
+                  <MenuItem
+                    onClick={this.handleAddExclusive}
+                    disabled={answer.mutuallyExclusiveOption !== null}
+                    data-test="btn-add-mutually-exclusive-option"
+                  >
+                    Add an &ldquo;Or&rdquo; option
+                  </MenuItem>
+                )}
               </Dropdown>
             </SplitButton>
           </div>
@@ -203,6 +249,9 @@ MultipleChoiceAnswer.fragments = {
           answer {
             ...Answer
           }
+        }
+        mutuallyExclusiveOption {
+          ...Option
         }
       }
     }

@@ -22,6 +22,7 @@ import withDeleteAnswer from "containers/enhancers/withDeleteAnswer";
 import withCreateOption from "containers/enhancers/withCreateOption";
 import withUpdateOption from "containers/enhancers/withUpdateOption";
 import withDeleteOption from "containers/enhancers/withDeleteOption";
+import withCreateExclusive from "containers/enhancers/withCreateExclusive";
 import withCreateOther from "containers/enhancers/withCreateOther";
 import withDeleteOther from "containers/enhancers/withDeleteOther";
 import withMovePage from "containers/enhancers/withMovePage";
@@ -183,6 +184,7 @@ const withQuestionPageEditing = flowRight(
   withCreateAnswer,
   withDeleteAnswer,
   withCreateOption,
+  withCreateExclusive,
   withUpdateOption,
   withDeleteOption,
   withCreateOther,

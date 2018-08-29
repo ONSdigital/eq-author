@@ -31,7 +31,8 @@ describe("Answer Editor", () => {
       onUpdateOption: jest.fn(),
       onDeleteOption: jest.fn(),
       onAddOther: jest.fn(),
-      onDeleteOther: jest.fn()
+      onDeleteOther: jest.fn(),
+      onAddExclusive: jest.fn()
     };
 
     mockAnswer = {
