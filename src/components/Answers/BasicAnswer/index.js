@@ -6,6 +6,7 @@ import WrappingInput from "components/WrappingInput";
 import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
 import MinValueValidationRule from "graphql/fragments/min-value-validation-rule.graphql";
+import MaxValueValidationRule from "graphql/fragments/max-value-validation-rule.graphql";
 import gql from "graphql-tag";
 
 export const StatelessBasicAnswer = ({
@@ -86,10 +87,14 @@ StatelessBasicAnswer.fragments = {
           minValue {
             ...MinValueValidationRule
           }
+          maxValue {
+            ...MaxValueValidationRule
+          }
         }
       }
     }
     ${MinValueValidationRule}
+    ${MaxValueValidationRule}
   `
 };
 

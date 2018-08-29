@@ -70,9 +70,11 @@ exports[`ValidationView should render disabled messaged when disabled 1`] = `
       key="validation-enabled-false"
       timeout={250}
     >
-      <ValidationView__DisabledMsg>
-        Min value is disabled
-      </ValidationView__DisabledMsg>
+      <ValidationView__ValidationContainer>
+        <div>
+          Children
+        </div>
+      </ValidationView__ValidationContainer>
     </FadeTransition>
   </TransitionGroup>
 </ValidationView__Container>

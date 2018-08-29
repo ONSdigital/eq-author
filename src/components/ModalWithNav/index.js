@@ -81,7 +81,7 @@ export const UnconnectedModalWithNav = ({
         <Column cols={3} gutters={false}>
           <Sidebar>
             <SidebarHeader>
-              <SidebarTitle>{title}</SidebarTitle>
+              <SidebarTitle data-test="sidebar-title">{title}</SidebarTitle>
             </SidebarHeader>
             <TabsNav title={title}>
               {navItems.map(item => (

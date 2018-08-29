@@ -1,0 +1,6 @@
+fragment MaxValueValidationRule on MaxValueValidationRule {
+  id
+  enabled
+  custom
+  inclusive
+}

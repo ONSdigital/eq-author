@@ -121,9 +121,9 @@ class ToggleSwitch extends React.Component {
   };
 
   render() {
-    const { checked, onChange } = this.props;
+    const { id, checked, onChange } = this.props;
     return (
-      <FlexInline role="switch" aria-checked={checked}>
+      <FlexInline role="switch" aria-checked={checked} data-test={id}>
         <HiddenInput
           id={this.id}
           type="checkbox"

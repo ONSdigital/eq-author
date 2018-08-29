@@ -15,7 +15,7 @@ import DisabledMessage from "components/Validation/DisabledMessage";
 import ValidationView from "./ValidationView";
 import FieldWithInclude from "./FieldWithInclude";
 
-import MinValueValidationRule from "graphql/fragments/min-value-validation-rule.graphql";
+import MaxValueValidationRule from "graphql/fragments/max-value-validation-rule.graphql";
 import withUpdateAnswerValidation from "containers/enhancers/withUpdateAnswerValidation";
 import withToggleAnswerValidation from "containers/enhancers/withToggleAnswerValidation";
 
@@ -35,31 +35,31 @@ const ValueInput = styled(Input)`
   width: 10em;
 `;
 
-export const MinValue = ({
-  minValue,
+export const MaxValue = ({
+  maxValue,
   onUpdateAnswerValidation,
   onToggleValidationRule,
   limit
 }) => {
   const handleToggleChange = ({ value }) => {
     const toggleValidationRuleInput = {
-      id: minValue.id,
+      id: maxValue.id,
       enabled: value
     };
 
     onToggleValidationRule(toggleValidationRuleInput);
   };
 
-  const handleMinValueChange = ({ value }) => {
+  const handleMaxValueChange = ({ value }) => {
     // clamp value of input to +/- limit
     if (value !== "" && !inRange(parseInt(value, 10), 0 - limit, limit + 1)) {
       return false;
     }
 
     const updateValidationRuleInput = {
-      id: minValue.id,
-      minValueInput: {
-        inclusive: minValue.inclusive,
+      id: maxValue.id,
+      maxValueInput: {
+        inclusive: maxValue.inclusive,
         custom: value === "" ? null : value
       }
     };
@@ -69,9 +69,9 @@ export const MinValue = ({
 
   const handleIncludeChange = ({ value }) => {
     const updateValidationRuleInput = {
-      id: minValue.id,
-      minValueInput: {
-        custom: minValue.custom,
+      id: maxValue.id,
+      maxValueInput: {
+        custom: maxValue.custom,
         inclusive: value
       }
     };
@@ -79,28 +79,28 @@ export const MinValue = ({
   };
 
   const renderDisabled = () => (
-    <DisabledMessage>Min value is disabled</DisabledMessage>
+    <DisabledMessage>Max value is disabled</DisabledMessage>
   );
 
   const renderContent = () => (
     <Grid>
       <Column cols={3}>
-        <Title>Min Value is</Title>
+        <Title>Max Value is</Title>
       </Column>
       <Column>
         <FieldWithInclude
-          id="min-value-include"
-          name="min-value-include"
+          id="max-value-include"
+          name="max-value-include"
           onChange={handleIncludeChange}
-          checked={minValue.inclusive}
+          checked={maxValue.inclusive}
         >
           <ValueInput
-            data-test="min-value-input"
+            data-test="max-value-input"
             list="defaultNumbers"
-            value={minValue.custom}
+            value={maxValue.custom}
             type="number"
-            id="min-value"
-            onChange={handleMinValueChange}
+            id="max-value"
+            onChange={handleMaxValueChange}
             max={limit}
             min={0 - limit}
           />
@@ -112,20 +112,20 @@ export const MinValue = ({
   return (
     <ValidationView
       onToggleChange={handleToggleChange}
-      enabled={minValue.enabled}
-      data-test="min-value-view"
+      enabled={maxValue.enabled}
+      data-test="max-value-view"
     >
-      {minValue.enabled ? renderContent() : renderDisabled()}
+      {maxValue.enabled ? renderContent() : renderDisabled()}
     </ValidationView>
   );
 };
 
-MinValue.defaultProps = {
+MaxValue.defaultProps = {
   limit: 999999999
 };
 
-MinValue.propTypes = {
-  minValue: propType(MinValueValidationRule).isRequired,
+MaxValue.propTypes = {
+  maxValue: propType(MaxValueValidationRule).isRequired,
   onUpdateAnswerValidation: PropTypes.func.isRequired,
   onToggleValidationRule: PropTypes.func.isRequired,
   limit: PropTypes.number
@@ -137,12 +137,12 @@ const withQuestionPageEditing = flowRight(
   withToggleAnswerValidation
 );
 
-export const MinValueWithAnswer = props => (
+export const MaxValueWithAnswer = props => (
   <ValidationContext.Consumer>
     {({ answer }) => (
-      <MinValue minValue={answer.validation.minValue} {...props} />
+      <MaxValue maxValue={answer.validation.maxValue} {...props} />
     )}
   </ValidationContext.Consumer>
 );
 
-export default withQuestionPageEditing(MinValueWithAnswer);
+export default withQuestionPageEditing(MaxValueWithAnswer);

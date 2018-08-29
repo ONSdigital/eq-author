@@ -3,6 +3,7 @@
 exports[`ToggleSwitch should render 1`] = `
 <ToggleSwitch__FlexInline
   aria-checked={false}
+  data-test="test"
   role="switch"
 >
   <ToggleSwitch__HiddenInput
@@ -26,6 +27,7 @@ exports[`ToggleSwitch should render 1`] = `
 exports[`ToggleSwitch should render a large toggle button 1`] = `
 <ToggleSwitch__FlexInline
   aria-checked={false}
+  data-test="toggle-3"
   role="switch"
 >
   <ToggleSwitch__HiddenInput
@@ -195,11 +197,13 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 >
   <ToggleSwitch__FlexInline
     aria-checked={false}
+    data-test="toggle-3"
     role="switch"
   >
     <div
       aria-checked={false}
       className="c0"
+      data-test="toggle-3"
       role="switch"
     >
       <ToggleSwitch__HiddenInput
@@ -271,6 +275,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
 exports[`ToggleSwitch should render checked 1`] = `
 <ToggleSwitch__FlexInline
   aria-checked={true}
+  data-test="toggle-2"
   role="switch"
 >
   <ToggleSwitch__HiddenInput
@@ -437,11 +442,13 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
 >
   <ToggleSwitch__FlexInline
     aria-checked={true}
+    data-test="toggle-2"
     role="switch"
   >
     <div
       aria-checked={true}
       className="c0"
+      data-test="toggle-2"
       role="switch"
     >
       <ToggleSwitch__HiddenInput
@@ -656,11 +663,13 @@ exports[`ToggleSwitch should render when mounted 1`] = `
 >
   <ToggleSwitch__FlexInline
     aria-checked={true}
+    data-test="toggle-2"
     role="switch"
   >
     <div
       aria-checked={true}
       className="c0"
+      data-test="toggle-2"
       role="switch"
     >
       <ToggleSwitch__HiddenInput
