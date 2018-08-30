@@ -155,6 +155,7 @@ const renderEditor = (condition, onToggleOption, sections) => {
       <NumericAnswerSelector
         id={`TABS_NUMERIC_${condition.id}`}
         sections={sections}
+        condition={condition}
       />
     )
   };

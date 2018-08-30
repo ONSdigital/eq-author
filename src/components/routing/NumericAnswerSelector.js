@@ -8,13 +8,16 @@ import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { colors } from "constants/theme";
 
-import { flowRight, find, flatMap, first, partition } from "lodash";
+import { RADIO, NUMBER, CURRENCY } from "constants/answer-types";
+import { flow, find, first, negate, overSome, isEmpty, get } from "lodash";
+
+import { withRouter } from "react-router";
 
 import { TabsBody } from "components/ModalWithNav/Tabs";
 
 import { Select, Input } from "components/Forms";
 
-import { PageSelect, convertToGroups } from "./RoutingCondition";
+import { PageSelect } from "./RoutingCondition";
 import { withLocalStorageState } from "./withLocalStorageState";
 
 const NumericAnswer = styled.div`
@@ -74,7 +77,7 @@ const NumericSelect = props => (
 );
 
 const AnswerSelect = ({ sections, ...otherProps }) => (
-  <PageSelect groups={convertToGroups(sections)} {...otherProps} />
+  <PageSelect groups={sections} {...otherProps} />
 );
 
 const MetadataSelect = props => (
@@ -98,14 +101,7 @@ const NumericInput = styled(Input)`
   width: 10em;
 `;
 
-const getTabContent = ({
-  sections,
-  onAnswerChange,
-  onComparatorChange,
-  onMetadataChange,
-  onCustomValueChange,
-  state
-}) => {
+const getTabContent = ({ sections, onChange, state }) => {
   return [
     {
       id: "custom",
@@ -114,7 +110,7 @@ const getTabContent = ({
         <Flex id="custom">
           <Comparator>
             <NumericSelect
-              onChange={onComparatorChange}
+              onChange={onChange}
               name="numeric-select"
               id="numeric-select"
               defaultValue={state["numeric-select"]}
@@ -126,7 +122,7 @@ const getTabContent = ({
               name="custom-value"
               id="custom-value"
               placeholder={"Value"}
-              onChange={onCustomValueChange}
+              onChange={onChange}
               value={state["custom-value"]}
             />
           </Value>
@@ -140,7 +136,7 @@ const getTabContent = ({
         <Flex id="previous-answer">
           <Comparator>
             <NumericSelect
-              onChange={onComparatorChange}
+              onChange={onChange}
               name="numeric-select"
               id="numeric-select"
               value={state["numeric-select"]}
@@ -149,7 +145,7 @@ const getTabContent = ({
           <Value>
             <AnswerSelect
               sections={sections}
-              onChange={onAnswerChange}
+              onChange={onChange}
               name="previous-answer"
               id="previous-answer"
               value={state["previous-answer"]}
@@ -165,7 +161,7 @@ const getTabContent = ({
         <Flex id="metadata">
           <Comparator>
             <NumericSelect
-              onChange={onComparatorChange}
+              onChange={onChange}
               name="numeric-select"
               id="numeric-select"
               value={state["numeric-select"]}
@@ -173,7 +169,7 @@ const getTabContent = ({
           </Comparator>
           <Value>
             <MetadataSelect
-              onChange={onMetadataChange}
+              onChange={onChange}
               name="metadata"
               id="metadata"
               value={state["metadata"]}
@@ -185,17 +181,39 @@ const getTabContent = ({
   ];
 };
 
+const isAnswerValidForRouting = answer => {
+  const type = get(answer, "type");
+  return type === NUMBER || type === CURRENCY;
+};
+
+const firstAnswerIsValid = flow(
+  first,
+  isAnswerValidForRouting
+);
+const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
+
+export const convertToGroups = (sections, condition) =>
+  sections.map(section => ({
+    label: section.plaintextTitle || "Section Title",
+    id: section.id,
+    options: section.pages.map(page => ({
+      label: page.plaintextTitle || "Page Title",
+      value: page.id,
+      disabled:
+        shouldDisable(page.answers) || page.id === condition.questionPage.id
+    }))
+  }));
+
 const NumericAnswerSelector = ({
   id,
   loading,
-  data,
+  condition,
   sections,
-  match,
   state,
   setState
 }) => {
   if (loading) {
-    return null;
+    return <div>Loading&hellip;</div>;
   }
 
   const activeTabId = state[id] || "custom";
@@ -203,17 +221,12 @@ const NumericAnswerSelector = ({
   const handleChange = ({ name, value }) => setState({ [name]: value });
 
   const tabItems = getTabContent({
-    sections,
+    sections: convertToGroups(sections, condition),
     state,
-    onAnswerChange: handleChange,
-    onComparatorChange: handleChange,
-    onCustomValueChange: handleChange,
-    onMetadataChange: handleChange
+    onChange: handleChange
   });
 
   const activeItem = find(tabItems, { id: activeTabId });
-
-  console.log(state);
 
   return (
     <NumericAnswer data-test="options-selector">
@@ -241,4 +254,7 @@ NumericAnswerSelector.propTypes = {
   id: PropTypes.string.isRequired
 };
 
-export default withLocalStorageState(NumericAnswerSelector);
+export default flow(
+  withRouter,
+  withLocalStorageState
+)(NumericAnswerSelector);
