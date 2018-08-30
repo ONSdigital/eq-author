@@ -1,0 +1,244 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/jsx-handler-names */
+/* eslint-disable dot-notation */
+
+import React from "react";
+import styled from "styled-components";
+
+import { PropTypes } from "prop-types";
+import { colors } from "constants/theme";
+
+import { flowRight, find, flatMap, first, partition } from "lodash";
+
+import { TabsBody } from "components/ModalWithNav/Tabs";
+
+import { Select, Input } from "components/Forms";
+
+import { PageSelect, convertToGroups } from "./RoutingCondition";
+import { withLocalStorageState } from "./withLocalStorageState";
+
+const NumericAnswer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1em 0;
+  margin: 0.25em 0;
+`;
+
+const PillTabs = styled.div`
+  background-color: #e4e8eb;
+  border-radius: 3em;
+  display: flex;
+  margin: 0.25em 0 1em;
+`;
+
+const PillTab = styled.div`
+  padding: 0.5em 2em;
+  border-radius: 3em;
+  color: ${colors.darkGrey};
+  cursor: pointer;
+  flex: 1 1 auto;
+  text-align: center;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &[aria-selected="true"] {
+    background: ${colors.primary};
+    color: white;
+  }
+
+  &:first-child {
+    margin-right: 0.5em;
+  }
+
+  &:last-child {
+    margin-left: 0.5em;
+  }
+`;
+
+const Flex = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const NumericSelect = props => (
+  <Select {...props}>
+    <option value="equal">{"(=) Equal to"}</option>
+    <option value="not-equal">{"(≠) Not equal to"}</option>
+    <option value="more">{"(>) More than"}</option>
+    <option value="less">{"(<) Less than"}</option>
+    <option value="more-equal">{"(≥) More than or equal to"}</option>
+    <option value="less-equal">{"(≤) Less than or equal to"}</option>
+  </Select>
+);
+
+const AnswerSelect = ({ sections, ...otherProps }) => (
+  <PageSelect groups={convertToGroups(sections)} {...otherProps} />
+);
+
+const MetadataSelect = props => (
+  <Select {...props}>
+    <option value="ru_ref">RU_REF</option>
+    <option value="date">DATE</option>
+    <option value="name">NAME</option>
+  </Select>
+);
+
+const Comparator = styled.div`
+  width: 15em;
+`;
+
+const Value = styled.div`
+  flex: 1 1 auto;
+  margin-left: 1em;
+`;
+
+const NumericInput = styled(Input)`
+  width: 10em;
+`;
+
+const getTabContent = ({
+  sections,
+  onAnswerChange,
+  onComparatorChange,
+  onMetadataChange,
+  onCustomValueChange,
+  state
+}) => {
+  return [
+    {
+      id: "custom",
+      title: "Custom value",
+      component: (
+        <Flex id="custom">
+          <Comparator>
+            <NumericSelect
+              onChange={onComparatorChange}
+              name="numeric-select"
+              id="numeric-select"
+              defaultValue={state["numeric-select"]}
+            />
+          </Comparator>
+          <Value>
+            <NumericInput
+              type="number"
+              name="custom-value"
+              id="custom-value"
+              placeholder={"Value"}
+              onChange={onCustomValueChange}
+              value={state["custom-value"]}
+            />
+          </Value>
+        </Flex>
+      )
+    },
+    {
+      id: "previous-answer",
+      title: "Previous answer",
+      component: (
+        <Flex id="previous-answer">
+          <Comparator>
+            <NumericSelect
+              onChange={onComparatorChange}
+              name="numeric-select"
+              id="numeric-select"
+              value={state["numeric-select"]}
+            />
+          </Comparator>
+          <Value>
+            <AnswerSelect
+              sections={sections}
+              onChange={onAnswerChange}
+              name="previous-answer"
+              id="previous-answer"
+              value={state["previous-answer"]}
+            />
+          </Value>
+        </Flex>
+      )
+    },
+    {
+      id: "metadata",
+      title: "Metadata",
+      component: (
+        <Flex id="metadata">
+          <Comparator>
+            <NumericSelect
+              onChange={onComparatorChange}
+              name="numeric-select"
+              id="numeric-select"
+              value={state["numeric-select"]}
+            />
+          </Comparator>
+          <Value>
+            <MetadataSelect
+              onChange={onMetadataChange}
+              name="metadata"
+              id="metadata"
+              value={state["metadata"]}
+            />
+          </Value>
+        </Flex>
+      )
+    }
+  ];
+};
+
+const NumericAnswerSelector = ({
+  id,
+  loading,
+  data,
+  sections,
+  match,
+  state,
+  setState
+}) => {
+  if (loading) {
+    return null;
+  }
+
+  const activeTabId = state[id] || "custom";
+
+  const handleChange = ({ name, value }) => setState({ [name]: value });
+
+  const tabItems = getTabContent({
+    sections,
+    state,
+    onAnswerChange: handleChange,
+    onComparatorChange: handleChange,
+    onCustomValueChange: handleChange,
+    onMetadataChange: handleChange
+  });
+
+  const activeItem = find(tabItems, { id: activeTabId });
+
+  console.log(state);
+
+  return (
+    <NumericAnswer data-test="options-selector">
+      <PillTabs>
+        {tabItems.map(item => (
+          <PillTab
+            role="tab"
+            aria-selected={item.id === activeTabId}
+            key={item.id}
+            controls={item.id}
+            onClick={() => setState({ [id]: item.id })}
+          >
+            {item.title}
+          </PillTab>
+        ))}
+      </PillTabs>
+      <TabsBody navItemId={activeItem.id} data-test="tabs-body">
+        {activeItem.component}
+      </TabsBody>
+    </NumericAnswer>
+  );
+};
+
+NumericAnswerSelector.propTypes = {
+  id: PropTypes.string.isRequired
+};
+
+export default withLocalStorageState(NumericAnswerSelector);

@@ -24,7 +24,7 @@ const Padding = styled.div`
   padding: 2em;
 `;
 
-const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
+export const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
   if (isEmpty(sections)) {
     return [];
   }

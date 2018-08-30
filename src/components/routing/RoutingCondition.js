@@ -24,6 +24,7 @@ import {
   overSome
 } from "lodash";
 import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
+import NumericAnswerSelector from "components/routing/NumericAnswerSelector";
 import GroupedSelect from "./GroupedSelect";
 import Transition from "components/routing/Transition";
 import { TransitionGroup } from "react-transition-group";
@@ -32,6 +33,7 @@ import { buildPagePath } from "utils/UrlUtils";
 import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
 import routingConditionFragment from "graphql/fragments/routing-condition.graphql";
+import { RADIO, NUMBER } from "constants/answer-types";
 
 const Label = styled.label`
   width: 100%;
@@ -81,7 +83,7 @@ const firstAnswerIsValid = flow(
 );
 const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
 
-const convertToGroups = sections =>
+export const convertToGroups = sections =>
   sections.map(section => ({
     label: section.displayName,
     id: section.id,
@@ -141,14 +143,28 @@ const renderCannotAddAndCondition = () => (
   </Transition>
 );
 
-const renderEditor = (condition, onToggleOption) => (
-  <Transition key="answer" exit={false}>
-    <MultipleChoiceAnswerOptionsSelector
-      condition={condition}
-      onOptionSelectionChange={onToggleOption}
-    />
-  </Transition>
-);
+const renderEditor = (condition, onToggleOption, sections) => {
+  const types = {
+    [RADIO]: (
+      <MultipleChoiceAnswerOptionsSelector
+        condition={condition}
+        onOptionSelectionChange={onToggleOption}
+      />
+    ),
+    [NUMBER]: (
+      <NumericAnswerSelector
+        id={`TABS_NUMERIC_${condition.id}`}
+        sections={sections}
+      />
+    )
+  };
+
+  return (
+    <Transition key="answer" exit={false}>
+      {types[condition.answer.type]}
+    </Transition>
+  );
+};
 
 const RoutingCondition = ({
   condition,
@@ -179,7 +195,7 @@ const RoutingCondition = ({
     pageSelectIsValid = false;
     editor = renderCannotAddAndCondition();
   } else {
-    editor = renderEditor(condition, onToggleOption);
+    editor = renderEditor(condition, onToggleOption, sections);
   }
 
   const id = uniqueId("RoutingCondition");
