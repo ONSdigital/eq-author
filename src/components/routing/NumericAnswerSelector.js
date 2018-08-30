@@ -9,7 +9,16 @@ import { PropTypes } from "prop-types";
 import { colors } from "constants/theme";
 
 import { RADIO, NUMBER, CURRENCY } from "constants/answer-types";
-import { flow, find, first, negate, overSome, isEmpty, get } from "lodash";
+import {
+  flow,
+  find,
+  first,
+  negate,
+  overSome,
+  isEmpty,
+  get,
+  every
+} from "lodash";
 
 import { withRouter } from "react-router";
 
@@ -19,6 +28,7 @@ import { Select, Input } from "components/Forms";
 
 import { PageSelect } from "./RoutingCondition";
 import { withLocalStorageState } from "./withLocalStorageState";
+import Icon from "./icon-alert.svg?inline";
 
 const NumericAnswer = styled.div`
   display: flex;
@@ -63,7 +73,19 @@ const PillTab = styled.div`
 const Flex = styled.div`
   display: flex;
   width: 100%;
+  align-items: center;
 `;
+
+const NotAvailableMsg = styled.div`
+  padding: 0.5em;
+`;
+
+const NotAvailable = () => (
+  <Flex>
+    <Icon width="1.4em" />
+    <NotAvailableMsg>Sorry, no previous answers are numeric.</NotAvailableMsg>
+  </Flex>
+);
 
 const NumericSelect = props => (
   <Select {...props}>
@@ -76,9 +98,17 @@ const NumericSelect = props => (
   </Select>
 );
 
-const AnswerSelect = ({ sections, ...otherProps }) => (
-  <PageSelect groups={sections} {...otherProps} />
-);
+const AnswerSelect = ({ sections, ...otherProps }) => {
+  const hasValidAnswers = !every(sections, section =>
+    every(section.options, ({ disabled }) => disabled)
+  );
+
+  if (hasValidAnswers) {
+    return <PageSelect groups={sections} {...otherProps} />;
+  }
+
+  return <NotAvailable />;
+};
 
 const MetadataSelect = props => (
   <Select {...props}>
@@ -95,6 +125,8 @@ const Comparator = styled.div`
 const Value = styled.div`
   flex: 1 1 auto;
   margin-left: 1em;
+  display: flex;
+  align-items: center;
 `;
 
 const NumericInput = styled(Input)`
@@ -102,81 +134,87 @@ const NumericInput = styled(Input)`
 `;
 
 const getTabContent = ({ sections, onChange, state }) => {
+  const customValue = (
+    <Flex id="custom">
+      <Comparator>
+        <NumericSelect
+          onChange={onChange}
+          name="numeric-select"
+          id="numeric-select"
+          defaultValue={state["numeric-select"]}
+        />
+      </Comparator>
+      <Value>
+        <NumericInput
+          type="number"
+          name="custom-value"
+          id="custom-value"
+          placeholder={"Value"}
+          onChange={onChange}
+          value={state["custom-value"]}
+        />
+      </Value>
+    </Flex>
+  );
+
+  const previousAnswer = (
+    <Flex id="previous-answer">
+      <Comparator>
+        <NumericSelect
+          onChange={onChange}
+          name="numeric-select"
+          id="numeric-select"
+          value={state["numeric-select"]}
+        />
+      </Comparator>
+      <Value>
+        <AnswerSelect
+          sections={sections}
+          onChange={onChange}
+          name="previous-answer"
+          id="previous-answer"
+          value={state["previous-answer"]}
+        />
+      </Value>
+    </Flex>
+  );
+
+  const metaData = (
+    <Flex id="metadata">
+      <Comparator>
+        <NumericSelect
+          onChange={onChange}
+          name="numeric-select"
+          id="numeric-select"
+          value={state["numeric-select"]}
+        />
+      </Comparator>
+      <Value>
+        <MetadataSelect
+          onChange={onChange}
+          name="metadata"
+          id="metadata"
+          value={state["metadata"]}
+        />
+      </Value>
+    </Flex>
+  );
+
   return [
     {
       id: "custom",
       title: "Custom value",
-      component: (
-        <Flex id="custom">
-          <Comparator>
-            <NumericSelect
-              onChange={onChange}
-              name="numeric-select"
-              id="numeric-select"
-              defaultValue={state["numeric-select"]}
-            />
-          </Comparator>
-          <Value>
-            <NumericInput
-              type="number"
-              name="custom-value"
-              id="custom-value"
-              placeholder={"Value"}
-              onChange={onChange}
-              value={state["custom-value"]}
-            />
-          </Value>
-        </Flex>
-      )
+      component: customValue
     },
     {
       id: "previous-answer",
       title: "Previous answer",
-      component: (
-        <Flex id="previous-answer">
-          <Comparator>
-            <NumericSelect
-              onChange={onChange}
-              name="numeric-select"
-              id="numeric-select"
-              value={state["numeric-select"]}
-            />
-          </Comparator>
-          <Value>
-            <AnswerSelect
-              sections={sections}
-              onChange={onChange}
-              name="previous-answer"
-              id="previous-answer"
-              value={state["previous-answer"]}
-            />
-          </Value>
-        </Flex>
-      )
+      component: previousAnswer
     },
     {
       id: "metadata",
       title: "Metadata",
-      component: (
-        <Flex id="metadata">
-          <Comparator>
-            <NumericSelect
-              onChange={onChange}
-              name="numeric-select"
-              id="numeric-select"
-              value={state["numeric-select"]}
-            />
-          </Comparator>
-          <Value>
-            <MetadataSelect
-              onChange={onChange}
-              name="metadata"
-              id="metadata"
-              value={state["metadata"]}
-            />
-          </Value>
-        </Flex>
-      )
+      component: metaData
     }
   ];
 };
