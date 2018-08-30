@@ -25,14 +25,14 @@ describe("settings", () => {
 
   it("should allow setting a title", () => {
     cy.get(settingsModal).within(() => {
-      cy
-        .get(testId("txt-questionnaire-title"))
+      cy.get(testId("txt-questionnaire-title"))
         .clear()
         .type(questionnaireTitle);
 
-      cy
-        .get(testId("txt-questionnaire-title"))
-        .should("have.value", questionnaireTitle);
+      cy.get(testId("txt-questionnaire-title")).should(
+        "have.value",
+        questionnaireTitle
+      );
     });
   });
 

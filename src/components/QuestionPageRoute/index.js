@@ -10,6 +10,7 @@ import QuestionPageEditor from "components/QuestionPageEditor";
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
+import IconCopy from "components/EditorToolbar/icon-copy.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
 
@@ -31,6 +32,7 @@ import withDeletePage from "containers/enhancers/withDeletePage";
 import Loading from "components/Loading";
 import Error from "components/Error";
 import withCreatePage from "containers/enhancers/withCreatePage";
+import withDuplicatePage from "containers/enhancers/withDuplicatePage";
 
 import EditorLayout from "components/EditorLayout";
 
@@ -41,6 +43,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     onDeletePage: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
     onMovePage: PropTypes.func.isRequired,
+    onDuplicatePage: PropTypes.func.isRequired,
     error: PropTypes.object, // eslint-disable-line
     loading: PropTypes.bool.isRequired,
     data: PropTypes.shape({
@@ -99,6 +102,20 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     return onAddAnswer(match.params.pageId, answerType).then(focusOnEntity);
   };
 
+  handleDuplicatePage = e => {
+    e.preventDefault();
+    const {
+      match,
+      onDuplicatePage,
+      data: { questionPage }
+    } = this.props;
+    onDuplicatePage({
+      sectionId: match.params.sectionId,
+      pageId: questionPage.id,
+      position: questionPage.position + 1
+    });
+  };
+
   getPageTitle = page => title => {
     const pageTitle = page.plaintextTitle || "Untitled page";
     return `${pageTitle} - ${title}`;
@@ -132,6 +149,14 @@ export class UnwrappedQuestionPageRoute extends React.Component {
               small
             >
               <IconText icon={IconMove}>Move</IconText>
+            </Button>
+            <Button
+              onClick={this.handleDuplicatePage}
+              data-test="btn-duplicate-page"
+              variant="tertiary"
+              small
+            >
+              <IconText icon={IconCopy}>Duplicate</IconText>
             </Button>
             <IconButtonDelete
               onClick={this.handleOpenDeleteConfirmDialog}
@@ -180,6 +205,7 @@ const withQuestionPageEditing = flowRight(
   withCreatePage,
   withUpdatePage,
   withDeletePage,
+  withDuplicatePage,
   withUpdateAnswer,
   withCreateAnswer,
   withDeleteAnswer,

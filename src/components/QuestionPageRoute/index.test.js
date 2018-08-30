@@ -192,6 +192,7 @@ describe("QuestionPageRoute", () => {
           onDeletePage={jest.fn()}
           onMovePage={jest.fn()}
           onAddPage={jest.fn()}
+          onDuplicatePage={jest.fn()}
         />
       );
 
@@ -244,7 +245,8 @@ describe("QuestionPageRoute", () => {
         onUpdateOption: jest.fn(),
         onDeleteOption: jest.fn(),
         onAddOther: jest.fn(),
-        onDeleteOther: jest.fn()
+        onDeleteOther: jest.fn(),
+        onDuplicatePage: jest.fn()
       };
     });
 
@@ -332,6 +334,42 @@ describe("QuestionPageRoute", () => {
         .simulate("click");
 
       expect(onAddAnswer).toHaveBeenCalledWith("3", "Radio");
+    });
+
+    it("should call onDuplicatePage prop with correct arguments", () => {
+      const data = {
+        questionPage: {
+          __typename: "QuestionPage",
+          id: "3",
+          title: "foo",
+          description: "bar",
+          pageType: "QuestionPage",
+          position: 0,
+          guidance: "",
+          answers: []
+        }
+      };
+
+      const wrapper = render(
+        {
+          loading: false,
+          match,
+          data,
+          ...mockHandlers
+        },
+        mount
+      );
+
+      wrapper
+        .find(`[data-test="btn-duplicate-page"]`)
+        .first()
+        .simulate("click");
+
+      expect(mockHandlers.onDuplicatePage).toHaveBeenCalledWith({
+        sectionId: match.params.sectionId,
+        pageId: data.questionPage.id,
+        position: parseInt(data.questionPage.position, 10) + 1
+      });
     });
   });
 });
