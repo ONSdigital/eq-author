@@ -23,11 +23,11 @@ before_script:
  - set -e
 
 script:
-  - yarn lint
   - yarn coverage  
   - yarn test:storybook
   - yarn test:e2e
   - yarn storybook-build
+  - yarn lint
 
 
 after_success:
