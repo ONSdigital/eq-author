@@ -36,6 +36,8 @@ docker-compose -f ./scripts/e2e.yml pull
 docker-compose -f ./scripts/e2e.yml up -d
 ./node_modules/.bin/wait-on tcp:4000
 
+sleep 10
+
 # Build the app
 yarn build
 
