@@ -33,7 +33,7 @@ import { buildPagePath } from "utils/UrlUtils";
 import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
 import routingConditionFragment from "graphql/fragments/routing-condition.graphql";
-import { RADIO, NUMBER } from "constants/answer-types";
+import { RADIO, NUMBER, CURRENCY } from "constants/answer-types";
 
 const Label = styled.label`
   width: 100%;
@@ -156,6 +156,15 @@ const renderEditor = (condition, onToggleOption, sections) => {
         id={`TABS_NUMERIC_${condition.id}`}
         sections={sections}
         condition={condition}
+        type={NUMBER}
+      />
+    ),
+    [CURRENCY]: (
+      <NumericAnswerSelector
+        id={`TABS_CURRENCY_${condition.id}`}
+        sections={sections}
+        condition={condition}
+        type={CURRENCY}
       />
     )
   };

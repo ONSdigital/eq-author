@@ -8,7 +8,6 @@ import styled from "styled-components";
 import { PropTypes } from "prop-types";
 import { colors } from "constants/theme";
 
-import { RADIO, NUMBER, CURRENCY } from "constants/answer-types";
 import {
   flow,
   find,
@@ -29,6 +28,7 @@ import { Select, Input } from "components/Forms";
 import { PageSelect } from "./RoutingCondition";
 import { withLocalStorageState } from "./withLocalStorageState";
 import Icon from "./icon-alert.svg?inline";
+import { CURRENCY } from "constants/answer-types";
 
 const NumericAnswer = styled.div`
   display: flex;
@@ -80,10 +80,13 @@ const NotAvailableMsg = styled.div`
   padding: 0.5em;
 `;
 
-const NotAvailable = () => (
+const NotAvailable = ({ type }) => (
   <Flex>
     <Icon width="1.4em" />
-    <NotAvailableMsg>Sorry, no previous answers are numeric.</NotAvailableMsg>
+    <NotAvailableMsg>
+      Sorry, no previous answers are of type{" "}
+      <strong>{type.toLowerCase()}</strong>
+    </NotAvailableMsg>
   </Flex>
 );
 
@@ -98,7 +101,7 @@ const NumericSelect = props => (
   </Select>
 );
 
-const AnswerSelect = ({ sections, ...otherProps }) => {
+const AnswerSelect = ({ sections, type, ...otherProps }) => {
   const hasValidAnswers = !every(sections, section =>
     every(section.options, ({ disabled }) => disabled)
   );
@@ -107,7 +110,7 @@ const AnswerSelect = ({ sections, ...otherProps }) => {
     return <PageSelect groups={sections} {...otherProps} />;
   }
 
-  return <NotAvailable />;
+  return <NotAvailable type={type} />;
 };
 
 const MetadataSelect = props => (
@@ -127,13 +130,25 @@ const Value = styled.div`
   margin-left: 1em;
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 const NumericInput = styled(Input)`
   width: 10em;
+  ${props =>
+    props.answerType === CURRENCY &&
+    `
+    padding-left: 1.2em;
+  `};
 `;
 
-const getTabContent = ({ sections, onChange, state }) => {
+const CurrencySymbol = styled.div`
+  position: absolute;
+  opacity: 0.5;
+  left: 0.5em;
+`;
+
+const getTabContent = ({ sections, onChange, state, answerType }) => {
   const customValue = (
     <Flex id="custom">
       <Comparator>
@@ -145,6 +160,7 @@ const getTabContent = ({ sections, onChange, state }) => {
         />
       </Comparator>
       <Value>
+        {answerType === CURRENCY && <CurrencySymbol>£ </CurrencySymbol>}
         <NumericInput
           type="number"
           name="custom-value"
@@ -152,6 +168,7 @@ const getTabContent = ({ sections, onChange, state }) => {
           placeholder={"Value"}
           onChange={onChange}
           value={state["custom-value"]}
+          answerType={answerType}
         />
       </Value>
     </Flex>
@@ -174,6 +191,7 @@ const getTabContent = ({ sections, onChange, state }) => {
           name="previous-answer"
           id="previous-answer"
           value={state["previous-answer"]}
+          type={answerType}
         />
       </Value>
     </Flex>
@@ -219,40 +237,33 @@ const getTabContent = ({ sections, onChange, state }) => {
   ];
 };
 
-const isAnswerValidForRouting = answer => {
-  const type = get(answer, "type");
-  return type === NUMBER || type === CURRENCY;
-};
-
-const firstAnswerIsValid = flow(
-  first,
-  isAnswerValidForRouting
-);
-const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
-
-export const convertToGroups = (sections, condition) =>
-  sections.map(section => ({
-    label: section.plaintextTitle || "Section Title",
-    id: section.id,
-    options: section.pages.map(page => ({
-      label: page.plaintextTitle || "Page Title",
-      value: page.id,
-      disabled:
-        shouldDisable(page.answers) || page.id === condition.questionPage.id
-    }))
-  }));
-
 const NumericAnswerSelector = ({
   id,
-  loading,
   condition,
   sections,
   state,
+  type,
   setState
 }) => {
-  if (loading) {
-    return <div>Loading&hellip;</div>;
-  }
+  const isAnswerValidForRouting = answer => get(answer, "type") === type;
+
+  const firstAnswerIsValid = flow(
+    first,
+    isAnswerValidForRouting
+  );
+  const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
+
+  const convertToGroups = (sections, condition) =>
+    sections.map(section => ({
+      label: section.plaintextTitle || "Section Title",
+      id: section.id,
+      options: section.pages.map(page => ({
+        label: page.plaintextTitle || "Page Title",
+        value: page.id,
+        disabled:
+          shouldDisable(page.answers) || page.id === condition.questionPage.id
+      }))
+    }));
 
   const activeTabId = state[id] || "custom";
 
@@ -261,7 +272,8 @@ const NumericAnswerSelector = ({
   const tabItems = getTabContent({
     sections: convertToGroups(sections, condition),
     state,
-    onChange: handleChange
+    onChange: handleChange,
+    answerType: type
   });
 
   const activeItem = find(tabItems, { id: activeTabId });
