@@ -27,7 +27,9 @@ script:
   - yarn test:storybook
   - yarn test:e2e
   - yarn storybook-build
+  - docker-compose -f scripts/e2e.yml up -d
   - yarn lint
+  - docker-compose -f scripts/e2e.yml stop
 
 
 after_success:
