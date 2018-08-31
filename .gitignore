@@ -27,3 +27,5 @@ public/status.json
 .env.*local
 cypress/videos/
 cypress/screenshots/
+
+schema.json

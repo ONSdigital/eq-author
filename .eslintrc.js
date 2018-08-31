@@ -1,5 +1,5 @@
 const path = require("path");
-const schema = require("eq-author-graphql-schema");
+const schema = require("./schema.json");
 
 const config = {
   resolve: {
@@ -25,7 +25,7 @@ module.exports = {
       "error",
       {
         env: "literal",
-        schemaString: schema
+        schemaJson: schema
       }
     ]
   },
