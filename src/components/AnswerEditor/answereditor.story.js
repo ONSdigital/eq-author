@@ -44,6 +44,7 @@ class AnswerEditorWrapper extends React.Component {
         onDeleteOption={action("deleteOption")}
         onAddOther={action("addOther")}
         onDeleteOther={action("deleteOther")}
+        onAddExclusive={action("addExclusive")}
       />
     );
   }

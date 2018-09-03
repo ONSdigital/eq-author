@@ -1,5 +1,5 @@
 import { graphql } from "react-apollo";
-import { remove } from "lodash";
+import { remove, get } from "lodash";
 import deleteOptionMutation from "graphql/deleteOption.graphql";
 import fragment from "graphql/answerFragment.graphql";
 
@@ -7,7 +7,11 @@ export const createUpdater = (optionId, answerId) => proxy => {
   const id = `MultipleChoiceAnswer${answerId}`;
   const answer = proxy.readFragment({ id, fragment });
 
-  remove(answer.options, { id: optionId });
+  if (get(answer, "mutuallyExclusiveOption.id") === optionId) {
+    answer.mutuallyExclusiveOption = null;
+  } else {
+    remove(answer.options, { id: optionId });
+  }
 
   proxy.writeFragment({
     id,

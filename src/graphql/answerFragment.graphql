@@ -3,6 +3,9 @@ fragment MinimalAnswer on Answer {
     options {
       id
     }
+    mutuallyExclusiveOption {
+      id
+    }
     other {
       option {
         id
