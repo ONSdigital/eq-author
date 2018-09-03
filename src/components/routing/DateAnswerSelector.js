@@ -30,7 +30,7 @@ import { withLocalStorageState } from "./withLocalStorageState";
 import Icon from "./icon-alert.svg?inline";
 import { CURRENCY } from "constants/answer-types";
 
-const NumericAnswer = styled.div`
+const DateAnswer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1em 0;
@@ -240,7 +240,7 @@ const getTabContent = ({ sections, onChange, state, answerType }) => {
   ];
 };
 
-const NumericAnswerSelector = ({
+const DateAnswerSelector = ({
   id,
   condition,
   sections,
@@ -282,7 +282,7 @@ const NumericAnswerSelector = ({
   const activeItem = find(tabItems, { id: activeTabId });
 
   return (
-    <NumericAnswer data-test="options-selector">
+    <DateAnswer data-test="options-selector">
       <PillTabs>
         {tabItems.map(item => (
           <PillTab
@@ -299,15 +299,15 @@ const NumericAnswerSelector = ({
       <TabsBody navItemId={activeItem.id} data-test="tabs-body">
         {activeItem.component}
       </TabsBody>
-    </NumericAnswer>
+    </DateAnswer>
   );
 };
 
-NumericAnswerSelector.propTypes = {
+DateAnswerSelector.propTypes = {
   id: PropTypes.string.isRequired
 };
 
 export default flow(
   withRouter,
   withLocalStorageState
-)(NumericAnswerSelector);
+)(DateAnswerSelector);
