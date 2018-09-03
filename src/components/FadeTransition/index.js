@@ -9,11 +9,13 @@ const FadeTransition = styled(CSSTransition).attrs({
   transition-duration: ${props => props.timeout}ms;
   transition-timing-function: ease-in-out;
 
-  &.fade-enter {
+  &.fade-enter,
+  &.fade-appear {
     opacity: 0;
   }
 
-  &.fade-enter.fade-enter-active {
+  &.fade-enter.fade-enter-active,
+  &.fade-appear.fade-appear-active {
     opacity: 1;
   }
 
