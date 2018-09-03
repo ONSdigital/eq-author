@@ -19,13 +19,6 @@ function dotenv {
 # Read env vars
 dotenv
 
-# Build the app
-yarn build
-
-# Serve the app
-yarn serve &
-pid=$!
-
 function finish {
   echo "Shutting down the server..."
 
@@ -37,14 +30,23 @@ function finish {
 }
 trap finish INT KILL TERM EXIT
 
-# Wait for server to start listening
-./node_modules/.bin/wait-on $CYPRESS_baseUrl -t 20000
-
 # start API/DB, and wait until running
 docker-compose -f ./scripts/e2e.yml down --rmi all
 docker-compose -f ./scripts/e2e.yml pull
 docker-compose -f ./scripts/e2e.yml up -d
 ./node_modules/.bin/wait-on tcp:4000
+
+sleep 10
+
+# Build the app
+yarn build
+
+# Serve the app
+yarn serve &
+pid=$!
+
+# Wait for server to start listening
+./node_modules/.bin/wait-on $CYPRESS_baseUrl -t 20000
 
 # Run the tests
 if [ -z "${CYPRESS_RECORD_KEY-}" ]; then
