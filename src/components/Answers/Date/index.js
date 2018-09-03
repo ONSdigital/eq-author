@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
-import fp from "lodash/fp";
 import DummyDate from "components/Answers/Dummy/Date";
 
 import { Field, Label } from "components/Forms";
@@ -29,16 +28,16 @@ const Fieldset = styled.fieldset`
 
 const Legend = VisuallyHidden.withComponent("legend");
 
-const formatIncludes = x =>
-  fp.flow(fp.get("properties.format"), fp.includes(x));
-
 export const UnwrappedDate = ({
   label,
   name,
   answer,
   onChange,
   onUpdate,
-  placeholder
+  placeholder,
+  showDay,
+  showMonth,
+  showYear
 }) => (
   <Fieldset>
     <Legend>Date options</Legend>
@@ -61,9 +60,9 @@ export const UnwrappedDate = ({
       <Label>Date</Label>
       <Format>
         <DummyDate
-          showDay={formatIncludes("dd")(answer)}
-          showMonth={formatIncludes("mm")(answer)}
-          showYear={formatIncludes("yyyy")(answer)}
+          showDay={showDay}
+          showMonth={showMonth}
+          showYear={showYear}
         />
       </Format>
     </Field>
@@ -76,7 +75,10 @@ UnwrappedDate.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   name: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  showDay: PropTypes.bool,
+  showMonth: PropTypes.bool,
+  showYear: PropTypes.bool
 };
 
 UnwrappedDate.defaultProps = {
