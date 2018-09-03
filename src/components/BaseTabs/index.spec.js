@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import styled from "styled-components";
 
 import BaseTabs from "./";
 
@@ -16,6 +17,24 @@ describe("Base Tabs", () => {
   it("should render the basic layout", () => {
     const wrapper = shallow(
       <BaseTabs
+        buttonRender={renderButton}
+        tabs={tabs}
+        activeId={1}
+        onChange={() => {}}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should allow the user to provide their own styled list wrapper and button wrapper", () => {
+    const wrapper = shallow(
+      <BaseTabs
+        TabList={styled.ul`
+          list-style: none;
+        `}
+        TabItem={styled.li`
+          background: red;
+        `}
         buttonRender={renderButton}
         tabs={tabs}
         activeId={1}

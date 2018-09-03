@@ -1,11 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-
-const TabList = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
 
 const renderButton = ({ onChange, activeId, buttonRender }, item) => {
   const { id } = item;
@@ -19,14 +13,22 @@ const renderButton = ({ onChange, activeId, buttonRender }, item) => {
   );
 };
 
-const BaseTabs = props => {
-  const { activeId, tabs } = props;
+const BaseTabs = ({
+  TabList,
+  TabItem,
+  buttonRender,
+  onChange,
+  activeId,
+  tabs
+}) => {
   const { render } = tabs.find(({ id }) => id === activeId);
   return (
     <div>
       <TabList>
         {tabs.map(item => (
-          <li key={item.id}>{renderButton(props, item)}</li>
+          <TabItem key={item.id}>
+            {renderButton({ onChange, activeId, buttonRender }, item)}
+          </TabItem>
         ))}
       </TabList>
       <div aria-labelledby={activeId}>{render()}</div>
@@ -38,8 +40,11 @@ const StringOrNumber = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number
 ]);
+const Component = PropTypes.oneOfType([PropTypes.node, PropTypes.func]);
 
 BaseTabs.propTypes = {
+  TabList: Component,
+  TabItem: Component,
   buttonRender: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   activeId: StringOrNumber.isRequired,
@@ -50,6 +55,10 @@ BaseTabs.propTypes = {
       render: PropTypes.func.isRequired
     })
   )
+};
+BaseTabs.defaultProps = {
+  TabList: "ul",
+  TabItem: "li"
 };
 
 export default BaseTabs;

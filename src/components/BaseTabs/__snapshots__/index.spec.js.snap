@@ -1,8 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Base Tabs should allow the user to provide their own styled list wrapper and button wrapper 1`] = `
+<div>
+  <indexspec__wrapper>
+    <indexspec__wrapper
+      key="1"
+    >
+      <button
+        aria-controls={1}
+        aria-selected={true}
+        onClick={[Function]}
+      >
+        Example 1
+      </button>
+    </indexspec__wrapper>
+    <indexspec__wrapper
+      key="2"
+    >
+      <button
+        aria-controls={2}
+        aria-selected={false}
+        onClick={[Function]}
+      >
+        Example 2
+      </button>
+    </indexspec__wrapper>
+    <indexspec__wrapper
+      key="3"
+    >
+      <button
+        aria-controls={3}
+        aria-selected={false}
+        onClick={[Function]}
+      >
+        Example 3
+      </button>
+    </indexspec__wrapper>
+  </indexspec__wrapper>
+  <div
+    aria-labelledby={1}
+  >
+    <div>
+      Hello 1
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Base Tabs should render the basic layout 1`] = `
 <div>
-  <BaseTabs__TabList>
+  <ul>
     <li
       key="1"
     >
@@ -36,7 +83,7 @@ exports[`Base Tabs should render the basic layout 1`] = `
         Example 3
       </button>
     </li>
-  </BaseTabs__TabList>
+  </ul>
   <div
     aria-labelledby={1}
   >
