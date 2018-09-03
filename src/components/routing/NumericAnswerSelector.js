@@ -149,26 +149,37 @@ const CurrencySymbol = styled.div`
   left: 0.5em;
 `;
 
-const getTabContent = ({ sections, onChange, state, answerType }) => {
+const getTabContent = ({
+  sections,
+  onChange,
+  state,
+  answerType,
+  condition
+}) => {
+  const numericSelectId = `condition-${condition.id}-numeric-select`;
+  const customValueId = `condition-${condition.id}-custom-value`;
+  const previousAnswerId = `condition-${condition.id}-previous-answer`;
+  const metadataId = `condition-${condition.id}-metadata`;
+
   const customValue = (
     <Flex id="custom">
       <Comparator>
         <NumericSelect
           onChange={onChange}
-          name="numeric-select"
-          id="numeric-select"
-          defaultValue={state["numeric-select"]}
+          name={numericSelectId}
+          id={numericSelectId}
+          defaultValue={state[numericSelectId]}
         />
       </Comparator>
       <Value>
         {answerType === CURRENCY && <CurrencySymbol>£ </CurrencySymbol>}
         <NumericInput
           type="number"
-          name="custom-value"
-          id="custom-value"
+          name={customValueId}
+          id={customValueId}
           placeholder={"Value"}
           onChange={onChange}
-          value={state["custom-value"]}
+          value={state[customValueId]}
           answerType={answerType}
           max="999999999"
           min="-999999999"
@@ -182,18 +193,18 @@ const getTabContent = ({ sections, onChange, state, answerType }) => {
       <Comparator>
         <NumericSelect
           onChange={onChange}
-          name="numeric-select"
-          id="numeric-select"
-          value={state["numeric-select"]}
+          name={numericSelectId}
+          id={numericSelectId}
+          value={state[numericSelectId]}
         />
       </Comparator>
       <Value>
         <AnswerSelect
           sections={sections}
           onChange={onChange}
-          name="previous-answer"
-          id="previous-answer"
-          value={state["previous-answer"]}
+          name={previousAnswerId}
+          id={previousAnswerId}
+          value={state[previousAnswerId]}
           type={answerType}
         />
       </Value>
@@ -205,17 +216,17 @@ const getTabContent = ({ sections, onChange, state, answerType }) => {
       <Comparator>
         <NumericSelect
           onChange={onChange}
-          name="numeric-select"
-          id="numeric-select"
-          value={state["numeric-select"]}
+          name={numericSelectId}
+          id={numericSelectId}
+          value={state[numericSelectId]}
         />
       </Comparator>
       <Value>
         <MetadataSelect
           onChange={onChange}
-          name="metadata"
-          id="metadata"
-          value={state["metadata"]}
+          name={metadataId}
+          id={metadataId}
+          value={state[metadataId]}
         />
       </Value>
     </Flex>
@@ -273,6 +284,7 @@ const NumericAnswerSelector = ({
   const handleChange = ({ name, value }) => setState({ [name]: value });
 
   const tabItems = getTabContent({
+    condition: condition,
     sections: convertToGroups(sections, condition),
     state,
     onChange: handleChange,
