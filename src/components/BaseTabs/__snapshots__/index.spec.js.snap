@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Base Tabs should render the basic layout 1`] = `
+<div>
+  <BaseTabs__TabList>
+    <li
+      key="1"
+    >
+      <button
+        aria-controls={1}
+        aria-selected={true}
+        onClick={[Function]}
+      >
+        Example 1
+      </button>
+    </li>
+    <li
+      key="2"
+    >
+      <button
+        aria-controls={2}
+        aria-selected={false}
+        onClick={[Function]}
+      >
+        Example 2
+      </button>
+    </li>
+    <li
+      key="3"
+    >
+      <button
+        aria-controls={3}
+        aria-selected={false}
+        onClick={[Function]}
+      >
+        Example 3
+      </button>
+    </li>
+  </BaseTabs__TabList>
+  <div
+    aria-labelledby={1}
+  >
+    <div>
+      Hello 1
+    </div>
+  </div>
+</div>
+`;
