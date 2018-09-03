@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-handler-names */
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable dot-notation */
 
 import React from "react";
 import styled from "styled-components";
 
 import { PropTypes } from "prop-types";
-import { colors, radius } from "constants/theme";
+import { radius } from "constants/theme";
 
 import {
   flow,
@@ -23,12 +24,17 @@ import { withRouter } from "react-router";
 
 import { TabsBody } from "components/ModalWithNav/Tabs";
 
-import { Select, Input } from "components/Forms";
+import { Input } from "components/Forms";
 
 import { PageSelect } from "./RoutingCondition";
 import { withLocalStorageState } from "./withLocalStorageState";
-import Icon from "./icon-alert.svg?inline";
-import { CURRENCY } from "constants/answer-types";
+
+import { CURRENCY, NUMBER } from "constants/answer-types";
+
+import { PillTab, PillTabs } from "./PillTabs";
+import NotAvailable from "./NotAvailableMsg";
+import NumericSelect from "./NumericSelect";
+import MetadataSelect from "./MetadataSelect";
 
 const NumericAnswer = styled.div`
   display: flex;
@@ -37,69 +43,11 @@ const NumericAnswer = styled.div`
   margin: 0.25em 0;
 `;
 
-const PillTabs = styled.div`
-  background-color: #e4e8eb;
-  border-radius: 3em;
-  display: flex;
-  margin: 0.25em 0 1em;
-`;
-
-const PillTab = styled.div`
-  padding: 0.5em 2em;
-  border-radius: 3em;
-  color: ${colors.darkGrey};
-  cursor: pointer;
-  flex: 1 1 auto;
-  text-align: center;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  &[aria-selected="true"] {
-    background: ${colors.primary};
-    color: white;
-  }
-
-  &:first-child {
-    margin-right: 0.5em;
-  }
-
-  &:last-child {
-    margin-left: 0.5em;
-  }
-`;
-
 const Flex = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
 `;
-
-const NotAvailableMsg = styled.div`
-  padding: 0.5em;
-`;
-
-const NotAvailable = ({ type }) => (
-  <Flex>
-    <Icon width="1.4em" />
-    <NotAvailableMsg>
-      Sorry, no previous answers are of type{" "}
-      <strong>{type.toLowerCase()}</strong>
-    </NotAvailableMsg>
-  </Flex>
-);
-
-const NumericSelect = props => (
-  <Select {...props}>
-    <option value="equal">{"(=) Equal to"}</option>
-    <option value="not-equal">{"(≠) Not equal to"}</option>
-    <option value="more">{"(>) More than"}</option>
-    <option value="less">{"(<) Less than"}</option>
-    <option value="more-equal">{"(≥) More than or equal to"}</option>
-    <option value="less-equal">{"(≤) Less than or equal to"}</option>
-  </Select>
-);
 
 const AnswerSelect = ({ sections, type, ...otherProps }) => {
   const hasValidAnswers = !every(sections, section =>
@@ -112,14 +60,6 @@ const AnswerSelect = ({ sections, type, ...otherProps }) => {
 
   return <NotAvailable type={type} />;
 };
-
-const MetadataSelect = props => (
-  <Select {...props}>
-    <option value="ru_ref">RU_REF</option>
-    <option value="date">DATE</option>
-    <option value="name">NAME</option>
-  </Select>
-);
 
 const Comparator = styled.div`
   width: 15em;
@@ -252,7 +192,6 @@ const getTabContent = ({
 };
 
 const NumericAnswerSelector = ({
-  id,
   condition,
   sections,
   state,
@@ -279,7 +218,9 @@ const NumericAnswerSelector = ({
       }))
     }));
 
-  const activeTabId = state[id] || "custom";
+  const tabsId = `${type}_${condition.id}`;
+
+  const activeTabId = state[tabsId] || "custom";
 
   const handleChange = ({ name, value }) => setState({ [name]: value });
 
@@ -302,7 +243,7 @@ const NumericAnswerSelector = ({
             aria-selected={item.id === activeTabId}
             key={item.id}
             controls={item.id}
-            onClick={() => setState({ [id]: item.id })}
+            onClick={() => setState({ [tabsId]: item.id })}
           >
             {item.title}
           </PillTab>
@@ -316,7 +257,11 @@ const NumericAnswerSelector = ({
 };
 
 NumericAnswerSelector.propTypes = {
-  id: PropTypes.string.isRequired
+  condition: PropTypes.object.isRequired,
+  sections: PropTypes.array.isRequired,
+  state: PropTypes.object.isRequired,
+  type: PropTypes.oneOf([CURRENCY, NUMBER]).isRequired,
+  setState: PropTypes.func.isRequired
 };
 
 export default flow(

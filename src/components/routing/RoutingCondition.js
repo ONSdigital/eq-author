@@ -33,7 +33,8 @@ import { buildPagePath } from "utils/UrlUtils";
 import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
 import routingConditionFragment from "graphql/fragments/routing-condition.graphql";
-import { RADIO, NUMBER, CURRENCY } from "constants/answer-types";
+import { RADIO, NUMBER, CURRENCY, DATE } from "constants/answer-types";
+import DateAnswerSelector from "./DateAnswerSelector";
 
 const Label = styled.label`
   width: 100%;
@@ -153,7 +154,6 @@ const renderEditor = (condition, onToggleOption, sections) => {
     ),
     [NUMBER]: (
       <NumericAnswerSelector
-        id={`TABS_NUMERIC_${condition.id}`}
         sections={sections}
         condition={condition}
         type={NUMBER}
@@ -161,12 +161,12 @@ const renderEditor = (condition, onToggleOption, sections) => {
     ),
     [CURRENCY]: (
       <NumericAnswerSelector
-        id={`TABS_CURRENCY_${condition.id}`}
         sections={sections}
         condition={condition}
         type={CURRENCY}
       />
-    )
+    ),
+    [DATE]: <DateAnswerSelector sections={sections} condition={condition} />
   };
 
   return (

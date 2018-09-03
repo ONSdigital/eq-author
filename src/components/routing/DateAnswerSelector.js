@@ -1,12 +1,26 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/jsx-handler-names */
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable dot-notation */
 
 import React from "react";
 import styled from "styled-components";
 
 import { PropTypes } from "prop-types";
-import { colors, radius } from "constants/theme";
+import { radius, colors } from "constants/theme";
+
+import { withLocalStorageState } from "./withLocalStorageState";
+import { withRouter } from "react-router";
+
+import { Input, Select } from "components/Forms";
+import { PillTab, PillTabs } from "./PillTabs";
+import NotAvailable from "./NotAvailableMsg";
+import NumericSelect from "./NumericSelect";
+import MetadataSelect from "./MetadataSelect";
+
+import IconInfo from "./icon-info.svg?inline";
+
+import { TabsBody } from "components/ModalWithNav/Tabs";
 
 import {
   flow,
@@ -18,17 +32,8 @@ import {
   get,
   every
 } from "lodash";
-
-import { withRouter } from "react-router";
-
-import { TabsBody } from "components/ModalWithNav/Tabs";
-
-import { Select, Input } from "components/Forms";
-
+import { DATE } from "constants/answer-types";
 import { PageSelect } from "./RoutingCondition";
-import { withLocalStorageState } from "./withLocalStorageState";
-import Icon from "./icon-alert.svg?inline";
-import { CURRENCY } from "constants/answer-types";
 
 const DateAnswer = styled.div`
   display: flex;
@@ -37,69 +42,44 @@ const DateAnswer = styled.div`
   margin: 0.25em 0;
 `;
 
-const PillTabs = styled.div`
-  background-color: #e4e8eb;
-  border-radius: 3em;
-  display: flex;
-  margin: 0.25em 0 1em;
-`;
-
-const PillTab = styled.div`
-  padding: 0.5em 2em;
-  border-radius: 3em;
-  color: ${colors.darkGrey};
-  cursor: pointer;
-  flex: 1 1 auto;
-  text-align: center;
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  &[aria-selected="true"] {
-    background: ${colors.primary};
-    color: white;
-  }
-
-  &:first-child {
-    margin-right: 0.5em;
-  }
-
-  &:last-child {
-    margin-left: 0.5em;
-  }
-`;
-
 const Flex = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  margin-bottom: 1em;
+  > * :not(:last-child) {
+    margin-right: 1em;
+  }
 `;
 
-const NotAvailableMsg = styled.div`
-  padding: 0.5em;
-`;
-
-const NotAvailable = ({ type }) => (
-  <Flex>
-    <Icon width="1.4em" />
-    <NotAvailableMsg>
-      Sorry, no previous answers are of type{" "}
-      <strong>{type.toLowerCase()}</strong>
-    </NotAvailableMsg>
-  </Flex>
-);
-
-const NumericSelect = props => (
-  <Select {...props}>
-    <option value="equal">{"(=) Equal to"}</option>
-    <option value="not-equal">{"(≠) Not equal to"}</option>
-    <option value="more">{"(>) More than"}</option>
-    <option value="less">{"(<) Less than"}</option>
-    <option value="more-equal">{"(≥) More than or equal to"}</option>
-    <option value="less-equal">{"(≤) Less than or equal to"}</option>
+const DateUnitSelect = ({ isMultiple, ...otherProps }) => (
+  <Select {...otherProps}>
+    <option value="days">Day/s</option>
+    <option value="weeks">Week/s</option>
+    <option value="months">Month/s</option>
+    <option value="years">Year/s</option>
   </Select>
 );
+
+const BeforeAfterSelect = props => (
+  <Select {...props}>
+    <option value="before">Before</option>
+    <option value="after">After</option>
+  </Select>
+);
+
+const InfoBox = styled.div`
+  border-radius: ${radius};
+  padding: 0.5em;
+  background: ${colors.lighterGrey};
+
+  display: flex;
+  align-items: center;
+`;
+
+const NumericInput = styled(Input)`
+  border-radius: ${radius};
+`;
 
 const AnswerSelect = ({ sections, type, ...otherProps }) => {
   const hasValidAnswers = !every(sections, section =>
@@ -113,115 +93,81 @@ const AnswerSelect = ({ sections, type, ...otherProps }) => {
   return <NotAvailable type={type} />;
 };
 
-const MetadataSelect = props => (
-  <Select {...props}>
-    <option value="ru_ref">RU_REF</option>
-    <option value="date">DATE</option>
-    <option value="name">NAME</option>
-  </Select>
-);
+const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
+  const completionDateId = `condition-${condition.id}-completion-date`;
+  const numericSelectId = `condition-${condition.id}-numeric-select`;
+  const customValueId = `condition-${condition.id}-custom-value`;
+  const previousAnswerId = `condition-${condition.id}-previous-answer`;
+  const metadataId = `condition-${condition.id}-metadata`;
 
-const Comparator = styled.div`
-  width: 15em;
-`;
+  const comparisonValueId = `condition-${condition.id}-comparison-value`;
+  const dateUnitId = `condition-${condition.id}-date-unit`;
+  const beforeAfterId = `condition-${condition.id}-before-after`;
 
-const Value = styled.div`
-  flex: 1 1 auto;
-  margin-left: 1em;
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
+  const isMultiple = parseInt(state[comparisonValueId], 10) > 1;
 
-const NumericInput = styled(Input)`
-  width: 10em;
-  border-radius: ${radius};
-  ${props =>
-    props.answerType === CURRENCY &&
-    `
-    padding-left: 1.2em;
-  `};
-`;
-
-const CurrencySymbol = styled.div`
-  position: absolute;
-  opacity: 0.5;
-  left: 0.5em;
-`;
-
-const getTabContent = ({ sections, onChange, state, answerType }) => {
-  const customValue = (
-    <Flex id="custom">
-      <Comparator>
+  return (
+    <div>
+      <Flex>
         <NumericSelect
           onChange={onChange}
-          name="numeric-select"
-          id="numeric-select"
-          defaultValue={state["numeric-select"]}
+          name={numericSelectId}
+          id={numericSelectId}
+          defaultValue={state[numericSelectId]}
+          style={{ flex: "1 0 15em" }}
         />
-      </Comparator>
-      <Value>
-        {answerType === CURRENCY && <CurrencySymbol>£ </CurrencySymbol>}
         <NumericInput
-          type="number"
-          name="custom-value"
-          id="custom-value"
-          placeholder={"Value"}
           onChange={onChange}
-          value={state["custom-value"]}
-          answerType={answerType}
-          max="999999999"
-          min="-999999999"
+          name={comparisonValueId}
+          id={comparisonValueId}
+          value={state[comparisonValueId]}
+          placeholder="Number"
         />
-      </Value>
-    </Flex>
+        <DateUnitSelect
+          onChange={onChange}
+          name={dateUnitId}
+          id={dateUnitId}
+          defaultValue={state[dateUnitId]}
+          isMultiple={isMultiple}
+        />
+        <BeforeAfterSelect
+          onChange={onChange}
+          name={beforeAfterId}
+          id={beforeAfterId}
+        />
+      </Flex>
+      <div>{children}</div>
+    </div>
   );
+};
 
+const getTabContent = ({ sections, ...otherProps }) => {
+  const completionDate = (
+    <DateComparisonFields {...otherProps}>
+      <InfoBox>
+        <IconInfo />
+        <span>The date the respondent begins the the survey.</span>
+      </InfoBox>
+    </DateComparisonFields>
+  );
+  const customValue = (
+    <DateComparisonFields {...otherProps}>Custom Value</DateComparisonFields>
+  );
   const previousAnswer = (
-    <Flex id="previous-answer">
-      <Comparator>
-        <NumericSelect
-          onChange={onChange}
-          name="numeric-select"
-          id="numeric-select"
-          value={state["numeric-select"]}
-        />
-      </Comparator>
-      <Value>
-        <AnswerSelect
-          sections={sections}
-          onChange={onChange}
-          name="previous-answer"
-          id="previous-answer"
-          value={state["previous-answer"]}
-          type={answerType}
-        />
-      </Value>
-    </Flex>
+    <DateComparisonFields {...otherProps}>
+      <AnswerSelect sections={sections} {...otherProps} type={DATE} />
+    </DateComparisonFields>
   );
-
   const metaData = (
-    <Flex id="metadata">
-      <Comparator>
-        <NumericSelect
-          onChange={onChange}
-          name="numeric-select"
-          id="numeric-select"
-          value={state["numeric-select"]}
-        />
-      </Comparator>
-      <Value>
-        <MetadataSelect
-          onChange={onChange}
-          name="metadata"
-          id="metadata"
-          value={state["metadata"]}
-        />
-      </Value>
-    </Flex>
+    <DateComparisonFields {...otherProps}>Metadata</DateComparisonFields>
   );
 
   return [
+    {
+      id: "completion-date",
+      title: "Survey start date",
+      component: completionDate
+    },
     {
       id: "custom",
       title: "Custom value",
@@ -240,15 +186,8 @@ const getTabContent = ({ sections, onChange, state, answerType }) => {
   ];
 };
 
-const DateAnswerSelector = ({
-  id,
-  condition,
-  sections,
-  state,
-  type,
-  setState
-}) => {
-  const isAnswerValidForRouting = answer => get(answer, "type") === type;
+const DateAnswerSelector = ({ condition, sections, state, setState }) => {
+  const isAnswerValidForRouting = answer => get(answer, "type") === DATE;
 
   const firstAnswerIsValid = flow(
     first,
@@ -268,15 +207,18 @@ const DateAnswerSelector = ({
       }))
     }));
 
-  const activeTabId = state[id] || "custom";
+  const tabsId = `${DATE}_${condition.id}`;
+
+  const activeTabId = state[tabsId] || "custom";
 
   const handleChange = ({ name, value }) => setState({ [name]: value });
 
   const tabItems = getTabContent({
+    condition: condition,
     sections: convertToGroups(sections, condition),
     state,
     onChange: handleChange,
-    answerType: type
+    answerType: DATE
   });
 
   const activeItem = find(tabItems, { id: activeTabId });
@@ -290,7 +232,7 @@ const DateAnswerSelector = ({
             aria-selected={item.id === activeTabId}
             key={item.id}
             controls={item.id}
-            onClick={() => setState({ [id]: item.id })}
+            onClick={() => setState({ [tabsId]: item.id })}
           >
             {item.title}
           </PillTab>
@@ -304,7 +246,10 @@ const DateAnswerSelector = ({
 };
 
 DateAnswerSelector.propTypes = {
-  id: PropTypes.string.isRequired
+  condition: PropTypes.object.isRequired,
+  sections: PropTypes.array.isRequired,
+  state: PropTypes.object.isRequired,
+  setState: PropTypes.func.isRequired
 };
 
 export default flow(
