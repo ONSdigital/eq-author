@@ -79,6 +79,9 @@ const InfoBox = styled.div`
 
 const NumericInput = styled(Input)`
   border-radius: ${radius};
+  &:hover {
+    outline: none;
+  }
 `;
 
 const AnswerSelect = ({ sections, type, ...otherProps }) => {
@@ -94,12 +97,7 @@ const AnswerSelect = ({ sections, type, ...otherProps }) => {
 };
 
 const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
-  const completionDateId = `condition-${condition.id}-completion-date`;
   const numericSelectId = `condition-${condition.id}-numeric-select`;
-  const customValueId = `condition-${condition.id}-custom-value`;
-  const previousAnswerId = `condition-${condition.id}-previous-answer`;
-  const metadataId = `condition-${condition.id}-metadata`;
-
   const comparisonValueId = `condition-${condition.id}-comparison-value`;
   const dateUnitId = `condition-${condition.id}-date-unit`;
   const beforeAfterId = `condition-${condition.id}-before-after`;
@@ -107,7 +105,7 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
   const isMultiple = parseInt(state[comparisonValueId], 10) > 1;
 
   return (
-    <div>
+    <div style={{ flex: "1 1 auto" }}>
       <Flex>
         <NumericSelect
           onChange={onChange}
@@ -134,16 +132,21 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
           onChange={onChange}
           name={beforeAfterId}
           id={beforeAfterId}
+          defaultValue={state[beforeAfterId]}
         />
       </Flex>
-      <div>{children}</div>
+      <div style={{ flex: "1 1 auto" }}>{children}</div>
     </div>
   );
 };
 
-const getTabContent = ({ sections, ...otherProps }) => {
+const getTabContent = ({ sections, condition, state, ...otherProps }) => {
+  const customValueId = `condition-${condition.id}-custom-value`;
+  const previousAnswerId = `condition-${condition.id}-previous-answer`;
+  const metadataId = `condition-${condition.id}-metadata`;
+
   const completionDate = (
-    <DateComparisonFields {...otherProps}>
+    <DateComparisonFields condition={condition} state={state} {...otherProps}>
       <InfoBox>
         <IconInfo />
         <span>The date the respondent begins the the survey.</span>
@@ -151,15 +154,39 @@ const getTabContent = ({ sections, ...otherProps }) => {
     </DateComparisonFields>
   );
   const customValue = (
-    <DateComparisonFields {...otherProps}>Custom Value</DateComparisonFields>
+    <DateComparisonFields condition={condition} state={state} {...otherProps}>
+      <NumericInput
+        type="date"
+        style={{ width: "15em", height: "2.375em" }}
+        placeholder="Custom value"
+        id={customValueId}
+        name={customValueId}
+        value={state[customValueId]}
+        {...otherProps}
+      />
+    </DateComparisonFields>
   );
   const previousAnswer = (
-    <DateComparisonFields {...otherProps}>
-      <AnswerSelect sections={sections} {...otherProps} type={DATE} />
+    <DateComparisonFields condition={condition} state={state} {...otherProps}>
+      <AnswerSelect
+        sections={sections}
+        id={previousAnswerId}
+        name={previousAnswerId}
+        value={state[previousAnswerId]}
+        type={DATE}
+        {...otherProps}
+      />
     </DateComparisonFields>
   );
   const metaData = (
-    <DateComparisonFields {...otherProps}>Metadata</DateComparisonFields>
+    <DateComparisonFields condition={condition} state={state} {...otherProps}>
+      <MetadataSelect
+        id={metadataId}
+        name={metadataId}
+        value={state[metadataId]}
+        {...otherProps}
+      />
+    </DateComparisonFields>
   );
 
   return [
