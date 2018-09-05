@@ -22,8 +22,6 @@ import {
 
 import { withRouter } from "react-router";
 
-import { TabsBody } from "components/ModalWithNav/Tabs";
-
 import { Input } from "components/Forms";
 
 import { PageSelect } from "./RoutingCondition";
@@ -31,7 +29,7 @@ import { withLocalStorageState } from "./withLocalStorageState";
 
 import { CURRENCY, NUMBER } from "constants/answer-types";
 
-import { PillTab, PillTabs, PillTabsBody } from "./PillTabs";
+import { Tab, Tabs, TabsBody } from "./Tabs";
 import NotAvailable from "./NotAvailableMsg";
 import NumericSelect from "./NumericSelect";
 import MetadataSelect from "./MetadataSelect";
@@ -235,9 +233,9 @@ const NumericAnswerSelector = ({
 
   return (
     <NumericAnswer data-test="options-selector">
-      <PillTabs>
+      <Tabs>
         {tabItems.map(item => (
-          <PillTab
+          <Tab
             role="tab"
             aria-selected={item.id === activeTabId}
             key={item.id}
@@ -245,14 +243,10 @@ const NumericAnswerSelector = ({
             onClick={() => setState({ [tabsId]: item.id })}
           >
             {item.title}
-          </PillTab>
+          </Tab>
         ))}
-      </PillTabs>
-      <PillTabsBody>
-        <TabsBody navItemId={activeItem.id} data-test="tabs-body">
-          {activeItem.component}
-        </TabsBody>
-      </PillTabsBody>
+      </Tabs>
+      <TabsBody navItemId={activeItem.id}>{activeItem.component}</TabsBody>
     </NumericAnswer>
   );
 };

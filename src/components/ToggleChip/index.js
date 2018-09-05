@@ -9,7 +9,7 @@ import withChangeHandler from "../Forms/withChangeHandler";
 const labelStyles = {
   unchecked: css`
     color: ${colors.text};
-    background: ${colors.lightMediumGrey};
+    background: ${colors.lighterGrey};
 
     &:hover {
       color: white;

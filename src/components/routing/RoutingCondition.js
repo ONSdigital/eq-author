@@ -214,7 +214,7 @@ const RoutingCondition = ({
     onPageChange({ id: condition.id, questionPageId: value });
 
   return (
-    <div data-test="routing-condition">
+    <div data-test="routing-condition" style={{ margin: "1em 0" }}>
       <Grid align="center">
         <Column gutters={false} cols={1}>
           <Label htmlFor={id}>{label}</Label>

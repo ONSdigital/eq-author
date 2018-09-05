@@ -13,14 +13,12 @@ import { withLocalStorageState } from "./withLocalStorageState";
 import { withRouter } from "react-router";
 
 import { Input, Select } from "components/Forms";
-import { PillTab, PillTabs, PillTabsBody } from "./PillTabs";
+import { Tab, Tabs, TabsBody } from "./Tabs";
 import NotAvailable from "./NotAvailableMsg";
 import NumericSelect from "./NumericSelect";
 import MetadataSelect from "./MetadataSelect";
 
 import IconInfo from "./icon-info.svg?inline";
-
-import { TabsBody } from "components/ModalWithNav/Tabs";
 
 import {
   flow,
@@ -247,9 +245,9 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
 
   return (
     <DateAnswer data-test="options-selector">
-      <PillTabs>
+      <Tabs>
         {tabItems.map(item => (
-          <PillTab
+          <Tab
             role="tab"
             aria-selected={item.id === activeTabId}
             key={item.id}
@@ -257,14 +255,11 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
             onClick={() => setState({ [tabsId]: item.id })}
           >
             {item.title}
-          </PillTab>
+          </Tab>
         ))}
-      </PillTabs>
-      <PillTabsBody>
-        <TabsBody navItemId={activeItem.id} data-test="tabs-body">
-          {activeItem.component}
-        </TabsBody>
-      </PillTabsBody>
+      </Tabs>
+
+      <TabsBody navItemId={activeItem.id}>{activeItem.component}</TabsBody>
     </DateAnswer>
   );
 };
