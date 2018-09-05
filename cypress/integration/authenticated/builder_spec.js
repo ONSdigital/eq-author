@@ -531,7 +531,7 @@ describe("builder", () => {
         .should("contain", "Or");
     });
 
-    it.only("Can be deleted and re-enable the add button", () => {
+    it("Can be deleted and re-enable the add button", () => {
       addAnswerType("Checkbox");
       cy.get(testId("btn-add-option-menu")).click();
       cy.get(testId("btn-add-mutually-exclusive-option")).click();
