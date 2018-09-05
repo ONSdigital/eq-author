@@ -7,29 +7,21 @@ const renderButton = ({ onChange, activeId, buttonRender }, item) => {
     {
       "aria-selected": id === activeId,
       "aria-controls": id,
-      onClick: e => onChange(id)
+      onClick: e => onChange(id),
+      key: id
     },
     item
   );
 };
 
-const BaseTabs = ({
-  TabList,
-  TabItem,
-  buttonRender,
-  onChange,
-  activeId,
-  tabs
-}) => {
+const BaseTabs = ({ TabList, buttonRender, onChange, activeId, tabs }) => {
   const { render } = tabs.find(({ id }) => id === activeId);
   return (
     <div>
       <TabList>
-        {tabs.map(item => (
-          <TabItem key={item.id}>
-            {renderButton({ onChange, activeId, buttonRender }, item)}
-          </TabItem>
-        ))}
+        {tabs.map(item =>
+          renderButton({ onChange, activeId, buttonRender }, item)
+        )}
       </TabList>
       <div aria-labelledby={activeId}>{render()}</div>
     </div>
@@ -44,7 +36,6 @@ const Component = PropTypes.oneOfType([PropTypes.node, PropTypes.func]);
 
 BaseTabs.propTypes = {
   TabList: Component,
-  TabItem: Component,
   buttonRender: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   activeId: StringOrNumber.isRequired,
@@ -57,8 +48,7 @@ BaseTabs.propTypes = {
   )
 };
 BaseTabs.defaultProps = {
-  TabList: "ul",
-  TabItem: "li"
+  TabList: "ul"
 };
 
 export default BaseTabs;

@@ -10,9 +10,7 @@ describe("Base Tabs", () => {
     { id: 2, title: "Example 2", render: () => <div>Hello 2</div> },
     { id: 3, title: "Example 3", render: () => <div>Hello 3</div> }
   ];
-  const renderButton = (props, { title }) => (
-    <button {...props}>{title}</button>
-  );
+  const renderButton = (props, { title }) => <li {...props}>{title}</li>;
 
   it("should render the basic layout", () => {
     const wrapper = shallow(
@@ -32,10 +30,7 @@ describe("Base Tabs", () => {
         TabList={styled.ul`
           list-style: none;
         `}
-        TabItem={styled.li`
-          background: red;
-        `}
-        buttonRender={renderButton}
+        buttonRender={(props, { title }) => <li {...props}>{title}</li>}
         tabs={tabs}
         activeId={1}
         onChange={() => {}}
@@ -69,7 +64,7 @@ describe("Base Tabs", () => {
       />
     );
 
-    const button = wrapper.find("button[aria-controls=2]");
+    const button = wrapper.find("li[aria-controls=2]");
     button.simulate("click");
 
     expect(onChange).toHaveBeenCalledWith(2);
