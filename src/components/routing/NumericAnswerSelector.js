@@ -3,7 +3,7 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable dot-notation */
 
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 
 import { PropTypes } from "prop-types";
@@ -30,9 +30,10 @@ import { withLocalStorageState } from "./withLocalStorageState";
 import { CURRENCY, NUMBER } from "constants/answer-types";
 
 import { Tab, Tabs, TabsBody } from "./Tabs";
-import NotAvailable from "./NotAvailableMsg";
+
 import NumericSelect from "./NumericSelect";
 import MetadataSelect from "./MetadataSelect";
+import { Alert, AlertTitle, AlertText } from "./Alert";
 
 const NumericAnswer = styled.div`
   display: flex;
@@ -46,17 +47,10 @@ const Flex = styled.div`
   align-items: center;
 `;
 
-const AnswerSelect = ({ sections, type, ...otherProps }) => {
-  const hasValidAnswers = !every(sections, section =>
+const hasValidAnswers = sections =>
+  !every(sections, section =>
     every(section.options, ({ disabled }) => disabled)
   );
-
-  if (hasValidAnswers) {
-    return <PageSelect groups={sections} {...otherProps} />;
-  }
-
-  return <NotAvailable type={type} />;
-};
 
 const Comparator = styled.div`
   width: 15em;
@@ -126,26 +120,41 @@ const getTabContent = ({
   );
 
   const previousAnswer = (
-    <Flex id="previous-answer">
-      <Comparator>
-        <NumericSelect
-          onChange={onChange}
-          name={numericSelectId}
-          id={numericSelectId}
-          value={state[numericSelectId]}
-        />
-      </Comparator>
-      <Value>
-        <AnswerSelect
-          sections={sections}
-          onChange={onChange}
-          name={previousAnswerId}
-          id={previousAnswerId}
-          value={state[previousAnswerId]}
-          type={answerType}
-        />
-      </Value>
-    </Flex>
+    <Fragment>
+      {hasValidAnswers(sections) ? (
+        <Flex id="previous-answer">
+          <Comparator>
+            <NumericSelect
+              onChange={onChange}
+              name={numericSelectId}
+              id={numericSelectId}
+              value={state[numericSelectId]}
+            />
+          </Comparator>
+          <Value>
+            <PageSelect
+              groups={sections}
+              sections={sections}
+              onChange={onChange}
+              name={previousAnswerId}
+              id={previousAnswerId}
+              value={state[previousAnswerId]}
+              type={answerType}
+            />
+          </Value>
+        </Flex>
+      ) : (
+        <Alert style={{ padding: "0" }}>
+          <AlertTitle>
+            There are no previous questions with a {answerType} answer
+          </AlertTitle>
+          <AlertText>
+            Add a {answerType} answer to a previous question to be able to route
+            here.
+          </AlertText>
+        </Alert>
+      )}
+    </Fragment>
   );
 
   const metaData = (

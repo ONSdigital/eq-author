@@ -3,7 +3,7 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable dot-notation */
 
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 
 import { PropTypes } from "prop-types";
@@ -14,11 +14,9 @@ import { withRouter } from "react-router";
 
 import { Input, Select } from "components/Forms";
 import { Tab, Tabs, TabsBody } from "./Tabs";
-import NotAvailable from "./NotAvailableMsg";
+
 import NumericSelect from "./NumericSelect";
 import MetadataSelect from "./MetadataSelect";
-
-import IconInfo from "./icon-info.svg?inline";
 
 import {
   flow,
@@ -32,6 +30,7 @@ import {
 } from "lodash";
 import { DATE } from "constants/answer-types";
 import { PageSelect } from "./RoutingCondition";
+import { Alert, AlertTitle, AlertText } from "./Alert";
 
 const DateAnswer = styled.div`
   display: flex;
@@ -80,17 +79,10 @@ const NumericInput = styled(Input)`
   }
 `;
 
-const AnswerSelect = ({ sections, type, ...otherProps }) => {
-  const hasValidAnswers = !every(sections, section =>
+const hasValidAnswers = sections =>
+  !every(sections, section =>
     every(section.options, ({ disabled }) => disabled)
   );
-
-  if (hasValidAnswers) {
-    return <PageSelect groups={sections} {...otherProps} />;
-  }
-
-  return <NotAvailable type={type} />;
-};
 
 const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
   const numericSelectId = `condition-${condition.id}-numeric-select`;
@@ -160,17 +152,36 @@ const getTabContent = ({ sections, condition, state, ...otherProps }) => {
     </DateComparisonFields>
   );
   const previousAnswer = (
-    <DateComparisonFields condition={condition} state={state} {...otherProps}>
-      <AnswerSelect
-        sections={sections}
-        id={previousAnswerId}
-        name={previousAnswerId}
-        value={state[previousAnswerId]}
-        type={DATE}
-        {...otherProps}
-      />
-    </DateComparisonFields>
+    <Fragment>
+      {hasValidAnswers(sections) ? (
+        <DateComparisonFields
+          condition={condition}
+          state={state}
+          {...otherProps}
+        >
+          <PageSelect
+            groups={sections}
+            sections={sections}
+            id={previousAnswerId}
+            name={previousAnswerId}
+            value={state[previousAnswerId]}
+            type={DATE}
+            {...otherProps}
+          />
+        </DateComparisonFields>
+      ) : (
+        <Alert>
+          <AlertTitle>
+            There are no previous questions with a date answer
+          </AlertTitle>
+          <AlertText>
+            Add a date answer to a previous question to be able to route here.
+          </AlertText>
+        </Alert>
+      )}
+    </Fragment>
   );
+
   const metaData = (
     <DateComparisonFields condition={condition} state={state} {...otherProps}>
       <MetadataSelect
@@ -258,8 +269,9 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
           </Tab>
         ))}
       </Tabs>
-
-      <TabsBody navItemId={activeItem.id}>{activeItem.component}</TabsBody>
+      <TabsBody navItemId={activeItem.id} style={{ minHeight: " 124px" }}>
+        {activeItem.component}
+      </TabsBody>
     </DateAnswer>
   );
 };
