@@ -69,4 +69,23 @@ describe("Base Tabs", () => {
 
     expect(onChange).toHaveBeenCalledWith(2);
   });
+
+  it("will not call onChange when the id has not changed", () => {
+    const onChange = jest.fn();
+    const wrapper = shallow(
+      <BaseTabs
+        buttonRender={renderButton}
+        tabs={tabs}
+        activeId={2}
+        onChange={onChange}
+      />
+    );
+
+    const button = wrapper.find("li[aria-controls=2]");
+    button.simulate("click");
+    button.simulate("click");
+    button.simulate("click");
+
+    expect(onChange).toHaveBeenCalledTimes(0);
+  });
 });

@@ -3,11 +3,17 @@ import PropTypes from "prop-types";
 
 const renderButton = ({ onChange, activeId, buttonRender }, item) => {
   const { id } = item;
+  const isSelected = id === activeId;
   return buttonRender(
     {
-      "aria-selected": id === activeId,
+      "aria-selected": isSelected,
       "aria-controls": id,
-      onClick: e => onChange(id),
+      onClick: () => {
+        if (isSelected) {
+          return;
+        }
+        onChange(id);
+      },
       key: id
     },
     item
