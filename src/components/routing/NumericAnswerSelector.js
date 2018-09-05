@@ -31,7 +31,7 @@ import { withLocalStorageState } from "./withLocalStorageState";
 
 import { CURRENCY, NUMBER } from "constants/answer-types";
 
-import { PillTab, PillTabs } from "./PillTabs";
+import { PillTab, PillTabs, PillTabsBody } from "./PillTabs";
 import NotAvailable from "./NotAvailableMsg";
 import NumericSelect from "./NumericSelect";
 import MetadataSelect from "./MetadataSelect";
@@ -40,7 +40,6 @@ const NumericAnswer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1em 0;
-  margin: 0.25em 0;
 `;
 
 const Flex = styled.div`
@@ -175,7 +174,7 @@ const getTabContent = ({
   return [
     {
       id: "custom",
-      title: "Custom value",
+      title: "Custom",
       component: customValue
     },
     {
@@ -249,9 +248,11 @@ const NumericAnswerSelector = ({
           </PillTab>
         ))}
       </PillTabs>
-      <TabsBody navItemId={activeItem.id} data-test="tabs-body">
-        {activeItem.component}
-      </TabsBody>
+      <PillTabsBody>
+        <TabsBody navItemId={activeItem.id} data-test="tabs-body">
+          {activeItem.component}
+        </TabsBody>
+      </PillTabsBody>
     </NumericAnswer>
   );
 };

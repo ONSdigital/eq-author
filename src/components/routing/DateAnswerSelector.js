@@ -13,7 +13,7 @@ import { withLocalStorageState } from "./withLocalStorageState";
 import { withRouter } from "react-router";
 
 import { Input, Select } from "components/Forms";
-import { PillTab, PillTabs } from "./PillTabs";
+import { PillTab, PillTabs, PillTabsBody } from "./PillTabs";
 import NotAvailable from "./NotAvailableMsg";
 import NumericSelect from "./NumericSelect";
 import MetadataSelect from "./MetadataSelect";
@@ -39,7 +39,6 @@ const DateAnswer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1em 0;
-  margin: 0.25em 0;
 `;
 
 const Flex = styled.div`
@@ -71,8 +70,7 @@ const BeforeAfterSelect = props => (
 const InfoBox = styled.div`
   border-radius: ${radius};
   padding: 0.5em;
-  background: ${colors.lighterGrey};
-
+  border: 1px solid ${colors.lightGrey};
   display: flex;
   align-items: center;
 `;
@@ -112,7 +110,7 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
           name={numericSelectId}
           id={numericSelectId}
           defaultValue={state[numericSelectId]}
-          style={{ flex: "1 0 15em" }}
+          style={{ flex: "1 0 14em" }}
         />
         <NumericInput
           onChange={onChange}
@@ -147,10 +145,7 @@ const getTabContent = ({ sections, condition, state, ...otherProps }) => {
 
   const completionDate = (
     <DateComparisonFields condition={condition} state={state} {...otherProps}>
-      <InfoBox>
-        <IconInfo />
-        <span>The date the respondent begins the the survey.</span>
-      </InfoBox>
+      <InfoBox>The date the respondent begins the the survey.</InfoBox>
     </DateComparisonFields>
   );
   const customValue = (
@@ -191,13 +186,8 @@ const getTabContent = ({ sections, condition, state, ...otherProps }) => {
 
   return [
     {
-      id: "completion-date",
-      title: "Survey start date",
-      component: completionDate
-    },
-    {
       id: "custom",
-      title: "Custom value",
+      title: "Custom",
       component: customValue
     },
     {
@@ -209,6 +199,11 @@ const getTabContent = ({ sections, condition, state, ...otherProps }) => {
       id: "metadata",
       title: "Metadata",
       component: metaData
+    },
+    {
+      id: "completion-date",
+      title: "Survey start date",
+      component: completionDate
     }
   ];
 };
@@ -265,9 +260,11 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
           </PillTab>
         ))}
       </PillTabs>
-      <TabsBody navItemId={activeItem.id} data-test="tabs-body">
-        {activeItem.component}
-      </TabsBody>
+      <PillTabsBody>
+        <TabsBody navItemId={activeItem.id} data-test="tabs-body">
+          {activeItem.component}
+        </TabsBody>
+      </PillTabsBody>
     </DateAnswer>
   );
 };

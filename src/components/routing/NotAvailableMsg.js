@@ -16,8 +16,7 @@ const NotAvailable = ({ type }) => (
   <Flex>
     <Icon width="1.4em" />
     <NotAvailableMsg>
-      Sorry, no previous answers are of type{" "}
-      <strong>{type.toLowerCase()}</strong>
+      Sorry, no previous answers are of type {type.toLowerCase()}
     </NotAvailableMsg>
   </Flex>
 );

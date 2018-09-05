@@ -3,18 +3,15 @@ import styled from "styled-components";
 import { colors } from "constants/theme";
 
 export const PillTabs = styled.div`
-  background-color: ${colors.lighterGrey};
-  border-radius: 3em;
+  border-radius: 4px;
   display: flex;
-  margin: 0.25em 0 1em;
 `;
 
 export const PillTab = styled.div`
-  padding: 0.5em 0;
-  border-radius: 3em;
+  padding: 0.5em 1em;
+  border-radius: 4px 4px 0 0;
   color: ${colors.darkGrey};
   cursor: pointer;
-  flex: 1 1 auto;
   text-align: center;
 
   &:hover {
@@ -24,13 +21,12 @@ export const PillTab = styled.div`
   &[aria-selected="true"] {
     background: ${colors.primary};
     color: white;
+    border-color: ${colors.primary};
   }
+`;
 
-  &:first-child {
-    margin-right: 0.5em;
-  }
-
-  &:last-child {
-    margin-left: 0.5em;
-  }
+export const PillTabsBody = styled.div`
+  padding: 1em;
+  background-color: ${colors.lighterGrey};
+  border-radius: 0 0 4px 4px;
 `;
