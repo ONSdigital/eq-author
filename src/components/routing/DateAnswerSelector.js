@@ -107,7 +107,6 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
           name={comparisonValueId}
           id={comparisonValueId}
           value={state[comparisonValueId]}
-          placeholder="Number"
         />
         <DateUnitSelect
           onChange={onChange}
@@ -142,7 +141,7 @@ const getTabContent = ({ sections, condition, state, ...otherProps }) => {
     <DateComparisonFields condition={condition} state={state} {...otherProps}>
       <NumericInput
         type="date"
-        style={{ width: "15em", height: "2.375em" }}
+        style={{ width: "14em", height: "2.375em" }}
         placeholder="Custom value"
         id={customValueId}
         name={customValueId}

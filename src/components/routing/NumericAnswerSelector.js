@@ -144,7 +144,7 @@ const getTabContent = ({
           </Value>
         </Flex>
       ) : (
-        <Alert style={{ padding: "0" }}>
+        <Alert>
           <AlertTitle>
             There are no previous questions with a {answerType} answer
           </AlertTitle>
