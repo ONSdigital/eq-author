@@ -21,7 +21,7 @@ const renderButton = ({ onChange, activeId, buttonRender }, item) => {
 };
 
 const BaseTabs = ({ TabList, buttonRender, onChange, activeId, tabs }) => {
-  const { render } = tabs.find(({ id }) => id === activeId);
+  const { render } = tabs.find(({ id }) => id === activeId) || tabs[0];
   return (
     <div>
       <TabList>

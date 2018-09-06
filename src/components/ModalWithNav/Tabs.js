@@ -4,55 +4,6 @@ import PropTypes from "prop-types";
 
 import { colors } from "constants/theme";
 
-const TabList = styled.ul`
-  list-style: none;
-  margin: 0 0 1em;
-  padding: 0;
-`;
-
-const TabsItem = styled.li`
-  margin: 0;
-  padding: 0;
-`;
-
-const TabsBtn = styled.button`
-  --color-text: ${colors.darkGrey};
-  color: var(--color-text);
-  margin: 0;
-  padding: 0.5em 2em;
-  appearance: none;
-  font-size: 1em;
-  width: 100%;
-  display: block;
-  border: none;
-  background: rgba(0, 0, 0, 0);
-  text-align: left;
-  cursor: pointer;
-
-  &:hover {
-    --color-text: ${colors.white};
-    background: ${colors.secondary};
-  }
-
-  &:focus {
-    outline: 3px solid ${colors.orange};
-    outline-offset: -3px;
-  }
-
-  &:active {
-    outline: none;
-  }
-
-  &[aria-selected="true"] {
-    --color-text: ${colors.black};
-    background: ${colors.orange};
-    pointer-events: none;
-    &::before {
-      filter: invert(80%);
-    }
-  }
-`;
-
 export const TabsNavItem = ({
   children,
   active,

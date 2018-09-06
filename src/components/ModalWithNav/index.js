@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { find } from "lodash";
 
 import { TransitionGroup } from "react-transition-group";
 import FadeTransition from "components/FadeTransition";
 import { gotoTab } from "redux/tabs/actions";
 
 import Modal from "components/Modal";
-import { TabsNavItem, TabsNav, TabsBody } from "./Tabs";
 import { Grid, Column } from "components/Grid";
 import Button from "components/Button";
+
+import BaseTabs from "components/BaseTabs";
 
 import { colors } from "constants/theme";
 
@@ -63,6 +63,60 @@ const Buttons = styled.div`
   justify-content: flex-end;
 `;
 
+const TabPanel = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+`;
+
+const TabList = styled.ul`
+  list-style: none;
+  margin: 0 0 1em;
+  padding: 0;
+`;
+
+const TabsItem = styled.li`
+  margin: 0;
+  padding: 0;
+`;
+
+const TabsBtn = styled.button`
+  --color-text: ${colors.darkGrey};
+  color: var(--color-text);
+  margin: 0;
+  padding: 0.5em 2em;
+  appearance: none;
+  font-size: 1em;
+  width: 100%;
+  display: block;
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    --color-text: ${colors.white};
+    background: ${colors.secondary};
+  }
+
+  &:focus {
+    outline: 3px solid ${colors.orange};
+    outline-offset: -3px;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &[aria-selected="true"] {
+    --color-text: ${colors.black};
+    background: ${colors.orange};
+    pointer-events: none;
+    &::before {
+      filter: invert(80%);
+    }
+  }
+`;
+
 export const UnconnectedModalWithNav = ({
   title,
   onClose,
@@ -73,49 +127,52 @@ export const UnconnectedModalWithNav = ({
   id,
   ...otherProps
 }) => {
-  const activeItem = find(navItems, { id: activeTabId || navItems[0].id });
-
+  const navItemsWithRender = navItems.map(item => ({
+    ...item,
+    render: () => (
+      <Column cols={9} gutters={false}>
+        <MainContainer>
+          <Content>
+            <TabPanel navItemId={item.id} data-test="tabs-body">
+              <TransitionGroup component={Content}>
+                <FadeTransition key={item.id} enter exit={false}>
+                  {item.component}
+                </FadeTransition>
+              </TransitionGroup>
+            </TabPanel>
+          </Content>
+          <Buttons>
+            <Button onClick={onClose} variant="primary" data-test="btn-done">
+              Done
+            </Button>
+          </Buttons>
+        </MainContainer>
+      </Column>
+    )
+  }));
   return (
     <Dialog onClose={onClose} isOpen={isOpen} {...otherProps}>
       <Grid fillHeight>
-        <Column cols={3} gutters={false}>
-          <Sidebar>
-            <SidebarHeader>
-              <SidebarTitle data-test="sidebar-title">{title}</SidebarTitle>
-            </SidebarHeader>
-            <TabsNav title={title}>
-              {navItems.map(item => (
-                <TabsNavItem
-                  key={item.id}
-                  controls={item.id}
-                  active={item.id === activeTabId}
-                  data-test={"tabs-nav-item"}
-                  onClick={() => gotoTab(id, item.id)}
-                >
-                  {item.title}
-                </TabsNavItem>
-              ))}
-            </TabsNav>
-          </Sidebar>
-        </Column>
-        <Column cols={9} gutters={false}>
-          <MainContainer>
-            <Content>
-              <TabsBody navItemId={activeItem.id} data-test="tabs-body">
-                <TransitionGroup component={Content}>
-                  <FadeTransition key={activeItem.id} enter exit={false}>
-                    {activeItem.component}
-                  </FadeTransition>
-                </TransitionGroup>
-              </TabsBody>
-            </Content>
-            <Buttons>
-              <Button onClick={onClose} variant="primary" data-test="btn-done">
-                Done
-              </Button>
-            </Buttons>
-          </MainContainer>
-        </Column>
+        <BaseTabs
+          activeId={activeTabId}
+          onChange={tabId => gotoTab(id, tabId)}
+          buttonRender={(props, item) => (
+            <TabsItem {...props}>
+              <TabsBtn>{item.title}</TabsBtn>
+            </TabsItem>
+          )}
+          TabList={({ children }) => (
+            <Column cols={3} gutters={false}>
+              <Sidebar>
+                <SidebarHeader>
+                  <SidebarTitle data-test="sidebar-title">{title}</SidebarTitle>
+                </SidebarHeader>
+                <TabList>{children}</TabList>
+              </Sidebar>
+            </Column>
+          )}
+          tabs={navItemsWithRender}
+        />
       </Grid>
     </Dialog>
   );
