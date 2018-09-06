@@ -3,9 +3,14 @@ import PropTypes from "prop-types";
 import { isNil } from "lodash";
 import Select from "components/Forms/Select";
 
-export const textSelect = "Please select…";
-
-const GroupedSelect = ({ groups, onChange, value, valid, ...otherProps }) => {
+const GroupedSelect = ({
+  groups,
+  onChange,
+  value,
+  valid,
+  textSelect,
+  ...otherProps
+}) => {
   const optGroups = groups.map(group => (
     <optgroup label={group.label} key={group.id}>
       {group.options.map(option => (
@@ -52,11 +57,13 @@ GroupedSelect.propTypes = {
   groups: PropTypes.arrayOf(GroupProp).isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string,
-  valid: PropTypes.bool
+  valid: PropTypes.bool,
+  textSelect: PropTypes.string
 };
 
 GroupedSelect.defaultProps = {
-  valid: true
+  valid: true,
+  textSelect: "Please select…"
 };
 
 export default GroupedSelect;

@@ -31,7 +31,7 @@ import { CURRENCY, NUMBER } from "constants/answer-types";
 
 import { Tab, Tabs, TabsBody } from "./Tabs";
 
-import NumericSelect from "./NumericSelect";
+import NumericOperatorSelect from "./NumericOperatorSelect";
 import MetadataSelect from "./MetadataSelect";
 import { Alert, AlertTitle, AlertText } from "./Alert";
 
@@ -95,7 +95,7 @@ const getTabContent = ({
   const customValue = (
     <Flex id="custom">
       <Comparator>
-        <NumericSelect
+        <NumericOperatorSelect
           onChange={onChange}
           name={numericSelectId}
           id={numericSelectId}
@@ -124,7 +124,7 @@ const getTabContent = ({
       {hasValidAnswers(sections) ? (
         <Flex id="previous-answer">
           <Comparator>
-            <NumericSelect
+            <NumericOperatorSelect
               onChange={onChange}
               name={numericSelectId}
               id={numericSelectId}
@@ -160,7 +160,7 @@ const getTabContent = ({
   const metaData = (
     <Flex id="metadata">
       <Comparator>
-        <NumericSelect
+        <NumericOperatorSelect
           onChange={onChange}
           name={numericSelectId}
           id={numericSelectId}

@@ -15,8 +15,8 @@ import { withRouter } from "react-router";
 import { Input, Select } from "components/Forms";
 import { Tab, Tabs, TabsBody } from "./Tabs";
 
-import NumericSelect from "./NumericSelect";
-import MetadataSelect from "./MetadataSelect";
+import NumericOperatorSelect from "./NumericOperatorSelect";
+import MetadataSelect, { types } from "./MetadataSelect";
 
 import {
   flow,
@@ -95,7 +95,7 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
   return (
     <div style={{ flex: "1 1 auto" }}>
       <Flex>
-        <NumericSelect
+        <NumericOperatorSelect
           onChange={onChange}
           name={numericSelectId}
           id={numericSelectId}
@@ -127,30 +127,39 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
   );
 };
 
-const getTabContent = ({ sections, condition, state, ...otherProps }) => {
-  const customValueId = `condition-${condition.id}-custom-value`;
-  const previousAnswerId = `condition-${condition.id}-previous-answer`;
-  const metadataId = `condition-${condition.id}-metadata`;
+const CompletionDate = ({ condition, state, ...otherProps }) => (
+  <DateComparisonFields condition={condition} state={state} {...otherProps}>
+    <InfoBox>The date the respondent begins the the survey.</InfoBox>
+  </DateComparisonFields>
+);
 
-  const completionDate = (
-    <DateComparisonFields condition={condition} state={state} {...otherProps}>
-      <InfoBox>The date the respondent begins the the survey.</InfoBox>
-    </DateComparisonFields>
-  );
-  const customValue = (
+const CustomValue = ({ condition, state, ...otherProps }) => {
+  const id = `condition-${condition.id}-custom-value`;
+
+  return (
     <DateComparisonFields condition={condition} state={state} {...otherProps}>
       <NumericInput
         type="date"
         style={{ width: "14em", height: "2.375em" }}
         placeholder="Custom value"
-        id={customValueId}
-        name={customValueId}
-        value={state[customValueId]}
+        id={id}
+        name={id}
+        value={state[id]}
         {...otherProps}
       />
     </DateComparisonFields>
   );
-  const previousAnswer = (
+};
+
+const PreviousAnswer = ({ condition, sections, state, ...otherProps }) => {
+  const id = `condition-${condition.id}-previous-answer`;
+  let value = null;
+
+  if (condition.questionPage.id !== state[id]) {
+    value = state[id];
+  }
+
+  return (
     <Fragment>
       {hasValidAnswers(sections) ? (
         <DateComparisonFields
@@ -161,57 +170,70 @@ const getTabContent = ({ sections, condition, state, ...otherProps }) => {
           <PageSelect
             groups={sections}
             sections={sections}
-            id={previousAnswerId}
-            name={previousAnswerId}
-            value={state[previousAnswerId]}
+            id={id}
+            name={id}
+            value={value}
             type={DATE}
+            textSelect="Please select a previous question&hellip;"
             {...otherProps}
           />
         </DateComparisonFields>
       ) : (
-        <Alert>
+        <Alert style={{ padding: "1em 2em" }}>
           <AlertTitle>
             There are no previous questions with a date answer
           </AlertTitle>
           <AlertText>
-            Add a date answer to a previous question to be able to route here.
+            Add a date answer to a previous question to be able to route from
+            here.
           </AlertText>
         </Alert>
       )}
     </Fragment>
   );
+};
 
-  const metaData = (
-    <DateComparisonFields condition={condition} state={state} {...otherProps}>
+const MetaData = ({ condition, state, answerType, ...otherProps }) => {
+  const id = `condition-${condition.id}-metadata`;
+  return (
+    <DateComparisonFields
+      condition={condition}
+      state={state}
+      answerType={answerType}
+      {...otherProps}
+    >
       <MetadataSelect
-        id={metadataId}
-        name={metadataId}
-        value={state[metadataId]}
+        id={id}
+        name={id}
+        value={state[id]}
+        answerType={answerType}
         {...otherProps}
       />
     </DateComparisonFields>
   );
+};
 
+const getTabContent = props => {
   return [
     {
       id: "custom",
       title: "Custom",
-      component: customValue
+      component: <CustomValue {...props} />
     },
     {
       id: "previous-answer",
       title: "Previous answer",
-      component: previousAnswer
+      component: <PreviousAnswer {...props} />
     },
     {
       id: "metadata",
       title: "Metadata",
-      component: metaData
+      component: <MetaData {...props} />
     },
     {
       id: "completion-date",
       title: "Survey start date",
-      component: completionDate
+      component: <CompletionDate {...props} />
     }
   ];
 };
