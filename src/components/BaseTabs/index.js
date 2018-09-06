@@ -16,21 +16,30 @@ const renderButton = ({ onChange, activeId, buttonRender }, item) => {
       },
       key: id
     },
-    item
+    { ...item, isSelected }
   );
 };
 
-const BaseTabs = ({ TabList, buttonRender, onChange, activeId, tabs }) => {
-  const { render } = tabs.find(({ id }) => id === activeId) || tabs[0];
+const BaseTabs = ({
+  TabList,
+  ContentWrapper,
+  buttonRender,
+  onChange,
+  activeId,
+  tabs
+}) => {
+  const activeTab = tabs.find(({ id }) => id === activeId) || tabs[0];
+  const { render, id: activeTabId } = activeTab;
+
   return (
-    <div>
+    <React.Fragment>
       <TabList>
         {tabs.map(item =>
-          renderButton({ onChange, activeId, buttonRender }, item)
+          renderButton({ onChange, activeId: activeTabId, buttonRender }, item)
         )}
       </TabList>
-      <div aria-labelledby={activeId}>{render()}</div>
-    </div>
+      <ContentWrapper aria-labelledby={activeTabId}>{render()}</ContentWrapper>
+    </React.Fragment>
   );
 };
 
@@ -42,9 +51,10 @@ const Component = PropTypes.oneOfType([PropTypes.node, PropTypes.func]);
 
 BaseTabs.propTypes = {
   TabList: Component,
+  ContentWrapper: Component,
   buttonRender: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  activeId: StringOrNumber.isRequired,
+  activeId: StringOrNumber,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       id: StringOrNumber.isRequired,
@@ -54,7 +64,8 @@ BaseTabs.propTypes = {
   )
 };
 BaseTabs.defaultProps = {
-  TabList: "ul"
+  TabList: "ul",
+  ContentWrapper: "div"
 };
 
 export default BaseTabs;

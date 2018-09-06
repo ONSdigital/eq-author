@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Base Tabs should allow the user to provide their own styled list wrapper and button wrapper 1`] = `
-<div>
+<React.Fragment>
   <indexspec__wrapper>
     <li
       aria-controls={1}
@@ -35,11 +35,11 @@ exports[`Base Tabs should allow the user to provide their own styled list wrappe
       Hello 1
     </div>
   </div>
-</div>
+</React.Fragment>
 `;
 
 exports[`Base Tabs should render the basic layout 1`] = `
-<div>
+<React.Fragment>
   <ul>
     <li
       aria-controls={1}
@@ -73,5 +73,5 @@ exports[`Base Tabs should render the basic layout 1`] = `
       Hello 1
     </div>
   </div>
-</div>
+</React.Fragment>
 `;

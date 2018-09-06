@@ -88,4 +88,34 @@ describe("Base Tabs", () => {
 
     expect(onChange).toHaveBeenCalledTimes(0);
   });
+
+  it("will only call render for the tab being rendered", () => {
+    const tabsWithStubbedRender = tabs.map(t => ({ ...t, render: jest.fn() }));
+    shallow(
+      <BaseTabs
+        buttonRender={renderButton}
+        tabs={tabsWithStubbedRender}
+        activeId={2}
+        onChange={() => {}}
+      />
+    );
+
+    expect(tabsWithStubbedRender[0].render).not.toHaveBeenCalled();
+    expect(tabsWithStubbedRender[1].render).toHaveBeenCalledTimes(1);
+    expect(tabsWithStubbedRender[2].render).not.toHaveBeenCalled();
+  });
+
+  it("will render the first item as selected when no active id is passed", () => {
+    const tabsWithStubbedRender = tabs.map(t => ({ ...t, render: jest.fn() }));
+    const wrapper = shallow(
+      <BaseTabs
+        buttonRender={renderButton}
+        tabs={tabsWithStubbedRender}
+        onChange={() => {}}
+      />
+    );
+    const selectedTitle = wrapper.find(`li[aria-selected=true]`).text();
+    expect(tabsWithStubbedRender[0].render).toHaveBeenCalledTimes(1);
+    expect(selectedTitle).toEqual("Example 1");
+  });
 });
