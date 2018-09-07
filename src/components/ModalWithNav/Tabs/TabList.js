@@ -39,7 +39,7 @@ const TabList = ({ title, children }) => (
   <Column cols={3} gutters={false}>
     <Sidebar>
       <SidebarHeader>
-        <SidebarTitle>{title}</SidebarTitle>
+        <SidebarTitle data-test="sidebar-title">{title}</SidebarTitle>
       </SidebarHeader>
       <ChildList>{children}</ChildList>
     </Sidebar>
