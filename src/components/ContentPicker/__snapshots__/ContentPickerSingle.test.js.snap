@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Content Picker Single PickerWrapper should render 1`] = `
+.c0 {
+  padding-bottom: 3px;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`Content Picker Single PickerWrapper should render with additional styles when open 1`] = `
+.c0 {
+  padding-bottom: 3px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+}
+
+<div
+  className="c0"
+  open={true}
+/>
+`;
+
+exports[`Content Picker Single should not render when hidden 1`] = `""`;
+
+exports[`Content Picker Single should render 1`] = `
+<ContentPickerSingle__PickerWrapper
+  data-test="Title-picker-wrapper"
+  open={false}
+>
+  <ContentPickerTitle
+    data-test="picker-title"
+    disabled={false}
+    id="Title-title"
+    onClick={[Function]}
+    open={false}
+    selected={false}
+  >
+    Title
+  </ContentPickerTitle>
+  <ContentPickerPanel
+    id="Title-panel"
+    labelledBy="Title-title"
+    open={false}
+  >
+    <PickerOption
+      id="option-1"
+      key="1"
+      onClick={[Function]}
+      selected={true}
+    >
+      Option 1
+    </PickerOption>
+    <PickerOption
+      id="option-2"
+      key="2"
+      onClick={[Function]}
+      selected={false}
+    >
+      Option Label 2
+    </PickerOption>
+    <PickerOption
+      id="option-3"
+      key="3"
+      onClick={[Function]}
+      selected={false}
+    >
+      Unlabelled Option
+    </PickerOption>
+  </ContentPickerPanel>
+</ContentPickerSingle__PickerWrapper>
+`;
