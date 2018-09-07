@@ -1,71 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ModalWithNav should override the default active tab when receiving the active tab 1`] = `
-Array [
-  <TabsNavItem
-    active={true}
-    controls="tab-1"
-    data-test="tabs-nav-item"
-    key="tab-1"
-    onClick={[Function]}
-  >
-    Cursus Bibendum
-  </TabsNavItem>,
-  <TabsNavItem
-    active={false}
-    controls="tab-2"
-    data-test="tabs-nav-item"
-    key="tab-2"
-    onClick={[Function]}
-  >
-    Euismod Ridiculus Parturient
-  </TabsNavItem>,
-  <TabsNavItem
-    active={false}
-    controls="tab-3"
-    data-test="tabs-nav-item"
-    key="tab-3"
-    onClick={[Function]}
-  >
-    Tellus Dolor
-  </TabsNavItem>,
-]
-`;
-
-exports[`ModalWithNav should override the default active tab when receiving the active tab 2`] = `
-<TabsBody
-  data-test="tabs-body"
-  navItemId="tab-1"
->
-  <TransitionGroup
-    childFactory={[Function]}
-    component={[Function]}
-  >
-    <FadeTransition
-      enter={true}
-      exit={false}
-      in={false}
-      key="tab-1"
-      timeout={250}
-    >
-      <div
-        id="tab-1"
-      >
-        <h2>
-          Cursus Bibendum
-        </h2>
-        <p>
-          Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
-        </p>
-      </div>
-    </FadeTransition>
-  </TransitionGroup>
-</TabsBody>
-`;
-
 exports[`ModalWithNav should render a list of items 1`] = `
 <ModalWithNav__Dialog
-  defaultActiveTabId="tab-3"
   isOpen={false}
   onClose={[Function]}
 >
@@ -73,105 +9,36 @@ exports[`ModalWithNav should render a list of items 1`] = `
     align="top"
     fillHeight={true}
   >
-    <Column
-      cols={3}
-      gutters={false}
-    >
-      <ModalWithNav__Sidebar>
-        <ModalWithNav__SidebarHeader>
-          <ModalWithNav__SidebarTitle
-            data-test="sidebar-title"
-          >
-            I am a title
-          </ModalWithNav__SidebarTitle>
-        </ModalWithNav__SidebarHeader>
-        <TabsNav
-          title="I am a title"
-        >
-          <TabsNavItem
-            active={false}
-            controls="tab-1"
-            data-test="tabs-nav-item"
-            key="tab-1"
-            onClick={[Function]}
-          >
-            Cursus Bibendum
-          </TabsNavItem>
-          <TabsNavItem
-            active={false}
-            controls="tab-2"
-            data-test="tabs-nav-item"
-            key="tab-2"
-            onClick={[Function]}
-          >
-            Euismod Ridiculus Parturient
-          </TabsNavItem>
-          <TabsNavItem
-            active={false}
-            controls="tab-3"
-            data-test="tabs-nav-item"
-            key="tab-3"
-            onClick={[Function]}
-          >
-            Tellus Dolor
-          </TabsNavItem>
-        </TabsNav>
-      </ModalWithNav__Sidebar>
-    </Column>
-    <Column
-      cols={9}
-      gutters={false}
-    >
-      <ModalWithNav__MainContainer>
-        <ModalWithNav__Content>
-          <TabsBody
-            data-test="tabs-body"
-            navItemId="tab-1"
-          >
-            <TransitionGroup
-              childFactory={[Function]}
-              component={[Function]}
-            >
-              <FadeTransition
-                enter={true}
-                exit={false}
-                in={false}
-                key="tab-1"
-                timeout={250}
-              >
-                <div
-                  id="tab-1"
-                >
-                  <h2>
-                    Cursus Bibendum
-                  </h2>
-                  <p>
-                    Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
-                  </p>
-                </div>
-              </FadeTransition>
-            </TransitionGroup>
-          </TabsBody>
-        </ModalWithNav__Content>
-        <ModalWithNav__Buttons>
-          <Button
-            data-test="btn-done"
-            onClick={[Function]}
-            type="button"
-            variant="primary"
-          >
-            Done
-          </Button>
-        </ModalWithNav__Buttons>
-      </ModalWithNav__MainContainer>
-    </Column>
+    <Tabs
+      navItems={
+        Array [
+          Object {
+            "id": "tab-1",
+            "render": [Function],
+            "title": "Cursus Bibendum",
+          },
+          Object {
+            "id": "tab-2",
+            "render": [Function],
+            "title": "Euismod Ridiculus Parturient",
+          },
+          Object {
+            "id": "tab-3",
+            "render": [Function],
+            "title": "Tellus Dolor",
+          },
+        ]
+      }
+      onChange={[Function]}
+      onClose={[Function]}
+      title="I am a title"
+    />
   </Grid>
 </ModalWithNav__Dialog>
 `;
 
 exports[`ModalWithNav should render an open modal 1`] = `
 <ModalWithNav__Dialog
-  defaultActiveTabId="tab-3"
   isOpen={true}
   onClose={[Function]}
 >
@@ -179,161 +46,30 @@ exports[`ModalWithNav should render an open modal 1`] = `
     align="top"
     fillHeight={true}
   >
-    <Column
-      cols={3}
-      gutters={false}
-    >
-      <ModalWithNav__Sidebar>
-        <ModalWithNav__SidebarHeader>
-          <ModalWithNav__SidebarTitle
-            data-test="sidebar-title"
-          >
-            I am a title
-          </ModalWithNav__SidebarTitle>
-        </ModalWithNav__SidebarHeader>
-        <TabsNav
-          title="I am a title"
-        >
-          <TabsNavItem
-            active={false}
-            controls="tab-1"
-            data-test="tabs-nav-item"
-            key="tab-1"
-            onClick={[Function]}
-          >
-            Cursus Bibendum
-          </TabsNavItem>
-          <TabsNavItem
-            active={false}
-            controls="tab-2"
-            data-test="tabs-nav-item"
-            key="tab-2"
-            onClick={[Function]}
-          >
-            Euismod Ridiculus Parturient
-          </TabsNavItem>
-          <TabsNavItem
-            active={false}
-            controls="tab-3"
-            data-test="tabs-nav-item"
-            key="tab-3"
-            onClick={[Function]}
-          >
-            Tellus Dolor
-          </TabsNavItem>
-        </TabsNav>
-      </ModalWithNav__Sidebar>
-    </Column>
-    <Column
-      cols={9}
-      gutters={false}
-    >
-      <ModalWithNav__MainContainer>
-        <ModalWithNav__Content>
-          <TabsBody
-            data-test="tabs-body"
-            navItemId="tab-1"
-          >
-            <TransitionGroup
-              childFactory={[Function]}
-              component={[Function]}
-            >
-              <FadeTransition
-                enter={true}
-                exit={false}
-                in={false}
-                key="tab-1"
-                timeout={250}
-              >
-                <div
-                  id="tab-1"
-                >
-                  <h2>
-                    Cursus Bibendum
-                  </h2>
-                  <p>
-                    Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
-                  </p>
-                </div>
-              </FadeTransition>
-            </TransitionGroup>
-          </TabsBody>
-        </ModalWithNav__Content>
-        <ModalWithNav__Buttons>
-          <Button
-            data-test="btn-done"
-            onClick={[Function]}
-            type="button"
-            variant="primary"
-          >
-            Done
-          </Button>
-        </ModalWithNav__Buttons>
-      </ModalWithNav__MainContainer>
-    </Column>
+    <Tabs
+      navItems={
+        Array [
+          Object {
+            "id": "tab-1",
+            "render": [Function],
+            "title": "Cursus Bibendum",
+          },
+          Object {
+            "id": "tab-2",
+            "render": [Function],
+            "title": "Euismod Ridiculus Parturient",
+          },
+          Object {
+            "id": "tab-3",
+            "render": [Function],
+            "title": "Tellus Dolor",
+          },
+        ]
+      }
+      onChange={[Function]}
+      onClose={[Function]}
+      title="I am a title"
+    />
   </Grid>
 </ModalWithNav__Dialog>
-`;
-
-exports[`ModalWithNav should use default active tab id to navigate to a tab 1`] = `
-Array [
-  <TabsNavItem
-    active={false}
-    controls="tab-1"
-    data-test="tabs-nav-item"
-    key="tab-1"
-    onClick={[Function]}
-  >
-    Cursus Bibendum
-  </TabsNavItem>,
-  <TabsNavItem
-    active={false}
-    controls="tab-2"
-    data-test="tabs-nav-item"
-    key="tab-2"
-    onClick={[Function]}
-  >
-    Euismod Ridiculus Parturient
-  </TabsNavItem>,
-  <TabsNavItem
-    active={false}
-    controls="tab-3"
-    data-test="tabs-nav-item"
-    key="tab-3"
-    onClick={[Function]}
-  >
-    Tellus Dolor
-  </TabsNavItem>,
-]
-`;
-
-exports[`ModalWithNav should use default active tab id to navigate to a tab 2`] = `
-<TabsBody
-  data-test="tabs-body"
-  navItemId="tab-1"
->
-  <TransitionGroup
-    childFactory={[Function]}
-    component={[Function]}
-  >
-    <FadeTransition
-      enter={true}
-      exit={false}
-      in={false}
-      key="tab-1"
-      timeout={250}
-    >
-      <div
-        id="tab-1"
-      >
-        <h2>
-          Cursus Bibendum
-        </h2>
-        <p>
-          Sed posuere consectetur est at lobortis. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.
-        </p>
-      </div>
-    </FadeTransition>
-  </TransitionGroup>
-</TabsBody>
 `;

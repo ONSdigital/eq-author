@@ -7,7 +7,7 @@ export const NAV_ITEMS = [
   {
     id: "tab-1",
     title: "Cursus Bibendum",
-    component: (
+    render: () => (
       <div id="tab-1">
         <h2>Cursus Bibendum</h2>
         <p>
@@ -22,7 +22,7 @@ export const NAV_ITEMS = [
   {
     id: "tab-2",
     title: "Euismod Ridiculus Parturient",
-    component: (
+    render: () => (
       <div id="tab-2">
         <h2>Euismod Ridiculus Parturient</h2>
         <p>
@@ -39,7 +39,7 @@ export const NAV_ITEMS = [
   {
     id: "tab-3",
     title: "Tellus Dolor",
-    component: (
+    render: () => (
       <div id="tab-3">
         <h2>Tellus Dolor</h2>
         <p>

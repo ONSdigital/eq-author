@@ -38,13 +38,13 @@ exports[`AnswerValidation should render 1`] = `
       navItems={
         Array [
           Object {
-            "component": <withApollo(Apollo(Apollo(MinValueWithAnswer))) />,
             "id": "min-value",
+            "render": [Function],
             "title": "Min Value",
           },
           Object {
-            "component": <withApollo(Apollo(Apollo(MaxValueWithAnswer))) />,
             "id": "max-value",
+            "render": [Function],
             "title": "Max Value",
           },
         ]

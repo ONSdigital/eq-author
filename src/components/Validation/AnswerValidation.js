@@ -28,12 +28,12 @@ const validationTypes = [
   {
     id: "min-value",
     title: "Min Value",
-    component: <MinValueValidation />
+    render: () => <MinValueValidation />
   },
   {
     id: "max-value",
     title: "Max Value",
-    component: <MaxValueValidation />
+    render: () => <MaxValueValidation />
   }
 ];
 
