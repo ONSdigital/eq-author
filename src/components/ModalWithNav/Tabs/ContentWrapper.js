@@ -35,7 +35,7 @@ const ContentWrapper = ({ onClose, children }) => (
       <Content>
         <TabPanel>
           <Content>
-            <TransitionGroup>
+            <TransitionGroup component={Content}>
               <FadeTransition appear enter exit={false}>
                 {children}
               </FadeTransition>

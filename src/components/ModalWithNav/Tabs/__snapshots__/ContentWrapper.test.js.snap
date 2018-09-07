@@ -11,7 +11,7 @@ exports[`Content Wrapper should wrap the tab content with a column, transition a
         <ContentWrapper__Content>
           <TransitionGroup
             childFactory={[Function]}
-            component="div"
+            component={[Function]}
           >
             <FadeTransition
               appear={true}
