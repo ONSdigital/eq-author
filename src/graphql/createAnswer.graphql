@@ -2,6 +2,7 @@
 #import "./fragments/option.graphql"
 #import "./fragments/min-value-validation-rule.graphql"
 #import "./fragments/max-value-validation-rule.graphql"
+#import "./fragments/earliest-date-validation-rule.graphql"
 
 mutation createAnswer($input: CreateAnswerInput!) {
   createAnswer(input: $input) {
@@ -14,6 +15,11 @@ mutation createAnswer($input: CreateAnswerInput!) {
           }
           maxValue {
             ...MaxValueValidationRule
+          }
+        }
+        ... on DateValidation {
+          earliestDate {
+            ...EarliestDateValidationRule
           }
         }
       }

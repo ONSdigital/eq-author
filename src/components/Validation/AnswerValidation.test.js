@@ -26,7 +26,7 @@ describe("AnswerValidation", () => {
     expect(render(props)).toMatchSnapshot();
   });
 
-  it("should not render when answer type invalid", () => {
+  it("should not render there are no valid validation types", () => {
     props.answer.type = "Radio";
     expect(render(props)).toMatchSnapshot();
   });

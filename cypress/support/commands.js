@@ -9,8 +9,7 @@ Cypress.Commands.add("login", options => {
     },
     options
   );
-  cy
-    .window()
+  cy.window()
     .its("__store__")
     .then(store => {
       store.dispatch({
@@ -21,8 +20,7 @@ Cypress.Commands.add("login", options => {
 });
 
 Cypress.Commands.add("logout", () => {
-  cy
-    .window()
+  cy.window()
     .its("__store__")
     .then(store => {
       store.dispatch({
@@ -40,8 +38,7 @@ Cypress.Commands.add("createQuestionnaire", title => {
 Cypress.Commands.add("deleteQuestionnaire", title => {
   cy.get(testId("logo")).click();
   cy.get("table").within(() => {
-    cy
-      .contains(title)
+    cy.contains(title)
       .closest("tr")
       .within(() => {
         cy.get("button").click();
@@ -59,7 +56,10 @@ Cypress.Commands.add("visitStubbed", function(url, operations = {}) {
   function serverStub(_, req) {
     const { operationName } = JSON.parse(req.body);
 
-    const resultStub = operations[operationName];
+    let resultStub = operations[operationName];
+    if (typeof resultStub === "function") {
+      resultStub = resultStub(req);
+    }
     if (resultStub) {
       return Promise.resolve(responseStub(resultStub));
     }

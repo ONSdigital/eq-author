@@ -7,6 +7,7 @@ import withEntityEditor from "components/withEntityEditor";
 import answerFragment from "graphql/fragments/answer.graphql";
 import MinValueValidationRule from "graphql/fragments/min-value-validation-rule.graphql";
 import MaxValueValidationRule from "graphql/fragments/max-value-validation-rule.graphql";
+import EarliestDateValidationRule from "graphql/fragments/earliest-date-validation-rule.graphql";
 import gql from "graphql-tag";
 
 export const StatelessBasicAnswer = ({
@@ -91,10 +92,16 @@ StatelessBasicAnswer.fragments = {
             ...MaxValueValidationRule
           }
         }
+        ... on DateValidation {
+          earliestDate {
+            ...EarliestDateValidationRule
+          }
+        }
       }
     }
     ${MinValueValidationRule}
     ${MaxValueValidationRule}
+    ${EarliestDateValidationRule}
   `
 };
 
