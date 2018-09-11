@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { colors } from "constants/theme";
-import Modal from "components/Modal";
+import Modal, { CloseButton } from "components/Modal";
+import ScrollPane from "components/ScrollPane";
 
 const topOffset = "4em"; //Header height
 
@@ -16,14 +17,23 @@ const StyledModal = styled(Modal)`
     top: ${topOffset};
     height: calc(100% - ${topOffset});
     background: ${colors.lighterGrey};
+    padding: 0;
   }
 `;
 
 const ModalFullScreen = props => {
   const { children, onClose, isOpen, ...otherProps } = props;
   return (
-    <StyledModal isOpen={isOpen} onClose={onClose} {...otherProps}>
-      {children}
+    <StyledModal
+      isOpen={isOpen}
+      onClose={onClose}
+      hasCloseButton={false}
+      {...otherProps}
+    >
+      <ScrollPane>
+        <CloseButton onClick={onClose}>&times;</CloseButton>
+        {children}
+      </ScrollPane>
     </StyledModal>
   );
 };

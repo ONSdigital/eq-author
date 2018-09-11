@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import Modal from "components/Modal";
+import Modal, { CloseButton } from "components/Modal";
 
 const createWrapper = (props = {}, render = shallow, children = undefined) => {
   return render(<Modal {...props}>{children}</Modal>);
@@ -56,7 +56,7 @@ describe("components/Modal", () => {
 
     it("should close when the close button is clicked", () => {
       wrapper = createWrapper(props, shallow, children);
-      wrapper.find("Modal__CloseButton").simulate("click");
+      wrapper.find(CloseButton).simulate("click");
       expect(props.onClose).toHaveBeenCalled();
     });
 

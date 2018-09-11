@@ -29,9 +29,9 @@ describe("Typeahead", () => {
     wrapper = shallow(<Typeahead onChange={handleChange} />);
 
     wrapper.simulate("change", apple);
-    expect(handleChange).toHaveBeenCalledWith(apple.value);
+    expect(handleChange).toHaveBeenCalledWith(apple);
     wrapper.simulate("change", orange);
-    expect(handleChange).toHaveBeenCalledWith(orange.value);
+    expect(handleChange).toHaveBeenCalledWith(orange);
   });
 });
 

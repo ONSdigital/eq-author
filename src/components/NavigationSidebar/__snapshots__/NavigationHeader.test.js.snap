@@ -20,6 +20,23 @@ exports[`NavigationHeader should render 1`] = `
       </NavigationHeader__IconListItem>
       <NavigationHeader__IconListItem>
         <Button
+          data-test="metadata-btn"
+          highlightOnHover={false}
+          onClick={[Function]}
+          small={true}
+          type="button"
+          variant="tertiary-light"
+        >
+          <IconText
+            hideText={false}
+            icon={[Function]}
+          >
+            Metadata
+          </IconText>
+        </Button>
+      </NavigationHeader__IconListItem>
+      <NavigationHeader__IconListItem>
+        <Button
           data-test="settings-btn"
           highlightOnHover={false}
           onClick={[Function]}
@@ -34,6 +51,10 @@ exports[`NavigationHeader should render 1`] = `
             Settings
           </IconText>
         </Button>
+        <Apollo(Apollo(Apollo(UnwrappedMetadataModal)))
+          isOpen={false}
+          onClose={[Function]}
+        />
         <QuestionnaireSettingsModal
           confirmText="Apply"
           isOpen={false}
