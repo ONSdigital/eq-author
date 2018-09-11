@@ -44,7 +44,7 @@ const RoutingRuleSet = ({
           <Transition key={rule.id}>
             <RoutingRule
               rule={rule}
-              title={index > 0 ? "Or" : null}
+              title={index > 0 ? "Else" : null}
               key={rule.id}
               destinations={destinations}
               {...otherProps}
