@@ -36,9 +36,8 @@ const typeMappings = {
   [DATE]: [answerTypes.DATE]
 };
 
-const checkAnswerType = (type, answerType) => {
-  return !includes(typeMappings[type], answerType);
-};
+const checkAnswerType = (type, answerType) =>
+  !includes(typeMappings[type], answerType);
 
 const MetadataSelect = ({ answerType, ...otherProps }) => (
   <Select {...otherProps}>
