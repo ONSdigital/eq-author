@@ -10,22 +10,58 @@ const REGION = "region";
 
 const metaData = [
   {
+    id: "period_str",
+    type: TEXT,
+    label: "Period String",
+    value: "May 2016"
+  },
+  {
+    id: "period_id",
+    type: TEXT,
+    label: "Period ID",
+    value: "201605"
+  },
+  {
+    id: "collection_exercise_sid",
+    type: TEXT,
+    label: "Collection Exercise SID",
+    value: "789"
+  },
+  {
     id: "ru_ref",
     type: TEXT,
     label: "RU_REF",
-    value: "ABCDEF"
+    value: "123456789A"
   },
   {
-    id: "date",
-    type: DATE,
-    label: "DATE",
-    value: "01/12/2018"
-  },
-  {
-    id: "name",
+    id: "ru_name",
     type: TEXT,
-    label: "NAME",
-    value: "Joe Bloggs"
+    label: "RU Name",
+    value: "Essential Enterprise Ltd."
+  },
+  {
+    id: "trading_as",
+    type: TEXT,
+    label: "Trading as",
+    value: "Essential Enterprise Ltd."
+  },
+  {
+    id: "ref_p_start_date",
+    type: DATE,
+    label: "Ref P Start Date",
+    value: "2016-05-01"
+  },
+  {
+    id: "ref_p_end_date",
+    type: DATE,
+    label: "Ref P End Date",
+    value: "2016-05-31"
+  },
+  {
+    id: "region_code",
+    type: REGION,
+    label: "Region Code",
+    value: "GB-ENG"
   }
 ];
 

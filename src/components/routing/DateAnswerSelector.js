@@ -16,7 +16,7 @@ import { Input, Select } from "components/Forms";
 import { Tab, Tabs, TabsBody } from "./Tabs";
 
 import NumericOperatorSelect from "./NumericOperatorSelect";
-import MetadataSelect, { types } from "./MetadataSelect";
+import MetadataSelect from "./MetadataSelect";
 
 import {
   flow,
