@@ -181,7 +181,7 @@ const getTabContent = ({
   return [
     {
       id: "custom",
-      title: "Custom",
+      title: "Number",
       component: customValue
     },
     {

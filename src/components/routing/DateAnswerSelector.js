@@ -217,7 +217,7 @@ const getTabContent = props => {
   return [
     {
       id: "custom",
-      title: "Custom",
+      title: "Date",
       component: <CustomValue {...props} />
     },
     {
