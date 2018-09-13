@@ -117,7 +117,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
   };
 
   getPageTitle = page => title => {
-    const pageTitle = page.plaintextTitle || "Untitled page";
+    const pageTitle = page.displayName;
     return `${pageTitle} - ${title}`;
   };
 

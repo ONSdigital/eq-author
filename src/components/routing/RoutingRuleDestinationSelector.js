@@ -42,7 +42,7 @@ const toLogicalDestination = destinationType => ({
 });
 
 const toOption = defaultTitle => entity => ({
-  label: entity.plaintextTitle || defaultTitle,
+  label: entity.displayName,
   value: toAbsoluteDestination(entity)
 });
 

@@ -1,7 +1,7 @@
 fragment QuestionPageDestination on QuestionPage {
   ... on QuestionPage {
     id
-    plaintextTitle: title(format: Plaintext)
+    displayName
     section {
       id
     }

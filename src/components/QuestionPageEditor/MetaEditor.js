@@ -37,7 +37,6 @@ export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate, client } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
-    const pageTitleText = page.plaintextTitle;
 
     const fetchAnswers = ids => {
       return client
@@ -59,7 +58,7 @@ export class StatelessMetaEditor extends React.Component {
           size="large"
           fetchAnswers={fetchAnswers}
           testSelector="txt-question-title"
-          autoFocus={!pageTitleText}
+          autoFocus={!page.title}
         />
 
         <RichTextEditor

@@ -27,16 +27,16 @@ exports[`components/RoutingCondition should render consistently 1`] = `
           Array [
             Object {
               "id": "1",
-              "label": "Section Title",
+              "label": "1. Integer posuere erat a ante",
               "options": Array [
                 Object {
                   "disabled": true,
-                  "label": "Page Title",
+                  "label": "1.1 Curabitur blandit tempus porttitor",
                   "value": "2",
                 },
                 Object {
                   "disabled": true,
-                  "label": "Page Title",
+                  "label": "1.2 Nulla vitae elit libero, a pharetra augue.",
                   "value": "9",
                 },
               ],

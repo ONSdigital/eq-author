@@ -82,11 +82,11 @@ export const ROUTING_QUERY = gql`
       id
       sections {
         id
-        plaintextTitle: title(format: Plaintext)
+        displayName
         pages {
           id
           ... on QuestionPage {
-            plaintextTitle: title(format: Plaintext)
+            displayName
             answers {
               id
               type
@@ -97,7 +97,7 @@ export const ROUTING_QUERY = gql`
     }
     currentPage: questionPage(id: $pageId) {
       id
-      plaintextTitle: title(format: Plaintext)
+      displayName
       routingRuleSet {
         ...RoutingRuleSet
       }

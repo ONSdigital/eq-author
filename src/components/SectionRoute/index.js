@@ -84,7 +84,7 @@ export class UnwrappedSectionRoute extends React.Component {
   };
 
   getSectionTitle = section => title => {
-    const sectionTitle = section.plaintextTitle || "Untitled section";
+    const sectionTitle = section.displayName;
     return `${sectionTitle} - ${title}`;
   };
 
@@ -171,7 +171,7 @@ export const SECTION_QUERY = gql`
   query SectionQuery($id: ID!) {
     section(id: $id) {
       ...Section
-      plaintextTitle: title(format: Plaintext)
+      displayName
       position
       questionnaire {
         questionnaireInfo {

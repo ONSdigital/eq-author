@@ -43,7 +43,7 @@ class PositionModal extends React.Component {
     options: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired,
-        plaintextTitle: PropTypes.string.isRequired,
+        displayName: PropTypes.string.isRequired,
         position: PropTypes.number.isRequired
       })
     ).isRequired,
@@ -52,7 +52,7 @@ class PositionModal extends React.Component {
     onMove: PropTypes.func.isRequired,
     selected: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      plaintextTitle: PropTypes.string.isRequired,
+      displayName: PropTypes.string.isRequired,
       position: PropTypes.number.isRequired
     }).isRequired
   };
@@ -120,7 +120,7 @@ class PositionModal extends React.Component {
         >
           {data.map((item, i) => (
             <Option key={i} value={String(i)}>
-              {item.plaintextTitle || "Untitled Page"}
+              {item.displayName}
             </Option>
           ))}
         </ItemSelect>

@@ -83,10 +83,10 @@ const shouldDisable = overSome([isEmpty, negate(firstAnswerIsValid)]);
 
 const convertToGroups = sections =>
   sections.map(section => ({
-    label: section.plaintextTitle || "Section Title",
+    label: section.displayName,
     id: section.id,
     options: section.pages.map(page => ({
-      label: page.plaintextTitle || "Page Title",
+      label: page.displayName,
       value: page.id,
       disabled: shouldDisable(page.answers)
     }))

@@ -4,9 +4,7 @@ exports[`RoutingEditor routing rule set should render routing rule set 1`] = `
 <div
   data-test="routing-editor"
 >
-  <RoutingEditor__Title>
-    Page Title
-  </RoutingEditor__Title>
+  <RoutingEditor__Title />
   <RoutingEditor__Padding>
     <TransitionGroup
       childFactory={[Function]}
@@ -116,9 +114,7 @@ exports[`RoutingEditor routing rules should render routing rules 1`] = `
 <div
   data-test="routing-editor"
 >
-  <RoutingEditor__Title>
-    Page Title
-  </RoutingEditor__Title>
+  <RoutingEditor__Title />
   <RoutingEditor__Padding>
     <TransitionGroup
       childFactory={[Function]}
@@ -225,9 +221,7 @@ exports[`RoutingEditor when not routing rule set should render when no routing r
 <div
   data-test="routing-editor"
 >
-  <RoutingEditor__Title>
-    Page Title
-  </RoutingEditor__Title>
+  <RoutingEditor__Title />
   <RoutingEditor__Padding>
     <TransitionGroup
       childFactory={[Function]}

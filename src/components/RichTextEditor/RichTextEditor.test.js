@@ -190,9 +190,24 @@ describe("components/RichTextEditor", function() {
 
     describe("existing piped values", () => {
       const answers = [
-        { id: "1", label: "answer 1", type: "TextField" },
-        { id: "2", label: "answer 2", type: "TextField" },
-        { id: "3", label: "answer 3", type: "TextField" }
+        {
+          id: "1",
+          displayName: "answer 1",
+          label: "answer 1",
+          type: "TextField"
+        },
+        {
+          id: "2",
+          displayName: "answer 2",
+          label: "answer 2",
+          type: "TextField"
+        },
+        {
+          id: "3",
+          displayName: "answer 3",
+          label: "answer 3",
+          type: "TextField"
+        }
       ];
 
       let fetch;
@@ -227,9 +242,9 @@ describe("components/RichTextEditor", function() {
         );
 
         const expected = new Raw()
-          .addBlock("[Deleted Piped Value] [answer 2]")
-          .addEntity(createPipedEntity(createEntity, nonExistentAnswer), 0, 21)
-          .addEntity(createPipedEntity(createEntity, answers[1]), 22, 10)
+          .addBlock("[Deleted Answer] [answer 2]")
+          .addEntity(createPipedEntity(createEntity, nonExistentAnswer), 0, 16)
+          .addEntity(createPipedEntity(createEntity, answers[1]), 17, 10)
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
@@ -263,30 +278,32 @@ describe("components/RichTextEditor", function() {
         const answer = {
           id: "123",
           label: "pipe",
+          displayName: "FooBar",
           type: "TextField"
         };
 
         wrapper.find(Toolbar).simulate("piping", answer);
 
         const expected = new Raw()
-          .addBlock("[pipe]")
-          .addEntity(createPipedEntity(createEntity, answer), 0, 6)
+          .addBlock("[FooBar]")
+          .addEntity(createPipedEntity(createEntity, answer), 0, 8)
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
       });
 
-      it("should use generic label if answer doesn't have label", () => {
+      it("should use displayName", () => {
         const answer = {
           id: "123",
+          displayName: "FooBar",
           type: "TextField"
         };
 
         wrapper.find(Toolbar).simulate("piping", answer);
 
         const expected = new Raw()
-          .addBlock("[Piped Value]")
-          .addEntity(createPipedEntity(createEntity, answer), 0, 13)
+          .addBlock("[FooBar]")
+          .addEntity(createPipedEntity(createEntity, answer), 0, 8)
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
@@ -299,7 +316,8 @@ describe("components/RichTextEditor", function() {
       const answer = {
         id: "123",
         label: "pipe",
-        type: "TextField"
+        type: "TextField",
+        displayName: "FooBar"
       };
 
       wrapper.find(Toolbar).simulate("piping", answer);
@@ -307,7 +325,7 @@ describe("components/RichTextEditor", function() {
 
       const { value } = props.onUpdate.mock.calls[0][0];
       expect(value).toEqual(
-        '<p><span data-piped="answers" data-id="123" data-type="TextField">[Piped Value]</span></p>'
+        '<p><span data-piped="answers" data-id="123" data-type="TextField">[FooBar]</span></p>'
       );
     });
   });

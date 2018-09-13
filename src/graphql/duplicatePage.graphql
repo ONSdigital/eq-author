@@ -4,15 +4,15 @@ mutation duplicatePage($input: DuplicatePageInput!) {
   duplicatePage(input: $input) {
     ...Page
     ... on QuestionPage {
-        plaintextTitle: title(format: Plaintext)
-        position
-        pageType
-        answers {
-          id
-        }
-        section {
-          id
-        }
+      displayName
+      position
+      pageType
+      answers {
+        id
+      }
+      section {
+        id
+      }
     }
   }
 }

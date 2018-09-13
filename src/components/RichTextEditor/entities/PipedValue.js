@@ -22,9 +22,9 @@ const PipedValueDecorator = styled.span`
   white-space: pre;
 `;
 
-const PipedValueSerialized = ({ data: { id, type } }) => (
+const PipedValueSerialized = ({ data: { id, type, text } }) => (
   <span data-piped="answers" data-id={id} data-type={type}>
-    [Piped Value]
+    {text}
   </span>
 );
 
@@ -64,7 +64,7 @@ export const replacePipedValues = labels => (
 ) => {
   const text = labels.hasOwnProperty(entity.data.id)
     ? labels[entity.data.id]
-    : "Deleted Piped Value";
+    : `Deleted Answer`;
 
   return text
     ? replaceEntityText(contentState, entityKey, blockKey, `[${text}]`)
@@ -78,7 +78,7 @@ export const insertPipedValue = (answer, contentState, selection) => {
   );
 
   const entityKey = newContent.getLastCreatedEntityKey();
-  const text = answer.label || "Piped Value";
+  const text = answer.displayName;
 
   return Modifier.insertText(
     newContent,

@@ -35,21 +35,21 @@ const moveSectionMock = {
             __typename: "Section",
             id: "2",
             title: "foo",
-            plaintextTitle: "foo",
+            displayName: "foo",
             position: 0,
             pages: [
               {
                 __typename: "QuestionPage",
                 id: "3",
                 title: "bar",
-                plaintextTitle: "bar",
+                displayName: "bar",
                 position: 0
               },
               {
                 __typename: "QuestionPage",
                 id: "4",
                 title: "blah",
-                plaintextTitle: "blah",
+                displayName: "blah",
                 position: 1
               }
             ],
@@ -65,21 +65,21 @@ const moveSectionMock = {
             __typename: "Section",
             id: "3",
             title: "foo",
-            plaintextTitle: "foo",
+            displayName: "foo",
             position: 1,
             pages: [
               {
                 __typename: "QuestionPage",
                 id: "5",
                 title: "bar",
-                plaintextTitle: "bar",
+                displayName: "bar",
                 position: 0
               },
               {
                 __typename: "QuestionPage",
                 id: "6",
                 title: "blah",
-                plaintextTitle: "blah",
+                displayName: "blah",
                 position: 1
               }
             ],
@@ -145,7 +145,7 @@ describe("SectionRoute", () => {
               __typename: "Section",
               id: "1",
               title: "foo",
-              plaintextTitle: "foo",
+              displayName: "foo",
               description: "bar",
               position: 0,
               questionnaire: {
@@ -179,7 +179,7 @@ describe("SectionRoute", () => {
               __typename: "Section",
               id: "2",
               title: "foo",
-              plaintextTitle: "foo",
+              displayName: "foo",
               description: "bar",
               position: 0,
               questionnaire: {
@@ -337,7 +337,7 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
-          plaintextTitle: "foo",
+          displayName: "foo",
           description: "bar",
           position: 0,
           questionnaire: {
@@ -372,7 +372,7 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
-          plaintextTitle: "foo",
+          displayName: "foo",
           description: "bar",
           position: 0,
           questionnaire: {

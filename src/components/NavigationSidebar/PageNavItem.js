@@ -31,11 +31,11 @@ export const UnwrappedPageNavItem = ({
         pageId: page.id,
         tab: match.params.tab || "design"
       })}
-      title={page.plaintextTitle}
+      title={page.displayName}
       icon={PageIcon}
       data-test="nav-page-link"
     >
-      {page.plaintextTitle || "Page Title"}
+      {page.displayName}
     </NavLink>
   </StyledPageItem>
 );
@@ -46,7 +46,7 @@ UnwrappedPageNavItem.fragments = {
       id
       title
       position
-      plaintextTitle: title(format: Plaintext)
+      displayName
     }
   `
 };

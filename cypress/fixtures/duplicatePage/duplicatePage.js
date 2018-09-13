@@ -4,7 +4,7 @@ export default {
       id: "2",
       __typename: "QuestionPage",
       title: "<p>Copy of Question 1</p>",
-      plaintextTitle: "Copy of Question 1",
+      displayName: "Copy of Question 1",
       guidance: "",
       description: "",
       position: 1,

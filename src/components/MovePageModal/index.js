@@ -129,7 +129,7 @@ class MovePageModal extends React.Component {
         >
           {questionnaire.sections.map(section => (
             <Option key={section.id} value={section.id}>
-              {section.plaintextTitle || "Untitled Section"}
+              {section.displayName}
             </Option>
           ))}
         </ItemSelect>
@@ -146,9 +146,7 @@ class MovePageModal extends React.Component {
       <MoveModal title={"Move question"} {...this.props}>
         <Label htmlFor={sectionButtonId}>Section</Label>
         <Trigger id={sectionButtonId} onClick={this.handleOpenSectionSelect}>
-          <Truncated>
-            {selectedSection.plaintextTitle || "Untitled Section"}
-          </Truncated>
+          <Truncated>{selectedSection.displayName}</Truncated>
         </Trigger>
         {this.renderSectionSelect(selectedSection)}
 

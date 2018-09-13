@@ -11,7 +11,7 @@ fragment RoutingRuleSet on RoutingRuleSet {
     id
     description
     guidance
-    plaintextTitle: title(format: Plaintext)
+    displayName
   }
   else {
     ...LogicalDestination

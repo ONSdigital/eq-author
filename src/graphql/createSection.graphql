@@ -4,14 +4,14 @@ mutation CreateSection($input: CreateSectionInput!) {
   createSection(input: $input) {
     ...Section
     position
-    plaintextTitle: title(format: Plaintext)
+    displayName
     pages {
       id
       title
       description
       position
       ... on QuestionPage {
-        plaintextTitle: title(format: Plaintext)
+        displayName
         guidance
         pageType
         answers {

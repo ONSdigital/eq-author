@@ -80,7 +80,7 @@ export const addQuestionPage = (title = "hello world") => {
     });
 
     cy.get(testId("nav-page-link")).should("have.length", prevCount + 1);
-    cy.get(testId("nav-page-link")).should("contain", "Page Title");
+    cy.get(testId("nav-page-link")).should("contain", "Untitled Page");
 
     typeIntoDraftEditor(testId("txt-question-title", "testid"), title);
   });

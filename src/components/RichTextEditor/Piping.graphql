@@ -3,19 +3,21 @@ query GetQuestionnaire_Piping($id: ID!) {
     id
     sections {
       id
-      plaintextTitle: title(format: Plaintext)
+      displayName
       pages {
         ... on QuestionPage {
           id
-          plaintextTitle: title(format: Plaintext)
+          displayName
           answers {
             id
             label
+            displayName
             type
             ... on CompositeAnswer {
               childAnswers {
                 id
                 label
+                displayName
                 type
               }
             }

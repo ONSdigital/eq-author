@@ -13,7 +13,7 @@ const PageMenu = ({ pages, sectionNumber, menuZIndex, ...otherProps }) => (
   <Dropdown maxWidth={"25em"}>
     <MenuList maxHeight={`${MAX_HEIGHT}em`}>
       {map(pages, (page, i) => {
-        const title = page.plaintextTitle;
+        const title = page.displayName;
         const menu = page.answers.length ? (
           <AnswerMenu answers={page.answers} {...otherProps} />
         ) : (
@@ -28,7 +28,7 @@ const PageMenu = ({ pages, sectionNumber, menuZIndex, ...otherProps }) => (
             menuZIndex={menuZIndex}
             disabled={!menu}
           >
-            {sectionNumber}.{i + 1} {title || "Page Title"}
+            {sectionNumber}.{i + 1} {title}
           </SubMenuItem>
         );
       })}
@@ -48,7 +48,7 @@ const AnswerMenu = ({ answers, ...otherProps }) => (
       {map(answers, (answer, i) => {
         return (
           <MenuItem key={`answer-${i}`} item={answer} {...otherProps}>
-            {answer.label || "Answer Label"}
+            {answer.displayName}
           </MenuItem>
         );
       })}
@@ -64,7 +64,7 @@ const SectionMenu = ({ sections, menuZIndex, ...otherProps }) => (
   <Dropdown maxWidth={"10em"}>
     <MenuList>
       {map(sections, (section, i) => {
-        const title = section.plaintextTitle;
+        const title = section.displayName;
         const menu = section.pages.length ? (
           <PageMenu
             pages={section.pages}

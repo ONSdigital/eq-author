@@ -19,19 +19,19 @@ exports[`SectionNavItem should render 1`] = `
   <PageNav
     questionnaire={
       Object {
+        "displayName": "Questionnaire",
         "id": "1",
-        "plaintextTitle": "Questionnaire",
         "sections": Array [
           Object {
+            "displayName": "Section",
             "id": "3",
             "pages": Array [
               Object {
+                "displayName": "Page",
                 "id": "2",
-                "plaintextTitle": "Page",
                 "title": "Page",
               },
             ],
-            "plaintextTitle": "Section",
             "title": "Section",
           },
         ],
@@ -40,15 +40,15 @@ exports[`SectionNavItem should render 1`] = `
     }
     section={
       Object {
+        "displayName": "Section",
         "id": "3",
         "pages": Array [
           Object {
+            "displayName": "Page",
             "id": "2",
-            "plaintextTitle": "Page",
             "title": "Page",
           },
         ],
-        "plaintextTitle": "Section",
         "title": "Section",
       }
     }

@@ -1,7 +1,7 @@
 export default function actionMatching(type, payload) {
   var action = { type };
 
-  if(arguments.length === 2) {
+  if (arguments.length === 2) {
     action.payload = payload;
   }
 

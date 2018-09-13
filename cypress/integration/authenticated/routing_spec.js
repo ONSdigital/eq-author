@@ -142,7 +142,7 @@ describe("Routing", () => {
 
     addSection();
 
-    cy.contains("Page Title").click();
+    cy.contains("Untitled Page").click();
 
     typeIntoDraftEditor(testId("txt-question-title", "testid"), "Question 4");
     buildMultipleChoiceAnswer(["G", "H", "I"]);
@@ -158,53 +158,44 @@ describe("Routing", () => {
     cy.get(testId("routing-rule"));
 
     cy.get(testId("routing-editor")).within(() => {
-      cy
-        .get(testId("routing-rule"))
+      cy.get(testId("routing-rule"))
         .last()
         .within(() => setRoutingCondition("Question 1", "A"));
 
       cy.get(testId("btn-add-rule")).click();
       cy.get(testId("routing-rule")).should("have.length", 2);
 
-      cy
-        .get(testId("routing-rule"))
+      cy.get(testId("routing-rule"))
         .last()
         .within(() => setRoutingCondition("Question 2", "D"));
 
       cy.get(testId("btn-add-rule")).click();
       cy.get(testId("routing-rule")).should("have.length", 3);
 
-      cy
-        .get(testId("routing-rule"))
+      cy.get(testId("routing-rule"))
         .last()
         .within(() => setRoutingCondition("Question 3", "G"));
     });
 
-    cy
-      .get(testId("options-selector"))
+    cy.get(testId("options-selector"))
       .eq(0)
       .within(() => {
-        cy
-          .get("input")
+        cy.get("input")
           .first()
           .should("be.checked");
       });
 
-    cy
-      .get(testId("options-selector"))
+    cy.get(testId("options-selector"))
       .eq(1)
       .within(() => {
-        cy
-          .get("input")
+        cy.get("input")
           .first()
           .should("be.checked");
       });
-    cy
-      .get(testId("options-selector"))
+    cy.get(testId("options-selector"))
       .eq(2)
       .within(() => {
-        cy
-          .get("input")
+        cy.get("input")
           .first()
           .should("be.checked");
       });
@@ -255,8 +246,7 @@ describe("Routing", () => {
 
     cy.get(testId("btn-add-rule")).click();
 
-    cy
-      .get(testId("options-selector"))
+    cy.get(testId("options-selector"))
       .first()
       .contains("D");
 
@@ -264,8 +254,7 @@ describe("Routing", () => {
       .first()
       .select("Question 1");
 
-    cy
-      .get(testId("options-selector"))
+    cy.get(testId("options-selector"))
       .first()
       .contains("A");
   });
@@ -292,8 +281,7 @@ describe("Routing", () => {
 
     cy.get(testId("routing-rule"));
 
-    cy
-      .get(testId("result-selector"))
+    cy.get(testId("result-selector"))
       .first()
       .within(() => {
         cy.contains("Question 1").should("not.exist");
@@ -359,15 +347,13 @@ describe("Routing", () => {
 
     cy.get(testId("btn-add-rule")).click();
 
-    cy
-      .get(testId("routing-rule"))
+    cy.get(testId("routing-rule"))
       .last()
       .within(() => setRoutingCondition("Question 1", "A"));
 
     cy.contains("Question 1").click();
 
-    cy
-      .get(testId("tabs-nav"))
+    cy.get(testId("tabs-nav"))
       .contains("Builder")
       .click();
 
