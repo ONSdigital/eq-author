@@ -4,13 +4,14 @@ import { colors } from "constants/theme";
 import { TabsBody as _TabsBody } from "components/ModalWithNav/Tabs";
 
 export const Tabs = styled.div`
-  border-radius: 4px;
+  border-radius: 4em;
+  background: ${colors.lighterGrey};
   display: flex;
 `;
 
 export const Tab = styled.div`
   padding: 0.5em 1em;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4em;
   color: ${colors.darkGrey};
   cursor: pointer;
   text-align: center;
@@ -28,7 +29,5 @@ export const Tab = styled.div`
 `;
 
 export const TabsBody = styled(_TabsBody)`
-  padding: 1em;
-  background-color: ${colors.lighterGrey};
-  border-radius: 0 0 4px 4px;
+  padding: 1em 0;
 `;

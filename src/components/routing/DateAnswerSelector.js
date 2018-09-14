@@ -15,7 +15,6 @@ import { withRouter } from "react-router";
 import { Input, Select } from "components/Forms";
 import { Tab, Tabs, TabsBody } from "./Tabs";
 
-import NumericOperatorSelect from "./NumericOperatorSelect";
 import MetadataSelect from "./MetadataSelect";
 
 import {
@@ -31,11 +30,13 @@ import {
 import { DATE } from "constants/answer-types";
 import { PageSelect } from "./RoutingCondition";
 import { Alert, AlertTitle, AlertText } from "./Alert";
+import IconText from "../IconText";
+import IconInfo from "./icon-info.svg?inline";
 
 const DateAnswer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1em 0;
+  padding: 2em 6em 1em 0;
 `;
 
 const Flex = styled.div`
@@ -50,10 +51,10 @@ const Flex = styled.div`
 
 const DateUnitSelect = ({ isMultiple, ...otherProps }) => (
   <Select {...otherProps}>
-    <option value="days">Day/s</option>
-    <option value="weeks">Week/s</option>
-    <option value="months">Month/s</option>
     <option value="years">Year/s</option>
+    <option value="months">Month/s</option>
+    <option value="weeks">Week/s</option>
+    <option value="days">Day/s</option>
   </Select>
 );
 
@@ -66,11 +67,19 @@ const BeforeAfterSelect = props => (
 
 const InfoBox = styled.div`
   border-radius: ${radius};
-  padding: 0.5em;
+  padding: 0.5em 1em;
   border: 1px solid ${colors.lightGrey};
-  display: flex;
-  align-items: center;
+  background: ${colors.lighterGrey};
+  width: 100%;
 `;
+
+const DateOperatorSelect = props => (
+  <Select {...props}>
+    <option value="greater-than">{"At least"}</option>
+    <option value="less-than">{"At most"}</option>
+    <option value="equal-to">{"Exactly"}</option>
+  </Select>
+);
 
 const NumericInput = styled(Input)`
   border-radius: ${radius};
@@ -84,7 +93,7 @@ const hasValidAnswers = sections =>
     every(section.options, ({ disabled }) => disabled)
   );
 
-const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
+const DateComparisonFields = ({ id, condition, onChange, state }) => {
   const numericSelectId = `condition-${condition.id}-numeric-select`;
   const comparisonValueId = `condition-${condition.id}-comparison-value`;
   const dateUnitId = `condition-${condition.id}-date-unit`;
@@ -95,7 +104,7 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
   return (
     <div style={{ flex: "1 1 auto" }}>
       <Flex>
-        <NumericOperatorSelect
+        <DateOperatorSelect
           onChange={onChange}
           name={numericSelectId}
           id={numericSelectId}
@@ -122,32 +131,29 @@ const DateComparisonFields = ({ id, condition, onChange, state, children }) => {
           defaultValue={state[beforeAfterId]}
         />
       </Flex>
-      <div style={{ flex: "1 1 auto" }}>{children}</div>
     </div>
   );
 };
 
-const CompletionDate = ({ condition, state, ...otherProps }) => (
-  <DateComparisonFields condition={condition} state={state} {...otherProps}>
-    <InfoBox>The date the respondent begins the the survey.</InfoBox>
-  </DateComparisonFields>
+const CompletionDate = () => (
+  <InfoBox>
+    The date the respondent fills in the the survey. E.g. 16 years ago
+  </InfoBox>
 );
 
 const CustomValue = ({ condition, state, ...otherProps }) => {
   const id = `condition-${condition.id}-custom-value`;
 
   return (
-    <DateComparisonFields condition={condition} state={state} {...otherProps}>
-      <NumericInput
-        type="date"
-        style={{ width: "14em", height: "2.375em" }}
-        placeholder="Custom value"
-        id={id}
-        name={id}
-        value={state[id]}
-        {...otherProps}
-      />
-    </DateComparisonFields>
+    <NumericInput
+      type="date"
+      style={{ width: "14em", height: "2.375em" }}
+      placeholder="Custom value"
+      id={id}
+      name={id}
+      value={state[id]}
+      {...otherProps}
+    />
   );
 };
 
@@ -162,22 +168,16 @@ const PreviousAnswer = ({ condition, sections, state, ...otherProps }) => {
   return (
     <Fragment>
       {hasValidAnswers(sections) ? (
-        <DateComparisonFields
-          condition={condition}
-          state={state}
+        <PageSelect
+          groups={sections}
+          sections={sections}
+          id={id}
+          name={id}
+          value={value}
+          type={DATE}
+          textSelect="Select a previous date answer"
           {...otherProps}
-        >
-          <PageSelect
-            groups={sections}
-            sections={sections}
-            id={id}
-            name={id}
-            value={value}
-            type={DATE}
-            textSelect="Please select a previous question&hellip;"
-            {...otherProps}
-          />
-        </DateComparisonFields>
+        />
       ) : (
         <Alert style={{ padding: "1em 2em" }}>
           <AlertTitle>
@@ -196,29 +196,22 @@ const PreviousAnswer = ({ condition, sections, state, ...otherProps }) => {
 const MetaData = ({ condition, state, answerType, ...otherProps }) => {
   const id = `condition-${condition.id}-metadata`;
   return (
-    <DateComparisonFields
-      condition={condition}
-      state={state}
+    <MetadataSelect
+      id={id}
+      name={id}
+      value={state[id]}
       answerType={answerType}
       {...otherProps}
-    >
-      <MetadataSelect
-        id={id}
-        name={id}
-        value={state[id]}
-        answerType={answerType}
-        {...otherProps}
-      />
-    </DateComparisonFields>
+    />
   );
 };
 
 const getTabContent = props => {
   return [
     {
-      id: "custom",
-      title: "Date",
-      component: <CustomValue {...props} />
+      id: "completion-date",
+      title: "Completion date",
+      component: <CompletionDate {...props} />
     },
     {
       id: "previous-answer",
@@ -231,9 +224,9 @@ const getTabContent = props => {
       component: <MetaData {...props} />
     },
     {
-      id: "completion-date",
-      title: "Survey start date",
-      component: <CompletionDate {...props} />
+      id: "custom",
+      title: "Specific date",
+      component: <CustomValue {...props} />
     }
   ];
 };
@@ -277,6 +270,11 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
 
   return (
     <DateAnswer data-test="options-selector">
+      <DateComparisonFields
+        condition={condition}
+        state={state}
+        onChange={handleChange}
+      />
       <Tabs>
         {tabItems.map(item => (
           <Tab
@@ -290,9 +288,7 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
           </Tab>
         ))}
       </Tabs>
-      <TabsBody navItemId={activeItem.id} style={{ minHeight: " 124px" }}>
-        {activeItem.component}
-      </TabsBody>
+      <TabsBody navItemId={activeItem.id}>{activeItem.component}</TabsBody>
     </DateAnswer>
   );
 };

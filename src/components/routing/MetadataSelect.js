@@ -62,6 +62,12 @@ const metaData = [
     type: REGION,
     label: "Region Code",
     value: "GB-ENG"
+  },
+  {
+    id: "minimum_age",
+    type: TEXT,
+    label: "Minimum Age",
+    value: "16"
   }
 ];
 
@@ -72,8 +78,11 @@ const typeMappings = {
   [DATE]: [answerTypes.DATE]
 };
 
-const checkAnswerType = (type, answerType) =>
-  !includes(typeMappings[type], answerType);
+const checkAnswerType = (type, answerType) => {
+  console.log(type, answerType);
+
+  return !includes(typeMappings[type], answerType);
+};
 
 const MetadataSelect = ({ answerType, ...otherProps }) => (
   <Select {...otherProps}>
