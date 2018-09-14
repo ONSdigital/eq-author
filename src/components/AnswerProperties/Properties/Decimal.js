@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 import { Number } from "components/Forms";
 
-const Decimal = ({ id, value, handleChange }) => (
+const Decimal = ({ id, value, onChange }) => (
   <Number
     id={id}
     name={id}
-    onChange={handleChange}
+    onChange={onChange}
     value={value}
     max={6} //System limit enforced by eq-runner
   />
@@ -16,7 +16,7 @@ const Decimal = ({ id, value, handleChange }) => (
 Decimal.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  handleChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 export default Decimal;

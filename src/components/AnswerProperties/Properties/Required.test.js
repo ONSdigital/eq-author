@@ -14,7 +14,7 @@ describe("Required Property", () => {
     props = {
       id: "1",
       value: true,
-      handleChange: jest.fn()
+      onChange: jest.fn()
     };
     wrapper = createWrapper(props, shallow);
   });
@@ -25,7 +25,7 @@ describe("Required Property", () => {
 
   it("should handle change event for input", () => {
     wrapper.simulate("change", { target: { value: false } });
-    expect(props.handleChange).toHaveBeenCalledWith({
+    expect(props.onChange).toHaveBeenCalledWith({
       target: { value: false }
     });
   });

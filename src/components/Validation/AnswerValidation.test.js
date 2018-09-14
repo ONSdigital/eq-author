@@ -1,7 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import SidebarButton from "components/SidebarButton";
+import SidebarButton, {
+  Detail as SidebarButtonDetail
+} from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
 import { UnconnectedAnswerValidation } from "components/Validation/AnswerValidation";
 
@@ -16,7 +18,15 @@ describe("AnswerValidation", () => {
     props = {
       answer: {
         id: "1",
-        type: "Number"
+        type: "Number",
+        validation: {
+          minValue: {
+            enabled: false
+          },
+          maxValue: {
+            enabled: false
+          }
+        }
       },
       gotoTab: jest.fn()
     };
@@ -49,5 +59,55 @@ describe("AnswerValidation", () => {
     const wrapper = render(props);
     wrapper.find(ModalWithNav).simulate("close");
     expect(wrapper.state("modalIsOpen")).toEqual(false);
+  });
+
+  it("should render max/min validation values in the preview", () => {
+    const wrapper = render({
+      ...props,
+      answer: {
+        id: "1",
+        type: "Number",
+        validation: {
+          minValue: {
+            enabled: true,
+            custom: 5
+          },
+          maxValue: {
+            enabled: false
+          }
+        }
+      }
+    });
+    expect(
+      wrapper
+        .find(SidebarButtonDetail)
+        .at(0)
+        .prop("children")
+    ).toEqual(5);
+  });
+
+  it("should render preview dates as UK format", () => {
+    const wrapper = render({
+      ...props,
+      answer: {
+        id: "1",
+        type: "Date",
+        validation: {
+          earliestDate: {
+            enabled: true,
+            customDate: "2018-09-02"
+          },
+          latestDate: {
+            enabled: false
+          }
+        }
+      }
+    });
+    expect(
+      wrapper
+        .find(SidebarButtonDetail)
+        .at(0)
+        .prop("children")
+    ).toEqual("02-09-2018");
   });
 });

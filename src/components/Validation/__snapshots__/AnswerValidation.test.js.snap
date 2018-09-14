@@ -10,6 +10,14 @@ exports[`AnswerValidation should render 1`] = `
         "answer": Object {
           "id": "1",
           "type": "Number",
+          "validation": Object {
+            "maxValue": Object {
+              "enabled": false,
+            },
+            "minValue": Object {
+              "enabled": false,
+            },
+          },
         },
       }
     }
@@ -39,6 +47,7 @@ exports[`AnswerValidation should render 1`] = `
         Array [
           Object {
             "id": "minValue",
+            "preview": [Function],
             "render": [Function],
             "title": "Min Value",
             "types": Array [
@@ -48,6 +57,7 @@ exports[`AnswerValidation should render 1`] = `
           },
           Object {
             "id": "maxValue",
+            "preview": [Function],
             "render": [Function],
             "title": "Max Value",
             "types": Array [

@@ -13,7 +13,7 @@ import SidebarButton, { Title, Detail } from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
 import MinValueValidation from "./MinValue";
 import MaxValueValidation from "./MaxValue";
-import EarliestDateValidation from "./EarliestDate";
+import { EarliestDate, LatestDate } from "./Date";
 
 import ValidationContext from "./ValidationContext";
 
@@ -23,25 +23,40 @@ const Container = styled.div`
   padding: 1em 0;
 `;
 
+const formatDate = dateString =>
+  dateString
+    .split("-")
+    .reverse()
+    .join("-");
+
 const validationTypes = [
   {
     id: "minValue",
     title: "Min Value",
     render: () => <MinValueValidation />,
-    types: [CURRENCY, NUMBER]
+    types: [CURRENCY, NUMBER],
+    preview: ({ custom }) => custom
   },
   {
     id: "maxValue",
     title: "Max Value",
     render: () => <MaxValueValidation />,
-    types: [CURRENCY, NUMBER]
+    types: [CURRENCY, NUMBER],
+    preview: ({ custom }) => custom
   },
   {
     id: "earliestDate",
     title: "Earliest Date",
-    render: () => <EarliestDateValidation />,
+    render: () => <EarliestDate />,
     types: [DATE],
-    custom: "customDate"
+    preview: ({ customDate }) => (customDate ? formatDate(customDate) : "")
+  },
+  {
+    id: "latestDate",
+    title: "Latest Date",
+    render: () => <LatestDate />,
+    types: [DATE],
+    preview: ({ customDate }) => (customDate ? formatDate(customDate) : "")
   }
 ];
 
@@ -98,10 +113,8 @@ export class UnconnectedAnswerValidation extends React.Component {
           {validValidationTypes.map(validationType =>
             this.renderButton({
               ...validationType,
-              value: get(
-                answer,
-                `validation.${validationType.id}.${validationType.custom ||
-                  "custom"}`
+              value: validationType.preview(
+                answer.validation[validationType.id]
               ),
               enabled: get(answer, `validation.${validationType.id}.enabled`)
             })

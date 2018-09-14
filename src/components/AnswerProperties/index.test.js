@@ -1,10 +1,9 @@
 import React from "react";
-import { Input, Select } from "components/Forms";
-import { HiddenInput } from "components/ToggleSwitch";
 import { NUMBER, DATE } from "constants/answer-types";
+import { Decimal, Required, DateFormat } from "./Properties";
 
 import AnswerProperties from "components/AnswerProperties";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 
 let wrapper;
 let handleUpdate;
@@ -48,11 +47,7 @@ describe("Answer Properties", () => {
 
   describe("behaviour", () => {
     it("should handle change event for 'Required' toggle input", () => {
-      wrapper = mount(answerProperties());
-
-      wrapper
-        .find(HiddenInput)
-        .simulate("change", { target: { value: false } });
+      wrapper.find(Required).simulate("change", { value: false });
       expect(handleChange).toHaveBeenCalledWith({
         id: "1",
         properties: {
@@ -63,12 +58,7 @@ describe("Answer Properties", () => {
     });
 
     it("should handle change event for 'Decimals' number input", () => {
-      wrapper = mount(answerProperties());
-
-      wrapper
-        .find(Input)
-        .at(1)
-        .simulate("change", { target: { value: 3 } });
+      wrapper.find(Decimal).simulate("change", { value: 3 });
       expect(handleChange).toHaveBeenCalledWith({
         id: "1",
         properties: {
@@ -79,7 +69,7 @@ describe("Answer Properties", () => {
     });
 
     it("should handle change event for 'Date Format' number input", () => {
-      wrapper = mount(
+      wrapper = shallow(
         answerProperties({
           answer: {
             id: "1",
@@ -92,7 +82,7 @@ describe("Answer Properties", () => {
         })
       );
 
-      wrapper.find(Select).simulate("change", { target: { value: "mm/yy" } });
+      wrapper.find(DateFormat).simulate("change", { value: "mm/yy" });
       expect(handleChange).toHaveBeenCalledWith({
         id: "1",
         properties: {
