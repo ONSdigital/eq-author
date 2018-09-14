@@ -38,7 +38,7 @@ import { Alert, AlertTitle, AlertText } from "./Alert";
 const NumericAnswer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2em 6em 1em 1em;
+  padding: 2em 6em 1em 0;
 `;
 
 const Flex = styled.div`

@@ -77,6 +77,7 @@ const DateOperatorSelect = props => (
   <Select {...props}>
     <option value="greater-than">{"At least"}</option>
     <option value="less-than">{"At most"}</option>
+
     <option value="equal-to">{"Exactly"}</option>
   </Select>
 );
@@ -137,7 +138,7 @@ const DateComparisonFields = ({ id, condition, onChange, state }) => {
 
 const CompletionDate = () => (
   <InfoBox>
-    The date the respondent fills in the the survey. E.g. 16 years ago
+    The date the respondent fills in the the survey. E.g. 16 years ago.
   </InfoBox>
 );
 
