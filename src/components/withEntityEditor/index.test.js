@@ -4,6 +4,7 @@ import { shallow } from "enzyme";
 import gql from "graphql-tag";
 import { filter } from "graphql-anywhere";
 import { SynchronousPromise } from "synchronous-promise";
+import { omit } from "lodash";
 import createMockStore from "tests/utils/createMockStore";
 
 const Component = props => <div {...props} />;
@@ -63,25 +64,26 @@ describe("withEntityEditor", () => {
     expect(wrapper.state("entity")).toEqual(newProps.entity);
   });
 
-  it("should set state only when necessary with getDerivedStateFromProps", () => {
-    const newProps = {
-      entity: { id: 1, title: "new title", __typename: "Bar" }
-    };
-    const currentState = { entity: { id: 1, title: "foo", __typename: "Foo" } };
+  it("should not update state if the entity does not change", () => {
+    const newValue = "foo1";
+    wrapper.simulate("change", { name: "title", value: newValue });
+    wrapper.setProps({ entity });
+    wrapper.simulate("update");
+    expect(handleUpdate).toHaveBeenCalledWith({
+      ...omit(entity, "__typename"),
+      title: "foo1"
+    });
+  });
 
-    expect(
-      ComponentWithEntity.WrappedComponent.getDerivedStateFromProps(
-        newProps,
-        currentState
-      )
-    ).toEqual(newProps);
-
-    expect(
-      ComponentWithEntity.WrappedComponent.getDerivedStateFromProps(
-        currentState,
-        currentState
-      )
-    ).toBeNull();
+  it("should update the state if the entity does change", () => {
+    const newValue = "foo1";
+    wrapper.simulate("change", { name: "title", value: newValue });
+    wrapper.setProps({ entity: { ...entity, title: "hello" } });
+    wrapper.simulate("update");
+    expect(handleUpdate).toHaveBeenCalledWith({
+      ...omit(entity, "__typename"),
+      title: "hello"
+    });
   });
 
   it("should correctly un-mount component", () => {
@@ -230,5 +232,44 @@ describe("withEntityEditor", () => {
     wrapper.setProps(newProps);
 
     expect(wrapper.props()).toEqual(expect.objectContaining(newProps));
+  });
+
+  it("should use the name to create deeply nested entities", () => {
+    const fragment = gql`
+      fragment Example on Example {
+        id
+        title
+        deep {
+          thing
+        }
+      }
+    `;
+    const ComponentWithEntity = withEntityEditor("entity", fragment)(Component);
+    const entity = {
+      id: 1,
+      title: "title",
+      deep: {
+        thing: "original"
+      },
+      __typename: "Foo"
+    };
+    const wrapper = shallow(
+      <ComponentWithEntity
+        entity={entity}
+        onUpdate={handleUpdate}
+        onSubmit={handleSubmit}
+        store={store}
+      />
+    ).dive();
+
+    wrapper.simulate("change", { name: "deep.thing", value: "updated" });
+    wrapper.simulate("update");
+    expect(handleUpdate).toHaveBeenCalledWith({
+      id: 1,
+      title: "title",
+      deep: {
+        thing: "updated"
+      }
+    });
   });
 });

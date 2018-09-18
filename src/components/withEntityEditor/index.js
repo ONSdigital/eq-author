@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { filter } from "graphql-anywhere";
-import { isEmpty, isEqual, get, pick } from "lodash";
+import { isEqual } from "lodash";
+import fp from "lodash/fp";
 import { startRequest, endRequest } from "../../redux/saving/actions";
 import { connect } from "react-redux";
 
@@ -11,19 +12,6 @@ const withSaveTracking = connect(
 );
 
 const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
-  const isSameEntity = (nextProps, prevState) =>
-    isEqual(
-      pick(get(nextProps, [entityPropName]), ["id", "__typename"]),
-      pick(get(prevState, [entityPropName]), ["id", "__typename"])
-    );
-
-  const entityIsUnset = state => isEmpty(state[entityPropName]);
-  const propertiesHaveChanged = (nextProps, prevState) =>
-    !isEqual(
-      get(nextProps, [entityPropName, "properties"]),
-      get(prevState, [entityPropName, "properties"])
-    );
-
   class EntityEditor extends React.Component {
     static propTypes = {
       [entityPropName]: PropTypes.object.isRequired, // eslint-disable-line
@@ -33,19 +21,20 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       endRequest: PropTypes.func
     };
 
-    state = {};
+    constructor(props) {
+      super(props);
+      this.state = {
+        [entityPropName]: props[entityPropName]
+      };
+    }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-      if (
-        entityIsUnset(prevState) ||
-        !isSameEntity(nextProps, prevState) ||
-        propertiesHaveChanged(nextProps, prevState)
-      ) {
-        return {
-          [entityPropName]: nextProps[entityPropName]
-        };
+    componentDidUpdate(prevProps) {
+      if (!isEqual(prevProps[entityPropName], this.props[entityPropName])) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
+          [entityPropName]: this.props[entityPropName]
+        });
       }
-      return null;
     }
 
     static fragments = WrappedComponent.fragments;
@@ -65,10 +54,7 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
         return;
       }
 
-      const entity = {
-        ...currentEntity,
-        [name]: value
-      };
+      const entity = fp.set(name, value, currentEntity);
       if (!this.unmounted) {
         this.setState(() => ({ [entityPropName]: entity, isDirty: true }), cb);
       }

@@ -1,22 +1,21 @@
 import React from "react";
-import { kebabCase, includes, find, get } from "lodash";
+import { kebabCase, get } from "lodash";
 import styled from "styled-components";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { gotoTab } from "redux/tabs/actions";
-import { CURRENCY, NUMBER } from "constants/answer-types";
+import { CURRENCY, DATE, NUMBER } from "constants/answer-types";
 import { colors } from "constants/theme";
 
 import SidebarButton, { Title, Detail } from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
 import MinValueValidation from "./MinValue";
 import MaxValueValidation from "./MaxValue";
+import EarliestDateValidation from "./EarliestDate";
 
 import ValidationContext from "./ValidationContext";
-
-const answerTypes = [CURRENCY, NUMBER];
 
 const Container = styled.div`
   margin-top: 1em;
@@ -26,16 +25,36 @@ const Container = styled.div`
 
 const validationTypes = [
   {
-    id: "min-value",
+    id: "minValue",
     title: "Min Value",
-    render: () => <MinValueValidation />
+    render: () => <MinValueValidation />,
+    types: [CURRENCY, NUMBER]
   },
   {
-    id: "max-value",
+    id: "maxValue",
     title: "Max Value",
-    render: () => <MaxValueValidation />
+    render: () => <MaxValueValidation />,
+    types: [CURRENCY, NUMBER]
+  },
+  {
+    id: "earliestDate",
+    title: "Earliest Date",
+    render: () => <EarliestDateValidation />,
+    types: [DATE],
+    custom: "customDate"
   }
 ];
+
+const getValidationsForType = type =>
+  validationTypes.filter(({ types }) => types.includes(type));
+
+const validations = [NUMBER, CURRENCY, DATE].reduce(
+  (hash, type) => ({
+    ...hash,
+    [type]: getValidationsForType(type)
+  }),
+  {}
+);
 
 export class UnconnectedAnswerValidation extends React.Component {
   state = {
@@ -67,27 +86,30 @@ export class UnconnectedAnswerValidation extends React.Component {
   render() {
     const { answer } = this.props;
 
-    if (!includes(answerTypes, answer.type)) {
+    const validValidationTypes = validations[answer.type] || [];
+
+    if (validValidationTypes.length === 0) {
       return null;
     }
 
     return (
       <Container>
         <ValidationContext.Provider value={{ answer }}>
-          {this.renderButton({
-            ...find(validationTypes, { id: "min-value" }),
-            value: get(answer, "validation.minValue.custom"),
-            enabled: get(answer, "validation.minValue.enabled")
-          })}
-          {this.renderButton({
-            ...find(validationTypes, { id: "max-value" }),
-            value: get(answer, "validation.maxValue.custom"),
-            enabled: get(answer, "validation.maxValue.enabled")
-          })}
+          {validValidationTypes.map(validationType =>
+            this.renderButton({
+              ...validationType,
+              value: get(
+                answer,
+                `validation.${validationType.id}.${validationType.custom ||
+                  "custom"}`
+              ),
+              enabled: get(answer, `validation.${validationType.id}.enabled`)
+            })
+          )}
           <ModalWithNav
             id={this.modalId}
             onClose={this.handleModalClose}
-            navItems={validationTypes}
+            navItems={validValidationTypes}
             title={`${answer.type} validation`}
             isOpen={this.state.modalIsOpen}
           />
