@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
+import MetadataModal from "components/MetadataModal";
 
 describe("NavigationHeader", () => {
   let mockHandlers = {
@@ -23,7 +24,7 @@ describe("NavigationHeader", () => {
     expect(createWrapper()).toMatchSnapshot();
   });
 
-  it("allows modal to be open and closed", () => {
+  it("allows settings modal to be open and closed", () => {
     const wrapper = createWrapper();
 
     wrapper.find(`[data-test="settings-btn"]`).simulate("click");
@@ -31,6 +32,16 @@ describe("NavigationHeader", () => {
 
     wrapper.find(QuestionnaireSettingsModal).simulate("close");
     expect(wrapper.find(QuestionnaireSettingsModal).prop("isOpen")).toBe(false);
+  });
+
+  it("allows metadata modal to be open and closed", () => {
+    const wrapper = createWrapper();
+
+    wrapper.find(`[data-test="metadata-btn"]`).simulate("click");
+    expect(wrapper.find(MetadataModal).prop("isOpen")).toBe(true);
+
+    wrapper.find(MetadataModal).simulate("close");
+    expect(wrapper.find(MetadataModal).prop("isOpen")).toBe(false);
   });
 
   it("updates questionnaire after submission", () => {

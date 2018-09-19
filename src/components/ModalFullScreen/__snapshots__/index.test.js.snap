@@ -2,22 +2,42 @@
 
 exports[`ModalFullScreen should render when closed 1`] = `
 <ModalFullScreen__StyledModal
+  hasCloseButton={false}
   isOpen={false}
   onClose={[Function]}
 >
-  <div>
-    Modal content
-  </div>
+  <ScrollPane
+    permanentScrollBar={false}
+  >
+    <Modal__CloseButton
+      onClick={[Function]}
+    >
+      ×
+    </Modal__CloseButton>
+    <div>
+      Modal content
+    </div>
+  </ScrollPane>
 </ModalFullScreen__StyledModal>
 `;
 
 exports[`ModalFullScreen should render when open 1`] = `
 <ModalFullScreen__StyledModal
+  hasCloseButton={false}
   isOpen={true}
   onClose={[Function]}
 >
-  <div>
-    Modal content
-  </div>
+  <ScrollPane
+    permanentScrollBar={false}
+  >
+    <Modal__CloseButton
+      onClick={[Function]}
+    >
+      ×
+    </Modal__CloseButton>
+    <div>
+      Modal content
+    </div>
+  </ScrollPane>
 </ModalFullScreen__StyledModal>
 `;

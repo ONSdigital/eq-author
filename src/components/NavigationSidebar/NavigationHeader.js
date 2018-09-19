@@ -5,8 +5,10 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import HomeIcon from "./icon-home.svg?inline";
 import SettingsIcon from "./icon-cog.svg?inline";
+import MetadataIcon from "./icon-metadata.svg?inline";
 
 import QuestionnaireSettingsModal from "components/QuestionnaireSettingsModal";
+import MetadataModal from "components/MetadataModal";
 import Button from "components/Button";
 import RouteButton from "components/Button/RouteButton";
 import IconText from "components/IconText";
@@ -55,13 +57,20 @@ class NavigationHeader extends React.Component {
   };
 
   state = {
-    isModalOpen: false,
+    isSettingsModalOpen: false,
+    isMetadataModalOpen: false,
     addMenuOpen: false
   };
 
-  handleModalOpen = () => this.setState({ isModalOpen: true });
+  handleSettingsModalOpen = () => this.setState({ isSettingsModalOpen: true });
 
-  handleModalClose = () => this.setState({ isModalOpen: false });
+  handleSettingsModalClose = () =>
+    this.setState({ isSettingsModalOpen: false });
+
+  handleMetadataModalOpen = () => this.setState({ isMetadataModalOpen: true });
+
+  handleMetadataModalClose = () =>
+    this.setState({ isMetadataModalOpen: false });
 
   handleAddMenuToggle = () =>
     this.setState({ addMenuOpen: !this.state.addMenuOpen });
@@ -92,21 +101,37 @@ class NavigationHeader extends React.Component {
             </IconListItem>
             <IconListItem>
               <Button
+                data-test="metadata-btn"
+                variant="tertiary-light"
+                small
+                onClick={this.handleMetadataModalOpen}
+                highlightOnHover={false}
+              >
+                <IconText icon={MetadataIcon}>Metadata</IconText>
+              </Button>
+            </IconListItem>
+            <IconListItem>
+              <Button
                 data-test="settings-btn"
                 variant="tertiary-light"
                 small
-                onClick={this.handleModalOpen}
+                onClick={this.handleSettingsModalOpen}
                 highlightOnHover={false}
               >
                 <IconText icon={SettingsIcon}>Settings</IconText>
               </Button>
+              <MetadataModal
+                isOpen={this.state.isMetadataModalOpen}
+                onClose={this.handleMetadataModalClose}
+                questionnaireId={questionnaire.id}
+              />
               <QuestionnaireSettingsModal
-                isOpen={this.state.isModalOpen}
-                onClose={this.handleModalClose}
+                isOpen={this.state.isSettingsModalOpen}
+                onClose={this.handleSettingsModalClose}
                 questionnaire={questionnaire}
                 onSubmit={pipeP(
                   onUpdateQuestionnaire,
-                  this.handleModalClose
+                  this.handleSettingsModalClose
                 )}
                 confirmText="Apply"
               />

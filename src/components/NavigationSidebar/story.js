@@ -2,6 +2,7 @@ import React from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { ApolloProvider } from "react-apollo";
 
 import { MemoryRouter, Route } from "react-router";
 
@@ -46,7 +47,8 @@ const section2 = {
 const questionnaire = {
   title: "Questionnaire title",
   id: "0",
-  sections: [section1]
+  sections: [section1],
+  metadata: []
 };
 
 const props = {
@@ -60,18 +62,24 @@ const props = {
   loading: false
 };
 
+const client = {
+  query: () => ({ questionnaire })
+};
+
 storiesOf("NavigationSidebar", module)
   .addDecorator(story => (
-    <MemoryRouter
-      initialEntries={["/questionnaire/0/design/1/2"]}
-      initialIndex={0}
-    >
-      <Route
-        path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
-        exact={false}
-        render={story}
-      />
-    </MemoryRouter>
+    <ApolloProvider client={client}>
+      <MemoryRouter
+        initialEntries={["/questionnaire/0/design/1/2"]}
+        initialIndex={0}
+      >
+        <Route
+          path="/questionnaire/:questionnaireId/design/:sectionId/:pageId"
+          exact={false}
+          render={story}
+        />
+      </MemoryRouter>
+    </ApolloProvider>
   ))
   .addDecorator(story => <Wrapper>{story()}</Wrapper>)
   .add("Single section", () => {

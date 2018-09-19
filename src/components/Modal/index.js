@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 import DeleteButton from "components/DeleteButton";
 
-const CloseButton = styled(DeleteButton).attrs({
+export const CloseButton = styled(DeleteButton).attrs({
   "aria-label": "Close",
   size: "medium"
 })`

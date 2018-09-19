@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import * as answerTypes from "constants/answer-types";
+import * as metadataTypes from "constants/metadata-types";
 
 const CustomPropTypes = {
   breadcrumb: PropTypes.shape({
@@ -12,6 +13,16 @@ const CustomPropTypes = {
     theme: PropTypes.string,
     title: PropTypes.string,
     navigation: PropTypes.bool
+  }),
+  metadata: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    alias: PropTypes.string,
+    key: PropTypes.string,
+    type: PropTypes.oneOf(Object.values(metadataTypes)),
+    languageValue: PropTypes.string,
+    regionValue: PropTypes.string,
+    textValue: PropTypes.string,
+    dateValue: PropTypes.string
   }),
   section: PropTypes.shape({
     id: PropTypes.string,
