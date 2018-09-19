@@ -27,7 +27,8 @@ const ContentPickerSingle = ({
   disabled,
   hidden,
   data,
-  selectedOption
+  selectedOption,
+  childKey
 }) => {
   if (hidden) {
     return null;
@@ -36,7 +37,6 @@ const ContentPickerSingle = ({
   return (
     <PickerWrapper open={open} data-test={`${title}-picker-wrapper`}>
       <ContentPickerTitle
-        id={`${title}-title`}
         onClick={onTitleClick}
         selected={selected}
         open={open}
@@ -53,12 +53,13 @@ const ContentPickerSingle = ({
         {data.map(option => {
           return (
             <PickerOption
-              id={`option-${option.id}`}
               key={option.id}
               selected={selectedOption === option.id}
               onClick={() => onOptionClick(option)}
+              disabled={childKey && (option[childKey] || []).length === 0}
+              data-test="picker-option"
             >
-              {option.plaintextTitle || option.label || "Unlabelled Option"}
+              {option.displayName}
             </PickerOption>
           );
         })}
@@ -77,7 +78,12 @@ ContentPickerSingle.propTypes = {
   selected: PropTypes.bool,
   disabled: PropTypes.bool,
   hidden: PropTypes.bool,
-  data: PropTypes.any // eslint-disable-line react/forbid-prop-types
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  childKey: PropTypes.string
 };
 
 export default ContentPickerSingle;

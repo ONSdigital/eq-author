@@ -183,7 +183,7 @@ class RichTextEditor extends React.Component {
 
     const createAnswerMap = flow(
       keyBy("id"),
-      mapValues("label")
+      mapValues("displayName")
     );
     const fetchAnswersForEntities = flow(
       map("entity.data.id"),

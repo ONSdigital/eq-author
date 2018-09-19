@@ -1,15 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import CustomPropTypes from "custom-prop-types";
-import QuestionnaireMenu from "components/QuestionnaireMenu";
-import IconPiping from "./icon-link.svg?inline";
-import { Query } from "react-apollo";
-import { MenuButton as RMLMenuButton } from "react-menu-list";
-import { withRouter } from "react-router-dom";
-import { takeWhile, dropRightWhile, last, get, isEmpty } from "lodash";
 import fp from "lodash/fp";
-import query from "./Piping.graphql";
+import { takeWhile, dropRightWhile, last, get, isEmpty } from "lodash";
+import PropTypes from "prop-types";
+import React from "react";
+import { Query } from "react-apollo";
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+
+import ContentPickerModal from "components/ContentPickerModal";
 import {
   TEXTAREA,
   TEXTFIELD,
@@ -17,8 +14,11 @@ import {
   CURRENCY,
   DATE_RANGE
 } from "constants/answer-types";
+import CustomPropTypes from "custom-prop-types";
+
+import IconPiping from "./icon-link.svg?inline";
+import query from "./Piping.graphql";
 import ToolbarButton from "./ToolbarButton";
-import styled from "styled-components";
 
 const validAnswerTypes = {
   [TEXTAREA]: true,
@@ -34,11 +34,7 @@ const PipingIconButton = props => (
   </ToolbarButton>
 );
 
-const MenuButton = styled(RMLMenuButton).attrs({
-  menuZIndex: 10,
-  title: "Pipe value",
-  ButtonComponent: () => PipingIconButton
-})`
+export const MenuButton = styled(PipingIconButton)`
   height: 100%;
   &:disabled {
     cursor: default;
@@ -72,16 +68,37 @@ export class Menu extends React.Component {
     })
   };
 
+  state = {
+    isPickerOpen: false
+  };
+
+  handleButtonClick = () => {
+    this.setState(state => ({
+      isPickerOpen: !state.isPickerOpen
+    }));
+  };
+
+  handlePickerClose = () => {
+    this.setState({
+      isPickerOpen: false
+    });
+  };
+
+  handlePickerSubmit = (...args) => {
+    this.handlePickerClose();
+    this.props.onItemChosen(...args);
+  };
+
   filterQuestionnaire(questionnaire) {
     const { sectionId, pageId } = this.props.match.params;
 
     if (!questionnaire) {
-      return;
+      return [];
     }
 
     // show nothing if first page of first section
     if (get(questionnaire, "sections[0].pages[0].id") === pageId) {
-      return;
+      return [];
     }
 
     const sections = dropRightWhile(
@@ -101,34 +118,43 @@ export class Menu extends React.Component {
       sections.splice(sections.length - 1, 1);
     }
 
-    return {
-      sections: sections.map(section => ({
-        ...section,
-        pages: section.pages.map(page => ({
-          ...page,
-          answers: filterAnswers(page.answers)
-        }))
+    return sections.map(section => ({
+      ...section,
+      pages: section.pages.map(page => ({
+        ...page,
+        answers: filterAnswers(page.answers)
       }))
-    };
+    }));
   }
 
   render() {
     const { disabled, loading, data } = this.props;
+    const buttonProps = {
+      title: "Pipe value"
+    };
 
     if (loading || disabled) {
-      return <MenuButton disabled />;
+      return <MenuButton {...buttonProps} disabled />;
     }
 
-    const filteredQuestionnaire = this.filterQuestionnaire(data.questionnaire);
-    const menu = (
-      <QuestionnaireMenu
-        {...this.props}
-        questionnaire={filteredQuestionnaire}
-        menuZIndex={10}
-      />
+    const filteredSections = this.filterQuestionnaire(data.questionnaire);
+    return (
+      <React.Fragment>
+        <MenuButton
+          {...buttonProps}
+          disabled={filteredSections.length === 0}
+          onClick={this.handleButtonClick}
+          data-test="piping-button"
+        />
+        <ContentPickerModal
+          isOpen={this.state.isPickerOpen}
+          data={filteredSections}
+          onClose={this.handlePickerClose}
+          onSubmit={this.handlePickerSubmit}
+          data-test="picker"
+        />
+      </React.Fragment>
     );
-
-    return <MenuButton menu={menu} disabled={!filteredQuestionnaire} />;
   }
 }
 

@@ -4,10 +4,12 @@ exports[`Content Picker should render full content picker 1`] = `
 <div>
   <ContentPicker__ContentWrapper>
     <ContentPickerSingle
+      childKey="pages"
       data={
         Array [
           Object {
             "__typename": "Section",
+            "displayName": "Section 1",
             "id": "Section 1",
             "pages": Array [
               Object {
@@ -15,16 +17,15 @@ exports[`Content Picker should render full content picker 1`] = `
                 "answers": Array [
                   Object {
                     "__typename": "BasicAnswer",
+                    "displayName": "Answer 1",
                     "id": "Answer 1",
-                    "label": "Answer 1",
                     "type": "Currency",
                   },
                 ],
+                "displayName": "Page 1",
                 "id": "Page 1",
-                "plaintextTitle": "Page 1",
               },
             ],
-            "plaintextTitle": "Section 1",
           },
         ]
       }
@@ -38,6 +39,7 @@ exports[`Content Picker should render full content picker 1`] = `
       title="Section"
     />
     <ContentPickerSingle
+      childKey="answers"
       data={Array []}
       data-test="page-picker"
       disabled={true}

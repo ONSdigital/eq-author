@@ -42,7 +42,6 @@ exports[`Content Picker Single should render 1`] = `
   <ContentPickerTitle
     data-test="picker-title"
     disabled={false}
-    id="Title-title"
     onClick={[Function]}
     open={false}
     selected={false}
@@ -55,7 +54,7 @@ exports[`Content Picker Single should render 1`] = `
     open={false}
   >
     <PickerOption
-      id="option-1"
+      data-test="picker-option"
       key="1"
       onClick={[Function]}
       selected={true}
@@ -63,7 +62,7 @@ exports[`Content Picker Single should render 1`] = `
       Option 1
     </PickerOption>
     <PickerOption
-      id="option-2"
+      data-test="picker-option"
       key="2"
       onClick={[Function]}
       selected={false}
@@ -71,12 +70,12 @@ exports[`Content Picker Single should render 1`] = `
       Option Label 2
     </PickerOption>
     <PickerOption
-      id="option-3"
+      data-test="picker-option"
       key="3"
       onClick={[Function]}
       selected={false}
     >
-      Unlabelled Option
+      Untitled Answer
     </PickerOption>
   </ContentPickerPanel>
 </ContentPickerSingle__PickerWrapper>

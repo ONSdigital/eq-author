@@ -55,7 +55,6 @@ export const TitleButton = styled(Button)`
 class ContentPickerTitle extends React.Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    id: PropTypes.string.isRequired,
     open: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     selected: PropTypes.bool,
@@ -63,16 +62,23 @@ class ContentPickerTitle extends React.Component {
   };
 
   render() {
-    const { children, onClick, id, disabled, selected, open } = this.props;
+    const {
+      children,
+      onClick,
+      disabled,
+      selected,
+      open,
+      ...otherProps
+    } = this.props;
     return (
       <TitleButton
         onClick={onClick}
         role="tab"
-        id={id}
         aria-expanded={open}
         aria-selected={open}
         disabled={disabled}
         selected={selected}
+        {...otherProps}
       >
         {children}
       </TitleButton>

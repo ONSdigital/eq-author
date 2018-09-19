@@ -20,7 +20,11 @@ const ContentPickerModal = ({ isOpen, onClose, onSubmit, data }) => (
 );
 
 ContentPickerModal.propTypes = {
-  data: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired,
   onSubmit: PropTypes.func,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func

@@ -10,9 +10,9 @@ describe("Content Picker Single", () => {
       onTitleClick: jest.fn(),
       onOptionClick: jest.fn(),
       data: [
-        { plaintextTitle: "Option 1", id: "1" },
-        { label: "Option Label 2", id: "2" },
-        { id: "3" }
+        { displayName: "Option 1", id: "1" },
+        { displayName: "Option Label 2", id: "2" },
+        { displayName: "Untitled Answer", id: "3" }
       ],
       selectedOption: "1",
       title: "Title",
@@ -46,9 +46,31 @@ describe("Content Picker Single", () => {
       .at(1)
       .simulate("click");
     expect(props.onOptionClick).toHaveBeenCalledWith({
-      label: "Option Label 2",
+      displayName: "Option Label 2",
       id: "2"
     });
+  });
+
+  it("should render the option has disabled when there should be children", () => {
+    const data = [
+      { displayName: "Option 1", id: "1", children: ["someChild"] },
+      { displayName: "Option Label 2", id: "2" }
+    ];
+    const wrapper = shallow(
+      <ContentPickerSingle {...props} data={data} childKey="children" />
+    );
+    expect(
+      wrapper
+        .find("PickerOption")
+        .at(0)
+        .prop("disabled")
+    ).toBe(false);
+    expect(
+      wrapper
+        .find("PickerOption")
+        .at(1)
+        .prop("disabled")
+    ).toBe(true);
   });
 
   describe("PickerWrapper", () => {

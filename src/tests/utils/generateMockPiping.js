@@ -11,7 +11,7 @@ const generateTestData = (sections = 4, pages = 5, answers = 6) => {
       for (z = 0; z < answers; z++) {
         answerArray.push({
           id: `Answer ${answerId}`,
-          label: `Answer ${answerId}`,
+          displayName: `Answer ${answerId}`,
           type: "Currency",
           __typename: "BasicAnswer"
         });
@@ -19,7 +19,7 @@ const generateTestData = (sections = 4, pages = 5, answers = 6) => {
       }
       pageArray.push({
         id: `Page ${pageId}`,
-        plaintextTitle: `Page ${pageId}`,
+        displayName: `Page ${pageId}`,
         answers: answerArray,
         __typename: "QuestionPage"
       });
@@ -28,7 +28,7 @@ const generateTestData = (sections = 4, pages = 5, answers = 6) => {
     }
     sectionArray.push({
       id: `Section ${sectionId}`,
-      plaintextTitle: `Section ${sectionId}`,
+      displayName: `Section ${sectionId}`,
       pages: pageArray,
       __typename: "Section"
     });
