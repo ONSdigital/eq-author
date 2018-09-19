@@ -5,17 +5,17 @@ import React from "react";
 describe("SectionNavItem", () => {
   let wrapper, handleAddPage;
 
-  const page = { id: "2", title: "Page", plaintextTitle: "Page" };
+  const page = { id: "2", title: "Page", displayName: "Page" };
   const section = {
     id: "3",
     title: "Section",
-    plaintextTitle: "Section",
+    displayName: "Section",
     pages: [page]
   };
   const questionnaire = {
     id: "1",
     title: "Questionnaire",
-    plaintextTitle: "Questionnaire",
+    displayName: "Questionnaire",
     sections: [section]
   };
 

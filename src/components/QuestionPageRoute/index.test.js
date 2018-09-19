@@ -36,21 +36,21 @@ const movePageMock = {
             __typename: "Section",
             id: "2",
             title: "foo",
-            plaintextTitle: "foo",
+            displayName: "foo",
             position: 0,
             pages: [
               {
                 __typename: "QuestionPage",
                 id: "3",
                 title: "bar",
-                plaintextTitle: "bar",
+                displayName: "bar",
                 position: 0
               },
               {
                 __typename: "QuestionPage",
                 id: "4",
                 title: "blah",
-                plaintextTitle: "blah",
+                displayName: "blah",
                 position: 1
               }
             ],
@@ -116,7 +116,7 @@ describe("QuestionPageRoute", () => {
               __typename: "QuestionPage",
               id: "3",
               title: "foo",
-              plaintextTitle: "foo",
+              displayName: "foo",
               description: "bar",
               pageType: "QuestionPage",
               position: 0,
@@ -149,7 +149,7 @@ describe("QuestionPageRoute", () => {
               __typename: "QuestionPage",
               id: "3",
               title: "foo",
-              plaintextTitle: "foo",
+              displayName: "foo",
               description: "bar",
               pageType: "QuestionPage",
               position: 0,
@@ -267,7 +267,7 @@ describe("QuestionPageRoute", () => {
           __typename: "QuestionPage",
           id: "3",
           title: "foo",
-          plaintextTitle: "foo",
+          displayName: "foo",
           description: "bar",
           pageType: "QuestionPage",
           position: 0,

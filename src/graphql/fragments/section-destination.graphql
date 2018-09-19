@@ -1,6 +1,6 @@
 fragment SectionDestination on Section {
   ... on Section {
     id
-    plaintextTitle: title(format: Plaintext)
+    displayName
   }
 }

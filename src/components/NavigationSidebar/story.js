@@ -14,30 +14,30 @@ const Wrapper = styled.div`
 `;
 
 const section1 = {
-  plaintextTitle: "Section 1",
+  displayName: "Section 1",
   id: "1",
   pages: [
     {
-      plaintextTitle: "Question 1.1",
+      displayName: "Question 1.1",
       id: "2"
     },
     {
-      plaintextTitle: "Question 1.2",
+      displayName: "Question 1.2",
       id: "3"
     }
   ]
 };
 
 const section2 = {
-  plaintextTitle: "Section 2",
+  displayName: "Section 2",
   id: "4",
   pages: [
     {
-      plaintextTitle: "Question 2.1",
+      displayName: "Question 2.1",
       id: "5"
     },
     {
-      plaintextTitle: "Question 2.2",
+      displayName: "Question 2.2",
       id: "6"
     }
   ]

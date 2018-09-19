@@ -110,6 +110,7 @@ export const mapStateToProps = (state, { location }) => ({
   returnURL: get(location, "state.returnURL")
 });
 
-export default connect(mapStateToProps, { signInUser, verifyAuthStatus })(
-  UnconnectedSignInPage
-);
+export default connect(
+  mapStateToProps,
+  { signInUser, verifyAuthStatus }
+)(UnconnectedSignInPage);

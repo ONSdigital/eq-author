@@ -4,7 +4,7 @@ import { UnwrappedPageNavItem } from "./PageNavItem";
 
 const page = {
   id: "3",
-  plaintextTitle: "Page title"
+  displayName: "Page title"
 };
 
 describe("PageNavItem", () => {

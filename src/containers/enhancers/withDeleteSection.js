@@ -68,7 +68,9 @@ export const deleteUpdater = (questionnaireId, sectionId) => (
 };
 
 export const displayToast = (ownProps, questionnaire) => {
-  const { match: { params } } = ownProps;
+  const {
+    match: { params }
+  } = ownProps;
   const { sectionId, questionnaireId } = params;
 
   const numberOfDeletedPages = find(questionnaire.sections, {
@@ -91,7 +93,10 @@ export const displayToast = (ownProps, questionnaire) => {
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDeleteSection(sectionId) {
-    const { match: { params }, client } = ownProps;
+    const {
+      match: { params },
+      client
+    } = ownProps;
     const section = { id: sectionId };
     const update = deleteUpdater(params.questionnaireId, sectionId);
 

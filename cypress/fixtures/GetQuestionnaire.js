@@ -15,12 +15,12 @@ export default {
           id: "1",
           title: "",
           position: 0,
-          plaintextTitle: "",
+          displayName: "",
           pages: [
             {
               id: "1",
               title: "",
-              plaintextTitle: "",
+              displayName: "",
               position: 0,
               __typename: "QuestionPage"
             }

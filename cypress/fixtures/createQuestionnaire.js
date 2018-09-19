@@ -8,7 +8,7 @@ export default {
       sections: [
         {
           id: "1",
-          plaintextTitle: "",
+          displayName: "",
           pages: [{ id: "1", __typename: "QuestionPage" }],
           __typename: "Section"
         }

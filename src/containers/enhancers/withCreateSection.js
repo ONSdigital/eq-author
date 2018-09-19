@@ -5,7 +5,10 @@ import { buildSectionPath } from "utils/UrlUtils";
 import { get, tap } from "lodash/fp";
 
 export const redirectToNewSection = ownProps => section => {
-  const { history, match: { params } } = ownProps;
+  const {
+    history,
+    match: { params }
+  } = ownProps;
 
   history.push(
     buildSectionPath({
@@ -38,7 +41,9 @@ export const createUpdater = questionnaireId => (proxy, result) => {
 
 export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddSection() {
-    const { match: { params } } = ownProps;
+    const {
+      match: { params }
+    } = ownProps;
     const section = {
       title: "",
       description: "",

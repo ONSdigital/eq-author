@@ -16,24 +16,28 @@ const CustomPropTypes = {
   section: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
+    displayName: PropTypes.string,
     description: PropTypes.string,
     position: PropTypes.number
   }),
   page: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
+    displayName: PropTypes.string,
     description: PropTypes.string,
     guidance: PropTypes.string
   }),
   answer: PropTypes.shape({
     id: PropTypes.string,
     label: PropTypes.string,
+    displayName: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.oneOf(Object.values(answerTypes))
   }),
   option: PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
+    displayName: PropTypes.string,
     description: PropTypes.string,
     qCode: PropTypes.string,
     value: PropTypes.string

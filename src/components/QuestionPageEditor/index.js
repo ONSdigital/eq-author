@@ -136,7 +136,7 @@ export default class QuestionPageEditor extends React.Component {
               isOpen={showDeleteConfirmDialog}
               onClose={onCloseDeleteConfirmDialog}
               onDelete={onDeletePageConfirm}
-              title={page.plaintextTitle || "Untitled Page"}
+              title={page.displayName}
               alertText="All edits, properties and routing settings will also be removed."
               icon={iconPage}
               data-test="delete-page"
@@ -166,7 +166,7 @@ QuestionPageEditor.fragments = {
   QuestionPage: gql`
     fragment QuestionPage on QuestionPage {
       ...Page
-      plaintextTitle: title(format: Plaintext)
+      displayName
       position
       answers {
         ...AnswerEditor

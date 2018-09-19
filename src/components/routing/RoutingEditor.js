@@ -157,7 +157,7 @@ class RoutingEditor extends React.Component {
 
     return (
       <div data-test="routing-editor">
-        <Title>{get(currentPage, "plaintextTitle") || "Page Title"}</Title>
+        <Title>{get(currentPage, "displayName")}</Title>
         <Padding>
           <TransitionGroup>{content}</TransitionGroup>
         </Padding>

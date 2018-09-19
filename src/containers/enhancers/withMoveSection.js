@@ -7,7 +7,11 @@ export const createUpdater = ({ from, to, questionnaireId }) => (
   proxy,
   result
 ) => {
-  const { data: { moveSection: { id, position } } } = result;
+  const {
+    data: {
+      moveSection: { id, position }
+    }
+  } = result;
   const questionnaireFragmentId = `Questionnaire${questionnaireId}`;
 
   const questionnaire = proxy.readFragment({
@@ -28,7 +32,11 @@ export const createUpdater = ({ from, to, questionnaireId }) => (
 
 export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onMoveSection({ from, to }) {
-    const { match: { params: { questionnaireId } } } = ownProps;
+    const {
+      match: {
+        params: { questionnaireId }
+      }
+    } = ownProps;
     const input = {
       ...to,
       questionnaireId

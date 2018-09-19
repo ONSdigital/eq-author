@@ -3,5 +3,6 @@
 mutation UpdateAnswer($input: UpdateAnswerInput!) {
   updateAnswer(input: $input) {
     ...Answer
+    displayName
   }
 }

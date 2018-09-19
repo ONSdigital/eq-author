@@ -366,21 +366,8 @@ describe("builder", () => {
       .click();
     typeIntoDraftEditor(testId("txt-question-title", "testid"), `Page 0`);
 
-    let pageCount = 1;
-
     times(2, i => {
-      addQuestionPage();
-
-      // this causes cypress to wait until the assertion is correct,
-      // which avoids a race condition where cypress will type into
-      // a matching text box on the prev page, while animation is underway
-      pageCount++;
-      cy.get(testId("page-item")).should("have.length", pageCount);
-
-      typeIntoDraftEditor(
-        testId("txt-question-title", "testid"),
-        `Page ${i + 1}`
-      );
+      addQuestionPage(`Page ${i + 1}`);
     });
 
     cy.get(testId("btn-move")).click();

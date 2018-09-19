@@ -5,14 +5,14 @@ query GetQuestionnaire($id: ID!) {
     ...Questionnaire
     sections {
       id
-      plaintextTitle: title(format: Plaintext)
+      displayName
       position
       pages {
         id
         title
         position
         ... on QuestionPage {
-          plaintextTitle: title(format: Plaintext)
+          displayName
         }
       }
       questionnaire {

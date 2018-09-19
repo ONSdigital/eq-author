@@ -62,7 +62,7 @@ describe("QuestionnaireRoutingPage", () => {
             currentPage: {
               __typename: "QuestionPage",
               id: "3",
-              plaintextTitle: "hello world",
+              displayName: "hello world",
               routingRuleSet: null,
               answers: []
             },
@@ -98,7 +98,7 @@ describe("QuestionnaireRoutingPage", () => {
             currentPage: {
               __typename: "QuestionPage",
               id: "3",
-              plaintextTitle: "hello world",
+              displayName: "hello world",
               routingRuleSet: null,
               answers: []
             },

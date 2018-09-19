@@ -74,7 +74,6 @@ export class UnwrappedSectionEditor extends React.Component {
       match
     } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
-    const sectionTitleText = section.plaintextTitle;
 
     return (
       <SectionCanvas data-test="section-editor" id={getIdForObject(section)}>
@@ -82,7 +81,7 @@ export class UnwrappedSectionEditor extends React.Component {
           isOpen={showDeleteConfirmDialog}
           onClose={onCloseDeleteConfirmDialog}
           onDelete={onDeleteSectionConfirm}
-          title={sectionTitleText || "Untitled Section"}
+          title={section.displayName}
           alertText="All questions in this section will also be removed. This may affect piping and routing rules elsewhere."
           icon={iconSection}
           data-test="dialog-delete-confirm"
@@ -99,7 +98,7 @@ export class UnwrappedSectionEditor extends React.Component {
             controls={titleControls}
             size="large"
             testSelector="txt-section-title"
-            autoFocus={!sectionTitleText}
+            autoFocus={!section.title}
           />
         </Padding>
       </SectionCanvas>

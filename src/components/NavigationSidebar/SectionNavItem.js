@@ -31,10 +31,10 @@ class SectionNavItem extends React.Component {
           exact
           to={url}
           data-test="nav-section-link"
-          title={section.plaintextTitle}
+          title={section.displayName}
           icon={SectionIcon}
         >
-          {section.plaintextTitle || "Section Title"}
+          {section.displayName}
         </NavLink>
 
         <PageNav section={section} questionnaire={questionnaire} />
@@ -48,7 +48,7 @@ SectionNavItem.fragments = {
     fragment SectionNavItem on Section {
       id
       title
-      plaintextTitle: title(format: Plaintext)
+      displayName
       ...PageNav
     }
 

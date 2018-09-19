@@ -10,42 +10,42 @@ exports[`MoveSectionModal should render 1`] = `
       "id": "1",
       "sections": Array [
         Object {
+          "displayName": "Section 1",
           "id": "1",
           "pages": Array [
             Object {
+              "displayName": "Page 1.1",
               "id": "1.1",
-              "plaintextTitle": "Page 1.1",
               "position": 0,
               "title": "Page 1.1",
             },
             Object {
+              "displayName": "Page 1.2",
               "id": "1.2",
-              "plaintextTitle": "Page 1.2",
               "position": 1,
               "title": "Page 1.2",
             },
           ],
-          "plaintextTitle": "Section 1",
           "position": 0,
           "title": "Section 1",
         },
         Object {
+          "displayName": "Section 2",
           "id": "2",
           "pages": Array [
             Object {
+              "displayName": "Page 2.1",
               "id": "2.1",
-              "plaintextTitle": "Page 2.1",
               "position": 0,
               "title": "Page 2.1",
             },
             Object {
+              "displayName": "Page 2.2",
               "id": "2.2",
-              "plaintextTitle": "Page 2.2",
               "position": 1,
               "title": "Page 2.2",
             },
           ],
-          "plaintextTitle": "Section 2",
           "position": 1,
           "title": "Section 2",
         },
@@ -54,22 +54,22 @@ exports[`MoveSectionModal should render 1`] = `
   }
   section={
     Object {
+      "displayName": "Section 1",
       "id": "1",
       "pages": Array [
         Object {
+          "displayName": "Page 1.1",
           "id": "1.1",
-          "plaintextTitle": "Page 1.1",
           "position": 0,
           "title": "Page 1.1",
         },
         Object {
+          "displayName": "Page 1.2",
           "id": "1.2",
-          "plaintextTitle": "Page 1.2",
           "position": 1,
           "title": "Page 1.2",
         },
       ],
-      "plaintextTitle": "Section 1",
       "position": 0,
       "title": "Section 1",
     }
@@ -84,42 +84,42 @@ exports[`MoveSectionModal should render 1`] = `
     options={
       Array [
         Object {
+          "displayName": "Section 1",
           "id": "1",
           "pages": Array [
             Object {
+              "displayName": "Page 1.1",
               "id": "1.1",
-              "plaintextTitle": "Page 1.1",
               "position": 0,
               "title": "Page 1.1",
             },
             Object {
+              "displayName": "Page 1.2",
               "id": "1.2",
-              "plaintextTitle": "Page 1.2",
               "position": 1,
               "title": "Page 1.2",
             },
           ],
-          "plaintextTitle": "Section 1",
           "position": 0,
           "title": "Section 1",
         },
         Object {
+          "displayName": "Section 2",
           "id": "2",
           "pages": Array [
             Object {
+              "displayName": "Page 2.1",
               "id": "2.1",
-              "plaintextTitle": "Page 2.1",
               "position": 0,
               "title": "Page 2.1",
             },
             Object {
+              "displayName": "Page 2.2",
               "id": "2.2",
-              "plaintextTitle": "Page 2.2",
               "position": 1,
               "title": "Page 2.2",
             },
           ],
-          "plaintextTitle": "Section 2",
           "position": 1,
           "title": "Section 2",
         },
@@ -130,42 +130,42 @@ exports[`MoveSectionModal should render 1`] = `
         "id": "1",
         "sections": Array [
           Object {
+            "displayName": "Section 1",
             "id": "1",
             "pages": Array [
               Object {
+                "displayName": "Page 1.1",
                 "id": "1.1",
-                "plaintextTitle": "Page 1.1",
                 "position": 0,
                 "title": "Page 1.1",
               },
               Object {
+                "displayName": "Page 1.2",
                 "id": "1.2",
-                "plaintextTitle": "Page 1.2",
                 "position": 1,
                 "title": "Page 1.2",
               },
             ],
-            "plaintextTitle": "Section 1",
             "position": 0,
             "title": "Section 1",
           },
           Object {
+            "displayName": "Section 2",
             "id": "2",
             "pages": Array [
               Object {
+                "displayName": "Page 2.1",
                 "id": "2.1",
-                "plaintextTitle": "Page 2.1",
                 "position": 0,
                 "title": "Page 2.1",
               },
               Object {
+                "displayName": "Page 2.2",
                 "id": "2.2",
-                "plaintextTitle": "Page 2.2",
                 "position": 1,
                 "title": "Page 2.2",
               },
             ],
-            "plaintextTitle": "Section 2",
             "position": 1,
             "title": "Section 2",
           },
@@ -174,44 +174,44 @@ exports[`MoveSectionModal should render 1`] = `
     }
     section={
       Object {
+        "displayName": "Section 1",
         "id": "1",
         "pages": Array [
           Object {
+            "displayName": "Page 1.1",
             "id": "1.1",
-            "plaintextTitle": "Page 1.1",
             "position": 0,
             "title": "Page 1.1",
           },
           Object {
+            "displayName": "Page 1.2",
             "id": "1.2",
-            "plaintextTitle": "Page 1.2",
             "position": 1,
             "title": "Page 1.2",
           },
         ],
-        "plaintextTitle": "Section 1",
         "position": 0,
         "title": "Section 1",
       }
     }
     selected={
       Object {
+        "displayName": "Section 1",
         "id": "1",
         "pages": Array [
           Object {
+            "displayName": "Page 1.1",
             "id": "1.1",
-            "plaintextTitle": "Page 1.1",
             "position": 0,
             "title": "Page 1.1",
           },
           Object {
+            "displayName": "Page 1.2",
             "id": "1.2",
-            "plaintextTitle": "Page 1.2",
             "position": 1,
             "title": "Page 1.2",
           },
         ],
-        "plaintextTitle": "Section 1",
         "position": 0,
         "title": "Section 1",
       }

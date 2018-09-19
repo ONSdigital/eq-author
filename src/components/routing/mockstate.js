@@ -1,9 +1,11 @@
 export default [
   {
     title: "1. Integer posuere erat a ante",
+    displayName: "1. Integer posuere erat a ante",
     pages: [
       {
         title: "1.1 Curabitur blandit tempus porttitor",
+        displayName: "1.1 Curabitur blandit tempus porttitor",
         pageType: "QuestionPage",
         options: [
           { label: "Bibendum Cras", id: "3", selected: false },
@@ -22,6 +24,7 @@ export default [
       },
       {
         title: "1.2 Nulla vitae elit libero, a pharetra augue.",
+        displayName: "1.2 Nulla vitae elit libero, a pharetra augue.",
         pageType: "QuestionPage",
         options: [
           { label: "Yes", id: "10", selected: false },
