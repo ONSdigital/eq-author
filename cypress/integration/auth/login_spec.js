@@ -21,12 +21,10 @@ describe("login", () => {
 
   it("should display an error when a user doesn't enter an email", () => {
     cy.get(firebase).within(() => {
-      cy
-        .get(email)
+      cy.get(email)
         .clear()
         .type("Not an email{enter}");
-      cy
-        .get(firebaseErrors)
+      cy.get(firebaseErrors)
         .children()
         .should("have.length", 1);
     });
@@ -34,8 +32,7 @@ describe("login", () => {
 
   it("should prompt user for password if account exists", () => {
     cy.get(firebase).within(() => {
-      cy
-        .get(email)
+      cy.get(email)
         .clear()
         .type("cypressTest@ons.com{enter}");
       cy.get(password).should("be.visible");

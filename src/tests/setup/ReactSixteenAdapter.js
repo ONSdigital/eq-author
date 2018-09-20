@@ -1,7 +1,7 @@
 /**
  * this is a temporary workaround to context not working in enzyme.
- * 
- * this file can be removed once this PR is released 
+ *
+ * this file can be removed once this PR is released
  */
 
 /* eslint-disable */
