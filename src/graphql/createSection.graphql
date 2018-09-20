@@ -20,6 +20,7 @@ mutation CreateSection($input: CreateSectionInput!) {
       }
     }
     questionnaire {
+      id
       questionnaireInfo {
         totalSectionCount
       }

@@ -12,11 +12,12 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  width: 40em;
-  height: 16em;
-  margin: 1em 0;
 `;
 
+const ActionButtons = styled(ButtonGroup)`
+  padding: 1em 0;
+  flex: 0 0 auto;
+`;
 export default class ContentPicker extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func,
@@ -76,10 +77,11 @@ export default class ContentPicker extends React.Component {
   renderPickers() {
     const { config } = this.props;
     const { selectedItems, openLevel } = this.state;
+
     return config.map(({ id, title: defaultTitle }, level) => {
       const isDisabled = level > selectedItems.length;
       const isHidden = level > openLevel;
-      const isOpen = level === openLevel;
+      const isOpen = level === openLevel || config.length === 1;
 
       const selectedItem = selectedItems[level];
       const isSelected = selectedItem && !isOpen;
@@ -117,9 +119,9 @@ export default class ContentPicker extends React.Component {
     const { selectedItems } = this.state;
     const selectedItem = selectedItems[config.length - 1];
     return (
-      <div>
+      <React.Fragment>
         <ContentWrapper>{this.renderPickers()}</ContentWrapper>
-        <ButtonGroup horizontal align="right">
+        <ActionButtons horizontal align="right">
           <Button
             variant="secondary"
             type="button"
@@ -137,8 +139,8 @@ export default class ContentPicker extends React.Component {
           >
             Select
           </Button>
-        </ButtonGroup>
-      </div>
+        </ActionButtons>
+      </React.Fragment>
     );
   }
 }

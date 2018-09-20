@@ -72,7 +72,8 @@ describe("PipedValue", () => {
       const data = {
         id: "123",
         text: "hello world",
-        type: "TextField"
+        type: "TextField",
+        pipingType: "SomeType"
       };
 
       const wrapper = shallow(<Component data={data} />);
@@ -84,13 +85,14 @@ describe("PipedValue", () => {
     const type = "TextField";
     const id = "123";
     const text = "hello world";
+    const pipingType = "SomeType";
 
     let elem, createEntity, entity;
 
     beforeEach(() => {
       elem = document.createElement("span");
       elem.innerText = text;
-      elem.setAttribute("data-piped", "answers");
+      elem.setAttribute("data-piped", pipingType);
       elem.setAttribute("data-id", id);
       elem.setAttribute("data-type", type);
 
@@ -107,6 +109,7 @@ describe("PipedValue", () => {
       htmlToEntity("span", elem, createEntity);
 
       expect(createEntity).toHaveBeenCalledWith(ENTITY_TYPE, "IMMUTABLE", {
+        pipingType,
         type,
         id
       });

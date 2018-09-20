@@ -48,7 +48,6 @@ const StyledModal = styled(ReactModalAdapter).attrs({
     position: absolute;
     background: ${colors.white};
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
-    top: 10em;
 
     transform: scale(0.8);
     transform-origin: center center;
@@ -80,6 +79,7 @@ const StyledModal = styled(ReactModalAdapter).attrs({
 
     &--after-open {
       opacity: 1;
+      align-items: center;
     }
 
     &--before-close {
@@ -92,7 +92,7 @@ class Modal extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
+    onClose: PropTypes.func,
     hasCloseButton: PropTypes.bool.isRequired
   };
 

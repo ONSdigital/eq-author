@@ -102,6 +102,7 @@ export class StatelessMetaEditor extends React.Component {
           controls={titleControls}
           size="large"
           fetchAnswers={fetchAnswers}
+          metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-title"
         />
 
@@ -113,6 +114,7 @@ export class StatelessMetaEditor extends React.Component {
           controls={descriptionControls}
           multiline
           fetchAnswers={fetchAnswers}
+          metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-description"
         />
 
@@ -124,6 +126,7 @@ export class StatelessMetaEditor extends React.Component {
           controls={guidanceControls}
           multiline
           fetchAnswers={fetchAnswers}
+          metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-guidance"
         />
       </div>

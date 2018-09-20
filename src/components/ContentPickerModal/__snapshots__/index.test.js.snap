@@ -1,24 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/ContentPickerModal should render 1`] = `
-<Modal
-  hasCloseButton={true}
-  isOpen={true}
-  onClose={[Function]}
+exports[`ContentPickerModal should render 1`] = `
+<ContentPickerModal__StyledModal
+  hasCloseButton={false}
 >
-  <ContentPickerModal__HeaderSegment>
-    Select a previous answer
-  </ContentPickerModal__HeaderSegment>
-  <AnswerContentPicker
-    data={
-      Array [
-        Object {
-          "id": "1",
-        },
-      ]
-    }
-    onClose={[Function]}
-    onSubmit={[Function]}
-  />
-</Modal>
+  <ContentPickerModal__Flex>
+    <BaseTabs
+      ContentWrapper={[Function]}
+      TabList={[Function]}
+      activeId="answers"
+      buttonRender={[Function]}
+      onChange={[Function]}
+      tabs={
+        Array [
+          Object {
+            "id": "answers",
+            "render": [Function],
+            "title": "Answer",
+          },
+          Object {
+            "id": "metadata",
+            "render": [Function],
+            "title": "Metadata",
+          },
+        ]
+      }
+    />
+  </ContentPickerModal__Flex>
+</ContentPickerModal__StyledModal>
+`;
+
+exports[`ContentPickerModal should show an error message when there are no answers to pick from 1`] = `
+<ContentPickerModal__ErrorText>
+  There are no previous answers to pick from
+</ContentPickerModal__ErrorText>
+`;
+
+exports[`ContentPickerModal should show an error message when there is no metadata 1`] = `
+<ContentPickerModal__ErrorText>
+  There is no configured metadata to pick from
+</ContentPickerModal__ErrorText>
 `;

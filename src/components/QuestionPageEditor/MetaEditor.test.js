@@ -25,7 +25,12 @@ describe("MetaEditor", () => {
       title: "Page title",
       alias: "Page alias",
       description: "Page description",
-      guidance: "Page guidance"
+      guidance: "Page guidance",
+      section: {
+        questionnaire: {
+          metadata: []
+        }
+      }
     };
     client = { readQuery: jest.fn(), query: jest.fn() };
 

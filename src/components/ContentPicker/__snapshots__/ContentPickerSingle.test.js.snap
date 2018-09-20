@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Content Picker Single PickerWrapper should render 1`] = `
-.c0 {
-  padding-bottom: 3px;
+.c0:not(:last-of-type) {
+  margin-bottom: 3px;
 }
 
 <div
@@ -12,7 +12,6 @@ exports[`Content Picker Single PickerWrapper should render 1`] = `
 
 exports[`Content Picker Single PickerWrapper should render with additional styles when open 1`] = `
 .c0 {
-  padding-bottom: 3px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -24,6 +23,10 @@ exports[`Content Picker Single PickerWrapper should render with additional style
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.c0:not(:last-of-type) {
+  margin-bottom: 3px;
 }
 
 <div

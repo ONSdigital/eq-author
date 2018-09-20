@@ -58,6 +58,7 @@ const moveSectionMock = {
             ],
             questionnaire: {
               __typename: "Questionnaire",
+              id: "1",
               questionnaireInfo: {
                 __typename: "QuestionnaireInfo",
                 totalSectionCount: 1
@@ -91,6 +92,7 @@ const moveSectionMock = {
             ],
             questionnaire: {
               __typename: "Questionnaire",
+              id: "1",
               questionnaireInfo: {
                 __typename: "QuestionnaireInfo",
                 totalSectionCount: 1
@@ -157,6 +159,7 @@ describe("SectionRoute", () => {
               position: 0,
               questionnaire: {
                 __typename: "Questionnaire",
+                id: "1",
                 questionnaireInfo: {
                   __typename: "QuestionnaireInfo",
                   totalSectionCount: 1
@@ -192,6 +195,7 @@ describe("SectionRoute", () => {
               position: 0,
               questionnaire: {
                 __typename: "Questionnaire",
+                id: "1",
                 questionnaireInfo: {
                   __typename: "QuestionnaireInfo",
                   totalSectionCount: 1
@@ -352,6 +356,7 @@ describe("SectionRoute", () => {
           description: "bar",
           position: 0,
           questionnaire: {
+            id: "1",
             questionnaireInfo: {
               totalSectionCount: 1
             }
@@ -388,6 +393,7 @@ describe("SectionRoute", () => {
           description: "bar",
           position: 0,
           questionnaire: {
+            id: "1",
             questionnaireInfo: {
               totalSectionCount: 2
             }

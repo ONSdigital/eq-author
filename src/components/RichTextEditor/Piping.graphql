@@ -1,6 +1,10 @@
 query GetQuestionnaire_Piping($id: ID!) {
   questionnaire(id: $id) {
     id
+    metadata {
+      id
+      displayName
+    }
     sections {
       id
       displayName

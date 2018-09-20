@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import ScrollPane from "components/ScrollPane";
-import { colors } from "constants/theme";
+import { colors, radius } from "constants/theme";
 
 const StyledScrollPane = styled(ScrollPane)`
   padding: 0.25em 0;
@@ -17,7 +17,7 @@ const PanelWrapper = styled.div`
   position: relative;
   overflow: auto;
   border: 1px solid ${colors.lightGrey};
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 ${radius} ${radius};
   display: flex;
   flex-grow: 1;
 `;

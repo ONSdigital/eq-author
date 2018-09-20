@@ -7,6 +7,7 @@ const createMetadataMutation = gql`
   mutation CreateMetadata($input: CreateMetadataInput!) {
     createMetadata(input: $input) {
       ...Metadata
+      displayName
     }
   }
 

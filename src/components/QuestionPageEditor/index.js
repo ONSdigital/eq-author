@@ -171,6 +171,16 @@ QuestionPageEditor.fragments = {
       answers {
         ...AnswerEditor
       }
+      section {
+        id
+        questionnaire {
+          id
+          metadata {
+            id
+            displayName
+          }
+        }
+      }
     }
 
     ${MetaEditor.fragments.Page}
