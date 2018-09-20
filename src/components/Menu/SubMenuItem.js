@@ -41,7 +41,7 @@ const StyledSubMenuItem = styled(RMLSubMenuItem)`
   }
 `;
 
-const DisabledSubMenuItem = StyledSubMenuItem.withComponent("div").extend`
+const DisabledSubMenuItem = styled(StyledSubMenuItem.withComponent("div"))`
   cursor: default;
 
   &::after {
