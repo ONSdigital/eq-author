@@ -27,8 +27,7 @@ describe("Answer Properties", () => {
     it("Should show answer type as uppercase text", () => {
       [TEXTFIELD, NUMBER, CURRENCY, TEXTAREA].forEach(answerType => {
         addAnswerType(answerType);
-        cy
-          .get(`[data-test="properties-title-0"]`)
+        cy.get(`[data-test="properties-title-0"]`)
           .should("have.length", 1)
           .contains(toUpper(answerType));
         removeAnswer({ multiple: false });
@@ -77,8 +76,7 @@ describe("Answer Properties", () => {
         const labelText = "Required";
         it("Should be first in list of properties", () => {
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("label")
+            cy.get("label")
               .first()
               .contains(labelText);
           });
@@ -118,8 +116,7 @@ describe("Answer Properties", () => {
         const labelText = "Required";
         it("Should be first in list of properties", () => {
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("label")
+            cy.get("label")
               .first()
               .contains("Required");
           });
@@ -179,8 +176,7 @@ describe("Answer Properties", () => {
         const labelText = "Required";
         it("Should be first in list of properties", () => {
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("label")
+            cy.get("label")
               .first()
               .contains(labelText);
           });
@@ -240,8 +236,7 @@ describe("Answer Properties", () => {
         const labelText = "Required";
         it("Should be first in list of properties", () => {
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("label")
+            cy.get("label")
               .first()
               .contains(labelText);
           });
@@ -281,16 +276,14 @@ describe("Answer Properties", () => {
         });
         it("Can change value", () => {
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("select")
+            cy.get("select")
               .select("yyyy")
               .should("have.value", "yyyy");
           });
         });
         it("Should update date formatter", () => {
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("select")
+            cy.get("select")
               .select("yyyy")
               .should("have.value", "yyyy");
           });
@@ -300,8 +293,7 @@ describe("Answer Properties", () => {
             cy.get(testId("dummy-date-year")).should("exist");
           });
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("select")
+            cy.get("select")
               .select("mm/yyyy")
               .should("have.value", "mm/yyyy");
           });
@@ -311,8 +303,7 @@ describe("Answer Properties", () => {
             cy.get(testId("dummy-date-year")).should("exist");
           });
           cy.get("@answerProperty").within(() => {
-            cy
-              .get("select")
+            cy.get("select")
               .select("dd/mm/yyyy")
               .should("have.value", "dd/mm/yyyy");
           });

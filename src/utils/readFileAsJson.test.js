@@ -13,7 +13,7 @@ it("requires File or Blob as argument", () => {
 it("resovles valid JSON", () => {
   expect.assertions(1);
 
-  const obj = { "foo" : "bar" };
+  const obj = { foo: "bar" };
 
   return readFileAsJson(createJsonFile(obj)).then(data => {
     expect(data).toEqual(obj);
