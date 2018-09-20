@@ -15,11 +15,13 @@ export default {
           id: "1",
           title: "",
           position: 0,
+          alias: "",
           displayName: "",
           pages: [
             {
               id: "1",
               title: "",
+              alias: "",
               displayName: "",
               position: 0,
               __typename: "QuestionPage"

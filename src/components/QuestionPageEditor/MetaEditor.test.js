@@ -23,6 +23,7 @@ describe("MetaEditor", () => {
     handleTitleRef = jest.fn();
     page = {
       title: "Page title",
+      alias: "Page alias",
       description: "Page description",
       guidance: "Page guidance"
     };
