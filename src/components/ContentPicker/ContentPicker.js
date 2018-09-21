@@ -85,10 +85,10 @@ export default class ContentPicker extends React.Component {
       const isSelected = selectedItem && !isOpen;
       const isLastLevel = config.length - 1 === level;
       const useCustomTitle =
-        !isLastLevel && selectedItem && selectedItem.plaintextTitle;
+        !isLastLevel && selectedItem && selectedItem.displayName;
 
       const title = useCustomTitle
-        ? `${defaultTitle}: ${selectedItem.plaintextTitle}`
+        ? `${defaultTitle}: ${selectedItem.displayName}`
         : defaultTitle;
 
       const data = this.getDataAtLevel(level);
@@ -105,6 +105,7 @@ export default class ContentPicker extends React.Component {
           selectedOption={(selectedItem || {}).id}
           onTitleClick={() => this.handleTitleClick(level)}
           onOptionClick={option => this.handleOptionClick(level, option)}
+          childKey={config[level].childKey}
           data-test={`${id}-picker`}
         />
       );
@@ -131,7 +132,7 @@ export default class ContentPicker extends React.Component {
             type="submit"
             variant="primary"
             disabled={isNil(selectedItem)}
-            onClick={() => this.props.onSubmit(selectedItem.id)}
+            onClick={() => this.props.onSubmit(selectedItem)}
             data-test="submit-button"
           >
             Select

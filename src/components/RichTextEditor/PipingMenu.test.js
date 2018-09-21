@@ -1,5 +1,8 @@
 import React from "react";
-import { Menu as PipingMenu } from "./PipingMenu";
+import {
+  Menu as PipingMenu,
+  MenuButton as PipingMenuButton
+} from "./PipingMenu";
 import { shallow } from "enzyme";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 
@@ -81,7 +84,7 @@ describe("PipingMenu", () => {
     match = createMatch(questionnaire.id, section.id, page.id);
     const wrapper = render();
 
-    expect(wrapper.prop("disabled")).toBe(true);
+    expect(wrapper.find(PipingMenuButton).prop("disabled")).toBe(true);
   });
 
   it("should only allow selection of answers before the current page", () => {
@@ -90,9 +93,9 @@ describe("PipingMenu", () => {
     match = createMatch(questionnaire.id, section.id, page.id);
 
     const wrapper = render();
-    const menu = wrapper.prop("menu");
+    const data = wrapper.find("[data-test='picker']").prop("data");
 
-    expect(menu.props.questionnaire).toMatchSnapshot();
+    expect({ sections: data }).toMatchSnapshot();
   });
 
   it("shouldn't show current section if on first page of section", () => {
@@ -101,9 +104,9 @@ describe("PipingMenu", () => {
     match = createMatch(questionnaire.id, section.id, page.id);
 
     const wrapper = render();
-    const menu = wrapper.prop("menu");
+    const data = wrapper.find("[data-test='picker']").prop("data");
 
-    expect(menu.props.questionnaire).toMatchSnapshot();
+    expect({ sections: data }).toMatchSnapshot();
   });
 
   it("should filter out checkbox answer types", () => {
@@ -111,9 +114,9 @@ describe("PipingMenu", () => {
     match = createMatch(questionnaire.id, "1", "2");
 
     const wrapper = render();
-    const menu = wrapper.prop("menu");
+    const data = wrapper.find("[data-test='picker']").prop("data");
 
-    expect(menu.props.questionnaire).toMatchSnapshot();
+    expect({ sections: data }).toMatchSnapshot();
   });
 
   it("should filter out radio answer types", () => {
@@ -121,8 +124,8 @@ describe("PipingMenu", () => {
     match = createMatch(questionnaire.id, "1", "2");
 
     const wrapper = render();
-    const menu = wrapper.prop("menu");
+    const data = wrapper.find("[data-test='picker']").prop("data");
 
-    expect(menu.props.questionnaire).toMatchSnapshot();
+    expect({ sections: data }).toMatchSnapshot();
   });
 });

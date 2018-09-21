@@ -102,119 +102,44 @@ Object {
 `;
 
 exports[`PipingMenu should render 1`] = `
-<PipingMenu__MenuButton
-  disabled={false}
-  menu={
-    <QuestionnaireMenu
-      data={
+<React.Fragment>
+  <PipingMenu__MenuButton
+    data-test="piping-button"
+    disabled={false}
+    onClick={[Function]}
+    title="Pipe value"
+  />
+  <ContentPickerModal
+    data={
+      Array [
         Object {
-          "questionnaire": Object {
-            "id": "1",
-            "sections": Array [
-              Object {
-                "id": "1",
-                "pages": Array [
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "1",
-                        "label": "Answer 1",
-                        "type": "TextField",
-                      },
-                      Object {
-                        "id": "2",
-                        "label": "Answer 2",
-                        "type": "TextField",
-                      },
-                    ],
-                    "id": "1",
-                  },
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "3",
-                        "label": "Answer 3",
-                        "type": "TextField",
-                      },
-                    ],
-                    "id": "2",
-                  },
-                ],
-              },
-              Object {
-                "id": "2",
-                "pages": Array [
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "4",
-                        "label": "Answer 4",
-                        "type": "TextField",
-                      },
-                      Object {
-                        "id": "5",
-                        "label": "Answer 5",
-                        "type": "TextField",
-                      },
-                    ],
-                    "id": "3",
-                  },
-                  Object {
-                    "answers": Array [
-                      Object {
-                        "id": "6",
-                        "label": "Answer 6",
-                        "type": "TextField",
-                      },
-                    ],
-                    "id": "4",
-                  },
-                ],
-              },
-            ],
-          },
-        }
-      }
-      match={
-        Object {
-          "params": Object {
-            "pageId": "2",
-            "questionnaireId": "1",
-            "sectionId": "1",
-          },
-        }
-      }
-      menuZIndex={10}
-      onItemChosen={[Function]}
-      questionnaire={
-        Object {
-          "sections": Array [
+          "id": "1",
+          "pages": Array [
             Object {
-              "id": "1",
-              "pages": Array [
+              "answers": Array [
                 Object {
-                  "answers": Array [
-                    Object {
-                      "id": "1",
-                      "label": "Answer 1",
-                      "type": "TextField",
-                    },
-                    Object {
-                      "id": "2",
-                      "label": "Answer 2",
-                      "type": "TextField",
-                    },
-                  ],
                   "id": "1",
+                  "label": "Answer 1",
+                  "type": "TextField",
+                },
+                Object {
+                  "id": "2",
+                  "label": "Answer 2",
+                  "type": "TextField",
                 },
               ],
+              "id": "1",
             },
           ],
-        }
-      }
-    />
-  }
-/>
+        },
+      ]
+    }
+    data-test="picker"
+    isOpen={false}
+    onClose={[Function]}
+    onSubmit={[Function]}
+  />
+</React.Fragment>
 `;
 
 exports[`PipingMenu shouldn't show current section if on first page of section 1`] = `

@@ -72,7 +72,8 @@ describe("Content Picker", () => {
       sectionPicker.simulate("titleClick");
       sectionPicker.simulate("optionClick", {
         id: "Section 1",
-        plaintextTitle: "Section 1"
+        displayName: "Section 1",
+        pages: []
       });
 
       expect(wrapper.find(SECTION_PICKER_SELECTOR).prop("selected")).toBe(true);
@@ -89,13 +90,15 @@ describe("Content Picker", () => {
       sectionPicker.simulate("titleClick");
       sectionPicker.simulate("optionClick", {
         id: "Section 1",
-        plaintextTitle: "Section 1"
+        displayName: "Section 1",
+        pages: []
       });
 
       let pagePicker = wrapper.find(PAGE_PICKER_SELECTOR);
       pagePicker.simulate("optionClick", {
         id: "Page 1",
-        plaintextTitle: "Page 1"
+        displayName: "Page 1",
+        answers: []
       });
 
       expect(wrapper.find(SECTION_PICKER_SELECTOR).prop("selected")).toBe(true);
@@ -112,18 +115,20 @@ describe("Content Picker", () => {
       sectionPicker.simulate("titleClick");
       sectionPicker.simulate("optionClick", {
         id: "Section 1",
-        plaintextTitle: "Section 1"
+        displayName: "Section 1",
+        pages: []
       });
 
       let pagePicker = wrapper.find(PAGE_PICKER_SELECTOR);
       pagePicker.simulate("optionClick", {
         id: "Page 1",
-        plaintextTitle: "Page 1"
+        displayName: "Page 1",
+        answers: []
       });
 
       wrapper.find(ANSWER_PICKER_SELECTOR).simulate("optionClick", {
         id: "Answer 1",
-        plaintextTitle: "Answer 1"
+        displayName: "Answer 1"
       });
 
       expect(wrapper.find(SECTION_PICKER_SELECTOR).prop("selected")).toBe(true);
@@ -138,12 +143,14 @@ describe("Content Picker", () => {
       sectionPicker.simulate("titleClick");
       sectionPicker.simulate("optionClick", {
         id: "Section 1",
-        plaintextTitle: "Section 1"
+        displayName: "Section 1",
+        pages: []
       });
       let pagePicker = wrapper.find(PAGE_PICKER_SELECTOR);
       pagePicker.simulate("optionClick", {
         id: "Page 1",
-        plaintextTitle: "Page 1"
+        displayName: "Page 1",
+        answers: []
       });
 
       // open
@@ -161,7 +168,8 @@ describe("Content Picker", () => {
       sectionPicker.simulate("titleClick");
       sectionPicker.simulate("optionClick", {
         id: "Section 1",
-        plaintextTitle: "Section 1"
+        displayName: "Section 1",
+        pages: []
       });
 
       expect(wrapper.find(PAGE_PICKER_SELECTOR).prop("open")).toBe(true);
@@ -236,7 +244,7 @@ describe("Content Picker", () => {
       );
     });
 
-    it("submit button should call onSubmit with the selected answerId", () => {
+    it("submit button should call onSubmit with the selected answer", () => {
       const data = generateMockPiping(1, 1, 1);
       const wrapper = createWrapper({ data });
 
@@ -251,7 +259,7 @@ describe("Content Picker", () => {
       answerPicker.simulate("optionClick", data[0].pages[0].answers[0]);
 
       wrapper.find("[data-test='submit-button']").simulate("click");
-      expect(onSubmit).toHaveBeenCalledWith(data[0].pages[0].answers[0].id);
+      expect(onSubmit).toHaveBeenCalledWith(data[0].pages[0].answers[0]);
     });
   });
 });
