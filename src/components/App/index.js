@@ -51,7 +51,7 @@ injectGlobal`
   }
 `;
 
-class UnconnectedApp extends React.Component {
+export class UnconnectedApp extends React.Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     gainConnection: PropTypes.func.isRequired,

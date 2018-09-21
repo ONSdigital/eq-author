@@ -168,3 +168,9 @@ exports[`QuestionnairesTable should render 1`] = `
   </TransitionGroup>
 </QuestionnairesTable__Table>
 `;
+
+exports[`QuestionnairesTable should render message when no questionnaires 1`] = `
+<p>
+  You have no questionnaires
+</p>
+`;

@@ -29,7 +29,7 @@ const ExpansionTransition = styled(CSSTransition).attrs({
 ExpansionTransition.defaultProps = {
   in: false,
   timeout: 250,
-  finalHeight: 1
+  finalHeight: "1em"
 };
 
 ExpansionTransition.propTypes = {

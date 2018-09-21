@@ -18,9 +18,27 @@ describe("components/QuestionnairesPage", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should render loading message when loading", () => {
+    const instance = createWrapper().instance();
+    const renderResults = instance.renderResults({
+      loading: true
+    });
+
+    expect(renderResults).toMatchSnapshot();
+  });
+
   it("should render when there are no questionnaires", () => {
     const wrapper = createWrapper({ questionnaires: [] });
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render error message when there is an error", () => {
+    const instance = createWrapper().instance();
+    const renderResults = instance.renderResults({
+      error: true
+    });
+
+    expect(renderResults).toMatchSnapshot();
   });
 
   it("should render table when there are questionnaires", () => {
@@ -38,9 +56,15 @@ describe("components/QuestionnairesPage", () => {
         ]
       }
     ];
+
     const wrapper = createWrapper({ questionnaires });
+    const instance = wrapper.instance();
+    const renderResults = instance.renderResults({
+      data: { questionnaires }
+    });
 
     expect(wrapper).toMatchSnapshot();
+    expect(renderResults).toMatchSnapshot();
   });
 
   it("allows modal to be open and closed", () => {
@@ -60,5 +84,12 @@ describe("components/QuestionnairesPage", () => {
     wrapper.find(QuestionnaireSettingsModal).simulate("submit");
 
     expect(onCreateQuestionnaire).toHaveBeenCalled();
+  });
+
+  it("should correctly render title", () => {
+    const instance = createWrapper().instance();
+    const renderTitle = instance.renderTitle("FooBar");
+
+    expect(renderTitle).toMatchSnapshot();
   });
 });

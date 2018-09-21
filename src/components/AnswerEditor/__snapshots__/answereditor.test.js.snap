@@ -1,5 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Answer Editor should correctly calculates date format 1`] = `
+<Connect(withEntityEditor(UnwrappedDate))
+  answer={
+    Object {
+      "description": "",
+      "id": "1",
+      "properties": Object {
+        "format": "yyyy",
+      },
+      "title": "",
+      "type": "Date",
+    }
+  }
+  onAddExclusive={[Function]}
+  onAddOption={[Function]}
+  onAddOther={[Function]}
+  onChange={[Function]}
+  onDeleteAnswer={[Function]}
+  onDeleteOption={[Function]}
+  onDeleteOther={[Function]}
+  onUpdate={[Function]}
+  onUpdateOption={[Function]}
+  showDay={false}
+  showMonth={false}
+  showYear={true}
+/>
+`;
+
+exports[`Answer Editor should correctly calculates date format 2`] = `
+<Connect(withEntityEditor(UnwrappedDate))
+  answer={
+    Object {
+      "description": "",
+      "id": "1",
+      "properties": Object {
+        "format": "mm/yyyy",
+      },
+      "title": "",
+      "type": "Date",
+    }
+  }
+  onAddExclusive={[Function]}
+  onAddOption={[Function]}
+  onAddOther={[Function]}
+  onChange={[Function]}
+  onDeleteAnswer={[Function]}
+  onDeleteOption={[Function]}
+  onDeleteOther={[Function]}
+  onUpdate={[Function]}
+  onUpdateOption={[Function]}
+  showDay={false}
+  showMonth={true}
+  showYear={true}
+/>
+`;
+
+exports[`Answer Editor should correctly calculates date format 3`] = `
+<Connect(withEntityEditor(UnwrappedDate))
+  answer={
+    Object {
+      "description": "",
+      "id": "1",
+      "properties": Object {
+        "format": "dd/mm/yyyy",
+      },
+      "title": "",
+      "type": "Date",
+    }
+  }
+  onAddExclusive={[Function]}
+  onAddOption={[Function]}
+  onAddOther={[Function]}
+  onChange={[Function]}
+  onDeleteAnswer={[Function]}
+  onDeleteOption={[Function]}
+  onDeleteOther={[Function]}
+  onUpdate={[Function]}
+  onUpdateOption={[Function]}
+  showDay={true}
+  showMonth={true}
+  showYear={true}
+/>
+`;
+
 exports[`Answer Editor should render Checkbox 1`] = `
 <AnswerEditor__Answer>
   <AnswerEditor__AnswerType>
@@ -79,6 +163,55 @@ exports[`Answer Editor should render Currency 1`] = `
       onDeleteOther={[Function]}
       onUpdate={[Function]}
       onUpdateOption={[Function]}
+    />
+  </AnswerEditor__Padding>
+  <Tooltip
+    content="Delete answer"
+    offset={
+      Object {
+        "bottom": 10,
+        "top": 0,
+      }
+    }
+    place="top"
+  >
+    <AnswerEditor__AnswerDeleteButton
+      aria-label="Delete answer"
+      data-test="btn-delete-answer"
+      onClick={[Function]}
+      size="medium"
+    />
+  </Tooltip>
+</AnswerEditor__Answer>
+`;
+
+exports[`Answer Editor should render Date 1`] = `
+<AnswerEditor__Answer>
+  <AnswerEditor__AnswerType>
+    Date
+  </AnswerEditor__AnswerType>
+  <AnswerEditor__Padding>
+    <Connect(withEntityEditor(UnwrappedDate))
+      answer={
+        Object {
+          "description": "",
+          "id": "1",
+          "title": "",
+          "type": "Date",
+        }
+      }
+      onAddExclusive={[Function]}
+      onAddOption={[Function]}
+      onAddOther={[Function]}
+      onChange={[Function]}
+      onDeleteAnswer={[Function]}
+      onDeleteOption={[Function]}
+      onDeleteOther={[Function]}
+      onUpdate={[Function]}
+      onUpdateOption={[Function]}
+      showDay={false}
+      showMonth={false}
+      showYear={false}
     />
   </AnswerEditor__Padding>
   <Tooltip

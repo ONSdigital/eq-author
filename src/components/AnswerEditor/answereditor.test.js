@@ -1,7 +1,9 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { map } from "lodash";
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import AnswerEditor, { AnswerDeleteButton } from "components/AnswerEditor";
+import Date from "components/Answers/Date";
 import {
   TEXTFIELD,
   NUMBER,
@@ -10,7 +12,8 @@ import {
   CHECKBOX,
   RADIO,
   TIME,
-  DATE_RANGE
+  DATE_RANGE,
+  DATE
 } from "constants/answer-types";
 
 describe("Answer Editor", () => {
@@ -117,6 +120,17 @@ describe("Answer Editor", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should render Date", () => {
+    const wrapper = createWrapper({
+      answer: {
+        ...mockAnswer,
+        type: DATE
+      },
+      ...mockMutations
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should throw for unknown answer types", () => {
     const unknownAnswer = {
       ...mockAnswer,
@@ -151,5 +165,21 @@ describe("Answer Editor", () => {
     });
     wrapper.find(MultipleChoiceAnswer).simulate("addOption");
     expect(mockMutations.onAddOption).toHaveBeenCalled();
+  });
+
+  it("should correctly calculates date format", () => {
+    const formats = ["yyyy", "mm/yyyy", "dd/mm/yyyy"];
+
+    map(formats, format => {
+      const wrapper = createWrapper({
+        answer: {
+          ...mockAnswer,
+          type: DATE,
+          properties: { format: format }
+        },
+        ...mockMutations
+      });
+      expect(wrapper.find(Date)).toMatchSnapshot();
+    });
   });
 });

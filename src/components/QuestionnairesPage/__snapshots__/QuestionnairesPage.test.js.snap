@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`components/QuestionnairesPage should correctly render title 1`] = `"Your Questionnaires - FooBar"`;
+
 exports[`components/QuestionnairesPage should not render table whilst data is loading 1`] = `
 <GetContext
   title={[Function]}
@@ -174,6 +176,20 @@ exports[`components/QuestionnairesPage should not render table whilst data is lo
 </GetContext>
 `;
 
+exports[`components/QuestionnairesPage should render error message when there is an error 1`] = `
+<Error>
+  Oops! Questionnaires could not be found
+</Error>
+`;
+
+exports[`components/QuestionnairesPage should render loading message when loading 1`] = `
+<Loading
+  height="24.25rem"
+>
+  Questionnaires loading…
+</Loading>
+`;
+
 exports[`components/QuestionnairesPage should render table when there are questionnaires 1`] = `
 <GetContext
   title={[Function]}
@@ -346,6 +362,34 @@ exports[`components/QuestionnairesPage should render table when there are questi
     </MainCanvas>
   </BaseLayout>
 </GetContext>
+`;
+
+exports[`components/QuestionnairesPage should render table when there are questionnaires 2`] = `
+<QuestionnairesTable
+  onDeleteQuestionnaire={[Function]}
+  questionnaires={
+    Array [
+      Object {
+        "createdAt": "01/01/1970",
+        "createdBy": Object {
+          "name": "Mike",
+        },
+        "id": "1",
+        "sections": Array [
+          Object {
+            "id": "5",
+            "pages": Array [
+              Object {
+                "id": "10",
+              },
+            ],
+          },
+        ],
+        "title": "Test questionnaire",
+      },
+    ]
+  }
+/>
 `;
 
 exports[`components/QuestionnairesPage should render when there are no questionnaires 1`] = `

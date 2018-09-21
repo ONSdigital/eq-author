@@ -52,6 +52,16 @@ describe("QuestionnairesTable", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should render message when no questionnaires", () => {
+    wrapper = shallow(
+      <QuestionnairesTable
+        questionnaires={[]}
+        onDeleteQuestionnaire={handleDeleteQuestionnaire}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should allow deletion of Questionnaire", () => {
     wrapper
       .find(IconButtonDelete)
