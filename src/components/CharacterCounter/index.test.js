@@ -38,4 +38,12 @@ describe("CharacterCounter", () => {
     });
     expect(wrapper).toMatchSnapshot();
   });
+
+  it("should handle null value", () => {
+    wrapper = createWrapper({
+      ...props,
+      value: null
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
 });

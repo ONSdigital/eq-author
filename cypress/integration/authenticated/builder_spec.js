@@ -161,18 +161,21 @@ describe("builder", () => {
       .and("not.eq", resultingHash);
   });
 
-  it("Can edit section title and description", () => {
+  it("Can edit section alias and title", () => {
     checkIsOnDesignPage();
 
     cy.get(testId("nav-section-link"))
       .first()
       .click();
 
+    cy.get(testId("section-alias")).type("section alias");
+
     typeIntoDraftEditor(
       testId("txt-section-title", "testid"),
       "my new section"
     );
-    cy.get(testId("nav-section-link")).should("contain", "my new section");
+
+    cy.get(testId("nav-section-link")).should("contain", "section alias");
   });
 
   it("Can delete a section", () => {

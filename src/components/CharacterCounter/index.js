@@ -8,7 +8,7 @@ const CharacterCounter = ({ value, limit }) => (
 );
 
 CharacterCounter.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   limit: PropTypes.number.isRequired
 };
 
