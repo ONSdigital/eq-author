@@ -23,6 +23,7 @@ exports[`components/Button renders according to variant 1`] = `
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: all 100ms ease-out;
   transition: all 100ms ease-out;
@@ -91,6 +92,7 @@ exports[`components/Button renders according to variant 2`] = `
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: all 100ms ease-out;
   transition: all 100ms ease-out;
@@ -158,6 +160,7 @@ exports[`components/Button renders according to variant 3`] = `
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: all 100ms ease-out;
   transition: all 100ms ease-out;
@@ -224,6 +227,7 @@ exports[`components/Button renders according to variant 4`] = `
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: all 100ms ease-out;
   transition: all 100ms ease-out;
@@ -296,6 +300,7 @@ exports[`components/Button renders as disabled 1`] = `
   justify-content: center;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-text-decoration: none;
   text-decoration: none;
   -webkit-transition: all 100ms ease-out;
   transition: all 100ms ease-out;
