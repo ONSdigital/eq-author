@@ -1,51 +1,55 @@
-export const updateValidationRuleOffsetValue = {
+export const updateValidationRuleOffsetValue = (id, __typename) => ({
   data: {
     updateValidationRule: {
-      id: "1",
+      id,
       enabled: true,
       customDate: null,
       offset: { value: 5, unit: "Days", __typename: "Duration" },
       relativePosition: "Before",
-      __typename: "EarliestDateValidationRule"
+      __typename
     }
   }
-};
+});
 
-export const updateValidationRuleOffsetUnit = {
+export const updateValidationRuleOffsetUnit = (id, __typename) => ({
   data: {
     updateValidationRule: {
-      id: "1",
+      id,
       enabled: true,
       customDate: null,
       offset: { value: 5, unit: "Months", __typename: "Duration" },
       relativePosition: "Before",
-      __typename: "EarliestDateValidationRule"
+      __typename
     }
   }
-};
+});
 
-export const updateValidationRuleRelativePosition = {
+export const updateValidationRuleRelativePosition = (
+  id,
+  __typename,
+  relativePosition
+) => ({
   data: {
     updateValidationRule: {
-      id: "1",
+      id,
       enabled: true,
       customDate: null,
       offset: { value: 5, unit: "Months", __typename: "Duration" },
-      relativePosition: "After",
-      __typename: "EarliestDateValidationRule"
+      relativePosition,
+      __typename
     }
   }
-};
+});
 
-export const updateValidationRuleCustomDate = {
+export const updateValidationRuleCustomDate = (id, __typename) => ({
   data: {
     updateValidationRule: {
-      id: "1",
+      id,
       enabled: true,
       customDate: "1985-09-14",
       offset: { value: 5, unit: "Months", __typename: "Duration" },
       relativePosition: "After",
-      __typename: "EarliestDateValidationRule"
+      __typename
     }
   }
-};
+});

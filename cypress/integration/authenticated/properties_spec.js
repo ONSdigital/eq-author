@@ -157,7 +157,8 @@ describe("Answer Properties", () => {
         it("Can change value", () => {
           cy.get("@answerProperty").within(() => {
             findByLabel(labelText)
-              .type("3")
+              .type("{backspace}3")
+              .blur()
               .should("have.value", "3");
           });
         });
@@ -217,7 +218,8 @@ describe("Answer Properties", () => {
         it("Can change value", () => {
           cy.get("@answerProperty").within(() => {
             findByLabel(labelText)
-              .type("3")
+              .type("{backspace}3")
+              .blur()
               .should("have.value", "3");
           });
         });

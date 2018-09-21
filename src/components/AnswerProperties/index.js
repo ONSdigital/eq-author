@@ -44,7 +44,7 @@ class AnswerProperties extends React.Component {
           <Required
             data-test="answer-properties-required-toggle"
             id={this.getId("required", answer)}
-            handleChange={this.handleChange("required")}
+            onChange={this.handleChange("required")}
             value={answer.properties.required}
           />
         </InlineField>
@@ -52,7 +52,7 @@ class AnswerProperties extends React.Component {
           <InlineField id={this.getId("decimals", answer)} label={"Decimals"}>
             <Decimal
               id={this.getId("decimals", answer)}
-              handleChange={this.handleChange("decimals")}
+              onChange={this.handleChange("decimals")}
               value={answer.properties.decimals}
             />
           </InlineField>
@@ -61,7 +61,7 @@ class AnswerProperties extends React.Component {
           <InlineField id={this.getId("decimals", answer)} label={"Decimals"}>
             <Decimal
               id={this.getId("decimals", answer)}
-              handleChange={this.handleChange("decimals")}
+              onChange={this.handleChange("decimals")}
               value={answer.properties.decimals}
             />
           </InlineField>
@@ -73,7 +73,7 @@ class AnswerProperties extends React.Component {
           >
             <DateFormat
               id={this.getId("date-format", answer)}
-              handleChange={this.handleChange("format")}
+              onChange={this.handleChange("format")}
               value={answer.properties.format}
             />
           </MultiLineField>

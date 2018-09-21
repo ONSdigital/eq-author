@@ -15,7 +15,7 @@ describe("DateFormat Property", () => {
     props = {
       id: "1",
       value: "dd/mm/yyyy",
-      handleChange: jest.fn()
+      onChange: jest.fn()
     };
   });
 
@@ -28,7 +28,7 @@ describe("DateFormat Property", () => {
     wrapper = createWrapper(props, mount);
     wrapper.find(Select).simulate("change", { target: { value: "mm/yy" } });
 
-    expect(props.handleChange).toHaveBeenCalledWith({
+    expect(props.onChange).toHaveBeenCalledWith({
       name: "1",
       value: "mm/yy"
     });

@@ -8,8 +8,8 @@ exports[`Answer Properties should render 1`] = `
   >
     <Required
       data-test="answer-properties-required-toggle"
-      handleChange={[Function]}
       id="answer-1-required"
+      onChange={[Function]}
       value={true}
     />
   </InlineField>
@@ -18,8 +18,8 @@ exports[`Answer Properties should render 1`] = `
     label="Decimals"
   >
     <Decimal
-      handleChange={[Function]}
       id="answer-1-decimals"
+      onChange={[Function]}
       value={2}
     />
   </InlineField>

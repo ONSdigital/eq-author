@@ -17,6 +17,14 @@ export default {
           relativePosition: "Before",
           __typename: "EarliestDateValidationRule"
         },
+        latestDate: {
+          id: "2",
+          enabled: false,
+          customDate: null,
+          offset: { value: 0, unit: "Days", __typename: "Duration" },
+          relativePosition: "After",
+          __typename: "LatestDateValidationRule"
+        },
         __typename: "DateValidation"
       }
     }

@@ -17,6 +17,7 @@ describe("withAnswerValidation", () => {
 
   it("should pass down the validation requested", () => {
     const answer = {
+      another: "value",
       validation: {
         exampleValidation: { foo: "bar" }
       }
@@ -30,7 +31,10 @@ describe("withAnswerValidation", () => {
       exampleValidation: {
         foo: "bar"
       },
-      hello: "world"
+      hello: "world",
+      answer: {
+        another: "value"
+      }
     });
   });
 });

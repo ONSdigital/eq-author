@@ -16,7 +16,10 @@ import GetQuestionnaire from "../../fixtures/GetQuestionnaire";
 import GetQuestionnaire_Piping from "../../fixtures/GetQuestionnaire_Piping";
 import createDateAnswer from "../../fixtures/answers/createDateAnswer";
 import UpdateQuestionPage from "../../fixtures/duplicatePage/UpdateQuestionPage";
-import ToggleValidationRule from "../../fixtures/answers/ToggleValidationRule";
+import {
+  toggleEarliestDate,
+  toggleLatestDate
+} from "../../fixtures/answers/ToggleValidationRule";
 import {
   updateValidationRuleOffsetValue,
   updateValidationRuleOffsetUnit,
@@ -178,35 +181,54 @@ describe("Answer Validation", () => {
     });
   });
   describe("Date", () => {
-    let count = 0;
-    before(() => {
-      cy.visitStubbed("#/questionnaire/1/1/1/design", {
-        createQuestionnaire,
-        GetQuestionPage,
-        GetQuestionnaire,
-        GetQuestionnaire_Piping,
-        createAnswer: createDateAnswer,
-        UpdateQuestionPage,
-        ToggleValidationRule,
-        updateValidationRule: () => {
-          switch (count++) {
-            case 0:
-              return updateValidationRuleOffsetValue;
-            case 1:
-              return updateValidationRuleOffsetUnit;
-            case 2:
-              return updateValidationRuleRelativePosition;
-            case 3:
-              return updateValidationRuleCustomDate;
-            default:
-              throw new Error("Call not expected");
-          }
-        }
-      });
-      cy.login();
-      addAnswerType(DATE);
-    });
+    const dateValidationStubs = {
+      createQuestionnaire,
+      GetQuestionPage,
+      GetQuestionnaire,
+      GetQuestionnaire_Piping,
+      createAnswer: createDateAnswer,
+      UpdateQuestionPage
+    };
+
     describe("Earliest date", () => {
+      let count = 0;
+      before(() => {
+        cy.visitStubbed(
+          "#/questionnaire/1/1/1/design",
+          Object.assign({}, dateValidationStubs, {
+            ToggleValidationRule: toggleEarliestDate,
+            updateValidationRule: () => {
+              switch (count++) {
+                case 0:
+                  return updateValidationRuleOffsetValue(
+                    "1",
+                    "EarliestDateValidationRule"
+                  );
+                case 1:
+                  return updateValidationRuleOffsetUnit(
+                    "1",
+                    "EarliestDateValidationRule"
+                  );
+                case 2:
+                  return updateValidationRuleRelativePosition(
+                    "1",
+                    "EarliestDateValidationRule",
+                    "After"
+                  );
+                case 3:
+                  return updateValidationRuleCustomDate(
+                    "1",
+                    "EarliestDateValidationRule"
+                  );
+                default:
+                  throw new Error("Call not expected");
+              }
+            }
+          })
+        );
+        cy.login();
+        addAnswerType(DATE);
+      });
       it("should exist in the side bar", () => {
         cy.get(testId("sidebar-button-earliest-date")).should("be.visible");
       });
@@ -233,9 +255,9 @@ describe("Answer Validation", () => {
 
       it("should update the offset value", () => {
         cy.get('[name="offset.value"]')
-          .type("5")
+          .type("{backspace}5")
           .blur()
-          .should("have.value", "05");
+          .should("have.value", "5");
       });
 
       it("should update the offset unit", () => {
@@ -252,6 +274,100 @@ describe("Answer Validation", () => {
         cy.get(testId("relative-position-select")).should(
           "have.value",
           "After"
+        );
+      });
+
+      it("should update the custom value", () => {
+        cy.get('[type="date"]')
+          .type("1985-09-14")
+          .blur()
+          .should("have.value", "1985-09-14");
+      });
+    });
+
+    describe("Latest date", () => {
+      let count = 0;
+      before(() => {
+        cy.visitStubbed(
+          "#/questionnaire/1/1/1/design",
+          Object.assign({}, dateValidationStubs, {
+            ToggleValidationRule: toggleLatestDate,
+            updateValidationRule: () => {
+              switch (count++) {
+                case 0:
+                  return updateValidationRuleOffsetValue(
+                    "2",
+                    "LatestDateValidationRule"
+                  );
+                case 1:
+                  return updateValidationRuleOffsetUnit(
+                    "2",
+                    "LatestDateValidationRule"
+                  );
+                case 2:
+                  return updateValidationRuleRelativePosition(
+                    "2",
+                    "LatestDateValidationRule",
+                    "Before"
+                  );
+                case 3:
+                  return updateValidationRuleCustomDate(
+                    "2",
+                    "LatestDateValidationRule"
+                  );
+                default:
+                  throw new Error("Call not expected");
+              }
+            }
+          })
+        );
+        cy.login();
+        addAnswerType(DATE);
+      });
+      it("should exist in the side bar", () => {
+        cy.get(testId("sidebar-button-latest-date")).should("be.visible");
+      });
+
+      it("should show the date validation modal", () => {
+        cy.get(testId("sidebar-button-latest-date")).click();
+        cy.get(testId("sidebar-title")).contains("Date validation");
+      });
+
+      it("can be toggled on", () => {
+        cy.get(testId("latest-date-validation")).contains(
+          "Latest date is disabled"
+        );
+        cy.get(testId("validation-view-toggle")).within(() => {
+          cy.get('[role="switch"]').as("latestDateToggle");
+        });
+        toggleCheckboxOn("@latestDateToggle");
+        cy.get(testId("latest-date-validation")).should(
+          "not.contain",
+          "Latest date is disabled"
+        );
+      });
+
+      it("should update the offset value", () => {
+        cy.get('[name="offset.value"]')
+          .type("{backspace}5")
+          .blur()
+          .should("have.value", "5");
+      });
+
+      it("should update the offset unit", () => {
+        cy.get('[name="offset.unit"]')
+          .select("Months")
+          .blur()
+          .should("have.value", "Months");
+      });
+
+      it("should update the relativePosition", () => {
+        cy.get(testId("relative-position-select"))
+          .select("Before")
+          .blur();
+        cy.get(testId("relative-position-select")).should(
+          "have.value",
+          "Before"
         );
       });
 

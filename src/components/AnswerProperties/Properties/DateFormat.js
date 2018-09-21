@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import { Field, Select } from "components/Forms";
 
-const DateFormat = ({ id, value, handleChange }) => (
+const DateFormat = ({ id, value, onChange }) => (
   <Field>
-    <Select value={value} onChange={handleChange} id={id} name={id}>
+    <Select value={value} onChange={onChange} id={id} name={id}>
       <option value="dd/mm/yyyy">dd / Month / yyyy</option>
       <option value="mm/yyyy">Month / yyyy</option>
       <option value="yyyy">yyyy</option>
@@ -16,7 +16,7 @@ const DateFormat = ({ id, value, handleChange }) => (
 DateFormat.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired
 };
 
 export default DateFormat;

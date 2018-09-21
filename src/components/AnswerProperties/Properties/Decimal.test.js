@@ -14,7 +14,7 @@ describe("Decimal Property", () => {
     props = {
       id: "1",
       value: 2,
-      handleChange: jest.fn()
+      onChange: jest.fn()
     };
     wrapper = createWrapper(props, shallow);
   });
@@ -25,6 +25,6 @@ describe("Decimal Property", () => {
 
   it("should handle change event for input", () => {
     wrapper.simulate("change", { target: { value: 3 } });
-    expect(props.handleChange).toHaveBeenCalledWith({ target: { value: 3 } });
+    expect(props.onChange).toHaveBeenCalledWith({ target: { value: 3 } });
   });
 });

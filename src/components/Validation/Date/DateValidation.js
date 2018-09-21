@@ -1,22 +1,12 @@
-import { propType } from "graphql-anywhere";
-import { flowRight } from "lodash/fp";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-
-import EarliestDateValidationRule from "graphql/fragments/earliest-date-validation-rule.graphql";
 
 import { Input, Number, Select } from "components/Forms";
 import { Grid, Column } from "components/Grid";
 import DisabledMessage from "components/Validation/DisabledMessage";
 
-import withToggleAnswerValidation from "containers/enhancers/withToggleAnswerValidation";
-import withUpdateAnswerValidation from "containers/enhancers/withUpdateAnswerValidation";
-import withEntityEditor from "components/withEntityEditor";
-
-import ValidationView from "./ValidationView";
-import withAnswerValidation from "./withAnswerValidation";
-
+import ValidationView from "../ValidationView";
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 
@@ -68,13 +58,31 @@ const EmphasisedText = styled.p`
 const START_COL_SIZE = 3;
 const END_COL_SIZE = 12 - START_COL_SIZE;
 
-export const EarliestDate = ({
-  earliestDate,
+const getUnits = format => {
+  if (format === "dd/mm/yyyy") {
+    return UNITS;
+  }
+
+  if (format === "mm/yyyy") {
+    return UNITS.slice(1);
+  }
+
+  return UNITS.slice(2);
+};
+
+const DateValidation = ({
+  answer,
+  date,
+  displayName,
+  testId,
   onToggleValidationRule,
   onUpdate,
   onChange
 }) => {
-  const { id, enabled, customDate, offset, relativePosition } = earliestDate;
+  const { id, enabled, customDate, offset, relativePosition } = date;
+  const {
+    properties: { format }
+  } = answer;
 
   const handleToggleChange = ({ value: enabled }) => {
     onToggleValidationRule({
@@ -82,11 +90,15 @@ export const EarliestDate = ({
       enabled
     });
   };
+
+  const availableUnits = getUnits(format);
+  const offsetUnitIsInvalid = !availableUnits.includes(offset.unit);
+
   const renderContent = () => (
     <div>
       <Grid>
         <AlignedColumn cols={START_COL_SIZE}>
-          <EmphasisedText>Earliest date is</EmphasisedText>
+          <EmphasisedText>{displayName} is</EmphasisedText>
         </AlignedColumn>
         <Column cols={END_COL_SIZE}>
           <Grid>
@@ -101,15 +113,20 @@ export const EarliestDate = ({
                 min={0}
               />
             </Column>
-            <Column cols={3}>
+            <Column cols={4}>
               <Select
                 name="offset.unit"
-                value={offset.unit}
+                value={!offsetUnitIsInvalid ? offset.unit : ""}
                 onChange={onChange}
                 onBlur={onUpdate}
                 data-test="offset-unit-select"
               >
-                {UNITS.map(unit => (
+                {offsetUnitIsInvalid && (
+                  <option key="Please select" value="" disabled>
+                    Please select…
+                  </option>
+                )}
+                {availableUnits.map(unit => (
                   <option key={unit} value={unit}>
                     {unit}
                   </option>
@@ -152,6 +169,8 @@ export const EarliestDate = ({
             value={customDate}
             onChange={onChange}
             onBlur={onUpdate}
+            max="9999-12-30"
+            min="1000-01-01"
           />
         </Column>
       </Grid>
@@ -159,12 +178,12 @@ export const EarliestDate = ({
   );
 
   const renderDisabled = () => (
-    <DisabledMessage>Earliest date is disabled</DisabledMessage>
+    <DisabledMessage>{displayName} is disabled</DisabledMessage>
   );
 
   return (
     <ValidationView
-      data-test="earliest-date-validation"
+      data-test={testId}
       enabled={enabled}
       onToggleChange={handleToggleChange}
     >
@@ -173,33 +192,27 @@ export const EarliestDate = ({
   );
 };
 
-EarliestDate.propTypes = {
-  earliestDate: propType(EarliestDateValidationRule).isRequired,
+DateValidation.propTypes = {
+  date: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    enabled: PropTypes.bool.isRequired,
+    customDate: PropTypes.string,
+    offset: PropTypes.shape({
+      unit: PropTypes.string.isRequired,
+      value: PropTypes.number.isRequired
+    }).isRequired,
+    relativePosition: PropTypes.string.isRequired
+  }).isRequired,
+  answer: PropTypes.shape({
+    properties: PropTypes.shape({
+      format: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired,
   onToggleValidationRule: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  onUpdate: PropTypes.func.isRequired
+  onUpdate: PropTypes.func.isRequired,
+  displayName: PropTypes.string.isRequired,
+  testId: PropTypes.string.isRequired
 };
 
-export const readToWriteMapper = ({ id, customDate, enabled, ...rest }) => ({
-  id,
-  earliestDateInput: {
-    ...rest,
-    custom: customDate ? customDate : null
-  }
-});
-
-export const remapToOnUpdate = (propName, mapper) => Component => props => (
-  <Component
-    onUpdate={(...args) => props[propName](mapper(...args))}
-    {...props}
-  />
-);
-
-const withEditing = flowRight(
-  withAnswerValidation("earliestDate"),
-  withUpdateAnswerValidation,
-  withToggleAnswerValidation,
-  remapToOnUpdate("onUpdateAnswerValidation", readToWriteMapper),
-  withEntityEditor("earliestDate", EarliestDateValidationRule)
-);
-export default withEditing(EarliestDate);
+export default DateValidation;

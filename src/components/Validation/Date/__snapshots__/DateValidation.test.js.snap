@@ -1,20 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Earliest date should render disabled message when not enabled 1`] = `
+exports[`Date Validation should filter the available units for the format 1`] = `
+<withChangeHandler(Select__SimpleSelect)
+  data-test="offset-unit-select"
+  name="offset.unit"
+  onBlur={[Function]}
+  onChange={[Function]}
+  value="Months"
+>
+  <option
+    key="Months"
+    value="Months"
+  >
+    Months
+  </option>
+  <option
+    key="Years"
+    value="Years"
+  >
+    Years
+  </option>
+</withChangeHandler(Select__SimpleSelect)>
+`;
+
+exports[`Date Validation should render a please select for offset unit when the offset unit is not available for the format 1`] = `
+<withChangeHandler(Select__SimpleSelect)
+  data-test="offset-unit-select"
+  name="offset.unit"
+  onBlur={[Function]}
+  onChange={[Function]}
+  value=""
+>
+  <option
+    disabled={true}
+    key="Please select"
+    value=""
+  >
+    Please select…
+  </option>
+  <option
+    key="Years"
+    value="Years"
+  >
+    Years
+  </option>
+</withChangeHandler(Select__SimpleSelect)>
+`;
+
+exports[`Date Validation should render disabled message when not enabled 1`] = `
 <ValidationView
-  data-test="earliest-date-validation"
+  data-test="example-test-id"
   enabled={false}
   onToggleChange={[Function]}
 >
   <DisabledMessage>
-    Earliest date is disabled
+    Some date
+     is disabled
   </DisabledMessage>
 </ValidationView>
 `;
 
-exports[`Earliest date should render the form input with the values when enabled 1`] = `
+exports[`Date Validation should render the form input with the values when enabled 1`] = `
 <ValidationView
-  data-test="earliest-date-validation"
+  data-test="example-test-id"
   enabled={true}
   onToggleChange={[Function]}
 >
@@ -23,13 +71,14 @@ exports[`Earliest date should render the form input with the values when enabled
       align="top"
       fillHeight={true}
     >
-      <EarliestDate__AlignedColumn
+      <DateValidation__AlignedColumn
         cols={3}
       >
-        <EarliestDate__EmphasisedText>
-          Earliest date is
-        </EarliestDate__EmphasisedText>
-      </EarliestDate__AlignedColumn>
+        <DateValidation__EmphasisedText>
+          Some date
+           is
+        </DateValidation__EmphasisedText>
+      </DateValidation__AlignedColumn>
       <Column
         cols={9}
       >
@@ -52,7 +101,7 @@ exports[`Earliest date should render the form input with the values when enabled
             />
           </Column>
           <Column
-            cols={3}
+            cols={4}
           >
             <withChangeHandler(Select__SimpleSelect)
               data-test="offset-unit-select"
@@ -91,7 +140,7 @@ exports[`Earliest date should render the form input with the values when enabled
       <Column
         cols={3}
       >
-        <EarliestDate__ConnectedPathStart
+        <DateValidation__ConnectedPathStart
           pathUrl="path.svg"
         />
       </Column>
@@ -100,10 +149,10 @@ exports[`Earliest date should render the form input with the values when enabled
       align="top"
       fillHeight={true}
     >
-      <EarliestDate__AlignedColumn
+      <DateValidation__AlignedColumn
         cols={3}
       >
-        <EarliestDate__RelativePositionSelect
+        <DateValidation__RelativePositionSelect
           data-test="relative-position-select"
           name="relativePosition"
           onBlur={[Function]}
@@ -122,8 +171,8 @@ exports[`Earliest date should render the form input with the values when enabled
           >
             After
           </option>
-        </EarliestDate__RelativePositionSelect>
-      </EarliestDate__AlignedColumn>
+        </DateValidation__RelativePositionSelect>
+      </DateValidation__AlignedColumn>
     </Grid>
     <Grid
       align="top"
@@ -132,14 +181,16 @@ exports[`Earliest date should render the form input with the values when enabled
       <Column
         cols={3}
       >
-        <EarliestDate__ConnectedPath
+        <DateValidation__ConnectedPath
           pathUrl="path-end.svg"
         />
       </Column>
       <Column
         cols={9}
       >
-        <EarliestDate__DateInput
+        <DateValidation__DateInput
+          max="9999-12-30"
+          min="1000-01-01"
           name="customDate"
           onBlur={[Function]}
           onChange={[Function]}

@@ -24,6 +24,18 @@ const StyledInput = styled(Input)`
 `;
 
 class Number extends React.Component {
+  state = {
+    value: this.props.value
+  };
+
+  onComponentDidUpdate() {
+    if (this.props.value !== this.state.value) {
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
+
   handleUp = () => {
     const name = this.props.name || this.props.id;
     const value = this.props.value + 1;
@@ -36,7 +48,13 @@ class Number extends React.Component {
     this.handleChange({ name, value });
   };
 
-  handleChange = ({ name, value }) => {
+  handleChange = ({ value }) => {
+    this.setState({ value });
+  };
+
+  handleBlur = () => {
+    const name = this.props.name || this.props.id;
+    const { value } = this.state;
     const enteredValue = clamp(
       parseInt(value, 10),
       this.props.min,
@@ -48,7 +66,17 @@ class Number extends React.Component {
         ? this.props.min
         : enteredValue;
 
-    this.props.onChange({ name, value: newValue });
+    this.setState({ value: newValue });
+
+    this.props.onChange({
+      name,
+      value: newValue
+    });
+    if (this.props.onBlur) {
+      setImmediate(() => {
+        this.props.onBlur();
+      });
+    }
   };
 
   render() {
@@ -56,10 +84,13 @@ class Number extends React.Component {
       <StyledDiv>
         <StyledInput
           {...this.props}
-          type="number"
+          value={this.state.value}
           onChange={this.handleChange}
+          type="number"
+          onBlur={this.handleBlur}
           aria-live="assertive"
           role="alert"
+          data-test="number-input"
         />
       </StyledDiv>
     );
@@ -74,7 +105,8 @@ Number.defaultProps = {
 Number.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   value: PropTypes.number,
   step: PropTypes.number,
   min: PropTypes.number,
