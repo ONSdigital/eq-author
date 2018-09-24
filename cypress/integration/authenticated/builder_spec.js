@@ -31,13 +31,22 @@ describe("builder", () => {
     cy.deleteQuestionnaire(questionnaireTitle);
   });
 
-  it("Can edit page title", () => {
+  it("Can edit page title, alias and description", () => {
     cy.get(testId("page-item")).click();
+
+    cy.get(testId("question-alias")).type("question alias");
+
     typeIntoDraftEditor(
       testId("txt-question-title", "testid"),
       "goodbye world"
     );
-    cy.get(testId("side-nav")).should("contain", "goodbye world");
+
+    typeIntoDraftEditor(
+      testId("txt-question-description", "testid"),
+      "my new question description"
+    );
+
+    cy.get(testId("side-nav")).should("contain", "question alias");
   });
 
   it("Can create a new page", () => {

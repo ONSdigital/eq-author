@@ -124,7 +124,7 @@
     "draftjs-filters": "^1.0.0",
     "draftjs-to-html": "^0.7.6",
     "enzyme-to-json": "^3.3.1",
-    "eq-author-graphql-schema": "0.29.0",
+    "eq-author-graphql-schema": "0.30.0",
     "eslint-config-eq-author": "^1.1.0",
     "firebase": "^4.6.2",
     "firebaseui": "2.4.1",

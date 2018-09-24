@@ -8,6 +8,7 @@ export default {
       sections: [
         {
           id: "1",
+          alias: "",
           displayName: "",
           pages: [{ id: "1", __typename: "QuestionPage" }],
           __typename: "Section"

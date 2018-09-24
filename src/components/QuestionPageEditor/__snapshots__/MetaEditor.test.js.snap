@@ -2,6 +2,32 @@
 
 exports[`MetaEditor should render 1`] = `
 <div>
+  <MetaEditor__Padding>
+    <MetaEditor__Alias>
+      <MetaEditor__AliasField>
+        <Label
+          bold={true}
+          htmlFor="question-alias"
+        >
+          Question short code (optional)
+        </Label>
+        <withChangeHandler(WrappingInput)
+          autoFocus={false}
+          data-test="question-alias"
+          id="question-alias"
+          maxLength={255}
+          name="alias"
+          onBlur={[Function]}
+          onChange={[Function]}
+          value="Page alias"
+        />
+      </MetaEditor__AliasField>
+      <CharacterCounter
+        limit={24}
+        value="Page alias"
+      />
+    </MetaEditor__Alias>
+  </MetaEditor__Padding>
   <RichTextEditor
     autoFocus={false}
     controls={

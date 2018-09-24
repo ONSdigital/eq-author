@@ -43,6 +43,7 @@ const moveSectionMock = {
                 __typename: "QuestionPage",
                 id: "3",
                 title: "bar",
+                alias: "bar alias",
                 displayName: "bar",
                 position: 0
               },
@@ -50,6 +51,7 @@ const moveSectionMock = {
                 __typename: "QuestionPage",
                 id: "4",
                 title: "blah",
+                alias: "blah alias",
                 displayName: "blah",
                 position: 1
               }
@@ -74,6 +76,7 @@ const moveSectionMock = {
                 __typename: "QuestionPage",
                 id: "5",
                 title: "bar",
+                alias: "bar alias",
                 displayName: "bar",
                 position: 0
               },
@@ -81,6 +84,7 @@ const moveSectionMock = {
                 __typename: "QuestionPage",
                 id: "6",
                 title: "blah",
+                alias: "blah alias",
                 displayName: "blah",
                 position: 1
               }
@@ -271,7 +275,7 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
-          alias: "foo-alias",
+          alias: "foo alias",
           description: "bar"
         }
       };
@@ -308,7 +312,7 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
-          alias: "foo-alias",
+          alias: "foo alias",
           description: "bar"
         }
       };
@@ -343,7 +347,7 @@ describe("SectionRoute", () => {
         section: {
           id: "1",
           title: "foo",
-          alias: "foo-alias",
+          alias: "foo alias",
           displayName: "foo",
           description: "bar",
           position: 0,

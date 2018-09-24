@@ -22,50 +22,64 @@ describe("Metadata", () => {
         cy.get(testId("metadata-table-row")).should("have.length", 1);
       });
       it("Should default type to 'Text'", () => {
-        cy.get("[name='type']").should("have.value", "Text");
+        cy.get(testId("metadata-table-row")).within(() =>
+          cy.get("[name='type']").should("have.value", "Text")
+        );
       });
     });
     describe("Update", () => {
       it("Should allow key value to be updated with custom value", () => {
         const input = "tx_id_custom";
-
-        cy.get("[name='key']").as("metadataKey");
+        cy.get(testId("metadata-table-row")).within(() =>
+          cy.get("[name='key']").as("metadataKey")
+        );
         cy.get("@metadataKey").type(input);
         cy.get("@metadataKey").should("have.value", input);
       });
       it("Should allow key value to be updated from select list", () => {
         const select = "eq_id";
-        cy.get("[name='key']").as("metadataKey");
+        cy.get(testId("metadata-table-row")).within(() =>
+          cy.get("[name='key']").as("metadataKey")
+        );
         cy.get("@metadataKey").click();
         cy.contains(select).click();
         cy.get("@metadataKey").should("have.value", select);
       });
       it("Should allow alias value to be updated", () => {
         const input = "tx_id_alias";
-
-        cy.get("[name='alias']").as("metadataAlias");
+        cy.get(testId("metadata-table-row")).within(() =>
+          cy.get("[name='alias']").as("metadataAlias")
+        );
         cy.get("@metadataAlias").type(input);
         cy.get("@metadataAlias").should("have.value", input);
       });
       it("Should allow 'Text' type and value to be updated", () => {
-        cy.get("[name='type']").within(() => selectOptionByLabel("Text"));
-        cy.get("[name='textValue']").type("test");
+        cy.get(testId("metadata-table-row")).within(() => {
+          cy.get("[name='type']").within(() => selectOptionByLabel("Text"));
+          cy.get("[name='textValue']").type("test");
+        });
       });
       it("Should allow 'Date' type and value to be updated", () => {
-        cy.get("[name='type']").within(() => selectOptionByLabel("Date"));
-        cy.get("[name='dateValue']").type("2018-01-01");
+        cy.get(testId("metadata-table-row")).within(() => {
+          cy.get("[name='type']").within(() => selectOptionByLabel("Date"));
+          cy.get("[name='dateValue']").type("2018-01-01");
+        });
       });
       it("Should allow 'Language' type and value to be updated", () => {
-        cy.get("[name='type']").within(() => selectOptionByLabel("Language"));
-        cy.get("[name='languageValue']").within(() =>
-          selectOptionByLabel("cy")
-        );
+        cy.get(testId("metadata-table-row")).within(() => {
+          cy.get("[name='type']").within(() => selectOptionByLabel("Language"));
+          cy.get("[name='languageValue']").within(() =>
+            selectOptionByLabel("cy")
+          );
+        });
       });
       it("Should allow 'Region' type and value to be updated", () => {
-        cy.get("[name='type']").within(() => selectOptionByLabel("Region"));
-        cy.get("[name='regionValue']").within(() =>
-          selectOptionByLabel("GB_ENG")
-        );
+        cy.get(testId("metadata-table-row")).within(() => {
+          cy.get("[name='type']").within(() => selectOptionByLabel("Region"));
+          cy.get("[name='regionValue']").within(() =>
+            selectOptionByLabel("GB_ENG")
+          );
+        });
       });
     });
     describe("Delete", () => {
