@@ -29,7 +29,7 @@ describe("Metadata", () => {
     });
     describe("Update", () => {
       it("Should allow key value to be updated with custom value", () => {
-        const input = "tx_id_custom";
+        const input = "ru_ref_custom";
         cy.get(testId("metadata-table-row")).within(() =>
           cy.get("[name='key']").as("metadataKey")
         );
@@ -37,7 +37,7 @@ describe("Metadata", () => {
         cy.get("@metadataKey").should("have.value", input);
       });
       it("Should allow key value to be updated from select list", () => {
-        const select = "eq_id";
+        const select = "ru_name";
         cy.get(testId("metadata-table-row")).within(() =>
           cy.get("[name='key']").as("metadataKey")
         );
@@ -46,7 +46,7 @@ describe("Metadata", () => {
         cy.get("@metadataKey").should("have.value", select);
       });
       it("Should allow alias value to be updated", () => {
-        const input = "tx_id_alias";
+        const input = "ru_ref_alias";
         cy.get(testId("metadata-table-row")).within(() =>
           cy.get("[name='alias']").as("metadataAlias")
         );
