@@ -86,28 +86,95 @@ describe("AnswerValidation", () => {
     ).toEqual(5);
   });
 
-  it("should render preview dates as UK format", () => {
-    const wrapper = render({
-      ...props,
-      answer: {
-        id: "1",
-        type: "Date",
-        validation: {
-          earliestDate: {
-            enabled: true,
-            customDate: "2018-09-02"
-          },
-          latestDate: {
-            enabled: false
+  describe("Date Validation preview", () => {
+    it("should render preview dates without offset", () => {
+      const wrapper = render({
+        ...props,
+        answer: {
+          id: "1",
+          type: "Date",
+          validation: {
+            earliestDate: {
+              enabled: true,
+              customDate: "2018-09-02",
+              offset: {
+                unit: "Days",
+                value: 0
+              },
+              relativePosition: "Before"
+            },
+            latestDate: {
+              enabled: false
+            }
           }
         }
-      }
+      });
+      expect(
+        wrapper
+          .find(SidebarButtonDetail)
+          .at(0)
+          .prop("children")
+      ).toMatchSnapshot();
     });
-    expect(
-      wrapper
-        .find(SidebarButtonDetail)
-        .at(0)
-        .prop("children")
-    ).toEqual("02-09-2018");
+
+    it("should render preview dates with offset", () => {
+      const wrapper = render({
+        ...props,
+        answer: {
+          id: "1",
+          type: "Date",
+          validation: {
+            earliestDate: {
+              enabled: true,
+              customDate: "2018-09-02",
+              offset: {
+                unit: "Months",
+                value: 5
+              },
+              relativePosition: "Before"
+            },
+            latestDate: {
+              enabled: false
+            }
+          }
+        }
+      });
+      expect(
+        wrapper
+          .find(SidebarButtonDetail)
+          .at(0)
+          .prop("children")
+      ).toMatchSnapshot();
+    });
+
+    it("should render a preview without a customDate", () => {
+      const wrapper = render({
+        ...props,
+        answer: {
+          id: "1",
+          type: "Date",
+          validation: {
+            earliestDate: {
+              enabled: true,
+              customDate: null,
+              offset: {
+                unit: "Months",
+                value: 5
+              },
+              relativePosition: "Before"
+            },
+            latestDate: {
+              enabled: false
+            }
+          }
+        }
+      });
+      expect(
+        wrapper
+          .find(SidebarButtonDetail)
+          .at(0)
+          .prop("children")
+      ).toMatchSnapshot();
+    });
   });
 });

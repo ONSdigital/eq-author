@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AnswerValidation Date Validation preview should render a preview without a customDate 1`] = `"Invalid Rule"`;
+
+exports[`AnswerValidation Date Validation preview should render preview dates with offset 1`] = `
+<UNDEFINED>
+  <div>
+    5 months before:
+  </div>
+  <div>
+    02/09/2018
+  </div>
+</UNDEFINED>
+`;
+
+exports[`AnswerValidation Date Validation preview should render preview dates without offset 1`] = `"02/09/2018"`;
+
 exports[`AnswerValidation should not render there are no valid validation types 1`] = `""`;
 
 exports[`AnswerValidation should render 1`] = `

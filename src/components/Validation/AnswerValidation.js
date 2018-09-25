@@ -27,7 +27,38 @@ const formatDate = dateString =>
   dateString
     .split("-")
     .reverse()
-    .join("-");
+    .join("/");
+
+const DatePreview = ({
+  relativePosition,
+  customDate,
+  offset: { unit, value }
+}) => {
+  if (!customDate) {
+    return "Invalid Rule";
+  }
+
+  const formattedDate = formatDate(customDate);
+  if (value === 0) {
+    return formattedDate;
+  }
+  return (
+    <React.Fragment>
+      <div>
+        {`${value} ${unit.toLowerCase()} ${relativePosition.toLowerCase()}:`}
+      </div>
+      <div>{formattedDate}</div>
+    </React.Fragment>
+  );
+};
+DatePreview.propTypes = {
+  relativePosition: PropTypes.string.isRequired,
+  customDate: PropTypes.string,
+  offset: PropTypes.shape({
+    value: PropTypes.number.isRequired,
+    unit: PropTypes.string.isRequired
+  }).isRequired
+};
 
 const validationTypes = [
   {
@@ -49,14 +80,14 @@ const validationTypes = [
     title: "Earliest Date",
     render: () => <EarliestDate />,
     types: [DATE],
-    preview: ({ customDate }) => (customDate ? formatDate(customDate) : "")
+    preview: DatePreview
   },
   {
     id: "latestDate",
     title: "Latest Date",
     render: () => <LatestDate />,
     types: [DATE],
-    preview: ({ customDate }) => (customDate ? formatDate(customDate) : "")
+    preview: DatePreview
   }
 ];
 
@@ -110,15 +141,20 @@ export class UnconnectedAnswerValidation extends React.Component {
     return (
       <Container>
         <ValidationContext.Provider value={{ answer }}>
-          {validValidationTypes.map(validationType =>
-            this.renderButton({
+          {validValidationTypes.map(validationType => {
+            const validation = get(
+              answer,
+              `validation.${validationType.id}`,
+              {}
+            );
+            const { enabled } = validation;
+            const value = enabled ? validationType.preview(validation) : "";
+            return this.renderButton({
               ...validationType,
-              value: validationType.preview(
-                answer.validation[validationType.id]
-              ),
-              enabled: get(answer, `validation.${validationType.id}.enabled`)
-            })
-          )}
+              value,
+              enabled
+            });
+          })}
           <ModalWithNav
             id={this.modalId}
             onClose={this.handleModalClose}

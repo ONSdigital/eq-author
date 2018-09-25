@@ -52,6 +52,7 @@ const RelativePositionSelect = styled(Select)`
 const EmphasisedText = styled.p`
   font-size: 0.9em;
   font-weight: bold;
+  margin: 0;
   text-transform: uppercase;
 `;
 
