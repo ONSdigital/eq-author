@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Prerequisites
 
-- Node.js 7.10.0
+- Node.js 7.10.0 or newer
 - [Yarn](https://yarnpkg.com/en/)
 - Google Chrome
 
@@ -104,26 +104,51 @@ Spins up the Storybook development server.
 
 ## Environment Variables
 
-Your project can consume variables declared in your environment as if they were declared locally in your JS files. By
-default you will have `NODE_ENV` defined for you, and any other environment variables starting with
-`REACT_APP_`.
+### Authentication
+| Name | Description | Required |
+| --- | --- | --- |
+| `REACT_APP_FIREBASE_PROJECT_ID` | Firebase is used for basic authentication this environment and the two below are needed for this. The project ID for your Firebase project. Can be obtained from your Firebase project | Yes If authentication is enabled |
+| `REACT_APP_FIREBASE_API_KEY` | The api key for your Firebase project. Can be obtained from your Firebase project | Yes If authentication is enabled |
+| `REACT_APP_FIREBASE_MESSAGING_SENDER_ID` | The messaging sender ID for your Firebase project. Can be obtained from your Firebase project | Yes If authentication is enabled |
+| `REACT_APP_ENABLE_AUTH` | Used to enable and disable firebase authentication. User can sign in as guest if this is set to false | Yes |
 
->Note: You must create custom environment variables beginning with `REACT_APP_`. Any other variables except `NODE_ENV` will be ignored to avoid accidentally [exposing a private key on the machine that could have the same name](https://github.com/facebookincubator/create-react-app/issues/865#issuecomment-252199527).
+### Functional
+| Name | Description | Required |
+| --- | --- | --- |
+| `REACT_APP_PUBLISHER_URL` | URL for the publisher service | Yes |
+| `REACT_APP_GO_LAUNCH_A_SURVEY_URL` | URL for the launcher service | Yes |
+| `REACT_APP_API_URL` | Set Author API URL | No |
+| `PUBLIC_URL` | The public URL inferred if not provided | No |
+| `REACT_APP_BASE_NAME` | Used to build up URL set to "/eq-author" in production | No |
 
-These environment variables will be defined for you on `process.env`. For example, having an environment
-variable named `REACT_APP_SECRET_CODE` will be exposed in your JS as `process.env.REACT_APP_SECRET_CODE`, in addition
-to `process.env.NODE_ENV`.
+### Testing
+| Name | Description | Required |
+| --- | --- | --- |
+| `CYPRESS_baseUrl` | Set Cypress URL | Yes |
+| `CYPRESS_BASE_NAME` | Not used | No |
+| `REACT_APP_FUNCTIONAL_TEST` | Run functional test switch | No |
 
-### Adding Development Environment Variables In `.env`
+### Third party services
+| Name | Description | Required |
+| --- | --- | --- |
+| `REACT_APP_USE_SENTRY` | Use Sentry for error checking | Yes |
+| `REACT_APP_USE_FULLSTORY` | Use fullstory if set to true | No |
 
-To define permanent environment variables, add them to the `.env` file in the root of the project:
+### Runtime
+| Name | Description | Required |
+| --- | --- | --- |
+| `HOST` | Set to 0.0.0.0 if not provided | No |
+| `PORT` |The port which express listens on (defaults to `3000`). | No |
+| `HTTPS` | HTTP/HTTPS Switch | No |
 
-```
-REACT_APP_SECRET_CODE=abcdef
-```
-
-These variables will act as the defaults if the machine does not explicitly set them.<br>
-Please refer to the [dotenv documentation](https://github.com/motdotla/dotenv) for more details.
+### Build configuration
+| Name | Description | Required |
+| --- | --- | --- |
+| `BABEL_ENV` | Sets the environment the code is running in | Yes |
+| `NODE_ENV` | Sets the environment the code is running in | Yes |
+| `NODE_PATH` | Folder path for the code folder structure | Yes |
+| `CI` | Switch that if is set to true will treat warnings as errors | No |
+| `EQ_AUTHOR_VERSION` | The current Author version. This is what gets reported on the /status endpoint | No |
 
 ## Authentication
 
