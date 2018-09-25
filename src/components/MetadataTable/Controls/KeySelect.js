@@ -10,23 +10,12 @@ import {
 } from "components/DataTable/Controls";
 
 export const suggestedKeys = [
-  { value: "tx_id" },
-  { value: "iat" },
-  { value: "exp" },
-  { value: "eq_id" },
-  { value: "collection_exercise_sid" },
-  { value: "form_type" },
   { value: "ru_ref" },
   { value: "ru_name" },
   { value: "trad_as" },
-  { value: "user_id" },
   { value: "period_id" },
-  { value: "case_id" },
-  { value: "account_service_url" },
   { value: "period_str" },
   { value: "language_code" },
-  { value: "survey_url" },
-  { value: "case_ref" },
   { value: "ref_p_start_date" },
   { value: "ref_p_end_date" },
   { value: "return_by" },
