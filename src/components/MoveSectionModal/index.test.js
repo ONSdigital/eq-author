@@ -1,25 +1,53 @@
 import React from "react";
-import MoveSectionModal from ".";
 import { shallow } from "enzyme";
+
+import PositionModal from "components/PositionModal";
+import MoveSectionModal from "components/MoveSectionModal";
+
 import { buildQuestionnaire } from "tests/utils/createMockQuestionnaire";
 
-describe("MoveSectionModal", () => {
-  const questionnaire = buildQuestionnaire();
-  const currentSection = questionnaire.sections[0];
+const createWrapper = (props = {}, render = shallow) =>
+  render(<MoveSectionModal {...props} />);
 
-  const createWrapper = (props = {}, render = shallow) =>
-    render(
-      <MoveSectionModal
-        isOpen
-        onClose={jest.fn()}
-        questionnaire={questionnaire}
-        section={currentSection}
-        onMoveSection={jest.fn()}
-        {...props}
-      />
-    );
+describe("MoveSectionModal", () => {
+  let questionnaire, section, props, wrapper;
+
+  beforeEach(() => {
+    questionnaire = buildQuestionnaire();
+    section = questionnaire.sections[0];
+    props = {
+      questionnaire,
+      section,
+      onClose: jest.fn(),
+      onMoveSection: jest.fn(),
+      isOpen: true
+    };
+    wrapper = createWrapper(props);
+  });
 
   it("should render", () => {
-    expect(createWrapper()).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("correctly handles onMove", () => {
+    const position = 7;
+
+    wrapper.find(PositionModal).simulate("move", position);
+
+    expect(props.onMoveSection).toHaveBeenCalledWith({
+      from: {
+        id: section.id,
+        position: section.position
+      },
+      to: {
+        id: section.id,
+        position: position
+      }
+    });
+  });
+
+  it("correctly handles onClose", () => {
+    wrapper.simulate("close");
+    expect(props.onClose).toHaveBeenCalled();
   });
 });

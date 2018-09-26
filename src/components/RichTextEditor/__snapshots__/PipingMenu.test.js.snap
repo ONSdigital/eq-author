@@ -142,6 +142,38 @@ exports[`PipingMenu should render 1`] = `
 </React.Fragment>
 `;
 
+exports[`PipingMenu should render as disabled when disabled 1`] = `
+<PipingMenu__MenuButton
+  disabled={true}
+  title="Pipe value"
+/>
+`;
+
+exports[`PipingMenu should render as disabled when loading 1`] = `
+<PipingMenu__MenuButton
+  disabled={true}
+  title="Pipe value"
+/>
+`;
+
+exports[`PipingMenu should render as disabled when no questionnaire 1`] = `
+<React.Fragment>
+  <PipingMenu__MenuButton
+    data-test="piping-button"
+    disabled={true}
+    onClick={[Function]}
+    title="Pipe value"
+  />
+  <ContentPickerModal
+    data={Array []}
+    data-test="picker"
+    isOpen={false}
+    onClose={[Function]}
+    onSubmit={[Function]}
+  />
+</React.Fragment>
+`;
+
 exports[`PipingMenu shouldn't show current section if on first page of section 1`] = `
 Object {
   "sections": Array [

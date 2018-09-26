@@ -1,6 +1,10 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { Accordion, AccordionPanel } from "components/Accordion";
+import {
+  Accordion,
+  AccordionPanel,
+  KEY_CODE_ESCAPE
+} from "components/Accordion";
 
 describe("Accordion", () => {
   let wrapper;
@@ -73,7 +77,7 @@ describe("AccordionPanel", () => {
     it("should close the panel when escape key is pressed", () => {
       wrapper.instance().open();
       wrapper.instance().handleKeyUp({
-        keyCode: 27
+        keyCode: KEY_CODE_ESCAPE
       });
       expect(wrapper.state("open")).toBe(false);
     });

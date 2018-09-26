@@ -1,23 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Date should render 1`] = `
-<withEntityEditor(UnwrappedDate)
-  answer={
-    Object {
-      "id": "1",
-      "label": "Lorem ipsum",
-    }
-  }
-  endRequest={[Function]}
-  onChange={[Function]}
-  onUpdate={[Function]}
-  startRequest={[Function]}
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "subscribe": [Function],
-    }
-  }
-/>
+<Date__Fieldset>
+  <VisuallyHidden>
+    Date options
+  </VisuallyHidden>
+  <Field
+    last={false}
+  >
+    <Label
+      bold={true}
+      htmlFor="label-1"
+    >
+      Label
+    </Label>
+    <withChangeHandler(WrappingInput)
+      bold={true}
+      data-autofocus={true}
+      data-test="date-answer-label"
+      id="label-1"
+      name="label"
+      onBlur={[Function]}
+      onChange={[Function]}
+      size="medium"
+      value="Lorem ipsum"
+    />
+  </Field>
+  <Field
+    last={false}
+  >
+    <Label
+      bold={true}
+    >
+      Date
+    </Label>
+    <Date__Format>
+      <Date />
+    </Date__Format>
+  </Field>
+</Date__Fieldset>
 `;

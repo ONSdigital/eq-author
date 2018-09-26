@@ -5,7 +5,8 @@ import PanelTitle from "components/Accordion/PanelTitle";
 import PanelBody from "components/Accordion/PanelBody";
 import chevronIcon from "components/Accordion/chevron.svg";
 import { colors } from "constants/theme";
-const KEY_CODE_ESCAPE = 27;
+
+export const KEY_CODE_ESCAPE = 27;
 
 const AccordionTitle = styled(PanelTitle)`
   cursor: pointer;

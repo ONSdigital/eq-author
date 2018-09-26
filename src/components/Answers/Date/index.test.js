@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Date from "components/Answers/Date";
-import createMockStore from "tests/utils/createMockStore";
+import { UnwrappedDate } from "components/Answers/Date";
 
 const answer = {
   id: "1",
@@ -12,18 +11,15 @@ describe("Date", () => {
   let handleChange;
   let handleUpdate;
   let wrapper;
-  let store;
 
   beforeEach(() => {
     handleChange = jest.fn();
     handleUpdate = jest.fn();
-    store = createMockStore();
     wrapper = shallow(
-      <Date
+      <UnwrappedDate
         onChange={handleChange}
         onUpdate={handleUpdate}
         answer={answer}
-        store={store}
       />
     );
   });

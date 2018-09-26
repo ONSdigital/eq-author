@@ -36,18 +36,6 @@ class Number extends React.Component {
     }
   }
 
-  handleUp = () => {
-    const name = this.props.name || this.props.id;
-    const value = this.props.value + 1;
-    this.handleChange({ name, value });
-  };
-
-  handleDown = () => {
-    const name = this.props.name || this.props.id;
-    const value = this.props.value - 1;
-    this.handleChange({ name, value });
-  };
-
   handleChange = ({ value }) => {
     this.setState({ value });
   };

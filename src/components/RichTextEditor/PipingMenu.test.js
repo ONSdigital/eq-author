@@ -78,6 +78,21 @@ describe("PipingMenu", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should render as disabled when loading", () => {
+    const wrapper = render({ loading: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render as disabled when disabled", () => {
+    const wrapper = render({ disabled: true });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render as disabled when no questionnaire", () => {
+    const wrapper = render({ data: { questionnaire: null } });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should render as disabled if on first page of first section", () => {
     const section = questionnaire.sections[0];
     const page = section.pages[0];

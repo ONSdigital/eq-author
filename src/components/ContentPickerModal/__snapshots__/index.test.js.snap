@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/ContentPickerModal should render 1`] = `
+<Modal
+  hasCloseButton={true}
+  isOpen={true}
+  onClose={[Function]}
+>
+  <ContentPickerModal__HeaderSegment>
+    Select a previous answer
+  </ContentPickerModal__HeaderSegment>
+  <AnswerContentPicker
+    data={
+      Array [
+        Object {
+          "id": "1",
+        },
+      ]
+    }
+    onClose={[Function]}
+    onSubmit={[Function]}
+  />
+</Modal>
+`;
