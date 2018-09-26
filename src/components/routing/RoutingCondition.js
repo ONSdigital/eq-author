@@ -9,7 +9,7 @@ import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
 
-import svgPath from "./path-2.svg";
+import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
 import {

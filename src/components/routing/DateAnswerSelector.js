@@ -80,7 +80,6 @@ const DateOperatorSelect = props => (
   <Select {...props}>
     <option value="greater-than">{"At least"}</option>
     <option value="less-than">{"At most"}</option>
-
     <option value="equal-to">{"Exactly"}</option>
   </Select>
 );
