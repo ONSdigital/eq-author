@@ -15,6 +15,7 @@ export const Routes = {
   QUESTIONNAIRE: `/questionnaire/:questionnaireId/:sectionId?/:pageId?/:tab?`,
   SECTION: `/questionnaire/:questionnaireId/:sectionId(\\d+)/design`,
   PAGE: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/design`,
+  PREVIEW: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/preview`,
   ROUTING: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/routing`
 };
 
