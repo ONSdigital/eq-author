@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
@@ -6,7 +6,8 @@ import { colors, radius } from "constants/theme";
 import {
   buildPagePath,
   buildSectionPath,
-  buildRoutingPath
+  buildRoutingPath,
+  buildPreviewPath
 } from "utils/UrlUtils";
 
 import CustomPropTypes from "custom-prop-types";
@@ -62,11 +63,17 @@ export const UnwrappedTabs = ({ match, children }) => {
       <TabsContainer data-test="tabs-nav">
         <Tab to={url}>Builder</Tab>
         {pageId ? (
-          <Tab activeClassName="selected" to={buildRoutingPath(match.params)}>
-            Routing
-          </Tab>
+          <Fragment>
+            <Tab activeClassName="selected" to={buildRoutingPath(match.params)}>
+              Routing
+            </Tab>
+            <Tab to={buildPreviewPath(match.params)}>Preview</Tab>
+          </Fragment>
         ) : (
-          <DisabledTab>Routing</DisabledTab>
+          <Fragment>
+            <DisabledTab>Routing</DisabledTab>
+            <DisabledTab>Preview</DisabledTab>
+          </Fragment>
         )}
       </TabsContainer>
       <TabsBody data-test="tabs-body">{children}</TabsBody>

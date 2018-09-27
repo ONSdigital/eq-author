@@ -23,3 +23,4 @@ export const buildSectionPath = generatePath(Routes.SECTION);
 export const buildPagePath = generatePath(Routes.PAGE);
 export const buildQuestionnairePath = generatePath(Routes.QUESTIONNAIRE);
 export const buildRoutingPath = generatePath(Routes.ROUTING);
+export const buildPreviewPath = generatePath(Routes.PREVIEW);

@@ -3,10 +3,15 @@ import { withApollo, Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import QuestionPageEditor from "../QuestionPageEditor";
+import EditorLayout from "../EditorLayout";
 
 export class UnwrappedQuestionPageRoute extends React.Component {
   render() {
-    return <div>Preview</div>;
+    return (
+      <EditorLayout page={this.props.data.questionPage}>
+        <div>Preview</div>
+      </EditorLayout>
+    );
   }
 }
 
