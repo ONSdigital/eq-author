@@ -97,14 +97,21 @@ export class UnconnectedHeader extends React.Component {
   };
 
   getPreviewUrl(questionnaireId) {
-    const timestamp = Date.now();
-    const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
-    const goLaunchASurveyQuickLaunchUrl =
-      process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
-    const urlEncodedParam = encodeURIComponent(
-      `${publisherUrl}/${questionnaireId}?r=${timestamp}`
-    );
-    return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
+    if (process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL) {
+      const timestamp = Date.now();
+      const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
+      const goLaunchASurveyQuickLaunchUrl =
+        process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
+      const urlEncodedParam = encodeURIComponent(
+        `${publisherUrl}/${questionnaireId}?r=${timestamp}`
+      );
+      return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
+    } else {
+      const baseURL = process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL.replace(/(\/graphql)/, "")
+        : "";
+      return `${baseURL}/launch/${questionnaireId}`;
+    }
   }
 
   handleSignOut = () => {
