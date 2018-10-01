@@ -38,6 +38,10 @@ const Tab = styled(NavLink)`
     border: 1px solid ${colors.bordersLight};
     border-bottom: none;
   }
+
+  &:focus {
+    outline: 3px solid ${colors.orange};
+  }
 `;
 
 const TabsBody = styled.div`

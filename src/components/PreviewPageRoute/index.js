@@ -60,8 +60,8 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     if (this.props.loading) {
       return null;
     }
-    /*  eslint-disable react/no-danger */
 
+    /*  eslint-disable react/no-danger */
     const { questionPage } = this.props.data;
     const { description, guidance, answers } = questionPage;
 
@@ -75,6 +75,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
               __html: title || <Error>Missing Title</Error>
             }}
           />
+
           {description &&
             description !== "<p></p>" && (
               <Description dangerouslySetInnerHTML={{ __html: description }} />
@@ -98,7 +99,6 @@ export const QUESTION_PAGE_QUERY = gql`
   query GetQuestionPage($id: ID!) {
     questionPage(id: $id) {
       ...QuestionPage
-      plainTextTitle: title(format: Plaintext)
     }
   }
 

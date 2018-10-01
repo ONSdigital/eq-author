@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Field, Input, Label } from "./elements";
+import { colors } from "constants/theme";
 
 const InputType = styled.div`
   display: flex;
@@ -11,8 +12,8 @@ const InputType = styled.div`
 
 const Type = styled.div`
   display: inline-block;
-  background-color: #f5f5f5;
-  border-right: 1px solid #999;
+  background-color: ${colors.lighterGrey};
+  border-right: 1px solid ${colors.grey};
   border-radius: 3px 0 0 3px;
   padding: 0.6em 0;
   width: 2.9em;

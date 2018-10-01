@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import Error from "./ValidationError";
 import { Field } from "./elements";
+import { colors } from "constants/theme";
 
 const Legend = styled.div`
   font-weight: bold;
@@ -50,7 +51,7 @@ const OptionDescription = styled.div`
 const OptionItem = styled.div`
   font-size: 1em;
   background: #fff;
-  border: 1px solid #999;
+  border: 1px solid ${colors.grey};
   border-radius: 0.2em;
   width: auto;
   min-width: 20em;
@@ -75,7 +76,7 @@ const TextInput = styled.input`
   display: block;
   color: inherit;
   font-size: 1em;
-  border: 1px solid #999;
+  border: 1px solid ${colors.grey};
   border-radius: 3px;
   width: 100%;
 `;

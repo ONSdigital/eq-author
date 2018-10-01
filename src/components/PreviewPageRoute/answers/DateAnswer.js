@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Field, Input, Label } from "./elements";
 
 import iconSelect from "./icon-select.svg";
+import { colors } from "constants/theme";
 
 const DateInput = styled(Input)`
   width: 100%;
@@ -43,7 +44,7 @@ const DateFieldLabel = styled.label`
 const Select = styled.select`
   display: block;
   color: inherit;
-  border: 1px solid #999;
+  border-right: 1px solid ${colors.grey};
   border-radius: 3px;
   transition: border-color 0.2s ease-in;
   appearance: none;
