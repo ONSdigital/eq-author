@@ -19,7 +19,7 @@ const Label = styled.label`
 
 export default ({ description, children }) => (
   <Label>
-    {children || <Error>No label supplied</Error>}
+    {children || <Error>Missing label</Error>}
     {description && (
       <Fragment>
         <br />

@@ -9,4 +9,4 @@ const Error = styled.span`
   align-items: center;
 `;
 
-export default ({ children }) => <Error>Missing label</Error>;
+export default ({ children }) => <Error>{children}</Error>;
