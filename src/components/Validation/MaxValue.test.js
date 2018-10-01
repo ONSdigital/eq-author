@@ -80,6 +80,21 @@ describe("MaxValue", () => {
     });
   });
 
+  it("should correctly coerce string inputs to integers", () => {
+    const wrapper = createWrapper(props);
+    wrapper
+      .find(byTestAttr("max-value-input"))
+      .simulate("change", { value: "1" });
+
+    expect(onUpdateAnswerValidation).toHaveBeenCalledWith({
+      id: props.maxValue.id,
+      maxValueInput: {
+        inclusive: props.maxValue.inclusive,
+        custom: 1
+      }
+    });
+  });
+
   it("should correctly handle max value change with out of range values", () => {
     const wrapper = createWrapper(props);
 
