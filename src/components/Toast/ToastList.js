@@ -36,7 +36,7 @@ export default class ToastContainer extends React.Component {
 
     return (
       <Transition>
-        <ToastItem>{child}</ToastItem>
+        <ToastItem data-test="toast-item">{child}</ToastItem>
       </Transition>
     );
   };

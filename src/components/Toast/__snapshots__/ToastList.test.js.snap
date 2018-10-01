@@ -10,7 +10,9 @@ exports[`ToastList should allow configurable transitions 1`] = `
     key=".0"
     timeout={500}
   >
-    <ToastList__ToastItem>
+    <ToastList__ToastItem
+      data-test="toast-item"
+    >
       <p>
         hello
       </p>
@@ -21,7 +23,9 @@ exports[`ToastList should allow configurable transitions 1`] = `
     key=".1"
     timeout={500}
   >
-    <ToastList__ToastItem>
+    <ToastList__ToastItem
+      data-test="toast-item"
+    >
       <p>
         world
       </p>
@@ -40,7 +44,9 @@ exports[`ToastList should render 1`] = `
     key=".0"
     timeout={500}
   >
-    <ToastList__ToastItem>
+    <ToastList__ToastItem
+      data-test="toast-item"
+    >
       <p>
         hello
       </p>
@@ -51,7 +57,9 @@ exports[`ToastList should render 1`] = `
     key=".1"
     timeout={500}
   >
-    <ToastList__ToastItem>
+    <ToastList__ToastItem
+      data-test="toast-item"
+    >
       <p>
         world
       </p>

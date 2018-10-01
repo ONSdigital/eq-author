@@ -142,7 +142,9 @@ describe("Routing", () => {
 
     addSection();
 
-    cy.contains("Untitled Page").click();
+    cy.contains("Untitled Page")
+      .last()
+      .click();
 
     typeIntoDraftEditor(testId("txt-question-title", "testid"), "Question 4");
     buildMultipleChoiceAnswer(["G", "H", "I"]);
