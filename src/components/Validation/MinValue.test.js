@@ -54,7 +54,7 @@ describe("MinValue", () => {
     const wrapper = createWrapper(props);
     wrapper
       .find(byTestAttr("min-value-input"))
-      .simulate("change", { value: 1 });
+      .simulate("change", { value: "1" });
 
     expect(onUpdateAnswerValidation).toHaveBeenCalledWith({
       id: props.minValue.id,
@@ -76,6 +76,21 @@ describe("MinValue", () => {
       minValueInput: {
         inclusive: props.minValue.inclusive,
         custom: null
+      }
+    });
+  });
+
+  it("should correctly coerce string inputs to integers", () => {
+    const wrapper = createWrapper(props);
+    wrapper
+      .find(byTestAttr("min-value-input"))
+      .simulate("change", { value: "1" });
+
+    expect(onUpdateAnswerValidation).toHaveBeenCalledWith({
+      id: props.minValue.id,
+      minValueInput: {
+        inclusive: props.minValue.inclusive,
+        custom: 1
       }
     });
   });

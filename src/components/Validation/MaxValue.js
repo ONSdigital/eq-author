@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { withApollo } from "react-apollo";
 import { propType } from "graphql-anywhere";
 
-import { flowRight, inRange } from "lodash";
+import { flowRight, inRange, isNaN } from "lodash";
 
 import { colors } from "constants/theme";
 import { Grid, Column } from "components/Grid";
@@ -56,11 +56,13 @@ export const MaxValue = ({
       return false;
     }
 
+    const intValue = parseInt(value, 10);
+
     const updateValidationRuleInput = {
       id: maxValue.id,
       maxValueInput: {
         inclusive: maxValue.inclusive,
-        custom: value === "" ? null : value
+        custom: isNaN(intValue) ? null : intValue
       }
     };
 
