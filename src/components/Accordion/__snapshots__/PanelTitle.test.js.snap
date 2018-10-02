@@ -7,7 +7,7 @@ exports[`PanelTitle should render when not open 1`] = `
     aria-expanded={false}
     aria-selected={false}
     id="panel-title-1"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     role="tab"
   >
     This is a title
@@ -22,7 +22,7 @@ exports[`PanelTitle should render when open 1`] = `
     aria-expanded={true}
     aria-selected={true}
     id="panel-title-1"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     role="tab"
   >
     This is a title
