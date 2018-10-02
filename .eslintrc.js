@@ -21,6 +21,7 @@ module.exports = {
   },
   rules: {
     "react/jsx-no-bind": [2, { allowArrowFunctions: true }],
+    indent: "off",
     "graphql/template-strings": [
       "error",
       {

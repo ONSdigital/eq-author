@@ -12,14 +12,14 @@ const StyledDiv = styled.div`
 const StyledInput = styled(Input)`
   width: 4em;
 
+  &[type="number"] {
+    appearance: textfield;
+  }
+
   &[type="number"]::-webkit-inner-spin-button,
   &[type="number"]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0;
-  }
-
-  &[type="number"] {
-    appearance: textfield;
   }
 `;
 
