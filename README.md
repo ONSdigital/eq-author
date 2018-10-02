@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ONSdigital/eq-author.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-author)
+[![Build Status](https://travis-ci.org/ONSdigital/eq-author.svg?branch=master)](https://travis-ci.org/ONSdigital/eq-author) [![Greenkeeper badge](https://badges.greenkeeper.io/ONSdigital/eq-author.svg)](https://greenkeeper.io/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
