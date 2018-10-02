@@ -107,10 +107,7 @@ export class UnconnectedHeader extends React.Component {
       );
       return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
     } else {
-      const baseURL = process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL.replace(/(\/graphql)/, "")
-        : "";
-      return `${baseURL}/launch/${questionnaireId}`;
+      return `${process.env.REACT_APP_LAUNCH_URL}/${questionnaireId}`;
     }
   }
 
