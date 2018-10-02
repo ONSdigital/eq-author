@@ -18,7 +18,6 @@
     "storybook": "export NODE_PATH=src/ && start-storybook -p 9001",
     "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
-    "precommit": "lint-staged",
     "coverage": "yarn test -- --coverage",
     "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:3000/} cypress open"
   },
@@ -208,5 +207,10 @@
   },
   "moduleRoots": [
     "./src"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
