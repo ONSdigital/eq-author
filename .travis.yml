@@ -55,4 +55,5 @@ deploy:
 
 branches:
     only:
-        - master
+      - master
+      - /^greenkeeper.*$/
