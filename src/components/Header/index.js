@@ -97,24 +97,13 @@ export class UnconnectedHeader extends React.Component {
     this.props.raiseToast("ShareToast", "Preview link copied to clipboard");
   };
 
-  getPreviewUrl(questionnaireId) {
-    if (config.REACT_APP_GO_LAUNCH_A_SURVEY_URL) {
-      const timestamp = Date.now();
-      const publisherUrl = config.REACT_APP_PUBLISHER_URL;
-      const goLaunchASurveyQuickLaunchUrl =
-        config.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
-      const urlEncodedParam = encodeURIComponent(
-        `${publisherUrl}/${questionnaireId}?r=${timestamp}`
-      );
-      return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
-    } else {
-      return `${config.REACT_APP_LAUNCH_URL}/${questionnaireId}`;
-    }
-  }
-
   handleSignOut = () => {
     this.props.signOutUser();
   };
+
+  getPreviewUrl(questionnaireId) {
+    return `${config.REACT_APP_LAUNCH_URL}/${questionnaireId}`;
+  }
 
   handleShare = () => {
     const textField = document.createElement("textarea");
@@ -146,7 +135,7 @@ export class UnconnectedHeader extends React.Component {
           {questionnaire && (
             <React.Fragment>
               <LinkButton
-                href={this.getPreviewUrl(questionnaire.id)}
+                href={this.getPreviewUrl(this.props.questionnaire.id)}
                 variant="tertiary-light"
                 data-test="btn-preview"
                 small

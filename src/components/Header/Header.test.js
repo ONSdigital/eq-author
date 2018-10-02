@@ -10,8 +10,7 @@ describe("components/Header", () => {
 
   beforeEach(() => {
     jest.mock("config", () => ({
-      REACT_APP_PUBLISHER_URL: "http://eq-publisher/publish",
-      REACT_APP_GO_LAUNCH_A_SURVEY_URL: "http://go-launch-a-survey/quick-launch"
+      REACT_APP_LAUNCH_URL: "http://localhost:4000/launch"
     }));
     const Header = require("components/Header");
     UnconnectedHeader = Header.UnconnectedHeader;

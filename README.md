@@ -115,9 +115,8 @@ Spins up the Storybook development server.
 ### Functional
 | Name | Description | Required |
 | --- | --- | --- |
-| `REACT_APP_PUBLISHER_URL` | URL for the publisher service | Yes |
-| `REACT_APP_GO_LAUNCH_A_SURVEY_URL` | URL for the launcher service | Yes |
-| `REACT_APP_API_URL` | Set Author API URL | No |
+| `REACT_APP_API_URL` | Set Author API URL | Yes |
+| `REACT_APP_LAUNCH_URL` | Set the launch-a-survey target | No |
 | `PUBLIC_URL` | The public URL inferred if not provided | No |
 | `REACT_APP_BASE_NAME` | Used to build up URL set to "/eq-author" in production | No |
 
