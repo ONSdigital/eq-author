@@ -45,7 +45,14 @@ const movePageMock = {
                 title: "bar",
                 alias: "bar-alias",
                 displayName: "bar",
-                position: 0
+                position: 0,
+                section: {
+                  __typename: "Section",
+                  questionnaire: {
+                    __typename: "Questionnaire",
+                    metadata: []
+                  }
+                }
               },
               {
                 __typename: "QuestionPage",
@@ -53,11 +60,19 @@ const movePageMock = {
                 title: "blah",
                 alias: "blah-alias",
                 displayName: "blah",
-                position: 1
+                position: 1,
+                section: {
+                  __typename: "Section",
+                  questionnaire: {
+                    __typename: "Questionnaire",
+                    metadata: []
+                  }
+                }
               }
             ],
             questionnaire: {
               __typename: "Questionnaire",
+              id: "1",
               questionnaireInfo: {
                 __typename: "QuestionnaireInfo",
                 totalSectionCount: 1
@@ -124,7 +139,16 @@ describe("QuestionPageRoute", () => {
               pageType: "QuestionPage",
               position: 0,
               guidance: "",
-              answers: []
+              answers: [],
+              section: {
+                __typename: "Section",
+                id: "1",
+                questionnaire: {
+                  __typename: "Questionnaire",
+                  id: "1",
+                  metadata: []
+                }
+              }
             }
           }
         }
@@ -158,7 +182,16 @@ describe("QuestionPageRoute", () => {
               pageType: "QuestionPage",
               position: 0,
               guidance: "",
-              answers: []
+              answers: [],
+              section: {
+                __typename: "Section",
+                id: "1",
+                questionnaire: {
+                  __typename: "Questionnaire",
+                  id: "1",
+                  metadata: []
+                }
+              }
             }
           }
         }
@@ -277,7 +310,14 @@ describe("QuestionPageRoute", () => {
           pageType: "QuestionPage",
           position: 0,
           guidance: "",
-          answers: []
+          answers: [],
+          section: {
+            __typename: "Section",
+            questionnaire: {
+              __typename: "Questionnaire",
+              metadata: []
+            }
+          }
         }
       };
 
@@ -312,7 +352,14 @@ describe("QuestionPageRoute", () => {
           pageType: "QuestionPage",
           position: 0,
           guidance: "",
-          answers: []
+          answers: [],
+          section: {
+            __typename: "Section",
+            questionnaire: {
+              __typename: "Questionnaire",
+              metadata: []
+            }
+          }
         }
       };
 
@@ -353,7 +400,14 @@ describe("QuestionPageRoute", () => {
           pageType: "QuestionPage",
           position: 0,
           guidance: "",
-          answers: []
+          answers: [],
+          section: {
+            __typename: "Section",
+            questionnaire: {
+              __typename: "Questionnaire",
+              metadata: []
+            }
+          }
         }
       };
 

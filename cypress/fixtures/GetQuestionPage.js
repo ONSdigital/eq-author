@@ -9,6 +9,15 @@ export default {
       guidance: null,
       displayName: "",
       answers: [],
+      section: {
+        id: "1",
+        __typename: "Section",
+        questionnaire: {
+          __typename: "Questionnaire",
+          id: "1",
+          metadata: []
+        }
+      },
       __typename: "QuestionPage"
     }
   }

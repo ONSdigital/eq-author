@@ -174,6 +174,7 @@ export const SECTION_QUERY = gql`
       displayName
       position
       questionnaire {
+        id
         questionnaireInfo {
           totalSectionCount
         }

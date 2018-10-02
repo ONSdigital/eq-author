@@ -12,7 +12,7 @@ export const ENTITY_TYPE = "PIPED-DATA";
 
 export const filterConfig = {
   type: ENTITY_TYPE,
-  attributes: ["id", "type"]
+  attributes: ["id", "type", "pipingType"]
 };
 
 const PipedValueDecorator = styled.span`
@@ -22,8 +22,8 @@ const PipedValueDecorator = styled.span`
   white-space: pre;
 `;
 
-const PipedValueSerialized = ({ data: { id, type, text } }) => (
-  <span data-piped="answers" data-id={id} data-type={type}>
+const PipedValueSerialized = ({ data: { id, type, text, pipingType } }) => (
+  <span data-piped={pipingType} data-id={id} data-type={type}>
     {text}
   </span>
 );
@@ -39,18 +39,16 @@ PipedValueSerialized.propTypes = {
 export const findPipedEntities = contentState =>
   getEntities(contentState, ENTITY_TYPE);
 
-export const createPipedEntity = (create, { type, id }) => {
-  return create(ENTITY_TYPE, "IMMUTABLE", {
-    type,
-    id
-  });
+export const createPipedEntity = (create, entity) => {
+  return create(ENTITY_TYPE, "IMMUTABLE", entity);
 };
 
 export const htmlToEntity = (nodeName, node, createEntity) => {
   if (node.hasAttribute && node.hasAttribute("data-piped")) {
     const id = node.getAttribute("data-id");
     const type = node.getAttribute("data-type");
-    return createPipedEntity(createEntity, { id, type });
+    const pipingType = node.getAttribute("data-piped");
+    return createPipedEntity(createEntity, { id, type, pipingType });
   }
 };
 
@@ -58,27 +56,27 @@ export const entityToHTML = {
   [ENTITY_TYPE]: PipedValueSerialized
 };
 
-export const replacePipedValues = labels => (
+export const replacePipedValues = (labels, placeholder) => (
   contentState,
   { entityKey, blockKey, entity }
 ) => {
   const text = labels.hasOwnProperty(entity.data.id)
     ? labels[entity.data.id]
-    : `Deleted Answer`;
+    : placeholder;
 
   return text
     ? replaceEntityText(contentState, entityKey, blockKey, `[${text}]`)
     : contentState;
 };
 
-export const insertPipedValue = (answer, contentState, selection) => {
+export const insertPipedValue = (entity, contentState, selection) => {
   const newContent = createPipedEntity(
     bindKey(contentState, "createEntity"),
-    answer
+    entity
   );
 
   const entityKey = newContent.getLastCreatedEntityKey();
-  const text = answer.displayName;
+  const text = entity.displayName;
 
   return Modifier.insertText(
     newContent,

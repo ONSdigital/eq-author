@@ -21,3 +21,14 @@ const config = [
 export const AnswerContentPicker = props => (
   <ContentPicker {...props} config={config} />
 );
+
+const metadataConfig = [
+  {
+    id: "metadata",
+    title: "Metadata"
+  }
+];
+
+export const MetadataContentPicker = props => (
+  <ContentPicker {...props} config={metadataConfig} />
+);

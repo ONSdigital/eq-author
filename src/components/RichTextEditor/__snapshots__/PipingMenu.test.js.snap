@@ -110,7 +110,7 @@ exports[`PipingMenu should render 1`] = `
     title="Pipe value"
   />
   <ContentPickerModal
-    data={
+    answerData={
       Array [
         Object {
           "id": "1",
@@ -136,42 +136,64 @@ exports[`PipingMenu should render 1`] = `
     }
     data-test="picker"
     isOpen={false}
+    metadataData={
+      Array [
+        Object {
+          "alias": "Some metadata",
+          "id": "1",
+        },
+        Object {
+          "alias": "Another metadata",
+          "id": "1",
+        },
+      ]
+    }
     onClose={[Function]}
     onSubmit={[Function]}
   />
 </React.Fragment>
 `;
 
-exports[`PipingMenu should render as disabled when disabled 1`] = `
-<PipingMenu__MenuButton
-  disabled={true}
-  title="Pipe value"
-/>
-`;
-
-exports[`PipingMenu should render as disabled when loading 1`] = `
-<PipingMenu__MenuButton
-  disabled={true}
-  title="Pipe value"
-/>
-`;
-
-exports[`PipingMenu should render as disabled when no questionnaire 1`] = `
-<React.Fragment>
-  <PipingMenu__MenuButton
-    data-test="piping-button"
-    disabled={true}
-    onClick={[Function]}
-    title="Pipe value"
-  />
-  <ContentPickerModal
-    data={Array []}
-    data-test="picker"
-    isOpen={false}
-    onClose={[Function]}
-    onSubmit={[Function]}
-  />
-</React.Fragment>
+exports[`PipingMenu should return child answers for CompositeAnswers 1`] = `
+Object {
+  "sections": Array [
+    Object {
+      "id": "1",
+      "pages": Array [
+        Object {
+          "answers": Array [
+            Object {
+              "displayName": "Earliest",
+              "id": "20",
+              "type": "TextField",
+            },
+            Object {
+              "displayName": "Latest",
+              "id": "21",
+              "type": "TextField",
+            },
+            Object {
+              "id": "2",
+              "label": "Answer 2",
+              "type": "TextField",
+            },
+          ],
+          "id": "1",
+        },
+        Object {
+          "answers": Array [
+            Object {
+              "id": "3",
+              "label": "Answer 3",
+              "type": "TextField",
+            },
+          ],
+          "id": "2",
+        },
+      ],
+    },
+  ],
+}
 `;
 
 exports[`PipingMenu shouldn't show current section if on first page of section 1`] = `

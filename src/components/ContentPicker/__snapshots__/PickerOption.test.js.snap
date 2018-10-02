@@ -5,12 +5,12 @@ exports[`PickerOption should render 1`] = `
   width: calc(100% - 0.25em);
   text-align: left;
   margin-bottom: 0.25em;
-  display: inline;
+  display: inline-block;
   font-weight: normal;
   background: transparent;
   color: #333333;
   font-size: 1em;
-  padding: 0.5em 2em;
+  padding: 0.5em 1.4em;
 }
 
 .c0:hover {

@@ -107,6 +107,12 @@ const convertFromHTML = fromHTML(htmlToPipedEntity);
 
 const getBlockStyle = block => block.getType();
 
+const getContentsOfPipingType = type => contents =>
+  contents.filter(content => content.entity.data.pipingType === type);
+
+const getAnswerPipes = getContentsOfPipingType("answers");
+const getMetadataPipes = getContentsOfPipingType("metadata");
+
 class RichTextEditor extends React.Component {
   static defaultProps = {
     placeholder: "",
@@ -131,7 +137,14 @@ class RichTextEditor extends React.Component {
     testSelector: PropTypes.string,
     autoFocus: PropTypes.bool,
     // eslint-disable-next-line react/forbid-prop-types
-    controls: PropTypes.object
+    controls: PropTypes.object,
+    metadata: PropTypes.arrayOf(
+      PropTypes.shape({
+        __typename: PropTypes.string,
+        id: PropTypes.string,
+        alias: PropTypes.string
+      })
+    )
   };
 
   constructor(props) {
@@ -149,11 +162,9 @@ class RichTextEditor extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchAnswers, autoFocus } = this.props;
+    const { autoFocus } = this.props;
 
-    if (fetchAnswers) {
-      this.updatePipedValues(this.state.editorState);
-    }
+    this.updatePipedValues();
 
     if (autoFocus) {
       this.focus();
@@ -172,35 +183,86 @@ class RichTextEditor extends React.Component {
 
   updatePipedValues() {
     const { editorState } = this.state;
-    const { fetchAnswers } = this.props;
-
     const contentState = editorState.getCurrentContent();
-    const entities = findPipedEntities(contentState);
-
-    if (!entities.length) {
+    const pipes = findPipedEntities(contentState);
+    if (!pipes.length) {
       return;
     }
 
-    const createAnswerMap = flow(
+    this.updateAnswerPipedValues(pipes);
+    this.updateMetadataPipedValues(pipes);
+  }
+
+  updateMetadataPipedValues(pipes) {
+    if (!this.props.metadata) {
+      return;
+    }
+
+    const metadataPipes = getMetadataPipes(pipes);
+    if (metadataPipes.length === 0) {
+      return;
+    }
+
+    this.renamePipedValues(
+      () => this.props.metadata,
+      metadataPipes,
+      "Deleted Metadata"
+    );
+  }
+
+  updateAnswerPipedValues(pipes) {
+    if (!this.props.fetchAnswers) {
+      return;
+    }
+
+    const answerPipes = getAnswerPipes(pipes);
+    if (answerPipes.length === 0) {
+      return;
+    }
+
+    const fetchAnswersForPipes = flow(
+      map("entity.data.id"),
+      uniq,
+      this.props.fetchAnswers
+    );
+
+    this.renamePipedValues(
+      fetchAnswersForPipes(answerPipes),
+      answerPipes,
+      "Deleted Answer"
+    );
+  }
+
+  renamePipedValues(fetchAuthorEntities, pipes, deletedPlaceholder) {
+    const { editorState } = this.state;
+    const contentState = editorState.getCurrentContent();
+
+    const createIdToDisplayNameMap = flow(
       keyBy("id"),
       mapValues("displayName")
     );
-    const fetchAnswersForEntities = flow(
-      map("entity.data.id"),
-      uniq,
-      fetchAnswers
+
+    const replacePipesWithLabels = labels =>
+      pipes.reduce(
+        replacePipedValues(labels, deletedPlaceholder),
+        contentState
+      );
+
+    const performUpdate = flow(
+      createIdToDisplayNameMap,
+      replacePipesWithLabels,
+      contentState =>
+        EditorState.push(editorState, contentState, "apply-entity"),
+      this.handleChange
     );
 
-    const replaceEntitiesWithLabels = labels =>
-      entities.reduce(replacePipedValues(labels), contentState);
+    // Cant check for instanceof Promise as uses SynchronousPromise in test
+    if (fetchAuthorEntities.then) {
+      fetchAuthorEntities.then(performUpdate);
+      return;
+    }
 
-    fetchAnswersForEntities(entities)
-      .then(createAnswerMap)
-      .then(replaceEntitiesWithLabels)
-      .then(contentState =>
-        EditorState.push(editorState, contentState, "apply-entity")
-      )
-      .then(this.handleChange);
+    performUpdate(fetchAuthorEntities());
   }
 
   handlePiping = answer => {

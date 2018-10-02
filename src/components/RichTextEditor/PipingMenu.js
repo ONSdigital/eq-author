@@ -92,10 +92,6 @@ export class Menu extends React.Component {
   filterQuestionnaire(questionnaire) {
     const { sectionId, pageId } = this.props.match.params;
 
-    if (!questionnaire) {
-      return [];
-    }
-
     // show nothing if first page of first section
     if (get(questionnaire, "sections[0].pages[0].id") === pageId) {
       return [];
@@ -133,22 +129,29 @@ export class Menu extends React.Component {
       title: "Pipe value"
     };
 
-    if (loading || disabled) {
+    if (loading || disabled || !data.questionnaire) {
       return <MenuButton {...buttonProps} disabled />;
     }
 
-    const filteredSections = this.filterQuestionnaire(data.questionnaire);
+    const { questionnaire } = data;
+
+    const filteredSections = this.filterQuestionnaire(questionnaire);
+
+    const isDisabled =
+      filteredSections.length === 0 && questionnaire.metadata.length === 0;
+
     return (
       <React.Fragment>
         <MenuButton
           {...buttonProps}
-          disabled={filteredSections.length === 0}
+          disabled={isDisabled}
           onClick={this.handleButtonClick}
           data-test="piping-button"
         />
         <ContentPickerModal
           isOpen={this.state.isPickerOpen}
-          data={filteredSections}
+          answerData={filteredSections}
+          metadataData={questionnaire.metadata}
           onClose={this.handlePickerClose}
           onSubmit={this.handlePickerSubmit}
           data-test="picker"

@@ -16,6 +16,7 @@ query GetQuestionnaire($id: ID!) {
         }
       }
       questionnaire {
+        id
         questionnaireInfo {
           totalSectionCount
         }

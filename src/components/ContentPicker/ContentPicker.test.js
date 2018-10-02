@@ -30,10 +30,10 @@ describe("Content Picker", () => {
   const createWrapper = (props, render = shallow) => {
     return render(
       <ContentPicker
-        {...props}
         onSubmit={onSubmit}
         onClose={onClose}
         config={config}
+        {...props}
       />
     );
   };
@@ -53,6 +53,21 @@ describe("Content Picker", () => {
       const wrapper = createWrapper({ data: generateMockPiping(1, 1, 1) });
       expect(wrapper.find(PAGE_PICKER_SELECTOR).prop("disabled")).toBe(true);
       expect(wrapper.find(ANSWER_PICKER_SELECTOR).prop("disabled")).toBe(true);
+    });
+
+    it("should start open when there is only one level", () => {
+      const oneLevelData = [
+        { id: "1", displayName: "Item 1" },
+        { id: "1", displayName: "Item 2" }
+      ];
+      const oneLevelConfig = [{ id: "oneLevel", title: "Item" }];
+      const wrapper = createWrapper({
+        data: oneLevelData,
+        config: oneLevelConfig
+      });
+      expect(wrapper.find("[data-test='oneLevel-picker']").prop("open")).toBe(
+        true
+      );
     });
 
     it("when the 1st title is open the 2nd and 3rd should be hidden", () => {

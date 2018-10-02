@@ -18,7 +18,7 @@ exports[`PipedValue decorator should render piped value entities 1`] = `
 exports[`PipedValue entityToHTML should convert entity to HTML 1`] = `
 <span
   data-id="123"
-  data-piped="answers"
+  data-piped="SomeType"
   data-type="TextField"
 >
   hello world

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "components/Button";
 import styled, { css } from "styled-components";
-import { colors } from "constants/theme";
+import { colors, radius } from "constants/theme";
 import chevronIcon from "./chevron.svg";
 
 const titleStyles = {
@@ -16,25 +16,25 @@ const titleStyles = {
 };
 
 export const TitleButton = styled(Button)`
+  display: block;
+  width: 100%;
   cursor: pointer;
   margin: 0;
   user-select: none;
   position: relative;
-  padding: 0.25em 3% 0.25em 6%;
+  padding: 0.8em 2em;
   background: ${colors.blue};
-  border-radius: 5px;
-  width: 100%;
-  height: 2.5em;
+  border-radius: ${radius};
   font-size: 1em;
   text-align: left;
-  display: inline;
 
   ${props => (props.disabled ? titleStyles.disabled : null)};
   ${props => (props.selected ? titleStyles.selected : null)};
 
   &::after {
     content: url(${chevronIcon});
-    float: right;
+    position: absolute;
+    right: 1.5em;
     transform: rotate(270deg);
   }
 
@@ -70,6 +70,7 @@ class ContentPickerTitle extends React.Component {
       open,
       ...otherProps
     } = this.props;
+
     return (
       <TitleButton
         onClick={onClick}

@@ -1,16 +1,19 @@
 import React from "react";
+import { shallow } from "enzyme";
+import { SynchronousPromise } from "synchronous-promise";
+import { RichUtils, Editor, EditorState, convertToRaw } from "draft-js";
+import Raw from "draft-js-raw-content-state";
+import { omit } from "lodash";
+
 import RichTextEditor from "components/RichTextEditor";
 import Toolbar, {
   STYLE_BLOCK,
   STYLE_INLINE,
   styleButtons
 } from "components/RichTextEditor/Toolbar";
-import { shallow } from "enzyme";
 import findById from "utils/findById";
-import { RichUtils, Editor, EditorState, convertToRaw } from "draft-js";
-import Raw from "draft-js-raw-content-state";
+
 import { createPipedEntity } from "./entities/PipedValue";
-import { SynchronousPromise } from "synchronous-promise";
 
 // https://github.com/facebook/draft-js/issues/702
 jest.mock("draft-js/lib/generateRandomKey", () => () => "123");
@@ -210,6 +213,13 @@ describe("components/RichTextEditor", function() {
         }
       ];
 
+      const metadata = [
+        {
+          id: "1",
+          displayName: "metadata 1"
+        }
+      ];
+
       let fetch;
 
       beforeEach(() => {
@@ -217,56 +227,123 @@ describe("components/RichTextEditor", function() {
       });
 
       it("should load labels for piped answers when mounted", () => {
-        const html = `<p><span data-piped="answers" data-id="1" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="3" data-type="TextField">[Piped Value]</span></p>`;
+        const html = `<p><span data-piped="answers" data-id="1" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span> <span data-piped="metadata" data-id="1">[Piped Value]</span></p>`;
 
         wrapper = shallow(
-          <RichTextEditor {...props} fetchAnswers={fetch} value={html} />
+          <RichTextEditor
+            {...props}
+            fetchAnswers={fetch}
+            metadata={metadata}
+            value={html}
+          />
         );
 
         const expected = new Raw()
-          .addBlock("[answer 1] [answer 2] [answer 3]")
-          .addEntity(createPipedEntity(createEntity, answers[0]), 0, 10)
-          .addEntity(createPipedEntity(createEntity, answers[1]), 11, 10)
-          .addEntity(createPipedEntity(createEntity, answers[2]), 22, 10)
+          .addBlock("[answer 1] [answer 2] [metadata 1]")
+          .addEntity(
+            createPipedEntity(createEntity, {
+              id: answers[0].id,
+              type: answers[0].type,
+              pipingType: "answers"
+            }),
+            0,
+            10
+          )
+          .addEntity(
+            createPipedEntity(createEntity, {
+              id: answers[1].id,
+              type: answers[1].type,
+              pipingType: "answers"
+            }),
+            11,
+            10
+          )
+          .addEntity(
+            createPipedEntity(createEntity, {
+              id: metadata[0].id,
+              type: null,
+              pipingType: "metadata"
+            }),
+            22,
+            12
+          )
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
       });
 
       it("should handle piped values for answers that no longer exist", () => {
-        const nonExistentAnswer = { id: "4", type: "TextField" };
-        const html = `<p><span data-piped="answers" data-id="4" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span></p>`;
+        const nonExistentAnswer = {
+          id: "4",
+          type: "TextField",
+          pipingType: "answers"
+        };
+        const nonExistentMetadata = {
+          id: "2",
+          type: null,
+          pipingType: "metadata"
+        };
+        const html = `<p><span data-piped="answers" data-id="4" data-type="TextField">[Piped Value]</span> <span data-piped="answers" data-id="2" data-type="TextField">[Piped Value]</span> <span data-piped="metadata" data-id="2">[Piped Value]</span></p>`;
 
         wrapper = shallow(
-          <RichTextEditor {...props} fetchAnswers={fetch} value={html} />
+          <RichTextEditor
+            {...props}
+            fetchAnswers={fetch}
+            value={html}
+            metadata={metadata}
+          />
         );
 
         const expected = new Raw()
-          .addBlock("[Deleted Answer] [answer 2]")
+          .addBlock("[Deleted Answer] [answer 2] [Deleted Metadata]")
           .addEntity(createPipedEntity(createEntity, nonExistentAnswer), 0, 16)
-          .addEntity(createPipedEntity(createEntity, answers[1]), 17, 10)
+          .addEntity(
+            createPipedEntity(createEntity, {
+              id: answers[1].id,
+              type: answers[1].type,
+              pipingType: "answers"
+            }),
+            17,
+            10
+          )
+          .addEntity(
+            createPipedEntity(createEntity, nonExistentMetadata),
+            28,
+            18
+          )
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
       });
 
-      it("should do nothing if no entities are found", () => {
+      it("should not request no answers when none are found", () => {
         wrapper = shallow(<RichTextEditor {...props} fetchAnswers={fetch} />);
         expect(fetch).not.toHaveBeenCalled();
       });
 
-      it("should not update piped value text if answer doesn't have label", () => {
-        const html = `<p><span data-piped="answers" data-id="123" data-type="TextField">[Piped Value]</span></p>`;
-        const answer = { id: "123", type: "TextField" };
-        fetch = jest.fn(() => SynchronousPromise.resolve([answer]));
+      it("should not update piped value text if answer or metadata doesn't have name to display", () => {
+        const html = `<p><span data-piped="answers" data-id="123" data-type="TextField">[Piped Value]</span> <span data-piped="metadata" data-id="456">[Piped Metadata]</span></p>`;
+        const answer = { id: "123", type: "TextField", pipingType: "answers" };
+        const metadataNoAlias = {
+          id: "456",
+          type: null,
+          pipingType: "metadata"
+        };
+        fetch = jest.fn(() => Promise.resolve([answer]));
 
         wrapper = shallow(
-          <RichTextEditor {...props} fetchAnswers={fetch} value={html} />
+          <RichTextEditor
+            {...props}
+            fetchAnswers={fetch}
+            metadata={[metadataNoAlias]}
+            value={html}
+          />
         );
 
         const expected = new Raw()
-          .addBlock("[Piped Value]")
+          .addBlock("[Piped Value] [Piped Metadata]")
           .addEntity(createPipedEntity(createEntity, answer), 0, 13)
+          .addEntity(createPipedEntity(createEntity, metadataNoAlias), 14, 16)
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
@@ -274,36 +351,44 @@ describe("components/RichTextEditor", function() {
     });
 
     describe("inserting piped values", () => {
-      it("should allow for new piped values to be added", () => {
+      it("should allow for new answer piped values to be added", () => {
         const answer = {
           id: "123",
-          label: "pipe",
           displayName: "FooBar",
-          type: "TextField"
+          type: "TextField",
+          pipingType: "answers"
         };
 
         wrapper.find(Toolbar).simulate("piping", answer);
 
         const expected = new Raw()
           .addBlock("[FooBar]")
-          .addEntity(createPipedEntity(createEntity, answer), 0, 8)
+          .addEntity(
+            createPipedEntity(createEntity, omit(answer, ["displayName"])),
+            0,
+            8
+          )
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
       });
 
-      it("should use displayName", () => {
+      it("should allow for new answer metadata values to be added", () => {
         const answer = {
           id: "123",
           displayName: "FooBar",
-          type: "TextField"
+          pipingType: "metadata"
         };
 
         wrapper.find(Toolbar).simulate("piping", answer);
 
         const expected = new Raw()
           .addBlock("[FooBar]")
-          .addEntity(createPipedEntity(createEntity, answer), 0, 8)
+          .addEntity(
+            createPipedEntity(createEntity, omit(answer, ["displayName"])),
+            0,
+            8
+          )
           .toRawContentState();
 
         expect(toRaw(wrapper)).toEqual(expected);
@@ -317,7 +402,8 @@ describe("components/RichTextEditor", function() {
         id: "123",
         label: "pipe",
         type: "TextField",
-        displayName: "FooBar"
+        displayName: "FooBar",
+        pipingType: "answers"
       };
 
       wrapper.find(Toolbar).simulate("piping", answer);

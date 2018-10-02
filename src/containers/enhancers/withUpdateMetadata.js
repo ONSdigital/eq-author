@@ -7,6 +7,7 @@ const updateMetadataMutation = gql`
   mutation UpdateMetadata($input: UpdateMetadataInput!) {
     updateMetadata(input: $input) {
       ...Metadata
+      displayName
     }
   }
 

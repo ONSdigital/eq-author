@@ -12,12 +12,12 @@ const PickerOption = styled(Button)`
   width: calc(100% - 0.25em);
   text-align: left;
   margin-bottom: 0.25em;
-  display: inline;
+  display: inline-block;
   font-weight: normal;
   background: transparent;
   color: ${colors.text};
   font-size: 1em;
-  padding: 0.5em 2em;
+  padding: 0.5em 1.4em;
 
   &:hover {
     color: ${colors.white};
@@ -26,6 +26,7 @@ const PickerOption = styled(Button)`
 
   ${props => (props.selected ? selectedStyle : null)};
 `;
+
 PickerOption.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
