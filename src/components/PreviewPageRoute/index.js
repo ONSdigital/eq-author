@@ -65,16 +65,18 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     const { questionPage } = this.props.data;
     const { description, guidance, answers } = questionPage;
 
-    const title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
+    let title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
+
+    if (!title) {
+      title = <Error>Missing Title</Error>;
+    } else {
+      title = <div dangerouslySetInnerHTML={{ __html: title }} />;
+    }
 
     return (
       <EditorLayout page={questionPage}>
         <Container>
-          <Title
-            dangerouslySetInnerHTML={{
-              __html: title || <Error>Missing Title</Error>
-            }}
-          />
+          <Title>{title}</Title>
 
           {description &&
             description !== "<p></p>" && (
