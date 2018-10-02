@@ -57,17 +57,17 @@ exports[`RoutingEditor routing rule set should render routing rule set 1`] = `
               }
             }
             onAddRoutingCondition={[Function]}
-            onAddRoutingRule={[Function]}
-            onDeleteRoutingCondition={[Function]}
-            onDeleteRoutingRule={[Function]}
-            onDeleteRoutingRuleSet={[Function]}
+            onAddRoutingRule={[MockFunction]}
+            onDeleteRoutingCondition={[MockFunction]}
+            onDeleteRoutingRule={[MockFunction]}
+            onDeleteRoutingRuleSet={[MockFunction]}
             onDeleteRule={[Function]}
             onElseChange={[Function]}
             onThenChange={[Function]}
-            onToggleConditionOption={[Function]}
-            onUpdateRoutingCondition={[Function]}
-            onUpdateRoutingRule={[Function]}
-            onUpdateRoutingRuleSet={[Function]}
+            onToggleConditionOption={[MockFunction]}
+            onUpdateRoutingCondition={[MockFunction]}
+            onUpdateRoutingRule={[MockFunction]}
+            onUpdateRoutingRuleSet={[MockFunction]}
             pagesAvailableForRouting={
               Array [
                 Object {
@@ -167,17 +167,17 @@ exports[`RoutingEditor routing rules should render routing rules 1`] = `
               }
             }
             onAddRoutingCondition={[Function]}
-            onAddRoutingRule={[Function]}
-            onDeleteRoutingCondition={[Function]}
-            onDeleteRoutingRule={[Function]}
-            onDeleteRoutingRuleSet={[Function]}
+            onAddRoutingRule={[MockFunction]}
+            onDeleteRoutingCondition={[MockFunction]}
+            onDeleteRoutingRule={[MockFunction]}
+            onDeleteRoutingRuleSet={[MockFunction]}
             onDeleteRule={[Function]}
             onElseChange={[Function]}
             onThenChange={[Function]}
-            onToggleConditionOption={[Function]}
-            onUpdateRoutingCondition={[Function]}
-            onUpdateRoutingRule={[Function]}
-            onUpdateRoutingRuleSet={[Function]}
+            onToggleConditionOption={[MockFunction]}
+            onUpdateRoutingCondition={[MockFunction]}
+            onUpdateRoutingRule={[MockFunction]}
+            onUpdateRoutingRuleSet={[MockFunction]}
             pagesAvailableForRouting={
               Array [
                 Object {
@@ -234,7 +234,7 @@ exports[`RoutingEditor when not routing rule set should render when no routing r
       >
         <RoutingRuleSetMsg
           data-test="routing-rule-set-empty-msg"
-          onAddRuleSet={[Function]}
+          onAddRuleSet={[MockFunction]}
           title="No routing rules exist for this question"
         >
           Users completing this question will be taken to the next page.
