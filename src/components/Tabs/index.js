@@ -12,6 +12,11 @@ import {
 
 import CustomPropTypes from "custom-prop-types";
 
+import IconPreview from "./icon-preview.svg?inline";
+import IconDesign from "./icon-design.svg?inline";
+import IconRouting from "./icon-route.svg?inline";
+import IconText from "components/IconText";
+
 export const TabsContainer = styled.nav`
   display: flex;
   justify-content: center;
@@ -21,10 +26,11 @@ export const TabsContainer = styled.nav`
 `;
 
 const Tab = styled(NavLink)`
+  --color-text: ${colors.white};
   font-size: 1em;
   font-weight: bold;
-  color: ${colors.white};
-  padding: 0.3em 2em;
+  color: var(--color-text);
+  padding: 0 0.4em 0 0.2em;
   border: 1px solid ${colors.secondary};
   border-bottom: none;
   background-color: ${colors.secondary};
@@ -34,7 +40,7 @@ const Tab = styled(NavLink)`
 
   &[aria-current="true"] {
     background: ${colors.white};
-    color: ${colors.secondary};
+    --color-text: ${colors.secondary};
     border: 1px solid ${colors.bordersLight};
     border-bottom: none;
   }
@@ -62,19 +68,23 @@ export const UnwrappedTabs = ({ match, children }) => {
     ? buildPagePath(match.params)
     : buildSectionPath(match.params);
 
+  const preview = <IconText icon={IconPreview}>Preview</IconText>;
+  const routing = <IconText icon={IconRouting}>Routing</IconText>;
+  const design = <IconText icon={IconDesign}>Design</IconText>;
+
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
-        <Tab to={url}>Design</Tab>
+        <Tab to={url}>{design}</Tab>
         {pageId ? (
           <Fragment>
-            <Tab to={buildPreviewPath(match.params)}>Preview</Tab>
-            <Tab to={buildRoutingPath(match.params)}>Routing</Tab>
+            <Tab to={buildPreviewPath(match.params)}>{preview}</Tab>
+            <Tab to={buildRoutingPath(match.params)}>{routing}</Tab>
           </Fragment>
         ) : (
           <Fragment>
-            <DisabledTab>Preview</DisabledTab>
-            <DisabledTab>Routing</DisabledTab>
+            <DisabledTab>{preview}</DisabledTab>
+            <DisabledTab>{routing}</DisabledTab>
           </Fragment>
         )}
       </TabsContainer>

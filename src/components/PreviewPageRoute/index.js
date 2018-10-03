@@ -5,9 +5,12 @@ import styled from "styled-components";
 
 import QuestionPageEditor from "components/QuestionPageEditor";
 import EditorLayout from "components/EditorLayout";
-import Error from "./answers/ValidationError";
 
 import { renderAnswer } from "./answers";
+import { colors } from "constants/theme";
+
+import IconInfo from "./icon-info.svg?inline";
+import IconText from "components/IconText";
 
 const Container = styled.div`
   padding: 2em;
@@ -32,13 +35,26 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 1.5em;
+const SurveyHeader = styled.h1`
+  font-size: 1rem;
+  padding: 1em;
+  margin: 1em;
+  background: #3b7a9e;
+  color: ${colors.white};
+  border-radius: 4px 4px 0 0;
+`;
+
+const SurveyTitle = styled.span`
+  font-size: 1.6em;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 1.4em;
   margin: 0 0 1em;
 `;
 
 const Description = styled.div`
-  margin-bottom: 1 em;
+  margin-bottom: 1em;
 `;
 
 const Guidance = styled.div`
@@ -55,6 +71,19 @@ const Answers = styled.div`
   margin-bottom: 1em;
 `;
 
+const NoAnswers = styled.div`
+  margin-bottom: 1em;
+  padding: 2em;
+  border-radius: 4px;
+  border: 2px dashed #b5c4cb;
+  text-align: center;
+  color: ${colors.secondary};
+`;
+
+const Error = styled.span`
+  color: ${colors.red};
+`;
+
 export class UnwrappedQuestionPageRoute extends React.Component {
   render() {
     if (this.props.loading) {
@@ -68,7 +97,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     let title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
 
     if (!title) {
-      title = <Error>Missing Title</Error>;
+      title = <Error>Untitled Page</Error>;
     } else {
       title = <div dangerouslySetInnerHTML={{ __html: title }} />;
     }
@@ -76,7 +105,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     return (
       <EditorLayout page={questionPage}>
         <Container>
-          <Title>{title}</Title>
+          <PageTitle>{title}</PageTitle>
 
           {description &&
             description !== "<p></p>" && (
@@ -89,8 +118,15 @@ export class UnwrappedQuestionPageRoute extends React.Component {
                 <Panel dangerouslySetInnerHTML={{ __html: guidance }} />
               </Guidance>
             )}
-
-          <Answers>{answers.map(renderAnswer)}</Answers>
+          {answers.length ? (
+            <Answers>{answers.map(renderAnswer)}</Answers>
+          ) : (
+            <NoAnswers>
+              <IconText icon={IconInfo}>
+                No answers have been added to this question.
+              </IconText>
+            </NoAnswers>
+          )}
         </Container>
       </EditorLayout>
     );
