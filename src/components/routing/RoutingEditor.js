@@ -104,7 +104,6 @@ class RoutingEditor extends React.Component {
       questionnaire,
       currentPage,
       availableRoutingDestinations,
-      onAddRoutingRuleSet,
       match,
       ...otherProps
     } = this.props;

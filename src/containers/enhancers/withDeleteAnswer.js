@@ -3,7 +3,7 @@ import deleteAnswerMutation from "graphql/deleteAnswer.graphql";
 import { remove } from "lodash";
 import fragment from "graphql/pageFragment.graphql";
 
-export const deleteUpdater = (pageId, answerId) => (proxy, result) => {
+export const deleteUpdater = (pageId, answerId) => proxy => {
   const id = `QuestionPage${pageId}`;
   const page = proxy.readFragment({ id, fragment });
 
@@ -34,7 +34,7 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     });
 
     return mutation
-      .then(res => displayToast(ownProps, pageId, answerId))
+      .then(() => displayToast(ownProps, pageId, answerId))
       .then(() => mutation);
   }
 });

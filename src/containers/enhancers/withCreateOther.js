@@ -35,7 +35,7 @@ export const createUpdater = answerId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate, ownProps }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onAddOther({ id }) {
     const input = {
       parentAnswerId: id

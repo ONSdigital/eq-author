@@ -294,7 +294,7 @@ class RichTextEditor extends React.Component {
     this.editorInstance = editorInstance;
   };
 
-  handleClick = e => {
+  handleClick = () => {
     if (!this.state.focused) {
       this.focus();
     }
@@ -312,7 +312,7 @@ class RichTextEditor extends React.Component {
     return this.setState({ editorState }, callback);
   };
 
-  handleToggle = ({ id, type, style }) => {
+  handleToggle = ({ type, style }) => {
     const toggle =
       type === STYLE_BLOCK
         ? RichUtils.toggleBlockType
@@ -322,7 +322,7 @@ class RichTextEditor extends React.Component {
     this.handleChange(editorState);
   };
 
-  handleBlur = e => {
+  handleBlur = () => {
     this.props.onUpdate({
       name: this.props.id,
       value: this.getHTML()
@@ -335,7 +335,7 @@ class RichTextEditor extends React.Component {
     }, 0);
   };
 
-  handleFocus = e => {
+  handleFocus = () => {
     clearTimeout(this.timeoutID);
 
     if (!this.unmounted && !this.state.focused) {
@@ -389,7 +389,6 @@ class RichTextEditor extends React.Component {
     const contentState = editorState.getCurrentContent();
     const selection = editorState.getSelection();
     const {
-      placeholder,
       label,
       multiline,
       size,

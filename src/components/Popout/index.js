@@ -102,7 +102,7 @@ class Popout extends React.Component {
     }
   };
 
-  handleToggleOpen = e => {
+  handleToggleOpen = () => {
     this.props.onToggleOpen(!this.props.open);
 
     if (this.props.open) {

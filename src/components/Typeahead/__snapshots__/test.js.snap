@@ -15,6 +15,7 @@ exports[`Typeahead should render 1`] = `
   onSelect={[Function]}
   onStateChange={[Function]}
   onUserAction={[Function]}
+  scrollIntoView={[Function]}
   selectedItemChanged={[Function]}
   stateReducer={[Function]}
   suppressRefError={false}

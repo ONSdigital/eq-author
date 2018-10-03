@@ -2,6 +2,11 @@
 
 exports[`DeleteConfirmDialog should render 1`] = `
 <DeleteConfirmDialog__DeleteConfirmModalDialog
+  data={
+    Object {
+      "test": "delete-confirm-modal",
+    }
+  }
   onClose={[Function]}
   page={
     Object {
@@ -12,7 +17,6 @@ exports[`DeleteConfirmDialog should render 1`] = `
       "title": "",
     }
   }
-  testId="delete-confirm-modal"
 >
   <DialogHeader___default>
     <DialogMessage__Message>

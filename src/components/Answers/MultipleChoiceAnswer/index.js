@@ -106,7 +106,7 @@ class MultipleChoiceAnswer extends Component {
       .then(focusOnEntity);
   };
 
-  handleDeleteOther = e => {
+  handleDeleteOther = () => {
     return this.props
       .onDeleteOther(this.props.answer)
       .then(() => last(this.props.answer.options))
@@ -146,7 +146,7 @@ class MultipleChoiceAnswer extends Component {
             component={Options}
             data-test="multiple-choice-options"
           >
-            {answer.options.map((option, optionIndex, options) => (
+            {answer.options.map(option => (
               <OptionTransition key={option.id}>
                 <Option
                   {...otherProps}

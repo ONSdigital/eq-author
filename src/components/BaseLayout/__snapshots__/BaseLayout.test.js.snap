@@ -18,6 +18,11 @@ exports[`components/BaseLayout should render 1`] = `
       <BaseLayout__Main>
         Children
       </BaseLayout__Main>
+      <Portal
+        containerInfo={<div />}
+      >
+        <Connect(ToastArea) />
+      </Portal>
     </BaseLayout__Wrapper>
   </Connect(UnconnectedApp)>
 </GetContext>
@@ -48,6 +53,11 @@ exports[`components/BaseLayout should render a title 1`] = `
           Children
         </ScrollPane>
       </BaseLayout__Main>
+      <Portal
+        containerInfo={<div />}
+      >
+        <Connect(ToastArea) />
+      </Portal>
     </BaseLayout__Wrapper>
   </Connect(UnconnectedApp)>
 </GetContext>

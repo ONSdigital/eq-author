@@ -11,9 +11,7 @@ describe("dashboard", () => {
 
   it("should contain button to create a questionnaire", () => {
     cy.get(testId("create-questionnaire")).click();
-    cy.get(testId("questionnaire-settings-modal", "testid")).should(
-      "be.visible"
-    );
+    cy.get(testId("questionnaire-settings-modal")).should("be.visible");
   });
 
   describe("empty state", () => {

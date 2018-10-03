@@ -58,6 +58,7 @@ exports[`RoutingEditor routing rule set should render routing rule set 1`] = `
             }
             onAddRoutingCondition={[Function]}
             onAddRoutingRule={[Function]}
+            onAddRoutingRuleSet={[Function]}
             onDeleteRoutingCondition={[Function]}
             onDeleteRoutingRule={[Function]}
             onDeleteRoutingRuleSet={[Function]}
@@ -168,6 +169,7 @@ exports[`RoutingEditor routing rules should render routing rules 1`] = `
             }
             onAddRoutingCondition={[Function]}
             onAddRoutingRule={[Function]}
+            onAddRoutingRuleSet={[Function]}
             onDeleteRoutingCondition={[Function]}
             onDeleteRoutingRule={[Function]}
             onDeleteRoutingRuleSet={[Function]}

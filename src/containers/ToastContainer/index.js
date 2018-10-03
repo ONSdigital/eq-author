@@ -71,13 +71,13 @@ export const ToastArea = ({
                   {toast.undoAction && (
                     <UndoButton
                       data-test="btn-undo"
-                      onClick={function() {
+                      onClick={() =>
                         undoToast(
                           id,
                           otherProps[toast.undoAction],
                           toast.context
-                        );
-                      }}
+                        )
+                      }
                     >
                       Undo
                     </UndoButton>

@@ -13,6 +13,9 @@ const config = {
 module.exports = {
   extends: ["eslint-config-eq-author", "eslint-config-eq-author/react"],
   settings: {
+    react: {
+      version: "latest"
+    },
     "import/resolver": {
       webpack: {
         config

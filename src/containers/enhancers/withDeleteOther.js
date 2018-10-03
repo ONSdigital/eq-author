@@ -2,7 +2,7 @@ import { graphql } from "react-apollo";
 import deleteOtherMutation from "graphql/deleteOther.graphql";
 import fragment from "graphql/answerFragment.graphql";
 
-export const deleteUpdater = answerId => (proxy, result) => {
+export const deleteUpdater = answerId => proxy => {
   const id = `MultipleChoiceAnswer${answerId}`;
   const parentAnswer = proxy.readFragment({ id, fragment });
 
@@ -15,7 +15,7 @@ export const deleteUpdater = answerId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ ownProps, mutate }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onDeleteOther({ id }) {
     const answer = { parentAnswerId: id };
 

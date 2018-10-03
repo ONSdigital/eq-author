@@ -30,112 +30,110 @@ exports[`MetadataTable should render 1`] = `
     </TableRow>
   </TableHead>
   <TableBody>
-    <React.Fragment>
-      <Connect(withEntityEditor(StatelessRow))
-        key="1"
-        metadata={
-          Object {
-            "alias": "test_alias",
-            "dateValue": null,
-            "id": "1",
-            "key": "tx_id",
-            "languageValue": null,
-            "regionValue": null,
-            "textValue": "text",
-            "type": "Text",
-          }
+    <Connect(withEntityEditor(StatelessRow))
+      key="1"
+      metadata={
+        Object {
+          "alias": "test_alias",
+          "dateValue": null,
+          "id": "1",
+          "key": "tx_id",
+          "languageValue": null,
+          "regionValue": null,
+          "textValue": "text",
+          "type": "Text",
         }
-        onDelete={[Function]}
-        onUpdate={[Function]}
-        questionnaireId="1"
-        usedKeys={
-          Array [
-            "tx_id",
-            "iat",
-            "iat",
-            "iat",
-          ]
+      }
+      onDelete={[Function]}
+      onUpdate={[Function]}
+      questionnaireId="1"
+      usedKeys={
+        Array [
+          "tx_id",
+          "iat",
+          "iat",
+          "iat",
+        ]
+      }
+    />
+    <Connect(withEntityEditor(StatelessRow))
+      key="2"
+      metadata={
+        Object {
+          "alias": "date_alias",
+          "dateValue": "2018-09-17",
+          "id": "2",
+          "key": "iat",
+          "languageValue": null,
+          "regionValue": null,
+          "textValue": null,
+          "type": "Date",
         }
-      />
-      <Connect(withEntityEditor(StatelessRow))
-        key="2"
-        metadata={
-          Object {
-            "alias": "date_alias",
-            "dateValue": "2018-09-17",
-            "id": "2",
-            "key": "iat",
-            "languageValue": null,
-            "regionValue": null,
-            "textValue": null,
-            "type": "Date",
-          }
+      }
+      onDelete={[Function]}
+      onUpdate={[Function]}
+      questionnaireId="1"
+      usedKeys={
+        Array [
+          "tx_id",
+          "iat",
+          "iat",
+          "iat",
+        ]
+      }
+    />
+    <Connect(withEntityEditor(StatelessRow))
+      key="3"
+      metadata={
+        Object {
+          "alias": "region_alias",
+          "dateValue": null,
+          "id": "3",
+          "key": "iat",
+          "languageValue": null,
+          "regionValue": "GB_ENG",
+          "textValue": null,
+          "type": "Region",
         }
-        onDelete={[Function]}
-        onUpdate={[Function]}
-        questionnaireId="1"
-        usedKeys={
-          Array [
-            "tx_id",
-            "iat",
-            "iat",
-            "iat",
-          ]
+      }
+      onDelete={[Function]}
+      onUpdate={[Function]}
+      questionnaireId="1"
+      usedKeys={
+        Array [
+          "tx_id",
+          "iat",
+          "iat",
+          "iat",
+        ]
+      }
+    />
+    <Connect(withEntityEditor(StatelessRow))
+      key="4"
+      metadata={
+        Object {
+          "alias": "language_alias",
+          "dateValue": null,
+          "id": "4",
+          "key": "iat",
+          "languageValue": "cy",
+          "regionValue": null,
+          "textValue": null,
+          "type": "Language",
         }
-      />
-      <Connect(withEntityEditor(StatelessRow))
-        key="3"
-        metadata={
-          Object {
-            "alias": "region_alias",
-            "dateValue": null,
-            "id": "3",
-            "key": "iat",
-            "languageValue": null,
-            "regionValue": "GB_ENG",
-            "textValue": null,
-            "type": "Region",
-          }
-        }
-        onDelete={[Function]}
-        onUpdate={[Function]}
-        questionnaireId="1"
-        usedKeys={
-          Array [
-            "tx_id",
-            "iat",
-            "iat",
-            "iat",
-          ]
-        }
-      />
-      <Connect(withEntityEditor(StatelessRow))
-        key="4"
-        metadata={
-          Object {
-            "alias": "language_alias",
-            "dateValue": null,
-            "id": "4",
-            "key": "iat",
-            "languageValue": "cy",
-            "regionValue": null,
-            "textValue": null,
-            "type": "Language",
-          }
-        }
-        onDelete={[Function]}
-        onUpdate={[Function]}
-        questionnaireId="1"
-        usedKeys={
-          Array [
-            "tx_id",
-            "iat",
-            "iat",
-            "iat",
-          ]
-        }
-      />
-    </React.Fragment>
+      }
+      onDelete={[Function]}
+      onUpdate={[Function]}
+      questionnaireId="1"
+      usedKeys={
+        Array [
+          "tx_id",
+          "iat",
+          "iat",
+          "iat",
+        ]
+      }
+    />
   </TableBody>
   <TableFoot>
     <TableRow>

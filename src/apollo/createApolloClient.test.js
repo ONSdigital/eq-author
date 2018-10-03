@@ -1,6 +1,5 @@
 import createApolloClient from "./createApolloClient";
 import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
 
 describe("createClient", () => {
   let link, cache, client;
@@ -14,10 +13,6 @@ describe("createClient", () => {
 
   it("should return an instance of ApolloClient", () => {
     expect(client).toBeInstanceOf(ApolloClient);
-  });
-
-  it("should set the link", () => {
-    expect(client.link).toBeInstanceOf(ApolloLink);
   });
 
   it("should set the cache", () => {

@@ -27,7 +27,7 @@ const undeleteFailure = () => {
   };
 };
 
-export const createUpdate = context => (proxy, result) => {
+export const createUpdate = () => (proxy, result) => {
   const data = proxy.readQuery({ query: GetQuestionnaireList });
 
   data.questionnaires.push(result.data.undeleteQuestionnaire);

@@ -2,9 +2,13 @@
 
 exports[`QuestionnaireSettingsModal should render 1`] = `
 <QuestionnaireSettingsModal__StyledModal
+  data={
+    Object {
+      "test": "questionnaire-settings-modal",
+    }
+  }
   isOpen={false}
   onClose={[Function]}
-  testId="questionnaire-settings-modal"
 >
   <DialogHeader___default>
     <DialogMessage__Message>

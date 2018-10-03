@@ -86,7 +86,7 @@ storiesOf("NavigationSidebar", module)
     return <NavigationSidebar {...props} />;
   })
   .add("Multiple sections", () => {
-    const { questionniare, ...otherProps } = props;
+    const { ...otherProps } = props;
     const questionnaireWithMultipleSection = {
       ...questionnaire,
       sections: [...questionnaire.sections, section2]

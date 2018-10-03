@@ -85,13 +85,7 @@ class KeySelect extends Component {
         selectedItem={{ value }}
         inputValue={value}
       >
-        {({
-          getInputProps,
-          getLabelProps,
-          isOpen,
-          openMenu,
-          ...otherProps
-        }) => (
+        {({ getInputProps, isOpen, openMenu, ...otherProps }) => (
           <div>
             <TableTypeaheadInput
               name={name}

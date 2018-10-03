@@ -37,7 +37,7 @@ const QuestionnaireSettingsModal = ({
   <StyledModal
     isOpen={isOpen}
     onClose={onClose}
-    testId="questionnaire-settings-modal"
+    data={{ test: "questionnaire-settings-modal" }}
   >
     <DialogHeader>
       <Message>

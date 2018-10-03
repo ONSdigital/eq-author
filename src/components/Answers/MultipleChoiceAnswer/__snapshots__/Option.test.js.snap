@@ -608,7 +608,10 @@ exports[`Option should render a checkbox 1`] = `
                   <div
                     className="__react_component_tooltip place-top type-dark "
                     data-id="tooltip"
-                  />
+                    id="tooltip-1"
+                  >
+                    Delete option
+                  </div>
                 </ReactTooltip>
               </Tooltip__StyledTooltip>
             </Tooltip>

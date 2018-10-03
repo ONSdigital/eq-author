@@ -45,16 +45,16 @@ export default class Toast extends React.Component {
     this.props.onClose(this.props.id);
   };
 
-  handlePause = e => {
+  handlePause = () => {
     invoke(this.timer, "pause");
   };
 
-  handleResume = e => {
+  handleResume = () => {
     invoke(this.timer, "resume");
   };
 
   render() {
-    const { children, onClose, ...otherProps } = this.props;
+    const { children, ...otherProps } = this.props;
     const child = React.Children.only(children);
 
     return (

@@ -3,10 +3,7 @@ import deleteRoutingCondition from "graphql/deleteRoutingCondition.graphql";
 import fragment from "graphql/fragments/routing-rule.graphql";
 import { remove } from "lodash";
 
-export const createUpdater = (routingRuleId, routingConditionId) => (
-  proxy,
-  result
-) => {
+export const createUpdater = (routingRuleId, routingConditionId) => proxy => {
   const id = `RoutingRule${routingRuleId}`;
   const routingRule = proxy.readFragment({
     id,
@@ -24,7 +21,7 @@ export const createUpdater = (routingRuleId, routingConditionId) => (
   });
 };
 
-export const mapMutateToProps = ({ mutate, ownProps }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onDeleteRoutingCondition(routingRuleId, routingConditionId) {
     const input = {
       id: routingConditionId

@@ -37,7 +37,7 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
     showMovePageDialog: false
   };
 
-  handleAddPage = e => {
+  handleAddPage = () => {
     const {
       onAddPage,
       match,

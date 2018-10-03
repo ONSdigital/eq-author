@@ -63,6 +63,7 @@ Cypress.Commands.add("visitStubbed", function(url, operations = {}) {
     if (resultStub) {
       return Promise.resolve(responseStub(resultStub));
     }
+    // eslint-disable-next-line no-console
     console.log(`${operationName} has not been stubbed`);
     return Promise.reject(new Error(`${operationName} has not been stubbed`));
   }

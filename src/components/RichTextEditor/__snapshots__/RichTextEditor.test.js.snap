@@ -118,6 +118,7 @@ exports[`components/RichTextEditor should allow multiline input 1`] = `
         onPiping={[Function]}
         onToggle={[Function]}
         onUpdate={[Function]}
+        placeholder=""
         selectionIsCollapsed={true}
         visible={false}
       />
@@ -404,6 +405,7 @@ exports[`components/RichTextEditor should render 1`] = `
         onPiping={[Function]}
         onToggle={[Function]}
         onUpdate={[Function]}
+        placeholder=""
         selectionIsCollapsed={true}
         visible={false}
       />
@@ -741,6 +743,7 @@ exports[`components/RichTextEditor should render existing content 1`] = `
         onPiping={[Function]}
         onToggle={[Function]}
         onUpdate={[Function]}
+        placeholder=""
         selectionIsCollapsed={true}
         value="
   <h2>List of styles:</h2>

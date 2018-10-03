@@ -20,7 +20,7 @@ export const createUpdater = (optionId, answerId) => proxy => {
   });
 };
 
-export const mapMutateToProps = ({ ownProps, mutate }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onDeleteOption(optionId, answerId) {
     const option = {
       id: optionId

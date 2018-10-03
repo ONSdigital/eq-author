@@ -35,7 +35,7 @@ export const displayToast = (ownProps, sectionId, pageId) => {
   });
 };
 
-export const createUpdater = (sectionId, pageId) => (proxy, result) => {
+export const createUpdater = (sectionId, pageId) => proxy => {
   const id = `Section${sectionId}`;
   const section = proxy.readFragment({ id, fragment });
 

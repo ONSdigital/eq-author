@@ -51,7 +51,7 @@ const items = [{ value: "apple" }, { value: "pear" }, { value: "orange" }];
 
 const typeahead = (
   <Typeahead onChange={action("change")}>
-    {({ getInputProps, getLabelProps, isOpen, openMenu, ...otherProps }) => (
+    {({ getInputProps, isOpen, openMenu, ...otherProps }) => (
       <div>
         <TableTypeaheadInput {...getInputProps({ onFocus: openMenu })} />
         {isOpen && <TableTypeaheadMenu items={items} {...otherProps} />}

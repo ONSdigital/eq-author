@@ -23,7 +23,7 @@ export const dismissToast = id => {
 };
 
 export const undoToast = (id, undoAction, context) => {
-  return (dispatch, getState, { client }) => {
+  return dispatch => {
     return undoAction(id, context).then(() => dispatch(dismissToast(id)));
   };
 };

@@ -19,7 +19,7 @@ exports[`AnswerValidation should not render there are no valid validation types 
 
 exports[`AnswerValidation should render 1`] = `
 <AnswerValidation__Container>
-  <[object Object]
+  <ContextProvider
     value={
       Object {
         "answer": Object {
@@ -85,6 +85,6 @@ exports[`AnswerValidation should render 1`] = `
       onClose={[Function]}
       title="Number validation"
     />
-  </[object Object]>
+  </ContextProvider>
 </AnswerValidation__Container>
 `;

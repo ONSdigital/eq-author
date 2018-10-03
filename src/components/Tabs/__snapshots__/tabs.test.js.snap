@@ -92,21 +92,21 @@ exports[`components/Nav when no pageId should render section link 1`] = `
         >
           <NavLink
             activeClassName="active"
-            ariaCurrent="true"
+            aria-current="page"
             className="c1"
             to="/questionnaire/123/888/design"
           >
             <Route
-              path="/questionnaire/123/888/design"
+              path="\\\\/questionnaire\\\\/123\\\\/888\\\\/design"
             >
               <Link
-                aria-current={false}
+                aria-current={null}
                 className="c1"
                 replace={false}
                 to="/questionnaire/123/888/design"
               >
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="c1"
                   href="/questionnaire/123/888/design"
                   onClick={[Function]}
@@ -210,21 +210,21 @@ exports[`components/Nav when pageId present should render page link 1`] = `
         >
           <NavLink
             activeClassName="active"
-            ariaCurrent="true"
+            aria-current="page"
             className="c1"
             to="/questionnaire/1/2/3/design"
           >
             <Route
-              path="/questionnaire/1/2/3/design"
+              path="\\\\/questionnaire\\\\/1\\\\/2\\\\/3\\\\/design"
             >
               <Link
-                aria-current={false}
+                aria-current={null}
                 className="c1"
                 replace={false}
                 to="/questionnaire/1/2/3/design"
               >
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="c1"
                   href="/questionnaire/1/2/3/design"
                   onClick={[Function]}
@@ -241,21 +241,21 @@ exports[`components/Nav when pageId present should render page link 1`] = `
         >
           <NavLink
             activeClassName="selected"
-            ariaCurrent="true"
+            aria-current="page"
             className="c1"
             to="/questionnaire/1/2/3/routing"
           >
             <Route
-              path="/questionnaire/1/2/3/routing"
+              path="\\\\/questionnaire\\\\/1\\\\/2\\\\/3\\\\/routing"
             >
               <Link
-                aria-current={false}
+                aria-current={null}
                 className="c1"
                 replace={false}
                 to="/questionnaire/1/2/3/routing"
               >
                 <a
-                  aria-current={false}
+                  aria-current={null}
                   className="c1"
                   href="/questionnaire/1/2/3/routing"
                   onClick={[Function]}

@@ -15,7 +15,9 @@ exports[`SectionEditor should render 1`] = `
   />
   <MoveSectionQuery
     questionnaireId="1"
-  />
+  >
+    <Component />
+  </MoveSectionQuery>
   <SectionEditor__Padding>
     <SectionEditor__Alias>
       <SectionEditor__AliasField>
@@ -76,7 +78,9 @@ exports[`SectionEditor should render 2`] = `
   />
   <MoveSectionQuery
     questionnaireId="1"
-  />
+  >
+    <Component />
+  </MoveSectionQuery>
   <SectionEditor__Padding>
     <SectionEditor__Alias>
       <SectionEditor__AliasField>

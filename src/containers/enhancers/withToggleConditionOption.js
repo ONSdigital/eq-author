@@ -20,7 +20,7 @@ export const createUpdater = routingConditionId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate, ownProps }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onToggleConditionOption(conditionId, optionId, checked) {
     const input = {
       conditionId,

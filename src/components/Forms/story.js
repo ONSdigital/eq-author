@@ -46,17 +46,15 @@ class NumberWrapper extends React.Component {
 
 storiesOf("Forms", module)
   .addDecorator(story => <Width>{story()}</Width>)
-  .add("Input/Text", props => (
+  .add("Input/Text", () => (
     <Field>
       <Label htmlFor="name">Name</Label>
       <Input id="name" type="text" />
     </Field>
   ))
-  .add("Input/Number", props => <NumberWrapper min={0} max={100} />)
-  .add("Input/Number Min=1 Max=100", props => (
-    <NumberWrapper min={1} max={100} />
-  ))
-  .add("Input/Checkbox", props => (
+  .add("Input/Number", () => <NumberWrapper min={0} max={100} />)
+  .add("Input/Number Min=1 Max=100", () => <NumberWrapper min={1} max={100} />)
+  .add("Input/Checkbox", () => (
     <Field>
       <Input id="navigation" type="checkbox" />
       <Label htmlFor="navigation" inline>

@@ -68,7 +68,7 @@ export class StatelessOption extends Component {
     autoFocus: true
   };
 
-  handleDeleteClick = e => {
+  handleDeleteClick = () => {
     this.props.onDelete(this.props.option.id);
   };
 
