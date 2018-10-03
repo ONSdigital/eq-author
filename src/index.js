@@ -11,6 +11,12 @@ import createHttpLink from "apollo/createHttpLink";
 import createErrorLink from "apollo/createApolloErrorLink";
 import { ApolloLink } from "apollo-link";
 
+if (process.env.REACT_APP_FUNCTIONAL_TEST === "true") {
+  import("cypressautomocker/include-in-webapp").then(installCypressHooks =>
+    installCypressHooks()
+  );
+}
+
 if (process.env.REACT_APP_USE_SENTRY === "true") {
   Raven.config(
     "https://b72ac0e6b36344fca4698290bf9a191d@sentry.io/233989"

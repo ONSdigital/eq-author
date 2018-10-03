@@ -1,4 +1,7 @@
+import registerAutoMockCommands from "cypressautomocker/include-in-tests";
 import { setQuestionnaireSettings, testId } from "../utils";
+
+registerAutoMockCommands();
 
 Cypress.Commands.add("login", options => {
   const payload = Object.assign(

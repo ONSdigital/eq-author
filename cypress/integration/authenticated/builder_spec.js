@@ -21,8 +21,18 @@ const sectionRegex = /\/questionnaire\/\d+\/\d+\/design$/;
 describe("builder", () => {
   const checkIsOnDesignPage = () => cy.hash().should("match", /\/design$/);
 
+  before(() => {
+    console.log("before");
+    console.log(cy);
+    cy.automock("BUILDER");
+  });
+
+  after(() => {
+    cy.automockEnd();
+  });
+
   beforeEach(() => {
-    cy.visit("/");
+    cy.visit("/", { onBeforeLoad: cwin => (cwin.fetch = null) });
     cy.login();
     addQuestionnaire(questionnaireTitle);
   });
