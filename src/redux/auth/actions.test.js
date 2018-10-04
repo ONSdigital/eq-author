@@ -1,11 +1,5 @@
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import {
-  signOutUser,
-  signInUser,
-  signedOutUser,
-  verifyAuthStatus
-} from "./actions";
 import { SynchronousPromise } from "synchronous-promise";
 
 describe("auth actions", () => {
@@ -15,6 +9,11 @@ describe("auth actions", () => {
     photoURL: "http://foo.org/bar.jpg"
   };
   let store, auth;
+  const getActions = (config = {}) => {
+    jest.resetModules();
+    jest.doMock("config", () => ({ ...config }));
+    return require("./actions");
+  };
 
   beforeEach(() => {
     auth = {
@@ -29,8 +28,13 @@ describe("auth actions", () => {
     });
   });
 
+  afterAll(() => {
+    jest.resetModules();
+  });
+
   describe("signOutUser", () => {
     it("should sign user out", () => {
+      const { signOutUser, signedOutUser } = getActions();
       return store.dispatch(signOutUser()).then(() => {
         expect(auth.signOut).toHaveBeenCalled();
         expect(store.getActions()).toEqual([signedOutUser()]);
@@ -41,17 +45,15 @@ describe("auth actions", () => {
       let FS;
 
       beforeEach(() => {
-        process.env.REACT_APP_USE_FULLSTORY = "true";
-
         window.FS = FS = { identify: jest.fn() };
       });
 
       afterEach(() => {
-        delete process.env.REACT_APP_USE_FULLSTORY;
         delete window.FS;
       });
 
       it("should anonymise user", () => {
+        const { signOutUser } = getActions({ REACT_APP_USE_FULLSTORY: "true" });
         return store.dispatch(signOutUser()).then(() => {
           expect(FS.identify).toHaveBeenCalledWith(false);
         });
@@ -60,7 +62,7 @@ describe("auth actions", () => {
   });
 
   describe("verifyAuthStatus", () => {
-    let changeHandler, result;
+    let changeHandler, signInUser, verifyAuthStatus, signedOutUser;
 
     beforeEach(() => {
       auth.onAuthStateChanged.mockImplementation(handler => {
@@ -68,26 +70,31 @@ describe("auth actions", () => {
         return "FOOBAR";
       });
 
-      result = store.dispatch(verifyAuthStatus());
+      const actions = getActions();
+      signInUser = actions.signInUser;
+      verifyAuthStatus = actions.verifyAuthStatus;
+      signedOutUser = actions.signedOutUser;
     });
 
     it("should return result of onAuthStateChanged", () => {
+      const result = store.dispatch(verifyAuthStatus());
       expect(result).toBe("FOOBAR");
     });
 
     it("should start listening to auth changes", () => {
+      store.dispatch(verifyAuthStatus());
       expect(auth.onAuthStateChanged).toHaveBeenCalledTimes(1);
     });
 
     it("should sign in user if determined to be authenticated", () => {
+      store.dispatch(verifyAuthStatus());
       changeHandler(user);
-
       expect(store.getActions()).toEqual([signInUser(user)]);
     });
 
     it("should not sign in user if determined to be unauthenticated", () => {
+      store.dispatch(verifyAuthStatus());
       changeHandler();
-
       expect(store.getActions()).toEqual([signedOutUser()]);
     });
 
@@ -95,17 +102,17 @@ describe("auth actions", () => {
       let FS;
 
       beforeEach(() => {
-        process.env.REACT_APP_USE_FULLSTORY = "true";
-
+        verifyAuthStatus = getActions({ REACT_APP_USE_FULLSTORY: "true" })
+          .verifyAuthStatus;
         window.FS = FS = { identify: jest.fn() };
       });
 
       afterEach(() => {
-        delete process.env.REACT_APP_USE_FULLSTORY;
         delete window.FS;
       });
 
       it("should identify user with full story", () => {
+        store.dispatch(verifyAuthStatus());
         changeHandler(user);
 
         expect(FS.identify).toHaveBeenCalledWith(user.email, {

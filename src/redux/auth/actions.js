@@ -1,9 +1,11 @@
+import config from "config";
+
 export const SIGN_IN_USER = "SIGN_IN_USER";
 export const SIGN_OUT_USER = "SIGN_OUT_USER";
 export const SIGN_IN_ERROR = "SIGN_IN_ERROR";
 
 export const signInUser = ({ displayName, email, photoURL }) => {
-  if (process.env.REACT_APP_USE_FULLSTORY === "true") {
+  if (config.REACT_APP_USE_FULLSTORY === "true") {
     window.FS.identify(email, { displayName });
   }
 
@@ -24,7 +26,7 @@ export const signedOutUser = () => {
 };
 
 export const signOutUser = () => (dispatch, getState, { auth }) => {
-  if (process.env.REACT_APP_USE_FULLSTORY === "true") {
+  if (config.REACT_APP_USE_FULLSTORY === "true") {
     window.FS.identify(false);
   }
 

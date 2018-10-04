@@ -1,19 +1,21 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { UnconnectedHeader, StyledUserProfile } from "components/Header";
 
 describe("components/Header", () => {
-  let env;
   let now;
   let handleSignOut;
   let raiseToast;
+  let UnconnectedHeader;
+  let StyledUserProfile;
 
   beforeEach(() => {
-    env = process.env;
-    process.env = {
+    jest.mock("config", () => ({
       REACT_APP_PUBLISHER_URL: "http://eq-publisher/publish",
       REACT_APP_GO_LAUNCH_A_SURVEY_URL: "http://go-launch-a-survey/quick-launch"
-    };
+    }));
+    const Header = require("components/Header");
+    UnconnectedHeader = Header.UnconnectedHeader;
+    StyledUserProfile = Header.StyledUserProfile;
 
     now = Date.now;
     Date.now = () => 1507793425522;
@@ -33,7 +35,6 @@ describe("components/Header", () => {
     );
 
   afterEach(() => {
-    process.env = env;
     Date.now = now;
   });
 
