@@ -16,21 +16,27 @@ const radioInput = css`
   box-shadow: inset 0 0 0 3px #fff;
 `;
 
+const inputWithError = css`
+  border-color: #b5c4cb !important;
+  background-color: #b5c4cb !important;
+  box-shadow: none;
+`;
+
 const Input = styled.input`
   width: 20px;
   height: 20px;
   appearance: none;
-  border: 2px solid #9b9b9b;
+  border: 1px solid #9b9b9b;
   padding: 0.5em;
-  font-size: 1em;
   background: #eee;
   box-shadow: inset 0 0 0 3px white;
   pointer-events: none;
   position: absolute;
-  top: 0.6em;
-  left: 0.5em;
+  top: 1em;
+  left: 1em;
 
   ${props => props.type === RADIO && radioInput};
+  ${props => props.error && inputWithError};
 `;
 
 const OptionLabel = styled.label`
@@ -38,7 +44,7 @@ const OptionLabel = styled.label`
   font-size: 1em;
   color: inherit;
   line-height: 1.4;
-  font-weight: 400;
+  font-weight: inherit;
   padding: 0.7em 1em 0.7em 2.5em;
   margin: 0;
 `;
@@ -46,6 +52,13 @@ const OptionLabel = styled.label`
 const OptionDescription = styled.div`
   font-size: 0.8em;
   margin-top: 0.5em;
+  color: ${colors.text};
+`;
+
+const optionItemError = css`
+  border: 2px dashed #b5c4cb;
+  color: ${colors.secondary};
+  font-weight: bold;
 `;
 
 const OptionItem = styled.div`
@@ -59,6 +72,8 @@ const OptionItem = styled.div`
   overflow: hidden;
   position: relative;
   margin-bottom: 0.25em;
+
+  ${props => props.error && optionItemError};
 `;
 
 const SelectAll = styled.div`
@@ -68,7 +83,7 @@ const SelectAll = styled.div`
 const OtherLabel = styled.div`
   margin-bottom: 0.5em;
   font-size: 0.8em;
-  font-weight: bold;
+  font-weight: inherit;
 `;
 
 const TextInput = styled.input`
@@ -95,10 +110,10 @@ const MutuallyExclusiveOptionTitle = styled.div`
 `;
 
 const Option = ({ option, type, answer }) => (
-  <OptionItem>
-    <Input type={type} />
+  <OptionItem error={!option.label}>
+    <Input type={type} error={!option.label} />
     <OptionLabel>
-      {option.label || <Error>No label supplied</Error>}
+      {option.label || "Label missing"}
       {option.description && (
         <OptionDescription>{option.description}</OptionDescription>
       )}

@@ -80,8 +80,14 @@ const NoAnswers = styled.div`
   color: ${colors.secondary};
 `;
 
-const Error = styled.span`
-  color: ${colors.red};
+const Error = styled.div`
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  border-radius: 4px;
+  border: 2px dashed #b5c4cb;
+  text-align: center;
+  color: ${colors.secondary};
+  font-size: 0.9em;
 `;
 
 export class UnwrappedQuestionPageRoute extends React.Component {
