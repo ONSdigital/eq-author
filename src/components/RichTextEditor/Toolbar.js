@@ -103,9 +103,7 @@ class ToolBar extends React.Component {
         title={title}
         disabled={!controls[id]}
         active={isActiveControl(button)}
-        onClick={function() {
-          onToggle(button);
-        }}
+        onClick={() => onToggle(button)}
       >
         <Icon />
       </ToolbarButton>

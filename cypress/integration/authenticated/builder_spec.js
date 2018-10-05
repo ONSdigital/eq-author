@@ -102,7 +102,7 @@ describe("builder", () => {
 
     cy.get(testId("btn-delete")).click();
 
-    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
+    cy.get(testId("delete-confirm-modal")).within(() => {
       cy.get("button")
         .contains("Delete")
         .click();
@@ -203,7 +203,7 @@ describe("builder", () => {
     });
 
     cy.get(testId("btn-delete")).click();
-    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
+    cy.get(testId("delete-confirm-modal")).within(() => {
       cy.get("button")
         .contains("Delete")
         .click();
@@ -319,7 +319,7 @@ describe("builder", () => {
     });
 
     cy.get(testId("btn-delete")).click();
-    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
+    cy.get(testId("delete-confirm-modal")).within(() => {
       cy.get("button")
         .contains("Delete")
         .click();
@@ -353,7 +353,7 @@ describe("builder", () => {
     });
 
     cy.get(testId("btn-delete")).click();
-    cy.get(testId("delete-confirm-modal", "testid")).within(() => {
+    cy.get(testId("delete-confirm-modal")).within(() => {
       cy.get("button")
         .contains("Delete")
         .click();

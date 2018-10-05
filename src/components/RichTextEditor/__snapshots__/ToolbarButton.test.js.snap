@@ -123,7 +123,10 @@ exports[`ToolbarButton matches snapshot 1`] = `
         <div
           className="__react_component_tooltip place-top type-dark "
           data-id="tooltip"
-        />
+          id="tooltip-1"
+        >
+          button
+        </div>
       </ReactTooltip>
     </Tooltip__StyledTooltip>
   </Tooltip>
@@ -257,7 +260,10 @@ exports[`ToolbarButton should style appropriately when active 1`] = `
         <div
           className="__react_component_tooltip place-top type-dark "
           data-id="tooltip"
-        />
+          id="tooltip-2"
+        >
+          button
+        </div>
       </ReactTooltip>
     </Tooltip__StyledTooltip>
   </Tooltip>

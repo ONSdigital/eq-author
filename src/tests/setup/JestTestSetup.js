@@ -2,10 +2,7 @@ import "animation-frame-polyfill";
 import "jest-styled-components";
 
 import Enzyme from "enzyme";
-
-// TODO : replace with official Adapter, once enzyme properly supports new Context API (and portals?)
-// see: https://github.com/airbnb/enzyme/pull/1513
-import Adapter from "./ReactSixteenAdapter";
+import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter() });
 

@@ -120,7 +120,7 @@ describe("Routing", () => {
     });
 
     cy.get(testId("options-selector")).within(() => {
-      options.forEach((label, index) => {
+      options.forEach(label => {
         findByLabel(label).should("have.length", 1);
       });
     });

@@ -28,7 +28,7 @@ const Title = styled.h1`
 
 const getTitle = title => `Page not found - ${title}`;
 
-const NotFound = props => {
+const NotFound = () => {
   return (
     <BaseLayout>
       <Titled title={getTitle}>

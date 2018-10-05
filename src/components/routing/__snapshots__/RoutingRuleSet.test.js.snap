@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/RoutingRuleSet should render children 1`] = `
-<React.Fragment>
+<Fragment>
   <TransitionGroup
     childFactory={[Function]}
     component="div"
@@ -75,5 +75,5 @@ exports[`components/RoutingRuleSet should render children 1`] = `
       onChange={[Function]}
     />
   </RoutingRuleSet__Box>
-</React.Fragment>
+</Fragment>
 `;

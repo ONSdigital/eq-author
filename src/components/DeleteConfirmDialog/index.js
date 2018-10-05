@@ -48,7 +48,7 @@ const DeleteConfirmDialog = ({
   <DeleteConfirmModalDialog
     onClose={onClose}
     {...otherProps}
-    testId="delete-confirm-modal"
+    data={{ test: "delete-confirm-modal" }}
   >
     <DialogHeader>
       <Message>

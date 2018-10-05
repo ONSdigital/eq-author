@@ -102,7 +102,7 @@ Object {
 `;
 
 exports[`PipingMenu should render 1`] = `
-<React.Fragment>
+<Fragment>
   <PipingMenu__MenuButton
     data-test="piping-button"
     disabled={false}
@@ -151,7 +151,7 @@ exports[`PipingMenu should render 1`] = `
     onClose={[Function]}
     onSubmit={[Function]}
   />
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`PipingMenu should return child answers for CompositeAnswers 1`] = `

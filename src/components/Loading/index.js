@@ -14,7 +14,7 @@ const colorChange = keyframes`
   }
 `;
 
-const Container = styled(({ height, ...props }) => <div {...props} />)`
+const Container = styled.div`
   height: ${props => props.height};
   display: flex;
   align-items: center;

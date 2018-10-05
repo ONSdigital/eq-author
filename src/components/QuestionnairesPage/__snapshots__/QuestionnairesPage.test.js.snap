@@ -169,7 +169,9 @@ exports[`components/QuestionnairesPage should not render table whilst data is lo
               },
             }
           }
-        />
+        >
+          <Component />
+        </Query>
       </QuestionnairesPage__StyledCenteredPanel>
     </MainCanvas>
   </BaseLayout>
@@ -357,7 +359,9 @@ exports[`components/QuestionnairesPage should render table when there are questi
               },
             }
           }
-        />
+        >
+          <Component />
+        </Query>
       </QuestionnairesPage__StyledCenteredPanel>
     </MainCanvas>
   </BaseLayout>
@@ -559,7 +563,9 @@ exports[`components/QuestionnairesPage should render when there are no questionn
               },
             }
           }
-        />
+        >
+          <Component />
+        </Query>
       </QuestionnairesPage__StyledCenteredPanel>
     </MainCanvas>
   </BaseLayout>

@@ -48,25 +48,19 @@ export class UnconnectedSavingIndicator extends React.Component {
     this.timer = timer(this.handleClose, this.props.minDisplayTime);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (!prevState.visible && nextProps.isSaving) {
-      return {
-        timerRunning: true
-      };
-    }
-
-    return null;
-  }
-
   handleClose = () => {
     this.setState({
       timerRunning: false
     });
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (!prevProps.isSaving && this.props.isSaving) {
       this.timer.start();
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        timerRunning: true
+      });
     }
   }
 

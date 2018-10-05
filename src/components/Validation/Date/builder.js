@@ -12,7 +12,6 @@ import { withProps, withPropRenamed, withPropRemapped } from "./enhancers";
 export const readToWriteMapper = outputKey => ({
   id,
   customDate,
-  enabled,
   ...rest
 }) => ({
   id,

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavigationHeader should render 1`] = `
-<React.Fragment>
+<Fragment>
   <NavigationHeader__NavigationHeaderRow>
     <NavigationHeader__IconList>
       <NavigationHeader__IconListItem>
@@ -74,5 +74,5 @@ exports[`NavigationHeader should render 1`] = `
       onAddSection={[Function]}
     />
   </NavigationHeader__NavigationHeaderRow>
-</React.Fragment>
+</Fragment>
 `;

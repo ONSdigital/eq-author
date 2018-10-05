@@ -9,7 +9,7 @@ import { CHECKBOX, RADIO, DATE_RANGE, TEXTFIELD } from "constants/answer-types";
 describe("PipingMenu", () => {
   let handleItemChosen, questionnaire;
 
-  const render = (props = {}, match) => {
+  const render = (props = {}) => {
     const section = questionnaire.sections[0];
     const page = section.pages[1];
     return shallow(

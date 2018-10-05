@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Answer Properties should render 1`] = `
-<React.Fragment>
+<Fragment>
   <InlineField
     id="answer-1-required"
     label="Required"
@@ -23,5 +23,5 @@ exports[`Answer Properties should render 1`] = `
       value={2}
     />
   </InlineField>
-</React.Fragment>
+</Fragment>
 `;

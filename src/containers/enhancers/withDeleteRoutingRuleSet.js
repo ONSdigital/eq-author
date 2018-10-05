@@ -10,7 +10,7 @@ const fragment = gql`
   }
 `;
 
-export const createUpdater = (routingRuleSetId, pageId) => (proxy, result) => {
+export const createUpdater = (routingRuleSetId, pageId) => proxy => {
   const id = `QuestionPage${pageId}`;
   const page = proxy.readFragment({
     id,
@@ -26,7 +26,7 @@ export const createUpdater = (routingRuleSetId, pageId) => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate, ownProps }) => ({
+export const mapMutateToProps = ({ mutate }) => ({
   onDeleteRoutingRuleSet(routingRuleSetId, pageId) {
     const input = { id: routingRuleSetId };
     const update = createUpdater(routingRuleSetId, pageId);

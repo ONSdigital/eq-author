@@ -2,9 +2,13 @@
 
 exports[`components/MoveModal should render 1`] = `
 <MoveModal__StyledModal
+  data={
+    Object {
+      "test": "move-modal",
+    }
+  }
   isOpen={true}
   onClose={[Function]}
-  testId="move-modal"
 >
   <DialogHeader___default>
     <DialogMessage__Message>

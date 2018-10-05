@@ -41,13 +41,13 @@ const toLogicalDestination = destinationType => ({
   }
 });
 
-const toOption = defaultTitle => entity => ({
+const toOption = () => entity => ({
   label: entity.displayName,
   value: toAbsoluteDestination(entity)
 });
 
 class RoutingRuleDestinationSelector extends React.Component {
-  groupDestinations({ questionPages, sections, logicalDestinations }) {
+  groupDestinations({ questionPages, sections }) {
     const pagesGroup = {
       label: "Questions in this section",
       id: "questions",

@@ -11,14 +11,14 @@ const Width = styled.div`
 
 storiesOf("ButtonGroup", module)
   .addDecorator(story => <Width>{story()}</Width>)
-  .add("Vertical", props => (
+  .add("Vertical", () => (
     <ButtonGroup vertical>
       <Button primary>Button 1</Button>
       <Button secondary>Button 2</Button>
       <Button tertiary>Button 3</Button>
     </ButtonGroup>
   ))
-  .add("Horizontal", props => (
+  .add("Horizontal", () => (
     <ButtonGroup horizontal>
       <Button primary>Button 1</Button>
       <Button secondary>Button 2</Button>

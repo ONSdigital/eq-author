@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip should render 1`] = `
-<React.Fragment>
+<Fragment>
   <button
     data-for="buttonTooltip"
     data-tip={true}
@@ -17,11 +17,11 @@ exports[`Tooltip should render 1`] = `
   >
     This is a button
   </Tooltip__StyledTooltip>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`Tooltip should render arbitrary content 1`] = `
-<React.Fragment>
+<Fragment>
   <button
     data-for="buttonTooltip"
     data-tip={true}
@@ -44,11 +44,11 @@ exports[`Tooltip should render arbitrary content 1`] = `
       </li>
     </ul>
   </Tooltip__StyledTooltip>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`Tooltip should use auto-generated id if one is not supplied 1`] = `
-<React.Fragment>
+<Fragment>
   <button
     data-for="tooltip-1"
     data-tip={true}
@@ -63,5 +63,5 @@ exports[`Tooltip should use auto-generated id if one is not supplied 1`] = `
   >
     This is a tooltip
   </Tooltip__StyledTooltip>
-</React.Fragment>
+</Fragment>
 `;

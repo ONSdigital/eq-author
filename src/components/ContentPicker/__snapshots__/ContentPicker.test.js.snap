@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Content Picker should render full content picker 1`] = `
-<React.Fragment>
+<Fragment>
   <ContentPicker__ContentWrapper>
     <ContentPickerSingle
       childKey="pages"
@@ -84,5 +84,5 @@ exports[`Content Picker should render full content picker 1`] = `
       Select
     </Button>
   </ContentPicker__ActionButtons>
-</React.Fragment>
+</Fragment>
 `;

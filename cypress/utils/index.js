@@ -16,7 +16,7 @@ export const selectOptionByLabel = label => {
 };
 
 export function setQuestionnaireSettings(name) {
-  cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
+  cy.get(testId("questionnaire-settings-modal")).within(() => {
     cy.get(testId("txt-questionnaire-title"))
       .clear()
       .type(name);
@@ -57,7 +57,7 @@ export const deleteSection = ({ index }) => {
     .eq(index)
     .click();
   cy.get(testId("btn-delete")).click();
-  cy.get(testId("delete-confirm-modal", "testid")).within(() => {
+  cy.get(testId("delete-confirm-modal")).within(() => {
     cy.get("button")
       .contains("Delete")
       .click();
@@ -93,11 +93,12 @@ export const buildMultipleChoiceAnswer = labelArray => {
 
   cy.get(testId("option-label")).should("have.length", 3);
 
-  labelArray.forEach((label, index) => {
-    cy.get(testId("option-label"))
+  labelArray.forEach((label, index) =>
+    cy
+      .get(testId("option-label"))
       .eq(index)
-      .type(label);
-  });
+      .type(label)
+  );
 };
 
 export function addAnswerType(answerType) {

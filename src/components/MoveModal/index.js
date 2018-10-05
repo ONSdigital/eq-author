@@ -20,7 +20,11 @@ const CenteredHeading = styled(Heading)`
 
 const MoveModal = ({ title, children, isOpen, onClose }) => {
   return (
-    <StyledModal isOpen={isOpen} onClose={onClose} testId="move-modal">
+    <StyledModal
+      isOpen={isOpen}
+      onClose={onClose}
+      data={{ test: "move-modal" }}
+    >
       <DialogHeader>
         <Message>
           <CenteredHeading>{title}</CenteredHeading>

@@ -5,7 +5,7 @@ import GetQuestionnaire from "../../fixtures/GetQuestionnaire";
 import GetQuestionnaireList from "../../fixtures/GetQuestionnaireList";
 
 describe("settings", () => {
-  const settingsModal = testId("questionnaire-settings-modal", "testid");
+  const settingsModal = testId("questionnaire-settings-modal");
   const questionnaireTitle = "Settings Spec Questionnaire";
 
   beforeEach(() => {

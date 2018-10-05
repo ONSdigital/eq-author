@@ -22,7 +22,7 @@ const pluralize = (count, word, plural = word + "s") => {
 };
 
 export const handleDeletion = (
-  { history, onAddSection, match: { params }, client },
+  { history, onAddSection, match: { params } },
   questionnaire
 ) => {
   const { sectionId, questionnaireId } = params;

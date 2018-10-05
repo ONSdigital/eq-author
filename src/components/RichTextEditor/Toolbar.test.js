@@ -80,7 +80,7 @@ describe("components/RichTextEditor/Toolbar", () => {
   });
 
   it("should call onToggle when clicked with appropriate button object", () => {
-    buttons.forEach((node, i) => {
+    buttons.forEach(node => {
       node.simulate("click");
 
       expect(props.onToggle).toHaveBeenLastCalledWith(shape);
@@ -88,7 +88,7 @@ describe("components/RichTextEditor/Toolbar", () => {
   });
 
   it("should not call onToggle when, for example, 'ESC' key is pressed when focused on a button", () => {
-    buttons.forEach((node, i) => {
+    buttons.forEach(node => {
       node.simulate("KeyDown", { key: "ESC" });
       expect(props.onToggle).not.toHaveBeenLastCalledWith(shape);
     });

@@ -3,10 +3,7 @@ import moveSectionMutation from "graphql/moveSection.graphql";
 import fragment from "graphql/fragments/moveSection.graphql";
 import { remove } from "lodash";
 
-export const createUpdater = ({ from, to, questionnaireId }) => (
-  proxy,
-  result
-) => {
+export const createUpdater = ({ questionnaireId }) => (proxy, result) => {
   const {
     data: {
       moveSection: { id, position }
