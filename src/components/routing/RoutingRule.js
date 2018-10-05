@@ -17,36 +17,18 @@ import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
 import { colors } from "constants/theme";
 import { Select as BaseSelect } from "components/Forms";
 
-const Box = styled.div`
-  position: relative;
-`;
-
 const Padding = styled.div`
   padding: 1em 0;
 `;
 
-const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 1em;
-`;
-
 const Title = styled.h2`
-  position: absolute;
   margin: 0;
-  top: 1.5em;
-  left: 1.4em;
+  padding: 1em 2.2em;
   letter-spacing: 0.05em;
   font-size: 0.9em;
   font-weight: bold;
   text-transform: uppercase;
-`;
-
-const CenteringColumn = styled(Column)`
-  display: flex;
-  justify-content: center;
-  padding: 0.25em 0;
-  margin-bottom: 0.5em;
+  background: ${colors.lighterGrey};
 `;
 
 const ConditionSelectorHeader = styled.div`
@@ -55,6 +37,8 @@ const ConditionSelectorHeader = styled.div`
   padding: 0.5em 2em;
   font-weight: bold;
   color: ${colors.secondary};
+  display: flex;
+  align-items: center;
 `;
 
 const Select = styled(BaseSelect)`
@@ -73,6 +57,10 @@ const ConditionSelect = () => {
     </Select>
   );
 };
+
+const RemoveButton = styled(Button)`
+  margin-left: auto;
+`;
 
 const RoutingRule = ({
   rule,
@@ -97,12 +85,16 @@ const RoutingRule = ({
 
   return (
     <div className={className} data-test="routing-rule">
+      {title && <Title>{title}</Title>}
       <ConditionSelectorHeader>
-        Match <ConditionSelect /> the following rules:
+        <div>
+          Match <ConditionSelect /> the following rules:
+        </div>
+        <RemoveButton small variant="tertiary" onClick={handleDeleteClick}>
+          Remove rule
+        </RemoveButton>
       </ConditionSelectorHeader>
       <div>
-        {title && <Title>{title}</Title>}
-
         <Padding>
           <TransitionGroup>
             {conditions.map((condition, index) => {

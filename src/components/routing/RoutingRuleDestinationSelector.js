@@ -11,7 +11,7 @@ import SectionDestination from "graphql/fragments/section-destination.graphql";
 import { colors } from "constants/theme";
 
 const RoutingRuleResult = styled.div`
-  padding: 0.5em 1em 0.5em;
+  padding: 0.5em 1em 0.5em 2em;
   background: #e6eadc;
   border-top: 1px solid ${colors.lightGrey};
   border-bottom: 1px solid ${colors.lightGrey};
