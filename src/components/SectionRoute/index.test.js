@@ -287,6 +287,7 @@ describe("SectionRoute", () => {
       const mockHandlers = {
         onUpdateSection: jest.fn(),
         onDeleteSection: jest.fn(),
+        onDuplicateSection: jest.fn(),
         onAddPage: jest.fn(),
         onMoveSection: jest.fn()
       };
@@ -324,6 +325,7 @@ describe("SectionRoute", () => {
       const mockHandlers = {
         onUpdateSection: jest.fn(),
         onDeleteSection: jest.fn(),
+        onDuplicateSection: jest.fn(),
         onAddPage: jest.fn(),
         onMoveSection: jest.fn()
       };
@@ -367,6 +369,7 @@ describe("SectionRoute", () => {
       const mockHandlers = {
         onUpdateSection: jest.fn(),
         onDeleteSection: jest.fn(),
+        onDuplicateSection: jest.fn(),
         onAddPage: jest.fn(),
         onMoveSection: jest.fn()
       };
@@ -404,6 +407,7 @@ describe("SectionRoute", () => {
       const mockHandlers = {
         onUpdateSection: jest.fn(),
         onDeleteSection: jest.fn(),
+        onDuplicateSection: jest.fn(),
         onAddPage: jest.fn(),
         onMoveSection: jest.fn()
       };
@@ -418,6 +422,49 @@ describe("SectionRoute", () => {
       expect(
         wrapper.find(`Button${byTestAttr("btn-move")}`).prop("disabled")
       ).toBe(false);
+    });
+
+    it("should call onDuplicateSection with the section id and position when the duplicate button is clicked", () => {
+      const data = {
+        section: {
+          id: "1",
+          title: "foo",
+          alias: "foo-alias",
+          displayName: "foo",
+          description: "bar",
+          position: 0,
+          questionnaire: {
+            id: "1",
+            questionnaireInfo: {
+              totalSectionCount: 2
+            }
+          }
+        }
+      };
+
+      const mockHandlers = {
+        onUpdateSection: jest.fn(),
+        onDeleteSection: jest.fn(),
+        onDuplicateSection: jest.fn(),
+        onAddPage: jest.fn(),
+        onMoveSection: jest.fn()
+      };
+
+      const wrapper = render({
+        loading: false,
+        match,
+        data,
+        ...mockHandlers
+      });
+
+      wrapper
+        .find(`Button${byTestAttr("btn-duplicate-section")}`)
+        .simulate("click");
+
+      expect(mockHandlers.onDuplicateSection).toHaveBeenCalledWith({
+        sectionId: data.section.id,
+        position: data.section.position + 1
+      });
     });
   });
 });
