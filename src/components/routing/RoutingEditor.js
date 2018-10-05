@@ -12,16 +12,23 @@ import RoutingRuleSetMsg from "components/routing/RoutingRuleSetMsg";
 import { colors } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
 
-const Title = styled.h2`
-  padding: 0.5em 1em;
-  color: #666;
-  font-size: 1.4em;
-  border-bottom: 1px solid ${colors.lightGrey};
-  margin: 0;
+const Header = styled.div`
+  padding: 1.5em 2em;
 `;
 
-const Padding = styled.div`
-  padding: 2em;
+const SubTitle = styled.div`
+  color: #666;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.2em;
+`;
+
+const Title = styled.h2`
+  color: ${colors.text};
+  font-size: 1.4em;
+  margin: 0;
 `;
 
 export const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
@@ -156,10 +163,12 @@ class RoutingEditor extends React.Component {
 
     return (
       <div data-test="routing-editor">
-        <Title>{get(currentPage, "displayName")}</Title>
-        <Padding>
-          <TransitionGroup>{content}</TransitionGroup>
-        </Padding>
+        <Header>
+          <SubTitle>Route out of page:</SubTitle>
+          <Title>{get(currentPage, "displayName")}</Title>
+        </Header>
+
+        <TransitionGroup>{content}</TransitionGroup>
       </div>
     );
   }

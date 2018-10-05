@@ -5,7 +5,6 @@ import { includes } from "lodash";
 
 const TEXT = "text";
 const DATE = "date";
-const LANGUAGE = "language";
 const REGION = "region";
 
 const metaData = [

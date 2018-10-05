@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import DeleteButton from "components/DeleteButton";
-import IconClose from "./icon-close.svg?inline";
+import IconMinus from "./icon-minus.svg?inline";
+import IconPlus from "./icon-plus.svg?inline";
 import { PropTypes } from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 
@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
-import IconText from "components/IconText";
+
 import {
   get,
   isNil,
@@ -35,6 +35,7 @@ import isAnswerValidForRouting from "./isAnswerValidForRouting";
 import routingConditionFragment from "graphql/fragments/routing-condition.graphql";
 import { RADIO, NUMBER, CURRENCY, DATE } from "constants/answer-types";
 import DateAnswerSelector from "./DateAnswerSelector";
+import { colors } from "constants/theme";
 
 const Label = styled.label`
   width: 100%;
@@ -71,11 +72,48 @@ const ConnectedPath = styled.div`
   }
 `;
 
-const RemoveButton = styled(DeleteButton)`
-  display: block;
-  margin: auto;
+const ActionButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ActionButton = styled.button`
+  appearance: none;
+  border: none;
+  margin: 0;
+  width: 18px;
+  height: 18px;
+  background: ${colors.primary};
+  border-radius: 100px;
   position: relative;
-  right: 2px;
+  margin: 0.25em;
+  cursor: pointer;
+  &:focus {
+    box-shadow: 0 0 0 3px ${colors.tertiary};
+    outline: none;
+  }
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &[data-type="remove"] {
+    &:hover {
+      background: red;
+    }
+  }
+  &[data-type="add"] {
+    &:hover {
+      background: green;
+    }
+  }
+  &[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
+  }
 `;
 
 const firstAnswerIsValid = flow(
@@ -183,6 +221,7 @@ const RoutingCondition = ({
   label,
   onPageChange,
   onRemove,
+  onAdd,
   onToggleOption,
   canAddAndCondition,
   match
@@ -214,12 +253,12 @@ const RoutingCondition = ({
     onPageChange({ id: condition.id, questionPageId: value });
 
   return (
-    <div data-test="routing-condition" style={{ margin: "1em 0" }}>
+    <div data-test="routing-condition">
       <Grid align="center">
-        <Column gutters={false} cols={1}>
+        <Column gutters={false} cols={1.5}>
           <Label htmlFor={id}>{label}</Label>
         </Column>
-        <Column gutters={false} cols={10}>
+        <Column gutters={false} cols={9}>
           <PageSelect
             value={value}
             valid={pageSelectIsValid}
@@ -228,26 +267,29 @@ const RoutingCondition = ({
             id={id}
           />
         </Column>
-        <Column gutters={false} cols={1}>
-          <RemoveButton
-            onClick={handleRemove}
-            disabled={!onRemove}
-            data-test="btn-remove"
-          >
-            <IconText icon={IconClose} hideText>
-              Remove
-            </IconText>
-          </RemoveButton>
+        <Column gutters={false} cols={1.5}>
+          <ActionButtons>
+            <ActionButton
+              onClick={handleRemove}
+              disabled={!onRemove}
+              data-type="remove"
+            >
+              <IconMinus />
+            </ActionButton>
+            <ActionButton onClick={onAdd} data-type="add">
+              <IconPlus />
+            </ActionButton>
+          </ActionButtons>
         </Column>
       </Grid>
       <Grid>
-        <Column gutters={false} cols={1}>
+        <Column gutters={false} cols={1.5}>
           <ConnectedPath pathEnd={isNil(condition.answer)} />
         </Column>
-        <Column gutters={false} cols={10}>
+        <Column gutters={false} cols={9}>
           <TransitionGroup>{editor}</TransitionGroup>
         </Column>
-        <Column cols={1} />
+        <Column cols={1.5} />
       </Grid>
     </div>
   );

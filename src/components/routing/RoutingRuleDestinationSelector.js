@@ -8,9 +8,13 @@ import AbsoluteDestination from "graphql/fragments/absolute-destination.graphql"
 import LogicalDestination from "graphql/fragments/logical-destination.graphql";
 import QuestionPageDestination from "graphql/fragments/question-page-destination.graphql";
 import SectionDestination from "graphql/fragments/section-destination.graphql";
+import { colors } from "constants/theme";
 
 const RoutingRuleResult = styled.div`
-  padding: 1em 1em 1em 0.7em;
+  padding: 0.5em 1em 0.5em;
+  background: #e6eadc;
+  border-top: 1px solid ${colors.lightGrey};
+  border-bottom: 1px solid ${colors.lightGrey};
 `;
 
 const Label = styled.label`

@@ -6,7 +6,6 @@ import { TransitionGroup } from "react-transition-group";
 import Transition from "components/routing/Transition";
 import Button from "components/Button";
 import IconText from "components/IconText";
-import { colors, radius } from "constants/theme";
 import IconRoute from "./icon-route.svg?inline";
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import TextButton from "components/TextButton";
@@ -15,12 +14,15 @@ import { get } from "lodash";
 import { Grid, Column } from "components/Grid";
 import { RADIO } from "constants/answer-types";
 import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
+import { colors } from "constants/theme";
+import { Select as BaseSelect } from "components/Forms";
 
 const Box = styled.div`
-  border: 1px solid ${colors.bordersLight};
-  border-radius: ${radius};
-  margin-bottom: 2em;
   position: relative;
+`;
+
+const Padding = styled.div`
+  padding: 1em 0;
 `;
 
 const Buttons = styled.div`
@@ -47,6 +49,31 @@ const CenteringColumn = styled(Column)`
   margin-bottom: 0.5em;
 `;
 
+const ConditionSelectorHeader = styled.div`
+  background: #e4e8eb;
+  border-top: 1px solid ${colors.secondary};
+  padding: 0.5em 2em;
+  font-weight: bold;
+  color: ${colors.secondary};
+`;
+
+const Select = styled(BaseSelect)`
+  display: inline-block;
+  width: auto;
+  margin: 0 0.5em;
+  padding: 0.3em 2em 0.3em 0.5em;
+`;
+
+const ConditionSelect = () => {
+  return (
+    <Select onChange={() => {}}>
+      <option value="all">All of</option>
+      <option value="any">Any of</option>
+      <option value="none">None of</option>
+    </Select>
+  );
+};
+
 const RoutingRule = ({
   rule,
   onDeleteRule,
@@ -70,19 +97,13 @@ const RoutingRule = ({
 
   return (
     <div className={className} data-test="routing-rule">
-      <Box>
+      <ConditionSelectorHeader>
+        Match <ConditionSelect /> the following rules:
+      </ConditionSelectorHeader>
+      <div>
         {title && <Title>{title}</Title>}
-        <Buttons>
-          <Button
-            onClick={handleDeleteClick}
-            data-test="btn-delete"
-            variant="tertiary"
-            small
-          >
-            <IconText icon={IconRoute}>Remove rule</IconText>
-          </Button>
-        </Buttons>
-        <div>
+
+        <Padding>
           <TransitionGroup>
             {conditions.map((condition, index) => {
               const { answer } = condition;
@@ -101,6 +122,7 @@ const RoutingRule = ({
                       onRemove={
                         conditions.length > 1 ? onDeleteRoutingCondition : null
                       }
+                      onAdd={handleAddClick}
                       onPageChange={onUpdateRoutingCondition}
                       onToggleOption={onToggleConditionOption}
                       canAddAndCondition={canAddAndCondition}
@@ -117,14 +139,7 @@ const RoutingRule = ({
               return component;
             })}
           </TransitionGroup>
-          <Grid align="center">
-            <CenteringColumn gutters={false} cols={1}>
-              <TextButton onClick={handleAddClick} data-test="btn-and">
-                AND
-              </TextButton>
-            </CenteringColumn>
-          </Grid>
-        </div>
+        </Padding>
         <RoutingRuleDestinationSelector
           id="then"
           label="THEN"
@@ -133,7 +148,7 @@ const RoutingRule = ({
           value={goto}
           data-test="select-then"
         />
-      </Box>
+      </div>
     </div>
   );
 };

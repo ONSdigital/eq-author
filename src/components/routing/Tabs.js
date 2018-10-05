@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { colors } from "constants/theme";
-import { TabsBody as _TabsBody } from "components/ModalWithNav/Tabs";
 
 export const Tabs = styled.div`
   border-radius: 4em;
@@ -28,6 +27,6 @@ export const Tab = styled.div`
   }
 `;
 
-export const TabsBody = styled(_TabsBody)`
+export const TabsBody = styled.div`
   padding: 1em 0;
 `;

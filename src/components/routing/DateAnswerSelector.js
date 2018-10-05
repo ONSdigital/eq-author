@@ -30,13 +30,11 @@ import {
 import { DATE } from "constants/answer-types";
 import { PageSelect } from "./RoutingCondition";
 import { Alert, AlertTitle, AlertText } from "./Alert";
-import IconText from "../IconText";
-import IconInfo from "./icon-info.svg?inline";
 
 const DateAnswer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1em 1em 0 1em;
+  padding: 1em 1em 0;
   border: 1px solid #c3c3c3;
   border-radius: 4px;
   margin: 2em 0;
@@ -52,7 +50,7 @@ const Flex = styled.div`
   }
 `;
 
-const DateUnitSelect = ({ isMultiple, ...otherProps }) => (
+const DateUnitSelect = ({ ...otherProps }) => (
   <Select {...otherProps}>
     <option value="years">Year/s</option>
     <option value="months">Month/s</option>
@@ -96,7 +94,7 @@ const hasValidAnswers = sections =>
     every(section.options, ({ disabled }) => disabled)
   );
 
-const DateComparisonFields = ({ id, condition, onChange, state }) => {
+const DateComparisonFields = ({ condition, onChange, state }) => {
   const numericSelectId = `condition-${condition.id}-numeric-select`;
   const comparisonValueId = `condition-${condition.id}-comparison-value`;
   const dateUnitId = `condition-${condition.id}-date-unit`;

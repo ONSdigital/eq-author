@@ -23,6 +23,7 @@ module.exports = {
     }
   },
   rules: {
+    "no-unused-vars": ["warn"],
     "react/jsx-no-bind": [2, { allowArrowFunctions: true }],
     "graphql/template-strings": [
       "error",
