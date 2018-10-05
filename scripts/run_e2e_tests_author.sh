@@ -43,7 +43,7 @@ trap finish INT KILL TERM EXIT
 # start API/DB, and wait until running
 docker-compose -f ./scripts/e2e.yml down --rmi all
 docker-compose -f ./scripts/e2e.yml pull
-docker-compose -f ./scripts/e2e.yml up &
+docker-compose -f ./scripts/e2e.yml up -d
 ./node_modules/.bin/wait-on http-get://localhost:4000/status
 
 # Run the tests
