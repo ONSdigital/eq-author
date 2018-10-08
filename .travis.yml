@@ -26,6 +26,7 @@ script:
   - yarn lint
   - yarn coverage
   - yarn test:storybook
+  - yarn storybook-build
   - docker build -t onsdigital/eq-author:$TRAVIS_BUILD_NUMBER --build-arg APPLICATION_VERSION=$(git rev-parse HEAD) -f Dockerfile .
   - yarn test:integration
   - yarn test:e2e
