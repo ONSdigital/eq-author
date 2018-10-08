@@ -23,7 +23,8 @@ import {
   negate,
   overSome
 } from "lodash";
-import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
+import RadioButtonAnswerOptionsSelector from "components/routing/RadioButtonAnswerOptionsSelector";
+import CheckboxAnswerOptionsSelector from "components/routing/CheckboxAnswerOptionsSelector";
 import NumericAnswerSelector from "components/routing/NumericAnswerSelector";
 import GroupedSelect from "./GroupedSelect";
 import Transition from "components/routing/Transition";
@@ -33,7 +34,13 @@ import { buildPagePath } from "utils/UrlUtils";
 import isAnswerValidForRouting from "./isAnswerValidForRouting";
 
 import routingConditionFragment from "graphql/fragments/routing-condition.graphql";
-import { RADIO, NUMBER, CURRENCY, DATE } from "constants/answer-types";
+import {
+  RADIO,
+  NUMBER,
+  CURRENCY,
+  DATE,
+  CHECKBOX
+} from "constants/answer-types";
 import DateAnswerSelector from "./DateAnswerSelector";
 import { colors } from "constants/theme";
 
@@ -185,7 +192,13 @@ const renderCannotAddAndCondition = () => (
 const renderEditor = (condition, onToggleOption, sections) => {
   const types = {
     [RADIO]: (
-      <MultipleChoiceAnswerOptionsSelector
+      <RadioButtonAnswerOptionsSelector
+        condition={condition}
+        onOptionSelectionChange={onToggleOption}
+      />
+    ),
+    [CHECKBOX]: (
+      <CheckboxAnswerOptionsSelector
         condition={condition}
         onOptionSelectionChange={onToggleOption}
       />

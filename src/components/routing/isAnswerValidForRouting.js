@@ -1,10 +1,20 @@
 import { get } from "lodash";
-import { RADIO, NUMBER, CURRENCY, DATE } from "constants/answer-types";
+import {
+  RADIO,
+  NUMBER,
+  CURRENCY,
+  DATE,
+  CHECKBOX
+} from "constants/answer-types";
 
 const isAnswerValidForRouting = answer => {
   const type = get(answer, "type");
   return (
-    type === RADIO || type === NUMBER || type === CURRENCY || type === DATE
+    type === CHECKBOX ||
+    type === RADIO ||
+    type === NUMBER ||
+    type === CURRENCY ||
+    type === DATE
   );
 };
 

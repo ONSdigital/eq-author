@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import MultipleChoiceAnswerOptionsSelector from "./MultipleChoiceAnswerOptionsSelector";
+import RadioButtonAnswerOptionsSelector from "./RadioButtonAnswerOptionsSelector";
 
 let mockHandlers, condition;
 
-describe("components/MultipleChoiceAnswerOptionsSelector", () => {
+describe("components/RadioButtonAnswerOptionsSelector", () => {
   beforeEach(() => {
     mockHandlers = {
       onOptionSelectionChange: jest.fn()
@@ -26,7 +26,7 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
 
   it("should render consistently", () => {
     const wrapper = shallow(
-      <MultipleChoiceAnswerOptionsSelector
+      <RadioButtonAnswerOptionsSelector
         condition={condition}
         {...mockHandlers}
       />
@@ -37,7 +37,7 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
 
   it("should handle change events on ToggleChip", () => {
     const wrapper = mount(
-      <MultipleChoiceAnswerOptionsSelector
+      <RadioButtonAnswerOptionsSelector
         condition={condition}
         {...mockHandlers}
       />
@@ -62,7 +62,7 @@ describe("components/MultipleChoiceAnswerOptionsSelector", () => {
     condition.answer.other = other;
 
     const wrapper = mount(
-      <MultipleChoiceAnswerOptionsSelector
+      <RadioButtonAnswerOptionsSelector
         condition={condition}
         {...mockHandlers}
       />

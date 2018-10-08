@@ -5,13 +5,12 @@ import { TransitionGroup } from "react-transition-group";
 
 import Transition from "components/routing/Transition";
 import Button from "components/Button";
-import IconText from "components/IconText";
-import IconRoute from "./icon-route.svg?inline";
+
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
-import TextButton from "components/TextButton";
+
 import RoutingCondition from "components/routing/RoutingCondition";
 import { get } from "lodash";
-import { Grid, Column } from "components/Grid";
+
 import { RADIO } from "constants/answer-types";
 import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
 import { colors } from "constants/theme";

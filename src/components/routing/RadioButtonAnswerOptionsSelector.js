@@ -8,14 +8,14 @@ import { includes, get } from "lodash";
 
 import { PropTypes } from "prop-types";
 
-const MultipleChoiceAnswerOptions = styled.div`
+const RadioButtonAnswerOptions = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   padding: 1em 0;
 `;
 
-const MultipleChoiceAnswerOptionsSelector = ({
+const RadioButtonAnswerOptionsSelector = ({
   condition,
   onOptionSelectionChange
 }) => {
@@ -28,7 +28,7 @@ const MultipleChoiceAnswerOptionsSelector = ({
   const selectedOptions = get(condition, "routingValue.value", []);
 
   return (
-    <MultipleChoiceAnswerOptions data-test="options-selector">
+    <RadioButtonAnswerOptions data-test="options-selector">
       {options.map(option => (
         <ToggleChip
           key={option.id}
@@ -42,13 +42,13 @@ const MultipleChoiceAnswerOptionsSelector = ({
           {option.label || <strong>Unlabelled option</strong>}
         </ToggleChip>
       ))}
-    </MultipleChoiceAnswerOptions>
+    </RadioButtonAnswerOptions>
   );
 };
 
-MultipleChoiceAnswerOptionsSelector.propTypes = {
+RadioButtonAnswerOptionsSelector.propTypes = {
   condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   onOptionSelectionChange: PropTypes.func.isRequired
 };
 
-export default MultipleChoiceAnswerOptionsSelector;
+export default RadioButtonAnswerOptionsSelector;
