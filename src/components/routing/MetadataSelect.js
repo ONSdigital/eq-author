@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from "components/Forms";
-import answerTypes from "constants/answer-types";
+import { TEXTFIELD, CURRENCY, NUMBER } from "constants/answer-types";
 import { includes } from "lodash";
 
 const TEXT = "text";
@@ -73,8 +73,8 @@ const metaData = [
 /* eslint-disable import/no-named-as-default-member */
 
 const typeMappings = {
-  [TEXT]: [answerTypes.TEXTFIELD, answerTypes.CURRENCY, answerTypes.NUMBER],
-  [DATE]: [answerTypes.DATE]
+  [TEXT]: [TEXTFIELD, CURRENCY, NUMBER],
+  DATE
 };
 
 const checkAnswerType = (type, answerType) => {

@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
+
 import React from "react";
 import styled from "styled-components";
 
 import { Field, Label, Input } from "components/Forms";
-import TextButton from "components/TextButton";
+import TextButton from "../TextButton";
 
 const Context = styled.div`
   position: relative;
@@ -19,15 +21,13 @@ const Dropdown = styled.div`
 
 const CheckboxOptionPicker = styled.div`
   position: absolute;
-  top: -2em;
+  top: -1em;
   left: 0;
   z-index: 999;
 `;
 
 const OptionField = styled(Field)`
   margin: 0;
-  display: flex;
-  align-items: center;
   &:not(:last-of-type) {
     margin-bottom: 0.5em;
   }
@@ -37,57 +37,23 @@ const OptionLabel = styled(Label)`
   margin: 0;
 `;
 
-const Options = styled.div`
-  margin-bottom: 1em;
-`;
-
 const Option = option => {
   return (
     <OptionField key={option.id}>
       <OptionLabel>
         <Input type="checkbox" />
-        <span>{option.label}</span>
+        {option.label}
       </OptionLabel>
     </OptionField>
   );
 };
 
-const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-export default class extends React.Component {
-  state = {
-    selectedItems: []
-  };
-
-  constructor(props) {
-    super(props);
-  }
-
-  handleChange = e => {
-    console.log(e);
-
-    this.setState({});
-  };
-
-  render() {
-    const { answer, onClose } = this.props;
-
-    return (
-      <Context>
-        <CheckboxOptionPicker>
-          <Dropdown>
-            <div>
-              <Options>{answer.options.map(Option)}</Options>
-              <Buttons>
-                <TextButton onClick={onClose}>DONE</TextButton>
-              </Buttons>
-            </div>
-          </Dropdown>
-        </CheckboxOptionPicker>
-      </Context>
-    );
-  }
-}
+export default ({ answer }) => {
+  return (
+    <Context>
+      <CheckboxOptionPicker>
+        <Dropdown>{answer.options.map(Option)}</Dropdown>
+      </CheckboxOptionPicker>
+    </Context>
+  );
+};

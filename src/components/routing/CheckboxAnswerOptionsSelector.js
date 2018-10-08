@@ -4,6 +4,7 @@
 /* eslint-disable react/jsx-handler-names */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable dot-notation */
+/* eslint-disable no-unused-vars */
 
 import React from "react";
 import styled from "styled-components";
@@ -36,13 +37,13 @@ const CheckboxAnswerOptionsSelector = ({
   setState,
   state
 }) => {
-  // const answerOptions = get(condition, "answer.options", []);
-  // const answerOtherOption = get(condition, "answer.other.option");
-  // const options = answerOtherOption
-  //   ? answerOptions.concat(answerOtherOption)
-  //   : answerOptions;
+  const answerOptions = get(condition, "answer.options", []);
+  const answerOtherOption = get(condition, "answer.other.option");
+  const options = answerOtherOption
+    ? answerOptions.concat(answerOtherOption)
+    : answerOptions;
 
-  // const selectedOptions = get(condition, "routingValue.value", []);
+  const selectedOptions = get(condition, "routingValue.value", []);
 
   return (
     <Selector>
