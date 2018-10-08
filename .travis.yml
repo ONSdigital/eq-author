@@ -24,16 +24,17 @@ before_script:
 
 script:
   - yarn lint
-  - yarn coverage  
+  - yarn coverage
   - yarn test:storybook
+  - docker build -t onsdigital/eq-author:$TRAVIS_BUILD_NUMBER --build-arg APPLICATION_VERSION=$(git rev-parse HEAD) -f Dockerfile .
+  - yarn test:integration
   - yarn test:e2e
-  - yarn storybook-build
 
 
 after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - export TAG=`if [ "$TRAVIS_PULL_REQUEST_BRANCH" == "" ]; then echo "latest"; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi`
-  - docker build -t onsdigital/eq-author:$TAG --build-arg APPLICATION_VERSION=$(git rev-parse HEAD) -f Dockerfile .
+  - docker tag onsdigital/eq-author:$TRAVIS_BUILD_NUMBER onsdigital/eq-author:$TAG
   - echo "Pushing with tag [$TAG]"
   - docker push onsdigital/eq-author:$TAG
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION

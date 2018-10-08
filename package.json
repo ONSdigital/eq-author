@@ -9,7 +9,8 @@
     "build:status": "node scripts/build-status-page.js",
     "test": "node scripts/test.js",
     "test:storybook": "jest --testRegex ^.+\\.storytest\\.js$",
-    "test:e2e": "./scripts/run_e2e_tests_author.sh",
+    "test:integration": "./scripts/run_tests.sh integration",
+    "test:e2e": "./scripts/run_tests.sh e2e",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint src cypress --ext .graphql --ext .js --max-warnings=0",
     "lint:css": "stylelint './src/**/*.js'",
@@ -20,7 +21,8 @@
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test -- --coverage",
-    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:3000/} cypress open"
+    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open",
+    "cypress:open:e2e": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open --config integrationFolder=cypress/e2e"
   },
   "lint-staged": {
     "*.js": [
