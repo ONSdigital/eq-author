@@ -3,11 +3,13 @@ import { CURRENCY, DATE, NUMBER } from "../../../src/constants/answer-types";
 
 import {
   addAnswerType,
+  addQuestionPage,
   addQuestionnaire,
   removeAnswer,
   testId,
   toggleCheckboxOn,
-  toggleCheckboxOff
+  toggleCheckboxOff,
+  selectFirstAnswerFromContentPicker
 } from "../../utils";
 
 import createQuestionnaire from "../../fixtures/createQuestionnaire";
@@ -27,6 +29,28 @@ import {
   updateValidationRuleCustomDate
 } from "../../fixtures/answers/date/updateValidationRule";
 
+const setPreviousAnswer = sidebar => {
+  cy.get(testId("btn-done")).click();
+  addQuestionPage();
+  addAnswerType("Number");
+  cy.get(sidebar)
+    .last()
+    .click();
+  cy.get(testId("validation-view-toggle")).within(() => {
+    cy.get("[role='switch']").as("viewToggle");
+  });
+  toggleCheckboxOn("@viewToggle");
+  cy.get("button")
+    .contains("Previous answer")
+    .click();
+  cy.get(testId("content-picker-select")).as("previousAnswer");
+  cy.get("@previousAnswer").contains("No answer selected");
+  cy.get("@previousAnswer").click();
+  selectFirstAnswerFromContentPicker();
+  cy.get("@previousAnswer").contains("Validation Answer");
+  cy.get(sidebar).contains("Validation Answer");
+};
+
 describe("Answer Validation", () => {
   it("Can create a questionnaire", () => {
     cy.visit("/");
@@ -36,6 +60,7 @@ describe("Answer Validation", () => {
   describe("Number", () => {
     beforeEach(() => {
       addAnswerType(NUMBER);
+      cy.get(testId("txt-answer-label")).type("Validation Answer");
     });
     describe("Min Value", () => {
       beforeEach(() => {
@@ -89,6 +114,9 @@ describe("Answer Validation", () => {
         cy.get(testId("max-value-input"))
           .type("3")
           .should("have.value", "3");
+      });
+      it("Can set previous answer", () => {
+        setPreviousAnswer("@maxValue");
       });
       it("Can toggle include/exclude", () => {
         toggleCheckboxOn("@maxValueToggle");
@@ -162,6 +190,9 @@ describe("Answer Validation", () => {
         cy.get(testId("max-value-input"))
           .type("3")
           .should("have.value", "3");
+      });
+      it("Can set previous answer", () => {
+        setPreviousAnswer("@maxValue");
       });
       it("Can toggle include/exclude", () => {
         toggleCheckboxOn("@maxValueToggle");

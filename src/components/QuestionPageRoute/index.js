@@ -230,6 +230,7 @@ export const QUESTION_PAGE_QUERY = gql`
 export default withQuestionPageEditing(props => (
   <Query
     query={QUESTION_PAGE_QUERY}
+    fetchPolicy="cache-and-network"
     variables={{ id: props.match.params.pageId }}
   >
     {innerProps => <UnwrappedQuestionPageRoute {...innerProps} {...props} />}

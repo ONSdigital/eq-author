@@ -5,7 +5,8 @@ import styled from "styled-components";
 
 import PillTabs from "./";
 
-const CenterX = styled.div`
+const Content = styled.div`
+  margin-top: 1em;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -61,7 +62,7 @@ export const OPTIONS = [
 ];
 
 storiesOf("PillTabs", module)
-  .addDecorator(story => <CenterX>{story()}</CenterX>)
+  .addDecorator(story => <Content>{story()}</Content>)
   .add("Default", () => (
     <PillTabs onChange={action("change")} options={OPTIONS} />
   ))

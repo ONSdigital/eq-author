@@ -13,9 +13,9 @@ exports[`MinValue should render with content 1`] = `
     <Column
       cols={3}
     >
-      <MinValue__Title>
+      <ValidationTitle>
         Min Value is
-      </MinValue__Title>
+      </ValidationTitle>
     </Column>
     <Column
       cols={12}
@@ -26,7 +26,7 @@ exports[`MinValue should render with content 1`] = `
         name="min-value-include"
         onChange={[Function]}
       >
-        <MinValue__ValueInput
+        <ValidationInput
           data-test="min-value-input"
           id="min-value"
           list="defaultNumbers"

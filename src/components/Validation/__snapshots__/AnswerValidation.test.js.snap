@@ -15,7 +15,15 @@ exports[`AnswerValidation Date Validation preview should render preview dates wi
 
 exports[`AnswerValidation Date Validation preview should render preview dates without offset 1`] = `"02/09/2018"`;
 
-exports[`AnswerValidation should not render there are no valid validation types 1`] = `""`;
+exports[`AnswerValidation Number/Currency Validation preview max value should render custom values 1`] = `5`;
+
+exports[`AnswerValidation Number/Currency Validation preview max value should render custom values 2`] = `5`;
+
+exports[`AnswerValidation Number/Currency Validation preview max value should render previous answer 1`] = `"foobar"`;
+
+exports[`AnswerValidation Number/Currency Validation preview max value should render previous answer 2`] = `"foobar"`;
+
+exports[`AnswerValidation should not render when there are no valid validation types 1`] = `""`;
 
 exports[`AnswerValidation should render 1`] = `
 <AnswerValidation__Container>

@@ -4,16 +4,17 @@ import { action } from "@storybook/addon-actions";
 import ContentPickerModal from "components/ContentPickerModal";
 import generateTestData from "tests/utils/generateMockPiping";
 
-storiesOf("ContentPicker", module)
-  .add("ContentPicker", () => {
-    const answerData = generateTestData();
-    answerData[0].pages[0].answers = [];
+const answerData = generateTestData();
 
-    const metadataData = [
-      { id: "1", displayName: "ru_name" },
-      { id: "2", displayName: "collection_exercise_sid" },
-      { id: "3", displayName: "language_code" }
-    ];
+const metadataData = [
+  { id: "1", displayName: "ru_name" },
+  { id: "2", displayName: "collection_exercise_sid" },
+  { id: "3", displayName: "language_code" }
+];
+
+storiesOf("ContentPicker", module)
+  .add("With answers and metadata", () => {
+    answerData[0].pages[0].answers = [];
     return (
       <ContentPickerModal
         answerData={answerData}
@@ -24,15 +25,33 @@ storiesOf("ContentPicker", module)
       />
     );
   })
-  .add("No metadata", () => {
-    const answerData = generateTestData();
+  .add("With answers only", () => {
     answerData[0].pages[0].answers = [];
-
-    const metadataData = [];
     return (
       <ContentPickerModal
         answerData={answerData}
+        isOpen
+        onClose={action("close")}
+        onSubmit={action(`submit`)}
+      />
+    );
+  })
+  .add("With empty answers", () => {
+    return (
+      <ContentPickerModal
+        answerData={[]}
         metadataData={metadataData}
+        isOpen
+        onClose={action("close")}
+        onSubmit={action(`submit`)}
+      />
+    );
+  })
+  .add("With empty metadata", () => {
+    return (
+      <ContentPickerModal
+        answerData={answerData}
+        metadataData={[]}
         isOpen
         onClose={action("close")}
         onSubmit={action(`submit`)}

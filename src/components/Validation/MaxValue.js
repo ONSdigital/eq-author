@@ -7,40 +7,69 @@ import { propType } from "graphql-anywhere";
 
 import { flowRight, inRange, isNaN } from "lodash";
 
-import { colors } from "constants/theme";
+import { ValidationPills } from "components/Validation/ValidationPills";
 import { Grid, Column } from "components/Grid";
-import { Input } from "components/Forms";
+import { Field, Label } from "components/Forms";
 import DisabledMessage from "components/Validation/DisabledMessage";
+import ToggleSwitch from "components/ToggleSwitch";
 
-import ValidationView from "./ValidationView";
-import FieldWithInclude from "./FieldWithInclude";
+import ValidationTitle from "components/Validation/ValidationTitle";
+import ValidationView from "components/Validation/ValidationView";
+import ValidationContext from "components/Validation/ValidationContext";
+import PathEnd from "components/Validation/path-end.svg?inline";
 
-import MaxValueValidationRule from "graphql/fragments/max-value-validation-rule.graphql";
 import withUpdateAnswerValidation from "containers/enhancers/withUpdateAnswerValidation";
 import withToggleAnswerValidation from "containers/enhancers/withToggleAnswerValidation";
 
-import ValidationContext from "./ValidationContext";
+import MaxValueValidationRule from "graphql/fragments/max-value-validation-rule.graphql";
 
-const Title = styled.h1`
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.9em;
-  text-align: center;
-  color: ${colors.text};
-  margin: 0.6em 0 0;
+import * as answerTypes from "constants/answer-types";
+
+const InlineField = styled(Field)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: -0.8em;
 `;
 
-const ValueInput = styled(Input)`
-  width: 10em;
+const Connector = styled(PathEnd)`
+  margin-top: 0.75em;
+  margin-left: 1.5em;
 `;
 
 export const MaxValue = ({
   maxValue,
   onUpdateAnswerValidation,
   onToggleValidationRule,
-  limit
+  limit,
+  answerType
 }) => {
+  const handlePreviousAnswerChange = ({ id }) => {
+    const updateValidationRuleInput = {
+      id: maxValue.id,
+      maxValueInput: {
+        inclusive: maxValue.inclusive,
+        previousAnswer: id
+      }
+    };
+
+    onUpdateAnswerValidation(updateValidationRuleInput);
+  };
+
+  const handleEntityTypeChange = value => {
+    const updateValidationRuleInput = {
+      id: maxValue.id,
+      maxValueInput: {
+        inclusive: maxValue.inclusive,
+        entityType: value,
+        previousAnswer: null,
+        custom: null
+      }
+    };
+
+    onUpdateAnswerValidation(updateValidationRuleInput);
+  };
+
   const handleToggleChange = ({ value }) => {
     const toggleValidationRuleInput = {
       id: maxValue.id,
@@ -50,7 +79,7 @@ export const MaxValue = ({
     onToggleValidationRule(toggleValidationRuleInput);
   };
 
-  const handleMaxValueChange = ({ value }) => {
+  const handleCustomValueChange = ({ value }) => {
     // clamp value of input to +/- limit
     if (value !== "" && !inRange(parseInt(value, 10), 0 - limit, limit + 1)) {
       return false;
@@ -79,37 +108,43 @@ export const MaxValue = ({
     };
     onUpdateAnswerValidation(updateValidationRuleInput);
   };
-
   const renderDisabled = () => (
     <DisabledMessage>Max value is disabled</DisabledMessage>
   );
 
-  const renderContent = () => (
-    <Grid>
-      <Column cols={3}>
-        <Title>Max Value is</Title>
-      </Column>
-      <Column>
-        <FieldWithInclude
-          id="max-value-include"
-          name="max-value-include"
-          onChange={handleIncludeChange}
-          checked={maxValue.inclusive}
-        >
-          <ValueInput
-            data-test="max-value-input"
-            list="defaultNumbers"
-            value={maxValue.custom}
-            type="number"
-            id="max-value"
-            onChange={handleMaxValueChange}
-            max={limit}
-            min={0 - limit}
+  const renderContent = () => {
+    return (
+      <Grid>
+        <Column cols={3}>
+          <ValidationTitle>Max Value is</ValidationTitle>
+          <Connector />
+        </Column>
+        <Column cols={8}>
+          <ValidationPills
+            entityType={maxValue.entityType}
+            answerType={answerType}
+            previousAnswer={maxValue.previousAnswer}
+            customValue={maxValue.custom}
+            customValueLimit={limit}
+            onEntityTypeChange={handleEntityTypeChange}
+            onPreviousAnswerChange={handlePreviousAnswerChange}
+            onCustomValueChange={handleCustomValueChange}
           />
-        </FieldWithInclude>
-      </Column>
-    </Grid>
-  );
+          <InlineField>
+            <ToggleSwitch
+              id="max-value-include"
+              name="max-value-include"
+              onChange={handleIncludeChange}
+              checked={maxValue.inclusive}
+            />
+            <Label inline htmlFor="max-value-include">
+              Include this number
+            </Label>
+          </InlineField>
+        </Column>
+      </Grid>
+    );
+  };
 
   return (
     <ValidationView
@@ -128,6 +163,7 @@ MaxValue.defaultProps = {
 
 MaxValue.propTypes = {
   maxValue: propType(MaxValueValidationRule).isRequired,
+  answerType: PropTypes.oneOf(Object.values(answerTypes)).isRequired,
   onUpdateAnswerValidation: PropTypes.func.isRequired,
   onToggleValidationRule: PropTypes.func.isRequired,
   limit: PropTypes.number
@@ -142,7 +178,11 @@ const withQuestionPageEditing = flowRight(
 export const MaxValueWithAnswer = props => (
   <ValidationContext.Consumer>
     {({ answer }) => (
-      <MaxValue maxValue={answer.validation.maxValue} {...props} />
+      <MaxValue
+        maxValue={answer.validation.maxValue}
+        answerType={answer.type}
+        {...props}
+      />
     )}
   </ValidationContext.Consumer>
 );

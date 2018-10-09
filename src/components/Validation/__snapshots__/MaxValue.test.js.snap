@@ -13,30 +13,39 @@ exports[`MaxValue should render with content 1`] = `
     <Column
       cols={3}
     >
-      <MaxValue__Title>
+      <ValidationTitle>
         Max Value is
-      </MaxValue__Title>
+      </ValidationTitle>
+      <MaxValue__Connector />
     </Column>
     <Column
-      cols={12}
+      cols={8}
     >
-      <FieldWithInclude
-        checked={true}
-        id="max-value-include"
-        name="max-value-include"
-        onChange={[Function]}
-      >
-        <MaxValue__ValueInput
-          data-test="max-value-input"
-          id="max-value"
-          list="defaultNumbers"
-          max={999999999}
-          min={-999999999}
+      <ValidationPills
+        answerType="Number"
+        customValue={123}
+        customValueLimit={999999999}
+        entityType="Custom"
+        onCustomValueChange={[Function]}
+        onEntityTypeChange={[Function]}
+        onPreviousAnswerChange={[Function]}
+        previousAnswer={null}
+      />
+      <MaxValue__InlineField>
+        <ToggleSwitch
+          checked={true}
+          id="max-value-include"
+          name="max-value-include"
           onChange={[Function]}
-          type="number"
-          value={true}
         />
-      </FieldWithInclude>
+        <Label
+          bold={true}
+          htmlFor="max-value-include"
+          inline={true}
+        >
+          Include this number
+        </Label>
+      </MaxValue__InlineField>
     </Column>
   </Grid>
 </ValidationView>

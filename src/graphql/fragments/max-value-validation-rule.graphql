@@ -3,4 +3,9 @@ fragment MaxValueValidationRule on MaxValueValidationRule {
   enabled
   custom
   inclusive
+  entityType
+  previousAnswer {
+    id
+    displayName
+  }
 }

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ValidationPills should render 1`] = `
+<ValidationPills__Pills
+  data-test="max-value-pill-tabs"
+  onChange={[MockFunction]}
+  options={
+    Array [
+      Object {
+        "id": "PreviousAnswer",
+        "render": [Function],
+        "title": "Previous answer",
+      },
+      Object {
+        "id": "Custom",
+        "render": [Function],
+        "title": "Custom",
+      },
+    ]
+  }
+  value="PreviousAnswer"
+/>
+`;

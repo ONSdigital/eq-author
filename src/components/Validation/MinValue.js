@@ -1,39 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styled from "styled-components";
 import { withApollo } from "react-apollo";
 import { propType } from "graphql-anywhere";
 
 import { flowRight, inRange, isNaN } from "lodash";
 
-import { colors } from "constants/theme";
 import { Grid, Column } from "components/Grid";
-import { Input } from "components/Forms";
 import DisabledMessage from "components/Validation/DisabledMessage";
 
-import ValidationView from "./ValidationView";
-import FieldWithInclude from "./FieldWithInclude";
+import ValidationTitle from "components/Validation/ValidationTitle";
+import ValidationInput from "components/Validation/ValidationInput";
+import ValidationView from "components/Validation/ValidationView";
+import FieldWithInclude from "components/Validation/FieldWithInclude";
+import ValidationContext from "components/Validation/ValidationContext";
 
-import MinValueValidationRule from "graphql/fragments/min-value-validation-rule.graphql";
 import withUpdateAnswerValidation from "containers/enhancers/withUpdateAnswerValidation";
 import withToggleAnswerValidation from "containers/enhancers/withToggleAnswerValidation";
 
-import ValidationContext from "./ValidationContext";
-
-const Title = styled.h1`
-  font-weight: bold;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 0.9em;
-  text-align: center;
-  color: ${colors.text};
-  margin: 0.6em 0 0;
-`;
-
-const ValueInput = styled(Input)`
-  width: 10em;
-`;
+import MinValueValidationRule from "graphql/fragments/min-value-validation-rule.graphql";
 
 export const MinValue = ({
   minValue,
@@ -87,7 +72,7 @@ export const MinValue = ({
   const renderContent = () => (
     <Grid>
       <Column cols={3}>
-        <Title>Min Value is</Title>
+        <ValidationTitle>Min Value is</ValidationTitle>
       </Column>
       <Column>
         <FieldWithInclude
@@ -96,7 +81,7 @@ export const MinValue = ({
           onChange={handleIncludeChange}
           checked={minValue.inclusive}
         >
-          <ValueInput
+          <ValidationInput
             data-test="min-value-input"
             list="defaultNumbers"
             value={minValue.custom}

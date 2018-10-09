@@ -2,7 +2,8 @@ import {
   addQuestionnaire,
   addAnswerType,
   addSection,
-  testId
+  testId,
+  selectFirstAnswerFromContentPicker
 } from "../../utils";
 
 describe("Piping", () => {
@@ -27,24 +28,7 @@ describe("Piping", () => {
       .first()
       .click();
 
-    cy.get(testId("picker-title"))
-      .first()
-      .click();
-
-    // Section
-    cy.get(testId("picker-option"))
-      .first()
-      .click();
-    // Question page
-    cy.get(testId("picker-option"))
-      .first()
-      .click();
-    // Answer
-    cy.get(testId("picker-option"))
-      .first()
-      .click();
-
-    cy.get(testId("submit-button")).click();
+    selectFirstAnswerFromContentPicker();
 
     cy.get(testId("txt-question-title", "testid")).should(
       "contain",

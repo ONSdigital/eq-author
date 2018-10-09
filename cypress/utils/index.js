@@ -195,3 +195,28 @@ export const toggleCheckboxOff = selector => {
     cy.get('[type="checkbox"]').should("not.be.checked");
   });
 };
+
+export const selectFirstAnswerFromContentPicker = () => {
+  cy.get("button")
+    .contains("Answer")
+    .click();
+
+  cy.get(testId("picker-title"))
+    .first()
+    .click();
+
+  // Section
+  cy.get(testId("picker-option"))
+    .first()
+    .click();
+  // Question page
+  cy.get(testId("picker-option"))
+    .first()
+    .click();
+  // Answer
+  cy.get(testId("picker-option"))
+    .first()
+    .click();
+
+  cy.get(testId("submit-button")).click();
+};
