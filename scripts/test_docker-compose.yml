@@ -12,7 +12,7 @@ services:
   eq-author:
     image: "onsdigital/eq-author:${TRAVIS_BUILD_NUMBER:-latest}"
     environment:
-      REACT_APP_BASE_NAME: ""
+      REACT_APP_BASE_NAME: "/"
       REACT_APP_API_URL: http://localhost:14000/graphql
       REACT_APP_USE_MOCK_API: "false"
       REACT_APP_PUBLISHER_URL: http://eq-publisher:9000/publish

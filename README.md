@@ -110,7 +110,7 @@ Spins up the Storybook development server.
 | `REACT_APP_FIREBASE_PROJECT_ID` | Firebase is used for basic authentication this environment and the two below are needed for this. The project ID for your Firebase project. Can be obtained from your Firebase project | Yes If authentication is enabled |
 | `REACT_APP_FIREBASE_API_KEY` | The api key for your Firebase project. Can be obtained from your Firebase project | Yes If authentication is enabled |
 | `REACT_APP_FIREBASE_MESSAGING_SENDER_ID` | The messaging sender ID for your Firebase project. Can be obtained from your Firebase project | Yes If authentication is enabled |
-| `REACT_APP_ENABLE_AUTH` | Used to enable and disable firebase authentication. User can sign in as guest if this is set to false | Yes |
+| `REACT_APP_ENABLE_AUTH` | Used to enable and disable firebase authentication. User can sign in as guest if this is set to false. This is always enabled in the docker images. | Yes |
 
 ### Functional
 | Name | Description | Required |
@@ -177,6 +177,14 @@ Note: CLI env vars taken precedence over `.env.development.local` vars. For more
 ### Enabling / disabling authentication
 
 Firebase authentication can be disabled by setting the env var `REACT_APP_ENABLE_AUTH=false`. Disabling firebase authentication allows users to login as a guest.
+
+### Environment variable in different environments
+
+There are two ways we use environment variables in the application:
+1. Build time environment variables. These are values that are known at build time and cannot be changed once the docker image is built. Currently these are only `NODE_ENV` and `REACT_APP_AUTH_ENABLED`. These are referenced in the code as `process.env.{key}`
+1. Runtime configurable variables. These are values that can change for each place we run the app for example in staging we want the API url to be different to production. In the code these values are read using the config object for example `config.{key}`. 
+    - Dev - Values are read from the environment.
+    - Docker - Values are read from `window.config` (as defined in `index.html`) and then `process.env`. `index.html` is rewritten in docker to read the available environment variables and pass them to the application every time the docker image starts.
 
 ## Testing
 

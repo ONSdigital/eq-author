@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { colors } from "constants/theme";
+import config from "config";
 
 import { raiseToast } from "redux/toast/actions";
 
@@ -97,17 +98,17 @@ export class UnconnectedHeader extends React.Component {
   };
 
   getPreviewUrl(questionnaireId) {
-    if (process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL) {
+    if (config.REACT_APP_GO_LAUNCH_A_SURVEY_URL) {
       const timestamp = Date.now();
-      const publisherUrl = process.env.REACT_APP_PUBLISHER_URL;
+      const publisherUrl = config.REACT_APP_PUBLISHER_URL;
       const goLaunchASurveyQuickLaunchUrl =
-        process.env.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
+        config.REACT_APP_GO_LAUNCH_A_SURVEY_URL;
       const urlEncodedParam = encodeURIComponent(
         `${publisherUrl}/${questionnaireId}?r=${timestamp}`
       );
       return `${goLaunchASurveyQuickLaunchUrl}?url=${urlEncodedParam}`;
     } else {
-      return `${process.env.REACT_APP_LAUNCH_URL}/${questionnaireId}`;
+      return `${config.REACT_APP_LAUNCH_URL}/${questionnaireId}`;
     }
   }
 
