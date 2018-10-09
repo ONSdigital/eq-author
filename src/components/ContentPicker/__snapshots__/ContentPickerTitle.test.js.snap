@@ -6,7 +6,7 @@ exports[`Content Picker Title should render 1`] = `
   aria-selected={true}
   disabled={false}
   id="id"
-  onClick={[Function]}
+  onClick={[MockFunction]}
   role="tab"
   selected={true}
 >

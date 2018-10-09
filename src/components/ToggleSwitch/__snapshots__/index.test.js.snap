@@ -9,7 +9,7 @@ exports[`ToggleSwitch should render 1`] = `
   <ToggleSwitch__HiddenInput
     checked={false}
     id="test"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     type="checkbox"
   />
   <ToggleSwitch__ToggleSwitchBackground
@@ -33,7 +33,7 @@ exports[`ToggleSwitch should render a large toggle button 1`] = `
   <ToggleSwitch__HiddenInput
     checked={false}
     id="toggle-3"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     type="checkbox"
   />
   <ToggleSwitch__ToggleSwitchBackground
@@ -191,7 +191,7 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
   id="toggle-3"
   label="Test switch"
   name="test"
-  onChange={[Function]}
+  onChange={[MockFunction]}
   size={2}
   width={5}
 >
@@ -209,14 +209,14 @@ exports[`ToggleSwitch should render a large toggle button when mounted 1`] = `
       <ToggleSwitch__HiddenInput
         checked={false}
         id="toggle-3"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="checkbox"
       >
         <withChangeHandler(UncontrolledInput)
           checked={false}
           className="c1"
           id="toggle-3"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="checkbox"
         >
           <UncontrolledInput
@@ -281,7 +281,7 @@ exports[`ToggleSwitch should render checked 1`] = `
   <ToggleSwitch__HiddenInput
     checked={true}
     id="toggle-2"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     type="checkbox"
   />
   <ToggleSwitch__ToggleSwitchBackground
@@ -438,7 +438,7 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
   id="toggle-2"
   label="Test switch"
   name="test"
-  onChange={[Function]}
+  onChange={[MockFunction]}
 >
   <ToggleSwitch__FlexInline
     aria-checked={true}
@@ -454,14 +454,14 @@ exports[`ToggleSwitch should render when checked and mounted 1`] = `
       <ToggleSwitch__HiddenInput
         checked={true}
         id="toggle-2"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="checkbox"
       >
         <withChangeHandler(UncontrolledInput)
           checked={true}
           className="c1"
           id="toggle-2"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="checkbox"
         >
           <UncontrolledInput
@@ -659,7 +659,7 @@ exports[`ToggleSwitch should render when mounted 1`] = `
   id="toggle-2"
   label="Test switch"
   name="test"
-  onChange={[Function]}
+  onChange={[MockFunction]}
 >
   <ToggleSwitch__FlexInline
     aria-checked={true}
@@ -675,14 +675,14 @@ exports[`ToggleSwitch should render when mounted 1`] = `
       <ToggleSwitch__HiddenInput
         checked={true}
         id="toggle-2"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="checkbox"
       >
         <withChangeHandler(UncontrolledInput)
           checked={true}
           className="c1"
           id="toggle-2"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="checkbox"
         >
           <UncontrolledInput

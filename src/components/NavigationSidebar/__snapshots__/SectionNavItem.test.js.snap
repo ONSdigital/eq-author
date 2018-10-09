@@ -4,8 +4,8 @@ exports[`SectionNavItem should render 1`] = `
 <SectionNavItem__StyledSectionNavItem
   data-test="section-item"
   duration={123}
-  isActive={[Function]}
-  onAddPage={[Function]}
+  isActive={[MockFunction]}
+  onAddPage={[MockFunction]}
 >
   <NavLink
     data-test="nav-section-link"

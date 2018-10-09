@@ -12,9 +12,9 @@ exports[`NavigationSidebar should render 1`] = `
 >
   <NavigationHeader
     data-test="nav-section-header"
-    onAddPage={[Function]}
+    onAddPage={[MockFunction]}
     onAddSection={[Function]}
-    onUpdateQuestionnaire={[Function]}
+    onUpdateQuestionnaire={[MockFunction]}
     questionnaire={
       Object {
         "id": "1",

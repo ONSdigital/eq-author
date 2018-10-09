@@ -3,8 +3,8 @@
 exports[`MoveSectionModal should render 1`] = `
 <MoveModal
   isOpen={true}
-  onClose={[Function]}
-  onMoveSection={[Function]}
+  onClose={[MockFunction]}
+  onMoveSection={[MockFunction]}
   questionnaire={
     Object {
       "id": "1",
@@ -78,9 +78,9 @@ exports[`MoveSectionModal should render 1`] = `
 >
   <PositionModal
     isOpen={true}
-    onClose={[Function]}
+    onClose={[MockFunction]}
     onMove={[Function]}
-    onMoveSection={[Function]}
+    onMoveSection={[MockFunction]}
     options={
       Array [
         Object {

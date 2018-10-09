@@ -5,6 +5,6 @@ exports[`Required Property should render 1`] = `
   checked={true}
   id="1"
   name="1"
-  onChange={[Function]}
+  onChange={[MockFunction]}
 />
 `;

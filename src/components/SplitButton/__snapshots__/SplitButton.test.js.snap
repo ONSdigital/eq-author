@@ -4,7 +4,7 @@ exports[`SplitButton should render when closed 1`] = `
 <SplitButton__FlexContainer>
   <PrimaryButton
     data-test="splitbutton"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     Add checkbox
   </PrimaryButton>
@@ -25,7 +25,7 @@ exports[`SplitButton should render when closed 1`] = `
   >
     <ButtonGroup>
       <Button
-        onClick={[Function]}
+        onClick={[MockFunction]}
         secondary={true}
         type="button"
         variant="primary"
@@ -41,7 +41,7 @@ exports[`SplitButton should render when open 1`] = `
 <SplitButton__FlexContainer>
   <PrimaryButton
     data-test="splitbutton"
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     Add checkbox
   </PrimaryButton>
@@ -62,7 +62,7 @@ exports[`SplitButton should render when open 1`] = `
   >
     <ButtonGroup>
       <Button
-        onClick={[Function]}
+        onClick={[MockFunction]}
         secondary={true}
         type="button"
         variant="primary"

@@ -20,7 +20,7 @@ exports[`PickerOption should render 1`] = `
 
 <Button
   className="c0"
-  onClick={[Function]}
+  onClick={[MockFunction]}
   selected={false}
   type="button"
   variant="primary"

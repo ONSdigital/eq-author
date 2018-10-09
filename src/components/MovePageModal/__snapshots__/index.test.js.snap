@@ -3,8 +3,8 @@
 exports[`MovePageModal should render 1`] = `
 <MoveModal
   isOpen={true}
-  onClose={[Function]}
-  onMovePage={[Function]}
+  onClose={[MockFunction]}
+  onMovePage={[MockFunction]}
   page={
     Object {
       "displayName": "Page 1.1",
@@ -109,9 +109,9 @@ exports[`MovePageModal should render 1`] = `
   <PositionModal
     data-test="page-position-modal"
     isOpen={true}
-    onClose={[Function]}
+    onClose={[MockFunction]}
     onMove={[Function]}
-    onMovePage={[Function]}
+    onMovePage={[MockFunction]}
     options={
       Array [
         Object {

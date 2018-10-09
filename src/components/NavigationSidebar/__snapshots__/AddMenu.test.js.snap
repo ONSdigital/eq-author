@@ -2,7 +2,7 @@
 
 exports[`AddMenu should render 1`] = `
 <div
-  onAdd={[Function]}
+  onAdd={[MockFunction]}
 >
   <Popout
     container={[Function]}
@@ -10,7 +10,7 @@ exports[`AddMenu should render 1`] = `
     layer={[Function]}
     offsetX="4.9em"
     offsetY="-1.6em"
-    onToggleOpen={[Function]}
+    onToggleOpen={[MockFunction]}
     open={false}
     transition={[Function]}
     trigger={
@@ -32,14 +32,14 @@ exports[`AddMenu should render 1`] = `
     >
       <AddMenu__AddMenuButton
         data-test="btn-add-question-page"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         primary={true}
       >
         Question Page
       </AddMenu__AddMenuButton>
       <AddMenu__AddMenuButton
         data-test="btn-add-section"
-        onClick={[Function]}
+        onClick={[MockFunction]}
         primary={true}
       >
         Section

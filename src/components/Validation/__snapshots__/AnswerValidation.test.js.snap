@@ -3,14 +3,14 @@
 exports[`AnswerValidation Date Validation preview should render a preview without a customDate 1`] = `"Invalid Rule"`;
 
 exports[`AnswerValidation Date Validation preview should render preview dates with offset 1`] = `
-<UNDEFINED>
+<React.Fragment>
   <div>
     5 months before:
   </div>
   <div>
     02/09/2018
   </div>
-</UNDEFINED>
+</React.Fragment>
 `;
 
 exports[`AnswerValidation Date Validation preview should render preview dates without offset 1`] = `"02/09/2018"`;

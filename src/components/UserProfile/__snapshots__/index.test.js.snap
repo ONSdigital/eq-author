@@ -5,7 +5,7 @@ exports[`UserProfile should render 1`] = `
   content="Sign Out"
 >
   <UserProfile__LogoutButton
-    onClick={[Function]}
+    onClick={[MockFunction]}
     small={true}
     variant="tertiary-light"
   >

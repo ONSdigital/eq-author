@@ -3,11 +3,11 @@
 exports[`ItemSelectModal should render 1`] = `
 <PlainModal
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <form
     data-test="item-select-modal-form"
-    onSubmit={[Function]}
+    onSubmit={[MockFunction]}
   >
     <ItemSelectModal__Fieldset>
       <ItemSelectModal__Title>
@@ -19,7 +19,7 @@ exports[`ItemSelectModal should render 1`] = `
     </ItemSelectModal__Fieldset>
     <ItemSelectModal__StyledButtonGroup>
       <ItemSelectModal__StyledButton
-        onClick={[Function]}
+        onClick={[MockFunction]}
         variant="secondary"
       >
         Cancel

@@ -23,7 +23,7 @@ exports[`MultipleChoiceAnswer exclusive options should render exclusive 1`] = `
   }
   autoFocus={false}
   labelText="Label (optional)"
-  onUpdate={[Function]}
+  onUpdate={[MockFunction]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
     <MultipleChoiceAnswer__AnswerHelper>
@@ -40,15 +40,15 @@ exports[`MultipleChoiceAnswer exclusive options should render exclusive 1`] = `
       >
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={false}
-          onAddExclusive={[Function]}
-          onAddOption={[Function]}
-          onAddOther={[Function]}
-          onChange={[Function]}
+          onAddExclusive={[MockFunction]}
+          onAddOption={[MockFunction]}
+          onAddOther={[MockFunction]}
+          onChange={[MockFunction]}
           onDelete={[Function]}
-          onDeleteOption={[Function]}
-          onDeleteOther={[Function]}
+          onDeleteOption={[MockFunction]}
+          onDeleteOther={[MockFunction]}
           onEnterKey={[Function]}
-          onUpdate={[Function]}
+          onUpdate={[MockFunction]}
           option={
             Object {
               "description": "",
@@ -58,9 +58,9 @@ exports[`MultipleChoiceAnswer exclusive options should render exclusive 1`] = `
           }
           store={
             Object {
-              "dispatch": [Function],
-              "getState": [Function],
-              "subscribe": [Function],
+              "dispatch": [MockFunction],
+              "getState": [MockFunction],
+              "subscribe": [MockFunction],
             }
           }
         />
@@ -77,15 +77,15 @@ exports[`MultipleChoiceAnswer exclusive options should render exclusive 1`] = `
           </MultipleChoiceAnswer__ExclusiveOr>
           <Connect(withEntityEditor(StatelessOption))
             hasDeleteButton={true}
-            onAddExclusive={[Function]}
-            onAddOption={[Function]}
-            onAddOther={[Function]}
-            onChange={[Function]}
+            onAddExclusive={[MockFunction]}
+            onAddOption={[MockFunction]}
+            onAddOther={[MockFunction]}
+            onChange={[MockFunction]}
             onDelete={[Function]}
-            onDeleteOption={[Function]}
-            onDeleteOther={[Function]}
+            onDeleteOption={[MockFunction]}
+            onDeleteOther={[MockFunction]}
             onEnterKey={[Function]}
-            onUpdate={[Function]}
+            onUpdate={[MockFunction]}
             option={
               Object {
                 "__typename": "Option",
@@ -96,9 +96,9 @@ exports[`MultipleChoiceAnswer exclusive options should render exclusive 1`] = `
             }
             store={
               Object {
-                "dispatch": [Function],
-                "getState": [Function],
-                "subscribe": [Function],
+                "dispatch": [MockFunction],
+                "getState": [MockFunction],
+                "subscribe": [MockFunction],
               }
             }
           />
@@ -174,7 +174,7 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
   }
   autoFocus={false}
   labelText="Label (optional)"
-  onUpdate={[Function]}
+  onUpdate={[MockFunction]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
     <TransitionGroup
@@ -188,15 +188,15 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
       >
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={true}
-          onAddExclusive={[Function]}
-          onAddOption={[Function]}
-          onAddOther={[Function]}
-          onChange={[Function]}
+          onAddExclusive={[MockFunction]}
+          onAddOption={[MockFunction]}
+          onAddOther={[MockFunction]}
+          onChange={[MockFunction]}
           onDelete={[Function]}
-          onDeleteOption={[Function]}
-          onDeleteOther={[Function]}
+          onDeleteOption={[MockFunction]}
+          onDeleteOther={[MockFunction]}
           onEnterKey={[Function]}
-          onUpdate={[Function]}
+          onUpdate={[MockFunction]}
           option={
             Object {
               "description": "",
@@ -206,9 +206,9 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
           }
           store={
             Object {
-              "dispatch": [Function],
-              "getState": [Function],
-              "subscribe": [Function],
+              "dispatch": [MockFunction],
+              "getState": [MockFunction],
+              "subscribe": [MockFunction],
             }
           }
         />
@@ -219,15 +219,15 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
       >
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={true}
-          onAddExclusive={[Function]}
-          onAddOption={[Function]}
-          onAddOther={[Function]}
-          onChange={[Function]}
+          onAddExclusive={[MockFunction]}
+          onAddOption={[MockFunction]}
+          onAddOther={[MockFunction]}
+          onChange={[MockFunction]}
           onDelete={[Function]}
-          onDeleteOption={[Function]}
-          onDeleteOther={[Function]}
+          onDeleteOption={[MockFunction]}
+          onDeleteOther={[MockFunction]}
           onEnterKey={[Function]}
-          onUpdate={[Function]}
+          onUpdate={[MockFunction]}
           option={
             Object {
               "description": "",
@@ -237,9 +237,9 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
           }
           store={
             Object {
-              "dispatch": [Function],
-              "getState": [Function],
-              "subscribe": [Function],
+              "dispatch": [MockFunction],
+              "getState": [MockFunction],
+              "subscribe": [MockFunction],
             }
           }
         />
@@ -251,15 +251,15 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={true}
           labelPlaceholder="eg. Other"
-          onAddExclusive={[Function]}
-          onAddOption={[Function]}
-          onAddOther={[Function]}
-          onChange={[Function]}
+          onAddExclusive={[MockFunction]}
+          onAddOption={[MockFunction]}
+          onAddOther={[MockFunction]}
+          onChange={[MockFunction]}
           onDelete={[Function]}
-          onDeleteOption={[Function]}
-          onDeleteOther={[Function]}
+          onDeleteOption={[MockFunction]}
+          onDeleteOther={[MockFunction]}
           onEnterKey={[Function]}
-          onUpdate={[Function]}
+          onUpdate={[MockFunction]}
           option={
             Object {
               "__typename": "Option",
@@ -268,9 +268,9 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
           }
           store={
             Object {
-              "dispatch": [Function],
-              "getState": [Function],
-              "subscribe": [Function],
+              "dispatch": [MockFunction],
+              "getState": [MockFunction],
+              "subscribe": [MockFunction],
             }
           }
         >
@@ -295,7 +295,7 @@ exports[`MultipleChoiceAnswer other option and answer should render other 1`] = 
               bold={false}
               labelPlaceholder="eg. Please specify"
               labelText="Other label"
-              onUpdate={[Function]}
+              onUpdate={[MockFunction]}
               showDescription={false}
             />
           </MultipleChoiceAnswer__SpecialOptionWrapper>
@@ -342,7 +342,7 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
   }
   autoFocus={false}
   labelText="Label (optional)"
-  onUpdate={[Function]}
+  onUpdate={[MockFunction]}
 >
   <MultipleChoiceAnswer__AnswerWrapper>
     <TransitionGroup
@@ -356,15 +356,15 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
       >
         <Connect(withEntityEditor(StatelessOption))
           hasDeleteButton={false}
-          onAddExclusive={[Function]}
-          onAddOption={[Function]}
-          onAddOther={[Function]}
-          onChange={[Function]}
+          onAddExclusive={[MockFunction]}
+          onAddOption={[MockFunction]}
+          onAddOther={[MockFunction]}
+          onChange={[MockFunction]}
           onDelete={[Function]}
-          onDeleteOption={[Function]}
-          onDeleteOther={[Function]}
+          onDeleteOption={[MockFunction]}
+          onDeleteOther={[MockFunction]}
           onEnterKey={[Function]}
-          onUpdate={[Function]}
+          onUpdate={[MockFunction]}
           option={
             Object {
               "__typename": "Option",
@@ -375,9 +375,9 @@ exports[`MultipleChoiceAnswer should match snapshot 1`] = `
           }
           store={
             Object {
-              "dispatch": [Function],
-              "getState": [Function],
-              "subscribe": [Function],
+              "dispatch": [MockFunction],
+              "getState": [MockFunction],
+              "subscribe": [MockFunction],
             }
           }
         />

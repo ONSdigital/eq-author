@@ -60,7 +60,7 @@ exports[`WrappingInput should render 1`] = `
 
 <withChangeHandler(WrappingInput)
   id="foo"
-  onChange={[Function]}
+  onChange={[MockFunction]}
   value="123"
 >
   <WrappingInput

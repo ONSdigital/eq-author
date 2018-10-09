@@ -20,8 +20,8 @@ exports[`Date should render 1`] = `
       data-test="date-answer-label"
       id="label-1"
       name="label"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       size="medium"
       value="Lorem ipsum"
     />

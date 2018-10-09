@@ -45,7 +45,7 @@ exports[`Content Picker Single should render 1`] = `
   <ContentPickerTitle
     data-test="picker-title"
     disabled={false}
-    onClick={[Function]}
+    onClick={[MockFunction]}
     open={false}
     selected={false}
   >

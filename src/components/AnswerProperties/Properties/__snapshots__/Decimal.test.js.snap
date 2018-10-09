@@ -6,7 +6,7 @@ exports[`Decimal Property should render 1`] = `
   max={6}
   min={0}
   name="1"
-  onChange={[Function]}
+  onChange={[MockFunction]}
   step={1}
   value={2}
 />

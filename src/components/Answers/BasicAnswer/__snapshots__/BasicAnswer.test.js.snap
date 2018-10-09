@@ -17,8 +17,8 @@ exports[`BasicAnswer should render with description 1`] = `
       data-test="txt-answer-label"
       id="answer-label-undefined"
       name="label"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value=""
     />
   </Field>
@@ -36,8 +36,8 @@ exports[`BasicAnswer should render with description 1`] = `
       data-test="txt-answer-description"
       id="answer-description-undefined"
       name="description"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       rows="5"
       value="Answer description"
     />
@@ -65,8 +65,8 @@ exports[`BasicAnswer should render without description 1`] = `
       data-test="txt-answer-label"
       id="answer-label-undefined"
       name="label"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value=""
     />
   </Field>

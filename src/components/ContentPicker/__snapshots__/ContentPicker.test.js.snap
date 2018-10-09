@@ -68,7 +68,7 @@ exports[`Content Picker should render full content picker 1`] = `
   >
     <Button
       data-test="cancel-button"
-      onClick={[Function]}
+      onClick={[MockFunction]}
       type="button"
       variant="secondary"
     >

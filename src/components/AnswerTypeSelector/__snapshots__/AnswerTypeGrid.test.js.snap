@@ -2,8 +2,8 @@
 
 exports[`components/AnswerTypeGrid should render 1`] = `
 <AnswerTypeGrid__Menu
-  onClose={[Function]}
-  onSelect={[Function]}
+  onClose={[MockFunction]}
+  onSelect={[MockFunction]}
 >
   <AnswerTypeGrid__MenuBackground>
     <IconGrid

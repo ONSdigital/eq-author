@@ -3,7 +3,7 @@
 exports[`MetadataModal should render 1`] = `
 <ModalFullScreen
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <GetMetadataQuery
     questionnaireId="1"
@@ -46,14 +46,14 @@ exports[`MetadataModal should render metadata content 1`] = `
   <MetadataModal__Content>
     <MetadataTable
       metadata={Array []}
-      onAdd={[Function]}
-      onDelete={[Function]}
-      onUpdate={[Function]}
+      onAdd={[MockFunction]}
+      onDelete={[MockFunction]}
+      onUpdate={[MockFunction]}
       questionnaireId="1"
     />
   </MetadataModal__Content>
   <DialogActionButtons
-    primaryAction={[Function]}
+    primaryAction={[MockFunction]}
     primaryActionText="Done"
   />
 </MetadataModal__Scrollable>

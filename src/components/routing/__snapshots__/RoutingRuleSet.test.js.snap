@@ -13,11 +13,11 @@ exports[`components/RoutingRuleSet should render children 1`] = `
       <RoutingRule
         destinations={Object {}}
         key="2"
-        onAddRoutingCondition={[Function]}
-        onDeleteRule={[Function]}
-        onThenChange={[Function]}
-        onToggleConditionOption={[Function]}
-        onUpdateRoutingCondition={[Function]}
+        onAddRoutingCondition={[MockFunction]}
+        onDeleteRule={[MockFunction]}
+        onThenChange={[MockFunction]}
+        onToggleConditionOption={[MockFunction]}
+        onUpdateRoutingCondition={[MockFunction]}
         pagesAvailableForRouting={Array []}
         rule={
           Object {
@@ -35,11 +35,11 @@ exports[`components/RoutingRuleSet should render children 1`] = `
       <RoutingRule
         destinations={Object {}}
         key="3"
-        onAddRoutingCondition={[Function]}
-        onDeleteRule={[Function]}
-        onThenChange={[Function]}
-        onToggleConditionOption={[Function]}
-        onUpdateRoutingCondition={[Function]}
+        onAddRoutingCondition={[MockFunction]}
+        onDeleteRule={[MockFunction]}
+        onThenChange={[MockFunction]}
+        onToggleConditionOption={[MockFunction]}
+        onUpdateRoutingCondition={[MockFunction]}
         pagesAvailableForRouting={Array []}
         rule={
           Object {

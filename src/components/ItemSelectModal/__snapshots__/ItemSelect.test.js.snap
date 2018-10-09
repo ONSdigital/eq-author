@@ -6,7 +6,7 @@ exports[`PositionModal/ItemSelect Option should render 1`] = `
     checked={true}
     id="test"
     name="bar"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     type="radio"
     value="foo"
   />

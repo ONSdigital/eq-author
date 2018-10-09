@@ -54,7 +54,7 @@ exports[`components/Forms/Input Text should render correctly 1`] = `
 <withChangeHandler(UncontrolledInput)
   defaultValue="I am some text"
   id="text"
-  onChange={[Function]}
+  onChange={[MockFunction]}
 >
   <UncontrolledInput
     defaultValue="I am some text"
