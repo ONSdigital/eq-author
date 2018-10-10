@@ -77,7 +77,8 @@ module.exports.loaders = {
       /\.gif$/,
       /\.jpe?g$/,
       /\.png$/,
-      /\.(graphql|gql)$/
+      /\.(graphql|gql)$/,
+      /\.ejs$/
     ],
     loader: require.resolve("file-loader"),
     options: {
