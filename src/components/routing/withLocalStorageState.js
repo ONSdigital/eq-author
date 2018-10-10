@@ -2,22 +2,29 @@ import React from "react";
 
 /* eslint-disable react/jsx-handler-names */
 
-export function withLocalStorageState(WrappedComponent) {
+export function withLocalStorageState(WrappedComponent, props) {
   return class extends React.Component {
-    state = {};
+    constructor(props) {
+      super(props);
+      this.state = {};
+    }
+
+    static defaultProps = {
+      storageKey: "EQ_AUTHOR"
+    };
 
     componentWillUnmount() {
-      localStorage.setItem("NUMERIC_ROUTING", JSON.stringify(this.state));
+      localStorage.setItem(this.props.storageKey, JSON.stringify(this.state));
     }
 
     componentWillMount() {
-      const rehydrate = JSON.parse(localStorage.getItem("NUMERIC_ROUTING"));
+      const rehydrate = JSON.parse(localStorage.getItem(this.props.storageKey));
       this.setState(rehydrate);
     }
 
     handleSetState = state => {
       this.setState(state, () =>
-        localStorage.setItem("NUMERIC_ROUTING", JSON.stringify(this.state))
+        localStorage.setItem(this.props.storageKey, JSON.stringify(this.state))
       );
     };
 
@@ -25,8 +32,8 @@ export function withLocalStorageState(WrappedComponent) {
       return (
         <WrappedComponent
           {...this.props}
-          state={this.state}
-          setState={this.handleSetState}
+          localState={this.state}
+          setLocalState={this.handleSetState}
         />
       );
     }

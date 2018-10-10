@@ -38,7 +38,7 @@ import { Alert, AlertTitle, AlertText } from "./Alert";
 const NumericAnswer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1em 1em 0 1em;
+  padding: 1em 1em 0;
   border: 1px solid #c3c3c3;
   border-radius: 4px;
   margin: 2em 0;
@@ -86,7 +86,7 @@ const CurrencySymbol = styled.div`
 const getTabContent = ({
   sections,
   onChange,
-  state,
+  localState,
   answerType,
   condition
 }) => {
@@ -102,7 +102,7 @@ const getTabContent = ({
           onChange={onChange}
           name={numericSelectId}
           id={numericSelectId}
-          defaultValue={state[numericSelectId]}
+          defaultValue={localState[numericSelectId]}
         />
       </Comparator>
       <Value>
@@ -113,7 +113,7 @@ const getTabContent = ({
           id={customValueId}
           placeholder={"Value"}
           onChange={onChange}
-          value={state[customValueId]}
+          value={localState[customValueId]}
           answerType={answerType}
           max="999999999"
           min="-999999999"
@@ -131,7 +131,7 @@ const getTabContent = ({
               onChange={onChange}
               name={numericSelectId}
               id={numericSelectId}
-              value={state[numericSelectId]}
+              value={localState[numericSelectId]}
             />
           </Comparator>
           <Value>
@@ -141,7 +141,7 @@ const getTabContent = ({
               onChange={onChange}
               name={previousAnswerId}
               id={previousAnswerId}
-              value={state[previousAnswerId]}
+              value={localState[previousAnswerId]}
               type={answerType}
             />
           </Value>
@@ -167,7 +167,7 @@ const getTabContent = ({
           onChange={onChange}
           name={numericSelectId}
           id={numericSelectId}
-          value={state[numericSelectId]}
+          value={localState[numericSelectId]}
         />
       </Comparator>
       <Value>
@@ -175,7 +175,7 @@ const getTabContent = ({
           onChange={onChange}
           name={metadataId}
           id={metadataId}
-          value={state[metadataId]}
+          value={localState[metadataId]}
         />
       </Value>
     </Flex>

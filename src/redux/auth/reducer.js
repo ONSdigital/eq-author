@@ -2,8 +2,12 @@ import { get } from "lodash";
 import { SIGN_IN_USER, SIGN_OUT_USER } from "./actions";
 
 const initialState = {
-  user: null,
-  verifiedStatus: false
+  user: {
+    displayName: "Hamish Taplin",
+    email: "hello@hamishtaplin.com",
+    photoURL: null
+  },
+  verifiedStatus: true
 };
 
 export default (state = initialState, { type, payload }) => {

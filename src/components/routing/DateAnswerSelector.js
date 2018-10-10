@@ -232,7 +232,12 @@ const getTabContent = props => {
   ];
 };
 
-const DateAnswerSelector = ({ condition, sections, state, setState }) => {
+const DateAnswerSelector = ({
+  condition,
+  sections,
+  localState,
+  setLocalState
+}) => {
   const isAnswerValidForRouting = answer => get(answer, "type") === DATE;
 
   const firstAnswerIsValid = flow(
@@ -255,14 +260,14 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
 
   const tabsId = `${DATE}_${condition.id}`;
 
-  const activeTabId = state[tabsId] || "custom";
+  const activeTabId = localState[tabsId] || "custom";
 
-  const handleChange = ({ name, value }) => setState({ [name]: value });
+  const handleChange = ({ name, value }) => setLocalState({ [name]: value });
 
   const tabItems = getTabContent({
     condition: condition,
     sections: convertToGroups(sections, condition),
-    state,
+    localState,
     onChange: handleChange,
     answerType: DATE
   });
@@ -273,7 +278,7 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
     <DateAnswer data-test="options-selector">
       <DateComparisonFields
         condition={condition}
-        state={state}
+        state={localState}
         onChange={handleChange}
       />
       <Tabs>
@@ -283,7 +288,7 @@ const DateAnswerSelector = ({ condition, sections, state, setState }) => {
             aria-selected={item.id === activeTabId}
             key={item.id}
             controls={item.id}
-            onClick={() => setState({ [tabsId]: item.id })}
+            onClick={() => setLocalState({ [tabsId]: item.id })}
           >
             {item.title}
           </Tab>
@@ -298,7 +303,7 @@ DateAnswerSelector.propTypes = {
   condition: PropTypes.object.isRequired,
   sections: PropTypes.array.isRequired,
   state: PropTypes.object.isRequired,
-  setState: PropTypes.func.isRequired
+  setLocalState: PropTypes.func.isRequired
 };
 
 export default flow(

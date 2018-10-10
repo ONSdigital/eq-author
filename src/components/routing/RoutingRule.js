@@ -9,12 +9,14 @@ import Button from "components/Button";
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 
 import RoutingCondition from "components/routing/RoutingCondition";
+import ConditionSelect from "components/routing/ConditionSelect";
 import { get } from "lodash";
 
 import { RADIO } from "constants/answer-types";
 import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
 import { colors } from "constants/theme";
 import { Select as BaseSelect } from "components/Forms";
+import { withLocalStorageState } from "./withLocalStorageState";
 
 const Padding = styled.div`
   padding: 1em 0;
@@ -40,28 +42,15 @@ const ConditionSelectorHeader = styled.div`
   align-items: center;
 `;
 
-const Select = styled(BaseSelect)`
-  display: inline-block;
-  width: auto;
-  margin: 0 0.5em;
-  padding: 0.3em 2em 0.3em 0.5em;
-`;
-
-const ConditionSelect = () => {
-  return (
-    <Select onChange={() => {}}>
-      <option value="all">All of</option>
-      <option value="any">Any of</option>
-      <option value="none">None of</option>
-    </Select>
-  );
-};
-
 const RemoveButton = styled(Button)`
   margin-left: auto;
 `;
 
-const RoutingRule = ({
+const Label = styled.label`
+  font-size: 1em;
+`;
+
+const UnwrappedRoutingRule = ({
   rule,
   onDeleteRule,
   onThenChange,
@@ -73,6 +62,8 @@ const RoutingRule = ({
   destinations,
   pagesAvailableForRouting,
   className,
+  localState,
+  setLocalState,
   ...otherProps
 }) => {
   const { conditions, id, goto } = rule;
@@ -82,12 +73,32 @@ const RoutingRule = ({
   const handleAddClick = () => onAddRoutingCondition(rule);
   const handleThenChange = value => onThenChange({ id: id, goto: value });
 
+  const handleSetConditionSelect = ({ name, value }) =>
+    setLocalState({
+      [name]: value
+    });
+
+  const matchOptions = {
+    AND: "All of",
+    OR: "Any of"
+  };
+
+  const conditionName = `${rule.id}-condition`;
+
   return (
     <div className={className} data-test="routing-rule">
       {title && <Title>{title}</Title>}
       <ConditionSelectorHeader>
         <div>
-          Match <ConditionSelect /> the following rules:
+          <Label htmlFor={conditionName}>Match</Label>
+          <ConditionSelect
+            id={conditionName}
+            options={matchOptions}
+            onChange={handleSetConditionSelect}
+            value={localState[conditionName]}
+            defaultValue={matchOptions.AND}
+          />
+          the following rules:
         </div>
         <RemoveButton small variant="tertiary" onClick={handleDeleteClick}>
           Remove rule
@@ -102,12 +113,18 @@ const RoutingRule = ({
                 get(answer, "id")
               ];
 
+              let conditionLabel = "IF";
+
+              if (index > 0) {
+                conditionLabel = get(localState, conditionName, "AND");
+              }
+
               const component = (
                 <Transition key={condition.id}>
                   <div>
                     <RoutingCondition
                       condition={condition}
-                      label={index > 0 ? "AND" : "IF"}
+                      label={conditionLabel}
                       ruleId={id}
                       sections={pagesAvailableForRouting}
                       onRemove={
@@ -143,6 +160,8 @@ const RoutingRule = ({
     </div>
   );
 };
+
+const RoutingRule = withLocalStorageState(UnwrappedRoutingRule);
 
 RoutingRule.propTypes = {
   rule: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types

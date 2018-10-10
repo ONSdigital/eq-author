@@ -315,7 +315,7 @@ RoutingCondition.propTypes = {
   onPageChange: PropTypes.func.isRequired,
   onToggleOption: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
-  label: PropTypes.oneOf(["IF", "AND"]).isRequired,
+  label: PropTypes.oneOf(["IF", "AND", "OR"]).isRequired,
   match: CustomPropTypes.match,
   canAddAndCondition: PropTypes.bool.isRequired
 };
