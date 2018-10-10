@@ -13,10 +13,10 @@ export default {
       sections: [
         {
           id: "1",
-          title: "",
+          title: "Section 1",
           position: 0,
           alias: "",
-          displayName: "",
+          displayName: "Section 1",
           pages: [
             {
               id: "1",

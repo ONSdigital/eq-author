@@ -12,12 +12,14 @@ import SectionEditor from "components/SectionEditor";
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
+import IconCopy from "components/EditorToolbar/icon-copy.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
 import EditorLayout from "components/EditorLayout";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
+import withDuplicateSection from "containers/enhancers/withDuplicateSection";
 import withCreatePage from "containers/enhancers/withCreatePage";
 import withCreateSection from "containers/enhancers/withCreateSection";
 import withMoveSection from "containers/enhancers/withMoveSection";
@@ -26,7 +28,6 @@ import Loading from "components/Loading";
 import Error from "components/Error";
 
 import { raiseToast } from "redux/toast/actions";
-
 export class UnwrappedSectionRoute extends React.Component {
   static propTypes = {
     match: CustomPropTypes.match,
@@ -34,6 +35,7 @@ export class UnwrappedSectionRoute extends React.Component {
     onDeleteSection: PropTypes.func.isRequired,
     onAddPage: PropTypes.func.isRequired,
     onMoveSection: PropTypes.func.isRequired,
+    onDuplicateSection: PropTypes.func.isRequired,
     error: PropTypes.object, // eslint-disable-line
     loading: PropTypes.bool.isRequired,
     data: PropTypes.shape({
@@ -83,6 +85,17 @@ export class UnwrappedSectionRoute extends React.Component {
     this.props.onAddPage(sectionId, 0);
   };
 
+  handleDuplicateSection = () => {
+    const {
+      onDuplicateSection,
+      data: { section }
+    } = this.props;
+    onDuplicateSection({
+      sectionId: section.id,
+      position: section.position + 1
+    });
+  };
+
   getSectionTitle = section => title => {
     const sectionTitle = section.displayName;
     return `${sectionTitle} - ${title}`;
@@ -120,6 +133,14 @@ export class UnwrappedSectionRoute extends React.Component {
               )}
             >
               <IconText icon={IconMove}>Move</IconText>
+            </Button>
+            <Button
+              onClick={this.handleDuplicateSection}
+              data-test="btn-duplicate-section"
+              variant="tertiary"
+              small
+            >
+              <IconText icon={IconCopy}>Duplicate</IconText>
             </Button>
             <IconButtonDelete
               onClick={this.handleOpenDeleteConfirmDialog}
@@ -161,6 +182,7 @@ const withSectionEditing = flowRight(
   ),
   withApollo,
   withCreateSection,
+  withDuplicateSection,
   withUpdateSection,
   withDeleteSection,
   withCreatePage,
