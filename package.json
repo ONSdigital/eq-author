@@ -31,22 +31,22 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^3.2.12",
     "@storybook/addon-knobs": "^3.2.12",
     "@storybook/addon-options": "^3.2.12",
     "@storybook/react": "^3.2.12",
     "autoprefixer": "^7.1.5",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^21.2.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-add-react-displayname": "^0.0.4",
-    "babel-plugin-styled-components": "^1.2.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-react-app": "^3.0.3",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-runtime": "^6.26.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-add-react-displayname": "^0.0.5",
+    "babel-plugin-styled-components": "^1.8.0",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
     "chalk": "^2.1.0",
     "connect-history-api-fallback": "^1.3.0",
@@ -197,11 +197,6 @@
     },
     "modulePaths": [
       "<rootDir>/src/"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
     ]
   },
   "moduleRoots": [
