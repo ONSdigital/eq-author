@@ -99,7 +99,6 @@
     "sass-loader": "7.1.0",
     "strip-ansi": "^4.0.0",
     "style-loader": "0.23.0",
-    "styled-components-test-utils": "^0.3.0",
     "stylelint": "^8.2.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-config-styled-components": "^0.1.1",
