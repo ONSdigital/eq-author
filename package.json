@@ -145,7 +145,6 @@
     "polished": "^1.8.0",
     "raven-js": "^3.19.1",
     "react": "^16.5.2",
-    "react-addons-test-utils": "^15.6.2",
     "react-apollo": "^2.1.4",
     "react-dom": "^16.5.2",
     "react-error-overlay": "^2.0.2",
@@ -179,7 +178,6 @@
       "!src/tests/**/*.js"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js",
       "<rootDir>/src/tests/setup/throwOnConsole.js",
       "<rootDir>/src/tests/setup/mockLocalStorage.js"
     ],

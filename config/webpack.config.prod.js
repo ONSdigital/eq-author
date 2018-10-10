@@ -379,6 +379,38 @@ module.exports = {
               "sass-loader"
             )
           },
+          {
+            test: /\.(graphql|gql)$/,
+            exclude: /node_modules/,
+            loader: "graphql-tag/loader"
+          },
+          {
+            test: /\.svg$/,
+            oneOf: [
+              {
+                resourceQuery: /inline/, // foo.svg?inline
+                use: [
+                  { loader: "babel-loader" },
+                  { loader: "react-svg-loader" }
+                ]
+              },
+              {
+                use: [
+                  { loader: "file-loader" },
+                  {
+                    loader: "svgo-loader",
+                    options: {
+                      plugins: [
+                        { removeTitle: true },
+                        { convertColors: { shorthex: false } },
+                        { convertPathData: false }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
