@@ -1,6 +1,5 @@
 #import "./answer.graphql"
 #import "./option.graphql"
-#import "./answer.graphql"
 
 fragment RoutingCondition on RoutingCondition {
   id
