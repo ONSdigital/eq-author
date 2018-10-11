@@ -80,7 +80,6 @@ module.exports = {
   module: {
     strictExportPresence: true,
     rules: [
-      loaders.eslint,
       loaders.fileExclusions,
       loaders.url,
       {

@@ -20,6 +20,7 @@
     "storybook-build": "export NODE_PATH=src/ && build-storybook -s public -o storybook-static",
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
+    "prepush": "yarn lint",
     "coverage": "yarn test -- --coverage",
     "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open",
     "cypress:open:e2e": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open --config integrationFolder=cypress/e2e"

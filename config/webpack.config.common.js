@@ -2,7 +2,6 @@
 "use strict";
 
 const path = require("path");
-const eslintFormatter = require("react-dev-utils/eslintFormatter");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const paths = require("./paths");
 
@@ -36,26 +35,6 @@ module.exports.resolve = {
 };
 
 module.exports.loaders = {
-  eslint: {
-    // TODO: Disable require.ensure as it's not a standard language feature.
-    // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
-    // { parser: { requireEnsure: false } },
-
-    // First, run the linter.
-    // It's important to do this before Babel processes the JS.
-    test: /\.(js|jsx)$/,
-    enforce: "pre",
-    use: [
-      {
-        options: {
-          formatter: eslintFormatter
-        },
-        loader: require.resolve("eslint-loader")
-      }
-    ],
-    include: paths.appSrc
-  },
-
   fileExclusions: {
     // ** ADDING/UPDATING LOADERS **
     // The "file" loader handles all assets unless explicitly excluded.
