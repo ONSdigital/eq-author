@@ -8,7 +8,7 @@ exports[`QuestionnaireSettingsModal should render 1`] = `
     }
   }
   isOpen={false}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <DialogHeader___default>
     <DialogMessage__Message>
@@ -19,8 +19,8 @@ exports[`QuestionnaireSettingsModal should render 1`] = `
   </DialogHeader___default>
   <Connect(withEntityEditor(StatelessQuestionnaireMeta))
     confirmText="Create"
-    onCancel={[Function]}
-    onSubmit={[Function]}
+    onCancel={[MockFunction]}
+    onSubmit={[MockFunction]}
     onUpdate={[Function]}
     questionnaire={Object {}}
   />

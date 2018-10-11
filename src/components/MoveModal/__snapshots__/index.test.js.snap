@@ -8,7 +8,7 @@ exports[`components/MoveModal should render 1`] = `
     }
   }
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <DialogHeader___default>
     <DialogMessage__Message>

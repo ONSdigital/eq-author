@@ -7,12 +7,12 @@ exports[`components/Modal should render its children 1`] = `
   description="Description"
   icon="move"
   isOpen={true}
-  onRequestClose={[Function]}
+  onRequestClose={[MockFunction]}
   shouldCloseOnOverlayClick={true}
   title="Modal title"
 >
   <Modal__CloseButton
-    onClick={[Function]}
+    onClick={[MockFunction]}
   >
     ×
   </Modal__CloseButton>

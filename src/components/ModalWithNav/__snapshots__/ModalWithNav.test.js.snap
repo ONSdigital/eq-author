@@ -3,7 +3,7 @@
 exports[`ModalWithNav should render a list of items 1`] = `
 <ModalWithNav__Dialog
   isOpen={false}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <Grid
     align="top"
@@ -30,7 +30,7 @@ exports[`ModalWithNav should render a list of items 1`] = `
         ]
       }
       onChange={[Function]}
-      onClose={[Function]}
+      onClose={[MockFunction]}
       title="I am a title"
     />
   </Grid>
@@ -40,7 +40,7 @@ exports[`ModalWithNav should render a list of items 1`] = `
 exports[`ModalWithNav should render an open modal 1`] = `
 <ModalWithNav__Dialog
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <Grid
     align="top"
@@ -67,7 +67,7 @@ exports[`ModalWithNav should render an open modal 1`] = `
         ]
       }
       onChange={[Function]}
-      onClose={[Function]}
+      onClose={[MockFunction]}
       title="I am a title"
     />
   </Grid>

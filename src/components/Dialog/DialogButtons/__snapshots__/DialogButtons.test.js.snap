@@ -4,19 +4,19 @@ exports[`Dialog buttons Invoking dialog button actions should render multiple ac
 <DialogButtons__StyledButtonGroup>
   <DialogButtons__ActionButton
     autoFocus={true}
-    onClick={[Function]}
+    onClick={[MockFunction]}
     primary={true}
   >
     Primary action
   </DialogButtons__ActionButton>
   <DialogButtons__ActionButton
-    onClick={[Function]}
+    onClick={[MockFunction]}
     secondary={true}
   >
     Secondary Action
   </DialogButtons__ActionButton>
   <DialogButtons__ActionButton
-    onClick={[Function]}
+    onClick={[MockFunction]}
     tertiary={true}
   >
     Tertiary Action
@@ -28,7 +28,7 @@ exports[`Dialog buttons should render the dialog buttons 1`] = `
 <DialogButtons__StyledButtonGroup>
   <DialogButtons__ActionButton
     autoFocus={true}
-    onClick={[Function]}
+    onClick={[MockFunction]}
     primary={true}
   >
     Primary action

@@ -4,10 +4,10 @@ exports[`ModalDialog should render when closed 1`] = `
 <Modal
   hasCloseButton={true}
   isOpen={false}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <Dialog
-    onClose={[Function]}
+    onClose={[MockFunction]}
   >
     <div>
       Modal dialog content
@@ -20,10 +20,10 @@ exports[`ModalDialog should render when open 1`] = `
 <Modal
   hasCloseButton={true}
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <Dialog
-    onClose={[Function]}
+    onClose={[MockFunction]}
   >
     <div>
       Modal dialog content

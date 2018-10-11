@@ -15,7 +15,7 @@ exports[`PositionModal/PlainModal should render 1`] = `
   className="c0"
   hasCloseButton={false}
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <p>
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis dignissimos, ipsum laboriosam autem ipsa corrupti dicta tempore provident magnam saepe consectetur molestiae illo ad temporibus, quasi animi rem aliquid omnis.

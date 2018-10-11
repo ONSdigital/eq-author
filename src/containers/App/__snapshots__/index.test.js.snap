@@ -10,7 +10,7 @@ exports[`containers/App Routes should render  1`] = `
       "go": [Function],
       "goBack": [Function],
       "goForward": [Function],
-      "length": 2,
+      "length": 1,
       "listen": [Function],
       "location": Object {
         "hash": "",
@@ -63,17 +63,17 @@ exports[`containers/App should render 1`] = `
   <ApolloProvider
     client={
       Object {
-        "query": [Function],
-        "readQuery": [Function],
+        "query": [MockFunction],
+        "readQuery": [MockFunction],
       }
     }
   >
     <Provider
       store={
         Object {
-          "dispatch": [Function],
-          "getState": [Function],
-          "subscribe": [Function],
+          "dispatch": [MockFunction],
+          "getState": [MockFunction],
+          "subscribe": [MockFunction],
         }
       }
     >
@@ -86,7 +86,7 @@ exports[`containers/App should render 1`] = `
             "go": [Function],
             "goBack": [Function],
             "goForward": [Function],
-            "length": 2,
+            "length": 1,
             "listen": [Function],
             "location": Object {
               "hash": "",

@@ -8,24 +8,24 @@ exports[`MetadataTable should correctly render different types of metadata 1`] =
     <KeySelect
       defaultValue="tx_id"
       name="key"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       usedKeys={Array []}
     />
   </TableColumn>
   <TableColumn>
     <TableInput
       name="alias"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="test_alias"
     />
   </TableColumn>
   <TableColumn>
     <Select
       name="type"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "Text",
@@ -40,8 +40,8 @@ exports[`MetadataTable should correctly render different types of metadata 1`] =
   <TableColumn>
     <TableInput
       name="textValue"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="text"
     />
   </TableColumn>
@@ -63,24 +63,24 @@ exports[`MetadataTable should correctly render different types of metadata 2`] =
     <KeySelect
       defaultValue="iat"
       name="key"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       usedKeys={Array []}
     />
   </TableColumn>
   <TableColumn>
     <TableInput
       name="alias"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="date_alias"
     />
   </TableColumn>
   <TableColumn>
     <Select
       name="type"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "Text",
@@ -95,8 +95,8 @@ exports[`MetadataTable should correctly render different types of metadata 2`] =
   <TableColumn>
     <TableInputDate
       name="dateValue"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       type="date"
       value="2018-09-17"
     />
@@ -119,24 +119,24 @@ exports[`MetadataTable should correctly render different types of metadata 3`] =
     <KeySelect
       defaultValue="iat"
       name="key"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       usedKeys={Array []}
     />
   </TableColumn>
   <TableColumn>
     <TableInput
       name="alias"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="region_alias"
     />
   </TableColumn>
   <TableColumn>
     <Select
       name="type"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "Text",
@@ -151,8 +151,8 @@ exports[`MetadataTable should correctly render different types of metadata 3`] =
   <TableColumn>
     <Select
       name="regionValue"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "GB_ENG",
@@ -183,24 +183,24 @@ exports[`MetadataTable should correctly render different types of metadata 4`] =
     <KeySelect
       defaultValue="iat"
       name="key"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       usedKeys={Array []}
     />
   </TableColumn>
   <TableColumn>
     <TableInput
       name="alias"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="language_alias"
     />
   </TableColumn>
   <TableColumn>
     <Select
       name="type"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "Text",
@@ -215,8 +215,8 @@ exports[`MetadataTable should correctly render different types of metadata 4`] =
   <TableColumn>
     <Select
       name="languageValue"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "en",
@@ -244,24 +244,24 @@ exports[`MetadataTable should render 1`] = `
     <KeySelect
       defaultValue="tx_id"
       name="key"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       usedKeys={Array []}
     />
   </TableColumn>
   <TableColumn>
     <TableInput
       name="alias"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="test_alias"
     />
   </TableColumn>
   <TableColumn>
     <Select
       name="type"
-      onChange={[Function]}
-      onUpdate={[Function]}
+      onChange={[MockFunction]}
+      onUpdate={[MockFunction]}
       options={
         Array [
           "Text",
@@ -276,8 +276,8 @@ exports[`MetadataTable should render 1`] = `
   <TableColumn>
     <TableInput
       name="textValue"
-      onBlur={[Function]}
-      onChange={[Function]}
+      onBlur={[MockFunction]}
+      onChange={[MockFunction]}
       value="text"
     />
   </TableColumn>

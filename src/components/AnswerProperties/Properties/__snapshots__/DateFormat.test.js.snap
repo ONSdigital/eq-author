@@ -7,7 +7,7 @@ exports[`DateFormat Property should render 1`] = `
   <withChangeHandler(Select__SimpleSelect)
     id="1"
     name="1"
-    onChange={[Function]}
+    onChange={[MockFunction]}
     value="dd/mm/yyyy"
   >
     <option

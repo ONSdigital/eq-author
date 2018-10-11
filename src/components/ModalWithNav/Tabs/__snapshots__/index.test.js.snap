@@ -6,7 +6,7 @@ exports[`Modal Content Tabs should render 1`] = `
   TabList={[Function]}
   activeId="1"
   buttonRender={[Function]}
-  onChange={[Function]}
+  onChange={[MockFunction]}
   tabs={
     Array [
       Object {

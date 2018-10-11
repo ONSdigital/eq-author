@@ -13,15 +13,15 @@ exports[`Answer Editor should correctly calculates date format 1`] = `
       "type": "Date",
     }
   }
-  onAddExclusive={[Function]}
-  onAddOption={[Function]}
-  onAddOther={[Function]}
-  onChange={[Function]}
-  onDeleteAnswer={[Function]}
-  onDeleteOption={[Function]}
-  onDeleteOther={[Function]}
-  onUpdate={[Function]}
-  onUpdateOption={[Function]}
+  onAddExclusive={[MockFunction]}
+  onAddOption={[MockFunction]}
+  onAddOther={[MockFunction]}
+  onChange={[MockFunction]}
+  onDeleteAnswer={[MockFunction]}
+  onDeleteOption={[MockFunction]}
+  onDeleteOther={[MockFunction]}
+  onUpdate={[MockFunction]}
+  onUpdateOption={[MockFunction]}
   showDay={false}
   showMonth={false}
   showYear={true}
@@ -41,15 +41,15 @@ exports[`Answer Editor should correctly calculates date format 2`] = `
       "type": "Date",
     }
   }
-  onAddExclusive={[Function]}
-  onAddOption={[Function]}
-  onAddOther={[Function]}
-  onChange={[Function]}
-  onDeleteAnswer={[Function]}
-  onDeleteOption={[Function]}
-  onDeleteOther={[Function]}
-  onUpdate={[Function]}
-  onUpdateOption={[Function]}
+  onAddExclusive={[MockFunction]}
+  onAddOption={[MockFunction]}
+  onAddOther={[MockFunction]}
+  onChange={[MockFunction]}
+  onDeleteAnswer={[MockFunction]}
+  onDeleteOption={[MockFunction]}
+  onDeleteOther={[MockFunction]}
+  onUpdate={[MockFunction]}
+  onUpdateOption={[MockFunction]}
   showDay={false}
   showMonth={true}
   showYear={true}
@@ -69,15 +69,15 @@ exports[`Answer Editor should correctly calculates date format 3`] = `
       "type": "Date",
     }
   }
-  onAddExclusive={[Function]}
-  onAddOption={[Function]}
-  onAddOther={[Function]}
-  onChange={[Function]}
-  onDeleteAnswer={[Function]}
-  onDeleteOption={[Function]}
-  onDeleteOther={[Function]}
-  onUpdate={[Function]}
-  onUpdateOption={[Function]}
+  onAddExclusive={[MockFunction]}
+  onAddOption={[MockFunction]}
+  onAddOther={[MockFunction]}
+  onChange={[MockFunction]}
+  onDeleteAnswer={[MockFunction]}
+  onDeleteOption={[MockFunction]}
+  onDeleteOther={[MockFunction]}
+  onUpdate={[MockFunction]}
+  onUpdateOption={[MockFunction]}
   showDay={true}
   showMonth={true}
   showYear={true}
@@ -107,15 +107,15 @@ exports[`Answer Editor should render Checkbox 1`] = `
         }
       }
       minOptions={1}
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
       type="Checkbox"
     />
   </AnswerEditor__Padding>
@@ -154,15 +154,15 @@ exports[`Answer Editor should render Currency 1`] = `
           "type": "Currency",
         }
       }
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
     />
   </AnswerEditor__Padding>
   <Tooltip
@@ -200,15 +200,15 @@ exports[`Answer Editor should render Date 1`] = `
           "type": "Date",
         }
       }
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
       showDay={false}
       showMonth={false}
       showYear={false}
@@ -249,15 +249,15 @@ exports[`Answer Editor should render DateRange 1`] = `
           "type": "DateRange",
         }
       }
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
     />
   </AnswerEditor__Padding>
   <Tooltip
@@ -295,15 +295,15 @@ exports[`Answer Editor should render Number 1`] = `
           "type": "Number",
         }
       }
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
     />
   </AnswerEditor__Padding>
   <Tooltip
@@ -349,15 +349,15 @@ exports[`Answer Editor should render Radio 1`] = `
         }
       }
       minOptions={2}
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
       type="Radio"
     />
   </AnswerEditor__Padding>
@@ -396,15 +396,15 @@ exports[`Answer Editor should render TextArea 1`] = `
           "type": "TextArea",
         }
       }
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
     />
   </AnswerEditor__Padding>
   <Tooltip
@@ -442,15 +442,15 @@ exports[`Answer Editor should render TextField 1`] = `
           "type": "TextField",
         }
       }
-      onAddExclusive={[Function]}
-      onAddOption={[Function]}
-      onAddOther={[Function]}
-      onChange={[Function]}
-      onDeleteAnswer={[Function]}
-      onDeleteOption={[Function]}
-      onDeleteOther={[Function]}
-      onUpdate={[Function]}
-      onUpdateOption={[Function]}
+      onAddExclusive={[MockFunction]}
+      onAddOption={[MockFunction]}
+      onAddOther={[MockFunction]}
+      onChange={[MockFunction]}
+      onDeleteAnswer={[MockFunction]}
+      onDeleteOption={[MockFunction]}
+      onDeleteOther={[MockFunction]}
+      onUpdate={[MockFunction]}
+      onUpdateOption={[MockFunction]}
     />
   </AnswerEditor__Padding>
   <Tooltip

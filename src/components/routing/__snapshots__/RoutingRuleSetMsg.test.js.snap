@@ -14,7 +14,7 @@ exports[`components/RoutingRuleSetMsg should allow adding a rule 1`] = `
   <RoutingRuleSetMsg__AddRuleButton
     data-test="btn-add-rule"
     naked={true}
-    onClick={[Function]}
+    onClick={[MockFunction]}
     small={true}
     variant="primary"
   >

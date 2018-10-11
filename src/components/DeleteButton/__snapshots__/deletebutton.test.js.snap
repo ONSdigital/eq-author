@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`large 1`] = `
+exports[`DeleteButton should render: large 1`] = `
 .c0 {
   color: #5F7682;
   border: none;
@@ -66,7 +66,7 @@ exports[`large 1`] = `
 </DeleteButton>
 `;
 
-exports[`medium 1`] = `
+exports[`DeleteButton should render: medium 1`] = `
 .c0 {
   color: #5F7682;
   border: none;
@@ -132,7 +132,7 @@ exports[`medium 1`] = `
 </DeleteButton>
 `;
 
-exports[`small 1`] = `
+exports[`DeleteButton should render: small 1`] = `
 .c0 {
   color: #5F7682;
   border: none;

@@ -1,4 +1,3 @@
-import "animation-frame-polyfill";
 import "jest-styled-components";
 
 import Enzyme from "enzyme";

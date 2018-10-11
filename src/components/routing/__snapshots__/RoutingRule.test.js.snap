@@ -54,10 +54,10 @@ exports[`components/RoutingRule should render children 1`] = `
                   },
                 }
               }
-              onAddRule={[Function]}
-              onPageChange={[Function]}
-              onRemove={[Function]}
-              onToggleOption={[Function]}
+              onAddRule={[MockFunction]}
+              onPageChange={[MockFunction]}
+              onRemove={[MockFunction]}
+              onToggleOption={[MockFunction]}
               ruleId="1"
               sections={Array []}
             />
@@ -88,10 +88,10 @@ exports[`components/RoutingRule should render children 1`] = `
                   },
                 }
               }
-              onAddRule={[Function]}
-              onPageChange={[Function]}
-              onRemove={[Function]}
-              onToggleOption={[Function]}
+              onAddRule={[MockFunction]}
+              onPageChange={[MockFunction]}
+              onRemove={[MockFunction]}
+              onToggleOption={[MockFunction]}
               ruleId="1"
               sections={Array []}
             />

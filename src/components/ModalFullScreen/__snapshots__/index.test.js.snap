@@ -4,13 +4,13 @@ exports[`ModalFullScreen should render when closed 1`] = `
 <ModalFullScreen__StyledModal
   hasCloseButton={false}
   isOpen={false}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <ScrollPane
     permanentScrollBar={false}
   >
     <Modal__CloseButton
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       ×
     </Modal__CloseButton>
@@ -25,13 +25,13 @@ exports[`ModalFullScreen should render when open 1`] = `
 <ModalFullScreen__StyledModal
   hasCloseButton={false}
   isOpen={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
 >
   <ScrollPane
     permanentScrollBar={false}
   >
     <Modal__CloseButton
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       ×
     </Modal__CloseButton>

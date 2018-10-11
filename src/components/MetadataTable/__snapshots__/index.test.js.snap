@@ -44,8 +44,8 @@ exports[`MetadataTable should render 1`] = `
           "type": "Text",
         }
       }
-      onDelete={[Function]}
-      onUpdate={[Function]}
+      onDelete={[MockFunction]}
+      onUpdate={[MockFunction]}
       questionnaireId="1"
       usedKeys={
         Array [
@@ -70,8 +70,8 @@ exports[`MetadataTable should render 1`] = `
           "type": "Date",
         }
       }
-      onDelete={[Function]}
-      onUpdate={[Function]}
+      onDelete={[MockFunction]}
+      onUpdate={[MockFunction]}
       questionnaireId="1"
       usedKeys={
         Array [
@@ -96,8 +96,8 @@ exports[`MetadataTable should render 1`] = `
           "type": "Region",
         }
       }
-      onDelete={[Function]}
-      onUpdate={[Function]}
+      onDelete={[MockFunction]}
+      onUpdate={[MockFunction]}
       questionnaireId="1"
       usedKeys={
         Array [
@@ -122,8 +122,8 @@ exports[`MetadataTable should render 1`] = `
           "type": "Language",
         }
       }
-      onDelete={[Function]}
-      onUpdate={[Function]}
+      onDelete={[MockFunction]}
+      onUpdate={[MockFunction]}
       questionnaireId="1"
       usedKeys={
         Array [

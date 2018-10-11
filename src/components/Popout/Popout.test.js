@@ -24,7 +24,9 @@ describe("components/Popout", () => {
   });
 
   it("should render content when open", () => {
-    expect(shallow(component)).toMatchSnapshot();
+    const wrapper = shallow(component);
+    expect(wrapper).toMatchSnapshot();
+    wrapper.unmount();
   });
 
   describe("event handlers", () => {

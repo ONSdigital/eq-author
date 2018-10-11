@@ -5,14 +5,14 @@ exports[`Option should match snapshot 1`] = `
   duration={200}
   id="Option1"
   key="1"
-  onDelete={[Function]}
-  onEnterKey={[Function]}
-  onFocus={[Function]}
+  onDelete={[MockFunction]}
+  onEnterKey={[MockFunction]}
+  onFocus={[MockFunction]}
   store={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "subscribe": [Function],
+      "dispatch": [MockFunction],
+      "getState": [MockFunction],
+      "subscribe": [MockFunction],
     }
   }
 >
@@ -34,8 +34,8 @@ exports[`Option should match snapshot 1`] = `
           data-test="option-label"
           id="option-label-1"
           name="label"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
           onKeyDown={[Function]}
           placeholder="Label"
           value=""
@@ -53,8 +53,8 @@ exports[`Option should match snapshot 1`] = `
         data-test="option-description"
         id="option-description-1"
         name="description"
-        onBlur={[Function]}
-        onChange={[Function]}
+        onBlur={[MockFunction]}
+        onChange={[MockFunction]}
         onKeyDown={[Function]}
         value=""
       />
@@ -254,11 +254,11 @@ exports[`Option should render a checkbox 1`] = `
   autoFocus={true}
   hasDeleteButton={true}
   labelPlaceholder="Label"
-  onChange={[Function]}
-  onDelete={[Function]}
-  onEnterKey={[Function]}
-  onFocus={[Function]}
-  onUpdate={[Function]}
+  onChange={[MockFunction]}
+  onDelete={[MockFunction]}
+  onEnterKey={[MockFunction]}
+  onFocus={[MockFunction]}
+  onUpdate={[MockFunction]}
   option={
     Object {
       "__typename": "Option",
@@ -269,9 +269,9 @@ exports[`Option should render a checkbox 1`] = `
   }
   store={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "subscribe": [Function],
+      "dispatch": [MockFunction],
+      "getState": [MockFunction],
+      "subscribe": [MockFunction],
     }
   }
   type="Checkbox"
@@ -280,21 +280,21 @@ exports[`Option should render a checkbox 1`] = `
     duration={200}
     id="Option1"
     key="1"
-    onDelete={[Function]}
-    onEnterKey={[Function]}
-    onFocus={[Function]}
+    onDelete={[MockFunction]}
+    onEnterKey={[MockFunction]}
+    onFocus={[MockFunction]}
     store={
       Object {
-        "dispatch": [Function],
-        "getState": [Function],
-        "subscribe": [Function],
+        "dispatch": [MockFunction],
+        "getState": [MockFunction],
+        "subscribe": [MockFunction],
       }
     }
   >
     <div
       className="c0"
       id="Option1"
-      onFocus={[Function]}
+      onFocus={[MockFunction]}
     >
       <div>
         <Option__Flex>
@@ -343,8 +343,8 @@ exports[`Option should render a checkbox 1`] = `
                       data-test="option-label"
                       id="option-label-1"
                       name="label"
-                      onBlur={[Function]}
-                      onChange={[Function]}
+                      onBlur={[MockFunction]}
+                      onChange={[MockFunction]}
                       onKeyDown={[Function]}
                       placeholder="Label"
                       value=""
@@ -355,7 +355,7 @@ exports[`Option should render a checkbox 1`] = `
                         data-test="option-label"
                         id="option-label-1"
                         name="label"
-                        onBlur={[Function]}
+                        onBlur={[MockFunction]}
                         onChange={[Function]}
                         onKeyDown={[Function]}
                         placeholder="Label"
@@ -376,7 +376,7 @@ exports[`Option should render a checkbox 1`] = `
                               data-test="option-label"
                               id="option-label-1"
                               name="label"
-                              onBlur={[Function]}
+                              onBlur={[MockFunction]}
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               placeholder="Label"
@@ -388,7 +388,7 @@ exports[`Option should render a checkbox 1`] = `
                                 data-test="option-label"
                                 id="option-label-1"
                                 name="label"
-                                onBlur={[Function]}
+                                onBlur={[MockFunction]}
                                 onChange={[Function]}
                                 onHeightChange={[Function]}
                                 onKeyDown={[Function]}
@@ -402,7 +402,7 @@ exports[`Option should render a checkbox 1`] = `
                                   data-test="option-label"
                                   id="option-label-1"
                                   name="label"
-                                  onBlur={[Function]}
+                                  onBlur={[MockFunction]}
                                   onChange={[Function]}
                                   onKeyDown={[Function]}
                                   placeholder="Label"
@@ -457,8 +457,8 @@ exports[`Option should render a checkbox 1`] = `
                   data-test="option-description"
                   id="option-description-1"
                   name="description"
-                  onBlur={[Function]}
-                  onChange={[Function]}
+                  onBlur={[MockFunction]}
+                  onChange={[MockFunction]}
                   onKeyDown={[Function]}
                   value=""
                 >
@@ -467,7 +467,7 @@ exports[`Option should render a checkbox 1`] = `
                     data-test="option-description"
                     id="option-description-1"
                     name="description"
-                    onBlur={[Function]}
+                    onBlur={[MockFunction]}
                     onChange={[Function]}
                     onKeyDown={[Function]}
                     value=""
@@ -486,7 +486,7 @@ exports[`Option should render a checkbox 1`] = `
                           data-test="option-description"
                           id="option-description-1"
                           name="description"
-                          onBlur={[Function]}
+                          onBlur={[MockFunction]}
                           onChange={[Function]}
                           onKeyDown={[Function]}
                           value=""
@@ -496,7 +496,7 @@ exports[`Option should render a checkbox 1`] = `
                             data-test="option-description"
                             id="option-description-1"
                             name="description"
-                            onBlur={[Function]}
+                            onBlur={[MockFunction]}
                             onChange={[Function]}
                             onHeightChange={[Function]}
                             onKeyDown={[Function]}
@@ -508,7 +508,7 @@ exports[`Option should render a checkbox 1`] = `
                               data-test="option-description"
                               id="option-description-1"
                               name="description"
-                              onBlur={[Function]}
+                              onBlur={[MockFunction]}
                               onChange={[Function]}
                               onKeyDown={[Function]}
                               style={
@@ -628,14 +628,14 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
   duration={200}
   id="Option1"
   key="1"
-  onDelete={[Function]}
-  onEnterKey={[Function]}
-  onFocus={[Function]}
+  onDelete={[MockFunction]}
+  onEnterKey={[MockFunction]}
+  onFocus={[MockFunction]}
   store={
     Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "subscribe": [Function],
+      "dispatch": [MockFunction],
+      "getState": [MockFunction],
+      "subscribe": [MockFunction],
     }
   }
 >
@@ -657,8 +657,8 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
           data-test="option-label"
           id="option-label-1"
           name="label"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
           onKeyDown={[Function]}
           placeholder="Label"
           value=""
@@ -676,8 +676,8 @@ exports[`Option shouldn't render delete button if not applicable 1`] = `
         data-test="option-description"
         id="option-description-1"
         name="description"
-        onBlur={[Function]}
-        onChange={[Function]}
+        onBlur={[MockFunction]}
+        onChange={[MockFunction]}
         onKeyDown={[Function]}
         value=""
       />

@@ -4,7 +4,7 @@ exports[`components/Forms/Form should render correctly 1`] = `
 <Form__StyledForm
   autoComplete="off"
   method="POST"
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
 >
   <input
     name="input"

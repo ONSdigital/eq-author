@@ -56,7 +56,7 @@ exports[`components/Forms/TextArea should render correctly 1`] = `
   defaultValue="I am some text"
   id="text"
   name="text"
-  onChange={[Function]}
+  onChange={[MockFunction]}
 >
   <TextArea
     defaultValue="I am some text"

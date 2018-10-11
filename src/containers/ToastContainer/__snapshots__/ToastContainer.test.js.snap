@@ -10,7 +10,7 @@ exports[`Toastcontainer should render 1`] = `
         <Toast
           id="toast1"
           key="toast1"
-          onClose={[Function]}
+          onClose={[MockFunction]}
           timeout={5000}
         >
           <ToastContainer__StyledDiv>

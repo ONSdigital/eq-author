@@ -10,8 +10,8 @@ exports[`SectionEditor should render 1`] = `
     data-test="dialog-delete-confirm"
     icon="icon-dialog-section.svg"
     isOpen={false}
-    onClose={[Function]}
-    onDelete={[Function]}
+    onClose={[MockFunction]}
+    onDelete={[MockFunction]}
   />
   <MoveSectionQuery
     questionnaireId="1"
@@ -33,8 +33,8 @@ exports[`SectionEditor should render 1`] = `
           id="section-alias"
           maxLength={255}
           name="alias"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
         />
       </SectionEditor__AliasField>
       <CharacterCounter
@@ -73,8 +73,8 @@ exports[`SectionEditor should render 2`] = `
     data-test="dialog-delete-confirm"
     icon="icon-dialog-section.svg"
     isOpen={false}
-    onClose={[Function]}
-    onDelete={[Function]}
+    onClose={[MockFunction]}
+    onDelete={[MockFunction]}
   />
   <MoveSectionQuery
     questionnaireId="1"
@@ -96,8 +96,8 @@ exports[`SectionEditor should render 2`] = `
           id="section-alias"
           maxLength={255}
           name="alias"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
         />
       </SectionEditor__AliasField>
       <CharacterCounter

@@ -104,7 +104,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
                 },
               }
             }
-            onOptionSelectionChange={[Function]}
+            onOptionSelectionChange={[MockFunction]}
           />
         </Transition__RoutingComponentTransition>
       </TransitionGroup>

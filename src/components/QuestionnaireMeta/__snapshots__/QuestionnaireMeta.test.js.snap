@@ -2,7 +2,7 @@
 
 exports[`QuestionnaireMeta should render 1`] = `
 <Form
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
 >
   <Field
     last={false}
@@ -18,7 +18,7 @@ exports[`QuestionnaireMeta should render 1`] = `
       data-test="txt-questionnaire-title"
       defaultValue="I am the title"
       id="title"
-      onChange={[Function]}
+      onChange={[MockFunction]}
       required={true}
     />
   </Field>
@@ -40,7 +40,7 @@ exports[`QuestionnaireMeta should render 1`] = `
         checked={false}
         id="navigation"
         name="navigation"
-        onChange={[Function]}
+        onChange={[MockFunction]}
       />
     </QuestionnaireMeta__InlineField>
     <QuestionnaireMeta__InlineField>
@@ -60,7 +60,7 @@ exports[`QuestionnaireMeta should render 1`] = `
         checked={false}
         id="summary"
         name="summary"
-        onChange={[Function]}
+        onChange={[MockFunction]}
       />
     </QuestionnaireMeta__InlineField>
   </QuestionnaireMeta__ToggleWrapper>

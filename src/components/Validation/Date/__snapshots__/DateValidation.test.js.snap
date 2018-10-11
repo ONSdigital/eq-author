@@ -4,8 +4,8 @@ exports[`Date Validation should filter the available units for the format 1`] = 
 <withChangeHandler(Select__SimpleSelect)
   data-test="offset-unit-select"
   name="offset.unit"
-  onBlur={[Function]}
-  onChange={[Function]}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
   value="Months"
 >
   <option
@@ -27,8 +27,8 @@ exports[`Date Validation should render a please select for offset unit when the 
 <withChangeHandler(Select__SimpleSelect)
   data-test="offset-unit-select"
   name="offset.unit"
-  onBlur={[Function]}
-  onChange={[Function]}
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
   value=""
 >
   <option
@@ -94,8 +94,8 @@ exports[`Date Validation should render the form input with the values when enabl
               max={99999}
               min={0}
               name="offset.value"
-              onBlur={[Function]}
-              onChange={[Function]}
+              onBlur={[MockFunction]}
+              onChange={[MockFunction]}
               step={1}
               value={5}
             />
@@ -106,8 +106,8 @@ exports[`Date Validation should render the form input with the values when enabl
             <withChangeHandler(Select__SimpleSelect)
               data-test="offset-unit-select"
               name="offset.unit"
-              onBlur={[Function]}
-              onChange={[Function]}
+              onBlur={[MockFunction]}
+              onChange={[MockFunction]}
               value="Months"
             >
               <option
@@ -155,8 +155,8 @@ exports[`Date Validation should render the form input with the values when enabl
         <DateValidation__RelativePositionSelect
           data-test="relative-position-select"
           name="relativePosition"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
           value="Before"
         >
           <option
@@ -192,8 +192,8 @@ exports[`Date Validation should render the form input with the values when enabl
           max="9999-12-30"
           min="1000-01-01"
           name="customDate"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
           type="date"
           value="2018-01-01"
         />

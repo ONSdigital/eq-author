@@ -17,8 +17,8 @@ exports[`MetaEditor should render 1`] = `
           id="question-alias"
           maxLength={255}
           name="alias"
-          onBlur={[Function]}
-          onChange={[Function]}
+          onBlur={[MockFunction]}
+          onChange={[MockFunction]}
           value="Page alias"
         />
       </MetaEditor__AliasField>
