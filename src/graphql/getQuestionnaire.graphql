@@ -13,6 +13,7 @@ query GetQuestionnaire($id: ID!) {
         position
         ... on QuestionPage {
           displayName
+          title
         }
       }
       questionnaire {

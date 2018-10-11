@@ -35,6 +35,8 @@ import withCreatePage from "containers/enhancers/withCreatePage";
 import withDuplicatePage from "containers/enhancers/withDuplicatePage";
 
 import EditorLayout from "components/EditorLayout";
+import styled from "styled-components";
+import { colors, radius } from "constants/theme";
 
 export class UnwrappedQuestionPageRoute extends React.Component {
   static propTypes = {

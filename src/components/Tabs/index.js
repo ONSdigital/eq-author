@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors, radius } from "constants/theme";
@@ -31,7 +31,7 @@ const Tab = styled(NavLink)`
   border-radius: ${radius} ${radius} 0 0;
   margin: 0 0.25em 0 0;
 
-  &[aria-current="true"] {
+  &[aria-current="page"] {
     background: ${colors.white};
     color: ${colors.secondary};
     border: 1px solid ${colors.bordersLight};
@@ -39,10 +39,14 @@ const Tab = styled(NavLink)`
   }
 `;
 
-const TabsBody = styled.div`
+const hasBorderCSS = css`
   background: ${colors.white};
   border: 1px solid ${colors.bordersLight};
   border-radius: ${radius};
+`;
+
+const TabsBody = styled.div`
+  ${props => props.hasBorder && hasBorderCSS};
 `;
 
 const DisabledTab = styled(Tab.withComponent("span"))`
@@ -57,6 +61,9 @@ export const UnwrappedTabs = ({ match, children }) => {
     ? buildPagePath(match.params)
     : buildSectionPath(match.params);
 
+  console.log(url.indexOf("routing"));
+  console.log(match);
+
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
@@ -69,7 +76,13 @@ export const UnwrappedTabs = ({ match, children }) => {
           <DisabledTab>Routing</DisabledTab>
         )}
       </TabsContainer>
-      <TabsBody data-test="tabs-body">{children}</TabsBody>
+
+      <TabsBody
+        data-test="tabs-body"
+        hasBorder={match.url.indexOf("routing") === -1}
+      >
+        {children}
+      </TabsBody>
     </div>
   );
 };

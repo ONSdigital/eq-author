@@ -17,6 +17,7 @@ fragment RoutingCondition on RoutingCondition {
       }
       mutuallyExclusiveOption {
         id
+        label
       }
       other {
         option {

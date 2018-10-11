@@ -15,13 +15,11 @@ const Select = styled(BaseSelect)`
 const ConditionSelect = ({ id, value, onChange, options }) => {
   return (
     <Select id={id} value={value} onChange={onChange}>
-      {map(options, (value, key) => {
-        return (
-          <option value={key} key={key}>
-            {value}
-          </option>
-        );
-      })}
+      {map(options, (value, key) => (
+        <option value={key} key={key}>
+          {value}
+        </option>
+      ))}
     </Select>
   );
 };
@@ -30,7 +28,7 @@ ConditionSelect.defaultProps = {
   options: {
     all: "All of",
     any: "Any of",
-    none: "None of"
+    none: "Not"
   }
 };
 

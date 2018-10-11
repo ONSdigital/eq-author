@@ -87,6 +87,7 @@ export const ROUTING_QUERY = gql`
           id
           ... on QuestionPage {
             displayName
+            title
             answers {
               id
               type
@@ -98,6 +99,7 @@ export const ROUTING_QUERY = gql`
     currentPage: questionPage(id: $pageId) {
       id
       displayName
+      title
       routingRuleSet {
         ...RoutingRuleSet
       }

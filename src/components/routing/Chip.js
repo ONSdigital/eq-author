@@ -37,7 +37,7 @@ const Chip = styled.div`
   border: none;
   display: inline-flex;
   align-items: center;
-  margin: 0 0.5em 0.5em 0;
+  margin: 0.25rem;
 `;
 
 const Label = styled.span`

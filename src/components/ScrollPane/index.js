@@ -30,10 +30,6 @@ const ScrollPane = styled.div`
     width: 10px;
   }
 
-  > :first-child {
-    backface-visibility: hidden !important;
-  }
-
   &:hover {
     &::-webkit-scrollbar-thumb {
       background-color: ${darken(0.1, colors.lightGrey)};

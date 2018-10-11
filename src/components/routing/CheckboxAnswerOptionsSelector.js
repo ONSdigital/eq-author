@@ -35,7 +35,7 @@ const Select = styled(BaseSelect)`
 const Selector = styled.div`
   margin: 1em 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
 `;
 
@@ -44,11 +44,12 @@ const PositioningContext = styled.div`
 `;
 
 const MatchLabel = styled(Label)`
-  margin: 0;
+  margin: 0.25rem 0;
 `;
 
 const ChooseButton = styled(TextButton)`
-  margin-bottom: 0.5rem;
+  margin: 0.25rem;
+  line-height: 1.2;
 `;
 
 class CheckboxAnswerOptionsSelector extends React.Component {
@@ -75,13 +76,32 @@ class CheckboxAnswerOptionsSelector extends React.Component {
   };
 
   handlePickerClose = selectedOptions => {
+    const existingOptions = get(this.props.localState, "selectedOptions");
+
     this.props.setLocalState({
       selectedOptions: {
+        ...existingOptions,
         [this.props.condition.id]: selectedOptions
       }
     });
-
     this.setState({ showPopup: false });
+  };
+
+  renderChipContent = (options, id) => {
+    const { condition, setLocalState, localState } = this.props;
+    const answerOtherOption = get(condition, "answer.other.option");
+    const mutuallyExclusiveOption = get(
+      condition,
+      "answer.mutuallyExclusiveOption"
+    );
+
+    if (answerOtherOption && id === answerOtherOption.id) {
+      return answerOtherOption.label;
+    } else if (mutuallyExclusiveOption && id === mutuallyExclusiveOption.id) {
+      return mutuallyExclusiveOption.label;
+    }
+
+    return find(options, { id }).label;
   };
 
   render() {
@@ -116,7 +136,7 @@ class CheckboxAnswerOptionsSelector extends React.Component {
             selectedOptions.map(id => (
               <Transition key={id}>
                 <Chip onRemove={this.handleOptionDelete} id={id}>
-                  {find(options, { id }).label}
+                  {this.renderChipContent(options, id)}
                 </Chip>
               </Transition>
             ))}

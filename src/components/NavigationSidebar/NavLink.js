@@ -31,7 +31,7 @@ const Link = styled(RouterNavLink)`
     outline: none;
   }
 
-  &[aria-current="true"] {
+  &[aria-current="page"] {
     background: ${colors.orange};
     pointer-events: none;
 

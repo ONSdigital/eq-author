@@ -18,23 +18,33 @@ import { colors } from "constants/theme";
 import { Select as BaseSelect } from "components/Forms";
 import { withLocalStorageState } from "./withLocalStorageState";
 
+const Container = styled.div`
+  background: ${colors.white};
+  border: 1px solid ${colors.bordersLight};
+  border-top: none;
+  border-bottom: none;
+`;
+
 const Padding = styled.div`
   padding: 1em 0;
 `;
 
 const Title = styled.h2`
-  margin: 0;
-  padding: 1em 2.2em;
+  margin: 0 -1px;
+  padding: 2em 2.2em;
   letter-spacing: 0.05em;
   font-size: 0.9em;
   font-weight: bold;
   text-transform: uppercase;
+  color: ${colors.darkGrey};
+  text-align: center;
   background: ${colors.lighterGrey};
 `;
 
 const ConditionSelectorHeader = styled.div`
   background: #e4e8eb;
   border-top: 1px solid ${colors.secondary};
+  /* border-bottom: 1px solid ${colors.bordersLight}; */
   padding: 0.5em 2em;
   font-weight: bold;
   color: ${colors.secondary};
@@ -44,6 +54,8 @@ const ConditionSelectorHeader = styled.div`
 
 const RemoveButton = styled(Button)`
   margin-left: auto;
+  margin-right: -0.5em;
+  padding: 0.2em 0.5em;
 `;
 
 const Label = styled.label`
@@ -86,7 +98,11 @@ const UnwrappedRoutingRule = ({
   const conditionName = `${rule.id}-condition`;
 
   return (
-    <div className={className} data-test="routing-rule">
+    <Container
+      className={className}
+      data-test="routing-rule"
+      id={`routing-rule-${rule.id}`}
+    >
       {title && <Title>{title}</Title>}
       <ConditionSelectorHeader>
         <div>
@@ -157,7 +173,7 @@ const UnwrappedRoutingRule = ({
           data-test="select-then"
         />
       </div>
-    </div>
+    </Container>
   );
 };
 

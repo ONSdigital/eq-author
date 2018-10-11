@@ -52,6 +52,7 @@ const Label = styled.label`
   font-weight: bold;
   text-align: center;
   align-self: center;
+  color: ${colors.darkGrey};
 `;
 
 export const PageSelect = styled(GroupedSelect).attrs({
@@ -266,7 +267,7 @@ const RoutingCondition = ({
     onPageChange({ id: condition.id, questionPageId: value });
 
   return (
-    <div data-test="routing-condition">
+    <div data-test="routing-condition" id={`condition-${condition.id}`}>
       <Grid align="center">
         <Column gutters={false} cols={1.5}>
           <Label htmlFor={id}>{label}</Label>
@@ -299,10 +300,9 @@ const RoutingCondition = ({
         <Column gutters={false} cols={1.5}>
           <ConnectedPath pathEnd={isNil(condition.answer)} />
         </Column>
-        <Column gutters={false} cols={9}>
+        <Column gutters={false} cols={10.5}>
           <TransitionGroup>{editor}</TransitionGroup>
         </Column>
-        <Column cols={1.5} />
       </Grid>
     </div>
   );

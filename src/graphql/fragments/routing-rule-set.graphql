@@ -12,6 +12,7 @@ fragment RoutingRuleSet on RoutingRuleSet {
     description
     guidance
     displayName
+    title
   }
   else {
     ...LogicalDestination

@@ -7,17 +7,25 @@ import routingRuleSetFragment from "graphql/fragments/routing-rule-set.graphql";
 
 import Transition from "./Transition";
 import Button from "components/Button";
-import IconText from "components/IconText";
+
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import RoutingRule from "./RoutingRule";
 
-import IconAddRule from "./icon-add-rule.svg?inline";
-import { colors, radius } from "constants/theme";
+const AddRule = styled.div`
+  padding: 1em 0;
+  display: flex;
+`;
 
 const AddRuleButton = styled(Button)`
-  width: calc(100% - 2em);
-  margin: 1em;
-  padding: 0.5em;
+  margin: 0 auto;
+  padding: 0.5em 2em;
+`;
+
+const RoutingRuleResult = styled.div`
+  padding: 0.5em 1em 0.5em 2em;
+  background: #e7ebe4;
+  /* border-top: 1px solid ${colors.lightGrey}; */
+  border-bottom: 1px solid #6e825f;
 `;
 
 const RoutingRuleSet = ({
@@ -46,23 +54,26 @@ const RoutingRuleSet = ({
           </Transition>
         ))}
       </TransitionGroup>
-      <AddRuleButton
-        variant="secondary"
-        small
-        onClick={handleAddClick}
-        data-test="btn-add-rule"
-      >
-        <IconText icon={IconAddRule}>Add ELSE rule</IconText>
-      </AddRuleButton>
 
-      <RoutingRuleDestinationSelector
-        id="else"
-        label="ELSE"
-        value={ruleSet.else}
-        destinations={destinations}
-        onChange={handleElseChange}
-        data-test="select-else"
-      />
+      <AddRule>
+        <AddRuleButton
+          variant="secondary"
+          onClick={handleAddClick}
+          data-test="btn-add-rule"
+        >
+          Add ELSE rule
+        </AddRuleButton>
+      </AddRule>
+      <RoutingRuleResult>
+        <RoutingRuleDestinationSelector
+          id="else"
+          label="ELSE"
+          value={ruleSet.else}
+          destinations={destinations}
+          onChange={handleElseChange}
+          data-test="select-else"
+        />
+      </RoutingRuleResult>
     </React.Fragment>
   );
 };

@@ -6,14 +6,19 @@ import Button from "components/Button";
 import IconAddRule from "./icon-add-rule.svg?inline";
 import IconRouting from "./icon-routing.svg?inline";
 import IconText from "components/IconText";
+import { colors } from "constants/theme";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  padding: 1em 0;
+  padding: 2em 0;
   margin-bottom: ${props => (props.hasMargin ? "3em" : "0")};
+  border-top: 1px solid #efefef;
+  background: ${colors.white};
+  border: 1px solid ${colors.bordersLight};
+  border-radius: 0 0 4px 4px;
 `;
 
 const Icon = styled(IconRouting)`
@@ -43,7 +48,6 @@ const RoutingRuleSetMsg = ({
 }) => (
   <Container hasMargin={!onAddRuleSet} {...otherProps}>
     <Icon />
-
     <Title>{title}</Title>
     <Paragraph>{children}</Paragraph>
     {onAddRuleSet && (

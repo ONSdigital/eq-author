@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { dropRightWhile, first, last, get, isEmpty } from "lodash";
 import { TransitionGroup } from "react-transition-group";
 
@@ -9,11 +9,20 @@ import Loading from "components/Loading";
 import RoutingRuleSet from "components/routing/RoutingRuleSet";
 import RoutingRuleSetMsg from "components/routing/RoutingRuleSetMsg";
 
-import { colors } from "constants/theme";
+import { colors, radius } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
 
+const panelCSS = css`
+  background: ${colors.white};
+  border: 1px solid ${colors.bordersLight};
+  border-radius: ${radius};
+`;
+
 const Header = styled.div`
+  ${panelCSS};
   padding: 1.5em 2em;
+  border-bottom: none;
+  border-radius: ${radius} ${radius} 0 0;
 `;
 
 const SubTitle = styled.div`
@@ -30,6 +39,12 @@ const Title = styled.h2`
   font-size: 1.4em;
   margin: 0;
 `;
+
+const stripTags = html => {
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  return div.textContent || div.innerText || "";
+};
 
 export const getPagesAvailableForRouting = (sections, sectionId, pageId) => {
   if (isEmpty(sections)) {
@@ -164,8 +179,10 @@ class RoutingEditor extends React.Component {
     return (
       <div data-test="routing-editor">
         <Header>
-          <SubTitle>Route out of page:</SubTitle>
-          <Title>{get(currentPage, "displayName")}</Title>
+          <SubTitle>
+            Route out of page: {get(currentPage, "displayName")}
+          </SubTitle>
+          <Title>{stripTags(get(currentPage, "title"))}</Title>
         </Header>
 
         <TransitionGroup>{content}</TransitionGroup>
