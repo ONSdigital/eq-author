@@ -6,12 +6,24 @@ import BaseTabs from "components/BaseTabs";
 
 import { colors } from "constants/theme";
 
+const GrowthWrapper = styled.div`
+  display: flex;
+`;
 const ListWrapper = styled.div`
   background-color: ${colors.lightMediumGrey};
   border-radius: 3em;
   display: flex;
   margin: 0.25em 0 1em;
 `;
+const TabListWrapper = ({ children }) => (
+  <GrowthWrapper>
+    <ListWrapper>{children}</ListWrapper>
+  </GrowthWrapper>
+);
+TabListWrapper.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
 const ListItem = styled.button`
   background: none;
   border: none;
@@ -19,7 +31,7 @@ const ListItem = styled.button`
   color: ${colors.textLight};
   cursor: pointer;
   flex: 1 1 auto;
-  padding: 0.5em 0;
+  padding: 0.5em 1em;
 
   text-align: center;
 
@@ -50,7 +62,7 @@ const Flex = styled.div`
 
 const PillTabs = ({ options, value, onChange }) => (
   <BaseTabs
-    TabList={ListWrapper}
+    TabList={TabListWrapper}
     ContentWrapper={Flex}
     buttonRender={(props, tab) => <ListItem {...props}>{tab.title}</ListItem>}
     onChange={onChange}
