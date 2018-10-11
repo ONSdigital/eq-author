@@ -11,6 +11,8 @@ import {
 
 import CustomPropTypes from "custom-prop-types";
 
+export const activeClassName = "active";
+
 export const TabsContainer = styled.nav`
   display: flex;
   justify-content: center;
@@ -19,7 +21,7 @@ export const TabsContainer = styled.nav`
   bottom: -1px;
 `;
 
-const Tab = styled(NavLink)`
+export const Tab = styled(NavLink)`
   font-size: 1em;
   font-weight: bold;
   color: ${colors.white};
@@ -31,7 +33,7 @@ const Tab = styled(NavLink)`
   border-radius: ${radius} ${radius} 0 0;
   margin: 0 0.25em 0 0;
 
-  &[aria-current="true"] {
+  &.${activeClassName} {
     background: ${colors.white};
     color: ${colors.secondary};
     border: 1px solid ${colors.bordersLight};
@@ -50,7 +52,8 @@ const DisabledTab = styled(Tab.withComponent("span"))`
   color: ${colors.lightGrey};
 `;
 
-export const UnwrappedTabs = ({ match, children }) => {
+export const UnwrappedTabs = props => {
+  const { match, children } = props;
   const { pageId } = match.params;
 
   const url = pageId
@@ -60,9 +63,14 @@ export const UnwrappedTabs = ({ match, children }) => {
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
-        <Tab to={url}>Builder</Tab>
+        <Tab to={url} activeClassName={activeClassName}>
+          Builder
+        </Tab>
         {pageId ? (
-          <Tab activeClassName="selected" to={buildRoutingPath(match.params)}>
+          <Tab
+            to={buildRoutingPath(match.params)}
+            activeClassName={activeClassName}
+          >
             Routing
           </Tab>
         ) : (

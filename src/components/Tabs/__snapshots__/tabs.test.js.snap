@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Nav when no pageId should render section link 1`] = `
+exports[`components/Tabs when no pageId should render section link 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -29,7 +29,7 @@ exports[`components/Nav when no pageId should render section link 1`] = `
   margin: 0 0.25em 0 0;
 }
 
-.c1[aria-current="true"] {
+.c1.active {
   background: #FFFFFF;
   color: #5F7682;
   border: 1px solid #c3c3c3;
@@ -56,7 +56,7 @@ exports[`components/Nav when no pageId should render section link 1`] = `
   margin: 0 0.25em 0 0;
 }
 
-.c3[aria-current="true"] {
+.c3.active {
   background: #FFFFFF;
   color: #5F7682;
   border: 1px solid #c3c3c3;
@@ -88,6 +88,7 @@ exports[`components/Nav when no pageId should render section link 1`] = `
         data-test="tabs-nav"
       >
         <Tabs__Tab
+          activeClassName="active"
           to="/questionnaire/123/888/design"
         >
           <NavLink
@@ -144,7 +145,7 @@ exports[`components/Nav when no pageId should render section link 1`] = `
 </UnwrappedTabs>
 `;
 
-exports[`components/Nav when pageId present should render page link 1`] = `
+exports[`components/Tabs when pageId present should render page link 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -173,7 +174,7 @@ exports[`components/Nav when pageId present should render page link 1`] = `
   margin: 0 0.25em 0 0;
 }
 
-.c1[aria-current="true"] {
+.c1.active {
   background: #FFFFFF;
   color: #5F7682;
   border: 1px solid #c3c3c3;
@@ -206,6 +207,7 @@ exports[`components/Nav when pageId present should render page link 1`] = `
         data-test="tabs-nav"
       >
         <Tabs__Tab
+          activeClassName="active"
           to="/questionnaire/1/2/3/design"
         >
           <NavLink
@@ -236,11 +238,11 @@ exports[`components/Nav when pageId present should render page link 1`] = `
           </NavLink>
         </Tabs__Tab>
         <Tabs__Tab
-          activeClassName="selected"
+          activeClassName="active"
           to="/questionnaire/1/2/3/routing"
         >
           <NavLink
-            activeClassName="selected"
+            activeClassName="active"
             aria-current="page"
             className="c1"
             to="/questionnaire/1/2/3/routing"

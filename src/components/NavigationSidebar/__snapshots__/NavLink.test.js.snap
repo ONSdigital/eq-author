@@ -2,7 +2,7 @@
 
 exports[`NavLink should render 1`] = `
 <NavLink__Link
-  isActive={[MockFunction]}
+  activeClassName="active"
   title="Page 1"
   to="/page-1"
 >

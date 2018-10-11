@@ -8,7 +8,9 @@ import { colors } from "constants/theme";
 import IconText from "components/IconText";
 import Truncated from "components/Truncated";
 
-const Link = styled(RouterNavLink)`
+export const activeClassName = "active";
+
+export const Link = styled(RouterNavLink)`
   --color-text: rgb(255, 255, 255);
   text-decoration: none;
   overflow: hidden;
@@ -31,11 +33,11 @@ const Link = styled(RouterNavLink)`
     outline: none;
   }
 
-  &[aria-current="true"] {
+  &.${activeClassName} {
+    --color-text: ${colors.black};
+
     background: ${colors.orange};
     pointer-events: none;
-
-    --color-text: ${colors.black};
     &::before {
       filter: invert(80%);
     }
@@ -49,7 +51,7 @@ const Title = styled(Truncated)`
 `;
 
 const NavLink = ({ to, title, children, icon, ...otherProps }) => (
-  <Link to={to} title={title} {...otherProps}>
+  <Link to={to} title={title} activeClassName={activeClassName} {...otherProps}>
     <IconText icon={icon}>
       <Title>{children}</Title>
     </IconText>
