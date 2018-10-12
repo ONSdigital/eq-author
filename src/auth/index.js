@@ -8,6 +8,7 @@ const API_KEY = config.REACT_APP_FIREBASE_API_KEY;
 const MESSAGING_SENDER_ID = config.REACT_APP_FIREBASE_MESSAGING_SENDER_ID;
 
 firebase.initializeApp({
+  origins: "http://localhost:3000",
   apiKey: API_KEY,
   authDomain: `${PROJECT_ID}.firebaseapp.com`,
   databaseURL: `https://${PROJECT_ID}.firebaseio.com`,

@@ -15,15 +15,9 @@ import IconAddRule from "./icon-add-rule.svg?inline";
 import { colors, radius } from "constants/theme";
 
 const AddRuleButton = styled(Button)`
-  width: 100%;
-  margin-bottom: 2em;
+  width: calc(100% - 2em);
+  margin: 1em;
   padding: 0.5em;
-`;
-
-const Box = styled.div`
-  border: 1px solid ${colors.bordersLight};
-  border-radius: ${radius};
-  opacity: ${props => (props.disabled ? "0.5" : "1")};
 `;
 
 const RoutingRuleSet = ({
@@ -44,7 +38,7 @@ const RoutingRuleSet = ({
           <Transition key={rule.id}>
             <RoutingRule
               rule={rule}
-              title={index > 0 ? "Or" : null}
+              title={index > 0 ? "Else" : null}
               key={rule.id}
               destinations={destinations}
               {...otherProps}
@@ -58,18 +52,17 @@ const RoutingRuleSet = ({
         onClick={handleAddClick}
         data-test="btn-add-rule"
       >
-        <IconText icon={IconAddRule}>Add rule</IconText>
+        <IconText icon={IconAddRule}>Add ELSE rule</IconText>
       </AddRuleButton>
-      <Box>
-        <RoutingRuleDestinationSelector
-          id="else"
-          label="ELSE"
-          value={ruleSet.else}
-          destinations={destinations}
-          onChange={handleElseChange}
-          data-test="select-else"
-        />
-      </Box>
+
+      <RoutingRuleDestinationSelector
+        id="else"
+        label="ELSE"
+        value={ruleSet.else}
+        destinations={destinations}
+        onChange={handleElseChange}
+        data-test="select-else"
+      />
     </React.Fragment>
   );
 };

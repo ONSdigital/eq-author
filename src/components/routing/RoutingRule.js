@@ -5,49 +5,52 @@ import { TransitionGroup } from "react-transition-group";
 
 import Transition from "components/routing/Transition";
 import Button from "components/Button";
-import IconText from "components/IconText";
-import { colors, radius } from "constants/theme";
-import IconRoute from "./icon-route.svg?inline";
+
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
-import TextButton from "components/TextButton";
+
 import RoutingCondition from "components/routing/RoutingCondition";
+import ConditionSelect from "components/routing/ConditionSelect";
 import { get } from "lodash";
-import { Grid, Column } from "components/Grid";
+
 import { RADIO } from "constants/answer-types";
 import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
+import { colors } from "constants/theme";
+import { Select as BaseSelect } from "components/Forms";
+import { withLocalStorageState } from "./withLocalStorageState";
 
-const Box = styled.div`
-  border: 1px solid ${colors.bordersLight};
-  border-radius: ${radius};
-  margin-bottom: 2em;
-  position: relative;
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding: 1em;
+const Padding = styled.div`
+  padding: 1em 0;
 `;
 
 const Title = styled.h2`
-  position: absolute;
   margin: 0;
-  top: 1.5em;
-  left: 1.4em;
+  padding: 1em 2.2em;
   letter-spacing: 0.05em;
   font-size: 0.9em;
   font-weight: bold;
   text-transform: uppercase;
+  background: ${colors.lighterGrey};
 `;
 
-const CenteringColumn = styled(Column)`
+const ConditionSelectorHeader = styled.div`
+  background: #e4e8eb;
+  border-top: 1px solid ${colors.secondary};
+  padding: 0.5em 2em;
+  font-weight: bold;
+  color: ${colors.secondary};
   display: flex;
-  justify-content: center;
-  padding: 0.25em 0;
-  margin-bottom: 0.5em;
+  align-items: center;
 `;
 
-const RoutingRule = ({
+const RemoveButton = styled(Button)`
+  margin-left: auto;
+`;
+
+const Label = styled.label`
+  font-size: 1em;
+`;
+
+const UnwrappedRoutingRule = ({
   rule,
   onDeleteRule,
   onThenChange,
@@ -59,6 +62,8 @@ const RoutingRule = ({
   destinations,
   pagesAvailableForRouting,
   className,
+  localState,
+  setLocalState,
   ...otherProps
 }) => {
   const { conditions, id, goto } = rule;
@@ -68,21 +73,39 @@ const RoutingRule = ({
   const handleAddClick = () => onAddRoutingCondition(rule);
   const handleThenChange = value => onThenChange({ id: id, goto: value });
 
+  const handleSetConditionSelect = ({ name, value }) =>
+    setLocalState({
+      [name]: value
+    });
+
+  const matchOptions = {
+    AND: "All of",
+    OR: "Any of"
+  };
+
+  const conditionName = `${rule.id}-condition`;
+
   return (
     <div className={className} data-test="routing-rule">
-      <Box>
-        {title && <Title>{title}</Title>}
-        <Buttons>
-          <Button
-            onClick={handleDeleteClick}
-            data-test="btn-delete"
-            variant="tertiary"
-            small
-          >
-            <IconText icon={IconRoute}>Remove rule</IconText>
-          </Button>
-        </Buttons>
+      {title && <Title>{title}</Title>}
+      <ConditionSelectorHeader>
         <div>
+          <Label htmlFor={conditionName}>Match</Label>
+          <ConditionSelect
+            id={conditionName}
+            options={matchOptions}
+            onChange={handleSetConditionSelect}
+            value={localState[conditionName]}
+            defaultValue={matchOptions.AND}
+          />
+          the following rules:
+        </div>
+        <RemoveButton small variant="tertiary" onClick={handleDeleteClick}>
+          Remove rule
+        </RemoveButton>
+      </ConditionSelectorHeader>
+      <div>
+        <Padding>
           <TransitionGroup>
             {conditions.map((condition, index) => {
               const { answer } = condition;
@@ -90,17 +113,24 @@ const RoutingRule = ({
                 get(answer, "id")
               ];
 
+              let conditionLabel = "IF";
+
+              if (index > 0) {
+                conditionLabel = get(localState, conditionName, "AND");
+              }
+
               const component = (
                 <Transition key={condition.id}>
                   <div>
                     <RoutingCondition
                       condition={condition}
-                      label={index > 0 ? "AND" : "IF"}
+                      label={conditionLabel}
                       ruleId={id}
                       sections={pagesAvailableForRouting}
                       onRemove={
                         conditions.length > 1 ? onDeleteRoutingCondition : null
                       }
+                      onAdd={handleAddClick}
                       onPageChange={onUpdateRoutingCondition}
                       onToggleOption={onToggleConditionOption}
                       canAddAndCondition={canAddAndCondition}
@@ -117,14 +147,7 @@ const RoutingRule = ({
               return component;
             })}
           </TransitionGroup>
-          <Grid align="center">
-            <CenteringColumn gutters={false} cols={1}>
-              <TextButton onClick={handleAddClick} data-test="btn-and">
-                AND
-              </TextButton>
-            </CenteringColumn>
-          </Grid>
-        </div>
+        </Padding>
         <RoutingRuleDestinationSelector
           id="then"
           label="THEN"
@@ -133,10 +156,12 @@ const RoutingRule = ({
           value={goto}
           data-test="select-then"
         />
-      </Box>
+      </div>
     </div>
   );
 };
+
+const RoutingRule = withLocalStorageState(UnwrappedRoutingRule);
 
 RoutingRule.propTypes = {
   rule: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
