@@ -12,9 +12,10 @@ describe("Date validation builder", () => {
             unit: "Months",
             value: 1
           },
-          relativePosition: "Before"
+          relativePosition: "Before",
+          enabled: true
         })
-      ).toMatchObject({
+      ).toEqual({
         id: 1,
         earliestDateInput: {
           custom: "12/05/1987",
@@ -37,9 +38,10 @@ describe("Date validation builder", () => {
             unit: "Months",
             value: 1
           },
-          relativePosition: "Before"
+          relativePosition: "Before",
+          enabled: true
         })
-      ).toMatchObject({
+      ).toEqual({
         id: 1,
         latestDateInput: {
           custom: null,

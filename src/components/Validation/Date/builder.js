@@ -1,4 +1,4 @@
-import { flowRight } from "lodash/fp";
+import { flowRight, omit } from "lodash/fp";
 
 import withToggleAnswerValidation from "containers/enhancers/withToggleAnswerValidation";
 import withUpdateAnswerValidation from "containers/enhancers/withUpdateAnswerValidation";
@@ -16,7 +16,7 @@ export const readToWriteMapper = outputKey => ({
 }) => ({
   id,
   [outputKey]: {
-    ...rest,
+    ...omit("enabled", rest),
     custom: customDate ? customDate : null
   }
 });
