@@ -21,7 +21,7 @@
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test -- --coverage",
-    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open",
+    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:3000/} cypress open",
     "cypress:open:e2e": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open --config integrationFolder=cypress/e2e"
   },
   "lint-staged": {
