@@ -83,6 +83,8 @@ export const addQuestionPage = (title = "hello world") => {
     cy.get(testId("nav-page-link")).should("contain", "Untitled Page");
 
     typeIntoDraftEditor(testId("txt-question-title", "testid"), title);
+
+    cy.get(testId("nav-page-link")).should("contain", title);
   });
 };
 
@@ -147,15 +149,8 @@ export function assertHash({
 export const typeIntoDraftEditor = (selector, text) => {
   cy.log("Typing into RTE", text)
     .get(selector)
-    .then(input => {
-      var textarea = input.get(0);
-      textarea.dispatchEvent(new Event("focus"));
-
-      var textEvent = document.createEvent("TextEvent");
-      textEvent.initTextEvent("textInput", true, true, null, text);
-      textarea.dispatchEvent(textEvent);
-      textarea.dispatchEvent(new Event("blur"));
-    });
+    .type(text)
+    .blur();
   cy.get(selector).should("contain", text);
 };
 

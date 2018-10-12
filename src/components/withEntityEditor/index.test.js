@@ -2,7 +2,6 @@ import React from "react";
 import withEntityEditor from "./";
 import { shallow } from "enzyme";
 import gql from "graphql-tag";
-import { filter } from "graphql-anywhere";
 import { SynchronousPromise } from "synchronous-promise";
 import { omit } from "lodash";
 import createMockStore from "tests/utils/createMockStore";
@@ -13,6 +12,7 @@ const fragment = gql`
   fragment Entity on Entity {
     id
     title
+    alias
   }
 `;
 
@@ -46,6 +46,7 @@ describe("withEntityEditor", () => {
     entity = {
       id: "1",
       title: "foo",
+      alias: "alias",
       __typename: "Foo"
     };
 
@@ -76,12 +77,8 @@ describe("withEntityEditor", () => {
   });
 
   it("should update the state if the entity does change", () => {
-    const newValue = "foo1";
-    wrapper.simulate("change", { name: "title", value: newValue });
     wrapper.setProps({ entity: { ...entity, title: "hello" } });
-    wrapper.simulate("update");
-    expect(handleUpdate).toHaveBeenCalledWith({
-      ...omit(entity, "__typename"),
+    expect(wrapper.dive().prop("entity")).toMatchObject({
       title: "hello"
     });
   });
@@ -107,23 +104,11 @@ describe("withEntityEditor", () => {
     expect(wrapper.dive().prop("entity")).toEqual(entity);
   });
 
-  it("should update state onChange when new values are different", () => {
-    const newValue = "foo1";
-    wrapper.simulate("change", { name: "title", value: newValue });
-
-    expect(wrapper.state("entity")).toEqual(
-      expect.objectContaining({ title: newValue })
-    );
-    expect(wrapper.state("isDirty")).toBeTruthy();
-  });
-
-  it("should not update state onChange when new values are the same", () => {
+  it("should not call onUpdate when new values are the same", () => {
     const newValue = "foo";
     wrapper.simulate("change", { name: "title", value: newValue });
-    expect(wrapper.state("entity")).toEqual(
-      expect.objectContaining({ title: "foo" })
-    );
-    expect(wrapper.state("isDirty")).toBeFalsy();
+    wrapper.update();
+    expect(handleUpdate).not.toHaveBeenCalled();
   });
 
   it("should pass filtered entity to callback onUpdate", () => {
@@ -143,7 +128,7 @@ describe("withEntityEditor", () => {
     wrapper.simulate("submit", { preventDefault });
 
     expect(preventDefault).toHaveBeenCalled();
-    expect(handleSubmit).toHaveBeenCalledWith(filter(fragment, entity));
+    expect(handleSubmit).toHaveBeenCalledWith(omit(entity, "__typename"));
   });
 
   it("should update state when new entity passed via props", () => {
@@ -231,7 +216,7 @@ describe("withEntityEditor", () => {
 
     wrapper.setProps(newProps);
 
-    expect(wrapper.props()).toEqual(expect.objectContaining(newProps));
+    expect(wrapper.props()).toMatchObject(newProps);
   });
 
   it("should use the name to create deeply nested entities", () => {
@@ -257,7 +242,6 @@ describe("withEntityEditor", () => {
       <ComponentWithEntity
         entity={entity}
         onUpdate={handleUpdate}
-        onSubmit={handleSubmit}
         store={store}
       />
     ).dive();
@@ -271,5 +255,55 @@ describe("withEntityEditor", () => {
         thing: "updated"
       }
     });
+  });
+
+  it("should not overwrite fields that are being changed", () => {
+    // Changing something whilst other field network request is running
+    wrapper.simulate("change", { name: "alias", value: "updated" });
+    // first network request comes back
+    wrapper.setProps({
+      entity: {
+        id: 1,
+        title: "New title",
+        alias: "alias",
+        __typename: "Example"
+      }
+    });
+    expect(wrapper.dive().prop("entity")).toMatchObject({
+      title: "New title",
+      alias: "updated"
+    });
+
+    wrapper.simulate("update");
+    expect(handleUpdate).toHaveBeenCalledWith({
+      id: 1,
+      title: "New title",
+      alias: "updated"
+    });
+  });
+
+  it("should not call update if there is no change after a submit", () => {
+    wrapper.simulate("change", { name: "alias", value: "updated" });
+    wrapper.setProps({
+      entity: {
+        id: 1,
+        title: "New title",
+        alias: "alias",
+        __typename: "Example"
+      }
+    });
+
+    wrapper.simulate("submit", { preventDefault: jest.fn() });
+
+    wrapper.simulate("update");
+    expect(handleUpdate).not.toHaveBeenCalled();
+  });
+
+  it("should not blow up if the change is called after the component is unmounted", () => {
+    const instance = wrapper.instance();
+    wrapper.unmount();
+    expect(() => {
+      instance.handleChange({ name: "title", value: "New title" });
+    }).not.toThrow();
   });
 });
