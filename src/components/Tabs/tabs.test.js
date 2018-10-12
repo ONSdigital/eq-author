@@ -1,6 +1,6 @@
 import React from "react";
 import mountWithRouter from "tests/utils/mountWithRouter";
-import { UnwrappedTabs } from "components/Tabs";
+import { UnwrappedTabs, Tab, activeClassName } from "components/Tabs";
 
 let wrapper;
 
@@ -8,7 +8,7 @@ const match = {
   params: { questionnaireId: "1", sectionId: "2", pageId: "3" }
 };
 
-describe("components/Nav", () => {
+describe("components/Tabs", () => {
   beforeEach(() => {
     wrapper = mountWithRouter(
       <UnwrappedTabs match={match}>Tab Content</UnwrappedTabs>
@@ -33,6 +33,14 @@ describe("components/Nav", () => {
   describe("when pageId present", () => {
     it("should render page link", () => {
       expect(wrapper).toMatchSnapshot();
+    });
+  });
+
+  describe("when rendering Tabs", () => {
+    it("should provide the activeClassName", () => {
+      wrapper.find(Tab).forEach(node => {
+        expect(node.props()).toHaveProperty("activeClassName", activeClassName);
+      });
     });
   });
 });
