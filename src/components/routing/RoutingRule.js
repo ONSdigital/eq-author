@@ -15,7 +15,7 @@ import { get } from "lodash";
 import { RADIO } from "constants/answer-types";
 import routingRuleFragment from "graphql/fragments/routing-rule.graphql";
 import { colors } from "constants/theme";
-import { Select as BaseSelect } from "components/Forms";
+
 import { withLocalStorageState } from "./withLocalStorageState";
 
 const Container = styled.div`
@@ -26,7 +26,7 @@ const Container = styled.div`
 `;
 
 const Padding = styled.div`
-  padding: 1em 0;
+  padding: 0;
 `;
 
 const Title = styled.h2`

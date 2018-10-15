@@ -10,6 +10,7 @@ import Button from "components/Button";
 
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import RoutingRule from "./RoutingRule";
+import { colors } from "constants/theme";
 
 const AddRule = styled.div`
   padding: 1em 0;
@@ -22,10 +23,8 @@ const AddRuleButton = styled(Button)`
 `;
 
 const RoutingRuleResult = styled.div`
-  padding: 0.5em 1em 0.5em 2em;
-  background: #e7ebe4;
-  /* border-top: 1px solid ${colors.lightGrey}; */
-  border-bottom: 1px solid #6e825f;
+  border-left: 1px solid ${colors.lightGrey};
+  border-right: 1px solid ${colors.lightGrey};
 `;
 
 const RoutingRuleSet = ({

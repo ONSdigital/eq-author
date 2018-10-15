@@ -3,7 +3,7 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable dot-notation */
 
-import React, { Fragment } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { PropTypes } from "prop-types";
@@ -13,41 +13,44 @@ import { withLocalStorageState } from "./withLocalStorageState";
 import { withRouter } from "react-router";
 
 import { Input, Select } from "components/Forms";
-import { Tab, Tabs, TabsBody } from "./Tabs";
 
-import MetadataSelect from "./MetadataSelect";
-
-import {
-  flow,
-  find,
-  first,
-  negate,
-  overSome,
-  isEmpty,
-  get,
-  every
-} from "lodash";
+import { flow, first, negate, overSome, isEmpty, get } from "lodash";
 import { DATE } from "constants/answer-types";
-import { PageSelect } from "./RoutingCondition";
-import { Alert, AlertTitle, AlertText } from "./Alert";
 
 const DateAnswer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1em 1em 0;
-  border: 1px solid #c3c3c3;
   border-radius: 4px;
-  margin: 2em 0;
+  margin: 1em 6em 0 0;
 `;
 
 const Flex = styled.div`
   display: flex;
-  width: 100%;
+  width: 25em;
   align-items: center;
   margin-bottom: 1em;
   > * :not(:last-child) {
     margin-right: 1em;
   }
+`;
+
+const Label = styled.label`
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5em;
+`;
+
+const NumericInput = styled(Input)`
+  border-radius: ${radius};
+  &:hover {
+    outline: none;
+  }
+`;
+
+const Fields = styled.div`
+  /* padding: 1em;
+  background-color: #efefef;
+  border-radius: 4px; */
 `;
 
 const DateUnitSelect = ({ ...otherProps }) => (
@@ -56,13 +59,6 @@ const DateUnitSelect = ({ ...otherProps }) => (
     <option value="months">Month/s</option>
     <option value="weeks">Week/s</option>
     <option value="days">Day/s</option>
-  </Select>
-);
-
-const BeforeAfterSelect = props => (
-  <Select {...props}>
-    <option value="before">Before</option>
-    <option value="after">After</option>
   </Select>
 );
 
@@ -82,57 +78,37 @@ const DateOperatorSelect = props => (
   </Select>
 );
 
-const NumericInput = styled(Input)`
-  border-radius: ${radius};
-  &:hover {
-    outline: none;
-  }
-`;
-
-const hasValidAnswers = sections =>
-  !every(sections, section =>
-    every(section.options, ({ disabled }) => disabled)
-  );
-
-const DateComparisonFields = ({ condition, onChange, state }) => {
+const DateComparisonFields = ({ condition, onChange, localState }) => {
   const numericSelectId = `condition-${condition.id}-numeric-select`;
   const comparisonValueId = `condition-${condition.id}-comparison-value`;
   const dateUnitId = `condition-${condition.id}-date-unit`;
-  const beforeAfterId = `condition-${condition.id}-before-after`;
 
-  const isMultiple = parseInt(state[comparisonValueId], 10) > 1;
+  const isMultiple = parseInt(localState[comparisonValueId], 10) > 1;
 
   return (
-    <div style={{ flex: "1 1 auto" }}>
-      <Flex>
-        <DateOperatorSelect
-          onChange={onChange}
-          name={numericSelectId}
-          id={numericSelectId}
-          defaultValue={state[numericSelectId]}
-          style={{ flex: "1 0 14em" }}
-        />
-        <NumericInput
-          onChange={onChange}
-          name={comparisonValueId}
-          id={comparisonValueId}
-          value={state[comparisonValueId]}
-        />
-        <DateUnitSelect
-          onChange={onChange}
-          name={dateUnitId}
-          id={dateUnitId}
-          defaultValue={state[dateUnitId]}
-          isMultiple={isMultiple}
-        />
-        <BeforeAfterSelect
-          onChange={onChange}
-          name={beforeAfterId}
-          id={beforeAfterId}
-          defaultValue={state[beforeAfterId]}
-        />
-      </Flex>
-    </div>
+    <Flex>
+      <DateOperatorSelect
+        onChange={onChange}
+        name={numericSelectId}
+        id={numericSelectId}
+        defaultValue={localState[numericSelectId]}
+      />
+      <NumericInput
+        onChange={onChange}
+        name={comparisonValueId}
+        id={comparisonValueId}
+        value={localState[comparisonValueId]}
+        placeholder="0"
+      />
+      <DateUnitSelect
+        onChange={onChange}
+        name={dateUnitId}
+        id={dateUnitId}
+        defaultValue={localState[dateUnitId]}
+        isMultiple={isMultiple}
+      />
+      <Label>Ago</Label>
+    </Flex>
   );
 };
 
@@ -141,96 +117,6 @@ const CompletionDate = () => (
     The date the respondent fills in the the survey. E.g. 16 years ago.
   </InfoBox>
 );
-
-const CustomValue = ({ condition, state, ...otherProps }) => {
-  const id = `condition-${condition.id}-custom-value`;
-
-  return (
-    <NumericInput
-      type="date"
-      style={{ width: "14em", height: "2.375em" }}
-      placeholder="Custom value"
-      id={id}
-      name={id}
-      value={state[id]}
-      {...otherProps}
-    />
-  );
-};
-
-const PreviousAnswer = ({ condition, sections, state, ...otherProps }) => {
-  const id = `condition-${condition.id}-previous-answer`;
-  let value = null;
-
-  if (condition.questionPage.id !== state[id]) {
-    value = state[id];
-  }
-
-  return (
-    <Fragment>
-      {hasValidAnswers(sections) ? (
-        <PageSelect
-          groups={sections}
-          sections={sections}
-          id={id}
-          name={id}
-          value={value}
-          type={DATE}
-          textSelect="Select a previous date answer"
-          {...otherProps}
-        />
-      ) : (
-        <Alert style={{ padding: "1em 2em" }}>
-          <AlertTitle>
-            There are no previous questions with a date answer
-          </AlertTitle>
-          <AlertText>
-            Add a date answer to a previous question to be able to route from
-            here.
-          </AlertText>
-        </Alert>
-      )}
-    </Fragment>
-  );
-};
-
-const MetaData = ({ condition, state, answerType, ...otherProps }) => {
-  const id = `condition-${condition.id}-metadata`;
-  return (
-    <MetadataSelect
-      id={id}
-      name={id}
-      value={state[id]}
-      answerType={answerType}
-      {...otherProps}
-    />
-  );
-};
-
-const getTabContent = props => {
-  return [
-    {
-      id: "completion-date",
-      title: "Completion date",
-      component: <CompletionDate {...props} />
-    },
-    {
-      id: "previous-answer",
-      title: "Previous answer",
-      component: <PreviousAnswer {...props} />
-    },
-    {
-      id: "metadata",
-      title: "Metadata",
-      component: <MetaData {...props} />
-    },
-    {
-      id: "custom",
-      title: "Specific date",
-      component: <CustomValue {...props} />
-    }
-  ];
-};
 
 const DateAnswerSelector = ({
   condition,
@@ -258,43 +144,27 @@ const DateAnswerSelector = ({
       }))
     }));
 
-  const tabsId = `${DATE}_${condition.id}`;
-
-  const activeTabId = localState[tabsId] || "custom";
-
   const handleChange = ({ name, value }) => setLocalState({ [name]: value });
 
-  const tabItems = getTabContent({
+  const props = {
     condition: condition,
     sections: convertToGroups(sections, condition),
     localState,
     onChange: handleChange,
     answerType: DATE
-  });
-
-  const activeItem = find(tabItems, { id: activeTabId });
+  };
 
   return (
     <DateAnswer data-test="options-selector">
-      <DateComparisonFields
-        condition={condition}
-        state={localState}
-        onChange={handleChange}
-      />
-      <Tabs>
-        {tabItems.map(item => (
-          <Tab
-            role="tab"
-            aria-selected={item.id === activeTabId}
-            key={item.id}
-            controls={item.id}
-            onClick={() => setLocalState({ [tabsId]: item.id })}
-          >
-            {item.title}
-          </Tab>
-        ))}
-      </Tabs>
-      <TabsBody navItemId={activeItem.id}>{activeItem.component}</TabsBody>
+      <Fields>
+        <Label>Date of birth was:</Label>
+        <DateComparisonFields
+          condition={condition}
+          localState={localState}
+          onChange={handleChange}
+        />
+        <CompletionDate {...props} />
+      </Fields>
     </DateAnswer>
   );
 };
@@ -302,7 +172,7 @@ const DateAnswerSelector = ({
 DateAnswerSelector.propTypes = {
   condition: PropTypes.object.isRequired,
   sections: PropTypes.array.isRequired,
-  state: PropTypes.object.isRequired,
+  localState: PropTypes.object.isRequired,
   setLocalState: PropTypes.func.isRequired
 };
 

@@ -9,9 +9,6 @@ import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
 
-import svgPath from "./path.svg";
-import svgPathEnd from "./path-end.svg";
-
 import {
   get,
   isNil,
@@ -44,6 +41,11 @@ import {
 import DateAnswerSelector from "./DateAnswerSelector";
 import { colors } from "constants/theme";
 
+const Condition = styled.div`
+  padding: 1em 0;
+  border-top: 1px solid ${colors.lighterGrey};
+`;
+
 const Label = styled.label`
   width: 100%;
   display: inline-block;
@@ -69,13 +71,13 @@ const ConnectedPath = styled.div`
   &::after {
     position: absolute;
     content: "";
-    background: url(${({ pathEnd }) => (pathEnd ? svgPathEnd : svgPath)})
-      no-repeat center center;
-    background-size: auto;
-    width: 100%;
+    border-left: 3px solid ${colors.lightGrey};
+    width: 3px;
     height: calc(100% - 2em);
     top: 0;
     bottom: 0;
+    left: 0;
+    right: 0;
     margin: auto;
   }
 `;
@@ -267,7 +269,7 @@ const RoutingCondition = ({
     onPageChange({ id: condition.id, questionPageId: value });
 
   return (
-    <div data-test="routing-condition" id={`condition-${condition.id}`}>
+    <Condition data-test="routing-condition" id={`condition-${condition.id}`}>
       <Grid align="center">
         <Column gutters={false} cols={1.5}>
           <Label htmlFor={id}>{label}</Label>
@@ -304,7 +306,7 @@ const RoutingCondition = ({
           <TransitionGroup>{editor}</TransitionGroup>
         </Column>
       </Grid>
-    </div>
+    </Condition>
   );
 };
 

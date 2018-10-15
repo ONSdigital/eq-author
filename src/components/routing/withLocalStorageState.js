@@ -2,7 +2,7 @@ import React from "react";
 
 /* eslint-disable react/jsx-handler-names */
 
-export function withLocalStorageState(WrappedComponent, props) {
+export function withLocalStorageState(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
       super(props);

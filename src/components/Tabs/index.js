@@ -61,9 +61,6 @@ export const UnwrappedTabs = ({ match, children }) => {
     ? buildPagePath(match.params)
     : buildSectionPath(match.params);
 
-  console.log(url.indexOf("routing"));
-  console.log(match);
-
   return (
     <div>
       <TabsContainer data-test="tabs-nav">

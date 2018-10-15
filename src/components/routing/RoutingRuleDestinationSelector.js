@@ -10,7 +10,15 @@ import QuestionPageDestination from "graphql/fragments/question-page-destination
 import SectionDestination from "graphql/fragments/section-destination.graphql";
 import { colors } from "constants/theme";
 
+const RoutingRuleResult = styled.div`
+  padding: 0.5em 1em 0.5em;
+  background: #e6eadc;
+  border-top: 1px solid ${colors.lightGrey};
+  border-bottom: 1px solid ${colors.lightGrey};
+`;
+
 const Label = styled.label`
+  padding: 0.5em 1em 0.5em 2em;
   width: 100%;
   display: block;
   font-size: 0.9em;
@@ -101,23 +109,25 @@ class RoutingRuleDestinationSelector extends React.Component {
     );
 
     return (
-      <Grid align="center">
-        <Column gutters={false} cols={5}>
-          <Label htmlFor={id} disabled={disabled}>
-            {label} <Goto>Go to: </Goto>
-          </Label>
-        </Column>
-        <Column gutters={false} cols={7}>
-          <GroupedSelect
-            id={id}
-            value={convertedValue ? JSON.stringify(convertedValue) : null}
-            groups={groups}
-            onChange={this.handleChange}
-            disabled={disabled}
-            data-test="result-selector"
-          />
-        </Column>
-      </Grid>
+      <RoutingRuleResult>
+        <Grid align="center">
+          <Column gutters={false} cols={5}>
+            <Label htmlFor={id} disabled={disabled}>
+              {label} <Goto>Go to: </Goto>
+            </Label>
+          </Column>
+          <Column gutters={false} cols={7}>
+            <GroupedSelect
+              id={id}
+              value={convertedValue ? JSON.stringify(convertedValue) : null}
+              groups={groups}
+              onChange={this.handleChange}
+              disabled={disabled}
+              data-test="result-selector"
+            />
+          </Column>
+        </Grid>
+      </RoutingRuleResult>
     );
   }
 }

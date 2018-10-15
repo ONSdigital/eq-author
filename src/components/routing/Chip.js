@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { colors } from "constants/theme";
 import iconClose from "./icon-close.svg";
 import VisuallyHidden from "../VisuallyHidden";
+import Truncated from "../Truncated";
 
 const RemoveButton = styled.button`
   border: none;
@@ -38,6 +39,7 @@ const Chip = styled.div`
   display: inline-flex;
   align-items: center;
   margin: 0.25rem;
+  max-width: 12em;
 `;
 
 const Label = styled.span`
@@ -47,7 +49,10 @@ const Label = styled.span`
 export default ({ onRemove, children, id, ...otherProps }) => {
   return (
     <Chip id={id} {...otherProps}>
-      <Label>{children}</Label>
+      <Truncated>
+        <Label>{children}</Label>
+      </Truncated>
+
       <RemoveButton onClick={() => onRemove(id)}>
         <VisuallyHidden>Remove</VisuallyHidden>
       </RemoveButton>

@@ -34,9 +34,9 @@ const Select = styled(BaseSelect)`
 
 const Selector = styled.div`
   margin: 1em 0;
+  padding: 0 1em 0 0;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: baseline;
 `;
 
 const PositioningContext = styled.div`
@@ -50,6 +50,12 @@ const MatchLabel = styled(Label)`
 const ChooseButton = styled(TextButton)`
   margin: 0.25rem;
   line-height: 1.2;
+`;
+
+const SelectedOptions = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 class CheckboxAnswerOptionsSelector extends React.Component {
@@ -124,14 +130,14 @@ class CheckboxAnswerOptionsSelector extends React.Component {
     return (
       <Selector>
         <MatchLabel>
-          <span style={{ marginRight: "0.5em" }}>Match</span>
+          <span>Match</span>
           <ConditionSelect
             id={conditionName}
             onChange={this.handleSetConditionSelect}
             value={localState[conditionName]}
           />
         </MatchLabel>
-        <TransitionGroup component={React.Fragment}>
+        <TransitionGroup component={SelectedOptions}>
           {selectedOptions &&
             selectedOptions.map(id => (
               <Transition key={id}>
@@ -140,26 +146,26 @@ class CheckboxAnswerOptionsSelector extends React.Component {
                 </Chip>
               </Transition>
             ))}
+          <PositioningContext>
+            <ChooseButton
+              onClick={() =>
+                this.setState({
+                  showPopup: true
+                })
+              }
+            >
+              CHOOSE
+            </ChooseButton>
+            {this.state.showPopup && (
+              <CheckboxOptionPicker
+                answer={condition.answer}
+                selectedOptions={selectedOptions}
+                options={options}
+                onClose={this.handlePickerClose}
+              />
+            )}
+          </PositioningContext>
         </TransitionGroup>
-        <PositioningContext>
-          <ChooseButton
-            onClick={() =>
-              this.setState({
-                showPopup: true
-              })
-            }
-          >
-            CHOOSE
-          </ChooseButton>
-          {this.state.showPopup && (
-            <CheckboxOptionPicker
-              answer={condition.answer}
-              selectedOptions={selectedOptions}
-              options={options}
-              onClose={this.handlePickerClose}
-            />
-          )}
-        </PositioningContext>
       </Selector>
     );
   }
