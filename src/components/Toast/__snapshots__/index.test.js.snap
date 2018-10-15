@@ -2,6 +2,7 @@
 
 exports[`Toast should render 1`] = `
 <Toast__StyledToast
+  data-test="toast"
   id="1"
   onBlur={[Function]}
   onFocus={[Function]}
