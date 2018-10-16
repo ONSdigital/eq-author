@@ -12,10 +12,10 @@ import SectionEditor from "components/SectionEditor";
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
-import IconCopy from "components/EditorToolbar/icon-copy.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
 import EditorLayout from "components/EditorLayout";
+import DuplicateButton from "components/DuplicateButton";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
@@ -134,14 +134,10 @@ export class UnwrappedSectionRoute extends React.Component {
             >
               <IconText icon={IconMove}>Move</IconText>
             </Button>
-            <Button
+            <DuplicateButton
               onClick={this.handleDuplicateSection}
               data-test="btn-duplicate-section"
-              variant="tertiary"
-              small
-            >
-              <IconText icon={IconCopy}>Duplicate</IconText>
-            </Button>
+            />
             <IconButtonDelete
               onClick={this.handleOpenDeleteConfirmDialog}
               data-test="btn-delete"
@@ -151,8 +147,10 @@ export class UnwrappedSectionRoute extends React.Component {
           </Buttons>
         </Toolbar>
         <SectionEditor
-          key={data.section.id} // this is needed to reset the state of the RichTextEditors when moving between sections
-          section={data.section}
+          key={data.section.id}
+          section={
+            data.section // this is needed to reset the state of the RichTextEditors when moving between sections
+          }
           onUpdate={this.props.onUpdateSection}
           showDeleteConfirmDialog={this.state.showDeleteConfirmDialog}
           onCloseDeleteConfirmDialog={this.handleCloseDeleteConfirmDialog}

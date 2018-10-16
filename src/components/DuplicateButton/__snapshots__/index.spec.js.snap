@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Duplicate Button should render 1`] = `
+<Button
+  data-test="foo"
+  onClick={[MockFunction]}
+  small={true}
+  type="button"
+  variant="tertiary"
+>
+  <IconText
+    hideText={false}
+    icon={[Function]}
+  >
+    Duplicate
+  </IconText>
+</Button>
+`;
