@@ -3,8 +3,10 @@ mutation duplicateQuestionnaire($input: DuplicateQuestionnaireInput!) {
     id
     title
     createdAt
-    createdBy
-    questionnaireList {
+    createdBy {
+      name
+    }
+    questionnaires {
       id
     }
   }
