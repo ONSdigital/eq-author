@@ -90,7 +90,11 @@ RowTransition.defaultProps = {
 
 const TBody = props => <tbody {...props} />;
 
-const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
+const QuestionnairesTable = ({
+  questionnaires,
+  onDeleteQuestionnaire,
+  onDuplicateQuestionnaire
+}) => {
   if (isEmpty(questionnaires)) {
     return <p>You have no questionnaires</p>;
   }
@@ -135,7 +139,8 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
               <TD textAlign="center">
                 <IconCollapsible>
                   <DuplicateButton
-                    onClick={(...args) => console.log("duplicate", args)}
+                    data-test="btn-duplicate-questionnaire"
+                    onClick={() => onDuplicateQuestionnaire(questionnaire.id)}
                   />
                   <IconButtonDelete
                     hideText
@@ -154,7 +159,8 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
 
 QuestionnairesTable.propTypes = {
   questionnaires: CustomPropTypes.questionnaireList,
-  onDeleteQuestionnaire: PropTypes.func.isRequired
+  onDeleteQuestionnaire: PropTypes.func.isRequired,
+  onDuplicateQuestionnaire: PropTypes.func.isRequired
 };
 
 QuestionnairesTable.fragments = {

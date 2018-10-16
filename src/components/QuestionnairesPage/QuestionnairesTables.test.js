@@ -35,15 +35,17 @@ describe("QuestionnairesTable", () => {
     }
   ];
 
-  let handleDeleteQuestionnaire, wrapper;
+  let handleDeleteQuestionnaire, handleDuplicateQuestionnaire, wrapper;
 
   beforeEach(() => {
     handleDeleteQuestionnaire = jest.fn();
+    handleDuplicateQuestionnaire = jest.fn();
 
     wrapper = shallow(
       <QuestionnairesTable
         questionnaires={questionnaires}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
+        onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
       />
     );
   });
@@ -57,6 +59,7 @@ describe("QuestionnairesTable", () => {
       <QuestionnairesTable
         questionnaires={[]}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
+        onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -69,6 +72,17 @@ describe("QuestionnairesTable", () => {
       .simulate("click");
 
     expect(handleDeleteQuestionnaire).toHaveBeenCalledWith(
+      questionnaires[0].id
+    );
+  });
+
+  it("should allow duplication of a Questionnaire", () => {
+    wrapper
+      .find('[data-test="btn-duplicate-questionnaire"]')
+      .first()
+      .simulate("click");
+
+    expect(handleDuplicateQuestionnaire).toHaveBeenCalledWith(
       questionnaires[0].id
     );
   });

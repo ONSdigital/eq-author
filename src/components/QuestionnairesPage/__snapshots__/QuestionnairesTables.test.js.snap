@@ -89,6 +89,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__IconCollapsible>
             <DuplicateButton
+              data-test="btn-duplicate-questionnaire"
               onClick={[Function]}
               withText={false}
             />
@@ -161,6 +162,7 @@ exports[`QuestionnairesTable should render 1`] = `
         >
           <QuestionnairesTable__IconCollapsible>
             <DuplicateButton
+              data-test="btn-duplicate-questionnaire"
               onClick={[Function]}
               withText={false}
             />

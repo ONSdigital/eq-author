@@ -371,6 +371,7 @@ exports[`components/QuestionnairesPage should render table when there are questi
 exports[`components/QuestionnairesPage should render table when there are questionnaires 2`] = `
 <QuestionnairesTable
   onDeleteQuestionnaire={[MockFunction]}
+  onDuplicateQuestionnaire={[MockFunction]}
   questionnaires={
     Array [
       Object {

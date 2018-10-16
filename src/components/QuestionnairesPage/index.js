@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { flowRight } from "lodash";
 import { Titled } from "react-titled";
+import { connect } from "react-redux";
 
 import CustomPropTypes from "custom-prop-types";
 
@@ -21,8 +22,9 @@ import Error from "components/Error";
 import withQuestionnaireList from "containers/enhancers/withQuestionnaireList";
 import withDeleteQuestionnaire from "containers/enhancers/withDeleteQuestionnaire";
 import withCreateQuestionnaire from "containers/enhancers/withCreateQuestionnaire";
+import withDuplicateQuestionnaire from "containers/enhancers/withDuplicateQuestionnaire";
+
 import { raiseToast } from "redux/toast/actions";
-import { connect } from "react-redux";
 import { getUser } from "redux/auth/reducer";
 
 const StyledButtonGroup = styled(ButtonGroup)`
@@ -65,6 +67,7 @@ export class UnconnectedQuestionnairesPage extends React.Component {
       <QuestionnairesTable
         questionnaires={data.questionnaires}
         onDeleteQuestionnaire={this.props.onDeleteQuestionnaire}
+        onDuplicateQuestionnaire={this.props.onDuplicateQuestionnaire}
       />
     );
   };
@@ -107,7 +110,8 @@ UnconnectedQuestionnairesPage.propTypes = {
   loading: PropTypes.bool,
   questionnaires: CustomPropTypes.questionnaireList,
   onCreateQuestionnaire: PropTypes.func.isRequired,
-  onDeleteQuestionnaire: PropTypes.func.isRequired
+  onDeleteQuestionnaire: PropTypes.func.isRequired,
+  onDuplicateQuestionnaire: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -121,5 +125,6 @@ export default flowRight(
   ),
   withQuestionnaireList,
   withCreateQuestionnaire,
+  withDuplicateQuestionnaire,
   withDeleteQuestionnaire // relies on raiseToast to display undo
 )(UnconnectedQuestionnairesPage);
