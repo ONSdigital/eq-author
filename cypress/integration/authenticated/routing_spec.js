@@ -132,6 +132,7 @@ describe("Routing", () => {
     cy.createQuestionnaire(title);
 
     typeIntoDraftEditor(testId("txt-question-title", "testid"), "Question 1");
+    cy.get(testId("nav-page-link")).should("contain", "Question 1");
     buildMultipleChoiceAnswer(["A", "B", "C"]);
 
     addQuestionPage("Question 2");

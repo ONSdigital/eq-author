@@ -21,58 +21,64 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
       endRequest: PropTypes.func
     };
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        [entityPropName]: props[entityPropName]
-      };
-    }
+    state = {
+      [entityPropName]: this.props[entityPropName]
+    };
+
+    dirtyField = null;
 
     componentDidUpdate(prevProps) {
       if (!isEqual(prevProps[entityPropName], this.props[entityPropName])) {
+        let newEntity = this.props[entityPropName];
+        if (this.dirtyField) {
+          const existingDirtyValue = fp.get(
+            this.dirtyField,
+            this.state[entityPropName]
+          );
+          newEntity = fp.set(this.dirtyField, existingDirtyValue, newEntity);
+        }
+
         // eslint-disable-next-line react/no-did-update-set-state
         this.setState({
-          [entityPropName]: this.props[entityPropName]
+          [entityPropName]: newEntity
         });
       }
     }
 
     static fragments = WrappedComponent.fragments;
 
-    getEntity() {
+    get entity() {
       return this.state[entityPropName];
     }
 
-    getFilteredEntity() {
-      return filter(fragment, this.getEntity());
+    get filteredEntity() {
+      return filter(fragment, this.entity);
     }
 
     handleChange = ({ name, value }, cb) => {
-      const currentEntity = this.getEntity();
-
-      if (currentEntity[name] === value) {
+      if (this.entity[name] === value) {
         return;
       }
 
-      const entity = fp.set(name, value, currentEntity);
+      this.dirtyField = name;
+
+      const entity = fp.set(name, value, this.entity);
       if (!this.unmounted) {
-        this.setState(() => ({ [entityPropName]: entity, isDirty: true }), cb);
+        this.setState(() => ({ [entityPropName]: entity }), cb);
       }
     };
 
     handleUpdate = () => {
-      if (!this.state.isDirty) {
+      if (!this.dirtyField) {
         return;
       }
 
+      this.dirtyField = null;
       this.props.startRequest();
 
       this.props
-        .onUpdate(this.getFilteredEntity())
+        .onUpdate(this.filteredEntity)
         .then(() => {
-          if (!this.unmounted) {
-            this.setState(() => ({ isDirty: false }));
-          }
           this.props.endRequest();
         })
         .catch(() => {
@@ -87,17 +93,13 @@ const withEntityEditor = (entityPropName, fragment) => WrappedComponent => {
     handleSubmit = e => {
       e.preventDefault();
 
-      this.props.onSubmit(this.getFilteredEntity()).then(() => {
-        if (!this.unmounted) {
-          this.setState(() => ({ isDirty: false }));
-        }
-      });
+      this.dirtyField = null;
+      this.props.onSubmit(this.filteredEntity);
     };
 
     render() {
-      const entity = this.getEntity();
       const props = {
-        [entityPropName]: entity
+        [entityPropName]: this.entity
       };
 
       return (

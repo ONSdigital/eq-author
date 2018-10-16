@@ -21,7 +21,7 @@
     "storybook-deploy": "yarn storybook-build && gh-pages -d .out",
     "precommit": "lint-staged",
     "coverage": "yarn test -- --coverage",
-    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open",
+    "cypress:open": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:3000/} cypress open",
     "cypress:open:e2e": "CYPRESS_baseUrl=${CYPRESS_baseUrl:=http://localhost:13000/} cypress open --config integrationFolder=cypress/e2e"
   },
   "lint-staged": {
@@ -56,7 +56,7 @@
     "connect-history-api-fallback": "^1.3.0",
     "cross-spawn": "^5.1.0",
     "css-loader": "1.0.0",
-    "cypress": "3.0.3",
+    "cypress": "^3.1.0",
     "detect-port": "^1.2.1",
     "dotenv": "^6.0.0",
     "dotenv-expand": "^4.2.0",
