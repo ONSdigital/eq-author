@@ -46,7 +46,7 @@ const Condition = styled.div`
   border-top: 1px solid ${colors.lighterGrey};
 `;
 
-const Label = styled.label`
+const IfLabel = styled.label`
   width: 100%;
   display: inline-block;
   font-size: 0.9em;
@@ -240,6 +240,7 @@ const RoutingCondition = ({
   onAdd,
   onToggleOption,
   canAddAndCondition,
+  onNotAnsweredChange,
   match
 }) => {
   let editor;
@@ -268,11 +269,14 @@ const RoutingCondition = ({
   const handleChange = ({ value }) =>
     onPageChange({ id: condition.id, questionPageId: value });
 
+  const handleNotAnsweredChange = ({ value }) =>
+    onNotAnsweredChange({ id: condition.id, value });
+
   return (
     <Condition data-test="routing-condition" id={`condition-${condition.id}`}>
       <Grid align="center">
         <Column gutters={false} cols={1.5}>
-          <Label htmlFor={id}>{label}</Label>
+          <IfLabel htmlFor={id}>{label}</IfLabel>
         </Column>
         <Column gutters={false} cols={9}>
           <PageSelect

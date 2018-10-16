@@ -84,6 +84,10 @@ const UnwrappedRoutingRule = ({
   const handleDeleteClick = () => onDeleteRule(rule);
   const handleAddClick = () => onAddRoutingCondition(rule);
   const handleThenChange = value => onThenChange({ id: id, goto: value });
+  const handleNotAnsweredChange = ({ name, value }) =>
+    setLocalState({
+      [name]: value
+    });
 
   const handleSetConditionSelect = ({ name, value }) =>
     setLocalState({
@@ -150,6 +154,7 @@ const UnwrappedRoutingRule = ({
                       onPageChange={onUpdateRoutingCondition}
                       onToggleOption={onToggleConditionOption}
                       canAddAndCondition={canAddAndCondition}
+                      onNotAnsweredChange={handleNotAnsweredChange}
                       {...otherProps}
                     />
                   </div>

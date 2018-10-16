@@ -48,9 +48,9 @@ const NumericInput = styled(Input)`
 `;
 
 const Fields = styled.div`
-  /* padding: 1em;
+  padding: 1em;
   background-color: #efefef;
-  border-radius: 4px; */
+  border-radius: 4px;
 `;
 
 const DateUnitSelect = ({ ...otherProps }) => (
@@ -107,7 +107,7 @@ const DateComparisonFields = ({ condition, onChange, localState }) => {
         defaultValue={localState[dateUnitId]}
         isMultiple={isMultiple}
       />
-      <Label>Ago</Label>
+      <Label style={{ marginBottom: "0" }}>Ago</Label>
     </Flex>
   );
 };
@@ -157,7 +157,6 @@ const DateAnswerSelector = ({
   return (
     <DateAnswer data-test="options-selector">
       <Fields>
-        <Label>Date of birth was:</Label>
         <DateComparisonFields
           condition={condition}
           localState={localState}

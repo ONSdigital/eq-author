@@ -28,7 +28,8 @@ ConditionSelect.defaultProps = {
   options: {
     all: "All of",
     any: "Any of",
-    none: "Not"
+    none: "Not any of",
+    notall: "Not all of"
   }
 };
 

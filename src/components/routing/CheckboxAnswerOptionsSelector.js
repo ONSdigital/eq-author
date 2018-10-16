@@ -90,6 +90,7 @@ class CheckboxAnswerOptionsSelector extends React.Component {
         [this.props.condition.id]: selectedOptions
       }
     });
+
     this.setState({ showPopup: false });
   };
 
@@ -146,25 +147,27 @@ class CheckboxAnswerOptionsSelector extends React.Component {
                 </Chip>
               </Transition>
             ))}
-          <PositioningContext>
-            <ChooseButton
-              onClick={() =>
-                this.setState({
-                  showPopup: true
-                })
-              }
-            >
-              CHOOSE
-            </ChooseButton>
-            {this.state.showPopup && (
-              <CheckboxOptionPicker
-                answer={condition.answer}
-                selectedOptions={selectedOptions}
-                options={options}
-                onClose={this.handlePickerClose}
-              />
-            )}
-          </PositioningContext>
+          <Transition key="button">
+            <PositioningContext>
+              <ChooseButton
+                onClick={() =>
+                  this.setState({
+                    showPopup: true
+                  })
+                }
+              >
+                CHOOSE
+              </ChooseButton>
+              {this.state.showPopup && (
+                <CheckboxOptionPicker
+                  answer={condition.answer}
+                  selectedOptions={selectedOptions}
+                  options={options}
+                  onClose={this.handlePickerClose}
+                />
+              )}
+            </PositioningContext>
+          </Transition>
         </TransitionGroup>
       </Selector>
     );
