@@ -2,9 +2,6 @@ FROM node:8-alpine as build
 
 WORKDIR /app
 
-ARG APPLICATION_VERSION
-ENV EQ_AUTHOR_VERSION $APPLICATION_VERSION
-
 # Install
 COPY package.json yarn.lock /app/
 RUN yarn install --frozen-lockfile
@@ -15,6 +12,9 @@ COPY config /app/config
 COPY public /app/public
 COPY scripts /app/scripts
 COPY .babelrc .eslintrc.js .env .env.production /app/
+
+ARG APPLICATION_VERSION
+ENV EQ_AUTHOR_VERSION $APPLICATION_VERSION
 
 RUN yarn build
 
