@@ -4,11 +4,14 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { partial, isEmpty } from "lodash";
+import gql from "graphql-tag";
+
 import IconButtonDelete from "components/IconButtonDelete";
+import DuplicateButton from "components/DuplicateButton";
+import Truncated from "components/Truncated";
+
 import QuestionnaireLink from "./QuestionnaireLink";
 import FormattedDate from "./FormattedDate";
-import Truncated from "components/Truncated";
-import gql from "graphql-tag";
 
 const Table = styled.table`
   width: 100%;
@@ -52,6 +55,12 @@ TD.defaultProps = {
 const Collapsible = styled.div`
   height: 3.75em;
   padding: 1em;
+`;
+
+const IconCollapsible = styled(Collapsible)`
+  padding: 0;
+  display: flex;
+  align-items: center;
 `;
 
 const halfTimeout = props => props.timeout / 2;
@@ -124,13 +133,16 @@ const QuestionnairesTable = ({ questionnaires, onDeleteQuestionnaire }) => {
                 </Collapsible>
               </TD>
               <TD textAlign="center">
-                <Collapsible>
+                <IconCollapsible>
+                  <DuplicateButton
+                    onClick={(...args) => console.log("duplicate", args)}
+                  />
                   <IconButtonDelete
                     hideText
                     data-test="btn-delete-questionnaire"
                     onClick={partial(onDeleteQuestionnaire, questionnaire.id)}
                   />
-                </Collapsible>
+                </IconCollapsible>
               </TD>
             </TR>
           </RowTransition>

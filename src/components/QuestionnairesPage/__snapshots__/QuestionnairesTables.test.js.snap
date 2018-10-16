@@ -87,13 +87,17 @@ exports[`QuestionnairesTable should render 1`] = `
         <QuestionnairesTable__TD
           textAlign="center"
         >
-          <QuestionnairesTable__Collapsible>
+          <QuestionnairesTable__IconCollapsible>
+            <DuplicateButton
+              onClick={[Function]}
+              withText={false}
+            />
             <IconButtonDelete
               data-test="btn-delete-questionnaire"
               hideText={true}
               onClick={[Function]}
             />
-          </QuestionnairesTable__Collapsible>
+          </QuestionnairesTable__IconCollapsible>
         </QuestionnairesTable__TD>
       </QuestionnairesTable__TR>
     </QuestionnairesTable__RowTransition>
@@ -155,13 +159,17 @@ exports[`QuestionnairesTable should render 1`] = `
         <QuestionnairesTable__TD
           textAlign="center"
         >
-          <QuestionnairesTable__Collapsible>
+          <QuestionnairesTable__IconCollapsible>
+            <DuplicateButton
+              onClick={[Function]}
+              withText={false}
+            />
             <IconButtonDelete
               data-test="btn-delete-questionnaire"
               hideText={true}
               onClick={[Function]}
             />
-          </QuestionnairesTable__Collapsible>
+          </QuestionnairesTable__IconCollapsible>
         </QuestionnairesTable__TD>
       </QuestionnairesTable__TR>
     </QuestionnairesTable__RowTransition>

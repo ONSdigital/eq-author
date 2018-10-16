@@ -8,11 +8,24 @@ exports[`Duplicate Button should render 1`] = `
   type="button"
   variant="tertiary"
 >
-  <IconText
-    hideText={false}
+  <DuplicateButton__IconPossiblyWithText
     icon={[Function]}
   >
     Duplicate
-  </IconText>
+  </DuplicateButton__IconPossiblyWithText>
+</Button>
+`;
+
+exports[`Duplicate Button should render without duplicate text when asked to 1`] = `
+<Button
+  data-test="foo"
+  onClick={[MockFunction]}
+  small={true}
+  type="button"
+  variant="tertiary"
+>
+  <DuplicateButton__IconPossiblyWithText
+    icon={[Function]}
+  />
 </Button>
 `;

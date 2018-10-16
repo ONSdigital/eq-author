@@ -4,19 +4,27 @@ import { shallow } from "enzyme";
 import DuplicateButton from "./";
 
 describe("Duplicate Button", () => {
+  let props;
+  beforeEach(() => {
+    props = {
+      onClick: jest.fn(),
+      "data-test": "foo",
+      withText: true
+    };
+  });
   it("should render", () => {
-    const wrapper = shallow(
-      <DuplicateButton onClick={jest.fn()} data-test="foo" />
-    );
+    const wrapper = shallow(<DuplicateButton {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should call on click when clicked", () => {
-    const onClick = jest.fn();
-    const wrapper = shallow(
-      <DuplicateButton onClick={onClick} data-test="foo" />
-    );
+    const wrapper = shallow(<DuplicateButton {...props} />);
     wrapper.find("[data-test='foo']").simulate("click", "hello");
-    expect(onClick).toHaveBeenCalledWith("hello");
+    expect(props.onClick).toHaveBeenCalledWith("hello");
+  });
+
+  it("should render without duplicate text when asked to", () => {
+    const wrapper = shallow(<DuplicateButton {...props} withText={false} />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
