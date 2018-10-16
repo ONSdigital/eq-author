@@ -3,21 +3,21 @@ import { shallow } from "enzyme";
 import IconButtonDelete from "components/IconButtonDelete";
 
 describe("IconButtonDelete", () => {
-  let wrapper;
-  let props;
-
-  beforeEach(() => {
-    props = {
-      onClick: jest.fn(),
-      anotherProp: "test"
-    };
-    wrapper = shallow(
-      <IconButtonDelete {...props}>Icon button text</IconButtonDelete>
+  it("should pass on props", () => {
+    const wrapper = shallow(
+      <IconButtonDelete onClick={jest.fn()} anotherProp="test">
+        Icon button text
+      </IconButtonDelete>
     );
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it("should pass on props", () => {
-    expect(wrapper.props().onClick).toBe(props.onClick);
-    expect(wrapper.props().anotherProp).toBe(props.anotherProp);
+  it("should wrap in tooltip when text is hidden", () => {
+    const wrapper = shallow(
+      <IconButtonDelete onClick={jest.fn()} hideText>
+        Icon button text
+      </IconButtonDelete>
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 });

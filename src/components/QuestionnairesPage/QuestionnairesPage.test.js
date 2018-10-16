@@ -9,6 +9,7 @@ describe("components/QuestionnairesPage", () => {
       <UnconnectedQuestionnairesPage
         onDeleteQuestionnaire={jest.fn()}
         onCreateQuestionnaire={jest.fn()}
+        onDuplicateQuestionnaire={jest.fn()}
         {...props}
       />
     );

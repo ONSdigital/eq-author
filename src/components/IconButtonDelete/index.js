@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 import IconDelete from "./icon-delete.svg?inline";
 import Button from "components/Button";
-
 import IconText from "components/IconText";
+import Tooltip from "components/Tooltip";
 
 const DeleteButton = styled(Button).attrs({
   variant: "tertiary",
@@ -24,13 +24,27 @@ const DeleteButton = styled(Button).attrs({
   }
 `;
 
-const IconButtonDelete = ({ hideText, ...otherProps }) => (
-  <DeleteButton {...otherProps}>
-    <IconText icon={IconDelete} hideText={hideText}>
-      Delete
-    </IconText>
-  </DeleteButton>
+const DeleteTooltip = ({ children }) => (
+  <Tooltip content="Delete" place="top" offset={{ top: 0, bottom: 10 }}>
+    {children}
+  </Tooltip>
 );
+DeleteTooltip.propTypes = {
+  children: PropTypes.node.isRequired
+};
+
+const IconButtonDelete = ({ hideText, ...otherProps }) => {
+  const Wrapper = hideText ? DeleteTooltip : React.Fragment;
+  return (
+    <Wrapper>
+      <DeleteButton title="Delete" {...otherProps}>
+        <IconText icon={IconDelete} hideText={hideText}>
+          Delete
+        </IconText>
+      </DeleteButton>
+    </Wrapper>
+  );
+};
 
 IconButtonDelete.propTypes = {
   hideText: PropTypes.bool
