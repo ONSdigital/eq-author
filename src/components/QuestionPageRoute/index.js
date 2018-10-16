@@ -10,9 +10,9 @@ import QuestionPageEditor from "components/QuestionPageEditor";
 import IconButtonDelete from "components/IconButtonDelete";
 import { Toolbar, Buttons } from "components/EditorToolbar";
 import IconMove from "components/EditorToolbar/icon-move.svg?inline";
-import IconCopy from "components/EditorToolbar/icon-copy.svg?inline";
 import Button from "components/Button";
 import IconText from "components/IconText";
+import DuplicateButton from "components/DuplicateButton";
 
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
@@ -150,14 +150,10 @@ export class UnwrappedQuestionPageRoute extends React.Component {
             >
               <IconText icon={IconMove}>Move</IconText>
             </Button>
-            <Button
+            <DuplicateButton
               onClick={this.handleDuplicatePage}
               data-test="btn-duplicate-page"
-              variant="tertiary"
-              small
-            >
-              <IconText icon={IconCopy}>Duplicate</IconText>
-            </Button>
+            />
             <IconButtonDelete
               onClick={this.handleOpenDeleteConfirmDialog}
               data-test="btn-delete"
