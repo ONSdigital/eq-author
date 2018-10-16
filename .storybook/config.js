@@ -1,9 +1,10 @@
 import React from "react";
 import { configure, addDecorator } from "@storybook/react";
 import { setOptions } from "@storybook/addon-options";
-import App from "components/App";
 import { Provider } from "react-redux";
 import configureStore from "redux/configureStore";
+
+import App from "components/App";
 
 addDecorator(story => <App>{story()}</App>);
 
