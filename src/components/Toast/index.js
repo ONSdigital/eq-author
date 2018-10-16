@@ -64,6 +64,7 @@ export default class Toast extends React.Component {
         onMouseLeave={this.handleResume}
         onFocus={this.handlePause}
         onBlur={this.handleResume}
+        data-test="toast"
       >
         {React.cloneElement(child, { onClose: this.handleClose })}
       </StyledToast>

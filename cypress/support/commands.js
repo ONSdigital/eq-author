@@ -29,6 +29,19 @@ Cypress.Commands.add("logout", () => {
     });
 });
 
+Cypress.Commands.add("dismissAllToast", () => {
+  cy.window()
+    .its("__store__")
+    .then(store => {
+      cy.get("[data-test='toast']").each(elem => {
+        store.dispatch({
+          type: "TOAST_DISMISS",
+          payload: { id: elem.attr("id") }
+        });
+      });
+    });
+});
+
 Cypress.Commands.add("createQuestionnaire", title => {
   cy.get(testId("logo")).click();
   cy.get(testId("create-questionnaire")).click();
