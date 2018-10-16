@@ -5081,10 +5081,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-eq-author@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-eq-author/-/eslint-config-eq-author-2.0.0.tgz#7c976867fff9258345ca8da041925952ed4bc59d"
-  integrity sha512-X9OgXwYAxMaZHTftkigKRldzh+D2l8kbzxyetk4f7S1vXC65ySJa2x2TB4HQwWyNSu3hQ792xotbhY4hse3NCA==
+eslint-config-eq-author@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-eq-author/-/eslint-config-eq-author-2.0.1.tgz#4c3e5745abecb6f59d0ded6e37ee40c65f5bd5be"
+  integrity sha512-itWlxUZWnDyJkaROsuPpqT/fXxg+vll02mH8BkQKMEJPftpjNa7Vqq0KNifF6Q+DnPA2Gv7fz4cXUYezNnyoZQ==
   dependencies:
     eslint-config-prettier "^2.1.1"
     eslint-config-react-app "^1.0.4"
