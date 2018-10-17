@@ -35,19 +35,6 @@ const Container = styled.div`
   }
 `;
 
-const SurveyHeader = styled.h1`
-  font-size: 1rem;
-  padding: 1em;
-  margin: 1em;
-  background: #3b7a9e;
-  color: ${colors.white};
-  border-radius: 4px 4px 0 0;
-`;
-
-const SurveyTitle = styled.span`
-  font-size: 1.6em;
-`;
-
 const PageTitle = styled.h1`
   font-size: 1.4em;
   margin: 0 0 1em;
@@ -103,7 +90,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     let title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
 
     if (!title) {
-      title = <Error>Untitled Page</Error>;
+      title = <Error>Missing Page Title</Error>;
     } else {
       title = <div dangerouslySetInnerHTML={{ __html: title }} />;
     }

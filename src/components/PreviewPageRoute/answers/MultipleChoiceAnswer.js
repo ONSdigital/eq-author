@@ -2,9 +2,14 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 import { CHECKBOX, RADIO } from "constants/answer-types";
-import Error from "./ValidationError";
 import { Field } from "./elements";
 import { colors } from "constants/theme";
+
+const Error = styled.span`
+  border: 2px dashed #b5c4cb;
+  color: ${colors.secondary};
+  font-weight: bold;
+`;
 
 const Legend = styled.div`
   font-weight: bold;
@@ -113,7 +118,7 @@ const Option = ({ option, type, answer }) => (
   <OptionItem error={!option.label}>
     <Input type={type} error={!option.label} />
     <OptionLabel>
-      {option.label || "Label missing"}
+      {option.label || "Missing label"}
       {option.description && (
         <OptionDescription>{option.description}</OptionDescription>
       )}
