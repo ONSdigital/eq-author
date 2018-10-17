@@ -6,8 +6,5 @@ mutation duplicateQuestionnaire($input: DuplicateQuestionnaireInput!) {
     createdBy {
       name
     }
-    questionnaires {
-      id
-    }
   }
 }
