@@ -182,7 +182,7 @@ class RoutingEditor extends React.Component {
           <SubTitle>
             Route out of page: {get(currentPage, "displayName")}
           </SubTitle>
-          <Title>{stripTags(get(currentPage, "title"))}</Title>
+          <Title>{stripTags(get(currentPage, "title", "Untitled Page"))}</Title>
         </Header>
 
         <TransitionGroup>{content}</TransitionGroup>
