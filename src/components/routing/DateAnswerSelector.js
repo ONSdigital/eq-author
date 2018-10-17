@@ -72,8 +72,8 @@ const InfoBox = styled.div`
 
 const DateOperatorSelect = props => (
   <Select {...props}>
-    <option value="greater-than">{"At least"}</option>
-    <option value="less-than">{"At most"}</option>
+    <option value="greater-than">{"More than"}</option>
+    <option value="less-than">{"Less than"}</option>
     <option value="equal-to">{"Exactly"}</option>
   </Select>
 );
