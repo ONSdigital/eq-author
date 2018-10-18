@@ -18,7 +18,7 @@ const DuplicateButton = ({ onClick, withText, ...props }) => (
   </Button>
 );
 DuplicateButton.defaultProps = {
-  withText: false
+  withText: true
 };
 DuplicateButton.propTypes = {
   onClick: PropTypes.func.isRequired,

@@ -141,6 +141,7 @@ const QuestionnairesTable = ({
                   <DuplicateButton
                     data-test="btn-duplicate-questionnaire"
                     onClick={() => onDuplicateQuestionnaire(questionnaire.id)}
+                    withText={false}
                   />
                   <IconButtonDelete
                     hideText
