@@ -5,7 +5,8 @@ import {
   addQuestionPage,
   buildMultipleChoiceAnswer,
   testId,
-  selectOptionByLabel
+  selectOptionByLabel,
+  addAnswerType
 } from "../../utils";
 
 let title;
@@ -89,6 +90,36 @@ describe("Routing", () => {
     findByLabel("THEN")
       .select("Question 3")
       .should("have.length", 1);
+  });
+
+  it("should be able to add a currency routing rule and edit the inputs", () => {
+    cy.createQuestionnaire(title);
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "Question 1");
+
+    addAnswerType("Currency");
+
+    navigateToRoutingTab();
+
+    cy.get(testId("btn-add-rule")).click();
+
+    cy.get(testId("comparator-selector")).select("LessThan");
+
+    cy.get(testId("number-input")).type("123");
+  });
+
+  it("should be able to add a number routing rule and edit the inputs", () => {
+    cy.createQuestionnaire(title);
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "Question 1");
+
+    addAnswerType("Number");
+
+    navigateToRoutingTab();
+
+    cy.get(testId("btn-add-rule")).click();
+
+    cy.get(testId("comparator-selector")).select("GreaterThan");
+
+    cy.get(testId("number-input")).type("321");
   });
 
   it("follows the link to add an answer and routing updates with the new answer", () => {

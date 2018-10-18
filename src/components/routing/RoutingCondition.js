@@ -9,6 +9,8 @@ import CustomPropTypes from "custom-prop-types";
 import { Grid, Column } from "components/Grid";
 import { NavLink } from "react-router-dom";
 
+import { RADIO, NUMBER, CURRENCY } from "constants/answer-types";
+
 import svgPath from "./path.svg";
 import svgPathEnd from "./path-end.svg";
 import IconText from "components/IconText";
@@ -24,6 +26,7 @@ import {
   overSome
 } from "lodash";
 import MultipleChoiceAnswerOptionsSelector from "components/routing/MultipleChoiceAnswerOptionsSelector";
+import NumberAnswerSelector from "components/routing/NumberAnswerSelector";
 import GroupedSelect from "./GroupedSelect";
 import Transition from "components/routing/Transition";
 import { TransitionGroup } from "react-transition-group";
@@ -141,7 +144,7 @@ const renderCannotAddAndCondition = () => (
   </Transition>
 );
 
-const renderEditor = (condition, onToggleOption) => (
+const renderMultipleChoiceEditor = (condition, onToggleOption) => (
   <Transition key="answer" exit={false}>
     <MultipleChoiceAnswerOptionsSelector
       condition={condition}
@@ -150,101 +153,152 @@ const renderEditor = (condition, onToggleOption) => (
   </Transition>
 );
 
-const RoutingCondition = ({
+const renderNumberEditor = (
   condition,
-  ruleId,
-  sections,
-  label,
-  onPageChange,
-  onRemove,
-  onToggleOption,
-  canAddAndCondition,
-  match
-}) => {
-  let editor;
-  let value = get(condition, "questionPage.id");
-  let pageSelectIsValid;
+  handleComparatorChange,
+  handleValueChange
+) => (
+  <Transition key="answer" exit={false}>
+    <NumberAnswerSelector
+      condition={condition}
+      onComparatorChange={handleComparatorChange}
+      handleValueChange={handleValueChange}
+    />
+  </Transition>
+);
 
-  if (isNil(condition.questionPage)) {
-    editor = renderDeletedQuestion();
-  } else if (isNil(condition.answer)) {
-    value = null;
-    pageSelectIsValid = false;
-    editor = renderNoAnswer(match.params);
-  } else if (!isAnswerValidForRouting(condition.answer)) {
-    value = null;
-    pageSelectIsValid = false;
-    editor = renderUnsupportedAnswer(condition.answer);
-  } else if (!canAddAndCondition) {
-    pageSelectIsValid = false;
-    editor = renderCannotAddAndCondition();
-  } else {
-    editor = renderEditor(condition, onToggleOption);
+class RoutingCondition extends React.Component {
+  static propTypes = {
+    ruleId: PropTypes.string.isRequired,
+    condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
+    onConditionChange: PropTypes.func.isRequired,
+    onUpdateConditionValue: PropTypes.func.isRequired,
+    onToggleOption: PropTypes.func.isRequired,
+    onRemove: PropTypes.func,
+    label: PropTypes.oneOf(["IF", "AND"]).isRequired,
+    match: CustomPropTypes.match,
+    canAddAndCondition: PropTypes.bool.isRequired
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.pageSelectIsValid = true;
+
+    this.id = uniqueId("RoutingCondition");
   }
 
-  const id = uniqueId("RoutingCondition");
-  const handleRemove = onRemove ? () => onRemove(ruleId, condition.id) : null;
-  const handleChange = ({ value }) =>
-    onPageChange({ id: condition.id, questionPageId: value });
+  static defaultProps = {
+    label: "IF"
+  };
 
-  return (
-    <div data-test="routing-condition">
-      <Grid align="center">
-        <Column gutters={false} cols={1}>
-          <Label htmlFor={id}>{label}</Label>
-        </Column>
-        <Column gutters={false} cols={10}>
-          <PageSelect
-            value={value}
-            valid={pageSelectIsValid}
-            onChange={handleChange}
-            groups={convertToGroups(sections)}
-            id={id}
-          />
-        </Column>
-        <Column gutters={false} cols={1}>
-          <RemoveButton
-            onClick={handleRemove}
-            disabled={!onRemove}
-            data-test="btn-remove"
-          >
-            <IconText icon={IconClose} hideText>
-              Remove
-            </IconText>
-          </RemoveButton>
-        </Column>
-      </Grid>
-      <Grid>
-        <Column gutters={false} cols={1}>
-          <ConnectedPath pathEnd={isNil(condition.answer)} />
-        </Column>
-        <Column gutters={false} cols={10}>
-          <TransitionGroup>{editor}</TransitionGroup>
-        </Column>
-        <Column cols={1} />
-      </Grid>
-    </div>
-  );
-};
+  static fragments = {
+    RoutingCondition: routingConditionFragment
+  };
 
-RoutingCondition.propTypes = {
-  ruleId: PropTypes.string.isRequired,
-  condition: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  sections: PropTypes.arrayOf(CustomPropTypes.section).isRequired,
-  onPageChange: PropTypes.func.isRequired,
-  onToggleOption: PropTypes.func.isRequired,
-  onRemove: PropTypes.func,
-  label: PropTypes.oneOf(["IF", "AND"]).isRequired,
-  match: CustomPropTypes.match,
-  canAddAndCondition: PropTypes.bool.isRequired
-};
+  handleRemove = this.props.onRemove
+    ? () => this.props.onRemove(this.props.ruleId, this.props.condition.id)
+    : null;
 
-RoutingCondition.defaultProps = {
-  label: "IF"
-};
+  handlePageChange = ({ value }) => {
+    this.props.onConditionChange({
+      id: this.props.condition.id,
+      questionPageId: value
+    });
+  };
 
-RoutingCondition.fragments = {
-  RoutingCondition: routingConditionFragment
-};
+  handleComparatorChange = (otherProps, { value }) =>
+    this.props.onConditionChange({
+      id: this.props.condition.id,
+      questionPageId: otherProps.questionPageId,
+      comparator: value
+    });
+
+  handleValueChange = ({ value, name }) =>
+    this.props.onUpdateConditionValue({ id: name, customNumber: value });
+
+  renderEditor(condition) {
+    let routingEditor;
+    let isValid = true;
+
+    if (isNil(condition.questionPage)) {
+      isValid = false;
+      routingEditor = renderDeletedQuestion();
+    } else if (isNil(condition.answer)) {
+      isValid = false;
+      routingEditor = renderNoAnswer(this.props.match.params);
+    } else if (!isAnswerValidForRouting(condition.answer)) {
+      isValid = false;
+      routingEditor = renderUnsupportedAnswer(condition.answer);
+    } else if (!this.props.canAddAndCondition) {
+      isValid = false;
+      routingEditor = renderCannotAddAndCondition();
+    } else {
+      isValid = true;
+      const type = get(condition, "answer.type");
+      if (type === RADIO) {
+        routingEditor = renderMultipleChoiceEditor(
+          condition,
+          this.props.onToggleOption
+        );
+      } else if ([CURRENCY, NUMBER].includes(type)) {
+        routingEditor = renderNumberEditor(
+          condition,
+          this.handleComparatorChange,
+          this.handleValueChange
+        );
+      }
+    }
+
+    return {
+      routingEditor,
+      isValid
+    };
+  }
+
+  render() {
+    const { routingEditor, isValid } = this.renderEditor(this.props.condition);
+
+    return (
+      <div data-test="routing-condition">
+        <Grid align="center">
+          <Column gutters={false} cols={1}>
+            <Label htmlFor={this.id}>{this.props.label}</Label>
+          </Column>
+          <Column gutters={false} cols={10}>
+            <PageSelect
+              value={get(this.props.condition, "questionPage.id", null)}
+              valid={isValid}
+              onChange={this.handlePageChange}
+              groups={convertToGroups(this.props.sections)}
+              id={this.id}
+            />
+          </Column>
+          <Column gutters={false} cols={1}>
+            <RemoveButton
+              onClick={this.handleRemove}
+              disabled={!this.props.onRemove}
+              data-test="btn-remove"
+            >
+              <IconText icon={IconClose} hideText>
+                Remove
+              </IconText>
+            </RemoveButton>
+          </Column>
+        </Grid>
+        <Grid>
+          <Column gutters={false} cols={1}>
+            <ConnectedPath pathEnd={isNil(this.props.condition.answer)} />
+          </Column>
+          <Column gutters={false} cols={10}>
+            <TransitionGroup>{routingEditor}</TransitionGroup>
+          </Column>
+          <Column cols={1} />
+        </Grid>
+      </div>
+    );
+  }
+}
 
 export default RoutingCondition;

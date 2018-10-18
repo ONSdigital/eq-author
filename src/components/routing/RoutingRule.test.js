@@ -21,6 +21,7 @@ describe("components/RoutingRule", () => {
       onToggleConditionOption: jest.fn(),
       onUpdateRoutingCondition: jest.fn(),
       onDeleteRoutingCondition: jest.fn(),
+      onUpdateConditionValue: jest.fn(),
       title: "Test",
       destinations: {},
       pagesAvailableForRouting: [],

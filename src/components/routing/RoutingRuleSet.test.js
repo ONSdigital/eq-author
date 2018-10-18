@@ -13,6 +13,7 @@ describe("components/RoutingRuleSet", () => {
       onAddRoutingCondition: jest.fn(),
       onToggleConditionOption: jest.fn(),
       onUpdateRoutingCondition: jest.fn(),
+      onUpdateConditionValue: jest.fn(),
       onThenChange: jest.fn(),
       pagesAvailableForRouting: [],
       destinations: {},

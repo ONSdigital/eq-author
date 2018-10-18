@@ -5,6 +5,7 @@ exports[`Number should render correctly 1`] = `
   <Number__StyledInput
     aria-live="assertive"
     data-test="number-input"
+    default={0}
     id="number"
     max={10}
     min={-10}

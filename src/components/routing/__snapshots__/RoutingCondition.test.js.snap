@@ -45,6 +45,7 @@ exports[`components/RoutingCondition should render consistently 1`] = `
         }
         id="RoutingCondition1"
         onChange={[Function]}
+        valid={true}
         value="2"
       />
     </Column>

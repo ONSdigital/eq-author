@@ -36,6 +36,15 @@ class Number extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.value !== prevProps.value) {
+      /*eslint-disable-next-line  */
+      this.setState({
+        value: this.props.value
+      });
+    }
+  }
+
   handleChange = ({ value }) => {
     this.setState({ value });
   };
@@ -48,10 +57,10 @@ class Number extends React.Component {
       this.props.min,
       this.props.max
     );
-    /* eslint-disable no-compare-neg-zero */
+
     const newValue =
-      isNaN(enteredValue) || enteredValue === -0
-        ? this.props.min
+      isNaN(enteredValue) || Object.is(enteredValue, -0)
+        ? this.props.default
         : enteredValue;
 
     this.setState({ value: newValue });
@@ -87,7 +96,8 @@ class Number extends React.Component {
 
 Number.defaultProps = {
   min: 0,
-  step: 1
+  step: 1,
+  default: 0
 };
 
 Number.propTypes = {

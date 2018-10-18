@@ -90,6 +90,7 @@ exports[`Date Validation should render the form input with the values when enabl
             cols={2}
           >
             <Number
+              default={0}
               id="offset-value"
               max={99999}
               min={0}

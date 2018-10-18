@@ -1,9 +1,9 @@
 import { get } from "lodash";
-import { RADIO } from "constants/answer-types";
+import { RADIO, CURRENCY, NUMBER } from "constants/answer-types";
 
 const isAnswerValidForRouting = answer => {
   const type = get(answer, "type");
-  return type === RADIO;
+  return [RADIO, CURRENCY, NUMBER].includes(type);
 };
 
 export default isAnswerValidForRouting;
