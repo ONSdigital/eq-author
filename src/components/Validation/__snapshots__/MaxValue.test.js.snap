@@ -22,14 +22,10 @@ exports[`MaxValue should render with content 1`] = `
       cols={8}
     >
       <ValidationPills
-        answerType="Number"
-        customValue={123}
-        customValueLimit={999999999}
+        Custom={[Function]}
+        PreviousAnswer={[Function]}
         entityType="Custom"
-        onCustomValueChange={[Function]}
         onEntityTypeChange={[Function]}
-        onPreviousAnswerChange={[Function]}
-        previousAnswer={null}
       />
       <MaxValue__InlineField>
         <ToggleSwitch

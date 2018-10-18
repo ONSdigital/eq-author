@@ -1,3 +1,5 @@
+import { ValidationPills } from "components/Validation/ValidationPills";
+import { CUSTOM, PREVIOUS_ANSWER } from "constants/validation-entity-types";
 import React from "react";
 import { shallow } from "enzyme";
 import { Number } from "components/Forms";
@@ -6,6 +8,7 @@ import DateValidation from "./DateValidation";
 
 describe("Date Validation", () => {
   let props;
+
   beforeEach(() => {
     props = {
       answer: {
@@ -21,7 +24,8 @@ describe("Date Validation", () => {
           value: 5,
           unit: "Months"
         },
-        relativePosition: "Before"
+        relativePosition: "Before",
+        entityType: CUSTOM
       },
       onToggleValidationRule: jest.fn(),
       onChange: jest.fn(),
@@ -82,11 +86,46 @@ describe("Date Validation", () => {
 
   it("should trigger update answer validation when the custom value changes", () => {
     const wrapper = shallow(<DateValidation {...props} />);
-    const customDateField = wrapper.find('[type="date"]');
+    let customDateField = shallow(
+      wrapper.find(ValidationPills).prop("Custom")()
+    );
     customDateField.simulate("change", "event");
     expect(props.onChange).toHaveBeenCalledWith("event");
     customDateField.simulate("blur", "event");
     expect(props.onUpdate).toHaveBeenCalledWith("event");
+  });
+
+  it("should correctly handle entity type change", () => {
+    const wrapper = shallow(<DateValidation {...props} />);
+    const pills = wrapper.find(ValidationPills);
+    pills.simulate("entityTypeChange", PREVIOUS_ANSWER);
+    expect(props.onChange).toHaveBeenCalledWith(
+      {
+        name: "entityType",
+        value: PREVIOUS_ANSWER
+      },
+      props.onUpdate
+    );
+  });
+
+  it("should correctly handle previous answer change", () => {
+    const previousAnswer = {
+      id: 1
+    };
+
+    const wrapper = shallow(<DateValidation {...props} />);
+    const PreviousAnswer = wrapper.find(ValidationPills).prop("PreviousAnswer");
+    shallow(<PreviousAnswer />).simulate("submit", {
+      name: "previousAnswer",
+      value: previousAnswer
+    });
+    expect(props.onChange).toHaveBeenCalledWith(
+      {
+        name: "previousAnswer",
+        value: previousAnswer
+      },
+      props.onUpdate
+    );
   });
 
   it("should filter the available units for the format", () => {

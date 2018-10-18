@@ -1,48 +1,38 @@
-import PropTypes from "prop-types";
+import ContentPickerSelect from "components/ContentPickerSelect";
+import { DATE } from "constants/answer-types";
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import { flip, get, partial } from "lodash";
 
 import { Input, Number, Select } from "components/Forms";
 import { Grid, Column } from "components/Grid";
-import DisabledMessage from "components/Validation/DisabledMessage";
 
-import ValidationView from "../ValidationView";
-import svgPath from "components/Validation/path.svg";
-import svgPathEnd from "components/Validation/path-end.svg";
+import DisabledMessage from "components/Validation/DisabledMessage";
+import { ValidationPills } from "components/Validation/ValidationPills";
+import ValidationView from "components/Validation/ValidationView";
+import Path from "components/Validation/path.svg?inline";
+import PathEnd from "components/Validation/path-end.svg?inline";
+
+import * as entityTypes from "constants/validation-entity-types";
 
 const UNITS = ["Days", "Months", "Years"];
 const RELATIVE_POSITIONS = ["Before", "After"];
 
 const DateInput = styled(Input)`
-  margin-top: 4em;
   width: 12em;
-`;
-const ConnectedPath = styled.div`
-  padding-left: 1em;
-  position: relative;
-  height: 100%;
-
-  &::after {
-    position: absolute;
-    content: "";
-    background: url(${({ pathUrl }) => pathUrl}) no-repeat center center;
-    background-size: auto;
-    width: 100%;
-    height: calc(100% - 2em);
-    top: 0;
-    bottom: 0;
-    margin: auto;
-  }
+  height: 2.25em;
 `;
 
-const ConnectedPathStart = styled(ConnectedPath)`
-  height: 5em;
+const ConnectedPath = styled(Path)`
+  height: 3.6em;
 `;
 
 const AlignedColumn = styled(Column)`
   align-items: center;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const RelativePositionSelect = styled(Select)`
@@ -71,138 +61,176 @@ const getUnits = format => {
   return UNITS.slice(2);
 };
 
-const DateValidation = ({
-  answer,
-  date,
-  displayName,
-  testId,
-  onToggleValidationRule,
-  onUpdate,
-  onChange
-}) => {
-  const { id, enabled, customDate, offset, relativePosition } = date;
-  const {
-    properties: { format }
-  } = answer;
+class DateValidation extends React.Component {
+  PreviousAnswer = () => (
+    <ContentPickerSelect
+      name="previousAnswer"
+      onSubmit={this.handleUpdate}
+      answerTypes={[DATE]}
+      selectedContentDisplayName={get(
+        this.props.date.previousAnswer,
+        "displayName"
+      )}
+    />
+  );
 
-  const handleToggleChange = ({ value: enabled }) => {
+  Custom = () => (
+    <DateInput
+      name="customDate"
+      type="date"
+      value={this.props.date.customDate}
+      onChange={this.props.onChange}
+      onBlur={this.props.onUpdate}
+      max="9999-12-30"
+      min="1000-01-01"
+    />
+  );
+
+  handleUpdate = update =>
+    partial(flip(this.props.onChange), this.props.onUpdate)(update);
+
+  handleEntityTypeChange = value =>
+    this.handleUpdate({ name: "entityType", value });
+
+  handleToggleChange = ({ value: enabled }) => {
+    const {
+      onToggleValidationRule,
+      date: { id }
+    } = this.props;
+
     onToggleValidationRule({
       id,
       enabled
     });
   };
 
-  const availableUnits = getUnits(format);
-  const offsetUnitIsInvalid = !availableUnits.includes(offset.unit);
+  renderContent = () => {
+    const {
+      date: { offset, relativePosition, entityType },
+      answer: {
+        properties: { format }
+      },
+      displayName,
+      onChange,
+      onUpdate
+    } = this.props;
 
-  const renderContent = () => (
-    <div>
-      <Grid>
-        <AlignedColumn cols={START_COL_SIZE}>
-          <EmphasisedText>{displayName} is</EmphasisedText>
-        </AlignedColumn>
-        <Column cols={END_COL_SIZE}>
-          <Grid>
-            <Column cols={2}>
-              <Number
-                id="offset-value"
-                name="offset.value"
-                value={offset.value}
-                onChange={onChange}
-                onBlur={onUpdate}
-                max={99999}
-                min={0}
-              />
-            </Column>
-            <Column cols={4}>
-              <Select
-                name="offset.unit"
-                value={!offsetUnitIsInvalid ? offset.unit : ""}
-                onChange={onChange}
-                onBlur={onUpdate}
-                data-test="offset-unit-select"
-              >
-                {offsetUnitIsInvalid && (
-                  <option key="Please select" value="" disabled>
-                    Please select…
-                  </option>
-                )}
-                {availableUnits.map(unit => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </Select>
-            </Column>
-          </Grid>
-        </Column>
-      </Grid>
-      <Grid>
-        <Column cols={START_COL_SIZE}>
-          <ConnectedPathStart pathUrl={svgPath} />
-        </Column>
-      </Grid>
-      <Grid>
-        <AlignedColumn cols={START_COL_SIZE}>
-          <RelativePositionSelect
-            name="relativePosition"
-            value={relativePosition}
-            onChange={onChange}
-            onBlur={onUpdate}
-            data-test="relative-position-select"
-          >
-            {RELATIVE_POSITIONS.map(position => (
-              <option key={position} value={position}>
-                {position}
-              </option>
-            ))}
-          </RelativePositionSelect>
-        </AlignedColumn>
-      </Grid>
-      <Grid>
-        <Column cols={START_COL_SIZE}>
-          <ConnectedPath pathUrl={svgPathEnd} />
-        </Column>
-        <Column cols={END_COL_SIZE}>
-          <DateInput
-            name="customDate"
-            type="date"
-            value={customDate}
-            onChange={onChange}
-            onBlur={onUpdate}
-            max="9999-12-30"
-            min="1000-01-01"
-          />
-        </Column>
-      </Grid>
-    </div>
+    const availableUnits = getUnits(format);
+    const offsetUnitIsInvalid = !availableUnits.includes(offset.unit);
+
+    return (
+      <div>
+        <Grid>
+          <AlignedColumn cols={START_COL_SIZE}>
+            <EmphasisedText>{displayName} is</EmphasisedText>
+          </AlignedColumn>
+          <Column cols={END_COL_SIZE}>
+            <Grid>
+              <Column cols={2}>
+                <Number
+                  id="offset-value"
+                  name="offset.value"
+                  value={offset.value}
+                  onChange={onChange}
+                  onBlur={onUpdate}
+                  max={99999}
+                  min={0}
+                />
+              </Column>
+              <Column cols={4}>
+                <Select
+                  name="offset.unit"
+                  value={!offsetUnitIsInvalid ? offset.unit : ""}
+                  onChange={onChange}
+                  onBlur={onUpdate}
+                  data-test="offset-unit-select"
+                >
+                  {offsetUnitIsInvalid && (
+                    <option key="Please select" value="" disabled>
+                      Please select…
+                    </option>
+                  )}
+                  {availableUnits.map(unit => (
+                    <option key={unit} value={unit}>
+                      {unit}
+                    </option>
+                  ))}
+                </Select>
+              </Column>
+            </Grid>
+          </Column>
+        </Grid>
+        <Grid>
+          <Column cols={START_COL_SIZE}>
+            <ConnectedPath />
+          </Column>
+        </Grid>
+        <Grid>
+          <AlignedColumn cols={START_COL_SIZE}>
+            <RelativePositionSelect
+              name="relativePosition"
+              value={relativePosition}
+              onChange={onChange}
+              onBlur={onUpdate}
+              data-test="relative-position-select"
+            >
+              {RELATIVE_POSITIONS.map(position => (
+                <option key={position} value={position}>
+                  {position}
+                </option>
+              ))}
+            </RelativePositionSelect>
+            <PathEnd />
+          </AlignedColumn>
+          <Column cols={8}>
+            <ValidationPills
+              entityType={entityType}
+              onEntityTypeChange={this.handleEntityTypeChange}
+              PreviousAnswer={this.PreviousAnswer}
+              Custom={this.Custom}
+            />
+          </Column>
+        </Grid>
+      </div>
+    );
+  };
+
+  renderDisabled = () => (
+    <DisabledMessage>{this.props.displayName} is disabled</DisabledMessage>
   );
 
-  const renderDisabled = () => (
-    <DisabledMessage>{displayName} is disabled</DisabledMessage>
-  );
+  render() {
+    const {
+      testId,
+      date: { enabled }
+    } = this.props;
 
-  return (
-    <ValidationView
-      data-test={testId}
-      enabled={enabled}
-      onToggleChange={handleToggleChange}
-    >
-      {enabled ? renderContent() : renderDisabled()}
-    </ValidationView>
-  );
-};
+    return (
+      <ValidationView
+        data-test={testId}
+        enabled={enabled}
+        onToggleChange={this.handleToggleChange}
+      >
+        {enabled ? this.renderContent() : this.renderDisabled()}
+      </ValidationView>
+    );
+  }
+}
 
 DateValidation.propTypes = {
   date: PropTypes.shape({
     id: PropTypes.string.isRequired,
     enabled: PropTypes.bool.isRequired,
     customDate: PropTypes.string,
+    previousAnswer: PropTypes.shape({
+      displayName: PropTypes.string.isRequired
+    }),
     offset: PropTypes.shape({
       unit: PropTypes.string.isRequired,
       value: PropTypes.number.isRequired
     }).isRequired,
-    relativePosition: PropTypes.string.isRequired
+    relativePosition: PropTypes.string.isRequired,
+    entityType: PropTypes.oneOf(Object.values(entityTypes)).isRequired
   }).isRequired,
   answer: PropTypes.shape({
     properties: PropTypes.shape({

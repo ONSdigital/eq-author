@@ -163,7 +163,6 @@ export const findByLabel = text =>
 
 export const removeAnswer = params => {
   cy.get(testId("btn-delete-answer")).click(params);
-  cy.get(testId("btn-delete-answer")).should("have.length", 0);
   cy.dismissAllToast();
   cy.get(testId("toast-item"), { timeout: 15000 }).should("have.length", 0);
 };

@@ -2,7 +2,6 @@
 
 exports[`ValidationPills should render 1`] = `
 <ValidationPills__Pills
-  data-test="max-value-pill-tabs"
   onChange={[MockFunction]}
   options={
     Array [
@@ -20,4 +19,32 @@ exports[`ValidationPills should render 1`] = `
   }
   value="PreviousAnswer"
 />
+`;
+
+exports[`ValidationPills should render custom 1`] = `
+.c0 {
+  margin-top: 3em;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <Custom />
+</div>
+`;
+
+exports[`ValidationPills should render previous answer 1`] = `
+.c0 {
+  margin-top: 3em;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <PreviousAnswer />
+</div>
 `;

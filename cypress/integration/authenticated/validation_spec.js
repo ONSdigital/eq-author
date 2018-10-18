@@ -12,27 +12,10 @@ import {
   selectFirstAnswerFromContentPicker
 } from "../../utils";
 
-import createQuestionnaire from "../../fixtures/createQuestionnaire";
-import GetQuestionPage from "../../fixtures/GetQuestionPage";
-import GetQuestionnaire from "../../fixtures/GetQuestionnaire";
-import GetQuestionnaire_Piping from "../../fixtures/GetQuestionnaire_Piping";
-import createDateAnswer from "../../fixtures/answers/createDateAnswer";
-import UpdateQuestionPage from "../../fixtures/duplicatePage/UpdateQuestionPage";
-import {
-  toggleEarliestDate,
-  toggleLatestDate
-} from "../../fixtures/answers/ToggleValidationRule";
-import {
-  updateValidationRuleOffsetValue,
-  updateValidationRuleOffsetUnit,
-  updateValidationRuleRelativePosition,
-  updateValidationRuleCustomDate
-} from "../../fixtures/answers/date/updateValidationRule";
-
-const setPreviousAnswer = sidebar => {
+const setPreviousAnswer = (sidebar, answerType) => {
   cy.get(testId("btn-done")).click();
   addQuestionPage();
-  addAnswerType("Number");
+  addAnswerType(answerType);
   cy.get(sidebar)
     .last()
     .click();
@@ -49,6 +32,16 @@ const setPreviousAnswer = sidebar => {
   selectFirstAnswerFromContentPicker();
   cy.get("@previousAnswer").contains("Validation Answer");
   cy.get(sidebar).contains("Validation Answer");
+  cy.get("button")
+    .contains("Done")
+    .click();
+  cy.get(testId("btn-delete")).click();
+  cy.get(testId("btn-delete-modal"))
+    .contains("Delete")
+    .click();
+  cy.get(testId("page-item"))
+    .first()
+    .click();
 };
 
 describe("Answer Validation", () => {
@@ -62,6 +55,7 @@ describe("Answer Validation", () => {
       addAnswerType(NUMBER);
       cy.get(testId("txt-answer-label")).type("Validation Answer");
     });
+
     describe("Min Value", () => {
       beforeEach(() => {
         cy.get(testId("sidebar-button-min-value")).as("minValue");
@@ -116,7 +110,7 @@ describe("Answer Validation", () => {
           .should("have.value", "3");
       });
       it("Can set previous answer", () => {
-        setPreviousAnswer("@maxValue");
+        setPreviousAnswer("@maxValue", NUMBER);
       });
       it("Can toggle include/exclude", () => {
         toggleCheckboxOn("@maxValueToggle");
@@ -130,14 +124,18 @@ describe("Answer Validation", () => {
         cy.get(testId("max-value-input")).should("have.value", "3");
       });
     });
+
     afterEach(() => {
       removeAnswer({ force: true });
     });
   });
+
   describe("Currency", () => {
     beforeEach(() => {
       addAnswerType(CURRENCY);
+      cy.get(testId("txt-answer-label")).type("Validation Answer");
     });
+
     describe("Min Value", () => {
       beforeEach(() => {
         cy.get(testId("sidebar-button-min-value")).as("minValue");
@@ -192,7 +190,7 @@ describe("Answer Validation", () => {
           .should("have.value", "3");
       });
       it("Can set previous answer", () => {
-        setPreviousAnswer("@maxValue");
+        setPreviousAnswer("@maxValue", CURRENCY);
       });
       it("Can toggle include/exclude", () => {
         toggleCheckboxOn("@maxValueToggle");
@@ -211,62 +209,24 @@ describe("Answer Validation", () => {
       removeAnswer({ force: true });
     });
   });
-  describe("Date", () => {
-    const dateValidationStubs = {
-      createQuestionnaire,
-      GetQuestionPage,
-      GetQuestionnaire,
-      GetQuestionnaire_Piping,
-      createAnswer: createDateAnswer,
-      UpdateQuestionPage
-    };
 
+  describe("Date", () => {
     describe("Earliest date", () => {
-      let count = 0;
-      before(() => {
-        cy.visitStubbed(
-          "#/questionnaire/1/1/1/design",
-          Object.assign({}, dateValidationStubs, {
-            ToggleValidationRule: toggleEarliestDate,
-            updateValidationRule: () => {
-              switch (count++) {
-                case 0:
-                  return updateValidationRuleOffsetValue(
-                    "1",
-                    "EarliestDateValidationRule"
-                  );
-                case 1:
-                  return updateValidationRuleOffsetUnit(
-                    "1",
-                    "EarliestDateValidationRule"
-                  );
-                case 2:
-                  return updateValidationRuleRelativePosition(
-                    "1",
-                    "EarliestDateValidationRule",
-                    "After"
-                  );
-                case 3:
-                  return updateValidationRuleCustomDate(
-                    "1",
-                    "EarliestDateValidationRule"
-                  );
-                default:
-                  throw new Error("Call not expected");
-              }
-            }
-          })
-        );
-        cy.login();
+      beforeEach(() => {
         addAnswerType(DATE);
+        cy.get(testId("date-answer-label")).type("Validation Answer");
+        cy.get(testId("sidebar-button-earliest-date")).as("earliestDate");
+        cy.get("@earliestDate").click();
+        cy.get(testId("validation-view-toggle")).within(() => {
+          cy.get('[role="switch"]').as("earliestDateToggle");
+        });
       });
+
       it("should exist in the side bar", () => {
-        cy.get(testId("sidebar-button-earliest-date")).should("be.visible");
+        cy.get("@earliestDate").should("be.visible");
       });
 
       it("should show the date validation modal", () => {
-        cy.get(testId("sidebar-button-earliest-date")).as("earliestDate");
-        cy.get("@earliestDate").click();
         cy.get(testId("sidebar-title")).contains("Date validation");
       });
 
@@ -274,10 +234,9 @@ describe("Answer Validation", () => {
         cy.get(testId("earliest-date-validation")).contains(
           "Earliest date is disabled"
         );
-        cy.get(testId("validation-view-toggle")).within(() => {
-          cy.get('[role="switch"]').as("earliestDateToggle");
-        });
+
         toggleCheckboxOn("@earliestDateToggle");
+
         cy.get(testId("earliest-date-validation")).should(
           "not.contain",
           "Earliest date is disabled"
@@ -285,6 +244,7 @@ describe("Answer Validation", () => {
       });
 
       it("should update the offset value", () => {
+        toggleCheckboxOn("@earliestDateToggle");
         cy.get('[name="offset.value"]')
           .type("{backspace}5")
           .blur()
@@ -292,6 +252,8 @@ describe("Answer Validation", () => {
       });
 
       it("should update the offset unit", () => {
+        toggleCheckboxOn("@earliestDateToggle");
+
         cy.get('[name="offset.unit"]')
           .select("Months")
           .blur()
@@ -299,6 +261,8 @@ describe("Answer Validation", () => {
       });
 
       it("should update the relativePosition", () => {
+        toggleCheckboxOn("@earliestDateToggle");
+
         cy.get(testId("relative-position-select"))
           .select("After")
           .blur();
@@ -309,68 +273,43 @@ describe("Answer Validation", () => {
       });
 
       it("should update the custom value", () => {
+        toggleCheckboxOn("@earliestDateToggle");
+
         cy.get('[type="date"]')
           .type("1985-09-14")
           .blur()
           .should("have.value", "1985-09-14");
       });
+
+      it("should update previous answer", () => {
+        setPreviousAnswer("@earliestDate", DATE);
+      });
+
+      afterEach(() => {
+        removeAnswer({ force: true });
+      });
     });
 
     describe("Latest date", () => {
-      let count = 0;
-      before(() => {
-        cy.visitStubbed(
-          "#/questionnaire/1/1/1/design",
-          Object.assign({}, dateValidationStubs, {
-            ToggleValidationRule: toggleLatestDate,
-            updateValidationRule: () => {
-              switch (count++) {
-                case 0:
-                  return updateValidationRuleOffsetValue(
-                    "2",
-                    "LatestDateValidationRule"
-                  );
-                case 1:
-                  return updateValidationRuleOffsetUnit(
-                    "2",
-                    "LatestDateValidationRule"
-                  );
-                case 2:
-                  return updateValidationRuleRelativePosition(
-                    "2",
-                    "LatestDateValidationRule",
-                    "Before"
-                  );
-                case 3:
-                  return updateValidationRuleCustomDate(
-                    "2",
-                    "LatestDateValidationRule"
-                  );
-                default:
-                  throw new Error("Call not expected");
-              }
-            }
-          })
-        );
-        cy.login();
+      beforeEach(() => {
         addAnswerType(DATE);
+        cy.get(testId("date-answer-label")).type("Validation Answer");
+        cy.get(testId("sidebar-button-latest-date")).as("latestDate");
+        cy.get("@latestDate").click();
+        cy.get(testId("validation-view-toggle")).within(() => {
+          cy.get('[role="switch"]').as("latestDateToggle");
+        });
       });
+
       it("should exist in the side bar", () => {
         cy.get(testId("sidebar-button-latest-date")).should("be.visible");
       });
 
       it("should show the date validation modal", () => {
-        cy.get(testId("sidebar-button-latest-date")).click();
         cy.get(testId("sidebar-title")).contains("Date validation");
       });
 
       it("can be toggled on", () => {
-        cy.get(testId("latest-date-validation")).contains(
-          "Latest date is disabled"
-        );
-        cy.get(testId("validation-view-toggle")).within(() => {
-          cy.get('[role="switch"]').as("latestDateToggle");
-        });
         toggleCheckboxOn("@latestDateToggle");
         cy.get(testId("latest-date-validation")).should(
           "not.contain",
@@ -379,6 +318,7 @@ describe("Answer Validation", () => {
       });
 
       it("should update the offset value", () => {
+        toggleCheckboxOn("@latestDateToggle");
         cy.get('[name="offset.value"]')
           .type("{backspace}5")
           .blur()
@@ -386,6 +326,7 @@ describe("Answer Validation", () => {
       });
 
       it("should update the offset unit", () => {
+        toggleCheckboxOn("@latestDateToggle");
         cy.get('[name="offset.unit"]')
           .select("Months")
           .blur()
@@ -393,6 +334,7 @@ describe("Answer Validation", () => {
       });
 
       it("should update the relativePosition", () => {
+        toggleCheckboxOn("@latestDateToggle");
         cy.get(testId("relative-position-select"))
           .select("Before")
           .blur();
@@ -403,10 +345,19 @@ describe("Answer Validation", () => {
       });
 
       it("should update the custom value", () => {
+        toggleCheckboxOn("@latestDateToggle");
         cy.get('[type="date"]')
           .type("1985-09-14")
           .blur()
           .should("have.value", "1985-09-14");
+      });
+
+      it("should update previous answer", () => {
+        setPreviousAnswer("@latestDate", DATE);
+      });
+
+      afterEach(() => {
+        removeAnswer({ force: true });
       });
     });
   });

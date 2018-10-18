@@ -1,33 +1,38 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { ValidationPills } from "components/Validation/ValidationPills";
+import { Pills, ValidationPills } from "components/Validation/ValidationPills";
 
 import { PREVIOUS_ANSWER } from "constants/validation-entity-types";
-import { NUMBER } from "constants/answer-types";
 
 const createWrapper = (props, render = shallow) =>
   render(<ValidationPills {...props} />);
 
 describe("ValidationPills", () => {
-  let props;
+  let props, wrapper;
 
   beforeEach(() => {
     props = {
       entityType: PREVIOUS_ANSWER,
-      answerType: NUMBER,
-      previousAnswer: {
-        displayName: "foobar"
-      },
-      customValue: 1,
-      customValueLimit: 99999,
       onEntityTypeChange: jest.fn(),
-      onPreviousAnswerChange: jest.fn(),
-      onCustomValueChange: jest.fn()
+      PreviousAnswer: () => <div>Previous Answer Content</div>,
+      Custom: () => <div>Previous Answer Content</div>
     };
+
+    wrapper = createWrapper(props);
   });
 
   it("should render", () => {
-    expect(createWrapper(props)).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render previous answer", () => {
+    const previousAnswer = wrapper.find(Pills).prop("options")[0];
+    expect(shallow(previousAnswer.render())).toMatchSnapshot();
+  });
+
+  it("should render custom", () => {
+    const custom = wrapper.find(Pills).prop("options")[1];
+    expect(shallow(custom.render())).toMatchSnapshot();
   });
 });
