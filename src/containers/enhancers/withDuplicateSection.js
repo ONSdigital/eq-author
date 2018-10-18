@@ -1,5 +1,5 @@
 import { graphql } from "react-apollo";
-import { get } from "lodash/fp";
+import { get, tap } from "lodash/fp";
 
 import duplicateSectionMutation from "graphql/duplicateSection.graphql";
 import { buildSectionPath } from "utils/UrlUtils";
@@ -17,7 +17,7 @@ export const redirectToNewPage = ({
   );
 };
 
-export const mapMutateToProps = ({ mutate }) => ({
+export const mapMutateToProps = ({ ownProps, mutate }) => ({
   onDuplicateSection({ sectionId, position }) {
     const input = {
       id: sectionId,
@@ -26,8 +26,9 @@ export const mapMutateToProps = ({ mutate }) => ({
 
     return mutate({
       variables: { input }
-    }).then(get("data.duplicateSection"));
-    // .then(tap(redirectToNewPage(ownProps)));
+    })
+      .then(get("data.duplicateSection"))
+      .then(tap(redirectToNewPage(ownProps)));
   }
 });
 
