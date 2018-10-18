@@ -36,7 +36,7 @@ describe("AnswerValidation", () => {
     expect(render(props)).toMatchSnapshot();
   });
 
-  it("should not render there are no valid validation types", () => {
+  it("should not render when there are no valid validation types", () => {
     props.answer.type = "Radio";
     expect(render(props)).toMatchSnapshot();
   });
@@ -61,7 +61,7 @@ describe("AnswerValidation", () => {
     expect(wrapper.state("modalIsOpen")).toEqual(false);
   });
 
-  it("should render max/min validation values in the preview", () => {
+  it("should render min validation values in the preview", () => {
     const wrapper = render({
       ...props,
       answer: {
@@ -71,19 +71,85 @@ describe("AnswerValidation", () => {
           minValue: {
             enabled: true,
             custom: 5
-          },
-          maxValue: {
-            enabled: false
           }
         }
       }
     });
+
     expect(
       wrapper
         .find(SidebarButtonDetail)
         .at(0)
         .prop("children")
     ).toEqual(5);
+  });
+
+  describe("Number/Currency Validation preview", () => {
+    describe("max value", () => {
+      it("should render custom values", () => {
+        const wrapper = type =>
+          render({
+            ...props,
+            answer: {
+              id: "1",
+              type: type,
+              validation: {
+                maxValue: {
+                  enabled: true,
+                  custom: 5
+                }
+              }
+            }
+          });
+
+        expect(
+          wrapper("Number")
+            .find(SidebarButtonDetail)
+            .at(0)
+            .prop("children")
+        ).toMatchSnapshot();
+
+        expect(
+          wrapper("Currency")
+            .find(SidebarButtonDetail)
+            .at(0)
+            .prop("children")
+        ).toMatchSnapshot();
+      });
+
+      it("should render previous answer", () => {
+        const wrapper = type =>
+          render({
+            ...props,
+            answer: {
+              id: "1",
+              type: type,
+              validation: {
+                maxValue: {
+                  enabled: true,
+                  previousAnswer: {
+                    displayName: "foobar"
+                  }
+                }
+              }
+            }
+          });
+
+        expect(
+          wrapper("Number")
+            .find(SidebarButtonDetail)
+            .at(0)
+            .prop("children")
+        ).toMatchSnapshot();
+
+        expect(
+          wrapper("Currency")
+            .find(SidebarButtonDetail)
+            .at(0)
+            .prop("children")
+        ).toMatchSnapshot();
+      });
+    });
   });
 
   describe("Date Validation preview", () => {

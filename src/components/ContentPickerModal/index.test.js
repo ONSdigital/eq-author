@@ -1,5 +1,7 @@
 import { shallow } from "enzyme";
 import React from "react";
+import { omit } from "lodash";
+
 import BaseTabs from "components/BaseTabs";
 import ContentPickerModal, { StyledCloseButton } from "./";
 import {
@@ -90,5 +92,12 @@ describe("ContentPickerModal", () => {
     const MetadataTab = tabs[1].render;
     const metadataTabWrapper = shallow(<MetadataTab />);
     expect(metadataTabWrapper).toMatchSnapshot();
+  });
+
+  it("should hide metadata tab correctly", () => {
+    const wrapper = shallow(
+      <ContentPickerModal {...omit(props, "metadataData")} />
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 });

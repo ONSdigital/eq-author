@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+import { filter, isArray } from "lodash";
 
 import BaseTabs from "components/BaseTabs";
 import Modal, { CloseButton } from "components/Modal";
@@ -114,7 +115,7 @@ class ContentPickerModal extends React.Component {
       PropTypes.shape({
         id: PropTypes.string.isRequired
       })
-    ).isRequired,
+    ),
     onSubmit: PropTypes.func,
     isOpen: PropTypes.bool,
     onClose: PropTypes.func
@@ -143,53 +144,57 @@ class ContentPickerModal extends React.Component {
 
   buttonRender = (props, tab) => <TabButton {...props}>{tab.title}</TabButton>;
 
-  tabConfig = [
-    {
-      id: "answers",
-      title: "Answer",
-      render: () => {
-        if (this.props.answerData.length === 0) {
-          return (
-            <ErrorText>There are no previous answers to pick from</ErrorText>
-          );
-        }
+  answerTab = {
+    id: "answers",
+    title: "Answer",
+    render: () => {
+      if (this.props.answerData.length === 0) {
         return (
-          <React.Fragment>
-            <HeaderSegment>
-              <Title>Select a previous answer</Title>
-            </HeaderSegment>
-            <AnswerContentPicker
-              data={this.props.answerData}
-              onSubmit={this.handleAnswerSubmit}
-              onClose={this.props.onClose}
-            />
-          </React.Fragment>
+          <ErrorText>There are no previous answers to pick from</ErrorText>
         );
       }
-    },
-    {
-      id: "metadata",
-      title: "Metadata",
-      render: () => {
-        if (this.props.metadataData.length === 0) {
-          return (
-            <ErrorText>There is no configured metadata to pick from</ErrorText>
-          );
-        }
-        return (
-          <React.Fragment>
-            <HeaderSegment>
-              <Title>Select metadata</Title>
-            </HeaderSegment>
-            <MetadataContentPicker
-              data={this.props.metadataData}
-              onSubmit={this.handleMetadataSubmit}
-              onClose={this.props.onClose}
-            />
-          </React.Fragment>
-        );
-      }
+      return (
+        <React.Fragment>
+          <HeaderSegment>
+            <Title>Select a previous answer</Title>
+          </HeaderSegment>
+          <AnswerContentPicker
+            data={this.props.answerData}
+            onSubmit={this.handleAnswerSubmit}
+            onClose={this.props.onClose}
+          />
+        </React.Fragment>
+      );
     }
+  };
+
+  metadataTab = {
+    id: "metadata",
+    title: "Metadata",
+    render: () => {
+      if (this.props.metadataData.length === 0) {
+        return (
+          <ErrorText>There is no configured metadata to pick from</ErrorText>
+        );
+      }
+      return (
+        <React.Fragment>
+          <HeaderSegment>
+            <Title>Select metadata</Title>
+          </HeaderSegment>
+          <MetadataContentPicker
+            data={this.props.metadataData}
+            onSubmit={this.handleMetadataSubmit}
+            onClose={this.props.onClose}
+          />
+        </React.Fragment>
+      );
+    }
+  };
+
+  tabConfig = [
+    this.answerTab,
+    isArray(this.props.metadataData) ? this.metadataTab : null
   ];
 
   tabList = ({ children }) => (
@@ -210,7 +215,7 @@ class ContentPickerModal extends React.Component {
             onChange={this.handleTabChange}
             TabList={this.tabList}
             buttonRender={this.buttonRender}
-            tabs={this.tabConfig}
+            tabs={filter(this.tabConfig)}
             ContentWrapper={ContentWrapper}
           />
         </Flex>

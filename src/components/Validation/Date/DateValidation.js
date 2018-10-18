@@ -7,8 +7,8 @@ import { Grid, Column } from "components/Grid";
 import DisabledMessage from "components/Validation/DisabledMessage";
 
 import ValidationView from "../ValidationView";
-import svgPath from "./path.svg";
-import svgPathEnd from "./path-end.svg";
+import svgPath from "components/Validation/path.svg";
+import svgPathEnd from "components/Validation/path-end.svg";
 
 const UNITS = ["Days", "Months", "Years"];
 const RELATIVE_POSITIONS = ["Before", "After"];

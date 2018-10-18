@@ -113,7 +113,6 @@ storiesOf("RichTextEditor", module)
         emphasis: boolean("emphasis", true),
         list: boolean("list", true)
       }}
-      visible
     />
   ))
   .add("With existing value", () => (

@@ -73,7 +73,8 @@ const validationTypes = [
     title: "Max Value",
     render: () => <MaxValueValidation />,
     types: [CURRENCY, NUMBER],
-    preview: ({ custom }) => custom
+    preview: ({ custom, previousAnswer }) =>
+      custom ? custom : get(previousAnswer, "displayName")
   },
   {
     id: "earliestDate",
@@ -147,12 +148,14 @@ export class UnconnectedAnswerValidation extends React.Component {
               `validation.${validationType.id}`,
               {}
             );
-            const { enabled } = validation;
+            const { enabled, previousAnswer } = validation;
             const value = enabled ? validationType.preview(validation) : "";
+
             return this.renderButton({
               ...validationType,
               value,
-              enabled
+              enabled,
+              previousAnswer
             });
           })}
           <ModalWithNav
