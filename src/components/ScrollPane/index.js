@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import { colors } from "constants/theme";
 import { darken } from "polished";
 
-const ScrollPane = styled.div`
+const ScrollPane = styled.div.attrs({
+  onScroll: console.log
+})`
   width: 100%;
   height: 100%;
   overflow-y: ${props => (props.permanentScrollBar ? "scroll" : "auto")};

@@ -24,6 +24,7 @@ import withCreateQuestionnaire from "containers/enhancers/withCreateQuestionnair
 import { raiseToast } from "redux/toast/actions";
 import { connect } from "react-redux";
 import { getUser } from "redux/auth/reducer";
+import { ScrollContext } from "../ScrollPane/withScroll";
 
 const StyledButtonGroup = styled(ButtonGroup)`
   margin: 0 0 1em;
@@ -44,7 +45,8 @@ const QUESTIONNAIRES_QUERY = gql`
 
 export class UnconnectedQuestionnairesPage extends React.Component {
   state = {
-    isModalOpen: false
+    isModalOpen: false,
+    scroll: 0
   };
 
   handleModalOpen = () => this.setState({ isModalOpen: true });
@@ -71,34 +73,47 @@ export class UnconnectedQuestionnairesPage extends React.Component {
 
   renderTitle = title => `Your Questionnaires - ${title}`;
 
+  handleScroll = e => {
+    console.log(e.target.scrollTop);
+
+    this.setState({
+      scroll: e.target.scrollTop
+    });
+  };
+
   render() {
     const { onCreateQuestionnaire } = this.props;
 
     return (
-      <Titled title={this.renderTitle}>
-        <BaseLayout title={"Your Questionnaires"}>
-          <MainCanvas>
-            <StyledButtonGroup horizontal>
-              <Button
-                onClick={this.handleModalOpen}
-                primary
-                data-test="create-questionnaire"
-              >
-                Create
-              </Button>
-              <QuestionnaireSettingsModal
-                isOpen={this.state.isModalOpen}
-                onClose={this.handleModalClose}
-                onSubmit={onCreateQuestionnaire}
-                confirmText="Create"
-              />
-            </StyledButtonGroup>
-            <StyledCenteredPanel>
-              <Query query={QUESTIONNAIRES_QUERY}>{this.renderResults}</Query>
-            </StyledCenteredPanel>
-          </MainCanvas>
-        </BaseLayout>
-      </Titled>
+      <ScrollContext.Provider value={this.state.scroll}>
+        <Titled title={this.renderTitle}>
+          <BaseLayout
+            title={"Your Questionnaires"}
+            onScroll={this.handleScroll}
+          >
+            <MainCanvas>
+              <StyledButtonGroup horizontal>
+                <Button
+                  onClick={this.handleModalOpen}
+                  primary
+                  data-test="create-questionnaire"
+                >
+                  Create
+                </Button>
+                <QuestionnaireSettingsModal
+                  isOpen={this.state.isModalOpen}
+                  onClose={this.handleModalClose}
+                  onSubmit={onCreateQuestionnaire}
+                  confirmText="Create"
+                />
+              </StyledButtonGroup>
+              <StyledCenteredPanel>
+                <Query query={QUESTIONNAIRES_QUERY}>{this.renderResults}</Query>
+              </StyledCenteredPanel>
+            </MainCanvas>
+          </BaseLayout>
+        </Titled>
+      </ScrollContext.Provider>
     );
   }
 }
@@ -117,6 +132,7 @@ const mapStateToProps = state => ({
 export default flowRight(
   connect(
     mapStateToProps,
+
     { raiseToast }
   ),
   withQuestionnaireList,

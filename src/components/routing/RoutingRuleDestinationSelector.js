@@ -12,7 +12,7 @@ import { colors } from "constants/theme";
 
 const RoutingRuleResult = styled.div`
   padding: 0.5em 1em 0.5em;
-  background: #e6eadc;
+  background: #e4e8eb;
   border-top: 1px solid ${colors.lightGrey};
   border-bottom: 1px solid ${colors.lightGrey};
 `;

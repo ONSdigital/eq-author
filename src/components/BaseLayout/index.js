@@ -37,7 +37,7 @@ const Title = styled.h1`
 
 const defaultTitle = () => "Author";
 
-const BaseLayout = ({ children, title, questionnaire }) => (
+const BaseLayout = ({ children, title, questionnaire, onScroll }) => (
   <Titled title={defaultTitle}>
     <App>
       <Wrapper>
@@ -45,7 +45,7 @@ const BaseLayout = ({ children, title, questionnaire }) => (
         <ConnectedOfflineBanner />
         <Main>
           {title ? (
-            <ScrollPane>
+            <ScrollPane onScroll={onScroll}>
               <Title>{title}</Title>
               {children}
             </ScrollPane>

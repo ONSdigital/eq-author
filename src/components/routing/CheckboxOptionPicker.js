@@ -8,22 +8,6 @@ import TextButton from "../TextButton";
 
 import { includes, pull, concat } from "lodash";
 
-const Dropdown = styled.div`
-  width: 20em;
-  background: white;
-  border-radius: 4px;
-  padding: 1em;
-  border: 0 solid #666;
-  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
-`;
-
-const CheckboxOptionPicker = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 999;
-`;
-
 const OptionField = styled(Field)`
   margin: 0;
 
@@ -94,45 +78,41 @@ export default class extends React.Component {
     const { answer, onClose } = this.props;
     const { selectedOptions } = this.state;
     return (
-      <CheckboxOptionPicker>
-        <Dropdown>
-          <div>
-            <Title>Choose options</Title>
-            {answer.options.map(option => (
-              <Option
-                key={option.id}
-                option={option}
-                selectedOptions={selectedOptions}
-                onChange={this.handleChange}
-              />
-            ))}
-            {answer.mutuallyExclusiveOption && (
-              <MutuallyExclusiveOption>
-                <Option
-                  key={answer.mutuallyExclusiveOption.id}
-                  option={answer.mutuallyExclusiveOption}
-                  selectedOptions={selectedOptions}
-                  onChange={this.handleChange}
-                />
-              </MutuallyExclusiveOption>
-            )}
-            {answer.other && (
-              <MutuallyExclusiveOption>
-                <Option
-                  key={answer.other.option.id}
-                  option={answer.other.option}
-                  label={`or ${answer.other.option.label}`}
-                  selectedOptions={selectedOptions}
-                  onChange={this.handleChange}
-                />
-              </MutuallyExclusiveOption>
-            )}
-            <Buttons onClick={() => onClose(selectedOptions)}>
-              <TextButton>DONE</TextButton>
-            </Buttons>
-          </div>
-        </Dropdown>
-      </CheckboxOptionPicker>
+      <div>
+        <Title>Choose options</Title>
+        {answer.options.map(option => (
+          <Option
+            key={option.id}
+            option={option}
+            selectedOptions={selectedOptions}
+            onChange={this.handleChange}
+          />
+        ))}
+        {answer.mutuallyExclusiveOption && (
+          <MutuallyExclusiveOption>
+            <Option
+              key={answer.mutuallyExclusiveOption.id}
+              option={answer.mutuallyExclusiveOption}
+              selectedOptions={selectedOptions}
+              onChange={this.handleChange}
+            />
+          </MutuallyExclusiveOption>
+        )}
+        {answer.other && (
+          <MutuallyExclusiveOption>
+            <Option
+              key={answer.other.option.id}
+              option={answer.other.option}
+              label={`or ${answer.other.option.label}`}
+              selectedOptions={selectedOptions}
+              onChange={this.handleChange}
+            />
+          </MutuallyExclusiveOption>
+        )}
+        <Buttons onClick={() => onClose(selectedOptions)}>
+          <TextButton>DONE</TextButton>
+        </Buttons>
+      </div>
     );
   }
 }

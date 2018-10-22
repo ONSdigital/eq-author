@@ -24,6 +24,7 @@ import Chip from "./Chip";
 import { Select as BaseSelect, Label } from "components/Forms";
 import { colors } from "constants/theme";
 import ConditionSelect from "./ConditionSelect";
+import Popover from "./Popover";
 
 const Select = styled(BaseSelect)`
   display: inline-block;
@@ -59,9 +60,11 @@ const SelectedOptions = styled.div`
 `;
 
 class CheckboxAnswerOptionsSelector extends React.Component {
-  state = {
-    showPopup: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { showPopup: false };
+    this.chooseBtn = React.createRef();
+  }
 
   handleSetConditionSelect = ({ name, value }) =>
     this.props.setLocalState({
@@ -84,12 +87,14 @@ class CheckboxAnswerOptionsSelector extends React.Component {
   handlePickerClose = selectedOptions => {
     const existingOptions = get(this.props.localState, "selectedOptions");
 
-    this.props.setLocalState({
-      selectedOptions: {
-        ...existingOptions,
-        [this.props.condition.id]: selectedOptions
-      }
-    });
+    if (selectedOptions) {
+      this.props.setLocalState({
+        selectedOptions: {
+          ...existingOptions,
+          [this.props.condition.id]: selectedOptions
+        }
+      });
+    }
 
     this.setState({ showPopup: false });
   };
@@ -150,21 +155,29 @@ class CheckboxAnswerOptionsSelector extends React.Component {
           <Transition key="button">
             <PositioningContext>
               <ChooseButton
-                onClick={() =>
+                innerRef={this.chooseBtn}
+                onClick={e => {
                   this.setState({
                     showPopup: true
-                  })
-                }
+                  });
+                }}
               >
                 CHOOSE
               </ChooseButton>
               {this.state.showPopup && (
-                <CheckboxOptionPicker
-                  answer={condition.answer}
-                  selectedOptions={selectedOptions}
-                  options={options}
+                <Popover
+                  isOpen
                   onClose={this.handlePickerClose}
-                />
+                  position={this.state.popupPos}
+                  anchorNode={this.chooseBtn.current}
+                >
+                  <CheckboxOptionPicker
+                    answer={condition.answer}
+                    selectedOptions={selectedOptions}
+                    options={options}
+                    onClose={this.handlePickerClose}
+                  />
+                </Popover>
               )}
             </PositioningContext>
           </Transition>
