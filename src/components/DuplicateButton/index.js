@@ -12,7 +12,7 @@ const IconPossiblyWithText = styled(IconText)`
 
 const DuplicateButton = ({ onClick, withText, ...props }) => (
   <Button {...props} onClick={onClick} variant="tertiary" small>
-    <IconPossiblyWithText icon={IconCopy}>
+    <IconPossiblyWithText icon={IconCopy} withText={withText}>
       {withText && "Duplicate"}
     </IconPossiblyWithText>
   </Button>

@@ -10,6 +10,7 @@ exports[`Duplicate Button should render 1`] = `
 >
   <DuplicateButton__IconPossiblyWithText
     icon={[Function]}
+    withText={true}
   >
     Duplicate
   </DuplicateButton__IconPossiblyWithText>
@@ -26,6 +27,7 @@ exports[`Duplicate Button should render without duplicate text when asked to 1`]
 >
   <DuplicateButton__IconPossiblyWithText
     icon={[Function]}
+    withText={false}
   />
 </Button>
 `;
