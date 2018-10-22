@@ -41,7 +41,7 @@ const NumericAnswer = styled.div`
   padding: 1em 1em 0;
   border: 1px solid #c3c3c3;
   border-radius: 4px;
-  margin: 2em 0;
+  margin: 2em 7em 2em 0;
 `;
 
 const Flex = styled.div`
@@ -203,9 +203,9 @@ const getTabContent = ({
 const NumericAnswerSelector = ({
   condition,
   sections,
-  state,
+  localState,
   type,
-  setState
+  setLocalState
 }) => {
   const isAnswerValidForRouting = answer => get(answer, "type") === type;
 
@@ -229,14 +229,14 @@ const NumericAnswerSelector = ({
 
   const tabsId = `${type}_${condition.id}`;
 
-  const activeTabId = state[tabsId] || "custom";
+  const activeTabId = get(localState, tabsId, "custom");
 
-  const handleChange = ({ name, value }) => setState({ [name]: value });
+  const handleChange = ({ name, value }) => setLocalState({ [name]: value });
 
   const tabItems = getTabContent({
     condition: condition,
     sections: convertToGroups(sections, condition),
-    state,
+    localState,
     onChange: handleChange,
     answerType: type
   });
@@ -252,7 +252,7 @@ const NumericAnswerSelector = ({
             aria-selected={item.id === activeTabId}
             key={item.id}
             controls={item.id}
-            onClick={() => setState({ [tabsId]: item.id })}
+            onClick={() => setLocalState({ [tabsId]: item.id })}
           >
             {item.title}
           </Tab>
@@ -266,9 +266,9 @@ const NumericAnswerSelector = ({
 NumericAnswerSelector.propTypes = {
   condition: PropTypes.object.isRequired,
   sections: PropTypes.array.isRequired,
-  state: PropTypes.object.isRequired,
+  localState: PropTypes.object.isRequired,
   type: PropTypes.oneOf([CURRENCY, NUMBER]).isRequired,
-  setState: PropTypes.func.isRequired
+  setLocalState: PropTypes.func.isRequired
 };
 
 export default flow(
