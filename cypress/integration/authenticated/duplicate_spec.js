@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
+import { addQuestionnaire, testId, typeIntoDraftEditor } from "../../utils";
+
 import createQuestionnaire from "../../fixtures/createQuestionnaire";
 import GetQuestionPage from "../../fixtures/GetQuestionPage";
 import GetQuestionnaire from "../../fixtures/GetQuestionnaire";
-import { testId, typeIntoDraftEditor } from "../../utils";
 import UpdateQuestionPage from "../../fixtures/duplicatePage/UpdateQuestionPage";
 import duplicatePage from "../../fixtures/duplicatePage/duplicatePage";
 import GetQuestionnaire_Piping from "../../fixtures/GetQuestionnaire_Piping";
@@ -69,6 +70,35 @@ describe("Duplicate", () => {
 
     it("should navigate to the new section after duplicating", () => {
       cy.hash().should("match", /\/questionnaire\/1\/2\/design$/);
+    });
+  });
+
+  describe("Questionnaire duplication", () => {
+    const title = "Duplicate Questionnaire";
+    const duplicateTitle = `Copy of ${title}`;
+
+    it("can duplicate a questionnaire", () => {
+      cy.visit("/");
+      cy.login();
+      addQuestionnaire(title);
+      cy.hash().should("match", /\/design$/);
+
+      cy.get(testId("logo"))
+        .should("be.visible")
+        .click();
+
+      cy.contains(title)
+        .closest("tr")
+        .within(() => {
+          cy.get(testId("btn-duplicate-questionnaire")).click();
+        });
+
+      cy.contains(duplicateTitle).should("be.visible");
+    });
+
+    afterEach(() => {
+      cy.deleteQuestionnaire(duplicateTitle);
+      cy.deleteQuestionnaire(title);
     });
   });
 });

@@ -54,7 +54,7 @@ Cypress.Commands.add("deleteQuestionnaire", title => {
     cy.contains(title)
       .closest("tr")
       .within(() => {
-        cy.get("button").click();
+        cy.get(testId("btn-delete-questionnaire")).click();
       });
   });
 });
