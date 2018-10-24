@@ -18,12 +18,14 @@ import PipedValueDecorator, {
   replacePipedValues,
   insertPipedValue
 } from "./entities/PipedValue";
+import Error from "components/FieldValidation/Error";
 
 import createFormatStripper from "./utils/createFormatStripper";
 
 import { flow, uniq, map, keyBy, mapValues } from "lodash/fp";
 import { sharedStyles } from "../Forms/css";
 import { Field, Label } from "../Forms";
+import { colors } from "constants/theme";
 
 const styleMap = {
   ITALIC: {
@@ -117,7 +119,8 @@ class RichTextEditor extends React.Component {
   static defaultProps = {
     placeholder: "",
     multiline: false,
-    autoFocus: false
+    autoFocus: false,
+    valid: true
   };
 
   state = {
@@ -128,6 +131,7 @@ class RichTextEditor extends React.Component {
     value: PropTypes.string,
     placeholder: PropTypes.string,
     onUpdate: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
@@ -138,6 +142,7 @@ class RichTextEditor extends React.Component {
     autoFocus: PropTypes.bool,
     // eslint-disable-next-line react/forbid-prop-types
     controls: PropTypes.object,
+    valid: PropTypes.bool,
     metadata: PropTypes.arrayOf(
       PropTypes.shape({
         __typename: PropTypes.string,
@@ -322,9 +327,11 @@ class RichTextEditor extends React.Component {
     this.handleChange(editorState);
   };
 
-  handleBlur = () => {
-    this.props.onUpdate({
-      name: this.props.id,
+  handleBlur = e => {
+    const { onUpdate, id } = this.props;
+
+    onUpdate({
+      name: id,
       value: this.getHTML()
     });
 
@@ -335,11 +342,15 @@ class RichTextEditor extends React.Component {
     }, 0);
   };
 
-  handleFocus = () => {
+  handleFocus = e => {
     clearTimeout(this.timeoutID);
 
     if (!this.unmounted && !this.state.focused) {
       this.setState({ focused: true });
+    }
+
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
     }
   };
 
@@ -395,6 +406,9 @@ class RichTextEditor extends React.Component {
       className,
       testSelector,
       id,
+      required,
+      valid,
+      validationText,
       ...otherProps
     } = this.props;
 
@@ -409,6 +423,7 @@ class RichTextEditor extends React.Component {
         >
           <Label id={`label-${id}`}>{label}</Label>
           <Input
+            invalid={!valid}
             className={className}
             size={size}
             placeholderStyle={contentState
@@ -441,6 +456,7 @@ class RichTextEditor extends React.Component {
             />
           </Input>
         </Field>
+        {!valid && <Error>{validationText}</Error>}
       </Wrapper>
     );
   }

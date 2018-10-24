@@ -15,6 +15,7 @@ import pageFragment from "graphql/fragments/page.graphql";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
 import { colors, radius } from "constants/theme";
+import withValidationHandler from "components/FieldValidation/withValidationHandler";
 
 const titleControls = {
   emphasis: true,
@@ -58,6 +59,8 @@ const Alias = styled.div`
   }
 `;
 
+const RTEWithValidation = withValidationHandler(RichTextEditor);
+
 export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate, client } = this.props;
@@ -94,7 +97,8 @@ export class StatelessMetaEditor extends React.Component {
             <CharacterCounter value={page.alias} limit={24} />
           </Alias>
         </Padding>
-        <RichTextEditor
+
+        <RTEWithValidation
           id="title"
           label="Question"
           value={page.title}
@@ -104,6 +108,8 @@ export class StatelessMetaEditor extends React.Component {
           fetchAnswers={fetchAnswers}
           metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-title"
+          required
+          validationText="Question title is required"
         />
 
         <RichTextEditor

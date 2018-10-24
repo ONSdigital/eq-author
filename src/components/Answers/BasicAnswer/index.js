@@ -18,6 +18,7 @@ export const StatelessBasicAnswer = ({
   children,
   labelPlaceholder,
   labelText,
+  labelRequired,
   descriptionText,
   descriptionPlaceholder,
   showDescription,
@@ -35,6 +36,8 @@ export const StatelessBasicAnswer = ({
         data-autofocus={autoFocus || null}
         placeholder={labelPlaceholder}
         data-test="txt-answer-label"
+        validationText="Answer label is required"
+        required={labelRequired}
         bold
       />
     </Field>
@@ -75,6 +78,7 @@ StatelessBasicAnswer.propTypes = {
 
 StatelessBasicAnswer.defaultProps = {
   labelText: "Label",
+  labelRequired: true,
   descriptionText: "Description (optional)",
   showDescription: false,
   autoFocus: true
