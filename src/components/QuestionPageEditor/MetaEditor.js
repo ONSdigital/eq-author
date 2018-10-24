@@ -4,17 +4,23 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import { flip, partial, flowRight } from "lodash";
-
+import { connect } from "react-redux";
 import RichTextEditor from "components/RichTextEditor";
 import withEntityEditor from "components/withEntityEditor";
-import CharacterCounter from "components/CharacterCounter";
-import { Field, Label } from "components/Forms";
-import WrappingInput from "components/WrappingInput";
-
 import pageFragment from "graphql/fragments/page.graphql";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
-import { colors, radius } from "constants/theme";
+import { colors } from "constants/theme";
+import withFieldValidation from "containers/enhancers/withFieldValidation";
+import { TransitionGroup } from "react-transition-group";
+import AnswerTransition from "./AnswerTransition";
+import DefinitionEditor from "./DefinitionEditor";
+
+import { Field, Label } from "components/Forms";
+import WrappingInput from "components/WrappingInput";
+
+import { updateDefinition } from "redux/page/actions";
+import withState from "containers/enhancers/withState";
 
 const titleControls = {
   emphasis: true,
@@ -38,29 +44,39 @@ const GuidanceEditor = styled(RichTextEditor)`
   border-left: 5px solid ${colors.borders};
 `;
 
-const Padding = styled.div`
-  padding: 2em 0;
-`;
-
-const AliasField = styled(Field)`
-  margin-bottom: 0.5em;
-`;
-
-const Alias = styled.div`
+const Paragraph = styled.p`
+  margin: 0 0 1em;
+  background: ${colors.lighterGrey};
   padding: 0.5em;
-  border: 1px solid ${colors.bordersLight};
-  position: relative;
-  border-radius: ${radius};
-
-  &:focus-within {
-    border-color: ${colors.blue};
-    box-shadow: 0 0 0 1px ${colors.blue};
-  }
+  border-left: 5px solid ${colors.lightGrey};
 `;
+
+const DefinitionLabel = withState()(WrappingInput);
+
+const RTEWithValidation = withFieldValidation(RichTextEditor);
 
 export class StatelessMetaEditor extends React.Component {
+  state = {
+    displayDescription: false,
+    displayGuidance: false
+  };
+
+  handleTransitionEnd = node => {
+    node.querySelector("label").focus();
+  };
+
   render() {
-    const { page, onChange, onUpdate, client } = this.props;
+    const {
+      page,
+      onChange,
+      onUpdate,
+      client,
+      displayDescription,
+      displayGuidance,
+      displayDefinition,
+      updateDefinition
+    } = this.props;
+
     const handleUpdate = partial(flip(onChange), onUpdate);
 
     const fetchAnswers = ids => {
@@ -74,27 +90,8 @@ export class StatelessMetaEditor extends React.Component {
 
     return (
       <div>
-        <Padding>
-          <Alias>
-            <AliasField>
-              <Label htmlFor="question-alias">
-                Question short code (optional)
-              </Label>
-              <WrappingInput
-                id="question-alias"
-                data-test="question-alias"
-                name="alias"
-                onChange={onChange}
-                onBlur={onUpdate}
-                value={page.alias}
-                maxLength={255}
-                autoFocus={!page.alias}
-              />
-            </AliasField>
-            <CharacterCounter value={page.alias} limit={24} />
-          </Alias>
-        </Padding>
-        <RichTextEditor
+        <RTEWithValidation
+          autoFocus
           id="title"
           label="Question"
           value={page.title}
@@ -104,31 +101,88 @@ export class StatelessMetaEditor extends React.Component {
           fetchAnswers={fetchAnswers}
           metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-title"
+          required
+          validationText="Question title is required"
+          placeholder="What is the question?"
         />
 
-        <RichTextEditor
-          id="description"
-          label="Question description (optional)…"
-          value={page.description}
-          onUpdate={handleUpdate}
-          controls={descriptionControls}
-          multiline
-          fetchAnswers={fetchAnswers}
-          metadata={page.section.questionnaire.metadata}
-          testSelector="txt-question-description"
-        />
+        <TransitionGroup>
+          {displayDescription && (
+            <AnswerTransition
+              key="description"
+              onEntered={this.handleTransitionEnd}
+            >
+              <div>
+                <RichTextEditor
+                  id="description"
+                  label="Question description"
+                  value={page.description}
+                  onUpdate={handleUpdate}
+                  controls={descriptionControls}
+                  multiline
+                  fetchAnswers={fetchAnswers}
+                  metadata={page.section.questionnaire.metadata}
+                  testSelector="txt-question-description"
+                />
+              </div>
+            </AnswerTransition>
+          )}
 
-        <GuidanceEditor
-          id="guidance"
-          label="Include and exclude guidance"
-          value={page.guidance}
-          onUpdate={handleUpdate}
-          controls={guidanceControls}
-          multiline
-          fetchAnswers={fetchAnswers}
-          metadata={page.section.questionnaire.metadata}
-          testSelector="txt-question-guidance"
-        />
+          {displayDefinition && (
+            <AnswerTransition
+              key="definition"
+              onEntered={this.handleTransitionEnd}
+            >
+              <DefinitionEditor label="Question definition">
+                <Paragraph>
+                  Only to be used to define word(s) or acronym(s) within the
+                  question.
+                </Paragraph>
+                <Field>
+                  <Label htmlFor="definition-label">Label</Label>
+
+                  <DefinitionLabel
+                    id="definition-label"
+                    name="definition-label"
+                    onUpdate={updateDefinition}
+                    value={page.definition.label}
+                    bold
+                  />
+                </Field>
+
+                <RichTextEditor
+                  id="definition-content"
+                  label="Content"
+                  value={page.definition.content}
+                  onUpdate={updateDefinition}
+                  controls={descriptionControls}
+                  multiline
+                  fetchAnswers={fetchAnswers}
+                  metadata={page.section.questionnaire.metadata}
+                  testSelector="txt-question-description"
+                />
+              </DefinitionEditor>
+            </AnswerTransition>
+          )}
+
+          {displayGuidance && (
+            <AnswerTransition key="guidance">
+              <div>
+                <GuidanceEditor
+                  id="guidance"
+                  label="Include/exclude"
+                  value={page.guidance}
+                  onUpdate={handleUpdate}
+                  controls={guidanceControls}
+                  multiline
+                  fetchAnswers={fetchAnswers}
+                  metadata={page.section.questionnaire.metadata}
+                  testSelector="txt-question-guidance"
+                />
+              </div>
+            </AnswerTransition>
+          )}
+        </TransitionGroup>
       </div>
     );
   }
@@ -145,7 +199,16 @@ StatelessMetaEditor.fragments = {
   Page: pageFragment
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  updateDefinition: ({ name, value }) =>
+    dispatch(updateDefinition({ id: ownProps.page.id, name, value }))
+});
+
 export default flowRight(
+  connect(
+    null,
+    mapDispatchToProps
+  ),
   withApollo,
   withEntityEditor("page", pageFragment)
 )(StatelessMetaEditor);

@@ -20,11 +20,16 @@ export const createUpdater = (optionId, answerId) => proxy => {
   });
 };
 
-export const mapMutateToProps = ({ mutate }) => ({
+export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onDeleteOption(optionId, answerId) {
     const option = {
       id: optionId
     };
+
+    ownProps.fieldValid(
+      ownProps.match.params.pageId,
+      `option-label-${optionId}`
+    );
 
     const update = createUpdater(optionId, answerId);
 

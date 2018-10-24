@@ -7,6 +7,7 @@ import NavigationSidebar from "components/NavigationSidebar";
 import { Switch } from "react-router-dom";
 import { Route, Redirect } from "react-router";
 import QuestionPageRoute from "components/QuestionPageRoute";
+import PreviewPageRoute from "components/PreviewPageRoute";
 import SectionRoute from "components/SectionRoute";
 import { find, flatMap, flowRight } from "lodash";
 import { Titled } from "react-titled";
@@ -18,6 +19,7 @@ import { Query } from "react-apollo";
 import { connect } from "react-redux";
 
 import { raiseToast } from "redux/toast/actions";
+import { appInvalid } from "redux/fieldValidation/actions";
 import withCreatePage from "containers/enhancers/withCreatePage";
 import withCreateSection from "containers/enhancers/withCreateSection";
 
@@ -113,6 +115,11 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
                   component={RoutingPageRoute}
                   exact
                 />
+                <Route
+                  path={Routes.PREVIEW}
+                  component={PreviewPageRoute}
+                  exact
+                />
                 <Route path="*" render={this.renderRedirect} />
               </Switch>
             </Column>
@@ -126,7 +133,7 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
 const withMutations = flowRight(
   connect(
     null,
-    { raiseToast }
+    { raiseToast, appInvalid }
   ),
   withCreateSection,
   withCreatePage

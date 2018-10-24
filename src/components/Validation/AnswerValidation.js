@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 
 import { gotoTab } from "redux/tabs/actions";
 import { CURRENCY, DATE, NUMBER } from "constants/answer-types";
-import { colors } from "constants/theme";
 
 import SidebarButton, { Title, Detail } from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
@@ -18,9 +17,7 @@ import { EarliestDate, LatestDate } from "./Date";
 import ValidationContext from "./ValidationContext";
 
 const Container = styled.div`
-  margin-top: 1em;
-  border-top: 1px solid ${colors.lightGrey};
-  padding: 1em 0;
+  padding: 1em 0 0;
 `;
 
 const formatDate = dateString =>

@@ -8,6 +8,10 @@ import { withRouter } from "react-router-dom";
 import CustomPropTypes from "custom-prop-types";
 import gql from "graphql-tag";
 
+import { size } from "lodash";
+import { compose } from "redux";
+import { connect } from "react-redux";
+
 const StyledPageItem = styled.li`
   padding: 0;
   margin: 0;
@@ -21,6 +25,7 @@ export const UnwrappedPageNavItem = ({
   questionnaireId,
   page,
   match,
+  errors,
   ...otherProps
 }) => (
   <StyledPageItem data-test="page-item" {...otherProps}>
@@ -33,6 +38,7 @@ export const UnwrappedPageNavItem = ({
       })}
       title={page.displayName}
       icon={PageIcon}
+      errors={errors}
       data-test="nav-page-link"
     >
       {page.displayName}
@@ -58,4 +64,11 @@ UnwrappedPageNavItem.propTypes = {
   match: CustomPropTypes.match
 };
 
-export default withRouter(UnwrappedPageNavItem);
+const mapStateToProps = (state, ownProps) => ({
+  errors: size(state.fieldValidation.errors[ownProps.page.id])
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(UnwrappedPageNavItem);

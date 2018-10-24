@@ -20,7 +20,7 @@ import { signOutUser } from "redux/auth/actions";
 import logo from "./logo.svg";
 
 import shareIcon from "./icon-share.svg?inline";
-import previewIcon from "./icon-preview.svg?inline";
+import launchIcon from "./icon-launch.svg?inline";
 
 import IconText from "components/IconText";
 import Truncated from "../Truncated";
@@ -87,6 +87,7 @@ export const UtilityBtns = styled.div`
 
 export class UnconnectedHeader extends React.Component {
   static propTypes = {
+    appValid: PropTypes.bool.isRequired,
     questionnaire: CustomPropTypes.questionnaire,
     user: CustomPropTypes.user,
     signOutUser: PropTypes.func.isRequired,
@@ -116,7 +117,7 @@ export class UnconnectedHeader extends React.Component {
   };
 
   render() {
-    const { questionnaire } = this.props;
+    const { questionnaire, appValid } = this.props;
 
     return (
       <StyledHeader>
@@ -139,8 +140,9 @@ export class UnconnectedHeader extends React.Component {
                 variant="tertiary-light"
                 data-test="btn-preview"
                 small
+                disabled={!appValid}
               >
-                <IconText icon={previewIcon}>Preview</IconText>
+                <IconText icon={launchIcon}>Launch</IconText>
               </LinkButton>
               <ShareButton
                 variant="tertiary-light"
@@ -164,9 +166,12 @@ export class UnconnectedHeader extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  user: getUser(state)
-});
+const mapStateToProps = state => {
+  return {
+    user: getUser(state),
+    appValid: state.fieldValidation.appValid
+  };
+};
 
 export default connect(
   mapStateToProps,

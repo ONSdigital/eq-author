@@ -10,11 +10,14 @@ import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import DummyMultipleChoice from "components/Answers/Dummy/MultipleChoice";
+import withFieldValidation from "containers/enhancers/withFieldValidation";
 
 import optionFragment from "graphql/fragments/option.graphql";
 import getIdForObject from "utils/getIdForObject";
 
 const ENTER_KEY = 13;
+
+const InputWithValidation = withFieldValidation(WrappingInput);
 
 export const DeleteContainer = styled.div`
   position: absolute;
@@ -114,7 +117,7 @@ export class StatelessOption extends Component {
             <DummyMultipleChoice type={type} />
             <OptionField>
               <Label htmlFor={`option-label-${option.id}`}>Label</Label>
-              <WrappingInput
+              <InputWithValidation
                 id={`option-label-${option.id}`}
                 name="label"
                 value={option.label}
@@ -125,6 +128,8 @@ export class StatelessOption extends Component {
                 data-test="option-label"
                 data-autofocus={autoFocus || null}
                 bold
+                required
+                validationText="Label is required"
               />
             </OptionField>
           </Flex>

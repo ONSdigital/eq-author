@@ -8,6 +8,9 @@ import { colors } from "constants/theme";
 import IconText from "components/IconText";
 import Truncated from "components/Truncated";
 
+import { TransitionGroup } from "react-transition-group";
+import Transition from "./BadgeTransition";
+
 export const activeClassName = "active";
 
 export const Link = styled(RouterNavLink)`
@@ -44,17 +47,38 @@ export const Link = styled(RouterNavLink)`
   }
 `;
 
+const Badge = styled.span`
+  border-radius: 0.7em;
+  background-color: ${colors.red};
+  color: white;
+  padding: 0.2em 0.5em;
+  font-weight: normal;
+  z-index: 2;
+  margin-left: auto;
+  line-height: 1;
+  font-size: 0.9em;
+  pointer-events: none;
+`;
+
 const Title = styled(Truncated)`
   display: inline-block;
   vertical-align: middle;
   line-height: 1.3;
 `;
 
-const NavLink = ({ to, title, children, icon, ...otherProps }) => (
+const NavLink = ({ to, title, children, icon, errors, ...otherProps }) => (
   <Link to={to} title={title} activeClassName={activeClassName} {...otherProps}>
     <IconText icon={icon}>
       <Title>{children}</Title>
     </IconText>
+
+    <TransitionGroup component={React.Fragment} exit={false}>
+      {errors > 0 && (
+        <Transition key={errors}>
+          <Badge>{errors}</Badge>
+        </Transition>
+      )}
+    </TransitionGroup>
   </Link>
 );
 
@@ -62,7 +86,12 @@ NavLink.propTypes = {
   to: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  icon: PropTypes.func.isRequired
+  icon: PropTypes.func.isRequired,
+  errors: PropTypes.number.isRequired
+};
+
+NavLink.defaultProps = {
+  errors: 0
 };
 
 export default NavLink;

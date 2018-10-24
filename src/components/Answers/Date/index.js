@@ -54,6 +54,8 @@ export const UnwrappedDate = ({
         data-test="date-answer-label"
         data-autofocus
         bold
+        required
+        validationText="Label is required"
       />
     </Field>
     <Field>

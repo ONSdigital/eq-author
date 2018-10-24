@@ -18,6 +18,7 @@ import PipedValueDecorator, {
   replacePipedValues,
   insertPipedValue
 } from "./entities/PipedValue";
+import Error from "components/Forms/ValidationError";
 
 import createFormatStripper from "./utils/createFormatStripper";
 
@@ -43,7 +44,7 @@ const list = css`
 
 const sizes = {
   large: css`
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: 700;
     line-height: 1.3;
   `,
@@ -117,7 +118,8 @@ class RichTextEditor extends React.Component {
   static defaultProps = {
     placeholder: "",
     multiline: false,
-    autoFocus: false
+    autoFocus: false,
+    valid: true
   };
 
   state = {
@@ -128,6 +130,7 @@ class RichTextEditor extends React.Component {
     value: PropTypes.string,
     placeholder: PropTypes.string,
     onUpdate: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
@@ -138,6 +141,7 @@ class RichTextEditor extends React.Component {
     autoFocus: PropTypes.bool,
     // eslint-disable-next-line react/forbid-prop-types
     controls: PropTypes.object,
+    valid: PropTypes.bool,
     metadata: PropTypes.arrayOf(
       PropTypes.shape({
         __typename: PropTypes.string,
@@ -323,8 +327,10 @@ class RichTextEditor extends React.Component {
   };
 
   handleBlur = () => {
-    this.props.onUpdate({
-      name: this.props.id,
+    const { onUpdate, id } = this.props;
+
+    onUpdate({
+      name: id,
       value: this.getHTML()
     });
 
@@ -335,11 +341,15 @@ class RichTextEditor extends React.Component {
     }, 0);
   };
 
-  handleFocus = () => {
+  handleFocus = e => {
     clearTimeout(this.timeoutID);
 
     if (!this.unmounted && !this.state.focused) {
       this.setState({ focused: true });
+    }
+
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
     }
   };
 
@@ -394,7 +404,11 @@ class RichTextEditor extends React.Component {
       size,
       className,
       testSelector,
+      placeholder,
       id,
+      required,
+      valid,
+      validationText,
       ...otherProps
     } = this.props;
 
@@ -409,6 +423,7 @@ class RichTextEditor extends React.Component {
         >
           <Label id={`label-${id}`}>{label}</Label>
           <Input
+            invalid={!valid}
             className={className}
             size={size}
             placeholderStyle={contentState
@@ -438,9 +453,11 @@ class RichTextEditor extends React.Component {
               handlePastedText={multiline ? undefined : this.handlePaste}
               spellCheck
               webDriverTestID={testSelector}
+              placeholder={placeholder}
             />
           </Input>
         </Field>
+        {!valid && <Error>{validationText}</Error>}
       </Wrapper>
     );
   }

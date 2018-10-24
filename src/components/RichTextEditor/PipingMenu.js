@@ -70,6 +70,7 @@ export class Menu extends React.Component {
       disabled,
       loading,
       data,
+      canFocus,
       match: {
         params: { sectionId, pageId }
       }
@@ -103,6 +104,7 @@ export class Menu extends React.Component {
           disabled={isDisabled}
           onClick={this.handleButtonClick}
           data-test="piping-button"
+          canFocus={canFocus}
         />
         <ContentPickerModal
           isOpen={this.state.isPickerOpen}

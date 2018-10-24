@@ -28,6 +28,19 @@ import Loading from "components/Loading";
 import Error from "components/Error";
 
 import { raiseToast } from "redux/toast/actions";
+
+import AliasEditor from "components/AliasEditor";
+
+import withEntityEditor from "components/withEntityEditor";
+import pageFragment from "graphql/fragments/page.graphql";
+
+const Alias = flowRight(
+  withApollo,
+  withEntityEditor("page", pageFragment)
+)(({ page, ...otherProps }) => (
+  <AliasEditor value={page.alias} {...otherProps} />
+));
+
 export class UnwrappedSectionRoute extends React.Component {
   static propTypes = {
     match: CustomPropTypes.match,
@@ -107,7 +120,7 @@ export class UnwrappedSectionRoute extends React.Component {
   );
 
   renderContent() {
-    const { loading, error, data } = this.props;
+    const { loading, error, data, onUpdateSection } = this.props;
 
     if (loading) {
       return <Loading height="24.25rem">Section loading…</Loading>;
@@ -122,6 +135,12 @@ export class UnwrappedSectionRoute extends React.Component {
     return (
       <Titled title={this.getSectionTitle(data.section)}>
         <Toolbar>
+          <Alias
+            id="section-alias"
+            value={data.section.alias}
+            page={data.section}
+            onUpdate={onUpdateSection}
+          />
           <Buttons>
             <Button
               onClick={this.handleOpenMoveSectionDialog}

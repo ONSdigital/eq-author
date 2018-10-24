@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import AutoResizeTextArea from "react-textarea-autosize";
 import withChangeHandler from "components/Forms/withChangeHandler";
-import { invoke } from "lodash";
+import { invoke, flowRight } from "lodash";
 import { sharedStyles } from "../Forms/css";
+import withFieldValidation from "containers/enhancers/withFieldValidation";
+import Error from "components/Forms/ValidationError";
 
 const ENTER_KEY = 13;
 
@@ -12,7 +14,13 @@ const StyleContext = styled.div`
   font-weight: ${props => (props.bold ? "bold" : "regular")};
 `;
 
-const TextArea = styled(AutoResizeTextArea)`
+/* eslint-disable no-unused-vars  */
+const TextArea = ({ invalid, onUpdate, staticContext, ...otherProps }) => (
+  <AutoResizeTextArea {...otherProps} />
+);
+/* eslint-enable no-unused-vars  */
+
+const StyledTextArea = styled(TextArea)`
   ${sharedStyles};
   font-weight: inherit;
   resize: none;
@@ -47,7 +55,13 @@ class WrappingInput extends React.Component {
   };
 
   render() {
-    const { bold, placeholder, ...otherProps } = this.props;
+    const {
+      bold,
+      placeholder,
+      valid,
+      validationText,
+      ...otherProps
+    } = this.props;
 
     return (
       <StyleContext
@@ -55,10 +69,20 @@ class WrappingInput extends React.Component {
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
       >
-        <TextArea {...otherProps} placeholder={placeholder} />
+        <StyledTextArea
+          {...otherProps}
+          invalid={!valid}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown}
+          placeholder={placeholder}
+        />
+        {!valid && <Error>{validationText}</Error>}
       </StyleContext>
     );
   }
 }
 
-export default withChangeHandler(WrappingInput);
+export default flowRight(
+  withChangeHandler,
+  withFieldValidation
+)(WrappingInput);

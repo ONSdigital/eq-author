@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { TransitionGroup } from "react-transition-group";
 
 import { colors } from "constants/theme";
 import iconBold from "./icon-bold.svg?inline";
@@ -11,7 +10,6 @@ import iconList from "./icon-list.svg?inline";
 
 import PipingMenu from "./PipingMenu";
 import ToolbarButton from "./ToolbarButton";
-import FadeTransition from "../FadeTransition";
 
 export const STYLE_BLOCK = "block";
 export const STYLE_INLINE = "inline";
@@ -60,6 +58,7 @@ const Separator = styled.div`
   border-left: 1px solid ${colors.lightGrey};
   margin: 0.4em 0.7rem;
 `;
+
 const ToolbarPanel = styled.div`
   position: ${props => (props.visible ? "sticky" : "relative")};
   top: 0;
@@ -68,7 +67,6 @@ const ToolbarPanel = styled.div`
   width: 100%;
   border-bottom: 1px solid ${colors.bordersLight};
   height: 2rem;
-  opacity: ${props => (props.visible ? "1" : "0.6")};
   transition: opacity 100ms ease-out;
 `;
 
@@ -95,13 +93,14 @@ class ToolBar extends React.Component {
 
   renderButton = button => {
     const { title, icon: Icon, id } = button;
-    const { isActiveControl, onToggle, controls } = this.props;
+    const { isActiveControl, onToggle, controls, visible } = this.props;
 
     return (
       <ToolbarButton
         key={title}
         title={title}
         disabled={!controls[id]}
+        canFocus={visible}
         active={isActiveControl(button)}
         onClick={() => onToggle(button)}
       >
@@ -122,22 +121,17 @@ class ToolBar extends React.Component {
 
     return (
       <ToolbarPanel visible={visible}>
-        <TransitionGroup>
-          {visible && (
-            <FadeTransition>
-              <ButtonGroup>
-                {styleButtons.map(this.renderButton)}
-                <Separator />
-                {formattingButtons.map(this.renderButton)}
-                <Separator />
-                <PipingMenu
-                  disabled={isPipingDisabled}
-                  onItemChosen={onPiping}
-                />
-              </ButtonGroup>
-            </FadeTransition>
-          )}
-        </TransitionGroup>
+        <ButtonGroup>
+          {styleButtons.map(this.renderButton)}
+          <Separator />
+          {formattingButtons.map(this.renderButton)}
+          <Separator />
+          <PipingMenu
+            disabled={isPipingDisabled}
+            onItemChosen={onPiping}
+            canFocus={visible}
+          />
+        </ButtonGroup>
       </ToolbarPanel>
     );
   }

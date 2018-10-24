@@ -15,15 +15,18 @@ export const StatelessBasicAnswer = ({
   answer,
   onChange,
   onUpdate,
+  onBlur,
   children,
   labelPlaceholder,
   labelText,
+  labelRequired,
+  labelRequiredText,
   descriptionText,
   descriptionPlaceholder,
   showDescription,
   autoFocus
 }) => (
-  <div>
+  <div onBlur={onBlur}>
     <Field>
       <Label htmlFor={`answer-label-${answer.id}`}>{labelText}</Label>
       <WrappingInput
@@ -35,6 +38,8 @@ export const StatelessBasicAnswer = ({
         data-autofocus={autoFocus || null}
         placeholder={labelPlaceholder}
         data-test="txt-answer-label"
+        validationText={labelRequiredText}
+        required={labelRequired}
         bold
       />
     </Field>
@@ -75,6 +80,8 @@ StatelessBasicAnswer.propTypes = {
 
 StatelessBasicAnswer.defaultProps = {
   labelText: "Label",
+  labelRequired: true,
+  labelRequiredText: "Answer label is required",
   descriptionText: "Description (optional)",
   showDescription: false,
   autoFocus: true

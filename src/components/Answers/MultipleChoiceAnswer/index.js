@@ -16,8 +16,17 @@ import SplitButton from "components/SplitButton";
 import Dropdown from "components/SplitButton/Dropdown";
 import MenuItem from "components/SplitButton/MenuItem";
 
-import { last } from "lodash";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { last, differenceWith, delay } from "lodash";
 import gql from "graphql-tag";
+
+import {
+  fieldsInvalid,
+  fieldValid,
+  appInvalid
+} from "redux/fieldValidation/actions";
+import { withRouter } from "react-router";
 
 const AnswerWrapper = styled.div`
   margin: 2em 0 0;
@@ -51,7 +60,7 @@ export const AddOtherLink = styled.button`
 
 const SpecialOptionWrapper = styled.div`
   padding-top: 0.25em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 `;
 
 class MultipleChoiceAnswer extends Component {
@@ -75,6 +84,32 @@ class MultipleChoiceAnswer extends Component {
     open: false
   };
 
+  constructor(props) {
+    super(props);
+    this.otherOptionRef = React.createRef();
+  }
+
+  componentDidUpdate(prevProps) {
+    const newBasicOption = differenceWith(
+      this.props.answer.options,
+      prevProps.answer.options,
+      (a, b) => a.id === b.id
+    );
+
+    if (!prevProps.answer.other && this.props.answer.other) {
+      // console.log("new other");
+      this.newOptions = [
+        this.props.answer.other.answer,
+        this.props.answer.other.option
+      ];
+    } else if (newBasicOption.length > 0) {
+      // console.log("new basic option");
+      this.newOptions = newBasicOption;
+    } else {
+      // console.log("update with no new option");
+    }
+  }
+
   handleOptionDelete = optionId => {
     this.props.onDeleteOption(optionId, this.props.answer.id);
   };
@@ -82,12 +117,14 @@ class MultipleChoiceAnswer extends Component {
   handleAddOption = e => {
     e.preventDefault();
     e.stopPropagation();
+    this.props.appInvalid();
     return this.props.onAddOption(this.props.answer.id).then(focusOnEntity);
   };
 
   handleAddExclusive = e => {
     e.preventDefault();
     e.stopPropagation();
+    this.props.appInvalid();
     return this.props
       .onAddExclusive(this.props.answer.id)
       .then(this.handleToggleOpen(false))
@@ -96,6 +133,7 @@ class MultipleChoiceAnswer extends Component {
 
   handleAddOther = e => {
     e.preventDefault();
+    this.props.appInvalid();
     return this.props
       .onAddOther(this.props.answer)
       .then(res => {
@@ -119,6 +157,42 @@ class MultipleChoiceAnswer extends Component {
     });
   };
 
+  handleOtherOptionBlur = () => {
+    delay(() => {
+      const { answer } = this.props;
+
+      if (!answer.other) {
+        // has been deleted so do nothing
+        return false;
+      }
+
+      const focusIsWithin = this.otherOptionRef.current.contains(
+        document.activeElement
+      );
+
+      if (!focusIsWithin) {
+        const invalidFieldsIds = [answer.other.option, answer.other.answer]
+          .filter(o => {
+            return !o.label;
+          })
+          .map(o => {
+            const typename = (o.__typename === "Option"
+              ? "option"
+              : "answer"
+            ).toLowerCase();
+            return `${typename}-label-${o.id}`;
+          });
+
+        if (invalidFieldsIds.length > 0) {
+          this.props.fieldsInvalid(
+            this.props.match.params.pageId,
+            invalidFieldsIds
+          );
+        }
+      }
+    }, 10);
+  };
+
   render() {
     const {
       answer,
@@ -137,6 +211,7 @@ class MultipleChoiceAnswer extends Component {
         onUpdate={onUpdate}
         autoFocus={false}
         labelText="Label (optional)"
+        labelRequired={false}
       >
         <AnswerWrapper>
           {answer.type === CHECKBOX && (
@@ -160,26 +235,30 @@ class MultipleChoiceAnswer extends Component {
             ))}
             {answer.other && (
               <OptionTransition key={answer.other.option.id}>
-                <Option
-                  {...otherProps}
-                  option={answer.other.option}
-                  onDelete={this.handleDeleteOther}
-                  onUpdate={onUpdateOption}
-                  onEnterKey={this.handleAddOption}
-                  hasDeleteButton={showDeleteOption}
-                  labelPlaceholder="eg. Other"
-                >
-                  <SpecialOptionWrapper data-test="other-answer">
-                    <BasicAnswer
-                      answer={answer.other.answer}
-                      onUpdate={onUpdate}
-                      showDescription={false}
-                      labelText="Other label"
-                      labelPlaceholder="eg. Please specify"
-                      bold={false}
-                    />
-                  </SpecialOptionWrapper>
-                </Option>
+                <div ref={this.otherOptionRef}>
+                  <Option
+                    {...otherProps}
+                    onBlur={this.handleOtherOptionBlur}
+                    option={answer.other.option}
+                    onDelete={this.handleDeleteOther}
+                    onUpdate={onUpdateOption}
+                    onEnterKey={this.handleAddOption}
+                    hasDeleteButton={showDeleteOption}
+                    labelPlaceholder="eg. Other"
+                  >
+                    <SpecialOptionWrapper data-test="other-answer">
+                      <BasicAnswer
+                        answer={answer.other.answer}
+                        onUpdate={onUpdate}
+                        showDescription={false}
+                        labelText="Other label"
+                        labelPlaceholder="eg. Please specify"
+                        labelRequiredText="Other label is required"
+                        bold={false}
+                      />
+                    </SpecialOptionWrapper>
+                  </Option>
+                </div>
               </OptionTransition>
             )}
             {answer.mutuallyExclusiveOption && (
@@ -260,4 +339,16 @@ MultipleChoiceAnswer.fragments = {
   `
 };
 
-export default MultipleChoiceAnswer;
+const mapDispatchToProps = dispatch => ({
+  fieldsInvalid: (...params) => dispatch(fieldsInvalid(...params)),
+  fieldValid: (...params) => dispatch(fieldValid(...params)),
+  appInvalid: () => dispatch(appInvalid())
+});
+
+export default compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(MultipleChoiceAnswer);

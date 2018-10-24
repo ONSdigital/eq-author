@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { isEmpty } from "lodash";
 
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
@@ -7,7 +8,7 @@ import MetaEditor from "./MetaEditor";
 import AnswerTransition from "./AnswerTransition";
 
 import AnswerTypeSelector from "components/AnswerTypeSelector";
-
+import getAnswersQuery from "graphql/getAnswers.graphql";
 import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -19,9 +20,15 @@ import DeleteConfirmDialog from "components/DeleteConfirmDialog";
 import MovePageModal from "components/MovePageModal";
 import MovePageQuery from "components/MovePageModal/MovePageQuery";
 import gql from "graphql-tag";
+import DefinitionEditor from "./DefinitionEditor";
+
+import { Field, Label } from "components/Forms";
+import WrappingInput from "components/WrappingInput";
+import RichTextEditor from "../RichTextEditor";
+import withState from "containers/enhancers/withState";
 
 const AddAnswerSegment = styled.div`
-  padding: 1em 2em 2em;
+  padding: 1em 2em 1em;
 `;
 
 const QuestionSegment = styled.div`
@@ -32,6 +39,7 @@ const AnswerSegment = styled.div`
   padding: 1em 2em;
 `;
 
+const InfoLabel = withState()(WrappingInput);
 export default class QuestionPageEditor extends React.Component {
   static propTypes = {
     onUpdateAnswer: PropTypes.func.isRequired,
@@ -54,6 +62,10 @@ export default class QuestionPageEditor extends React.Component {
     page: CustomPropTypes.page.isRequired
   };
 
+  state = {
+    focusOnAdditionalInfo: false
+  };
+
   handleDeleteAnswer = answerId => {
     this.props.onDeleteAnswer(this.props.page.id, answerId);
   };
@@ -66,7 +78,8 @@ export default class QuestionPageEditor extends React.Component {
       onDeleteOption,
       onAddOther,
       onAddExclusive,
-      onDeleteOther
+      onDeleteOther,
+      page
     } = this.props;
 
     return (
@@ -122,16 +135,34 @@ export default class QuestionPageEditor extends React.Component {
       onCloseDeleteConfirmDialog,
       onDeletePageConfirm,
       match,
-      page
+      page,
+      client,
+      properties,
+      updateAdditionalInfo
     } = this.props;
 
     const id = getIdForObject(page);
+
+    const fetchAnswers = ids => {
+      return client
+        .query({
+          query: getAnswersQuery,
+          variables: { ids }
+        })
+        .then(result => result.data.answers);
+    };
 
     return (
       <div data-test="question-page-editor">
         <div>
           <QuestionSegment id={id}>
-            <MetaEditor onUpdate={onUpdatePage} page={page} />
+            <MetaEditor
+              onUpdate={onUpdatePage}
+              page={page}
+              displayDescription={properties.description.enabled}
+              displayGuidance={properties.guidance.enabled}
+              displayDefinition={properties.definition.enabled}
+            />
             <DeleteConfirmDialog
               isOpen={showDeleteConfirmDialog}
               onClose={onCloseDeleteConfirmDialog}
@@ -156,6 +187,49 @@ export default class QuestionPageEditor extends React.Component {
             onSelect={onAddAnswer}
             data-test="add-answer"
           />
+        </AddAnswerSegment>
+
+        <AddAnswerSegment>
+          <TransitionGroup>
+            {properties.additionalInfo.enabled && (
+              <AnswerTransition
+                key="additional-info"
+                onEntered={node => {
+                  node.querySelector("#additional-info-label").focus();
+                }}
+              >
+                <DefinitionEditor label="Additional information">
+                  <Field>
+                    <Label htmlFor="additional-info-label">Label</Label>
+                    <InfoLabel
+                      id="additional-info-label"
+                      name="additional-info-label"
+                      onUpdate={updateAdditionalInfo}
+                      value={page.additionalInfo.label}
+                      bold
+                      data-focusable
+                    />
+                  </Field>
+                  <RichTextEditor
+                    name="additional-info-content"
+                    id="additional-info-content"
+                    label="Content"
+                    value={page.additionalInfo.content}
+                    onUpdate={updateAdditionalInfo}
+                    controls={{
+                      bold: true,
+                      emphasis: true,
+                      piping: true
+                    }}
+                    multiline
+                    fetchAnswers={fetchAnswers}
+                    metadata={page.section.questionnaire.metadata}
+                    testSelector="txt-question-description"
+                  />
+                </DefinitionEditor>
+              </AnswerTransition>
+            )}
+          </TransitionGroup>
         </AddAnswerSegment>
       </div>
     );

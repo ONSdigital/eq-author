@@ -38,6 +38,8 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
       position
     };
 
+    ownProps.appInvalid();
+
     const update = createUpdater(sectionId, position);
 
     return mutate({
