@@ -6,6 +6,8 @@ import { action } from "@storybook/addon-actions";
 
 import { UnwrappedContentPickerSelect } from "components/ContentPickerSelect";
 
+import { ANSWER, METADATA } from "components/ContentPickerSelect/content-types";
+
 const Wrapper = styled.div`
   position: absolute;
   padding: 2em;
@@ -31,16 +33,23 @@ const props = {
 
 storiesOf("ContentPickerSelect", module)
   .addDecorator(Decorator)
-  .add("No content selected", () => <UnwrappedContentPickerSelect {...props} />)
+  .add("No content selected", () => (
+    <UnwrappedContentPickerSelect
+      {...props}
+      contentTypes={[ANSWER, METADATA]}
+    />
+  ))
   .add("Content selected", () => (
     <UnwrappedContentPickerSelect
       {...props}
       selectedContentDisplayName="I am an answer"
+      contentTypes={[ANSWER, METADATA]}
     />
   ))
   .add("Content truncated", () => (
     <UnwrappedContentPickerSelect
       {...props}
       selectedContentDisplayName="I am a really really really really long answer"
+      contentTypes={[ANSWER, METADATA]}
     />
   ));

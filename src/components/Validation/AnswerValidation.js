@@ -14,64 +14,16 @@ import MinValueValidation from "components/Validation/MinValue";
 import MaxValueValidation from "components/Validation/MaxValue";
 import { EarliestDate, LatestDate } from "components/Validation/Date";
 import ValidationContext from "components/Validation/ValidationContext";
+import DatePreview from "components/Validation/Date/DatePreview";
 
 import { CURRENCY, DATE, NUMBER } from "constants/answer-types";
 import { colors } from "constants/theme";
-import * as entityTypes from "constants/validation-entity-types";
 
 const Container = styled.div`
   margin-top: 1em;
   border-top: 1px solid ${colors.lightGrey};
   padding: 1em 0;
 `;
-
-const formatDate = dateString =>
-  dateString
-    .split("-")
-    .reverse()
-    .join("/");
-
-const DatePreview = ({
-  relativePosition,
-  offset: { unit, value },
-  entityType,
-  customDate,
-  previousAnswer
-}) => {
-  const isCustom = entityType === entityTypes.CUSTOM;
-  const isPreviousAnswer = entityType === entityTypes.PREVIOUS_ANSWER;
-
-  if ((isCustom && !customDate) || (isPreviousAnswer && !previousAnswer)) {
-    return "Invalid Rule";
-  }
-
-  const rule = isCustom ? formatDate(customDate) : previousAnswer.displayName;
-
-  if (value === 0) {
-    return rule;
-  }
-  return (
-    <React.Fragment>
-      <div>
-        {`${value} ${unit.toLowerCase()} ${relativePosition.toLowerCase()}:`}
-      </div>
-      <div>{rule}</div>
-    </React.Fragment>
-  );
-};
-
-DatePreview.propTypes = {
-  relativePosition: PropTypes.string.isRequired,
-  customDate: PropTypes.string,
-  offset: PropTypes.shape({
-    value: PropTypes.number.isRequired,
-    unit: PropTypes.string.isRequired
-  }).isRequired,
-  entityType: PropTypes.oneOf(Object.values(entityTypes)).isRequired,
-  previousAnswer: PropTypes.shape({
-    displayName: PropTypes.string.isRequired
-  })
-};
 
 const validationTypes = [
   {
@@ -161,14 +113,15 @@ export class UnconnectedAnswerValidation extends React.Component {
               `validation.${validationType.id}`,
               {}
             );
-            const { enabled, previousAnswer } = validation;
+            const { enabled, previousAnswer, metadata } = validation;
             const value = enabled ? validationType.preview(validation) : "";
 
             return this.renderButton({
               ...validationType,
               value,
               enabled,
-              previousAnswer
+              previousAnswer,
+              metadata
             });
           })}
           <ModalWithNav

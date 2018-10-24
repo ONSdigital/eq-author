@@ -1,3 +1,4 @@
+import { ANSWER } from "components/ContentPickerSelect/content-types";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -44,6 +45,7 @@ export class MaxValue extends React.Component {
       name="previousAnswer"
       onSubmit={this.handlePreviousAnswerChange}
       answerTypes={[this.props.answerType]}
+      contentTypes={[ANSWER]}
       selectedContentDisplayName={get(
         this.props.maxValue.previousAnswer,
         "displayName"

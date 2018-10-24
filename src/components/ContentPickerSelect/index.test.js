@@ -7,7 +7,9 @@ import {
 } from "components/ContentPickerSelect";
 import ContentPickerModal from "components/ContentPickerModal";
 
+import { ANSWER, METADATA } from "components/ContentPickerSelect/content-types";
 import { CURRENCY, NUMBER } from "constants/answer-types";
+import { DATE, LANGUAGE, REGION, TEXT } from "constants/metadata-types";
 
 const render = (props, render = shallow) => {
   return render(<UnwrappedContentPickerSelect {...props} />);
@@ -35,7 +37,8 @@ describe("ContentPickerSelect", () => {
       selectedContentDisplayName: "foobar",
       name: "contentPicker",
       loading: false,
-      error: false
+      error: false,
+      contentTypes: [ANSWER]
     };
 
     wrapper = render(props);
@@ -73,5 +76,86 @@ describe("ContentPickerSelect", () => {
   it("should correctly handle picker open", () => {
     wrapper.find(ContentSelectButton).simulate("click");
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe("metadata types", () => {
+    let data;
+    beforeEach(() => {
+      data = {
+        questionnaire: {
+          id: "1",
+          metadata: [
+            {
+              id: "1",
+              type: DATE
+            },
+            {
+              id: "2",
+              type: TEXT
+            },
+            {
+              id: "3",
+              type: LANGUAGE
+            },
+            {
+              id: "4",
+              type: REGION
+            }
+          ],
+          sections: []
+        }
+      };
+    });
+
+    it("should correctly filter by type", () => {
+      wrapper = render({
+        ...props,
+        metadataTypes: [DATE],
+        contentTypes: [METADATA],
+        data
+      });
+
+      let metadataData = wrapper.find(ContentPickerModal).props("metadataData");
+      expect(metadataData).toMatchSnapshot();
+    });
+
+    it("should correctly show all types when none specified", () => {
+      wrapper = render({
+        ...props,
+        contentTypes: [METADATA],
+        data
+      });
+
+      let metadataData = wrapper.find(ContentPickerModal).props("metadataData");
+      expect(metadataData).toMatchSnapshot();
+    });
+
+    it("should correctly filter empty metadata", () => {
+      wrapper = render({
+        ...props,
+        metadataTypes: [DATE],
+        contentTypes: [METADATA]
+      });
+
+      let metadataData = wrapper.find(ContentPickerModal).props("metadataData");
+      expect(metadataData).toMatchSnapshot();
+    });
+  });
+
+  describe("content types", () => {
+    it("should render answer and metadata", () => {
+      wrapper = render({ ...props, contentTypes: [ANSWER, METADATA] });
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should render answer ", () => {
+      wrapper = render({ ...props, contentTypes: [ANSWER] });
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should render metadata", () => {
+      wrapper = render({ ...props, contentTypes: [METADATA] });
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

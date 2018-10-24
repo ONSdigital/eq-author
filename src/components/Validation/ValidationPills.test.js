@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import { omit } from "lodash";
 
 import { Pills, ValidationPills } from "components/Validation/ValidationPills";
 
@@ -16,6 +17,7 @@ describe("ValidationPills", () => {
       entityType: PREVIOUS_ANSWER,
       onEntityTypeChange: jest.fn(),
       PreviousAnswer: () => <div>Previous Answer Content</div>,
+      Metadata: () => <div>Metadata Content</div>,
       Custom: () => <div>Previous Answer Content</div>
     };
 
@@ -26,13 +28,23 @@ describe("ValidationPills", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it("should render if missing an option component", () => {
+    wrapper = createWrapper(omit(props, "Metadata"));
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it("should render previous answer", () => {
     const previousAnswer = wrapper.find(Pills).prop("options")[0];
     expect(shallow(previousAnswer.render())).toMatchSnapshot();
   });
 
+  it("should render metadata", () => {
+    const metadata = wrapper.find(Pills).prop("options")[1];
+    expect(shallow(metadata.render())).toMatchSnapshot();
+  });
+
   it("should render custom", () => {
-    const custom = wrapper.find(Pills).prop("options")[1];
+    const custom = wrapper.find(Pills).prop("options")[2];
     expect(shallow(custom.render())).toMatchSnapshot();
   });
 });

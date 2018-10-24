@@ -12,4 +12,8 @@ fragment LatestDateValidationRule on LatestDateValidationRule {
     id
     displayName
   }
+  metadata {
+    id
+    displayName
+  }
 }

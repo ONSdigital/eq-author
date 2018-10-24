@@ -86,9 +86,8 @@ describe("Date Validation", () => {
 
   it("should trigger update answer validation when the custom value changes", () => {
     const wrapper = shallow(<DateValidation {...props} />);
-    let customDateField = shallow(
-      wrapper.find(ValidationPills).prop("Custom")()
-    );
+    const Custom = wrapper.find(ValidationPills).prop("Custom");
+    let customDateField = shallow(<Custom />);
     customDateField.simulate("change", "event");
     expect(props.onChange).toHaveBeenCalledWith("event");
     customDateField.simulate("blur", "event");
@@ -123,6 +122,26 @@ describe("Date Validation", () => {
       {
         name: "previousAnswer",
         value: previousAnswer
+      },
+      props.onUpdate
+    );
+  });
+
+  it("should correctly handle metadata change", () => {
+    const metadata = {
+      id: 1
+    };
+
+    const wrapper = shallow(<DateValidation {...props} />);
+    const Metadata = wrapper.find(ValidationPills).prop("Metadata");
+    shallow(<Metadata />).simulate("submit", {
+      name: "metadata",
+      value: metadata
+    });
+    expect(props.onChange).toHaveBeenCalledWith(
+      {
+        name: "metadata",
+        value: metadata
       },
       props.onUpdate
     );

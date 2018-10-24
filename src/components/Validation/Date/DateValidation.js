@@ -1,12 +1,12 @@
-import ContentPickerSelect from "components/ContentPickerSelect";
-import { DATE } from "constants/answer-types";
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { flip, get, partial } from "lodash";
+import { get } from "lodash";
 
 import { Input, Number, Select } from "components/Forms";
 import { Grid, Column } from "components/Grid";
+import ContentPickerSelect from "components/ContentPickerSelect";
+import { ANSWER, METADATA } from "components/ContentPickerSelect/content-types";
 
 import DisabledMessage from "components/Validation/DisabledMessage";
 import { ValidationPills } from "components/Validation/ValidationPills";
@@ -15,6 +15,7 @@ import Path from "components/Validation/path.svg?inline";
 import PathEnd from "components/Validation/path-end.svg?inline";
 
 import * as entityTypes from "constants/validation-entity-types";
+import { DATE } from "constants/metadata-types";
 
 const UNITS = ["Days", "Months", "Years"];
 const RELATIVE_POSITIONS = ["Before", "After"];
@@ -62,11 +63,22 @@ const getUnits = format => {
 };
 
 class DateValidation extends React.Component {
+  Metadata = () => (
+    <ContentPickerSelect
+      name="metadata"
+      onSubmit={this.handleUpdate}
+      contentTypes={[METADATA]}
+      metadataTypes={[DATE]}
+      selectedContentDisplayName={get(this.props.date.metadata, "displayName")}
+    />
+  );
+
   PreviousAnswer = () => (
     <ContentPickerSelect
       name="previousAnswer"
       onSubmit={this.handleUpdate}
       answerTypes={[DATE]}
+      contentTypes={[ANSWER]}
       selectedContentDisplayName={get(
         this.props.date.previousAnswer,
         "displayName"
@@ -86,8 +98,7 @@ class DateValidation extends React.Component {
     />
   );
 
-  handleUpdate = update =>
-    partial(flip(this.props.onChange), this.props.onUpdate)(update);
+  handleUpdate = update => this.props.onChange(update, this.props.onUpdate);
 
   handleEntityTypeChange = value =>
     this.handleUpdate({ name: "entityType", value });
@@ -187,6 +198,7 @@ class DateValidation extends React.Component {
               entityType={entityType}
               onEntityTypeChange={this.handleEntityTypeChange}
               PreviousAnswer={this.PreviousAnswer}
+              Metadata={this.Metadata}
               Custom={this.Custom}
             />
           </Column>
@@ -223,6 +235,9 @@ DateValidation.propTypes = {
     enabled: PropTypes.bool.isRequired,
     customDate: PropTypes.string,
     previousAnswer: PropTypes.shape({
+      displayName: PropTypes.string.isRequired
+    }),
+    metadata: PropTypes.shape({
       displayName: PropTypes.string.isRequired
     }),
     offset: PropTypes.shape({

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-import { filter, isArray } from "lodash";
+import { compact, isArray } from "lodash";
 
 import BaseTabs from "components/BaseTabs";
 import Modal, { CloseButton } from "components/Modal";
@@ -102,7 +102,7 @@ const Flex = styled.div`
 
 class ContentPickerModal extends React.Component {
   state = {
-    selectedTab: this.props.answerData.length > 0 ? "answers" : "metadata"
+    selectedTab: this.getSelectedTab()
   };
 
   static propTypes = {
@@ -110,7 +110,7 @@ class ContentPickerModal extends React.Component {
       PropTypes.shape({
         id: PropTypes.string.isRequired
       })
-    ).isRequired,
+    ),
     metadataData: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string.isRequired
@@ -120,6 +120,11 @@ class ContentPickerModal extends React.Component {
     isOpen: PropTypes.bool,
     onClose: PropTypes.func
   };
+
+  getSelectedTab() {
+    const { answerData = [] } = this.props;
+    return answerData.length > 0 ? "answers" : "metadata";
+  }
 
   handleTabChange = selectedTab => {
     this.setState({ selectedTab });
@@ -193,7 +198,7 @@ class ContentPickerModal extends React.Component {
   };
 
   tabConfig = [
-    this.answerTab,
+    isArray(this.props.answerData) ? this.answerTab : null,
     isArray(this.props.metadataData) ? this.metadataTab : null
   ];
 
@@ -215,7 +220,7 @@ class ContentPickerModal extends React.Component {
             onChange={this.handleTabChange}
             TabList={this.tabList}
             buttonRender={this.buttonRender}
-            tabs={filter(this.tabConfig)}
+            tabs={compact(this.tabConfig)}
             ContentWrapper={ContentWrapper}
           />
         </Flex>

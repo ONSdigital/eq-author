@@ -178,6 +178,7 @@ exports[`Date Validation should render the form input with the values when enabl
       >
         <ValidationPills
           Custom={[Function]}
+          Metadata={[Function]}
           PreviousAnswer={[Function]}
           entityType="Custom"
           onEntityTypeChange={[Function]}
