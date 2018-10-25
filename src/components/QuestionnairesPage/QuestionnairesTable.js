@@ -9,6 +9,7 @@ import gql from "graphql-tag";
 import IconButtonDelete from "components/IconButtonDelete";
 import DuplicateButton from "components/DuplicateButton";
 import Truncated from "components/Truncated";
+import { colors } from "constants/theme";
 
 import QuestionnaireLink from "./QuestionnaireLink";
 import FormattedDate from "./FormattedDate";
@@ -37,6 +38,7 @@ TH.propTypes = {
 const TR = styled.tr`
   border-top: 1px solid #e2e2e2;
   opacity: 1;
+  ${({ disabled }) => disabled && `background-color: ${colors.lightGrey};`};
 `;
 
 const TD = styled.td`
@@ -90,6 +92,58 @@ RowTransition.defaultProps = {
 
 const TBody = props => <tbody {...props} />;
 
+export const Row = ({
+  questionnaire,
+  onDeleteQuestionnaire,
+  onDuplicateQuestionnaire,
+  ...rest
+}) => {
+  const disabled = questionnaire.id.startsWith("dupe");
+  return (
+    <RowTransition {...rest} key={questionnaire.id} exit={!disabled}>
+      <TR disabled={disabled}>
+        <TD>
+          <Collapsible>
+            <TruncatedQuestionnaireLink
+              data-test="anchor-questionnaire-title"
+              questionnaire={questionnaire}
+              title={questionnaire.title}
+              disabled={disabled}
+            >
+              {questionnaire.title}
+            </TruncatedQuestionnaireLink>
+          </Collapsible>
+        </TD>
+        <TD>
+          <Collapsible>
+            <FormattedDate date={questionnaire.createdAt} />
+          </Collapsible>
+        </TD>
+        <TD>
+          <Collapsible>
+            <Truncated>{questionnaire.createdBy.name || "Unknown"}</Truncated>
+          </Collapsible>
+        </TD>
+        <TD textAlign="center">
+          <IconCollapsible>
+            <DuplicateButton
+              data-test="btn-duplicate-questionnaire"
+              onClick={() => onDuplicateQuestionnaire(questionnaire)}
+              disabled={disabled}
+            />
+            <IconButtonDelete
+              hideText
+              data-test="btn-delete-questionnaire"
+              onClick={partial(onDeleteQuestionnaire, questionnaire.id)}
+              disabled={disabled}
+            />
+          </IconCollapsible>
+        </TD>
+      </TR>
+    </RowTransition>
+  );
+};
+
 const QuestionnairesTable = ({
   questionnaires,
   onDeleteQuestionnaire,
@@ -111,47 +165,12 @@ const QuestionnairesTable = ({
       </thead>
       <TransitionGroup enter={false} component={TBody}>
         {questionnaires.map(questionnaire => (
-          <RowTransition key={questionnaire.id}>
-            <TR>
-              <TD>
-                <Collapsible>
-                  <TruncatedQuestionnaireLink
-                    data-test="anchor-questionnaire-title"
-                    questionnaire={questionnaire}
-                    title={questionnaire.title}
-                  >
-                    {questionnaire.title}
-                  </TruncatedQuestionnaireLink>
-                </Collapsible>
-              </TD>
-              <TD>
-                <Collapsible>
-                  <FormattedDate date={questionnaire.createdAt} />
-                </Collapsible>
-              </TD>
-              <TD>
-                <Collapsible>
-                  <Truncated>
-                    {questionnaire.createdBy.name || "Unknown"}
-                  </Truncated>
-                </Collapsible>
-              </TD>
-              <TD textAlign="center">
-                <IconCollapsible>
-                  <DuplicateButton
-                    data-test="btn-duplicate-questionnaire"
-                    onClick={() => onDuplicateQuestionnaire(questionnaire.id)}
-                    withText={false}
-                  />
-                  <IconButtonDelete
-                    hideText
-                    data-test="btn-delete-questionnaire"
-                    onClick={partial(onDeleteQuestionnaire, questionnaire.id)}
-                  />
-                </IconCollapsible>
-              </TD>
-            </TR>
-          </RowTransition>
+          <Row
+            key={questionnaire.id}
+            questionnaire={questionnaire}
+            onDeleteQuestionnaire={onDeleteQuestionnaire}
+            onDuplicateQuestionnaire={onDuplicateQuestionnaire}
+          />
         ))}
       </TransitionGroup>
     </Table>

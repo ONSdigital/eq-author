@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { buildQuestionnairePath } from "utils/UrlUtils";
@@ -14,15 +15,27 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const QuestionnaireLink = ({ questionnaire, ...otherProps }) => (
-  <StyledLink
-    {...otherProps}
-    to={buildQuestionnairePath({ questionnaireId: questionnaire.id })}
-  />
-);
+const DisabledLink = styled.span`
+  color: ${colors.textLight};
+`;
+
+const QuestionnaireLink = ({ questionnaire, disabled, ...otherProps }) => {
+  const Component = disabled ? DisabledLink : StyledLink;
+  return (
+    <Component
+      {...otherProps}
+      to={buildQuestionnairePath({ questionnaireId: questionnaire.id })}
+    />
+  );
+};
+
+QuestionnaireLink.defaultProps = {
+  disabled: false
+};
 
 QuestionnaireLink.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire
+  questionnaire: CustomPropTypes.questionnaire,
+  disabled: PropTypes.bool
 };
 
 export default QuestionnaireLink;

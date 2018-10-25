@@ -1,7 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import QuestionnairesTable from "./QuestionnairesTable";
+import QuestionnairesTable, { Row } from "./QuestionnairesTable";
 import IconButtonDelete from "components/IconButtonDelete";
+import DuplicateButton from "components/DuplicateButton";
 
 describe("QuestionnairesTable", () => {
   const questionnaires = [
@@ -35,27 +36,26 @@ describe("QuestionnairesTable", () => {
     }
   ];
 
-  let handleDeleteQuestionnaire, handleDuplicateQuestionnaire, wrapper;
+  let handleDeleteQuestionnaire, handleDuplicateQuestionnaire;
 
   beforeEach(() => {
     handleDeleteQuestionnaire = jest.fn();
     handleDuplicateQuestionnaire = jest.fn();
+  });
 
-    wrapper = shallow(
+  it("should render", () => {
+    const wrapper = shallow(
       <QuestionnairesTable
         questionnaires={questionnaires}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
         onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
       />
     );
-  });
-
-  it("should render", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
   it("should render message when no questionnaires", () => {
-    wrapper = shallow(
+    const wrapper = shallow(
       <QuestionnairesTable
         questionnaires={[]}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
@@ -65,25 +65,63 @@ describe("QuestionnairesTable", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should allow deletion of Questionnaire", () => {
-    wrapper
-      .find(IconButtonDelete)
-      .first()
-      .simulate("click");
+  describe("Row", () => {
+    it("should render", () => {
+      const wrapper = shallow(
+        <Row
+          questionnaire={questionnaires[0]}
+          onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
+          onDeleteQuestionnaire={handleDeleteQuestionnaire}
+        />
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
 
-    expect(handleDeleteQuestionnaire).toHaveBeenCalledWith(
-      questionnaires[0].id
-    );
-  });
+    it("should render as disabled when the id is a duplicate", () => {
+      const questionnaire = {
+        ...questionnaires[0],
+        id: "dupe-2"
+      };
+      const wrapper = shallow(
+        <Row
+          questionnaire={questionnaire}
+          onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
+          onDeleteQuestionnaire={handleDeleteQuestionnaire}
+        />
+      );
+      expect(wrapper).toMatchSnapshot();
+    });
 
-  it("should allow duplication of a Questionnaire", () => {
-    wrapper
-      .find('[data-test="btn-duplicate-questionnaire"]')
-      .first()
-      .simulate("click");
+    it("should allow deletion of Questionnaire", () => {
+      shallow(
+        <Row
+          questionnaire={questionnaires[0]}
+          onDeleteQuestionnaire={handleDeleteQuestionnaire}
+          onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
+        />
+      )
+        .find(IconButtonDelete)
+        .simulate("click");
 
-    expect(handleDuplicateQuestionnaire).toHaveBeenCalledWith(
-      questionnaires[0].id
-    );
+      expect(handleDeleteQuestionnaire).toHaveBeenCalledWith(
+        questionnaires[0].id
+      );
+    });
+
+    it("should allow duplication of a Questionnaire", () => {
+      shallow(
+        <Row
+          questionnaire={questionnaires[0]}
+          onDeleteQuestionnaire={handleDeleteQuestionnaire}
+          onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
+        />
+      )
+        .find(DuplicateButton)
+        .simulate("click");
+
+      expect(handleDuplicateQuestionnaire).toHaveBeenCalledWith(
+        questionnaires[0]
+      );
+    });
   });
 });
