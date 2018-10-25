@@ -7,13 +7,11 @@ exports[`Duplicate Button should render 1`] = `
   small={true}
   type="button"
   variant="tertiary"
+  withText={true}
 >
   <DuplicateButton__IconPossiblyWithText
     icon={[Function]}
-    withText={true}
-  >
-    Duplicate
-  </DuplicateButton__IconPossiblyWithText>
+  />
 </Button>
 `;
 
@@ -24,10 +22,10 @@ exports[`Duplicate Button should render without duplicate text when asked to 1`]
   small={true}
   type="button"
   variant="tertiary"
+  withText={false}
 >
   <DuplicateButton__IconPossiblyWithText
     icon={[Function]}
-    withText={false}
   />
 </Button>
 `;

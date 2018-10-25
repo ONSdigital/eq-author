@@ -137,7 +137,9 @@ export class UnwrappedSectionRoute extends React.Component {
             <DuplicateButton
               onClick={this.handleDuplicateSection}
               data-test="btn-duplicate-section"
-            />
+            >
+              Duplicate
+            </DuplicateButton>
             <IconButtonDelete
               onClick={this.handleOpenDeleteConfirmDialog}
               data-test="btn-delete"

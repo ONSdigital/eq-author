@@ -153,7 +153,9 @@ export class UnwrappedQuestionPageRoute extends React.Component {
             <DuplicateButton
               onClick={this.handleDuplicatePage}
               data-test="btn-duplicate-page"
-            />
+            >
+              Duplicate
+            </DuplicateButton>
             <IconButtonDelete
               onClick={this.handleOpenDeleteConfirmDialog}
               data-test="btn-delete"

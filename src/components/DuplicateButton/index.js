@@ -7,22 +7,18 @@ import IconText from "components/IconText";
 import Button from "components/Button";
 
 const IconPossiblyWithText = styled(IconText)`
-  ${({ withText }) => (!withText ? "padding-right: 0" : "")};
+  ${({ children }) => (!children ? "padding-right: 0" : "")};
 `;
 
-const DuplicateButton = ({ onClick, withText, ...props }) => (
+const DuplicateButton = ({ onClick, children, ...props }) => (
   <Button {...props} onClick={onClick} variant="tertiary" small>
-    <IconPossiblyWithText icon={IconCopy} withText={withText}>
-      {withText && "Duplicate"}
-    </IconPossiblyWithText>
+    <IconPossiblyWithText icon={IconCopy}>{children}</IconPossiblyWithText>
   </Button>
 );
-DuplicateButton.defaultProps = {
-  withText: true
-};
+
 DuplicateButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  withText: PropTypes.bool
+  children: PropTypes.node,
+  onClick: PropTypes.func.isRequired
 };
 
 export default DuplicateButton;
