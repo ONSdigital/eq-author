@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Row should render 1`] = `
+<Row__RowTransition
+  exit={true}
+  key="1"
+  timeout={200}
+>
+  <Row__TR
+    disabled={false}
+    innerRef={[Function]}
+  >
+    <Row__TD
+      textAlign="left"
+    >
+      <Row__Collapsible>
+        <TruncatedQuestionnaireLink
+          data-test="anchor-questionnaire-title"
+          disabled={false}
+          questionnaire={
+            Object {
+              "createdAt": "2017/01/02",
+              "createdBy": Object {
+                "name": "Alan",
+              },
+              "id": "1",
+              "sections": Array [
+                Object {
+                  "id": "1",
+                  "pages": Array [
+                    Object {
+                      "id": "1",
+                    },
+                  ],
+                },
+              ],
+              "title": "Foo",
+            }
+          }
+          title="Foo"
+        >
+          Foo
+        </TruncatedQuestionnaireLink>
+      </Row__Collapsible>
+    </Row__TD>
+    <Row__TD
+      textAlign="left"
+    >
+      <Row__Collapsible>
+        <FormattedDate
+          date="2017/01/02"
+        />
+      </Row__Collapsible>
+    </Row__TD>
+    <Row__TD
+      textAlign="left"
+    >
+      <Row__Collapsible>
+        <Truncated>
+          Alan
+        </Truncated>
+      </Row__Collapsible>
+    </Row__TD>
+    <Row__TD
+      textAlign="center"
+    >
+      <Row__IconCollapsible>
+        <DuplicateButton
+          data-test="btn-duplicate-questionnaire"
+          disabled={false}
+          onClick={[Function]}
+        />
+        <IconButtonDelete
+          data-test="btn-delete-questionnaire"
+          disabled={false}
+          hideText={true}
+          onClick={[Function]}
+        />
+      </Row__IconCollapsible>
+    </Row__TD>
+  </Row__TR>
+</Row__RowTransition>
+`;
+
+exports[`Row should render as disabled when the id is a duplicate 1`] = `
+<Row__RowTransition
+  exit={false}
+  key="dupe-2"
+  timeout={200}
+>
+  <Row__TR
+    disabled={true}
+    innerRef={[Function]}
+  >
+    <Row__TD
+      textAlign="left"
+    >
+      <Row__Collapsible>
+        <TruncatedQuestionnaireLink
+          data-test="anchor-questionnaire-title"
+          disabled={true}
+          questionnaire={
+            Object {
+              "createdAt": "2017/01/02",
+              "createdBy": Object {
+                "name": "Alan",
+              },
+              "id": "dupe-2",
+              "sections": Array [
+                Object {
+                  "id": "1",
+                  "pages": Array [
+                    Object {
+                      "id": "1",
+                    },
+                  ],
+                },
+              ],
+              "title": "Foo",
+            }
+          }
+          title="Foo"
+        >
+          Foo
+        </TruncatedQuestionnaireLink>
+      </Row__Collapsible>
+    </Row__TD>
+    <Row__TD
+      textAlign="left"
+    >
+      <Row__Collapsible>
+        <FormattedDate
+          date="2017/01/02"
+        />
+      </Row__Collapsible>
+    </Row__TD>
+    <Row__TD
+      textAlign="left"
+    >
+      <Row__Collapsible>
+        <Truncated>
+          Alan
+        </Truncated>
+      </Row__Collapsible>
+    </Row__TD>
+    <Row__TD
+      textAlign="center"
+    >
+      <Row__IconCollapsible>
+        <DuplicateButton
+          data-test="btn-duplicate-questionnaire"
+          disabled={true}
+          onClick={[Function]}
+        />
+        <IconButtonDelete
+          data-test="btn-delete-questionnaire"
+          disabled={true}
+          hideText={true}
+          onClick={[Function]}
+        />
+      </Row__IconCollapsible>
+    </Row__TD>
+  </Row__TR>
+</Row__RowTransition>
+`;
