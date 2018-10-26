@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import { partial } from "lodash";
 
-import { colors } from "constants/theme";
 import IconButtonDelete from "components/IconButtonDelete";
 import DuplicateButton from "components/DuplicateButton";
 import Truncated from "components/Truncated";
@@ -19,7 +18,6 @@ TruncatedQuestionnaireLink.displayName = "TruncatedQuestionnaireLink";
 const TR = styled.tr`
   border-top: 1px solid #e2e2e2;
   opacity: 1;
-  ${({ disabled }) => disabled && `background-color: ${colors.lightGrey};`};
 `;
 
 const TD = styled.td`
