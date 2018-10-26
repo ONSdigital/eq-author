@@ -7,6 +7,9 @@ export default (options = {}) => ({
         alias: "",
         displayName: "Section 1",
         position: 1,
+        introductionEnabled: false,
+        introductionTitle: "",
+        introductionContent: "",
         questionnaire: {
           id: "1",
           questionnaireInfo: {

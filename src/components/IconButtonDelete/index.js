@@ -29,21 +29,21 @@ const DeleteTooltip = ({ children }) => (
     {children}
   </Tooltip>
 );
-DeleteTooltip.propTypes = {
-  children: PropTypes.node.isRequired
-};
 
-const IconButtonDelete = ({ hideText, ...otherProps }) => {
+const IconButtonDelete = ({ hideText, iconText = "Delete", ...otherProps }) => {
   const Wrapper = hideText ? DeleteTooltip : React.Fragment;
   return (
     <Wrapper>
       <DeleteButton title="Delete" {...otherProps}>
         <IconText icon={IconDelete} hideText={hideText}>
-          Delete
+          {iconText}
         </IconText>
       </DeleteButton>
     </Wrapper>
   );
+};
+DeleteTooltip.propTypes = {
+  children: PropTypes.node.isRequired
 };
 
 IconButtonDelete.propTypes = {

@@ -179,6 +179,12 @@ export const navigateToPage = text => {
     .click();
 };
 
+export const navigateToFirstSection = () => {
+  cy.get(testId("nav-section-link"))
+    .first()
+    .click();
+};
+
 export const toggleCheckboxOn = selector => {
   cy.get(selector).within(() => {
     cy.get('[type="checkbox"]').should("not.be.checked");
