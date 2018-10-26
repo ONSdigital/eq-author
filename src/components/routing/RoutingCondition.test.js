@@ -10,9 +10,10 @@ let mockHandlers, condition, match;
 describe("components/RoutingCondition", () => {
   beforeEach(() => {
     mockHandlers = {
-      onPageChange: jest.fn(),
+      onConditionChange: jest.fn(),
       onRemove: jest.fn(),
-      onToggleOption: jest.fn()
+      onToggleOption: jest.fn(),
+      onUpdateConditionValue: jest.fn()
     };
 
     condition = {
@@ -89,7 +90,7 @@ describe("components/RoutingCondition", () => {
     const wrapper = createWrapper({}, mount);
 
     wrapper.find("select").simulate("change");
-    expect(mockHandlers.onPageChange).toHaveBeenCalledWith({
+    expect(mockHandlers.onConditionChange).toHaveBeenCalledWith({
       id: condition.id,
       questionPageId: condition.questionPage.id
     });

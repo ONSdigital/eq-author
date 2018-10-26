@@ -31,5 +31,9 @@ fragment RoutingCondition on RoutingCondition {
     ... on IDArrayValue {
       value
     }
+    ... on NumberValue {
+      id
+      numberValue
+    }
   }
 }

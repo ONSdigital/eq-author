@@ -55,9 +55,10 @@ exports[`components/RoutingRule should render children 1`] = `
                 }
               }
               onAddRule={[MockFunction]}
-              onPageChange={[MockFunction]}
+              onConditionChange={[MockFunction]}
               onRemove={[MockFunction]}
               onToggleOption={[MockFunction]}
+              onUpdateConditionValue={[MockFunction]}
               ruleId="1"
               sections={Array []}
             />
@@ -89,9 +90,10 @@ exports[`components/RoutingRule should render children 1`] = `
                 }
               }
               onAddRule={[MockFunction]}
-              onPageChange={[MockFunction]}
+              onConditionChange={[MockFunction]}
               onRemove={[MockFunction]}
               onToggleOption={[MockFunction]}
+              onUpdateConditionValue={[MockFunction]}
               ruleId="1"
               sections={Array []}
             />

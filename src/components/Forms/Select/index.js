@@ -20,6 +20,8 @@ export const SimpleSelect = styled.select`
   appearance: none;
   position: relative;
   transition: opacity 100ms ease-in-out;
+  border-radius: 4px;
+  line-height: 1.2;
 
   &:hover {
     outline: none;

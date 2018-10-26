@@ -25,6 +25,7 @@ import withToggleConditionOption from "containers/enhancers/withToggleConditionO
 import withUpdateRoutingCondition from "containers/enhancers/withUpdateRoutingCondition";
 import withUpdateRoutingRule from "containers/enhancers/withUpdateRoutingRule";
 import withUpdateRoutingRuleSet from "containers/enhancers/withUpdateRoutingRuleSet";
+import withUpdateConditionValue from "containers/enhancers/withUpdateConditionValue";
 import RoutingRuleSet from "./RoutingRuleSet";
 import RoutingRuleDestinationSelector from "./RoutingRuleDestinationSelector";
 import RoutingRule from "./RoutingRule";
@@ -144,7 +145,8 @@ const withRouting = flowRight(
   withUpdateRoutingCondition,
   withUpdateRoutingRule,
   withUpdateRoutingRuleSet,
-  withDeleteRoutingRuleSet
+  withDeleteRoutingRuleSet,
+  withUpdateConditionValue
 );
 
 export default withRouting(props => (
