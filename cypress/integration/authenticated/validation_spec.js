@@ -9,8 +9,13 @@ import {
   testId,
   toggleCheckboxOn,
   toggleCheckboxOff,
-  selectFirstAnswerFromContentPicker
+  selectFirstAnswerFromContentPicker,
+  selectFirstMetadataContentPicker
 } from "../../utils";
+
+import { addMetadata } from "../../builders/metadata";
+
+const METADATA_KEY = "ru_ref_custom";
 
 const setPreviousAnswer = (sidebar, answerType) => {
   cy.get(testId("btn-done")).click();
@@ -27,7 +32,7 @@ const setPreviousAnswer = (sidebar, answerType) => {
     .contains("Previous answer")
     .click();
   cy.get(testId("content-picker-select")).as("previousAnswer");
-  cy.get("@previousAnswer").contains("No answer selected");
+  cy.get("@previousAnswer").contains("Please select...");
   cy.get("@previousAnswer").click();
   selectFirstAnswerFromContentPicker();
   cy.get("@previousAnswer").contains("Validation Answer");
@@ -41,6 +46,19 @@ const setPreviousAnswer = (sidebar, answerType) => {
     .click();
   cy.get(testId("page-item"))
     .first()
+    .click();
+};
+
+const setMetadata = (sidebar, METADATA_KEY) => {
+  cy.get("button[aria-controls='Metadata']").click();
+  cy.get(testId("content-picker-select")).as("metadataa");
+  cy.get("@metadataa").contains("Please select...");
+  cy.get("@metadataa").click();
+  selectFirstMetadataContentPicker();
+  cy.get("@metadataa").contains(METADATA_KEY);
+  cy.get(sidebar).contains(METADATA_KEY);
+  cy.get("button")
+    .contains("Done")
     .click();
 };
 
@@ -126,7 +144,7 @@ describe("Answer Validation", () => {
     });
 
     afterEach(() => {
-      removeAnswer({ force: true });
+      removeAnswer();
     });
   });
 
@@ -206,11 +224,14 @@ describe("Answer Validation", () => {
     });
 
     afterEach(() => {
-      removeAnswer({ force: true });
+      removeAnswer();
     });
   });
 
   describe("Date", () => {
+    before(() => {
+      addMetadata(METADATA_KEY, "Date");
+    });
     describe("Earliest date", () => {
       beforeEach(() => {
         addAnswerType(DATE);
@@ -285,8 +306,13 @@ describe("Answer Validation", () => {
         setPreviousAnswer("@earliestDate", DATE);
       });
 
+      it("should update metadata", () => {
+        toggleCheckboxOn("@earliestDateToggle");
+        setMetadata("@earliestDate", METADATA_KEY);
+      });
+
       afterEach(() => {
-        removeAnswer({ force: true });
+        removeAnswer();
       });
     });
 
@@ -356,8 +382,13 @@ describe("Answer Validation", () => {
         setPreviousAnswer("@latestDate", DATE);
       });
 
+      it("should update metadata", () => {
+        toggleCheckboxOn("@latestDateToggle");
+        setMetadata("@latestDate", METADATA_KEY);
+      });
+
       afterEach(() => {
-        removeAnswer({ force: true });
+        removeAnswer();
       });
     });
   });

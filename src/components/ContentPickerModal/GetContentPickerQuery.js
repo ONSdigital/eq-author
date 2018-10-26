@@ -10,6 +10,7 @@ export const CONTENT_PICKER_QUERY = gql`
       metadata {
         id
         displayName
+        type
       }
       sections {
         id

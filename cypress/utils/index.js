@@ -219,3 +219,12 @@ export const selectFirstAnswerFromContentPicker = () => {
 
   cy.get(testId("submit-button")).click();
 };
+
+export const selectFirstMetadataContentPicker = () => {
+  // Metedata
+  cy.get(testId("picker-option"))
+    .first()
+    .click();
+
+  cy.get(testId("submit-button")).click();
+};

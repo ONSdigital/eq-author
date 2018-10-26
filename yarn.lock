@@ -5005,10 +5005,10 @@ enzyme@^3.3.0:
     rst-selector-parser "^2.2.3"
     string.prototype.trim "^1.1.2"
 
-eq-author-graphql-schema@^0.35.0:
-  version "0.35.0"
-  resolved "https://registry.yarnpkg.com/eq-author-graphql-schema/-/eq-author-graphql-schema-0.35.0.tgz#c3d79d3c20b6d415ff14d01c34796d47b170dca7"
-  integrity sha512-nAzib8u7Tf6XIjFYPhZMQR0ZmlDgWLMn3Ts9jLaZkw349PHX2XyAuO8hMS1iPnKUQXA8gile1fU8/7Blw+TGPw==
+eq-author-graphql-schema@^0.37.0:
+  version "0.37.0"
+  resolved "https://registry.yarnpkg.com/eq-author-graphql-schema/-/eq-author-graphql-schema-0.37.0.tgz#ac91f968ff4341088c19e6211950566a05d5a4c1"
+  integrity sha512-5ip7CPZDr5sRPxdgJ/dG63vTguE+Ifdwu0mKmxjFgKO7ieGvf/AuLR/6a/RYUKSZKjcp7Jexa4BmnZi0jfTkIA==
 
 errno@^0.1.3, errno@~0.1.7:
   version "0.1.7"
