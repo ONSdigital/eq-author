@@ -33,6 +33,7 @@ describe("ContentPickerSelect", () => {
       onSubmit: jest.fn(),
       answerTypes: [NUMBER, CURRENCY],
       selectedContentDisplayName: "foobar",
+      name: "contentPicker",
       loading: false,
       error: false
     };
@@ -56,7 +57,10 @@ describe("ContentPickerSelect", () => {
     const selectedItem = { id: 1, displayName: "New selected answer" };
     wrapper.find(ContentPickerModal).simulate("submit", selectedItem);
 
-    expect(props.onSubmit).toHaveBeenCalledWith(selectedItem);
+    expect(props.onSubmit).toHaveBeenCalledWith({
+      name: props.name,
+      value: selectedItem
+    });
     expect(wrapper).toMatchSnapshot();
   });
 

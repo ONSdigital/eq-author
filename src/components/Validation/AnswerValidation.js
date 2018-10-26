@@ -6,16 +6,18 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { gotoTab } from "redux/tabs/actions";
-import { CURRENCY, DATE, NUMBER } from "constants/answer-types";
-import { colors } from "constants/theme";
 
 import SidebarButton, { Title, Detail } from "components/SidebarButton";
 import ModalWithNav from "components/ModalWithNav";
-import MinValueValidation from "./MinValue";
-import MaxValueValidation from "./MaxValue";
-import { EarliestDate, LatestDate } from "./Date";
 
-import ValidationContext from "./ValidationContext";
+import MinValueValidation from "components/Validation/MinValue";
+import MaxValueValidation from "components/Validation/MaxValue";
+import { EarliestDate, LatestDate } from "components/Validation/Date";
+import ValidationContext from "components/Validation/ValidationContext";
+
+import { CURRENCY, DATE, NUMBER } from "constants/answer-types";
+import { colors } from "constants/theme";
+import * as entityTypes from "constants/validation-entity-types";
 
 const Container = styled.div`
   margin-top: 1em;
@@ -31,33 +33,44 @@ const formatDate = dateString =>
 
 const DatePreview = ({
   relativePosition,
+  offset: { unit, value },
+  entityType,
   customDate,
-  offset: { unit, value }
+  previousAnswer
 }) => {
-  if (!customDate) {
+  const isCustom = entityType === entityTypes.CUSTOM;
+  const isPreviousAnswer = entityType === entityTypes.PREVIOUS_ANSWER;
+
+  if ((isCustom && !customDate) || (isPreviousAnswer && !previousAnswer)) {
     return "Invalid Rule";
   }
 
-  const formattedDate = formatDate(customDate);
+  const rule = isCustom ? formatDate(customDate) : previousAnswer.displayName;
+
   if (value === 0) {
-    return formattedDate;
+    return rule;
   }
   return (
     <React.Fragment>
       <div>
         {`${value} ${unit.toLowerCase()} ${relativePosition.toLowerCase()}:`}
       </div>
-      <div>{formattedDate}</div>
+      <div>{rule}</div>
     </React.Fragment>
   );
 };
+
 DatePreview.propTypes = {
   relativePosition: PropTypes.string.isRequired,
   customDate: PropTypes.string,
   offset: PropTypes.shape({
     value: PropTypes.number.isRequired,
     unit: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  entityType: PropTypes.oneOf(Object.values(entityTypes)).isRequired,
+  previousAnswer: PropTypes.shape({
+    displayName: PropTypes.string.isRequired
+  })
 };
 
 const validationTypes = [

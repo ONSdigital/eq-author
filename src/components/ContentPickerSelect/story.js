@@ -25,7 +25,8 @@ const props = {
       id: "1"
     }
   },
-  onSubmit: action("submit")
+  onSubmit: action("submit"),
+  name: "previousAnswer"
 };
 
 storiesOf("ContentPickerSelect", module)
@@ -40,6 +41,6 @@ storiesOf("ContentPickerSelect", module)
   .add("Content truncated", () => (
     <UnwrappedContentPickerSelect
       {...props}
-      selectedContentDisplayName="I am a really really really long answer"
+      selectedContentDisplayName="I am a really really really really long answer"
     />
   ));

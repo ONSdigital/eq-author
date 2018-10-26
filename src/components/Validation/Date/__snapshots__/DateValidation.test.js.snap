@@ -140,9 +140,7 @@ exports[`Date Validation should render the form input with the values when enabl
       <Column
         cols={3}
       >
-        <DateValidation__ConnectedPathStart
-          pathUrl="path.svg"
-        />
+        <DateValidation__ConnectedPath />
       </Column>
     </Grid>
     <Grid
@@ -172,30 +170,16 @@ exports[`Date Validation should render the form input with the values when enabl
             After
           </option>
         </DateValidation__RelativePositionSelect>
+        <Component />
       </DateValidation__AlignedColumn>
-    </Grid>
-    <Grid
-      align="top"
-      fillHeight={true}
-    >
       <Column
-        cols={3}
+        cols={8}
       >
-        <DateValidation__ConnectedPath
-          pathUrl="path-end.svg"
-        />
-      </Column>
-      <Column
-        cols={9}
-      >
-        <DateValidation__DateInput
-          max="9999-12-30"
-          min="1000-01-01"
-          name="customDate"
-          onBlur={[MockFunction]}
-          onChange={[MockFunction]}
-          type="date"
-          value="2018-01-01"
+        <ValidationPills
+          Custom={[Function]}
+          PreviousAnswer={[Function]}
+          entityType="Custom"
+          onEntityTypeChange={[Function]}
         />
       </Column>
     </Grid>

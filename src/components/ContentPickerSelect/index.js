@@ -64,7 +64,7 @@ export class UnwrappedContentPickerSelect extends Component {
     this.setState({
       selectedContentDisplayName: selected.displayName
     });
-    this.props.onSubmit(selected);
+    this.props.onSubmit({ name: this.props.name, value: selected });
   };
 
   render() {
@@ -119,7 +119,8 @@ UnwrappedContentPickerSelect.propTypes = {
   }),
   onSubmit: PropTypes.func.isRequired,
   answerTypes: PropTypes.arrayOf(PropTypes.string),
-  selectedContentDisplayName: PropTypes.string
+  selectedContentDisplayName: PropTypes.string,
+  name: PropTypes.string.isRequired
 };
 
 UnwrappedContentPickerSelect.defaultProps = {

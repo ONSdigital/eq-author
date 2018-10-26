@@ -1,10 +1,15 @@
 fragment EarliestDateValidationRule on EarliestDateValidationRule {
   id
   enabled
+  entityType
   customDate: custom
   offset {
     value
     unit
   }
   relativePosition
+  previousAnswer {
+    id
+    displayName
+  }
 }
