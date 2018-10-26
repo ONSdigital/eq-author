@@ -46,7 +46,6 @@ export const mapMutateToProps = ({ mutate, ownProps }) => ({
     } = ownProps;
     const section = {
       title: "",
-      description: "",
       questionnaireId: params.questionnaireId
     };
 

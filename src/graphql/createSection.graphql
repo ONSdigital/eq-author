@@ -8,7 +8,6 @@ mutation CreateSection($input: CreateSectionInput!) {
     pages {
       id
       title
-      description
       position
       ... on QuestionPage {
         displayName
