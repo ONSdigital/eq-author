@@ -12,7 +12,7 @@ export const mapMutateToProps = ({ mutate }) => ({
         duplicateQuestionnaire: {
           id: `dupe-${id}`,
           title: `Copy of ${title}`,
-          createdAt: Date.now(),
+          createdAt: new Date().toISOString(),
           createdBy: {
             name: "In progress...",
             __typename: "User"
