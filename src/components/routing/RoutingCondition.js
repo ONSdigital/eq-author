@@ -187,6 +187,8 @@ class RoutingCondition extends React.Component {
     this.pageSelectIsValid = true;
 
     this.id = uniqueId("RoutingCondition");
+
+    this.value = get(props.condition, "questionPage.id", null);
   }
 
   static defaultProps = {
@@ -226,9 +228,11 @@ class RoutingCondition extends React.Component {
       isValid = false;
       routingEditor = renderDeletedQuestion();
     } else if (isNil(condition.answer)) {
+      this.value = null;
       isValid = false;
       routingEditor = renderNoAnswer(this.props.match.params);
     } else if (!isAnswerValidForRouting(condition.answer)) {
+      this.value = null;
       isValid = false;
       routingEditor = renderUnsupportedAnswer(condition.answer);
     } else if (!this.props.canAddAndCondition) {
@@ -236,6 +240,7 @@ class RoutingCondition extends React.Component {
       routingEditor = renderCannotAddAndCondition();
     } else {
       isValid = true;
+      this.value = get(this.props.condition, "questionPage.id", null);
       const type = get(condition, "answer.type");
       if (type === RADIO) {
         routingEditor = renderMultipleChoiceEditor(
@@ -268,7 +273,7 @@ class RoutingCondition extends React.Component {
           </Column>
           <Column gutters={false} cols={10}>
             <PageSelect
-              value={get(this.props.condition, "questionPage.id", null)}
+              value={this.value}
               valid={isValid}
               onChange={this.handlePageChange}
               groups={convertToGroups(this.props.sections)}
