@@ -5,6 +5,7 @@ import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup } from "react-transition-group";
 import { isEmpty } from "lodash";
 import gql from "graphql-tag";
+import scrollIntoView from "utils/scrollIntoView";
 
 import Row from "./Row";
 
@@ -28,38 +29,47 @@ TH.propTypes = {
 
 const TBody = props => <tbody {...props} />;
 
-const QuestionnairesTable = ({
-  questionnaires,
-  onDeleteQuestionnaire,
-  onDuplicateQuestionnaire
-}) => {
-  if (isEmpty(questionnaires)) {
-    return <p>You have no questionnaires</p>;
-  }
+class QuestionnairesTable extends React.Component {
+  handleDuplicateQuestionnaire = questionnaire => {
+    scrollIntoView(this.head);
+    this.props.onDuplicateQuestionnaire(questionnaire);
+  };
 
-  return (
-    <Table>
-      <thead>
-        <tr>
-          <TH colWidth="50%">Questionnaire name</TH>
-          <TH colWidth="15%">Date</TH>
-          <TH colWidth="25%">Created by</TH>
-          <TH colWidth="10%" />
-        </tr>
-      </thead>
-      <TransitionGroup enter={false} component={TBody}>
-        {questionnaires.map(questionnaire => (
-          <Row
-            key={questionnaire.id}
-            questionnaire={questionnaire}
-            onDeleteQuestionnaire={onDeleteQuestionnaire}
-            onDuplicateQuestionnaire={onDuplicateQuestionnaire}
-          />
-        ))}
-      </TransitionGroup>
-    </Table>
-  );
-};
+  headRef = head => {
+    this.head = head;
+  };
+
+  render() {
+    const { questionnaires, onDeleteQuestionnaire } = this.props;
+
+    if (isEmpty(questionnaires)) {
+      return <p>You have no questionnaires</p>;
+    }
+
+    return (
+      <Table>
+        <thead ref={this.headRef}>
+          <tr>
+            <TH colWidth="50%">Questionnaire name</TH>
+            <TH colWidth="15%">Date</TH>
+            <TH colWidth="25%">Created by</TH>
+            <TH colWidth="10%" />
+          </tr>
+        </thead>
+        <TransitionGroup enter={false} component={TBody}>
+          {questionnaires.map(questionnaire => (
+            <Row
+              key={questionnaire.id}
+              questionnaire={questionnaire}
+              onDeleteQuestionnaire={onDeleteQuestionnaire}
+              onDuplicateQuestionnaire={this.handleDuplicateQuestionnaire}
+            />
+          ))}
+        </TransitionGroup>
+      </Table>
+    );
+  }
+}
 
 QuestionnairesTable.propTypes = {
   questionnaires: CustomPropTypes.questionnaireList,

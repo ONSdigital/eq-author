@@ -7,7 +7,6 @@ import { partial } from "lodash";
 import IconButtonDelete from "components/IconButtonDelete";
 import DuplicateButton from "components/DuplicateButton";
 import Truncated from "components/Truncated";
-import scrollIntoView from "utils/scrollIntoView";
 
 import QuestionnaireLink from "../QuestionnaireLink";
 import FormattedDate from "../FormattedDate";
@@ -74,16 +73,6 @@ class Row extends React.Component {
     return this.props.questionnaire.id.startsWith("dupe");
   }
 
-  componentDidMount() {
-    if (this.isQuestionnaireADuplicate() && this.row) {
-      scrollIntoView(this.row);
-    }
-  }
-
-  handleRowRef = row => {
-    this.row = row;
-  };
-
   render() {
     const {
       questionnaire,
@@ -97,7 +86,7 @@ class Row extends React.Component {
     return (
       <RowTransition {...rest} key={questionnaire.id} exit={!disabled}>
         {/* eslint-disable-next-line react/jsx-handler-names */}
-        <TR innerRef={this.handleRowRef} disabled={disabled}>
+        <TR disabled={disabled}>
           <TD>
             <Collapsible>
               <TruncatedQuestionnaireLink
