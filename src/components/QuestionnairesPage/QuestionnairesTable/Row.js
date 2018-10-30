@@ -11,12 +11,15 @@ import Truncated from "components/Truncated";
 import QuestionnaireLink from "../QuestionnaireLink";
 import FormattedDate from "../FormattedDate";
 
+import { colors } from "constants/theme";
+
 const TruncatedQuestionnaireLink = Truncated.withComponent(QuestionnaireLink);
 TruncatedQuestionnaireLink.displayName = "TruncatedQuestionnaireLink";
 
 const TR = styled.tr`
   border-top: 1px solid #e2e2e2;
   opacity: 1;
+  color: ${props => (props.disabled ? `${colors.textLight}` : "inherit")};
 `;
 
 const TD = styled.td`
@@ -85,7 +88,6 @@ class Row extends React.Component {
 
     return (
       <RowTransition {...rest} key={questionnaire.id} exit={!disabled}>
-        {/* eslint-disable-next-line react/jsx-handler-names */}
         <TR disabled={disabled}>
           <TD>
             <Collapsible>
