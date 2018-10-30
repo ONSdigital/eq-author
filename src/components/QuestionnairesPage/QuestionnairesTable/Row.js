@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
-import { partial } from "lodash";
+import CustomPropTypes from "custom-prop-types";
 import { findDOMNode } from "react-dom";
+import { partial } from "lodash";
 
 import IconButtonDelete from "components/IconButtonDelete";
 import DuplicateButton from "components/DuplicateButton";
@@ -73,26 +74,22 @@ RowTransition.defaultProps = {
 };
 
 class Row extends React.Component {
+  handleDuplicateQuestionnaire = () => {
+    /* eslint-disable-next-line react/no-find-dom-node */
+    findDOMNode(this.duplicateBtnRef).blur();
+    this.props.onDuplicateQuestionnaire(this.props.questionnaire);
+  };
+
   isQuestionnaireADuplicate() {
     return this.props.questionnaire.id.startsWith("dupe");
   }
 
-  componentDidMount() {
-    /* eslint-disable-next-line react/no-find-dom-node */
-    findDOMNode(this.questionnaireLinkRef).focus();
-  }
-
-  setQuestionnaireLinkRef = ref => {
-    this.questionnaireLinkRef = ref;
+  setDuplicateBtnRef = ref => {
+    this.duplicateBtnRef = ref;
   };
 
   render() {
-    const {
-      questionnaire,
-      onDeleteQuestionnaire,
-      onDuplicateQuestionnaire,
-      ...rest
-    } = this.props;
+    const { questionnaire, onDeleteQuestionnaire, ...rest } = this.props;
 
     const disabled = this.isQuestionnaireADuplicate();
 
@@ -106,7 +103,6 @@ class Row extends React.Component {
                 questionnaire={questionnaire}
                 title={questionnaire.title}
                 disabled={disabled}
-                ref={this.setQuestionnaireLinkRef}
               >
                 {questionnaire.title}
               </TruncatedQuestionnaireLink>
@@ -126,8 +122,9 @@ class Row extends React.Component {
             <IconCollapsible>
               <DuplicateButton
                 data-test="btn-duplicate-questionnaire"
-                onClick={() => onDuplicateQuestionnaire(questionnaire)}
+                onClick={this.handleDuplicateQuestionnaire}
                 disabled={disabled}
+                ref={this.setDuplicateBtnRef}
               />
               <IconButtonDelete
                 hideText
@@ -142,5 +139,12 @@ class Row extends React.Component {
     );
   }
 }
+
+Row.propTypes = {
+  questionnaire: CustomPropTypes.questionnaire.isRequired,
+  onDeleteQuestionnaire: PropTypes.func.isRequired,
+  onDuplicateQuestionnaire: PropTypes.func.isRequired,
+  shouldFocus: PropTypes.bool
+};
 
 export default Row;
