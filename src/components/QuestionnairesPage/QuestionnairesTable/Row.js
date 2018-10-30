@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import { partial } from "lodash";
+import { findDOMNode } from "react-dom";
 
 import IconButtonDelete from "components/IconButtonDelete";
 import DuplicateButton from "components/DuplicateButton";
@@ -76,6 +77,15 @@ class Row extends React.Component {
     return this.props.questionnaire.id.startsWith("dupe");
   }
 
+  componentDidMount() {
+    /* eslint-disable-next-line react/no-find-dom-node */
+    findDOMNode(this.questionnaireLinkRef).focus();
+  }
+
+  setQuestionnaireLinkRef = ref => {
+    this.questionnaireLinkRef = ref;
+  };
+
   render() {
     const {
       questionnaire,
@@ -96,6 +106,7 @@ class Row extends React.Component {
                 questionnaire={questionnaire}
                 title={questionnaire.title}
                 disabled={disabled}
+                ref={this.setQuestionnaireLinkRef}
               >
                 {questionnaire.title}
               </TruncatedQuestionnaireLink>
