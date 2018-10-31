@@ -10,7 +10,8 @@ import {
   toggleCheckboxOn,
   toggleCheckboxOff,
   selectFirstAnswerFromContentPicker,
-  selectFirstMetadataContentPicker
+  selectFirstMetadataContentPicker,
+  switchPilltab
 } from "../../utils";
 
 import { addMetadata } from "../../builders/metadata";
@@ -28,9 +29,7 @@ const setPreviousAnswer = (sidebar, answerType) => {
     cy.get("[role='switch']").as("viewToggle");
   });
   toggleCheckboxOn("@viewToggle");
-  cy.get("button")
-    .contains("Previous answer")
-    .click();
+  switchPilltab("PreviousAnswer");
   cy.get(testId("content-picker-select")).as("previousAnswer");
   cy.get("@previousAnswer").contains("Please select...");
   cy.get("@previousAnswer").click();
@@ -50,12 +49,12 @@ const setPreviousAnswer = (sidebar, answerType) => {
 };
 
 const setMetadata = (sidebar, METADATA_KEY) => {
-  cy.get("button[aria-controls='Metadata']").click();
-  cy.get(testId("content-picker-select")).as("metadataa");
-  cy.get("@metadataa").contains("Please select...");
-  cy.get("@metadataa").click();
+  switchPilltab("Metadata");
+  cy.get(testId("content-picker-select")).as("metadata");
+  cy.get("@metadata").contains("Please select...");
+  cy.get("@metadata").click();
   selectFirstMetadataContentPicker();
-  cy.get("@metadataa").contains(METADATA_KEY);
+  cy.get("@metadata").contains(METADATA_KEY);
   cy.get(sidebar).contains(METADATA_KEY);
   cy.get("button")
     .contains("Done")
@@ -293,8 +292,19 @@ describe("Answer Validation", () => {
         );
       });
 
+      it("should default as start date and render correct text", () => {
+        toggleCheckboxOn("@earliestDateToggle");
+        cy.get(`button[aria-selected='true']`).should("contain", "Start date");
+        cy.get(`[aria-labelledby="Now"]`).should(
+          "contain",
+          "The date the respondent begins the survey"
+        );
+      });
+
       it("should update the custom value", () => {
         toggleCheckboxOn("@earliestDateToggle");
+
+        switchPilltab("Custom");
 
         cy.get('[type="date"]')
           .type("1985-09-14")
@@ -370,8 +380,18 @@ describe("Answer Validation", () => {
         );
       });
 
+      it("should default as start date and render correct text", () => {
+        toggleCheckboxOn("@latestDateToggle");
+        cy.get(`button[aria-selected='true']`).should("contain", "Start date");
+        cy.get(`[aria-labelledby="Now"]`).should(
+          "contain",
+          "The date the respondent begins the survey"
+        );
+      });
+
       it("should update the custom value", () => {
         toggleCheckboxOn("@latestDateToggle");
+        switchPilltab("Custom");
         cy.get('[type="date"]')
           .type("1985-09-14")
           .blur()

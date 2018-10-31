@@ -15,6 +15,17 @@ exports[`Date Preview custom should render preview dates with offset 1`] = `
 
 exports[`Date Preview custom should render preview dates without offset 1`] = `"02/09/2018"`;
 
+exports[`Date Preview should render a preview startDate 1`] = `
+<React.Fragment>
+  <div>
+    12 days before:
+  </div>
+  <div>
+    (Start date)
+  </div>
+</React.Fragment>
+`;
+
 exports[`Date Preview should render a preview with previous answer 1`] = `
 <React.Fragment>
   <div>

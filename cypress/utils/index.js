@@ -108,6 +108,10 @@ export function addAnswerType(answerType) {
   cy.get(testId(`btn-answer-type-${answerType.toLowerCase()}`)).click();
 }
 
+export const switchPilltab = pillOption => {
+  cy.get(`button[aria-controls='${pillOption}']`).click();
+};
+
 export const matchHashToPath = (path, hash) => {
   hash = hash.substr(1).replace(Cypress.env("BASE_NAME"), "");
 

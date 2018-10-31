@@ -6,6 +6,11 @@ exports[`ValidationPills should render 1`] = `
   options={
     Array [
       Object {
+        "id": "Now",
+        "render": [Function],
+        "title": "Start date",
+      },
+      Object {
         "id": "PreviousAnswer",
         "render": [Function],
         "title": "Previous answer",
@@ -45,6 +50,11 @@ exports[`ValidationPills should render if missing an option component 1`] = `
   onChange={[MockFunction]}
   options={
     Array [
+      Object {
+        "id": "Now",
+        "render": [Function],
+        "title": "Start date",
+      },
       Object {
         "id": "PreviousAnswer",
         "render": [Function],
@@ -86,5 +96,19 @@ exports[`ValidationPills should render previous answer 1`] = `
   className="c0"
 >
   <PreviousAnswer />
+</div>
+`;
+
+exports[`ValidationPills should render startDate 1`] = `
+.c0 {
+  margin-top: 3em;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+<div
+  className="c0"
+>
+  <Now />
 </div>
 `;

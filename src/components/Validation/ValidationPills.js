@@ -22,12 +22,24 @@ export const ValidationPills = ({
   onEntityTypeChange,
   PreviousAnswer,
   Metadata,
+  Now,
   Custom
 }) => (
   <Pills
     value={entityType}
     onChange={onEntityTypeChange}
     options={compact([
+      isFunction(Now)
+        ? {
+            id: "Now",
+            title: "Start date",
+            render: () => (
+              <PillTabContent>
+                <Now />
+              </PillTabContent>
+            )
+          }
+        : null,
       isFunction(PreviousAnswer)
         ? {
             id: "PreviousAnswer",
@@ -70,5 +82,6 @@ ValidationPills.propTypes = {
   onEntityTypeChange: PropTypes.func.isRequired,
   PreviousAnswer: PropTypes.func,
   Metadata: PropTypes.func,
-  Custom: PropTypes.func
+  Custom: PropTypes.func,
+  Now: PropTypes.func
 };
