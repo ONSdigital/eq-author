@@ -8,6 +8,7 @@ import NavigationHeader from "components/NavigationSidebar/NavigationHeader";
 import ScrollPane from "components/ScrollPane";
 import { flowRight } from "lodash";
 import { withRouter } from "react-router";
+
 import gql from "graphql-tag";
 
 import withCreateSection from "containers/enhancers/withCreateSection";

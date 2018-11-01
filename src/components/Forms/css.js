@@ -9,13 +9,16 @@ export const focusStyle = css`
 
 const invalidStyle = css`
   border-color: ${colors.red};
-  &:focus {
-    border-color: ${colors.red};
-    outline-color: ${colors.red};
-  }
   &:hover {
     border-color: ${colors.red};
     outline-color: ${colors.red};
+    box-shadow: 0 0 0 1px ${colors.red};
+  }
+  &:focus-within,
+  &:focus {
+    border-color: ${colors.red};
+    outline-color: ${colors.red};
+    box-shadow: 0 0 0 2px ${colors.red};
   }
 `;
 

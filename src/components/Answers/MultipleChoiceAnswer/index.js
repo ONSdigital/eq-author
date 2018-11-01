@@ -125,6 +125,7 @@ class MultipleChoiceAnswer extends Component {
       onUpdateOption,
       onUpdate,
       minOptions,
+      onValidation,
       ...otherProps
     } = this.props;
 
@@ -137,6 +138,8 @@ class MultipleChoiceAnswer extends Component {
         onUpdate={onUpdate}
         autoFocus={false}
         labelText="Label (optional)"
+        labelRequired={false}
+        onValidation={onValidation}
       >
         <AnswerWrapper>
           {answer.type === CHECKBOX && (
@@ -155,6 +158,7 @@ class MultipleChoiceAnswer extends Component {
                   onUpdate={onUpdateOption}
                   onEnterKey={this.handleAddOption}
                   hasDeleteButton={showDeleteOption}
+                  onValidation={onValidation}
                 />
               </OptionTransition>
             ))}
@@ -168,6 +172,7 @@ class MultipleChoiceAnswer extends Component {
                   onEnterKey={this.handleAddOption}
                   hasDeleteButton={showDeleteOption}
                   labelPlaceholder="eg. Other"
+                  onValidation={onValidation}
                 >
                   <SpecialOptionWrapper data-test="other-answer">
                     <BasicAnswer
@@ -192,6 +197,7 @@ class MultipleChoiceAnswer extends Component {
                     onDelete={this.handleOptionDelete}
                     onUpdate={onUpdateOption}
                     onEnterKey={this.handleAddOption}
+                    onValidation={onValidation}
                     hasDeleteButton
                   />
                 </SpecialOptionWrapper>

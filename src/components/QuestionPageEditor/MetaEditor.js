@@ -63,7 +63,7 @@ const RTEWithValidation = withValidationHandler(RichTextEditor);
 
 export class StatelessMetaEditor extends React.Component {
   render() {
-    const { page, onChange, onUpdate, client } = this.props;
+    const { page, onChange, onUpdate, onValidation, client } = this.props;
     const handleUpdate = partial(flip(onChange), onUpdate);
 
     const fetchAnswers = ids => {
@@ -110,6 +110,7 @@ export class StatelessMetaEditor extends React.Component {
           testSelector="txt-question-title"
           required
           validationText="Question title is required"
+          onValidation={onValidation}
         />
 
         <RichTextEditor
@@ -143,6 +144,7 @@ export class StatelessMetaEditor extends React.Component {
 StatelessMetaEditor.propTypes = {
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  onValidation: PropTypes.func.isRequired,
   page: CustomPropTypes.page,
   client: CustomPropTypes.apolloClient.isRequired
 };

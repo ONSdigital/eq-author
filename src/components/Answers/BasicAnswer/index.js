@@ -22,6 +22,7 @@ export const StatelessBasicAnswer = ({
   descriptionText,
   descriptionPlaceholder,
   showDescription,
+  onValidation,
   autoFocus
 }) => (
   <div>
@@ -37,6 +38,7 @@ export const StatelessBasicAnswer = ({
         placeholder={labelPlaceholder}
         data-test="txt-answer-label"
         validationText="Answer label is required"
+        onValidation={onValidation}
         required={labelRequired}
         bold
       />

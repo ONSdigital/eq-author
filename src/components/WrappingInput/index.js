@@ -14,7 +14,13 @@ const StyleContext = styled.div`
   font-weight: ${props => (props.bold ? "bold" : "regular")};
 `;
 
-const TextArea = styled(AutoResizeTextArea).attrs({})`
+/* eslint-disable no-unused-vars  */
+const TextArea = ({ invalid, onValidation, onUpdate, ...otherProps }) => (
+  <AutoResizeTextArea {...otherProps} />
+);
+/* eslint-enable no-unused-vars  */
+
+const StyledTextArea = styled(TextArea)`
   ${sharedStyles};
   font-weight: inherit;
   resize: none;
@@ -52,7 +58,6 @@ class WrappingInput extends React.Component {
     const {
       bold,
       placeholder,
-      onUpdate,
       valid,
       validationText,
       ...otherProps
@@ -60,7 +65,7 @@ class WrappingInput extends React.Component {
 
     return (
       <StyleContext bold={bold}>
-        <TextArea
+        <StyledTextArea
           {...otherProps}
           invalid={!valid}
           onChange={this.handleChange}

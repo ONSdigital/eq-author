@@ -34,6 +34,7 @@ export const UnwrappedDate = ({
   answer,
   onChange,
   onUpdate,
+  onValidation,
   placeholder,
   showDay,
   showMonth,
@@ -54,6 +55,9 @@ export const UnwrappedDate = ({
         data-test="date-answer-label"
         data-autofocus
         bold
+        required
+        validationText="Label is required"
+        onValidation={onValidation}
       />
     </Field>
     <Field>
@@ -73,6 +77,7 @@ UnwrappedDate.propTypes = {
   answer: CustomPropTypes.answer.isRequired,
   onChange: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
+  onValidation: PropTypes.func.isRequired,
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,

@@ -16,6 +16,7 @@ import IconText from "components/IconText";
 
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
+import { fieldValid, fieldInvalid } from "redux/fieldValidation/actions";
 import withUpdatePage from "containers/enhancers/withUpdatePage";
 import withUpdateAnswer from "containers/enhancers/withUpdateAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -109,11 +110,26 @@ export class UnwrappedQuestionPageRoute extends React.Component {
       onDuplicatePage,
       data: { questionPage }
     } = this.props;
+
     onDuplicatePage({
       sectionId: match.params.sectionId,
       pageId: questionPage.id,
       position: questionPage.position + 1
     });
+  };
+
+  handlePageValidation = (id, valid) => {
+    const {
+      fieldValid,
+      fieldInvalid,
+      data: { questionPage }
+    } = this.props;
+
+    if (valid) {
+      fieldValid(questionPage.id, id);
+    } else {
+      fieldInvalid(questionPage.id, id);
+    }
   };
 
   getPageTitle = page => title => {
@@ -178,6 +194,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
           onDeletePageConfirm={this.handleDeletePageConfirm}
           onAddPage={this.handleAddPage}
           onAddAnswer={this.handleAddAnswer}
+          onValidation={this.handlePageValidation}
         />
       </Titled>
     );
@@ -198,7 +215,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 const withQuestionPageEditing = flowRight(
   connect(
     null,
-    { raiseToast }
+    { raiseToast, fieldValid, fieldInvalid }
   ),
   withApollo,
   withMovePage,

@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const div = document.createElement("div");
+
 const withValidationHandler = WrappedComponent => {
   return class extends React.Component {
     static propTypes = {
       onChange: PropTypes.func,
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      required: PropTypes.bool
+      required: PropTypes.bool,
+      id: PropTypes.string.isRequired,
+      onValidation: PropTypes.func
     };
 
     static displayName = `withValidationHandler(${
@@ -18,9 +22,9 @@ const withValidationHandler = WrappedComponent => {
     };
 
     handleFocus = e => {
-      this.setState({
-        valid: true
-      });
+      // this.setState({
+      //   valid: true
+      // });
 
       if (this.props.onFocus) {
         this.props.onFocus(e);
@@ -28,7 +32,6 @@ const withValidationHandler = WrappedComponent => {
     };
 
     handleUpdate = ({ name, value }) => {
-      const div = document.createElement("div");
       div.innerHTML = value;
 
       if (this.props.onUpdate) {
@@ -36,9 +39,12 @@ const withValidationHandler = WrappedComponent => {
       }
 
       if (this.props.required) {
-        this.setState({
-          valid: div.innerText.length > 0 || false
-        });
+        const valid = div.innerText.length > 0 || false;
+
+        this.setState({ valid });
+        if (this.props.onValidation) {
+          this.props.onValidation(this.props.id, valid);
+        }
       }
     };
 
@@ -48,9 +54,12 @@ const withValidationHandler = WrappedComponent => {
       }
 
       if (this.props.required) {
-        this.setState({
-          valid: e.target.value.length > 0 || false
-        });
+        const valid = e.target.value.length > 0 || false;
+
+        if (this.props.onValidation) {
+          this.props.onValidation(this.props.id, valid);
+        }
+        this.setState({ valid });
       }
     };
 
