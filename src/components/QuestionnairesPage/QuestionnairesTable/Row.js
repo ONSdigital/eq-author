@@ -74,21 +74,29 @@ RowTransition.defaultProps = {
 };
 
 class Row extends React.Component {
+  duplicateBtnRef = React.createRef();
+
+  componentDidMount() {
+    console.log(Boolean(this.duplicateBtnRef));
+  }
+
   handleDuplicateQuestionnaire = () => {
-    if (this.duplicateBtnRef) {
-      /* eslint-disable-next-line react/no-find-dom-node */
-      findDOMNode(this.duplicateBtnRef).blur();
-    }
+    /* eslint-disable-next-line no-console */
+    console.log(
+      "handle",
+      Boolean(this.duplicateBtnRef),
+      this.props.questionnaire.title
+    );
+    // if (this.duplicateBtnRef) {
+    /* eslint-disable-next-line react/no-find-dom-node */
+    this.duplicateBtnRef.current.blur();
+    // }
     this.props.onDuplicateQuestionnaire(this.props.questionnaire);
   };
 
   isQuestionnaireADuplicate() {
     return this.props.questionnaire.id.startsWith("dupe");
   }
-
-  setDuplicateBtnRef = ref => {
-    this.duplicateBtnRef = ref;
-  };
 
   render() {
     const { questionnaire, onDeleteQuestionnaire, ...rest } = this.props;
@@ -126,7 +134,7 @@ class Row extends React.Component {
                 data-test="btn-duplicate-questionnaire"
                 onClick={this.handleDuplicateQuestionnaire}
                 disabled={disabled}
-                ref={this.setDuplicateBtnRef}
+                innerRef={this.duplicateBtnRef}
               />
               <IconButtonDelete
                 hideText
