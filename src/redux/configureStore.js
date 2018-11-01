@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import persistState from "redux-localstorage";
 import {
   routerMiddleware as createRouterMiddleware,
   routerReducer as router
@@ -34,7 +35,8 @@ const configureStore = (history, client, preloadedState) =>
       applyMiddleware(
         createRouterMiddleware(history),
         thunk.withExtraArgument({ auth, client })
-      )
+      ),
+      persistState("fieldValidation")
     )
   );
 
