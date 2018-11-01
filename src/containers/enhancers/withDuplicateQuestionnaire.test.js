@@ -26,16 +26,16 @@ describe("withDuplicateQuestionnaire", () => {
   });
 
   describe("mapMutateToProps", () => {
-    let now;
+    let realNow;
     beforeEach(() => {
       mutate = jest.fn(() => Promise.resolve(expectedResult));
       props = mapMutateToProps({ ownProps, mutate });
-      now = Date.now();
-      jest.spyOn(Date, "now").mockImplementation(() => now);
+      realNow = Date.now.bind(global.Date);
+      global.Date.now = jest.fn(() => 1530518207007);
     });
 
     afterEach(() => {
-      jest.resetAllMocks();
+      global.Date.now = realNow;
     });
 
     it("supplies an onDuplicateQuestionnaire prop", () => {
@@ -57,7 +57,7 @@ describe("withDuplicateQuestionnaire", () => {
               __typename: "Questionnaire",
               id: "dupe-1",
               title: "Copy of My questionnaire",
-              createAt: now,
+              createdAt: new Date(Date.now()).toISOString(),
               createdBy: {
                 name: "In progress...",
                 __typename: "User"
