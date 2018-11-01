@@ -8,6 +8,9 @@ import { colors } from "constants/theme";
 import IconText from "components/IconText";
 import Truncated from "components/Truncated";
 
+import { TransitionGroup } from "react-transition-group";
+import Transition from "./BadgeTransition";
+
 export const activeClassName = "active";
 
 export const Link = styled(RouterNavLink)`
@@ -68,7 +71,14 @@ const NavLink = ({ to, title, children, icon, errors, ...otherProps }) => (
     <IconText icon={icon}>
       <Title>{children}</Title>
     </IconText>
-    {errors > 0 && <Badge>{errors}</Badge>}
+
+    <TransitionGroup component={React.Fragment}>
+      {errors > 0 && (
+        <Transition>
+          <Badge>{errors}</Badge>
+        </Transition>
+      )}
+    </TransitionGroup>
   </Link>
 );
 
