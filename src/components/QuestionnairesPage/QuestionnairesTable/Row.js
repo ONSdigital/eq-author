@@ -75,8 +75,10 @@ RowTransition.defaultProps = {
 
 class Row extends React.Component {
   handleDuplicateQuestionnaire = () => {
-    /* eslint-disable-next-line react/no-find-dom-node */
-    findDOMNode(this.duplicateBtnRef).blur();
+    if (this.duplicateBtnRef) {
+      /* eslint-disable-next-line react/no-find-dom-node */
+      findDOMNode(this.duplicateBtnRef).blur();
+    }
     this.props.onDuplicateQuestionnaire(this.props.questionnaire);
   };
 
