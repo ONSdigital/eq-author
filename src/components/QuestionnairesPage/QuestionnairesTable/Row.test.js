@@ -66,16 +66,23 @@ describe("Row", () => {
   });
 
   it("should allow duplication of a Questionnaire", () => {
-    shallow(
+    const wrapper = shallow(
       <Row
         questionnaire={questionnaire}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
         onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
       />
-    )
-      .find(DuplicateButton)
-      .simulate("click");
+    );
+
+    const blurButton = jest.fn();
+    wrapper.instance().duplicateBtnRef = {
+      current: {
+        blur: blurButton
+      }
+    };
+    wrapper.find(DuplicateButton).simulate("click");
 
     expect(handleDuplicateQuestionnaire).toHaveBeenCalledWith(questionnaire);
+    expect(blurButton).toHaveBeenCalled();
   });
 });

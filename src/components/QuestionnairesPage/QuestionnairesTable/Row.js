@@ -3,17 +3,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import CustomPropTypes from "custom-prop-types";
-import { findDOMNode } from "react-dom";
 import { partial } from "lodash";
 
 import IconButtonDelete from "components/IconButtonDelete";
 import DuplicateButton from "components/DuplicateButton";
 import Truncated from "components/Truncated";
 
+import { colors } from "constants/theme";
+
 import QuestionnaireLink from "../QuestionnaireLink";
 import FormattedDate from "../FormattedDate";
-
-import { colors } from "constants/theme";
 
 const TruncatedQuestionnaireLink = Truncated.withComponent(QuestionnaireLink);
 TruncatedQuestionnaireLink.displayName = "TruncatedQuestionnaireLink";
@@ -76,21 +75,8 @@ RowTransition.defaultProps = {
 class Row extends React.Component {
   duplicateBtnRef = React.createRef();
 
-  componentDidMount() {
-    console.log(Boolean(this.duplicateBtnRef));
-  }
-
   handleDuplicateQuestionnaire = () => {
-    /* eslint-disable-next-line no-console */
-    console.log(
-      "handle",
-      Boolean(this.duplicateBtnRef),
-      this.props.questionnaire.title
-    );
-    // if (this.duplicateBtnRef) {
-    /* eslint-disable-next-line react/no-find-dom-node */
     this.duplicateBtnRef.current.blur();
-    // }
     this.props.onDuplicateQuestionnaire(this.props.questionnaire);
   };
 
