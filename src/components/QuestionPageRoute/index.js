@@ -16,7 +16,7 @@ import IconText from "components/IconText";
 
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
-import { fieldValid, fieldInvalid } from "redux/fieldValidation/actions";
+
 import withUpdatePage from "containers/enhancers/withUpdatePage";
 import withUpdateAnswer from "containers/enhancers/withUpdateAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -194,7 +194,6 @@ export class UnwrappedQuestionPageRoute extends React.Component {
           onDeletePageConfirm={this.handleDeletePageConfirm}
           onAddPage={this.handleAddPage}
           onAddAnswer={this.handleAddAnswer}
-          onValidation={this.handlePageValidation}
         />
       </Titled>
     );
@@ -215,7 +214,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 const withQuestionPageEditing = flowRight(
   connect(
     null,
-    { raiseToast, fieldValid, fieldInvalid }
+    { raiseToast }
   ),
   withApollo,
   withMovePage,

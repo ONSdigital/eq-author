@@ -41,7 +41,6 @@ export default class QuestionPageEditor extends React.Component {
     onDeleteOption: PropTypes.func.isRequired,
     onDeleteAnswer: PropTypes.func.isRequired,
     onUpdateOption: PropTypes.func.isRequired,
-    onValidation: PropTypes.func.isRequired,
     onMovePage: PropTypes.func.isRequired,
     showMovePageDialog: PropTypes.bool.isRequired,
     onAddOther: PropTypes.func.isRequired,
@@ -65,10 +64,10 @@ export default class QuestionPageEditor extends React.Component {
       onAddOption,
       onUpdateOption,
       onDeleteOption,
-      onValidation,
       onAddOther,
       onAddExclusive,
-      onDeleteOther
+      onDeleteOther,
+      page
     } = this.props;
 
     return (
@@ -84,7 +83,6 @@ export default class QuestionPageEditor extends React.Component {
             onUpdateOption={onUpdateOption}
             onDeleteOption={onDeleteOption}
             onDeleteAnswer={this.handleDeleteAnswer}
-            onValidation={onValidation}
             data-test="answer-editor"
           />
         </AnswerSegment>
@@ -124,7 +122,6 @@ export default class QuestionPageEditor extends React.Component {
       showDeleteConfirmDialog,
       onCloseDeleteConfirmDialog,
       onDeletePageConfirm,
-      onValidation,
       match,
       page
     } = this.props;
@@ -135,11 +132,7 @@ export default class QuestionPageEditor extends React.Component {
       <div data-test="question-page-editor">
         <div>
           <QuestionSegment id={id}>
-            <MetaEditor
-              onUpdate={onUpdatePage}
-              page={page}
-              onValidation={onValidation}
-            />
+            <MetaEditor onUpdate={onUpdatePage} page={page} />
             <DeleteConfirmDialog
               isOpen={showDeleteConfirmDialog}
               onClose={onCloseDeleteConfirmDialog}

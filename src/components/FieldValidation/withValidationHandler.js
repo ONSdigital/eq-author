@@ -1,80 +1,70 @@
-import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fieldValid, fieldInvalid } from "redux/fieldValidation/actions";
+
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { includes } from "lodash";
 
 const div = document.createElement("div");
 
-const withValidationHandler = WrappedComponent => {
-  return class extends React.Component {
-    static propTypes = {
-      onChange: PropTypes.func,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      required: PropTypes.bool,
-      id: PropTypes.string.isRequired,
-      onValidation: PropTypes.func
-    };
+const mapStateToProps = (state, ownProps) => {
+  const {
+    id,
+    match: {
+      params: { pageId }
+    }
+  } = ownProps;
 
-    static displayName = `withValidationHandler(${
-      WrappedComponent.displayName
-    })`;
+  return {
+    valid: !includes(state.fieldValidation[pageId], id)
+  };
+};
 
-    state = {
-      valid: true
-    };
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const {
+    onUpdate,
+    required,
+    id,
+    onBlur,
+    match: {
+      params: { pageId }
+    }
+  } = ownProps;
 
-    handleFocus = e => {
-      // this.setState({
-      //   valid: true
-      // });
-
-      if (this.props.onFocus) {
-        this.props.onFocus(e);
-      }
-    };
-
-    handleUpdate = ({ name, value }) => {
+  return {
+    onUpdate: ({ name, value }) => {
       div.innerHTML = value;
 
-      if (this.props.onUpdate) {
-        this.props.onUpdate({ name, value });
+      if (onUpdate) {
+        onUpdate({ name, value });
       }
 
-      if (this.props.required) {
+      if (required) {
         const valid = div.innerText.length > 0 || false;
+        const action = valid ? fieldValid : fieldInvalid;
 
-        this.setState({ valid });
-        if (this.props.onValidation) {
-          this.props.onValidation(this.props.id, valid);
-        }
+        dispatch(action(pageId, id));
       }
-    };
-
-    handleBlur = e => {
-      if (this.props.onBlur) {
-        this.props.onBlur(e);
+    },
+    onBlur: e => {
+      if (onBlur) {
+        onBlur(e);
       }
 
-      if (this.props.required) {
+      if (required) {
         const valid = e.target.value.length > 0 || false;
+        const action = valid ? fieldValid : fieldInvalid;
 
-        if (this.props.onValidation) {
-          this.props.onValidation(this.props.id, valid);
-        }
-        this.setState({ valid });
+        dispatch(action(pageId, id));
       }
-    };
-
-    render() {
-      return (
-        <WrappedComponent
-          {...this.props}
-          onFocus={this.handleFocus}
-          onUpdate={this.handleUpdate}
-          onBlur={this.handleBlur}
-          valid={this.state.valid}
-        />
-      );
     }
   };
 };
 
-export default withValidationHandler;
+export default compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+);
