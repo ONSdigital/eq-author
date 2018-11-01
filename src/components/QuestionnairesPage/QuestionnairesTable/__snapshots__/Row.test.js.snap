@@ -4,11 +4,11 @@ exports[`Row should render 1`] = `
 <Row__RowTransition
   exit={true}
   key="1"
+  onDuplicateQuestionnaire={[MockFunction]}
   timeout={200}
 >
   <Row__TR
     disabled={false}
-    innerRef={[Function]}
   >
     <Row__TD
       textAlign="left"
@@ -86,11 +86,11 @@ exports[`Row should render as disabled when the id is a duplicate 1`] = `
 <Row__RowTransition
   exit={false}
   key="dupe-2"
+  onDuplicateQuestionnaire={[MockFunction]}
   timeout={200}
 >
   <Row__TR
     disabled={true}
-    innerRef={[Function]}
   >
     <Row__TD
       textAlign="left"
