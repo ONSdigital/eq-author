@@ -8,7 +8,8 @@ import { withRouter } from "react-router-dom";
 import CustomPropTypes from "custom-prop-types";
 import gql from "graphql-tag";
 
-import { flow, size } from "lodash";
+import { size } from "lodash";
+import { compose } from "redux";
 import { connect } from "react-redux";
 
 const StyledPageItem = styled.li`
@@ -67,7 +68,7 @@ const mapStateToProps = (state, ownProps) => ({
   errors: size(state.fieldValidation[ownProps.page.id])
 });
 
-export default flow(
+export default compose(
   withRouter,
   connect(mapStateToProps)
 )(UnwrappedPageNavItem);

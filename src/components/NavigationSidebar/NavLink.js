@@ -54,6 +54,7 @@ const Badge = styled.span`
   margin-left: auto;
   line-height: 1;
   font-size: 0.9em;
+  pointer-events: none;
 `;
 
 const Title = styled(Truncated)`
