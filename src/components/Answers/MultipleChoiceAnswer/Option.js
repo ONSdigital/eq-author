@@ -102,7 +102,6 @@ export class StatelessOption extends Component {
       option,
       onChange,
       onUpdate,
-      onValidation,
       type,
       children,
       labelPlaceholder,
@@ -131,7 +130,6 @@ export class StatelessOption extends Component {
                 bold
                 required
                 validationText="Label is required"
-                onValidation={onValidation}
               />
             </OptionField>
           </Flex>

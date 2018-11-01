@@ -15,13 +15,9 @@ const StyleContext = styled.div`
 `;
 
 /* eslint-disable no-unused-vars  */
-const TextArea = ({
-  invalid,
-  onValidation,
-  onUpdate,
-  staticContext,
-  ...otherProps
-}) => <AutoResizeTextArea {...otherProps} />;
+const TextArea = ({ invalid, onUpdate, staticContext, ...otherProps }) => (
+  <AutoResizeTextArea {...otherProps} />
+);
 /* eslint-enable no-unused-vars  */
 
 const StyledTextArea = styled(TextArea)`
