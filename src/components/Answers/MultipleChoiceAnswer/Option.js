@@ -10,7 +10,7 @@ import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import DummyMultipleChoice from "components/Answers/Dummy/MultipleChoice";
-import withValidationHandler from "components/FieldValidation/withValidationHandler";
+import withValidationHandler from "containers/enhancers/withValidationHandler";
 
 import optionFragment from "graphql/fragments/option.graphql";
 import getIdForObject from "utils/getIdForObject";

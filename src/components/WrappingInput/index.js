@@ -5,8 +5,8 @@ import AutoResizeTextArea from "react-textarea-autosize";
 import withChangeHandler from "components/Forms/withChangeHandler";
 import { invoke, flowRight } from "lodash";
 import { sharedStyles } from "../Forms/css";
-import withValidationHandler from "components/FieldValidation/withValidationHandler";
-import Error from "components/FieldValidation/Error";
+import withValidationHandler from "containers/enhancers/withValidationHandler";
+import Error from "components/Forms/ValidationError";
 
 const ENTER_KEY = 13;
 

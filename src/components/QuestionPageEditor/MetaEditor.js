@@ -15,7 +15,7 @@ import pageFragment from "graphql/fragments/page.graphql";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
 import { colors, radius } from "constants/theme";
-import withValidationHandler from "components/FieldValidation/withValidationHandler";
+import withValidationHandler from "containers/enhancers/withValidationHandler";
 
 const titleControls = {
   emphasis: true,

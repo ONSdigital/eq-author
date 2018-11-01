@@ -18,7 +18,7 @@ import PipedValueDecorator, {
   replacePipedValues,
   insertPipedValue
 } from "./entities/PipedValue";
-import Error from "components/FieldValidation/Error";
+import Error from "components/Forms/ValidationError";
 
 import createFormatStripper from "./utils/createFormatStripper";
 
