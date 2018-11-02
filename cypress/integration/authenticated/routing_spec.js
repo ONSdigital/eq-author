@@ -322,6 +322,21 @@ describe("Routing", () => {
       });
   });
 
+  it("defaults to unselected if rule is made on a unsupported answer", () => {
+    title = "Test unsupported answer";
+    cy.createQuestionnaire(title);
+
+    typeIntoDraftEditor(testId("txt-question-title", "testid"), "Question 1");
+
+    addAnswerType("Date");
+
+    navigateToRoutingTab();
+
+    cy.get(testId("btn-add-rule")).click();
+
+    findByLabel("IF").should("have.value", null);
+  });
+
   it("can build an AND rule", () => {
     title = "Test AND";
 
