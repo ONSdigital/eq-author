@@ -68,6 +68,7 @@ exports[`Row should render 1`] = `
         <DuplicateButton
           data-test="btn-duplicate-questionnaire"
           disabled={false}
+          hideText={false}
           innerRef={
             Object {
               "current": null,
@@ -155,6 +156,7 @@ exports[`Row should render as disabled when the id is a duplicate 1`] = `
         <DuplicateButton
           data-test="btn-duplicate-questionnaire"
           disabled={true}
+          hideText={false}
           innerRef={
             Object {
               "current": null,

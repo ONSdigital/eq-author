@@ -25,6 +25,7 @@ export const mapMutateToProps = ({ mutate }) => ({
 });
 
 export const handleUpdate = (proxy, { data: { duplicateQuestionnaire } }) => {
+  console.log("hu");
   const cacheData = proxy.readQuery({ query: getQuestionnaireList });
   proxy.writeQuery({
     query: getQuestionnaireList,

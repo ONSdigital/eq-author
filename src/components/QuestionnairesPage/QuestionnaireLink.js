@@ -15,7 +15,7 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-const DisabledLink = styled.span`
+const DisabledLink = styled.span.attrs({ tabIndex: -1 })`
   color: ${colors.textLight};
 `;
 

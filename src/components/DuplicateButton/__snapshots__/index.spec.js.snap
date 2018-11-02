@@ -3,29 +3,37 @@
 exports[`Duplicate Button should render 1`] = `
 <Button
   data-test="foo"
+  hideText={false}
   onClick={[MockFunction]}
   small={true}
   type="button"
   variant="tertiary"
   withText={true}
 >
-  <DuplicateButton__IconPossiblyWithText
+  <IconText
+    hideText={true}
     icon={[Function]}
-  />
+  >
+    Duplicate
+  </IconText>
 </Button>
 `;
 
 exports[`Duplicate Button should render without duplicate text when asked to 1`] = `
 <Button
   data-test="foo"
+  hideText={false}
   onClick={[MockFunction]}
   small={true}
   type="button"
   variant="tertiary"
   withText={false}
 >
-  <DuplicateButton__IconPossiblyWithText
+  <IconText
+    hideText={true}
     icon={[Function]}
-  />
+  >
+    Duplicate
+  </IconText>
 </Button>
 `;

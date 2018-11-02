@@ -37,23 +37,39 @@ TD.defaultProps = {
 };
 
 const Collapsible = styled.div`
-  height: 3.75em;
+  height: 3.95em;
   padding: 1em;
 `;
 
 const IconCollapsible = styled(Collapsible)`
-  padding: 0;
-  display: flex;
-  align-items: center;
+  padding: 1em 0 0;
 `;
 
 const halfTimeout = props => props.timeout / 2;
 const RowTransition = styled(CSSTransition).attrs({
   classNames: "row"
 })`
-  transition: opacity ${halfTimeout}ms ease-out,
-    border-color ${props => props.timeout / 10}ms ease-in
-      ${props => (props.timeout / 10) * 9}ms;
+  &.row-enter ${Collapsible} {
+    height: 0;
+    padding: 0 1em;
+    overflow: hidden;
+  }
+
+  &.row-enter ${IconCollapsible} {
+    padding: 1em 0 0;
+    overflow: hidden;
+  }
+
+  &.row-enter-active ${Collapsible} {
+    padding: 1em;
+    height: 3.95em;
+    transition: height ${halfTimeout}ms ease-in,
+      padding ${halfTimeout}ms ease-in;
+  }
+
+  &.row-enter-active ${IconCollapsible} {
+    padding: 1em 0 0;
+  }
 
   &.row-exit {
     opacity: 0.01;
@@ -63,6 +79,7 @@ const RowTransition = styled(CSSTransition).attrs({
   &.row-exit ${Collapsible} {
     height: 0;
     padding: 0;
+    overflow: hidden;
     transition: height ${halfTimeout}ms ease-in ${halfTimeout}ms,
       padding ${halfTimeout}ms ease-in ${halfTimeout}ms;
   }
@@ -74,6 +91,7 @@ RowTransition.defaultProps = {
 
 class Row extends React.Component {
   duplicateBtnRef = React.createRef();
+  linkRef = React.createRef();
 
   handleDuplicateQuestionnaire = () => {
     this.duplicateBtnRef.current.blur();
@@ -90,7 +108,12 @@ class Row extends React.Component {
     const disabled = this.isQuestionnaireADuplicate();
 
     return (
-      <RowTransition {...rest} key={questionnaire.id} exit={!disabled}>
+      <RowTransition
+        {...rest}
+        key={questionnaire.id}
+        exit={!disabled}
+        entry={disabled}
+      >
         <TR disabled={disabled}>
           <TD>
             <Collapsible>
@@ -99,6 +122,7 @@ class Row extends React.Component {
                 questionnaire={questionnaire}
                 title={questionnaire.title}
                 disabled={disabled}
+                innerRef={this.linkRef}
               >
                 {questionnaire.title}
               </TruncatedQuestionnaireLink>

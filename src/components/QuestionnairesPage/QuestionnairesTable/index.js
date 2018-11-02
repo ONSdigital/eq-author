@@ -5,6 +5,7 @@ import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup } from "react-transition-group";
 import { isEmpty } from "lodash";
 import gql from "graphql-tag";
+
 import scrollIntoView from "utils/scrollIntoView";
 
 import Row from "./Row";
@@ -30,22 +31,18 @@ TH.propTypes = {
 const TBody = props => <tbody {...props} />;
 
 class QuestionnairesTable extends React.Component {
-  handleDuplicateQuestionnaire = questionnaire => {
-    scrollIntoView(this.head);
-    this.props.onDuplicateQuestionnaire(questionnaire);
-  };
+  headRef = React.createRef();
 
-  headRef = head => {
-    this.head = head;
+  handleDuplicateQuestionnaire = questionnaire => {
+    scrollIntoView(this.headRef.current);
+    this.props.onDuplicateQuestionnaire(questionnaire);
   };
 
   render() {
     const { questionnaires, onDeleteQuestionnaire } = this.props;
-
     if (isEmpty(questionnaires)) {
       return <p>You have no questionnaires</p>;
     }
-
     return (
       <Table>
         <thead ref={this.headRef}>
@@ -56,7 +53,7 @@ class QuestionnairesTable extends React.Component {
             <TH colWidth="10%" />
           </tr>
         </thead>
-        <TransitionGroup enter={false} component={TBody}>
+        <TransitionGroup component={TBody}>
           {questionnaires.map(questionnaire => (
             <Row
               key={questionnaire.id}
