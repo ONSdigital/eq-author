@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
 import { colors, radius } from "constants/theme";
@@ -11,7 +11,32 @@ import {
 
 import CustomPropTypes from "custom-prop-types";
 
+import { connect } from "react-redux";
+
+import { size } from "lodash";
+import { compose } from "redux";
+
 export const activeClassName = "active";
+
+const Badge = styled.span`
+  position: absolute;
+  right: 0.6em;
+  top: 2px;
+  bottom: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 0.7em;
+  border: 1px solid white;
+  background-color: ${colors.red};
+  color: ${colors.red};
+  padding: 0;
+  z-index: 2;
+  line-height: 1;
+  font-size: 0.9em;
+  pointer-events: none;
+`;
 
 export const TabsContainer = styled.nav`
   display: flex;
@@ -25,13 +50,26 @@ export const Tab = styled(NavLink)`
   font-size: 1em;
   font-weight: bold;
   color: ${colors.white};
-  padding: 0.3em 2em;
+  padding: 0.3em 1.5em;
   border: 1px solid ${colors.secondary};
   border-bottom: none;
   background-color: ${colors.secondary};
   text-decoration: none;
   border-radius: ${radius} ${radius} 0 0;
   margin: 0 0.25em 0 0;
+  position: relative;
+
+  /* ${props =>
+    props.hasErrors &&
+    css`
+      background: ${colors.red};
+      border-color: ${colors.red};
+
+      .${Badge} {
+        background-color: white;
+        color: white;
+      }
+    `}; */
 
   &.${activeClassName} {
     background: ${colors.white};
@@ -53,7 +91,7 @@ const DisabledTab = styled(Tab.withComponent("span"))`
 `;
 
 export const UnwrappedTabs = props => {
-  const { match, children } = props;
+  const { match, children, errors } = props;
   const { pageId } = match.params;
 
   const url = pageId
@@ -63,8 +101,9 @@ export const UnwrappedTabs = props => {
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
-        <Tab to={url} activeClassName={activeClassName}>
-          Builder
+        <Tab to={url} activeClassName={activeClassName} hasErrors={errors > 0}>
+          <span>Design</span>
+          {errors > 0 && <Badge>Errors: {errors}</Badge>}
         </Tab>
         {pageId ? (
           <Tab
@@ -87,4 +126,13 @@ UnwrappedTabs.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default withRouter(UnwrappedTabs);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    errors: size(state.fieldValidation[ownProps.match.params.pageId])
+  };
+};
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(UnwrappedTabs);
