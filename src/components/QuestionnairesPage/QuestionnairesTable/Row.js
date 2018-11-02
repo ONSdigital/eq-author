@@ -90,6 +90,12 @@ RowTransition.defaultProps = {
 };
 
 class Row extends React.Component {
+  static propTypes = {
+    questionnaire: CustomPropTypes.questionnaire.isRequired,
+    onDeleteQuestionnaire: PropTypes.func.isRequired,
+    onDuplicateQuestionnaire: PropTypes.func.isRequired
+  };
+
   handleDuplicateQuestionnaire = () => {
     this.props.onDuplicateQuestionnaire(this.props.questionnaire);
   };
@@ -157,12 +163,5 @@ class Row extends React.Component {
     );
   }
 }
-
-Row.propTypes = {
-  questionnaire: CustomPropTypes.questionnaire.isRequired,
-  onDeleteQuestionnaire: PropTypes.func.isRequired,
-  onDuplicateQuestionnaire: PropTypes.func.isRequired,
-  shouldFocus: PropTypes.bool
-};
 
 export default Row;

@@ -2,13 +2,15 @@
 
 exports[`Row should render 1`] = `
 <Row__RowTransition
+  entry={false}
   exit={true}
-  key="1"
   onDuplicateQuestionnaire={[MockFunction]}
+  onEntered={[Function]}
   timeout={200}
 >
   <Row__TR
     disabled={false}
+    tabIndex={-1}
   >
     <Row__TD
       textAlign="left"
@@ -69,11 +71,6 @@ exports[`Row should render 1`] = `
           data-test="btn-duplicate-questionnaire"
           disabled={false}
           hideText={false}
-          innerRef={
-            Object {
-              "current": null,
-            }
-          }
           onClick={[Function]}
         />
         <IconButtonDelete
@@ -90,13 +87,15 @@ exports[`Row should render 1`] = `
 
 exports[`Row should render as disabled when the id is a duplicate 1`] = `
 <Row__RowTransition
+  entry={true}
   exit={false}
-  key="dupe-2"
   onDuplicateQuestionnaire={[MockFunction]}
+  onEntered={[Function]}
   timeout={200}
 >
   <Row__TR
     disabled={true}
+    tabIndex={-1}
   >
     <Row__TD
       textAlign="left"
@@ -157,11 +156,6 @@ exports[`Row should render as disabled when the id is a duplicate 1`] = `
           data-test="btn-duplicate-questionnaire"
           disabled={true}
           hideText={false}
-          innerRef={
-            Object {
-              "current": null,
-            }
-          }
           onClick={[Function]}
         />
         <IconButtonDelete

@@ -27,7 +27,6 @@ exports[`QuestionnairesTable should render 1`] = `
   <TransitionGroup
     childFactory={[Function]}
     component={[Function]}
-    enter={false}
   >
     <Row
       key="1"

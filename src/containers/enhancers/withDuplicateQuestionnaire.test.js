@@ -3,7 +3,14 @@ import { mapMutateToProps } from "./withDuplicateQuestionnaire";
 const nextId = previousId => `${parseInt(previousId, 10) + 1}`;
 
 describe("withDuplicateQuestionnaire", () => {
-  let ownProps, history, match, props, mutate, questionnaire, expectedResult;
+  let ownProps,
+    history,
+    match,
+    props,
+    mutate,
+    questionnaire,
+    user,
+    expectedResult;
 
   beforeEach(() => {
     ownProps = {
@@ -14,6 +21,10 @@ describe("withDuplicateQuestionnaire", () => {
     questionnaire = {
       id: "1",
       title: "My questionnaire"
+    };
+
+    user = {
+      displayName: "Foo Person"
     };
 
     expectedResult = {
@@ -44,7 +55,7 @@ describe("withDuplicateQuestionnaire", () => {
 
     describe("onDuplicateQuestionnaire", () => {
       it("provides the necessary arguments to mutate", async () => {
-        await props.onDuplicateQuestionnaire(questionnaire);
+        await props.onDuplicateQuestionnaire(questionnaire, user);
 
         expect(mutate).toHaveBeenCalledWith({
           variables: {
@@ -59,7 +70,7 @@ describe("withDuplicateQuestionnaire", () => {
               title: "Copy of My questionnaire",
               createdAt: new Date(Date.now()).toISOString(),
               createdBy: {
-                name: "In progress...",
+                name: "Foo Person",
                 __typename: "User"
               }
             }
@@ -68,7 +79,10 @@ describe("withDuplicateQuestionnaire", () => {
       });
 
       it("should return promise that resolves to duplicateSection result", async () => {
-        const result = await props.onDuplicateQuestionnaire(questionnaire);
+        const result = await props.onDuplicateQuestionnaire(
+          questionnaire,
+          user
+        );
         return expect(result).toBe(expectedResult.data.duplicateQuestionnaire);
       });
     });

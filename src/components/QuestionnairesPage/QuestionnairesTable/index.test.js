@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import QuestionnairesTable from "./";
+import { UnconnectedQuestionnairesTable } from "./";
 
 describe("QuestionnairesTable", () => {
   const questionnaires = [
@@ -44,7 +44,7 @@ describe("QuestionnairesTable", () => {
 
   it("should render", () => {
     const wrapper = shallow(
-      <QuestionnairesTable
+      <UnconnectedQuestionnairesTable
         questionnaires={questionnaires}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
         onDuplicateQuestionnaire={handleDuplicateQuestionnaire}
@@ -55,7 +55,7 @@ describe("QuestionnairesTable", () => {
 
   it("should render message when no questionnaires", () => {
     const wrapper = shallow(
-      <QuestionnairesTable
+      <UnconnectedQuestionnairesTable
         questionnaires={[]}
         onDeleteQuestionnaire={handleDeleteQuestionnaire}
         onDuplicateQuestionnaire={handleDuplicateQuestionnaire}

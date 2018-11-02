@@ -5,7 +5,9 @@ import CustomPropTypes from "custom-prop-types";
 import { TransitionGroup } from "react-transition-group";
 import { isEmpty } from "lodash";
 import gql from "graphql-tag";
+import { connect } from "react-redux";
 
+import { getUser } from "redux/auth/reducer";
 import scrollIntoView from "utils/scrollIntoView";
 
 import Row from "./Row";
@@ -30,12 +32,32 @@ TH.propTypes = {
 
 const TBody = props => <tbody {...props} />;
 
-class QuestionnairesTable extends React.Component {
+export class UnconnectedQuestionnairesTable extends React.Component {
+  static propTypes = {
+    questionnaires: CustomPropTypes.questionnaireList,
+    onDeleteQuestionnaire: PropTypes.func.isRequired,
+    onDuplicateQuestionnaire: PropTypes.func.isRequired,
+    user: CustomPropTypes.user
+  };
+
+  static fragments = {
+    QuestionnaireDetails: gql`
+      fragment QuestionnaireDetails on Questionnaire {
+        id
+        title
+        createdAt
+        createdBy {
+          name
+        }
+      }
+    `
+  };
+
   headRef = React.createRef();
 
   handleDuplicateQuestionnaire = questionnaire => {
     scrollIntoView(this.headRef.current);
-    this.props.onDuplicateQuestionnaire(questionnaire);
+    this.props.onDuplicateQuestionnaire(questionnaire, this.props.user);
   };
 
   render() {
@@ -68,23 +90,8 @@ class QuestionnairesTable extends React.Component {
   }
 }
 
-QuestionnairesTable.propTypes = {
-  questionnaires: CustomPropTypes.questionnaireList,
-  onDeleteQuestionnaire: PropTypes.func.isRequired,
-  onDuplicateQuestionnaire: PropTypes.func.isRequired
-};
+export const mapStateToProps = state => ({
+  user: getUser(state)
+});
 
-QuestionnairesTable.fragments = {
-  QuestionnaireDetails: gql`
-    fragment QuestionnaireDetails on Questionnaire {
-      id
-      title
-      createdAt
-      createdBy {
-        name
-      }
-    }
-  `
-};
-
-export default QuestionnairesTable;
+export default connect(mapStateToProps)(UnconnectedQuestionnairesTable);
