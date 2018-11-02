@@ -18,19 +18,11 @@ const NavItemTransition = styled(CSSTransition).attrs({
     transition: opacity ${timeout}ms ease-out,
       transform ${timeout}ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-
-  &.badge-exit {
-    opacity: 1;
-  }
-
-  &.badge-exit-active {
-    opacity: 0.01;
-    transition: opacity ${timeout}ms ease-ease-in-out;
-  }
 `;
 
 NavItemTransition.defaultProps = {
   in: true,
+  out: true,
   timeout: 200
 };
 

@@ -74,7 +74,7 @@ const NavLink = ({ to, title, children, icon, errors, ...otherProps }) => (
 
     <TransitionGroup component={React.Fragment}>
       {errors > 0 && (
-        <Transition>
+        <Transition key={errors}>
           <Badge>{errors}</Badge>
         </Transition>
       )}
