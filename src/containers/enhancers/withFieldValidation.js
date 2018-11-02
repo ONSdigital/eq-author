@@ -9,14 +9,14 @@ const div = document.createElement("div");
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    id,
+    id: fieldId,
     match: {
       params: { pageId }
     }
   } = ownProps;
 
   return {
-    valid: !includes(state.fieldValidation[pageId], id)
+    valid: !includes(state.fieldValidation[pageId], fieldId)
   };
 };
 
@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     onUpdate,
     required,
-    id,
+    id: fieldId,
     onBlur,
     match: {
       params: { pageId }
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         const valid = div.innerText.length > 0 || false;
         const action = valid ? fieldValid : fieldInvalid;
 
-        dispatch(action(pageId, id));
+        dispatch(action(pageId, fieldId));
       }
     },
     onBlur: e => {
@@ -55,7 +55,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         const valid = e.target.value.length > 0 || false;
         const action = valid ? fieldValid : fieldInvalid;
 
-        dispatch(action(pageId, id));
+        dispatch(action(pageId, fieldId));
       }
     }
   };

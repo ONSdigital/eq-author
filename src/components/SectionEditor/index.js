@@ -16,10 +16,10 @@ import CharacterCounter from "components/CharacterCounter";
 import { colors, radius } from "constants/theme";
 
 import getIdForObject from "utils/getIdForObject";
-
 import sectionFragment from "graphql/fragments/section.graphql";
-
 import iconSection from "./icon-dialog-section.svg";
+
+import withFieldValidation from "containers/enhancers/withFieldValidation";
 
 const titleControls = {
   emphasis: true
@@ -48,6 +48,8 @@ const Alias = styled.div`
     box-shadow: 0 0 0 1px ${colors.blue};
   }
 `;
+
+const RTEWithValidation = withFieldValidation(RichTextEditor);
 
 export class UnwrappedSectionEditor extends React.Component {
   static propTypes = {
@@ -132,7 +134,7 @@ export class UnwrappedSectionEditor extends React.Component {
           </Alias>
         </Padding>
         <Padding>
-          <RichTextEditor
+          <RTEWithValidation
             id="title"
             label="Title"
             value={section.title}
@@ -140,6 +142,8 @@ export class UnwrappedSectionEditor extends React.Component {
             controls={titleControls}
             size="large"
             testSelector="txt-section-title"
+            required
+            validationText="Section title is required"
           />
         </Padding>
       </SectionCanvas>
