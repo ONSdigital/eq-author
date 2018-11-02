@@ -98,15 +98,9 @@ class Row extends React.Component {
     return this.props.questionnaire.id.startsWith("dupe");
   }
 
-  componentDidMount() {
-    if (this.isQuestionnaireADuplicate()) {
-      this.linkRef.focus();
-    }
+  handleEntered(node) {
+    node.focus();
   }
-
-  onRef = el => {
-    this.linkRef = el;
-  };
 
   render() {
     const { questionnaire, onDeleteQuestionnaire, ...rest } = this.props;
@@ -116,11 +110,11 @@ class Row extends React.Component {
     return (
       <RowTransition
         {...rest}
-        key={questionnaire.id}
         exit={!isOptimisticDupe}
         entry={isOptimisticDupe}
+        onEntered={this.handleEntered}
       >
-        <TR disabled={isOptimisticDupe} innerRef={this.onRef} tabIndex={-1}>
+        <TR disabled={isOptimisticDupe} tabIndex={-1}>
           <TD>
             <Collapsible>
               <TruncatedQuestionnaireLink
