@@ -15,7 +15,7 @@ import pageFragment from "graphql/fragments/page.graphql";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
 import { colors, radius } from "constants/theme";
-import withValidationHandler from "containers/enhancers/withValidationHandler";
+import withFieldValidation from "containers/enhancers/withFieldValidation";
 
 const titleControls = {
   emphasis: true,
@@ -59,7 +59,7 @@ const Alias = styled.div`
   }
 `;
 
-const RTEWithValidation = withValidationHandler(RichTextEditor);
+const RTEWithValidation = withFieldValidation(RichTextEditor);
 
 export class StatelessMetaEditor extends React.Component {
   render() {

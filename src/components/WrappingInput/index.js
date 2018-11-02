@@ -5,7 +5,7 @@ import AutoResizeTextArea from "react-textarea-autosize";
 import withChangeHandler from "components/Forms/withChangeHandler";
 import { invoke, flowRight } from "lodash";
 import { sharedStyles } from "../Forms/css";
-import withValidationHandler from "containers/enhancers/withValidationHandler";
+import withFieldValidation from "containers/enhancers/withFieldValidation";
 import Error from "components/Forms/ValidationError";
 
 const ENTER_KEY = 13;
@@ -80,5 +80,5 @@ class WrappingInput extends React.Component {
 
 export default flowRight(
   withChangeHandler,
-  withValidationHandler
+  withFieldValidation
 )(WrappingInput);

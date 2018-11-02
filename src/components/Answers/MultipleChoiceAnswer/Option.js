@@ -10,14 +10,14 @@ import DeleteButton from "components/DeleteButton";
 import Tooltip from "components/Tooltip";
 import { CHECKBOX, RADIO } from "constants/answer-types";
 import DummyMultipleChoice from "components/Answers/Dummy/MultipleChoice";
-import withValidationHandler from "containers/enhancers/withValidationHandler";
+import withFieldValidation from "containers/enhancers/withFieldValidation";
 
 import optionFragment from "graphql/fragments/option.graphql";
 import getIdForObject from "utils/getIdForObject";
 
 const ENTER_KEY = 13;
 
-const InputWithValidation = withValidationHandler(WrappingInput);
+const InputWithValidation = withFieldValidation(WrappingInput);
 
 export const DeleteContainer = styled.div`
   position: absolute;
