@@ -200,11 +200,7 @@
       "<rootDir>/src/"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
+
   "moduleRoots": [
     "./src"
   ]
