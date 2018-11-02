@@ -90,11 +90,7 @@ RowTransition.defaultProps = {
 };
 
 class Row extends React.Component {
-  duplicateBtnRef = React.createRef();
-  linkRef = React.createRef();
-
   handleDuplicateQuestionnaire = () => {
-    this.duplicateBtnRef.current.blur();
     this.props.onDuplicateQuestionnaire(this.props.questionnaire);
   };
 
@@ -102,27 +98,36 @@ class Row extends React.Component {
     return this.props.questionnaire.id.startsWith("dupe");
   }
 
+  componentDidMount() {
+    if (this.isQuestionnaireADuplicate()) {
+      this.linkRef.focus();
+    }
+  }
+
+  onRef = el => {
+    this.linkRef = el;
+  };
+
   render() {
     const { questionnaire, onDeleteQuestionnaire, ...rest } = this.props;
 
-    const disabled = this.isQuestionnaireADuplicate();
+    const isOptimisticDupe = this.isQuestionnaireADuplicate();
 
     return (
       <RowTransition
         {...rest}
         key={questionnaire.id}
-        exit={!disabled}
-        entry={disabled}
+        exit={!isOptimisticDupe}
+        entry={isOptimisticDupe}
       >
-        <TR disabled={disabled}>
+        <TR disabled={isOptimisticDupe} innerRef={this.onRef} tabIndex={-1}>
           <TD>
             <Collapsible>
               <TruncatedQuestionnaireLink
                 data-test="anchor-questionnaire-title"
                 questionnaire={questionnaire}
                 title={questionnaire.title}
-                disabled={disabled}
-                innerRef={this.linkRef}
+                disabled={isOptimisticDupe}
               >
                 {questionnaire.title}
               </TruncatedQuestionnaireLink>
@@ -143,14 +148,13 @@ class Row extends React.Component {
               <DuplicateButton
                 data-test="btn-duplicate-questionnaire"
                 onClick={this.handleDuplicateQuestionnaire}
-                disabled={disabled}
-                innerRef={this.duplicateBtnRef}
+                disabled={isOptimisticDupe}
               />
               <IconButtonDelete
                 hideText
                 data-test="btn-delete-questionnaire"
                 onClick={partial(onDeleteQuestionnaire, questionnaire.id)}
-                disabled={disabled}
+                disabled={isOptimisticDupe}
               />
             </IconCollapsible>
           </TD>
