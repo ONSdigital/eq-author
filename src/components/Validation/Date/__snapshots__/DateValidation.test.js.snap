@@ -174,11 +174,12 @@ exports[`Date Validation should render the form input with the values when enabl
         <Component />
       </DateValidation__AlignedColumn>
       <Column
-        cols={8}
+        cols={9}
       >
         <ValidationPills
           Custom={[Function]}
           Metadata={[Function]}
+          Now={[Function]}
           PreviousAnswer={[Function]}
           entityType="Custom"
           onEntityTypeChange={[Function]}

@@ -35,7 +35,8 @@ const DatePreview = ({
     [entityTypes.PREVIOUS_ANSWER]: previousAnswer
       ? previousAnswer.displayName
       : "",
-    [entityTypes.METADATA]: metadata ? metadata.displayName : ""
+    [entityTypes.METADATA]: metadata ? metadata.displayName : "",
+    [entityTypes.NOW]: "(Start date)"
   };
 
   if (value === 0) {

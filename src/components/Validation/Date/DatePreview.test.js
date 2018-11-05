@@ -5,7 +5,11 @@ import { Detail as SidebarButtonDetail } from "components/SidebarButton";
 
 import { UnconnectedAnswerValidation } from "components/Validation/AnswerValidation";
 
-import { CUSTOM, PREVIOUS_ANSWER } from "constants/validation-entity-types";
+import {
+  CUSTOM,
+  PREVIOUS_ANSWER,
+  NOW
+} from "constants/validation-entity-types";
 
 const render = (props, render = shallow) => {
   return render(<UnconnectedAnswerValidation {...props} />);
@@ -147,6 +151,37 @@ describe("Date Preview", () => {
             },
             relativePosition: "Before",
             entityType: PREVIOUS_ANSWER
+          },
+          latestDate: {
+            enabled: false
+          }
+        }
+      }
+    });
+    expect(
+      wrapper
+        .find(SidebarButtonDetail)
+        .at(0)
+        .prop("children")
+    ).toMatchSnapshot();
+  });
+
+  it("should render a preview startDate", () => {
+    const wrapper = render({
+      ...props,
+      answer: {
+        id: "1",
+        type: "Date",
+        validation: {
+          earliestDate: {
+            enabled: true,
+            customDate: null,
+            offset: {
+              unit: "days",
+              value: 12
+            },
+            relativePosition: "Before",
+            entityType: NOW
           },
           latestDate: {
             enabled: false

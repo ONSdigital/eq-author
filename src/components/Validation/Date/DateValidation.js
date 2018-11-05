@@ -47,6 +47,11 @@ const EmphasisedText = styled.p`
   text-transform: uppercase;
 `;
 
+const StartDateText = styled.div`
+  margin: 0;
+  padding-top: 0.4em;
+`;
+
 const START_COL_SIZE = 3;
 const END_COL_SIZE = 12 - START_COL_SIZE;
 
@@ -84,6 +89,10 @@ class DateValidation extends React.Component {
         "displayName"
       )}
     />
+  );
+
+  Now = () => (
+    <StartDateText>The date the respondent begins the survey</StartDateText>
   );
 
   Custom = () => (
@@ -193,13 +202,14 @@ class DateValidation extends React.Component {
             </RelativePositionSelect>
             <PathEnd />
           </AlignedColumn>
-          <Column cols={8}>
+          <Column cols={9}>
             <ValidationPills
               entityType={entityType}
               onEntityTypeChange={this.handleEntityTypeChange}
               PreviousAnswer={this.PreviousAnswer}
               Metadata={this.Metadata}
               Custom={this.Custom}
+              Now={this.Now}
             />
           </Column>
         </Grid>

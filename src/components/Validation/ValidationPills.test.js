@@ -16,6 +16,7 @@ describe("ValidationPills", () => {
     props = {
       entityType: PREVIOUS_ANSWER,
       onEntityTypeChange: jest.fn(),
+      Now: () => <div>Start Date Content</div>,
       PreviousAnswer: () => <div>Previous Answer Content</div>,
       Metadata: () => <div>Metadata Content</div>,
       Custom: () => <div>Previous Answer Content</div>
@@ -34,17 +35,22 @@ describe("ValidationPills", () => {
   });
 
   it("should render previous answer", () => {
-    const previousAnswer = wrapper.find(Pills).prop("options")[0];
+    const previousAnswer = wrapper.find(Pills).prop("options")[1];
     expect(shallow(previousAnswer.render())).toMatchSnapshot();
   });
 
   it("should render metadata", () => {
-    const metadata = wrapper.find(Pills).prop("options")[1];
+    const metadata = wrapper.find(Pills).prop("options")[2];
     expect(shallow(metadata.render())).toMatchSnapshot();
   });
 
   it("should render custom", () => {
-    const custom = wrapper.find(Pills).prop("options")[2];
+    const custom = wrapper.find(Pills).prop("options")[3];
+    expect(shallow(custom.render())).toMatchSnapshot();
+  });
+
+  it("should render startDate", () => {
+    const custom = wrapper.find(Pills).prop("options")[0];
     expect(shallow(custom.render())).toMatchSnapshot();
   });
 });
