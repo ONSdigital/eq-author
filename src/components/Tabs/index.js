@@ -59,18 +59,6 @@ export const Tab = styled(NavLink)`
   margin: 0 0.25em 0 0;
   position: relative;
 
-  /* ${props =>
-    props.hasErrors &&
-    css`
-      background: ${colors.red};
-      border-color: ${colors.red};
-
-      .${Badge} {
-        background-color: white;
-        color: white;
-      }
-    `}; */
-
   &.${activeClassName} {
     background: ${colors.white};
     color: ${colors.secondary};
@@ -101,7 +89,7 @@ export const UnwrappedTabs = props => {
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
-        <Tab to={url} activeClassName={activeClassName} hasErrors={errors > 0}>
+        <Tab to={url} activeClassName={activeClassName}>
           <span>Design</span>
           {errors > 0 && <Badge>Errors: {errors}</Badge>}
         </Tab>

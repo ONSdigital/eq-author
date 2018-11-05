@@ -1,8 +1,22 @@
-import { FIELD_VALID, FIELD_INVALID } from "./actions";
+import {
+  FIELD_VALID,
+  FIELD_INVALID,
+  FIELDS_INVALID,
+  FIELDS_VALID
+} from "./actions";
 import { concat, without, includes } from "lodash";
 
 const initialState = {
   appValid: true
+};
+
+const appValid = (state, pageId) => {
+  console.log(state[pageId]);
+
+  if (state[pageId] === undefined) {
+    return true;
+  }
+  return state[pageId].length > 0;
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -16,6 +30,7 @@ export default (state = initialState, { type, payload }) => {
 
       return {
         ...state,
+        appValid: appValid(state, pageId),
         [pageId]: concat(state[pageId] || [], fieldId)
       };
     }
@@ -24,7 +39,32 @@ export default (state = initialState, { type, payload }) => {
 
       return {
         ...state,
+        appValid: appValid(state, pageId),
         [pageId]: without(state[pageId], fieldId)
+      };
+    }
+    case FIELDS_VALID: {
+      const { pageId, fieldIds } = payload;
+
+      return {
+        ...state,
+        appValid: appValid(state, pageId),
+        [pageId]: without(
+          state[pageId],
+          fieldIds.filter(id => !includes(state[pageId], id))
+        )
+      };
+    }
+    case FIELDS_INVALID: {
+      const { pageId, fieldIds } = payload;
+
+      return {
+        ...state,
+        appValid: appValid(state, pageId),
+        [pageId]: concat(
+          state[pageId] || [],
+          fieldIds.filter(id => !includes(state[pageId], id))
+        )
       };
     }
     default:

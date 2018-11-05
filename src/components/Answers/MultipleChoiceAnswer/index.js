@@ -16,8 +16,13 @@ import SplitButton from "components/SplitButton";
 import Dropdown from "components/SplitButton/Dropdown";
 import MenuItem from "components/SplitButton/MenuItem";
 
-import { last } from "lodash";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { last, delay } from "lodash";
 import gql from "graphql-tag";
+import { mapResultsToProps } from "containers/enhancers/withQuestionnaire";
+import { fieldsInvalid, fieldValid } from "redux/fieldValidation/actions";
+import { withRouter } from "react-router";
 
 const AnswerWrapper = styled.div`
   margin: 2em 0 0;
@@ -75,7 +80,26 @@ class MultipleChoiceAnswer extends Component {
     open: false
   };
 
+  componentDidUpdate(prevProps) {
+    delay(() => {
+      const invalidFieldsIds = prevProps.answer.options
+        .filter(o => !o.label)
+        .map(o => `option-label-${o.id}`);
+
+      if (invalidFieldsIds.length > 0) {
+        this.props.fieldsInvalid(
+          this.props.match.params.pageId,
+          invalidFieldsIds
+        );
+      }
+    }, 1000);
+  }
+
   handleOptionDelete = optionId => {
+    this.props.fieldValid(
+      this.props.match.params.pageId,
+      `option-label-${optionId}`
+    );
     this.props.onDeleteOption(optionId, this.props.answer.id);
   };
 
@@ -119,6 +143,23 @@ class MultipleChoiceAnswer extends Component {
     });
   };
 
+  handleBlur = e => {
+    console.log(e);
+
+    // delay(() => {
+    //   const invalidFieldsIds = this.props.answer.options
+    //     .filter(o => !o.label)
+    //     .map(o => `option-label-${o.id}`);
+
+    //   if (invalidFieldsIds.length > 0) {
+    //     this.props.fieldsInvalid(
+    //       this.props.match.params.pageId,
+    //       invalidFieldsIds
+    //     );
+    //   }
+    // }, 100);
+  };
+
   render() {
     const {
       answer,
@@ -139,7 +180,7 @@ class MultipleChoiceAnswer extends Component {
         labelText="Label (optional)"
         labelRequired={false}
       >
-        <AnswerWrapper>
+        <AnswerWrapper onBlur={this.handleBlur}>
           {answer.type === CHECKBOX && (
             <AnswerHelper>Select all that apply</AnswerHelper>
           )}
@@ -261,4 +302,15 @@ MultipleChoiceAnswer.fragments = {
   `
 };
 
-export default MultipleChoiceAnswer;
+const mapDispatchToProps = dispatch => ({
+  fieldsInvalid: (...params) => dispatch(fieldsInvalid(...params)),
+  fieldValid: (...params) => dispatch(fieldValid(...params))
+});
+
+export default compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(MultipleChoiceAnswer);

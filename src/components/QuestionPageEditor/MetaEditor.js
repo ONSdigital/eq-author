@@ -91,7 +91,6 @@ export class StatelessMetaEditor extends React.Component {
                 onBlur={onUpdate}
                 value={page.alias}
                 maxLength={255}
-                autoFocus={!page.alias}
               />
             </AliasField>
             <CharacterCounter value={page.alias} limit={24} />
@@ -105,6 +104,7 @@ export class StatelessMetaEditor extends React.Component {
           onUpdate={handleUpdate}
           controls={titleControls}
           size="large"
+          autoFocus
           fetchAnswers={fetchAnswers}
           metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-title"

@@ -116,7 +116,7 @@ export class UnconnectedHeader extends React.Component {
   };
 
   render() {
-    const { questionnaire } = this.props;
+    const { questionnaire, appValid } = this.props;
 
     return (
       <StyledHeader>
@@ -139,6 +139,7 @@ export class UnconnectedHeader extends React.Component {
                 variant="tertiary-light"
                 data-test="btn-preview"
                 small
+                disabled={!appValid}
               >
                 <IconText icon={previewIcon}>Preview</IconText>
               </LinkButton>
@@ -165,7 +166,8 @@ export class UnconnectedHeader extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: getUser(state)
+  user: getUser(state),
+  appValid: state.fieldValidation.appValid
 });
 
 export default connect(
