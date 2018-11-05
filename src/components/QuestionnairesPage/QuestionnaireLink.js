@@ -1,29 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { buildQuestionnairePath } from "utils/UrlUtils";
-import { colors } from "constants/theme";
+import { colors, radius } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
 
 const StyledLink = styled(NavLink)`
   text-decoration: none;
   color: ${colors.blue};
-
+  padding: 0.5em;
+  position: relative;
+  left: -0.5em;
+  &:focus {
+    border-radius: ${radius};
+    outline: none;
+    box-shadow: 0 0 0 3px ${colors.tertiary};
+  }
   &:hover {
     text-decoration: underline;
   }
-`;
 
-const DisabledLink = styled.span.attrs({ tabIndex: -1 })`
-  color: ${colors.textLight};
+  ${props =>
+    props.disabled &&
+    css`
+      text-decoration: none;
+      color: ${colors.text};
+    `};
 `;
 
 const QuestionnaireLink = ({ questionnaire, disabled, ...otherProps }) => {
-  const Component = disabled ? DisabledLink : StyledLink;
   return (
-    <Component
+    <StyledLink
       {...otherProps}
+      disabled={disabled}
       to={buildQuestionnairePath({ questionnaireId: questionnaire.id })}
     />
   );

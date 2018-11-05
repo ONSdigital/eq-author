@@ -11,6 +11,7 @@ import { getUser } from "redux/auth/reducer";
 import scrollIntoView from "utils/scrollIntoView";
 
 import Row from "./Row";
+import FadeTransition from "../../FadeTransition";
 
 const Table = styled.table`
   width: 100%;
@@ -24,6 +25,7 @@ const TH = styled.th`
   padding: 1.5em 1em;
   color: #8e8e8e;
   width: ${props => props.colWidth};
+  border-bottom: 1px solid #e2e2e2;
 `;
 
 TH.propTypes = {
@@ -60,6 +62,10 @@ export class UnconnectedQuestionnairesTable extends React.Component {
     this.props.onDuplicateQuestionnaire(questionnaire, this.props.user);
   };
 
+  handleEntered(node) {
+    node.getElementsByTagName("a")[0].focus();
+  }
+
   render() {
     const { questionnaires, onDeleteQuestionnaire } = this.props;
     if (isEmpty(questionnaires)) {
@@ -71,19 +77,27 @@ export class UnconnectedQuestionnairesTable extends React.Component {
           <tr>
             <TH colWidth="50%">Questionnaire name</TH>
             <TH colWidth="15%">Date</TH>
-            <TH colWidth="25%">Created by</TH>
-            <TH colWidth="10%" />
+            <TH colWidth="22%">Created by</TH>
+            <TH colWidth="14%" />
           </tr>
         </thead>
         <TransitionGroup component={TBody}>
-          {questionnaires.map(questionnaire => (
-            <Row
-              key={questionnaire.id}
-              questionnaire={questionnaire}
-              onDeleteQuestionnaire={onDeleteQuestionnaire}
-              onDuplicateQuestionnaire={this.handleDuplicateQuestionnaire}
-            />
-          ))}
+          {questionnaires.map(questionnaire => {
+            return (
+              <FadeTransition
+                timeout={400}
+                key={questionnaire.id.replace("dupe-", "")}
+                onEntered={this.handleEntered}
+                enter
+              >
+                <Row
+                  questionnaire={questionnaire}
+                  onDeleteQuestionnaire={onDeleteQuestionnaire}
+                  onDuplicateQuestionnaire={this.handleDuplicateQuestionnaire}
+                />
+              </FadeTransition>
+            );
+          })}
         </TransitionGroup>
       </Table>
     );
