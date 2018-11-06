@@ -33,7 +33,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     onUpdate: ({ name, value }) => {
-      return;
       div.innerHTML = value;
 
       if (onUpdate) {
@@ -48,7 +47,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     onBlur: e => {
-      return;
       if (onBlur) {
         onBlur(e);
       }

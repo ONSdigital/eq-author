@@ -18,9 +18,9 @@ import MenuItem from "components/SplitButton/MenuItem";
 
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { last, delay, xor, first } from "lodash";
+import { last, differenceWith, delay } from "lodash";
 import gql from "graphql-tag";
-import { mapResultsToProps } from "containers/enhancers/withQuestionnaire";
+
 import { fieldsInvalid, fieldValid } from "redux/fieldValidation/actions";
 import { withRouter } from "react-router";
 
@@ -81,28 +81,24 @@ class MultipleChoiceAnswer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    const newBasicOption = xor(
+    const newBasicOption = differenceWith(
       this.props.answer.options,
-      prevProps.answer.options
+      prevProps.answer.options,
+      (a, b) => a.id === b.id
     );
 
     if (!prevProps.answer.other && this.props.answer.other) {
-      console.log("has new other option");
-
+      console.log("new other");
       this.newOptions = [
         this.props.answer.other.answer,
         this.props.answer.other.option
       ];
-    } else if (newBasicOption) {
-      console.log("has new normal option");
-
-      this.newOptions = xor(
-        this.props.answer.options,
-        prevProps.answer.options
-      );
+    } else if (newBasicOption.length > 0) {
+      console.log("new basic option");
+      this.newOptions = newBasicOption;
+    } else {
+      console.log("update with no new option");
     }
-
-    console.log(this.newOptions);
   }
 
   handleOptionDelete = optionId => {
@@ -154,32 +150,39 @@ class MultipleChoiceAnswer extends Component {
   };
 
   handleBlur = e => {
-    const { answer } = this.props;
+    console.log("blur");
 
     delay(() => {
-      let allFields = answer.options;
+      const { answer } = this.props;
+
+      let allFields = [...answer.options];
 
       if (answer.other) {
-        allFields = allFields
-          .concat(answer.other.option)
-          .concat(answer.other.answer);
+        allFields = [...allFields, answer.other.option, answer.other.answer];
       }
 
       if (this.newOptions) {
-        console.log(this.newOptions);
-
-        allFields = allFields.filter(o => {
-          console.log(o);
-        });
+        allFields = differenceWith(
+          allFields,
+          this.newOptions,
+          (a, b) => a.id === b.id
+        );
       }
 
-      const invalidFieldsIds = allFields.filter(o => !o.label).map(o => {
-        const typename = (o.__typename === "Option"
-          ? "option"
-          : "answer"
-        ).toLowerCase();
-        return `${typename}-label-${o.id}`;
-      });
+      console.log("this.newOptions");
+      console.log(this.newOptions);
+
+      const invalidFieldsIds = allFields
+        .filter(o => {
+          return !o.label;
+        })
+        .map(o => {
+          const typename = (o.__typename === "Option"
+            ? "option"
+            : "answer"
+          ).toLowerCase();
+          return `${typename}-label-${o.id}`;
+        });
 
       if (invalidFieldsIds.length > 0) {
         this.props.fieldsInvalid(
@@ -187,9 +190,7 @@ class MultipleChoiceAnswer extends Component {
           invalidFieldsIds
         );
       }
-
-      // this.newOptions = null;
-    }, 200);
+    }, 500);
   };
 
   render() {
@@ -211,6 +212,7 @@ class MultipleChoiceAnswer extends Component {
         autoFocus={false}
         labelText="Label (optional)"
         labelRequired={false}
+        onBlur={e => console.log(e)}
       >
         <AnswerWrapper onBlur={this.handleBlur}>
           {answer.type === CHECKBOX && (

@@ -15,6 +15,7 @@ export const StatelessBasicAnswer = ({
   answer,
   onChange,
   onUpdate,
+  onBlur,
   children,
   labelPlaceholder,
   labelText,
@@ -24,7 +25,7 @@ export const StatelessBasicAnswer = ({
   showDescription,
   autoFocus
 }) => (
-  <div>
+  <div onBlur={onBlur}>
     <Field>
       <Label htmlFor={`answer-label-${answer.id}`}>{labelText}</Label>
       <WrappingInput
