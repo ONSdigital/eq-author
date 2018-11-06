@@ -18,7 +18,7 @@ import MenuItem from "components/SplitButton/MenuItem";
 
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { last, delay } from "lodash";
+import { last, delay, xor, first } from "lodash";
 import gql from "graphql-tag";
 import { mapResultsToProps } from "containers/enhancers/withQuestionnaire";
 import { fieldsInvalid, fieldValid } from "redux/fieldValidation/actions";
@@ -81,18 +81,28 @@ class MultipleChoiceAnswer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    delay(() => {
-      const invalidFieldsIds = prevProps.answer.options
-        .filter(o => !o.label)
-        .map(o => `option-label-${o.id}`);
+    const newBasicOption = xor(
+      this.props.answer.options,
+      prevProps.answer.options
+    );
 
-      if (invalidFieldsIds.length > 0) {
-        this.props.fieldsInvalid(
-          this.props.match.params.pageId,
-          invalidFieldsIds
-        );
-      }
-    }, 1000);
+    if (!prevProps.answer.other && this.props.answer.other) {
+      console.log("has new other option");
+
+      this.newOptions = [
+        this.props.answer.other.answer,
+        this.props.answer.other.option
+      ];
+    } else if (newBasicOption) {
+      console.log("has new normal option");
+
+      this.newOptions = xor(
+        this.props.answer.options,
+        prevProps.answer.options
+      );
+    }
+
+    console.log(this.newOptions);
   }
 
   handleOptionDelete = optionId => {
@@ -144,20 +154,42 @@ class MultipleChoiceAnswer extends Component {
   };
 
   handleBlur = e => {
-    console.log(e);
+    const { answer } = this.props;
 
-    // delay(() => {
-    //   const invalidFieldsIds = this.props.answer.options
-    //     .filter(o => !o.label)
-    //     .map(o => `option-label-${o.id}`);
+    delay(() => {
+      let allFields = answer.options;
 
-    //   if (invalidFieldsIds.length > 0) {
-    //     this.props.fieldsInvalid(
-    //       this.props.match.params.pageId,
-    //       invalidFieldsIds
-    //     );
-    //   }
-    // }, 100);
+      if (answer.other) {
+        allFields = allFields
+          .concat(answer.other.option)
+          .concat(answer.other.answer);
+      }
+
+      if (this.newOptions) {
+        console.log(this.newOptions);
+
+        allFields = allFields.filter(o => {
+          console.log(o);
+        });
+      }
+
+      const invalidFieldsIds = allFields.filter(o => !o.label).map(o => {
+        const typename = (o.__typename === "Option"
+          ? "option"
+          : "answer"
+        ).toLowerCase();
+        return `${typename}-label-${o.id}`;
+      });
+
+      if (invalidFieldsIds.length > 0) {
+        this.props.fieldsInvalid(
+          this.props.match.params.pageId,
+          invalidFieldsIds
+        );
+      }
+
+      // this.newOptions = null;
+    }, 200);
   };
 
   render() {

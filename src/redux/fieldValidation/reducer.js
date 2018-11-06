@@ -11,8 +11,6 @@ const initialState = {
 };
 
 const appValid = (state, pageId) => {
-  console.log(state[pageId]);
-
   if (state[pageId] === undefined) {
     return true;
   }
