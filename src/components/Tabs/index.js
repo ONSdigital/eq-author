@@ -116,7 +116,7 @@ UnwrappedTabs.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    errors: size(state.fieldValidation[ownProps.match.params.pageId])
+    errors: size(state.fieldValidation.errors[ownProps.match.params.pageId])
   };
 };
 

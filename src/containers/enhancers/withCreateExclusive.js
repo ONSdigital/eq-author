@@ -15,11 +15,12 @@ export const createUpdater = answerId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate }) => ({
+export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddExclusive(answerId) {
     const option = { answerId };
-
     const update = createUpdater(answerId);
+
+    ownProps.appInvalid();
 
     return mutate({
       variables: { input: option },

@@ -39,6 +39,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onUpdate({ name, value });
       }
 
+      // return;
+
       if (required) {
         const valid = div.innerText.length > 0 || false;
         const action = valid ? fieldValid : fieldInvalid;
@@ -50,6 +52,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if (onBlur) {
         onBlur(e);
       }
+
+      // return;
 
       if (required) {
         const valid = e.target.value.length > 0 || false;

@@ -2,5 +2,21 @@ fragment MinimalPage on QuestionPage {
   id
   answers {
     id
+    ... on MultipleChoiceAnswer {
+      options {
+        id
+      }
+      mutuallyExclusiveOption {
+        id
+      }
+      other {
+        option {
+          id
+        }
+        answer {
+          id
+        }
+      }
+    }
   }
 }

@@ -35,8 +35,8 @@ const configureStore = (history, client, preloadedState) =>
       applyMiddleware(
         createRouterMiddleware(history),
         thunk.withExtraArgument({ auth, client })
-      ),
-      persistState("fieldValidation")
+      )
+      // persistState("fieldValidation")
     )
   );
 

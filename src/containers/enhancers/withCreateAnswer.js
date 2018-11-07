@@ -18,7 +18,7 @@ export const createUpdater = pageId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate }) => ({
+export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddAnswer(pageId, type) {
     const answer = {
       type,
@@ -28,6 +28,8 @@ export const mapMutateToProps = ({ mutate }) => ({
       qCode: "",
       label: ""
     };
+
+    ownProps.appInvalid();
 
     const update = createUpdater(pageId);
 

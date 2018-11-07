@@ -59,7 +59,9 @@ export const AnswerDeleteButton = styled(DeleteButton)`
 `;
 
 class AnswerEditor extends React.Component {
-  handleDeleteAnswer = () => {
+  handleDeleteAnswer = e => {
+    e.preventDefault();
+    e.stopPropagation();
     this.props.onDeleteAnswer(this.props.answer.id);
   };
 

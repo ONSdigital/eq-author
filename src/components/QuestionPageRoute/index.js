@@ -16,6 +16,11 @@ import IconText from "components/IconText";
 
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
+import {
+  appInvalid,
+  fieldValid,
+  fieldsValid
+} from "redux/fieldValidation/actions";
 
 import withUpdatePage from "containers/enhancers/withUpdatePage";
 import withUpdateAnswer from "containers/enhancers/withUpdateAnswer";
@@ -214,7 +219,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
 const withQuestionPageEditing = flowRight(
   connect(
     null,
-    { raiseToast }
+    { raiseToast, appInvalid, fieldValid, fieldsValid }
   ),
   withApollo,
   withMovePage,

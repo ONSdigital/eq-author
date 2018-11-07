@@ -2,10 +2,11 @@ import {
   FIELD_VALID,
   FIELD_INVALID,
   FIELDS_INVALID,
+  FIELDS_VALID,
   APP_INVALID,
   APP_VALID
 } from "./actions";
-import { concat, without, includes, isEmpty } from "lodash";
+import { concat, without, includes, isEmpty, merge, union } from "lodash";
 
 const initialState = {
   appValid: true,
@@ -14,46 +15,67 @@ const initialState = {
 
 const appValid = state => isEmpty(state.errors);
 
-export default (state = initialState, { type, payload }) => {
+const errors = (state, action) => {
+  const { type, payload } = action;
+  const { pageId, fieldId, fieldIds } = payload;
+  const page = state[pageId];
+
   switch (type) {
     case FIELD_INVALID: {
-      const { pageId, fieldId } = payload;
-
-      if (includes(state.errors[pageId], fieldId)) {
-        return {
-          ...state,
-          appValid: appValid(state)
-        };
-      } else {
-        const newState = {
-          ...state,
-          errors: {
-            ...state.errors,
-            [pageId]: concat(state.errors[pageId] || [], fieldId)
-          }
-        };
-
-        return {
-          ...newState,
-          appValid: appValid(newState)
-        };
-      }
+      return {
+        ...state,
+        [pageId]: union(page, [fieldId])
+      };
     }
     case FIELD_VALID: {
-      const { pageId, fieldId } = payload;
+      return {
+        ...state,
+        [pageId]: without(page, fieldId)
+      };
+    }
 
-      const pageErrors = without(state.errors[pageId], fieldId);
+    case FIELDS_INVALID: {
+      return {
+        ...state,
+        [pageId]: union(page, fieldIds)
+      };
+    }
 
+    case FIELDS_VALID: {
+      return {
+        ...state,
+        [pageId]: without(page, ...fieldIds)
+      };
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default (state = initialState, action) => {
+  const { type } = action;
+
+  switch (type) {
+    case FIELD_INVALID: {
       const newState = {
         ...state,
-        errors: {
-          ...state.errors,
-          [pageId]: pageErrors
-        }
+        errors: errors(state.errors, action)
       };
 
-      if (newState.errors[pageId].length === 0) {
-        delete newState.errors[pageId];
+      return {
+        ...newState,
+        appValid: appValid(newState)
+      };
+    }
+    case FIELD_VALID: {
+      const newState = {
+        ...state,
+        errors: errors(state.errors, action)
+      };
+
+      if (newState.errors[action.payload.pageId].length === 0) {
+        delete newState.errors[action.payload.pageId];
       }
 
       return {
@@ -63,18 +85,26 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case FIELDS_INVALID: {
-      const { pageId, fieldIds } = payload;
-
       const newState = {
         ...state,
-        errors: {
-          ...state.errors,
-          [pageId]: concat(
-            state.errors[pageId] || [],
-            fieldIds.filter(id => !includes(state.errors[pageId], id))
-          )
-        }
+        errors: errors(state.errors, action)
       };
+
+      return {
+        ...newState,
+        appValid: appValid(newState)
+      };
+    }
+
+    case FIELDS_VALID: {
+      const newState = {
+        ...state,
+        errors: errors(state.errors, action)
+      };
+
+      if (newState.errors[action.payload.pageId].length === 0) {
+        delete newState.errors[action.payload.pageId];
+      }
 
       return {
         ...newState,

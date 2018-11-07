@@ -35,11 +35,13 @@ export const createUpdater = answerId => (proxy, result) => {
   });
 };
 
-export const mapMutateToProps = ({ mutate }) => ({
+export const mapMutateToProps = ({ mutate, ownProps }) => ({
   onAddOther({ id }) {
     const input = {
       parentAnswerId: id
     };
+
+    ownProps.appInvalid();
 
     const update = createUpdater(id);
 

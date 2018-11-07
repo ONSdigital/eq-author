@@ -21,7 +21,11 @@ import { connect } from "react-redux";
 import { last, differenceWith, delay } from "lodash";
 import gql from "graphql-tag";
 
-import { fieldsInvalid, fieldValid } from "redux/fieldValidation/actions";
+import {
+  fieldsInvalid,
+  fieldValid,
+  appInvalid
+} from "redux/fieldValidation/actions";
 import { withRouter } from "react-router";
 
 const AnswerWrapper = styled.div`
@@ -107,22 +111,20 @@ class MultipleChoiceAnswer extends Component {
   }
 
   handleOptionDelete = optionId => {
-    this.props.fieldValid(
-      this.props.match.params.pageId,
-      `option-label-${optionId}`
-    );
     this.props.onDeleteOption(optionId, this.props.answer.id);
   };
 
   handleAddOption = e => {
     e.preventDefault();
     e.stopPropagation();
+    this.props.appInvalid();
     return this.props.onAddOption(this.props.answer.id).then(focusOnEntity);
   };
 
   handleAddExclusive = e => {
     e.preventDefault();
     e.stopPropagation();
+    this.props.appInvalid();
     return this.props
       .onAddExclusive(this.props.answer.id)
       .then(this.handleToggleOpen(false))
@@ -131,6 +133,7 @@ class MultipleChoiceAnswer extends Component {
 
   handleAddOther = e => {
     e.preventDefault();
+    this.props.appInvalid();
     return this.props
       .onAddOther(this.props.answer)
       .then(res => {
@@ -156,12 +159,18 @@ class MultipleChoiceAnswer extends Component {
 
   handleOtherOptionBlur = e => {
     delay(() => {
+      const { answer } = this.props;
+
+      if (!answer.other) {
+        // has been deleted so do nothing
+        return false;
+      }
+
       const focusIsWithin = this.otherOptionRef.current.contains(
         document.activeElement
       );
-      if (!focusIsWithin) {
-        const { answer } = this.props;
 
+      if (!focusIsWithin) {
         const invalidFieldsIds = [answer.other.option, answer.other.answer]
           .filter(o => {
             return !o.label;
@@ -331,7 +340,8 @@ MultipleChoiceAnswer.fragments = {
 
 const mapDispatchToProps = dispatch => ({
   fieldsInvalid: (...params) => dispatch(fieldsInvalid(...params)),
-  fieldValid: (...params) => dispatch(fieldValid(...params))
+  fieldValid: (...params) => dispatch(fieldValid(...params)),
+  appInvalid: () => dispatch(appInvalid())
 });
 
 export default compose(

@@ -18,6 +18,7 @@ import { Query } from "react-apollo";
 import { connect } from "react-redux";
 
 import { raiseToast } from "redux/toast/actions";
+import { appInvalid } from "redux/fieldValidation/actions";
 import withCreatePage from "containers/enhancers/withCreatePage";
 import withCreateSection from "containers/enhancers/withCreateSection";
 
@@ -126,7 +127,7 @@ export class UnwrappedQuestionnaireDesignPage extends Component {
 const withMutations = flowRight(
   connect(
     null,
-    { raiseToast }
+    { raiseToast, appInvalid }
   ),
   withCreateSection,
   withCreatePage
