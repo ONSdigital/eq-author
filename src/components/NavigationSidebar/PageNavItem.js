@@ -65,7 +65,7 @@ UnwrappedPageNavItem.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  errors: size(state.fieldValidation[ownProps.page.id])
+  errors: size(state.fieldValidation.errors[ownProps.page.id])
 });
 
 export default compose(

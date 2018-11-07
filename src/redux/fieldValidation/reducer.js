@@ -2,69 +2,100 @@ import {
   FIELD_VALID,
   FIELD_INVALID,
   FIELDS_INVALID,
-  FIELDS_VALID
+  APP_INVALID,
+  APP_VALID
 } from "./actions";
-import { concat, without, includes } from "lodash";
+import { concat, without, includes, isEmpty } from "lodash";
 
 const initialState = {
-  appValid: true
+  appValid: true,
+  errors: {}
 };
 
-const appValid = (state, pageId) => {
-  if (state[pageId] === undefined) {
-    return true;
-  }
-  return state[pageId].length > 0;
-};
+const appValid = state => isEmpty(state.errors);
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case FIELD_INVALID: {
       const { pageId, fieldId } = payload;
 
-      if (includes(state[pageId], fieldId)) {
-        return state;
-      }
+      if (includes(state.errors[pageId], fieldId)) {
+        return {
+          ...state,
+          appValid: appValid(state)
+        };
+      } else {
+        const newState = {
+          ...state,
+          errors: {
+            ...state.errors,
+            [pageId]: concat(state.errors[pageId] || [], fieldId)
+          }
+        };
 
-      return {
-        ...state,
-        appValid: appValid(state, pageId),
-        [pageId]: concat(state[pageId] || [], fieldId)
-      };
+        return {
+          ...newState,
+          appValid: appValid(newState)
+        };
+      }
     }
     case FIELD_VALID: {
       const { pageId, fieldId } = payload;
 
-      return {
+      const pageErrors = without(state.errors[pageId], fieldId);
+
+      const newState = {
         ...state,
-        appValid: appValid(state, pageId),
-        [pageId]: without(state[pageId], fieldId)
+        errors: {
+          ...state.errors,
+          [pageId]: pageErrors
+        }
       };
-    }
-    case FIELDS_VALID: {
-      const { pageId, fieldIds } = payload;
+
+      if (newState.errors[pageId].length === 0) {
+        delete newState.errors[pageId];
+      }
 
       return {
-        ...state,
-        appValid: appValid(state, pageId),
-        [pageId]: without(
-          state[pageId],
-          fieldIds.filter(id => !includes(state[pageId], id))
-        )
+        ...newState,
+        appValid: appValid(newState)
       };
     }
+
     case FIELDS_INVALID: {
       const { pageId, fieldIds } = payload;
 
-      return {
+      const newState = {
         ...state,
-        appValid: appValid(state, pageId),
-        [pageId]: concat(
-          state[pageId] || [],
-          fieldIds.filter(id => !includes(state[pageId], id))
-        )
+        errors: {
+          ...state.errors,
+          [pageId]: concat(
+            state.errors[pageId] || [],
+            fieldIds.filter(id => !includes(state.errors[pageId], id))
+          )
+        }
+      };
+
+      return {
+        ...newState,
+        appValid: appValid(newState)
       };
     }
+
+    case APP_VALID: {
+      return {
+        ...state,
+        appValid: true
+      };
+    }
+
+    case APP_INVALID: {
+      return {
+        ...state,
+        appValid: false
+      };
+    }
+
     default:
       return state;
   }

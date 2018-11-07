@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
   } = ownProps;
 
   return {
-    valid: !includes(state.fieldValidation[pageId], fieldId)
+    valid: !includes(state.fieldValidation.errors[pageId], fieldId)
   };
 };
 

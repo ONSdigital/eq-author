@@ -80,6 +80,11 @@ class MultipleChoiceAnswer extends Component {
     open: false
   };
 
+  constructor(props) {
+    super(props);
+    this.otherOptionRef = React.createRef();
+  }
+
   componentDidUpdate(prevProps) {
     const newBasicOption = differenceWith(
       this.props.answer.options,
@@ -88,16 +93,16 @@ class MultipleChoiceAnswer extends Component {
     );
 
     if (!prevProps.answer.other && this.props.answer.other) {
-      console.log("new other");
+      // console.log("new other");
       this.newOptions = [
         this.props.answer.other.answer,
         this.props.answer.other.option
       ];
     } else if (newBasicOption.length > 0) {
-      console.log("new basic option");
+      // console.log("new basic option");
       this.newOptions = newBasicOption;
     } else {
-      console.log("update with no new option");
+      // console.log("update with no new option");
     }
   }
 
@@ -149,48 +154,34 @@ class MultipleChoiceAnswer extends Component {
     });
   };
 
-  handleBlur = e => {
-    console.log("blur");
-
+  handleOtherOptionBlur = e => {
     delay(() => {
-      const { answer } = this.props;
+      const focusIsWithin = this.otherOptionRef.current.contains(
+        document.activeElement
+      );
+      if (!focusIsWithin) {
+        const { answer } = this.props;
 
-      let allFields = [...answer.options];
+        const invalidFieldsIds = [answer.other.option, answer.other.answer]
+          .filter(o => {
+            return !o.label;
+          })
+          .map(o => {
+            const typename = (o.__typename === "Option"
+              ? "option"
+              : "answer"
+            ).toLowerCase();
+            return `${typename}-label-${o.id}`;
+          });
 
-      if (answer.other) {
-        allFields = [...allFields, answer.other.option, answer.other.answer];
+        if (invalidFieldsIds.length > 0) {
+          this.props.fieldsInvalid(
+            this.props.match.params.pageId,
+            invalidFieldsIds
+          );
+        }
       }
-
-      if (this.newOptions) {
-        allFields = differenceWith(
-          allFields,
-          this.newOptions,
-          (a, b) => a.id === b.id
-        );
-      }
-
-      console.log("this.newOptions");
-      console.log(this.newOptions);
-
-      const invalidFieldsIds = allFields
-        .filter(o => {
-          return !o.label;
-        })
-        .map(o => {
-          const typename = (o.__typename === "Option"
-            ? "option"
-            : "answer"
-          ).toLowerCase();
-          return `${typename}-label-${o.id}`;
-        });
-
-      if (invalidFieldsIds.length > 0) {
-        this.props.fieldsInvalid(
-          this.props.match.params.pageId,
-          invalidFieldsIds
-        );
-      }
-    }, 500);
+    }, 10);
   };
 
   render() {
@@ -212,9 +203,8 @@ class MultipleChoiceAnswer extends Component {
         autoFocus={false}
         labelText="Label (optional)"
         labelRequired={false}
-        onBlur={e => console.log(e)}
       >
-        <AnswerWrapper onBlur={this.handleBlur}>
+        <AnswerWrapper>
           {answer.type === CHECKBOX && (
             <AnswerHelper>Select all that apply</AnswerHelper>
           )}
@@ -236,26 +226,29 @@ class MultipleChoiceAnswer extends Component {
             ))}
             {answer.other && (
               <OptionTransition key={answer.other.option.id}>
-                <Option
-                  {...otherProps}
-                  option={answer.other.option}
-                  onDelete={this.handleDeleteOther}
-                  onUpdate={onUpdateOption}
-                  onEnterKey={this.handleAddOption}
-                  hasDeleteButton={showDeleteOption}
-                  labelPlaceholder="eg. Other"
-                >
-                  <SpecialOptionWrapper data-test="other-answer">
-                    <BasicAnswer
-                      answer={answer.other.answer}
-                      onUpdate={onUpdate}
-                      showDescription={false}
-                      labelText="Other label"
-                      labelPlaceholder="eg. Please specify"
-                      bold={false}
-                    />
-                  </SpecialOptionWrapper>
-                </Option>
+                <div ref={this.otherOptionRef}>
+                  <Option
+                    {...otherProps}
+                    onBlur={this.handleOtherOptionBlur}
+                    option={answer.other.option}
+                    onDelete={this.handleDeleteOther}
+                    onUpdate={onUpdateOption}
+                    onEnterKey={this.handleAddOption}
+                    hasDeleteButton={showDeleteOption}
+                    labelPlaceholder="eg. Other"
+                  >
+                    <SpecialOptionWrapper data-test="other-answer">
+                      <BasicAnswer
+                        answer={answer.other.answer}
+                        onUpdate={onUpdate}
+                        showDescription={false}
+                        labelText="Other label"
+                        labelPlaceholder="eg. Please specify"
+                        bold={false}
+                      />
+                    </SpecialOptionWrapper>
+                  </Option>
+                </div>
               </OptionTransition>
             )}
             {answer.mutuallyExclusiveOption && (

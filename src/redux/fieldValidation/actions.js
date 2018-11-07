@@ -1,21 +1,14 @@
 export const FIELD_VALID = "FIELD_VALID";
 export const FIELD_INVALID = "FIELD_INVALID";
-export const FIELDS_VALID = "FIELD_VALID";
 export const FIELDS_INVALID = "FIELDS_INVALID";
+export const APP_INVALID = "APP_INVALID";
+export const APP_VALID = "APP_VALID";
 
 export const fieldValid = (pageId, fieldId) => ({
   type: FIELD_VALID,
   payload: {
     pageId,
     fieldId
-  }
-});
-
-export const fieldsValid = (pageId, fieldIds) => ({
-  type: FIELDS_VALID,
-  payload: {
-    pageId,
-    fieldIds
   }
 });
 
@@ -33,4 +26,12 @@ export const fieldsInvalid = (pageId, fieldIds) => ({
     pageId,
     fieldIds
   }
+});
+
+export const appInvalid = () => ({
+  type: APP_INVALID
+});
+
+export const appValid = () => ({
+  type: APP_VALID
 });
