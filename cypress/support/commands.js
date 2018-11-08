@@ -51,12 +51,13 @@ Cypress.Commands.add("createQuestionnaire", title => {
 Cypress.Commands.add("deleteQuestionnaire", title => {
   cy.get(testId("logo")).click();
   cy.get("table").within(() => {
-    cy.contains(title)
+    cy.contains(new RegExp(`^${title}`))
       .closest("tr")
       .within(() => {
-        cy.get("button").click();
+        cy.get(testId("btn-delete-questionnaire")).click();
       });
   });
+  cy.dismissAllToast();
 });
 
 Cypress.Commands.add("visitStubbed", function(url, operations = {}) {
