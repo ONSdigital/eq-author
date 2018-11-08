@@ -55,6 +55,8 @@ export const mapMutateToProps = ({ ownProps, mutate }) => ({
     const page = { id: pageId };
     const update = createUpdater(sectionId, pageId);
 
+    ownProps.pageValid(pageId);
+
     const section = client.readFragment({
       id: `Section${sectionId}`,
       fragment

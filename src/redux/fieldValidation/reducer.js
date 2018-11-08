@@ -4,9 +4,10 @@ import {
   FIELDS_INVALID,
   FIELDS_VALID,
   APP_INVALID,
-  APP_VALID
+  APP_VALID,
+  PAGE_VALID
 } from "./actions";
-import { concat, without, includes, isEmpty, merge, union } from "lodash";
+import { without, isEmpty, union } from "lodash";
 
 const initialState = {
   appValid: true,
@@ -105,6 +106,19 @@ export default (state = initialState, action) => {
       if (newState.errors[action.payload.pageId].length === 0) {
         delete newState.errors[action.payload.pageId];
       }
+
+      return {
+        ...newState,
+        appValid: appValid(newState)
+      };
+    }
+
+    case PAGE_VALID: {
+      const newState = {
+        ...state
+      };
+
+      delete newState.errors[action.payload.pageId];
 
       return {
         ...newState,
