@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const getLength = value => (value ? value.length : 0);
 
-const CharacterCounter = ({ value, limit }) => (
-  <span>Characters remaining: {limit - getLength(value)}</span>
+const CharacterCounter = ({ value, limit, ...otherProps }) => (
+  <span {...otherProps}>{limit - getLength(value)}</span>
 );
 
 CharacterCounter.propTypes = {

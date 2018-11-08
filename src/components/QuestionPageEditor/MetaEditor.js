@@ -7,14 +7,10 @@ import { flip, partial, flowRight } from "lodash";
 
 import RichTextEditor from "components/RichTextEditor";
 import withEntityEditor from "components/withEntityEditor";
-import CharacterCounter from "components/CharacterCounter";
-import { Field, Label } from "components/Forms";
-import WrappingInput from "components/WrappingInput";
-
 import pageFragment from "graphql/fragments/page.graphql";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
-import { colors, radius } from "constants/theme";
+import { colors } from "constants/theme";
 
 const titleControls = {
   emphasis: true,
@@ -38,26 +34,6 @@ const GuidanceEditor = styled(RichTextEditor)`
   border-left: 5px solid ${colors.borders};
 `;
 
-const Padding = styled.div`
-  padding: 2em 0;
-`;
-
-const AliasField = styled(Field)`
-  margin-bottom: 0.5em;
-`;
-
-const Alias = styled.div`
-  padding: 0.5em;
-  border: 1px solid ${colors.bordersLight};
-  position: relative;
-  border-radius: ${radius};
-
-  &:focus-within {
-    border-color: ${colors.blue};
-    box-shadow: 0 0 0 1px ${colors.blue};
-  }
-`;
-
 export class StatelessMetaEditor extends React.Component {
   render() {
     const { page, onChange, onUpdate, client } = this.props;
@@ -74,26 +50,6 @@ export class StatelessMetaEditor extends React.Component {
 
     return (
       <div>
-        <Padding>
-          <Alias>
-            <AliasField>
-              <Label htmlFor="question-alias">
-                Question short code (optional)
-              </Label>
-              <WrappingInput
-                id="question-alias"
-                data-test="question-alias"
-                name="alias"
-                onChange={onChange}
-                onBlur={onUpdate}
-                value={page.alias}
-                maxLength={255}
-                autoFocus={!page.alias}
-              />
-            </AliasField>
-            <CharacterCounter value={page.alias} limit={24} />
-          </Alias>
-        </Padding>
         <RichTextEditor
           id="title"
           label="Question"

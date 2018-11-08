@@ -3,7 +3,7 @@ import { withApollo, Query } from "react-apollo";
 import gql from "graphql-tag";
 import CustomPropTypes from "custom-prop-types";
 import PropTypes from "prop-types";
-import { flowRight, isFunction, isNil } from "lodash";
+import { flowRight, isFunction, isNil, noop } from "lodash";
 import { Titled } from "react-titled";
 
 import QuestionPageEditor from "components/QuestionPageEditor";
@@ -35,6 +35,15 @@ import withCreatePage from "containers/enhancers/withCreatePage";
 import withDuplicatePage from "containers/enhancers/withDuplicatePage";
 
 import EditorLayout from "components/EditorLayout";
+import AliasEditor from "components/AliasEditor";
+
+import withEntityEditor from "components/withEntityEditor";
+import pageFragment from "graphql/fragments/page.graphql";
+
+const Alias = flowRight(
+  withApollo,
+  withEntityEditor("page", pageFragment)
+)(AliasEditor);
 
 export class UnwrappedQuestionPageRoute extends React.Component {
   static propTypes = {
@@ -122,7 +131,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
   };
 
   renderContent = () => {
-    const { loading, error, data } = this.props;
+    const { loading, error, data, onUpdatePage } = this.props;
 
     if (loading) {
       return <Loading height="38rem">Page loading…</Loading>;
@@ -141,6 +150,12 @@ export class UnwrappedQuestionPageRoute extends React.Component {
     return (
       <Titled title={this.getPageTitle(data.questionPage)}>
         <Toolbar>
+          <Alias
+            id="question-alias"
+            value={data.questionPage.alias}
+            page={data.questionPage}
+            onUpdate={onUpdatePage}
+          />
           <Buttons>
             <Button
               onClick={this.handleOpenMovePageDialog}
