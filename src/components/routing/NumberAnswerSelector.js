@@ -71,9 +71,11 @@ const NumberAnswerValueSelector = ({
         data-test="comparator-selector"
       >
         <option value="Equal">(=) Equal to</option>
-        <option value="NotEqual">(≠) Not equal to</option>
+        <option value="NotEqual">(&ne;) Not equal to</option>
         <option value="GreaterThan">(&gt;) More than</option>
         <option value="LessThan">(&lt;) Less than</option>
+        <option value="GreaterOrEqual">(&ge;) More than or equal to</option>
+        <option value="LessOrEqual">(&le;) Less than or equal to</option>
       </ComparatorSelector>
       <Value>
         <VisuallyHidden>
