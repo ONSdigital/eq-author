@@ -37,6 +37,16 @@ exports[`components/NumberAnswerSelector should render 1`] = `
     >
       (&lt;) Less than
     </option>
+    <option
+      value="GreaterOrEqual"
+    >
+      (≥) More than or equal to
+    </option>
+    <option
+      value="LessOrEqual"
+    >
+      (≤) Less than or equal to
+    </option>
   </NumberAnswerSelector__ComparatorSelector>
   <NumberAnswerSelector__Value>
     <VisuallyHidden>
