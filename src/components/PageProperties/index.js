@@ -32,7 +32,7 @@ const Properties = styled.div`
 `;
 
 const PropertyLabel = styled(Label)`
-  font-weight: normal;
+  font-weight: bold;
 `;
 
 const Button = styled.button`
@@ -45,6 +45,13 @@ const Button = styled.button`
   &:focus {
     outline: 2px solid ${colors.tertiary};
   }
+`;
+
+const PropertyDescription = styled.p`
+  font-weight: normal;
+  margin: 0 0 0.5em;
+  font-size: 0.9em;
+  color: #666;
 `;
 
 class PageProperties extends React.Component {
@@ -70,6 +77,9 @@ class PageProperties extends React.Component {
             onChange={this.handleChange}
           />
         </InlineField>
+        <PropertyDescription>
+          To provide added context to the question.
+        </PropertyDescription>
         <InlineField>
           <PropertyLabel inline htmlFor={"guidance"}>
             Definition
@@ -80,6 +90,9 @@ class PageProperties extends React.Component {
             onChange={this.handleChange}
           />
         </InlineField>
+        <PropertyDescription>
+          Only to be used to define word(s) or acronym(s) within the question.
+        </PropertyDescription>
         <InlineField>
           <PropertyLabel inline htmlFor={"include-exclude"}>
             Include and exclude
@@ -90,6 +103,10 @@ class PageProperties extends React.Component {
             onChange={this.handleChange}
           />
         </InlineField>
+        <PropertyDescription>
+          Only to be used to state what should be included or excluded from the
+          answer.
+        </PropertyDescription>
         <InlineField>
           <PropertyLabel inline htmlFor={"additional-info"}>
             Additional information
@@ -100,6 +117,9 @@ class PageProperties extends React.Component {
             onChange={this.handleChange}
           />
         </InlineField>
+        <PropertyDescription>
+          Information regarding why we are asking this question.
+        </PropertyDescription>
         <Button onClick={onHelpClick}>What are these options?</Button>
       </Properties>
     );
