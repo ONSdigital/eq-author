@@ -32,7 +32,7 @@ export default (state = initialState, { type, payload }) => {
 export const getProperties = (state, pageId) => ({
   guidance: false,
   description: false,
-  includeExclude: false,
+  guidance: false,
   additionalInfo: false,
   ...state.properties[pageId]
 });

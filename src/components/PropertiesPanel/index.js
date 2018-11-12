@@ -7,7 +7,7 @@ import { noop, filter, findIndex, flow, toUpper } from "lodash/fp";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
 import AnswerValidation from "components/Validation/AnswerValidation";
-import PageProperties from "components/PageProperties";
+import QuestionProperties from "components/QuestionProperties";
 
 import HelpModal from "components/HelpModal";
 
@@ -78,7 +78,7 @@ class PropertiesPanel extends React.Component {
           <ScrollPane>
             {page && (
               <div>
-                <PageProperties
+                <QuestionProperties
                   page={page}
                   onHelpClick={() => this.setState({ showModal: true })}
                 />

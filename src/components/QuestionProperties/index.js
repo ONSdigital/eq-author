@@ -59,7 +59,15 @@ const PropertyDescription = styled.p`
   color: #666;
 `;
 
-class PageProperties extends React.Component {
+const Property = ({ id, children, onChange, checked }) => (
+  <InlineField>
+    <PropertyLabel inline htmlFor={id}>
+      {children}
+    </PropertyLabel>
+    <ToggleSwitch id={id} name={id} onChange={onChange} checked={checked} />
+  </InlineField>
+);
+class QuestionProperties extends React.Component {
   static propTypes = {
     page: CustomPropTypes.page.isRequired,
     onSubmit: PropTypes.func
@@ -80,60 +88,51 @@ class PageProperties extends React.Component {
     return (
       <Properties>
         <PropertiesPanelTitle>Optional fields</PropertiesPanelTitle>
-        <InlineField>
-          <PropertyLabel inline htmlFor={"description"}>
-            Description
-          </PropertyLabel>
-          <ToggleSwitch
-            id={"description"}
-            name={"description"}
-            onChange={this.handleChange}
-            checked={properties.description}
-          />
-        </InlineField>
+        <Property
+          id="description"
+          checked={properties.description}
+          onChange={this.handleChange}
+        >
+          Description
+        </Property>
+
         <PropertyDescription>
           To provide added context to the question.
         </PropertyDescription>
-        <InlineField>
-          <PropertyLabel inline htmlFor={"guidance"}>
-            Definition
-          </PropertyLabel>
-          <ToggleSwitch
-            id={"guidance"}
-            name={"guidance"}
-            onChange={this.handleChange}
-            checked={properties.guidance}
-          />
-        </InlineField>
+
+        <Property
+          id="definition"
+          checked={properties.definition}
+          onChange={this.handleChange}
+        >
+          Definition
+        </Property>
+
         <PropertyDescription>
           Only to be used to define word(s) or acronym(s) within the question.
         </PropertyDescription>
-        <InlineField>
-          <PropertyLabel inline htmlFor={"includeExclude"}>
-            Include and exclude
-          </PropertyLabel>
-          <ToggleSwitch
-            id={"includeExclude"}
-            name={"includeExclude"}
-            onChange={this.handleChange}
-            checked={properties.includeExclude}
-          />
-        </InlineField>
+
+        <Property
+          id="guidance"
+          checked={properties.guidance}
+          onChange={this.handleChange}
+        >
+          Guidance
+        </Property>
+
         <PropertyDescription>
           Only to be used to state what should be included or excluded from the
           answer.
         </PropertyDescription>
-        <InlineField>
-          <PropertyLabel inline htmlFor={"additionalInfo"}>
-            Additional information
-          </PropertyLabel>
-          <ToggleSwitch
-            id={"additionalInfo"}
-            name={"additionalInfo"}
-            onChange={this.handleChange}
-            checked={properties.additionalInfo}
-          />
-        </InlineField>
+
+        <Property
+          id="additionalInfo"
+          checked={properties.additionalInfo}
+          onChange={this.handleChange}
+        >
+          Additional information
+        </Property>
+
         <PropertyDescription>
           Information regarding why we are asking this question.
         </PropertyDescription>
@@ -157,4 +156,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageProperties);
+)(QuestionProperties);
