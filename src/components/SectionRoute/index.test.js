@@ -36,6 +36,9 @@ const moveSectionMock = {
             id: "2",
             title: "foo",
             alias: "foo-alias",
+            introductionTitle: null,
+            introductionContent: null,
+            introductionEnabled: false,
             displayName: "foo",
             position: 0,
             pages: [
@@ -71,6 +74,9 @@ const moveSectionMock = {
             title: "foo",
             alias: "foo-alias",
             displayName: "foo",
+            introductionTitle: null,
+            introductionContent: null,
+            introductionEnabled: false,
             position: 1,
             pages: [
               {
@@ -156,6 +162,9 @@ describe("SectionRoute", () => {
               alias: "foo-alias",
               displayName: "foo",
               description: "bar",
+              introductionTitle: null,
+              introductionContent: null,
+              introductionEnabled: false,
               position: 0,
               questionnaire: {
                 __typename: "Questionnaire",
@@ -192,6 +201,9 @@ describe("SectionRoute", () => {
               alias: "foo-alias",
               displayName: "foo",
               description: "bar",
+              introductionTitle: null,
+              introductionContent: null,
+              introductionEnabled: false,
               position: 0,
               questionnaire: {
                 __typename: "Questionnaire",
@@ -280,7 +292,10 @@ describe("SectionRoute", () => {
           id: "1",
           title: "foo",
           alias: "foo alias",
-          description: "bar"
+          description: "bar",
+          introductionTitle: null,
+          introductionContent: null,
+          introductionEnabled: false
         }
       };
 
@@ -318,7 +333,10 @@ describe("SectionRoute", () => {
           id: "1",
           title: "foo",
           alias: "foo alias",
-          description: "bar"
+          description: "bar",
+          introductionTitle: null,
+          introductionContent: null,
+          introductionEnabled: false
         }
       };
 
@@ -356,6 +374,9 @@ describe("SectionRoute", () => {
           alias: "foo alias",
           displayName: "foo",
           description: "bar",
+          introductionTitle: null,
+          introductionContent: null,
+          introductionEnabled: false,
           position: 0,
           questionnaire: {
             id: "1",
@@ -394,6 +415,9 @@ describe("SectionRoute", () => {
           alias: "foo-alias",
           displayName: "foo",
           description: "bar",
+          introductionTitle: null,
+          introductionContent: null,
+          introductionEnabled: false,
           position: 0,
           questionnaire: {
             id: "1",
@@ -432,6 +456,9 @@ describe("SectionRoute", () => {
           alias: "foo-alias",
           displayName: "foo",
           description: "bar",
+          introductionTitle: null,
+          introductionContent: null,
+          introductionEnabled: false,
           position: 0,
           questionnaire: {
             id: "1",

@@ -16,6 +16,7 @@ import Button from "components/Button";
 import IconText from "components/IconText";
 import EditorLayout from "components/EditorLayout";
 import DuplicateButton from "components/DuplicateButton";
+import IntroEditor from "components/IntroEditor";
 
 import withDeleteSection from "containers/enhancers/withDeleteSection";
 import withUpdateSection from "containers/enhancers/withUpdateSection";
@@ -162,13 +163,25 @@ export class UnwrappedSectionRoute extends React.Component {
           onMoveSectionDialog={this.handleMoveSection}
           {...this.props}
         />
+        {data.section && (
+          <IntroEditor
+            onUpdate={this.props.onUpdateSection}
+            section={data.section}
+          />
+        )}
       </Titled>
     );
   }
 
   render() {
+    const { data = {} } = this.props;
     return (
-      <EditorLayout onAddPage={this.handleAddPage} data-test="section-route">
+      <EditorLayout
+        section={data.section}
+        onUpdate={this.props.onUpdateSection}
+        onAddPage={this.handleAddPage}
+        data-test="section-route"
+      >
         {this.renderContent()}
       </EditorLayout>
     );

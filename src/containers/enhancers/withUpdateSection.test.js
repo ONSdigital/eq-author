@@ -7,7 +7,7 @@ describe("enhancers > withUpdateSection", () => {
     let section;
 
     beforeEach(() => {
-      mutate = jest.fn();
+      mutate = jest.fn(() => Promise.resolve());
       props = mapMutateToProps({ mutate });
       section = jest.fn();
     });

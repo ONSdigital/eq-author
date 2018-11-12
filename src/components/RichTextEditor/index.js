@@ -130,6 +130,7 @@ class RichTextEditor extends React.Component {
     onUpdate: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    name: PropTypes.string,
     className: PropTypes.string,
     multiline: PropTypes.bool,
     size: PropTypes.oneOf(Object.keys(sizes)),
@@ -150,15 +151,19 @@ class RichTextEditor extends React.Component {
   constructor(props) {
     super(props);
 
-    const decorator = new CompositeDecorator([PipedValueDecorator]);
-
-    this.stripFormatting = createFormatStripper(this.props.controls);
-
-    const editorState = props.value
-      ? convertFromHTML(props.value, decorator)
-      : EditorState.createEmpty(decorator);
+    const editorState = this.configureEditorState(props.value, props.controls);
 
     this.state = { editorState };
+  }
+
+  configureEditorState(value, controls) {
+    const decorator = new CompositeDecorator([PipedValueDecorator]);
+
+    this.stripFormatting = createFormatStripper(controls);
+
+    return value
+      ? convertFromHTML(value, decorator)
+      : EditorState.createEmpty(decorator);
   }
 
   componentDidMount() {
@@ -174,6 +179,16 @@ class RichTextEditor extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.autoFocus && this.props.autoFocus) {
       this.focus();
+    }
+    /*eslint-disable react/no-did-update-set-state */
+    if (prevProps.value !== this.props.value) {
+      const editorState = this.configureEditorState(
+        this.props.value,
+        this.props.controls
+      );
+      this.setState({
+        editorState
+      });
     }
   }
 
@@ -324,7 +339,7 @@ class RichTextEditor extends React.Component {
 
   handleBlur = () => {
     this.props.onUpdate({
-      name: this.props.id,
+      name: this.props.name ? this.props.name : this.props.id,
       value: this.getHTML()
     });
 

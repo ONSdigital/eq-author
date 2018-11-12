@@ -29,7 +29,10 @@ const CustomPropTypes = {
     title: PropTypes.string,
     displayName: PropTypes.string,
     description: PropTypes.string,
-    position: PropTypes.number
+    position: PropTypes.number,
+    introductionTitle: PropTypes.string,
+    introductionContent: PropTypes.string,
+    introductionEnabled: PropTypes.bool
   }),
   page: PropTypes.shape({
     id: PropTypes.string,

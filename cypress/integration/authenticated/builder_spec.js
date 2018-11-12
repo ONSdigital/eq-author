@@ -8,7 +8,8 @@ import {
   findByLabel,
   addSection,
   addQuestionPage,
-  testId
+  testId,
+  navigateToFirstSection
 } from "../../utils";
 import { times, includes } from "lodash";
 import { Routes } from "../../../src/utils/UrlUtils";
@@ -161,9 +162,7 @@ describe("builder", () => {
       .should("match", sectionRegex)
       .then(hash => hash);
 
-    cy.get(testId("nav-section-link"))
-      .first()
-      .click();
+    navigateToFirstSection();
 
     cy.hash()
       .should("match", sectionRegex)
@@ -173,9 +172,7 @@ describe("builder", () => {
   it("Can edit section alias and title", () => {
     checkIsOnDesignPage();
 
-    cy.get(testId("nav-section-link"))
-      .first()
-      .click();
+    navigateToFirstSection();
 
     cy.get(testId("section-alias")).type("section alias");
 
@@ -187,14 +184,76 @@ describe("builder", () => {
     cy.get(testId("nav-section-link")).should("contain", "section alias");
   });
 
+  it("can add and edit a section introduction", () => {
+    checkIsOnDesignPage();
+
+    navigateToFirstSection();
+
+    cy.get(testId("btn-add-intro")).click();
+
+    typeIntoDraftEditor(
+      testId("txt-introduction-title", "testid"),
+      "Section Introduction Title"
+    );
+    typeIntoDraftEditor(
+      testId("txt-introduction-content", "testid"),
+      "Section Introduction Content"
+    );
+  });
+
+  it("can delete a section introduction", () => {
+    checkIsOnDesignPage();
+
+    navigateToFirstSection();
+
+    cy.get(testId("btn-add-intro")).click();
+
+    cy.get(testId("section-intro-canvas")).within(() => {
+      cy.get(testId("btn-delete")).click();
+    });
+    cy.get(testId("btn-add-intro"));
+  });
+
+  it("can undelete a section introduction", () => {
+    checkIsOnDesignPage();
+
+    navigateToFirstSection();
+
+    cy.get(testId("btn-add-intro")).click();
+
+    typeIntoDraftEditor(
+      testId("txt-introduction-title", "testid"),
+      "Section Introduction Title"
+    );
+    typeIntoDraftEditor(
+      testId("txt-introduction-content", "testid"),
+      "Section Introduction Content"
+    );
+
+    cy.get(testId("section-intro-canvas")).within(() => {
+      cy.get(testId("btn-delete")).click();
+    });
+    cy.get(testId("btn-add-intro"));
+    cy.get(testId("btn-undo")).click();
+
+    cy.get(testId("section-intro-canvas")).within(() => {
+      cy.get(testId("txt-introduction-title", "testid")).should(
+        "contain",
+        "Section Introduction Title"
+      );
+      cy.get(testId("txt-introduction-content", "testid")).should(
+        "contain",
+        "Section Introduction Content"
+      );
+    });
+  });
+
   it("Can delete a section", () => {
     checkIsOnDesignPage();
 
     addSection();
 
-    cy.get(testId("nav-section-link"))
-      .first()
-      .click();
+    navigateToFirstSection();
 
     let prevHash;
 
@@ -344,9 +403,7 @@ describe("builder", () => {
 
     checkIsOnDesignPage();
 
-    cy.get(testId("nav-section-link"))
-      .first()
-      .click();
+    navigateToFirstSection();
 
     cy.hash().then(hash => {
       prevHash = hash;

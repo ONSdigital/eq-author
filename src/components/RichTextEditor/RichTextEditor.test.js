@@ -53,6 +53,16 @@ describe("components/RichTextEditor", function() {
     expect(instance.unmounted).toBeTruthy();
   });
 
+  it("should update state when new props passed in", () => {
+    wrapper = shallow(<RichTextEditor {...props} value={content} />);
+
+    wrapper.setProps({ value: "Foo" });
+
+    const html = wrapper.instance().getHTML();
+
+    expect(html).toContain("Foo");
+  });
+
   it("should render existing content", () => {
     wrapper = shallow(<RichTextEditor {...props} value={content} />);
     expect(wrapper).toMatchSnapshot();
