@@ -137,6 +137,8 @@ export default class QuestionPageEditor extends React.Component {
               page={page}
               displayDescription={properties.description}
               displayGuidance={properties.guidance}
+              displayDefinition={properties.definition}
+              displayAdditionalInfo={properties.additionalInfo}
             />
             <DeleteConfirmDialog
               isOpen={showDeleteConfirmDialog}

@@ -11,6 +11,7 @@ const StyledDiv = styled.div`
 
 const StyledInput = styled(Input)`
   width: 4em;
+  padding: 0.3em;
 
   &[type="number"]::-webkit-inner-spin-button,
   &[type="number"]::-webkit-outer-spin-button {

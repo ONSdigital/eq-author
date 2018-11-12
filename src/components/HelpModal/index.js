@@ -10,7 +10,7 @@ import Anatomy from "./anatomy.svg?inline";
 import { colors } from "constants/theme";
 
 const StyledAnatomy = styled(Anatomy)`
-  width: 90%;
+  width: 80em;
   height: auto;
   margin: 1em auto;
 `;

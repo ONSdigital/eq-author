@@ -12,6 +12,11 @@ import getAnswersQuery from "graphql/getAnswers.graphql";
 
 import { TransitionGroup } from "react-transition-group";
 import AnswerTransition from "./AnswerTransition";
+import DefinitionEditor from "./DefinitionEditor";
+
+import { Field, Label } from "components/Forms";
+
+import WrappingInput from "components/WrappingInput";
 
 import { colors } from "constants/theme";
 
@@ -37,6 +42,13 @@ const GuidanceEditor = styled(RichTextEditor)`
   border-left: 5px solid ${colors.borders};
 `;
 
+const Paragraph = styled.p`
+  margin: 0 0 1em;
+  background: ${colors.lighterGrey};
+  padding: 0.5em;
+  border-left: 5px solid ${colors.lightGrey};
+`;
+
 export class StatelessMetaEditor extends React.Component {
   state = {
     displayDescription: false,
@@ -50,7 +62,9 @@ export class StatelessMetaEditor extends React.Component {
       onUpdate,
       client,
       displayDescription,
-      displayGuidance
+      displayGuidance,
+      displayDefinition,
+      displayAdditionalInfo
     } = this.props;
 
     const handleUpdate = partial(flip(onChange), onUpdate);
@@ -95,6 +109,40 @@ export class StatelessMetaEditor extends React.Component {
                   testSelector="txt-question-description"
                 />
               </div>
+            </AnswerTransition>
+          )}
+
+          {displayDefinition && (
+            <AnswerTransition key="description">
+              <DefinitionEditor label="Definition">
+                <Paragraph>
+                  Only to be used to define word(s) or acronym(s) within the
+                  question.
+                </Paragraph>
+                <Field>
+                  <Label htmlFor={"definition-label"}>Label</Label>
+                  <WrappingInput
+                    id={"definition-label"}
+                    name="label"
+                    onChange={() => {}}
+                    onBlur={() => {}}
+                    value=""
+                    bold
+                  />
+                </Field>
+
+                <RichTextEditor
+                  id="definition-content"
+                  label="Content"
+                  value=""
+                  onUpdate={handleUpdate}
+                  controls={descriptionControls}
+                  multiline
+                  fetchAnswers={fetchAnswers}
+                  metadata={page.section.questionnaire.metadata}
+                  testSelector="txt-question-description"
+                />
+              </DefinitionEditor>
             </AnswerTransition>
           )}
 
