@@ -7,7 +7,10 @@ import styled from "styled-components";
 import { Label, Field } from "components/Forms";
 import ToggleSwitch from "components/ToggleSwitch";
 import { colors } from "constants/theme";
-import TextButton from "../TextButton";
+
+import { connect } from "react-redux";
+import { enableField, disableField } from "redux/properties/actions";
+import { get } from "lodash";
 
 const InlineField = styled(Field)`
   display: flex;
@@ -48,6 +51,7 @@ const Button = styled.button`
 `;
 
 const PropertyDescription = styled.p`
+  display: none;
   font-weight: normal;
   margin: 0 0 0.5em;
   font-size: 0.9em;
@@ -60,10 +64,19 @@ class PageProperties extends React.Component {
     onSubmit: PropTypes.func
   };
 
-  handleChange = propName => ({ value }) => {};
+  handleChange = ({ name, value }) => {
+    const { enableField, disableField, page } = this.props;
+    if (value) {
+      enableField(page.id, name);
+    } else {
+      disableField(page.id, name);
+    }
+  };
 
   render() {
-    const { page, children, onHelpClick } = this.props;
+    const { page, children, onHelpClick, properties } = this.props;
+    const pageProps = properties[page.id];
+
     return (
       <Properties>
         <PropertiesPanelTitle>Optional fields</PropertiesPanelTitle>
@@ -73,8 +86,9 @@ class PageProperties extends React.Component {
           </PropertyLabel>
           <ToggleSwitch
             id={"description"}
-            name={"name"}
+            name={"description"}
             onChange={this.handleChange}
+            checked={get(pageProps, "description")}
           />
         </InlineField>
         <PropertyDescription>
@@ -86,21 +100,23 @@ class PageProperties extends React.Component {
           </PropertyLabel>
           <ToggleSwitch
             id={"guidance"}
-            name={"name"}
+            name={"guidance"}
             onChange={this.handleChange}
+            checked={get(pageProps, "guidance")}
           />
         </InlineField>
         <PropertyDescription>
           Only to be used to define word(s) or acronym(s) within the question.
         </PropertyDescription>
         <InlineField>
-          <PropertyLabel inline htmlFor={"include-exclude"}>
+          <PropertyLabel inline htmlFor={"includeExclude"}>
             Include and exclude
           </PropertyLabel>
           <ToggleSwitch
-            id={"include-exclude"}
-            name={"include-exclude"}
+            id={"includeExclude"}
+            name={"includeExclude"}
             onChange={this.handleChange}
+            checked={get(pageProps, "includeExclude")}
           />
         </InlineField>
         <PropertyDescription>
@@ -108,13 +124,14 @@ class PageProperties extends React.Component {
           answer.
         </PropertyDescription>
         <InlineField>
-          <PropertyLabel inline htmlFor={"additional-info"}>
+          <PropertyLabel inline htmlFor={"additionalInfo"}>
             Additional information
           </PropertyLabel>
           <ToggleSwitch
-            id={"additional-info"}
-            name={"additional-info"}
+            id={"additionalInfo"}
+            name={"additionalInfo"}
             onChange={this.handleChange}
+            checked={get(pageProps, "additionalInfo")}
           />
         </InlineField>
         <PropertyDescription>
@@ -126,4 +143,16 @@ class PageProperties extends React.Component {
   }
 }
 
-export default PageProperties;
+const mapStateToProps = state => ({
+  properties: state.properties
+});
+
+const mapDispatchToProps = dispatch => ({
+  enableField: (pageId, fieldId) => dispatch(enableField({ pageId, fieldId })),
+  disableField: (pageId, fieldId) => dispatch(disableField({ pageId, fieldId }))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PageProperties);

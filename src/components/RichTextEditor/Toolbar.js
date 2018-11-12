@@ -11,7 +11,6 @@ import iconList from "./icon-list.svg?inline";
 
 import PipingMenu from "./PipingMenu";
 import ToolbarButton from "./ToolbarButton";
-import FadeTransition from "../FadeTransition";
 
 export const STYLE_BLOCK = "block";
 export const STYLE_INLINE = "inline";
@@ -60,6 +59,7 @@ const Separator = styled.div`
   border-left: 1px solid ${colors.lightGrey};
   margin: 0.4em 0.7rem;
 `;
+
 const ToolbarPanel = styled.div`
   position: ${props => (props.visible ? "sticky" : "relative")};
   top: 0;
@@ -120,15 +120,13 @@ class ToolBar extends React.Component {
 
     return (
       <ToolbarPanel>
-        <TransitionGroup>
-          <ButtonGroup>
-            {styleButtons.map(this.renderButton)}
-            <Separator />
-            {formattingButtons.map(this.renderButton)}
-            <Separator />
-            <PipingMenu disabled={isPipingDisabled} onItemChosen={onPiping} />
-          </ButtonGroup>
-        </TransitionGroup>
+        <ButtonGroup>
+          {styleButtons.map(this.renderButton)}
+          <Separator />
+          {formattingButtons.map(this.renderButton)}
+          <Separator />
+          <PipingMenu disabled={isPipingDisabled} onItemChosen={onPiping} />
+        </ButtonGroup>
       </ToolbarPanel>
     );
   }
