@@ -7,6 +7,9 @@ import { noop, filter, findIndex, flow, toUpper } from "lodash/fp";
 import getIdForObject from "utils/getIdForObject";
 import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
 import AnswerValidation from "components/Validation/AnswerValidation";
+import PageProperties from "components/PageProperties";
+
+import HelpModal from "components/HelpModal";
 
 const PropertiesPane = styled.div`
   background: ${colors.white};
@@ -38,7 +41,7 @@ const PropertiesPaneBody = styled.div`
 `;
 
 const AnswerProperties = styled.div`
-  padding: 1em;
+  padding: 0.5em;
   border-top: ${props =>
     props.hasBorder ? `8px solid ${colors.lighterGrey}` : "none"};
 `;
@@ -63,12 +66,24 @@ class PropertiesPanel extends React.Component {
 
   handleSubmit = noop;
 
+  state = {
+    showModal: false
+  };
+
   render() {
     const { page } = this.props;
     return (
       <PropertiesPane>
         <PropertiesPaneBody>
           <ScrollPane>
+            {page && (
+              <div>
+                <PageProperties
+                  page={page}
+                  onHelpClick={() => this.setState({ showModal: true })}
+                />
+              </div>
+            )}
             {page &&
               page.answers.length > 0 && (
                 <div>
@@ -81,7 +96,7 @@ class PropertiesPanel extends React.Component {
                       <PropertiesPanelTitle
                         data-test={`properties-title-${index}`}
                       >
-                        {getTitle({ answer })(page.answers)}
+                        {getTitle({ answer })(page.answers)} ANSWER
                       </PropertiesPanelTitle>
                       <AnswerPropertiesContainer
                         id={getIdForObject(answer)}
@@ -95,6 +110,11 @@ class PropertiesPanel extends React.Component {
               )}
           </ScrollPane>
         </PropertiesPaneBody>
+
+        <HelpModal
+          isOpen={this.state.showModal}
+          onClose={() => this.setState({ showModal: false })}
+        />
       </PropertiesPane>
     );
   }

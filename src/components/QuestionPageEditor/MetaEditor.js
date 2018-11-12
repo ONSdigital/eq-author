@@ -35,8 +35,14 @@ const GuidanceEditor = styled(RichTextEditor)`
 `;
 
 export class StatelessMetaEditor extends React.Component {
+  state = {
+    displayDescription: false,
+    displayGuidance: false
+  };
+
   render() {
     const { page, onChange, onUpdate, client } = this.props;
+    const { displayDescription, displayGuidance } = this.state;
     const handleUpdate = partial(flip(onChange), onUpdate);
 
     const fetchAnswers = ids => {
@@ -52,7 +58,7 @@ export class StatelessMetaEditor extends React.Component {
       <div>
         <RichTextEditor
           id="title"
-          label="Question"
+          label="Title"
           value={page.title}
           onUpdate={handleUpdate}
           controls={titleControls}
@@ -62,29 +68,33 @@ export class StatelessMetaEditor extends React.Component {
           testSelector="txt-question-title"
         />
 
-        <RichTextEditor
-          id="description"
-          label="Question description (optional)…"
-          value={page.description}
-          onUpdate={handleUpdate}
-          controls={descriptionControls}
-          multiline
-          fetchAnswers={fetchAnswers}
-          metadata={page.section.questionnaire.metadata}
-          testSelector="txt-question-description"
-        />
+        {displayDescription && (
+          <RichTextEditor
+            id="description"
+            label="Description"
+            value={page.description}
+            onUpdate={handleUpdate}
+            controls={descriptionControls}
+            multiline
+            fetchAnswers={fetchAnswers}
+            metadata={page.section.questionnaire.metadata}
+            testSelector="txt-question-description"
+          />
+        )}
 
-        <GuidanceEditor
-          id="guidance"
-          label="Include and exclude guidance"
-          value={page.guidance}
-          onUpdate={handleUpdate}
-          controls={guidanceControls}
-          multiline
-          fetchAnswers={fetchAnswers}
-          metadata={page.section.questionnaire.metadata}
-          testSelector="txt-question-guidance"
-        />
+        {displayGuidance && (
+          <GuidanceEditor
+            id="guidance"
+            label="Include/exclude guidance"
+            value={page.guidance}
+            onUpdate={handleUpdate}
+            controls={guidanceControls}
+            multiline
+            fetchAnswers={fetchAnswers}
+            metadata={page.section.questionnaire.metadata}
+            testSelector="txt-question-guidance"
+          />
+        )}
       </div>
     );
   }

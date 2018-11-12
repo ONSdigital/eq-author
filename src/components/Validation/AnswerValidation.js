@@ -18,9 +18,7 @@ import { EarliestDate, LatestDate } from "./Date";
 import ValidationContext from "./ValidationContext";
 
 const Container = styled.div`
-  margin-top: 1em;
-  border-top: 1px solid ${colors.lightGrey};
-  padding: 1em 0;
+  padding: 1em 0 0;
 `;
 
 const formatDate = dateString =>

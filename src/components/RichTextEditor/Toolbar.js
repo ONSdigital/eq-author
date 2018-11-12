@@ -68,7 +68,6 @@ const ToolbarPanel = styled.div`
   width: 100%;
   border-bottom: 1px solid ${colors.bordersLight};
   height: 2rem;
-  opacity: ${props => (props.visible ? "1" : "0.6")};
   transition: opacity 100ms ease-out;
 `;
 
@@ -112,7 +111,6 @@ class ToolBar extends React.Component {
 
   render() {
     const {
-      visible,
       onPiping,
       selectionIsCollapsed,
       controls: { piping }
@@ -121,22 +119,15 @@ class ToolBar extends React.Component {
     const isPipingDisabled = !(piping && selectionIsCollapsed);
 
     return (
-      <ToolbarPanel visible={visible}>
+      <ToolbarPanel>
         <TransitionGroup>
-          {visible && (
-            <FadeTransition>
-              <ButtonGroup>
-                {styleButtons.map(this.renderButton)}
-                <Separator />
-                {formattingButtons.map(this.renderButton)}
-                <Separator />
-                <PipingMenu
-                  disabled={isPipingDisabled}
-                  onItemChosen={onPiping}
-                />
-              </ButtonGroup>
-            </FadeTransition>
-          )}
+          <ButtonGroup>
+            {styleButtons.map(this.renderButton)}
+            <Separator />
+            {formattingButtons.map(this.renderButton)}
+            <Separator />
+            <PipingMenu disabled={isPipingDisabled} onItemChosen={onPiping} />
+          </ButtonGroup>
         </TransitionGroup>
       </ToolbarPanel>
     );

@@ -43,7 +43,7 @@ const list = css`
 
 const sizes = {
   large: css`
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: 700;
     line-height: 1.3;
   `,

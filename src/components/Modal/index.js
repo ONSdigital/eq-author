@@ -48,7 +48,6 @@ const StyledModal = styled(ReactModalAdapter).attrs({
     position: absolute;
     background: ${colors.white};
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
-
     transform: scale(0.8);
     transform-origin: center center;
     transition: all 100ms ease-in 50ms;

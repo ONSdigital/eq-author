@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1138px" height="613px" viewBox="0 0 1138 613" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Builder-Questions" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Empty-table" transform="translate(-73.000000, -81.000000)">
+            <g id="Group-2" transform="translate(73.000000, 81.000000)">
+                <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="1138" height="613"></rect>
+                <g id="Group-6" transform="translate(28.000000, 58.000000)">
+                    <g id="Add-Answer-focus-Copy-2" transform="translate(187.000000, 344.000000)">
+                        <g id="Icon/Answer-#3B7A9E"></g>
+                    </g>
+                    <text id="Description" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" line-spacing="20" fill="#222222">
+                        <tspan x="0" y="81">An employee is anyone aged 16 years or over that your organisation directly pays </tspan>
+                        <tspan x="0" y="101">from its payroll(s), in return for carrying out a full-time or part-time job or being on </tspan>
+                        <tspan x="0" y="121">a training scheme.</tspan>
+                    </text>
+                    <text id="Question" font-family="Lato-Bold, Lato" font-size="20" font-weight="bold" line-spacing="28" fill="#000000">
+                        <tspan x="0" y="20">On 1 May 2016, what was the number of </tspan>
+                        <tspan x="0" y="48">employees for Bolt and Ratchet?</tspan>
+                    </text>
+                    <g id="IncludePanelList" transform="translate(0.000000, 185.000000)">
+                        <g id="Panels/PanelBackgrounds/Blue">
+                            <rect id="PanelBg" fill="#EFF0F9" x="0" y="0" width="552" height="177"></rect>
+                            <rect id="Margin" fill="#033E58" x="0" y="0" width="9" height="177"></rect>
+                        </g>
+                        <text id="•-All-employees-in-G" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" line-spacing="20" fill="#000000">
+                            <tspan x="23" y="53">	• 	All employees in Great Britain (England, Scotland and Wales), both full </tspan>
+                            <tspan x="59" y="73">and part-time, who received pay in the relevant period</tspan>
+                        </text>
+                        <text id="Include/Exclude" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" line-spacing="25" fill="#000000">
+                            <tspan x="23" y="25">Include</tspan>
+                        </text>
+                        <text id="•-Employees-working" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" line-spacing="20" fill="#000000">
+                            <tspan x="23" y="133">	•	Employees working abroad unless paid directly from this business’s </tspan>
+                            <tspan x="59" y="153">GB payroll</tspan>
+                        </text>
+                        <text id="Include/Exclude" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" line-spacing="25" fill="#000000">
+                            <tspan x="23" y="104">Exclude</tspan>
+                        </text>
+                    </g>
+                    <g id="Group-4" transform="translate(1.000000, 386.000000)">
+                        <g id="Group-3" transform="translate(0.000000, 52.000000)">
+                            <g id="LabelBg">
+                                <path d="M41.5,34.5 L41.5,0.5 L3,0.5 C1.61928813,0.5 0.5,1.61928813 0.5,3 L0.5,32 C0.5,33.3807119 1.61928813,34.5 3,34.5 L41.5,34.5 Z" id="UnitBox" stroke="#999999" fill="#EEEEEE"></path>
+                                <path d="M17.199,18.247 C17.199,18.0883325 17.2468329,17.9518339 17.3425,17.8375 C17.4381671,17.7231661 17.583999,17.666 17.78,17.666 L18.529,17.666 L18.529,16.014 C18.529,15.5753311 18.5954993,15.1588353 18.7285,14.7645 C18.8615007,14.3701647 19.0609987,14.0248348 19.327,13.7285 C19.5930013,13.4321652 19.9266647,13.1976675 20.328,13.025 C20.7293353,12.8523325 21.200664,12.766 21.742,12.766 C22.1106685,12.766 22.4431652,12.8138329 22.7395,12.9095 C23.0358348,13.0051671 23.2994988,13.1346658 23.5305,13.298 C23.7615012,13.4613341 23.9621658,13.6538322 24.1325,13.8755 C24.3028342,14.0971678 24.4509994,14.336332 24.577,14.593 L23.884,15.034 C23.7206658,15.1180004 23.5655007,15.1553334 23.4185,15.146 C23.2714993,15.1366666 23.1373339,15.0620007 23.016,14.922 C22.9273329,14.8193328 22.8398338,14.7248338 22.7535,14.6385 C22.6671662,14.5521662 22.5750005,14.4775003 22.477,14.4145 C22.3789995,14.3514997 22.2705006,14.3036668 22.1515,14.271 C22.0324994,14.2383332 21.8960008,14.222 21.742,14.222 C21.2613309,14.222 20.9020012,14.3794984 20.664,14.6945 C20.4259988,15.0095016 20.307,15.4469972 20.307,16.007 L20.307,17.666 L23.17,17.666 L23.17,18.352 C23.17,18.4640006 23.1233338,18.5666662 23.03,18.66 C22.9366662,18.7533338 22.8200007,18.8 22.68,18.8 L20.307,18.8 L20.307,20.158 C20.307,20.4660015 20.2498339,20.7401655 20.1355,20.9805 C20.0211661,21.2208345 19.866001,21.4436656 19.67,21.649 C19.8380008,21.6116665 20.0059992,21.5825001 20.174,21.5615 C20.3420008,21.5404999 20.5146658,21.53 20.692,21.53 L24.794,21.53 L24.794,22.258 C24.794,22.3420004 24.7765002,22.4283329 24.7415,22.517 C24.7064998,22.6056671 24.6563337,22.6861663 24.591,22.7585 C24.5256663,22.8308337 24.4463338,22.8891664 24.353,22.9335 C24.2596662,22.9778336 24.1570006,23 24.045,23 L17.339,23 L17.339,21.915 C17.4930008,21.8776665 17.6423326,21.825167 17.787,21.7575 C17.9316674,21.689833 18.0588328,21.6035005 18.1685,21.4985 C18.2781672,21.3934995 18.3656663,21.269834 18.431,21.1275 C18.4963337,20.985166 18.529,20.8183343 18.529,20.627 L18.529,18.8 L17.199,18.8 L17.199,18.247 Z" id="Unit" fill="#000000"></path>
+                            </g>
+                            <rect id="Box" stroke="#999999" x="0.5" y="0.5" width="245" height="34" rx="3"></rect>
+                        </g>
+                        <text id="Description" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" line-spacing="27" fill="#000000">
+                            <tspan x="0" y="34">Round to the nearest pound </tspan>
+                        </text>
+                        <text id="Label" font-family="Lato-Bold, Lato" font-size="16" font-weight="bold" fill="#000000">
+                            <tspan x="0" y="16">Total retail turnover</tspan>
+                        </text>
+                    </g>
+                    <g id="Group-5" transform="translate(1.000000, 146.000000)" fill="#4263C2">
+                        <text id="Definition-for-emplo" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" letter-spacing="0.0233333316" text-decoration="underline">
+                            <tspan x="15" y="14">Definition for employee</tspan>
+                        </text>
+                        <g id="Group" transform="translate(0.000000, 2.000000)">
+                            <polygon id="Shape" transform="translate(4.000000, 6.500000) rotate(-360.000000) translate(-4.000000, -6.500000) " points="-1.89903172e-16 1.28845148 5.35310366 6.5 1.89569113e-13 11.7115485 1.32344817 13 8 6.5 1.32344817 7.21644966e-16"></polygon>
+                        </g>
+                    </g>
+                    <g id="Group-5-Copy" transform="translate(1.000000, 496.000000)" fill="#4263C2">
+                        <text id="Why-do-we-ask-this-q" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" letter-spacing="0.0233333316" text-decoration="underline">
+                            <tspan x="15" y="14">Why do we ask this question?</tspan>
+                        </text>
+                        <g id="Group" transform="translate(0.000000, 2.000000)">
+                            <polygon id="Shape" transform="translate(4.000000, 6.500000) rotate(-360.000000) translate(-4.000000, -6.500000) " points="-1.89903172e-16 1.28845148 5.35310366 6.5 1.89569113e-13 11.7115485 1.32344817 13 8 6.5 1.32344817 7.21644966e-16"></polygon>
+                        </g>
+                    </g>
+                </g>
+                <text id="Question" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="734" y="90">Question</tspan>
+                </text>
+                <text id="Answer-label" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="737" y="460">Answer label</tspan>
+                </text>
+                <text id="Question-description" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="734" y="149">Question description</tspan>
+                </text>
+                <text id="Answer-description" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="737" y="485">Answer description</tspan>
+                </text>
+                <text id="Additional-informati" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="736" y="567">Additional information</tspan>
+                </text>
+                <text id="Question-guidance" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="734" y="358">Question guidance</tspan>
+                </text>
+                <text id="Question-definition" font-family="Lato-Bold, Lato" font-size="14" font-weight="bold" fill="#5A5A5A">
+                    <tspan x="734" y="219">Question definition</tspan>
+                </text>
+                <text id="Only-to-be-used-to-d" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal">
+                    <tspan x="734" y="241" fill="#666666">Only to be used to define word(s) or acronym(s) within the </tspan>
+                    <tspan x="734" y="258" fill="#666666">question. For multiples the call-to-action would read:</tspan>
+                    <tspan x="734" y="285" fill="#3B7A9E" text-decoration="underline">Definitions for employers and employees</tspan>
+                    <tspan x="986.371" y="285" fill="#666666"></tspan>
+                    <tspan x="734" y="312" fill="#666666">     </tspan>
+                </text>
+                <text id="To-provide-added-con" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" fill="#666666">
+                    <tspan x="734" y="171">To provide added context to the question</tspan>
+                </text>
+                <text id="To-provide-added-con" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" fill="#666666">
+                    <tspan x="737" y="507">To provide added context to the answer</tspan>
+                </text>
+                <text id="Information-regardin" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" fill="#666666">
+                    <tspan x="736" y="589">Information regarding why we are asking this question </tspan>
+                </text>
+                <text id="This-should-be-the-e" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" fill="#666666">
+                    <tspan x="734" y="112">This should be the entire question text</tspan>
+                </text>
+                <text id="Only-to-be-used-to-s" font-family="Lato-Regular, Lato" font-size="14" font-weight="normal" fill="#666666">
+                    <tspan x="734" y="380">Only to be used to state what should be included or </tspan>
+                    <tspan x="734" y="397">excluded from the answer</tspan>
+                </text>
+                <path id="Line" d="M417.972536,85 L696.5,85 L697,85 L697,86 L696.5,86 L417.972536,86 C417.723813,88.2499752 415.816277,90 413.5,90 C411.014719,90 409,87.9852814 409,85.5 C409,83.0147186 411.014719,81 413.5,81 C415.816277,81 417.723813,82.7500248 417.972536,85 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <path id="Line-Copy" d="M557.974257,144.515641 L696.501748,145.000003 L697.001745,145.001751 L696.998249,146.001745 L696.498252,145.999997 L557.97076,145.515635 C557.714172,147.764727 555.800528,149.508071 553.484266,149.499972 C550.999,149.491283 548.991338,147.469532 549.000028,144.984266 C549.008717,142.499 551.030468,140.491338 553.515734,140.500028 C555.831997,140.508126 557.733403,142.26481 557.974257,144.515641 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <path id="Line-Copy-2" d="M231.472001,212.495237 L696.499468,212 L696.999467,211.999468 L697.000532,212.999467 L696.500532,213 L231.473066,213.495237 C231.22674,215.745475 229.321068,217.497531 227.004792,217.499997 C224.519512,217.502644 222.502649,215.490072 222.500003,213.004792 C222.497356,210.519512 224.509928,208.502649 226.995208,208.500003 C229.311483,208.497536 231.220882,210.245528 231.472001,212.495237 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <path id="Line-Copy-3" d="M547.972536,353 L696.5,353 L697,353 L697,354 L696.5,354 L547.972536,354 C547.723813,356.249975 545.816277,358 543.5,358 C541.014719,358 539,355.985281 539,353.5 C539,351.014719 541.014719,349 543.5,349 C545.816277,349 547.723813,350.750025 547.972536,353 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <path id="Line-Copy-4" d="M200.972536,453.5 L696.5,453.5 L697,453.5 L697,454.5 L696.5,454.5 L200.972536,454.5 C200.723813,456.749975 198.816277,458.5 196.5,458.5 C194.014719,458.5 192,456.485281 192,454 C192,451.514719 194.014719,449.5 196.5,449.5 C198.816277,449.5 200.723813,451.250025 200.972536,453.5 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <path id="Line-Copy-5" d="M231.472536,478.5 L696.5,478.5 L697,478.5 L697,479.5 L696.5,479.5 L231.472536,479.5 C231.223813,481.749975 229.316277,483.5 227,483.5 C224.514719,483.5 222.5,481.485281 222.5,479 C222.5,476.514719 224.514719,474.5 227,474.5 C229.316277,474.5 231.223813,476.250025 231.472536,478.5 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <path id="Line-Copy-6" d="M256.972536,562.5 L697.5,562.5 L698,562.5 L698,563.5 L697.5,563.5 L256.972536,563.5 C256.723813,565.749975 254.816277,567.5 252.5,567.5 C250.014719,567.5 248,565.485281 248,563 C248,560.514719 250.014719,558.5 252.5,558.5 C254.816277,558.5 256.723813,560.250025 256.972536,562.5 Z" fill="#D0021B" fill-rule="nonzero"></path>
+                <text id="info_outline---material" font-family="material" font-size="14" font-weight="normal" fill="#999999">
+                    <tspan x="734" y="314"></tspan>
+                </text>
+                <text id="Only-one-to-be-used" font-family="Lato-Regular, Lato" font-size="12" font-weight="normal" fill="#666666">
+                    <tspan x="752" y="313">Only one to be used at a time</tspan>
+                </text>
+                <text id="THE-ANATOMY-OF-A-QUE" font-family="Lato-Bold, Lato" font-size="13" font-weight="bold" letter-spacing="0.75" fill="#666666">
+                    <tspan x="463" y="27">THE ANATOMY OF A QUESTIO</tspan>
+                    <tspan x="666.445" y="27">N</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
