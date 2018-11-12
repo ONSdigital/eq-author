@@ -28,3 +28,11 @@ export default (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export const getProperties = (state, pageId) => ({
+  guidance: false,
+  description: false,
+  includeExclude: false,
+  additionalInfo: false,
+  ...state.properties[pageId]
+});

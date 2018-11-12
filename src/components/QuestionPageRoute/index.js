@@ -16,6 +16,7 @@ import IconText from "components/IconText";
 
 import { connect } from "react-redux";
 import { raiseToast } from "redux/toast/actions";
+
 import withUpdatePage from "containers/enhancers/withUpdatePage";
 import withUpdateAnswer from "containers/enhancers/withUpdateAnswer";
 import withCreateAnswer from "containers/enhancers/withCreateAnswer";
@@ -39,6 +40,7 @@ import AliasEditor from "components/AliasEditor";
 
 import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
+import { getProperties } from "redux/properties/reducer";
 
 const Alias = flowRight(
   withApollo,
@@ -131,7 +133,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
   };
 
   renderContent = () => {
-    const { loading, error, data, onUpdatePage } = this.props;
+    const { loading, error, data, onUpdatePage, properties } = this.props;
 
     if (loading) {
       return <Loading height="38rem">Page loading…</Loading>;
@@ -193,6 +195,7 @@ export class UnwrappedQuestionPageRoute extends React.Component {
           onDeletePageConfirm={this.handleDeletePageConfirm}
           onAddPage={this.handleAddPage}
           onAddAnswer={this.handleAddAnswer}
+          properties={properties}
         />
       </Titled>
     );
@@ -210,9 +213,13 @@ export class UnwrappedQuestionPageRoute extends React.Component {
   }
 }
 
+const mapStateToProps = (state, ownProps) => ({
+  properties: getProperties(state, ownProps.match.params.pageId)
+});
+
 const withQuestionPageEditing = flowRight(
   connect(
-    null,
+    mapStateToProps,
     { raiseToast }
   ),
   withApollo,

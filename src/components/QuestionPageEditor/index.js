@@ -122,7 +122,8 @@ export default class QuestionPageEditor extends React.Component {
       onCloseDeleteConfirmDialog,
       onDeletePageConfirm,
       match,
-      page
+      page,
+      properties
     } = this.props;
 
     const id = getIdForObject(page);
@@ -131,7 +132,12 @@ export default class QuestionPageEditor extends React.Component {
       <div data-test="question-page-editor">
         <div>
           <QuestionSegment id={id}>
-            <MetaEditor onUpdate={onUpdatePage} page={page} />
+            <MetaEditor
+              onUpdate={onUpdatePage}
+              page={page}
+              displayDescription={properties.description}
+              displayGuidance={properties.guidance}
+            />
             <DeleteConfirmDialog
               isOpen={showDeleteConfirmDialog}
               onClose={onCloseDeleteConfirmDialog}

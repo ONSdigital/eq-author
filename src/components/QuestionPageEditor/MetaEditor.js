@@ -10,6 +10,9 @@ import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
 import getAnswersQuery from "graphql/getAnswers.graphql";
 
+import { TransitionGroup } from "react-transition-group";
+import AnswerTransition from "./AnswerTransition";
+
 import { colors } from "constants/theme";
 
 const titleControls = {
@@ -41,8 +44,15 @@ export class StatelessMetaEditor extends React.Component {
   };
 
   render() {
-    const { page, onChange, onUpdate, client } = this.props;
-    const { displayDescription, displayGuidance } = this.state;
+    const {
+      page,
+      onChange,
+      onUpdate,
+      client,
+      displayDescription,
+      displayGuidance
+    } = this.props;
+
     const handleUpdate = partial(flip(onChange), onUpdate);
 
     const fetchAnswers = ids => {
@@ -68,33 +78,43 @@ export class StatelessMetaEditor extends React.Component {
           testSelector="txt-question-title"
         />
 
-        {displayDescription && (
-          <RichTextEditor
-            id="description"
-            label="Description"
-            value={page.description}
-            onUpdate={handleUpdate}
-            controls={descriptionControls}
-            multiline
-            fetchAnswers={fetchAnswers}
-            metadata={page.section.questionnaire.metadata}
-            testSelector="txt-question-description"
-          />
-        )}
+        <TransitionGroup>
+          {displayDescription && (
+            <AnswerTransition key="description">
+              <div>
+                <RichTextEditor
+                  id="description"
+                  label="Description"
+                  value={page.description}
+                  onUpdate={handleUpdate}
+                  controls={descriptionControls}
+                  multiline
+                  fetchAnswers={fetchAnswers}
+                  metadata={page.section.questionnaire.metadata}
+                  testSelector="txt-question-description"
+                />
+              </div>
+            </AnswerTransition>
+          )}
 
-        {displayGuidance && (
-          <GuidanceEditor
-            id="guidance"
-            label="Include/exclude guidance"
-            value={page.guidance}
-            onUpdate={handleUpdate}
-            controls={guidanceControls}
-            multiline
-            fetchAnswers={fetchAnswers}
-            metadata={page.section.questionnaire.metadata}
-            testSelector="txt-question-guidance"
-          />
-        )}
+          {displayGuidance && (
+            <AnswerTransition key="guidance">
+              <div>
+                <GuidanceEditor
+                  id="guidance"
+                  label="Include/exclude guidance"
+                  value={page.guidance}
+                  onUpdate={handleUpdate}
+                  controls={guidanceControls}
+                  multiline
+                  fetchAnswers={fetchAnswers}
+                  metadata={page.section.questionnaire.metadata}
+                  testSelector="txt-question-guidance"
+                />
+              </div>
+            </AnswerTransition>
+          )}
+        </TransitionGroup>
       </div>
     );
   }

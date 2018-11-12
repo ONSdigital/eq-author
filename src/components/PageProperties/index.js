@@ -11,6 +11,7 @@ import { colors } from "constants/theme";
 import { connect } from "react-redux";
 import { enableField, disableField } from "redux/properties/actions";
 import { get } from "lodash";
+import { getProperties } from "redux/properties/reducer";
 
 const InlineField = styled(Field)`
   display: flex;
@@ -75,7 +76,6 @@ class PageProperties extends React.Component {
 
   render() {
     const { page, children, onHelpClick, properties } = this.props;
-    const pageProps = properties[page.id];
 
     return (
       <Properties>
@@ -88,7 +88,7 @@ class PageProperties extends React.Component {
             id={"description"}
             name={"description"}
             onChange={this.handleChange}
-            checked={get(pageProps, "description")}
+            checked={properties.description}
           />
         </InlineField>
         <PropertyDescription>
@@ -102,7 +102,7 @@ class PageProperties extends React.Component {
             id={"guidance"}
             name={"guidance"}
             onChange={this.handleChange}
-            checked={get(pageProps, "guidance")}
+            checked={properties.guidance}
           />
         </InlineField>
         <PropertyDescription>
@@ -116,7 +116,7 @@ class PageProperties extends React.Component {
             id={"includeExclude"}
             name={"includeExclude"}
             onChange={this.handleChange}
-            checked={get(pageProps, "includeExclude")}
+            checked={properties.includeExclude}
           />
         </InlineField>
         <PropertyDescription>
@@ -131,7 +131,7 @@ class PageProperties extends React.Component {
             id={"additionalInfo"}
             name={"additionalInfo"}
             onChange={this.handleChange}
-            checked={get(pageProps, "additionalInfo")}
+            checked={properties.additionalInfo}
           />
         </InlineField>
         <PropertyDescription>
@@ -143,9 +143,11 @@ class PageProperties extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  properties: state.properties
-});
+const mapStateToProps = (state, ownProps) => {
+  return {
+    properties: getProperties(state, ownProps.page.id)
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   enableField: (pageId, fieldId) => dispatch(enableField({ pageId, fieldId })),
