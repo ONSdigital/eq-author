@@ -68,7 +68,7 @@ export class StatelessMetaEditor extends React.Component {
       <div>
         <RichTextEditor
           id="title"
-          label="Title"
+          label="Question"
           value={page.title}
           onUpdate={handleUpdate}
           controls={titleControls}
@@ -76,6 +76,7 @@ export class StatelessMetaEditor extends React.Component {
           fetchAnswers={fetchAnswers}
           metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-title"
+          placeholder="What is the question?"
         />
 
         <TransitionGroup>
