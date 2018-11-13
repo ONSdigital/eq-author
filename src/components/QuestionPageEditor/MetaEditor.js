@@ -90,6 +90,7 @@ export class StatelessMetaEditor extends React.Component {
           onUpdate={handleUpdate}
           controls={titleControls}
           size="large"
+          placeholder="What is the title?"
           fetchAnswers={fetchAnswers}
           metadata={page.section.questionnaire.metadata}
           testSelector="txt-question-title"

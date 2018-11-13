@@ -20,7 +20,7 @@ import { signOutUser } from "redux/auth/actions";
 import logo from "./logo.svg";
 
 import shareIcon from "./icon-share.svg?inline";
-import previewIcon from "./icon-preview.svg?inline";
+import launchIcon from "./icon-launch.svg?inline";
 
 import IconText from "components/IconText";
 import Truncated from "../Truncated";
@@ -140,7 +140,7 @@ export class UnconnectedHeader extends React.Component {
                 data-test="btn-preview"
                 small
               >
-                <IconText icon={previewIcon}>Preview</IconText>
+                <IconText icon={launchIcon}>Launch</IconText>
               </LinkButton>
               <ShareButton
                 variant="tertiary-light"
