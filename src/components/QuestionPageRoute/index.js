@@ -45,7 +45,9 @@ import { getProperties } from "redux/properties/reducer";
 const Alias = flowRight(
   withApollo,
   withEntityEditor("page", pageFragment)
-)(AliasEditor);
+)(({ page, ...otherProps }) => (
+  <AliasEditor value={page.alias} {...otherProps} />
+));
 
 export class UnwrappedQuestionPageRoute extends React.Component {
   static propTypes = {
@@ -154,7 +156,6 @@ export class UnwrappedQuestionPageRoute extends React.Component {
         <Toolbar>
           <Alias
             id="question-alias"
-            value={data.questionPage.alias}
             page={data.questionPage}
             onUpdate={onUpdatePage}
           />

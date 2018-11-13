@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-textarea</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon-textarea" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(2.500000, 4.000000)" stroke="#666666" stroke-width="0.6">
+            <path d="M1.43060743,0.847420258 C1.04400811,0.847420258 0.730607433,1.16082093 0.730607433,1.54742026 L0.730607433,6.67212415 C0.730607433,7.05872347 1.04400811,7.37212415 1.43060743,7.37212415 L9.31281254,7.37212415 C9.69941187,7.37212415 10.0128125,7.05872347 10.0128125,6.67212415 L10.0128125,1.54742026 C10.0128125,1.16082093 9.69941187,0.847420258 9.31281254,0.847420258 L1.43060743,0.847420258 Z" id="Rectangle-2"></path>
+            <path d="M2.56085205,3.94544382 L5.10457135,3.94544382" id="Line-2" stroke-linecap="square"></path>
+            <path d="M2.56085205,2.66452083 L8,2.66452083" id="Line-2" stroke-linecap="square"></path>
+            <path d="M2.56085205,5.21994952 L8,5.21994952" id="Line-2-Copy" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

@@ -25,6 +25,28 @@ import Tooltip from "components/Tooltip";
 import BasicAnswer from "components/Answers/BasicAnswer";
 import gql from "graphql-tag";
 
+import IconText from "../IconText";
+
+import IconCheckbox from "./icon-checkbox.svg?inline";
+import IconRadio from "./icon-radio.svg?inline";
+import IconCurrency from "./icon-currency.svg?inline";
+import IconDate from "./icon-date.svg?inline";
+import IconDateRange from "./icon-daterange.svg?inline";
+import IconTextfield from "./icon-text.svg?inline";
+import IconTextArea from "./icon-textarea.svg?inline";
+import IconNumeric from "./icon-numeric.svg?inline";
+
+const icons = {
+  [CHECKBOX]: IconCheckbox,
+  [RADIO]: IconRadio,
+  [NUMBER]: IconNumeric,
+  [CURRENCY]: IconCurrency,
+  [DATE]: IconDate,
+  [DATE_RANGE]: IconDateRange,
+  [TEXTAREA]: IconTextArea,
+  [TEXTFIELD]: IconTextfield
+};
+
 const Answer = styled.div`
   border: 1px solid ${colors.bordersLight};
   position: relative;
@@ -37,15 +59,26 @@ const Answer = styled.div`
 `;
 
 const AnswerType = styled.div`
+  color: ${colors.darkGrey};
   background: ${colors.lightMediumGrey};
   border-bottom: 1px solid ${colors.bordersLight};
   text-align: center;
-  padding: 0.5em 1em;
+  padding: 0 1em;
   font-size: 0.8em;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-weight: bold;
   border-radius: ${radius} ${radius} 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    margin-left: -32px;
+  }
 `;
 
 const Padding = styled.div`
@@ -56,6 +89,12 @@ export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
   right: 0.2em;
   top: 1em;
+`;
+
+const AnswerTypeText = styled.span`
+  vertical-align: middle;
+  line-height: 1.3;
+  margin-left: 0.1em;
 `;
 
 class AnswerEditor extends React.Component {
@@ -104,9 +143,13 @@ class AnswerEditor extends React.Component {
   }
 
   render() {
+    const Icon = icons[this.props.answer.type];
     return (
       <Answer>
-        <AnswerType>{this.props.answer.type}</AnswerType>
+        <AnswerType>
+          <Icon />
+          <AnswerTypeText>{this.props.answer.type} ANSWER</AnswerTypeText>
+        </AnswerType>
         <Padding>{this.renderAnswer(this.props.answer)}</Padding>
         <Tooltip
           content="Delete answer"

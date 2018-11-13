@@ -20,6 +20,7 @@ const Label = styled.div`
 const Definition = styled.div`
   border: 1px solid ${colors.bordersLight};
   position: relative;
+  margin-bottom: 2em;
   border-radius: ${radius};
 
   &:focus-within {
@@ -29,15 +30,9 @@ const Definition = styled.div`
 `;
 
 const DefinitionLabel = styled.div`
-  background: ${colors.lightMediumGrey};
-  border-bottom: 1px solid ${colors.bordersLight};
-  text-align: center;
-  padding: 0.5em 1em;
-  font-size: 0.8em;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: ${radius} ${radius} 0 0;
+  color: ${colors.darkGrey};
+  font-weight: bold;
+  margin-bottom: 0.5em;
 `;
 
 const Padding = styled.div`
@@ -45,10 +40,12 @@ const Padding = styled.div`
 `;
 
 const DefinitionEditor = ({ children, label, className }) => (
-  <Definition className={className}>
+  <div className={className}>
     <DefinitionLabel>{label}</DefinitionLabel>
-    <Padding>{children}</Padding>
-  </Definition>
+    <Definition>
+      <Padding>{children}</Padding>
+    </Definition>
+  </div>
 );
 
 export default DefinitionEditor;

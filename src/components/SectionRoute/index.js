@@ -37,7 +37,9 @@ import pageFragment from "graphql/fragments/page.graphql";
 const Alias = flowRight(
   withApollo,
   withEntityEditor("page", pageFragment)
-)(AliasEditor);
+)(({ page, ...otherProps }) => (
+  <AliasEditor value={page.alias} {...otherProps} />
+));
 
 export class UnwrappedSectionRoute extends React.Component {
   static propTypes = {

@@ -31,7 +31,7 @@ const PropertiesPanelTitle = styled.h2`
 `;
 
 const Properties = styled.div`
-  padding: 0.5em;
+  padding: 0.5em 1em;
   border-bottom: 8px solid ${colors.lighterGrey};
 `;
 
@@ -42,7 +42,7 @@ const PropertyLabel = styled(Label)`
 const Button = styled.button`
   margin: 0.5em 0;
   padding: 0;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: bold;
   color: ${colors.primary};
   border: none;
@@ -117,7 +117,7 @@ class QuestionProperties extends React.Component {
           checked={properties.guidance}
           onChange={this.handleChange}
         >
-          Guidance
+          Include & exclude
         </Property>
 
         <PropertyDescription>
@@ -136,7 +136,7 @@ class QuestionProperties extends React.Component {
         <PropertyDescription>
           Information regarding why we are asking this question.
         </PropertyDescription>
-        <Button onClick={onHelpClick}>What are these options?</Button>
+        <Button onClick={onHelpClick}>More information</Button>
       </Properties>
     );
   }

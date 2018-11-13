@@ -15,7 +15,6 @@ import AnswerTransition from "./AnswerTransition";
 import DefinitionEditor from "./DefinitionEditor";
 
 import { Field, Label } from "components/Forms";
-
 import WrappingInput from "components/WrappingInput";
 
 import { colors } from "constants/theme";
@@ -55,6 +54,10 @@ export class StatelessMetaEditor extends React.Component {
     displayGuidance: false
   };
 
+  handleTransitionEnd = node => {
+    node.querySelector("label").focus();
+  };
+
   render() {
     const {
       page,
@@ -63,8 +66,7 @@ export class StatelessMetaEditor extends React.Component {
       client,
       displayDescription,
       displayGuidance,
-      displayDefinition,
-      displayAdditionalInfo
+      displayDefinition
     } = this.props;
 
     const handleUpdate = partial(flip(onChange), onUpdate);
@@ -81,6 +83,7 @@ export class StatelessMetaEditor extends React.Component {
     return (
       <div>
         <RichTextEditor
+          autoFocus
           id="title"
           label="Question"
           value={page.title}
@@ -95,7 +98,10 @@ export class StatelessMetaEditor extends React.Component {
 
         <TransitionGroup>
           {displayDescription && (
-            <AnswerTransition key="description">
+            <AnswerTransition
+              key="description"
+              onEntered={this.handleTransitionEnd}
+            >
               <div>
                 <RichTextEditor
                   id="description"
@@ -113,14 +119,17 @@ export class StatelessMetaEditor extends React.Component {
           )}
 
           {displayDefinition && (
-            <AnswerTransition key="description">
+            <AnswerTransition
+              key="definition"
+              onEntered={this.handleTransitionEnd}
+            >
               <DefinitionEditor label="Definition">
                 <Paragraph>
                   Only to be used to define word(s) or acronym(s) within the
                   question.
                 </Paragraph>
                 <Field>
-                  <Label htmlFor={"definition-label"}>Label</Label>
+                  <Label htmlFor="definition-label">Label</Label>
                   <WrappingInput
                     id={"definition-label"}
                     name="label"

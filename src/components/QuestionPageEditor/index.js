@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { isEmpty } from "lodash";
 
 import AnswerEditor from "components/AnswerEditor";
 import MetaEditor from "./MetaEditor";
@@ -7,7 +8,7 @@ import MetaEditor from "./MetaEditor";
 import AnswerTransition from "./AnswerTransition";
 
 import AnswerTypeSelector from "components/AnswerTypeSelector";
-
+import getAnswersQuery from "graphql/getAnswers.graphql";
 import { TransitionGroup } from "react-transition-group";
 import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
@@ -19,6 +20,11 @@ import DeleteConfirmDialog from "components/DeleteConfirmDialog";
 import MovePageModal from "components/MovePageModal";
 import MovePageQuery from "components/MovePageModal/MovePageQuery";
 import gql from "graphql-tag";
+import DefinitionEditor from "./DefinitionEditor";
+
+import { Field, Label } from "components/Forms";
+import WrappingInput from "components/WrappingInput";
+import RichTextEditor from "../RichTextEditor";
 
 const AddAnswerSegment = styled.div`
   padding: 1em 2em 2em;
@@ -52,6 +58,10 @@ export default class QuestionPageEditor extends React.Component {
     onCloseMovePageDialog: PropTypes.func.isRequired,
     match: CustomPropTypes.match,
     page: CustomPropTypes.page.isRequired
+  };
+
+  state = {
+    focusOnAdditionalInfo: false
   };
 
   handleDeleteAnswer = answerId => {
@@ -123,10 +133,20 @@ export default class QuestionPageEditor extends React.Component {
       onDeletePageConfirm,
       match,
       page,
+      client,
       properties
     } = this.props;
 
     const id = getIdForObject(page);
+
+    const fetchAnswers = ids => {
+      return client
+        .query({
+          query: getAnswersQuery,
+          variables: { ids }
+        })
+        .then(result => result.data.answers);
+    };
 
     return (
       <div data-test="question-page-editor">
@@ -138,7 +158,6 @@ export default class QuestionPageEditor extends React.Component {
               displayDescription={properties.description}
               displayGuidance={properties.guidance}
               displayDefinition={properties.definition}
-              displayAdditionalInfo={properties.additionalInfo}
             />
             <DeleteConfirmDialog
               isOpen={showDeleteConfirmDialog}
@@ -164,6 +183,49 @@ export default class QuestionPageEditor extends React.Component {
             onSelect={onAddAnswer}
             data-test="add-answer"
           />
+        </AddAnswerSegment>
+
+        <AddAnswerSegment>
+          <TransitionGroup>
+            {properties.additionalInfo && (
+              <AnswerTransition
+                key="additional-info"
+                onEntered={node => {
+                  node.querySelector("#definition-label").focus();
+                }}
+              >
+                <DefinitionEditor label="Additional information">
+                  <Field>
+                    <Label htmlFor={"definition-label"}>Label</Label>
+                    <WrappingInput
+                      id="definition-label"
+                      name="label"
+                      onChange={() => {}}
+                      onBlur={() => {}}
+                      value=""
+                      bold
+                      data-focusable
+                    />
+                  </Field>
+                  <RichTextEditor
+                    id="definition-content"
+                    label="Content"
+                    value=""
+                    onUpdate={() => {}}
+                    controls={{
+                      bold: true,
+                      emphasis: true,
+                      piping: true
+                    }}
+                    multiline
+                    fetchAnswers={fetchAnswers}
+                    metadata={page.section.questionnaire.metadata}
+                    testSelector="txt-question-description"
+                  />
+                </DefinitionEditor>
+              </AnswerTransition>
+            )}
+          </TransitionGroup>
         </AddAnswerSegment>
       </div>
     );
