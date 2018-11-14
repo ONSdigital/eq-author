@@ -10,6 +10,9 @@ import saving from "redux/saving/reducer";
 import tabs from "redux/tabs/reducer";
 import authReducer from "redux/auth/reducer";
 import properties from "redux/properties/reducer";
+import page from "redux/page/reducer";
+
+import persistState from "redux-localstorage";
 
 let auth;
 
@@ -26,6 +29,7 @@ const configureStore = (history, client, preloadedState) =>
       saving,
       tabs,
       toasts,
+      page,
       auth: authReducer,
       properties
     }),
@@ -34,7 +38,9 @@ const configureStore = (history, client, preloadedState) =>
       applyMiddleware(
         createRouterMiddleware(history),
         thunk.withExtraArgument({ auth, client })
-      )
+      ),
+      persistState(["page", "properties"])
+      // persistState(["properties"])
     )
   );
 

@@ -25,9 +25,10 @@ import DefinitionEditor from "./DefinitionEditor";
 import { Field, Label } from "components/Forms";
 import WrappingInput from "components/WrappingInput";
 import RichTextEditor from "../RichTextEditor";
+import withState from "containers/enhancers/withState";
 
 const AddAnswerSegment = styled.div`
-  padding: 1em 2em 2em;
+  padding: 1em 2em 1em;
 `;
 
 const QuestionSegment = styled.div`
@@ -38,6 +39,7 @@ const AnswerSegment = styled.div`
   padding: 1em 2em;
 `;
 
+const InfoLabel = withState()(WrappingInput);
 export default class QuestionPageEditor extends React.Component {
   static propTypes = {
     onUpdateAnswer: PropTypes.func.isRequired,
@@ -134,7 +136,8 @@ export default class QuestionPageEditor extends React.Component {
       match,
       page,
       client,
-      properties
+      properties,
+      updateAdditionalInfo
     } = this.props;
 
     const id = getIdForObject(page);
@@ -191,27 +194,27 @@ export default class QuestionPageEditor extends React.Component {
               <AnswerTransition
                 key="additional-info"
                 onEntered={node => {
-                  node.querySelector("#definition-label").focus();
+                  node.querySelector("#additional-info-label").focus();
                 }}
               >
                 <DefinitionEditor label="Additional information">
                   <Field>
-                    <Label htmlFor={"definition-label"}>Label</Label>
-                    <WrappingInput
-                      id="definition-label"
-                      name="label"
-                      onChange={() => {}}
-                      onBlur={() => {}}
-                      value=""
+                    <Label htmlFor="additional-info-label">Label</Label>
+                    <InfoLabel
+                      id="additional-info-label"
+                      name="additional-info-label"
+                      onUpdate={updateAdditionalInfo}
+                      value={page.additionalInfo.label}
                       bold
                       data-focusable
                     />
                   </Field>
                   <RichTextEditor
-                    id="definition-content"
+                    name="additional-info-content"
+                    id="additional-info-content"
                     label="Content"
-                    value=""
-                    onUpdate={() => {}}
+                    value={page.additionalInfo.content}
+                    onUpdate={updateAdditionalInfo}
                     controls={{
                       bold: true,
                       emphasis: true,

@@ -94,13 +94,14 @@ class ToolBar extends React.Component {
 
   renderButton = button => {
     const { title, icon: Icon, id } = button;
-    const { isActiveControl, onToggle, controls } = this.props;
+    const { isActiveControl, onToggle, controls, visible } = this.props;
 
     return (
       <ToolbarButton
         key={title}
         title={title}
         disabled={!controls[id]}
+        canFocus={visible}
         active={isActiveControl(button)}
         onClick={() => onToggle(button)}
       >
@@ -111,6 +112,7 @@ class ToolBar extends React.Component {
 
   render() {
     const {
+      visible,
       onPiping,
       selectionIsCollapsed,
       controls: { piping }
@@ -119,13 +121,17 @@ class ToolBar extends React.Component {
     const isPipingDisabled = !(piping && selectionIsCollapsed);
 
     return (
-      <ToolbarPanel>
+      <ToolbarPanel visible={visible}>
         <ButtonGroup>
           {styleButtons.map(this.renderButton)}
           <Separator />
           {formattingButtons.map(this.renderButton)}
           <Separator />
-          <PipingMenu disabled={isPipingDisabled} onItemChosen={onPiping} />
+          <PipingMenu
+            disabled={isPipingDisabled}
+            onItemChosen={onPiping}
+            canFocus={visible}
+          />
         </ButtonGroup>
       </ToolbarPanel>
     );

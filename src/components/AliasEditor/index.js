@@ -24,7 +24,7 @@ const CharCount = styled(CharacterCounter)`
   height: 1em;
   line-height: 1em;
   text-align: right;
-  color: ${colors.grey};
+  color: ${props => (props.error ? colors.red : colors.grey)};
 `;
 
 const AliasEditor = ({ value, onChange, onUpdate, id, ...otherProps }) => {
@@ -41,7 +41,11 @@ const AliasEditor = ({ value, onChange, onUpdate, id, ...otherProps }) => {
           maxLength={255}
           placeholder="Shortcode"
         />
-        <CharCount value={value} limit={24} />
+        <CharCount
+          value={value}
+          limit={24}
+          error={value && value.length > 24}
+        />
       </AliasField>
     </Alias>
   );

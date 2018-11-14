@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import CustomPropTypes from "custom-prop-types";
 import styled from "styled-components";
 import { flip, partial, flowRight } from "lodash";
-
+import { connect } from "react-redux";
 import RichTextEditor from "components/RichTextEditor";
 import withEntityEditor from "components/withEntityEditor";
 import pageFragment from "graphql/fragments/page.graphql";
@@ -18,6 +18,8 @@ import { Field, Label } from "components/Forms";
 import WrappingInput from "components/WrappingInput";
 
 import { colors } from "constants/theme";
+import { updateDefinition } from "redux/page/actions";
+import withState from "containers/enhancers/withState";
 
 const titleControls = {
   emphasis: true,
@@ -48,6 +50,8 @@ const Paragraph = styled.p`
   border-left: 5px solid ${colors.lightGrey};
 `;
 
+const DefinitionLabel = withState()(WrappingInput);
+
 export class StatelessMetaEditor extends React.Component {
   state = {
     displayDescription: false,
@@ -66,7 +70,8 @@ export class StatelessMetaEditor extends React.Component {
       client,
       displayDescription,
       displayGuidance,
-      displayDefinition
+      displayDefinition,
+      updateDefinition
     } = this.props;
 
     const handleUpdate = partial(flip(onChange), onUpdate);
@@ -129,22 +134,22 @@ export class StatelessMetaEditor extends React.Component {
                   question.
                 </Paragraph>
                 <Field>
-                  <Label htmlFor="definition-label">Label</Label>
-                  <WrappingInput
-                    id={"definition-label"}
+                  <Label htmlFor="label">Label</Label>
+
+                  <DefinitionLabel
+                    id="label"
                     name="label"
-                    onChange={() => {}}
-                    onBlur={() => {}}
-                    value=""
+                    onUpdate={updateDefinition}
+                    value={page.definition.label}
                     bold
                   />
                 </Field>
 
                 <RichTextEditor
-                  id="definition-content"
+                  id="content"
                   label="Content"
-                  value=""
-                  onUpdate={handleUpdate}
+                  value={page.definition.content}
+                  onUpdate={updateDefinition}
                   controls={descriptionControls}
                   multiline
                   fetchAnswers={fetchAnswers}
@@ -189,7 +194,16 @@ StatelessMetaEditor.fragments = {
   Page: pageFragment
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  updateDefinition: ({ name, value }) =>
+    dispatch(updateDefinition({ id: ownProps.page.id, name, value }))
+});
+
 export default flowRight(
+  connect(
+    null,
+    mapDispatchToProps
+  ),
   withApollo,
   withEntityEditor("page", pageFragment)
 )(StatelessMetaEditor);
