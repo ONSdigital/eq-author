@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Input = styled.input`
+const Input = styled.input.attrs({ disabled: true })`
   padding: 0.6em;
   display: block;
   color: inherit;

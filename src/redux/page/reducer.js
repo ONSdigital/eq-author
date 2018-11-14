@@ -6,6 +6,7 @@ export default (state = {}, { type, payload }) => {
       const newState = {
         ...state,
         [payload.id]: {
+          ...state[payload.id],
           definition: {
             ...state[payload.id].definition,
             [payload.name]: payload.value
@@ -21,6 +22,7 @@ export default (state = {}, { type, payload }) => {
       const newState = {
         ...state,
         [payload.id]: {
+          ...state[payload.id],
           additionalInfo: {
             ...state[payload.id].additionalInfo,
             [key]: payload.value

@@ -1,15 +1,24 @@
+/*  eslint-disable react/no-danger */
 import React from "react";
 import { withApollo, Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
+import { get, flowRight } from "lodash";
+import { connect } from "react-redux";
 
 import QuestionPageEditor from "components/QuestionPageEditor";
 import EditorLayout from "components/EditorLayout";
 
+import { TransitionGroup } from "react-transition-group";
+import Transition from "./Transition";
+
+import { getProperties } from "redux/properties/reducer";
+import { getQuestionPage } from "redux/page/reducer";
 import { renderAnswer } from "./answers";
 import { colors } from "constants/theme";
 
 import IconInfo from "./icon-info.svg?inline";
+import iconChevron from "./icon-chevron.svg";
 import IconText from "components/IconText";
 
 const Container = styled.div`
@@ -77,15 +86,46 @@ const Error = styled.div`
   font-size: 0.9em;
 `;
 
-export class UnwrappedQuestionPageRoute extends React.Component {
+const Details = styled.div`
+  margin-bottom: 1em;
+`;
+
+const DetailsTitle = styled.div`
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  color: ${colors.primary};
+  margin-bottom: 0.5em;
+  &::before {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    margin-left: -10px;
+    content: url(${iconChevron});
+    transform: rotate(90deg);
+  }
+`;
+
+const DetailsContent = styled.div`
+  border-left: 2px solid #999999;
+  margin-left: 6px;
+  padding: 0.2em 1em;
+`;
+
+export class UnwrappedQuestionPagePreviewRoute extends React.Component {
   render() {
     if (this.props.loading) {
       return null;
     }
 
-    /*  eslint-disable react/no-danger */
-    const { questionPage } = this.props.data;
-    const { description, guidance, answers } = questionPage;
+    const { questionPage, properties } = this.props;
+    const {
+      description,
+      guidance,
+      answers,
+      definition,
+      additionalInfo
+    } = questionPage;
 
     let title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
 
@@ -100,31 +140,81 @@ export class UnwrappedQuestionPageRoute extends React.Component {
         <Container>
           <PageTitle>{title}</PageTitle>
 
-          {description &&
-            description !== "<p></p>" && (
-              <Description dangerouslySetInnerHTML={{ __html: description }} />
+          <TransitionGroup>
+            {description &&
+              properties.description &&
+              description !== "<p></p>" && (
+                <Transition key="description">
+                  <div>
+                    <Description
+                      dangerouslySetInnerHTML={{ __html: description }}
+                    />
+                  </div>
+                </Transition>
+              )}
+
+            {definition &&
+              properties.definition && (
+                <Transition key="description">
+                  <div>
+                    <Details>
+                      <DetailsTitle>{definition.label}</DetailsTitle>
+                      <DetailsContent
+                        dangerouslySetInnerHTML={{ __html: definition.content }}
+                      />
+                    </Details>
+                  </div>
+                </Transition>
+              )}
+
+            {guidance &&
+              properties.guidance &&
+              guidance !== "<p></p>" && (
+                <Transition key="guidance">
+                  <div>
+                    <Guidance>
+                      <Panel dangerouslySetInnerHTML={{ __html: guidance }} />
+                    </Guidance>
+                  </div>
+                </Transition>
+              )}
+
+            {answers.length ? (
+              <Answers>{answers.map(renderAnswer)}</Answers>
+            ) : (
+              <NoAnswers>
+                <IconText icon={IconInfo}>
+                  No answers have been added to this question.
+                </IconText>
+              </NoAnswers>
             )}
 
-          {guidance &&
-            guidance !== "<p></p>" && (
-              <Guidance>
-                <Panel dangerouslySetInnerHTML={{ __html: guidance }} />
-              </Guidance>
-            )}
-          {answers.length ? (
-            <Answers>{answers.map(renderAnswer)}</Answers>
-          ) : (
-            <NoAnswers>
-              <IconText icon={IconInfo}>
-                No answers have been added to this question.
-              </IconText>
-            </NoAnswers>
-          )}
+            {additionalInfo &&
+              properties.additionalInfo && (
+                <Transition key="description">
+                  <div>
+                    <Details>
+                      <DetailsTitle>{additionalInfo.label}</DetailsTitle>
+                      <DetailsContent
+                        dangerouslySetInnerHTML={{
+                          __html: additionalInfo.content
+                        }}
+                      />
+                    </Details>
+                  </div>
+                </Transition>
+              )}
+          </TransitionGroup>
         </Container>
       </EditorLayout>
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  properties: getProperties(state, ownProps.match.params.pageId),
+  questionPage: getQuestionPage(state, ownProps.match.params.pageId)
+});
 
 export const QUESTION_PAGE_QUERY = gql`
   query GetQuestionPage($id: ID!) {
@@ -136,11 +226,27 @@ export const QUESTION_PAGE_QUERY = gql`
   ${QuestionPageEditor.fragments.QuestionPage}
 `;
 
-export default withApollo(props => (
+const withQuestionPage = flowRight(
+  connect(mapStateToProps),
+  withApollo
+);
+
+export default withQuestionPage(props => (
   <Query
     query={QUESTION_PAGE_QUERY}
     variables={{ id: props.match.params.pageId }}
   >
-    {innerProps => <UnwrappedQuestionPageRoute {...innerProps} {...props} />}
+    {innerProps => {
+      return (
+        <UnwrappedQuestionPagePreviewRoute
+          {...innerProps}
+          {...props}
+          questionPage={{
+            ...get(innerProps.data, "questionPage"),
+            ...props.questionPage
+          }}
+        />
+      );
+    }}
   </Query>
 ));
