@@ -165,7 +165,7 @@ export class StatelessMetaEditor extends React.Component {
               <div>
                 <GuidanceEditor
                   id="guidance"
-                  label="Include/exclude guidance"
+                  label="Include & exclude"
                   value={page.guidance}
                   onUpdate={handleUpdate}
                   controls={guidanceControls}

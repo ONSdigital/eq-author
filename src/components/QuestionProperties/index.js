@@ -136,7 +136,7 @@ class QuestionProperties extends React.Component {
         <PropertyDescription>
           Information regarding why we are asking this question.
         </PropertyDescription>
-        <Button onClick={onHelpClick}>More information</Button>
+        <Button onClick={onHelpClick}>What are these?</Button>
       </Properties>
     );
   }

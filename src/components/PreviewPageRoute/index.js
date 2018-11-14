@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 
 import QuestionPageEditor from "components/QuestionPageEditor";
 import EditorLayout from "components/EditorLayout";
+import Error from "./Error";
 
 import { TransitionGroup } from "react-transition-group";
 import Transition from "./Transition";
@@ -67,25 +68,6 @@ const Answers = styled.div`
   margin-bottom: 1em;
 `;
 
-const NoAnswers = styled.div`
-  margin-bottom: 1em;
-  padding: 2em;
-  border-radius: 4px;
-  border: 2px dashed #b5c4cb;
-  text-align: center;
-  color: ${colors.secondary};
-`;
-
-const Error = styled.div`
-  padding: 0.5em 1em;
-  margin-bottom: 1em;
-  border-radius: 4px;
-  border: 2px dashed #b5c4cb;
-  text-align: center;
-  color: ${colors.secondary};
-  font-size: 0.9em;
-`;
-
 const Details = styled.div`
   margin-bottom: 1em;
 `;
@@ -93,9 +75,9 @@ const Details = styled.div`
 const DetailsTitle = styled.div`
   display: flex;
   align-items: center;
-  text-decoration: underline;
   color: ${colors.primary};
   margin-bottom: 0.5em;
+
   &::before {
     width: 32px;
     height: 32px;
@@ -109,7 +91,7 @@ const DetailsTitle = styled.div`
 const DetailsContent = styled.div`
   border-left: 2px solid #999999;
   margin-left: 6px;
-  padding: 0.2em 1em;
+  padding: 0.2em 0 0.2em 1em;
 `;
 
 export class UnwrappedQuestionPagePreviewRoute extends React.Component {
@@ -129,64 +111,82 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
 
     let title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
 
-    if (!title) {
-      title = <Error>Missing Page Title</Error>;
-    } else {
-      title = <div dangerouslySetInnerHTML={{ __html: title }} />;
-    }
-
     return (
       <EditorLayout page={questionPage}>
         <Container>
-          <PageTitle>{title}</PageTitle>
+          <PageTitle>
+            {title ? (
+              <div dangerouslySetInnerHTML={{ __html: title }} />
+            ) : (
+              <Error large>Missing Page Title</Error>
+            )}
+          </PageTitle>
 
           <TransitionGroup>
-            {description &&
-              properties.description &&
-              description !== "<p></p>" && (
-                <Transition key="description">
-                  <div>
+            {properties.description && (
+              <Transition key="description">
+                <div>
+                  {description === "<p></p>" ? (
+                    <Error large>Missing description</Error>
+                  ) : (
                     <Description
                       dangerouslySetInnerHTML={{ __html: description }}
                     />
-                  </div>
-                </Transition>
-              )}
+                  )}
+                </div>
+              </Transition>
+            )}
 
             {definition &&
               properties.definition && (
-                <Transition key="description">
+                <Transition key="definition">
                   <div>
                     <Details>
-                      <DetailsTitle>{definition.label}</DetailsTitle>
-                      <DetailsContent
-                        dangerouslySetInnerHTML={{ __html: definition.content }}
-                      />
+                      <DetailsTitle>
+                        {definition.label || (
+                          <Error small>Missing definition label</Error>
+                        )}
+                      </DetailsTitle>
+                      <DetailsContent>
+                        {definition.content === "<p></p>" ? (
+                          <Error large margin={false}>
+                            Missing definition content
+                          </Error>
+                        ) : (
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: definition.content
+                            }}
+                          />
+                        )}
+                      </DetailsContent>
                     </Details>
                   </div>
                 </Transition>
               )}
 
-            {guidance &&
-              properties.guidance &&
-              guidance !== "<p></p>" && (
-                <Transition key="guidance">
-                  <div>
+            {properties.guidance && (
+              <Transition key="guidance">
+                <div>
+                  {guidance === "<p></p>" ? (
+                    <Error large>Missing guidance</Error>
+                  ) : (
                     <Guidance>
                       <Panel dangerouslySetInnerHTML={{ __html: guidance }} />
                     </Guidance>
-                  </div>
-                </Transition>
-              )}
+                  )}
+                </div>
+              </Transition>
+            )}
 
             {answers.length ? (
               <Answers>{answers.map(renderAnswer)}</Answers>
             ) : (
-              <NoAnswers>
+              <Error large>
                 <IconText icon={IconInfo}>
                   No answers have been added to this question.
                 </IconText>
-              </NoAnswers>
+              </Error>
             )}
 
             {additionalInfo &&
@@ -194,12 +194,26 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
                 <Transition key="additionalInfo">
                   <div>
                     <Details>
-                      <DetailsTitle>{additionalInfo.label}</DetailsTitle>
-                      <DetailsContent
-                        dangerouslySetInnerHTML={{
-                          __html: additionalInfo.content
-                        }}
-                      />
+                      <DetailsTitle>
+                        {additionalInfo.label || (
+                          <Error small>
+                            Missing additional information label
+                          </Error>
+                        )}
+                      </DetailsTitle>
+                      <DetailsContent>
+                        {additionalInfo.content === "<p></p>" ? (
+                          <Error large margin={false}>
+                            Missing additional information content
+                          </Error>
+                        ) : (
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: additionalInfo.content
+                            }}
+                          />
+                        )}
+                      </DetailsContent>
                     </Details>
                   </div>
                 </Transition>

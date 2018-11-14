@@ -41,7 +41,7 @@ const PropertiesPaneBody = styled.div`
 `;
 
 const AnswerProperties = styled.div`
-  padding: 0.5em;
+  padding: 0.5em 1em;
   border-top: ${props =>
     props.hasBorder ? `8px solid ${colors.lighterGrey}` : "none"};
 `;
@@ -110,7 +110,6 @@ class PropertiesPanel extends React.Component {
               )}
           </ScrollPane>
         </PropertiesPaneBody>
-
         <HelpModal
           isOpen={this.state.showModal}
           onClose={() => this.setState({ showModal: false })}

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import { colors } from "constants/theme";
+import Error from "components/PreviewPageRoute/Error";
 
 const Description = styled.div`
   font-size: 0.8em;
@@ -17,17 +17,9 @@ const Label = styled.label`
   line-height: 1.4;
 `;
 
-const Error = styled.span`
-  padding: 0.2em 0.3em;
-  border: 2px dashed #b5c4cb;
-  color: ${colors.secondary};
-  font-weight: bold;
-  margin-bottom: 1em;
-`;
-
 export default ({ description, children }) => (
   <Label>
-    {children || <Error>Missing label</Error>}
+    {children || <Error small>Missing label</Error>}
     {description && (
       <Fragment>
         <br />
