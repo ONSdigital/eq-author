@@ -191,7 +191,7 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
 
             {additionalInfo &&
               properties.additionalInfo && (
-                <Transition key="description">
+                <Transition key="additionalInfo">
                   <div>
                     <Details>
                       <DetailsTitle>{additionalInfo.label}</DetailsTitle>

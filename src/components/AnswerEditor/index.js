@@ -64,21 +64,32 @@ const AnswerType = styled.div`
   border-bottom: 1px solid ${colors.bordersLight};
   text-align: center;
   padding: 0 1em;
-  font-size: 0.8em;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: bold;
   border-radius: ${radius} ${radius} 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.4em;
 
   svg {
     width: 32px;
     height: 32px;
-    margin-left: -32px;
+    position: absolute;
+    left: -32px;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    opacity: 0.6;
   }
+`;
+
+const AnswerTypeText = styled.span`
+  vertical-align: middle;
+  font-size: 0.8em;
+  font-weight: bold;
+  position: relative;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 `;
 
 const Padding = styled.div`
@@ -89,12 +100,6 @@ export const AnswerDeleteButton = styled(DeleteButton)`
   position: absolute;
   right: 0.2em;
   top: 1em;
-`;
-
-const AnswerTypeText = styled.span`
-  vertical-align: middle;
-  line-height: 1.3;
-  margin-left: 0.1em;
 `;
 
 class AnswerEditor extends React.Component {
@@ -147,8 +152,10 @@ class AnswerEditor extends React.Component {
     return (
       <Answer>
         <AnswerType>
-          <Icon />
-          <AnswerTypeText>{this.props.answer.type} ANSWER</AnswerTypeText>
+          <AnswerTypeText>
+            <Icon />
+            {this.props.answer.type} ANSWER
+          </AnswerTypeText>
         </AnswerType>
         <Padding>{this.renderAnswer(this.props.answer)}</Padding>
         <Tooltip
