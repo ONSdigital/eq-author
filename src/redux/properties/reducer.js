@@ -34,7 +34,7 @@ export default (state = initialState, { type, payload }) => {
 export const getProperties = (state, pageId) => ({
   guidance: { enabled: false, focused: true },
   description: { enabled: false, focused: false },
-  guidance: { enabled: false, focused: false },
+  definition: { enabled: false, focused: false },
   additionalInfo: { enabled: false, focused: false },
   ...state.properties[pageId]
 });
