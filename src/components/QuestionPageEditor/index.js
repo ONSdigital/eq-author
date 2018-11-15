@@ -158,9 +158,9 @@ export default class QuestionPageEditor extends React.Component {
             <MetaEditor
               onUpdate={onUpdatePage}
               page={page}
-              displayDescription={properties.description}
-              displayGuidance={properties.guidance}
-              displayDefinition={properties.definition}
+              displayDescription={properties.description.enabled}
+              displayGuidance={properties.guidance.enabled}
+              displayDefinition={properties.definition.enabled}
             />
             <DeleteConfirmDialog
               isOpen={showDeleteConfirmDialog}
@@ -190,7 +190,7 @@ export default class QuestionPageEditor extends React.Component {
 
         <AddAnswerSegment>
           <TransitionGroup>
-            {properties.additionalInfo && (
+            {properties.additionalInfo.enabled && (
               <AnswerTransition
                 key="additional-info"
                 onEntered={node => {

@@ -110,7 +110,7 @@ export class StatelessMetaEditor extends React.Component {
               <div>
                 <RichTextEditor
                   id="description"
-                  label="Description"
+                  label="Question description"
                   value={page.description}
                   onUpdate={handleUpdate}
                   controls={descriptionControls}
@@ -128,7 +128,7 @@ export class StatelessMetaEditor extends React.Component {
               key="definition"
               onEntered={this.handleTransitionEnd}
             >
-              <DefinitionEditor label="Definition">
+              <DefinitionEditor label="Question definition">
                 <Paragraph>
                   Only to be used to define word(s) or acronym(s) within the
                   question.
@@ -165,7 +165,7 @@ export class StatelessMetaEditor extends React.Component {
               <div>
                 <GuidanceEditor
                   id="guidance"
-                  label="Include & exclude"
+                  label="Include/exclude"
                   value={page.guidance}
                   onUpdate={handleUpdate}
                   controls={guidanceControls}

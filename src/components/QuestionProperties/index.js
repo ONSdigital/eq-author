@@ -36,7 +36,7 @@ const Properties = styled.div`
 `;
 
 const PropertyLabel = styled(Label)`
-  font-weight: bold;
+  font-weight: normal;
 `;
 
 const Button = styled.button`
@@ -46,6 +46,7 @@ const Button = styled.button`
   font-weight: bold;
   color: ${colors.primary};
   border: none;
+
   &:focus {
     outline: 2px solid ${colors.tertiary};
   }
@@ -90,10 +91,10 @@ class QuestionProperties extends React.Component {
         <PropertiesPanelTitle>Optional fields</PropertiesPanelTitle>
         <Property
           id="description"
-          checked={properties.description}
+          checked={properties.description.enabled}
           onChange={this.handleChange}
         >
-          Description
+          Question description
         </Property>
 
         <PropertyDescription>
@@ -102,10 +103,10 @@ class QuestionProperties extends React.Component {
 
         <Property
           id="definition"
-          checked={properties.definition}
+          checked={properties.definition.enabled}
           onChange={this.handleChange}
         >
-          Definition
+          Question definition
         </Property>
 
         <PropertyDescription>
@@ -114,10 +115,10 @@ class QuestionProperties extends React.Component {
 
         <Property
           id="guidance"
-          checked={properties.guidance}
+          checked={properties.guidance.enabled}
           onChange={this.handleChange}
         >
-          Include & exclude
+          Include/exclude
         </Property>
 
         <PropertyDescription>
@@ -127,7 +128,7 @@ class QuestionProperties extends React.Component {
 
         <Property
           id="additionalInfo"
-          checked={properties.additionalInfo}
+          checked={properties.additionalInfo.enabled}
           onChange={this.handleChange}
         >
           Additional information

@@ -9,7 +9,7 @@ import AnswerPropertiesContainer from "containers/AnswerPropertiesContainer";
 import AnswerValidation from "components/Validation/AnswerValidation";
 import QuestionProperties from "components/QuestionProperties";
 
-import HelpModal from "components/HelpModal";
+import HelpModal from "./HelpModal";
 
 const PropertiesPane = styled.div`
   background: ${colors.white};

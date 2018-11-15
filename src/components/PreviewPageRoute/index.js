@@ -123,7 +123,7 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
           </PageTitle>
 
           <TransitionGroup>
-            {properties.description && (
+            {properties.description.enabled && (
               <Transition key="description">
                 <div>
                   {description === "<p></p>" ? (
@@ -138,7 +138,7 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
             )}
 
             {definition &&
-              properties.definition && (
+              properties.definition.enabled && (
                 <Transition key="definition">
                   <div>
                     <Details>
@@ -165,7 +165,7 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
                 </Transition>
               )}
 
-            {properties.guidance && (
+            {properties.guidance.enabled && (
               <Transition key="guidance">
                 <div>
                   {guidance === "<p></p>" ? (
@@ -190,7 +190,7 @@ export class UnwrappedQuestionPagePreviewRoute extends React.Component {
             )}
 
             {additionalInfo &&
-              properties.additionalInfo && (
+              properties.additionalInfo.enabled && (
                 <Transition key="additionalInfo">
                   <div>
                     <Details>

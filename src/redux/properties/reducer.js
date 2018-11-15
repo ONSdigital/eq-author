@@ -9,7 +9,9 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         [payload.pageId]: {
           ...state[payload.pageId],
-          [payload.fieldId]: true
+          [payload.fieldId]: {
+            enabled: true
+          }
         }
       };
     }
@@ -19,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         [payload.pageId]: {
           ...state[payload.pageId],
-          [payload.fieldId]: false
+          [payload.fieldId]: { enabled: false }
         }
       };
     }
@@ -30,9 +32,9 @@ export default (state = initialState, { type, payload }) => {
 };
 
 export const getProperties = (state, pageId) => ({
-  guidance: false,
-  description: false,
-  guidance: false,
-  additionalInfo: false,
+  guidance: { enabled: false, focused: true },
+  description: { enabled: false, focused: false },
+  guidance: { enabled: false, focused: false },
+  additionalInfo: { enabled: false, focused: false },
   ...state.properties[pageId]
 });
