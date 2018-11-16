@@ -15,7 +15,7 @@ export const Routes = {
   QUESTIONNAIRE: `/questionnaire/:questionnaireId/:sectionId(\\d+)?/:pageId(\\d+)?/:confirmationId(\\d+)?/:tab?`,
   SECTION: `/questionnaire/:questionnaireId/:sectionId(\\d+)/design`,
   PAGE: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/design`,
-  PREVIEW: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/preview`,
+  PREVIEW: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)?/preview`,
   CONFIRMATION: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/:confirmationId(\\d+)/design`,
   ROUTING: `/questionnaire/:questionnaireId/:sectionId(\\d+)/:pageId(\\d+)/routing`
 };
@@ -26,3 +26,9 @@ export const buildQuestionnairePath = generatePath(Routes.QUESTIONNAIRE);
 export const buildRoutingPath = generatePath(Routes.ROUTING);
 export const buildPreviewPath = generatePath(Routes.PREVIEW);
 export const buildConfirmationPath = generatePath(Routes.CONFIRMATION);
+
+export const isOnConfirmation = match => Boolean(match.params.confirmationId);
+export const isOnPage = match =>
+  Boolean(match.params.pageId) && !isOnConfirmation(match);
+export const isOnSection = match =>
+  Boolean(match.params.sectionId) && !isOnPage(match);

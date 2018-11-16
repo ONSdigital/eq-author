@@ -11,7 +11,10 @@ import {
   buildSectionPath,
   buildRoutingPath,
   buildPreviewPath,
-  buildConfirmationPath
+  buildConfirmationPath,
+  isOnConfirmation,
+  isOnPage,
+  isOnSection
 } from "utils/UrlUtils";
 
 import IconPreview from "./icon-preview.svg?inline";
@@ -65,21 +68,18 @@ const DisabledTab = styled(Tab.withComponent("span"))`
   color: ${colors.lightGrey};
 `;
 
-const isOnConfirmation = match => Boolean(match.params.confirmationId);
-const isOnPage = match => Boolean(match.params.pageId) && !isOnConfirmation(match);
-
 const TABS = [
   {
     key: "design",
     children: <IconText icon={IconDesign}>Design</IconText>,
-    url: (match) => {
+    url: match => {
       if (isOnConfirmation(match)) {
         return buildConfirmationPath(match.params);
       }
       if (isOnPage(match)) {
         return buildPagePath(match.params);
       }
-      return buildSectionPath(match.params)
+      return buildSectionPath(match.params);
     },
     enabled: () => true
   },
@@ -87,7 +87,7 @@ const TABS = [
     key: "preview",
     children: <IconText icon={IconPreview}>Preview</IconText>,
     url: match => buildPreviewPath(match.params),
-    enabled: isOnPage
+    enabled: match => isOnPage(match) || isOnSection(match)
   },
   {
     key: "routing",
