@@ -16,7 +16,6 @@ import textfieldIcon from "./icons/textfield.svg";
 
 export const icons = {
   [AnswerTypes.CHECKBOX]: checkboxIcon,
-  [AnswerTypes.CURRENCY]: currencyIcon,
   [AnswerTypes.DATE]: dateIcon,
   [AnswerTypes.DATE_RANGE]: dateRangeIcon,
   [AnswerTypes.NUMBER]: numberIcon,

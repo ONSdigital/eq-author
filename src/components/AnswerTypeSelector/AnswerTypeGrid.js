@@ -11,7 +11,6 @@ import AnswerTypeButton from "./AnswerTypeButton";
 import {
   TEXTFIELD,
   NUMBER,
-  CURRENCY,
   TEXTAREA,
   CHECKBOX,
   RADIO,
@@ -51,7 +50,6 @@ const buttons = [
   { type: RADIO, title: "Radio" },
   { type: TEXTFIELD, title: "Text" },
   { type: TEXTAREA, title: "Textarea" },
-  { type: CURRENCY, title: "Currency" },
   { type: NUMBER, title: "Number" },
   { type: DATE, title: "Date" },
   { type: DATE_RANGE, title: "Date range" },
