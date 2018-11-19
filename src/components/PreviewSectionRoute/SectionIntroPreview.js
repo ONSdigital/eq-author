@@ -1,5 +1,44 @@
+/* eslint-disable react/no-danger */
 import React from "react";
+import styled from "styled-components";
 
-const SectionIntroPreview = ({ section }) => {};
+import Error from "components/Preview/Error";
+import { rteIsEmpty } from "utils/preview";
+
+const Wrapper = styled.div`
+  padding: 2em;
+`;
+
+const ContentBlock = styled.div`
+  h2 {
+    font-size: 1em;
+  }
+`;
+
+const TitleBlock = styled.h1`
+  font-size: 1.4em;
+  margin: 0 0 1em;
+`;
+
+const SectionIntroPreview = ({
+  section: { introductionTitle, introductionContent }
+}) => (
+  <Wrapper>
+    <TitleBlock>
+      {rteIsEmpty(introductionTitle) ? (
+        <Error data-test="no-title">Missing Introduction Title</Error>
+      ) : (
+        <div dangerouslySetInnerHTML={{ __html: introductionTitle }} />
+      )}
+    </TitleBlock>
+    {rteIsEmpty(introductionContent) ? (
+      <Error data-test="no-content" large margin={false}>
+        Missing Introduction Content
+      </Error>
+    ) : (
+      <ContentBlock dangerouslySetInnerHTML={{ __html: introductionContent }} />
+    )}
+  </Wrapper>
+);
 
 export default SectionIntroPreview;

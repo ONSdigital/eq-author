@@ -6,6 +6,8 @@ import EditorLayout from "components/EditorLayout";
 import Loading from "components/Loading";
 import SectionEditor from "components/SectionEditor";
 
+import SectionIntroPreview from "./SectionIntroPreview";
+
 const UnwrappedPreviewSectionRoute = ({ data, loading }) => {
   if (loading) {
     return <Loading height="38rem">Preview loading…</Loading>;
@@ -15,7 +17,7 @@ const UnwrappedPreviewSectionRoute = ({ data, loading }) => {
 
   return (
     <EditorLayout design preview>
-      <pre>{JSON.stringify(section, null, 2)}</pre>
+      <SectionIntroPreview section={section} />
     </EditorLayout>
   );
 };
