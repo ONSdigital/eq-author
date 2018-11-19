@@ -10,7 +10,8 @@ import {
   buildPagePath,
   buildSectionPath,
   buildRoutingPath,
-  buildPreviewPath
+  buildPreviewPath,
+  buildConfirmationPath
 } from "utils/UrlUtils";
 
 import IconPreview from "./icon-preview.svg?inline";
@@ -64,16 +65,22 @@ const DisabledTab = styled(Tab.withComponent("span"))`
   color: ${colors.lightGrey};
 `;
 
-const isOnPage = match => Boolean(match.params.pageId);
+const isOnConfirmation = match => Boolean(match.params.confirmationId);
+const isOnPage = match => Boolean(match.params.pageId) && !isOnConfirmation(match);
 
 const TABS = [
   {
     key: "design",
     children: <IconText icon={IconDesign}>Design</IconText>,
-    url: match =>
-      isOnPage(match)
-        ? buildPagePath(match.params)
-        : buildSectionPath(match.params),
+    url: (match) => {
+      if (isOnConfirmation(match)) {
+        return buildConfirmationPath(match.params);
+      }
+      if (isOnPage(match)) {
+        return buildPagePath(match.params);
+      }
+      return buildSectionPath(match.params)
+    },
     enabled: () => true
   },
   {
@@ -92,7 +99,6 @@ const TABS = [
 
 export const UnwrappedTabs = props => {
   const { match, children } = props;
-
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
