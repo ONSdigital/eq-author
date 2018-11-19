@@ -9,6 +9,7 @@ import { IconGrid } from "components/IconGrid";
 import AnswerTypeButton from "./AnswerTypeButton";
 
 import {
+  CURRENCY,
   TEXTFIELD,
   NUMBER,
   TEXTAREA,
@@ -51,6 +52,7 @@ const buttons = [
   { type: TEXTFIELD, title: "Text" },
   { type: TEXTAREA, title: "Textarea" },
   { type: NUMBER, title: "Number" },
+  { type: CURRENCY, title: "Currency" },
   { type: DATE, title: "Date" },
   { type: DATE_RANGE, title: "Date range" },
   { type: TIME, title: "Time", disabled: true }

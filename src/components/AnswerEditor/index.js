@@ -6,6 +6,9 @@ import { colors, radius } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
 import DeleteButton from "components/DeleteButton";
 import fp from "lodash/fp";
+import { merge, find, get } from "lodash";
+
+import { connect } from "react-redux";
 
 import MultipleChoiceAnswer from "components/Answers/MultipleChoiceAnswer";
 import DateRange from "components/Answers/DateRange";
@@ -18,12 +21,14 @@ import {
   CHECKBOX,
   RADIO,
   DATE_RANGE,
-  DATE
+  DATE,
+  units
 } from "constants/answer-types";
 import CurrencyAnswer from "components/Answers/CurrencyAnswer";
 import Tooltip from "components/Tooltip";
 import BasicAnswer from "components/Answers/BasicAnswer";
 import gql from "graphql-tag";
+import { getUnit } from "redux/answer/reducer";
 
 const Answer = styled.div`
   border: 1px solid ${colors.bordersLight};
@@ -58,7 +63,7 @@ export const AnswerDeleteButton = styled(DeleteButton)`
   top: 1em;
 `;
 
-class AnswerEditor extends React.Component {
+class UnwrappedAnswerEditor extends React.Component {
   handleDeleteAnswer = () => {
     this.props.onDeleteAnswer(this.props.answer.id);
   };
@@ -104,9 +109,20 @@ class AnswerEditor extends React.Component {
   }
 
   render() {
+    const [unitName, unitType] = this.props.answer.properties.type.split("-");
+    const selectedUnit = get(units, unitName);
+    const unitLabel = get(selectedUnit.types, unitType);
+
     return (
       <Answer>
-        <AnswerType>{this.props.answer.type}</AnswerType>
+        <AnswerType>
+          {unitName}
+          {" — "}
+          {unitLabel && (
+            /*  eslint-disable react/no-danger */
+            <span dangerouslySetInnerHTML={{ __html: unitLabel }} />
+          )}
+        </AnswerType>
         <Padding>{this.renderAnswer(this.props.answer)}</Padding>
         <Tooltip
           content="Delete answer"
@@ -124,6 +140,14 @@ class AnswerEditor extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  answer: merge({}, ownProps.answer, {
+    properties: getUnit(state, ownProps.answer.id)
+  })
+});
+
+const AnswerEditor = connect(mapStateToProps)(UnwrappedAnswerEditor);
 
 AnswerEditor.propTypes = {
   answer: CustomPropTypes.answer,

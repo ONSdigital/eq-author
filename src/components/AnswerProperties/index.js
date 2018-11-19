@@ -3,25 +3,25 @@ import PropTypes from "prop-types";
 import { merge } from "lodash";
 import CustomPropTypes from "custom-prop-types";
 
+import { connect } from "react-redux";
+
 import {
   Required,
   Decimal,
-  DateFormat
+  DateFormat,
+  NumericType
 } from "components/AnswerProperties/Properties";
+
 import {
   InlineField,
   MultiLineField
 } from "components/AnswerProperties/Fields";
 
-import { CURRENCY, DATE, NUMBER } from "constants/answer-types";
-import { Label, Select, Field } from "../Forms";
-import styled from "styled-components";
+import { DATE, NUMBER } from "constants/answer-types";
+import { changeType, changeFormat } from "redux/answer/actions";
+import { getUnit } from "redux/answer/reducer";
 
-const TypeSelect = styled(Select)`
-  width: 8em;
-`;
-
-class AnswerProperties extends React.Component {
+class UnwrappedAnswerProperties extends React.Component {
   static propTypes = {
     answer: CustomPropTypes.answer.isRequired,
     onSubmit: PropTypes.func,
@@ -40,10 +40,19 @@ class AnswerProperties extends React.Component {
     });
   };
 
+  handleTypeChange = ({ name, value }) => {
+    this.props.changeType(name.match(/(\d+)/g)[0], value);
+  };
+
+  handleFormatChange = ({ name, value }) => {
+    this.props.changeFormat(name.match(/(\d+)/g)[0], value);
+  };
+
   getId = (name, { id }) => `answer-${id}-${name}`;
 
   render() {
     const { answer } = this.props;
+
     return (
       <React.Fragment>
         <InlineField id={this.getId("required", answer)} label={"Required"}>
@@ -55,36 +64,18 @@ class AnswerProperties extends React.Component {
           />
         </InlineField>
         {answer.type === NUMBER && (
-          <div>
-            <InlineField id={this.getId("type", answer)} label={"Type"}>
-              <TypeSelect onChange={e => console.log(e)}>
-                <optgroup label="Default">
-                  <option value="none">Number</option>
-                </optgroup>
-                <optgroup label="Currency">
-                  <option value="pounds">(£) Pounds</option>
-                  <option value="dollars">($) Dollars</option>
-                  <option value="euros">(€) Euros</option>
-                </optgroup>
-                <optgroup label="Length">
-                  <option value="pounds">(cm) Centimetres</option>
-                  <option value="dollars">(m) Metres</option>
-                  <option value="euros">(km) Kilometres</option>
-                  <option value="euros">(mi) Miles</option>
-                </optgroup>
-                <optgroup label="Area">
-                  <option value="pounds">(cm&sup2;) Square centimetres</option>
-                  <option value="pounds">(m&sup2;) Square metres</option>
-                  <option value="pounds">(m&sup2;) Square kilometres</option>
-                </optgroup>
-                <optgroup label="Volume">
-                  <option value="pounds">(cm&sup3;) Cubic centimetres</option>
-                  <option value="pounds">(m&sup3;) Cubic metres</option>
-                  <option value="pounds">(m&sup3;) Cubic kilometres</option>
-                </optgroup>
-              </TypeSelect>
-            </InlineField>
-            <br />
+          <>
+            <MultiLineField
+              id={this.getId("numeric-type", answer)}
+              label={"Type"}
+            >
+              <NumericType
+                id={this.getId("numeric-type", answer)}
+                onChange={this.handleTypeChange}
+                value={answer.properties.type}
+              />
+            </MultiLineField>
+
             <InlineField id={this.getId("decimals", answer)} label={"Decimals"}>
               <Decimal
                 id={this.getId("decimals", answer)}
@@ -92,7 +83,7 @@ class AnswerProperties extends React.Component {
                 value={answer.properties.decimals}
               />
             </InlineField>
-          </div>
+          </>
         )}
         {answer.type === DATE && (
           <MultiLineField
@@ -111,4 +102,13 @@ class AnswerProperties extends React.Component {
   }
 }
 
-export default AnswerProperties;
+const mapStateToProps = (state, ownProps) => ({
+  answer: merge({}, ownProps.answer, {
+    properties: getUnit(state, ownProps.answer.id)
+  })
+});
+
+export default connect(
+  mapStateToProps,
+  { changeType, changeFormat }
+)(UnwrappedAnswerProperties);
