@@ -1,4 +1,5 @@
 /* eslint-disable react/no-danger */
+import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
@@ -40,5 +41,12 @@ const SectionIntroPreview = ({
     )}
   </Wrapper>
 );
+
+SectionIntroPreview.propTypes = {
+  section: PropTypes.shape({
+    introductionTitle: PropTypes.string,
+    introductionContent: PropTypes.string
+  }).isRequired
+};
 
 export default SectionIntroPreview;
