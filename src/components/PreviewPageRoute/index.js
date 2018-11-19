@@ -74,7 +74,7 @@ export const UnwrappedPreviewPageRoute = ({ loading, data }) => {
   let title = questionPage.title.replace(/(<p[^>]+?>|<p>|<\/p>)/gim, "");
 
   return (
-    <EditorLayout page={questionPage}>
+    <EditorLayout page={questionPage} preview routing>
       <Container>
         <PageTitle>
           {title ? (

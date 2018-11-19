@@ -1,7 +1,10 @@
 import {
   buildQuestionnairePath,
   buildSectionPath,
-  buildPagePath
+  buildPagePath,
+  buildDesignPath,
+  buildPreviewPath,
+  buildRoutingPath
 } from "utils/UrlUtils";
 
 const questionnaireId = "1";
@@ -48,5 +51,61 @@ describe("buildPagePath", () => {
     expect(() => buildPagePath({ questionnaireId, sectionId })).toThrow();
     expect(() => buildPagePath({ questionnaireId, pageId })).toThrow();
     expect(() => buildPagePath({ sectionId, pageId })).toThrow();
+  });
+});
+
+describe("buildDesignPath", () => {
+  it("builds a page design path", () => {
+    const path = buildDesignPath({
+      questionnaireId,
+      sectionId,
+      pageId,
+      tab: "routing"
+    });
+    expect(path).toEqual("/questionnaire/1/2/3/design");
+  });
+
+  it("builds a confirmation design path", () => {
+    const path = buildDesignPath({
+      questionnaireId,
+      sectionId,
+      pageId,
+      confirmationId: 4,
+      tab: "preview"
+    });
+    expect(path).toEqual("/questionnaire/1/2/3/4/design");
+  });
+});
+
+describe("buildPreviewPath", () => {
+  it("builds a section preview path", () => {
+    const path = buildPreviewPath({
+      questionnaireId,
+      sectionId,
+      tab: "design"
+    });
+    expect(path).toEqual("/questionnaire/1/2/preview");
+  });
+
+  it("builds a page preview path", () => {
+    const path = buildPreviewPath({
+      questionnaireId,
+      sectionId,
+      pageId,
+      tab: "routing"
+    });
+    expect(path).toEqual("/questionnaire/1/2/3/preview");
+  });
+});
+
+describe("buildRoutingPath", () => {
+  it("builds a page routing path", () => {
+    const path = buildRoutingPath({
+      questionnaireId,
+      sectionId,
+      pageId,
+      tab: "design"
+    });
+    expect(path).toEqual("/questionnaire/1/2/3/routing");
   });
 });

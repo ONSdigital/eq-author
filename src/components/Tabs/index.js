@@ -7,14 +7,9 @@ import IconText from "components/IconText";
 import { colors, radius } from "constants/theme";
 import CustomPropTypes from "custom-prop-types";
 import {
-  buildPagePath,
-  buildSectionPath,
   buildRoutingPath,
   buildPreviewPath,
-  buildConfirmationPath,
-  isOnConfirmation,
-  isOnPage,
-  isOnSection
+  buildDesignPath
 } from "utils/UrlUtils";
 
 import IconPreview from "./icon-preview.svg?inline";
@@ -72,28 +67,17 @@ const TABS = [
   {
     key: "design",
     children: <IconText icon={IconDesign}>Design</IconText>,
-    url: match => {
-      if (isOnConfirmation(match)) {
-        return buildConfirmationPath(match.params);
-      }
-      if (isOnPage(match)) {
-        return buildPagePath(match.params);
-      }
-      return buildSectionPath(match.params);
-    },
-    enabled: () => true
+    url: match => buildDesignPath(match.params)
   },
   {
     key: "preview",
     children: <IconText icon={IconPreview}>Preview</IconText>,
-    url: match => buildPreviewPath(match.params),
-    enabled: match => isOnPage(match) || isOnSection(match)
+    url: match => buildPreviewPath(match.params)
   },
   {
     key: "routing",
     children: <IconText icon={IconRouting}>Routing</IconText>,
-    url: match => buildRoutingPath(match.params),
-    enabled: isOnPage
+    url: match => buildRoutingPath(match.params)
   }
 ];
 
@@ -102,19 +86,16 @@ export const UnwrappedTabs = props => {
   return (
     <div>
       <TabsContainer data-test="tabs-nav">
-        {TABS.map(({ key, children, url, enabled }) => {
-          const { Component, props } = enabled(match)
+        {TABS.map(({ key, children, url }) => {
+          const { Component, extraProps } = props[key]
             ? {
                 Component: Tab,
-                props: { to: url(match), activeClassName }
+                extraProps: { to: url(match), activeClassName }
               }
-            : {
-                Component: DisabledTab,
-                props: {}
-              };
+            : { Component: DisabledTab, extraProps: {} };
 
           return (
-            <Component key={key} {...props}>
+            <Component data-test={key} key={key} {...extraProps}>
               {children}
             </Component>
           );
@@ -125,7 +106,17 @@ export const UnwrappedTabs = props => {
   );
 };
 
+UnwrappedTabs.defaultProps = {
+  design: true,
+  preview: false,
+  routing: false
+};
+
 UnwrappedTabs.propTypes = {
+  design: PropTypes.bool,
+  preview: PropTypes.bool,
+  routing: PropTypes.bool,
+
   match: CustomPropTypes.match,
   children: PropTypes.node.isRequired
 };

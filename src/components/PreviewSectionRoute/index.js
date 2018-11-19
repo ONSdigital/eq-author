@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import React from "react";
 import { withApollo, Query } from "react-apollo";
 
+import EditorLayout from "components/EditorLayout";
 import Loading from "components/Loading";
 import SectionEditor from "components/SectionEditor";
 
@@ -12,7 +13,11 @@ const UnwrappedPreviewSectionRoute = ({ data, loading }) => {
 
   const { section } = data;
 
-  return <pre>{JSON.stringify(section, null, 2)}</pre>;
+  return (
+    <EditorLayout design preview>
+      <pre>{JSON.stringify(section, null, 2)}</pre>
+    </EditorLayout>
+  );
 };
 
 export const SECTION_QUERY = gql`

@@ -23,9 +23,13 @@ export const Routes = {
 export const buildSectionPath = generatePath(Routes.SECTION);
 export const buildPagePath = generatePath(Routes.PAGE);
 export const buildQuestionnairePath = generatePath(Routes.QUESTIONNAIRE);
-export const buildRoutingPath = generatePath(Routes.ROUTING);
-export const buildPreviewPath = generatePath(Routes.PREVIEW);
 export const buildConfirmationPath = generatePath(Routes.CONFIRMATION);
+
+const rewriteTab = tab => params => buildQuestionnairePath({ ...params, tab });
+
+export const buildDesignPath = rewriteTab("design");
+export const buildRoutingPath = rewriteTab("routing");
+export const buildPreviewPath = rewriteTab("preview");
 
 export const isOnConfirmation = match => Boolean(match.params.confirmationId);
 export const isOnPage = match =>
