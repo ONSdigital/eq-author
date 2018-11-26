@@ -9,17 +9,27 @@ import Anatomy from "./anatomy.svg?inline";
 import { colors } from "constants/theme";
 
 const StyledAnatomy = styled(Anatomy)`
-  width: 80em;
+  width: 100%;
+  max-width: 90em;
   height: auto;
-  margin: 1em auto;
 `;
 
 const Content = styled.div`
   height: 100%;
-  padding: 1em 0;
+  padding: 2em;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+`;
+
+const Title = styled.h1`
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin: 1em auto 2em;
+  color: ${colors.darkGrey};
 `;
 
 const StyledModal = styled(ModalFullScreen)`
@@ -49,6 +59,7 @@ export class UnwrappedMetadataModal extends Component {
     return (
       <StyledModal isOpen={isOpen} onClose={onClose}>
         <Content>
+          <Title>The anatomy of a question</Title>
           <StyledAnatomy />
         </Content>
       </StyledModal>

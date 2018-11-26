@@ -12,6 +12,9 @@ import { connect } from "react-redux";
 import { enableField, disableField } from "redux/properties/actions";
 
 import { getProperties } from "redux/properties/reducer";
+import IconText from "../IconText";
+
+import InfoIcon from "./icon-info.svg?inline";
 
 const InlineField = styled(Field)`
   display: flex;
@@ -40,11 +43,13 @@ const PropertyLabel = styled(Label)`
 `;
 
 const Button = styled.button`
+  --color-text: ${colors.primary};
   margin: 0.5em 0;
+  position: relative;
+  left: -0.5em;
   padding: 0;
   font-size: 1em;
   font-weight: bold;
-  color: ${colors.primary};
   border: none;
 
   &:focus {
@@ -137,7 +142,10 @@ class QuestionProperties extends React.Component {
         <PropertyDescription>
           Information regarding why we are asking this question.
         </PropertyDescription>
-        <Button onClick={onHelpClick}>What are these?</Button>
+
+        <Button onClick={onHelpClick}>
+          <IconText icon={InfoIcon}>See how these fields are used</IconText>
+        </Button>
       </Properties>
     );
   }
