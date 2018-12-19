@@ -18,8 +18,7 @@ const AddRule = styled.div`
 `;
 
 const AddRuleButton = styled(Button)`
-  margin: 0 auto;
-  padding: 0.5em 2em;
+  width: 100%;
 `;
 
 const RoutingRuleResult = styled.div`
