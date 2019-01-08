@@ -1,36 +1,24 @@
 import { DEFINITION_UPDATE, INFO_UPDATE } from "./actions";
+import { merge } from "lodash";
 
 export default (state = {}, { type, payload }) => {
+  console.log(state);
+  console.log(type);
+  console.log(payload);
+
   switch (type) {
     case DEFINITION_UPDATE: {
-      const newState = {
-        ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          definition: {
-            ...state[payload.id].definition,
-            [payload.name]: payload.value
-          }
-        }
-      };
-
-      return newState;
+      return merge(state, {
+        [payload.id]: { definition: { [payload.name]: payload.value } }
+      });
     }
 
     case INFO_UPDATE: {
       const key = payload.name.replace("additional-info-", "");
-      const newState = {
-        ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          additionalInfo: {
-            ...state[payload.id].additionalInfo,
-            [key]: payload.value
-          }
-        }
-      };
 
-      return newState;
+      return merge(state, {
+        [payload.id]: { additionalInfo: { [key]: payload.value } }
+      });
     }
 
     default:
